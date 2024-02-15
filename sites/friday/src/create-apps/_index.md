@@ -10,10 +10,6 @@ keywords:
 
 {{% description %}}
 
-{{% version/only "1" %}}
-![Applications](/images/config-diagrams/applications.png "0.50")
-{{% /version/only %}}
-
 Within a single project, you can have one or more apps and each app can have multiple instances.
 Instances are where the same code can be run with different configurations,
 such as one for external communication and one for background processes.
@@ -24,49 +20,11 @@ You can find a [complete reference](./app-reference.md) of all possible settings
 
 To create a very basic app, you need a few things:
 
-{{% version/specific %}}
-* A unique `name` not shared by any other app in the project.
-* The runtime `type` defining what language it uses.
-* A `disk` size for your deployed files.
-* A definition of how to handle requests from the outside `web`.
-<--->
 * A unique name not shared by any other app in the project.
 * The runtime `type` defining what language it uses.
 * A definition of how to handle requests from the outside `web`.
-{{% /version/specific %}}
 
 The following example shows such a basic setup for Node.js:
-
-<!-- @todo: code-links break the rendering. Removed for now, to revisit. -->
-{{< version/specific >}}
-
-```yaml {configFile="app"}
-# The app's name, which must be unique within the project.
-name: 'app'
-
-# The language and version for your app.
-type: 'nodejs:{{% latest "nodejs" %}}'
-
-# The size of the app's persistent disk (in MB).
-disk: 2048
-
-# The app's configuration when it's exposed to the web.
-web:
-    commands:
-        start: npm start
-    locations:
-        '/':
-            # The public directory relative to the app root.
-            root: 'public'
-            # Forward resources to the app.
-            passthru: true
-            # What files to use when serving a directory.
-            index: ["index.html"]
-            # Allow files even without specified rules.
-            allow: true        
-```
-
-<--->
 
 ```yaml {configFile="app"}
 # Top-level key, which contains configurations for all app containers.
@@ -91,8 +49,6 @@ applications:
                     # Allow files even without specified rules.
                     allow: true
 ```
-
-{{< /version/specific >}}
 
 ## Use multiple apps
 
@@ -160,65 +116,6 @@ Unlike other runtimes most PHP applications do not have a start command. There i
 
 The following example shows a setup for a PHP app with comments to explain the settings.
 
-{{% version/specific %}}
-
-```yaml {configFile="app"}
-# The app's name, which must be unique within the project.
-name: 'app'
-
-# The language and version for your app.
-type: 'php:{{% latest "php" %}}'
-
-# Global dependencies to be added and cached and then available as commands.
-dependencies:
-    php:
-        composer/composer: '^2'
-
-# The app's relationships (connections) with services or other applications.
-# The key is the relationship name that can be viewed in the app.
-# The value is specific to how the service is configured.
-relationships:
-    database: 'mysqldb:mysql'
-
-# Scripts that are run as part of the build and deploy process.
-hooks:
-    # Build hooks can modify app files on disk but not access any services like databases.
-    build: ./build.sh
-    # Deploy hooks can access services but the file system is now read-only.
-    deploy: ./deploy.sh
-    # Post deploy hooks run when the app is accepting outside requests.
-    post_deploy: ./post_deploy.sh
-
-# The size of the app's persistent disk (in MB).
-disk: 2048
-
-# Define writable, persistent filesystem mounts.
-# The key is the directory path relative to the application root.
-# In this case, `web-files` is just a unique name for the mount.
-mounts:
-    'web/files':
-        source: local
-        source_path: 'web-files'
-
-# The app's configuration when it's exposed to the web.
-web:
-    locations:
-        '/':
-            # The app's public directory relative to its root.
-            root: 'public'
-            # A front controller to determine how to handle requests.
-            passthru: '/app.php'
-        # Allow uploaded files to be served, but don't run scripts.
-        # Missing files get sent to the front controller.
-        '/files':
-            root: 'web/files'
-            scripts: false
-            allow: true
-            passthru: '/app.php'
-```
-
-<--->
-
 ```yaml {configFile="app"}
 applications:
     # The app's name, which must be unique within the project.
@@ -273,5 +170,3 @@ applications:
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
-```
-{{% /version/specific %}}

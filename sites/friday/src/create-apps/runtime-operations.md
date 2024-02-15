@@ -13,23 +13,10 @@ For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
 without having to rebuild your whole app.
 
-{{% version/only "1" %}}
-You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
-{{% /version/only %}}
-
 ## Define a runtime operation
 
 To define a runtime operation, add a configuration similar to the following:
 
-{{% version/specific %}}
-```yaml {configFile="app"}
-operations:
-  {{< variable "RUNTIME_OPERATION_NAME" >}}:
-    role: {{< variable "USER_ROLE" >}}
-    commands:
-      start: {{< variable "COMMAND" >}}
-```
-<--->
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -41,8 +28,6 @@ applications:
                 commands:
                     start: {{< variable "COMMAND" >}}
 ```
-{{% /version/specific %}}
-
 When you define a runtime operation,
 you can specify which users can trigger it according to their user `role`:
 
@@ -51,20 +36,11 @@ you can specify which users can trigger it according to their user `role`:
 - `admin`
 
 If you don't set the `role` option when configuring your runtime operation,
-by default all users with the `contributor` role can trigger it. 
+by default all users with the `contributor` role can trigger it.
 
 For example, to allow admin users to clear the cache of a Drupal site,
 you could define an operation like the following:
 
-{{% version/specific %}}
-```yaml {configFile="app"}
-operations:
-    clear-rebuild:
-        role: admin
-        commands:
-            start: drush cache:rebuild
-```
-<--->
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -76,15 +52,13 @@ applications:
                 commands:
                     start: drush cache:rebuild
 ```
-{{% /version/specific %}}
-
 The name of the runtime operation in this case is `clear-rebuild`.
 
-For more possibilities, see other [runtime operation examples](#runtime-operation-examples). 
+For more possibilities, see other [runtime operation examples](#runtime-operation-examples).
 
 ## Run a runtime operation
 
-Once you've [defined a runtime operation](#define-a-runtime-operation), 
+Once you've [defined a runtime operation](#define-a-runtime-operation),
 you can trigger it through the {{% vendor/name %}} CLI.
 To do so, run the following command:
 
@@ -115,20 +89,10 @@ run the following command:
 
 ### Build your app when using a static site generator
 
-{{< version/specific >}}
-During every {{% vendor/name %}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
-When you use a static site generator like [Gatsby](../guides/gatsby/_index.md)
-or [Next.js](../guides/nextjs/_index.md) with [a headless backend](../guides/gatsby/headless/_index.md),
-you need to run a second `build` step to get your app ready for production.
-
-<--->
-
 During every {{% vendor/name %}} deployment, a standard [`build` step](/learn/overview/build-deploy.md#the-build) is run.
 When you use a static site generator like Gatsby
 or Next.js with a headless backend
 you need to run a second `build` step to get your app ready for production.
-
-{{< /version/specific >}}
 
 This is because, as its framework is being built,
 your frontend needs to pull content-related data from your backend’s API
@@ -212,7 +176,7 @@ To trigger your runtime operation, run a command similar to the following:
 
 ### Execute actions on your Node.js app
 
-You can define runtime operations for common [pm2](https://pm2.io/docs/runtime/overview/) process manager tasks. 
+You can define runtime operations for common [pm2](https://pm2.io/docs/runtime/overview/) process manager tasks.
 
 {{< codetabs >}}
 +++
@@ -226,14 +190,14 @@ To ping your Node.js app, define a runtime operation similar to the following:
 
 operations:
     pm2-ping:
-        role: admin 
-        commands: 
+        role: admin
+        commands:
             start: |
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
                 pm2 ping $APP
 {{< /snippet >}}
-``` 
+```
 
 To trigger your runtime operation, run a command similar to the following:
 
@@ -253,14 +217,14 @@ To reload your Node.js app, define a runtime operation similar to the following:
 
 operations:
     pm2-reload:
-        role: admin 
-        commands: 
+        role: admin
+        commands:
             start: |
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
                 pm2 reload $APP
 {{< /snippet >}}
-``` 
+```
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
@@ -279,14 +243,14 @@ To restart your Node.js app, define a runtime operation similar to the following
 
 operations:
     pm2-restart:
-        role: admin 
-        commands: 
+        role: admin
+        commands:
             start: |
                 # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
                 APP=$(cat package.json | jq -r '.name')
-                pm2 restart $APP 
+                pm2 restart $APP
 {{< /snippet >}}
-``` 
+```
 
 To trigger your runtime operation, run a command similar to the following:
 
@@ -301,33 +265,18 @@ To trigger your runtime operation, run a command similar to the following:
 On a Django project, you can [define custom `django-admin` commands](https://docs.djangoproject.com/en/4.2/howto/custom-management-commands/), for example to run a one-off management command (`manual migration` in the example above) outside of the Django ORM migration framework.
 To do so, define a runtime operation similar to the following:
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
-name: app
-
-type: python:{{% latest "python" %}}
-
-operations:
-    manual-migration:
-        role: admin 
-        commands: 
-            start: python manage.py manual_migration
-```
-<--->
-```yaml {configFile="app"}
-applications: 
-    myapp: 
+applications:
+    myapp:
         source:
             root: "/"
         type: python:{{% latest "python" %}}
         operations:
             manual-migration:
-                role: admin 
-                commands: 
+                role: admin
+                commands:
                     start: python manage.py manual_migration
 ```
-{{% /version/specific %}}
-
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash

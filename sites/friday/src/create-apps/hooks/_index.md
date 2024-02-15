@@ -9,18 +9,6 @@ you might want to run custom commands.
 These might include compiling the app, setting the configuration for services based on variables, and rebuilding search indexes.
 Do these tasks using one of [three hooks](./hooks-comparison.md).
 
-{{% version/specific %}}
-The following example goes through each of these hooks for the [Next.js Drupal template](https://github.com/platformsh-templates/nextjs-drupal).
-This template uses [Drupal](https://www.drupal.org/) as the headless CMS backend
-and [Next.js](https://nextjs.org/) for the frontend.
-It's largely based on the [Next.js for Drupal project](https://next-drupal.org/)
-
-The example commands are somewhat simplified, but you can find them all in the [GitHub repository](https://github.com/platformsh-templates/nextjs-drupal).
-
-In this case, you have [two apps](../multi-app/_index.md) and so two [`{{< vendor/configfile "app" >}}` configuration files](../_index.md).
-Each file is in the folder for that app: `api` for Drupal and `client` for Next.js.
-You run one hook for Drupal and two hooks for Next.js.
-<--->
 The following example goes through each of these hooks for a multi-app project
 
 - Next.js acts as the frontend container, `client`
@@ -28,8 +16,6 @@ The following example goes through each of these hooks for a multi-app project
 
 Configuration for [both applications](../multi-app/_index.md) resides in a single [`{{< vendor/configfile "app" >}}` configuration file](../_index.md).
 Be sure to notice the `source.root` property for each.
-{{% /version/specific %}}
-
 ## Build dependencies
 
 The Next.js app uses Yarn for dependencies, which need to be installed.
@@ -45,16 +31,6 @@ Create your `build` hook to install them all:
 
 1. Create a `build` hook in your [app configuration](../app-reference.md):
 
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="client" }
-   hooks:
-       build: |
-           set -e
-   ```
-
-   <--->
-
    ```yaml {configfile="app"}
    applications:
         client:
@@ -64,8 +40,6 @@ Create your `build` hook to install them all:
                 build: |
                     set -e
    ```
-
-   {{% /version/specific %}}
 
    The hook has two parts so far:
 
@@ -79,17 +53,6 @@ Create your `build` hook to install them all:
      If other hooks fail, the deploy still happens.
 2. Install your top-level dependencies inside this `build` hook:
 
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
-   ```
-
-   <--->
-
    ```yaml {configfile="app"}
    applications:
         client:
@@ -101,44 +64,7 @@ Create your `build` hook to install them all:
                     yarn --frozen-lockfile
    ```
 
-   {{% /version/specific %}}
-
    This installs all the dependencies for the main app.
-
-{{% version/only "1" %}}
-
-3. Copy the [testing script from the template](https://github.com/platformsh-templates/nextjs-drupal/tree/master/client/platformsh-scripts/test/next-drupal-debug).
-   Copy the files in this directory into a `client/platformsh-scripts/test` directory.
-   This script debugs the connection between Next.js and Drupal.
-4. In the hook, switch to the directory with the testing script.
-   Each hook starts in the [app root](../app-reference.md#root-directory).
-   In this case, the app root is `client`.
-   To run commands from a different directory, you need to change directories (relative to the app root):
-
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
-
-           cd platformsh-scripts/test
-   ```
-
-5. Install the dependencies for the testing script:
-
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
-
-           cd platformsh-scripts/test
-           yarn --frozen-lockfile
-   ```
-
-Now all your Next.js dependencies are installed.
-
-{{% /version/only %}}
 
 ## Configure Drush and Drupal
 
@@ -168,17 +94,6 @@ All of this configuration and preparation can be handled in a bash script.
    Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
    So create a mount where you can write the Drush configuration:
 
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="api"}
-   mounts:
-        /.drush:
-            source: storage
-            source_path: 'drush'
-   ```
-
-   <--->
-
    ```yaml {configfile="app"}
    applications:
         api:
@@ -191,20 +106,7 @@ All of this configuration and preparation can be handled in a bash script.
                     source_path: 'drush'
    ```
 
-   {{% /version/specific %}}
-
 4. Add a `deploy` hook that runs the preparation script:
-
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="api"}
-   hooks:
-       deploy: !include
-           type: string
-           path: platformsh-scripts/hooks.deploy.sh
-   ```
-
-   <--->
 
    ```yaml {configfile="app"}
    applications:
@@ -222,8 +124,6 @@ All of this configuration and preparation can be handled in a bash script.
                     type: string
                     path: platformsh-scripts/hooks.deploy.sh
    ```
-
-   {{% /version/specific %}}
 
    This `!include` syntax tells the hook to process the script as if it were included in the YAML file directly.
    This helps with longer and more complicated scripts.
@@ -246,15 +146,6 @@ So you don't have to rebuild Drupal but you still get fresh content.
 1. Set a relationship for Next.js with Drupal.
    This allows the Next.js app to make requests and receive data from the Drupal app.
 
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="client"}
-   relationships:
-       api: 'api:http'
-   ```
-
-   <--->
-
    ```yaml {configfile="app"}
    applications:
         client:
@@ -265,32 +156,9 @@ So you don't have to rebuild Drupal but you still get fresh content.
                 api: 'api:http'
    ```
 
-   {{% /version/specific %}}
-
 2. Set [mounts](../app-reference.md#mounts).
    Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
    Create mounts for your Next.js files:
-
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="client"}
-   mounts:
-       /.cache:
-           source: local
-           source_path: 'cache'
-       /.next:
-           source: local
-           source_path: 'next'
-       /.pm2:
-           source: local
-           source_path: 'pm2'
-       deploy:
-           source: service
-           service: files
-           source_path: deploy
-   ```
-
-   <--->
 
    ```yaml {configfile="app"}
    applications:
@@ -314,20 +182,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
                     source_path: deploy
    ```
 
-   {{% /version/specific %}}
-
 3. Add a `post_deploy` hook that first tests the connection between the apps:
-
-   {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       post_deploy: |
-           . deploy/platformsh.environment
-           cd platformsh-scripts/test && yarn debug
-   ```
-
-   <--->
 
    ```yaml {configfile="app"}
    applications:
@@ -341,24 +196,9 @@ So you don't have to rebuild Drupal but you still get fresh content.
                     cd platformsh-scripts/test && yarn debug
    ```
 
-   {{% /version/specific %}}
-
    Note that you could add `set -e` here, but even if the job fails, the build/deployment itself can still be counted as successful.
 
 4. Then build the Next.js site:
-
-      {{% version/specific %}}
-
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       post_deploy: |
-           . deploy/platformsh.environment
-           cd platformsh-scripts/test && yarn debug
-
-           cd $PLATFORM_APP_DIR && yarn build
-   ```
-
-   <--->
 
    ```yaml {configfile="app"}
    applications:
@@ -372,114 +212,9 @@ So you don't have to rebuild Drupal but you still get fresh content.
                     cd $PLATFORM_APP_DIR && yarn build
    ```
 
-   {{% /version/specific %}}
-
    The `$PLATFORM_APP_DIR` variable represents the app root and can always get you back there.
 
 ## Final hooks
-
-{{% version/specific %}}
-You can find the complete [Drupal configuration](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/.platform.app.yaml)
-and [Next.js configuration](https://github.com/platformsh-templates/nextjs-drupal/blob/master/client/.platform.app.yaml)
-on GitHub.
-The following shows only the parts necessary for the hooks.
-
-### Drupal
-
-```yaml {configfile="app" dir="api"}
-# The name of this app. Must be unique within the project.
-name: 'drupal'
-
-# The runtime the app uses.
-type: 'php:8.1'
-
-dependencies:
-    php:
-        composer/composer: '^2'
-
-# The relationships of the app with services or other apps.
-relationships:
-    database: 'db:mysql'
-    redis: 'cache:redis'
-
-# The hooks executed at various points in the lifecycle of the app.
-hooks:
-    deploy: !include
-      type: string
-      path: platformsh-scripts/hooks.deploy.sh
-
-# The size of the persistent disk of the app (in MB).
-disk: 2048
-
-# The 'mounts' describe writable, persistent filesystem mounts in the app.
-mounts:
-    /.drush:
-        source: local
-        source_path: 'drush'
-    /drush-backups:
-        source: local
-        source_path: 'drush-backups'
-    deploy:
-        source: service
-        service: files
-        source_path: deploy
-```
-
-### Next.js
-
-```yaml {configfile="app" dir="client"}
-# The name of this app, which must be unique within the project.
-name: 'nextjs'
-
-# The type key specifies the language and version for your app.
-type: 'nodejs:14'
-
-dependencies:
-    nodejs:
-        yarn: "1.22.17"
-        pm2: "5.2.0"
-
-build:
-    flavor: none
-
-relationships:
-    api: 'api:http'
-
-# The hooks that are triggered when the package is deployed.
-hooks:
-    build: |
-        set -e
-        yarn --frozen-lockfile # Install dependencies for the main app
-
-        cd platformsh-scripts/test 
-        yarn --frozen-lockfile # Install dependencies for the testing script
-    # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
-    post_deploy: |
-        . deploy/platformsh.environment
-        cd platformsh-scripts/test && yarn debug
-
-        cd $PLATFORM_APP_DIR && yarn build
-
-# The size of the persistent disk of the app (in MB).
-disk: 512
-
-mounts:
-    /.cache:
-        source: local
-        source_path: 'cache'
-    /.next:
-        source: local
-        source_path: 'next'
-    /.pm2:
-        source: local
-        source_path: 'pm2'
-    deploy:
-        source: service
-        service: files
-        source_path: deploy
-```
-
-<--->
 
 ```yaml {configfile="app"}
 applications:
@@ -493,7 +228,7 @@ applications:
 
         # The relationships of the app with services or other apps.
         relationships:
-            database: 'db:mysql' 
+            database: 'db:mysql'
             redis: 'cache:redis'
 
         # The hooks executed at various points in the lifecycle of the app.
@@ -534,7 +269,7 @@ applications:
             build: |
                 set -e
                 yarn --frozen-lockfile # Install dependencies for the main app
-                cd platformsh-scripts/test 
+                cd platformsh-scripts/test
                 yarn --frozen-lockfile # Install dependencies for the testing script
             # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
             post_deploy: |
@@ -557,5 +292,3 @@ applications:
                 service: files
                 source_path: deploy
 ```
-
-{{% /version/specific %}}

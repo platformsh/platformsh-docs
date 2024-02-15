@@ -45,17 +45,6 @@ Do so by managing their [location](./app-reference.md#locations).
 
 This example defines two mounts, one named `private` and one `upload`:
 
-{{% version/specific %}}
-```yaml {configFile="app"}
-mounts:
-    'private':
-        source: local
-        source_path: private
-    'uploads':
-        source: local
-        source_path: uploads
-```
-<--->
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -67,28 +56,10 @@ applications:
                 source: storage
                 source_path: uploads
 ```
-{{% /version/specific %}}
-
 
 With only this definition, their behavior is the same.
 To make `uploads` accessible, define a location with different rules as in the following example:
 
-{{% version/specific %}}
-```yaml {configFile="app"}
-web:
-    locations:
-        '/':
-            # Handle dynamic requests
-            root: 'public'
-            passthru: '/app.php'
-        # Allow uploaded files to be served, but don't run scripts.
-        '/uploads':
-            root: 'uploads'
-            expires: 300s
-            scripts: false
-            allow: true
-```
-<--->
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -105,23 +76,12 @@ applications:
                     scripts: false
                     allow: true
 ```
-{{% /version/specific %}}
-
-
 ## Mounts starting with a dot ignored
 
 {{% vendor/name %}} ignores YAML keys that start with a dot.
 This causes a mount like `.myhiddenfolder` to be ignored.
 To mount a directory starting with a dot, put a `/` at the start of its definition:
 
-{{% version/specific %}}
-```yaml {configFile="app"}
-mounts:
-    '/.myhiddenfolder':
-        source: local
-        source_path: 'myhiddenfolder'
-```
-<--->
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -131,33 +91,11 @@ applications:
                     source: storage
                     source_path: 'myhiddenfolder'
 ```
-{{% /version/specific %}}
-
 ## Disk space issues
 
 If you are worried about how much disk your mounts are using, check the size with the following command:
 
-{{% version/specific %}}
-```bash
-{{% vendor/cli %}} mount:size
-```
-
-You see the total size and what's available for each directory:
-
-```text
-Checking disk usage for all mounts on abcdefg123456-main-abcd123--app@ssh.eu.platform.sh...
-+-------------------------+-----------+---------+-----------+-----------+----------+
-| Mount(s)                | Size(s)   | Disk    | Used      | Available | Capacity |
-+-------------------------+-----------+---------+-----------+-----------+----------+
-| private                 | 55.2 MiB  | 1.9 GiB | 301.5 MiB | 1.6 GiB   | 15.5%    |
-| tmp                     | 8.3 GiB   | 8.9 GiB | 8.8 GiB   | 93.0 MiB  | 98.8%    |
-| web/sites/default/files | 212.2 MiB | 9.6 GiB | 1.9 GiB   | 7.6 GiB   | 20.3%    |
-+-------------------------+-----------+---------+-----------+-----------+----------+
-```
-
-<--->
 <!-- @todo: does the previous command still work for some per-directory breakdown? -->
 ```bash
 {{% vendor/cli %}} resources:get
 ```
-{{% /version/specific %}}

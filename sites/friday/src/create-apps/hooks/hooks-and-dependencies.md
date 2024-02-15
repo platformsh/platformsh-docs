@@ -20,19 +20,6 @@ You also need a script to compile the files, such as the following:
 
 Set your app configuration to have Sass available globally and use it:
 
-{{% version/specific %}}
-```yaml {configFile="app"}
-# Ensure sass is available globally
-dependencies:
-    nodejs:
-        sass: "^1.47.0"
-
-hooks:
-    # Run the script defined in package.json
-    build: |
-        npm run build-css
-```
-<--->
 ```yaml {configFile="app"}
 applications:
     myapp:
@@ -46,4 +33,3 @@ applications:
             build: |
                 npm run build-css
 ```
-{{% /version/specific %}}
