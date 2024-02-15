@@ -99,12 +99,7 @@ module:
 
               - "guides/*"
 
-              # - "increase-observability/*"
-              - "increase-observability/logs/forward-fastly-logs.md"
-              - "increase-observability/integrate-observability/*"
-              - "increase-observability/metrics/grid.md"
-              - "increase-observability/metrics/dedicated.md"
-              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "increase-observability/*"
 
               - "integrations/*"
 
