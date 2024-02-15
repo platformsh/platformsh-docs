@@ -57,9 +57,6 @@ module:
 
         - source: "../platform/static/images"
           target: "static/images"
-          
-        - source: "static/scripts"
-          target: "static/scripts"
         
         - source: "static/files"
           target: "static/files"
