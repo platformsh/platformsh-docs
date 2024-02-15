@@ -3,8 +3,7 @@ description: Track product features that require new documentation
 title: "[Feature]: "
 labels: ["feature"]
 projects: ["platformsh/projects/3"]
-assignees:
-  - chadwcarlson
+
 body:
   - type: markdown
     attributes:
