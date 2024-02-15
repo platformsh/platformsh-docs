@@ -108,8 +108,8 @@ module:
 
               - "integrations/*"
 
-              # - "languages/*"
-              - "languages/java/frameworks.md"
+              - "languages/*"
+              #- "languages/java/frameworks.md"
 
               - "learn/*"
 
