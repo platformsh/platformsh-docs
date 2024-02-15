@@ -29,22 +29,7 @@ From version 7.11 onward:
 
 The following premium versions are supported:
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
 
 {{% major-minor-versions-note configMinor="true" %}}
 
@@ -53,22 +38,7 @@ The following premium versions are supported:
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
 
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).
@@ -110,39 +80,38 @@ the service type is `elasticsearch-enterprise`.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
-{{< codetabs >}}
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
-+++
-title=Java
-file=static/files/fetch/examples/java/elasticsearch
-highlight=java
-+++
+# Other options...
 
-<--->
+# Relationships enable an app container's access to a service.
+relationships:
+    essearch: "searchelastic:elasticsearch"
+{{% /snippet %}}
+{{% snippet name="searchelastic" config="service" placeholder="true"  %}}
+    type: elasticsearch:{{% latest "elasticsearch" %}}
+{{% /snippet %}}
+```
 
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/elasticsearch
-highlight=js
-+++
+{{% v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS" %}}
 
-<--->
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
-+++
-title=PHP
-file=static/files/fetch/examples/php/elasticsearch
-highlight=php
-+++
+# Set environment variables for individual credentials.
+export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
+export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
+export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
 
-<--->
+# Surface more common Elasticsearch connection string variables for use in app.
+export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
+export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
+export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
+```
 
-+++
-title=Python
-file=static/files/fetch/examples/python/elasticsearch
-highlight=python
-+++
-
-{{< /codetabs >}}
+{{% /v2connect2app %}}
 
 {{< note >}}
 
@@ -161,9 +130,8 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service" %}}
+{{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 2048
     configuration:
         authentication:
             enabled: true
@@ -189,12 +157,12 @@ For example:
 {{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
 {{% snippet name="search" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 2048
     configuration:
         authentication:
             enabled: true
 {{% /snippet %}}
 ```
+
 
 ## Plugins
 
@@ -204,7 +172,6 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```yaml {configFile="services"}
 {{% snippet name="search" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 1024
     configuration:
         plugins:
             - analysis-icu

@@ -12,13 +12,6 @@ description: |
 {{% vendor/name %}} supports native integrations with multiple services, first and foremost Git hosting services such as GitHub, GitLab, or Bitbucket.
 You can continue to use those tools for your development workflow, and have {{% vendor/name %}} environments created automatically for your pull requests and branches.
 
-You can also add native integrations with performance monitoring tools.
-{{% vendor/name %}} recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md),
-which is part of the standard {{% vendor/name %}} Observability Suite.
-Note that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
-
-See [User administration](/administration/users.md) for more details.
-
 ## List active integrations
 
 With the CLI, you can list all your active integrations using the following command:
