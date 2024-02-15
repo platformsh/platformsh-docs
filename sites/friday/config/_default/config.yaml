@@ -72,13 +72,7 @@ module:
 
               # - "define-routes/*"
 
-              # - "development/*"
-              - "development/file-transfer.md"
-              - "development/templates.md"
-              - "development/local/docksal.md"
-              - "development/local/lando.md"
-              - "development/deploy-button.md"
-              - "development/transfer-dedicated.md"
+              - "development/*"
 
               - "domains/*"
 

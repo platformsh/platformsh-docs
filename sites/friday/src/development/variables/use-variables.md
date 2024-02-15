@@ -55,17 +55,13 @@ Variables available during builds can be accessed in `build` hooks and those ava
 
 ## Access variables in your app
 
-To access environment variables in your app, you can use the {{< vendor/name >}} Config Reader for the given language:
+To access environment variables in your app, use a built-in method for the given language.
 
-* [PHP](https://github.com/platformsh/config-reader-php)
-* [Python](https://github.com/platformsh/config-reader-python)
-* [Node.js](https://github.com/platformsh/config-reader-nodejs)
-* [Go](https://github.com/platformsh/config-reader-go)
-* [Java](https://github.com/platformsh/config-reader-java)
-* [Ruby](https://github.com/platformsh/platformsh-ruby-helper)
-* [Elixir](https://github.com/platformsh/config-reader-elixir)
-
-Alternatively, use a built-in method for the given language.
+* PHP: The [`getenv()` function](https://www.php.net/manual/en/function.getenv.php)
+* Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
+* Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
+* Ruby: The [`ENV` accessor](https://ruby-doc.org/current/ENV.html)
+* Java: The [`System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}
 
@@ -173,6 +169,8 @@ public class App {
 Variables can have nested structures.
 The following example shows nested structures in an [app configuration](../../create-apps/app-reference.md#variables):
 
+{{% version/specific %}}
+<!-- Platform.sh -->
 ```yaml {configFile="app"}
 variables:
     env:
@@ -190,6 +188,28 @@ variables:
             green: '#00FF00'
             blue: '#0000FF'
 ```
+<--->
+<!-- Upsun -->
+```yaml {configFile="app"}
+applications:
+    {{< variable "APP_NAME" >}}:
+        variables:
+            env:
+                BASIC: "a string"
+                INGREDIENTS:
+                    - 'peanut butter'
+                    - 'jelly'
+                QUANTITIES:
+                    "milk": "1 liter"
+                    "cookies": "1 kg"
+            stuff:
+                STEPS: ['one', 'two', 'three']
+                COLORS:
+                     red: '#FF0000'
+                     green: '#00FF00'
+                     blue: '#0000FF'
+```
+{{% /version/specific %}}
 
 You can access these nested variables as follows:
 
@@ -351,39 +371,6 @@ and at runtime.
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
 
-### Variables on {{% names/dedicated-gen-2 %}} environments
-
-[{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
-
-| Variable name    | Build | Runtime | Description |
-| ---------------- | ----- | ------- | ----------- |
-| `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older {{% names/dedicated-gen-2 %}} instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
-| `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all {{% names/dedicated-gen-2 %}} production and staging environments. Note that an Enterprise support plan doesn't always imply a {{% names/dedicated-gen-2 %}} environment, but a {{% names/dedicated-gen-2 %}} environment always implies an Enterprise support plan. |
-
-{{< note >}}
-
-The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
-If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
-
-{{< /note >}}
-
-#### Distinguish {{% names/dedicated-gen-2 %}} environment types
-
-While both production and staging {{% names/dedicated-gen-2 %}} environments have `enterprise` for the `PLATFORM_MODE` variable,
-you can distinguish them by environment type.
-Make sure that the environment type is set correctly via the CLI or Console.
-Then run different code based on the type:
-
-```bash
-if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] ; then
-    echo "This is live on production"
-else if [ "$PLATFORM_ENVIRONMENT_TYPE" = staging ] ; then
-    echo "This is on staging"
-else
-    echo "We're on development"
-fi
-```
-
 ### `PLATFORM_APPLICATION`
 
 The `PLATFORM_APPLICATION` variable is available both at build time and in the runtime environment.
@@ -425,10 +412,12 @@ The following example shows the process, though you have to modify it to fit you
 1. Create a mount that isn't accessible to the web in your [app configuration](../../create-apps/_index.md):
 
    ```yaml {configFile="app"}
-   mounts:
-       /config:
-           source: local
-           source_path: config
+   applications:
+    {{< variable "APP_NAME" >}}  
+       mounts:
+           /config:
+               source: storage
+               source_path: config
    ```
 
 2. Create a symbolic link from the config file the application wants to a location in that mount:
@@ -458,11 +447,13 @@ The following example shows the process, though you have to modify it to fit you
    ```
 
 5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
-   
-   ```yaml {configFile="app"}
-   hooks:
-       deploy: |
-           bash export-config.sh
+
+ ```yaml {configFile="app"}
+   applications:
+    {{< variable "APP_NAME" >}}  
+       hooks:
+           deploy: |
+               bash export-config.sh
    ```
 
 Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.

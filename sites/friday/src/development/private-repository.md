@@ -36,10 +36,12 @@ This means you can access the private repository through links like:
 For example, you can clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        git clone git@bitbucket.org:username/module.git
+applications:
+    {{< variable "APP_NAME" >}}:
+        hooks:
+            build: |
+                set -e
+                git clone git@bitbucket.org:username/module.git
 ```
 
 You can also use [private repositories as submodules](./submodules.md#use-private-git-repositories).
