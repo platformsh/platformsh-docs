@@ -106,8 +106,7 @@ module:
               - "increase-observability/metrics/dedicated.md"
               - "increase-observability/metrics/dedicated-generation-3.md"
 
-              # - "integrations/*"
-              - "integrations/activity/reference.md"
+              - "integrations/*"
 
               - "languages/*"
               #- "languages/java/frameworks.md"
