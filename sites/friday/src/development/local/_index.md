@@ -6,7 +6,7 @@ sidebarTitle: "Local development"
 layout: single
 ---
 
-To make changes to your app's code and test them without affecting your production environment, 
+To make changes to your app's code and test them without affecting your production environment,
 set up a local development environment on your computer.
 
 For the most effective testing, you want your local environment to match your {{% vendor/name %}} environments.
@@ -18,9 +18,7 @@ the various dependencies, certificates, and connections your app needs to run.
 The **recommended tool** for local development with {{% vendor/name %}} is **[DDEV](./ddev.md)**.
 The integration with DDEV is maintained by {{% vendor/name %}} to ensure it works smoothly.
 
-If you choose to use DDEV, follow the steps [on its page](./ddev.md).
-
-Otherwise, follow these steps to run your app on your computer.
+If you choose to use DDEV, follow the steps [on its page](./ddev.md). Otherwise, follow these steps to run your app on your computer.
 
 ## Before you begin
 
@@ -47,10 +45,10 @@ If you don't have your app code on your computer, download a copy.
     Or pull from your [integrated Git repository](../../integrations/source/_index.md).
 
 You can now access your code from the project directory on your computer.
-The CLI created a `{{< vendor/configfile "apps" >}}/local` directory that's excluded from Git. 
+The CLI created a `{{< vendor/configfile "apps" >}}/local` directory that's excluded from Git.
 It contains builds and local metadata about your project.
 
-You can now make changes to your project without pushing to {{% vendor/name %}} each time to test them. 
+You can now make changes to your project without pushing to {{% vendor/name %}} each time to test them.
 Instead, you can locally build your application using the {{% vendor/name %}} CLI.
 
 Note that if your app contains services, you need to open an SSH tunnel to connect to them.
