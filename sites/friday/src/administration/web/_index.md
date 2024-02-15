@@ -8,13 +8,13 @@ description: |
 
 {{% description %}}
 
-![Overview of projects in the Console](/images/management-console/psh-console-main-view.png "0.6")
+![Overview of projects in the Console](/images/console/upsun-console-main-view.png "0.6")
 
 This Console offers you ways to manage projects and environments other than the [command line interface (CLI))](../cli/_index.md).
 
 ## Project list
 
-Opening the [Console](https://console.platform.sh) takes you to the first organization you joined as a 
+Opening the [Console](https://console.upsun.com) takes you to the first organization you joined  as a 
 {{% vendor/name %}} user.
 You get an overview of all your projects within that organization.
 You can narrow the list down by searching for specific projects,
