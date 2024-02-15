@@ -32,33 +32,6 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-### Supported versions on Dedicated environments
-
-`oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
-It also isn't available for {{% names/dedicated-gen-2 %}} environments.
-
-On Dedicated environments, MariaDB is available with Galera for replication.
-Supported versions are the following:
-
-<table>
-    <thead>
-        <tr>
-            <th>{{% names/dedicated-gen-2 %}}</th>
-            <th>{{% names/dedicated-gen-3 %}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}}</td>
-            <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}}</thd>
-        </tr>
-    </tbody>
-</table>
-
-Dedicated environments only support the InnoDB storage engine.
-Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
-See how to [convert tables to the InnoDB engine](#storage-engine).
-
 {{% deprecated-versions %}}
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
@@ -92,47 +65,39 @@ Configure your service with at least 256 MB in disk space.
 
 {{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
 
-{{< codetabs >}}
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
-+++
-title=Go
-file=static/files/fetch/examples/golang/mysql
-highlight=go
-+++
+# Other options...
 
-<--->
+# Relationships enable an app container's access to a service.
+relationships:
+    database: "db:mysql"
+{{% /snippet %}}
+{{% snippet name="db" config="service" placeholder="true"  %}}
+    type: mariadb:{{% latest "mariadb" %}}
+{{% /snippet %}}
+```
 
-+++
-title=Java
-file=static/files/fetch/examples/java/mysql
-highlight=java
-+++
+{{% v2connect2app serviceName="db" relationship="database" var="DATABASE_URL"%}}
 
-<--->
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/mysql
-highlight=js
-+++
+# Set environment variables for individual credentials.
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
 
-<--->
+# Surface connection string variable for use in app.
+export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+```
 
-+++
-title=PHP
-file=static/files/fetch/examples/php/mysql
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/mysql
-highlight=python
-+++
-
-{{< /codetabs >}}
+{{% /v2connect2app %}}
 
 ### Configure connections
 
@@ -166,7 +131,6 @@ Example configuration:
 ```yaml {configFile="services"}
 {{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
     configuration:
         schemas:
             - main
@@ -290,7 +254,6 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
 ```yaml {configFile="services"}
 {{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
     configuration:
         schemas:
             - main
@@ -323,7 +286,6 @@ Access to the database is defined through three endpoints:
 ```yaml {configFile="services"}
 {{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
     configuration:
         schemas:
             - main
@@ -388,7 +350,6 @@ An example of setting these properties:
 ```yaml {configFile="services"}
 {{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
     configuration:
         properties:
             max_allowed_packet: 64
@@ -416,6 +377,7 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 
 ## Storage Engine
 
+{{% version/specific %}}
 It's best to use the InnoDB storage engine wherever possible.
 MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
@@ -423,6 +385,12 @@ In Dedicated environments, there is no replication of MyISAM tables.
 If MyISAM tables have been inadvertently created or imported in a Dedicated environment
 (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
 convert them to use the InnoDB storage engine as follows:
+<--->
+It's best to use the InnoDB storage engine wherever possible instead of MyISAM.
+If MyISAM tables have been inadvertently created or imported in your environments
+(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
+convert them to use the InnoDB storage engine as follows:
+{{% /version/specific %}}
 
 1. Rename the existing table.
 
@@ -510,8 +478,7 @@ To ensure people who review code changes can't access personally identifiable in
 
 ## Replication
 
-In non-Dedicated environments, there is no on-site primary/replica supports.
-In Dedicated environments, it's provided automatically as part of the default configuration.
+There is no on-site primary/replica support in your environments.
 
 In rare cases (such as for certain backup purposes),
 you can also enable [remote replication](./mysql-replication.md) to your own replica data.
