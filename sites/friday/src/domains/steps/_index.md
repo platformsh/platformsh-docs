@@ -8,8 +8,7 @@ layout: single
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
-If you are an Enterprise or Elite customer and have a Grid or {{% names/dedicated-gen-3 %}} project, you can [customize the URLs for your non-production environments](/domains/steps/custom-domains-preview-environments).
-{{% names/dedicated-gen-2 %}} customers can also customize the domain for their Staging environment.
+You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
 
 ## Before you begin
 
@@ -19,54 +18,14 @@ You need:
 - A domain with access to its settings with the registrar
 - A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](/glossary.md#apex-domain)
 - Optional: The [CLI](../../administration/cli/_index.md) installed locally
-- If you are on a development plan, you need to [upgrade your tier to a production plan](#optional-change-your-plan-to-a-production-plan).
 
 If you are planning to use several subdomains of the same domain on different projects,
 see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* you add your domain to {{% vendor/name %}}.
-
-## Optional: Change your plan to a production plan
-
-If you are on a Development plan, you can't add a domain.
-You need to upgrade your subscription to a [production plan](/glossary.md#production-plan).
-
-To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-permissions).
-
-To upgrade your plan tier:
-
-{{< codetabs >}}
-
-+++
-title=Using the CLI
-+++
-
-Run the following [CLI command](../../administration/cli/_index.md):
-
-```bash
-{{% vendor/cli %}} subscription:info plan standard
-```
-
-<--->
-
-+++
-title=In the Console
-+++
-
-1. On the tile of the project you want to upgrade, click **{{< icon more >}} More**.
-2. Click **Edit plan**.
-3. Change the plan to at least {{< partial "plans/min-production-size" >}}.
-4. Check the change to the monthly cost.
-5. Click **Save**.
-
-{{< /codetabs >}}
-
-You can find [more information on plan tiers](https://platform.sh/pricing).
 
 ## 1. Get the target for your project
 
 You want to point your DNS record to the automatically generated URL.
 Your domain needs to point to that target for your site to go live.
-
-For Dedicated plans, get the target for your project from your {{% vendor/name %}} contact.
 
 {{< codetabs >}}
 
