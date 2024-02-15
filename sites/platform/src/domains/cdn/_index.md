@@ -103,15 +103,15 @@ To enable client-authenticated TLS, follow these steps:
 
 4.  Change your routing configuration for the routes behind a CDN to the following:
 
-```yaml {configFile="routes"}
-"https://{default}":
-    tls:
-        client_authentication: "require"
-        client_certificate_authorities:
-            - !include
-                type: string
-                path: cdn.crt
-```
+    ```yaml {configFile="routes"}
+    "https://{default}":
+        tls:
+            client_authentication: "require"
+            client_certificate_authorities:
+                - !include
+                    type: string
+                    path: cdn.crt
+    ```
 
 The procedure can vary depending on your CDN.
 Contact your CDN provider for specific assistance.
