@@ -2,6 +2,7 @@
 title: Deploying Django on Upsun
 sidebarTitle: Django
 sectionBefore: Python
+layout: single
 weight: -80
 description: |
     Welcome to the Upsun documentation specific to the Django framework on Upsun.
