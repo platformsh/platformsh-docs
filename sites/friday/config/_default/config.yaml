@@ -52,6 +52,7 @@ module:
         - source: "static/images"
           target: "static/images"
 
+
         - source: "../../shared/data"
           target: "data"
 
