@@ -1,7 +1,7 @@
 ---
 title: Resource billing
 description: Keep an eye on costs related to resource usage.
-weight: -50
+weight: -100
 keywords:
   - "resources"
   - "flexible resources"

@@ -1,7 +1,7 @@
 ---
 title: Resource initialization
 description: Learn how resources are allocated by default upon first deployment, and how you can define a resource initialization strategy that better fits your needs.
-weight: -200
+weight: -300
 keywords:
   - "resources"
   - "flexible resources"
