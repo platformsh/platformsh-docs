@@ -5,7 +5,6 @@ weight: -50
 ---
 
 When you push changes to your app through Git, your app is built then deployed.
-
 During the build phase, {{% vendor/name %}} collects your entire app configuration and creates a build image into a dedicated build container.
 The duration of the build phase is directly linked to the amount of resources (CPU and RAM) allocated to that build container.
 
