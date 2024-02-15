@@ -25,41 +25,11 @@ premium: true
 
 {{% premium-features/add-on feature="MongoDB Enterprise" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}
 
 {{% deprecated-versions %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}
 
 ### Legacy edition
 
@@ -113,47 +83,39 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{% endpoint-description type="mongodb" php=true /%}}
 
-{{< codetabs >}}
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 
-+++
-title=Go
-file=static/files/fetch/examples/golang/mongodb
-highlight=go
-+++
+# Other options...
 
-<--->
+# Relationships enable an app container's access to a service.
+relationships:
+    mongodatabase: "dbmongo:mongodb"
+{{% /snippet %}}
+{{% snippet name="dbmongo" config="service" placeholder="true"  %}}
+    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+{{% /snippet %}}
+```
 
-+++
-title=Java
-file=static/files/fetch/examples/java/mongodb
-highlight=java
-+++
+{{% v2connect2app serviceName="dbmongo" relationship="mongodatabase" var="DATABASE_URL"%}}
 
-<--->
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/mongodb
-highlight=js
-+++
+# Set environment variables for individual credentials.
+export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].scheme')"
+export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].username')"
+export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].password')"
+export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].host')"
+export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].port')"
+export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].path')"
 
-<--->
+# Surface connection string variable for use in app.
+export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+```
 
-+++
-title=PHP
-file=static/files/fetch/examples/php/mongodb
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/mongodb
-highlight=python
-+++
-
-{{< /codetabs >}}
+{{% /v2connect2app %}}
 
 ## Access the service directly
 

@@ -20,41 +20,11 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="solr" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="solr" status="supported" environment="grid" >}}
 
 {{% deprecated-versions %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="solr" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="solr" status="deprecated" environment="grid" >}}
 
 {{% relationship-ref-intro %}}
 
@@ -85,47 +55,33 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% endpoint-description type="solr" sectionLink="#solr-6-and-later" multipleText="cores" /%}}
 
-{{< codetabs >}}
+```yaml {configFile="app"}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
+# Relationships enable an app container's access to a service.
+relationships:
+    solrsearch: "searchsolr:solr"
+{{% /snippet %}}
+{{% snippet name="searchsolr" config="service" placeholder="true"  %}}
+    type: solr:{{% latest "solr" %}}
+{{% /snippet %}}
+```
 
-+++
-title=Go
-file=static/files/fetch/examples/golang/solr
-highlight=go
-+++
+{{% v2connect2app serviceName="searchelastic" relationship="solrsearch" var="SOLR_URL" %}}
 
-<--->
+```bash {location="myapp/.environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
-+++
-title=Java
-file=static/files/fetch/examples/java/solr
-highlight=java
-+++
+# Set environment variables for individual credentials.
+export SOLR_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].host")
+export SOLR_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].port")
+export SOLR_PATH=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].path")
 
-<--->
+# Surface more common Solr connection string variables for use in app.
+export SOLR_URL="http://${CACHE_HOST}:${CACHE_PORT}/${CACHE_PATH}"
+```
 
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/solr
-highlight=js
-+++
-
-<--->
-
-+++
-title=PHP
-file=static/files/fetch/examples/php/solr
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/solr
-highlight=python
-+++
-
-{{< /codetabs >}}
+{{% /v2connect2app %}}
 
 ## Solr 4
 
@@ -136,7 +92,6 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 ```yaml {configFile="services"}
 {{% snippet name="searchsolr" config="service"  %}}
     type: "solr:4.10"
-    disk: 1024
     configuration:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
 {{% /snippet %}}
@@ -149,7 +104,6 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 ```yaml {configFile="services"}
 {{% snippet name="searchsolr" config="service"  %}}
     type: "solr:4.10"
-    disk: 1024
     configuration:
         core_config: !archive "solr/conf/"
 {{% /snippet %}}
@@ -162,7 +116,6 @@ For Solr 6 and later {{% vendor/name %}} supports multiple cores via different e
 ```yaml {configFile="services"}
 {{% snippet name="searchsolr" config="service"  %}}
     type: solr:{{% latest "solr" %}}
-    disk: 1024
     configuration:
         cores:
             mainindex:
@@ -197,7 +150,6 @@ relationships:
 
 {{% snippet name="searchsolr" config="service" placeholder="true" %}}
     type: solr:{{% latest "solr" %}}
-    disk: 1024
     configuration:
         cores:
             mainindex:
@@ -244,7 +196,6 @@ For even more customizability, it's also possible to define Solr configsets. For
 ```yaml {configFile="services"}
 {{% snippet name="searchsolr" config="service"  %}}
     type: solr:8.4
-    disk: 1024
     configuration:
         configsets:
             mainconfig: !archive "configsets/solr8"
@@ -341,9 +292,6 @@ By default, this opens a tunnel at `127.0.0.1:30000`.
 You can now open `http://localhost:30000/solr/` in a browser to access the Solr admin interface.
 Note that you can't create indexes or users this way,
 but you can browse the existing indexes and manipulate the stored data.
-
-For {{% names/dedicated-gen-2 %}} use `ssh -L 8888:localhost:8983 USER@CLUSTER_NAME.ent.platform.sh` to open a tunnel instead,
-after which the Solr server administrative interface is available at `http://localhost:8888/solr/`.
 
 ## Available plugins
 

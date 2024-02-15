@@ -16,22 +16,7 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="vault-kms" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="vault-kms" status="supported" environment="grid" >}}
 
 ## Add Vault
 

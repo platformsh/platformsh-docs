@@ -20,7 +20,6 @@ For each database that you'd like to replicate, you need to assign a `replicatio
 ```yaml {configFile="services"}
 {{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
-    disk: 1024
     configuration:
         schemas:
             - main

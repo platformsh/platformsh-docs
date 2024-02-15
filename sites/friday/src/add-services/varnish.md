@@ -12,22 +12,7 @@ But you can include Varnish as a service.
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="varnish" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="varnish" status="supported" environment="grid" >}}
 
 ## How it works
 

@@ -14,22 +14,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="influxdb" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="influxdb" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="influxdb" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="influxdb" status="supported" environment="grid" >}}
 
 {{% image-versions-legacy "influxdb" %}}
 
@@ -38,22 +23,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 3</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="influxdb" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="influxdb" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="influxdb" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="influxdb" status="deprecated" environment="grid" >}}
 
 To ensure your project remains stable in the future,
 switch to a [supported version](#supported-versions).
@@ -100,7 +70,6 @@ relationships:
 {{% /snippet %}}
 {{% snippet name="timedb" config="service" placeholder="true"  %}}
     type: influxdb:{{% latest "influxdb" %}}
-    disk: 256
 {{% /snippet %}}
 ```
 
@@ -118,7 +87,7 @@ export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.a
 export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Export data
 

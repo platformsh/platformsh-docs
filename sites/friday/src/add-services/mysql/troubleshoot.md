@@ -57,7 +57,9 @@ Errors such as `PDO Exception 'MySQL server has gone away'` are usually the resu
 Get an estimate of current disk usage using the CLI command `{{% vendor/cli %}} db:size`.
 Just keep in mind it's an estimate and not exact.
 
-Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](../_index.md).
+Allocate more space to the service by running the `upsun resources:set` command.
+For more information, see how to [manage resources](/manage-resources.md).
+
 As table space can grow rapidly,
 it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
 
