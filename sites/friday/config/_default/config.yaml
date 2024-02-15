@@ -54,8 +54,8 @@ module:
           target: "content"
           excludeFiles:
 
-              # - "add-services/*"
-              - "add-services/network-storage.md"
+              - "add-services/*"
+              # - "add-services/network-storage.md"
 
               # - "administration/*"
               - "administration/sso.md"
@@ -89,9 +89,8 @@ module:
               - "domains/steps/custom-domains-preview-environments.md"
 
               - "environments/*"
-              #- "environments/scalability.md"
 
-              # - "feedback/*"
+              - "feedback/*"
 
               - "get-started/*"
 
@@ -99,15 +98,9 @@ module:
 
               - "guides/*"
 
-              # - "increase-observability/*"
-              - "increase-observability/logs/forward-fastly-logs.md"
-              - "increase-observability/integrate-observability/*"
-              - "increase-observability/metrics/grid.md"
-              - "increase-observability/metrics/dedicated.md"
-              - "increase-observability/metrics/dedicated-generation-3.md"
+              - "increase-observability/*"
 
-              # - "integrations/*"
-              - "integrations/activity/reference.md"
+              - "integrations/*"
 
               - "languages/*"
               #- "languages/java/frameworks.md"

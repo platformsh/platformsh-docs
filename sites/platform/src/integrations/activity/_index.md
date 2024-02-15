@@ -8,10 +8,7 @@ layout: single
 
 {{% description %}}
 
-{{< version/specific >}}
 Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
-<--->
-{{< /version/specific >}}
 
 ## Installing
 
@@ -143,7 +140,6 @@ The following example executes only for backup actions on the `production` envir
 ```bash
 {{% vendor/cli %}} integration:update --events=environment.backup --environments=production {{<variable "SCRIPT_ID" >}}
 ```
-
 
 As a general rule, it's better to have an activity script only execute on the specific events and branches you're interested in
 rather than firing on all activities and then filtering out undesired use cases in the script itself.
