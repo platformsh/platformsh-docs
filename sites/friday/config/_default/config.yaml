@@ -53,6 +53,7 @@ module:
         - source: "../platform/src"
           target: "content"
           excludeFiles:
+              - "_index.md"
 
               # - "add-services/*"
               - "add-services/network-storage.md"
