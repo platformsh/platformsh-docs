@@ -42,13 +42,13 @@ title=Using third party provider
    The new environment is inactive by default. When you would activate it, it will inherit the data (service data and assets) of its parent environment (the Production environment here).
 
    {{< note >}}
-   When your local feature is ready, [activate your environment](/environments/deactivate-environment.md#reactivate-an-environment).
+   When your local feature is ready, [activate your environment](/administration/cli/reference.html#environmentactivate).
    {{< /note >}}
 
 {{< /codetabs >}}
 
 {{< note title="Warnings" theme="warning">}}
-   **First**, you are only charged for your [activated environments](/environments/deactivate-environment.md#reactivate-an-environment).
+   **First**, you are only charged for your [activated environments](/administration/cli/reference.html#environmentactivate).
    So, to create an inactive environment waiting for you to be ready to test, run the following command:
    ```bash {location="Terminal"}
    git branch checkout -b feat-a && git push -u upsun feat-a
