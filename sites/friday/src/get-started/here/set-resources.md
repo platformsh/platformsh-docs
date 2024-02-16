@@ -7,7 +7,7 @@ description: Flexible resources on {{% vendor/name %}} are easy to use. Find all
 
 You can define how much CPU, memory, and disk you want to assign to each of your service and app containers.
 
-If you don't explicitly set resources, {{% vendor/name %}} uses [default resources](/manage-resources/resource-init.md) instead. 
+If you don't explicitly set resources, {{% vendor/name %}} uses [default resources](/manage-resources/resource-init.md) instead.
 {{% vendor/name %}} also offers several [resource initialization strategies](/manage-resources/resource-init.md) to help you allocate resources depending on your needs and use cases.
 However, for the sake of this guide, let's set resources manually.
 To do so, follow these steps:
@@ -16,7 +16,7 @@ To do so, follow these steps:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} resources:set
-
+```
 This launches an interactive prompt to walk you through setting up your application's resources:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} resources:set
@@ -44,13 +44,14 @@ Choose a profile size:
   [8   ] CPU 8, memory 2240 MB
   [10  ] CPU 10, memory 2688 MB
  > 0.1
+```
 3. Define how many instances of your application container you want to deploy. For instance, `1`:
 
 ```bash {location="Terminal"}
 Enter the number of instances (default: 1): 1
+```
 4. To confirm your choices, select `Y`.
 {{% vendor/name %}} will take your selections, grab the
 previous built images from earlier, apply your resource selections to them and deploy your full application!
-
 {{< guide-buttons previous="Back" next="Revisions" type="*" >}}
 
