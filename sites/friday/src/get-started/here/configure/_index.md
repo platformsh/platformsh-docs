@@ -18,10 +18,6 @@ my-app
 └── <project sources>
 ```
 
-{{< note theme="info" title="Committing variables" >}}
-{{% get-started/environment-note %}}
-{{< /note >}}
-
 To pre-generate these YAML files, run the following command from the root of your project.
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:init
@@ -54,6 +50,10 @@ However, the structure of the configuration file remains similar to the followin
 {{% note %}}
 If you want more information on the structure of this configuration file, see the dedicated [YAML page](/learn/overview/yaml/_index.md).
 {{% /note %}}
+
+{{< note theme="info" title="Committing variables" >}}
+{{% get-started/environment-note %}}
+{{< /note >}}
 
 Commit your new files:
 
