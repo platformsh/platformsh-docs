@@ -73,9 +73,7 @@ upsun push
 By default, {{% vendor/name %}} uses default resources for each of your services/apps. You can [adjust these resources](/get-started/here/set-resources).
 {{< /note >}}
 
-Et voilà, your application is live!
-
-## Next steps
+## Errors
 
 The `project:init` CLI command uses your responses and some framework-detection logic to attempt to set some sane configuration for your project. 
 Your project - like most projects - is unique, and this goal of a seamless first deployment may yet be incomplete at this stage.
@@ -87,6 +85,8 @@ To start exploring what might still be needed, see the following language-specif
 - [JavaScript/Node.js](/get-started/here/configure/nodejs)
 - [PHP](/get-started/here/configure/php)
 - [Python](/get-started/here/configure/python)
+
+## Next steps
 
 With your deployment finished, you may have noticed that the resources allocated to the application and service containers of your project have been set automatically:
 

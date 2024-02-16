@@ -24,8 +24,8 @@ Resource configuration for the project app (123456azerty), environment main (typ
 +-----------------------+---------+---------+-------------+-----------+-----------+
 | App or service        | Size    | CPU     | Memory (MB) | Disk (MB) | Instances |
 +-----------------------+---------+---------+-------------+-----------+-----------+
-| app                   | not set | not set | not set     | N/A       | 1         |
-| [<additional-service>]| not set | not set | not set     | not set   | 1         |
+| app                   | 1       | 1       | 384         | N/A       | 1         |
+| [<additional-service>]| 0.1     | 0.1     | 128         | N/A       | 1         |
 +-----------------------+---------+---------+-------------+-----------+-----------+
 ```
 
