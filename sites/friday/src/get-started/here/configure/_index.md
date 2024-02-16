@@ -7,8 +7,8 @@ description: Configure your project
 
 ## Required files
 
-To host your application on {{% vendor/name %}}, some YAML configuration files are needed at the root of your project to manage the way your application will behave.
-These YAML configuration files are located into a `.{{% vendor/cli %}}/` folder at the root of your source code:
+To host your application on {{% vendor/name %}}, a configuration file (YAML) is needed to manage the way your application behaves. 
+This configuration file is located inside a `.upsun`folder at the root of your source code:
 
 ```bash
 my-app
