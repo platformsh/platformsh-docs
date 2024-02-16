@@ -19,10 +19,9 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 ## Supported versions
 
-- 23.12
+- 23.8
 
-Each version represents a rolling release of the latest yearly version available from the upstream.
-The latest compatible feature and maintenance versions are applied automatically.
+{{% vendor/name %}} plans on supporting long-term support ClickHouse versions in priority.
 
 ## Relationship reference
 
