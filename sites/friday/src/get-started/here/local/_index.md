@@ -25,3 +25,5 @@ Each of these examples:
 [//]: # (consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}]&#40;https://community.platform.sh/t/using-docker-compose-with-django/1205&#41;.)
 
 [//]: # ({{< guide-buttons previous="Local Development" previousLink="/get-started/quick-start/use-third-part.md" type="*" >}})
+
+{{< guide-buttons previous="Back" next="Integrations" nextLink="/get-started/here/third-party" type="*" >}}
