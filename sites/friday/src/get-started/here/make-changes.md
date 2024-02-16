@@ -48,12 +48,12 @@ title=Using third party provider
 {{< /codetabs >}}
 
 {{< note title="Warnings" theme="warning">}}
-   **First**, you are charged by [activated environments](/environments/deactivate-environment.md#reactivate-an-environment).
+   **First**, you are only charged for your [activated environments](/environments/deactivate-environment.md#reactivate-an-environment).
    So, to create an inactive environment waiting for you to be ready to test, run the following command:
    ```bash {location="Terminal"}
    git branch checkout -b feat-a && git push -u upsun feat-a
    ```
-   **Secondly**, if you have set up an integration and have enabled `prune_branches` (`true` by default),
+   **Secondly**, if you have set up a [source integration](/integrations/source/_index.md) and have enabled `prune_branches` (`true` by default),
    the `upsun branch` command fails at the end of the deployment.
    This is due to the integration syncing with the source and deleting the new branch since it doesn't exist in the canonical source:
    ```bash {location="Terminal"}
