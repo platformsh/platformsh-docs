@@ -23,7 +23,7 @@ From the Console, what you do next entirely depends on where the "source of trut
 | Codebase  |  Select |
 |---|---|
 | **Local:** The only copy of your codebase you'd like to deploy is on your local computer  | Click **Start from scratch** from the **Deploy with Git** option  |
-| **Remote:** While you have a local copy, the primary/shared copy of your codebase you'd like to deploy is on a Git hosting service like GitHub  | Click **Connect repository** from the **Deploy with GitHub** option  |
+| **GitHub:** While you have a local copy, the primary/shared copy of your codebase you'd like to deploy is on a Git hosting service like GitHub  | Click **Connect repository** from the **Deploy with GitHub** option  |
 
 {{< codetabs >}}
 +++
@@ -54,6 +54,8 @@ As suggested in the Console, connect the local copy of your repository to your p
 ```bash
 upsun project:set-remote {{< variable "PROJECT_ID" >}}
 ```
+
+For the "Local" path, push your code to Upsun with the command `upsun push`.
 
 Whichever path you've taken ("Local" or "Remote" above), the following error is usually triggered:
 
