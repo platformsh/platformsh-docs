@@ -19,10 +19,19 @@ To manage those build resources, add the following configuration:
 }
 ```
 
-You can then adjust build resources at any time through the {{% vendor/name %}} API.
+You can then adjust build resources through the {{% vendor/name %}} API to mitigate potential overuse,
+or influence the duration of your builds.
 To do so, run commands similar to the following:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:curl capabilities -X PATCH -d '{"build_resources": {"enabled": true}}' 
 {{% vendor/cli %}} project:curl settings -X PATCH -d '{"build_resources": {"cpu": 4.0, "memory": 2048}}'
 ```
+
+{{% note %}}
+
+Before adding more CPU and RAM to shorten the duration of your builds,
+check that your build process supports using such extra resources.
+Otherwise, the duration of your builds will remain the same despite adding more resources.
+
+{{% /note %}}
