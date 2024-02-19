@@ -19,7 +19,6 @@ For more information on the costs incurred, see the [{{% vendor/name %}} pricing
 
 You can adjust build resources through the {{% vendor/name %}} API to mitigate potential overuse,
 or influence the duration of your builds.
-
 To do so, run commands similar to the following:
 
 ```bash {location="Terminal"}
