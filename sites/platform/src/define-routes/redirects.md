@@ -88,6 +88,83 @@ The value object is defined with the following keys:
 | `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#using-codes). |
 | `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. | The duration the redirect is cached for. [More information](#using-expires).
 
+To set up partial redirects, you can use regular expressions (`regexp`).</br>
+Alternatively, and in many cases, you can use the `prefix` and/or `append_suffix` keys to achieve the same results.</br>
+Here are some examples to illustrate this and help you choose a method for your partial redirects:
+
+{{< codetabs >}}
+
++++
+title= `regexp`
++++
+
+Consider this `regexp` redirect:
+
+```yaml
+'^/from(/.*|)$':
+    regexp: true
+    to: https://example.com/to$1
+```
+
+It achieves the same result as this simple redirect:
+
+```yaml
+'/from':
+    to: https://example.com/to 
+```
+
+<--->
+
++++
+title= `prefix`
++++
+
+Consider this redirect using `prefix`:
+```yaml
+'/from':
+    to: https//example.com/to
+    prefix: false
+```
+
+It achieves the same result as this `regexp` redirect:
+
+```yaml
+'^/from$':
+    regexp: true
+    to: https://example.com/to
+```
+
+<--->
+
++++
+title= `append_suffix`
++++
+
+Consider this redirect using `append_suffix`:
+
+```yaml
+'/from':
+    to: https//example.com/to
+    append_suffix: false
+```
+
+It achieves the same result as this `regexp` redirect:
+
+```yaml
+'^/from(/.*|)$':
+    regexp: true
+    to: https://example.com/to
+```
+
+{{< /codetabs >}}
+
+{{% note theme="warning" title="Warning" %}}
+
+If you're using `regexp` in a redirect, you can't also use `prefix` and `append_suffix`.
+Likewise, if you're using `prefix` and `append_suffix`, you can't also use `regexp`.
+
+{{% /note %}}
+
 ### Redirects using regular expressions
 
 You can use regular expressions to configure your redirects.
@@ -259,7 +336,6 @@ And with the following configuration:
 {{< /version/specific >}}
 
 A request to `/from/some/path` (and any path after `/from`) redirects to just `/to`.
-
 
 ### Further examples
 
