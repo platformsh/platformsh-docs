@@ -14,7 +14,7 @@ You can achieve this through the following approaches:
 - [Tethered local development](/get-started/here/local/tethered)
 - DDEV (coming soon!)
 
-Each of these examples:
+Each of these approaches:
 
 - Creates a local development environment for your site.
 - Syncs data from the active {{% vendor/name %}} environment where team review takes place.

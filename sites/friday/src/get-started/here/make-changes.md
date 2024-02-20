@@ -39,7 +39,7 @@ title=Using third party provider
    ```
    This creates a new local `feat-a` Git branch based on the `main` Git branch
    and a related environment on {{< vendor/name >}}.
-   The new environment is inactive by default. When you would activate it, it will inherit the data (service data and assets) of its parent environment (the Production environment here).
+   The new environment is inactive by default. Once you activate it, it will inherit the data (service data and assets) of its parent environment (the Production environment here).
 
    {{< note >}}
    When your local feature is ready, [activate your environment](/administration/cli/reference.html#environmentactivate).
@@ -53,15 +53,14 @@ title=Using third party provider
    ```bash {location="Terminal"}
    git branch checkout -b feat-a && git push -u upsun feat-a
    ```
-   **Secondly**, if you have set up a [source integration](/integrations/source/_index.md) and have enabled `prune_branches` (`true` by default),
-   the `upsun branch` command fails at the end of the deployment.
+   **Secondly**, if you have set up a [source integration](/integrations/source/_index.md), make sure you disable the `prune_branches` option (`true` by default). Otherwise, the `upsun branch` command fails at the end of the deployment.
    This is due to the integration syncing with the source and deleting the new branch since it doesn't exist in the canonical source:
    ```bash {location="Terminal"}
    fatal: couldn't find remote ref feat-a
    ```
 {{< /note >}}
 
-## 2. Make changes to your project.
+## 2. Make changes to your project
 
 Depending on the stack you're using, change something within your source code.
 
@@ -87,7 +86,7 @@ To open the URL of your new environment, run the following command:
 {{% vendor/cli %}} environment:url --primary
 ```
 {{< note title="Warnings" theme="warning">}}
-If your environment is inactive, you need to [activate it](/environments/deactivate-environment.md#reactivate-an-environment) first, using the following:
+If your environment is inactive, you need to [activate it](/environments/deactivate-environment.md#reactivate-an-environment) first, using the following command:
 ```bash {location="Terminal"}
 {{% vendor/cli %}} environment:activate
 ```
@@ -108,7 +107,7 @@ git fetch --prune
 ```
 
 {{< note >}}
-Deploying to production was fast because the image built for the `feat-a` environment was reused for your `main` environment.
+Deploying to production is fast because the image built for the `feat-a` environment is reused for your `main` environment.
 {{< /note >}}
 
 ## 6. Keep your branch up to date
