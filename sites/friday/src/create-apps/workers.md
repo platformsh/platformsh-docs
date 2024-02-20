@@ -7,10 +7,6 @@ Workers are instances of your code that aren't open to connections from other ap
 They're good for handling background tasks.
 See how to [configure a worker](./app-reference.md#workers) for your app.
 
-{{% version/only "1" %}}
-Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
-{{% /version/only %}}
-
 ## Access the worker container
 
 Like with any other application container,
@@ -268,7 +264,7 @@ and, if appropriate, adjust its behavior accordingly.
 When defining a [worker](../create-apps/app-reference.md#workers) instance,
 keep in mind what mount behavior you want.
 
-`tmp` and `instance` local mounts are a separate storage area for each instance,
+`tmp` local mounts are a separate storage area for each instance,
 while `storage` mounts can be shared between instances.
 
 For example, you can define a `storage` mount (called `shared_dir`) to be used by a `web` instance,

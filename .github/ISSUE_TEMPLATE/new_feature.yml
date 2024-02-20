@@ -1,0 +1,240 @@
+name: New feature
+description: Track product features that require new documentation
+title: "[Feature]: "
+labels: ["feature"]
+projects: ["platformsh/projects/3"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us document new features!
+  - type: textarea
+    validations:
+      required: true
+    id: description
+    attributes:
+      label: Feature details
+      description: Please include a description that can be shared publicly at this point. The DevRel team will follow-up to create a documentation sync schedule ahead of delivery.
+      placeholder: |
+        Please edit this line with a few sentences publicly describing the feature. 
+  - type: dropdown
+    id: offer
+    validations:
+      required: true
+    attributes:
+      label: Offer
+      multiple: true
+      description: What product is impacted by the feature? (select all that apply)
+      options:
+        - Platform.sh
+        - Upsun
+        - Blackfire.io
+        - DDEV
+      default: 0
+  - type: dropdown
+    id: breaking
+    validations:
+      required: true
+    attributes:
+      label: Breaking change
+      description: Does this feature introduce a breaking change?
+      options:
+        - "No"
+        - "Yes"
+      default: 0
+  # - type: dropdown
+  #   id: status
+  #   validations:
+  #     required: true
+  #   attributes:
+  #     label: Status
+  #     description: What's the current status of this feature?
+  #     options:
+  #       - "New idea"
+  #       - "Discovery"
+  #       - "Delivery"
+  #       - "Launched"
+  #     default: 0
+  # - type: dropdown
+  #   id: initiative
+  #   validations:
+  #     required: true
+  #   attributes:
+  #     label: Relevant initiative
+  #     description: Which product initiative does this feature fall under?
+  #     options:
+  #       - "Growth/Monetization"
+  #       - "Usage-based billing"
+  #       - "Self-service enablement"
+  #       - "User management"
+  #       - "Observability"
+  #       - "Horizontal PaaS"
+  #       - "Vendorization"
+  #     default: 0
+  - type: dropdown
+    id: observability_domain
+    attributes:
+      label: Observability domain
+      multiple: true
+      description: Observability domain (If applicable, select all that apply)
+      options:
+        - Profiling
+        - Tracing
+        - Log Management
+        - Metrics
+        - Governance & compliance
+        - Real-User Monitoring
+        - Troubleshooting
+      default: 0
+  - type: dropdown
+    id: component_impact
+    attributes:
+      label: DX impact
+      multiple: true
+      description: Where will users encounter the feature? (select all that apply)
+      options:
+        - API
+        - Configuration schema changes
+        - CLI
+        - Console
+        - Blackfire.io dashboard
+        - Blackfire.io player
+        - Blackfire.io CLI
+        - DDEV CLI
+      default: 0
+  - type: dropdown
+    id: request_type
+    validations:
+      required: true
+    attributes:
+      label: Docs requirements
+      description: Does this feature require new docs/sections, adjustments to existing docs, or both?
+      options:
+        - "The feature makes changes to existing docs pages."
+        - "There will need to be new pages or sections written."
+        - "This feature changes behavior or recommended use considerably, and should likely have docs-wide consequences."
+        - "Not sure. TBD"
+      default: 0
+  - type: dropdown
+    id: docs_impact
+    attributes:
+      multiple: true
+      label: Docs impact
+      description: Which areas of the documentation will be (or should be, in your mind) impacted by the feature?
+      options:
+        - "(Platform.sh/Upsun) Getting started materials or framework-specfic guides"
+        - "(Platform.sh/Upsun) Learn: tutorials & best practices"
+        - "(Platform.sh/Upsun) Reference > Configuration > Apps"
+        - "(Platform.sh/Upsun) Reference > Configuration > Services"
+        - "(Platform.sh/Upsun) Reference > Configuration > Routes"
+        - "(Platform.sh/Upsun) Reference > Configuration > Runtime languages"
+        - "(Platform.sh/Upsun) Reference > Integrations"
+        - "(Platform.sh/Upsun) Reference > Observability"
+        - "(Platform.sh/Upsun) Reference > Managing projects/environments"
+        - "(Platform.sh/Upsun) Reference > Domains"
+        - "(Platform.sh/Upsun) Reference > Administration"
+        - "(Platform.sh/Upsun) Reference > Security"
+        - "(Platform.sh/Upsun) Reference > Development"
+        - "(Platform.sh) Reference > Dedicated 2/3"
+        - "(Upsun) Reference > Manage resources"
+        - "(Blackfire) Introduction"
+        - "PHP"
+        - "Python"
+        - "Profile"
+        - "Monitor"
+        - "Test"
+        - "Build"
+        - "Integrate"
+        - "Reference guide"
+      default: 0
+  - type: dropdown
+    id: other_requirements
+    validations:
+      required: true
+    attributes:
+      multiple: true
+      label: Additional requirements
+      description: Are there other requirements of the feature the DevRel team should know about? (select all that apply)
+      options:
+        - "Screenshots will be needed."
+        # - "A video demo would be helpful."
+        - "Testing is needed."
+        - "Not sure. TBD"
+      default: 0
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What's being solved by this feature?
+      value: TBD
+  - type: textarea
+    id: crud_config
+    attributes:
+      label: CRUD and/or schema
+      description: How is the feature configured, enabled, disabled, and updated? 
+      value: TBD
+  - type: textarea
+    id: bc_breaking
+    attributes:
+      label: Backwards compatibility & breaking changes
+      description: Please include any relevant details related to BC and breaking changes.
+      value: TBD
+
+      
+  # - type: checkboxes
+  #   attributes:
+  #     label: Does this introduce a breaking change?
+  #     description: Please search to see if an issue already exists for the bug you encountered.
+  #     options:
+  #     - label: I have searched the existing issues
+  #       required: true
+  # - type: input
+  #   id: contact
+  #   attributes:
+  #     label: Contact Details
+  #     description: How can we get in touch with you if we need more info?
+  #     placeholder: ex. email@example.com
+  #   validations:
+  #     required: false
+  # - type: textarea
+  #   id: what-happened
+  #   attributes:
+  #     label: What happened?
+  #     description: Also tell us, what did you expect to happen?
+  #     placeholder: Tell us what you see!
+  #     value: "A bug happened!"
+  #   validations:
+  #     required: true
+  # - type: dropdown
+  #   id: version
+  #   attributes:
+  #     label: Version
+  #     description: What version of our software are you running?
+  #     options:
+  #       - 1.0.2 (Default)
+  #       - 1.0.3 (Edge)
+  #     default: 0
+  #   validations:
+  #     required: true
+  # - type: dropdown
+  #   id: browsers
+  #   attributes:
+  #     label: What browsers are you seeing the problem on?
+  #     multiple: true
+  #     options:
+  #       - Firefox
+  #       - Chrome
+  #       - Safari
+  #       - Microsoft Edge
+
+        
+        
+  # - type: checkboxes
+  #   id: terms
+  #   attributes:
+  #     label: Code of Conduct
+  #     description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+  #     options:
+  #       - label: I agree to follow this project's Code of Conduct
+  #         required: true
