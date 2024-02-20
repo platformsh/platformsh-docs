@@ -40,11 +40,7 @@ During the `build` hook, there are three writeable directories:
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
 
-{{% version/specific %}}
 This is _not_ the `disk` specified in your [app configuration](../app-reference.md#top-level-properties).
-<--->
-This is _not_ the disk specified by your [resources configuration](/manage-resources.md).
-{{% /version/specific %}}
 
 If you exceed this limit, you receive a `No space left on device` error.
 See how to [troubleshoot this error](../troubleshoot-disks.md#no-space-left-on-device).
@@ -73,11 +69,11 @@ not [`worker` instances](../app-reference.md#workers).
 You can access other services at this stage (such as MySQL, Solr, Redis).
 The disk where the application lives is read-only at this point.
 
-This hook should be used when something needs to run once for all instances of an app when new code is deployed.
+This hook should be used when something needs to run once when new code is deployed.
 It isn't run when a host is restarted (such as during region maintenance),
-so anything that needs to run each time an app starts (regardless of whether there's new code)
-should go in the `start` key in [your `web` configuration](../app-reference.md#web-commands).
-For example, clearing the cache for [ephemeral Redis](../../add-services/redis.md#ephemeral-redis).
+so anything that needs to run each time an instance of an app starts (regardless of whether there's new code)
+should go in the `pre_start` key in [your `web` configuration](../app-reference.md#web-commands).
+For example, clearing the cache.
 
 Be aware: The deploy hook blocks the site accepting new requests.
 If your `deploy` hook is only a few seconds,

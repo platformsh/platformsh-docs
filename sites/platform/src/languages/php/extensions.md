@@ -16,7 +16,6 @@ See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated
 
 You can define the PHP extensions you want to enable or disable:
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 runtime:
     extensions:
@@ -27,22 +26,6 @@ runtime:
     disabled_extensions:
         - sqlite3
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'php:{{% latest "php" %}}'
-        runtime:
-            extensions:
-                - raphf
-                - http
-                - igbinary
-                - redis
-            disabled_extensions:
-                - sqlite3
-```
-{{% /version/specific %}}
-
 You can also [include configuration options](../../create-apps/app-reference.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
@@ -88,19 +71,8 @@ but it takes slightly more work:
    For example, if the extension is named `spiffy.so` and is in your [app root](../../create-apps/app-reference.md#root-directory),
    your configuration looks like the following:
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     php:
         extension: /app/spiffy.so
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'php:{{% latest "php" %}}'
-        variables:
-            php:
-                extension: /app/spiffy.so
-```
-{{% /version/specific %}}

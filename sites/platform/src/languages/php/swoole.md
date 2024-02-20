@@ -24,13 +24,10 @@ You need:
   Currently, the installation script is compatible with PHP <=8.0.</br>It is **not** compatible with PHP 8.3,
   and the `swoole` and `openswoole` extensions are **not** available on {{% vendor/name %}} PHP 8.3 containers yet.
   {{< /note >}}
-  
 
-{{% version/specific %}}
+
 Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
-<--->
 <!-- @todo: To be added once Laravel guide for Upsun is live -->
-{{% /version/specific %}}
 
 {{% swoole %}}
 
@@ -39,7 +36,6 @@ Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../..
 Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     upstream:
@@ -53,21 +49,3 @@ web:
             scripts: false
             allow: false
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'php:{{% latest "php" %}}'
-        web:
-            upstream:
-                socket_family: tcp
-                protocol: http
-            commands:
-                start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
-            locations:
-                "/":
-                    passthru: true
-                    scripts: false
-                    allow: false
-```
-{{% /version/specific %}}
