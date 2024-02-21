@@ -4,7 +4,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-summary {
-  cursor: pointer;
-}

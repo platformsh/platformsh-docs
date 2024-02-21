@@ -120,3 +120,7 @@ body {
 h4.font-semibold {
     font-weight: 400;
 }
+
+summary {
+  cursor: pointer;
+}
