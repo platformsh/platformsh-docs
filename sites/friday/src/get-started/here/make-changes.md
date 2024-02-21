@@ -75,9 +75,21 @@ git commit -m "Update source code"
 
 Deploy your changes to the `feat-a` environment:
 
+{{< codetabs >}}
++++
+title={{% vendor/name %}} Git repository
++++
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push
 ```
+<--->
++++
+title=Using third party provider
++++
+```bash {location="Terminal"}
+git push {{% vendor/cli %}}
+```
+{{< /codetabs >}}
 
 Note that each environment has its own domain name.
 To open the URL of your new environment, run the following command:
