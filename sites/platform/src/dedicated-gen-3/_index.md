@@ -19,32 +19,6 @@ To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provid
 [contact {{% vendor/name %}}](https://platform.sh/contact).
 Note that existing Grid and {{% names/dedicated-gen-2 %}} projects can't be migrated to {{% names/dedicated-gen-3 %}} at this time.
 
-## Highlights
-
-Subscribing to {{% names/dedicated-gen-3 %}} allows you to take advantage
-of [the following benefits](https://platform.sh/blog/the-ultimate-generation-of-our-dedicated-offering-is-here/):
-
-- **Tremendous performance with a high availability of 99.99% SLA.**<BR>
-  By default, a three-host cluster is associated with your default (production) environment.
-
-- **Greater self serviceability and control over your dedicated resources.**<BR>
-  You don't need to submit a support ticket to add, configure,
-  or remove your [apps](../create-apps/_index.md), [services](../add-services/_index.md) and [routes](../define-routes/_index.md).
-  Just amend your [`.yaml` files](/learn/overview/yaml/_index.md) and push your changes.
-
-  As a {{% names/dedicated-gen-3 %}} user,
-  you can take advantage of the [MariaDB Galera multi master cluster](https://mariadb.com/kb/en/galera-cluster/).
-  You can also resize your disk yourself to share your disk space across your apps and services as you need.
-
-- **Multi-app support.**<BR>
-  {{% names/dedicated-gen-3 %}} is flexible and supports modern architectures, such as headless e-commerce.
-
-- **Data synchronization from {{% names/dedicated-gen-3 %}} to Grid** through a single click from the Console.
-
-- **Better compliance.**<BR>
-  Your apps and configurations are fully independent from the machines they run on.
-  This allows {{% vendor/name %}} to perform non-disruptive system upgrades to ensure you're always secure and compliant.
-
 ## Storage
 
 Each {{% names/dedicated-gen-3 %}} cluster comes with 50GB of storage per environment by default.
