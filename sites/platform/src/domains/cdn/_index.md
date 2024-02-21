@@ -12,19 +12,10 @@ These edge servers behave like local caches to nearby users.
 Bringing content closer to users helps enhance your site's perceived performance
 and so can improve user engagement and retention.
 
-{{< version/specific >}}
-<!-- Version 1 -->
 Fastly is the recommended CDN for {{% vendor/name %}} projects.
 By default, Dedicated projects include a [Fastly CDN managed by {{% vendor/name %}}](./managed-fastly.md).
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
-
-<--->
-<!-- Version 2 -->
-Fastly is the recommended CDN for {{% vendor/name %}} projects.
-Self-service projects don't include a CDN by default, but you can set up one at any time,
-such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
-{{< /version/specific >}}
 
 ## DNS records
 
@@ -62,8 +53,6 @@ see your CDN provider's official documentation.
 When you use a CDN, the {{% vendor/name %}} router [HTTP caching](../../define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
-{{< version/specific >}}
-<!-- Platform.sh -->
 ```yaml {configFile="routes"}
 "https://{default}/":
    type: upstream
@@ -72,20 +61,7 @@ To disable it, change your cache configuration for the routes behind a CDN to th
        # Disable the HTTP cache on this route. It's handled by the CDN instead.
        enabled: false
 ```
-<--->
-<!-- Upsun -->
-```yaml {configFile="routes"}
-routes:
-  "https://{default}/":
-     type: upstream
-     upstream: "app:http"
-     cache:
-         # Disable the HTTP cache on this route. It's handled by the CDN instead.
-         enabled: false
-```
-{{< /version/specific >}}
 
-{{< version/specific >}}
 ## Configure your CDN to support high SLA
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
@@ -98,10 +74,6 @@ If you want {{% vendor/name %}} to limit checks to one or more of the following 
 - North America
 - Europe
 - East Asia / Oceania
-
-<--->
-
-{{< /version/specific >}}
 
 ## Prevent direct access to your server
 
@@ -131,22 +103,7 @@ To enable client-authenticated TLS, follow these steps:
 
 4.  Change your routing configuration for the routes behind a CDN to the following:
 
-    {{< version/specific >}}
-
-```yaml {configFile="routes"}
-"https://{default}":
-    tls:
-        client_authentication: "require"
-        client_certificate_authorities:
-            - !include
-                type: string
-                path: cdn.crt
-```
-
-    <--->
-
-```yaml {configFile="routes"}
-routes:
+    ```yaml {configFile="routes"}
     "https://{default}":
         tls:
             client_authentication: "require"
@@ -154,9 +111,7 @@ routes:
                 - !include
                     type: string
                     path: cdn.crt
-```
-
-    {{< /version/specific >}}
+    ```
 
 The procedure can vary depending on your CDN.
 Contact your CDN provider for specific assistance.

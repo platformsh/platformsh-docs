@@ -89,14 +89,8 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 {{% vendor/cli %}} ssh-key:add '{{< variable "PATH_TO_YOUR_KEY" >}}'
 ```
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 You can also add it in the Console,
 similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
-<--->
-<!-- Upsun -->
-You can also add it in the Console.
-{{% /version/specific %}}
 
 Now you are ready to use the key to [connect to an environment](./_index.md#2-connect-to-an-app-with-ssh).
 

@@ -10,9 +10,6 @@ description: |
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -28,16 +25,7 @@ description: |
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="dotnet" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
-
-{{% version/specific %}}
 
 ```yaml {configFile="app"}
 type: 'dotnet:<VERSION_NUMBER>'
@@ -49,32 +37,11 @@ For example:
 type: 'dotnet:{{% latest "dotnet" %}}'
 ```
 
-<--->
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'dotnet:<VERSION_NUMBER>'
-```
-
-For example:
-
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-```
-
-{{% /version/specific %}}
-
 ## Building the application
 
 To build basic applications in .NET containers, it's enough to use the [`dotnet publish` command](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
 with the default [framework-dependent deployment](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-framework-dependent):
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 hooks:
     build: |
@@ -83,19 +50,6 @@ hooks:
             -p:UseRazorBuildServer=false \
             -p:UseSharedCompilation=false
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-        hooks:
-            build: |
-                set -xe
-                dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
-                    -p:UseRazorBuildServer=false \
-                    -p:UseSharedCompilation=false
-```
-{{% /version/specific %}}
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
 
@@ -132,7 +86,6 @@ To force HTTPS-only, refer to the [routes documentation](../define-routes/https.
 The following example configures an environment to serve the static content folders commonly found in [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) templates using Nginx,
 while routing other traffic to the .NET application.
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -148,30 +101,8 @@ web:
     commands:
         start: "dotnet WebApplication1.dll"
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-        web:
-            locations:
-                "/":
-                    root: "wwwroot"
-                    allow: true
-                    passthru: true
-                    rules:
-                        # Serve these common asset types with customs cache headers.
-                        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
-                            allow: true
-                            expires: 300s
-            commands:
-                start: "dotnet WebApplication1.dll"
-```
-{{% /version/specific %}}
-
 You can also route all requests to the application unconditionally:
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 web:
     locations:
@@ -182,24 +113,7 @@ web:
     commands:
         start: "dotnet WebApplication1.dll"
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-        web:
-            locations:
-                "/":
-                    allow: false
-                    passthru: true
 
-            commands:
-                start: "dotnet WebApplication1.dll"
-```
-{{% /version/specific %}}
-
-{{% version/only "1" %}}
 ## Project templates
-{{% /version/only %}}
 
 {{< repolist lang="dotnet" displayName=".NET Core" >}}

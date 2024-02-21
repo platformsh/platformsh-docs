@@ -12,9 +12,7 @@ How you structure a project with multiple apps depends on how your code is organ
 and what you want to accomplish.
 For example, there are various ways you could set up the following multiple apps:
 
-{{% version/only "1" %}}
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
-{{% /version/only %}}
 
 Here are some example use cases and potential ways to organize the project:
 
@@ -35,7 +33,6 @@ For example, if you have an API Platform backend with a Symfony API,
 a Mercure Rocks server, and a Gatsby frontend,
 you can organize your repository like this:
 
-{{% version/specific %}}
 ```txt
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified app configuration
@@ -50,20 +47,6 @@ you can organize your repository like this:
 └── mercure
     └── ...                 <- Mercure Rocks app code
 ```
-<--->
-```txt
-├── {{% vendor/configdir %}}
-│   └── {{% vendor/configfile "apps" "strip" %}}   <- Unified configuration
-├── admin
-│   └── ...                 <- API Platform Admin app code
-├── api-app
-│   └── ...                 <- Bigfoot app code
-├── gatsby
-│   └── ...                 <- Gatsby app code
-└── mercure
-    └── ...                 <- Mercure Rocks app code
-```
-{{% /version/specific %}}
 
 The `api` app is built from the `api-app` directory.</br>
 The `admin` app is built from the `admin` directory.</br>
@@ -90,7 +73,6 @@ the build image for your other apps can still be reused.
 
 Once your repository is organized, you can use a configuration similar to the following:
 
-{{% version/specific %}}
 ```yaml {configFile="apps"}
 api:
   type: php:8.2
@@ -217,137 +199,6 @@ mercure:
     root: mercure/.config
 ```
 
-<--->
-
-```yaml {configFile="apps"}
-applications:
-  api:
-    type: php:8.2
-
-    relationships:
-      database: "database:postgresql"
-
-    mounts:
-      "/var/cache": "shared:files/cache"
-      "/var/log": "shared:files/log"
-      "/var/sessions": "shared:files/sessions"
-
-    web:
-      locations:
-        "/":
-          root: "public"
-          passthru: '/index.php'
-          index:
-            - index.php
-          headers:
-            Access-Control-Allow-Origin: "*"
-
-    hooks:
-      build: |
-        set -x -e
-        curl -s https://get.symfony.com/cloud/configurator | bash
-        symfony-build
-
-      deploy: |
-        set -x -e
-        symfony-deploy
-
-    source:
-      root: api-app
-
-  admin:
-    type: nodejs:16
-
-    mounts:
-      '/.tmp_platformsh': 'shared:files/tmp_platformsh'
-      '/build': 'shared:files/build'
-      '/.cache': 'shared:files/.cache'
-      '/node_modules/.cache': 'shared:files/node_modules/.cache'
-
-    web:
-      locations:
-        "/admin":
-          root: "build"
-          passthru: "/admin/index.html"
-          index:
-            - "index.html"
-          headers:
-            Access-Control-Allow-Origin: "*"
-
-    hooks:
-      build: |
-        set -eu
-        corepack yarn install --immutable --force
-      post_deploy: |
-        corepack yarn run build
-    source:
-      root: admin
-
-  gatsby:
-    type: 'nodejs:18'
-
-    mounts:
-      '/.cache': { source: tmp, source_path: cache }
-      '/.config': { source: storage, source_path: config }
-      '/public': { source: storage, source_path: public }
-
-    web:
-      locations:
-        '/site':
-          root: 'public'
-          index: [ 'index.html' ]
-          scripts: false
-          allow: true
-
-    hooks:
-      build: |
-        set -e
-        yarn --frozen-lockfile
-      post_deploy: |
-        yarn build --prefix-paths
-    source:
-      root: gatsby
-
-  mercure:
-    type: golang:1.18
-
-    mounts:
-      'database': { source: storage, source_path: 'database' }
-      '/.local': { source: storage, source_path: '.local' }
-      '/.config': { source: storage, source_path: '.config' }
-
-    web:
-      commands:
-        start: ./mercure run --config Caddyfile.platform_sh
-
-      locations:
-        /:
-          passthru: true
-          scripts: false
-          request_buffering:
-            enabled: false
-          headers:
-            Access-Control-Allow-Origin: "*"
-
-    hooks:
-      build: |
-        # Install Mercure using cache
-        FILE="mercure_${MERCUREVERSION}_Linux_x86_64.tar.gz"
-        if [ ! -f "$PLATFORM_CACHE_DIR/$FILE" ]; then
-          URL="https://github.com/dunglas/mercure/releases/download/v${MERCUREVERSION}/$FILE"
-          wget -O "$PLATFORM_CACHE_DIR/$FILE" $URL
-        else
-          echo "Found $FILE in cache, using cache"
-        fi
-        file $PLATFORM_CACHE_DIR/$FILE
-        tar xvzf $PLATFORM_CACHE_DIR/$FILE
-
-    source:
-      root: mercure/.config
-```
-
-{{% /version/specific %}}
-
 ## Nested directories
 
 When code bases are separate, changes to one app don't necessarily mean that the other apps in the project get rebuilt.
@@ -360,8 +211,6 @@ For example, you might have a Python app (`main`) that runs a script that requir
 But the Java app (`languagetool`) doesn't require updating when the Python app (`main`) is updated.
 In that case, you can nest the Java app within the Python app:
 
-{{% version/specific %}}
-
 ```txt
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}
@@ -370,18 +219,6 @@ In that case, you can nest the Java app within the Python app:
 │   └── main.java           <- Java app code
 └── main.py                 <- Python app code
 ```
-
-<--->
-
-```txt
-├── {{% vendor/configdir %}}
-│   └── {{% vendor/configfile "apps" "strip" %}}
-├── languagetool
-│   └── main.java           <- Java app code
-└── main.py                 <- Python app code
-```
-
-{{% /version/specific %}}
 
 The Python app's code base includes all of the files at the top level (excluding the `{{% vendor/configdir %}}` directory)
 *and* all of the files within the `languagetool` directory.
@@ -401,8 +238,6 @@ you need to [change the source root](#change-the-source-root-of-your-app) of the
 Once your repository is organized, you can use a configuration similar to the following:
 
 
-{{% version/specific %}}
-
 ```yaml {configFile="apps"}
 main:
   type: 'python:3.11'
@@ -415,25 +250,6 @@ languagetool:
   ...
 ```
 
-<--->
-
-```yaml {configFile="apps"}
-applications:
-    main:
-      type: 'python:3.11'
-      source:
-          root: '/'
-      ...
-
-    languagetool:
-        type: 'java:17'
-        source:
-            root: 'languagetool'
-        ...
-```
-
-{{% /version/specific %}}
-
 ## Split your code source into multiple Git submodule repositories
 
 If you have different teams working on different code with different processes,
@@ -445,7 +261,6 @@ Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Su
 All your apps are configured in a single `{{< vendor/configfile "apps" >}}` file.
 So you could organize your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) like this:
 
-{{% version/specific %}}
 ```text
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}
@@ -457,17 +272,6 @@ So you could organize your [project repository](https://github.com/platformsh-te
 ├── @mercure    <-- Mercure rocks submodule
 └── .gitmodules
 ```
-<--->
-```text
-├── {{% vendor/configdir %}}
-│   └── {{% vendor/configfile "apps" "strip" %}}
-├── @admin      <-- API Platform Admin submodule
-├── @api        <-- Bigfoot submodule
-├── @gatsby     <-- Gatsby submodule
-├── @mercure    <-- Mercure rocks submodule
-└── .gitmodules
-```
-{{% /version/specific %}}
 
 [Add the submodules using the Git CLI](/development/submodules.html#clone-submodules-during-deployment).
 
@@ -514,8 +318,4 @@ source:
 The `source.root` path is relative to the repository root.
 In this example, the `admin` app now treats the `admin` directory as its root when building.
 
-{{% version/specific %}}
 If `source.root` isn't specified, it defaults to the same directory as the `{{< vendor/configfile "apps" >}}` (or `{{< vendor/configfile "app" >}}`) file itself.
-<--->
-If `source.root` isn't specified, it defaults to the project root directory, that is `"/"`.
-{{% /version/specific %}}
