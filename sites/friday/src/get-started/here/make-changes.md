@@ -77,7 +77,7 @@ Deploy your changes to the `feat-a` environment:
 
 {{< codetabs >}}
 +++
-title={{% vendor/name %}} Git repository
+title=Using {{% vendor/name %}} Git repository
 +++
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push

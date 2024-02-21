@@ -43,7 +43,22 @@ As suggested in the Console, connect the local copy of your repository to your p
 upsun project:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
-Then push your code to Upsun with the command `upsun push`.
+Then push your code to Upsun with the command:
+{{< codetabs >}}
++++
+title=Using {{% vendor/name %}} Git repository
++++
+```bash {location="Terminal"}
+{{% vendor/cli %}} push
+```
+<--->
++++
+title=Using third party provider
++++
+```bash {location="Terminal"}
+git push {{% vendor/cli %}}
+```
+{{< /codetabs >}}
 
 The following error is usually triggered at this point:
 
@@ -88,7 +103,7 @@ Push your commits to the project:
 
 {{< codetabs >}}
 +++
-title={{% vendor/name %}} Git repository
+title=Using {{% vendor/name %}} Git repository
 +++
 ```bash {location="Terminal"}
 {{% vendor/cli %}} push
