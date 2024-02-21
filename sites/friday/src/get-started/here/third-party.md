@@ -3,12 +3,12 @@ title: Third party integrations
 weight: 75
 ---
 
-In this guide, you've configured and deployed a local copy of your codebase to Upsun. 
-You can continue to work, but the primary remote your team would share would be Upsun itself. 
+In this guide, you've configured and deployed a local copy of your codebase to Upsun.
+You can continue to work, but the primary remote your team would share would be Upsun itself.
 
-It's more likely that your codebase is on a third party Git service like GitHub, GitLab, or Bitbucket. 
+It's more likely that your codebase is on a third party Git service like GitHub, GitLab, or Bitbucket.
 
-Now that you've learned the basics of Upsun configuration and deployment, you can create new projects within the management console, by choosing the **Connect repository** option to set up a GitHub application. 
+Now that you've learned the basics of Upsun configuration and deployment, you can create new projects within the management console, by choosing the **Connect repository** option to set up a GitHub application.
 
 At this stage, if you want to make another remote (i.e. `origin`) the primary remote, and Upsun a deployment mirror, you can override your current configuration by setting up an integration:
 

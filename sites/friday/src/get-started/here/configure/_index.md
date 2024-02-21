@@ -7,7 +7,7 @@ description: Configure your project
 
 ## Required files
 
-To host your application on {{% vendor/name %}}, a configuration file (YAML) is needed to manage the way your application behaves. 
+To host your application on {{% vendor/name %}}, a configuration file (YAML) is needed to manage the way your application behaves.
 This configuration file is located inside a `.upsun`folder at the root of your source code:
 
 ```bash
@@ -73,9 +73,34 @@ upsun push
 By default, {{% vendor/name %}} uses default resources for each of your services/apps. You can [adjust these resources](/get-started/here/set-resources).
 {{< /note >}}
 
+## Errors on first push
+
+If you try to push a source code that is not {{% vendor/name %}} ready, the following error is usually triggered at this point:
+
+{{< codetabs >}}
++++
+title=Using {{% vendor/name %}} Git repository
++++
+```bash
+Found 749 commits
+
+E: Error parsing configuration files:
+- : Configuration directory '.upsun' not found.
+
+E: Error: Invalid configuration files, aborting build
+```
+<--->
++++
+title=Using third party provider
++++
+![Create project options](/images/console/first-fail.png "0.4")
+{{< /codetabs >}}
+
+This error is triggered because you have not yet added Upsun configuration to your project to setup deployments.
+
 ## Errors
 
-The `project:init` CLI command uses your responses and some framework-detection logic to attempt to set some sane configuration for your project. 
+The `project:init` CLI command uses your responses and some framework-detection logic to attempt to set some sane configuration for your project.
 Your project - like most projects - is unique, and this goal of a seamless first deployment may yet be incomplete at this stage.
 
 Have no fear! {{% vendor/name %}} provides a highly customizable configuration schema that can be adjusted for your particular package manager, environment variables, builds, deploys, workers, crons, and other requirements to get you fully deployed.

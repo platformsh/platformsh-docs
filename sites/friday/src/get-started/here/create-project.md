@@ -43,29 +43,6 @@ As suggested in the Console, connect the local copy of your repository to your p
 upsun project:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
-Then push your code to Upsun with the command:
-{{< codetabs >}}
-+++
-title=Using {{% vendor/name %}} Git repository
-+++
-```bash {location="Terminal"}
-{{% vendor/cli %}} push
-```
-<--->
-+++
-title=Using third party provider
-+++
-```bash {location="Terminal"}
-git push origin
-```
-{{< /codetabs >}}
-
-The following error is usually triggered at this point:
-
-![Create project options](/images/console/first-fail.png "0.4")
-
-This error is triggered because you have not yet added Upsun configuration to your project to setup deployments, which is the next step of this guide.
-
 </details>
 
 <details>
@@ -96,37 +73,6 @@ Third party integrations will be addressed at the end of this guide.
 {{< /note >}}
 
 So long as you chose `y` (yes) to the question `Set the new project <projectName> as the remote for this repository?` during the `project:create` command, your local project is already integrated to the Upsun project.
-
-Push your commits to the project:
-
-{{< codetabs >}}
-+++
-title=Using {{% vendor/name %}} Git repository
-+++
-```bash {location="Terminal"}
-{{% vendor/cli %}} push
-```
-<--->
-+++
-title=Using third party provider
-+++
-```bash {location="Terminal"}
-git push origin
-```
-{{< /codetabs >}}
-
-The following error is usually triggered at this point:
-
-```bash
-Found 749 commits
-
-E: Error parsing configuration files:
-- : Configuration directory '.upsun' not found.
-
-E: Error: Invalid configuration files, aborting build
-```
-
-This error is triggered because you have not yet added Upsun configuration to your project to setup deployments, which is the next step of this guide.
 
 </details>
 
