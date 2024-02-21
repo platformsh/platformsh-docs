@@ -43,6 +43,8 @@ As suggested in the Console, connect the local copy of your repository to your p
 upsun project:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
+Your local source code is automatically linked to your newly created {{% vendor/name %}} project through the creation of a `.{{% vendor/cli %}}/local/project.yaml` file.  This file contains the corresponding `<projectId>` and sets a Git remote to `{{% vendor/cli %}}`.
+
 </details>
 
 <details>
