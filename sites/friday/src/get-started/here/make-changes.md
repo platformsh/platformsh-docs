@@ -45,9 +45,7 @@ title=Using third party provider
    When your local feature is ready, [activate your environment](/administration/cli/reference.html#environmentactivate).
    {{< /note >}}
 
-{{< /codetabs >}}
-
-{{< note title="Warnings" theme="warning">}}
+   {{< note title="Warnings" theme="warning">}}
    **First**, you are charged for all [activated environments](/administration/cli/reference.html#environmentactivate).
    So, to create an inactive environment waiting for you to be ready to test, run the following command:
    ```bash {location="Terminal"}
@@ -58,7 +56,8 @@ title=Using third party provider
    ```bash {location="Terminal"}
    fatal: couldn't find remote ref feat-a
    ```
-{{< /note >}}
+   {{< /note >}}
+{{< /codetabs >}}
 
 ## 2. Make changes to your project
 
