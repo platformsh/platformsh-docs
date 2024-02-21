@@ -86,9 +86,21 @@ So long as you chose `y` (yes) to the question `Set the new project <projectName
 
 Push your commits to the project:
 
-```bash
-upsun push
+{{< codetabs >}}
++++
+title={{% vendor/name %}} Git repository
++++
+```bash {location="Terminal"}
+{{% vendor/cli %}} push
 ```
+<--->
++++
+title=Using third party provider
++++
+```bash {location="Terminal"}
+git push {{% vendor/cli %}}
+```
+{{< /codetabs >}}
 
 The following error is usually triggered at this point:
 
