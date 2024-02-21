@@ -113,7 +113,7 @@ title=Using {{% vendor/name %}} Git repository
 title=Using third party provider
 +++
 ```bash {location="Terminal"}
-git push {{% vendor/cli %}}
+git push origin
 ```
 {{< /codetabs >}}
 
