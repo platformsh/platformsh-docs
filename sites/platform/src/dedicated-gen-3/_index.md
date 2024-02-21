@@ -2,14 +2,14 @@
 title: "{{% names/dedicated-gen-3 %}}"
 weight: -19
 layout: single
-description: 
+description:
 ---
 
 {{% names/dedicated-gen-3 %}} runs the same software as on the Grid, but on isolated hosts.
 Each service is replicated across three hosts in a failover configuration.
 If a host becomes unavailable, the other two take over so your site remains up.
 
-{{% names/dedicated-gen-3 %}} was designed to cater to the needs of organizations that build demanding apps. 
+{{% names/dedicated-gen-3 %}} was designed to cater to the needs of organizations that build demanding apps.
 Compared to the Grid, {{% names/dedicated-gen-3 %}} offers increased resources,
 high availability for all your services and apps,
 stricter isolation requirements,
@@ -26,7 +26,6 @@ of [the following benefits](https://platform.sh/blog/the-ultimate-generation-of-
 
 - **Tremendous performance with a high availability of 99.99% SLA.**<BR>
   By default, a three-host cluster is associated with your default (production) environment.
-  Upon request, you can have another one associated with your staging environment.
 
 - **Greater self serviceability and control over your dedicated resources.**<BR>
   You don't need to submit a support ticket to add, configure,
@@ -78,7 +77,7 @@ and local mounts aren't shared between the three hosts.
 If you need a folder to be shared between your hosts,
 set up a [network storage mount](../add-services/network-storage.md).
 
-## Differences with {{% names/dedicated-gen-2 %}} 
+## Differences with {{% names/dedicated-gen-2 %}}
 
 Just like {{% names/dedicated-gen-3 %}},
 [{{% names/dedicated-gen-2 %}}](../../dedicated-gen-2/overview/_index.md) ensures increased uptime
