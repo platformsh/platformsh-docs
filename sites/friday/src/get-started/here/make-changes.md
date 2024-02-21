@@ -87,7 +87,7 @@ title=Using {{% vendor/name %}} Git repository
 title=Using third party provider
 +++
 ```bash {location="Terminal"}
-git push {{% vendor/cli %}}
+git push origin
 ```
 {{< /codetabs >}}
 
@@ -109,6 +109,10 @@ Iterate by changing the code, committing, and deploying.
 When satisfied with your changes, merge them to the main branch,
 and remove the feature branch:
 
+{{< codetabs >}}
++++
+title=Using {{% vendor/name %}} Git repository
++++
 ```bash {location="Terminal"}
 {{% vendor/cli %}} merge
  Are you sure you want to merge feat-a into its parent, main? [Y/n] y
@@ -117,9 +121,27 @@ git pull {{% vendor/cli %}} main
 {{% vendor/cli %}} environment:delete feat-a
 git fetch --prune
 ```
+<--->
++++
+title=Using third party provider
++++
+{{% note title="Warning" theme="warning" %}}
+We strongly recommend to use Merge/Pull Request for merging your feature branch to the ``main`` branch.
+{{% /note %}}
+
+When using a third party provider, you can use the following:
+```bash {location="Terminal"}
+git checkout staging
+git pull staging
+git merge feat-a
+git branch -d feat-a
+git push origin --delete feat-a
+git fetch --prune
+```
+{{< /codetabs >}}
 
 {{< note >}}
-Deploying to production is fast because the image built for the `feat-a` environment is reused for your `main` environment.
+Deploying after a merge is fast because the image built for the feature environment is reused for the targeted environment.
 {{< /note >}}
 
 ## 6. Keep your branch up to date
