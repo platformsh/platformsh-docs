@@ -19,13 +19,13 @@ If you haven't done so already, you are prompted to create your first organizati
 ![Create project options](/images/console/create-project.png "0.4")
 
 From the Console, what you do next entirely depends on where the "source of truth" of your codebase is located.
-In this guide, you will push your local repository to Upsun. 
+In this guide, you will push your local repository to Upsun.
 That is, the only copy of your codebase you'd like to deploy is on your local computer.
 
 Click **Start from scratch** from the **Deploy with Git** option.
 
 {{< note theme="info" title="Git integrations">}}
-This guide does not specifically address integrating an Upsun project with a third party repository such as one on GitHub, even though the **Connect repository** option is available at this stage. 
+This guide does not specifically address integrating an Upsun project with a third party repository such as one on GitHub, even though the **Connect repository** option is available at this stage.
 
 For now, continue to work locally.
 Third party integrations will be addressed at the end of this guide.
@@ -64,21 +64,21 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 
 {{< note theme="info" title="Default branches" >}}
 When creating a new project using the {{% vendor/name %}} CLI command `project:create`, the default production branch is set to `main`. Change it if your default branch is different (_e.g._: `master`).
+{{< /note >}}
 
 Then, you are asked if you want to set the local remote to your new project. Enter **Yes (y)**.
 
 Your local source code is automatically linked to your newly created {{% vendor/name %}} project through the creation of a `.{{% vendor/cli %}}/local/project.yaml` file.  This file contains the corresponding `<projectId>` and sets a Git remote to `{{% vendor/cli %}}`.
 
-{{< /note >}}
 
 From the CLI, what you do next entirely depends on where the "source of truth" of your codebase is located.
-In this guide, you will push your local repository to Upsun. 
+In this guide, you will push your local repository to Upsun.
 That is, the only copy of your codebase you'd like to deploy is on your local computer.
 
 Click **Start from scratch** from the **Deploy with Git** option.
 
 {{< note theme="info" title="Git integrations">}}
-This guide does not specifically address integrating an Upsun project with a third party repository such as one on GitHub, even though you will notice the **Connect repository** option available at this stage. 
+This guide does not specifically address integrating an Upsun project with a third party repository such as one on GitHub, even though you will notice the **Connect repository** option available at this stage.
 
 For now, continue to work locally.
 Third party integrations will be addressed at the end of this guide.
