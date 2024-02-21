@@ -85,8 +85,6 @@ Then, you are asked if you want to set the local remote to your new project. Ent
 
 Your local source code is automatically linked to your newly created {{% vendor/name %}} project through the creation of a `.{{% vendor/cli %}}/local/project.yaml` file.  This file contains the corresponding `<projectId>` and sets a Git remote to `{{% vendor/cli %}}`.
 
-From the CLI, what you do next entirely depends on where the "source of truth" of your codebase is located.
-
 In this guide, you will push your local repository to Upsun.
 That is, the only copy of your codebase you'd like to deploy is on your local computer.
 
