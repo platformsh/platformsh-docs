@@ -79,7 +79,7 @@ If you try to push a source code that is not {{% vendor/name %}} ready, the foll
 
 {{< codetabs >}}
 +++
-title=Using {{% vendor/name %}} Git repository
+title=Using {{% vendor/name %}} CLI
 +++
 ```bash
 Found 749 commits
@@ -91,7 +91,7 @@ E: Error: Invalid configuration files, aborting build
 ```
 <--->
 +++
-title=Using third party provider
+title=Using Console
 +++
 ![Create project options](/images/console/first-fail.png "0.4")
 {{< /codetabs >}}
