@@ -371,3 +371,12 @@ highlight=js
 {{% access-services version="2" %}}
 
 {{< repolist lang="nodejs" displayName="Node.js" >}}
+
+## Frameworks
+
+All major Javascript/Node.js web frameworks can be deployed on {{% vendor/name %}}.
+See dedicated guides for deploying and working with them:
+
+- [Express](/get-started/stacks/express.md)
+- [Next.js](/get-started/stacks/nextjs.md)
+- [Strapi](/get-started/stacks/strapi.md)
