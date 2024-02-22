@@ -69,17 +69,6 @@ git pull {{% vendor/cli %}} main
 git fetch --prune
 ```
 
-When using a third party provider, you can use the following:
-```bash {location="Terminal"}
-git checkout staging
-git pull staging
-git merge feat-a
-git branch -d feat-a
-git push origin --delete feat-a
-git fetch --prune
-```
-{{< /codetabs >}}
-
 {{< note >}}
 Deploying after a merge is fast because the image built for the feature environment is reused for the targeted environment.
 {{< /note >}}
