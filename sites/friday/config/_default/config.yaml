@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy", "taxonomyTerm"]
 
-baseURL: "https://docs.upsun.com"
+#baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
@@ -53,6 +53,7 @@ module:
         - source: "../platform/src"
           target: "content"
           excludeFiles:
+              - "_index.md"
 
               - "add-services/*"
               # - "add-services/network-storage.md"

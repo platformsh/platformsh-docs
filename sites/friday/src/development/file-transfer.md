@@ -160,14 +160,14 @@ For more options, consult the [rsync documentation](https://man7.org/linux/man-p
 
 You can use `sftp` to copy files to and from a remote environment.
 
-{{% note %}}
+{{< note >}}
 {{% vendor/name %}} supports `sftp`, but the following limitations apply:
 
 - You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
   Custom users and passwords aren't supported.
 - `sftp` access cannot be limited to a specific directory.
   Instead, access is given to **the whole application directory** and its mounts.
-{{% /note %}}
+{{< /note >}}
 
 #### Open an `sftp` connection
 
