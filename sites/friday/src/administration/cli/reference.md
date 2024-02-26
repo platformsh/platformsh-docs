@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.0.9
+# Upsun CLI 5.0.10
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -1445,13 +1445,13 @@ Restore an environment backup
 ### Usage
 
 ```
-upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
+upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore-code] [--resources-init RESOURCES-INIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
 ```
 
 #### Arguments
 
 * `backup`(optional)
-  The name of the backup. Defaults to the most recent one
+  The ID of the backup. Defaults to the most recent one
 
 #### Options
 
@@ -1460,6 +1460,12 @@ upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--project
 
 * `--branch-from` (expects a value)
   If the --target does not yet exist, this specifies the parent of the new environment
+
+* `--restore-code`
+  Whether code should be restored as well as data
+
+* `--resources-init` (expects a value)
+  Set the resources to use for new services: parent (default), default, minimum, or manual.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2271,7 +2277,7 @@ Activate an environment
 ### Usage
 
 ```
-upsun environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
+upsun environment:activate [--parent PARENT] [--resources-init RESOURCES-INIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
 #### Arguments
@@ -2283,6 +2289,9 @@ upsun environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--enviro
 
 * `--parent` (expects a value)
   Set a new environment parent before activating
+
+* `--resources-init` (expects a value)
+  Set the resources to use for new services: parent (default), default, minimum, or manual.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2327,7 +2336,7 @@ Aliases: `branch`
 ### Usage
 
 ```
-upsun branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<id>] [<parent>]
+upsun branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [--resources-init RESOURCES-INIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<id>] [<parent>]
 ```
 
 #### Arguments
@@ -2351,6 +2360,9 @@ upsun branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [
 
 * `--no-checkout`
   Do not check out the branch locally
+
+* `--resources-init` (expects a value)
+  Set the resources to use for new services: parent (default), default, minimum, or manual.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2954,7 +2966,7 @@ Aliases: `merge`
 ### Usage
 
 ```
-upsun merge [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]
+upsun merge [--resources-init RESOURCES-INIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]
 ```
 
 This command will initiate a Git merge of the specified environment into its parent environment.
@@ -2965,6 +2977,9 @@ This command will initiate a Git merge of the specified environment into its par
   The environment to merge
 
 #### Options
+
+* `--resources-init` (expects a value)
+  Set the resources to use for new services: child (default), default, minimum, or manual.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3058,7 +3073,7 @@ upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstrea
 #### Arguments
 
 * `source`(optional)
-  The source ref: a branch name or commit hash
+  The Git source ref, e.g. a branch name or a commit hash.
 
 #### Options
 
@@ -3075,10 +3090,10 @@ upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstrea
   Set the target environment as the upstream for the source branch. This will also set the target project as the remote for the local repository.
 
 * `--activate`
-  Activate the environment before pushing
+  Activate the environment. Paused environments will be resumed. This will ensure the environment is active even if no changes were pushed.
 
 * `--parent` (expects a value)
-  Set the new environment parent (only used with --activate)
+  Set the environment parent (only used with --activate)
 
 * `--type` (expects a value)
   Set the environment type (only used with --activate )
@@ -3087,7 +3102,7 @@ upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstrea
   Do not clone the parent branch's data (only used with --activate)
 
 * `--resources-init` (expects a value)
-  Set the resources to use for new services: default, parent, minimum, or manual
+  Set the resources to use for new services: default, parent, minimum, or manual.
 
 * `--no-wait` (`-W`)
   Do not wait for the operation to complete
@@ -3128,7 +3143,7 @@ upsun environment:push
 upsun environment:push --no-wait
 ```
 
-* Push code, first branching or activating the environment as a child of 'develop':
+* Push code, branching or activating the environment as a child of 'develop':
 ```
 upsun environment:push --activate --parent develop
 ```
@@ -3440,7 +3455,7 @@ upsun environment:ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode'
 
 ## `environment:synchronize`
 
-Synchronize an environment's code and/or data from its parent
+Synchronize an environment's code, data and/or resources from its parent
 
 Aliases: `sync`
 
@@ -3453,14 +3468,19 @@ upsun sync [--rebase] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|
 This command synchronizes to a child environment from its parent environment.
 
 Synchronizing "code" means there will be a Git merge from the parent to the
-child. Synchronizing "data" means that all files in all services (including
+child.
+
+Synchronizing "data" means that all files in all services (including
 static files, databases, logs, search indices, etc.) will be copied from the
 parent to the child.
+
+Synchronizing "resources" means that the parent environment's resource sizes
+will be used for all corresponding apps and services in the child environment.
 
 #### Arguments
 
 * `synchronize`(optional; multiple values allowed)
-  What to synchronize: "code", "data" or both
+  List what to synchronize: "code", "data", and/or "resources".
 
 #### Options
 
@@ -3504,6 +3524,11 @@ upsun environment:synchronize data
 * Synchronize code and data from the parent environment:
 ```
 upsun environment:synchronize code data
+```
+
+* Synchronize code, data and resources from the parent environment:
+```
+upsun environment:synchronize code data resources
 ```
 
 ## `environment:url`
@@ -5628,7 +5653,7 @@ to STDERR.
   The initial project title
 
 * `--region` (expects a value)
-  The region where the project will be hosted
+  The region where the project will be hosted. Get a 3% discount on resources for regions with a carbon intensity of less than 100 gCO2eq/kWh.
 
 * `--plan` (expects a value)
   The subscription plan
@@ -6198,13 +6223,13 @@ If the same service and resource is specified on the command line multiple times
 #### Options
 
 * `--size` (`-S`) (expects a value)
-  Set the profile size (CPU and memory) of apps, workers, or services. Items are in the format name:value and may be comma-separated. The % or * characters may be used as a wildcard for the name. List available sizes with the resources:sizes command.
+  Set the profile size (CPU and memory) of apps, workers, or services. Items are in the format name:value and may be comma-separated. The % or * characters may be used as a wildcard for the name. List available sizes with the resources:sizes command. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
 
 * `--count` (`-C`) (expects a value)
   Set the instance count of apps or workers. Items are in the format name:value as above.
 
 * `--disk` (`-D`) (expects a value)
-  Set the disk size (in MB) of apps or services. Items are in the format name:value as above.
+  Set the disk size (in MB) of apps or services. Items are in the format name:value as above. A value of 'default' will use the default size, and 'min' or 'minimum' will use the minimum.
 
 * `--force` (`-f`)
   Try to run the update, even if it might exceed your limits
