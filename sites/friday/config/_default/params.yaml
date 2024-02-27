@@ -22,9 +22,9 @@ vendor:
     recruit:
         active: true
         link: https://upsun.com/register/
-        cta: Sign up for Beta access
-        title: Upsun Beta access
-        description: "Test and provide feedback for our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>You can register for the Beta by clicking here and completing the form.<br/><br/>"
+        cta: Get your Upsun free trial
+        title: Upsun Beta
+        description: "Access our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>Get your free trial by clicking the link below.<br/><br/>"
     psh_ref: Platform.sh
     config:
         version: 2
@@ -55,7 +55,7 @@ logolinksto: "https://upsun.com"
 logoAlt: "Upsun"
 favicon: "images/favicon.ico"
 
-gtm: "GTM-KJ4F382K"
+gtm: "GTM-NN9T4G2T"
 
 # Actions in main header
 headerActions:

@@ -21,15 +21,15 @@ To do so, you need to configure mounts or use an SSH client.
 You can then transfer files directly to and from mounts inside your app
 with a single command via the [{{% vendor/name %}} CLI](../administration/cli/_index.md).
 
-Alternatively, you can transfer files to and from your built app using an SSH client 
+Alternatively, you can transfer files to and from your built app using an SSH client
 such as `scp` or `rsync`.
 
 ## Transfer files using the CLI
 
 ### View the mounts inside your app
 
-Before you start transferring files, 
-you may want to view a list of all the mounts inside your app. 
+Before you start transferring files,
+you may want to view a list of all the mounts inside your app.
 To do so, run the following command:
 
 ```bash
@@ -38,8 +38,6 @@ To do so, run the following command:
 
 The output is similar to the following:
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 ```bash
 Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 +-------------------------+----------------------+
@@ -53,30 +51,13 @@ Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
 |                         | source_path: temp    |
 +-------------------------+----------------------+
 ```
-<--->
-<!-- Upsun -->
-
-```bash
-Mounts on abcdefgh1234567-main-abcd123--app@ssh.eu.{{< vendor/urlraw "host" >}}:
-+-------------------------+----------------------+
-| Mount path              | Definition           |
-+-------------------------+----------------------+
-| web/sites/default/files | source: storage      |
-|                         | source_path: files   |
-| private                 | source: storage      |
-|                         | source_path: private |
-| tmp                     | source: tmp          |
-|                         | source_path: temp    |
-+-------------------------+----------------------+
-```
-{{% /version/specific %}}
 
 ### Transfer a file to a mount
 
-To transfer a file to a mount using the CLI, you can use the `mount:upload` command. 
+To transfer a file to a mount using the CLI, you can use the `mount:upload` command.
 
 For example, to upload the files contained in the local `private` directory to the `private` mount,
-run the following command: 
+run the following command:
 
 ```bash
 {{% vendor/cli %}} mount:upload --mount private --source ./private
@@ -98,9 +79,9 @@ Are you sure you want to continue? [Y/n]
 
 ### Transfer a file from a mount
 
-To transfer a file from a mount using the CLI, you can use the `mount:download` command. 
+To transfer a file from a mount using the CLI, you can use the `mount:download` command.
 
-For example, to download a file from the `private` mount to your local `private` directory, 
+For example, to download a file from the `private` mount to your local `private` directory,
 run the following command:
 
 ```bash
@@ -130,7 +111,7 @@ Another way to transfer files to and from your built app is to use an SSH client
 
 You can use `scp` to copy files to and from a remote environment.
 
-For example, to download a `diagram.png` file from the `web/uploads` directory 
+For example, to download a `diagram.png` file from the `web/uploads` directory
 (relative to the [app root](../create-apps/app-reference.md#root-directory)),
 run the following command:
 
@@ -140,7 +121,7 @@ scp "$({{% vendor/cli %}} ssh --pipe)":web/uploads/diagram.png .
 
 The `diagram.png` file is copied to the current local directory.
 
-To copy files from your local directory to the {{% vendor/name %}} environment, 
+To copy files from your local directory to the {{% vendor/name %}} environment,
 reverse the order of the parameters:
 
 ```bash
@@ -153,7 +134,7 @@ For other options, see the [`scp` documentation](https://www.man7.org/linux/man-
 
 You can use `rsync` to copy files to and from a remote environment.
 
-For example, to copy all the files in the `web/uploads` directory on the remote environment 
+For example, to copy all the files in the `web/uploads` directory on the remote environment
 to the local `uploads` directory,
 run the following command:
 
@@ -161,7 +142,7 @@ run the following command:
 rsync -azP "$({{% vendor/cli %}} ssh --pipe)":web/uploads/ ./uploads/
 ```
 
-To copy files from your local directory to the {{% vendor/name %}} environment, 
+To copy files from your local directory to the {{% vendor/name %}} environment,
 reverse the order of the parameters:
 
 ```bash
@@ -170,7 +151,7 @@ rsync -azP uploads/ "$({{% vendor/cli %}} ssh --pipe)":web/uploads/
 
 Note that `rsync` is very sensitive about trailing `/` characters.
 
-If you're using UTF-8 encoded files on macOS, 
+If you're using UTF-8 encoded files on macOS,
 add the `--iconv=utf-8-mac,utf-8` flag to your `rsync` call.
 
 For more options, consult the [rsync documentation](https://man7.org/linux/man-pages/man1/rsync.1.html).
@@ -179,40 +160,26 @@ For more options, consult the [rsync documentation](https://man7.org/linux/man-p
 
 You can use `sftp` to copy files to and from a remote environment.
 
-{{% version/specific %}}
 {{% note %}}
-<!-- Platform.sh -->
 
 `sftp` is supported on the Grid, but the following limitations apply:
 
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key. 
+- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
   Custom users and passwords aren't supported.
 - `sftp` access cannot be limited to a specific directory.
   Instead, access is given to **the whole application directory** and its mounts.
 
 `sftp` is also supported on Dedicated projects with different limitations and requirements.
-For more information, see the [{{% names/dedicated-gen-2 %}}](/dedicated-gen-2/architecture/options.md#sftp)
-and [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/options.md#sftp) sections.
+For more information, see the [{{% names/dedicated-gen-2 %}}](https://docs.platform.sh/dedicated-gen-2/architecture/options.html#sftp)
+and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/options.html#sftp) sections.
 {{% /note %}}
-
-<--->
-<!-- Upsun -->
-{{% note %}}
-{{% vendor/name %}} supports `sftp`, but the following limitations apply:
-
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key. 
-  Custom users and passwords aren't supported.
-- `sftp` access cannot be limited to a specific directory.
-  Instead, access is given to **the whole application directory** and its mounts.
-{{% /note %}}
-{{% /version/specific %}}
 
 #### Open an `sftp` connection
 
 Run the following command:
 
 ```bash
-sftp "$(platform ssh --pipe)"
+sftp "$({{% vendor/cli %}} ssh --pipe)"
 ```
 
 When prompted, select the project and environment you want to connect to.
@@ -220,7 +187,7 @@ The `sftp` connection is open once the `sftp>` prompt is displayed in your termi
 
 #### Download a file
 
-Say you want to download a `diagram.png` file from the `web/uploads` directory 
+Say you want to download a `diagram.png` file from the `web/uploads` directory
 (relative to the [app root](../create-apps/app-reference.md#root-directory)).
 To do so, run the following command:
 
@@ -232,7 +199,7 @@ The `diagram.png` file is copied to the current local directory.
 
 #### Upload a file
 
-Say you want to upload a `diagram.png` file to the `web/uploads` directory 
+Say you want to upload a `diagram.png` file to the `web/uploads` directory
 (relative to the [app root](../create-apps/app-reference.md#root-directory)).
 To do so, run the following command:
 

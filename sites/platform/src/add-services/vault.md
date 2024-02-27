@@ -6,7 +6,7 @@ weight: 50
 
 The Vault key management service (KMS) provides key management and access control for your secrets.
 The {{% vendor/name %}} Vault KMS offers the [transit secrets engine](https://developer.hashicorp.com/vault/docs/secrets/transit)
-to sign, verify, encrypt, decrypt, and rewrap information. 
+to sign, verify, encrypt, decrypt, and rewrap information.
 
 Vault doesn't store the data sent to the transit secrets engine,
 so it can be viewed as encryption as a service.
@@ -15,9 +15,6 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -35,13 +32,6 @@ To store secrets such as API keys, create sensitive [environment variables](../d
         </tr>
     </tbody>
 </table>
-
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="vault-kms" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 ## Add Vault
 

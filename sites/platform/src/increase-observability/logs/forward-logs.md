@@ -17,7 +17,7 @@ or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) 
 
 {{% version/specific %}}
 Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
-For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](../../dedicated-gen-2/architecture/options.md#remote-logging).
+For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](/dedicated-gen-2/architecture/options.html#remote-logging).
 <--->
 {{% /version/specific %}}
 Logs to `stdout` and `stderr` are forwarded.
@@ -25,7 +25,7 @@ Logs in files can't be forwarded.
 
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
 You also need your project to have the capability for log forwarding.
-To get that, contact [support](https://console.platform.sh/-/users/~/tickets/open).
+To get a price quote, [contact Sales](https://platform.sh/contact/).
 
 ## Use a log forwarding integration
 
@@ -42,7 +42,7 @@ Integrations exist for the following third-party services to enable log forwardi
 
 ### Enable a log forwarding integration
 
-#### Using the CLI 
+#### Using the CLI
 
 To enable log forwarding for a specific project using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md),
 follow the steps for your selected service.
@@ -130,7 +130,7 @@ You can forward your {{% vendor/name %}} and Blackfire logs to any of those endp
 title=Using the CLI
 +++
 
-To enable log forwarding to a syslog endpoint, 
+To enable log forwarding to a syslog endpoint,
 run a command similar to the following:
 
 ```bash
