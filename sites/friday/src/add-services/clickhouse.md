@@ -39,7 +39,7 @@ or by running `{{< vendor/cli >}} relationships`.
       "query": {
         "is_master": true
       },
-      "password": "63f06c05a632f9e66be25b51cde5c573",
+      "password": "ChangeMe",
       "port": 9000,
       "host_mapped": false,
       "service": "clickhouse",
