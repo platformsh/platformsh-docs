@@ -84,7 +84,7 @@ This ensures repeatable builds on {{% vendor/name %}} with the same packages.
 ## Pipenv
 
 [Pipenv](https://pipenv.pypa.io/en/latest/) is a package manager for Python
-that creates and manages a virtual environment for Python projects. 
+that creates and manages a virtual environment for Python projects.
 Dependencies are tracked and defined within a `Pipfile`.
 It also generates a `Pipfile.lock` file to produce repeatable installs.
 
@@ -141,8 +141,8 @@ hooks:
 
 ## Poetry
 
-[Poetry](https://python-poetry.org/docs/) is a tool for dependency management and packaging in Python. 
-It allows you to declare the libraries your project depends on and manages them for you. 
+[Poetry](https://python-poetry.org/docs/) is a tool for dependency management and packaging in Python.
+It allows you to declare the libraries your project depends on and manages them for you.
 Poetry offers a lock file to ensure repeatable installs and can build your project for distribution.
 It also creates and manages virtual environments to keep project work isolated from the rest of your system.
 
@@ -153,29 +153,17 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
     - [`POETRY_VIRTUALENVS_IN_PROJECT`](https://python-poetry.org/docs/configuration/#virtualenvsin-project):
       Setting this to `true` places the virtual environment at the root of the app container: `/app/.venv`.
     - [`POETRY_VIRTUALENVS_CREATE`](https://python-poetry.org/docs/configuration/#virtualenvscreate):
-      Setting this to `true` ensures that the same virtual environment created during the build hook is reused in subsequent steps. 
+      Setting this to `true` ensures that the same virtual environment created during the build hook is reused in subsequent steps.
 
     Set the variables as follows:
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        variables:
-            env:
-                POETRY_VIRTUALENVS_IN_PROJECT: true
-                POETRY_VIRTUALENVS_CREATE: true
-```
-{{% /version/specific %}}
+
 
 2.  Install Poetry.
     You can specify the latest or a specific version of Poetry in your deployments to ensure repeatable builds.
@@ -261,12 +249,10 @@ hooks:
     fi
     ```
 
-{{% version/only "1" %}}
 ## Anaconda
 
-Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python. 
+Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python.
 The following Community resources can help get you started with them:
 
 - [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
 - [Running R Shiny using Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
-{{% /version/only %}}

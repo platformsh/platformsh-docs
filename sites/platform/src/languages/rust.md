@@ -13,9 +13,6 @@ banner:
 
 {{% major-minor-versions-note %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -32,13 +29,6 @@ banner:
         </tr>
     </tbody>
 </table>
-
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="rust" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 ## Dependencies
 
@@ -58,7 +48,6 @@ If the program terminates for any reason it is automatically restarted.
 The following basic [app configuration](../../create-apps/_index.md) is sufficient to run most Rust apps.
 See the [complete example](#complete-example) below for more details.
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 
 # The app's name, which must be unique within the project.
@@ -78,39 +67,13 @@ web:
   commands:
       # Customize the start command with your own target.
       start: './target/debug/hello'
-  
+
   locations:
         /:
             # Route all requests to the Rust app, unconditionally.
             allow: false
             passthru: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-
-        # The language and version for your app.
-        type: 'rust:1'
-
-        hooks:
-            build:
-                cargo build
-
-        web:
-            commands:
-                # Customize the start command with your own target.
-                start: './target/debug/hello'
-        
-        locations:
-            /:
-                # Route all requests to the Rust app, unconditionally.
-                allow: false
-                passthru: true
-```
-{{% /version/specific %}}
-
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
 ## Built-in variables
@@ -126,7 +89,7 @@ let port : String = env::var("PORT").unwrap_or(String::from("8888"));
 
 Note that some of the environment variables are in JSON format and are base64 encoded.
 For example, to decode the `PLATFORM_RELATIONSHIPS` environment variable,
-use the following snippet: 
+use the following snippet:
 
 ```rust
 use base64::{Engine as _, engine::{general_purpose}};
@@ -139,7 +102,7 @@ println!("{}", psh_config["database"]);
 
 ## Complete example
 
-Here is a basic hello world app to illustrate how you can use Rust with {{% vendor/name %}}. 
+Here is a basic hello world app to illustrate how you can use Rust with {{% vendor/name %}}.
 It builds from a `hello.rs` file to serve a static `index.html`.
 Follow these steps:
 
@@ -168,7 +131,6 @@ Follow these steps:
 
 3. Add the following [app configuration](../../create-apps/_index.md):
 
-{{% version/specific %}}
 ```yaml {configFile="app"}
 
 # The app's name, which must be unique within the project.
@@ -188,39 +150,13 @@ web:
   commands:
       # Customize the start command with your own target.
       start: './target/debug/hello'
-  
+
   locations:
         /:
             # Route all requests to the Rust app, unconditionally.
             allow: false
             passthru: true
 ```
-<--->
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
-
-        # The language and version for your app.
-        type: 'rust:1'
-
-        hooks:
-            build:
-                cargo build
-
-        web:
-            commands:
-                # Customize the start command with your own target.
-                start: './target/debug/hello'
-        
-        locations:
-            /:
-                # Route all requests to the Rust app, unconditionally.
-                allow: false
-                passthru: true
-```
-{{% /version/specific %}}
-
 4. To generate a `Cargo.lock` file,
    run the following command:
 
@@ -240,7 +176,7 @@ applications:
    use std::env;
 
    fn main() {
-    
+
        /* Creating a Local TcpListener at Port 8888 */
        const HOST : &str ="127.0.0.1";
        let port : String = env::var("PORT").unwrap_or(String::from("8888"));
@@ -259,7 +195,7 @@ applications:
            // Call Function to process any incomming connections
            handle_connection(_stream);
        }
-    
+
    }
 
    fn handle_connection(mut stream: TcpStream) {

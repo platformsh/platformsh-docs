@@ -20,9 +20,6 @@ and your messages a safe place to live until they're received.
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -40,17 +37,7 @@ and your messages a safe place to live until they're received.
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="rabbitmq" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% deprecated-versions %}}
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -69,19 +56,12 @@ and your messages a safe place to live until they're received.
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
-
 ## Usage example
 
 {{% endpoint-description type="rabbitmq" /%}}
 
 <!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Go
@@ -115,42 +95,6 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-# Relationships enable an app container's access to a service.
-relationships:
-    rabbitmqqueue: "queuerabbit:rabbitmq"
-{{< /snippet >}}
-{{< snippet name="queuerabbit" config="service" placeholder="true" >}}
-    type: rabbitmq:{{% latest "rabbitmq" %}}
-    disk: 256
-{{< /snippet >}}
-```
-
-{{< v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL">}}
-
-```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].scheme")
-export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].username")
-export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].password")
-export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].host")
-export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
-
-# Set a single RabbitMQ connection string variable for AMQP.
-export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
-```
-
-{{< /v2connect2app >}}
-
-{{% /version/only %}}
-
 ## Connect to RabbitMQ
 
 When debugging, you may want to connect directly to your RabbitMQ service.
@@ -183,9 +127,7 @@ You can access this UI with an SSH tunnel.
 
 To open a tunnel, follow these steps.
 
-{{% version/specific %}}
-
-1.  
+1.
    a) (On [grid environments](/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
@@ -199,18 +141,6 @@ To open a tunnel, follow these steps.
     ```bash
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:localhost:15672
     ```
-
-<--->
-
-1.  SSH into your app container with a flag for local port forwarding:
-2.  
-    ```bash
-    ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
-    ```
-    
-    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
-
-{{% /version/specific %}}
 
 2.  Open `http://localhost:15672` in your browser.
     Log in using the username and password from the [relationship](#relationship-reference).
@@ -227,34 +157,16 @@ You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.htm
 which can be useful for separating resources, such as exchanges, queues, and bindings, into their own namespaces.
 To create virtual hosts, add them to your configuration as in the following example:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="rabbitmq" config="service" >}}
+{{% snippet name="rabbitmq" config="service"  %}}
     type: "rabbitmq:{{% latest "rabbitmq" %}}"
     disk: 512
     configuration:
         vhosts:
             - host1
             - host2
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="rabbitmq" config="service" >}}
-    type: "rabbitmq:{{% latest "rabbitmq" %}}"
-    configuration:
-        vhosts:
-            - host1
-            - host2
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 {{% relationship-ref-intro %}}
 
