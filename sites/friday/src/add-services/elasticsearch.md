@@ -23,12 +23,6 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-From version 7.11 onward:
-
-{{< premium-features/add-on feature="Elasticsearch" >}}
-
-The following premium versions are supported:
-
 {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
 
 {{% major-minor-versions-note configMinor="true" %}}
