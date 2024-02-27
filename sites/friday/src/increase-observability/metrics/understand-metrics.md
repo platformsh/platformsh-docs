@@ -19,7 +19,7 @@ Service containers follow next with the same pattern, and worker containers are 
 You can collapse the graphs by clicking the 3-dot menu on the right-hand side, then **Hide resources**.
 The graphs switch to an overview of the average resource utilization for the selected container.
 
-![How service container metrics look when minimized](/images/metrics/service-container-minimized.png "0.65")
+![How service container metrics look when minimized](/images/observability/metrics/service-container-minimized.png "0.65")
 
 The same menu provides a convenient **Configure resource** CTA, allowing you to swiftly
 adjust resources allocation for that container based on the observability metrics.
@@ -59,14 +59,14 @@ Metrics graphs for the service containers show CPU, RAM, and disk allocation and
 Metrics graphs for the MySQL service container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the MySQL container](/images/metrics/mysql-container.png)
+![All of the metrics for the MySQL container](/images/observability/metrics/mysql-container.png)
 
 #### Redis
 
 Metrics graphs for the Redis service container show CPU, RAM, disk allocation and usage.
 No persistent disk has been configured for Redis.
 
-![All of the metrics for the Redis container](/images/metrics/redis-container.png)
+![All of the metrics for the Redis container](/images/observability/metrics/redis-container.png)
 
 ### Worker containers
 

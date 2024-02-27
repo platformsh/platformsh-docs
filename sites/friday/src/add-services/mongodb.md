@@ -21,10 +21,6 @@ premium: true
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-### Enterprise edition
-
-{{% premium-features/add-on feature="MongoDB Enterprise" %}}
-
 {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}
 
 {{% deprecated-versions %}}
