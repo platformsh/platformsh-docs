@@ -13,11 +13,12 @@ At its most basic, you can include files within other ones so as not to repeat y
 Start by enabling SSI:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-    ssi:
-        enabled: true
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
+        ssi:
+            enabled: true
 ```
 
 Then create a file you want to include elsewhere:
@@ -52,19 +53,20 @@ So one file is cached, while another updates dynamically.
 For example, you can activate SSI on one route with cache disabled and enable cache on another route:
 
 ```yaml {configFile="routes"}
-"https://{default}/":
-    type: upstream
-    upstream: "app:http"
-    ssi:
-        enabled: true
-    cache:
-        enabled: false
-
-"https://{default}/cache":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: true
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "app:http"
+        ssi:
+            enabled: true
+        cache:
+            enabled: false
+            
+    "https://{default}/cache":
+        type: upstream
+        upstream: "app:http"
+        cache:
+            enabled: true
 ```
 
 Then create a page that displays the current date and time and is cached for 60 seconds
