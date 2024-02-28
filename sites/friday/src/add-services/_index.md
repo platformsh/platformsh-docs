@@ -162,10 +162,13 @@ title=In an app
 +++
 
 Once a service is running and exposed as a relationship,
-its credentials (such as the host, username, and password) are available through the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable.
+its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables.html#service-specific-variables), with the pattern:
+```
+{{< variable "<CAPITALIZED_RELATIONSHIP_NAME>" >}}_<VARIABLE>=<VALUE>
+```
 The available information is documented on each service's page along with sample code for how to connect to it from your app.
 
-The keys in the `{{< vendor/prefix >}}_RELATIONSHIPS` variable are fixed, but the values may change on deployment or restart.
+The service environment variable names are fixed, but the values may change if you change the relationship name to the service.
 So **use the environment variable** rather than hard coding the values.
 
 <--->
@@ -176,7 +179,6 @@ title=Through an SSH tunnel
 Connecting to a service using an SSH tunnel is a two-step process.
 
 ### 1. Obtain service credentials
-
 
 To get the credentials for a given service, run the following command:
 

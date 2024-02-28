@@ -195,32 +195,33 @@ For specific frameworks, you can implement logic to override global configuratio
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
-{{% version/only "1" %}}
-#### Implementation example
-
-The [Drupal template](https://github.com/platformsh-templates/drupal10/) shows an example of
-overriding Drupal configuration using environment variables.
-These variables are parsed in the [`settings.platformsh.php` script](https://github.com/platformsh-templates/drupal10/blob/386ea35b034b5d78da8060925940e793bea479d9/web/sites/default/settings.platformsh.php#L126-L164).
-
-For example, the site name is overridden by a variable named `drupalsettings:system.site:name`.
-Variables for the override are composed of three distinct parts each separated by colons:
-
-- A prefix (`drupalsettings`)
-- The configuration object to override (`system.site`)
-- The property to set (`name`)
-
-Setting the `drupalsettings:system.site:name` variable overrides the `name` property of the `system.site` configuration object located in the global `$settings` array.
-You can do this by running the following [CLI command](../../administration/cli/_index.md):
-
-``` bash
-{{% vendor/cli %}} variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
+### Service-specific variables
+For each service defined as a relationship to your application, {{% vendor/name %}} automatically generate corresponding environment variables within your application container, with the pattern:
+```
+{{< variable "<RELATIONSHIP_NAME>" >}}_<KEY>=<VALUE>
 ```
 
-The same logic applies for other configuration options,
-such as the global `$config` array, which uses the variable prefix `drupalconfig`.
-
-You need to name your {{% vendor/name %}} variables to match the ones used in your script.
-Make sure that the {{% vendor/name %}} variables start with a string present in your `switch` statement.
-
-You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
-{{% /version/only %}}
+Example:
+For a relationship named ``database`` to a service named `postgresl`, these environment variables are automatically generated in your `app` container:
+```bash
+DATABASE_URL=pgsql://main:main@postgresql.internal:5432/main
+DATABASE_INSTANCE_IPS=['123.456.78.901']
+DATABASE_SERVICE=database
+DATABASE_QUERY={'is_master': True}
+DATABASE_CLUSTER=oiaenewa6sfiq-test-services-afdwftq
+DATABASE_HOST_MAPPED=false
+DATABASE_NAME=main
+DATABASE_FRAGMENT=
+DATABASE_PATH=main
+DATABASE_SCHEME=pgsql
+DATABASE_EPOCH=0
+DATABASE_PORT=5432
+DATABASE_HOSTNAME=azertyuiop1234567890.database.service._.eu-3.platformsh.site
+DATABASE_TYPE=postgresql:13
+DATABASE_PUBLIC=false
+DATABASE_PASSWORD=main
+DATABASE_IP=123.456.78.901
+DATABASE_USERNAME=main
+DATABASE_HOST=postgresql.internal
+DATABASE_REL=postgresql
+```

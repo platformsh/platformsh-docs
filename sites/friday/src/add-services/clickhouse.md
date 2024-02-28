@@ -1,21 +1,21 @@
 ---
 title: "ClickHouse"
 weight: -110
-description: 
+description:
 ---
 
 ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.</br>
 It allows you to generate real-time analytical data reports using SQL queries.</br>
 For more information, see the [ClickHouse documentation](https://ClickHouse.com/docs).
 
-{{% note %}} 
+{{% note %}}
 
 {{% vendor/name %}} supports ClickHouse with the following limitations:
 
 - High availibility of service isn't supported.
 - You can only configure single-node ClickHouse clusters.
 
-{{% /note %}} 
+{{% /note %}}
 
 ## Supported versions
 
@@ -25,35 +25,37 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 ## Relationship reference
 
-Example information available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-or by running `{{< vendor/cli >}} relationships`.
+Example information available through the [service environment variables](/development/variables/_index.md#service-specific-variables)
+or by running `{{< vendor/cli >}} ssh env`.
 
-```yaml
-{
-      "username": "main",
-      "fragment": null,
-      "ip": "169.254.143.42",
-      "cluster": "s7vj2hgh6nwsk-main-bvxea6i",
-      "host": "clickhouse.internal",
-      "path": "main",
-      "query": {
-        "is_master": true
-      },
-      "password": "ChangeMe",
-      "port": 9000,
-      "host_mapped": false,
-      "service": "clickhouse",
-      "hostname": "oid3uu43xj2iujgwvplpo6ytme.clickhouse.service._.eu-3.platformsh.site",
-      "epoch": 0,
-      "instance_ips": [
-        "247.95.64.160"
-      ],
-      "rel": "clickhouse",
-      "scheme": "clickhouse",
-      "type": "clickhouse:23",
-      "public": false
-    }
+```bash
+CLICKHOUSE_PORT=9000
+CLICKHOUSE_HOST_MAPPED=false
+CLICKHOUSE_USERNAME=main
+CLICKHOUSE_QUERY={'is_master': True}
+CLICKHOUSE_PASSWORD=ChangeMe
+CLICKHOUSE_FRAGMENT=
+CLICKHOUSE_CLUSTER=azertyuiop-clickhouse-app-afdwftq
+CLICKHOUSE_HOST=clickhouse.internal
+CLICKHOUSE_SERVICE=clickhouse
+CLICKHOUSE_PATH=main
+CLICKHOUSE_PUBLIC=false
+CLICKHOUSE_IP=123.456.78.90
+CLICKHOUSE_SCHEME=clickhouse
+CLICKHOUSE_INSTANCE_IPS=['123.456.78.90']
+CLICKHOUSE_REL=clickhouse
+CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.platformsh.site
+CLICKHOUSE_TYPE=clickhouse:23
+CLICKHOUSE_EPOCH=0
 ```
+
+{{% note %}}
+Service information are also available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{< vendor/cli >}} relationships` and can be used to gather service information in your `.environment` file:
+```bash {location=".environment"}
+export APP_CLICKHOUSE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".clickhouse[0].host")
+```
+{{% /note %}}
 
 ## Usage example
 
@@ -96,7 +98,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-specific-variables).
 
 #### `clickhouse-http` endpoint
 
@@ -120,7 +122,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-specific-variables).
 
 ### Example configuration
 
