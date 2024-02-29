@@ -69,7 +69,8 @@ For [premium versions](#supported-versions),
 the service type is `elasticsearch-enterprise`.
 
 {{% note %}}
-  {{% vendor/name %}} generates for you corresponding [service environment variables](/development/variables/_index.md#service-specific-variables) for each `PLATFORM_RELATIONSHIPS` keys, in the ${{< variable "RELATIONSHIP_NAME" >}}-_{{< variable "SERVICE_PROPERTY" >}} format.
+  {{% vendor/name %}} generates for you corresponding [service environment variables](/development/variables/_index.md#service-specific-variables) for each `PLATFORM_RELATIONSHIPS` keys,
+in the ${{< variable "RELATIONSHIP_NAME" >}}_{{< variable "SERVICE_PROPERTY" >}} format.
 {{% /note %}}
 
 ## Usage example
