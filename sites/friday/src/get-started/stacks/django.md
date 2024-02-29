@@ -15,7 +15,10 @@ Before you proceed, be sure to checkout the [{{% vendor/name %}} demo app](https
 
 {{< /note >}}
 
-There are a few remaining steps required in order to have a successfully deploy Django on Upsun.
+Now that you have completed the [Getting started guide](/get-started/here/_index.md), there are **six remaining changes**
+required in order to have a successful deployment of Django on Upsun. Alternatively, you can read the blog post
+[_Up(sun) and running with Django_](https://upsun.com/blog/setting-up-django-on-upsun/) which walks through the steps
+required to run Django on Upsun.
 
 ## `.environment`
 Django requires a few environment variables that have not been set. Open the `.environment` file and add the following:
@@ -40,12 +43,27 @@ to
 ```yaml
 start: "gunicorn -b unix:$SOCKET config.wsgi"
 ```
-`@todo do we describe what this does or do we expect them to know?`
+If your Django instance requires a different Web server, we also support [several other options](/languages/python/server.md).
 
-`@todo add the locations:/static piece`
+### Static assets
+In order to access Django's static assets we need to add a second location to the `web:locations` block. In the
+`.upsun/config.yaml` file, locate the `web:locations` section. Expand what is currently there to include a location for
+`/static`:
 
-### Installing during the Build Hook
-Scroll down a bit farther and find the `hooks:build` section. Change the following lines from:
+```yaml
+            locations:
+              "/":
+                "passthru": true
+              "/static":
+                "allow": true
+                "expires": "1h"
+                "root": "static"
+```
+
+
+### Installation during the Build Hook
+Next we need to instruct Upsun to install our python and node dependencies. Scroll down a bit farther and find the
+`hooks:build` section. Change the following lines from:
 ```yaml
     build: |
       set -eux
@@ -78,8 +96,26 @@ to:
 ```
 
 ### Mounts
+Since Django requires a writable location, we'll need to attach writable mount. Locate the `mounts` section (currently
+commented). Change the following lines from:
 
-## Documentation
+```yaml
+    # mounts:
+    #   "/.cache": # Represents the path in the app.
+    #     source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
+    #     source_path: "cache" # The subdirectory within the mounted disk (the source) where the mount should point.
+```
+to
+
+```yaml
+        mounts:
+          "/staticfiles":
+            "source": "local"
+            "source_path": "static_assets"
+```
+## Commit and push
+You can now commit the changes to `.environment` and `.upsun/config.yaml` and push to Upsun.
+## Further Documentation
 
 - [Python documentation](/languages/python/)
 - [Managing dependencies](/languages/python/dependencies)
@@ -90,8 +126,8 @@ to:
 - [Django topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=django)
 - [Python topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=python)
 
-## Blogs
+<!-- ## Blogs -->
 
-- [Up(sun) and running with Django](https://upsun.com/blog/setting-up-django-on-upsun/)
+
 
 <!-- ## Video -->
