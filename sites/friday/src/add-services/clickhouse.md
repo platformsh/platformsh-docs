@@ -46,19 +46,20 @@ CLICKHOUSE_IP=123.456.78.90
 CLICKHOUSE_SCHEME=clickhouse
 CLICKHOUSE_INSTANCE_IPS=['123.456.78.90']
 CLICKHOUSE_REL=clickhouse
-CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.platformsh.site
+CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
 CLICKHOUSE_TYPE=clickhouse:23
 CLICKHOUSE_EPOCH=0
 ```
 
 {{% note %}}
-Service information is also available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-or by running `{{< vendor/cli >}} relationships`.
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 ```bash {location=".environment"}
 export APP_CLICKHOUSE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".clickhouse[0].host")
 ```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
 {{% /note %}}
 
 ## Usage example

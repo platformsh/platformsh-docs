@@ -44,33 +44,37 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 
 {{% service-values-change %}}
 
-```yaml
-{
-    "username": null,
-    "scheme": "http",
-    "service": "elasticsearch77",
-    "fragment": null,
-    "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 9200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "elasticsearch.internal",
-    "rel": "elasticsearch",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "elasticsearch:{{< latest "elasticsearch" >}}",
-    "public": false,
-    "host_mapped": false
-}
+```bash
+ELASTICSEARCH_USERNAME=null
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_SERVICE=elasticsearch77
+ELASTICSEARCH_FRAGMENT=null
+ELASTICSEARCH_IP=123.456.78.90
+ELASTICSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch77.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
+ELASTICSEARCH_HOST=elasticsearch.internal
+ELASTICSEARCH_REL=elasticsearch
+ELASTICSEARCH_PATH=null
+ELASTICSEARCH_QUERY=[]
+ELASTICSEARCH_PASSWORD=ChangeMe
+ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
+ELASTICSEARCH_PUBLIC=false
+ELASTICSEARCH_HOST_MAPPED=false
 ```
 
 For [premium versions](#supported-versions),
 the service type is `elasticsearch-enterprise`.
 
 {{% note %}}
-  {{% vendor/name %}} generates for you corresponding [service environment variables](/development/variables/_index.md#service-specific-variables) for each `PLATFORM_RELATIONSHIPS` keys,
-in the ${{< variable "RELATIONSHIP_NAME" >}}_{{< variable "SERVICE_PROPERTY" >}} format.
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_ELASTICSEARCH_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".elasticsearch[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
 {{% /note %}}
 
 ## Usage example
@@ -96,18 +100,16 @@ relationships:
 {{% v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS" %}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export ELASTIC_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].scheme")
-export ELASTIC_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].host")
-export ELASTIC_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].port")
+# Set environment variables for individual credentials,
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/_index.md#service-specific-variables.
+export ELASTIC_SCHEME=$ESSEARCH_SCHEME
+export ELASTIC_HOST=$ESSEARCH_HOST
+export ELASTIC_PORT=$ESSEARCH_PORT
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".essearch[0].username")
-export ELASTIC_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".essearch[0].password")
-export ELASTIC_HOSTS=[\"$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT\"]
+export ELASTIC_USERNAME=$ESSEARCH_USERNAME
+export ELASTIC_PASSWORD=$ESSEARCH_PASSWORD
+export ELASTIC_HOSTS=["$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT"]
 ```
 
 {{% /v2connect2app %}}
@@ -233,7 +235,7 @@ There are two ways to do so.
 ### Destructive
 
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
-Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
+Be sure to also update the reference to the now changed service name in its corresponding application's `relationship` block.
 
 When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.
