@@ -17,9 +17,10 @@ Basic redirects only work within the same project, so use proxy routes for route
 You can define an external proxy on your {{% vendor/name %}} project by defining a route like the following:
 
 ```yaml {configFile="routes"}
-https://{default}/foo:
-    type: proxy
-    to: https://www.example.com
+routes:
+    https://{default}/foo:
+        type: proxy
+        to: https://www.example.com
 ```
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/foo/index.html`.
@@ -27,9 +28,10 @@ This route passes requests for `https://{default}/foo/index.html` to `https://ww
 You can also define a proxy route to an URL composed of an IP address and a port:
 
 ```yaml {configFile="routes"}
-https://{default}/foo:
-    type: proxy
-    to: https://192.0.2.0:8000
+routes:
+    https://{default}/foo:
+        type: proxy
+        to: https://192.0.2.0:8000
 ```
 
 ## URL paths
@@ -40,9 +42,10 @@ If you want to proxy a route to `https://www.example.com` without the URL path `
 add a trailing slash `/` to the `to` definition.
 
 ```yaml {configFile="routes"}
-https://{default}/foo:
-    type: proxy
-    to: https://www.example.com/
+routes:
+    https://{default}/foo:
+        type: proxy
+        to: https://www.example.com/
 ```
 
 The trailing slash makes the proxy route interpret the location as having a different path.
@@ -52,9 +55,10 @@ To override the URL path entirely, define a route that contains its own path.
 For example:
 
 ```yaml {configFile="routes"}
-https://{default}/foo:
-    type: proxy
-    to: https://www.example.com/bar
+routes:
+    https://{default}/foo:
+        type: proxy
+        to: https://www.example.com/bar
 ```
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/bar/index.html`.
@@ -73,17 +77,18 @@ In the following example, a single project specifies proxy routes to three apps 
 Each app handles a different language.
 
 ```yaml {configFile="routes"}
-https://{default}/en:
-    type: proxy
-    to: https://en.example.com/
+routes:
+    https://{default}/en:
+        type: proxy
+        to: https://en.example.com/
 
-https://{default}/jp:
-    type: proxy
-    to: https://jp.example.com/
+    https://{default}/jp:
+        type: proxy
+        to: https://jp.example.com/
 
-https://{default}/pt:
-    type: proxy
-    to: https://pt.example.com/
+    https://{default}/pt:
+        type: proxy
+        to: https://pt.example.com/
 ```
 
 The apps behind the proxy need to ensure links to assets are shown to the target domain.
