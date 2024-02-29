@@ -21,19 +21,29 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% service-values-change %}}
 
-```yaml
-{
-    "service": "headlesschrome",
-    "ip": "169.254.91.5",
-    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "headlesschrome.internal",
-    "rel": "http",
-    "scheme": "http",
-    "type": "chrome-headless:{{< latest "chrome-headless" >}}",
-    "port": 9222
-}
+```bash
+  HEADLESSCHROME_SERVICE=headlesschrome
+  HEADLESSCHROME_IP=169.254.91.5
+  HEADLESSCHROME_HOSTNAME=azertyuiopqsdfghjklm.headlesschrome.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+  HEADLESSCHROME_CLUSTER=azertyuiop-master-7rqtwti
+  HEADLESSCHROME_HOST=headlesschrome.internal
+  HEADLESSCHROME_REL=http
+  HEADLESSCHROME_SCHEME=http
+  HEADLESSCHROME_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
+  HEADLESSCHROME_PORT=9222
 ```
+
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_HEADLESSCHROME_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".headlesschrome[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ## Requirements
 
@@ -102,12 +112,10 @@ relationships:
 {{% v2connect2app serviceName="headlessbrowser" relationship="chromeheadlessbrowser" var="CHROME_BASEURL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export CHROME_IP=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0].ip")
-export CHROME_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".chromeheadlessbrowser[0].port")
+# Set environment variables for individual credentials,
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/_index.md#service-specific-variables.
+export CHROME_IP=${CHROMEHEADLESSBROWSER_IP}
+export CHROME_PORT=${CHROMEHEADLESSBROWSER_PORT}
 
 # Combine into a single base URL to be used within app.
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"

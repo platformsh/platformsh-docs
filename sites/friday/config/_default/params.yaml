@@ -46,7 +46,7 @@ vendor:
         console: https://console.upsun.com/
         api: https://proxy.upsun.com/
         host: upsun.com
-        hostname: upsunapp.com
+        hostname: platformsh.site
         register: https://auth.upsun.com/register
 
 # Images (kept in static/)

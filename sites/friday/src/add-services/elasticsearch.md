@@ -103,12 +103,12 @@ relationships:
 # Set environment variables for individual credentials,
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/_index.md#service-specific-variables.
 export ELASTIC_SCHEME=$ESSEARCH_SCHEME
-export ELASTIC_HOST=$ESSEARCH_HOST
-export ELASTIC_PORT=$ESSEARCH_PORT
+export ELASTIC_HOST=${ESSEARCH_HOST}
+export ELASTIC_PORT=${ESSEARCH_PORT}
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=$ESSEARCH_USERNAME
-export ELASTIC_PASSWORD=$ESSEARCH_PASSWORD
+export ELASTIC_USERNAME=${ESSEARCH_USERNAME}
+export ELASTIC_PASSWORD=${ESSEARCH_PASSWORD}
 export ELASTIC_HOSTS=["$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT"]
 ```
 
