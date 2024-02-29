@@ -22,15 +22,15 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 {{% service-values-change %}}
 
 ```bash
-  HEADLESSCHROME_SERVICE=headlesschrome
-  HEADLESSCHROME_IP=169.254.91.5
-  HEADLESSCHROME_HOSTNAME=azertyuiopqsdfghjklm.headlesschrome.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-  HEADLESSCHROME_CLUSTER=azertyuiop-master-7rqtwti
-  HEADLESSCHROME_HOST=headlesschrome.internal
-  HEADLESSCHROME_REL=http
-  HEADLESSCHROME_SCHEME=http
-  HEADLESSCHROME_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
-  HEADLESSCHROME_PORT=9222
+HEADLESSCHROME_SERVICE=headlesschrome
+HEADLESSCHROME_IP=169.254.91.5
+HEADLESSCHROME_HOSTNAME=azertyuiopqsdfghjklm.headlesschrome.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+HEADLESSCHROME_CLUSTER=azertyuiop-master-7rqtwti
+HEADLESSCHROME_HOST=headlesschrome.internal
+HEADLESSCHROME_REL=http
+HEADLESSCHROME_SCHEME=http
+HEADLESSCHROME_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
+HEADLESSCHROME_PORT=9222
 ```
 
 

@@ -45,7 +45,7 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 {{% service-values-change %}}
 
 ```bash
-ELASTICSEARCH_USERNAME=null
+ELASTICSEARCH_USERNAME=
 ELASTICSEARCH_SCHEME=http
 ELASTICSEARCH_SERVICE=elasticsearch77
 ELASTICSEARCH_FRAGMENT=null
@@ -55,7 +55,7 @@ ELASTICSEARCH_PORT=9200
 ELASTICSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
 ELASTICSEARCH_HOST=elasticsearch.internal
 ELASTICSEARCH_REL=elasticsearch
-ELASTICSEARCH_PATH=null
+ELASTICSEARCH_PATH=
 ELASTICSEARCH_QUERY=[]
 ELASTICSEARCH_PASSWORD=ChangeMe
 ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}

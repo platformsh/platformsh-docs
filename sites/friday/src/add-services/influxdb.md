@@ -33,30 +33,37 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 {{% service-values-change %}}
 
-```yaml
-    {
-      "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
-      "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb27",
-      "type": "influxdb:2.7",
-      "rel": "influxdb",
-      "scheme": "http",
-      "username": "admin",
-      "password": "ChangeMe",
-      "port": 8086,
-      "path": null,
-      "query": {
-        "org": "main",
-        "bucket": "main",
-        "api_token": "d85b1219ee8cef8f84d33216257e44d51ddd52e89ae7acbd5ab1d01d320e2f7f"
-      },
-      "fragment": null,
-      "public": false,
-      "host_mapped": false,
-      "ip": "169.254.99.35"
-    }
+```bash
+INFLUXTIMEDB_HOSTNAME=azertyuiopqsdfghjklm.influxdb27.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+INFLUXTIMEDB_CLUSTER=azertyuiopqsdf-main-bvxea6i
+INFLUXTIMEDB_HOST=influxtimedb.internal
+INFLUXTIMEDB_SERVICE=timedb
+INFLUXTIMEDB_PORT=8086
+INFLUXTIMEDB_SCHEME=http
+INFLUXTIMEDB_REL=influxdb
+INFLUXTIMEDB_EPOCH=0
+INFLUXTIMEDB_FRAGMENT=
+INFLUXTIMEDB_PASSWORD=ChangeMe
+INFLUXTIMEDB_PATH=
+INFLUXTIMEDB_TYPE=influxdb:{{< latest "influxdb" >}}
+INFLUXTIMEDB_QUERY={'org': 'main', 'bucket': 'main', 'api_token': 'azertyuiopqsdfghjklm1234567890'}
+INFLUXTIMEDB_USERNAME=admin
+INFLUXTIMEDB_IP=123.456.78.90
+INFLUXTIMEDB_INSTANCE_IPS=['123.456.78.90']
+INFLUXTIMEDB_PUBLIC=false
+INFLUXTIMEDB_HOST_MAPPED=false
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_INFLUXDB_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".influxtimedb[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ## Usage example
 
@@ -76,15 +83,13 @@ relationships:
 {{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for common InfluxDB credentials.
-export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].username")
-export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].host")
-export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.org")
-export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.api_token")
-export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/_index.md#service-specific-variables.
+export INFLUX_USER=${INFLUXTIMEDB_USERNAME}
+export INFLUX_HOST=${INFLUXTIMEDB_HOST}
+export INFLUX_ORG=$(echo $INFLUXTIMEDB_QUERY | jq -r ".org")
+export INFLUX_TOKEN=$(echo $INFLUXTIMEDB_QUERY | jq -r ".api_token")
+export INFLUX_BUCKET=$(echo $INFLUXTIMEDB_QUERY | jq -r ".bucket")
 ```
 
 {{% /v2connect2app %}}
@@ -125,39 +130,14 @@ To export your data from InfluxDB, follow these steps:
 From version 2.3 onward, the structure of relationships changes.
 
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
-or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables).
+or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference).
 
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
 - Rename the `user` key to `username`.
-- Move the `org`, `bucket` and  `api_token` keys so they're contained in a dictionary under the `query` key.
+- Move the `org`, `bucket` and `api_token` keys so they're contained in a dictionary under the `query` key.
 
-If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
-
-```yaml
-    {
-      "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
-      "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb27",
-      "type": "influxdb:{{< latest "influxdb" >}}",
-      "rel": "influxdb",
-      "scheme": "http",
-      "username": "admin",
-      "password": "ChangeMe",
-      "port": 8086,
-      "path": null,
-      "query": {
-        "org": "main",
-        "bucket": "main",
-        "api_token": "d85b1219ee8cef8f84d33216257e44d51ddd52e89ae7acbd5ab1d01d320e2f7f"
-      },
-      "fragment": null,
-      "public": false,
-      "host_mapped": false,
-      "ip": "169.254.99.35"
-    }
-```
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference), aside from those addressed above:
 
 ### From a 1.x version
 
@@ -173,6 +153,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `{{< vendor/cli >}} relationships`.
+You can retrieve your new credentials through the [service environment variables](/development/variables/_index.md#service-specific-variables).
 
 {{< /note >}}
