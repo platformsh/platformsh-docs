@@ -53,11 +53,13 @@ CLICKHOUSE_EPOCH=0
 
 {{% note %}}
 Service information is also available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-or by running `{{< vendor/cli >}} relationships`. 
+or by running `{{< vendor/cli >}} relationships`.
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 ```bash {location=".environment"}
 export APP_CLICKHOUSE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".clickhouse[0].host")
+```
+{{% /note %}}
 
 ## Usage example
 
