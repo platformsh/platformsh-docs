@@ -25,7 +25,9 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 ## Relationship reference
 
-Example information available through the [service environment variables](/development/variables/_index.md#service-specific-variables)
+After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
+
+Here is an example of information you can retrieve through these [service environment variables](/development/variables/_index.md#service-specific-variables),
 or by running `{{< vendor/cli >}} ssh env`.
 
 ```bash
@@ -50,12 +52,12 @@ CLICKHOUSE_EPOCH=0
 ```
 
 {{% note %}}
-Service information are also available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-or by running `{{< vendor/cli >}} relationships` and can be used to gather service information in your `.environment` file:
+Service information is also available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{< vendor/cli >}} relationships`. 
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 ```bash {location=".environment"}
 export APP_CLICKHOUSE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".clickhouse[0].host")
-```
-{{% /note %}}
 
 ## Usage example
 
