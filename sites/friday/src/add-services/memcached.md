@@ -28,19 +28,29 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% service-values-change %}}
 
-```yaml
-{
-    "service": "memcached16",
-    "ip": "169.254.228.111",
-    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached16.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "memcached.internal",
-    "rel": "memcached",
-    "scheme": "memcached",
-    "type": "memcached:{{% latest "memcached" %}}",
-    "port": 11211
-}
+```bash
+MEMCACHEDCACHE_SERVICE=cachemc
+MEMCACHEDCACHE_IP=123.456.78.90
+MEMCACHEDCACHE_INSTANCE_IPS=['123.456.78.90']
+MEMCACHEDCACHE_HOSTNAME=azertyuiopqsdfghjklm.cachemc.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+MEMCACHEDCACHE_CLUSTER=azertyuiopqsdf-main-afdwftq
+MEMCACHEDCACHE_HOST=memcachedcache.internal
+MEMCACHEDCACHE_REL=memcached
+MEMCACHEDCACHE_SCHEME=memcached
+MEMCACHEDCACHE_TYPE=memcached:1.6
+MEMCACHEDCACHE_PORT=11211
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_MEMCACHED_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".cachemc[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ## Usage example
 
@@ -63,22 +73,17 @@ relationships:
 {{% v2connect2app serviceName="cachemc" relationship="memcachedcache" var="CACHE_URL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export CACHE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].host")
-export CACHE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].port")
-
 # Surface a Memcached connection string for use in app.
-export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+export CACHE_URL="${MEMCACHEDCACHE_HOST}:${MEMCACHEDCACHE_PORT}"
 ```
 
 {{% /v2connect2app %}}
 
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool.
+Assuming your Memcached relationship is named `cache`, the host name `CACHE_HOST` and port number `CACHE_PORT` obtained from the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash
 netcat cache.internal 11211
