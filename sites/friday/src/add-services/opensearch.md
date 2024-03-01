@@ -37,26 +37,37 @@ switch to [a supported version](#supported-versions).
 
 {{% service-values-change %}}
 
-```yaml
-{
-    "username": null,
-    "scheme": "http",
-    "service": "opensearch12",
-    "fragment": null,
-    "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 9200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "opensearch.internal",
-    "rel": "opensearch",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "opensearch:{{% latest "opensearch" %}}",
-    "public": false,
-    "host_mapped": false
-}
+```bash
+SEARCHOPEN_USERNAME=
+SEARCHOPEN_SCHEME=http
+SEARCHOPEN_SERVICE=searchopen
+SEARCHOPEN_FRAGMENT=
+SEARCHOPEN_IP=123.456.78.90
+SEARCHOPEN_INSTANCE_IPS=['123.456.78.90']
+SEARCHOPEN_HOSTNAME=azertyuiopqsdfghjklm.searchopen.service._.eu-3.{{< vendor/urlraw "hostname" >}}
+SEARCHOPEN_PORT=9200
+SEARCHOPEN_CLUSTER=azertyuiopqsdf-main-afdwftq
+SEARCHOPEN_EPOCH=0
+SEARCHOPEN_HOST=searchopen.internal
+SEARCHOPEN_REL=opensearch
+SEARCHOPEN_PATH=
+SEARCHOPEN_PASSWORD=
+SEARCHOPEN_QUERY={}
+SEARCHOPEN_TYPE=opensearch:{{% latest "opensearch" %}}
+SEARCHOPEN_PUBLIC=false
+SEARCHOPEN_HOST_MAPPED=false
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_SEARCHOPEN_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".searchopen[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ## Usage example
 
@@ -80,17 +91,15 @@ relationships:
 {{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].scheme")
-export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].host")
-export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].port")
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+export OS_SCHEME=${SEARCHOPEN_SCHEME}
+export OS_HOST=${SEARCHOPEN_HOST}
+export OS_PORT=${SEARCHOPEN_PORT}
 
 # Surface more common OpenSearch connection string variables for use in app.
-export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].username")
-export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".searchopen[0].password")
+export OPENSEARCH_USERNAME=${SEARCHOPEN_USERNAME}
+export OPENSEARCH_PASSWORD=${SEARCHOPEN_PASSWORD}
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 
@@ -123,7 +132,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
-in the `username` and `password` properties.
+in the `SEARCHOPEN_USERNAME` and `SEARCHOPEN_PASSWORD` [`PLATFORM_RELATIONSHIPS` environment variables](/development/variables/use-variables.md#use-provided-variables).
 {{% service-values-change %}}
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
