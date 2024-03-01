@@ -15,8 +15,8 @@ the proper functioning of the {{% vendor/name %}} infrastructure, application co
 have found possible bugs; or have general questions,
 open a support ticket:
 
-1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/)
-2. Select **User menu** (your name) > **Support**.
+1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
+2. Open the user menu (your name or profile picture) and select **Support**.
 3. Click **+ New ticket**.
 4. Fill in the ticket fields and click **Submit**.
 
@@ -44,5 +44,11 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/register/).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/name %}} account,
-[contact Support](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+To permanently delete your {{% vendor/name %}} account, follow these steps:
+
+1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
+2. Open the user menu (your name or profile picture) and select **My Profile**.
+3. Click **Delete account**.
+4. Check that the pre-filled information is correct and click **Submit**.
+5. Read the consequences to account deletion and click **Submit request** to confirm.</br>
+   Your request is now submitted and will be handled by Support shortly.
