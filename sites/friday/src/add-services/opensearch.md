@@ -44,7 +44,7 @@ SEARCHOPEN_SERVICE=searchopen
 SEARCHOPEN_FRAGMENT=
 SEARCHOPEN_IP=123.456.78.90
 SEARCHOPEN_INSTANCE_IPS=['123.456.78.90']
-SEARCHOPEN_HOSTNAME=azertyuiopqsdfghjklm.searchopen.service._.eu-3.{{< vendor/urlraw "hostname" >}}
+SEARCHOPEN_HOSTNAME=azertyuiopqsdfghjklm.searchopen.service._.eu-1.{{< vendor/urlraw "hostname" >}}
 SEARCHOPEN_PORT=9200
 SEARCHOPEN_CLUSTER=azertyuiopqsdf-main-afdwftq
 SEARCHOPEN_EPOCH=0
@@ -63,7 +63,11 @@ For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environme
 to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
-export APP_SEARCHOPEN_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".searchopen[0].host")
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_SEARCHOPEN_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.searchopen[0].host')"
 ```
 
 The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.

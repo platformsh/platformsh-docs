@@ -37,28 +37,41 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% service-values-change %}}
 
-```yaml
-{
-    "username": "main",
-    "scheme": "pgsql",
-    "service": "postgresql12",
-    "fragment": null,
-    "ip": "169.254.38.66",
-    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 5432,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "postgresql.internal",
-    "rel": "postgresql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "ChangeMe",
-    "type": "postgresql:{{% latest "postgresql" %}}",
-    "public": false,
-    "host_mapped": false
-}
+```bash
+POSTGRESDATABASE_USERNAME=main
+POSTGRESDATABASE_SCHEME=pgsql
+POSTGRESDATABASE_SERVICE=dbpostgres
+POSTGRESDATABASE_FRAGMENT=
+POSTGRESDATABASE_IP=123.456.78.90
+POSTGRESDATABASE_INSTANCE_IPS=['123.456.78.90']
+POSTGRESDATABASE_HOSTNAME=azertyuiopqsdfghjklm.dbpostgres.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+POSTGRESDATABASE_PORT=5432
+POSTGRESDATABASE_CLUSTER=azertyuiopqsdf-main-afdwftq
+POSTGRESDATABASE_EPOCH=0
+POSTGRESDATABASE_HOST=postgresdatabase.internal
+POSTGRESDATABASE_REL=postgresql
+POSTGRESDATABASE_PATH=main
+POSTGRESDATABASE_QUERY={'is_master': True}
+POSTGRESDATABASE_PASSWORD=main
+POSTGRESDATABASE_TYPE=postgresql:{{% latest "postgresql" %}}
+POSTGRESDATABASE_PUBLIC=false
+POSTGRESDATABASE_HOST_MAPPED=false
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_POSTGRESQL_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].host')"
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ## Usage example
 
@@ -78,16 +91,14 @@ relationships:
 {{% v2connect2app serviceName="dbpostgres" relationship="postgresdatabase" var="DATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresdatabase[0].path')"
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+export DB_CONNECTION="${POSTGRESDATABASE_SCHEME}"
+export DB_USERNAME="${POSTGRESDATABASE_USERNAME}"
+export DB_PASSWORD="${POSTGRESDATABASE_PASSWORD}"
+export DB_HOST="${POSTGRESDATABASE_HOST}"
+export DB_PORT="${POSTGRESDATABASE_PORT}"
+export DB_DATABASE="${POSTGRESDATABASE_PATH}"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -100,17 +111,17 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
-From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
+From your [relationship data](#relationship-reference), you need: `POSTGRESDATABASE_USERNAME`, `POSTGRESDATABASE_HOST`, and `POSTGRESDATABASE_PORT`.
 Then run the following command:
 
 ```bash
-psql -U {{< variable "USERNAME" >}} -h {{< variable "HOST" >}} -p {{< variable "PORT" >}}
+psql -U {{< variable "POSTGRESDATABASE_USERNAME" >}} -h {{< variable "POSTGRESDATABASE_HOST" >}} -p {{< variable "POSTGRESDATABASE_PORT" >}}
 ```
 
 Using the values from the [example](#relationship-reference), that would be:
 
 ```bash
-psql -U main -h postgresql.internal -p 5432
+psql -U main -h postgresdatabase.internal -p 5432
 ```
 
 {{% service-values-change %}}
@@ -126,7 +137,7 @@ The easiest way to download all data in a PostgreSQL instance is with the {{< ve
 If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
-{{% vendor/cli %}} db:dump --relationship database
+{{% vendor/cli %}} db:dump --relationship postgresdatabase
 ```
 
 By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
@@ -161,7 +172,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-{{% vendor/cli %}} sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship postgresdatabase -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -254,7 +265,8 @@ relationships:
 {{% /snippet %}}
 ```
 
-Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
+They'll be available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables]() and all have the same structure documented [above](#relationship-reference), but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 

@@ -59,7 +59,11 @@ For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environme
 to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
-export APP_INFLUXDB_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".influxtimedb[0].host")
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_INFLUXDB_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.influxtimedb[0].host')"
 ```
 
 The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
@@ -153,6 +157,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [service environment variables](/development/variables/_index.md#service-specific-variables).
+You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables).
 
 {{< /note >}}

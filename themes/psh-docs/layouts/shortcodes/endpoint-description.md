@@ -90,9 +90,9 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
 With this definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
-now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>`.
+now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 {{- else -}}
-now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 {{- end -}}
 
 <!-- For services with a PHP extension -->

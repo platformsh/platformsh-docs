@@ -27,7 +27,7 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
 
-Here is an example of information you can retrieve through these [service environment variables](/development/variables/_index.md#service-specific-variables),
+Here is an example of information you can retrieve through these [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables),
 or by running `{{< vendor/cli >}} ssh env`.
 
 ```bash
@@ -56,7 +56,11 @@ For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environme
 to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
-export APP_CLICKHOUSE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".clickhouse[0].host")
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhouse[0].host')"
 ```
 
 The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
@@ -103,7 +107,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-specific-variables).
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables).
 
 #### `clickhouse-http` endpoint
 
@@ -127,7 +131,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-specific-variables).
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables).
 
 ### Example configuration
 

@@ -70,7 +70,11 @@ For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environme
 to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
-export APP_MONGODBDATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mongodatabase[0].host")
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_MONGODBDATABASE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodatabase[0].host')"
 ```
 
 The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
