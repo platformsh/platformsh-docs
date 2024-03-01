@@ -113,7 +113,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/_index.md#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
 export CHROME_IP=${CHROMEHEADLESSBROWSER_IP}
 export CHROME_PORT=${CHROMEHEADLESSBROWSER_PORT}
 

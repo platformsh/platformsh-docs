@@ -82,16 +82,14 @@ relationships:
 {{% v2connect2app serviceName="db" relationship="database" var="DATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+export DB_CONNECTION==${DATABASE_SCHEME}
+export DB_USERNAME=${DATABASE_USERNAME}
+export DB_PASSWORD=${DATABASE_PASSWORD}
+export DB_HOST=${DATABASE_HOST}
+export DB_PORT=${DATABASE_PORT}
+export DB_DATABASE=${DATABASE_PATH}
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -150,76 +148,104 @@ Example configuration:
 
 ### MariaDB reference
 
-```json
-{
-    "username": "user",
-    "scheme": "mysql",
-    "service": "mariadb104",
-    "fragment": null,
-    "ip": "169.254.255.221",
-    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "mysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "mariadb:{{% latest "mariadb" %}}",
-    "public": false,
-    "host_mapped": false
-}
+After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
+
+Here is an example of information you can retrieve through these [service environment variables](/development/variables/_index.md#service-specific-variables),
+or by running `{{< vendor/cli >}} ssh env`.
+
+```bash
+DATABASE_HOST=database.internal
+DATABASE_HOST_MAPPED=false
+DATABASE_IP=123.456.78.90
+DATABASE_PORT=3306
+DATABASE_INSTANCE_IPS=['123.456.78.90']
+DATABASE_FRAGMENT=
+DATABASE_REL=mysql
+DATABASE_TYPE=mariadb:{{< latest "mariadb" >}}
+DATABASE_QUERY={'is_master': True}
+DATABASE_PATH=main
+DATABASE_USERNAME=user
+DATABASE_PUBLIC=false
+DATABASE_HOSTNAME=azertyuiopqsdfghjklm.database.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+DATABASE_PASSWORD=
+DATABASE_SERVICE=database
+DATABASE_SCHEME=mysql
+DATABASE_EPOCH=0
+DATABASE_CLUSTER=azertyuiop-main-afdwftq
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ### Oracle MySQL reference
 
-```json
-{
-    "username": "user",
-    "scheme": "mysql",
-    "service": "oraclemysql",
-    "fragment": null,
-    "ip": "169.254.150.190",
-    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "oraclemysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "oracle-mysql:8.0",
-    "public": false,
-    "host_mapped": false
-}
+After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
+
+Here is an example of information you can retrieve through these [service environment variables](/development/variables/_index.md#service-specific-variables),
+or by running `{{< vendor/cli >}} ssh env`.
+
+```bash
+ORACLE_HOST=oracle.internal
+ORACLE_HOST_MAPPED=false
+ORACLE_IP=123.456.78.90
+ORACLE_PORT=3306
+ORACLE_INSTANCE_IPS=['123.456.78.90']
+ORACLE_FRAGMENT=
+ORACLE_REL=mysql
+ORACLE_TYPE=oracle-mysql:{{< latest "oracle-mysql" >}}
+ORACLE_QUERY={'is_master': True}
+ORACLE_PATH=main
+ORACLE_USERNAME=user
+ORACLE_PUBLIC=false
+ORACLE_HOSTNAME=azertyuiopqsdfghjklm.dbmysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+ORACLE_PASSWORD=
+ORACLE_SERVICE=dbmysql
+ORACLE_SCHEME=mysql
+ORACLE_EPOCH=0
+ORACLE_CLUSTER=azertyuiop-main-afdwftq
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+export APP_ORACLE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".dbmysql[0].host")
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
 
 ## Access the service directly
 
 You can access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from you app container via [SSH](../../development/ssh/_index.md).
-From your [relationship data](#relationship-reference), you need: `host`, `port`, `user`, `path`.
+From your [relationship data](#relationship-reference), you need: `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_USERNAME`, `DATABASE_PATH` values.
 Then run the following command:
 
 ```bash
-mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USER" >}} {{< variable "PATH" >}}
+mysql -h {{< variable "DATABASE_HOST" >}} -P {{< variable "DATABASE_PORT" >}} -u {{< variable "DATABASE_USERNAME" >}} {{< variable "DATABASE_PATH" >}}
 ```
 
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-mysql -h mysql.internal -P 3306 -u user main
+mysql -h database.internal -P 3306 -u user main
 ```
 
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -p -h mysql.internal -P 3306 -u user main
+mysql -p -h database.internal -P 3306 -u user main
 ```
 
 ## Define permissions

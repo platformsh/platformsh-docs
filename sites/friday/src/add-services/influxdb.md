@@ -84,7 +84,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/_index.md#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
 export INFLUX_USER=${INFLUXTIMEDB_USERNAME}
 export INFLUX_HOST=${INFLUXTIMEDB_HOST}
 export INFLUX_ORG=$(echo $INFLUXTIMEDB_QUERY | jq -r ".org")
