@@ -31,24 +31,24 @@ Here is an example of information you can retrieve through these [`{{< vendor/pr
 or by running `{{< vendor/cli >}} ssh env`.
 
 ```bash
-CLICKHOUSE_PORT=9000
-CLICKHOUSE_HOST_MAPPED=false
 CLICKHOUSE_USERNAME=main
-CLICKHOUSE_QUERY={'is_master': True}
-CLICKHOUSE_PASSWORD=ChangeMe
+CLICKHOUSE_SCHEME=clickhouse
+CLICKHOUSE_SERVICE=clickhouse
 CLICKHOUSE_FRAGMENT=
+CLICKHOUSE_EPOCH=0
+CLICKHOUSE_IP=123.456.78.90
+CLICKHOUSE_INSTANCE_IPS=['123.456.78.90']
+CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CLICKHOUSE_PORT=9000
 CLICKHOUSE_CLUSTER=azertyuiop-main-afdwftq
 CLICKHOUSE_HOST=clickhouse.internal
-CLICKHOUSE_SERVICE=clickhouse
-CLICKHOUSE_PATH=main
-CLICKHOUSE_PUBLIC=false
-CLICKHOUSE_IP=123.456.78.90
-CLICKHOUSE_SCHEME=clickhouse
-CLICKHOUSE_INSTANCE_IPS=['123.456.78.90']
 CLICKHOUSE_REL=clickhouse
-CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CLICKHOUSE_PATH=main
+CLICKHOUSE_QUERY={'is_master': True}
+CLICKHOUSE_PASSWORD=ChangeMe
 CLICKHOUSE_TYPE=clickhouse:23
-CLICKHOUSE_EPOCH=0
+CLICKHOUSE_PUBLIC=false
+CLICKHOUSE_HOST_MAPPED=false
 ```
 
 {{% note %}}
