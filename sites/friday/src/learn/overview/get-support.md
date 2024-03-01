@@ -50,5 +50,5 @@ To permanently delete your {{% vendor/name %}} account, follow these steps:
 2. Open the user menu (your name or profile picture) and select **My Profile**.
 3. Click **Delete account**.
 4. Check that the pre-filled information is correct and click **Submit**.
-5. Read the consequences to account deletion and click **Submit request** to confirm.</br>
+5. Read the consequences of account deletion and click **Submit request** to confirm.</br>
    Your request is now submitted and will be handled by Support shortly.
