@@ -41,6 +41,51 @@ while Redis 2.8 only supports a single database.
 Depending on your needs,
 you can set up Redis as [persistent](#persistent-redis) or [ephemeral](#ephemeral-redis).
 
+
+{{% relationship-ref-intro %}}
+
+{{% service-values-change %}}
+
+```bash
+REDISCACHE_USERNAME=
+REDISCACHE_SCHEME=redis
+REDISCACHE_SERVICE=cache
+REDISCACHE_FRAGMENT=
+REDISCACHE_IP=123.456.78.90
+REDISCACHE_INSTANCE_IPS=['123.456.78.90']
+REDISCACHE_EPOCH=0
+REDISCACHE_HOSTNAME=azertyuiopqsdfghjklm.cache.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+REDISCACHE_PORT=6379
+REDISCACHE_CLUSTER=azertyuiopqsdf-main-afdwftq
+REDISCACHE_HOST=rediscache.internal
+REDISCACHE_REL=redis
+REDISCACHE_PATH=
+REDISCACHE_QUERY={}
+REDISCACHE_PASSWORD=
+REDISCACHE_TYPE=redis:{{% latest "redis" %}}
+REDISCACHE_PUBLIC=false
+REDISCACHE_HOST_MAPPED=false
+```
+
+The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
+
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_REDIS_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
+
+
 ## Persistent Redis
 
 By default, Redis is an ephemeral service that stores data in memory.
@@ -137,12 +182,12 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "cacheredis:redis"
+            rediscache: "cache:redis"
 
 services:
     # The name of the service container. Must be unique within a project.
-    cacheredis:
-        type: redis-persistent:7.0
+    cache:
+        type: redis-persistent:{{% latest "redis" %}}
 ```
 
 ### Use in app
@@ -156,24 +201,22 @@ To use the configured service in your app, add a configuration file similar to t
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cacheredis:redis"
+    rediscache: "cache:redis"
 {{% /snippet %}}
-{{% snippet name="cacheredis" config="service" placeholder="true"  %}}
+{{% snippet name="cache" config="service" placeholder="true"  %}}
     type: redis-persistent:{{% latest "redis" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL"%}}
+{{% v2connect2app serviceName="cache" relationship="rediscache" var="REDIS_URL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
-export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
-export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
-export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+export CACHE_HOST="${REDISCACHE_HOST}"
+export CACHE_PORT="${REDISCACHE_PORT}"
+export CACHE_PASSWORD="${REDISCACHE_PASSWORD}"
+export CACHE_SCHEME="${REDISCACHE_SCHEME}"
 
 # Surface a Redis connection string for use in app.
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
@@ -262,12 +305,12 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "cacheredis:redis"
+            rediscache: "cache:redis"
 
 services:
     # The name of the service container. Must be unique within a project.
-    cacheredis:
-        type: redis:7.0
+    cache:
+        type: redis:{{% latest "redis" %}}
 ```
 
 ### Use in app
@@ -281,24 +324,22 @@ To use the configured service in your app, add a configuration file similar to t
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cacheredis:redis"
+    rediscache: "cache:redis"
 {{% /snippet %}}
-{{% snippet name="cacheredis" config="service" placeholder="true"  %}}
+{{% snippet name="cache" config="service" placeholder="true"  %}}
     type: redis:{{% latest "redis" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="cacheredis" relationship="rediscache" var="REDIS_URL"%}}
+{{% v2connect2app serviceName="cache" relationship="rediscache" var="REDIS_URL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export CACHE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
-export CACHE_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].port')"
-export CACHE_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].password')"
-export CACHE_SCHEME="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].scheme')"
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+export CACHE_HOST="${REDISCACHE_HOST}"
+export CACHE_PORT="${REDISCACHE_PORT}"
+export CACHE_PASSWORD="${REDISCACHE_PASSWORD}"
+export CACHE_SCHEME="${REDISCACHE_SCHEME}"
 
 # Surface a Redis connection string for use in app.
 export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
@@ -373,33 +414,6 @@ const value = await client.get('x');     // returns 42
 ```
 
 {{< /codetabs >}}
-
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-```yaml
-{
-    "username": null,
-    "scheme": "redis",
-    "service": "redis6",
-    "fragment": null,
-    "ip": "169.254.22.75",
-    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 6379,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "redis.internal",
-    "rel": "redis",
-    "path": null,
-    "query": [],
-    "password": null,
-    "type": "redis:{{% latest "redis" %}}",
-    "public": false,
-    "host_mapped": false
-}
-```
-
-The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
 
 ## Eviction policy
 
@@ -483,7 +497,7 @@ relationships:
 variables:
     php:
         session.save_handler: redis
-        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
 
 web:
     locations:
