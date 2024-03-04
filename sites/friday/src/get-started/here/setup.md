@@ -40,6 +40,11 @@ While the guide has been written to accommodate the following stacks, it is not 
 
 {{% guides/requirements %}}
 
+{{% note theme="info" title="Trials" %}}
+When you create an account on Upsun, you are also beginning a trial for your organization.
+[See the documentation](/glossary#trial) for more details about limits to that trial.
+{{% /note %}}
+
 ## Initialize your Git repository
 
 A Git repository is required for Upsun projects.
