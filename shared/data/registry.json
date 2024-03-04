@@ -843,8 +843,8 @@
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
-      "relationship_name": "postgresdatabase",
-      "service_name": "dbpostgres",
+      "relationship_name": "postgresqldatabase",
+      "service_name": "postgresql",
       "url": "/add-services/postgresql.html"
     },
     "endpoint": "postgresql",
