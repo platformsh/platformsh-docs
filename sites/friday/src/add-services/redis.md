@@ -479,14 +479,14 @@ After you've [configured your Redis service](#usage-example),
 you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 Retrieve the hostname and port you can connect to
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
-To do so, run the `{{< vendor/cli >}} relationships` command.
+through the [service environment variable](#relationship-reference).
+To do so, run the `{{< vendor/cli >}} ssh env` command.
 
 After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
 To access your Redis service, run the following command:
 
 ```bash
-redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
+redis-cli -h {{< variable "REDISCACHE_HOSTNAME" >}} -p {{< variable "REDISCACHE_PORT" >}}
 ```
 
 {{% version/specific %}}
@@ -497,7 +497,7 @@ Note that the `CONFIG GET` and `CONFIG SET` admin commands might be restricted o
 {{% /version/specific %}}
 
 ```bash
-redis-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}} info
+redis-cli -h {{< variable "REDISCACHE_HOSTNAME" >}} -p {{< variable "REDISCACHE_PORT" >}} info
 ```
 
 ## Use Redis as a handler for PHP sessions
