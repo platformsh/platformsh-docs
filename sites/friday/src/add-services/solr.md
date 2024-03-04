@@ -99,7 +99,6 @@ export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 export APP_SOLR_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.solrsearch[0].host')"
 ```
 
-
 {{< /codetabs >}}
 
 ## Usage example

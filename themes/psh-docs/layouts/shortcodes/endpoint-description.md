@@ -246,7 +246,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
     {{ $appInner = "\n..." }}
 
 {{ else if eq $type "vault-kms" }}
-    {{ $appInner = "\nrelationships:\n    vault_service: \"vault-kms:manage_keys\"" }}
+    {{ $appInner = "\nrelationships:\n    vault_secret: \"vault-kms:manage_keys\"" }}
 {{ else }}
 
     {{ $relationshipName := index $data "docs" "relationship_name" }}

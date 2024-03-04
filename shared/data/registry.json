@@ -1234,7 +1234,7 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "vault_service",
+      "relationship_name": "vault_secret",
       "service_name": "vault-kms",
       "url": "/add-services/vault.html"
     },

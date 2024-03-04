@@ -18,6 +18,83 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 
 {{< image-versions image="vault-kms" status="supported" environment="grid" >}}
 
+{{% relationship-ref-intro %}}
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+{{% service-values-change %}}
+
+```bash
+VAULT_SERVICE_USERNAME=
+VAULT_SERVICE_SCHEME=http
+VAULT_SERVICE_SERVICE=vault-kms
+VAULT_SERVICE_FRAGMENT=
+VAULT_SERVICE_IP=123.456.78.90
+VAULT_SERVICE_INSTANCE_IPS=['123.456.78.90']
+VAULT_SERVICE_HOSTNAME=azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+VAULT_SERVICE_PORT=8200
+VAULT_SERVICE_CLUSTER=azertyuiopqsdf-main-afdwftq
+VAULT_SERVICE_HOST=vault_secret.internal
+VAULT_SERVICE_REL=manage_keys
+VAULT_SERVICE_PATH=/
+VAULT_SERVICE_QUERY={'is_master': True}
+VAULT_SERVICE_PASSWORD=ChangeMe
+VAULT_SERVICE_EPOCH=0
+VAULT_SERVICE_TYPE=vault-kms:{{% latest "vault-kms" %}}
+VAULT_SERVICE_PUBLIC=false
+VAULT_SERVICE_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```yaml
+{
+    "username": "",
+    "scheme": "http",
+    "service": "vault-kms",
+    "fragment": "",
+    "ip": "123.456.78.90",
+    "instance_ips": [
+      "123.456.78.90"
+    ],
+    "hostname": "azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 8200,
+    "cluster": "azertyuiopqsdf-main-7rqtwti",
+    "host": "vault_secret.internal",
+    "rel": "sign",
+    "path": "\/",
+    "query": {
+        "is_master": true
+    },
+    "password": "ChangeMe",
+    "type": "vault-kms:{{% latest "vault-kms" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_VAULT_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.vault_secret[0].host')"
+```
+
+{{< /codetabs >}}
+
 ## Add Vault
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
@@ -42,7 +119,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 ## Use Vault KMS
 
-To connect your app to the Vault KMS, use a token that's defined in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable.
+To connect your app to the Vault KMS, use a token that's defined in the [service environment variables](#relationship-reference).
 With this token for authentication,
 you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
 
@@ -53,35 +130,33 @@ Adapt the examples for your app's language.
 
 ### Get the token
 
-To make any calls to the Vault KMS, you need your token. Get it from the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable:
+To make any calls to the Vault KMS, you need your token. Get it from the [service environment variables](#relationship-reference):
 
 ```bash
-echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
+echo ${{{< variable "RELATIONSHIP_NAME" >}}_PASSWORD}"
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
-
-The `-r` flag returns the string itself, not wrapped in quotes.
+`{{< variable "RELATIONSHIP_NAME" >}}` is the relationship name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
 
 You can also store this as a variable:
 
 ```bash
-VAULT_TOKEN=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password")
+VAULT_TOKEN=${{{< variable "RELATIONSHIP_NAME" >}}_PASSWORD}
 ```
 
 A given token is valid for one year from its creation.
 
 ### Get the right URL
 
-The `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
+The [service environment variable](#relationship-reference) also contains the information you need to construct a URL for contacting the Vault KMS: the `host` and `port`.
 
 Assign it to a variable as follows:
 
 ```bash
-VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
+VAULT_URL=${{{< variable "RELATIONSHIP_NAME" >}}_HOST}:${{{< variable "RELATIONSHIP_NAME" >}}_PORT}
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
 
 ### Manage your keys
 
@@ -244,33 +319,6 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
     "key_version": 2
   },
   ...
-}
-```
-
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-```yaml
-{
-    "username": "",
-    "scheme": "http",
-    "service": "vault-kms",
-    "fragment": "",
-    "ip": "169.254.196.95",
-    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 8200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "vault-kms.internal",
-    "rel": "sign",
-    "path": "\/",
-    "query": {
-        "is_master": true
-    },
-    "password": "ChangeMe",
-    "type": "vault-kms:{{% latest "vault-kms" %}}",
-    "public": false,
-    "host_mapped": false
 }
 ```
 
