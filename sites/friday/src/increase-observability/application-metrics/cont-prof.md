@@ -26,13 +26,13 @@ Each view helps make sense of the profiling data for the selected dimension and 
 
 ## Color-coded node dimensions
 
-{{< vendor/name >}} continuous profiling dashboards employs a color-coded system to represent each dimension, ensuring consistency across different runtimes.
+{{< vendor/name >}} continuous profiling dashboard employs a color-coded system to represent each dimension, ensuring consistency across different runtimes.
 
-The intensity of a node's background color is directly proportional to the resources it consumes. As resource consumption increases, so does the vibrancy of the background color. This visual representation pinpoint application areas that may require optimization.
+The intensity of a node's background color is directly proportional to the resources it consumes. As resource consumption increases, so does the vibrancy of the background color. This visual representation pinpoints application areas that may require optimization.
 
 ![Routes](/images/observability/cont-prof-color-code.png "0.5")
 
-The contrast between the dimension color and the greyscale of regular nodes has been designed to ensure accessibility for all users and allow colorblind users benefit from this feature.
+The contrast between the dimension color and the greyscale of regular nodes has been designed to ensure accessibility for all users and allow colorblind users to benefit from this feature.
 
 ## Flame graph
 
