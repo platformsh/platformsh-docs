@@ -28,17 +28,21 @@ and your messages a safe place to live until they're received.
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
 {{% service-values-change %}}
 
 ```bash
 RABBITMQQUEUE_USERNAME=guest
 RABBITMQQUEUE_SCHEME=amqp
-RABBITMQQUEUE_SERVICE=queuerabbit
+RABBITMQQUEUE_SERVICE=rabbitmq
 RABBITMQQUEUE_FRAGMENT=
 RABBITMQQUEUE_EPOCH=0
 RABBITMQQUEUE_IP=123.456.78.90
-RABBITMQQUEUE_INSTANCE_IPS=['123.456.78.90']
-RABBITMQQUEUE_HOSTNAME=azertyuiopqsdfghjklm.queuerabbit.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+RABBITMQQUEUE_HOSTNAME=azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}
 RABBITMQQUEUE_PORT=5672
 RABBITMQQUEUE_CLUSTER=azertyuiop-main-afdwftq
 RABBITMQQUEUE_HOST=rabbitmqqueue.internal
@@ -51,9 +55,37 @@ RABBITMQQUEUE_PUBLIC=false
 RABBITMQQUEUE_HOST_MAPPED=false
 ```
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```yaml
+{
+    "username": "guest",
+    "scheme": "amqp",
+    "service": "rabbitmq",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 5672,
+    "cluster": "azertyuiopqsdf-master-7rqtwti",
+    "host": "rabbitmqqueue.internal",
+    "rel": "rabbitmq",
+    "path": null,
+    "query": [],
+    "password": "ChangeMe",
+    "type": "rabbitmq:{{% latest "rabbitmq" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
@@ -63,8 +95,7 @@ export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 export APP_RABBITMQ_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmqqueue[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
 
 ## Usage example
 
@@ -74,15 +105,15 @@ The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtaine
 {{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    rabbitmqqueue: "queuerabbit:rabbitmq"
+    rabbitmqqueue: "rabbitmq:rabbitmq"
 {{% /snippet %}}
-{{% snippet name="queuerabbit" config="service" placeholder="true"  %}}
+{{% snippet name="rabbitmq" config="service" placeholder="true"  %}}
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 256
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL"%}}
+{{% v2connect2app serviceName="rabbitmq" relationship="rabbitmqqueue" var="AMQP_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.

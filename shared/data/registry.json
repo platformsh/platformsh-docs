@@ -946,7 +946,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "rabbitmqqueue",
-      "service_name": "queuerabbit",
+      "service_name": "rabbitmq",
       "url": "/add-services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
