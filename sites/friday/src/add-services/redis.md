@@ -41,8 +41,12 @@ while Redis 2.8 only supports a single database.
 Depending on your needs,
 you can set up Redis as [persistent](#persistent-redis) or [ephemeral](#ephemeral-redis).
 
-
 {{% relationship-ref-intro %}}
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
 
 {{% service-values-change %}}
 
@@ -67,12 +71,37 @@ REDISCACHE_PUBLIC=false
 REDISCACHE_HOST_MAPPED=false
 ```
 
-The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
+<--->
 
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```yaml
+{
+    "username": null,
+    "scheme": "redis",
+    "service": "cache",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.cache.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 6379,
+    "cluster": "azertyuiopqsdf-master-7rqtwti",
+    "host": "rediscache.internal",
+    "rel": "redis",
+    "path": null,
+    "query": [],
+    "password": null,
+    "type": "redis:{{% latest "redis" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
@@ -82,9 +111,9 @@ export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 export APP_REDIS_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
 
+The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
 
 ## Persistent Redis
 
