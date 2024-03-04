@@ -712,7 +712,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "ossearch",
-      "service_name": "searchopen",
+      "service_name": "opensearch",
       "url": "/add-services/opensearch.html"
     },
     "endpoint": "opensearch",
