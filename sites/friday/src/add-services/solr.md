@@ -28,16 +28,48 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+```bash
+SOLRSEARCH_USERNAME=
+SOLRSEARCH_SCHEME=solr
+SOLRSEARCH_SERVICE=solr
+SOLRSEARCH_TYPE=solr:{{% latest "solr" %}}
+SOLRSEARCH_IP=123.456.78.90
+SOLRSEARCH_INSTANCE_IPS=['123.456.78.90']
+SOLRSEARCH_FRAGMENT=
+SOLRSEARCH_HOSTNAME=azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+SOLRSEARCH_PORT=8080
+SOLRSEARCH_CLUSTER=azertyuiopqsdf-main-afdwftq
+SOLRSEARCH_HOST=solrsearch.internal
+SOLRSEARCH_REL=solr
+SOLRSEARCH_PATH=solr/collection1
+SOLRSEARCH_QUERY={}
+SOLRSEARCH_PASSWORD=
+SOLRSEARCH_EPOCH=0
+SOLRSEARCH_PUBLIC=false
+SOLRSEARCH_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` variable
++++
+
 {{% service-values-change %}}
 
-```yaml
+```bash
 {
     "username": null,
     "scheme": "solr",
-    "service": "solr86",
+    "service": "searchsolr",
     "fragment": null,
     "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.searchsolr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
@@ -50,6 +82,23 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "host_mapped": false
 }
 ```
+
+{{% note %}}
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsearch[0].host')"
+```
+
+The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+{{% /note %}}
+
+{{< /codetabs >}}
 
 ## Usage example
 
