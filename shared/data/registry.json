@@ -1002,7 +1002,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "rediscache",
-      "service_name": "cacheredis",
+      "service_name": "redis",
       "url": "/add-services/redis.html"
     },
     "endpoint": "redis",

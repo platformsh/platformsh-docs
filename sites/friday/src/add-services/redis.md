@@ -53,12 +53,11 @@ title= Service environment variables
 ```bash
 REDISCACHE_USERNAME=
 REDISCACHE_SCHEME=redis
-REDISCACHE_SERVICE=cache
+REDISCACHE_SERVICE=redis
 REDISCACHE_FRAGMENT=
 REDISCACHE_IP=123.456.78.90
-REDISCACHE_INSTANCE_IPS=['123.456.78.90']
 REDISCACHE_EPOCH=0
-REDISCACHE_HOSTNAME=azertyuiopqsdfghjklm.cache.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+REDISCACHE_HOSTNAME=azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}
 REDISCACHE_PORT=6379
 REDISCACHE_CLUSTER=azertyuiopqsdf-main-afdwftq
 REDISCACHE_HOST=rediscache.internal
@@ -84,10 +83,10 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 {
     "username": null,
     "scheme": "redis",
-    "service": "cache",
+    "service": "redis",
     "fragment": null,
     "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.cache.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 6379,
     "cluster": "azertyuiopqsdf-master-7rqtwti",
     "host": "rediscache.internal",
@@ -211,11 +210,11 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "cache:redis"
+            rediscache: "redis:redis"
 
 services:
     # The name of the service container. Must be unique within a project.
-    cache:
+    redis:
         type: redis-persistent:{{% latest "redis" %}}
 ```
 
@@ -230,14 +229,14 @@ To use the configured service in your app, add a configuration file similar to t
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cache:redis"
+    rediscache: "redis:redis"
 {{% /snippet %}}
-{{% snippet name="cache" config="service" placeholder="true"  %}}
+{{% snippet name="redis" config="service" placeholder="true"  %}}
     type: redis-persistent:{{% latest "redis" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="cache" relationship="rediscache" var="REDIS_URL"%}}
+{{% v2connect2app serviceName="redis" relationship="rediscache" var="REDIS_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -334,11 +333,11 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "cache:redis"
+            rediscache: "redis:redis"
 
 services:
     # The name of the service container. Must be unique within a project.
-    cache:
+    redis:
         type: redis:{{% latest "redis" %}}
 ```
 
@@ -353,14 +352,14 @@ To use the configured service in your app, add a configuration file similar to t
 
 # Relationships enable an app container's access to a service.
 relationships:
-    rediscache: "cache:redis"
+    rediscache: "redis:redis"
 {{% /snippet %}}
-{{% snippet name="cache" config="service" placeholder="true"  %}}
+{{% snippet name="redis" config="service" placeholder="true"  %}}
     type: redis:{{% latest "redis" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="cache" relationship="rediscache" var="REDIS_URL"%}}
+{{% v2connect2app serviceName="redis" relationship="rediscache" var="REDIS_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -451,7 +450,7 @@ it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
-{{% snippet name="cache" config="service" %}}
+{{% snippet name="redis" config="service" %}}
     type: "redis:{{% latest "redis" %}}"
     configuration:
         maxmemory_policy: allkeys-lfu
