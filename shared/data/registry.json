@@ -572,8 +572,8 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "mongodatabase",
-      "service_name": "dbmongo",
+      "relationship_name": "mongodbdatabase",
+      "service_name": "mongodb",
       "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
@@ -597,8 +597,8 @@
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
-      "relationship_name": "mongodatabase",
-      "service_name": "dbmongo",
+      "relationship_name": "mongodbdatabase",
+      "service_name": "mongodb",
       "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
