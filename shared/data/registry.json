@@ -547,7 +547,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "memcachedcache",
-      "service_name": "cachemc",
+      "service_name": "memcached",
       "url": "/add-services/memcached.html"
     },
     "endpoint": "memcached",
