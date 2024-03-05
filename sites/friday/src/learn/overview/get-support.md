@@ -49,7 +49,7 @@ To permanently delete your {{% vendor/name %}} account, follow these steps:
 {{% note theme=warning title="Warning"%}}
 
 Deleting your {{% vendor/name %}} account automatically deletes your linked {{% vendor/psh_ref %}} account,
-as well as any Ibexa Cloud, Shopware PaaS, or Pimcore Cloud accounts you may hold.
+as well as any linked Ibexa Cloud or Shopware PaaS accounts you may hold.
 
 {{% /note %}} 
 
