@@ -4,7 +4,7 @@
     "disk": false,
     "docs": {
       "relationship_name": "chromeheadlessbrowser",
-      "service_name": "headlessbrowser",
+      "service_name": "chromeheadless",
       "url": "/add-services/headless-chrome.html"
     },
     "endpoint": "http",

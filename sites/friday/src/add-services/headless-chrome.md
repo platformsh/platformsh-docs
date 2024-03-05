@@ -19,35 +19,59 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
 {{% service-values-change %}}
 
 ```bash
-HEADLESSCHROME_SERVICE=headlesschrome
-HEADLESSCHROME_IP=169.254.91.5
-HEADLESSCHROME_HOSTNAME=azertyuiopqsdfghjklm.headlesschrome.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-HEADLESSCHROME_CLUSTER=azertyuiop-master-7rqtwti
-HEADLESSCHROME_HOST=headlesschrome.internal
-HEADLESSCHROME_REL=http
-HEADLESSCHROME_SCHEME=http
-HEADLESSCHROME_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
-HEADLESSCHROME_PORT=9222
+CHROMEHEADLESSBROWSER_SERVICE=chromeheadless
+CHROMEHEADLESSBROWSER_IP=123.456.78.90
+CHROMEHEADLESSBROWSER_HOSTNAME=azertyuiopqsdfghjklm.chromeheadless.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CHROMEHEADLESSBROWSER_CLUSTER=azertyuiop-main-7rqtwti
+CHROMEHEADLESSBROWSER_HOST=chromeheadlessbrowser.internal
+CHROMEHEADLESSBROWSER_REL=http
+CHROMEHEADLESSBROWSER_SCHEME=http
+CHROMEHEADLESSBROWSER_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
+CHROMEHEADLESSBROWSER_PORT=9222
 ```
 
+<--->
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+{
+    "service": "chromeheadless",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.chromeheadless.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "cluster": "azertyuiop-main-7rqtwti",
+    "host": "chromeheadlessbrowser.internal",
+    "rel": "http",
+    "scheme": "http",
+    "type": "chrome-headless:{{< latest "chrome-headless" >}}",
+    "port": 9222
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_HEADLESSCHROME_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.headlesschrome[0].host')"
+export APP_HEADLESSCHROME_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.chromeheadlessbrowser[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
 
 ## Requirements
 
@@ -106,14 +130,14 @@ type: "nodejs:{{% latest "nodejs" %}}"
 
 # Relationships enable an app container's access to a service.
 relationships:
-    chromeheadlessbrowser: "headlessbrowser:http"
+    chromeheadlessbrowser: "chromeheadless:http"
 {{% /snippet %}}
-{{% snippet name="headlessbrowser" config="service" placeholder="true"  %}}
+{{% snippet name="chromeheadless" config="service" placeholder="true"  %}}
     type: chrome-headless:{{% latest "chrome-headless" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="headlessbrowser" relationship="chromeheadlessbrowser" var="CHROME_BASEURL"%}}
+{{% v2connect2app serviceName="chromeheadless" relationship="chromeheadlessbrowser" var="CHROME_BASEURL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
