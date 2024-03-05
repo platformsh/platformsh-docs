@@ -73,7 +73,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 5672,
-    "cluster": "azertyuiopqsdf-master-afdwftq",
+    "cluster": "azertyuiopqsdf-main-afdwftq",
     "host": "rabbitmqqueue.internal",
     "rel": "rabbitmq",
     "path": null,

@@ -88,7 +88,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 6379,
-    "cluster": "azertyuiopqsdf-master-7rqtwti",
+    "cluster": "azertyuiopqsdf-main-7rqtwti",
     "host": "rediscache.internal",
     "rel": "redis",
     "path": null,

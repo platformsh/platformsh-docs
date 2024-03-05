@@ -54,13 +54,13 @@ title= `PLATFORM_RELATIONSHIPS` environment variable
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
 
-```yaml
+```json
 {
     "service": "memcached",
     "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.memcached.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "memcached.internal",
+    "host": "memcachedcache.internal",
     "rel": "memcached",
     "scheme": "memcached",
     "type": "memcached:{{% latest "memcached" %}}",
