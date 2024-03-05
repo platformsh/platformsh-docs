@@ -200,7 +200,6 @@ For example:
 {{% /snippet %}}
 ```
 
-
 ## Plugins
 
 Elasticsearch offers a number of plugins.

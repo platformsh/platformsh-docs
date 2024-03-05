@@ -67,28 +67,28 @@ For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environme
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
 
 ```json
-    {
-      "host": "influxdbdatabase.internal",
-      "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-      "cluster": "azertyuiopqsdf-main-bvxea6i",
-      "service": "influxdb",
-      "type": "influxdb:{{< latest "influxdb" >}}",
-      "rel": "influxdb",
-      "scheme": "http",
-      "username": "admin",
-      "password": "ChangeMe",
-      "port": 8086,
-      "path": null,
-      "query": {
-        "org": "main",
-        "bucket": "main",
-        "api_token": "azertyuiopqsdfghjklm1234567890"
-      },
-      "fragment": null,
-      "public": false,
-      "host_mapped": false,
-      "ip": "123.456.78.90"
-    }
+{
+  "host": "influxdbdatabase.internal",
+  "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiopqsdf-main-bvxea6i",
+  "service": "influxdb",
+  "type": "influxdb:{{< latest "influxdb" >}}",
+  "rel": "influxdb",
+  "scheme": "http",
+  "username": "admin",
+  "password": "ChangeMe",
+  "port": 8086,
+  "path": null,
+  "query": {
+    "org": "main",
+    "bucket": "main",
+    "api_token": "azertyuiopqsdfghjklm1234567890"
+  },
+  "fragment": null,
+  "public": false,
+  "host_mapped": false,
+  "ip": "123.456.78.90"
+}
 ```
 
 Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):

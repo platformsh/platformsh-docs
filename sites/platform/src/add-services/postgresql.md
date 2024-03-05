@@ -69,17 +69,17 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": "main",
     "scheme": "pgsql",
-    "service": "postgresql12",
+    "service": "postgresql",
     "fragment": null,
-    "ip": "169.254.38.66",
-    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 5432,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "postgresql.internal",
+    "cluster": "azertyuiopqsdf-main-afdwftq",
+    "host": "postgresqldatabase.internal",
     "rel": "postgresql",
     "path": "main",
     "query": {
@@ -154,7 +154,7 @@ psql -U {{< variable "USERNAME" >}} -h {{< variable "HOST" >}} -p {{< variable "
 Using the values from the [example](#relationship-reference), that would be:
 
 ```bash
-psql -U main -h postgresql.internal -p 5432
+psql -U main -h postgresqldatabase.internal -p 5432
 ```
 
 {{% service-values-change %}}
@@ -170,7 +170,7 @@ The easiest way to download all data in a PostgreSQL instance is with the {{< ve
 If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
-{{% vendor/cli %}} db:dump --relationship database
+{{% vendor/cli %}} db:dump --relationship postgresqldatabase
 ```
 
 By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
@@ -205,7 +205,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-{{% vendor/cli %}} sql --relationship database -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship postgresqldatabase -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -236,7 +236,7 @@ Under the `configuration` key of your service there are two additional keys:
 Consider the following illustrative example:
 
 ```yaml {configFile="services"}
-{{% snippet name="dbpostgres" config="service"  %}}
+{{% snippet name="postgresql" config="service" %}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -259,7 +259,7 @@ Consider the following illustrative example:
 {{% /snippet %}}
 ```
 
-This example creates a single PostgreSQL service named `dbpostgres`. The server has two databases, `main` and `legacy` with three endpoints created.
+This example creates a single PostgreSQL service named `postgresql`. The server has two databases, `main` and `legacy` with three endpoints created.
 
 * `admin`: has full access to both databases.
 * `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
@@ -270,14 +270,14 @@ If a given endpoint has access to multiple databases you should also specify whi
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
 ```yaml {configFile="app"}
-{{% snippet name="false" config="app" root="false"  %}}
+{{% snippet name="false" config="app" root="false" %}}
 relationships:
-    database: "dbpostgres:admin"
-    reports: "dbpostgres:reporter"
-    imports: "dbpostgres:importer"
+    database: "postgresql:admin"
+    reports: "postgresql:reporter"
+    imports: "postgresql:importer"
 {{% /snippet %}}
 
-{{% snippet name="dbpostgres" config="service" placeholder="true"  %}}
+{{% snippet name="postgresql" config="service" placeholder="true" %}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -300,12 +300,13 @@ relationships:
 {{% /snippet %}}
 ```
 
-Each database is accessible to your application through the `database`, `reports`, and `imports` relationships. They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
+They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
 ```yaml {configFile="services"}
-{{% snippet name="dbpostgres" config="service"  %}}
+{{% snippet name="postgresql" config="service" %}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -322,7 +323,7 @@ A service configuration without the `configuration` block defined is equivalent 
 If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="dbpostgres" config="service"  %}}
+{{% snippet name="postgresql" config="service" %}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -335,7 +336,7 @@ If you do not define `database` but `endpoints` are defined, then the single dat
 Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
 
 ```yaml {configFile="services"}
-{{% snippet name="dbpostgres" config="service"  %}}
+{{% snippet name="postgresql" config="service" %}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:
@@ -362,7 +363,7 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 {{% vendor/name %}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{% snippet name="dbpostgres" config="service"  %}}
+{{% snippet name="postgresql" config="service" %}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:

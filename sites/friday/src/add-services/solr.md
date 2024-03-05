@@ -80,9 +80,6 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "query": [],
     "password": null,
     "type": "solr:{{% latest "solr" %}}",
-    "instance_ips": [
-      "123.456.78.90"
-    ],
     "public": false,
     "host_mapped": false
 }
