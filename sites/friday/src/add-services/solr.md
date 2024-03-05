@@ -64,7 +64,7 @@ title= `PLATFORM_RELATIONSHIPS` environment variable
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
 
-```bash
+```json
 {
     "username": null,
     "scheme": "solr",
