@@ -35,6 +35,11 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
 {{% service-values-change %}}
 
 ```bash
@@ -51,15 +56,45 @@ POSTGRESQLDATABASE_HOST=postgresqldatabase.internal
 POSTGRESQLDATABASE_REL=postgresql
 POSTGRESQLDATABASE_PATH=main
 POSTGRESQLDATABASE_QUERY={'is_master': True}
-POSTGRESQLDATABASE_PASSWORD=main
+POSTGRESQLDATABASE_PASSWORD=ChangeMe
 POSTGRESQLDATABASE_TYPE=postgresql:{{% latest "postgresql" %}}
 POSTGRESQLDATABASE_PUBLIC=false
 POSTGRESQLDATABASE_HOST_MAPPED=false
 ```
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+{
+    "username": "main",
+    "scheme": "pgsql",
+    "service": "postgresql",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 5432,
+    "cluster": "azertyuiopqsdf-main-afdwftq",
+    "host": "postgresqldatabase.internal",
+    "rel": "postgresql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "ChangeMe",
+    "type": "postgresql:{{% latest "postgresql" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
@@ -69,8 +104,7 @@ export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 export APP_POSTGRESQL_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresqldatabase[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
 
 ## Usage example
 
