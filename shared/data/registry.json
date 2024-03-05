@@ -430,8 +430,8 @@
     "repo_name": "mariadb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
-      "service_name": "db",
+      "relationship_name": "mariadbdatabase",
+      "service_name": "mariadb",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -490,8 +490,8 @@
     "repo_name": "mariadb",
     "disk": true,
     "docs": {
-      "relationship_name": "database",
-      "service_name": "db",
+      "relationship_name": "mysqldatabase",
+      "service_name": "mysql",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",
@@ -753,8 +753,8 @@
     "repo_name": "oracle-mysql",
     "disk": true,
     "docs": {
-      "relationship_name": "mysqldatabase",
-      "service_name": "dbmysql",
+      "relationship_name": "oracledatabase",
+      "service_name": "oracle-mysql",
       "url": "/add-services/mysql.html"
     },
     "endpoint": "mysql",

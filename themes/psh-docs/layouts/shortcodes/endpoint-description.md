@@ -356,7 +356,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 {{ if eq $type "mariadb" }}
 ### OracleMySQL example
 
-{{ $serviceName := "dbmysql" }}
+{{ $serviceName := "oracle-mysql" }}
 {{ $serviceInner := "\n    type: oracle-mysql:8.0" }}
 
 {{ if eq $docVersion 1 }}
@@ -367,7 +367,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 ```
 {{ end }}
 
-{{$appInner := "relationships:\n    mysqldatabase: \"dbmysql:mysql\"" }}
+{{$appInner := "relationships:\n    oracledatabase: \"oracle-mysql:mysql\"" }}
 
 {{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)

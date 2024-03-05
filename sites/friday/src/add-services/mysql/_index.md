@@ -59,6 +59,165 @@ To downgrade your database, follow these steps:
 1. Add a new service with a different name and your desired version.
 1. [Import your data](#importing-data) into the new service.
 
+
+{{% relationship-ref-intro %}}
+
+### MariaDB reference
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+{{% service-values-change %}}
+
+After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
+
+Here is an example of information you can retrieve through these [service environment variables](/development/variables/_index.md#service-specific-variables),
+or by running `{{< vendor/cli >}} ssh env`.
+
+```bash
+MARIADBDATABASE_USERNAME=user
+MARIADBDATABASE_SCHEME=mysql
+MARIADBDATABASE_SERVICE=mariadb
+MARIADBDATABASE_FRAGMENT=
+MARIADBDATABASE_IP=123.456.78.90
+MARIADBDATABASE_HOSTNAME=azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+MARIADBDATABASE_PORT=3306
+MARIADBDATABASE_CLUSTER=azertyuiop-main-afdwftq
+MARIADBDATABASE_HOST=mariadbdatabase.internal
+MARIADBDATABASE_REL=mysql
+MARIADBDATABASE_PATH=main
+MARIADBDATABASE_QUERY={'is_master': True}
+MARIADBDATABASE_PASSWORD=
+MARIADBDATABASE_EPOCH=0
+MARIADBDATABASE_TYPE=mariadb:{{< latest "mariadb" >}}
+MARIADBDATABASE_PUBLIC=false
+MARIADBDATABASE_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+{
+    "username": "user",
+    "scheme": "mysql",
+    "service": "mariadb",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 3306,
+    "cluster": "azertyuiop-main-7rqtwti",
+    "host": "mariadbdatabase.internal",
+    "rel": "mysql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "",
+    "type": "mariadb:{{% latest "mariadb" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mariadbdatabase[0].host")
+```
+
+{{< /codetabs >}}
+
+### Oracle MySQL reference
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+{{% service-values-change %}}
+
+After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
+
+Here is an example of information you can retrieve through these [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables),
+or by running `{{< vendor/cli >}} ssh env`.
+
+```bash
+ORACLEDATABASE_USERNAME=user
+ORACLEDATABASE_SCHEME=mysql
+ORACLEDATABASE_SERVICE=oracle-mysql
+ORACLEDATABASE_FRAGMENT=
+ORACLEDATABASE_IP=123.456.78.90
+ORACLEDATABASE_HOSTNAME=azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+ORACLEDATABASE_PORT=3306
+ORACLEDATABASE_CLUSTER=azertyuiop-main-afdwftq
+ORACLEDATABASE_HOST=oracledatabase.internal
+ORACLEDATABASE_REL=mysql
+ORACLEDATABASE_PATH=main
+ORACLEDATABASE_QUERY={'is_master': True}
+ORACLEDATABASE_PASSWORD=
+ORACLEDATABASE_EPOCH=0
+ORACLEDATABASE_TYPE=oracle-mysql:{{< latest "oracle-mysql" >}}
+ORACLEDATABASE_PUBLIC=false
+ORACLEDATABASE_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+{
+    "username": "user",
+    "scheme": "mysql",
+    "service": "oracle-mysql",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 3306,
+    "cluster": "azertyuiop-main-afdwftq",
+    "host": "oracledatabase.internal",
+    "rel": "mysql",
+    "path": "main",
+    "query": {
+        "is_master": true
+    },
+    "password": "",
+    "type": "oracle-mysql:{{< latest "oracle-mysql" >}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_ORACLE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.oracledatabase[0].host')"
+```
+
+{{< /codetabs >}}
+
 ## Usage example
 
 Configure your service with at least 256 MB in disk space.
@@ -72,24 +231,24 @@ Configure your service with at least 256 MB in disk space.
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: "db:mysql"
+    mariadbdatabase: "mariadb:mysql"
 {{% /snippet %}}
-{{% snippet name="db" config="service" placeholder="true"  %}}
+{{% snippet name="mariadb" config="service" placeholder="true"  %}}
     type: mariadb:{{% latest "mariadb" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="db" relationship="database" var="DATABASE_URL"%}}
+{{% v2connect2app serviceName="mariadb" relationship="mariadbdatabase" var="MARIADBDATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
-export DB_CONNECTION==${DATABASE_SCHEME}
-export DB_USERNAME=${DATABASE_USERNAME}
-export DB_PASSWORD=${DATABASE_PASSWORD}
-export DB_HOST=${DATABASE_HOST}
-export DB_PORT=${DATABASE_PORT}
-export DB_DATABASE=${DATABASE_PATH}
+export DB_CONNECTION==${MARIADBDATABASE_SCHEME}
+export DB_USERNAME=${MARIADBDATABASE_USERNAME}
+export DB_PASSWORD=${MARIADBDATABASE_PASSWORD}
+export DB_HOST=${MARIADBDATABASE_HOST}
+export DB_PORT=${MARIADBDATABASE_PORT}
+export DB_DATABASE=${MARIADBDATABASE_PATH}
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -104,11 +263,11 @@ There may be cases where you want to configure a database connection manually.
 To get the URL to connect to the database, run the following command:
 
 ```bash
-{{% vendor/cli %}} relationships
+{{% vendor/cli %}} ssh env
 ```
 
-The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
-Use the `url` property as your connection.
+The result is the complete [information for all relationships](#relationship-reference) with an additional `DATABASE_URL` property, defined on step [Use in app](#use-in-app).
+<BR>Use the `DATABASE_URL` property as your connection.
 
 {{% service-values-change %}}
 
@@ -127,7 +286,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 Example configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -142,114 +301,28 @@ Example configuration:
 {{% /snippet %}}
 ```
 
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-### MariaDB reference
-
-After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
-
-Here is an example of information you can retrieve through these [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables),
-or by running `{{< vendor/cli >}} ssh env`.
-
-```bash
-DATABASE_HOST=database.internal
-DATABASE_HOST_MAPPED=false
-DATABASE_IP=123.456.78.90
-DATABASE_PORT=3306
-DATABASE_INSTANCE_IPS=['123.456.78.90']
-DATABASE_FRAGMENT=
-DATABASE_REL=mysql
-DATABASE_TYPE=mariadb:{{< latest "mariadb" >}}
-DATABASE_QUERY={'is_master': True}
-DATABASE_PATH=main
-DATABASE_USERNAME=user
-DATABASE_PUBLIC=false
-DATABASE_HOSTNAME=azertyuiopqsdfghjklm.database.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-DATABASE_PASSWORD=
-DATABASE_SERVICE=database
-DATABASE_SCHEME=mysql
-DATABASE_EPOCH=0
-DATABASE_CLUSTER=azertyuiop-main-afdwftq
-```
-
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
-
-```bash {location=".environment"}
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-```
-
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
-
-### Oracle MySQL reference
-
-After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
-
-Here is an example of information you can retrieve through these [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables),
-or by running `{{< vendor/cli >}} ssh env`.
-
-```bash
-ORACLE_HOST=oracle.internal
-ORACLE_HOST_MAPPED=false
-ORACLE_IP=123.456.78.90
-ORACLE_PORT=3306
-ORACLE_INSTANCE_IPS=['123.456.78.90']
-ORACLE_FRAGMENT=
-ORACLE_REL=mysql
-ORACLE_TYPE=oracle-mysql:{{< latest "oracle-mysql" >}}
-ORACLE_QUERY={'is_master': True}
-ORACLE_PATH=main
-ORACLE_USERNAME=user
-ORACLE_PUBLIC=false
-ORACLE_HOSTNAME=azertyuiopqsdfghjklm.dbmysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-ORACLE_PASSWORD=
-ORACLE_SERVICE=dbmysql
-ORACLE_SCHEME=mysql
-ORACLE_EPOCH=0
-ORACLE_CLUSTER=azertyuiop-main-afdwftq
-```
-
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
-
-```bash {location=".environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export APP_ORACLE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.dbmysql[0].host')"
-```
-
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
-
 ## Access the service directly
 
 You can access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from you app container via [SSH](../../development/ssh/_index.md).
-From your [relationship data](#relationship-reference), you need: `DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_USERNAME`, `DATABASE_PATH` values.
+From your [relationship data](#relationship-reference), you need: `MARIADBDATABASE_HOST`, `MARIADBDATABASE_PORT`, `MARIADBDATABASE_USERNAME`, `MARIADBDATABASE_PATH` values.
 Then run the following command:
 
 ```bash
-mysql -h {{< variable "DATABASE_HOST" >}} -P {{< variable "DATABASE_PORT" >}} -u {{< variable "DATABASE_USERNAME" >}} {{< variable "DATABASE_PATH" >}}
+mysql -h {{< variable "MARIADBDATABASE_HOST" >}} -P {{< variable "MARIADBDATABASE_PORT" >}} -u {{< variable "MARIADBDATABASE_USERNAME" >}} {{< variable "MARIADBDATABASE_PATH" >}}
 ```
 
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-mysql -h database.internal -P 3306 -u user main
+mysql -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -p -h database.internal -P 3306 -u user main
+mysql -p -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 ## Define permissions
@@ -282,7 +355,7 @@ You can also specify multiple `endpoints` for [permissions](#define-permissions)
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -306,7 +379,7 @@ Removing a schema from the list of `schemas` on further deployments results in t
 
 ### Multiple databases example
 
-The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
+The following configuration example creates a single MariaDB service named `mariadb` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
 * `admin` has full access to both databases.
@@ -314,7 +387,7 @@ Access to the database is defined through three endpoints:
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -345,14 +418,14 @@ Expose these endpoints to your app as relationships in your [app configuration](
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: "db:admin"
-    reports: "db:reporter"
-    imports: "db:importer"
+    database: "mariadb:admin"
+    reports: "mariadb:reporter"
+    imports: "mariadb:importer"
 {{% /snippet %}}
 ```
 
-These relationships are then available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference).
-Each has its own credentials you can use to connect to the given database.
+These relationships are then available in the [service environment variables](#relationship-reference).
+Each has its own credentials, prefixed with the relationship name, you can use to connect to the given database.
 
 ## Configure the database
 
@@ -378,7 +451,7 @@ It offers the following properties:
 An example of setting these properties:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         properties:
