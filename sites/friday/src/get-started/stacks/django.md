@@ -89,10 +89,10 @@ Just below that, find the `deploy` section and change the following lines from:
 ```
 to:
 ```yaml
-            deploy: |
-              set -eux
-              python manage.py collectstatic --noinput
-              python manage.py migrate
+      deploy: |
+        set -eux
+        python manage.py collectstatic --noinput
+        python manage.py migrate
 ```
 
 ### Mounts
