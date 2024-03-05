@@ -42,44 +42,76 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
 {{% service-values-change %}}
 
 ```bash
-ELASTICSEARCH_USERNAME=
-ELASTICSEARCH_SCHEME=http
-ELASTICSEARCH_SERVICE=elasticsearch77
-ELASTICSEARCH_FRAGMENT=null
-ELASTICSEARCH_IP=123.456.78.90
-ELASTICSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch77.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-ELASTICSEARCH_PORT=9200
-ELASTICSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
-ELASTICSEARCH_HOST=elasticsearch.internal
-ELASTICSEARCH_REL=elasticsearch
-ELASTICSEARCH_PATH=
-ELASTICSEARCH_QUERY=[]
-ELASTICSEARCH_PASSWORD=ChangeMe
-ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
-ELASTICSEARCH_PUBLIC=false
-ELASTICSEARCH_HOST_MAPPED=false
+ESSEARCH_USERNAME=
+ESSEARCH_SCHEME=http
+ESSEARCH_SERVICE=elasticsearch
+ESSEARCH_FRAGMENT=null
+ESSEARCH_IP=123.456.78.90
+ESSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+ESSEARCH_PORT=9200
+ESSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
+ESSEARCH_HOST=essearch.internal
+ESSEARCH_REL=elasticsearch
+ESSEARCH_PATH=
+ESSEARCH_QUERY=[]
+ESSEARCH_PASSWORD=ChangeMe
+ESSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
+ESSEARCH_PUBLIC=false
+ESSEARCH_HOST_MAPPED=false
 ```
 
-For [premium versions](#supported-versions),
-the service type is `elasticsearch-enterprise`.
+<--->
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+{
+    "username": null,
+    "scheme": "http",
+    "service": "elasticsearch",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 9200,
+    "cluster": "azertyuiopqsdf-main-7rqtwti",
+    "host": "essearch.internal",
+    "rel": "elasticsearch",
+    "path": null,
+    "query": [],
+    "password": "ChangeMe",
+    "type": "elasticsearch:{{< latest "elasticsearch" >}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsearch[0].host')"
+export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.essearch[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
+
+For [premium versions](#supported-versions),
+the service type is `elasticsearch-enterprise`.
 
 ## Usage example
 
@@ -94,14 +126,14 @@ Note that configuration for [premium versions](#supported-versions) may differ s
 
 # Relationships enable an app container's access to a service.
 relationships:
-    essearch: "searchelastic:elasticsearch"
+    essearch: "elasticsearch:elasticsearch"
 {{% /snippet %}}
-{{% snippet name="searchelastic" config="service" placeholder="true"  %}}
+{{% snippet name="elasticsearch" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="searchelastic" relationship="essearch" var="ELASTIC_HOSTS" %}}
+{{% v2connect2app serviceName="elasticsearch" relationship="essearch" var="ELASTIC_HOSTS" %}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
@@ -135,7 +167,7 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
+{{% snippet name="elasticsearch" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         authentication:
@@ -153,14 +185,14 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
-To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:elasticsearch` as its upstream
-(where `search` is whatever you named the service).
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `elasticsearch:elasticsearch` as its upstream
+(where `elasticsearch` is whatever you named the service).
 
 For example:
 
 ```yaml {configFile="routes"}
-{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
-{{% snippet name="search" config="service" placeholder="true"  %}}
+{{% snippet name="elasticsearch:elasticsearch" config="route" subDom="es" redirect="false" / %}}
+{{% snippet name="elasticsearch" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         authentication:
@@ -175,7 +207,7 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
+{{% snippet name="elasticsearch" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     configuration:
         plugins:

@@ -101,7 +101,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "essearch",
-      "service_name": "searchelastic",
+      "service_name": "elasticsearch",
       "url": "/add-services/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
