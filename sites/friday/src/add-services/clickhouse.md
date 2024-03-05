@@ -23,48 +23,79 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 {{% vendor/name %}} plans on supporting long-term support ClickHouse versions in priority.
 
-## Relationship reference
+{{% relationship-ref-intro %}}
 
-After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
+{{< codetabs >}}
++++
+title= Service environment variables
++++
 
-Here is an example of information you can retrieve through these [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables),
-or by running `{{< vendor/cli >}} ssh env`.
+{{% service-values-change %}}
 
 ```bash
-CLICKHOUSE_USERNAME=main
-CLICKHOUSE_SCHEME=clickhouse
-CLICKHOUSE_SERVICE=clickhouse
-CLICKHOUSE_FRAGMENT=
-CLICKHOUSE_EPOCH=0
-CLICKHOUSE_IP=123.456.78.90
-CLICKHOUSE_INSTANCE_IPS=['123.456.78.90']
-CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-CLICKHOUSE_PORT=9000
-CLICKHOUSE_CLUSTER=azertyuiop-main-afdwftq
-CLICKHOUSE_HOST=clickhouse.internal
-CLICKHOUSE_REL=clickhouse
-CLICKHOUSE_PATH=main
-CLICKHOUSE_QUERY={'is_master': True}
-CLICKHOUSE_PASSWORD=ChangeMe
-CLICKHOUSE_TYPE=clickhouse:23
-CLICKHOUSE_PUBLIC=false
-CLICKHOUSE_HOST_MAPPED=false
+CLICKHOUSEDATABASE_USERNAME=main
+CLICKHOUSEDATABASE_FRAGMENT=
+CLICKHOUSEDATABASE_IP=123.456.78.90
+CLICKHOUSEDATABASE_CLUSTER=azertyuiop-main-afdwftq
+CLICKHOUSEDATABASE_HOST=clickhousedatabase.internal
+CLICKHOUSEDATABASE_PATH=main
+CLICKHOUSEDATABASE_QUERY={'is_master': True}
+CLICKHOUSEDATABASE_PASSWORD=ChangeMe
+CLICKHOUSEDATABASE_PORT=9000
+CLICKHOUSEDATABASE_HOST_MAPPED=false
+CLICKHOUSEDATABASE_SERVICE=clickhouse
+CLICKHOUSEDATABASE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CLICKHOUSEDATABASE_EPOCH=0
+CLICKHOUSEDATABASE_REL=clickhouse
+CLICKHOUSEDATABASE_SCHEME=clickhouse
+CLICKHOUSEDATABASE_TYPE=clickhouse:23
+CLICKHOUSEDATABASE_PUBLIC=false
 ```
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+{
+      "username": "main",
+      "fragment": null,
+      "ip": "123.456.78.90",
+      "cluster": "azertyuiop-main-afdwftq",
+      "host": "clickhousedatabase.internal",
+      "path": "main",
+      "query": {
+        "is_master": true
+      },
+      "password": "ChangeMe",
+      "port": 9000,
+      "host_mapped": false,
+      "service": "clickhouse",
+      "hostname": "azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+      "epoch": 0,
+      "rel": "clickhouse",
+      "scheme": "clickhouse",
+      "type": "clickhouse:23",
+      "public": false
+    }
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhouse[0].host')"
+export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhousedatabase[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
 
 ## Usage example
 
@@ -131,7 +162,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables).
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-specific-variables).
 
 ### Example configuration
 
@@ -150,7 +181,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse: "clickhouse:clickhouse"
+            clickhousedatabase: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:23
@@ -171,7 +202,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse: "clickhouse:clickhouse-http"
+            clickhousedatabase: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:23
