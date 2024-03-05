@@ -276,8 +276,8 @@
     "description": "",
     "disk": true,
     "docs": {
-      "relationship_name": "influxtimedb",
-      "service_name": "timedb",
+      "relationship_name": "influxdbdatabase",
+      "service_name": "influxdb",
       "url": "/add-services/influxdb.html"
     },
     "endpoint": "influxdb",

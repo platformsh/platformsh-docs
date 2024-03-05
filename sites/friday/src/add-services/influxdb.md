@@ -31,43 +31,77 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
 {{% service-values-change %}}
 
 ```bash
-INFLUXTIMEDB_HOSTNAME=azertyuiopqsdfghjklm.influxdb27.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-INFLUXTIMEDB_CLUSTER=azertyuiopqsdf-main-bvxea6i
-INFLUXTIMEDB_HOST=influxtimedb.internal
-INFLUXTIMEDB_SERVICE=timedb
-INFLUXTIMEDB_PORT=8086
-INFLUXTIMEDB_SCHEME=http
-INFLUXTIMEDB_REL=influxdb
-INFLUXTIMEDB_EPOCH=0
-INFLUXTIMEDB_FRAGMENT=
-INFLUXTIMEDB_PASSWORD=ChangeMe
-INFLUXTIMEDB_PATH=
-INFLUXTIMEDB_TYPE=influxdb:{{< latest "influxdb" >}}
-INFLUXTIMEDB_QUERY={'org': 'main', 'bucket': 'main', 'api_token': 'azertyuiopqsdfghjklm1234567890'}
-INFLUXTIMEDB_USERNAME=admin
-INFLUXTIMEDB_IP=123.456.78.90
-INFLUXTIMEDB_INSTANCE_IPS=['123.456.78.90']
-INFLUXTIMEDB_PUBLIC=false
-INFLUXTIMEDB_HOST_MAPPED=false
+INFLUXDBDATABASE_HOST=influxdbdatabase.internal
+INFLUXDBDATABASE_HOSTNAME=azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+INFLUXDBDATABASE_CLUSTER=azertyuiopqsdf-main-bvxea6i
+INFLUXDBDATABASE_SERVICE=influxdb
+INFLUXDBDATABASE_TYPE=influxdb:{{< latest "influxdb" >}}
+INFLUXDBDATABASE_REL=influxdb
+INFLUXDBDATABASE_SCHEME=http
+INFLUXDBDATABASE_USERNAME=admin
+INFLUXDBDATABASE_PASSWORD=ChangeMe
+INFLUXDBDATABASE_PORT=8086
+INFLUXDBDATABASE_PATH=
+INFLUXDBDATABASE_QUERY={'org': 'main', 'bucket': 'main', 'api_token': 'azertyuiopqsdfghjklm1234567890'}
+INFLUXDBDATABASE_FRAGMENT=
+INFLUXDBDATABASE_PUBLIC=false
+INFLUXDBDATABASE_HOST_MAPPED=false
+INFLUXDBDATABASE_IP=123.456.78.90
 ```
 
-{{% note %}}
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-to gather service information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
+
+```json
+    {
+      "host": "influxdbdatabase.internal",
+      "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+      "cluster": "azertyuiopqsdf-main-bvxea6i",
+      "service": "influxdb",
+      "type": "influxdb:{{< latest "influxdb" >}}",
+      "rel": "influxdb",
+      "scheme": "http",
+      "username": "admin",
+      "password": "ChangeMe",
+      "port": 8086,
+      "path": null,
+      "query": {
+        "org": "main",
+        "bucket": "main",
+        "api_token": "azertyuiopqsdfghjklm1234567890"
+      },
+      "fragment": null,
+      "public": false,
+      "host_mapped": false,
+      "ip": "123.456.78.90"
+    }
+```
+
+Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_INFLUXDB_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.influxtimedb[0].host')"
+export APP_INFLUXDB_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdbdatabase[0].host')"
 ```
 
-The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal.
-{{% /note %}}
+{{< /codetabs >}}
 
 ## Usage example
 
@@ -77,23 +111,23 @@ The structure of the `PLATFORM_RELATIONSHIP` environment variable can be obtaine
 {{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    influxtimedb: "timedb:influxdb"
+    influxdbdatabase: "influxdb:influxdb"
 {{% /snippet %}}
-{{% snippet name="timedb" config="service" placeholder="true"  %}}
+{{% snippet name="influxdb" config="service" placeholder="true"  %}}
     type: influxdb:{{% latest "influxdb" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
+{{% v2connect2app serviceName="influxdb" relationship="influxdbdatabase" var="INFLUX_HOST"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
-export INFLUX_USER=${INFLUXTIMEDB_USERNAME}
-export INFLUX_HOST=${INFLUXTIMEDB_HOST}
-export INFLUX_ORG=$(echo $INFLUXTIMEDB_QUERY | jq -r ".org")
-export INFLUX_TOKEN=$(echo $INFLUXTIMEDB_QUERY | jq -r ".api_token")
-export INFLUX_BUCKET=$(echo $INFLUXTIMEDB_QUERY | jq -r ".bucket")
+export INFLUX_USER=${INFLUXDBDATABASE_USERNAME}
+export INFLUX_HOST=${INFLUXDBDATABASE_HOST}
+export INFLUX_ORG=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".org")
+export INFLUX_TOKEN=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".api_token")
+export INFLUX_BUCKET=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".bucket")
 ```
 
 {{% /v2connect2app %}}
@@ -112,7 +146,7 @@ To export your data from InfluxDB, follow these steps:
    This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
 
    ```bash
-   SSH tunnel opened to influxdb at: http://127.0.0.1:30000
+   SSH tunnel opened to influxdbdatabase at: http://127.0.0.1:30000
    ```
 
 3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
@@ -141,7 +175,7 @@ If so, to ensure your upgrade is successful, make the following changes to your 
 - Rename the `user` key to `username`.
 - Move the `org`, `bucket` and `api_token` keys so they're contained in a dictionary under the `query` key.
 
-If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference), aside from those addressed above:
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as environment variable from the [service environment variable](#relationship-reference), aside from those addressed above:
 
 ### From a 1.x version
 
@@ -157,6 +191,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables).
+You can retrieve your new credentials through the [service environment variables](development/variables.html#service-specific-variables).
 
 {{< /note >}}

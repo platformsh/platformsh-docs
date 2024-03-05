@@ -112,7 +112,7 @@ export CACHE_URL="${MEMCACHEDCACHE_HOST}:${MEMCACHEDCACHE_PORT}"
 
 To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool.
 Assuming your Memcached relationship is named `memcachedcache`, the host name `MEMCACHEDCACHE_HOST` and port number `MEMCACHEDCACHE_PORT` obtained from the [service environment variable](#relationship-reference) would be `memcachedcache.internal` and `11211`.
-Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+<br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash {location="Terminal"}
 netcat memcachedcache.internal 11211
