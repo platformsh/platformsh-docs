@@ -356,7 +356,7 @@
     "disk": true,
     "docs": {
       "relationship_name": "kafkaqueue",
-      "service_name": "queuekafka",
+      "service_name": "kafka",
       "url": "/add-services/kafka.html"
     },
     "endpoint": "kafka",
