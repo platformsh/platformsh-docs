@@ -66,7 +66,7 @@ MONGODBDATABASE_REL=mongodb
 MONGODBDATABASE_QUERY={'is_master': True}
 MONGODBDATABASE_PATH=main
 MONGODBDATABASE_PASSWORD=
-MONGODBDATABASE_TYPE=mongodb:{{% latest "mongodb-enterprise" %}}
+MONGODBDATABASE_TYPE=mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 MONGODBDATABASE_PORT=27017
 ```
 
@@ -94,7 +94,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     },
     "path": "main",
     "password": null,
-    "type": "mongodb:{{% latest "mongodb-enterprise" %}}",
+    "type": "mongodb-enterprise:{{% latest "mongodb-enterprise" %}}",
     "port": 27017
 }
 ```
