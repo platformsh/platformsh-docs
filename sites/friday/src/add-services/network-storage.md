@@ -86,7 +86,7 @@ name: 'app'
 type: 'php:7.2'
 
 relationships:
-    database: 'db:mysql'
+    mariadbdatabase: 'mariadb:mysql'
 
 hooks:
   # ...
