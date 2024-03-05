@@ -32,6 +32,10 @@ https://{default}/foo:
     to: https://192.0.2.0:8000
 ```
 
+{{< note >}}
+Cache is disabled on this type of route and cannot be enabled.
+{{< /note >}}
+
 ## URL paths
 
 In the basic example above, the route preserves the URL path, `/foo`, in the request.
@@ -120,5 +124,5 @@ sequenceDiagram
 This architecture makes the router of a single project into the central element of your app.
 This setup may make scaling more difficult as the router scales with the size of that project.
 The router can become a bottleneck for all external sites and acts as a single point of failure.
-​
+
 For larger projects, you should handle multiple websites with the same base URL via a [CDN](../domains/cdn/_index.md).
