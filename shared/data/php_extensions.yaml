@@ -634,6 +634,8 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
+      - enchant
+      - event
       - geoip
       - gmp
       - igbinary
@@ -645,6 +647,7 @@ grid:
       - mailparse
       - mcrypt
       - memcached
+      - mongodb
       - msgpack
       - newrelic
       - oauth
@@ -660,16 +663,19 @@ grid:
       - recode
       - redis
       - shmop
+      - snmp
       - sourceguardian
       - sqlsrv
-      - snmp
       - ssh2
       - tideways
       - tideways_xhprof
       - tidy
+      - uuid
       - wddx
+      - xdebug
       - xmlrpc
       - xsl
+      - yaml
       - zbarcode
     default:
       - bcmath
@@ -679,11 +685,10 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
-      - gd
+       gd
       - gettext
       - iconv
       - intl
@@ -692,12 +697,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
