@@ -586,7 +586,6 @@ grid:
       - imap
       - interbase
       - ldap
-      - mcrypt
       - memcache
       - memcached
       - mongo
@@ -600,6 +599,7 @@ grid:
       - pdo_pgsql
       - pecl-http
       - pgsql
+      - phpdbg
       - pinba
       - propro
       - pspell
@@ -609,16 +609,16 @@ grid:
       - redis
       - snmp
       - ssh2
+      - sybase
       - tidy
       - xdebug
       - xhprof
       - xmlrpc
       - xsl
     default:
-      - curl
-      - gd
       - intl
       - json
+      - mcrypt
       - mysql
       - mysqli
       - mysqlnd
