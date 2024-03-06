@@ -534,7 +534,6 @@ grid:
       - imap
       - interbase
       - ldap
-      - mcrypt
       - memcache
       - memcached
       - mongo
@@ -552,6 +551,7 @@ grid:
       - redis
       - snmp
       - spplus
+      - sybase
       - ssh2
       - tidy
       - xcache
@@ -563,11 +563,12 @@ grid:
       - curl
       - gd
       - intl
+      - mcrypt
       - mysql
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
