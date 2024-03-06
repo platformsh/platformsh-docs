@@ -195,11 +195,17 @@ For specific frameworks, you can implement logic to override global configuratio
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
-### Service-specific variables
-For each service defined as a relationship to your application, {{% vendor/name %}} automatically generates corresponding environment variables within your application container, in the ${{< variable "RELATIONSHIP_NAME" >}}-_{{< variable "SERVICE_PROPERTY" >}} format.
+### Service environment variables
 
-Example:
-For a relationship named ``database`` to a service named `postgresl`, these environment variables are automatically generated in your `app` container:
+For each service defined via a relationship to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the `$"RELATIONSHIP-NAME"_"SERVICE-PROPERTY"` format.
+
+**Example:**
+
+For a relationship named ``database`` to a service named `postgresl`,
+the following environment variables are automatically generated in your `app` container:
+
 ```bash
 DATABASE_URL=pgsql://main:main@postgresql.internal:5432/main
 DATABASE_INSTANCE_IPS=['123.456.78.901']
