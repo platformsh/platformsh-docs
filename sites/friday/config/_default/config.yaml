@@ -17,9 +17,9 @@ languages:
     languageName: English
     weight: 10
 
-disableKinds: ["taxonomy", "taxonomyTerm"]
+disableKinds: ["taxonomy"]
 
-baseURL: "https://docs.upsun.com"
+#baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
@@ -53,6 +53,7 @@ module:
         - source: "../platform/src"
           target: "content"
           excludeFiles:
+              - "_index.md"
 
               - "add-services/*"
               # - "add-services/network-storage.md"
@@ -70,7 +71,7 @@ module:
 
               - "dedicated-gen-3/*"
 
-              # - "define-routes/*"
+              - "define-routes/*"
 
               - "development/*"
 

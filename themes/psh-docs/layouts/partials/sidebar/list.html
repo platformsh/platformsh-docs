@@ -14,16 +14,13 @@
 {{ $currentPage := .CurrentPage }}
 {{ with $currentPage.File }}
   <!-- If on home page or in the current section - @todo not clear to me how to make this part dynamic yet.-->
-  {{ if or ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) }}
+  {{ if or ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) ( hasPrefix ( replace . "start/" "") $currentSection ) }}
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}
 
 <!-- If in Get started, add stack choice to nav links -->
 {{ $getStartedAttribute := "" }}
-{{ if and ( hasPrefix .Context.RelPermalink "/get-started" ) ( hasPrefix $currentPage.RelPermalink "/get-started") }}
-  {{ $getStartedAttribute = ":href=\"$el.getAttribute('destination') + '?stack=' + $data.stack\"" }}
-{{ end }}
 
 <!-- Handle pages in `other` directory separately -->
 {{ if eq $currentSection "other" }}

@@ -67,14 +67,16 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 
 ### Switching type and version
 
-If you change the service type, your data is removed.
-
 To switch service types:
 
 1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
-1. Specify a new service type.
-1. [Import your data](#importing-data) into the new service.
+   {{% note %}}
+   Changing the service type, especially when done repeatedly, may result in data loss.
+   Backing up your data is therefore crucial.
+   {{% /note %}}
+2. Remove the old service from your [service configuration](../_index.md).
+3. Specify a new service type.
+4. [Import your data](#importing-data) into the new service.
 
 ### Downgrade
 

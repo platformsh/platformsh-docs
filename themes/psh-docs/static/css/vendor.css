@@ -49,12 +49,6 @@ header {
     --tw-gradient-from: #BFB5FF !important;
 }
 
-.hover\:bg-pink:hover {
-    --tw-bg-opacity: 1;
-    background: #4D38CC !important;
-    color: white !important;
-}
-
 .recruit-banner {
     background-color: #CCF6FB !important;
 }
@@ -100,6 +94,12 @@ body {
     color: #4D38CC !important;
 }
 
+.hover\:bg-pink:hover {
+  --tw-bg-opacity: 1;
+  background: #4D38CC !important;
+  color: white !important;
+}
+
 .text-skye-dark,
 .\[\&_a\]\:text-skye-dark a {
     color: #6046FF !important;
@@ -119,4 +119,8 @@ body {
 
 h4.font-semibold {
     font-weight: 400;
+}
+
+summary {
+  cursor: pointer;
 }

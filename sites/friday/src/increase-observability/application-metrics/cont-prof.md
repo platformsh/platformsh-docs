@@ -24,6 +24,16 @@ It is composed of several views: flame graph, table view, sandwich view and a sp
 
 Each view helps make sense of the profiling data for the selected dimension and time frame. The available dimensions vary with the runtime profiled.
 
+## Color-coded node dimensions
+
+{{< vendor/name >}} continuous profiling dashboard employs a color-coded system to represent each dimension, ensuring consistency across different runtimes.
+
+The intensity of a node's background color is directly proportional to the resources it consumes. As resource consumption increases, so does the vibrancy of the background color. This visual representation pinpoints application areas that may require optimization.
+
+![Routes](/images/observability/cont-prof-color-code.png "0.5")
+
+The contrast between the dimension color and the greyscale of regular nodes has been designed to ensure accessibility for all users and allow colorblind users to benefit from this feature.
+
 ## Flame graph
 
 The flame graph is a hierarchical visualization of the contribution of the different function calls to the selected dimensions.

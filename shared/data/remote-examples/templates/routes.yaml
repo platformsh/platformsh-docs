@@ -12,7 +12,7 @@ repos:
     - spring-mvc-maven-mongodb
     - micronaut
     - gatsby
-    - drupal9
+    - drupal10
     - wordpress-vanilla
     - wordpress-composer
     - typo3

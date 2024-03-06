@@ -303,16 +303,16 @@ https://docs.upsun.com/:
       # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
       "/anchors/variables/app.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
       "/anchors/ssh/add-key.html": { "to": "/development/ssh/ssh-keys.html#add-ssh-keys", "code": 301, "prefix": false }
-      "/anchors/create-project.html": { "to": "/get-started.html", "code": 301, "prefix": false }
+      "/anchors/create-project.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/deploy-key.html": { "to": "/administration/web/configure-project.html#deploy-key", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/dedicated.html": { "to": "https://docs.platform.sh/dedicated/overview.html", "code": 301, "prefix": false }
       "/anchors/dns.html": { "to": "/golive/steps/dns.html", "code": 301, "prefix": false }
-      "/anchors/download-code.html": { "to": "/get-started.html", "code": 301, "prefix": false }
+      "/anchors/download-code.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/domain.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
       "/anchors/subdomains.html": { "to": "/domains/steps/subdomains.html", "code": 301, "prefix": false }
-      "/anchors/project-configuration.html": { "to": "/get-started.html", "code": 301, "prefix": false }
-      "/anchors/getting-started.html": { "to": "/get-started.html", "code": 301, "prefix": false }
+      "/anchors/project-configuration.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
+      "/anchors/getting-started.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/environments/inactive.html": { "to": "/glossary.html#inactive-environment", "code": 301, "prefix": false }
       "/anchors/crons/paused.html": { "to": "/configuration/app/cron.html#paused-crons", "code": 301, "prefix": false }
       "/anchors/go-live.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }

@@ -614,3 +614,11 @@ applications:
     ```
 
 {{< repolist lang="php" displayName="PHP" >}}
+
+## Frameworks
+
+All major PHP web frameworks can be deployed on {{% vendor/name %}}.
+See dedicated guides for deploying and working with them:
+
+- [Laravel](/get-started/stacks/laravel.md)
+- [Symfony](/get-started/stacks/symfony/_index.md)
