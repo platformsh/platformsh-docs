@@ -85,7 +85,7 @@ Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
 Then, the current containers are stopped and the new ones are started.
 {{% vendor/name %}} then opens networking connections between the various containers,
 as specified in `{{< vendor/configfile "app" >}}`.
-The connection information for each service is available from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md).
+The connection information for each service is available from the [service environment variables](/development/variables/_index.md#service-environment-variables), or the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md).
 
 Similar to the build step, you can define a [deploy hook](/create-apps/hooks/hooks-comparison.md#deploy-hook) to prepare your app.
 Your app has complete access to all services, but the filesystem where your code lives is now read-only.
