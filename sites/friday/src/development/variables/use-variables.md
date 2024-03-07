@@ -342,9 +342,6 @@ console.log(stuffColors);
 They're mostly prefixed with `PLATFORM_` to differentiate them from user-provided values.
 You can't set or update them directly.
 
-The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
-which tells the app how to connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.
-
 The following table presents all available variables
 and whether they're available at build time (during [build hooks](../../administration/../create-apps/hooks/hooks-comparison.md#build-hook))
 and at runtime.
@@ -362,7 +359,7 @@ and at runtime.
 | `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
 | `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
+| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md).</br></br>  Note that the `{{< vendor/prefix >}}_RELATIONSHIPS` is automatically broken down into [service environment variables](./_index.md#service-environment-variables), so your app can seamlessly connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.</br></br>For some advanced use cases, you may need to gather `{{< vendor/prefix >}}_RELATIONSHIPS` information in a ``.environment`` file. See how to [use ``.env`` files](./set-variables.md#use-env-files), and refer to [dedicated service pages](/add-services/_index.md) for examples.|
 | `{{< vendor/prefix >}}_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). Note that this information is also available in your `/run/config.json` file. |
 | `{{< vendor/prefix >}}_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |

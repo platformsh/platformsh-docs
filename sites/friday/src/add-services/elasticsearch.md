@@ -137,7 +137,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export ELASTIC_SCHEME=${ESSEARCH_SCHEME}
 export ELASTIC_HOST=${ESSEARCH_HOST}
 export ELASTIC_PORT=${ESSEARCH_PORT}

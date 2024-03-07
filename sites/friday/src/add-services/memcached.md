@@ -102,7 +102,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Surface a Memcached connection string for use in app.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export CACHE_URL="${MEMCACHEDCACHE_HOST}:${MEMCACHEDCACHE_PORT}"
 ```
 

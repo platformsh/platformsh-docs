@@ -95,7 +95,7 @@ export APP_VAULT_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.vault_secret[0].hos
 
 {{< /codetabs >}}
 
-## Add Vault
+## Usage example
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
 

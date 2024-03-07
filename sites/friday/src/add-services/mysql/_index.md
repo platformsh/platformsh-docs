@@ -59,7 +59,6 @@ To downgrade your database, follow these steps:
 1. Add a new service with a different name and your desired version.
 1. [Import your data](#importing-data) into the new service.
 
-
 {{% relationship-ref-intro %}}
 
 ### MariaDB reference
@@ -70,11 +69,6 @@ title= Service environment variables
 +++
 
 {{% service-values-change %}}
-
-After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
-
-Here is an example of information you can retrieve through these [service environment variables](/development/variables/_index.md#service-specific-variables),
-or by running `{{< vendor/cli >}} ssh env`.
 
 ```bash
 MARIADBDATABASE_USERNAME=user
@@ -148,11 +142,6 @@ title= Service environment variables
 +++
 
 {{% service-values-change %}}
-
-After you've defined a relationship between your service and app containers, {{% vendor/name %}} automatically generates corresponding environment variables within your application container.
-
-Here is an example of information you can retrieve through these [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables/_index.md#service-specific-variables),
-or by running `{{< vendor/cli >}} ssh env`.
 
 ```bash
 ORACLEDATABASE_USERNAME=user
@@ -242,7 +231,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export DB_CONNECTION==${MARIADBDATABASE_SCHEME}
 export DB_USERNAME=${MARIADBDATABASE_USERNAME}
 export DB_PASSWORD=${MARIADBDATABASE_PASSWORD}

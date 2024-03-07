@@ -240,7 +240,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export CACHE_HOST="${REDISCACHE_HOST}"
 export CACHE_PORT="${REDISCACHE_PORT}"
 export CACHE_PASSWORD="${REDISCACHE_PASSWORD}"
@@ -363,7 +363,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export CACHE_HOST="${REDISCACHE_HOST}"
 export CACHE_PORT="${REDISCACHE_PORT}"
 export CACHE_PASSWORD="${REDISCACHE_PASSWORD}"

@@ -63,7 +63,7 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 }
 ```
 
-## Add Vault
+## Usage example
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
 

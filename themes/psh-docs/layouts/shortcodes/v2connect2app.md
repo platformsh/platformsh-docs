@@ -19,7 +19,7 @@ The above file &mdash; `.environment` in the `myapp` directory &mdash; is automa
 {{ if eq .Site.Params.vendor.config.version 1 }}
 Note that `{{ $var }}`, and all {{ .Site.Params.vendor.name }}-provided environment variables like `{{ .Site.Params.vendor.env_prefix }}_RELATIONSHIPS`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
 {{ else }}
-Note that `{{ $var }}`, and all [{{ .Site.Params.vendor.name }}-service environment variables](/development/variables/_index.md#service-specific-variables) like `{{ upper $relationship }}_HOST`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
+Note that `{{ $var }}`, and all [{{ .Site.Params.vendor.name }}-service environment variables](/development/variables/_index.md#service-environment-variables) like `{{ upper $relationship }}_HOST`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
 {{ end }}
 A file very similar to this is generated automatically for your when using the `{{ .Site.Params.vendor.cli }} ify` command to [migrate a codebase to {{ .Site.Params.vendor.name }}](/get-started).
 <!-- shortcode end {{ .Name }} -->

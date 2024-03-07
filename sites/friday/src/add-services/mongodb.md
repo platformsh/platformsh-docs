@@ -139,7 +139,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export DB_CONNECTION=="${MONGODBDATABASE_SCHEME}"
 export DB_USERNAME="${MONGODBDATABASE_USERNAME}"
 export DB_PASSWORD="${MONGODBDATABASE_PASSWORD}"

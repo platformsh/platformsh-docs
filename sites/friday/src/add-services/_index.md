@@ -161,10 +161,10 @@ You can connect through your app or by opening an SSH tunnel to access the servi
 title=In an app
 +++
 
-Once a service is running and exposed as a relationship,
-its credentials (such as the host, username, and password) are automatically available as [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variables](/development/variables.html#service-specific-variables),
+Once a service is running and exposed via a relationship,
+its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables.html#service-environment-variables),
 in the `$"RELATIONSHIP-NAME"_"SERVICE-PROPERTY"` format.
-The available information is documented on each service's page along with sample code for how to connect to it from your app.
+The available information is documented on each service's page, along with sample code for how to connect to it from your app.
 
 The service environment variable names are fixed, but the values may change if you change the relationship name to the service.
 So **use the environment variable** rather than hard coding the values.

@@ -117,7 +117,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export QUEUE_SCHEME=${RABBITMQQUEUE_SCHEME}
 export QUEUE_USERNAME=${RABBITMQQUEUE_USERNAME}
 export QUEUE_PASSWORD=${RABBITMQQUEUE_PASSWORD}

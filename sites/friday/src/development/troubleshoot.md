@@ -187,8 +187,8 @@ For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql
 ### Permission error creating a database
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
-The database is created for you
-and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-provided-variables).
+The database is created for you and can be found in the `"SERVICE_NAME"_"PATH"` [service environment variable](./variables/_index.md#service-environment-variables),
+or in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-provided-variables).
 
 ## Storage
 

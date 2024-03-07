@@ -128,7 +128,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export OS_SCHEME=${OSSEARCH_SCHEME}
 export OS_HOST=${OSSEARCH_HOST}
 export OS_PORT=${OSSEARCH_PORT}
@@ -168,7 +168,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
-in the `OSSEARCH_USERNAME` and `OSSEARCH_PASSWORD` [`PLATFORM_RELATIONSHIPS` environment variables](/development/variables/use-variables.md#use-provided-variables).
+in the `OSSEARCH_USERNAME` and `OSSEARCH_PASSWORD` [service environment variables](/development/variables/_index.md#service-environment-variables).
 {{% service-values-change %}}
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.

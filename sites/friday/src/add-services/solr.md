@@ -116,7 +116,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export SOLR_HOST=${SOLRSEARCH_HOST}
 export SOLR_PORT=${SOLRSEARCH_PORT}
 export SOLR_PATH=${SOLRSEARCH_PATH}

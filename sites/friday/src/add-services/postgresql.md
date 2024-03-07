@@ -125,7 +125,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export DB_CONNECTION="${POSTGRESQLDATABASE_SCHEME}"
 export DB_USERNAME="${POSTGRESQLDATABASE_USERNAME}"
 export DB_PASSWORD="${POSTGRESQLDATABASE_PASSWORD}"
@@ -299,7 +299,7 @@ relationships:
 ```
 
 Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
-They'll be available in the [service environment variables](/development/variables/_index.md#service-specific-variables) and all have the same structure documented [above](#relationship-reference), but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+They'll be available in the [service environment variables](/development/variables/_index.md#service-environment-variables) and all have the same structure documented [above](#relationship-reference), but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 

@@ -14,7 +14,7 @@ Note that you can't customize these automatically generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the {{ if eq .Site.Params.vendor.config.version 1 }}`{{ .Site.Params.vendor.env_prefix }}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables){{ else }}[service environment variables](/development/variables/_index.md#service-specific-variables){{ end }} within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+through the {{ if eq .Site.Params.vendor.config.version 1 }}`{{ .Site.Params.vendor.env_prefix }}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables){{ else }}[service environment variables](/development/variables/_index.md#service-environment-variables){{ end }} within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
 

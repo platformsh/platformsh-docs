@@ -52,7 +52,8 @@ Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
+  This information be read from the [service environment variables](./_index.md#service-environment-variables),
+  or the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
   This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
@@ -189,13 +190,13 @@ applications:
                 memory_limit: "256M"
 ```
 
-### Framework-specific variables
+## Framework-specific variables
 
 For specific frameworks, you can implement logic to override global configurations with [environment-specific variables](./set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
-### Service environment variables
+## Service environment variables
 
 For each service defined via a relationship to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,

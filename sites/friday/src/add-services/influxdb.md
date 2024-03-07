@@ -122,7 +122,7 @@ relationships:
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-specific-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export INFLUX_USER=${INFLUXDBDATABASE_USERNAME}
 export INFLUX_HOST=${INFLUXDBDATABASE_HOST}
 export INFLUX_ORG=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".org")
@@ -191,6 +191,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [service environment variables](development/variables.html#service-specific-variables).
+You can retrieve your new credentials through the [service environment variables](development/variables.html#service-environment-variables).
 
 {{< /note >}}
