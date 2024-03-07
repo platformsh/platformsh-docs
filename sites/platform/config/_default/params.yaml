@@ -25,6 +25,7 @@ vendor:
     config:
         version: 1
         dir: .platform
+        filename: applications.yaml
         files:
             routes: .platform/routes.yaml
             services: .platform/services.yaml
