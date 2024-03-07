@@ -77,7 +77,7 @@ Consider this `regexp` redirect:
     to: https://example.com/to$1
 ```
 
-It achieves the same result as this standard redirect:
+It achieves the same result as this basic redirect:
 
 ```yaml
 '/from':
