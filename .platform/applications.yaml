@@ -66,7 +66,7 @@
     size: S
 
 - # The name of this application, which must be unique within a project.
-    name: 'friday'
+    name: 'upsun'
 
     # The type key specifies the language and version for your application.
     type: 'nodejs:20'
@@ -75,7 +75,7 @@
     variables:
         env:
             HUGOVERSION: 0.116.0
-            SITE_DIR: 'sites/friday'
+            SITE_DIR: 'sites/upsun'
 
     build:
         flavor: none
@@ -111,7 +111,7 @@
         locations:
             '/':
                 # The public directory of the application relative to its root.
-                root: 'sites/friday/public'
+                root: 'sites/upsun/public'
                 passthru: true
                 index: ['index.html']
                 scripts: false
@@ -124,8 +124,8 @@
     disk: 1024
 
     mounts:
-        "sites/friday/public/scripts/xss/dist/config":
+        "sites/upsun/public/scripts/xss/dist/config":
             source: local
-            source_path: "sites/friday/config"
+            source_path: "sites/upsun/config"
 
     size: S
