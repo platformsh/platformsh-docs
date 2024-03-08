@@ -48,7 +48,7 @@ Note that you can [keep an eye on those costs](/manage-resources/resource-billin
 | Strategy | Description |
 | ---------| ----------- |
 | `default`  | Initializes new containers using the [{{% vendor/name %}} default resources](#default-resources).</br>This strategy applies when you first deploy your project (or new container) unless you explicitly specify a different strategy, or allocate resources manually via the `resources:set` CLI command.  |
-| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI.</br></br> This strategy allows you to set the exact resources you want, with a single deployment. Other strategies may require fine-tuning, and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
+| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](https://console.upsun.com/), or using `resources:set` in the CLI.</br></br> This strategy allows you to set the exact resources you want, with a single deployment. Other strategies may require fine-tuning, and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
 | `minimum`  | Initializes new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes new containers using the same resources as on the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 | `child`    | Initializes new containers using the same resources as on the child environment. |
@@ -260,16 +260,16 @@ Default: `child`
 {{% /note %}} 
 
 When you [merge](/glossary.md#merge) a child environment into its parent environment,
-any apps and services you created on the child are merged and therefore created on the parent. 
+any apps and services you created on the child are merged and therefore created on the parent.
+
 When this happens, any new app or service container created on the parent environment is granted the same resources as on the child environment.
+However, you can specify a different resource initialization strategy.
 
 {{% note %}}
 
 Any other container already running on the parent environment keeps its resources.
 
 {{% /note %}}
-
-However, you can specify a different resource initialization strategy.
 
 {{< codetabs >}}
 
@@ -352,21 +352,24 @@ title=Using the CLI
 When you [restore a backup](/environments/restore.md) using the CLI,
 you can restore it to your current environment or a different environment.
 
-When the backup restoration is performed on your current environment,
-each container already running on the environment keeps its existing resources.
+## Backup restoration to your current environment
+
+Each container already running on the environment keeps its existing resources.
 
 You may have deleted containers between the moment you took the backup, and the moment you restore it.
 By default, such containers are restored to your current environment using the `backup` strategy,
 which grants them the same resources they were using when the backup was taken.
 However, you can specify a different resource initialization strategy for those previously deleted containers.
 
-When the backup restoration is performed on a different environment,
-the `backup` strategy also applies by default.
-However, as all the apps and services are initialized as new containers on this environment,
-you can specify a different resource initialization strategy. 
+## Backup restoration to a different environment
 
-To specify a resource initialization strategy when you restore a backup using the CLI,
-run the following command:
+The `backup` strategy also applies by default.
+However, as all the apps and services are initialized as new containers on the environment,
+you can specify a different resource initialization strategy for all of them. 
+
+## Specify a resource initialization strategy when restoring a backup via the CLI
+
+Run the following command:
 
 ```bash {location="Terminal"}
 upsun backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
