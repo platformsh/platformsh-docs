@@ -462,16 +462,18 @@ title= `PLATFORM_RELATIONSHIPS` environment variable
 
    # Map the database information from the PLATFORM_RELATIONSHIPS variable into the YAML file.
    # Use this process to use whatever variable names your app needs.
+   # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/use-variables.md#use-provided-variables.
 
    printf "host: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host") >> config/db.yaml
    printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
    ```
+{{< /codetabs >}}
 
 5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
 
  ```yaml {configFile="app"}
    applications:
-    {{< variable "APP_NAME" >}}  
+    {{< variable "APP_NAME" >}}
        hooks:
            deploy: |
                bash export-config.sh

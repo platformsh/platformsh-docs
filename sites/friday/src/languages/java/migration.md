@@ -137,14 +137,35 @@ The most common mechanisms are listed below.
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you can configure the application directly from environment variables.
 Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-Service credentials are available within the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-provided-variables).
+Service credentials are available within the [service environment variables](/development/variables/_index.md#service-environment-variables) or [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+```bash {location=".environment"}
+export DB_HOST=$DATABASE_HOST
+```
+This sets environment variables with names your app needs and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
 This variable is a base64-encoded JSON object with keys of the relationship name and values of arrays of relationship endpoint definitions.
 
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
-```shell
+```bash {location=".environment"}
 export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
 ```
+
+This sets environment variables with names your app needs and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 | Article                                                      | Source                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -161,16 +182,48 @@ To reduce the number of lines in the application file and to make it cleaner,
 you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
 
 E.g.:
+Here is example how to gather relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves, or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+As an example, your application has a relationship named ``database`` to a database service named `mariadb`:
 
-```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
-export DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password"`
-export DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username"`
-export DB_DATABASE=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path"`
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+```bash {location=".environment"}
+export DB_HOST=${DATABASE_HOST}
+export DB_PASSWORD=${DATABASE_PASSWORD}
+export DB_USER=${DATABASE_USERNAME}
+export DB_DATABASE=${DATABASE_PATH}
 export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
 export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
+
+This sets environment variables with names your app needs and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title= `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable
++++
+This `{{% vendor/prefix %}}_RELATIONSHIPS` variable is a base64-encoded JSON object with keys of the relationship name and values of arrays of relationship endpoint definitions.
+
+{{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
+
+```bash {location=".environment"}
+export DB_HOST=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
+export DB_PASSWORD=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password"`
+export DB_USER=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username"`
+export DB_DATABASE=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path"`
+export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
+export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
+```
+
+This sets environment variables with names your app needs and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 This `.environment` can interact to each application file. E.g.:
 
