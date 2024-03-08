@@ -200,7 +200,7 @@ but still adapt the behavior to each environment.
 
 For each service defined via a relationship to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the `$"RELATIONSHIP-NAME"_"SERVICE-PROPERTY"` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 **Example:**
 
