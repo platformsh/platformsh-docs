@@ -20,8 +20,8 @@ vendor:
         active: true
         link: https://upsun.com/register/
         cta: Get your Upsun free trial
-        title: Upsun Beta
-        description: "Access our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>Get your free trial by clicking the link below.<br/><br/>"
+        title: Sign up for Upsun
+        description: "Get your free trial by clicking the link below.<br/><br/>"
     config:
         version: 1
         dir: .platform
@@ -58,7 +58,7 @@ gtm: "GTM-KRPJGT4"
 headerActions:
   headerActionPrimary:
     destination: https://auth.api.platform.sh/register
-    linkText: Free trial
+    linkText: Sign up
   headerActionSecondary:
     destination: https://console.platform.sh/
     linkText: Log in
