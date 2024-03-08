@@ -65,10 +65,10 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 ```yaml
     {
-      "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
+      "host": "influxdb.internal",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
       "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb27",
+      "service": "influxdb",
       "type": "influxdb:2.7",
       "rel": "influxdb",
       "scheme": "http",
@@ -111,11 +111,11 @@ relationships:
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for common InfluxDB credentials.
-export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].username")
-export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].host")
-export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.org")
-export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.api_token")
-export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
+export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].username")
+export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].host")
+export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.org")
+export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.api_token")
+export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.bucket")
 ```
 
 {{< /v2connect2app >}}
@@ -167,10 +167,10 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 
 ```yaml
     {
-      "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
+      "host": "influxdb.internal",
+      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
       "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb27",
+      "service": "influxdb",
       "type": "influxdb:{{< latest "influxdb" >}}",
       "rel": "influxdb",
       "scheme": "http",

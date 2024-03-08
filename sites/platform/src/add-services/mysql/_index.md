@@ -192,10 +192,10 @@ Example configuration:
 {
     "username": "user",
     "scheme": "mysql",
-    "service": "mariadb104",
+    "service": "mariadb",
     "fragment": null,
     "ip": "169.254.255.221",
-    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 3306,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "mysql.internal",
@@ -217,13 +217,13 @@ Example configuration:
 {
     "username": "user",
     "scheme": "mysql",
-    "service": "oraclemysql",
+    "service": "oracle-mysql",
     "fragment": null,
     "ip": "169.254.150.190",
-    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "7q5hllmmhoeuthu6th7qovoone.oracle-mysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 3306,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "oraclemysql.internal",
+    "host": "oracle-mysql.internal",
     "rel": "mysql",
     "path": "main",
     "query": {
@@ -315,7 +315,7 @@ Removing a schema from the list of `schemas` on further deployments results in t
 
 ### Multiple databases example
 
-The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
+The following configuration example creates a single MariaDB service named `mariadb` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
 * `admin` has full access to both databases.
@@ -355,9 +355,15 @@ Expose these endpoints to your app as relationships in your [app configuration](
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: "db:admin"
-    reports: "db:reporter"
-    imports: "db:importer"
+    database:
+        service: mariadb
+        endpoint: admin
+    reports:
+        service: mariadb
+        endpoint: reporter
+    imports:
+        service: mariadb
+        endpoint: importer
 {{% /snippet %}}
 ```
 

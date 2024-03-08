@@ -84,10 +84,10 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 {
     "username": null,
     "scheme": "http",
-    "service": "elasticsearch77",
+    "service": "elasticsearch",
     "fragment": null,
     "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "elasticsearch.internal",

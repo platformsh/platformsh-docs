@@ -74,10 +74,10 @@ switch to [a supported version](#supported-versions).
 {
     "username": null,
     "scheme": "http",
-    "service": "opensearch12",
+    "service": "opensearch",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "opensearch.internal",
@@ -118,13 +118,13 @@ relationships:
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].scheme")
-export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].host")
-export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].port")
+export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].scheme")
+export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].host")
+export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].port")
 
 # Surface more common OpenSearch connection string variables for use in app.
-export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].username")
-export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".searchopen[0].password")
+export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".opensearch[0].username")
+export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".opensearch[0].password")
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 

@@ -87,12 +87,15 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 applications:
     app: #The name of the app, which must be unique within the project.
     type: python:{{% latest "python" %}}
+
     mounts:
         test:
             source: storage
             source_path: test
+
     relationships:
-        database: 'mysqldb:mysql'
+        mysql: 
+
     workers:
         queue:
             commands:
@@ -102,6 +105,7 @@ applications:
             commands:
                 start: |
                     python mail-worker.py
+
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -111,6 +115,7 @@ services:
 applications:
     app: #The name of the app, which must be unique within the project.
     type: python:{{% latest "python" %}}
+
     workers:
         queue:
             commands:
@@ -121,7 +126,7 @@ applications:
                     source: storage
                     source_path: test
             relationships:
-                database: 'mysqldb:mysql'
+                mysql: 
         mail:
             commands:
                 start: |
@@ -131,7 +136,8 @@ applications:
                     source: storage
                     source_path: test
             relationships:
-                database: 'mysqldb:mysql'
+                mysql: 
+
 services:
     mysqldb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -155,17 +161,21 @@ For example, consider the following configuration:
 applications:
     app: #The name of the app, which must be unique within the project.
     type: "python:{{% latest "python" %}}"
+
     hooks:
         build: |
         pip install -r requirements.txt
         pip install -e .
         pip install gunicorn
+
     relationships:
-        database: 'mysqldb:mysql'
-        messages: 'rabbitqueue:rabbitmq'
+        mysql: 
+        rabbitmq: 
+
     variables:
         env:
             type: 'none'
+
     web:
         commands:
             start: "gunicorn -b $PORT project.wsgi:application"
@@ -184,6 +194,7 @@ applications:
             "/static":
                 root: "static/"
                 allow: true
+
     workers:
         queue:
             commands:
@@ -205,7 +216,8 @@ applications:
                     type: 'worker'
             mounts: {}
             relationships:
-                emails: 'rabbitqueue:rabbitmq'
+                rabbitmq: 
+
 services:
     mysqldb:
         type: 'mariadb:{{% latest "mariadb" %}}'

@@ -60,7 +60,6 @@ and your messages a safe place to live until they're received.
 
 {{% endpoint-description type="rabbitmq" /%}}
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs >}}
 
 +++
@@ -176,10 +175,10 @@ To create virtual hosts, add them to your configuration as in the following exam
 {
     "username": "guest",
     "scheme": "amqp",
-    "service": "rabbitmq38",
+    "service": "rabbitmq",
     "fragment": null,
     "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5672,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "rabbitmq.internal",

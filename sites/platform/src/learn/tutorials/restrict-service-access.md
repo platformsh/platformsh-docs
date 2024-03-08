@@ -46,8 +46,12 @@ Edit your app configuration and add new relationships to your new endpoints:
 
 ```yaml {configFile="app"}
 relationships:
-    database: maindb:website
-    reports: maindb:reporting
+    database:
+        service: maindb
+        endpoint: website
+    reports:
+        service: maindb
+        endpoint: reporting
 ```
 
 ## 3. Create a worker with access to the read-only endpoint
@@ -68,7 +72,9 @@ workers:
             start: |
                 sleep infinity
         relationships:
-            reports: maindb:reporting
+            reports:
+                service: maindb
+                endpoint: reporting
         access:
             ssh: viewer
 ```

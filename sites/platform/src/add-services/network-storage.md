@@ -205,7 +205,9 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 "php:{{% latest "php" %}}"
 
 relationships:
-    database: "db:mysql"
+    database:
+        service: database
+        endpoint: mysql
 
 disk: 1024
 

@@ -37,9 +37,9 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ```yaml
 {
-    "service": "kafka25",
+    "service": "kafka",
     "ip": "169.254.27.10",
-    "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka25.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "kafka.internal",
     "rel": "kafka",

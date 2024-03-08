@@ -87,18 +87,18 @@ If you want to experiment with a later version without committing to it use a pr
 {
     "username": "main",
     "scheme": "mongodb",
-    "service": "mongodb36",
+    "service": "mongodb-enterprise",
     "ip": "169.254.150.147",
-    "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb36.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb-enterprise.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "mongodb.internal",
-    "rel": "mongodb",
+    "host": "mongodb-enterprise.internal",
+    "rel": "mongodb-enterprise",
     "query": {
         "is_master": true
     },
     "path": "main",
     "password": null,
-    "type": "mongodb:{{% latest "mongodb-enterprise" %}}",
+    "type": "mongodb-enterprise:{{% latest "mongodb-enterprise" %}}",
     "port": 27017
 }
 ```
@@ -168,7 +168,7 @@ mongo {{< variable "HOST" >}}
 With the example value, that would be the following:
 
 ```bash
-mongo mongodb.internal
+mongo mongodb-enterprise.internal
 ```
 
 {{% service-values-change %}}

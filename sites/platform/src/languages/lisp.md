@@ -133,8 +133,11 @@ The following is an example of accessing a PostgreSQL instance:
 Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    pg: postgresql:postgresql
+    postgresql: 
 ```
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
@@ -149,7 +152,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 (defvar *pg-spec* nil)
 
 (defun setup-postgresql ()
-  (let* ((pg-relationship (first (jsown:val (relationships) "pg")))
+  (let* ((pg-relationship (first (jsown:val (relationships) "postgresql")))
          (database (jsown:val pg-relationship "path"))
          (username (jsown:val pg-relationship "username"))
          (password (jsown:val pg-relationship "password"))

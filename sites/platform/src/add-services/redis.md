@@ -469,7 +469,7 @@ To set up Redis as your session handler, add a configuration similar to the foll
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    sessionstorage: "data:redis"
+    sessionstorage:
 
 variables:
     php:

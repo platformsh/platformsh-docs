@@ -38,11 +38,11 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ```yaml
 {
-    "service": "headlesschrome",
+    "service": "chrome-headless",
     "ip": "169.254.91.5",
-    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.headlesschrome.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "gvbo7vktgmou2mplnzt4b54hgi.chrome-headless.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "headlesschrome.internal",
+    "host": "chrome-headless.internal",
     "rel": "http",
     "scheme": "http",
     "type": "chrome-headless:{{< latest "chrome-headless" >}}",
@@ -103,7 +103,7 @@ Using the [Node.js Config Reader library](../development/variables/use-variables
 const platformsh = require('platformsh-config');
 
 const config = platformsh.config();
-const credentials = config.credentials('chromeheadlessbrowser');
+const credentials = config.credentials('chrome-headless');
 ```
 
 and use them to define the `browserURL` parameter of `puppeteer.connect()` within an `async` function:
@@ -112,7 +112,7 @@ and use them to define the `browserURL` parameter of `puppeteer.connect()` withi
 exports.getBrowser = async function (url) {
     try {
         // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials('chromeheadlessbrowser', 'puppeteer');
+        const formattedURL = config.formattedCredentials('chrome-headless', 'puppeteer');
         const browser = await puppeteer.connect({browserURL: formattedURL});
 
         ...

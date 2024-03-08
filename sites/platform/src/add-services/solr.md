@@ -64,10 +64,10 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {
     "username": null,
     "scheme": "solr",
-    "service": "solr86",
+    "service": "solr",
     "fragment": null,
     "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "solr.internal",
@@ -191,11 +191,15 @@ Each endpoint is then available in the relationships definition in `{{< vendor/c
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    solrsearch1: 'searchsolr:main'
-    solrsearch2: 'searchsolr:extra'
-{{% /snippet %}}
+    solrsearch1:
+        service: solr
+        endpoint: main
+    solrsearch2:
+        service: solr
+        endpoint: extra
+{{< /snippet >}}
 
-{{% snippet name="searchsolr" config="service" placeholder="true" %}}
+{{< snippet name="solr" config="service" placeholder="true">}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -281,7 +285,7 @@ Note that not all core properties features make sense to specify in the `core_pr
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{% snippet name="solr" config="service" %}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -302,7 +306,7 @@ You are strongly recommended to define your own configuration with a custom core
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{% snippet name="solr" config="service" %}}
     type: solr:8.4
     configuration:
         cores:

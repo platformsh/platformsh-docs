@@ -50,8 +50,12 @@ Add a new relationship to your application container:
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: db:mysql
-    replication: db:replicator
+    database:
+        service: mariadb
+        endpoint: mysql
+    replication:
+        service: mariadb
+        endpoint: replicator
 {{% /snippet %}}
 ```
 

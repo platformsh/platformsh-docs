@@ -73,10 +73,10 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 {
     "username": "main",
     "scheme": "pgsql",
-    "service": "postgresql12",
+    "service": "postgresql",
     "fragment": null,
     "ip": "169.254.38.66",
-    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "port": 5432,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "postgresql.internal",
@@ -272,12 +272,18 @@ Once these endpoints are defined, you need to expose them to your application as
 ```yaml {configFile="app"}
 {{% snippet name="false" config="app" root="false"  %}}
 relationships:
-    database: "dbpostgres:admin"
-    reports: "dbpostgres:reporter"
-    imports: "dbpostgres:importer"
-{{% /snippet %}}
+    database:
+        service: postgresql
+        endpoint: admin
+    reports:
+        service: postgresql
+        endpoint: reporter
+    imports:
+        service: postgresql
+        endpoint: importer
+{{< /snippet >}}
 
-{{% snippet name="dbpostgres" config="service" placeholder="true"  %}}
+{{< snippet name="postgresql" config="service" placeholder="true" >}}
     type: "postgresql:{{% latest "postgresql" %}}"
     disk: 2048
     configuration:

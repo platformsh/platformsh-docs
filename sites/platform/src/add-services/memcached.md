@@ -47,9 +47,9 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 ```yaml
 {
-    "service": "memcached16",
+    "service": "memcached",
     "ip": "169.254.228.111",
-    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached16.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "memcached.internal",
     "rel": "memcached",
@@ -107,10 +107,10 @@ highlight=python
 
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `memcached`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `memcached.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash
-netcat cache.internal 11211
+netcat memcached.internal 11211
 ```
 
 {{% service-values-change %}}

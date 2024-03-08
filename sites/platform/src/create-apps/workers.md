@@ -7,7 +7,9 @@ Workers are instances of your code that aren't open to connections from other ap
 They're good for handling background tasks.
 See how to [configure a worker](./app-reference.md#workers) for your app.
 
+{{% version/only "1" %}}
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
+{{% /version/only %}}
 
 ## Access the worker container
 
@@ -85,14 +87,18 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 
 ```yaml {configFile="app"}
 name: app
+
 type: python:{{% latest "python" %}}
+
 disk: 256
 mounts:
     test:
         source: local
         source_path: test
+
 relationships:
-    database: 'mysqldb:mysql'
+    mysql:
+
 workers:
     queue:
         commands:
@@ -103,9 +109,12 @@ workers:
             start: |
                 python mail-worker.py
 ```
+
 ```yaml {configFile="app"}
 name: app
+
 type: python:{{% latest "python" %}}
+
 workers:
     queue:
         commands:
@@ -117,7 +126,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            database: 'mysqldb:mysql'
+            mysql: 
     mail:
         commands:
             start: |
@@ -128,7 +137,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            database: 'mysqldb:mysql'
+            mysql: 
 ```
 
 In both cases, there are two worker instances named `queue` and `mail`.
@@ -152,21 +161,28 @@ rabbitqueue:
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 512
 ```
+
 ```yaml {configFile="app"}
 name: app
+
 type: "python:{{% latest "python" %}}"
+
 disk: 2048
+
 hooks:
     build: |
        pip install -r requirements.txt
        pip install -e .
        pip install gunicorn
+
 relationships:
-    database: 'mysqldb:mysql'
-    messages: 'rabbitqueue:rabbitmq'
+    mysql: 
+    rabbitmq: 
+
 variables:
     env:
         type: 'none'
+
 web:
     commands:
         start: "gunicorn -b $PORT project.wsgi:application"
@@ -185,6 +201,7 @@ web:
          "/static":
              root: "static/"
              allow: true
+
 workers:
     queue:
         size: 'M'
@@ -210,7 +227,7 @@ workers:
         disk: 256
         mounts: {}
         relationships:
-            emails: 'rabbitqueue:rabbitmq'
+            rabbitmq: 
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
