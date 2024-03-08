@@ -166,7 +166,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 Example configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -190,24 +190,24 @@ Example configuration:
 
 ```json
 {
-    "username": "user",
-    "scheme": "mysql",
-    "service": "mariadb104",
-    "fragment": null,
-    "ip": "169.254.255.221",
-    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "mysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "mariadb:{{% latest "mariadb" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": "user",
+  "scheme": "mysql",
+  "service": "mariadb",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 3306,
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "mariadbdatabase.internal",
+  "rel": "mysql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "",
+  "type": "mariadb:{{% latest "mariadb" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -215,24 +215,24 @@ Example configuration:
 
 ```json
 {
-    "username": "user",
-    "scheme": "mysql",
-    "service": "oraclemysql",
-    "fragment": null,
-    "ip": "169.254.150.190",
-    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "oraclemysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "oracle-mysql:8.0",
-    "public": false,
-    "host_mapped": false
+  "username": "user",
+  "scheme": "mysql",
+  "service": "oracle-mysql",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 3306,
+  "cluster": "azertyuiop-main-afdwftq",
+  "host": "oracledatabase.internal",
+  "rel": "mysql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "",
+  "type": "oracle-mysql:{{< latest "oracle-mysql" >}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -251,13 +251,13 @@ mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USE
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-mysql -h mysql.internal -P 3306 -u user main
+mysql -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -p -h mysql.internal -P 3306 -u user main
+mysql -p -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 ## Define permissions
@@ -290,7 +290,7 @@ You can also specify multiple `endpoints` for [permissions](#define-permissions)
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -315,7 +315,7 @@ Removing a schema from the list of `schemas` on further deployments results in t
 
 ### Multiple databases example
 
-The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
+The following configuration example creates a single MariaDB service named `mariadb` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
 * `admin` has full access to both databases.
@@ -323,7 +323,7 @@ Access to the database is defined through three endpoints:
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -355,9 +355,9 @@ Expose these endpoints to your app as relationships in your [app configuration](
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: "db:admin"
-    reports: "db:reporter"
-    imports: "db:importer"
+    database: "mariadb:admin"
+    reports: "mariadb:reporter"
+    imports: "mariadb:importer"
 {{% /snippet %}}
 ```
 

@@ -26,6 +26,77 @@ and your messages a safe place to live until they're received.
 
 {{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
 
+{{% relationship-ref-intro %}}
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+{{% service-values-change %}}
+
+```bash
+RABBITMQQUEUE_USERNAME=guest
+RABBITMQQUEUE_SCHEME=amqp
+RABBITMQQUEUE_SERVICE=rabbitmq
+RABBITMQQUEUE_FRAGMENT=
+RABBITMQQUEUE_EPOCH=0
+RABBITMQQUEUE_IP=123.456.78.90
+RABBITMQQUEUE_HOSTNAME=azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+RABBITMQQUEUE_PORT=5672
+RABBITMQQUEUE_CLUSTER=azertyuiop-main-afdwftq
+RABBITMQQUEUE_HOST=rabbitmqqueue.internal
+RABBITMQQUEUE_REL=rabbitmq
+RABBITMQQUEUE_PATH=
+RABBITMQQUEUE_QUERY={}
+RABBITMQQUEUE_PASSWORD=ChangeMe
+RABBITMQQUEUE_TYPE=rabbitmq:{{% latest "rabbitmq" %}}
+RABBITMQQUEUE_PUBLIC=false
+RABBITMQQUEUE_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
+
+```json
+{
+    "username": "guest",
+    "scheme": "amqp",
+    "service": "rabbitmq",
+    "fragment": null,
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "port": 5672,
+    "cluster": "azertyuiopqsdf-main-afdwftq",
+    "host": "rabbitmqqueue.internal",
+    "rel": "rabbitmq",
+    "path": null,
+    "query": [],
+    "password": "ChangeMe",
+    "type": "rabbitmq:{{% latest "rabbitmq" %}}",
+    "public": false,
+    "host_mapped": false
+}
+```
+
+Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_RABBITMQ_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmqqueue[0].host')"
+```
+
+{{< /codetabs >}}
+
 ## Usage example
 
 {{% endpoint-description type="rabbitmq" /%}}
@@ -34,26 +105,24 @@ and your messages a safe place to live until they're received.
 {{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    rabbitmqqueue: "queuerabbit:rabbitmq"
+    rabbitmqqueue: "rabbitmq:rabbitmq"
 {{% /snippet %}}
-{{% snippet name="queuerabbit" config="service" placeholder="true"  %}}
+{{% snippet name="rabbitmq" config="service" placeholder="true"  %}}
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 256
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="queuerabbit" relationship="rabbitmqqueue" var="AMQP_URL"%}}
+{{% v2connect2app serviceName="rabbitmq" relationship="rabbitmqqueue" var="AMQP_URL"%}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export QUEUE_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].scheme")
-export QUEUE_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].username")
-export QUEUE_PASSWORD=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].password")
-export QUEUE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].host")
-export QUEUE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".rabbitmqqueue[0].port")
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
+export QUEUE_SCHEME=${RABBITMQQUEUE_SCHEME}
+export QUEUE_USERNAME=${RABBITMQQUEUE_USERNAME}
+export QUEUE_PASSWORD=${RABBITMQQUEUE_PASSWORD}
+export QUEUE_HOST=${RABBITMQQUEUE_HOST}
+export QUEUE_PORT=${RABBITMQQUEUE_PORT}
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
@@ -124,31 +193,6 @@ To create virtual hosts, add them to your configuration as in the following exam
             - host1
             - host2
 {{% /snippet %}}
-```
-
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-```yaml
-{
-    "username": "guest",
-    "scheme": "amqp",
-    "service": "rabbitmq38",
-    "fragment": null,
-    "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq38.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 5672,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "rabbitmq.internal",
-    "rel": "rabbitmq",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "rabbitmq:{{% latest "rabbitmq" %}}",
-    "public": false,
-    "host_mapped": false
-}
 ```
 
 ## Upgrading

@@ -342,9 +342,6 @@ console.log(stuffColors);
 They're mostly prefixed with `PLATFORM_` to differentiate them from user-provided values.
 You can't set or update them directly.
 
-The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
-which tells the app how to connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.
-
 The following table presents all available variables
 and whether they're available at build time (during [build hooks](../../administration/../create-apps/hooks/hooks-comparison.md#build-hook))
 and at runtime.
@@ -362,7 +359,7 @@ and at runtime.
 | `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
 | `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
+| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | The `{{< vendor/prefix >}}_RELATIONSHIPS` variable is automatically broken down into [service environment variables](./_index.md#service-environment-variables), so your app can seamlessly connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.</br></br>For some advanced use cases, you may need to use the `{{< vendor/prefix >}}_RELATIONSHIPS` variable itself. It is a base64-encoded JSON object of relationships, with keys that indicate the relationship names, and values that are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md).</br>You may need to gather `{{< vendor/prefix >}}_RELATIONSHIPS` information in a ``.environment`` file. See how to [use ``.env`` files](./set-variables.md#use-env-files), and refer to [dedicated service pages](/add-services/_index.md) for examples. |
 | `{{< vendor/prefix >}}_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). Note that this information is also available in your `/run/config.json` file. |
 | `{{< vendor/prefix >}}_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
@@ -403,7 +400,7 @@ and don't support reading from environment variables.
 To populate these files with variables you set yourself,
 make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
 
-The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
+The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS` or [service environment variables](/development/variables/_index.md#service-environment-variables)).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
 One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
@@ -430,8 +427,32 @@ The following example shows the process, though you have to modify it to fit you
 
    This example assumes the app wants a `db.yaml` file in its root for configuration.
 3. Commit the symbolic link and an empty `config` directory to Git.
-4. Configure a script to read from environment variables and write to `config/db.yaml`.
-   Create a file with a shell script similar to this:
+4. Configure a script to read from environment variables and write to `config/db.yaml` through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves, or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+   <BR>Create a file with a shell script similar to this:
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+   ```bash {location="export-config.sh"}
+   #!/bin/bash
+
+   # Ensure the file is empty.
+   cat '' > config/db.yaml
+
+   # Map the database information from the service environment variable into the YAML file.
+   # Use this process to use whatever variable names your app needs.
+   # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
+
+   printf "host: %s\n" $(echo $DATABASE_HOST) >> config/db.yaml
+   printf "user: %s\n" $(echo $DATABASE_USERNAME) >> config/db.yaml
+   ```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
 
    ```bash {location="export-config.sh"}
    #!/bin/bash
@@ -441,16 +462,18 @@ The following example shows the process, though you have to modify it to fit you
 
    # Map the database information from the PLATFORM_RELATIONSHIPS variable into the YAML file.
    # Use this process to use whatever variable names your app needs.
+   # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables/use-variables.md#use-provided-variables.
 
    printf "host: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host") >> config/db.yaml
    printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
    ```
+{{< /codetabs >}}
 
 5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
 
  ```yaml {configFile="app"}
    applications:
-    {{< variable "APP_NAME" >}}  
+    {{< variable "APP_NAME" >}}
        hooks:
            deploy: |
                bash export-config.sh
