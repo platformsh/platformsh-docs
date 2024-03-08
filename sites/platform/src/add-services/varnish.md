@@ -12,9 +12,6 @@ But you can include Varnish as a service.
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -31,13 +28,6 @@ But you can include Varnish as a service.
         </tr>
     </tbody>
 </table>
-
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="varnish" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
 
 ## How it works
 
@@ -85,7 +75,7 @@ So you MUST NOT include certain features that you might elsewhere:
 The file MUST include:
 
 - A definition of which backend to use in a  `vcl_recv()` subroutine.
-  
+
 The logic varies based on whether you have one or more apps.
 
 {{< note >}}
@@ -220,7 +210,7 @@ sub vcl_recv {
     # When this happens, block that IP for the next 120 seconds.
     return (synth(429, "Too Many Requests"));
   }
-  
+
   # Set the standard backend for handling requests that aren't limited
   set req.backend_hint = application.backend();
 }
@@ -265,7 +255,7 @@ The following example shows how to set up purging.
        ...
    }
    ```
-  
+
   {{< note theme="info" >}}
   The snippet above has been produced for Varnish 7.x. If using a different version, consult the [Varnish documentation](https://varnish-cache.org/docs/) for potential differences in syntax and required parameters.
   {{< /note >}}

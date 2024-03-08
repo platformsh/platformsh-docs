@@ -29,6 +29,7 @@ vendor:
     config:
         version: 2
         dir: .upsun
+        filename: config.yaml
         files:
             routes: .upsun/config.yaml
             services: .upsun/config.yaml
@@ -55,7 +56,7 @@ logolinksto: "https://upsun.com"
 logoAlt: "Upsun"
 favicon: "images/favicon.ico"
 
-gtm: "GTM-KJ4F382K"
+gtm: "GTM-NN9T4G2T"
 
 # Actions in main header
 headerActions:
