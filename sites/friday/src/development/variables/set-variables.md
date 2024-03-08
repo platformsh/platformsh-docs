@@ -245,8 +245,9 @@ To solve the issue, remove the printed output from your `.environment` file.
 If your app needs different names for environment variable than those set by {{< vendor/name >}}, which is common for database connections,
 map the {{< vendor/name >}}'s variable names to those required by the application via a shell script.
 
-Here is example how to gather relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves, or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
-As an example, your application has a relationship named ``database`` to a database service named `mariadb`:
+You can obtain relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+For example, if your application has a relationship named ``database`` to a database service named `mariadb`:
 
 {{< codetabs >}}
 +++
@@ -258,7 +259,8 @@ export APP_DATABASE_HOST=${DATABASE_HOST}
 export APP_DATABASE_USER=${DATABASE_USERNAME}
 ```
 
-This sets environment variables with names your app needs and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+This sets environment variables with the names your app needs,
+and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 <--->
 
@@ -272,7 +274,8 @@ export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -
 export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
 ```
 
-This sets environment variables with names your app needs and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+This sets environment variables with names your app needs,
+and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 

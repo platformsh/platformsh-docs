@@ -48,9 +48,9 @@ applications:
                 start: [3]
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
-2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
-3. [The commands key defines the command to launch the application](../../create-apps/app-reference.md#web-commands). E.g.:  `java -jar file.jar`
-4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
+2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar. For example, `mvn clean package`.
+3. [The commands key defines the command to launch the application](../../create-apps/app-reference.md#web-commands). For example,  `java -jar file.jar`.
+4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. For example, `java -jar jar --port=$PORT`.
 
 {{< note >}}
 
@@ -79,7 +79,7 @@ applications:
             commands:
                 start: [3]
 ```
-1. It defines the application will link in the route, e.g.: `"app:http"`
+1. It defines the application will link in the route. For example,`"app:http"`.
 
 {{< note version="1" >}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
@@ -137,7 +137,7 @@ The most common mechanisms are listed below.
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you can configure the application directly from environment variables.
 Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-Service credentials are available within the [service environment variables](/development/variables/_index.md#service-environment-variables) or [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+Service credentials are available within the [service environment variables](/development/variables/_index.md#service-environment-variables), or the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
@@ -147,7 +147,8 @@ title= Service environment variables
 ```bash {location=".environment"}
 export DB_HOST=$DATABASE_HOST
 ```
-This sets environment variables with names your app needs and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+This sets environment variables with the names your app needs,
+and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 <--->
 
@@ -181,9 +182,11 @@ While the table above shows examples for Platform.sh rather than for {{% vendor/
 To reduce the number of lines in the application file and to make it cleaner,
 you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
 
-E.g.:
-Here is example how to gather relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves, or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
-As an example, your application has a relationship named ``database`` to a database service named `mariadb`:
+**Example:**
+
+You can obtain relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+Say your application has a relationship named ``database`` to a database service named `mariadb`:
 
 {{< codetabs >}}
 +++
@@ -200,7 +203,8 @@ export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 
-This sets environment variables with names your app needs and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+This sets environment variables with the names your app needs,
+and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 <--->
 
@@ -225,7 +229,9 @@ This sets environment variables with names your app needs and the values from [`
 
 {{< /codetabs >}}
 
-This `.environment` can interact to each application file. E.g.:
+This `.environment` file can interact to each application file.
+
+**Example:**
 
 ```yaml
 applications:
