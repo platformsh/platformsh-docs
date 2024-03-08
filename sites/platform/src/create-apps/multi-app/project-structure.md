@@ -213,7 +213,7 @@ In that case, you can nest the Java app within the Python app:
 
 ```txt
 ├── {{% vendor/configdir %}}
-│   ├── {{% vendor/configfile "apps" %}}
+│   ├── {{% vendor/configfile "apps" "strip" %}}
 │   └── {{% vendor/configfile "routes" %}}
 ├── languagetool
 │   └── main.java           <- Java app code

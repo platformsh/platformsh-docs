@@ -4,6 +4,16 @@ weight: 2
 description: "Learn about how your {{% vendor/name %}} environments are structured and which files control that structure."
 ---
 
+{{< note version="1" >}}
+
+This page describes how things work on Grid projects.
+[{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/_index.md) projects are similar,
+but they run on dedicated hosts and each container is replicated three times.
+
+For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](/dedicated-gen-2/overview/_index.md).
+
+{{< /note >}}
+
 Each environment you deploy on {{% vendor/name %}} is built as a set of containers.
 Each container is an isolated instance with specific resources.
 
@@ -13,6 +23,7 @@ Each environment has 2 to 4 types of containers, all usually configured from you
 - One or more [*app* containers](#apps)
 - Zero or more [*service* containers](#services)
 - Zero or more [*worker* containers](#workers)
+
 
 If you have two app containers, two services (a database and a search engine), and a worker,
 requests to your environment might look something like this:

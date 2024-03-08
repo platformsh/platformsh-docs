@@ -1,7 +1,7 @@
 ---
 title: YAML
 weight: 1
-description: "An overview of YAML and its use at {{% vendor/name %}}." 
+description: "An overview of YAML and its use at {{% vendor/name %}}."
 ---
 
 [YAML](https://en.wikipedia.org/wiki/YAML) is a human-readable format for data serialization across languages.

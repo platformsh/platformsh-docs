@@ -136,14 +136,14 @@ applications:
     myapp:
         hooks:
             build: |
-                set -e
+                set -x -e
                 cp a.txt b.txt
 ```
 
 And the resulting value preserves the line break.
 This lets you do things like enter small shell scripts within a YAML file.
 
-`hooks` → `build` → `set -e` and `cp a.txt b.txt`
+`hooks` → `build` → `set -x -e` and `cp a.txt b.txt`
 
 ## Reuse content
 
@@ -165,7 +165,7 @@ applications:
                 commands:
                     start: python queue-worker.py
             queue2: *runner
-            queue3: 
+            queue3:
                 <<: *runner
 ```
 
