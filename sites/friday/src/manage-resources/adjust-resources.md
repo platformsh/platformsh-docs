@@ -52,8 +52,7 @@ Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to se
 For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 
 Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
-the desired resource allocation may not have been saved.
-You may need to set the resources again.
+you may need to set the resources again.
 
 {{< /note >}}
 
@@ -110,8 +109,7 @@ or run commands manually.
   For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 
   Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
-  the desired resource allocation may not have been saved.
-  You may need to set the resources again.
+  you may need to set the resources again.
   {{% /note %}}
 
 - **Manual commands:**
@@ -147,8 +145,7 @@ or run commands manually.
   If you've made no other changes, this redeployment causes no downtime.
   
   If the redeployment fails after you've run `{{% vendor/cli %}} resources:set`,
-  the desired resource allocation may not have been saved.
-  You may need to set the resources again.
+  you may need to set the resources again.
   {{% /note %}}
 
 <--->
