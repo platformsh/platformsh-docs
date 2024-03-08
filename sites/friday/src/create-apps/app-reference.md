@@ -133,7 +133,7 @@ applications:
 {{% note %}}
 Once a service is running and exposed via a relationship,
 its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables.html#service-environment-variables),
-in the `$"RELATIONSHIP-NAME"_"SERVICE-PROPERTY"` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 The available information is documented on each service's page, along with sample code for how to connect to it from your app.
 {{% /note %}}
 
