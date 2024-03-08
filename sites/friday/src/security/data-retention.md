@@ -51,4 +51,4 @@ We have configured our Google Analytics account to store data for 14 months from
 ## Trials
 
 User data - which includes pushed code and data contained within services - is retained for a shorter period during trials.
-See [Trial details](/glossary#trial) for more information. 
+See [Trial details](/glossary#trial). 

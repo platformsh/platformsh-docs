@@ -42,7 +42,7 @@ While the guide has been written to accommodate the following stacks, it is not 
 
 {{% note theme="info" title="Trials" %}}
 When you create an account on Upsun, you are also beginning a trial for your organization.
-[See the documentation](/glossary#trial) for more details about limits to that trial.
+Get [more information on trials](/glossary#trial).
 {{% /note %}}
 
 ## Initialize your Git repository
