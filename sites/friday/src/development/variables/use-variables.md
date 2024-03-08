@@ -400,7 +400,7 @@ and don't support reading from environment variables.
 To populate these files with variables you set yourself,
 make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
 
-The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
+The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS` or [service environment variables](/development/variables/_index.md#service-environment-variables)).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
 One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
@@ -427,8 +427,32 @@ The following example shows the process, though you have to modify it to fit you
 
    This example assumes the app wants a `db.yaml` file in its root for configuration.
 3. Commit the symbolic link and an empty `config` directory to Git.
-4. Configure a script to read from environment variables and write to `config/db.yaml`.
-   Create a file with a shell script similar to this:
+4. Configure a script to read from environment variables and write to `config/db.yaml` through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves, or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+   <BR>Create a file with a shell script similar to this:
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+   ```bash {location="export-config.sh"}
+   #!/bin/bash
+
+   # Ensure the file is empty.
+   cat '' > config/db.yaml
+
+   # Map the database information from the service environment variable into the YAML file.
+   # Use this process to use whatever variable names your app needs.
+   # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
+
+   printf "host: %s\n" $(echo $DATABASE_HOST) >> config/db.yaml
+   printf "user: %s\n" $(echo $DATABASE_USERNAME) >> config/db.yaml
+   ```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
 
    ```bash {location="export-config.sh"}
    #!/bin/bash
