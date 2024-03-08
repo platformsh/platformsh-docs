@@ -44,5 +44,17 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/name %}} account,
-[contact Support](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
+To permanently delete your {{% vendor/name %}} account, follow these steps:
+
+{{% note theme=warning title="Warning"%}}
+
+Deleting your {{% vendor/name %}} account automatically deletes any linked Ibexa Cloud or Shopware PaaS accounts you may hold.
+
+{{% /note %}} 
+
+1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
+2. Open the user menu (your name or profile picture) and select **My Profile**.
+3. Click **Delete account**.
+4. Check that the pre-filled information is correct and click **Submit**.
+5. Read the consequences of account deletion and click **Submit request** to confirm.</br>
+   Your request is now submitted and will be handled by Support shortly.
