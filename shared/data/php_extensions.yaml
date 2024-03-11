@@ -903,7 +903,9 @@ grid:
       - amqp
       - apcu
       - apcu_bc
+      - applepay
       - blackfire
+      - enchant
       - event
       - geoip
       - gmp
@@ -914,25 +916,28 @@ grid:
       - interbase
       - ioncube
       - ldap
+      - mailparse
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
       - pdo_dblib
-      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
+      - raphf
       - readline
       - recode
       - redis
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -954,7 +959,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -967,12 +971,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
