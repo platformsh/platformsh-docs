@@ -1086,12 +1086,14 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - enchant
       - event
       - ffi
       - geoip
       - gmp
       - http
       - igbinary
+      - imagick
       - imap
       - interbase
       - ioncube
@@ -1100,6 +1102,7 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
@@ -1115,6 +1118,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -1145,12 +1149,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
