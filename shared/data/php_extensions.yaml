@@ -1348,37 +1348,37 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - datadogphp
+      - enchant
       - ffi
       - geoip
       - gmp
+      - gnupg
       - http
       - igbinary
       - imap
       - ldap
       - mailparse
+      - memcached
       - msgpack
       - oauth
       - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
+      - rdkhafka
       - readline
       - redis
-      - shmop
       - snmp
       - sodium
-      - sourceguardian
       - sqlsrv
       - ssh2
+      - swoole
       - sybase
       - tidy
       - uuid
       - xdebug
-      - xsl
       - yaml
     default:
       - bcmath
@@ -1400,12 +1400,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
