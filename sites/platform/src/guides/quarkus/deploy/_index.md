@@ -1,5 +1,5 @@
 ---
-title: Deploy Quarkus on {{% vendor/name %}}
+title: Deploy Quarkus on Platform.sh
 sidebarTitle: Get started
 weight: -110
 layout: single

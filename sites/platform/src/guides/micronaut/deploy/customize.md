@@ -1,5 +1,5 @@
 ---
-title: "Customize Micronaut for {{% vendor/name %}}"
+title: "Customize Micronaut for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 description: |

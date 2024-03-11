@@ -1,5 +1,5 @@
 ---
-title: "Customize Django for {{% vendor/name %}}"
+title: "Customize Django for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 description: |

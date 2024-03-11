@@ -1,5 +1,5 @@
 ---
-title: "Configure Gatsby for {{% vendor/name %}}"
+title: "Configure Gatsby for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 description: |

@@ -1,5 +1,5 @@
 ---
-title: "Customize Spring for {{% vendor/name %}}"
+title: "Customize Spring for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 description: |

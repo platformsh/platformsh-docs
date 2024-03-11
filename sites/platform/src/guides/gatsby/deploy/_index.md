@@ -1,5 +1,5 @@
 ---
-title: Deploy Gatsby on {{% vendor/name %}}
+title: Deploy Gatsby on Platform.sh
 sidebarTitle: Get started
 weight: -110
 layout: single

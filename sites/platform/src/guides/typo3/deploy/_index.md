@@ -1,5 +1,5 @@
 ---
-title: Deploy TYPO3 on {{% vendor/name %}}
+title: Deploy TYPO3 on Platform.sh
 sidebarTitle: "Get started"
 weight: -110
 layout: single

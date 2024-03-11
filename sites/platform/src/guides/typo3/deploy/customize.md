@@ -1,5 +1,5 @@
 ---
-title: "Customize TYPO3 for {{% vendor/name %}}"
+title: "Customize TYPO3 for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 description: |

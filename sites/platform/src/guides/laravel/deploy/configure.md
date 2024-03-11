@@ -1,5 +1,5 @@
 ---
-title: "Configure Laravel for {{% vendor/name %}}"
+title: "Configure Laravel for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 description: |

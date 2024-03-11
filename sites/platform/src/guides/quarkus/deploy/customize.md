@@ -1,5 +1,5 @@
 ---
-title: "Customize Quarkus for {{% vendor/name %}}"
+title: "Customize Quarkus for Platform.sh"
 sidebarTitle: "Customize"
 weight: -90
 description: |

@@ -1,5 +1,5 @@
 ---
-title: "Configure Django for {{% vendor/name %}}"
+title: "Configure Django for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 description: |

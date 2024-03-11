@@ -1,5 +1,5 @@
 ---
-title: Deploy Laravel on {{% vendor/name %}}
+title: Deploy Laravel on Platform.sh
 sidebarTitle: Get started
 weight: -110
 layout: single

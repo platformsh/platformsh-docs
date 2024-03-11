@@ -1,5 +1,5 @@
 ---
-title: Deploy Micronaut on {{% vendor/name %}}
+title: Deploy Micronaut on Platform.sh
 sidebarTitle: Get started
 weight: -110
 layout: single

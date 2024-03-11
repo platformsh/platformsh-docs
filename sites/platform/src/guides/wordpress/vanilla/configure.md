@@ -1,5 +1,5 @@
 ---
-title: "Configure WordPress for {{% vendor/name %}}"
+title: "Configure WordPress for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 description: |

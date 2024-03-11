@@ -1,5 +1,5 @@
 ---
-title: "Configure Drupal for {{% vendor/name %}}"
+title: "Configure Drupal for Platform.sh"
 sidebarTitle: "Configure"
 weight: -100
 description: |

@@ -1,5 +1,5 @@
 ---
-title: Deploy Django on {{% vendor/name %}}
+title: Deploy Django on Platform.sh
 sidebarTitle: Get started
 weight: -130
 layout: single
