@@ -209,6 +209,15 @@ By default, when you [branch an environment](/glossary.md#branch) to create a ne
 the child environment inherits all the resources from its parent.
 However, you can specify a different [resource initialization strategy](#specify-a-resource-initialization-strategy).
 
+{{% note %}}
+
+When you branch an environment, regardless of the strategy you specified,
+{{% vendor/name %}} checks if the child environment's disk size is at least equivalent to the parent's.</br>
+If not, the parent environment's disk size is automatically applied to the child environment.
+This ensures the branching can succeed.
+
+{{% /note %}}
+
 {{< codetabs >}}
 
 +++
@@ -226,15 +235,6 @@ For example, to use the `minimum` resource initialization strategy, run the foll
 ```bash {location="Terminal"}
 upsun environment:branch --resources-init=minimum
 ```
-
-{{% note %}}
-
-When you branch an environment, regardless of the strategy you specified,
-{{% vendor/name %}} checks if the child environment's disk size is at least equivalent to the parent's.</br>
-If not, the parent environment's disk size is automatically applied to the child environment.
-This ensures the branching can succeed.
-
-{{% /note %}}
 
 <--->
 
