@@ -8,7 +8,8 @@ Activities log changes to your project,
 including when you deploy your app,
 when you [push code](#push), and when a [cron job is run](#cron).
 
-To automate your workflows, you can parse and react to the activity's JSON object through [activity scripts](../activity/_index.md).
+To automate your workflows, you can parse and react to the activity's JSON object
+through [activity scripts](../activity/_index.md).
 
 ## Activity schema
 
@@ -88,72 +89,103 @@ Different from [`project` activities](#type).
 
 The type of the activity in one of the following categories:
 
-- [Project](#project-activities)
-- [Environment](#environment-activities)
-- [Integration](#integration-activities)
+- [Project](#project-activity-types)
+- [Environment](#environment-activity-types)
+- [Integration](#integration-activity-types)
+- [Maintenance](#maintenance-activity-types)
 
-#### `project` activities
+#### `project` activity types
 
 Activities that happened on a given project.
-The following table presents the possible activities:
+The following table presents the possible activity types:
 
-| Name | Description |
-|------|-------------|
-| `project.modify.title` | The project title has changed. |
-| `project.variable.create` | A new project variable has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
-| `project.variable.delete` | A project variable has been deleted. |
-| `project.variable.update` | A project variable has been modified. |
+| Name                        | Description                                                                                                                                                                                                                        |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `project.clear_build_cache` | The build cache is cleared.                                                                                                                                                                                                        |
+| `project.create`            | A new project is created.                                                                                                                                                                                                          |
+| `project.domain.create`     | A new [domain](administration/web/configure-project.md#domains) has been added to the project.                                                                                                                                     |
+| `project.domain.delete`     | An existing [domain](administration/web/configure-project.md#domains) has been deleted from the project.                                                                                                                           |
+| `project.domain.update`     | An existing [domain](administration/web/configure-project.md#domains) has been updated from the project.                                                                                                                           |
+| `project.metrics.enable`    | A metric from the [continuous profiling](/increase-observability.md) has been enabled.                                                                                                                                             |
+| `project.metrics.update`    | A metric from the [continuous profiling](/increase-observability.md) has been updated.                                                                                                                                             |
+| `project.metrics.disable`   | A metric from the [continuous profiling](/increase-observability.md) has been disabled.                                                                                                                                            |
+| `project.modify.title`      | The project title has changed.                                                                                                                                                                                                     |
+| `project.variable.create`   | A new [project variable](/administration/web/configure-project.md#variables) has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
+| `project.variable.delete`   | A [project variable](/administration/web/configure-project.md#variables) has been deleted.                                                                                                                                         |
+| `project.variable.update`   | A [project variable](/administration/web/configure-project.md#variables) has been modified.                                                                                                                                        |
 
-#### `environment` activities
+#### `environment` activity types
 
 Activities that happened on an environment.
-The following table presents the possible activities:
+The following table presents the possible activity types:
 
-| Name | Description |
-|------|-------------|
-| `environment.domain.create` | A new domain has been associated with the environment. |
-| `environment.domain.delete` | A domain associated with the environment has been removed. |
-| `environment.domain.update` | A domain associated with the environment has been updated, such as having its SSL certificate modified. |
-| `environment.backup` |  A user triggered a [backup](../../environments/backup.md). |
-| `environment.backup.delete` | A user deleted a [backup](../../environments/backup.md). |
-| `environment.restore` | A user restored a [backup](../../environments/backup.md). |
-| `environment.push` | A user pushed code to a branch, either existing or new. |
-| `environment.branch` | A new branch has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`. |
-| `environment.activate` | The environment has been made [active](/glossary.md#active-environment). |
-| `environment.initialize` | The default branch of the project has just been initialized with its first commit. |
-| `environment.deactivate` | An environment has been made [inactive](/glossary.md#inactive-environment). |
-| `environment.synchronize` | An environment has had its data and/or code replaced with the data and/or code from its parent environment. |
-| `environment.merge` | An environment was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity. |
-| `environment.redeploy` | An environment was redeployed. |
-| `environment.delete` | An environment's code was deleted through Git. |
-| `environment.route.create` | A new route has been created through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
-| `environment.route.delete` | A route has been deleted through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
-| `environment.route.update` | A route has been modified through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity. |
-| `environment.variable.create` | A new variable has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
-| `environment.variable.delete` | A variable has been deleted. |
-| `environment.variable.update` | A variable has been modified. |
-| `environment.update.http_access` | HTTP access rules for an environment have been modified. |
-| `environment.update.smtp` | Email sending has been enabled or disabled for an environment. |
-| `environment.update.restrict_robots` | The option to [hide from search engines](../../environments/search-engine-visibility.html) has been enabled or disabled for an environment. |
-| `environment.subscription.update` | The production environment has been resized because the plan has changed. The content of the environment hasn't changed. |
-| `environment.cron` | A cron job has completed. |
-| `environment.source-operation` | A source operation has completed. |
-| `environment.certificate.renewal` | An environment's SSL certificate has been renewed. |
+| Name                                 | Description                                                                                                                                                                                                                      |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `environment.activate`               | The environment has been made [active](/glossary.md#active-environment).                                                                                                                                                         |
+| `environment.backup`                 | A user triggered a [backup](/environments/backup.md).                                                                                                                                                                            |
+| `environment.backup.delete`          | A user deleted a [backup](/environments/backup.md).                                                                                                                                                                              |
+| `environment.branch`                 | A [new branch](/environments.md#create-environments) has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`.                                                                     |
+| `environment.certificate.renewal`    | An environment's SSL certificate has been [renewed](/define-routes/https.md#certificate-renewals).                                                                                                                               |
+| `environment.cron`                   | A [cron job](/create-apps/app-reference.md#crons) has completed.                                                                                                                                                                 |
+| `environment.deactivate`             | An environment has been made [inactive](/glossary.md#inactive-environment).                                                                                                                                                      |
+| `environment.delete`                 | An environment's code was deleted through Git.                                                                                                                                                                                   |
+| `environment.domain.create`          | A new [domain](administration/web/configure-project.md#domains) has been associated with the environment.                                                                                                                        |
+| `environment.domain.delete`          | A [domain](administration/web/configure-project.md#domains) associated with the environment has been removed.                                                                                                                    |
+| `environment.domain.update`          | A [domain](administration/web/configure-project.md#domains) associated with the environment has been updated, such as having its SSL certificate modified.                                                                       |
+| `environment.initialize`             | The [default branch](/environments.md#default-environment) of the project has just been initialized with its first commit.                                                                                                       |
+| `environment.merge`                  | An environment was [merged](/glossary.md#merge) through the CLI, Console, or API. A basic Git merge doesn't trigger this activity.                                                                                               |
+| `environment.merge-pr`               | A Pull Request/Merge Request was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity.                                                                                                       |
+| `environment.operation`              | A [source operation](/create-apps/runtime-operations.md) has been triggered                                                                                                                                                      |
+| `environment.pause`                  | An environment has been [paused](/environments.md#pause-an-environment).                                                                                                                                                         |
+| `environment.push`                   | A user [pushed](/administration/cli/reference.md#environmentpush) code to a branch, either existing or new.                                                                                                                      |
+| `environment.redeploy`               | An environment was [redeployed](/administration/cli/reference.md#environmentredeploy).                                                                                                                                           |
+| `environment.restore`                | A user restored a [backup](/environments/backup.md).                                                                                                                                                                             |
+| `environment.resume`                 | An inactive environment was [resumed](/environments.md#resume-a-paused-environment)                                                                                                                                              |
+| `environment.resources.update`       | The resources allocated to the environment [have been updated](/manage-resources/adjust-resources.md).                                                                                                                           |
+| `environment.route.create`           | A new [route](/administration/web/configure-environment.md#routes) has been created through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity.                          |
+| `environment.route.delete`           | A [route](/administration/web/configure-environment.md#routes) has been deleted through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity.                              |
+| `environment.route.update`           | A [route](/administration/web/configure-environment.md#routes) has been modified through the API. Edits made using Git to the `{{< vendor/configfile "routes" >}}` file don't trigger this activity.                             |
+| `environment.source-operation`       | A [source operation](/create-apps/source-operations.md) has been triggered.                                                                                                                                                      |
+| `environment.subscription.update`    | The production environment has been resized because the plan has changed. The content of the environment hasn't changed.                                                                                                         |
+| `environment.synchronize`            | An environment has had its data and/or code replaced with the data and/or code from its parent environment.                                                                                                                      |
+| `environment.update.http_access`     | [HTTP access rules](/administration/web/configure-environment.md#http-access-control) for an environment have been modified.                                                                                                     |
+| `environment.update.restrict_robots` | The option to [hide from search engines](../../environments/search-engine-visibility.md) has been enabled or disabled for an environment.                                                                                        |
+| `environment.update.smtp`            | Email sending has been enabled or disabled for an environment.                                                                                                                                                                   |
+| `environment.variable.create`        | A [new variable](/development/variables/set-variables.md#variable-options) has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
+| `environment.variable.delete`        | A [variable](/development/variables/set-variables.md#variable-options) has been deleted.                                                                                                                                         |
+| `environment.variable.update`        | A [variable](/development/variables/set-variables.md#variable-options) has been modified.                                                                                                                                        |
+| `environment_type.access.create`     | A [new access](/administration/users.md#manage-project-access) has been added to the environment                                                                                                                                 |
+| `environment_type.access.delete`     | An [existing access](/administration/users.md#manage-project-access) to the environment has been deleted                                                                                                                         |
+| `environment_type.access.update`     | An [existing access](/administration/users.md#manage-project-access) to the environment has been updated                                                                                                                         |
 
-#### `integration` activities
+#### `integration` activity types
 
 Activities that relate to an integration.
-The following table presents the possible activities:
+The following table presents the possible activity types:
 
-| Name | Description |
-|------|-------------|
-| `integration.bitbucket.register_hooks` | An integration hook has been registered with Bitbucket Cloud. |
-| `integration.bitbucket_server.register_hooks` | An integration hook has been registered with Bitbucket Server. |
-| `integration.health.email` | A [health notification](../notifications.md) was sent by email. |
-| `integration.health.pagerduty` | A [health notification](../notifications.md) was sent to PagerDuty. |
-| `integration.health.slack` | A [health notification](../notifications.md) was sent to Slack. |
-| `integration.webhook` | A webhook was triggered. |
-| `integration.script` | An activity script has completed. |
+| Name                                          | Description                                                                                                           |
+|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `integration.bitbucket.fetch`                 | A fetch has been triggered on your [Bitbucket Cloud](/integrations/source/bitbucket.md#bitbucket-cloud) repository.   |
+| `integration.bitbucket.register_hooks`        | An integration hook has been registered with [Bitbucket Cloud](/integrations/source/bitbucket.md#bitbucket-cloud).    |
+| `integration.bitbucket_server.fetch`          | A fetch has been triggered on your [Bitbucket Server](/integrations/source/bitbucket.md#bitbucket-server) repository. |
+| `integration.bitbucket_server.register_hooks` | An integration hook has been registered with [Bitbucket Server](/integrations/source/bitbucket.md#bitbucket-server).  |
+| `integration.github.fetch`                    | A fetch has been triggered on your [GitHub](/integrations/source/github.md) repository.                               |
+| `integration.gitlab.fetch`                    | A fetch has been triggered on your [GitLab](/integrations/source/gitlab.md) repository.                               |
+| `integration.health.email`                    | A [health notification](../notifications.md) was sent by email.                                                       |
+| `integration.health.pagerduty`                | A [health notification](../notifications.md) was sent to PagerDuty.                                                   |
+| `integration.health.slack`                    | A [health notification](../notifications.md) was sent to Slack.                                                       |
+| `integration.health.webhook`                  | A [health notification](../notifications.md) was sent to a webhook.                                                   |
+| `integration.script`                          | An [activity script](/integrations/activity/_index.md) has been triggered.                                            |
+| `integration.webhook`                         | A [webhook](/integrations/activity/webhooks.md) was triggered.                                                        |
+
+#### `maintenance` activity types
+
+Activities that relate to a maintenance.
+The following table presents the possible types:
+
+| Name                  | Description                                               |
+|-----------------------|-----------------------------------------------------------|
+| `maintenance.upgrade` | An upgrade is triggered for API Server and Metrics Server |
 
 ### `environments`
 
@@ -163,7 +195,7 @@ It's usually only a single value representing one environment.
 ### `state`
 
 The current state of the activity.
-Its value can be `pending`, `in_progress`, or `complete`.
+Its value can be `pending`, `in_progress`, `complete`, `cancelled`, or `scheduled`.
 
 ### `completion_percent`
 
@@ -182,12 +214,12 @@ The amount of time required by the activity.
 
 It can include the following properties:
 
-| Name | Description |
-|------|-------------|
-| `wait` | The delay if a command is set to wait before being executed. |
-| `build` | The execution time for the build hook. |
-| `deploy` | The execution time for the deploy hook. |
-| `execute` | The execution time for your script or cron job. |
+| Name      | Description                                                  |
+|-----------|--------------------------------------------------------------|
+| `wait`    | The delay if a command is set to wait before being executed. |
+| `build`   | The execution time for the build hook.                       |
+| `deploy`  | The execution time for the deploy hook.                      |
+| `execute` | The execution time for your script or cron job.              |
 
 ### `log`
 
@@ -207,25 +239,25 @@ A short human-readable description of the activity.
 Contains settings and details related to the completed activity.
 Its content varies based on the activity type.
 
-| Name | Description |
-|------|-------------|
-| `payload.user` | The user that triggered the activity. For details on its properties, see the [`user` payload](#user-payload). |
-| `payload.environment` | The environment affected by the activity. For details on its properties, see the [`environment` payload](#environment-payload). |
-| `payload.commits` | A list of changes with their Git metadata. |
-| `payload.commits_count` | The number of Git commits.  |
-| `payload.deployment` | Information about the deployed environment. For details on its properties, see the [`deployment` payload](#deployment-payload). |
-| `payload.project` | Information about the project. For details on its properties, see the [`project` payload](#project-payload). |
+| Name                    | Description                                                                                                                     |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| `payload.user`          | The user that triggered the activity. For details on its properties, see the [`user` payload](#user-payload).                   |
+| `payload.environment`   | The environment affected by the activity. For details on its properties, see the [`environment` payload](#environment-payload). |
+| `payload.commits`       | A list of changes with their Git metadata.                                                                                      |
+| `payload.commits_count` | The number of Git commits.                                                                                                      |
+| `payload.deployment`    | Information about the deployed environment. For details on its properties, see the [`deployment` payload](#deployment-payload). |
+| `payload.project`       | Information about the project. For details on its properties, see the [`project` payload](#project-payload).                    |
 
 #### `user` payload
 
 Contains information about the {{% vendor/name %}} user that triggered the activity.
 
-| Name | Description |
-|------|-------------|
-| `payload.user.created_at` | The date the user was created. |
+| Name                        | Description                                 |
+|-----------------------------|---------------------------------------------|
+| `payload.user.created_at`   | The date the user was created.              |
 | `payload.user.display_name` | The user's name in a human-friendly format. |
-| `payload.user.id` | The user's ID. |
-| `payload.user.updated_at` | The date the user was last updated. |
+| `payload.user.id`           | The user's ID.                              |
+| `payload.user.updated_at`   | The date the user was last updated.         |
 
 #### `environment` payload
 
@@ -233,11 +265,11 @@ Contains information about the environment associated with the activity,
 including its settings, state, and deployment.
 The following table presents the most notable properties of the environment:
 
-| Name | Description |
-|------|-------------|
-| `payload.environment.name` | The environment name. |
-| `payload.environment.type` | The [environment type](../../administration/users.md#environment-type-roles). |
-| `payload.environment.head_commit` | The ID of the environment's latest Git commit. |
+| Name                                | Description                                                                                 |
+|-------------------------------------|---------------------------------------------------------------------------------------------|
+| `payload.environment.name`          | The environment name.                                                                       |
+| `payload.environment.type`          | The [environment type](../../administration/users.md#environment-type-roles).               |
+| `payload.environment.head_commit`   | The ID of the environment's latest Git commit.                                              |
 | `payload.environment.edge_hostname` | The URL you should target when setting up a [custom domain](../../domains/steps/_index.md). |
 
 Different from [`environment` activities](#type).
@@ -248,11 +280,11 @@ Contains information about the project associated with the activity,
 including plan details, timezone, and region.
 The following table presents the most notable properties of the project:
 
-| Name | Description |
-|------|-------------|
-| `payload.project.timezone` | Your project's [timezone](../../projects/change-project-timezone.md). |
-| `payload.project.region` | Your project's [region](../../development/regions.md#regions). |
-| `payload.project.title` | Your project's name. |
+| Name                           | Description                                                                             |
+|--------------------------------|-----------------------------------------------------------------------------------------|
+| `payload.project.timezone`     | Your project's [timezone](../../projects/change-project-timezone.md).                   |
+| `payload.project.region`       | Your project's [region](../../development/regions.md#regions).                          |
+| `payload.project.title`        | Your project's name.                                                                    |
 | `payload.project.subscription` | All of the details about your project's [plan](../../administration/pricing/_index.md). |
 
 Different from [`project` activities](#type).
@@ -262,11 +294,11 @@ Different from [`project` activities](#type).
 Contains information about the deployed environment, if one is associated with the activity.
 The following table presents the most notable properties of the deployment:
 
-| Name | Description |
-|------|-------------|
-| `payload.deployment.routes` | All the URLs connected to the environment. The list includes redirects. To exclude redirects, find objects whose `type` is `upstream`. |
-| `payload.deployment.services` | All the services on your environment. |
-| `payload.deployment.variables` | All the [variables for the environment](../../development/variables/_index.md).  |
+| Name                           | Description                                                                                                                            |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| `payload.deployment.routes`    | All the URLs connected to the environment. The list includes redirects. To exclude redirects, find objects whose `type` is `upstream`. |
+| `payload.deployment.services`  | All the services on your environment.                                                                                                  |
+| `payload.deployment.variables` | All the [variables for the environment](../../development/variables/_index.md).                                                        |
 
 The `payload.deployment` property includes the configuration extracted from the following sources:
 
@@ -281,12 +313,12 @@ which enables *two* simultaneous activities to occur in parallel across your env
 For a given environment, only one activity can run at a time.
 Those queues include the following types of activities:
 
-| Name | Description |
-|------|-------------|
-| `default` | The most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
-| `integrations` | Source and webhook integration activities. |
-| `backup` | Backup activities. |
-| `cron` | Cron activities. |
+| Name           | Description                                                                                          |
+|----------------|------------------------------------------------------------------------------------------------------|
+| `default`      | The most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
+| `integrations` | Source and webhook integration activities.                                                           |
+| `backup`       | Backup activities.                                                                                   |
+| `cron`         | Cron activities.                                                                                     |
 
 Production activities are prioritized across all queues.
 When an activity for the production environment is triggered, it's placed at the top of the queue.
@@ -302,7 +334,8 @@ To test responses, [set up a webhook](./webhooks.md#setup).
 
 ### Cron
 
-When a cron job is triggered, the activity contains all the [job's information](../../create-apps/app-reference.md#crons).
+When a cron job is triggered, the activity contains all
+the [job's information](../../create-apps/app-reference.md#crons).
 The following example response was triggered by a setting
 where the cron is scheduled to run every five minutes (`5 * * * *`)
 with the command `sleep 60 && echo sleep-60-finished && date` and times out after 86,400 seconds.
