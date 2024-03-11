@@ -997,6 +997,7 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
+      - enchant
       - event
       - ffi
       - geoip
@@ -1012,11 +1013,11 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
       - pdo_dblib
-      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
@@ -1028,6 +1029,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -1048,7 +1050,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1061,12 +1062,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
