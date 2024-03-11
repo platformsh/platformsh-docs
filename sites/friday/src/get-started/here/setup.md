@@ -41,7 +41,7 @@ While the guide has been written to accommodate the following stacks, it is not 
 {{% guides/requirements %}}
 
 {{% note theme="info" title="Trials" %}}
-When you create an account on Upsun, you are also beginning a trial for your organization.
+When you create your first organization on Upsun, you are also activating your trial for that organization.
 Get [more information on trials](/glossary#trial).
 {{% /note %}}
 

@@ -204,7 +204,7 @@ even though it has mostly replaced SSL for online encrypted connections.
 
 ## Trial
 
-When you create an account on Upsun, you are also beginning a trial for your organization.
+When you create your first organization on Upsun, you are also activating your trial for that organization.
 This trial grants you a certain amount of time and resources to try out the Upsun platform, and comes with the following restrictions:
 
 1. A trial lasts for **5 days**, which starts automatically from creating your first organization.
