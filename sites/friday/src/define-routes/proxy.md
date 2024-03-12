@@ -10,9 +10,9 @@ Only use this feature to address edge cases where you need to proxy to another, 
 To expose your app to the outside world, see [how to define routes](../define-routes/_index.md).
 
 {{< /note >}}
-​
+
 Sometimes you want your app to pass requests on to a different {{% vendor/name %}} project.
-Basic redirects only work within the same project, so use proxy routes for routes elsewhere.​
+Basic redirects only work within the same project, so use proxy routes for routes elsewhere.
 
 You can define an external proxy on your {{% vendor/name %}} project by defining a route like the following:
 
@@ -24,7 +24,7 @@ routes:
 ```
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/foo/index.html`.
-​
+
 You can also define a proxy route to an URL composed of an IP address and a port:
 
 ```yaml {configFile="routes"}
@@ -125,5 +125,5 @@ sequenceDiagram
 This architecture makes the router of a single project into the central element of your app.
 This setup may make scaling more difficult as the router scales with the size of that project.
 The router can become a bottleneck for all external sites and acts as a single point of failure.
-​
+
 For larger projects, you should handle multiple websites with the same base URL via a [CDN](../domains/cdn/_index.md).
