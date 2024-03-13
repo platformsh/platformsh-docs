@@ -1,7 +1,7 @@
 ---
-title: Monitor your billing data
+title: Monitor your billing information
 weight: 2
-description: Manage your costs efficiently by viewing monthly spending estimates and setting overspending alerts.
+description: Manage your costs efficiently by viewing monthly spend estimates and setting spend alerts.
 keywords:
   - "resources"
   - "flexible resources"
@@ -15,61 +15,90 @@ keywords:
 ---
 
 To help you manage the costs pertaining to your organization,
-Upsun provides an invoice estimate for the current month, and a cost projection for the next.
+Upsun provides estimates for the current month and the following month.
 
 You can also set billing alerts to make sure you don't overspend,
 and track resource usage on each of your projects.
 
-## Access your billing data
+## Access your billing information
 
-To access billing data pertaining to your organization in the [Console](/administration/web/_index.md), follow these steps:
+To access billing information pertaining to your organization in the [Console](/administration/web/_index.md), follow these steps:
 
 1. Navigate to your organization.
 2. Open the user menu (your name or profile picture).
 3. Click **Billing**.</br>
    The **Overview** tab is displayed.
-   You can view your invoice estimate for the current month,
-   and a cost projection for the following month.
+   You can view your current month and next month estimates.
 
 ![Overview tab in the Console](/images/billing/billing-overview-tab-console.png)
 
-### Invoice estimates and cost projections
+### Current month estimate
 
-Your invoice estimate gives you an idea of what you may be charged at the end of the current month.
+Your current month estimate gives you an idea of what you may be charged at the end of the month.
 It is based on the following elements:
 
-- Your current organization settings (number of users and projects, potential add-ons, support SLA, etc.).
-- Your current resource allocation on each project.
+- Your organization settings (user management settings, number of projects, potential add-ons, support SLA, etc.)
+- Your resource allocation on each project
 
-  {{% note theme="warning" title="Warning"%}}
-  Your invoice estimate is updated once a day to reflect changes made to your organization settings and resource allocation.
-  
-  However, the estimate only takes into account **the history of changes** made to your organization settings throughout the current month.
-  It **does not** take into account the history of changes made to your resource allocation.
-  
-  In other words, if you make changes to your resource allocation during the month,
-  your final invoice will differ from the estimate.
+You current month estimate takes into account the history of changes you may have made since the beginning of the month.
+However, it is only an estimate and cannot be completely accurate, as it is impossible to determine what your exact usage will be.
 
-  **Example**:
+#### User management estimate
 
-  You make changes to your organization settings on day 12.
-  Your updated estimate reflects the organization settings history since day 1,
-  and shows a projected total assuming no further changes will be made until the end of the month.
+To provide an estimate of how much user management may cost you,
+{{% vendor/name %}} uses the following calculation:
 
-  You make changes to resource allocation on a project on day 12.
-  Your updated estimate is only based on the new resource allocation,
-  and shows a projected total assuming no further changes will be made until the end of the month.
+`unit price x current x prorated quantity`
 
-  {{% /note %}}
+Where:
 
-The estimated total of your current invoice is displayed in the **Overview** tab.
-To view its details, click **View invoice**.</br>
-Alternatively, you can go to the **Invoices** tab, which also provides a history of your past invoices.
+- The unit price is fixed
+- `current` is your current user settings (number of user licenses, user management sellable subscription, etc.)
+- The prorated quantity is based on an average of past changes and the current settings, applied for all the remaining days in the month
 
-![Billings tabs in the Console](/images/billing/invoices.png)
+#### Accumulated resource usage estimate
 
-The **Overview** tab also shows a cost projection for the following month.
-This cost projection is computed in the same way as your invoice estimate, and includes VAT.
+To provide an estimate of how much accumulated resource usage (of build resources, bandwidth, log forwarding, etc.) may cost you,
+{{% vendor/name %}} uses the following calculation: 
+
+`unit price x current accumulation x daily average x number of days in the month`
+
+Where:
+
+- The unit price is fixed
+- The current accumulation is what you have effectively used so far this month
+- The daily average is based on the usage you've had over the last 30 days
+
+#### Allocated resource usage estimate
+
+To provide an estimate of how much allocated resource usage (of application resources, service resources, storage, etc.) may cost you,
+{{% vendor/name %}} uses the following calculation:
+
+`unit price x current allocation x prorated quantity`
+
+Where:
+
+- The unit price is fixed
+- `current allocation` is your current resource allocation across projects
+- The prorated quantity is based on an average of past changes and the current settings, applied for all the remaining days in the month
+
+### Next month estimate
+
+{{% vendor/name %}} also provides you with an estimate for the following month. 
+Like your [current month estimate](#current-month-estimate), it is based on your organization settings and resource allocation on each project.
+
+However, contrary to your current month estimate, 
+your next month estimate **does not take into account any history of changes**.
+
+It is solely based on your current organization settings and resource allocation,
+and provides insight into what you may be charged if you don't make any changes until the end of the following month.
+
+### Invoice
+
+Your invoice provides definitive information about what you will be charged.
+It is calculated at the end of the month and is based on your `(current accumulation x unit price) + (current allocation x unit price)`.
+
+To access your current invoice and a history of past invoices, open the **Invoices** tab.
 
 ## Set a billing alert
 

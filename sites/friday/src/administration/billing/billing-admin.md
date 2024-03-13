@@ -1,10 +1,10 @@
 ---
 title: Administer your billing
 weight: 1
-description: Keep your billing data up to date and redeem your vouchers from the Console.
+description: Keep your billing information up to date and redeem your vouchers from the Console.
 ---
 
-The [Console](/administration/billing/billing-admin.md) is where you can keep your billing details up to date and redeem your vouchers.
+The [Console](/administration/web/_index.md) is where you can keep your billing details up to date and redeem your vouchers.
 
 ## Manage your billing details
 
