@@ -51,7 +51,7 @@ Note that you can [keep an eye on those costs](/manage-resources/resource-billin
 | `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](https://console.upsun.com/), or using `resources:set` in the CLI.</br></br> This strategy allows you to set the exact resources you want, with a single deployment. Other strategies may require fine-tuning, and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
 | `minimum`  | Initializes new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes new containers using the same resources as on the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
-| `child`    | Initializes new containers using the same resources as on the child environment. |
+| `child`    | Initializes new containers using the same resources as on the child environment. Only relevant during merge activities. |
 | `backup`   | When restoring a backup, intitializes new containers using the same resources as when the backup was taken. |
 
 {{% note theme="info" title="More information on..."%}} 
