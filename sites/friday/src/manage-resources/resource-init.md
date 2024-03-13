@@ -62,7 +62,7 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 
 | Container               | CPU  | RAM    | Disk*   |
 |-------------------------|------|--------|---------|
-| .NET                    | 0.1  | 64 MB  | 0 MB    |
+| .NET core                   | 0.1  | 64 MB  | 0 MB    |
 | Chrome Headless         | 0.1  | 64 MB  | None    |
 | Elasticsearch           | 0.1  | 448 MB | 256 MB  |
 | Elasticsearch Premium   | 0.1  | 448 MB | 256 MB  |
@@ -84,7 +84,7 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | PHP                     | 0.1  | 64 MB  | 0 MB    |
 | PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
 | Python                  | 0.1  | 64 MB  | 0 MB    |
-| Rabbitmq                | 0.1  | 448 MB | 256 MB  | 
+| RabbitMQ                | 0.1  | 448 MB | 256 MB  | 
 | Redis ephemeral         | 0.1  | 352 MB | None    |
 | Redis persistent        | 0.1  | 352 MB | 256 MB  | 
 | Ruby                    | 0.1  | 64 MB  | 0 MB    |
@@ -93,7 +93,7 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | Varnish                 | 0.1  | 448 MB | None    |
 | Vault KMS               | 0.1  | 448 MB | 256 MB  |
 
-\* The disk size is set to `None` when the container never uses a disk, and to `0 MB` when the container doesn't require a disk but _can_ use one.
+\* The disk size is set to `None` when the container never uses disk, and to `0 MB` when the container doesn't require disk but _can_ use it.
 </details>
 {{% /note %}} 
 
