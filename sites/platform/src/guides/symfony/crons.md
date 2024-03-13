@@ -56,3 +56,5 @@ To use a custom SMTP and/or custom sender address, follow these steps:
    Note that only SMTP connections are supported.
 
 3. To disable the provided SMTP service, run `symfony cloud:env:info enable_smtp false`.
+
+{{< guide-buttons previous="Back" next="Blackfire" >}}
