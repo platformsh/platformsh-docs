@@ -75,7 +75,7 @@ Here's how {{% vendor/name %}} calculates how much accumulated resource usage ma
 | ---------------------- | ----------- |
 | `unit price`           | A fixed unit price. |
 | `current accumulation` | The amount of accumulated resources you have effectively used so far this month. |
-| `prorated quantity`    | An average based on the accumulated resource usage you've had over the last 30 days. |
+| `daily average`    | An average based on the accumulated resource usage you've had over the last 30 days. |
 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-billing-information).
 
