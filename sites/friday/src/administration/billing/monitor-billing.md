@@ -32,7 +32,7 @@ To access billing information related to your organization in the [Console](/adm
    The **Overview** tab is displayed.
    You can view your current month and next month estimates.
 
-![Overview tab in the Console](/images/billing/billing-overview-tab-console.png)
+SCREENSHOT TO INSERT
 
 ### Current month estimate
 
@@ -53,8 +53,9 @@ each with its own calculation:
 
 #### User management estimate
 
-User management fees include user licenses and, when applicable, subscription to the user management sellable.
-Here's how {{% vendor/name %}} calculates how much user management may cost you: `unit price x current x prorated quantity`
+User management fees include user licenses and, when applicable, subscription to the user management sellable.</br>
+Here's how {{% vendor/name %}} calculates how much user management may cost you:
+`unit price x current x prorated quantity`.
 
 | Item               | Description |
 | ------------------ | ----------- |
@@ -66,8 +67,9 @@ All items used for the calculation are displayed in the [**Overview** tab](#acce
 
 #### Accumulated resource usage estimate
 
-The resources consumed for builds, bandwidth, and log forwarding are accumulated resources.
-Here's how {{% vendor/name %}} calculates how much accumulated resource usage may cost you: `unit price x current accumulation x daily average x number of days in the month`
+The resources consumed for builds, bandwidth, and log forwarding are accumulated resources.</br>
+Here's how {{% vendor/name %}} calculates how much accumulated resource usage may cost you:
+`unit price x current accumulation x daily average x number of days in the month`.
 
 | Item                   | Description |
 | ---------------------- | ----------- |
@@ -79,8 +81,8 @@ All items used for the calculation are displayed in the [**Overview** tab](#acce
 
 #### Allocated resource usage estimate
 
-The resources consumed by your applications and services (CPU, RAM, and storage) are allocated resources.
-Here's how {{% vendor/name %}} calculates how much allocated resource usage may cost you: `unit price x current allocation x prorated quantity`
+The resources consumed by your applications and services (CPU, RAM, and storage) are allocated resources.</br>
+Here's how {{% vendor/name %}} calculates how much allocated resource usage may cost you: `unit price x current allocation x prorated quantity`.
 
 | Item                 | Description |
 | -------------------- | ----------- |
@@ -127,7 +129,7 @@ Therefore, email notifications can only be triggered once a day too.
 
 You may want to increase your billing alert threshold after receiving an email notification.
 However, if the new threshold is reached later on the same day,
-**you won't get notified until the following day**, when the invoice estimate is computed again.
+**you won't get notified until the following day**, when the current month estimate is computed again.
 {{% /note %}}
 
 To set a billing alert on your organization:
