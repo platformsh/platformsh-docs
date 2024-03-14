@@ -1277,6 +1277,7 @@ grid:
       - ldap
       - mailparse
       - memcached
+      - mongodb
       - msgpack
       - mysql
       - newrelic
