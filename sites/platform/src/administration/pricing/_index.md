@@ -141,9 +141,10 @@ Plans with a Fastly CDN service or the extra Fastly Service include the followin
 
 | SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
 |-----------------|-----------------------------------------------------------------------------------------|------|------|--------|--------|------|
-| `BDW-1-POST`    | Additional 1&nbsp;TB of egress bandwidth and 50 million ingress requests               | $88  | €77  | AU$128 | CA$119 | £68  |
-| `EDGE-REQ-POST` | Additional 50 million ingress requests                                                  | $66  | €62  | AU$95  | CA$88  | £54  |
-| `ORN-1-POST`    | Additional 1&nbsp;TB of egress bandwidth and 50 million ingress requests at the origin | $209 | €167 | AU$316 | CA$284 | £189 |
+| `EDGE-ORN-OVERAGE-1TB`    | Origin Egress Bandwidth: 1TB               | $209  | €155  | AU$303 | CA$284 | £161  |
+| `EDGE-BDW-OVERAGE-1TB`    | Edge Egress Bandwidth: 1TB               | $88  | €65  | AU$128 | CA$119 | £68  |
+| `EDGE-REQ-OVERAGE-50M`    | Ingress Requests: 50M               | $66  | €49  | AU$96 | CA$90 | £51  |
+
 
 ### DDoS surge protection
 
@@ -152,7 +153,7 @@ You can contact your Customer Success Manager to add DDoS surge protection to yo
 
 | SKU                    | Description                                | USD    | EUR    | AUD      | CAD      | GBP    |
 |------------------------|--------------------------------------------|--------|--------|----------|----------|--------|
-| `EDGE-DDOS-PROTECTION` | Surge protection for DDoS related overages | $2,400 | €2,220 | AU$3,444 | CA$3,216 | £1,968 |
+| `EDGE-DDOS-PROTECTION` | Surge protection for DDoS related overages | $2,400 | €1778 | AU$3,480 | CA$3,257 | £1,847 |
 
 ## Agencies
 
