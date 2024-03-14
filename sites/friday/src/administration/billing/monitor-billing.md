@@ -14,7 +14,7 @@ keywords:
   - "billing"
 ---
 
-To help you manage the costs related to your organization,
+To help you manage costs related to your organization,
 Upsun provides estimates for the current month and the next.
 
 You can set billing alerts to ensure you don't overspend,
@@ -24,7 +24,7 @@ For details on costs, see the [{{% vendor/name %}} pricing page](https://upsun.c
 
 ## Access your organization billing information
 
-To access billing information related to your organization in the [Console](/administration/web/_index.md):
+To access your organization billing information in the [Console](/administration/web/_index.md):
 
 1. Navigate to your organization.
 2. Open the user menu (your name or profile picture).
@@ -53,14 +53,14 @@ each with its own calculation:
 
 #### User management estimate
 
-User management fees include user licenses and, when applicable, subscription to the user management sellable.</br>
+User management fees include user licenses and, when applicable, subscription to the user management add-on.</br>
 Here's how {{% vendor/name %}} calculates how much user management may cost you:
 `unit price x current x prorated quantity`.
 
 | Item               | Description |
 | ------------------ | ----------- |
 | `unit price`       | A fixed unit price. |
-| `current`          | Your current user settings (number of user licenses, user management sellable subscription). |
+| `current`          | Your current user settings (number of user licenses, user management add-on subscription). |
 | `prorated quantity`| An average of past changes and current settings, applied for all the remaining days in the month. |
 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-billing-information).
@@ -141,7 +141,7 @@ To set a billing alert on your organization:
 5. Enter a threshold.
 6. Click **Create alert**.
 
-To edit or delete a billing alert, click the billing alert button in the **Overview** tab:
+Note that you can edit or delete a billing alert by clicking the billing alert button in the **Overview** tab:
 ![Billing alert button in the Console](/images/billing/billing-alert-button.png "0.1") 
 
 ## Track resource usage on a project
