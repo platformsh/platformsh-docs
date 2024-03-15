@@ -1262,7 +1262,7 @@ grid:
       - amqp
       - apcu
       - blackfire
-      - datadogphp
+      - datadog
       - enchant
       - event
       - ffi
