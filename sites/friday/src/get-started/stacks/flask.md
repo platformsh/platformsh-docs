@@ -100,6 +100,8 @@ Locate the section dedicated to it:
          npm install
 ```
 
+If your project uses a different package manager, we also support [several other options](/languages/python/dependencies.md).
+
 ### Deploy Hook
 Now we need to instruct Upsun to automatically run `npm run build` when building the application container. To do so,
 customize your [deploy hook](/create-apps/hooks/hooks-comparison.html#deploy-hook). Locate the section dedicated to it:
