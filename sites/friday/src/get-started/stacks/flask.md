@@ -207,6 +207,86 @@ change the `socket_family` value from `unix` to `tcp`:
 ## Commit and push
 You can now commit the changes to `.environment` and `.upsun/config.yaml` and push to Upsun.
 
+## Alternative Web Servers
+Upsun [supports several different web servers](/languages/python/server.md) for python, including Gunicorn, Daphne,
+Uvicorn, and Hypercorn. Please see the [documentation for implementation instructions](/languages/python/server.md).
+Make sure you have added your chosen web server to your requirements.txt.
+
+## Preparing database migrations
+If you have a new Flask project that uses [Flask-migrate](https://flask-migrate.readthedocs.io/en/latest/), or existing
+application but need to set up the initial migrations, we can do so using the database service we created earlier.
+
+Let's first set up a virtual environment to run our project inside of:
+```shell
+python3 -m venv env && source venv/bin/activate
+```
+
+Just like in our build hook, update pip and install the requirements:
+```shell
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Next, we'll need to set up a way for our local instance of flask to communicate with our database service. The Upsun CLI
+tool gives us a method to communicate to our application's services:
+[upsun tunnel](/development/ssh/_index.md#use-a-direct-tunnel). In your terminal, run the following:
+```shell
+upsun tunnel:open -y
+```
+
+This opens an ssh tunnel to all the services for the application; we can now use it to allow our local instance to
+communicate with them as if they too were local. To do that though, we'll need to configure some environment variables
+similarly to how we did previously. If you reopen the `.environment` file, you'll notice at the top that we make use of
+an environment variable named `$PLATFORM_RELATIONSHIPS` in order to retrieve information about services and their
+credentials. The tunnel we created gives us access to that same data, allowing us to generate a local
+`PLATFORM_RELATIONSHIPS` environment variable containing the same information.
+```shell
+export PLATFORM_RELATIONSHIPS="$(upsun tunnel:info --encode)"
+```
+Since we now have this environmental variable set locally, we can reuse our `.environment` file for Upsun to recreate
+many of the other environmental variables we need to run locally.
+
+However, we have a few that aren't set via `PLATFORM_RELATIONSHIPS` that we still need to set up.
+```shell
+export PLATFORM_ENVIRONMENT_TYPE=production
+export PORT=8888
+export PLATFORM_PROJECT_ENTROPY=$(openssl rand -base64 32)
+```
+
+And last, source our `.environment` file to finish setting up all the environmental variables in our current shell:
+```shell
+source ./.environment
+```
+
+We now have everything we need for Flask-Migrate to be able to connect to the database and generate our migration files.
+First we need to have Flask-Migrate initiate the migrations directory and prepare for the migrate command:
+```shell
+flask db init
+```
+Now we can have Flask-migrate generate our migrations:
+```shell
+flask db migrate
+```
+And now commit our generated migrations:
+```shell
+git add migrations/*
+git commit -m "adds migrations"
+```
+We now need to instruct Upsun to run the Flask-migrate upgrade command when deploying so we know any migration changes
+are automatically applied. Re-open the `./.upsun/config.yaml` and find the `deploy` hook where we added `npm run build`.
+On the next line, add `flask db upgrade`.
+```yaml
+# The deploy hook is run after the app container has been started, but before it has started accepting requests.
+# More information:    https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
+      deploy: |
+        set -eux
+        npm run build
+        flask db upgrade
+```
+
+You can now commit the changes to `.environment` and `.upsun/config.yaml` and push to Upsun.
+
+
 ## Documentation
 
 - [Python documentation](/languages/python/)
