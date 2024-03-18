@@ -96,8 +96,16 @@ In both the CLI and Console, you can choose from the following options:
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `resync-pull-requests` | `false` | Whether to sync data from the parent environment on every push to a pull request. |
+| `resources-init` | `false` | To [specify a resource initialization strategy](/manage-resources/resource-init.md#first-deployment) for new containers. Once set, the strategy applies to **all** the deployments you launch through your source integration. For more information on available strategies, see [Resources initialization](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
+
+{{% note %}}
 
 To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+
+{{% /note %}}
+
+
+
 
 {{% source-integration/validate source="Bitbucket" %}}
 1. Follow the [Bitbucket instructions to create a webhook](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)
