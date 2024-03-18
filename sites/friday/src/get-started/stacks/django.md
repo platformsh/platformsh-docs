@@ -80,6 +80,8 @@ to:
       npm install
       npm run build
 ```
+If your project uses a different package manager, we also support [several other options](/languages/python/dependencies.md).
+
 ### Deploy Hook
 Just below that, find the `deploy` section and change the following lines from:
 ```yaml
