@@ -96,7 +96,7 @@ In both the CLI and Console, you can choose from the following options:
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `resync-pull-requests` | `false` | Whether to sync data from the parent environment on every push to a pull request. |
-| `resources-init` | `false` | To [specify a resource initialization strategy](/manage-resources/resource-init.md#first-deployment) for new containers. Once set, the strategy applies to **all** the deployments you launch through your source integration. For more information on available strategies, see [Resources initialization](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
+| `resources-init` | `false` | To [specify a resource initialization strategy](/manage-resources/resource-init.md#first-deployment) for new containers. Once set, the strategy applies to **all** the deployments you launch through your source integration. See more information on [available resource initialization strategies](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy). |
 
 {{% note %}}
 
