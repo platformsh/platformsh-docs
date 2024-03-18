@@ -14,7 +14,7 @@ Before you proceed, be sure to checkout the [{{% vendor/name %}} demo app](https
 
 {{< /note >}}
 
-Now that you have completed the [Getting started guide](/get-started/here/_index.md), there are **five remaining changes**
+Now that you have completed the [Getting started guide](/get-started/here/_index.md), there are a few remaining changes
 required in order to have a successful deployment of Flask on Upsun.
 
 ## Environment Variables
