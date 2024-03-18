@@ -616,6 +616,8 @@ grid:
       - xmlrpc
       - xsl
     default:
+      - curl
+      - gd
       - intl
       - json
       - mcrypt
@@ -724,6 +726,7 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
+      - enchant
       - event
       - geoip
       - gmp
@@ -738,6 +741,7 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
@@ -776,7 +780,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -789,12 +792,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -1137,7 +1140,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1371,7 +1373,7 @@ grid:
       - pgsql
       - pspell
       - raphf
-      - rdkhafka
+      - rdkafka
       - readline
       - redis
       - snmp
