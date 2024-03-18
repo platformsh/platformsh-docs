@@ -203,7 +203,7 @@ To configure your Redis service, follow these steps:
 To verify that Redis is running, run the following command:
 
 ```bash
-{{% vendor/cli %}} 'echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq'
+{{% vendor/cli %}} ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq'
 ```
 
 In the output, retrieve the value of the `host` property for your Redis relationship.
