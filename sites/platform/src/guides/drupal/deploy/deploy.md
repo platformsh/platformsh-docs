@@ -36,4 +36,4 @@ that's wasteful of both time and disk space, so it's better to exclude that data
 
 Go forth and Deploy (even on Friday)!
 
-{{< guide-buttons next="More resources" >}}
+{{< guide-buttons previous="Back" next="More resources" >}}

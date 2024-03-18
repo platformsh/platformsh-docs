@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get started
 weight: -255
 layout: single
 description: |
@@ -219,3 +219,5 @@ you might want to [set up a local development environment](./local).
 {{% tips-and-tricks/cli framework="Symfony" %}}
 {{% tips-and-tricks/symfony/cli-common %}}
 {{% tips-and-tricks/cli-database framework="Symfony" %}}
+
+{{< guide-buttons previous="Back" next="Symfony integration" >}}

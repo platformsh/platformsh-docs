@@ -1,6 +1,6 @@
 ---
 title: "{{% vendor/name %}} YAML tags"
-weight: 0
+weight: 10
 description: "A description of custom YAML tags available for {{% vendor/name %}} files."
 ---
 
@@ -54,7 +54,7 @@ applications:
     frontend:
         source:
             root: frontend
-        
+
         # ...
 
         hooks:
@@ -97,6 +97,50 @@ hooks:
 
 This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
 
+Even if ``path`` is relative to the current application's directory, it is also possible to include a shell script from a directory parent to the folder however.
+
+For example, for the following project structure:
+
+```bash
+.
+├── {{< vendor/configdir >}}
+|   └── {{< vendor/configfile "apps" "strip" >}}
+├── backend
+│   ├── main.py
+│   ├── requirements.txt
+│   └── scripts
+│       ├── ...
+│       └── common_build.sh
+└── frontend
+    ├── README.md
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    ├── scripts
+    │   └── clean.sh
+    └── src
+```
+
+This configuration is valid:
+
+```yaml {configFile="apps"}
+applications:
+    frontend:
+        source:
+            root: frontend
+        # ...
+        hooks:
+            build: !include
+                type: string
+                path: ../backend/scripts/common_build.sh
+```
+
+{{% note theme="info" %}}
+
+Please note that {{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
+
+{{% /note %}}
+
 ### `binary`
 
 Use `binary` to include an external binary file inline in the YAML file.
@@ -106,7 +150,7 @@ For example, you could include a `favicon.ico` file in the same folder as your a
 Then you can include it as follows:
 
 ```yaml {configFile="app"}
-properties:
+some-property:
     favicon: !include
         type: binary
         path: favicon.ico
@@ -144,7 +188,7 @@ workers:
 
 ```yaml {configFile="app"}
 workers:
-    queue1: 
+    queue1:
         size: S
         commands:
             start: python queue-worker.py
@@ -154,6 +198,31 @@ workers:
 ```
 
 This can help simplify more complex files.
+
+
+For [multiple application](/create-apps/multi-app/_index.md) project, you can also include another ``.upsun/apps/my-app.yaml`` file in the main `{{% vendor/configfile "apps" %}}`.
+
+```yaml {location=".upsun/apps/my-app.yaml"}
+source:
+root: "/"
+type: "nodejs:18"
+web:
+    commands:
+      start: "node index.js"
+upstream:
+    socket_family: tcp
+locations:
+    "/":
+        passthru: true
+```
+
+and including it:
+
+```yaml {configFile="apps"}
+applications:
+  app:
+    !include ./apps/my-app.yaml
+```
 
 ## Archive
 

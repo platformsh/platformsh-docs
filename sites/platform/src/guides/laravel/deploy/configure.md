@@ -16,4 +16,4 @@ description: |
 
 Now that you have Laravel configured, connect it with Laravel Bridge.
 
-{{< guide-buttons next="Connect to {{% vendor/name %}}" >}}
+{{< guide-buttons previous="Back" next="Connect to {{% vendor/name %}}" >}}

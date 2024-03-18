@@ -99,4 +99,4 @@ Below is an example configuration to make [PostgreSQL](../../../add-services/pos
 
 {{% guides/config-routes template="django4" name="Django" %}}
 
-{{< guide-buttons next="Customize Django" >}}
+{{< guide-buttons previous="Back" next="Customize Django" >}}

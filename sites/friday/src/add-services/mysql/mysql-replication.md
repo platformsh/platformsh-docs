@@ -18,7 +18,7 @@ To set up replication you need to create a replication-enabled user.
 For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     configuration:
         schemas:
@@ -49,8 +49,8 @@ Add a new relationship to your application container:
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: db:mysql
-    replication: db:replicator
+    database: mariadb:mysql
+    replication: mariadb:replicator
 {{% /snippet %}}
 ```
 
@@ -146,16 +146,16 @@ Once the data has been imported, you are ready to start replicating. Begin by ru
 
 ```sql
 mysql> CHANGE MASTER TO
-  MASTER_HOST='{{< variable "HOST" >}}',
+  MASTER_HOST='{{< variable "REPLICATION_HOST" >}}',
   MASTER_USER='replicator',
-  MASTER_PASSWORD='{{< variable "REPLICATOR_PASSWORD" >}}',
+  MASTER_PASSWORD='{{< variable "REPLICATION_PASSWORD" >}}',
   MASTER_PORT=3306,
   MASTER_LOG_FILE='binlogs.000002',
   MASTER_LOG_POS=1036,
   MASTER_CONNECT_RETRY=10;
 ```
 
-Where `{{< variable "HOST" >}}` varies depending on the SSH tunneling configuration you have, and the `{{< variable "REPLICATOR_PASSWORD" >}}` can be obtained by running `{{% vendor/cli %}} relationships`.
+Where `{{< variable "REPLICATION_HOST" >}}` varies depending on the SSH tunneling configuration you have, and the `{{< variable "REPLICATION_PASSWORD" >}}` can be obtained by running `{{% vendor/cli %}} ssh env`.
 
 Now start the replica with the `START SLAVE` command:
 

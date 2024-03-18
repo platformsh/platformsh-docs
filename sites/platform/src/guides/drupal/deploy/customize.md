@@ -72,4 +72,4 @@ The script contents aren't especially interesting.
 For the most part, you can download it from the template,
 place it in a `drush` directory in your project so they can be called from the deploy hook, and then forget about it.
 
-{{< guide-buttons next="Deploy Drupal" >}}
+{{< guide-buttons previous="Back" next="Deploy Drupal" >}}

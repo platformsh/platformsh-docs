@@ -122,11 +122,10 @@
 {{- else if eq $configType "service" -}}
     {{- $servNameComment := "# The name of the service container. Must be unique within a project." -}}
     {{- if eq .context.Site.Params.vendor.config.version 2 -}}
-        {{- $servicesKey := "" }}
+        {{- $servicesKey := "" -}}
         {{- if eq $globKey "true" -}}
             {{- $servicesKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.services -}}
         {{- end -}}
-
 
         {{- if and (eq $placeholder "true") (not .Inner) -}}
             {{- $prepend = printf "# %s#    %s" $servicesKey "..." -}}
