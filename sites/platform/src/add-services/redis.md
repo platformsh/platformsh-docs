@@ -143,8 +143,8 @@ runtime:
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
-data:
-    type: redis-persistent:7.0
+redis:
+    type: redis-persistent:{{% latest "redis" %}}
     disk: 256
 ```
 
@@ -152,7 +152,7 @@ data:
 
 ```yaml {configFile="app"}
 relationships:
-    redisdata: "data:redis"
+  rediscache: "redis:redis"
 ```
 
 ### Use in app
@@ -250,8 +250,8 @@ runtime:
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
-data:
-    type: redis:7.0
+redis:
+    type: redis:{{% latest "redis" %}}
     disk: 256
 ```
 
@@ -259,7 +259,7 @@ data:
 
 ```yaml {configFile="app"}
 relationships:
-    redisdata: "data:redis"
+    rediscache: "redis:redis"
 ```
 
 ### Use in app
@@ -372,24 +372,24 @@ const value = await client.get('x');     // returns 42
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
-    "username": null,
-    "scheme": "redis",
-    "service": "redis6",
-    "fragment": null,
-    "ip": "169.254.22.75",
-    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 6379,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "redis.internal",
-    "rel": "redis",
-    "path": null,
-    "query": [],
-    "password": null,
-    "type": "redis:{{% latest "redis" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "redis",
+  "service": "redis",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 6379,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "rediscache.internal",
+  "rel": "redis",
+  "path": null,
+  "query": [],
+  "password": null,
+  "type": "redis:{{% latest "redis" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -402,7 +402,7 @@ it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
-{{% snippet name="cache" config="service" %}}
+{{% snippet name="redis" config="service" %}}
     type: "redis:{{% latest "redis" %}}"
     configuration:
         maxmemory_policy: allkeys-lfu

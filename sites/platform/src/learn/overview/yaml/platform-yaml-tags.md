@@ -15,22 +15,50 @@ Use the `!include` tag to embed external files within a given YAML file.
 
 The tag requires two properties:
 
-| Property | Type     | Possible values               | Description |
-| -------- | -------- | ----------------------------- | ----------- |
+| Property | Type     | Possible values               | Description                                                                                             |
+| -------- | -------- | ----------------------------- |---------------------------------------------------------------------------------------------------------|
 | `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
-| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root`. |
+| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root` if defined.     |
 
-{{% note theme="info" %}}
 
 By default, `path` is relative to the current application's directory (what you would define with `source.root`).
-It is possible to include files from a directory parent to the folder however.
+
+For example, to include another ``.platform/app1.yaml`` file in the main `{{% vendor/configfile "apps" %}}`, follow these steps:
+
+1. Write and save your ``.platform/app1.yaml`` file:
+
+```yaml {location=".platform/app1.yaml"}
+source:
+root: "/"
+type: "nodejs:20"
+web:
+    commands:
+      start: "node index.js"
+upstream:
+    socket_family: tcp
+locations:
+    "/":
+        passthru: true
+```
+
+And including it:
+
+```yaml {configFile="apps"}
+app: !include
+    type: yaml
+    path: ./app1.yaml
+# or as default type is "yaml", it could be:
+#api: !include ./app1.yaml
+```
+
+You can also include files from a directory that is parent to the folder.
 
 For example, for the following project structure:
 
 ```bash
 .
 ├── {{< vendor/configdir >}}
-|   └── {{< vendor/configfile "apps" >}}
+|   └── {{< vendor/configfile "apps" "strip" >}}
 ├── backend
 │   ├── main.py
 │   ├── requirements.txt
@@ -50,21 +78,21 @@ For example, for the following project structure:
 This configuration is valid:
 
 ```yaml {configFile="apps"}
-applications:
-    frontend:
-        source:
-            root: frontend
-        
-        # ...
-
-        hooks:
-            build: !include
-                type: string
-                path: ../backend/scripts/common_build.sh
+frontend:
+    source:
+        root: frontend
+    # ...
+    hooks:
+        build: !include
+            type: string
+            path: ../backend/scripts/common_build.sh
 ```
 
-{{% /note %}}
+{{% note theme="info" %}}
 
+{{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
+
+{{% /note %}}
 
 ### `string`
 
@@ -72,11 +100,12 @@ Use `string` to include an external file inline in the YAML file as if entered a
 
 For example, if you have a build hook like the following:
 
-```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        cp a.txt b.txt
+```yaml {configFile="apps"}
+frontend:
+    hooks:
+        build: |
+            set -e
+            cp a.txt b.txt
 ```
 
 You could create a file for the script:
@@ -88,11 +117,12 @@ cp a.txt b.txt
 
 And replace the hook with an include tag for an identical result:
 
-```yaml {configFile="app"}
-hooks:
-    build: !include
-        type: string
-        path: build.sh
+```yaml {configFile="apps"}
+frontend:
+    hooks:
+        build: !include
+            type: string
+            path: build.sh
 ```
 
 This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
@@ -105,7 +135,7 @@ The file is base64 encoded.
 For example, you could include a `favicon.ico` file in the same folder as your app configuration.
 Then you can include it as follows:
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 properties:
     favicon: !include
         type: binary
@@ -144,7 +174,7 @@ workers:
 
 ```yaml {configFile="app"}
 workers:
-    queue1: 
+    queue1:
         size: S
         commands:
             start: python queue-worker.py

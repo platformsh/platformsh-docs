@@ -30,4 +30,4 @@ We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version
 
 {{% guides/config-routes template="wordpress-composer" name="WordPress" %}}
 
-{{< guide-buttons next="Customize WordPress" >}}
+{{< guide-buttons previous="Back" next="Customize WordPress" >}}
