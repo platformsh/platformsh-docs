@@ -39,4 +39,63 @@ If you do not anticipate the need to support non-public plugins, or already have
 you can skip adding a `plugins` directory to your project.
 {{< /note >}}
 
-git 
+Add and commit the files and directories you added above.
+
+## `./.upsun/config.yaml`
+The Upsun configuration file will need several changes/additions in order for WordPress to successfully deploy and
+operate. Open up the Upsun configuration file (`./.upsun/config.yaml`).
+
+### `web:locations`
+Inside the configuration file, locate the `web:locations` section for the root (`\`) location. Update this section to
+match the following:
+```yaml
+      locations:
+        "/":
+          passthru: "/index.php"
+          root: "wordpress"
+          index:
+            - "index.php"
+          expires: 600
+          scripts: true
+          allow: true
+          rules:
+            ^/license\.text$:
+              allow: false
+            ^/readme\.html$:
+              allow: false
+```
+
+{{< note theme="info" >}}
+If you are migrating your site and already have a composer.json file, or generated your own instead of starting from
+the Platform.sh template version, and have added a `wordpress-install-dir` property for `extras` in your composer.json
+file, make sure to update the above `root:` property to the name of the directory where you are installing WordPress.
+{{< /note >}}
+
+We now need to add a new location for our uploaded files. At the same level (indentation) as our root location, add
+`/wp-content/uploads`:
+```yaml
+        "/wp-content/uploads":
+          root: "wordpress/wp-content/uploads"
+          scripts: false
+          allow: false
+          rules:
+            '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
+              allow: true
+              expires: 1w
+```
+### `mounts`
+WordPress needs a writable location to store uploaded media. We referenced this location previously, when creating the
+new location. Now we need to instruct Upsun to make this location writable. In the Upsun config file, locate the section
+`mounts:` that is currently commented it out. Replace that section with the following:
+```yaml
+    mounts:
+      "wordpress/wp-content/uploads":
+        source: storage
+        source_path: "uploads"
+```
+{{< note theme="info" >}}
+If you have designated a different directory via `wordpress-install-dir` property in your composer.json, update the
+mount location accordingly.
+{{< /note >}}
+
+
