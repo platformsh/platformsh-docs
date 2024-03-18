@@ -104,9 +104,6 @@ To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid
 
 {{% /note %}}
 
-
-
-
 {{% source-integration/validate source="Bitbucket" %}}
 1. Follow the [Bitbucket instructions to create a webhook](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)
    using the URL you copied.
