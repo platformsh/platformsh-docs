@@ -21,7 +21,7 @@ required in order to have a successful deployment of Django on Upsun. Alternativ
 required to run Django on Upsun.
 
 ## `.environment`
-Django requires a few environment variables that have not been set. Open the `.environment` file and add the following:
+Your Django app, depending on your `settings.py`, may require environment variables that have not been set. Open the `.environment` file and add them:
 ```shell
 export DJANGO_SETTINGS_MODULE=config.settings.production
 export DJANGO_SECRET_KEY="$PLATFORM_PROJECT_ENTROPY"
