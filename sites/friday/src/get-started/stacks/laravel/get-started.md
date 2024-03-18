@@ -148,8 +148,7 @@ To make changes to your project, follow these steps:
 
 2. Make changes to your project.
 
-   For example, if you created a Symfony Demo app,
-   edit the `resources/views/welcome.blade.php` template and make the following visual changes:
+   For example, edit the `resources/views/welcome.blade.php` template and make the following visual changes:
 
    ```html {location="resources/views/welcome.blade.php"}
    <meta name="viewport" content="width=device-width, initial-scale=1">
