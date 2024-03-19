@@ -24,7 +24,7 @@ Alternatively, you can deploy an **existing Laravel project**. Just `cd` into yo
 
 {{% vendor/name %}} manages the entire infrastructure of your project,
 from code to services (such as databases, queues, or search engines),
-all the way to email sending, [cron jobs](./crons), and [workers](./workers).
+all the way to email sending, [cron jobs](./crons), and [workers](./laravel-horizon).
 This infrastructure is described through configuration files stored alongside your code.
 
 1. To generate a sensible default {{% vendor/name %}} configuration,
@@ -50,7 +50,7 @@ This infrastructure is described through configuration files stored alongside yo
         - pdo_pgsql
    ```
 
-3. Laravel requires an [Encryption Key](https://laravel.com/docs/11.x/encryption#gracefully-rotating-encryption-keys) to be set to run.
+3. Laravel requires an [Encryption Key](https://laravel.com/docs/master/encryption#gracefully-rotating-encryption-keys) to be set to run.
    Generate the key locally with `php artisan key:generate` and copy it from your local `.env` file into `.environment` like this:
 
    ```bash
@@ -125,6 +125,16 @@ or run the following command:
 ```bash
 {{% vendor/cli %}} domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
+
+## Local files storage
+
+The {{% vendor/name %}} default configuration stipulates three writable folders in `{{< vendor/configfile "app" >}}`.
+
+- `"/.config"`
+- `"bootstrap/cache"`
+- `"storage"`
+
+If your application writes content outside of these default ones, please refer to our [documentation on mounts](https://docs.upsun.com/create-apps/app-reference.html#mounts) to add new ones.
 
 ## Make changes to your project
 
@@ -215,10 +225,14 @@ Add an integration to your existing third-party repository:
 
 Review and manage the available [environment variables](./environment-variables) for your project.
 
-### Local development
+### Configure Redis and queues
 
-Once Laravel has been deployed on {{% vendor/name %}},
-you might want to [set up a local development environment](./local).
+- [Store cache, sessions and handle queues with Redis](./setup-redis.md)
+
+### Set up additional packages
+
+- [Add Laravel Telescope to help debugging](./laravel-telescope.md)
+- [Add Laravel Horizon to manage queues](./laravel-horizon.md)
 
 ### Upsun CLI tips
 

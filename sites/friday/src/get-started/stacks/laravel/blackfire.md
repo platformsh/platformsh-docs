@@ -2,21 +2,20 @@
 title: "Continous Observability with Blackfire"
 sidebarTitle: "Blackfire"
 weight: -90
-description: Set up a continuous observability strategy for your Symfony app with Blackfire.
+description: Set up a continuous observability strategy for your Laravel app with Blackfire.
 ---
 
 [Blackfire.io](/increase-observability/application-metrics/blackfire.md) is the recommended solution
 for monitoring and profiling web sites and apps.
-Blackfire works seamlessly with any app built with Symfony.
+Blackfire works seamlessly with any app built with Laravel.
 
 Blackfire PHP SDK provides the following [integrations with
-Symfony](https://blackfire.io/docs/php/integrations/symfony/index):
+Laravel](https://docs.blackfire.io/php/integrations/laravel/index):
 
-- [Symfony HTTPClient](https://blackfire.io/docs/php/integrations/symfony/http-client)
-- [Symfony Messenger](https://blackfire.io/docs/php/integrations/symfony/messenger)
-- [Symfony CLI Commands Monitoring](https://blackfire.io/docs/php/integrations/symfony/cli-commands-monitoring)
-- [Symfony Functional Tests Production](https://blackfire.io/docs/php/integrations/symfony/functional-tests)
+- [Laravel Artisan](https://docs.blackfire.io/php/integrations/laravel/artisan)
+- [Laravel Horizon and queue services](https://docs.blackfire.io/php/integrations/laravel/horizon)
+- [Laravel Tests](https://docs.blackfire.io/php/integrations/laravel/tests)
+- [Laravel Octane](https://docs.blackfire.io/php/integrations/laravel/octane)
 
-A `.blackfire.yaml` file is provided within the [Symfony Templates](https://github.com/symfonycorp/platformsh-symfony-template/blob/6.2/.blackfire.yaml)
-to help you bootstrap the writing of custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index)
+Please refer to the [Blackfire documentation](https://docs.blackfire.io/testing-cookbooks/tests#the-code-blackfire-yaml-code-file) to set up a `.blackfire.yml` configuration to enable custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index)
 and automated [builds](https://blackfire.io/docs/builds-cookbooks/index).
