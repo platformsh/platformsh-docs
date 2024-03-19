@@ -1,0 +1,11 @@
+{{- $id := .Site.Params.gtm -}}
+{{- $ot_autoblock := .Site.Params.ot.autoblock.prod -}}
+{{- $ot_banner := .Site.Params.ot.banner.prod -}}
+
+<!-- Optanon Consent Notice start -->
+<!-- <script src="{{ $ot_banner | relURL }}" type="text/javascript" charset="UTF-8"></script> -->
+<script src="{{ $ot_autoblock | relURL }}" type="text/javascript" charset="UTF-8"></script>
+<script type="text/javascript">
+  function OptanonWrapper() { }
+</script>
+<!-- Optanon Consent Notice end -->
