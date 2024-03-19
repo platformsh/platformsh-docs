@@ -4,8 +4,7 @@ sidebarTitle: WordPress
 weight: -75
 description: |
     Welcome to the Upsun documentation specific to the WordPress CMS on Upsun.
-    It includes common reference materials useful for deploying WordPress, but also external community and blog
-  resources that cover more advanced topics relevant for the CMS.
+    It includes common reference materials useful for deploying WordPress, but also external community and blog resources that cover more advanced topics relevant for the CMS.
 ---
 
 
