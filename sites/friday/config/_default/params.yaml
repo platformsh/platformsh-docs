@@ -57,6 +57,13 @@ logoAlt: "Upsun"
 favicon: "images/favicon.ico"
 
 gtm: "GTM-NN9T4G2T"
+ot: 
+  autoblock: 
+    prod: "scripts/onetrust/oneTrust_production/consent/95022fca-0603-4adc-bcc6-010ae6852c58/OtAutoBlock.js"
+    test: "scripts/onetrust/oneTrust_test/consent/95022fca-0603-4adc-bcc6-010ae6852c58-test/OtAutoBlock.js"
+  banner: 
+    prod: "scripts/onetrust/oneTrust_production/scripttemplates/otSDKStub.js"
+    test: "scripts/onetrust/oneTrust_test/scripttemplates/otSDKStub.js"
 
 # Actions in main header
 headerActions:
