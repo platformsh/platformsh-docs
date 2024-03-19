@@ -23,7 +23,7 @@ meaning that there are dozens of ways to set up your WordPress site, and dozens 
 To complete these getting started steps, the following assumptions are made:
 * You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress)
 * You do not have a composer.json file, or are comfortable making changes to your existing version
-* You selected PHP as your runtime, and Mariadb as your service in the Getting Started guide
+* You selected PHP as your runtime, and MariaDB as your service during the Getting Started guide
 
 ## Additional Files Required
 Copy the following files from the [Platform.sh WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
@@ -46,7 +46,7 @@ The Upsun configuration file will need several changes/additions in order for Wo
 operate. Open the Upsun configuration file (`./.upsun/config.yaml`).
 
 ### `web:locations`
-Inside the configuration file, locate the `web:locations` section for the root (`\`) location. Update this section to
+Inside the configuration file, locate the `web:locations` section for the root (`/`) location. Update this section to
 match the following:
 ```yaml
       locations:
@@ -84,9 +84,9 @@ We now need to add a new location for our uploaded files. At the same level (ind
               expires: 1w
 ```
 ### `mounts`
-WordPress needs a writable location to store uploaded media. We referenced this location previously, when creating the
-new location. Now we need to instruct Upsun to make this location writable. In the Upsun config file, locate the section
-`mounts:` that is currently commented it out. Replace that section with the following:
+WordPress needs a writable location to store uploaded media. We referenced this directory previously when creating the
+new location. Now we need to instruct Upsun to make this location writable. In the Upsun configuration file, locate the
+section `mounts:` that is currently commented it out. Replace that section with the following:
 ```yaml
     mounts:
       "wordpress/wp-content/uploads":
@@ -99,20 +99,20 @@ mount location accordingly.
 {{< /note >}}
 
 ### `hooks: build`
-We need to inform Upsun that we want to install our composer dependencies during the build stage. In the Upsun config
-file, locate the section `hooks:`, and beneath that, `build:`. Update this section to match the following:
+We need to inform Upsun that we want to install our composer dependencies during the build stage. In the Upsun
+configuration file, locate the section `hooks:`, and beneath that, `build:`. Update this section to match the following:
 ```yaml
       build: |
         set -eux
         composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
-        rsync -a plugins/* wordpress/wp-content/plugins/
+        rsync -a plugins/ wordpress/wp-content/plugins/
 ```
 Adjust the `composer install` command to meet your specific requirements, if needed. If you are not using the `plugins`
- director to manage non-public plugins, you can remove the `rsync` command.
+ directory to manage non-public plugins, you can remove the `rsync` command.
 
 ### `hooks: deploy`
 We have a few tasks that will need to be performed after the images for our application are built, but before the newly
-built application is made available. Beneath `build: ` that we just edited, locate the section `deploy: ` and update it
+built application can receive requests. Beneath the `build:` property we just edited, locate the section `deploy:` and update it
 to match the following:
 ```yaml
       deploy: |
@@ -128,8 +128,8 @@ Feel free to remove the comments.
 
 ### `routes:`
 Next we need to instruct the [router](learn/overview/structure.md#router) how to handle requests to our WordPress
-application. Locate the section `router:` in the Upsun configuration file. Beneath that, locate the route
-`"https://{default}/":`, which is the one we will need to edit. Update it to match the following:
+application. Locate the section `routes:` in the Upsun configuration file. Beneath that, locate the route
+`"https://{default}/":` and update it to match the following:
 ```yaml
   "https://{default}/":
     type: upstream
@@ -143,7 +143,7 @@ application. Locate the section `router:` in the Upsun configuration file. Benea
 
 ### `relationships:`
 The last change we need to make is to update the name used inside the application that represents our relationship to
-the Mariadb service. In the Upsun configuration file, locate the `relationships:` property. Update the relationship for
+the MariaDB service. In the Upsun configuration file, locate the `relationships:` property. Update the relationship for
  the database service to match the following:
 ```yaml
     relationships:
