@@ -1,21 +1,21 @@
 ---
 title: "ClickHouse"
 weight: -110
-description: 
+description:
 ---
 
 ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.</br>
 It allows you to generate real-time analytical data reports using SQL queries.</br>
 For more information, see the [ClickHouse documentation](https://ClickHouse.com/docs).
 
-{{% note %}} 
+{{% note %}}
 
 {{% vendor/name %}} supports ClickHouse with the following limitations:
 
 - High availibility of service isn't supported.
 - You can only configure single-node ClickHouse clusters.
 
-{{% /note %}} 
+{{% /note %}}
 
 ## Supported versions
 
@@ -23,18 +23,51 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 {{% vendor/name %}} plans on supporting long-term support ClickHouse versions in priority.
 
-## Relationship reference
+{{% relationship-ref-intro %}}
 
-Example information available through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-or by running `{{< vendor/cli >}} relationships`.
+{{< codetabs >}}
++++
+title= Service environment variables
++++
 
-```yaml
+{{% service-values-change %}}
+
+```bash
+CLICKHOUSEDATABASE_USERNAME=main
+CLICKHOUSEDATABASE_FRAGMENT=
+CLICKHOUSEDATABASE_IP=123.456.78.90
+CLICKHOUSEDATABASE_CLUSTER=azertyuiop-main-afdwftq
+CLICKHOUSEDATABASE_HOST=clickhousedatabase.internal
+CLICKHOUSEDATABASE_PATH=main
+CLICKHOUSEDATABASE_QUERY={'is_master': True}
+CLICKHOUSEDATABASE_PASSWORD=ChangeMe
+CLICKHOUSEDATABASE_PORT=9000
+CLICKHOUSEDATABASE_HOST_MAPPED=false
+CLICKHOUSEDATABASE_SERVICE=clickhouse
+CLICKHOUSEDATABASE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CLICKHOUSEDATABASE_EPOCH=0
+CLICKHOUSEDATABASE_REL=clickhouse
+CLICKHOUSEDATABASE_SCHEME=clickhouse
+CLICKHOUSEDATABASE_TYPE=clickhouse:23
+CLICKHOUSEDATABASE_PUBLIC=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
+
+```json
 {
       "username": "main",
       "fragment": null,
-      "ip": "169.254.143.42",
-      "cluster": "s7vj2hgh6nwsk-main-bvxea6i",
-      "host": "clickhouse.internal",
+      "ip": "123.456.78.90",
+      "cluster": "azertyuiop-main-afdwftq",
+      "host": "clickhousedatabase.internal",
       "path": "main",
       "query": {
         "is_master": true
@@ -43,17 +76,27 @@ or by running `{{< vendor/cli >}} relationships`.
       "port": 9000,
       "host_mapped": false,
       "service": "clickhouse",
-      "hostname": "oid3uu43xj2iujgwvplpo6ytme.clickhouse.service._.eu-3.platformsh.site",
+      "hostname": "azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
       "epoch": 0,
-      "instance_ips": [
-        "247.95.64.160"
-      ],
       "rel": "clickhouse",
       "scheme": "clickhouse",
       "type": "clickhouse:23",
       "public": false
     }
 ```
+
+Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information
+in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhousedatabase[0].host')"
+```
+
+{{< /codetabs >}}
 
 ## Usage example
 
@@ -96,7 +139,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 #### `clickhouse-http` endpoint
 
@@ -120,7 +163,7 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
-With this definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>``.
+With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### Example configuration
 
@@ -139,7 +182,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse: "clickhouse:clickhouse"
+            clickhousedatabase: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:23
@@ -160,7 +203,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse: "clickhouse:clickhouse-http"
+            clickhousedatabase: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:23

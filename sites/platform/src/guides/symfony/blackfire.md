@@ -20,3 +20,5 @@ Symfony](https://blackfire.io/docs/php/integrations/symfony/index):
 A `.blackfire.yaml` file is provided within the [Symfony Templates](https://github.com/symfonycorp/platformsh-symfony-template/blob/6.2/.blackfire.yaml)
 to help you bootstrap the writing of custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index)
 and automated [builds](https://blackfire.io/docs/builds-cookbooks/index).
+
+{{< guide-buttons previous="Back" next="Local development" >}}

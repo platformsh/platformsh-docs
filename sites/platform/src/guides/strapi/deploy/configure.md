@@ -63,4 +63,4 @@ db:
 
 {{% guides/config-routes template="strapi4" name="Strapi" %}}
 
-{{< guide-buttons next="Deploy Strapi" >}}
+{{< guide-buttons previous="Back" next="Deploy Strapi" >}}

@@ -88,4 +88,4 @@ Up to this point, this guide should give you the following project structure:
 └── {{< vendor/configfile "app" >}}
 ```
 
-{{< guide-buttons next="Deploy WordPress" >}}
+{{< guide-buttons previous="Back" next="Deploy WordPress" >}}

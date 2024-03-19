@@ -60,21 +60,21 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": null,
     "scheme": "solr",
-    "service": "solr86",
+    "service": "solr",
     "fragment": null,
-    "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "solr.internal",
+    "cluster": "azertyuiopqsdf-main-afdwftq",
+    "host": "solrsearch.internal",
     "rel": "solr",
-    "path": "solr\/maincore",
+    "path": "solr\/collection1",
     "query": [],
-    "password": "ChangeMe",
+    "password": null,
     "type": "solr:{{% latest "solr" %}}",
     "public": false,
     "host_mapped": false
@@ -134,7 +134,7 @@ For Solr 4, {{% vendor/name %}} supports only a single core per server called `c
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: "solr:4.10"
     disk: 1024
     configuration:
@@ -147,7 +147,7 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: "solr:4.10"
     disk: 1024
     configuration:
@@ -160,7 +160,7 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -191,11 +191,11 @@ Each endpoint is then available in the relationships definition in `{{< vendor/c
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    solrsearch1: 'searchsolr:main'
-    solrsearch2: 'searchsolr:extra'
+    solrsearch1: 'solr:main'
+    solrsearch2: 'solr:extra'
 {{% /snippet %}}
 
-{{% snippet name="searchsolr" config="service" placeholder="true" %}}
+{{% snippet name="solr" config="service" placeholder="true" %}}
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -242,7 +242,7 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: solr:8.4
     disk: 1024
     configuration:
@@ -281,7 +281,7 @@ Note that not all core properties features make sense to specify in the `core_pr
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{% snippet name="solr" config="service" %}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -302,8 +302,8 @@ You are strongly recommended to define your own configuration with a custom core
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
-    type: solr:8.4
+{{% snippet name="solr" config="service" %}}
+    type: solr:{{% latest "solr" %}}
     configuration:
         cores:
             collection1: {}

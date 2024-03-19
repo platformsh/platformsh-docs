@@ -20,4 +20,4 @@ A standard Gatsby site - either one created interactively through npm (`npm init
 
 Go forth and Deploy (even on Friday)!
 
-{{< guide-buttons next="More resources" >}}
+{{< guide-buttons previous="Back" next="More resources" >}}

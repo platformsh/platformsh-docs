@@ -83,22 +83,22 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": "main",
     "scheme": "mongodb",
-    "service": "mongodb36",
-    "ip": "169.254.150.147",
-    "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb36.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "mongodb.internal",
+    "service": "mongodb",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "cluster": "azertyuiop-main-7rqtwti",
+    "host": "mongodbdatabase.internal",
     "rel": "mongodb",
     "query": {
         "is_master": true
     },
     "path": "main",
     "password": null,
-    "type": "mongodb:{{% latest "mongodb-enterprise" %}}",
+    "type": "mongodb-enterprise:{{% latest "mongodb-enterprise" %}}",
     "port": 27017
 }
 ```
@@ -162,13 +162,13 @@ Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
-mongo {{< variable "HOST" >}}
+mongo {{< variable "MONGODBDATABASE_HOST" >}}
 ```
 
 With the example value, that would be the following:
 
 ```bash
-mongo mongodb.internal
+mongo mongodbdatabase.internal
 ```
 
 {{% service-values-change %}}

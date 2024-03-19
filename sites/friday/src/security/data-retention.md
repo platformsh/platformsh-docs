@@ -47,3 +47,8 @@ These "tombstone" backups are retained for between 7 days and 6 months depending
 
 {{% vendor/name %}} uses Google Analytics on various web pages, and so Google Analytics stores collected data for a period of time.
 We have configured our Google Analytics account to store data for 14 months from the time you last accessed our site, which is the minimum Google allows.
+
+## Trials
+
+User data - which includes pushed code and data contained within services - is retained for a shorter period during trials.
+See [Trial details](/glossary#trial). 

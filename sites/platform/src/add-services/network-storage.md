@@ -205,7 +205,7 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 "php:{{% latest "php" %}}"
 
 relationships:
-    database: "db:mysql"
+    mariadbdatabase: "mariadb:mysql"
 
 disk: 1024
 
