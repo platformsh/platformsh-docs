@@ -53,13 +53,6 @@ logoAlt: "Platform.sh"
 favicon: "images/logos/favicon.ico"
 
 gtm: "GTM-KRPJGT4"
-ot: 
-  autoblock: 
-    prod: "scripts/onetrust/oneTrust_production/consent/13a2221f-a3c7-492f-82fa-c96116e83517/OtAutoBlock.js"
-    test: "scripts/onetrust/oneTrust_test/consent/13a2221f-a3c7-492f-82fa-c96116e83517-test/OtAutoBlock.js"
-  banner: 
-    prod: "scripts/onetrust/oneTrust_production/scripttemplates/otSDKStub.js"
-    test: "scripts/onetrust/oneTrust_test/scripttemplates/otSDKStub.js"
 
 # Actions in main header
 headerActions:
