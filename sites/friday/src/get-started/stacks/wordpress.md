@@ -1,10 +1,11 @@
 ---
 title: Deploying WordPress on Upsun
 sidebarTitle: WordPress
-weight: -75
+weight: -65
 description: |
     Welcome to the Upsun documentation specific to the WordPress CMS on Upsun.
-    It includes common reference materials useful for deploying WordPress, but also external community and blog resources that cover more advanced topics relevant for the CMS.
+    It includes common reference materials useful for deploying WordPress, but also external community and blog
+    resources that cover more advanced topics relevant for the CMS.
 ---
 
 
@@ -40,9 +41,9 @@ you can skip adding a `plugins` directory to your project.
 
 Add and commit the files and directories you added above.
 
-## `./.upsun/config.yaml`
+## `.upsun/config.yaml`
 The Upsun configuration file will need several changes/additions in order for WordPress to successfully deploy and
-operate. Open up the Upsun configuration file (`./.upsun/config.yaml`).
+operate. Open the Upsun configuration file (`./.upsun/config.yaml`).
 
 ### `web:locations`
 Inside the configuration file, locate the `web:locations` section for the root (`\`) location. Update this section to
@@ -97,4 +98,73 @@ If you have designated a different directory via `wordpress-install-dir` propert
 mount location accordingly.
 {{< /note >}}
 
+### `hooks: build`
+We need to inform Upsun that we want to install our composer dependencies during the build stage. In the Upsun config
+file, locate the section `hooks:`, and beneath that, `build:`. Update this section to match the following:
+```yaml
+      build: |
+        set -eux
+        composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
+        rsync -a plugins/* wordpress/wp-content/plugins/
+```
+Adjust the `composer install` command to meet your specific requirements, if needed. If you are not using the `plugins`
+ director to manage non-public plugins, you can remove the `rsync` command.
 
+### `hooks: deploy`
+We have a few tasks that will need to be performed after the images for our application are built, but before the newly
+built application is made available. Beneath `build: ` that we just edited, locate the section `deploy: ` and update it
+to match the following:
+```yaml
+      deploy: |
+        set -eux
+        # Flushes the object cache which might have changed between current production and newly deployed changes
+        wp cache flush
+        # Runs the WordPress database update procedure in case core is being updated with the newly deployed changes
+        wp core update-db
+        # Runs all cron events that are due now and may have come due during the build+deploy procedure
+        wp cron event run --due-now
+```
+Feel free to remove the comments.
+
+### `routes:`
+Next we need to instruct the [router](learn/overview/structure.md#router) how to handle requests to our WordPress
+application. Locate the section `router:` in the Upsun configuration file. Beneath that, locate the route
+`"https://{default}/":`, which is the one we will need to edit. Update it to match the following:
+```yaml
+  "https://{default}/":
+    type: upstream
+    upstream: "wordpress-upsun:http"
+    cache:
+      enabled: true
+      cookies:
+        - '/^wordpress_*/'
+        - '/^wp-*/'
+```
+
+### `relationships:`
+The last change we need to make is to update the name used inside the application that represents our relationship to
+the Mariadb service. In the Upsun configuration file, locate the `relationships:` property. Update the relationship for
+ the database service to match the following:
+```yaml
+    relationships:
+      database: "mariadb:mysql"
+```
+
+You can now commit the changes to `.upsun/config.yaml` and push to Upsun.
+
+
+## Documentation
+
+- [PHP documentation](/languages/php/)
+- [Authenticated Composer repositories](/languages/php/composer-auth.md)
+
+## Community content
+
+- [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
+- [WordPress topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=wordpress)
+
+## Blogs
+
+- [To Upsun, a WordPress migration story](https://upsun.com/blog/to-upsun-a-wordpress-migration-story/)
+
+<!-- ## Video -->
