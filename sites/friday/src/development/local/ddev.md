@@ -36,11 +36,7 @@ Follow the prompts to add the correct DDEV configuration files to your repositor
 
 {{% ddev/token %}}
 
-## 4. Connect DDEV to your project
-
-{{% ddev/connect %}}
-
-## 5. Optional: Get your project data
+## 4. Optional: Get your project data
 
 To get your environment data (files, database), run the following command:
 
@@ -51,7 +47,7 @@ ddev pull {{% vendor/cli %}}
 To skip pulling files, add `--skip-files` to the command.
 To skip pulling a database, add `--skip-db` to the command.
 
-## 6. Run your project
+## 5. Run your project
 
 Now your project is ready to run:
 

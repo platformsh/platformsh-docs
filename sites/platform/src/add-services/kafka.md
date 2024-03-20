@@ -35,7 +35,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "service": "kafka",
     "ip": "169.254.27.10",
@@ -80,7 +80,7 @@ highlight=ruby
 
 # Producer
 require "kafka"
-kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
+kafka = Kafka.new(["kafkaqueue.internal:9092"], client_id: "my-application")
 kafka.deliver_message("Hello, World!", topic: "greetings")
 
 # Consumer

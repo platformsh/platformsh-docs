@@ -94,9 +94,9 @@ you can use [explicit endpoint configuration](/create-apps/app-reference#relatio
 
 With the above definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
-now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>`.
+now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding {{ if eq $docVersion 2 }}[service environment variables](/development/variables/_index.md#service-environment-variables){{ else }}[`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables){{ end }}.
 {{- else -}}
-now has access to the service via the relationship `<SERVICE_NAME>`.
+now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding {{ if eq $docVersion 2 }}[service environment variables](/development/variables/_index.md#service-environment-variables){{ else }} [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables){{ end }}.
 {{- end -}}
 
 <!-- For services with a PHP extension -->
@@ -245,7 +245,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
     {{ $appInner = "\n..." }}
 
 {{ else if eq $type "vault-kms" }}
-    {{ $appInner = "\nrelationships:\n    vault-kms:\n        service: vault-kms\n        endpoint: manage_keys" }}
+    {{ $appInner = "\nrelationships:\n    vault_secret: \"vault-kms:manage_keys\"" }}
 {{ else }}
 
     {{ $relationshipName := index $data "docs" "relationship_name" }}
@@ -335,7 +335,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 ```
 {{ end }}
 
-{{$appInner := "relationships:\n    oracle-mysql: " }}
+{{$appInner := "relationships:\n    oracledatabase: \"oracle-mysql:mysql\"" }}
 
 {{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)

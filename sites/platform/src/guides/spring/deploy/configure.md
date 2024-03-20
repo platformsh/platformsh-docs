@@ -24,4 +24,4 @@ Explaining the file line by line, notice the following settings:
 
 {{% guides/config-routes template="spring-mvc-maven-mongodb" name="Spring" %}}
 
-{{< guide-buttons next="Customize Spring" >}}
+{{< guide-buttons previous="Back" next="Customize Spring" >}}

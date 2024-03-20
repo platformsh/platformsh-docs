@@ -166,7 +166,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 Example configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -251,13 +251,13 @@ mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USE
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-mysql -h mysql.internal -P 3306 -u user main
+mysql -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -p -h mysql.internal -P 3306 -u user main
+mysql -p -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 ## Define permissions
@@ -290,7 +290,7 @@ You can also specify multiple `endpoints` for [permissions](#define-permissions)
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -323,7 +323,7 @@ Access to the database is defined through three endpoints:
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:

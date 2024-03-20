@@ -62,10 +62,9 @@ applications:
         source:
             root: "/"
             type: nodejs:{{% latest "nodejs" %}}
-            source:
-                operations:
-                    {{< variable "SOURCE_OPERATION_NAME" >}}:
-                        command: {{< variable "COMMAND" >}}
+            operations:
+                {{< variable "SOURCE_OPERATION_NAME" >}}:
+                    command: {{< variable "COMMAND" >}}
 ```
 For example, to update a file from a remote location, you could define an operation like this:
 
@@ -247,14 +246,16 @@ Make sure you carefully check your [user access on this project](../administrati
 2.  Add a build hook to your app configuration to install the CLI as part of the build process:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
-        set -e
-        echo "Installing {{% vendor/name %}} CLI"
-        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+applications:
+    myapp:
+        hooks:
+            build: |
+                set -e
+                echo "Installing {{% vendor/name %}} CLI"
+                curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{% vendor/name %}} CLI"
-        {{% vendor/cli %}}
+                echo "Testing {{% vendor/name %}} CLI"
+                {{% vendor/cli %}}
 ```
 
 3.  Then, to configure a cron job to automatically run a source operation once a day,

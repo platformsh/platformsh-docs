@@ -29,4 +29,4 @@ Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platfo
 
 {{% guides/config-routes template="typo3" name="TYPO3" %}}
 
-{{< guide-buttons next="Customize TYPO3" >}}
+{{< guide-buttons previous="Back" next="Customize TYPO3" >}}

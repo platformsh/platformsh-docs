@@ -25,4 +25,4 @@ All traffic is then directed to the `public` subdirectory once the deployment ha
 
 {{% guides/config-routes template="gatsby" name="Gatsby" %}}
 
-{{< guide-buttons next="Deploy Gatsby" >}}
+{{< guide-buttons previous="Back" next="Deploy Gatsby" >}}

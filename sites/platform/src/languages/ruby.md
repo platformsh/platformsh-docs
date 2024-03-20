@@ -364,9 +364,9 @@ For Rails, you have two choices:
 - Use the [platformsh-rails-helper gem](https://github.com/platformsh/platformsh-rails-helper)
   by adding it to your `Gemfile` and commenting the production block in `config/database.yml`
 
-{{< config-reader >}}
+{{% config-reader %}}
 [helper library for Ruby apps](https://github.com/platformsh/platformsh-ruby-helper) or [one for Rails apps](https://github.com/platformsh/platformsh-rails-helper)
-{{< /config-reader >}}
+{{% /config-reader %}}
 
 ## Other tips
 

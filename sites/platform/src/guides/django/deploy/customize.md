@@ -154,4 +154,4 @@ fi
 If you have other environment variables your app depends on that aren't sensitive and so can be committed to Git,
 you can include them in the `.environment` file
 
-{{< guide-buttons next="Deploy Django" >}}
+{{< guide-buttons previous="Back" next="Deploy Django" >}}

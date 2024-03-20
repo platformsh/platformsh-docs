@@ -70,16 +70,16 @@ switch to [a supported version](#supported-versions).
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": null,
     "scheme": "http",
     "service": "opensearch",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "cluster": "azertyuiopqsdf-main-7rqtwti",
     "host": "opensearch.internal",
     "rel": "opensearch",
     "path": null,
@@ -103,9 +103,9 @@ To use the configured service in your app, add a configuration file similar to t
 {{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    searchopen: "searchopen:opensearch"
+    ossearch: "opensearch:opensearch"
 {{% /snippet %}}
-{{% snippet name="searchopen" config="service" placeholder="true"  %}}
+{{% snippet name="opensearch" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 256
 {{% /snippet %}}
@@ -147,7 +147,7 @@ You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
+{{% snippet name="opensearch" config="service"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
@@ -163,13 +163,13 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.
-To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:opensearch` as its upstream
-(where `search` is whatever you named the service).
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `opensearch:opensearch` as its upstream
+(where `opensearch` is whatever you named the service).
 For example:
 
 ```yaml {configFile="routes"}
-{{% snippet name="search:opensearch" config="route" subDom="os" / %}}
-{{% snippet name="search" config="service" placeholder="true"  %}}
+{{% snippet name="opensearch:opensearch" config="route" subDom="os" / %}}
+{{% snippet name="opensearch" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
@@ -184,7 +184,7 @@ OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
+{{% snippet name="opensearch" config="service"  %}}
     type: "opensearch:{{% latest "opensearch" %}}"
     disk: 1024
     configuration:

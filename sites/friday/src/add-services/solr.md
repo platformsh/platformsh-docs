@@ -28,28 +28,74 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 {{% relationship-ref-intro %}}
 
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
 {{% service-values-change %}}
 
-```yaml
+```bash
+SOLRSEARCH_USERNAME=
+SOLRSEARCH_SCHEME=solr
+SOLRSEARCH_SERVICE=solr
+SOLRSEARCH_IP=123.456.78.90
+SOLRSEARCH_FRAGMENT=
+SOLRSEARCH_HOSTNAME=azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+SOLRSEARCH_PORT=8080
+SOLRSEARCH_CLUSTER=azertyuiopqsdf-main-afdwftq
+SOLRSEARCH_HOST=solrsearch.internal
+SOLRSEARCH_REL=solr
+SOLRSEARCH_PATH=solr/collection1
+SOLRSEARCH_QUERY={}
+SOLRSEARCH_PASSWORD=
+SOLRSEARCH_EPOCH=0
+SOLRSEARCH_TYPE=solr:{{% latest "solr" %}}
+SOLRSEARCH_PUBLIC=false
+SOLRSEARCH_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
+
+```json
 {
     "username": null,
     "scheme": "solr",
-    "service": "solr86",
+    "service": "solr",
     "fragment": null,
-    "ip": "169.254.68.119",
-    "hostname": "csjsvtdhmjrdre2uaoeim22xjy.solr86.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "solr.internal",
+    "cluster": "azertyuiopqsdf-main-afdwftq",
+    "host": "solrsearch.internal",
     "rel": "solr",
-    "path": "solr\/maincore",
+    "path": "solr\/collection1",
     "query": [],
-    "password": "ChangeMe",
+    "password": null,
     "type": "solr:{{% latest "solr" %}}",
     "public": false,
     "host_mapped": false
 }
 ```
+
+Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+
+# Set environment variables for individual credentials.
+export APP_SOLR_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.solrsearch[0].host')"
+```
+
+{{< /codetabs >}}
 
 ## Usage example
 
@@ -59,23 +105,21 @@ Solr search with generic schemas provided, and a custom schema is also supported
 {{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    solrsearch: "searchsolr:solr"
+    solrsearch: "solr:solr"
 {{% /snippet %}}
-{{% snippet name="searchsolr" config="service" placeholder="true"  %}}
+{{% snippet name="solr" config="service" placeholder="true"  %}}
     type: solr:{{% latest "solr" %}}
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="searchelastic" relationship="solrsearch" var="SOLR_URL" %}}
+{{% v2connect2app serviceName="solr" relationship="solrsearch" var="SOLR_URL" %}}
 
 ```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
 # Set environment variables for individual credentials.
-export SOLR_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].host")
-export SOLR_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].port")
-export SOLR_PATH=$(echo $RELATIONSHIPS_JSON | jq -r ".solrsearch[0].path")
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
+export SOLR_HOST=${SOLRSEARCH_HOST}
+export SOLR_PORT=${SOLRSEARCH_PORT}
+export SOLR_PATH=${SOLRSEARCH_PATH}
 
 # Surface more common Solr connection string variables for use in app.
 export SOLR_URL="http://${CACHE_HOST}:${CACHE_PORT}/${CACHE_PATH}"
@@ -90,7 +134,7 @@ For Solr 4, {{% vendor/name %}} supports only a single core per server called `c
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: "solr:4.10"
     configuration:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
@@ -102,7 +146,7 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: "solr:4.10"
     configuration:
         core_config: !archive "solr/conf/"
@@ -114,7 +158,7 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -144,11 +188,11 @@ Each endpoint is then available in the relationships definition in `{{< vendor/c
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    solrsearch1: 'searchsolr:main'
-    solrsearch2: 'searchsolr:extra'
+    solrsearch1: 'solr:main'
+    solrsearch2: 'solr:extra'
 {{% /snippet %}}
 
-{{% snippet name="searchsolr" config="service" placeholder="true" %}}
+{{% snippet name="solr" config="service" placeholder="true" %}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -194,7 +238,7 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service"  %}}
+{{% snippet name="solr" config="service"  %}}
     type: solr:8.4
     configuration:
         configsets:
@@ -232,7 +276,7 @@ Note that not all core properties features make sense to specify in the `core_pr
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{% snippet name="solr" config="service" %}}
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -253,7 +297,7 @@ You are strongly recommended to define your own configuration with a custom core
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="searchsolr" config="service" %}}
+{{% snippet name="solr" config="service" %}}
     type: solr:8.4
     configuration:
         cores:

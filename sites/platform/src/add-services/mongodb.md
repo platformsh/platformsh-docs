@@ -83,7 +83,7 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": "main",
     "scheme": "mongodb",
@@ -162,7 +162,7 @@ Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
-mongo {{< variable "HOST" >}}
+mongo {{< variable "MONGODBDATABASE_HOST" >}}
 ```
 
 With the example value, that would be the following:

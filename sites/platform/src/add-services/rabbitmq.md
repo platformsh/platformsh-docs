@@ -56,6 +56,32 @@ and your messages a safe place to live until they're received.
     </tbody>
 </table>
 
+
+{{% relationship-ref-intro %}}
+
+{{% service-values-change %}}
+
+```json
+{
+  "username": "guest",
+  "scheme": "amqp",
+  "service": "rabbitmq",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 5672,
+  "cluster": "azertyuiopqsdf-main-afdwftq",
+  "host": "rabbitmqqueue.internal",
+  "rel": "rabbitmq",
+  "path": null,
+  "query": [],
+  "password": "ChangeMe",
+  "type": "rabbitmq:{{% latest "rabbitmq" %}}",
+  "public": false,
+  "host_mapped": false
+}
+```
+
 ## Usage example
 
 {{% endpoint-description type="rabbitmq" /%}}
@@ -165,31 +191,6 @@ To create virtual hosts, add them to your configuration as in the following exam
             - host1
             - host2
 {{% /snippet %}}
-```
-
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-```yaml
-{
-    "username": "guest",
-    "scheme": "amqp",
-    "service": "rabbitmq",
-    "fragment": null,
-    "ip": "169.254.57.5",
-    "hostname": "iwrccysk3gpam2zdlwdr5fgs2y.rabbitmq.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 5672,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "rabbitmq.internal",
-    "rel": "rabbitmq",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "rabbitmq:{{% latest "rabbitmq" %}}",
-    "public": false,
-    "host_mapped": false
-}
 ```
 
 ## Upgrading

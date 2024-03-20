@@ -103,10 +103,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 ## Relationships
 
 To access another container within your project, you need to define a relationship to it.
-
 You can give each relationship any name you want.
-This name is used in the `PLATFORM_RELATIONSHIPS` environment variable,
-which gives you credentials for accessing the service.
 
 The relationship is specified in the form `service_name:endpoint_name`.
 The `service_name` is the name of the service given in the [services configuration](../add-services/_index.md)
@@ -132,6 +129,13 @@ applications:
             cache: 'rediscache:redis'
             search: 'searchserver:elasticsearch'
 ```
+
+{{% note %}}
+Once a service is running and exposed via a relationship,
+its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables.html#service-environment-variables),
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
+The available information is documented on each service's page, along with sample code for how to connect to it from your app.
+{{% /note %}}
 
 ## Available disk space
 
@@ -1118,6 +1122,17 @@ The following table shows the properties that can be set in `source`:
 | ------------ | ------------------------ | -------- | ----------- |
 | `operations` | An operations dictionary |          |  Operations that can be applied to the source code. See [source operations](./source-operations.md) |
 | `root`       | `string`                 |          |  The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](./multi-app/_index.md). |
+
+## Container profile
+
+By default, Upsun allocates a container profile to each app and service depending on the range of resources it’s expected to need.
+
+Each container profile gives you access to a specific list of CPU and RAM combinations. 
+Using the Upsun CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
+
+- [Container profile types and resources](/manage-resources/adjust-resources#advanced-container-profiles)
+- [Default container profiles](/manage-resources/adjust-resources#default-container-profiles) for runtime and service containers
+- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources#adjust-a-container-profile)
 
 ## Additional hosts
 

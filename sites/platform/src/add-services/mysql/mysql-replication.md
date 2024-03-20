@@ -18,7 +18,7 @@ To set up replication you need to create a replication-enabled user.
 For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 1024
     configuration:
