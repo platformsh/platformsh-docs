@@ -1,5 +1,5 @@
 ---
-title: "Symfony Integration"
+title: "Symfony integration"
 weight: -130
 description: |
     Learn how to use the Symfony integration for a better {{% vendor/name %}} experience.
@@ -246,3 +246,5 @@ hooks:
         # Starting from here, everything is setup to use Node 8
         yarn build --environment=prod
 ```
+
+{{< guide-buttons previous="Back" next="Environment variables" >}}

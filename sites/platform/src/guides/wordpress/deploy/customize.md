@@ -93,4 +93,4 @@ Then you can use the WordPress CLI within an application container from the `ven
 If you receive an error stating `This doesn't seem to be a WordPress installation.`,
 try providing the `--path` flag and point to your WordPress install path.
 
-{{< guide-buttons next="Deploy WordPress" >}}
+{{< guide-buttons previous="Back" next="Deploy WordPress" >}}

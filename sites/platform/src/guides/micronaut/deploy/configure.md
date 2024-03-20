@@ -24,4 +24,4 @@ Explaining the file line by line, notice the following settings:
 
 {{% guides/config-routes template="micronaut" name="Micronaut" %}}
 
-{{< guide-buttons next="Customize Micronaut" >}}
+{{< guide-buttons previous="Back" next="Customize Micronaut" >}}

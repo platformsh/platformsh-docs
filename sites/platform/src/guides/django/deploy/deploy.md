@@ -22,4 +22,4 @@ Then adjust the previous commands to upload files to them.
 
 Go forth and Deploy (even on Friday)!
 
-{{< guide-buttons next="More resources" >}}
+{{< guide-buttons previous="Back" next="More resources" >}}

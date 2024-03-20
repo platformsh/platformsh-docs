@@ -25,4 +25,4 @@ See an example of Redis for caching in our [Drupal template](https://github.com/
 
 {{% guides/config-routes template="drupal10" name="Drupal" %}}
 
-{{< guide-buttons next="Customize Drupal" >}}
+{{< guide-buttons previous="Back" next="Customize Drupal" >}}
