@@ -2,7 +2,7 @@ import os
 import glob
 import json
 import meilisearch
-from meilisearch import MeilisearchTimeoutError
+from meilisearch import errors.MeilisearchTimeoutError as MeilisearchTimeoutError
 from platformshconfig import Config
 
 import sys
