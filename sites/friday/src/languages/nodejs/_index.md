@@ -156,13 +156,13 @@ applications:
 ## Dependencies
 
 By default, {{% vendor/name %}} assumes you're using npm as a package manager.
-If your code has a `package.json`, the following command is run as part of the default [build flavor](../../create-apps/app-reference.md#build):
+If your code has a `package.json`, the following command is run as part of the default [build flavor](/create-apps/app-reference/builtin-image.md#build):
 
 ```bash
 npm prune --userconfig .npmrc && npm install --userconfig .npmrc
 ```
 
-This means you can specify configuration in a `.npmrc` file in [your app root](../../create-apps/app-reference.md#root-directory).
+This means you can specify configuration in a `.npmrc` file in [your app root](/create-apps/app-reference/builtin-image.md#root-directory).
 
 ### Use Yarn as a package manager
 

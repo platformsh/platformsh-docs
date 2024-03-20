@@ -5,7 +5,7 @@ sidebarTitle: Users
 description: Manage user access and permissions across all your projects and organizations.
 ---
 
-{{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations. 
+{{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
 ## Manage project access
@@ -42,7 +42,7 @@ A user can have one of the following roles on an environment type which grants t
 | Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
 | Viewer      | Yes              | No        | Yes                | No         | No              | No              |
 
-To customize which roles can use SSH, set [`access` in your app configuration](../create-apps/app-reference.md#access).
+To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/app-reference/builtin-image.md#access).
 
 ### View a user's permissions across all of the projects in your organization
 
@@ -170,7 +170,7 @@ title=In the Console
 {{< /codetabs >}}
 
 To apply SSH access changes after you add a remove a user from a project or environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy). 
+[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
 ### Remove a user from a project
 
@@ -242,7 +242,7 @@ you can invite other users to your organization and grant them the following per
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
-Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission. 
+Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission.
 That is, they are able to see all organization projects once given billing rights.
 
 {{< /note >}}

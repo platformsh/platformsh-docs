@@ -111,7 +111,7 @@ it indicates your application is crashing or unavailable.
 Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
-  - Check your app's [upstream properties](../create-apps/app-reference.md#upstream).
+  - Check your app's [upstream properties](/create-apps/app-reference/builtin-image.md#upstream).
   - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
 - Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
@@ -200,8 +200,8 @@ If you attempt to write to disk outside a `build` hook, you may encounter a `rea
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-To generate anything you need later, [write to disk during a `build` hook](../create-apps/app-reference.md#writable-directories-during-build).
-Or [declare mounts](../create-apps/app-reference.md#mounts),
+To generate anything you need later, [write to disk during a `build` hook](/create-apps/app-reference/builtin-image.md#writable-directories-during-build).
+Or [declare mounts](/create-apps/app-reference/builtin-image.md#mounts),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
@@ -232,7 +232,7 @@ To determine if your environment is being stuck in the build or the deployment, 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
 
-In most regions, stuck builds terminate after one hour. 
+In most regions, stuck builds terminate after one hour.
 
 When a deployment is blocked, you should try the following:
 
@@ -243,7 +243,7 @@ When a deployment is blocked, you should try the following:
 
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
 
-Note that, for PHP apps, 
+Note that, for PHP apps,
 you can [restart processes that get stuck during a build or deployment](../languages/php/troubleshoot.md#restart-php-processes-stuck-during-a-build-or-deployment)
 from your app container.
 
@@ -277,7 +277,7 @@ strace -T {{< variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 
 ### Cron jobs
 
-Containers can't be shutdown while long-running [cron jobs and scheduled tasks](../create-apps/app-reference.md#crons) are active.
+Containers can't be shutdown while long-running [cron jobs and scheduled tasks](/create-apps/app-reference/builtin-image.md#crons) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
 Make sure your custom cron jobs run quickly and properly.
@@ -297,7 +297,7 @@ and [cookie entry](../define-routes/cache.md#cookies).
 Because the router cache follows cache headers from your app,
 your app needs to send the correct `cache-control` header.
 
-For static assets, set cache headers using the `expires` key in your [app configuration](../create-apps/app-reference.md#locations).
+For static assets, set cache headers using the `expires` key in your [app configuration](/create-apps/app-reference/builtin-image.md#locations).
 
 ## Language-specific troubleshooting
 

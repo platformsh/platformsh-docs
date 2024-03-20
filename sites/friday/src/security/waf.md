@@ -84,8 +84,8 @@ enforcing the valid format in transit.
 The WAF enforces a file upload limit.
 By default, this limit is set at 250&nbsp;MB.
 
-You can customize the file upload limit by amending your [app configuration](../../create-apps/_index.md).
-In the [`web.locations` dictionary](../../create-apps/app-reference.md#locations),
+You can customize the file upload limit by amending your [app configuration](/create-apps/_index.md).
+In the [`web.locations` dictionary](/create-apps/app-reference/builtin-image.md#locations),
 add your desired value for the `max_request_size` property.
 
 ### File extension restriction
@@ -93,8 +93,8 @@ add your desired value for the `max_request_size` property.
 The WAF enforces any file extension restriction you may have defined in your [app configuration](../../create-apps/_index.md).
 
 To set up a file extension restriction,
-adjust the [`web.locations` dictionary](../../create-apps/app-reference.md#locations).
-Set up [rules](../../create-apps/app-reference.md#rules) to allow only certain file extensions on a given path.
+adjust the [`web.locations` dictionary](/create-apps/app-reference/builtin-image.md#locations).
+Set up [rules](/create-apps/app-reference/builtin-image.md#rules) to allow only certain file extensions on a given path.
 
 ### Disallowed requests and headers
 

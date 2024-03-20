@@ -24,5 +24,5 @@ For containers to be allowed to connect to each other, the following requirement
 
 - The containers must live in the same environment.
 - You need to define an explicit `relationship` between the containers
-  in your [app configuration](/create-apps/app-reference.md#relationships).
+  in your [app configuration](/create-apps/app-reference/builtin-image.md#relationships).
 <!-- shortcode end {{ .Name }} -->

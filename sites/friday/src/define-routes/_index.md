@@ -200,7 +200,7 @@ routes:
     "https://{default}/":
         type: upstream
         upstream: "app1:http"
-        
+
     "https://{all}/":
         type: upstream
         upstream: "app2:http"
@@ -421,10 +421,10 @@ routes:
         type: upstream
         upstream: "app:http"
         cache:
-            enabled: false   
+            enabled: false
 ```
 
-2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
+2. [Disable request buffering](/create-apps/app-reference/builtin-image.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
 web:
