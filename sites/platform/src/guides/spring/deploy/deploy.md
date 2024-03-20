@@ -12,4 +12,4 @@ description: |
 
 Go forth and Deploy (even on Friday)!
 
-{{< guide-buttons next="More resources" >}}
+{{< guide-buttons previous="Back" next="More resources" >}}

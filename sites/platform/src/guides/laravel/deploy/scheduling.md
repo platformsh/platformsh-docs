@@ -47,5 +47,5 @@ By default, [workers inherit all top level properties](/create-apps/workers.md#i
 You may need to override certain properties in the worker configuration above depending on your application.
 {{< /note >}}
 
-
+{{< guide-buttons previous="Back" next="Manage observability with Blackfire" >}}
 
