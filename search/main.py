@@ -2,6 +2,7 @@ import os
 import glob
 import json
 import meilisearch
+from meilisearch import MeilisearchTimeoutError
 from platformshconfig import Config
 
 import sys
@@ -129,7 +130,7 @@ class Search:
         # Create a new index
         create_index_task = client.create_index(uid=self.docs_index, options={'primaryKey': self.primaryKey, 'uid': self.index_name})
 
-        timeout = 5000
+        timeout = 10000
         if "friday" == docs_index_name:
           timeout = 15000
 
