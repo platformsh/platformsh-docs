@@ -2,7 +2,6 @@ import os
 import glob
 import json
 import meilisearch
-from meilisearch import errors.MeilisearchTimeoutError as MeilisearchTimeoutError
 from platformshconfig import Config
 
 import sys
@@ -136,7 +135,7 @@ class Search:
 
         try:
           client.wait_for_task(create_index_task['taskUid'], timeout)
-        except MeilisearchTimeoutError as merror:
+        except meilisearch.errors.MeilisearchTimeoutError as merror:
           print('Failed waiting {0} milliseconds for Meilisearch to create the index. Error message: {1}'.format(timeout, merror))
           return
 
