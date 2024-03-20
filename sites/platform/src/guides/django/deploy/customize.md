@@ -136,7 +136,7 @@ You can determine the deploy phase using the `PLATFORM_ENVIRONMENT` variable, wh
 
 ## `.environment` and Poetry
 
-`source .environment` is run in the [app root](../../../create-apps/app-reference.md#root-directory)
+`source .environment` is run in the [app root](/create-apps/app-reference/builtin-image.md#root-directory)
 when a project starts, before cron commands are run, and when you log into an environment over SSH.
 So you can use the `.environment` file to make further changes to environment variables before the app runs,
 including modifying the system `$PATH` and other shell level customizations.

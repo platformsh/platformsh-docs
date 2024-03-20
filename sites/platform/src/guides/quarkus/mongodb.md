@@ -9,10 +9,10 @@ description: |
 
 MongoDB with Panache provides active record style entities (and repositories) like you have in [Hibernate ORM with Panache](https://quarkus.io/guides/hibernate-orm-panache). It focuses on helping you write your entities in Quarkus.
 
-To activate MongoDB and then have it accessed by the Quarkus application already in {{% vendor/name %}}, it is necessary to modify two files. 
+To activate MongoDB and then have it accessed by the Quarkus application already in {{% vendor/name %}}, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a MongoDB service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a MongoDB service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add the MongoDB service
@@ -27,7 +27,7 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your [app configuration](../../create-apps/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](/create-apps/app-reference/builtin-image.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
 {{< readFile file="registry/images/examples/full/mongodb.app.yaml" highlight="yaml" configFile="app" >}}
 

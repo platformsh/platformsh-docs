@@ -9,10 +9,10 @@ description: |
 
 Hibernate ORM is a JPA implementation and offers you the full breadth of an Object Relational Mapper. It makes complex mappings possible, but they can sometimes be difficult. Hibernate ORM with Panache focuses on helping you write your entities in Quarkus.
 
-To activate Hibernate Panache and then have it accessed by the Quarkus application already in {{% vendor/name %}}, it is necessary to modify two files. 
+To activate Hibernate Panache and then have it accessed by the Quarkus application already in {{% vendor/name %}}, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](./deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](./deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add a SQL database service
@@ -23,7 +23,7 @@ In your [service configuration](../../add-services/_index.md), include a SQL dat
 
 ## 2. Grant access to the service through a relationship
 
-To access the new service, set a `relationship` in your [app configuration](../../create-apps/app-reference.md#relationships).
+To access the new service, set a `relationship` in your [app configuration](/create-apps/app-reference/builtin-image.md#relationships).
 
 {{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
 

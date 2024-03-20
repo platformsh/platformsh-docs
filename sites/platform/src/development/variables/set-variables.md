@@ -11,7 +11,7 @@ All of the variables can also be [overridden via script](#set-variables-via-scri
 
 ## Set variables in your app
 
-Set variables [in code](../../create-apps/app-reference.md#variables) using the `{{< vendor/configfile "app" >}}` file.
+Set variables [in code](/create-apps/app-reference/builtin-image.md#variables) using the `{{< vendor/configfile "app" >}}` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 
@@ -179,7 +179,7 @@ value updates trigger a rebuild of the application in the same way that a commit
 
 ## Set variables via script
 
-You can also provide a `.environment` file as in [your app root](../../create-apps/app-reference.md#root-directory).
+You can also provide a `.environment` file as in [your app root](/create-apps/app-reference/builtin-image.md#root-directory).
 This file runs as a script in dash when the container starts and on all SSH logins.
 It can be used to set any environment variables directly, such as the PATH variable.
 
@@ -213,7 +213,7 @@ The following example looks for a `deploy/environment.tracker.txt` file.
 It displays a different message if it's found or not, which helps you track what variables are being set.
 
 ```bash {location=".environment"}
-if [ -f "deploy/environment.tracker.txt" ]; then 
+if [ -f "deploy/environment.tracker.txt" ]; then
     echo "File found."
     export DEPLOY='Friday'
 else
@@ -233,8 +233,8 @@ protocol version mismatch -- is your shell clean?
 (see the rsync man page for an explanation)
 rsync error: protocol incompatibility (code 2) at .../rsync/compat.c(61) [receiver=2.6.9]
 
-[ProcessFailedException]                                                                                                                      
-The command failed with the exit code: 2      
+[ProcessFailedException]
+The command failed with the exit code: 2
 ```
 
 This failure comes because `mount:download` and `rsync` don't expect output when the SSH connection is made.

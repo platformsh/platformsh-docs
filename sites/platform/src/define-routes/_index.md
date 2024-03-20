@@ -455,7 +455,7 @@ which is a requirement for the router caching.
         enabled: false
 
 # Below HTTP config may not be necessary for every Websocket client.
-# It is required for some, as only defining an HTTPS config may trigger an automatic redirect to HTTP. 
+# It is required for some, as only defining an HTTPS config may trigger an automatic redirect to HTTP.
 "http://{default}/ws":
     type: upstream
     upstream: "app:http"
@@ -463,7 +463,7 @@ which is a requirement for the router caching.
         enabled: false
 ```
 
-2. [Disable request buffering](../create-apps/app-reference.md#locations) in your app configuration.
+2. [Disable request buffering](../create-apps/app-reference/builtin-image.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
 web:

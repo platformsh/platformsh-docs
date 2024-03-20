@@ -68,14 +68,14 @@ type: 'php:{{% latest "php" %}}'
 ```
 ### 2. Serve your app
 
-To serve your app, define what (and how) content should be served by setting the [`locations` parameter](../../create-apps/app-reference.md#locations).
+To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/app-reference/builtin-image.md#locations).
 
 Usually, it contains the two following (optional) keys:
 
 - `root` for the document root,
   the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
 - `passthru` to [define a front controller](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
-  The value is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+  The value is a file path relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
 
   {{< note >}}
 
@@ -125,20 +125,20 @@ web:
 ## Dependencies
 
 Up to PHP version 8.1, it's assumed that you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
-If you have a `composer.json` file in your code, the default [build flavor is run](../../create-apps/app-reference.md#build):
+If you have a `composer.json` file in your code, the default [build flavor is run](/create-apps/app-reference/builtin-image.md#build):
 
 ```bash
 composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader
 ```
 
-To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](../../create-apps/app-reference.md#dependencies):
+To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configuration, add the following [dependency](/create-apps/app-reference/builtin-image.md#dependencies):
 
 ```yaml {configFile="app"}
 dependencies:
     php:
         composer/composer: '^2'
 ```
-Adding a dependency to the [dependencies block](../../create-apps/app-reference.md#dependencies) makes it available globally.
+Adding a dependency to the [dependencies block](/create-apps/app-reference/builtin-image.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
 You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/_index.md#2-specify-any-global-dependencies).
 
@@ -166,7 +166,7 @@ hooks:
 That installs production dependencies with Composer but not development dependencies.
 The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md).
 
-See more on [build flavors](../../create-apps/app-reference.md#build).
+See more on [build flavors](/create-apps/app-reference/builtin-image.md#build).
 
 ### Alternative repositories
 
@@ -291,7 +291,7 @@ markdownify=false
 
 ## PHP settings
 
-You can configure your PHP-FPM runtime configuration by specifying the [runtime in your app configuration](../../create-apps/app-reference.md#runtime).
+You can configure your PHP-FPM runtime configuration by specifying the [runtime in your app configuration](/create-apps/app-reference/builtin-image.md#runtime).
 
 In addition to changes in runtime, you can also change the PHP settings.
 Some commonly used settings are:
@@ -380,7 +380,7 @@ For more information, see how to use [PHP-specific variables](../../development/
 title=Using `php.ini`
 +++
 
-You can provide a custom `php.ini` file at the [app root](../../create-apps/app-reference.md#root-directory).
+You can provide a custom `php.ini` file at the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
 Using this method isn't recommended since it offers less flexibility and is more error-prone.
 Consider using variables instead.
 
@@ -431,20 +431,20 @@ Common functions to disable include:
 PHP has two execution modes you can choose from:
 
 - The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
-  This is the mode used when you're logged into your container via SSH, for [crons](../../create-apps/app-reference.md#crons),
+  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/app-reference/builtin-image.md#crons),
   and usually also for [alternate start commands](#alternate-start-commands).
   To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
-  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
 - The Common Gateway Interface mode (PHP-CGI) is the mode used for web apps and web requests.
   This is the default mode when the `start` command isn't explicitly set.
   To use PHP-CGI, run your script with a symlink: `/usr/bin/start-php-app {{<variable "PATH_TO_SCRIPT" >}}`,
-  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
   With PHP-CGI, PHP is run using the FastCGI Process Manager (PHP-FPM).
 
 ## Alternate start commands
 
 To specify an alternative process to run your code, set a `start` command.
-For more information about the start command, see the [web commands reference](../../create-apps/app-reference.md#web-commands).
+For more information about the start command, see the [web commands reference](/create-apps/app-reference/builtin-image.md#web-commands).
 
 By default, start commands use PHP-CLI.
 Find out how and when to use each [execution mode](#execution-mode).
@@ -474,7 +474,7 @@ web:
 {{< /snippet >}}
 ```
 
-   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
 
 <--->
 
@@ -494,7 +494,7 @@ web:
 {{< /snippet >}}
 ```
 
-   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](../../create-apps/app-reference.md#root-directory).
+   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
 
 3.  Configure the container to listen on a TCP socket:
 
@@ -508,7 +508,7 @@ web:
 ```
 
    When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
-   See more options on how to [configure where requests are sent](../../create-apps/app-reference.md#upstream).
+   See more options on how to [configure where requests are sent](/create-apps/app-reference/builtin-image.md#upstream).
    You might have to configure your app to connect via the `$PORT` TCP socket,
    especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 
@@ -545,7 +545,7 @@ web:
 ```
 
    {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
-   Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](../../create-apps/app-reference.md#root-directory).
+   Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
 
 {{< /codetabs >}}
 

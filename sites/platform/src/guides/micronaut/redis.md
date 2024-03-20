@@ -7,10 +7,10 @@ description: |
     Configure a Micronaut application with Redis.
 ---
 
-To activate Redis and then have it accessed by the Micronaut application already in {{% vendor/name %}}, it is necessary to modify two files. 
+To activate Redis and then have it accessed by the Micronaut application already in {{% vendor/name %}}, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add the Redis service
@@ -21,7 +21,7 @@ In your [service configuration](../../add-services/_index.md), include Persisten
 
 ## 2. Add the Redis relationship
 
-In your [app configuration](../../create-apps/app-reference.md), use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](/create-apps/app-reference/builtin-image.md), use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" configFile="app" >}}
 

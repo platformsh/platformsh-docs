@@ -3,7 +3,7 @@ title: "Managed Fastly CDN"
 sidebarTitle: "Managed Fastly CDN"
 weight: 2
 description: Bring your content closer to users with a Fastly CDN fully managed by {{% vendor/name %}}.
-banner: 
+banner:
     type: tiered-feature
 ---
 
@@ -33,10 +33,10 @@ This allows for encryption of all traffic between your users and your app.
 If you use a Fastly CDN provided by {{% vendor/name %}},
 you can provide your own third-party TLS certificates for an additional fee.
 
-To do so, if you don't have one, 
-set up a [mount](../../create-apps/app-reference.md#mounts) that isn't accessible to the web.
+To do so, if you don't have one,
+set up a [mount](/create-apps/app-reference/builtin-image.md#mounts) that isn't accessible to the web.
 Use an environment with access limited to {{% vendor/name %}} support and trusted users.
-[Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key, 
+[Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key,
 and the intermediate certificate to the mount.
 To notify {{% vendor/name %}} that a certificate is to be added to your CDN configuration,
 open a [support ticket](/learn/overview/get-support).

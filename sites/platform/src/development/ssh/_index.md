@@ -3,7 +3,7 @@ title: Connect securely with SSH
 weight: 12
 description: Keep your project and apps safe by connecting with SSH when you're interacting with your deployed environments or using the {{% vendor/name %}} CLI.
 layout: single
-keywords: 
+keywords:
 - 2fa
 - twofactor
 - two factor
@@ -60,7 +60,7 @@ Once you've connected, you get a welcome message detailing which environment you
 
 Now you can interact with the environment as you want.
 Note that your app's file system is read-only,
-except for any [mounts you've defined](../../create-apps/app-reference.md#mounts). 
+except for any [mounts you've defined]/create-apps/app-reference/builtin-image.md#mounts).
 
 ## Connect to services
 

@@ -43,7 +43,7 @@ If you named the service something different in step 1, change `rediscache` to t
 
 Add the Redis extension for PHP in one of two ways:
 
-* In your [app configuration](../../create-apps/app-reference.md#extensions) (for extension versions tied to the PHP version)
+* In your [app configuration](/create-apps/app-reference/builtin-image.md#extensions) (for extension versions tied to the PHP version)
 * Using a [builder script](../../languages/php/redis.md) (if you need more control over the extension version)
 
 ### 4. Add the Redis library
@@ -77,7 +77,7 @@ Then commit the resulting changes to your `composer.json` and `composer.lock` fi
 
 To enable the Redis cache to work with WordPress,
 the `object-cache.php` file needs to be copied from the plugin's directory to the `wp-content` directory.
-Add the following line to the bottom of your `build` hook in your [app configuration](../../create-apps/app-reference.md#hooks),
+Add the following line to the bottom of your `build` hook in your [app configuration](/create-apps/app-reference/builtin-image.md#hooks),
 adjusting the paths based on where your plugins are located:
 
 {{< codetabs >}}

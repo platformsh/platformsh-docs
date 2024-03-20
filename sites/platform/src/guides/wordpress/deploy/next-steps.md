@@ -22,7 +22,7 @@ hooks:
 Here, you can commit plugins to the repository in a `plugins` subdirectory,
 which are placed into the WordPress installation during the build.
 It's assumed that these packages stick to best practices and don't write to the file system at runtime and when enabling them.
-You can get around this issue by defining a [mount](../../../create-apps/app-reference.md#mounts) where a plugin requires write access,
+You can get around this issue by defining a [mount](/create-apps/app-reference/builtin-image.md#mounts) where a plugin requires write access,
 but you need to remember that the contents at that mount location are wiped when deployment begins,
 so you need to copy and re-copy accordingly.
 
@@ -40,7 +40,7 @@ $ composer require wpackagist-theme/neve
 This updates your `composer.json` and `composer.lock` files.
 Once you push the change to {{% vendor/name %}}, the package is downloaded during the WordPress build.
 All that's left is to sign in to the administration dashboard on your deployed site
-and enable plugins and themes from the Plugins and Appearance settings, respectively. 
+and enable plugins and themes from the Plugins and Appearance settings, respectively.
 
 ## Set up a WooCommerce site
 
@@ -57,7 +57,7 @@ Push those changes on a new environment and configure your store through the adm
 ## Adding private plugins and themes via Composer
 
 If your plugins aren't accessible from WPPackagist or Packagist, but are still valid packages,
-you can use them in your project by defining local `repositories` for them in your `composer.json` file. 
+you can use them in your project by defining local `repositories` for them in your `composer.json` file.
 
 ```json
 "repositories":[
@@ -85,14 +85,14 @@ you can use them in your project by defining local `repositories` for them in yo
 In the snippet above, other packages can still be downloaded from WPPackagist,
 but now two custom `path` repositories have been defined from `/custom/[themes|plugins]` locally.
 Adding packages from these sources then only requires `composer require author/custom_plugin`
-to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by {{% vendor/name %}} when WordPress is built. 
+to ensure that the plugin at `/custom/plugin/author/custom_plugin` is installed by {{% vendor/name %}} when WordPress is built.
 
 ## Updating WordPress, plugins, and themes
 
 Your WordPress site is fully managed by Composer,
 which means so are updates to WordPress core itself.
 Run `composer update` periodically to get new versions of WordPress core, as well as any plugins or themes your have installed.
-Commit the resulting changes to your `composer.lock` file and push again to {{% vendor/name %}}. 
+Commit the resulting changes to your `composer.lock` file and push again to {{% vendor/name %}}.
 
 The [Composer documentation](https://getcomposer.org/doc/) has more information on options to update individual modules or perform other tasks.
 

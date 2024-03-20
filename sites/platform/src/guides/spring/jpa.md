@@ -10,7 +10,7 @@ description: |
 To activate JPA and then have it accessed by the Spring application already configured for {{% vendor/name %}}, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Spring project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/spring/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a service configuration to an existing Spring project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/spring/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add a SQL database service
@@ -21,7 +21,7 @@ In your [service configuration](../../add-services/_index.md), include a SQL dat
 
 ## 2. Grant access to the service through a relationship
 
-To access the new service, set a `relationship` in your [app configuration](../../create-apps/app-reference.md#relationships).
+To access the new service, set a `relationship` in your [app configuration](/create-apps/app-reference/builtin-image.md#relationships).
 
 {{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
 

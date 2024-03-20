@@ -26,7 +26,7 @@ runtime:
     disabled_extensions:
         - sqlite3
 ```
-You can also [include configuration options](../../create-apps/app-reference.md#extensions) for specific extensions.
+You can also [include configuration options](/create-apps/app-reference/builtin-image.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
 You can turn on the available ones with the `extensions` key
@@ -68,7 +68,7 @@ but it takes slightly more work:
    but committing large binary blobs to Git is generally not recommended.
 
 2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
-   For example, if the extension is named `spiffy.so` and is in your [app root](../../create-apps/app-reference.md#root-directory),
+   For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/builtin-image.md#root-directory),
    your configuration looks like the following:
 
 ```yaml {configFile="app"}

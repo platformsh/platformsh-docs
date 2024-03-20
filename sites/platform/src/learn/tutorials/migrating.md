@@ -68,7 +68,7 @@ which you can then upgrade.
 title=Using the CLI
 +++
 
-If you do not already have an organization created on {{% vendor/name %}}, create one: 
+If you do not already have an organization created on {{% vendor/name %}}, create one:
 
 ```bash
 {{% vendor/cli %}} org:create
@@ -204,7 +204,7 @@ After any errors are fixed, a push creates a new environment.
 
 Once you push your code to {{% vendor/name %}}, either directly or through an integration, the deployment itself is not yet complete.
 
-{{% vendor/name %}} has only just now understood the _types_ of containers you want (like a Python app container, and a Redis and MariaDB service containers) by validating that push. 
+{{% vendor/name %}} has only just now understood the _types_ of containers you want (like a Python app container, and a Redis and MariaDB service containers) by validating that push.
 How much resources those containers get is still left for you to define.
 
 You can do so quickly with the following CLI command:
@@ -234,7 +234,7 @@ For any potential more details, see the [specific service](/add-services/_index.
 ## {{% version/ifelse "6" "7" %}}. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
-You can upload such files to [mounts you created](/create-apps/app-reference.md#mounts).
+You can upload such files to [mounts you created](/create-apps/app-reference/builtin-image.md#mounts).
 Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:

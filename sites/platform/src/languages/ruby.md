@@ -85,7 +85,7 @@ You can change it.
 
 3. Build your application with the build hook.
 
-    Assuming you have your dependencies stored in the `Gemfile` at [your app root](../create-apps/app-reference.md#root-directory),
+    Assuming you have your dependencies stored in the `Gemfile` at [your app root](/create-apps/app-reference/builtin-image.md#root-directory),
     create a hook like the following:
 
 ```yaml {configFile="app"}
