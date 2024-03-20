@@ -52,11 +52,9 @@ If you log deprecations, make sure you **also** log them on `stderr`.
 
 ## What's this "Oops! An Error Occurred" message about?
 
-The *Oops! An Error Occurred* message comes from your app and is automatically generated based on the Symfony error template.
+The *Oops! An Error Occurred* message comes from your app and is automatically generated based on the Laravel error template.
 
 ### The server returned a "500 Internal Server Error"
-
-![A 500 error page in production mode](/images/symfony/production-error-500.png "0.35")
 
 If your app's working as expected locally but you see the previous error message on {{% vendor/name %}},
 it usually means you have a configuration error or a missing dependency.

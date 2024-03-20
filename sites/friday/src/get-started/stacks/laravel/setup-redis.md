@@ -15,11 +15,18 @@ With Laravel, you can use Redis for handling:
 
 Head to `{{< vendor/configfile "app" >}}` and add the following to the `services` key:
 
-```yaml
+```yaml {configFile="app"}
 services:
   [...]
   redis:
     type: redis:7.0
+```
+
+You can now add it to your application(s) `relationships`:
+
+```yaml {configFile="app"}
+relationships:
+  redis: "redis:redis"
 ```
 
 ## Redis service configuration
@@ -37,15 +44,15 @@ If not, you can map the variables in the `.environment` file.
 
 You can specify the Redis client in your `.environment` configuration:
 
-```bash
+```bash  {configFile="env"}
 export REDIS_CLIENT="phpredis"
 ```
 
 {{< note theme="warning" >}}
 
-If using `phpredis`, make sure you add `redis` in the list of `runtime` extensions in your `{{< vendor/configfile "app" >}}`:
+If using `phpredis`, make sure you add `redis` in the list of PHP `runtime` extensions in your `{{< vendor/configfile "app" >}}`:
 
-```yaml
+```yaml {configFile="app"}
 runtime:
   extensions:
     - redis
@@ -57,7 +64,7 @@ runtime:
 
 In order to enable cache storage in redis, just add the following to your `.environment` file:
 
-```bash
+```bash  {configFile="env"}
 export CACHE_STORE="redis"
 ```
 
@@ -65,7 +72,7 @@ export CACHE_STORE="redis"
 
 For storing sessions, Laravel relies on the `SESSION_DRIVER` variable. Again, add this new variable to the `.environment` file:
 
-```bash
+```bash  {configFile="env"}
 export SESSION_DRIVER="redis"
 ```
 
@@ -73,7 +80,7 @@ export SESSION_DRIVER="redis"
 
 For a basic queueing system, just configure the `QUEUE_CONNECTION` in `.environment`:
 
-```bash
+```bash  {configFile="env"}
 export QUEUE_CONNECTION="redis"
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get started with Laravel on Upsun
 weight: -255
 layout: single
 description: |
@@ -43,7 +43,7 @@ This infrastructure is described through configuration files stored alongside yo
 
    While `pdo_mysql` is enabled by default, you may need to enable others like `redis` or `pdo_pgsql`:
 
-   ```yaml
+   ```yaml {configFile="app"}
    runtime:
       extensions:
         - redis
@@ -53,23 +53,11 @@ This infrastructure is described through configuration files stored alongside yo
 3. Laravel requires an [Encryption Key](https://laravel.com/docs/master/encryption#gracefully-rotating-encryption-keys) to be set to run.
    Generate the key locally with `php artisan key:generate` and copy it from your local `.env` file into `.environment` like this:
 
-   ```bash
+   ```bash  {configFile="env"}
    export APP_KEY="base64:{{< variable "APP_KEY" >}}"
    ```
 
-4. As Laravel uses the database by default for storing cache, make sure your `deploy` hook run the migrations **before** running the optimize command or you would get an error during deploy:
-
-    ```yaml
-    deploy: |
-        set -eux
-        mkdir -p storage/framework/sessions
-        mkdir -p storage/framework/cache
-        mkdir -p storage/framework/views
-        php artisan migrate --force
-        php artisan optimize:clear
-    ```
-
-5. Commit these new files to your repository:
+4. Commit these new files to your repository:
 
    ```bash
    git add {{< vendor/configfile "app" >}} .environment
@@ -134,7 +122,7 @@ The {{% vendor/name %}} default configuration stipulates three writable folders 
 - `"bootstrap/cache"`
 - `"storage"`
 
-If your application writes content outside of these default ones, please refer to our [documentation on mounts](https://docs.upsun.com/create-apps/app-reference.html#mounts) to add new ones.
+If your application writes content outside of these default ones, please refer to our [documentation on mounts](/create-apps/app-reference.html#mounts) to add new ones.
 
 ## Make changes to your project
 
@@ -193,7 +181,7 @@ To make changes to your project, follow these steps:
    ```bash
    git checkout main
    git merge feat-a
-   upsun environment:delete feat-a
+   {{% vendor/cli %}} environment:delete feat-a
    git branch -d feat-a
    {{% vendor/cli %}} deploy
    ```
@@ -234,9 +222,9 @@ Review and manage the available [environment variables](./environment-variables)
 - [Add Laravel Telescope to help debugging](./laravel-telescope.md)
 - [Add Laravel Horizon to manage queues](./laravel-horizon.md)
 
-### Upsun CLI tips
+### {{% vendor/name %}} CLI tips
 
-You might find the following commands useful when using the Upsun CLI.
+You might find the following commands useful when using the {{% vendor/name %}} CLI.
 
 -   Open the web administration console:
 
@@ -259,7 +247,7 @@ You might find the following commands useful when using the Upsun CLI.
 -   Configure a project for {{% vendor/name %}}:
 
     ```bash
-    upsun project:init
+    {{% vendor/cli %}} project:init
     ```
 
 -   Get a list of all the domains:
@@ -304,7 +292,7 @@ You might find the following commands useful when using the Upsun CLI.
     {{% vendor/cli %}} variables
     ```
 
-You might find the following commands useful when using the Upsun CLI with a database.
+You might find the following commands useful when using the {{% vendor/name %}} CLI with a database.
 
 -   Create a local dump of the remote database:
 

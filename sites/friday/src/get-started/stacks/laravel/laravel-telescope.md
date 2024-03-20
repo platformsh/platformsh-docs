@@ -36,7 +36,7 @@ php artisan telescope:install
 
 We also need to add the `install` command in our `build` hook so it is run on every deploy. Head to `{{< vendor/configfile "app" >}}` and update it with the following:
 
-```yaml
+```yaml {configFile="app"}
 build: |
         set -eux
         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
@@ -58,3 +58,9 @@ git commit -m "Enable Laravel Horizon"
 Once done, you can now access the `/telescope` endpoint of your application.
 
 ![Laravel Horizon Dashboard](/images/guides/laravel/telescope-dashboard.png "0.5")
+
+{{< note theme="tip" >}}
+
+Telescope uses a gate defined `TelescopeServiceProvider.php` to authorize access to the dashboard. Check that the logic here matches your needs.
+
+{{< /note >}}

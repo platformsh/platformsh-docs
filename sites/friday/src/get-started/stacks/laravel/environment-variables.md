@@ -2,7 +2,7 @@
 title: "Environment Variables"
 weight: -120
 description: |
-    Learn about the environment variables added by the Upsun CLI.
+    Learn about the environment variables added by the {{% vendor/name %}} CLI.
 ---
 
 By default, {{% vendor/name %}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
@@ -23,7 +23,7 @@ about the app and its infrastructure.
 
 The {{% vendor/name %}} Laravel default configuration transpose these variables into the following:
 
-```bash
+```bash  {configFile="env"}
 # Set MySQL database environment variables
 export DB_HOST="$MYSQL_HOST"
 export DB_PORT="$MYSQL_PORT"
@@ -61,7 +61,7 @@ export REDIS_URL="$CACHE_URL"
 Each exposed environment variable is prefixed by the relationship name.
 For example, if you have the following relationships in your configuration:
 
-```yaml
+```yaml {configFile="app"}
 relationships:
     database: "securitydb:postgresql"
 ```
@@ -81,9 +81,9 @@ You can add specific build-available variables with `{{% vendor/cli %}} variable
 
 ### Emails
 
-{{% vendor/name %}} provides a SMTP service for sending emails. The easier is add the mapping in your `.environment` configuration:
+{{% vendor/name %}} provides a SMTP service for sending emails. The easier way to configure it in Laravel is add the mapping in your `.environment` configuration:
 
-```bash
+```bash  {configFile="env"}
 # Email
 export MAIL_MAILER="smtp"
 export MAIL_HOST="${PLATFORM_SMTP_HOST}"
@@ -160,7 +160,7 @@ The [Redis](/add-services/redis) configuration is exposed via the following envi
 
 You can specify the Redis client in your `.environment` configuration:
 
-```bash
+```bash  {configFile="env"}
 export REDIS_CLIENT="phpredis"
 ```
 

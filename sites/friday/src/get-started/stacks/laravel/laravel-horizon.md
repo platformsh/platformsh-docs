@@ -19,7 +19,7 @@ php artisan horizon:install
 
 We also need to add the `install` command in our `build` hook so it is run on every deploy. Head to `{{< vendor/configfile "app" >}}` and update it with the following:
 
-```yaml
+```yaml {configFile="app"}
 build: |
         set -eux
         composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
@@ -30,16 +30,16 @@ build: |
 
 We are now going to add a separate worker to run Horizon on our project. Open `{{< vendor/configfile "app" >}}` and add the following:
 
-```yaml
+```yaml {configFile="app"}
 applications:
   [...]
-    {{< variable "PROJECT_NAME" >}}:
-    [...]
-    workers:
-      horizon:
-        commands:
-          start: |
-            php artisan horizon
+    {{< variable "APP_NAME" >}}:
+      [...]
+      workers:
+        horizon:
+          commands:
+            start: |
+              php artisan horizon
 ```
 
 You can now enable it by pushing the change to `{{< vendor/name >}}`:
@@ -68,7 +68,7 @@ To share data between containers, use [services](/add-services/_index.md).
 {{< /note >}}
 
 
-As any other container, the resources of the Horizon container can be customized. Head to the Configure resources panel of the Upsun console and change the resources as needed:
+As any other container, the resources of the Horizon container can be customized. Head to the Configure resources panel of the {{% vendor/name %}} console and change the resources as needed:
 
 ![Laravel Horizon Dashboard](/images/guides/laravel/horizon-resources.png "0.5")
 
