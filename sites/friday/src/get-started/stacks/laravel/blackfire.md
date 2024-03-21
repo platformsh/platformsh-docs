@@ -17,5 +17,5 @@ Laravel](https://docs.blackfire.io/php/integrations/laravel/index):
 - [Laravel Tests](https://docs.blackfire.io/php/integrations/laravel/tests)
 - [Laravel Octane](https://docs.blackfire.io/php/integrations/laravel/octane)
 
-Please refer to the [Blackfire documentation](https://docs.blackfire.io/testing-cookbooks/tests#the-code-blackfire-yaml-code-file) to set up a `.blackfire.yml` configuration to enable custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index)
-and automated [builds](https://blackfire.io/docs/builds-cookbooks/index).
+Please refer to the [Blackfire documentation](https://docs.blackfire.io/testing-cookbooks/tests#the-code-blackfire-yaml-code-file) to set up a `.blackfire.yml` configuration to enable custom [performance tests](https://docs.blackfire.io/testing-cookbooks/index)
+and automated [builds](https://docs.blackfire.io/builds-cookbooks/index).
