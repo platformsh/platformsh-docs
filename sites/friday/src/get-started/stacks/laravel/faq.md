@@ -2,7 +2,7 @@
 title: "FAQ"
 weight: 200
 description: |
-    Troubleshoot issue you might encounter using [Symfony](https://www.symfony.com/), a PHP framework on {{% vendor/name %}}.
+    Troubleshoot issue you might encounter using [Laravel](https://laravel.com/), a PHP framework on {{% vendor/name %}}.
 ---
 
 ## How can I access my application logs?
