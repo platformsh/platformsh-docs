@@ -1,5 +1,5 @@
 ---
-title: Deploying Laravel on {{% vendor/name %}}
+title: Deploying Laravel on Upsun
 sidebarTitle: Laravel
 layout: single
 weight: -65
