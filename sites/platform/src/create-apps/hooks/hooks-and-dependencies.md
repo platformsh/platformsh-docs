@@ -5,7 +5,7 @@ description: Manage dependencies for your hooks, such as compiling Sass files as
 
 If you use a specific package in a hook, you may want to manage dependencies for it.
 For example, you may want to compile Sass files as part of your build process.
-You can set dependencies along with hooks in your [app configuration](/create-apps/app-reference/builtin-image.md#dependencies).
+You can set dependencies along with hooks in your [app configuration](/create-apps/app-reference/images/builtin-image.md#dependencies).
 
 The following example assumes you have some Sass source files, such as a `index.scss` file.
 You also need a script to compile the files, such as the following:

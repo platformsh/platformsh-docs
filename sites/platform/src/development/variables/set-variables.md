@@ -11,7 +11,7 @@ All of the variables can also be [overridden via script](#set-variables-via-scri
 
 ## Set variables in your app
 
-Set variables [in code](/create-apps/app-reference/builtin-image.md#variables) using the `{{< vendor/configfile "app" >}}` file.
+Set variables [in code](/create-apps/app-reference/images/builtin-image.md#variables) using the `{{< vendor/configfile "app" >}}` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 
@@ -179,7 +179,7 @@ value updates trigger a rebuild of the application in the same way that a commit
 
 ## Set variables via script
 
-You can also provide a `.environment` file as in [your app root](/create-apps/app-reference/builtin-image.md#root-directory).
+You can also provide a `.environment` file as in [your app root](/create-apps/app-reference/images/builtin-image.md#root-directory).
 This file runs as a script in dash when the container starts and on all SSH logins.
 It can be used to set any environment variables directly, such as the PATH variable.
 

@@ -22,7 +22,7 @@ include persistent Redis with a [valid supported version](../../add-services/red
 
 ## 2. Add the Redis relationship
 
-In your [app configuration](/create-apps/app-reference/builtin-image.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](/create-apps/app-reference/images/builtin-image.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" configFile="app" >}}
 

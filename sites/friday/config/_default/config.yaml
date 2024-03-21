@@ -63,7 +63,7 @@ module:
               - "changelog/*"
 
               - "create-apps/*"
-              # - "create-apps/upgrading.md"
+              - "create-apps/app-reference/*"
               # - "create-apps/workers.md"
               # - "create-apps/flexible-resources.md"
 

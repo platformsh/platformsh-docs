@@ -42,7 +42,7 @@ A user can have one of the following roles on an environment type which grants t
 | Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
 | Viewer      | Yes              | No        | Yes                | No         | No              | No              |
 
-To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/app-reference/builtin-image.md#access).
+To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/app-reference/images/builtin-image.md#access).
 
 ### View a user's permissions across all of the projects in your organization
 

@@ -14,7 +14,7 @@ Within a single project, you can have one or more apps and each app can have mul
 Instances are where the same code can be run with different configurations,
 such as one for external communication and one for background processes.
 All of the apps and instances are configured with the same syntax.
-You can find a [complete reference](/create-apps/app-reference/builtin-image.md) of all possible settings.
+You can find a [complete reference](/create-apps/app-reference/images/builtin-image.md) of all possible settings.
 
 ## A minimal application
 
@@ -63,15 +63,15 @@ If you want to use one of the [databases or other services {{% vendor/name %}} p
 set it up by following these steps:
 
 1. Configure the service based on the documentation for that service.
-1. Use the information from that service inside your app's [`relationships` definition](/create-apps/app-reference/builtin-image.md#relationships)
+1. Use the information from that service inside your app's [`relationships` definition](/create-apps/app-reference/images/builtin-image.md#relationships)
    to configure how your app communicates with the service.
 
 ## Control the build and deploy process
 
 Your app generally needs to undergo some steps to be turned from the code in your Git repository into a running app.
-If you're running a PHP or Node.js app, this starts with the [build flavor](/create-apps/app-reference/builtin-image.md#build),
+If you're running a PHP or Node.js app, this starts with the [build flavor](/create-apps/app-reference/images/builtin-image.md#build),
 which runs a default set of tasks.
-Then any [global dependencies](/create-apps/app-reference/builtin-image.md#dependencies) can be installed.
+Then any [global dependencies](/create-apps/app-reference/images/builtin-image.md#dependencies) can be installed.
 
 Once these optional tasks are done, you can run [hooks](./hooks/_index.md) at various points in the process.
 Hooks are places for your custom scripts to control how your app is built and deployed.
@@ -79,7 +79,7 @@ Hooks are places for your custom scripts to control how your app is built and de
 ## Configure what's served
 
 Once your app is built, it needs a defined way to communicate with the outside world.
-Define its behavior with a [`web` instance](/create-apps/app-reference/builtin-image.md#web).
+Define its behavior with a [`web` instance](/create-apps/app-reference/images/builtin-image.md#web).
 There you can set what command runs every time your app is restarted,
 how dynamic requests are handled, and how to respond with static files.
 

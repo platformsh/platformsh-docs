@@ -6,18 +6,11 @@ description: See all of the options for controlling your apps and how they're bu
 
 {{% description %}}
 
-There is two choice on how to define your apps, either using [built-in images](/create-apps/app-reference/builtin-image.md) or [Composable Images](/create-apps/app-reference/composable-image.md).
+For single-app projects, the configuration is all done in a `{{< vendor/configfile "app" >}}` file,
+usually located at the root of your app folder in your Git repository.
+[Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
 
-## Built-in images
-{{% vendor/name %}} is providing and maintaining a list of runtime images that you can use for each of your application containers,
 
-Limitation is that you can set only on runtime per application container.
+See a [comprehensive example](/create-apps/app-reference/_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
 
-## Composable Images
-{{% vendor/name %}} allow you to define a Stack (group of packages) that your application container will use, based on more than 80'000 available [NixOs packages](https://search.nixos.org/) (even the unstable ones),
-and you can add as many packages as needed by your application within the same application container.
-
-Limitation is that {{% vendor/name %}} only maintains a [set of packages](/create-apps/app-reference/composable-image.md#stack) and won't support other packages.
-Other packages support is NixOs' duty.
-
-## More information
+For reference, see a [log of changes to app configuration](/create-apps/upgrading.md).

@@ -39,9 +39,9 @@ app:
 ```
 
 See more information on the required minimal settings:
-- [Top-level properties](/create-apps/app-reference/builtin-image.md#top-level-properties).
-- [`web` property](/create-apps/app-reference/builtin-image.md#web).
-- [`locations` properties](/create-apps/app-reference/builtin-image.md#locations).
+- [Top-level properties](/create-apps/app-reference/images/builtin-image.md#top-level-properties).
+- [`web` property](/create-apps/app-reference/images/builtin-image.md#web).
+- [`locations` properties](/create-apps/app-reference/images/builtin-image.md#locations).
 
 ## Add more features
 
@@ -62,7 +62,7 @@ web:
             allow: true
 ```
 
-See more information on [`locations` properties](/create-apps/app-reference/builtin-image.md#locations).
+See more information on [`locations` properties](/create-apps/app-reference/images/builtin-image.md#locations).
 
 ### Create cache rules
 

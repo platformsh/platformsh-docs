@@ -8,15 +8,15 @@ The following table presents the main differences among the three available hook
 | Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
 | ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- | -------------------- | --------------- | --------------- |
 | `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
-| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/builtin-image.md#mounts)                   | Yes | No  |
-| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/builtin-image.md#mounts)                   | No  | Yes |
+| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/images/builtin-image.md#mounts)                   | Yes | No  |
+| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/images/builtin-image.md#mounts)                   | No  | Yes |
 
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
 
 ## Build hook
 
-The `build` hook is run after any [build flavor](/create-apps/app-reference/builtin-image.md#build).
+The `build` hook is run after any [build flavor](/create-apps/app-reference/images/builtin-image.md#build).
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
@@ -63,8 +63,8 @@ So if you accidentally add an unbroken loop, it gets cut off and you can continu
 ## Deploy hook
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
-Note that the deploy hook only runs on [`web` instances](/create-apps/app-reference/builtin-image.md#web),
-not [`worker` instances](/create-apps/app-reference/builtin-image.md#workers).
+Note that the deploy hook only runs on [`web` instances](/create-apps/app-reference/images/builtin-image.md#web),
+not [`worker` instances](/create-apps/app-reference/images/builtin-image.md#workers).
 
 You can access other services at this stage (such as MySQL, Solr, Redis).
 The disk where the application lives is read-only at this point.
@@ -72,7 +72,7 @@ The disk where the application lives is read-only at this point.
 This hook should be used when something needs to run once when new code is deployed.
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an instance of an app starts (regardless of whether there's new code)
-should go in the `pre_start` key in [your `web` configuration](/create-apps/app-reference/builtin-image.md#web-commands).
+should go in the `pre_start` key in [your `web` configuration](/create-apps/app-reference/images/builtin-image.md#web-commands).
 For example, clearing the cache.
 
 Be aware: The deploy hook blocks the site accepting new requests.

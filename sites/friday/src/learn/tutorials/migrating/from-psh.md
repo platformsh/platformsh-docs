@@ -180,7 +180,7 @@ For any potential more details, see the [specific service](/add-services/_index.
 ## 7. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
-You can upload such files to [mounts you created](/create-apps/app-reference/builtin-image.md#mounts).
+You can upload such files to [mounts you created](/create-apps/app-reference/images/builtin-image.md#mounts).
 Upload to each mount separately.
 
 Suppose you have the following mounts defined:
@@ -197,7 +197,7 @@ mounts:
 
 {{< note >}}
 {{< vendor/name >}} doesn't currently support the same `local` mounts as {{< vendor/psh_ref >}}.
-It only supports `tmp`, `storage`, and `service` [mounts](/create-apps/app-reference/builtin-image.md#mounts).
+It only supports `tmp`, `storage`, and `service` [mounts](/create-apps/app-reference/images/builtin-image.md#mounts).
 Before transferring your files, change the `source` of your existing `local` mounts to a supported mount type.
 {{< /note >}}
 

@@ -67,7 +67,7 @@ Your SimpleSAMLphp configuration needs to be outside of the `vendor` directory.
 The `composer require` downloads a template configuration file to `vendor/simplesamlphp/simplesamlphp/config`.
 
 Rather than modifying that file in place (as it isn't included in Git),
-copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in [your app root](/create-apps/app-reference/builtin-image.md#root-directory)).
+copy the `vendor/simplesamlphp/simplesamlphp/config` directory to `simplesamlphp/config` (in [your app root](/create-apps/app-reference/images/builtin-image.md#root-directory)).
 It should contain two files, `config.php` and `authsources.php`.
 
 Additionally, create a `simplesamlphp/metadata` directory.

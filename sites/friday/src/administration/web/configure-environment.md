@@ -61,7 +61,7 @@ If this message isn't updated once your [default environment](../../environments
 follow these steps:
 
 1. Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
-2. Verify that your [application](/create-apps/app-reference/builtin-image.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
+2. Verify that your [application](/create-apps/app-reference/images/builtin-image.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
 3. Check that your default environment is [active](../../environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Environment settings

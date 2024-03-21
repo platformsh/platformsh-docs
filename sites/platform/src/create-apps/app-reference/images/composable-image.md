@@ -6,11 +6,9 @@ description: See all of the options for composable image to built and deployed y
 
 {{% description %}}
 
-Configuration is all done in a `{{< vendor/configfile "app" >}}` file,
-located at the root of your Git repository.
-
-See a [comprehensive example](../_index.md#comprehensive-example) of a configuration in
-a `{{< vendor/configfile "app" >}}` file.
+For single-app projects, the configuration is all done in a `{{< vendor/configfile "app" >}}` file,
+usually located at the root of your app folder in your Git repository.
+[Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
 
 ## What is a Composable Image?
 
@@ -26,55 +24,38 @@ TODO: Add Jerome's talk about it
 https://www.youtube.com/watch?v=emOt32DVl28
 {{% /note %}}
 
-All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured
-under a unique key beneath the top-level `applications` key.
+See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
 
-For example, it is possible to deploy multiple runtimes in an application container - one PHP, one JavaScript and one
-Python - for the frontend of a deployed site.
+For reference, see a [log of changes to app configuration](/create-apps/upgrading.md).
 
-In this case, the unified `{{< vendor/configfile "app" >}}` file would look like:
+## Top-level properties
 
-```yaml {configFile="app"}
-applications:
-  frontend:
-    stack:
-      - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-      - "nodejs@{{% latest "nodejs" %}}"
-      - "python@{{% latest "python" %}}":
-        extensions:
-          - yq
-    # Additional frontend configuration
-```
-
-The following table presents all properties available at the level just below the unique application name (`frontend` above).
+The following table presents all properties available at the top level of the YAML for the app.
 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
-|--------------------|-----------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                   |
-| `stack`            | An array of [NixOs runtimes](#stack)                | Yes      | No               | The list of runtime images to use with a specific app. Format: <br>`- <runtime>@<version>`.                                                                                                                                                                      |
-| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
-| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
-| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
-| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
-| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md) |
-| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                             |
-| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
-| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
-| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
-| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
-| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                                             |
+|--------------------|-----------------------------------------------------|----------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                                          |
+| `stack`            | An array of [NixOs runtimes](#stack)                | Yes      | No               | The list of runtime images to use with a specific app. Format: <br>`- <runtime>@<version>`.                                                                                                                                                                                             |
+| `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                                 |
+| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                                 |
+| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                                         |
+| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                                |
+| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                                                      |
+| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                                     |
+| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md) |
+| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                                    |
+| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                                   |
+| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                                            |
+| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                                  |
+| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                                            |
+| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                              |
+| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                                      |
 
 {{% note %}}
-Please note that, even if available in [Application reference](/create-apps/app-reference/builtin-image.md) when using the built-in image
+Please note that, even if available in [Application reference](/create-apps/app-reference/images/builtin-image.md) when using the built-in image
 of defining images to use in your application container, the  ``type``, ``build``, ``dependencies``, and ``runtime`` keywords
 are not supported if you choose to use Composable Image (`stack`).
 {{% /note %}}
@@ -82,21 +63,11 @@ are not supported if you choose to use Composable Image (`stack`).
 ## Root directory
 
 Some of the properties you can define are relative to your app's root directory.
-The root defaults to the root of the repository.
+The root defaults to the location of your `{{< vendor/configfile "app" >}}` file.
 
-```yaml {configFile="app"}
-applications:
-  frontend:
-    type: 'nodejs:{{% latest "nodejs" %}}'
-    # Default behavior of source.root
-    source:
-      root: "/"
-```
+That is, if a custom value for `source.root` is not provided in your configuration, the default behavior is equivalent to the above.
 
-That is, if a custom value for `source.root` is not provided in your configuration, the default behavior is equivalent
-to the above.
-
-To specify another directory, for example for a [multi-app project](../multi-app/_index.md),
+To specify another directory, for example for a [multi-app project](/create-apps/multi-app/_index.md),
 use the [`source.root` property](#source).
 
 ## Stack
@@ -176,39 +147,64 @@ runtime, filter results using the ``Package sets`` on the left and then, choose 
 These are used in the format `<runtime>@<version>`:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    stack:
-      - "php@{{% latest "php" %}}"
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+stack:
+  - "php@{{% latest "php" %}}"
+    extensions:
+      - apcu
+      - sodium
+      - xsl
+      - pdo_sqlite
 ```
 
-## Resources
+## Sizes
 
-Resources for application containers are not committed to YAML files, but instead managed over the API using either the
-Console or the `{{% vendor/cli %}} resources:set` command.
+Resources are distributed across all containers in an environment from the total available from your [plan size](/administration/pricing/_index.md).
+So if you have more than just a single app, it doesn't get all of the resources available.
+Each environment has its own resources and there are different [sizing rules for preview environments](#sizes-in-preview-environments).
 
-For more information, see how to [manage resources](/manage-resources.md).
+By default, resource sizes (CPU and memory) are chosen automatically for an app
+based on the plan size and the number of other containers in the cluster.
+Most of the time, this automatic sizing is enough.
 
-{{% note %}}
+You can set sizing suggestions for production environments when you know a given container has specific needs.
+Such as a worker that doesn't need much and can free up resources for other apps.
+To do so, set `size` to one of the following values:
+
+- `S`
+- `M`
+- `L`
+- `XL`
+- `2XL`
+- `4XL`
+
+The total resources allocated across all apps and services can't exceed what's in your plan.
+
+{{% note title="TODO check if applicable here"%}}
 Composable image container profile defaults to ``HIGH_CPU``.
 <BR>If multiple runtimes are added to your stack,
-you would need to change the [default container_profile](/manage-resources/adjust-resources.md#advanced-container-profiles)
-<br>or change [default CPU and RAM ratio](/manage-resources/resource-init.md) on first deployment using the following commands:
+you would need to change the [default container_profile]() /manage-resources/adjust-resources.md#advanced-container-profiles
+<br>or change [default CPU and RAM ratio]()/manage-resources/resource-init.md on first deployment using the following commands:
 ```bash
 {{% vendor/cli %}} push --resources-init=manual
 ```
 {{% /note %}}
 
+### Sizes in preview environments
+
+Containers in preview environments don't follow the `size` specification.
+Application containers are set based on the plan's setting for **Environments application size**.
+The default is size **S**, but you can increase it by editing your plan.
+(Service containers in preview environments are always set to size **S**.)
 
 ## Relationships
 
 To access another container within your project, you need to define a relationship to it.
+
+![Relationships Diagram](/images/management-console/relationships.png "0.5")
+
 You can give each relationship any name you want.
+This name is used in the `PLATFORM_RELATIONSHIPS` environment variable,
+which gives you credentials for accessing the service.
 
 The relationship is specified in the form `service_name:endpoint_name`.
 The `service_name` is the name of the service given in the [services configuration](/add-services/_index.md)
@@ -216,42 +212,36 @@ or the name of another application in the same project specified as the `name` i
 
 The `endpoint_name` is the exposed functionality of the service to use.
 For most services, the endpoint is the same as the service type.
-For some services (such as [MariaDB](/add-services/mysql/_index.md#multiple-databases)
-and [Solr](/add-services/solr.md#solr-6-and-later)),
-you can define additional explicit endpoints for multiple databases and cores in
-the [service's configuration](/add-services/_index.md).
+For some services (such as [MariaDB](/add-services/mysql/_index.md#multiple-databases) and [Solr](/add-services/solr.md#solr-6-and-later)),
+you can define additional explicit endpoints for multiple databases and cores in the [service's configuration](/add-services/_index.md).
 
 The following example shows a single MySQL service named `mysqldb` offering two databases,
 a Redis cache service named `rediscache`, and an Elasticsearch service named `searchserver`.
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["nodejs@{{% latest nodejs %}}"]
-    relationships:
-      database: 'mysqldb:db1'
-      database2: 'mysqldb:db2'
-      cache: 'rediscache:redis'
-      search: 'searchserver:elasticsearch'
+relationships:
+    database: 'mysqldb:db1'
+    database2: 'mysqldb:db2'
+    cache: 'rediscache:redis'
+    search: 'searchserver:elasticsearch'
 ```
-
-{{% note %}}
-Once a service is running and exposed via a relationship,
-its credentials (such as the host, username, and password) are automatically available
-as [service environment variables](/development/variables.html#service-environment-variables),
-in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
-The available information is documented on each service's page, along with sample code for how to connect to it from
-your app.
-{{% /note %}}
 
 ## Available disk space
 
-Disk for application containers are not committed to YAML files, but instead managed over the API using either the
-Console or the `{{% vendor/cli %}} resources:set` command.
+The maximum total space available to all apps and services is set by the storage in your plan settings.
+When deploying your project, the sum of all `disk` keys defined in app and service configurations
+must be *equal or less* than the plan storage size.
 
-For more information, see how to [manage resources](/manage-resources.md).
+So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in one of the following ways:
+
+- 2&nbsp;GB to your app, 3&nbsp;GB to your database
+- 1&nbsp;GB to your app, 4&nbsp;GB to your database
+- 1&nbsp;GB to your app, 1&nbsp;GB to your database, 3&nbsp;GB to your OpenSearch service
+
+If you exceed the total space available, you receive an error on pushing your code.
+You need to either increase your plan's storage or decrease the `disk` values you've assigned.
+
+{{% disk-space-mb %}}
 
 ### Downsize a disk
 
@@ -281,60 +271,53 @@ much like you would plug a hard drive into your computer to transfer data.
 To define a mount, use the following configuration:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["nodejs@{{% latest nodejs %}}"]
-    mounts:
-      '{{< variable "MOUNT_PATH" >}}':
+mounts:
+    '{{< variable "MOUNT_PATH" >}}':
         source: {{< variable "MOUNT_TYPE" >}}
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
 {{< variable "MOUNT_PATH" >}} is the path to your mount **within the app container** (relative to the app's root).
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
-See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-folders).
+See how to [troubleshoot the warning](/create-apps/troubleshoot-mounts.md#overlapping-folders).
 
-| Name          | Type                           | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|---------------|--------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `source`      | `storage`, `tmp`, or `service` | Yes      | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount). |
-| `source_path` | `string`                       | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                         |
-| `service`     | `string`                       |          | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage.                                                                                                                                                                                                                                                                                                                                                                                   |
+| Name          | Type                          | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------- |-------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `source`      | `local`, `service`, or `tmp`  | Yes      | Specifies the type of the mount: <br/><br/>- `local` mounts are unique to your app. They can be useful to store files that remain local to the app instance, such as application logs.</br> `local` mounts require disk space. To successfully set up a local mount, set the `disk` key in your app configuration. <br/><br/>- `service` mounts point to [Network Storage](/add-services/network-storage.md) services that can be shared between several apps. <br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.</br> The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br> Note that the `/tmp` directory has **a maximum allocation of 8 GB**. |
+| `source_path` | `string`                      | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory.  <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                       |
+| `service`     | `string`                      |          | Only for `service` mounts: the name of the [Network Storage service](/add-services/network-storage.md).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
 
-Note that when you remove a `tmp` mount from your `{{< vendor/configfile "app" >}}` file,
+Note that when you remove a `local` mount from your `{{< vendor/configfile "app" >}}` file,
 the mounted directory isn't deleted.
-The files still exist on disk until manually removed,
-or until the app container is moved to another host during a maintenance operation.
+The files still exist on disk until manually removed
+(or until the app container is moved to another host during a maintenance operation in the case of a `tmp` mount).
 
 ### Example configuration
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["nodejs@{{% latest nodejs %}}"]
-    mounts:
-      'web/uploads':
-        source: storage
+mounts:
+    'web/uploads':
+        source: local
         source_path: uploads
-      '/.tmp_platformsh':
+    '/.tmp_platformsh':
         source: tmp
         source_path: files/.tmp_platformsh
-      '/build':
-        source: storage
+    '/build':
+        source: local
         source_path: files/build
-      '/.cache':
+    '/.cache':
         source: tmp
         source_path: files/.cache
-      '/node_modules/.cache':
+    '/node_modules/.cache':
         source: tmp
         source_path: files/node_modules/.cache
 ```
+
+For examples of how to set up a `service` mount, see the dedicated [Network Storage page](/add-services/network-storage.md).
 
 ### Ensure continuity when changing the name of your mount
 
@@ -344,130 +327,22 @@ Say you have a `/my/cache/` mount with an undefined `source_path`:
 
 ```yaml {configFile="app"}
 mounts:
-  '/my/cache/':
-    source: tmp
+    '/my/cache/':
+        source: tmp
 ```
 
 If you rename the mount to `/cache/files/`, it will point to a new, empty `/cache/files/` directory.
 
-To ensure continuity, you need to explicitly define the `source_path` as the previous name of the mount, without leading
-or trailing slashes:
+To ensure continuity, you need to explicitly define the `source_path` as the previous name of the mount, without leading or trailing slashes:
 
  ```yaml {configFile="app"}
 mounts:
-  '/cache/files/':
-    source: tmp
-    source_path: my/cache
+    '/cache/files/':
+        source: tmp
+        source_path: my/cache
 ```
 
-The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing
-files in that directory.
-
-### Share a mount between several apps
-
-By design, [`storage` mounts](#mounts) are shared **between different instances of the same app**,
-which enables [horizontal scaling](/manage-resources/_index.md).
-
-In a [multi-application context](/create-apps/multi-app/_index.md),
-you can even share a `storage` mount **between different applications** in the same project.
-
-To do so, you need to define a `storage` mount in each of your app containers,
-and point each of those mounts to the same shared external network directory.
-
-Use the following configuration:
-
-```yaml {configFile="app"}
-applications:
-  app1:
-    mounts:
-      '{{< variable "MOUNT_PATH_1" >}}':
-        source: storage
-        source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
-
-  app2:
-    mounts:
-      '{{< variable "MOUNT_PATH_2" >}}':
-        source: storage
-        service: app1
-        source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
-```
-
-- {{< variable "MOUNT_PATH_1" >}} and {{< variable "MOUNT_PATH_2" >}} are the paths to each mount **within their
-  respective app container** (relative to the app's root).
-- When configuring the first `storage` mount, you don't need to include the `service` key.
-  The first mount implicitly points to an external network directory.
-  The `service` key is required for subsequent mounts, to ensure they use the same external network directory as the
-  first mount.
-- The `source_path` allows you to point each mount to the same subdirectory **within the shared external network
-  directory**.
-
-{{% note title = "Example" %}}
-
-You have a `backend` app and a `frontend` app.
-You want both apps to share data from the same mount.</br>
-Follow these steps:
-
-1. In your `backend` app configuration, define a `storage` mount:
-
-   ```yaml {configFile="app"}
-   applications:
-      backend:
-          mounts:
-              var/uploads: #The path to your mount within the backend app container.
-                  source: storage
-                  source_path: backend/uploads #The path to the source of the mount within the external network directory.
-   ```
-
-   This creates a `storage` mount named `var/uploads` in the `backend` app container.
-   The mount points to the `backend/uploads` directory within an external network directory.
-
-2. In your `frontend` app configuration, define another `storage` mount:
-
-   ```yaml {configFile="app"}
-   applications:
-       applications:
-           backend:
-               mounts:
-                   var/uploads:
-                       source: storage
-                       source_path: backend/uploads
-
-           frontend:
-               mounts:
-                   web/uploads: #The path to your mount within the frontend app container.
-                       source: storage
-                       service: backend #The name of the other app, so the mount can point to the same external network directory as that other app's mount.
-                       source_path: backend/uploads #The path to the source of the mount within the shared external network directory.
-   ```
-
-   This creates another `storage` mount named `web/uploads` in the `frontend` app container.
-
-   The `service` key allows you to specify that the `web/uploads` mount should use the same external network directory
-   as the mount previously defined in the `backend` app container.
-
-   The `source_path` key specifies which subdirectory within the external network directory both mounts should share (
-   here, the `backend/uploads` directory).
-
-{{% /note %}}
-
-Note that another way to share data between apps through a mount is by
-explicitly [defining a Network Storage service](/add-services/network-storage.md).
-
-### Local mounts
-
-If you need a local mount (i.e. unique per container),
-{{% vendor/name %}} allows you to mount a directory within the `/tmp` directory of your app.
-However, the following limitations apply:
-
-- Content from `tmp` mounts is removed when your app container is moved to another host during an infrastructure
-  maintenance operation
-- The `/tmp` directory has a [maximum allocation of 8 GB](/create-apps/troubleshoot-disks.md#no-space-left-on-device)
-
-Therefore, `tmp` mounts are ideal to store non-critical data, such as your application cache which can be seamlessly
-rebuilt,
-but aren't suitable for storing files that are necessary for your app to run smoothly.
-
-Note that {{% vendor/name %}} will provide new local mounts in the near future.
+The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing files in that directory.
 
 ## Web
 
@@ -480,7 +355,7 @@ Defaults may vary with a different [image `type`](#types).
 | `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
 | `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 
-See some [examples of how to configure what's served](../web/_index.md).
+See some [examples of how to configure what's served](/create-apps/web/_index.md).
 
 ### Web commands
 
@@ -492,13 +367,8 @@ See some [examples of how to configure what's served](../web/_index.md).
 Example:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    web:
-      commands:
+web:
+    commands:
         start: 'uwsgi --ini conf/server.ini'
 ```
 
@@ -536,13 +406,8 @@ For all other containers, the default for `protocol` is `http`.
 The following example is the default on non-PHP containers:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    web:
-      upstream:
+web:
+    upstream:
         socket_family: tcp
         protocol: http
 ```
@@ -551,10 +416,10 @@ applications:
 
 Where to listen depends on your setting for `web.upstream.socket_family` (defaults to `tcp`).
 
-| `socket_family` | Where to listen                                                                                                                         |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `tcp`           | The port specified by the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables)               |
-| `unix`          | The Unix socket file specified by the [`SOCKET` environment variable](/development/variables/use-variables.md#use-provided-variables) |
+| `socket_family`  | Where to listen                                                                                                                         |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `tcp`            | The port specified by the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables)               |
+| `unix`           | The Unix socket file specified by the [`SOCKET` environment variable](/development/variables/use-variables.md#use-provided-variables) |
 
 If your application isn't listening at the same place that the runtime is sending requests,
 you see `502 Bad Gateway` errors when you try to connect to your website.
@@ -593,23 +458,18 @@ In the following example, the `allow` key disallows requests for static files an
 This is overridden by a rule that explicitly allows common image file formats.
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    web:
-      locations:
+web:
+    locations:
         '/':
-          # Handle dynamic requests
-          root: 'public'
-          passthru: '/index.php'
-          # Disallow static files
-          allow: false
-          rules:
-            # Allow common image files only.
-            '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-              allow: true
+            # Handle dynamic requests
+            root: 'public'
+            passthru: '/index.php'
+            # Disallow static files
+            allow: false
+            rules:
+                # Allow common image files only.
+                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
 ```
 
 #### Request buffering
@@ -625,18 +485,13 @@ The following table shows the keys in the `request_buffering` dictionary:
 The default configuration would look like this:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    web:
-      locations:
+web:
+    locations:
         '/':
-          passthru: true
-          request_buffering:
-            enabled: true
-            max_request_size: 250m
+            passthru: true
+            request_buffering:
+                enabled: true
+                max_request_size: 250m
 ```
 
 ## Workers
@@ -648,8 +503,7 @@ Workers can't accept public requests and so are suitable only for background tas
 If they exit, they're automatically restarted.
 
 The keys of the `workers` definition are the names of the workers.
-You can then define how each worker differs from the `web` instance using
-the [top-level properties](#top-level-properties).
+You can then define how each worker differs from the `web` instance using the [top-level properties](#top-level-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
@@ -661,20 +515,15 @@ Each worker can differ from the `web` instance in all properties _except_ for:
 A worker named `queue` that was small and had a different start command could look like this:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    workers:
-      queue:
+workers:
+    queue:
+        size: S
         commands:
-          start: |
-            ./worker.sh
+            start: |
+                ./worker.sh
 ```
 
-Workers require resource definition using `{{% vendor/cli %}} resources:set`, same as application containers.
-For more information, see how to [manage resources](/manage-resources.md).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
 
 ## Access
 
@@ -684,18 +533,12 @@ The `access` dictionary has one allowed key:
 |-------|-------------------------------------|---------------|-----------------------------------------------------------------------|
 | `ssh` | `admin`, `contributor`, or `viewer` | `contributor` | Defines the minimum role required to access app environments via SSH. |
 
-In the following example, only users with `admin` permissions for the
-given [environment type](/administration/users.md#environment-type-roles)
+In the following example, only users with `admin` permissions for the given [environment type](/administration/users.md#environment-type-roles)
 can access the deployed environment via SSH:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    access:
-      ssh: admin
+access:
+    ssh: admin
 ```
 
 ## Variables
@@ -708,8 +551,7 @@ All variables set in your app configuration must have a prefix.
 Some [prefixes have specific meanings](/development/variables/_index.md#variable-prefixes).
 
 Variables with the prefix `env` are available as a separate environment variable.
-All other variables are available in
-the [`PLATFORM_VARIABLES` environment variable](/development/variables/use-variables.md#use-provided-variables).
+All other variables are available in the [`PLATFORM_VARIABLES` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 The following example sets two variables:
 
@@ -718,15 +560,10 @@ The following example sets two variables:
   that's available in the `PLATFORM_VARIABLES` environment variable
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    variables:
-      env:
+variables:
+    env:
         AUTHOR: 'Juan'
-      d8config:
+    d8config:
         "system.site:name": 'My site rocks'
 ```
 
@@ -741,11 +578,10 @@ Set limits in outbound traffic from your app with no impact on inbound requests.
 The `outbound` key is required and contains one or more rules.
 The rules define what traffic is allowed; anything unspecified is blocked.
 
-Each rule has the following properties where at least one is required and `ips` and `domains` can't be specified
-together:
+Each rule has the following properties where at least one is required and `ips` and `domains` can't be specified together:
 
 | Name      | Type                | Default         | Description                                                                                                                                                                                                             |
-|-----------|---------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------- | ------------------- |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ips`     | Array of `string`s  | `["0.0.0.0/0"]` | IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). See a [CIDR format converter](https://www.ipaddressguide.com/cidr).                                                      |
 | `domains` | Array of `string`s  |                 | [Fully qualified domain names](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) to specify specific destinations by hostname.                                                                                 |
 | `ports`   | Array of `integer`s |                 | Ports from 1 to 65535 that are allowed. If any ports are specified, all unspecified ports are blocked. If no ports are specified, all ports are allowed. Port `25`, the SMTP port for sending email, is always blocked. |
@@ -753,19 +589,15 @@ together:
 The default settings would look like this:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    firewall:
-      outbound:
-        - ips: [ "0.0.0.0/0" ]
+firewall:
+    outbound:
+        - ips: ["0.0.0.0/0"]
 ```
 
 ### Support for rules
 
 Where outbound rules for firewalls are supported in all environments.
+For {{% names/dedicated-gen-2 %}} projects, contact support for configuration.
 
 ### Multiple rules
 
@@ -776,16 +608,11 @@ So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    firewall:
-      outbound:
-        - ips: [ "1.2.3.4/32" ]
-        ports: [ 443 ]
-          - ports: [ 80 ]
+firewall:
+    outbound:
+        - ips: ["1.2.3.4/32"]
+          ports: [443]
+        - ports: [80]
 ```
 
 ### Outbound traffic to CDNs
@@ -793,8 +620,7 @@ applications:
 Be aware that many services are behind a content delivery network (CDN).
 For most CDNs, routing is done via domain name, not IP address,
 so thousands of domain names may share the same public IP addresses at the CDN.
-If you allow the IP address of a CDN, you are usually allowing many or all of the other customers hosted behind that
-CDN.
+If you allow the IP address of a CDN, you are usually allowing many or all of the other customers hosted behind that CDN.
 
 ### Outbound traffic by domain
 
@@ -807,19 +633,14 @@ This means that you allow potentially hundreds or thousands of other servers als
 An example rule filtering by domain:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["python@{{% latest python %}}"]
-    firewall:
-      outbound:
+firewall:
+    outbound:
         - protocol: tcp
-        domains: [ "api.stripe.com", "api.twilio.com" ]
-        ports: [ 80, 443 ]
-          - protocol: tcp
-        ips: [ "1.2.3.4/29","2.3.4.5" ]
-        ports: [ 22 ]
+        domains: ["api.stripe.com", "api.twilio.com"]
+        ports: [80, 443]
+        - protocol: tcp
+        ips: ["1.2.3.4/29","2.3.4.5"]
+        ports: [22]
 ```
 
 #### Determine which domains to allow
@@ -842,7 +663,6 @@ Example output:
 facebook.com
 fastly.com
 platform.sh
-upsun.com
 www.google.com
 www.platform.sh
 ```
@@ -861,15 +681,44 @@ In all languages, you can also specify a flavor of `none` to take no action at a
 (which is the default for any language other than PHP and Node.js).
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["nodejs@{{% latest nodejs %}}"]
-    build:
-      flavor: none
+build:
+    flavor: none
 ```
+## Dependencies
 
+Installs global dependencies as part of the build process.
+They're independent of your app's dependencies
+and are available in the `PATH` during the build process and in the runtime environment.
+They're installed before the `build` hook runs using a package manager for the language.
+
+| Language | Key name              | Package manager                                                                                                    |
+| -------- | --------------------- |--------------------------------------------------------------------------------------------------------------------|
+| PHP      | `php`                 | [Composer](https://getcomposer.org/)                                                                               |
+| Python 2 | `python` or `python2` | [Pip 2](https://packaging.python.org/tutorials/installing-packages/)                                               |
+| Python 3 | `python3`             | [Pip 3](https://packaging.python.org/tutorials/installing-packages/)                                               |
+| Ruby     | `ruby`                | [Bundler](https://bundler.io/)                                                                                     |
+| Node.js  | `nodejs`              | [npm](https://www.npmjs.com/) (see [how to use yarn](/languages/nodejs/_index.md#use-yarn-as-a-package-manager))   |
+| Java     | `java`                | [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/) |
+
+The format for package names and version constraints are defined by the specific package manager.
+
+An example of dependencies in multiple languages:
+
+```yaml {configFile="app"}
+dependencies:
+    php: # Specify one Composer package per line.
+        drush/drush: '8.0.0'
+        composer/composer: '^2'
+    python2: # Specify one Python 2 package per line.
+        behave: '*'
+        requests: '*'
+    python3: # Specify one Python 3 package per line.
+        numpy: '*'
+    ruby: # Specify one Bundler package per line.
+        sass: '3.4.7'
+    nodejs: # Specify one NPM package per line.
+        pm2: '^4.5.0'
+```
 ## Hooks
 
 There are three different hooks that run as part of the process of building and deploying your app.
@@ -880,6 +729,7 @@ Only the `build` hook is run for [worker instances](#workers), while [web instan
 The process is ordered as:
 
 1. Variables accessible at build time become available.
+1. [Build flavor](#build) runs if applicable.
 1. Any [dependencies](#dependencies) are installed.
 1. The `build` hook is run.
 1. The file system is changed to read only (except for any [mounts](#mounts)).
@@ -889,8 +739,7 @@ The process is ordered as:
 1. The `post_deploy` hook is run.
 
 Note that if an environment changes by no code changes, only the last step is run.
-If you want the entire process to run, see how
-to [manually trigger builds](/development/troubleshoot.md#manually-trigger-builds).
+If you want the entire process to run, see how to [manually trigger builds](/development/troubleshoot.md#manually-trigger-builds).
 
 ### Writable directories during build
 
@@ -950,11 +799,11 @@ See how to [get cron logs](/increase-observability/logs/access-logs.md#container
 
 The following table shows the properties for each job:
 
-| Name               | Type                                         | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|--------------------|----------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. |
-| `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job.                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds.                                                                                                                                                                                                                                                                                                                    |
+| Name               | Type                                         | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------ | -------------------------------------------- | -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or {{% names/dedicated-gen-3 %}}** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.** |
+| `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
 
 Note that you can [cancel pending or running crons](/environments/cancel-activity.md).
@@ -967,21 +816,19 @@ Note that you can [cancel pending or running crons](/environments/cancel-activit
 | `stop`  | `string` | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["nodejs@{{% latest nodejs %}}"]
-    crons:
-      mycommand:
+crons:
+    mycommand:
         spec: 'H * * * *'
         commands:
-          start: sleep 60 && echo sleep-60-finished && date
-          stop: killall sleep
+            start: sleep 60 && echo sleep-60-finished && date
+            stop: killall sleep
         shutdown_timeout: 18
 ```
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
+
+Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
+On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 
 ### Example cron jobs
 
@@ -994,7 +841,7 @@ title=Drupal
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: ["php@{{% latest php %}}"]
+stack: ["php@{{% latest php %}}"
 crons:
   # Run Drupal's cron tasks every 19 minutes.
   drupal:
@@ -1076,25 +923,25 @@ define conditional crons.
 To do so, use a configuration similar to the following:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["php@{{% latest php %}}"]
-    crons:
-      update:
-        spec: '0 0 * * *'
-          commands:
-            start: |
-              if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-              {{% vendor/cli %}} backup:create --yes --no-wait
-              {{% vendor/cli %}} source-operation:run update --no-wait --yes
-              fi
+crons:
+  update:
+    spec: '0 0 * * *'
+    commands:
+      start: |
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+          {{% vendor/cli %}} backup:create --yes --no-wait
+          {{% vendor/cli %}} source-operation:run update --no-wait --yes
+        fi
 ```
 
 ### Cron job timing
 
-The minimum time between cron jobs being triggered is 5 minutes.
+Minimum time between cron jobs being triggered:
+
+| Plan                | Time      |
+|-------------------- | --------- |
+| Professional        | 5 minutes |
+| Elite or Enterprise | 1 minute  |
 
 For each app container, only one cron job can run at a time.
 If a new job is triggered while another is running, the new job is paused until the other completes.
@@ -1115,7 +962,9 @@ unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
 crons on environments with no deployments are paused.
 
-This affects all preview environments, _and_ production environment that do not yet have a domain attached to them.
+This affects all environments that aren't live environments.
+This means all environments on Development plans
+and all preview environments on higher plans.
 
 Such environments with deployments within 14 days have crons with the status `running`.
 If there haven't been any deployments within 14 days, the status is `paused`.
@@ -1159,13 +1008,13 @@ Run the following command:
 The following table presents the various possible modifications to your PHP or Lisp runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](/languages/php/extensions.md) to enable.                                |
-| `disabled_extensions`       | List of `string`s                                          | PHP      | [PHP extensions](/languages/php/extensions.md) to disable.                               |
+| --------------------------- |------------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------|
+| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
+| `disabled_extensions`       | List of `string`s                                          | PHP      | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
 | `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                               |
-| `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](/languages/lisp.md#quicklisp-options) to use.              |
+| `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+| `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](/languages/lisp.md#quicklisp-options) to use.                |
 
 You can also set your [app's runtime timezone](/create-apps/timezone.md).
 
@@ -1180,13 +1029,8 @@ Waiting for engineers to decide if either we keep or remove this section
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["php@{{% latest php %}}"]
-    runtime:
-      extensions:
+runtime:
+    extensions:
         - geoip
         - tidy
 ```
@@ -1194,13 +1038,8 @@ applications:
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["php@{{% latest php %}}"]
-    runtime:
-      extensions:
+runtime:
+    extensions:
         - geoip
         - name: blackfire
           configuration:
@@ -1229,10 +1068,10 @@ Not sure if applicable.
 
 The following table shows the properties that can be set in `source`:
 
-| Name         | Type                     | Required | Description                                                                                                                       |
-|--------------|--------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|
-| `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](../source-operations.md)                               |
-| `root`       | `string`                 |          | The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](../multi-app/_index.md). |
+| Name         | Type                     | Required | Description                                                                                                                                                      |
+| ------------ | ------------------------ | -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](/create-apps/source-operations.md)                                                             |
+| `root`       | `string`                 |          | The path where the app code lives. Defaults to the directory of the `{{< vendor/configfile "app" >}}` file. Useful for [multi-app setups](/create-apps/multi-app/_index.md). |
 
 ## Additional hosts
 
@@ -1244,14 +1083,9 @@ Then when your app tries to access the hostname, it's sent to the proper IP addr
 So in the following example, if your app tries to access `api.example.com`, it's sent to `192.0.2.23`.
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: ["php@{{% latest php %}}"]
-    additional_hosts:
-      api.example.com: "192.0.2.23"
-      web.example.com: "203.0.113.42"
+additional_hosts:
+  api.example.com: "192.0.2.23"
+  web.example.com: "203.0.113.42"
 ```
 
 This is equivalent to adding the mapping to the `/etc/hosts` file for the container.

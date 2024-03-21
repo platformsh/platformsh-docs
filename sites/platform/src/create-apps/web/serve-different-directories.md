@@ -25,7 +25,7 @@ And your build process might build the documentation with an output folder such 
 
 If so, you can serve all requests by your app code except for those that start with `/docs`,
 which you serve with your generated docs.
-Use a [`web` configuration](/create-apps/app-reference/builtin-image.md#web) similar to the following:
+Use a [`web` configuration](/create-apps/app-reference/images/builtin-image.md#web) similar to the following:
 
 ```yaml {configfile="apps"}
 web:

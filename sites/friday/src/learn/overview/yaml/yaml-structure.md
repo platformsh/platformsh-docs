@@ -26,7 +26,7 @@ In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
 
 This looks like:
 ```yaml {location="{{< vendor/configfile "apps" >}}"}
-{{< code-link destination="/create-apps/app-reference/builtin-image.md" text="applications" title="Complete list of all available properties" >}}:
+{{< code-link destination="/create-apps/app-reference/images/builtin-image.md" text="applications" title="Complete list of all available properties" >}}:
   app:
     ...
 
@@ -50,8 +50,8 @@ Any YAML files located at the first level of your ``.upsun`` folder, at the root
 The following rules apply to YAML files contained in the ``.upsun`` folder:
 
 - All the existing YAML files located at the first level of the ``.upsun`` folder are taken into account.
-- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference/builtin-image.md).
-- All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference/builtin-image.md).
+- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference/images/builtin-image.md).
+- All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference/images/builtin-image.md).
 
 {{% note title="Warning" theme="warning"%}}
 When {{% vendor/name %}} combines all the YAML files located at the first level of the ``.upsun`` folder, only the top-level keys (`applications`, `services`, and `routes`) are merged. So if you define an app named ``app`` in two different YAML files, {{% vendor/name %}} only takes the second one into account.

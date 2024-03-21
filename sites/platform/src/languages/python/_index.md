@@ -154,7 +154,7 @@ For more about managing packages with pip, Pipenv, and Poetry,
 see how to [manage dependencies](./dependencies.md).
 
 To add global dependencies (packages available as commands),
-add them to the `dependencies` in your [app configuration](/create-apps/app-reference/builtin-image.md#dependencies):
+add them to the `dependencies` in your [app configuration](/create-apps/app-reference/images/builtin-image.md#dependencies):
 
 ```yaml {configFile="app"}
 dependencies:

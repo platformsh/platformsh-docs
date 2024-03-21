@@ -21,7 +21,7 @@ In your [service configuration](../../add-services/_index.md), include Elasticse
 
 ## 2. Add the Elasticsearch relationship
 
-In your [app configuration](/create-apps/app-reference/builtin-image.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](/create-apps/app-reference/images/builtin-image.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" configFile="app" >}}
 

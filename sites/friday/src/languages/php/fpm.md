@@ -89,7 +89,7 @@ These values allow most programs to run,
 but you can amend them to fit your needs.
 
 To do so, adjust your [app configuration](../../create-apps/_index.md).
-Under `runtime` in the [`sizing_hints` setting](/create-apps/app-reference/builtin-image.md#sizing-hints),
+Under `runtime` in the [`sizing_hints` setting](/create-apps/app-reference/images/builtin-image.md#sizing-hints),
 set the values for `reserved_memory` and `request_memory`.
 
 For example,
