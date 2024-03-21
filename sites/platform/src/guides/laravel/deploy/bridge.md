@@ -70,4 +70,4 @@ The variables you are most likely to want to override are:
 
 Now that your Laravel app is connected to {{% vendor/name %}}, deploy it to see it in action.
 
-{{< guide-buttons next="Deploy" >}}
+{{< guide-buttons previous="Back" next="Schedule tasks" >}}

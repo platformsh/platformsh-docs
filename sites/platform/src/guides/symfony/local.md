@@ -94,3 +94,5 @@ This starts the Symfony Server and opens the app in your local browser.
     symfony var:expose-from-tunnel --off
     symfony tunnel:close --all -y
     ```
+
+{{< guide-buttons previous="Back" next="FAQ" >}}
