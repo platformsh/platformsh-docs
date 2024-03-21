@@ -6,14 +6,14 @@ description: See all of the options for controlling your apps and how they're bu
 
 {{% description %}}
 
-There is two choice on how to define your apps, either using [built-in images](/create-apps/app-reference/builtin-image.md) or [Composable Images](/create-apps/app-reference/composable-image.md).
+There is two choice on how to define your apps, either using [built-in image](/create-apps/app-reference/builtin-image.md) or [Composable Image (BETA)](/create-apps/app-reference/composable-image.md).
 
-## Built-in images
+## Built-in image
 {{% vendor/name %}} is providing and maintaining a list of runtime images that you can use for each of your application containers,
 
 Limitation is that you can set only on runtime per application container.
 
-## Composable Images
+## Composable Image (BETA)
 {{% vendor/name %}} allow you to define a Stack (group of packages) that your application container will use, based on more than 80'000 available [NixOs packages](https://search.nixos.org/) (even the unstable ones),
 and you can add as many packages as needed by your application within the same application container.
 
