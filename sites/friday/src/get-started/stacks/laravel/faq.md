@@ -80,7 +80,7 @@ via the `APP_DEBUG` [environment variable](./environment-variables.md) in your
 # Enable debug mode
 export APP_DEBUG=1
 # Disable debug mode
-{{% vendor/cli %}} env:debug --off
+export APP_DEBUG=0
 ```
 
 ## Other issues
