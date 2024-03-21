@@ -2,7 +2,7 @@
 title: "Cron Jobs"
 weight: -105
 description: |
-    Understand how to configure Symfony cron jobs.
+    Understand how to configure Laravel cron jobs.
 ---
 
 Cron jobs allow you to run scheduled tasks at specified times or intervals.
