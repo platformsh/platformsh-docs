@@ -36,14 +36,14 @@ SCREENSHOT TO INSERT
 
 ### Current month estimate
 
-The [**Overview** tab](#access-your-billing-information) shows an estimate of how much you may be charged at the end of the current month.</br>
+The [**Overview** tab](#access-your-organization-billing-information) shows an estimate of how much you may be charged at the end of this month.</br>
 This estimate is based on:
 
 - Your organization settings (user management settings, number of projects, potential add-ons, support SLA, etc.)
 - Your resource allocation on each project
 
 The estimate includes the history of changes made since the beginning of the month.
-**It cannot be 100% accurate, as it is impossible to determine what your exact resource usage will be.**</br>
+**It cannot be 100% accurate, as it is impossible to know exactly what your future usage will be.**</br>
 However, for maximum accuracy, the current month estimate includes three underlying estimates,
 each with its own calculation:
 
@@ -53,54 +53,59 @@ each with its own calculation:
 
 #### User management estimate
 
-User management fees include user licenses and, when applicable, subscription to the user management add-on.</br>
-Here's how {{% vendor/name %}} calculates how much user management may cost you:
-`unit price x current x prorated quantity`.
+The following formula is used to estimate how much user license and user management add-on fees may cost you this month:</br>
+`unit price x prorated quantity`.
 
 | Item               | Description |
 | ------------------ | ----------- |
 | `unit price`       | A fixed unit price. |
-| `current`          | Your current user settings (number of user licenses, user management add-on subscription). |
 | `prorated quantity`| An average of past changes and current settings, applied for all the remaining days in the month. |
 
-All items used for the calculation are displayed in the [**Overview** tab](#access-your-billing-information).
+All items used for the calculation are displayed in the **Overview** tab.
 
 #### Accumulated resource usage estimate
 
 The resources consumed for builds, bandwidth, and log forwarding are accumulated resources.</br>
-Here's how {{% vendor/name %}} calculates how much accumulated resource usage may cost you:
-`unit price x current accumulation x daily average x number of days in the month`.
+The following formula is used to estimate how much accumulated resource usage may cost you this month:</br>
+`current accumulation + (unit price x daily average x remaining days in the month)`.
 
 | Item                   | Description |
 | ---------------------- | ----------- |
-| `unit price`           | A fixed unit price. |
 | `current accumulation` | The amount of accumulated resources you have effectively used so far this month. |
+| `unit price`           | A fixed unit price. |
 | `daily average`    | An average based on the accumulated resource usage you've had over the last 30 days. |
 
-All items used for the calculation are displayed in the [**Overview** tab](#access-your-billing-information).
+All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
 
 #### Allocated resource usage estimate
 
 The resources consumed by your applications and services (CPU, RAM, and storage) are allocated resources.</br>
-Here's how {{% vendor/name %}} calculates how much allocated resource usage may cost you: `unit price x current allocation x prorated quantity`.
+The following formula is used to estimate how much allocated resource usage may cost you this month:</br>
+`unit price x prorated quantity`.
 
 | Item                 | Description |
 | -------------------- | ----------- |
 | `unit price`         | A fixed unit price. |
-| `current allocation` | The current resource allocation across your projects. |
 | `prorated quantity`  | An average of past changes and current settings, applied for all the remaining days in the month. |
 
-All items used for the calculation are displayed in the [**Overview** tab](#access-your-billing-information).
+All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
 
 ### Next month estimate
 
-From the [**Overview** tab](#access-your-billing-information), you can also access an estimate for next month.
+From the [**Overview** tab](#access-your-organization-billing-information), you can also access an estimate for next month.
 
 Like your [current month estimate](#current-month-estimate), it includes your organization settings and resource allocation on each project.
 However, your next month estimate **does not include any history of changes**.
 
 It is solely based on your current organization settings and resource allocation,
 and shows what you may be charged if you don't make any changes until the end of next month.
+
+The following formulas are used:
+
+- `unit price x current allocation` to estimate how much user license, user management add-on fees,
+  and allocated resources may respectively cost you next month.
+
+- `unit price x daily average` to estimate how much accumulated resources may cost you next month.
 
 ### Invoice
 
@@ -148,7 +153,7 @@ Note that you can edit or delete a billing alert by clicking the billing alert b
 
 {{% note theme="info" title="Feature availability" %}}
 
-This feature is available to users who have the [**Manage Billing** permission](/administration/users.md#organization-permissions) on the organization.
+This feature is available to users with the [**Manage Billing** permission](/administration/users.md#organization-permissions) on the organization.
 
 {{% /note %}}
 
@@ -158,19 +163,9 @@ To do so, after you've set or updated resources on your project:
 1. Navigate to your organization.
 2. Open the user menu (your name or profile picture).
 3. Click **Billing**.</br>
-   A monthly estimate of how much each project is expected to cost is displayed.
-4. You can also view the costs related to every project you've been added to.</br>
-   To do so, click **{{< icon more >}} More** next to the project,
-   and select **Project Billing**.</br>
-   A monthly estimate of all the expected costs related to resource allocation on the project is displayed.
-
-{{% note %}}
-
-These estimates reflect the expected costs **for a full month** based on the way resources are allocated **at the time of viewing**.
-They don't take into account the history of changes you may have made throughout the current month.</br>
-Therefore, if you make changes to resource allocation during the month, your monthly invoice will differ from these estimates.
-
-{{% /note %}}
+   Your [current month estimate](#current-month-estimate) shows how much each project is expected to cost this month.
+4. To select a project, click **{{< icon more >}} More** next to it, and select **Project Billing**.</br>
+   Resource allocation and usage details for the project are displayed.
 
 For information on resource-related costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 
