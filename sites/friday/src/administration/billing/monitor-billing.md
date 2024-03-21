@@ -32,7 +32,7 @@ To access your organization billing information in the [Console](/administration
    The **Overview** tab is displayed.
    You can view your current month and next month estimates.
 
-SCREENSHOT TO INSERT
+![Organization billing information in the Overview tab](/images/billing/organization-billing.png "0.6")
 
 ### Current month estimate
 
@@ -163,9 +163,10 @@ To do so, after you've set or updated resources on your project:
 1. Navigate to your organization.
 2. Open the user menu (your name or profile picture).
 3. Click **Billing**.</br>
-   Your [current month estimate](#current-month-estimate) shows how much each project is expected to cost this month.
-4. To select a project, click **{{< icon more >}} More** next to it, and select **Project Billing**.</br>
-   Resource allocation and usage details for the project are displayed.
+   Your [current month estimate](#current-month-estimate) shows how much each project in your organization is expected to cost this month.
+4. You can select a project to view resource allocation and usage details.</br>
+   To do so, click **{{< icon more >}} More** next to it, and select **Project Billing**.</br>
+   ![Project billing information in the Overview tab](/images/billing/project-billing.png "0.6")
 
 For information on resource-related costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 
