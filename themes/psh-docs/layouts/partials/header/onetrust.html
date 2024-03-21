@@ -1,11 +1,13 @@
 {{- $id := .Site.Params.gtm -}}
 {{- $ot_autoblock := .Site.Params.ot.autoblock.test -}}
 {{- $ot_banner := .Site.Params.ot.banner.test -}}
+{{- $ot_domain := .Site.Params.ot.domain.test -}}
 
 <!-- Optanon Consent Notice start -->
 <script src="{{ $ot_autoblock | relURL }}" type="text/javascript" charset="UTF-8"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function OptanonWrapper() { }
-</script>
-<!-- <script src="{{ $ot_banner | relURL }}" type="text/javascript" charset="UTF-8"></script> -->
+</script> -->
+<script src="{{ $ot_banner | relURL }}" type="text/javascript" charset="UTF-8" 
+  data-domain-script="{{ $ot_domain }}"></script>
 <!-- Optanon Consent Notice end -->

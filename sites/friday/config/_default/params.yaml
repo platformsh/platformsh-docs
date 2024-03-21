@@ -64,6 +64,9 @@ ot:
   banner: 
     prod: "scripts/onetrust/oneTrust_production/scripttemplates/otSDKStub.js"
     test: "scripts/onetrust/oneTrust_test/scripttemplates/otSDKStub.js"
+  domain:
+    prod: "95022fca-0603-4adc-bcc6-010ae6852c58"
+    test: "95022fca-0603-4adc-bcc6-010ae6852c58-test"
 
 # Actions in main header
 headerActions:
