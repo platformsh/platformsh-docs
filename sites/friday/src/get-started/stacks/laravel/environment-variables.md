@@ -16,7 +16,7 @@ You can tweak the `.environment` configuration to fit your needs and add specifi
 
 {{< /note >}}
 
-## Defaulkt environment variables
+## Default environment variables
 
 {{% vendor/name %}} exposes the following [environment variables](/development/variables/use-variables#use-provided-variables)
 about the app and its infrastructure.
