@@ -78,7 +78,7 @@ via the `APP_DEBUG` [environment variable](./environment-variables.md) in your
 
 ```bash
 # Enable debug mode
-{{% vendor/cli %}} env:debug
+export APP_DEBUG=1
 # Disable debug mode
 {{% vendor/cli %}} env:debug --off
 ```
