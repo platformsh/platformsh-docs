@@ -105,7 +105,7 @@ The following formulas are used:
 - `unit price x current allocation` to estimate how much user license, user management add-on fees,
   and allocated resources may respectively cost you next month.
 
-- `unit price x daily average` to estimate how much accumulated resources may cost you next month.
+- `unit price x daily average x 30 days` to estimate how much accumulated resources may cost you next month.
 
 ### Invoice
 
