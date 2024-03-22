@@ -47,9 +47,12 @@ title= Using the CLI
 
 Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each of your apps and services.
 
-{{< note title= "Tip" >}}
+{{< note >}}
 
 For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
+Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
+you may need to set the resources again.
 
 {{< /note >}}
 
@@ -102,39 +105,48 @@ or run commands manually.
 
   Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each of your apps and services.
 
+  {{% note %}}
   For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
+  Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
+  you may need to set the resources again.
+  {{% /note %}}
 
 - **Manual commands:**
 
   To scale an app or worker, run the following command:
 
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count {{< variable "APP_NAME" >}}:{{< variable "NUMBER_OF_INSTANCES" >}}
   ```
   
   For example, to scale your `myapp` app to 3 instances, run the following command:
 
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count myapp:3
   ```
 
   You can also set the same instance count for all your apps using a wildcard.
   To do so, run the following command:
   
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count '*:{{< variable "NUMBER_OF_INSTANCES" >}}'
   ```
 
   For example, to scale all your apps to 3 instances, run the following command:
 
-  ```bash
+  ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count '*:3'
   ```
-
+  {{% note %}}
   For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 
   After you've set the number of instances for your apps and workers, your environment is redeployed.
   If you've made no other changes, this redeployment causes no downtime.
+  
+  If the redeployment fails after you've run `{{% vendor/cli %}} resources:set`,
+  you may need to set the resources again.
+  {{% /note %}}
 
 <--->
 
