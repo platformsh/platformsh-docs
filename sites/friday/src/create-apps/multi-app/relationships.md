@@ -33,10 +33,31 @@ applications:
     relationships:
       api: "app2:http"
 ```
-Once they're both built, `app1` can access `app2` at the following URL: `http://api.internal`.
-The specific URL is always available through the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables):
 
-```bash
-$ echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq '.api[0].host'
+Once they're both built, `app1` can access `app2` at the following URL: `http://api.internal`.</br>
+The specific URL is always available through the [service environment variables](/development/variables/_index.md#service-environment-variables),
+or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables):
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+```bash {location="Terminal on app1 container"}
+$ echo $API_HOST
 api.internal
 ```
+
+<--->
+
++++
+title= `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable
++++
+It uses the `jq` library, which is included in all app containers for this purpose.
+
+```bash {location="Terminal on app1 container"}
+$ echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq '.api[0].host'
+api.internal
+```
+
+{{< /codetabs >}}

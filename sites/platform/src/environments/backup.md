@@ -14,9 +14,8 @@ or each time you increase the storage space of your services.
 
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
-Note that you can only create backups and restore active environments.
-To work with an [inactive environment](/glossary.md#inactive-environment),
-first activate it.
+You can only create backups and restore active environments.
+To work with an [inactive environment](/glossary.md#inactive-environment), first activate it.
 
 ## How backup and restore works
 
@@ -104,13 +103,24 @@ To downgrade to the lower schedule, [contact support](/learn/overview/get-suppor
 
 For Dedicated environments, see more about [backups of Dedicated environments](../dedicated-gen-2/overview/backups.md).
 
-For Grid environments, automated backups are taken for Production environments at least once every day.
+For Grid environments, automated backups are taken for production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
 
 Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
 The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
+
+{{< note >}}
+
+Automated backups are only available for production environments.
+
+If you're on a [development plan](/administration/pricing/_index.md#development-plans),
+all your environments are [development environments](/glossary.md#environment-type).
+This includes your future production environment.
+If you want to enable automated backups for it, [upgrade to a non-development plan](https://platform.sh/pricing/).
+
+{{< /note >}}
 
 ## Live backups
 

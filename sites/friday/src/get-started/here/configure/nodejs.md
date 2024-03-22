@@ -17,7 +17,7 @@ By default, Upsun makes assumptions about how you want to build your application
 Namely, that you are managing your dependencies with npm, and that the very first thing you'd like to run is a particular and common production flavor of `npm install`.
 
 This is called a build `flavor`, but its assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
-Therefore, you can [disable this feature(/languages/nodejs#dependencies).
+Therefore, you can [disable this feature](/languages/nodejs#dependencies).
 
 ## Available package managers
 

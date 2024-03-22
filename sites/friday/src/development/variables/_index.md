@@ -52,7 +52,8 @@ Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
+  This information be read from the [service environment variables](./_index.md#service-environment-variables),
+  or the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
   This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
@@ -189,38 +190,42 @@ applications:
                 memory_limit: "256M"
 ```
 
-### Framework-specific variables
+## Framework-specific variables
 
 For specific frameworks, you can implement logic to override global configurations with [environment-specific variables](./set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
-{{% version/only "1" %}}
-#### Implementation example
+## Service environment variables
 
-The [Drupal template](https://github.com/platformsh-templates/drupal10/) shows an example of
-overriding Drupal configuration using environment variables.
-These variables are parsed in the [`settings.platformsh.php` script](https://github.com/platformsh-templates/drupal10/blob/386ea35b034b5d78da8060925940e793bea479d9/web/sites/default/settings.platformsh.php#L126-L164).
+For each service defined via a relationship to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
-For example, the site name is overridden by a variable named `drupalsettings:system.site:name`.
-Variables for the override are composed of three distinct parts each separated by colons:
+**Example:**
 
-- A prefix (`drupalsettings`)
-- The configuration object to override (`system.site`)
-- The property to set (`name`)
+For a relationship named ``database`` to a service named `postgresl`,
+the following environment variables are automatically generated in your `app` container:
 
-Setting the `drupalsettings:system.site:name` variable overrides the `name` property of the `system.site` configuration object located in the global `$settings` array.
-You can do this by running the following [CLI command](../../administration/cli/_index.md):
-
-``` bash
-{{% vendor/cli %}} variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
+```bash
+DATABASE_URL=pgsql://main:main@postgresql.internal:5432/main
+DATABASE_INSTANCE_IPS=['123.456.78.901']
+DATABASE_SERVICE=database
+DATABASE_QUERY={'is_master': True}
+DATABASE_CLUSTER=oiaenewa6sfiq-test-services-afdwftq
+DATABASE_HOST_MAPPED=false
+DATABASE_NAME=main
+DATABASE_FRAGMENT=
+DATABASE_PATH=main
+DATABASE_SCHEME=pgsql
+DATABASE_EPOCH=0
+DATABASE_PORT=5432
+DATABASE_HOSTNAME=azertyuiop1234567890.database.service._.eu-3.platformsh.site
+DATABASE_TYPE=postgresql:13
+DATABASE_PUBLIC=false
+DATABASE_PASSWORD=main
+DATABASE_IP=123.456.78.901
+DATABASE_USERNAME=main
+DATABASE_HOST=postgresql.internal
+DATABASE_REL=postgresql
 ```
-
-The same logic applies for other configuration options,
-such as the global `$config` array, which uses the variable prefix `drupalconfig`.
-
-You need to name your {{% vendor/name %}} variables to match the ones used in your script.
-Make sure that the {{% vendor/name %}} variables start with a string present in your `switch` statement.
-
-You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
-{{% /version/only %}}

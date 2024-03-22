@@ -22,4 +22,4 @@ Below are a few modifications that may help you develop your site more efficient
 
 Go forth and deploy (even on Friday)!
 
-{{< guide-buttons type="last" >}}
+{{< guide-buttons previous="Back" type="last" >}}

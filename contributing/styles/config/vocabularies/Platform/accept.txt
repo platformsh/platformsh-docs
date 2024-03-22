@@ -156,6 +156,7 @@ serverless
 Servlet
 [Ss][Ff][Tt][Pp]
 shard
+Shopware
 shortcode
 Slowloris
 Splunk

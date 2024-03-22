@@ -24,4 +24,4 @@ Explaining the file line by line, notice the following settings:
 
 {{% guides/config-routes template="quarkus" name="Quarkus" %}}
 
-{{< guide-buttons next="Customize Quarkus" >}}
+{{< guide-buttons previous="Back" next="Customize Quarkus" >}}

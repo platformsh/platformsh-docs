@@ -136,4 +136,4 @@ if (file_exists($platformshFile)) {
 }
 ```
 
-{{< guide-buttons next="Deploy TYPO3" >}}
+{{< guide-buttons previous="Back" next="Deploy TYPO3" >}}

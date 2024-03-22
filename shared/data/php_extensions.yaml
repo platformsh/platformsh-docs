@@ -483,7 +483,6 @@ grid:
       - imap
       - interbase
       - ldap
-      - mcrypt
       - memcache
       - memcached
       - mongo
@@ -491,7 +490,6 @@ grid:
       - odbc
       - pdo_dblib
       - pdo_firebird
-      - pdo_mysql
       - pdo_odbc
       - pdo_pgsql
       - pgsql
@@ -503,8 +501,10 @@ grid:
       - snmp
       - spplus
       - ssh2
+      - sybase
       - tidy
       - xcache
+      - xdebug
       - xhprof
       - xmlrpc
       - xsl
@@ -512,6 +512,7 @@ grid:
       - curl
       - gd
       - intl
+      - mcrypt
       - mysql
       - mysqli
       - mysqlnd
@@ -533,7 +534,6 @@ grid:
       - imap
       - interbase
       - ldap
-      - mcrypt
       - memcache
       - memcached
       - mongo
@@ -551,6 +551,7 @@ grid:
       - redis
       - snmp
       - spplus
+      - sybase
       - ssh2
       - tidy
       - xcache
@@ -562,11 +563,12 @@ grid:
       - curl
       - gd
       - intl
+      - mcrypt
       - mysql
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
       - sqlite3
@@ -584,7 +586,6 @@ grid:
       - imap
       - interbase
       - ldap
-      - mcrypt
       - memcache
       - memcached
       - mongo
@@ -598,6 +599,7 @@ grid:
       - pdo_pgsql
       - pecl-http
       - pgsql
+      - phpdbg
       - pinba
       - propro
       - pspell
@@ -607,6 +609,7 @@ grid:
       - redis
       - snmp
       - ssh2
+      - sybase
       - tidy
       - xdebug
       - xhprof
@@ -617,6 +620,7 @@ grid:
       - gd
       - intl
       - json
+      - mcrypt
       - mysql
       - mysqli
       - mysqlnd
@@ -634,6 +638,8 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
+      - bz2
+      - enchant
       - geoip
       - gmp
       - igbinary
@@ -645,7 +651,9 @@ grid:
       - mailparse
       - mcrypt
       - memcached
+      - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
@@ -660,26 +668,26 @@ grid:
       - recode
       - redis
       - shmop
+      - snmp
       - sourceguardian
       - sqlsrv
-      - snmp
       - ssh2
+      - sybase
       - tideways
       - tideways_xhprof
       - tidy
       - wddx
+      - xdebug
       - xmlrpc
       - xsl
       - zbarcode
     default:
       - bcmath
-      - bz2
       - calendar
       - ctype
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -692,12 +700,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -718,6 +726,7 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
+      - enchant
       - event
       - geoip
       - gmp
@@ -732,6 +741,7 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
@@ -770,7 +780,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -783,12 +792,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -808,6 +817,7 @@ grid:
       - apcu
       - apcu_bc
       - blackfire
+      - enchant
       - event
       - geoip
       - gmp
@@ -821,22 +831,24 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
       - pdo_dblib
-      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
+      - pthreads
       - readline
       - recode
       - redis
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -858,7 +870,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -871,12 +882,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -895,7 +906,9 @@ grid:
       - amqp
       - apcu
       - apcu_bc
+      - applepay
       - blackfire
+      - enchant
       - event
       - geoip
       - gmp
@@ -906,25 +919,28 @@ grid:
       - interbase
       - ioncube
       - ldap
+      - mailparse
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
       - pdo_dblib
-      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
+      - raphf
       - readline
       - recode
       - redis
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -946,7 +962,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -959,12 +974,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -985,6 +1000,7 @@ grid:
       - apcu_bc
       - applepay
       - blackfire
+      - enchant
       - event
       - ffi
       - geoip
@@ -1000,11 +1016,11 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
       - pdo_dblib
-      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
@@ -1016,6 +1032,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -1036,7 +1053,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1049,12 +1065,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -1073,12 +1089,14 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - enchant
       - event
       - ffi
       - geoip
       - gmp
       - http
       - igbinary
+      - imagick
       - imap
       - interbase
       - ioncube
@@ -1087,6 +1105,7 @@ grid:
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
@@ -1102,6 +1121,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -1120,7 +1140,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1132,12 +1151,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -1159,6 +1178,7 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - enchant
       - event
       - ffi
       - geoip
@@ -1167,27 +1187,27 @@ grid:
       - igbinary
       - imap
       - interbase
+      - ioncube
       - ldap
       - mailparse
       - memcached
       - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
+      - protobuf
       - pspell
       - raphf
       - rdkafka
       - readline
       - redis
-      - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - sybase
@@ -1206,7 +1226,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1218,12 +1237,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -1245,6 +1264,8 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - datadog
+      - enchant
       - event
       - ffi
       - geoip
@@ -1254,17 +1275,17 @@ grid:
       - igbinary
       - imap
       - interbase
+      - ioncube
       - ldap
       - mailparse
       - memcached
+      - mongodb
       - msgpack
+      - mysql
       - newrelic
       - oauth
       - odbc
       - openswoole
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
@@ -1272,7 +1293,6 @@ grid:
       - rdkafka
       - readline
       - redis
-      - shmop
       - snmp
       - sodium
       - sourceguardian
@@ -1284,7 +1304,6 @@ grid:
       - tidy
       - uuid
       - xdebug
-      - xsl
       - yaml
     default:
       - bcmath
@@ -1294,7 +1313,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1306,12 +1324,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3
@@ -1333,37 +1351,40 @@ grid:
       - amqp
       - apcu
       - blackfire
+      - datadog
+      - enchant
       - ffi
       - geoip
       - gmp
+      - gnupg
       - http
       - igbinary
       - imap
       - ldap
       - mailparse
+      - memcached
       - msgpack
+      - mysql
+      - newrelic
       - oauth
       - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
+      - openswoole
       - pdo_sqlsrv
       - pgsql
       - pspell
       - raphf
+      - rdkafka
       - readline
       - redis
-      - shmop
       - snmp
       - sodium
-      - sourceguardian
       - sqlsrv
       - ssh2
+      - swoole
       - sybase
       - tidy
       - uuid
       - xdebug
-      - xsl
       - yaml
     default:
       - bcmath
@@ -1373,7 +1394,6 @@ grid:
       - curl
       - dba
       - dom
-      - enchant
       - exif
       - fileinfo
       - ftp
@@ -1385,12 +1405,12 @@ grid:
       - mysqli
       - mysqlnd
       - opcache
-      - PDO
+      - pdo
       - pdo_mysql
       - pdo_sqlite
-      - Phar
+      - phar
       - posix
-      - SimpleXML
+      - simplexml
       - soap
       - sockets
       - sqlite3

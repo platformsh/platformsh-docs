@@ -13,3 +13,5 @@ For advanced cases, the Blackfire PHP SDK provides the following integrations wi
 - [Laravel Tests](https://blackfire.io/docs/php/integrations/laravel/tests)
 
 A `.blackfire.yaml` file is provided within the [Laravel Template](https://github.com/platformsh-templates/laravel/blob/master/.blackfire.yaml) to help you bootstrap the writing of custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index) and automated [builds](https://blackfire.io/docs/builds-cookbooks/index).
+
+{{< guide-buttons previous="Back" next="Improve performance with Octane" >}}

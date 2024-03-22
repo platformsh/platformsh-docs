@@ -41,7 +41,7 @@ The following premium versions are supported:
         <tr>
             <td>{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}</td>
             <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
@@ -65,7 +65,7 @@ but they're at their end of life and are no longer receiving security updates fr
         <tr>
             <td>{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}</td>
             <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
@@ -80,17 +80,17 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": null,
     "scheme": "http",
-    "service": "elasticsearch77",
+    "service": "elasticsearch",
     "fragment": null,
-    "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "elasticsearch.internal",
+    "cluster": "azertyuiopqsdf-main-7rqtwti",
+    "host": "essearch.internal",
     "rel": "elasticsearch",
     "path": null,
     "query": [],
@@ -161,7 +161,7 @@ Starting with Elasticsearch 7.2 you may optionally enable HTTP Basic authenticat
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service" %}}
+{{% snippet name="elasticsearch" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
@@ -180,14 +180,14 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.
-To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:elasticsearch` as its upstream
-(where `search` is whatever you named the service).
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `elasticsearch:elasticsearch` as its upstream
+(where `elasticsearch` is whatever you named the service).
 
 For example:
 
 ```yaml {configFile="routes"}
-{{% snippet name="search:elasticsearch" config="route" subDom="es" redirect="false" / %}}
-{{% snippet name="search" config="service" placeholder="true"  %}}
+{{% snippet name="elasticsearch:elasticsearch" config="route" subDom="es" redirect="false" / %}}
+{{% snippet name="elasticsearch" config="service" placeholder="true"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 2048
     configuration:
@@ -202,7 +202,7 @@ Elasticsearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{% snippet name="search" config="service"  %}}
+{{% snippet name="elasticsearch" config="service"  %}}
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 1024
     configuration:
@@ -267,7 +267,7 @@ There are two ways to do so.
 ### Destructive
 
 In your `{{< vendor/configfile "services" >}}` file, change the version *and* name of your Elasticsearch service.
-Be sure to also update the reference to the now changed service name in it's corresponding application's `relationship` block.
+Be sure to also update the reference to the now changed service name in its corresponding application's `relationship` block.
 
 When you push that to {{% vendor/name %}}, the old service is deleted and a new one with the new name is created with no data.
 You can then have your application reindex data as appropriate.

@@ -245,7 +245,28 @@ To solve the issue, remove the printed output from your `.environment` file.
 If your app needs different names for environment variable than those set by {{< vendor/name >}}, which is common for database connections,
 map the {{< vendor/name >}}'s variable names to those required by the application via a shell script.
 
-For example, the following [`.environment` script](#set-variables-via-script) exports variables that are visible to the application.
+You can obtain relationship information through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+For example, if your application has a relationship named ``database`` to a database service named `mariadb`:
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+```bash {location=".environment"}
+export APP_DATABASE_HOST=${DATABASE_HOST}
+export APP_DATABASE_USER=${DATABASE_USERNAME}
+```
+
+This sets environment variables with the names your app needs,
+and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
 It uses the `jq` library, which is included in all app containers for this purpose.
 
 ```bash {location=".environment"}
@@ -253,7 +274,10 @@ export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -
 export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
 ```
 
-This sets environment variables with names your app needs and the values from `PLATFORM_RELATIONSHIPS`.
+This sets environment variables with names your app needs,
+and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 ## Use `.env` files
 
