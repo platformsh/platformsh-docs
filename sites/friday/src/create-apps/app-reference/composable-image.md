@@ -18,12 +18,26 @@ a `{{< vendor/configfile "app" >}}` file.
 
 ## What is a Composable Image?
 
-Composable image is a new way to install multiple runtimes in a Stack (group of elements), based on what is available
-on [NixOS](https://search.nixos.org/).
+Composable image is a new way to install different runtimes and tools in your application container, built-in using [NixOs](https://nix.dev/reference/glossary#term-NixOS).
+That way, your application container becomes fully flexible with an easier way to install things, with a library of 80'000+ available packages.
+
+[NixOs](https://nix.dev/reference/glossary#term-NixOS) is a Linux distribution based on [Nix](https://nix.dev/reference/glossary#term-Nix) and [NixPkgs](https://nix.dev/reference/glossary#term-Nixpkgs).
+It's a functional package manager, which is based on the [Nix Language](https://nix.dev/tutorials/nix-language).
+With it, packages are backed as values and all of them are built in total isolation.
+Which make it possible to install different versions of the same package very easily.
+With [Nix](https://nix.dev/reference/glossary#term-Nix), there is no undeclared dependencies in your source code
+and if it works locally, it will work on yours.
+
 
 {{% note title="TODO" %}}
-TODO: What is NixOs ?
+TODO: What is NixOs ? complete the definition as i'm not sure of it :P
+
+Intersting quote from Jerome's internal presentation: https://drive.google.com/file/d/1_w4NwEae3RWt6lYYW_2Er7Fy7zRJ7tac/view
+
+- `One image to rule them all`
 {{% /note %}}
+
+If you want to learn more about Nix, please have a look on [Jérôme Vieilledent's presentation](https://www.youtube.com/watch?v=emOt32DVl28) during the Symfony Con Brussels 2023 (Product Manager of that subject).
 
 {{% note title="TODO" %}}
 TODO: Add Jerome's talk about it
@@ -52,7 +66,6 @@ applications:
           - pdo_sqlite
       - "nodejs@{{% latest "nodejs" %}}"
       - "python@3.12"
-
     # Additional frontend configuration
 ```
 
@@ -269,8 +282,6 @@ applications:
 
 {{< /codetabs >}}
 
-
-
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md):
 
 ### Example configuration
@@ -313,6 +324,13 @@ applications:
   backend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
+
+{{% note %}}
+If you install multiple runtimes in once, the first declared runtime will become the primary runtime and would be automatically started.
+
+To start other declared runtimes, you need to start them manually, using [Web commands](#web-commands).
+Look on your corresponding [language](/languages.md) start command definition, by choosing your language and then go to the **Start you app** section.
+{{% /note %}}
 
 ## Resources
 
