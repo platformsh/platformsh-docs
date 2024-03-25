@@ -1,54 +1,64 @@
 ---
-title: Deploying WordPress on Upsun
+title: Deploy WordPress on Upsun
 sidebarTitle: WordPress
-weight: -65
+weight: -55
 description: |
     Welcome to the Upsun documentation specific to the WordPress CMS on Upsun.
     It includes common reference materials useful for deploying WordPress, but also external community and blog
     resources that cover more advanced topics relevant for the CMS.
 ---
 
-
 {{< note theme="info" >}}
 
-Before you proceed, be sure to checkout the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
-and the main [Getting started guide](/get-started/here/_index.md). These two resources provide all of the core concepts
-and common commands you'll need to know before using the materials below.
+Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
+and the main [Getting started guide](/get-started/here/_index.md).
+They provide all the core concepts and common commands you need to know before using the following materials.
 
 {{< /note >}}
 
-Now that you have completed the [Getting started guide](/get-started/here/_index.md), there are a few remaining changes
-required in order to have a successful deployment of WordPress on Upsun. WordPress, like Upsun, is extremely flexible
-meaning that there are dozens of ways to set up your WordPress site, and dozens of ways to configure your Upsun project.
-To complete these getting started steps, the following assumptions are made:
-* You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress)
-* You do not have a composer.json file, or are comfortable making changes to your existing version
-* You selected PHP as your runtime, and MariaDB as your service during the Getting Started guide
+For WordPress to successfully deploy and operate, after completing the [Getting started guide](/get-started/here/_index.md),
+you still need to add some required files and make a few changes to your Upsun configuration.
 
-## Additional Files Required
-Copy the following files from the [Platform.sh WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
-and add them to the root of your project
-* [composer.json](https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/61da65da21039b280b588642cd329a2eb253e472/composer.json)
-* [wp-cli.yml](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-cli.yml)
-* [wp-config.php](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-config.php)
+## Before you begin
 
-Add a directory `plugins` and a file `.gitkeep` inside of it.
+There are many ways you can set up a WordPress site or Upsun project.
+The instructions on this page were designed based on the following assumptions:
 
-{{< note theme="info" >}}
-If you do not anticipate the need to support non-public plugins, or already have an alternative method to support them
-you can skip adding a `plugins` directory to your project.
-{{< /note >}}
+- You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress)
+- You do not have a `composer.json` file, or are comfortable making changes to your existing version
+- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide
 
-Add and commit the files and directories you added above.
+## 1. Add required files
 
-## `.upsun/config.yaml`
-The Upsun configuration file will need several changes/additions in order for WordPress to successfully deploy and
-operate. Open the Upsun configuration file (`./.upsun/config.yaml`).
+To ensure you have all the required files and directories in your project, follow these steps:
 
-### `web:locations`
-Inside the configuration file, locate the `web:locations` section for the root (`/`) location. Update this section to
-match the following:
-```yaml
+1. Copy the following files from the [Platform.sh WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
+   and add them to the root of your project:
+
+   - The [composer.json](https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/61da65da21039b280b588642cd329a2eb253e472/composer.json) file declares project dependencies and specifies project settings and metadata for [Composer](https://getcomposer.org/) to use
+   - The [wp-cli.yml](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-cli.yml) file contains the configuration values, related to your site, for the [WordPress CLI](https://wp-cli.org/) to use
+   - The [wp-config.php](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-config.php) file contains your site's base configuration details, such as database connection information
+
+2. To ensure Git tracks your empty folders, add a `.gitkeep` file to your project.
+
+3. Optional: To support non-public plugins, add a `plugins` directory to your project.
+
+4. Add and commit your changes.
+
+   ```bash {location="Terminal"}
+   git add .
+   git commit -m "Add files and directory"
+   git push
+   ```
+
+Now that you have pushed all the necessary files and directories to Upsun,
+make the following changes to your `./.upsun/config.yaml` file.
+
+## 2. Configure your root location
+
+Locate the `web:locations` section and update the root (`/`) location as follows:
+
+```yaml {location="./.upsun/config.yaml"}
       locations:
         "/":
           passthru: "/index.php"
@@ -66,71 +76,96 @@ match the following:
 ```
 
 {{< note theme="info" >}}
-If you are migrating your site and already have a composer.json file, or generated your own instead of starting from
-the Platform.sh template version, and have added a `wordpress-install-dir` property for `extras` in your composer.json
-file, make sure to update the above `root:` property to the name of the directory where you are installing WordPress.
+If you're migrating your site, you may already have a `composer.json` file.
+You may even have generated your own instead of starting from the Platform.sh template version.</br>
+If so, you may also have added a `wordpress-install-dir` property for `extras` in your `composer.json` file.</br>
+In this case, set `root:` to the name of the directory where you are installing WordPress.
 {{< /note >}}
 
-We now need to add a new location for our uploaded files. At the same level (indentation) as our root location, add
-`/wp-content/uploads`:
-```yaml
-        "/wp-content/uploads":
-          root: "wordpress/wp-content/uploads"
-          scripts: false
-          allow: false
-          rules:
-            '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
-              allow: true
-              expires: 1w
-```
-### `mounts`
-WordPress needs a writable location to store uploaded media. We referenced this directory previously when creating the
-new location. Now we need to instruct Upsun to make this location writable. In the Upsun configuration file, locate the
-section `mounts:` that is currently commented it out. Replace that section with the following:
-```yaml
-    mounts:
-      "wordpress/wp-content/uploads":
-        source: storage
-        source_path: "uploads"
-```
-{{< note theme="info" >}}
-If you have designated a different directory via `wordpress-install-dir` property in your composer.json, update the
-mount location accordingly.
-{{< /note >}}
+## 3. Set up a location for uploads
 
-### `hooks: build`
-We need to inform Upsun that we want to install our composer dependencies during the build stage. In the Upsun
-configuration file, locate the section `hooks:`, and beneath that, `build:`. Update this section to match the following:
-```yaml
+WordPress needs a writable location to store uploaded media.
+To set one up, follow these steps:
+
+1. Create the location.</br>
+   To do so, add the `/wp-content/uploads` location at the same indentation level as your root (`/`) location:
+
+   ```yaml {location="./.upsun/config.yaml"}
+           "/wp-content/uploads":
+             root: "wordpress/wp-content/uploads"
+             scripts: false
+             allow: false
+             rules:
+               '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
+                 allow: true
+                 expires: 1w
+   ```
+2. To make the location writable, set up [a mount](/create-apps/app-reference.md#mounts).</br>
+   To do so, locate the `mounts:` section that is commented it out, and update it as follows:
+
+   ```yaml {location="./.upsun/config.yaml"}
+       mounts:
+         "wordpress/wp-content/uploads":
+           source: storage
+           source_path: "uploads"
+   ```
+
+   {{< note theme="info" >}}
+   If you have designated a different directory through the `wordpress-install-dir` property in your `composer.json` file, update the
+   mount location accordingly.
+   {{< /note >}}
+
+## 4. Launch dependency updates during the build hook
+
+To ensure your Composer dependencies are installed during the [build stage](/learn/overview/build-deploy.md#the-build),
+locate the `build:` section (below the `hooks:` section).</br>
+Update the `build:` section as follows:
+
+```yaml {location="./.upsun/config.yaml"}
       build: |
         set -eux
         composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
         rsync -a plugins/ wordpress/wp-content/plugins/
 ```
-Adjust the `composer install` command to meet your specific requirements, if needed. If you are not using the `plugins`
- directory to manage non-public plugins, you can remove the `rsync` command.
 
-### `hooks: deploy`
-We have a few tasks that will need to be performed after the images for our application are built, but before the newly
-built application can receive requests. Beneath the `build:` property we just edited, locate the section `deploy:` and update it
-to match the following:
-```yaml
+You can adjust the `composer install` command to meet your specific requirements.
+
+If you aren't using the `plugins` directory to manage non-public plugins, remove the `rsync` command.
+
+## 5. Launch tasks during the deploy hook
+
+Some tasks need to be performed after the images for our application are built,
+but before the newly built application can receive requests.
+Therefore, the best time to launch them is during the [deploy hook](/learn/overview/build-deploy.md#deploy-steps).
+
+Such tasks include:
+
+- Flushing the object cache, which might have changed between current production and newly deployed changes
+- Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
+- Running any due cron jobs
+
+To launch these tasks during the deploy hook,
+locate the `deploy:` section (below the `build:` section).</br>
+Update the `deploy:` section as follows:
+
+```yaml {location="./.upsun/config.yaml"}
       deploy: |
         set -eux
-        # Flushes the object cache which might have changed between current production and newly deployed changes
+        # Flushes the object cache
         wp cache flush
-        # Runs the WordPress database update procedure in case core is being updated with the newly deployed changes
+        # Runs the WordPress database update procedure
         wp core update-db
-        # Runs all cron events that are due now and may have come due during the build+deploy procedure
+        # Runs all due cron events
         wp cron event run --due-now
 ```
-Feel free to remove the comments.
 
-### `routes:`
-Next we need to instruct the [router](learn/overview/structure.md#router) how to handle requests to our WordPress
-application. Locate the section `routes:` in the Upsun configuration file. Beneath that, locate the route
-`"https://{default}/":` and update it to match the following:
-```yaml
+## 6. Configure your default route
+
+Next, instruct the [router](learn/overview/structure.md#router) how to handle requests to your WordPress app.
+To do so, locate the `routes:` section, and beneath it, the `"https://{default}/":` route.</br>
+Update the route as follows:
+
+```yaml {location="./.upsun/config.yaml"}
   "https://{default}/":
     type: upstream
     upstream: "wordpress-upsun:http"
@@ -141,29 +176,39 @@ application. Locate the section `routes:` in the Upsun configuration file. Benea
         - '/^wp-*/'
 ```
 
-### `relationships:`
-The last change we need to make is to update the name used inside the application that represents our relationship to
-the MariaDB service. In the Upsun configuration file, locate the `relationships:` property. Update the relationship for
- the database service to match the following:
-```yaml
+## 7. Update your MariaDB service relationship
+
+You need to update the name used to represent the [relationship](/create-apps/app-reference.md#relationships) between your app and your MariaDB service.
+To do so, locate the `relationships:` top-level property.
+Update the relationship for the database service as follows:
+
+```yaml {location="./.upsun/config.yaml"}
     relationships:
       database: "mariadb:mysql"
 ```
 
-You can now commit the changes to `.upsun/config.yaml` and push to Upsun.
+You can now commit all the changes made to `.upsun/config.yaml` and push to Upsun.
+
+   ```bash {location="Terminal"}
+   git add .
+   git commit -m "Add changes to complete my Upsun configuration"
+   git push
+   ```
 
 
-## Documentation
+## Further resources
+
+### Documentation
 
 - [PHP documentation](/languages/php/)
 - [Authenticated Composer repositories](/languages/php/composer-auth.md)
 
-## Community content
+### Community content
 
 - [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
 - [WordPress topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=wordpress)
 
-## Blogs
+### Blogs
 
 - [To Upsun, a WordPress migration story](https://upsun.com/blog/to-upsun-a-wordpress-migration-story/)
 
