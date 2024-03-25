@@ -55,5 +55,9 @@ To do so, follow these steps:
 
    {{% vendor/name %}} grabs the previous built images from earlier, applies your resource selections to them, and deploys your full application!
 
+   {{% note %}}
+   If the deployment fails, you may need to set the resources again.
+   {{% /note %}}
+
 {{< guide-buttons previous="Back" next="Revisions" type="*" >}}
 
