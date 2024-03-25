@@ -37,7 +37,7 @@ You can also [adjust resources](/manage-resources/adjust-resources.md) after you
 {{% note %}}
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
-Note that you can [keep an eye on those costs](/manage-resources/resource-billing.md) in the Console.
+Note that you can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
 {{% /note %}}
 

@@ -32,7 +32,8 @@ You can even scale horizontally if your apps are struggling with high load, or i
 by adding more instances for your apps and workers.
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
-To keep an eye on those costs in the Console, see [Resource Billing](/manage-resources/resource-billing.md).
+
+Note that you can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
 ## Vertical scaling
 
