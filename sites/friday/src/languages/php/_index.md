@@ -4,9 +4,7 @@ description: Deploy PHP apps on {{% vendor/name %}}.
 layout: single
 ---
 
-{{% note %}}
-Please note that [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) has been released, and it would change the way you install runtimes in your application container.
-{{% /note %}}
+{{% composable/disclaimer %}}
 
 ## Supported versions
 

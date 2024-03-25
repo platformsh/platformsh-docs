@@ -4,6 +4,8 @@ weight: 6
 sidebarTitle: "Xdebug"
 ---
 
+{{% composable/disclaimer %}}
+
 [Xdebug](https://xdebug.org/) is a real-time debugger extension for PHP.
 While usually used for local development, it can also be helpful for debugging aberrant behavior on the server.
 

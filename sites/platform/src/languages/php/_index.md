@@ -4,6 +4,8 @@ description: Deploy PHP apps on {{% vendor/name %}}.
 layout: single
 ---
 
+{{% composable/disclaimer %}}
+
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}

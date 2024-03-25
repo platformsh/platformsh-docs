@@ -93,9 +93,9 @@ To override any part of a property, you have to provide the entire property.
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
 
 {{% note %}}
-Even if available in the [Built-in image configuration](/create-apps/app-reference/builtin-image.md),
-the  ``type``, ``build``, ``dependencies``, and ``runtime`` keywords are not supported if you
-choose to use Composable Image (`stack`).
+Please note that, even if available in [Application reference](/create-apps/app-reference/builtin-image.md) when using the built-in image
+of defining images to use in your application container, the  ``type``, ``build``, ``dependencies``, and ``runtime`` keywords
+are not supported if you choose to use Composable Image (`stack`).
 {{% /note %}}
 
 ## Root directory
@@ -145,13 +145,13 @@ Available languages and their supported versions:
 
 | **Language**                                 | **`runtime`** | **Supported `version`**    |
 |----------------------------------------------|---------------|----------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
+| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
 | [Elixir](/languages/elixir.html)             | `elixir`      | 1.15, 1.14                 |
 | [Go](/languages/go.html)                     | `golang`      | 1.22, 1.21, 1.20           |
 | [Java](/languages/java.html)                 | `java`        | 21                         |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 21, 20, 18                 |
 | [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                          |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 21, 20, 18                 |
 | [Perl](https://www.perl.org/)                | `perl`        | 5                          |
 | [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
 | [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
@@ -163,17 +163,22 @@ Available tools and their supported versions:
 
 | **Tool**                                                             | **`runtime`** | **Supported `version`** |
 |----------------------------------------------------------------------|---------------|-------------------------|
-| [Graph visualization tools](https://graphviz.org/)                   | `graphviz`    | none                    |
-| [GNU Compiler Collection](https://gcc.gnu.org/)                      | `gcc`         | none                    |
 | [Face detector](https://www.thregr.org/~wavexx/software/facedetect/) | `facedetect`  | none                    |
-| [WkHtmlToPdf](https://wkhtmltopdf.org/)                              | `wkhtmltopdf` | none                    |
+| [GNU Compiler Collection](https://gcc.gnu.org/)                      | `gcc`         | none                    |
+| [Graph visualization tools](https://graphviz.org/)                   | `graphviz`    | none                    |
 | [ImageMagick](http://www.imagemagick.org/)                           | `imagemagick` | none                    |
+| [WkHtmlToPdf](https://wkhtmltopdf.org/)                              | `wkhtmltopdf` | none                    |
 | [Yarn](https://classic.yarnpkg.com/)                                 | `yarn`        | none                    |
 
 [//]: # (exhaustive list of runtime and tools here https://lab.plat.farm/images/generic/-/blob/Nix/flake.nix?ref_type=heads#L161)
 
 To add a tool in your `stack`, please use the format `<runtime>` for the tool, as no `version` is provided.
-As an example for ``facedetect``:
+
+Format:
+* Language: `<runtime>@<version>`
+* Tool: `<runtime>`
+
+As an example for PHP version {{% latest php %}} and ``facedetect``:
 
 ```yaml {configFile="app"}
 applications:
@@ -241,7 +246,7 @@ runtime, filter results using the ``Package sets`` on the left and then, choose 
 +++
 title=PHP
 +++
-You can enable [PHP extensions](/languages/php/extensions.md) just with a list of `extensions` below the language definition:
+You can enable/disable [PHP extensions](/languages/php/extensions.md) just with a list of `extensions` (or `disabled_extensions`) below the language definition:
 
 ```yaml {configFile="app"}
 applications:
@@ -260,15 +265,34 @@ applications:
 ```
 
 {{% note %}}
-To find out the name of the PHP extension, use the ``PHP upstream extension`` from the [NixOs search engine](https://search.nixos.org/packages?channel=unstable&show=php82Extensions.gd).
-If the maintainer of the extension does not provide this information, remember that PHP extension names on NixOs have the format ``<PHP><VERSION>Extensions.<EXTENSION-NAME>``, and you need to use the ``<EXTENSION-NAME>``
+To find out the name of the PHP package you want to use, use the ``PHP upstream extension`` value from the [NixOs search engine](https://search.nixos.org/packages?channel=unstable&show=php82Extensions.gd).
+If the maintainer of the package does not provide such information (sorry about that), remember that PHP package names on NixOs always respect format ``<PHP><VERSION>Extensions.<EXTENSION-NAME>``,
+and you need to copy the ``<EXTENSION-NAME>``.
+
+Example for using [`ZIP` PHP package](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.zip&from=0&type=packages&query=php+zip)
+and [`Imagemagick` PHP package](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.imagick&from=0&type=packages&query=php+imagick):
+* [`ZIP` PHP package]: value of the ``PHP upstream extension`` is `zip`.
+* [`Imagemagick` PHP package]: no value of the ``PHP upstream extension``, use the ``<EXTENSION-NAME>=imagick``.
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    stack:
+      - "php@{{% latest "php" %}}":
+        extensions:
+          - zip
+          - imagick
+```
+
 {{% /note %}}
 
 <--->
 +++
 title=Python
 +++
-Python packages are installed as languages, by using the full name of the package.
+Python packages are installed as new package in your stack, by using the full name of the package.
 
 Example for installing [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq):
 
@@ -932,8 +956,8 @@ applications:
     firewall:
       outbound:
         - ips: [ "1.2.3.4/32" ]
-        ports: [ 443 ]
-          - ports: [ 80 ]
+          ports: [ 443 ]
+        - ports: [ 80 ]
 ```
 
 ### Outbound traffic to CDNs
@@ -989,35 +1013,10 @@ Example output:
 ```bash
 facebook.com
 fastly.com
-platform.sh
 upsun.com
 www.google.com
-www.platform.sh
+www.upsun.com
 ```
-
-## Build
-
-The only property of the `build` dictionary is `flavor`, which specifies a default set of build tasks to run.
-Flavors are language-specific.
-
-See what the build flavor is for your language:
-
-- [Node.js](/languages/nodejs/_index.md#dependencies)
-- [PHP](/languages/php/_index.md#dependencies)
-
-In all languages, you can also specify a flavor of `none` to take no action at all
-(which is the default for any language other than PHP and Node.js).
-
-```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    stack: [ "nodejs@{{% latest nodejs %}}" ]
-    build:
-      flavor: none
-```
-
 ## Hooks
 
 There are three different hooks that run as part of the process of building and deploying your app.

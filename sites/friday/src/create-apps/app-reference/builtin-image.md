@@ -763,10 +763,9 @@ Example output:
 ```bash
 facebook.com
 fastly.com
-platform.sh
 upsun.com
 www.google.com
-www.platform.sh
+www.upsun.com
 ```
 
 ## Build

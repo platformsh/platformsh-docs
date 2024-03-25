@@ -384,9 +384,9 @@ web:
 Request buffering is enabled by default to handle chunked requests as most app servers don't support them.
 The following table shows the keys in the `request_buffering` dictionary:
 
-| Name               | Type      | Required | Default | Description |
-| ------------------ | --------- | -------- | ------- | ----------- |
-| `enabled`          | `boolean` | Yes      | `true`  | Whether request buffering is enabled. |
+| Name               | Type      | Required | Default | Description                               |
+| ------------------ | --------- |----------| ------- |-------------------------------------------|
+| `enabled`          | `boolean` | Yes      | `true`  | Whether request buffering is enabled.     |
 | `max_request_size` | `string`  |          | `250m`  | The maximum size to allow in one request. |
 
 The default configuration would look like this:
@@ -409,7 +409,8 @@ Workers can't accept public requests and so are suitable only for background tas
 If they exit, they're automatically restarted.
 
 The keys of the `workers` definition are the names of the workers.
-You can then define how each worker differs from the `web` instance using the [top-level properties](#top-level-properties).
+You can then define how each worker differs from the `web` instance using
+the [top-level properties](#top-level-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
@@ -471,6 +472,7 @@ variables:
     d8config:
         "system.site:name": 'My site rocks'
 ```
+
 You can also define and access more [complex values](/development/variables/use-variables.md#access-complex-values).
 
 ## Firewall
@@ -484,10 +486,10 @@ The rules define what traffic is allowed; anything unspecified is blocked.
 
 Each rule has the following properties where at least one is required and `ips` and `domains` can't be specified together:
 
-| Name      | Type                | Default         | Description |
-| --------- | ------------------- | --------------- | ----------- |
-| `ips`     | Array of `string`s  | `["0.0.0.0/0"]` | IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). See a [CIDR format converter](https://www.ipaddressguide.com/cidr). |
-| `domains` | Array of `string`s  |                 | [Fully qualified domain names](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) to specify specific destinations by hostname. |
+| Name      | Type                | Default         | Description                                                                                                                                                                                                             |
+| --------- |---------------------|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ips`     | Array of `string`s  | `["0.0.0.0/0"]` | IP addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing). See a [CIDR format converter](https://www.ipaddressguide.com/cidr).                                                      |
+| `domains` | Array of `string`s  |                 | [Fully qualified domain names](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) to specify specific destinations by hostname.                                                                                 |
 | `ports`   | Array of `integer`s |                 | Ports from 1 to 65535 that are allowed. If any ports are specified, all unspecified ports are blocked. If no ports are specified, all ports are allowed. Port `25`, the SMTP port for sending email, is always blocked. |
 
 The default settings would look like this:
@@ -497,6 +499,7 @@ firewall:
     outbound:
         - ips: ["0.0.0.0/0"]
 ```
+
 ### Support for rules
 
 Where outbound rules for firewalls are supported in all environments.
@@ -523,7 +526,8 @@ firewall:
 Be aware that many services are behind a content delivery network (CDN).
 For most CDNs, routing is done via domain name, not IP address,
 so thousands of domain names may share the same public IP addresses at the CDN.
-If you allow the IP address of a CDN, you are usually allowing many or all of the other customers hosted behind that CDN.
+If you allow the IP address of a CDN, you are usually allowing many or all of the other customers hosted behind that
+CDN.
 
 ### Outbound traffic by domain
 
@@ -594,7 +598,7 @@ and are available in the `PATH` during the build process and in the runtime envi
 They're installed before the `build` hook runs using a package manager for the language.
 
 | Language | Key name              | Package manager                                                                                                    |
-| -------- | --------------------- |--------------------------------------------------------------------------------------------------------------------|
+|----------|-----------------------|--------------------------------------------------------------------------------------------------------------------|
 | PHP      | `php`                 | [Composer](https://getcomposer.org/)                                                                               |
 | Python 2 | `python` or `python2` | [Pip 2](https://packaging.python.org/tutorials/installing-packages/)                                               |
 | Python 3 | `python3`             | [Pip 3](https://packaging.python.org/tutorials/installing-packages/)                                               |
@@ -621,6 +625,7 @@ dependencies:
     nodejs: # Specify one NPM package per line.
         pm2: '^4.5.0'
 ```
+
 ## Hooks
 
 There are three different hooks that run as part of the process of building and deploying your app.
@@ -641,7 +646,8 @@ The process is ordered as:
 1. The `post_deploy` hook is run.
 
 Note that if an environment changes by no code changes, only the last step is run.
-If you want the entire process to run, see how to [manually trigger builds](/development/troubleshoot.md#manually-trigger-builds).
+If you want the entire process to run, see how
+to [manually trigger builds](/development/troubleshoot.md#manually-trigger-builds).
 
 ### Writable directories during build
 
@@ -908,7 +914,7 @@ Run the following command:
 The following table presents the various possible modifications to your PHP or Lisp runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                |
-| --------------------------- | ---------------------------------------------------------- | -------- |--------------------------------------------------------------------------------------------|
+|-----------------------------|------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------|
 | `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
 | `disabled_extensions`       | List of `string`s                                          | PHP      | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
 | `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
@@ -928,6 +934,7 @@ runtime:
         - geoip
         - tidy
 ```
+
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 ```yaml {configFile="app"}
@@ -946,10 +953,10 @@ In this case, the `name` property is required.
 
 The following table shows the properties that can be set in `sizing_hints`:
 
-| Name              | Type      | Default | Minimum | Description |
-| ----------------- | --------- | ------- | ------- | ----------- |
+| Name              | Type      | Default | Minimum | Description                                    |
+|-------------------|-----------|---------|---------|------------------------------------------------|
 | `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
-| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB. |
+| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
 
 See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
 
