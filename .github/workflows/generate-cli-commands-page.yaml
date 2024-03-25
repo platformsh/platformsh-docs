@@ -16,7 +16,7 @@ env:
   BRANCH_TITLE: cli-commands-doc-page
   DEFAULT_BRANCH: "main"
   PLATFORMSH_CLI_DOC_PATH: "sites/platform/src/administration/cli/reference.md"
-  UPSUN_CLI_DOC_PATH: "sites/friday/src/administration/cli/reference.md"
+  UPSUN_CLI_DOC_PATH: "sites/upsun/src/administration/cli/reference.md"
 permissions:
   contents: write
 
