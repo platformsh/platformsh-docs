@@ -272,8 +272,8 @@ https://{default}/:
 
 https://docs.upsun.com/:
   type: upstream
-  upstream: friday:http
-  id: friday
+  upstream: upsun:http
+  id: upsun
   cache:
     enabled: true
   ssi:
