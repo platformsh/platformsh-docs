@@ -1,7 +1,7 @@
 ---
 title: Resource initialization
 description: Learn how resources are allocated by default upon first deployment, and how you can define a resource initialization strategy that better fits your needs.
-weight: -200
+weight: -300
 keywords:
   - "resources"
   - "flexible resources"
@@ -13,8 +13,17 @@ keywords:
   - "scaling"
 ---
 
-When you first deploy your {{% vendor/name %}} project, and whenever you add a new app or service,
-{{% vendor/name %}} allocates the following default resources to every container:
+When you first deploy your project or add a new container to it,
+{{% vendor/name %}} uses [default resources](#default-resources)
+unless you specify a [resource initialization strategy](#specify-a-resource-initialization-strategy).
+
+You can also use a specific resource initialization strategy when performing certain actions,
+such as [branching](#environment-branch), [merging](#environment-merge),
+and [activating](#environment-activation) an environment, or [restoring a backup](#backup-restoration).
+
+## Default resources
+
+{{% vendor/name %}} allocates the following default resources to every container when deployed for the first time:
 
 | Resource type               | Amount |
 | --------------------------- | ----------- |
@@ -22,121 +31,38 @@ When you first deploy your {{% vendor/name %}} project, and whenever you add a n
 | RAM                         | Depends on the [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles). |
 | Disk size (only applicable if the app or service requires a disk)                   | 512 MB |
 
-If you don't want to use those default resources, you can define a different [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy).
-You can also [adjust those resources](/manage-resources/adjust-resources.md) after your project or new container has been deployed.
+If you don't want to use these default resources, you can specify a [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
+You can also [adjust resources](/manage-resources/adjust-resources.md) after your project or new container has been deployed.
+
+{{% note %}}
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
-Note that you can [keep an eye on those costs](/manage-resources/resource-billing.md) in the Console.
+Note that you can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
-## Define a resource initialization strategy
+{{% /note %}}
 
-You can define which strategy {{% vendor/name %}} uses to allocate resources
-when you first deploy your project or add a new container.
-The following strategies are available:
+## Specify a resource initialization strategy
+
+{{% vendor/name %}} provides the following resource initialization strategies:
 
 | Strategy | Description |
 | ---------| ----------- |
-| `default`  | Initializes the new containers using the [{{% vendor/name %}} default resources](/manage-resources/resource-init.md). |
-| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](/manage-resources/adjust-resources.md), or using `resources:set` in the CLI. |
-| `minimum`  | Initializes the new containers using the [{{% vendor/name %}} minimum resources](#minimum-resources). |
-| `parent`   | Initializes the new containers using the same resources as the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
+| `default`  | Initializes new containers using the [{{% vendor/name %}} default resources](#default-resources).</br>This strategy applies when you first deploy your project (or new container) unless you explicitly specify a different strategy, or allocate resources manually via the `resources:set` CLI command.  |
+| `manual`   | With this strategy, the first deployment fails and you need to configure resources manually through [the Console](https://console.upsun.com/), or using `resources:set` in the CLI.</br></br> This strategy allows you to set the exact resources you want, with a single deployment. Other strategies may require fine-tuning, and therefore generate a second deployment. In this case, your environment would run for a short time with unwanted resources, and both deployments would generate downtime.|
+| `minimum`  | Initializes new containers using the {{% vendor/name %}} minimum resources (see below). |
+| `parent`   | Initializes new containers using the same resources as on the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
+| `child`    | Initializes new containers using the same resources as on the child environment. Only relevant during merge activities. |
+| `backup`   | When restoring a backup, intitializes new containers using the same resources as when the backup was taken. |
 
-{{< note >}}
+{{% note theme="info" title="More information on..."%}} 
+<details>
+  <summary><b>Upsun minimum resources</b></summary>
 
-Unless you explicitly set another resource initialization strategy, the following strategies are used:
-
-- `default` when you first deploy your project or a new service/application
-- `parent` for a new environment created through a [source integration](/integrations/_index.md)
-
-{{< /note >}}
-
-{{< codetabs >}}
-
-+++
-title= Without a source integration
-+++
-
-If you're not using a [source integration](/integrations/_index.md),
-you can use a [Git push option](/environments/_index.md#push-options) to define which strategy {{% vendor/name %}} uses to allocate resources
-when you first deploy your project or add a new container.
-
-To do so, run the following command:
-
-```bash
-upsun push --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
-```
-
-For example, to use the `minimum` strategy for your deployment, run the following command:
-
-```bash
-upsun push --resources-init=minimum
-```
-
-Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
-
-```bash
-git push upsun -o resources.init=minimum
-```
-
-{{< note >}}
-
-You can set a different resource initialization strategy for each of your deployments.
-
-{{< /note >}}
-
-<--->
-
-+++
-title= With a source integration
-+++
-
-If you're using a [source integration](/integrations/_index.md),
-to define which strategy {{% vendor/name %}} uses to allocate resources when you first deploy your project or add a new container,
-use the `--resources-init` flag.
-
-{{< note >}}
-
-Once a resource initialization strategy is set for your source integration,
-it applies to **all** the deployments you launch through that source integration.
-
-{{< /note >}}
-
-To specify a resource initialization strategy when you [create your source integration](/integrations/source/_index.md),
-include the `--resources-init` flag in your source integration options.
-For example, if you [set up a GitHub integration](), use the following options:
-
-```bash
-platform integration:add \
-  --project {{< variable "PROJECT_ID" >}} \
-  --type github \
-  --repository {{< variable "OWNER/REPOSITORY" >}} \
-  --token {{< variable "GITHUB_ACCESS_TOKEN" >}} \
-  --base-url {{< variable "GITHUB_URL" >}}
-  --resources-init {{< variable "INITIALIZATION_STRATEGY" >}}
-```
-
-To specify a resource initialization strategy for an existing source integration,
-run the following command:
-
-```bash
-upsun integration:update --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
-```
-
-For example, to use the `minimum` strategy for your deployment, run the the following command:
-
-```bash
-upsun integration:update --resources-init=minimum
-```
-
-{{< /codetabs >}}
-
-### Minimum resources
-
-The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `minimum` [resource initialization strategy](#define-a-resource-initialization-strategy).
+The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `minimum` [resource initialization strategy](#specify-a-resource-initialization-strategy).
 
 | Container               | CPU  | RAM    | Disk*   |
 |-------------------------|------|--------|---------|
-| .NET                    | 0.1  | 64 MB  | 0 MB    |
+| .NET core                   | 0.1  | 64 MB  | 0 MB    |
 | Chrome Headless         | 0.1  | 64 MB  | None    |
 | Elasticsearch           | 0.1  | 448 MB | 256 MB  |
 | Elasticsearch Premium   | 0.1  | 448 MB | 256 MB  |
@@ -158,7 +84,7 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | PHP                     | 0.1  | 64 MB  | 0 MB    |
 | PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
 | Python                  | 0.1  | 64 MB  | 0 MB    |
-| Rabbitmq                | 0.1  | 448 MB | 256 MB  | 
+| RabbitMQ                | 0.1  | 448 MB | 256 MB  | 
 | Redis ephemeral         | 0.1  | 352 MB | None    |
 | Redis persistent        | 0.1  | 352 MB | 256 MB  | 
 | Ruby                    | 0.1  | 64 MB  | 0 MB    |
@@ -167,27 +93,379 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | Varnish                 | 0.1  | 448 MB | None    |
 | Vault KMS               | 0.1  | 448 MB | 256 MB  |
 
-\* The disk size is set to `None` when the container never uses a disk, and to `0 MB` when the container doesn't require a disk but can use one.
+\* The disk size is set to `None` when the container never uses disk, and to `0 MB` when the container doesn't require disk but _can_ use it.
+</details>
+{{% /note %}} 
 
-## Actions on environments
+You can specify a resource initialization strategy when performing the following actions:
 
-Here is how resource allocation works on {{% vendor/name %}} when you perform the following actions on an environment:
+| Action                                                                | Available strategies                     | Default  |
+|-----------------------------------------------------------------------|------------------------------------------|----------|
+| [First deployment](#first-deployment) | `parent`, `default`, `minimum`, `manual` | `parent` |
+| [Environment branch](#environment-creation) | `parent`, `default`, `minimum` | `parent` |
+| [Environment merge](#environment-merge) | `child`, `default`, `minimum`, `manual` | `child` |
+| [Environment activation](#activating-an-environment) | `parent`, `default`, `minimum` | `parent` | 
+| [Backup restoration](#backup-restoration) | `backup`, `parent`, `default`, `minimum` | `backup` |
 
-### Environment creation
+### First deployment
 
-When you [branch an environment](/glossary.md#branch) to create a new child environment,
+{{% note theme="info" title="Resource initialization strategies" %}} 
+
+Available: `parent`, `default`, `minimum`, `manual` </br>
+Default: `parent`
+
+{{% /note %}} 
+
+You can define [which resource initialization strategy](#resource-initialization-strategies) {{% vendor/name %}} uses to allocate resources
+when you first deploy your project or add a new container.
+
+{{< codetabs >}}
+
++++
+title= Without a source integration
++++
+
+If you're not using a [source integration](/integrations/_index.md),
+you can use a [Git push option](/environments/_index.md#push-options) to specify a resource initialization strategy.
+To do so, run the following command:
+
+```bash {location="Terminal"}
+upsun push --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` strategy for your deployment, run the following command:
+
+```bash {location="Terminal"}
+upsun push --resources-init=minimum
+```
+
+{{< note >}}
+
+Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
+
+```bash {location="Terminal"}
+git push upsun -o resources.init=minimum
+```
+
+{{< /note >}}
+
+Note that you can specify a different resource initialization strategy for each of your deployments.
+
+<--->
+
++++
+title= With a source integration
++++
+
+If you're using a [source integration](/integrations/_index.md),
+you can use the `--resources-init` flag to specify a resource initialization strategy.
+
+{{< note >}}
+
+Once a resource initialization strategy is specified for your source integration,
+it applies to **all** the deployments you launch through that source integration.
+
+{{< /note >}}
+
+To specify a resource initialization strategy when [creating your source integration](/integrations/source/_index.md),
+include the `--resources-init` flag in your source integration options.</br>
+For example, if you [set up a GitHub integration](), use the following options:
+
+```bash {location="Terminal"}
+platform integration:add \
+  --project {{< variable "PROJECT_ID" >}} \
+  --type github \
+  --repository {{< variable "OWNER/REPOSITORY" >}} \
+  --token {{< variable "GITHUB_ACCESS_TOKEN" >}} \
+  --base-url {{< variable "GITHUB_URL" >}}
+  --resources-init {{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+To specify a resource initialization strategy for an existing source integration,
+run the following command:
+
+```bash {location="Terminal"}
+upsun integration:update --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` strategy for your deployment, run the the following command:
+
+```bash {location="Terminal"}
+upsun integration:update --resources-init=minimum
+```
+
+{{< /codetabs >}}
+
+### Environment branch
+
+{{% note theme="info" title="Resource initialization strategies" %}} 
+
+Available: `parent`, `default`, `minimum` </br>
+Default: `parent`
+
+{{% /note %}} 
+
+By default, when you [branch an environment](/glossary.md#branch) to create a new child environment,
 the child environment inherits all the resources from its parent.
+However, you can specify a different [resource initialization strategy](#specify-a-resource-initialization-strategy).
+
+{{% note %}}
+
+When you branch an environment, regardless of the strategy you specified,
+{{% vendor/name %}} checks if the child environment's disk size is at least equivalent to the parent's.</br>
+If not, the parent environment's disk size is automatically applied to the child environment.
+This ensures the branching can succeed.
+
+{{% /note %}}
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash {location="Terminal"}
+upsun environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` resource initialization strategy, run the following command:
+
+```bash {location="Terminal"}
+upsun environment:branch --resources-init=minimum
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the environment you want to branch from.
+2. Click {{< icon branch >}} **Branch**.
+3. Enter a name and a type for the new environment.
+4. Select an initialization strategy from the proposed list.
+5. Click **Branch**.
+
+{{< /codetabs >}}
 
 ### Environment merge
 
-When you [merge](/glossary.md#merge) a child environment into a parent environment,
-any app or service on the child environment is merged into the parent.
-For the merge and deployment to be complete,
-you need to [allocate resources](/manage-resources/adjust-resources.md) to each of these newly added instances.
+{{% note theme="info" title="Resource initialization strategies" %}} 
 
-### Environment sync
+Available: `child`, `default`, `minimum`, `manual` </br>
+Default: `child`
 
-When you [sync an environment](/glossary.md#sync),
-the target environment's disk size may be smaller that the source environment's disk size.
+{{% /note %}} 
 
-In this case, to ensure that the synchonization succeeds, {{% vendor/name %}} automatically adjusts the target environment's disk size so it matches the source environment's disk size.
+When you [merge](/glossary.md#merge) a child environment into its parent environment,
+any apps and services you created on the child are merged and therefore created on the parent.
+
+When this happens, any new app or service container created on the parent environment is granted the same resources as on the child environment.
+However, you can specify a different resource initialization strategy.
+
+{{% note %}}
+
+Any other container already running on the parent environment keeps its resources.
+
+{{% /note %}}
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following command:
+
+```bash {location="Terminal"}
+upsun environment:merge --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `manual` resource initialization strategy, run the following command:
+
+```bash {location="Terminal"}
+upsun environment:merge --resources-init=manual
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the environment you want to merge into its parent.
+2. Click {{< icon merge >}} **Merge**.
+3. Select an initialization strategy from the proposed list.
+   {{% note %}}
+   The list of strategies is only displayed if a new app or service is included in the merge.
+   {{% /note %}}
+4. Click **Merge**.
+
+{{< /codetabs >}}
+
+### Environment activation
+
+{{% note theme="info" title="Resource initialization strategies" %}} 
+
+Available: `parent`, `default`, `minimum` </br>
+Default: `parent`
+
+{{% /note %}} 
+
+When you activate an environment, {{% vendor/name %}} uses the same resource allocation as on the parent environment.
+If there is no parent environment, the [`default` resource initialization strategy](#default-resources) applies.
+
+You can also specify a different resource initialization strategy using the CLI.
+To do so, run the following command:
+
+```bash {location="Terminal"}
+upsun environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` resource initialization strategy, run the following command:
+
+```bash {location="Terminal"}
+upsun environment:activate --resources-init=minimum
+```
+
+{{% note %}}
+[Setting resources](/manage-resources/adjust-resources.md) on a inactive environment using the Console or the CLI automatically activates it. 
+{{% /note %}}
+
+### Backup restoration
+
+{{% note theme="info" title="Resource initialization strategies" %}} 
+
+Available: `backup`, `parent`, `default`, `minimum` </br>
+Default: `backup`
+
+{{% /note %}} 
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+When you [restore a backup](/environments/restore.md) using the CLI,
+you can restore it to your current environment or a different environment.
+
+## Backup restoration to your current environment
+
+Each container already running on the environment keeps its existing resources.
+
+You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
+To restore these containers, use the `--restore-code` flag when restoring the backup.
+By default, the containers are restored to your current environment using the `backup` strategy,
+which grants them the same resources they were using when the backup was taken.
+However, you can specify a different resource initialization strategy for those previously deleted containers.
+
+## Backup restoration to a different environment
+
+The `backup` strategy also applies by default.
+However, as all the apps and services are initialized as new containers on the environment,
+you can specify a different resource initialization strategy for all of them. 
+
+## Specify a resource initialization strategy when restoring a backup via the CLI
+
+Run the following command:
+
+```bash {location="Terminal"}
+upsun backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+```
+
+For example, to use the `minimum` resource initialization strategy, run the following command:
+
+```bash {location="Terminal"}
+upsun backup:restore --resources-init=minimum
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+When you [restore a backup](/environments/restore.md) using the Console, it is restored to your current environment.
+
+Each container already running on your current environment keeps its existing resources.
+Therefore, you don't need to specify a resource initialization strategy. 
+
+{{% note %}}
+
+You may have deleted containers between the moment you took the backup, and the moment you restore it.
+Such containers aren't restored automatically.
+
+To restore them, you need to restore your backup using the CLI and the `--restore-code` flag.
+
+{{% /note %}}
+
+{{< /codetabs >}}
+
+## Environment sync
+
+[Syncing an environment](/glossary.md#sync) means merging changes from a parent environment into a child environment.
+You can sync:
+
+- Only the code
+- Only the data (databases, files)
+- Only the resources (CPU and RAM, instances, and disk space)
+- Any combination of the three (code and data, data and resources, etc.)
+
+{{% note %}}
+
+When you sync the data, {{% vendor/name %}} checks if the child environment's disk size is at least equivalent to the parent's.</br>
+If not, the parent environment's disk size is automatically applied to the child environment.
+This ensures the sync can succeed.
+
+{{% /note %}}
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Run the following commands depending on your needs:
+
+- Sync only resources:
+
+  ```bash {location="Terminal"}
+  upsun sync resources
+  ```
+
+- Sync only code:
+
+  ```bash {location="Terminal"}
+  upsun sync code
+  ```
+
+- Sync only data:
+
+  ```bash {location="Terminal"}
+  upsun sync data
+  ```
+
+- Sync everything:
+
+  ```bash {location="Terminal"}
+  upsun sync code data resources
+  ```
+ 
+  You can adjust the command depending on the exact combination of elements you want to sync.
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to your Production environment.
+2. Click {{< icon sync >}} **Sync**.
+3. Select the sync options you want from the proposed list.
+4. Select **Sync resources from Production into Staging**.
+5. Click **Sync**.
+
+{{< /codetabs >}}
