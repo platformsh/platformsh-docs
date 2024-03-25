@@ -29,6 +29,23 @@ For example, to get a list of the regions and their carbon intensities, run the 
 
 See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
 
+### Greener Region Discount
+
+You can get a 3% discount on your resource usage if you host your project in one of Upsun's eco-friendly regions:
+
+- Quebec, Canada (`ca-central-1`),
+- Stockholm, Sweden (`eu-north-1`),
+- Paris, France (`francecentral`),
+- OVH (`gra7`),
+- Quincy, Washington (`westus2`),
+- Zurich, Switzerland (`europe-west6`).
+
+The 3% discount covers application CPU, application memory, service CPU, service memory, and build resources.
+It **doesn’t** apply to the project fee or other billing aspects.
+It can be combined with other offers or discounts.
+
+See [more information on the greener region discount](https://platform.sh/company/press/a-first-for-cloud-industry-platformsh-greener-region-discount/).
+
 ## Region availability
 
 The regions listed here may be different from those available to you when you create a new project.
