@@ -31,12 +31,7 @@ Intersting quote from Jerome's internal presentation: https://drive.google.com/f
 - `One image to rule them all`
 {{% /note %}}
 
-If you want to learn more about Nix, please have a look on [Jérôme Vieilledent's presentation](https://www.youtube.com/watch?v=emOt32DVl28) during the Symfony Con Brussels 2023 (Product Manager of that subject).
-
-{{% note title="TODO" %}}
-TODO: Add Jerome's talk about it
-https://www.youtube.com/watch?v=emOt32DVl28
-{{% /note %}}
+If you want to learn more about Nix, please have a look on [Jérôme Vieilledent's presentation](https://www.youtube.com/watch?v=emOt32DVl28) during the Symfony Con Brussels 2023 (our Product Manager of that Composable Image feature).
 
 See a [comprehensive example](../_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
 
@@ -132,9 +127,6 @@ Available languages and their supported versions:
 | [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
 | [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
 
-[//]: # (TODO i'm not sure of the difference between the Lisp SBCL and Lisp Clojure)
-
-[//]: # (TODO Bun is supposed to be part of the languages or tools table?)
 Available tools and their supported versions:
 
 | **Tool**                                                             | **`runtime`** | **Supported `version`** |
@@ -146,7 +138,9 @@ Available tools and their supported versions:
 | [WkHtmlToPdf](https://wkhtmltopdf.org/)                              | `wkhtmltopdf` | none                    |
 | [Yarn](https://classic.yarnpkg.com/)                                 | `yarn`        | none                    |
 
-[//]: # (exhaustive list of runtime and tools here https://lab.plat.farm/images/generic/-/blob/Nix/flake.nix?ref_type=heads#L161)
+{{% note title="TODO" %}}
+TODO REMOVE exhaustive list of runtime and tools here https://lab.plat.farm/images/generic/-/blob/Nix/flake.nix?ref_type=heads#L161
+{{% /note %}}
 
 To add a tool in your `stack`, please use the format `<runtime>` for the tool, as no `version` is provided.
 
@@ -189,6 +183,9 @@ The following table presents the various possible modifications to your PHP runt
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
 | `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
+{{% note title="TODO" %}}
+@Jerome: all of this is still valid?
+{{% /note %}}
 As an example:
 
 ```yaml {configFile="app"}
@@ -203,8 +200,6 @@ applications:
           - pdo_sqlite
         disabled_extension:
           - gd
-
-
     # Additional frontend configuration
 ```
 
@@ -217,6 +212,10 @@ To find out which extensions could be installed with your runtime, in
 the [NixOs search](https://search.nixos.org/packages?from=0&size=50&sort=relevance&type=packages&query=php#) of a
 runtime, filter results using the ``Package sets`` on the left and then, choose on the listed packages.
 ![Screenshot of the NixOs package sets selection for PHP@8.3](/images/nixos/nixos-packages.png "0.5")
+
+{{% note title="TODO" %}}
+I'm not sure how to add a special note about Blackfire package not available (yet)
+{{% /note %}}
 
 {{< codetabs >}}
 +++
@@ -800,11 +799,11 @@ An example rule filtering by domain:
 firewall:
     outbound:
         - protocol: tcp
-        domains: ["api.stripe.com", "api.twilio.com"]
-        ports: [80, 443]
+          domains: ["api.stripe.com", "api.twilio.com"]
+          ports: [80, 443]
         - protocol: tcp
-        ips: ["1.2.3.4/29","2.3.4.5"]
-        ports: [22]
+          ips: ["1.2.3.4/29","2.3.4.5"]
+          ports: [22]
 ```
 
 #### Determine which domains to allow
@@ -1018,7 +1017,7 @@ crons:
     spec: '*/7 * * * *'
     commands:
       start: 'cd web ; drush queue-run aggregator_feeds'
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 <--->
@@ -1036,7 +1035,7 @@ crons:
     spec: '*/19 * * * *'
     commands:
       start: 'bundle exec rake some:task'
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 <--->
@@ -1053,7 +1052,7 @@ crons:
   scheduler:
     spec: '*/5 * * * *'
     cmd: 'php artisan schedule:run'
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 <--->
@@ -1074,7 +1073,7 @@ crons:
       if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
           croncape symfony ...
       fi
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 {{< /codetabs >}}

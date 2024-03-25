@@ -28,21 +28,14 @@ Which make it possible to install different versions of the same package very ea
 With [Nix](https://nix.dev/reference/glossary#term-Nix), there is no undeclared dependencies in your source code
 and if it works locally, it will work on yours.
 
-
 {{% note title="TODO" %}}
 TODO: What is NixOs ? complete the definition as i'm not sure of it :P
 
 Intersting quote from Jerome's internal presentation: https://drive.google.com/file/d/1_w4NwEae3RWt6lYYW_2Er7Fy7zRJ7tac/view
-
-- `One image to rule them all`
+- `One image to rule them all` --> i think this quote needs to be displayed in the page somewhere at the top, isn't it?
 {{% /note %}}
 
-If you want to learn more about Nix, please have a look on [Jérôme Vieilledent's presentation](https://www.youtube.com/watch?v=emOt32DVl28) during the Symfony Con Brussels 2023 (Product Manager of that subject).
-
-{{% note title="TODO" %}}
-TODO: Add Jerome's talk about it
-https://www.youtube.com/watch?v=emOt32DVl28
-{{% /note %}}
+If you want to learn more about Nix, please have a look on [Jérôme Vieilledent's presentation](https://www.youtube.com/watch?v=emOt32DVl28) during the Symfony Con Brussels 2023 (our Product Manager of that Composable Image feature).
 
 ## Primary application properties
 
@@ -77,7 +70,6 @@ To override any part of a property, you have to provide the entire property.
 
 | Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |--------------------|-----------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                   |
 | `stack`            | An array of [NixOs runtimes](#stack)                | Yes      | No               | The list of runtime images to use with a specific app. Format: <br>`<runtime>@<version>`.                                                                                                                                                                        |
 | `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
@@ -156,9 +148,6 @@ Available languages and their supported versions:
 | [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
 | [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
 
-[//]: # (TODO i'm not sure of the difference between the Lisp SBCL and Lisp Clojure)
-
-[//]: # (TODO Bun is supposed to be part of the languages or tools table?)
 Available tools and their supported versions:
 
 | **Tool**                                                             | **`runtime`** | **Supported `version`** |
@@ -170,8 +159,9 @@ Available tools and their supported versions:
 | [WkHtmlToPdf](https://wkhtmltopdf.org/)                              | `wkhtmltopdf` | none                    |
 | [Yarn](https://classic.yarnpkg.com/)                                 | `yarn`        | none                    |
 
-[//]: # (exhaustive list of runtime and tools here https://lab.plat.farm/images/generic/-/blob/Nix/flake.nix?ref_type=heads#L161)
-
+{{% note title="TODO" %}}
+TODO REMOVE exhaustive list of runtime and tools here https://lab.plat.farm/images/generic/-/blob/Nix/flake.nix?ref_type=heads#L161
+{{% /note %}}
 To add a tool in your `stack`, please use the format `<runtime>` for the tool, as no `version` is provided.
 
 Format:
@@ -213,6 +203,10 @@ The following table presents the various possible modifications to your PHP runt
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
 | `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
+{{% note title="TODO" %}}
+@Jerome: is all of this still valid? `request_terminate_timeout`, `sizing_hints`, `xdebug`?
+{{% /note %}}
+
 As an example:
 
 ```yaml {configFile="app"}
@@ -227,8 +221,6 @@ applications:
           - pdo_sqlite
         disabled_extension:
           - gd
-
-
     # Additional frontend configuration
 ```
 
@@ -987,11 +979,11 @@ applications:
     firewall:
       outbound:
         - protocol: tcp
-        domains: [ "api.stripe.com", "api.twilio.com" ]
-        ports: [ 80, 443 ]
-          - protocol: tcp
-        ips: [ "1.2.3.4/29","2.3.4.5" ]
-        ports: [ 22 ]
+          domains: [ "api.stripe.com", "api.twilio.com" ]
+          ports: [ 80, 443 ]
+        - protocol: tcp
+          ips: [ "1.2.3.4/29","2.3.4.5" ]
+          ports: [ 22 ]
 ```
 
 #### Determine which domains to allow
@@ -1153,7 +1145,7 @@ crons:
     spec: '*/7 * * * *'
     commands:
       start: 'cd web ; drush queue-run aggregator_feeds'
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 <--->
@@ -1171,7 +1163,7 @@ crons:
     spec: '*/19 * * * *'
     commands:
       start: 'bundle exec rake some:task'
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 <--->
@@ -1188,7 +1180,7 @@ crons:
   scheduler:
     spec: '*/5 * * * *'
     cmd: 'php artisan schedule:run'
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 <--->
@@ -1209,7 +1201,7 @@ crons:
       if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
           croncape symfony ...
       fi
-  {{< /snippet >}}
+{{< /snippet >}}
 ```
 
 {{< /codetabs >}}
@@ -1230,12 +1222,12 @@ applications:
     crons:
       update:
         spec: '0 0 * * *'
-          commands:
-            start: |
-              if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+        commands:
+          start: |
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
               {{% vendor/cli %}} backup:create --yes --no-wait
               {{% vendor/cli %}} source-operation:run update --no-wait --yes
-              fi
+            fi
 ```
 
 ### Cron job timing
