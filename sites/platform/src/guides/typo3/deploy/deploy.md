@@ -60,4 +60,4 @@ Then click on the user icon in the top right of the page and go to User Settings
 
 Go forth and Deploy (even on Friday)!
 
-{{< guide-buttons next="More resources" >}}
+{{< guide-buttons previous="Back" next="More resources" >}}

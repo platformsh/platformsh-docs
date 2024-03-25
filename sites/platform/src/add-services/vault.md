@@ -6,7 +6,7 @@ weight: 50
 
 The Vault key management service (KMS) provides key management and access control for your secrets.
 The {{% vendor/name %}} Vault KMS offers the [transit secrets engine](https://developer.hashicorp.com/vault/docs/secrets/transit)
-to sign, verify, encrypt, decrypt, and rewrap information. 
+to sign, verify, encrypt, decrypt, and rewrap information.
 
 Vault doesn't store the data sent to the transit secrets engine,
 so it can be viewed as encryption as a service.
@@ -15,9 +15,6 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 ## Supported versions
 
 {{% major-minor-versions-note configMinor="true" %}}
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -31,19 +28,42 @@ To store secrets such as API keys, create sensitive [environment variables](../d
         <tr>
             <td>{{< image-versions image="vault-kms" status="supported" environment="grid" >}}</td>
             <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
+{{% relationship-ref-intro %}}
 
-{{< image-versions image="vault-kms" status="supported" environment="grid" >}}
+{{% service-values-change %}}
 
-{{% /version/specific %}}
+```json
+{
+  "username": "",
+  "scheme": "http",
+  "service": "vault-kms",
+  "fragment": "",
+  "ip": "123.456.78.90",
+  "instance_ips": [
+    "123.456.78.90"
+  ],
+  "hostname": "azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 8200,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "vault_secret.internal",
+  "rel": "sign",
+  "path": "\/",
+  "query": {
+    "is_master": true
+  },
+  "password": "ChangeMe",
+  "type": "vault-kms:{{% latest "vault-kms" %}}",
+  "public": false,
+  "host_mapped": false
+}
+```
 
-## Add Vault
+## Usage example
 
 {{% endpoint-description type="vault-kms" noApp=true %}}
 
@@ -81,17 +101,17 @@ Adapt the examples for your app's language.
 To make any calls to the Vault KMS, you need your token. Get it from the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable:
 
 ```bash
-echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password"
+echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].password"
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
 You can also store this as a variable:
 
 ```bash
-VAULT_TOKEN=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].password")
+VAULT_TOKEN=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].password")
 ```
 
 A given token is valid for one year from its creation.
@@ -103,10 +123,10 @@ The `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable also contains the
 Assign it to a variable as follows:
 
 ```bash
-VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "SERVICE_NAME" >}}[0].port")
+VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].port")
 ```
 
-`{{< variable "SERVICE_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
 
 ### Manage your keys
 
@@ -269,33 +289,6 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
     "key_version": 2
   },
   ...
-}
-```
-
-{{% relationship-ref-intro %}}
-
-{{% service-values-change %}}
-
-```yaml
-{
-    "username": "",
-    "scheme": "http",
-    "service": "vault-kms",
-    "fragment": "",
-    "ip": "169.254.196.95",
-    "hostname": "ckmpv2fz7jtdmpkmrun7yfgut4.vault-kms.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 8200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "vault-kms.internal",
-    "rel": "sign",
-    "path": "\/",
-    "query": {
-        "is_master": true
-    },
-    "password": "ChangeMe",
-    "type": "vault-kms:{{% latest "vault-kms" %}}",
-    "public": false,
-    "host_mapped": false
 }
 ```
 

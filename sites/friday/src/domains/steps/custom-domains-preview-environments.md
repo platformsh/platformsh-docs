@@ -5,11 +5,6 @@ weight: 3
 description: Learn how to set up custom domains on your preview environments
 ---
 
-{{% version/specific %}}
-{{< partial "progressive-rollout/body.md" >}}
-<--->
-{{% /version/specific %}}
-
 [Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
 {{< vendor/name >}} automatically replaces the custom production domain
@@ -52,21 +47,6 @@ based on the following elements:
 
 You need:
 
-{{% version/specific %}}
-- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
-
-  {{< note theme="warning" >}}
-
-  If you have a {{% names/dedicated-gen-2 %}} project,
-  currently you can only add a custom domain to the dedicated environments of your project (production and staging).
-  To do so, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
-
-  {{< /note >}}
-
-  If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
-  it needs to be configured to operate with custom domains for preview environments.
-  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
-{{% /version/specific %}}
 - A production environment with at least one custom domain already set up
 - At least one preview (staging or development) environment
 - Optional: The [{{< vendor/name >}} CLI](../../administration/cli/_index.md) (v4.8.0+)
@@ -81,12 +61,6 @@ If you delete a custom production domain,
 all of the attached custom domains for preview environments are deleted too.
 You need to rebuild the affected preview environments for the deletion to be complete.
 {{< /note >}}
-
-{{% version/specific %}}
-If you downgrade from an Elite or Enterprise plan to a Professional plan,
-all of the custom domains set up on preview environments are automatically removed.
-Downgrading your plan doesn't affect custom domains set up on your production environments.
-{{% /version/specific %}}
 
 ## Add a custom domain to a preview environment
 

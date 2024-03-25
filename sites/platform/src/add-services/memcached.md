@@ -22,9 +22,6 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -44,24 +41,17 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="memcached" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
-    "service": "memcached16",
-    "ip": "169.254.228.111",
-    "hostname": "3sdm72jgaxge2b6aunxdlzxyea.memcached16.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "memcached.internal",
+    "service": "memcached",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "cluster": "azertyuiopqsdf-main-afdwftq",
+    "host": "memcachedcache.internal",
     "rel": "memcached",
     "scheme": "memcached",
     "type": "memcached:{{% latest "memcached" %}}",
@@ -73,7 +63,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 {{% endpoint-description type="memcached" php=true python=true /%}}
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Go
@@ -115,47 +105,14 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-
-# Other options...
-
-# Relationships enable an app container's access to a service.
-relationships:
-    memcachedcache: "cachemc:memcached"
-{{< /snippet >}}
-{{< snippet name="cachemc" config="service" placeholder="true" >}}
-    type: memcached:{{% latest "memcached" %}}
-{{< /snippet >}}
-```
-
-{{< v2connect2app serviceName="cachemc" relationship="memcachedcache" var="CACHE_URL">}}
-
-```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export CACHE_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].host")
-export CACHE_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".memcachedcache[0].port")
-
-# Surface a Memcached connection string for use in app.
-export CACHE_URL="${CACHE_HOST}:${CACHE_PORT}"
-```
-
-{{< /v2connect2app >}}
-
-{{% /version/only %}}
-
 ## Accessing Memcached directly
 
-To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool. Assuming your Memcached relationship is named `cache`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `cache.internal` and `11211`. Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool.
+Assuming your Memcached relationship is named `memcachedcache`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `memcachedcache.internal` and `11211`.
+<br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
-```bash
-netcat cache.internal 11211
+```bash {location="Terminal"}
+netcat memcachedcache.internal 11211
 ```
 
 {{% service-values-change %}}

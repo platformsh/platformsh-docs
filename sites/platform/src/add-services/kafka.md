@@ -14,9 +14,6 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -34,24 +31,17 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="kafka" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% relationship-ref-intro %}}
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
-    "service": "kafka25",
-    "ip": "169.254.27.10",
-    "hostname": "t7lv3t3ttyh3vyrzgqguj5upwy.kafka25.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "kafka.internal",
+    "service": "kafka",
+    "ip": "123.456.78.90",
+    "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+    "cluster": "azertyuiop-main-7rqtwti",
+    "host": "kafkaqueue.internal",
     "rel": "kafka",
     "scheme": "kafka",
     "type": "kafka:{{< latest "kafka" >}}",
@@ -63,7 +53,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 {{% endpoint-description type="kafka" /%}}
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Java
@@ -90,7 +80,7 @@ highlight=ruby
 
 # Producer
 require "kafka"
-kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
+kafka = Kafka.new(["kafkaqueue.internal:9092"], client_id: "my-application")
 kafka.deliver_message("Hello, World!", topic: "greetings")
 
 # Consumer

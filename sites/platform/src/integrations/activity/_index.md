@@ -8,10 +8,7 @@ layout: single
 
 {{% description %}}
 
-{{< version/specific >}}
 Check out examples from other users on the {{% vendor/name %}} [Community site](https://community.platform.sh/c/activity-scripts/10).
-<--->
-{{< /version/specific >}}
 
 ## Installing
 
@@ -19,7 +16,7 @@ Activity scripts are configured as integrations.
 That means they're at the *project level*, not at the level of an individual environment.
 While you can store the scripts in your Git repository for access, they have no effect there.
 
-To install a new activity script, use the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
+To install a new activity script, use [`integration:add` command](/administration/cli/reference.md#integrationadd) from the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 
 ```bash
 {{% vendor/cli %}} integration:add --type script --file ./my_script.js
@@ -58,9 +55,9 @@ To update an existing activity script, follow these steps:
    {{% vendor/cli %}} integration:update --file ./my_script.js {{<variable "SCRIPT_ID" >}}
    ```
 
-   That updates the integration in place, permanently overwriting the previous version.
+   This [`integration:update` command](/administration/cli/reference.md#integrationupdate) updates the integration in place, permanently overwriting the previous version.
 
-3. Test the activity script update by triggering a redeployment with the following command:
+3. Test the activity script update by [triggering a redeployment](/administration/cli/reference.md#environmentredeploy) with the following command:
 
    ```bash
    {{% vendor/cli %}} redeploy
@@ -88,7 +85,7 @@ To disable an activity script, follow these steps:
    +---------------+--------------+--------------+
    ```
 
-2. Delete the integration by running the following command:
+2. [Delete the integration](/administration/cli/reference.md#integrationdelete) by running the following command:
 
    ```bash
    {{% vendor/cli %}} integration:delete {{<variable "SCRIPT_ID" >}}
@@ -122,13 +119,14 @@ That trigger is configurable via command line switches when adding or updating a
 For example, to have a script trigger any time an environment is activated or deactivated, run:
 
 ```bash
-{{% vendor/cli %}} integration:update --events='environment.activate, environment.deactivate' {{<variable "SCRIPT_ID" >}}
+{{% vendor/cli %}} integration:update --events='environment.activate,environment.deactivate' {{<variable "SCRIPT_ID" >}}
 ```
 
-A complete list of possible events is available in the [webhook documentation](/integrations/activity/reference.md).
+A complete list of possible events is available in the [Activity script type documentation](/integrations/activity/reference.md#type).
+Any of those Activity Script types can be added to the `--events=event1,event2,...` option.
 
-Scripts can also trigger only when an action reaches a given state, such as `pending`, `in_progress`, or `complete`.
-The default is only when they reach "complete".
+Scripts can also trigger only when an action reaches a [given state](/integrations/activity/reference.md#state), such as `pending`, `in_progress`, `complete`, `cancelled`, or `scheduled`.
+The default is only when they reach `complete`.
 To have a script execute when a synchronize action first starts, for example, you would run:
 
 ```bash
@@ -143,7 +141,6 @@ The following example executes only for backup actions on the `production` envir
 ```bash
 {{% vendor/cli %}} integration:update --events=environment.backup --environments=production {{<variable "SCRIPT_ID" >}}
 ```
-
 
 As a general rule, it's better to have an activity script only execute on the specific events and branches you're interested in
 rather than firing on all activities and then filtering out undesired use cases in the script itself.
@@ -163,13 +160,13 @@ inside the `variables` variable.
 To add a variable to your activity script at the integration level,
 use the following `POST` request:
 
-```
+```bash
 POST /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
 ```
 
 You get a payload similar to the following:
 
-```
+```json
 {
   "name": "string",
   "attributes": {
@@ -232,15 +229,15 @@ An example of this object is below:
 ```json
 {
   "attributes": {},
-  "created_at": "2020-04-15T19:50:09.514267+00:00",
+  "created_at": "2024-03-15T19:50:09.514267+00:00",
   "default_domain": null,
   "description": "",
-  "id": "kpyhl5f8nuzef",
+  "id": "azertyuiopqsdfghjklm",
   "owner": "...",
-  "region": "eu-3.{{< vendor/urlraw "host" >}}",
+  "region": "eu-1.{{< vendor/urlraw "host" >}}",
   "repository": {
     "client_ssh_key": "ssh-rsa ...",
-    "url": "kqyhl5f5nuzky@git.eu-3.{{< vendor/urlraw "host" >}}:kqyhl5f5nuzky.git"
+    "url": "azertyuiopqsdfghjklm@git.eu-1.{{< vendor/urlraw "host" >}}:kqyhl5f5nuzky.git"
   },
   "status": {
     "code": "provisioned",
@@ -270,7 +267,7 @@ The API is similar to the JavaScript `LocalStorage` API.
 
 ```javascript
 // Access the storage API.
-It isn't pre-required.
+// It isn't pre-required.
 var storage = require("storage");
 
 // Retrieve a stored value. If the value isn't set it will return null.
@@ -371,4 +368,3 @@ HMAC(HMAC(HMAC(HMAC("AWS4" + kSecret,"20150830"),"us-east-1"),"iam"),"aws4_reque
 ```
 
 > Example taken from the [AWS documentation for signing API requests](https://docs.aws.amazon.com/general/latest/gr/sigv4-calculate-signature.html).
-

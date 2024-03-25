@@ -17,11 +17,8 @@ Consult the MySQL or MariaDB documentation for steps to do so.
 To set up replication you need to create a replication-enabled user.
 For each database that you'd like to replicate, you need to assign a `replication` permission/role, under a corresponding `endpoint`:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 1024
     configuration:
@@ -36,31 +33,8 @@ For each database that you'd like to replicate, you need to assign a `replicatio
             replicator:
                 privileges:
                     main: replication
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            # Restate the default user to be used by your application.
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-            replicator:
-                privileges:
-                    main: replication
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 This creates a `replicator` user, and grants read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binary log position). If there is at least one `replication` permission defined, the bin-logging is enabled on the primary server, which is essential for the replication.
 
@@ -76,8 +50,8 @@ Add a new relationship to your application container:
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: db:mysql
-    replication: db:replicator
+    database: mariadb:mysql
+    replication: mariadb:replicator
 {{% /snippet %}}
 ```
 

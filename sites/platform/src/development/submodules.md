@@ -10,8 +10,6 @@ sidebarTitle: "Git submodules"
 They're usually listed in a `.gitmodules` file at the root of your Git repository.
 When you push via Git, {{% vendor/name %}} tries to clone them automatically.
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 The following example is based on [a Bigfoot multi-app project](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications) which uses the following submodules:
 
 - A [BigFoot app](https://github.com/platformsh-templates/bigfoot-multiapp-api/tree/without-platform-app-yaml)
@@ -20,16 +18,6 @@ The following example is based on [a Bigfoot multi-app project](https://github.c
 - A [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
 
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
-<--->
-<!-- Upsun -->
-Say you have a multi-app project that includes the following submodules:
-
-- A BigFoot app
-- An API Platform v3, Admin component
-- A Gatsby frontend
-- A Mercure Rocks server
-
-{{% /version/specific %}}
 
 To import all the submodules, run the following commands from your multiple application project's root folder:
 

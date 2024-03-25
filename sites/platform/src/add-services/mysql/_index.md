@@ -32,9 +32,6 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 ### Supported versions on Dedicated environments
 
 `oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
@@ -62,11 +59,6 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
-<--->
-<!-- API Version 2 -->
-
-{{% /version/specific %}}
-
 {{% deprecated-versions %}}
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
@@ -75,14 +67,16 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 
 ### Switching type and version
 
-If you change the service type, your data is removed.
-
 To switch service types:
 
 1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
-1. Specify a new service type.
-1. [Import your data](#importing-data) into the new service.
+   {{% note %}}
+   Changing the service type, especially when done repeatedly, may result in data loss.
+   Backing up your data is therefore crucial.
+   {{% /note %}}
+2. Remove the old service from your [service configuration](../_index.md).
+3. Specify a new service type.
+4. [Import your data](#importing-data) into the new service.
 
 ### Downgrade
 
@@ -100,7 +94,7 @@ Configure your service with at least 256 MB in disk space.
 
 {{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
 
-{{< codetabs v2hide="true" >}}
+{{< codetabs >}}
 
 +++
 title=Go
@@ -142,45 +136,6 @@ highlight=python
 
 {{< /codetabs >}}
 
-<!-- Version 2: .environment shortcode + context -->
-{{% version/only "2" %}}
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-
-# Other options...
-
-# Relationships enable an app container's access to a service.
-relationships:
-    database: "db:mysql"
-{{< /snippet >}}
-{{< snippet name="db" config="service" placeholder="true" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-{{< /snippet >}}
-```
-
-{{< v2connect2app serviceName="db" relationship="database" var="DATABASE_URL">}}
-
-```bash {location="myapp/.environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export DB_CONNECTION=="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].scheme')"
-export DB_USERNAME="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].username')"
-export DB_PASSWORD="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].password')"
-export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].host')"
-export DB_PORT="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].port')"
-export DB_DATABASE="$(echo $RELATIONSHIPS_JSON | jq -r '.database[0].path')"
-
-# Surface connection string variable for use in app.
-export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
-```
-
-{{< /v2connect2app >}}
-
-{{% /version/only %}}
-
 ### Configure connections
 
 There may be cases where you want to configure a database connection manually.
@@ -210,11 +165,8 @@ You can configure your MySQL service in the [services configuration](../_index.m
 
 Example configuration:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -227,29 +179,8 @@ Example configuration:
                     main: admin
         properties:
             max_allowed_packet: 64
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-        properties:
-            max_allowed_packet: 64
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 {{% relationship-ref-intro %}}
 
@@ -259,24 +190,24 @@ Example configuration:
 
 ```json
 {
-    "username": "user",
-    "scheme": "mysql",
-    "service": "mariadb104",
-    "fragment": null,
-    "ip": "169.254.255.221",
-    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "mysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "mariadb:{{% latest "mariadb" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": "user",
+  "scheme": "mysql",
+  "service": "mariadb",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 3306,
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "mariadbdatabase.internal",
+  "rel": "mysql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "",
+  "type": "mariadb:{{% latest "mariadb" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -284,24 +215,24 @@ Example configuration:
 
 ```json
 {
-    "username": "user",
-    "scheme": "mysql",
-    "service": "oraclemysql",
-    "fragment": null,
-    "ip": "169.254.150.190",
-    "hostname": "7q5hllmmhoeuthu6th7qovoone.oraclemysql.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "oraclemysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "oracle-mysql:8.0",
-    "public": false,
-    "host_mapped": false
+  "username": "user",
+  "scheme": "mysql",
+  "service": "oracle-mysql",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 3306,
+  "cluster": "azertyuiop-main-afdwftq",
+  "host": "oracledatabase.internal",
+  "rel": "mysql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "",
+  "type": "oracle-mysql:{{< latest "oracle-mysql" >}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -320,13 +251,13 @@ mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USE
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-mysql -h mysql.internal -P 3306 -u user main
+mysql -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -p -h mysql.internal -P 3306 -u user main
+mysql -p -h mariadbdatabase.internal -P 3306 -u user main
 ```
 
 ## Define permissions
@@ -358,11 +289,8 @@ To do so, define multiple `schemas` in your [service configuration](#configurati
 You can also specify multiple `endpoints` for [permissions](#define-permissions).
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -373,27 +301,8 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
                 default_schema: main
                 privileges:
                     main: admin
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
 
@@ -406,18 +315,15 @@ Removing a schema from the list of `schemas` on further deployments results in t
 
 ### Multiple databases example
 
-The following configuration example creates a single MariaDB service named `db` with two databases, `main` and `legacy`.
+The following configuration example creates a single MariaDB service named `mariadb` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
 * `admin` has full access to both databases.
 * `reporter` has SELECT query access to `main` but no access to `legacy`.
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="mariadb" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -437,36 +343,8 @@ Access to the database is defined through three endpoints:
                 default_schema: legacy
                 privileges:
                     legacy: rw
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        schemas:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                default_schema: main
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                privileges:
-                    main: ro
-            importer:
-                default_schema: legacy
-                privileges:
-                    legacy: rw
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
@@ -477,9 +355,9 @@ Expose these endpoints to your app as relationships in your [app configuration](
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: "db:admin"
-    reports: "db:reporter"
-    imports: "db:importer"
+    database: "mariadb:admin"
+    reports: "mariadb:reporter"
+    imports: "mariadb:importer"
 {{% /snippet %}}
 ```
 
@@ -509,11 +387,8 @@ It offers the following properties:
 
 An example of setting these properties:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
+{{% snippet name="db" config="service"  %}}
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -521,24 +396,8 @@ An example of setting these properties:
             max_allowed_packet: 64
             default_charset: utf8mb4
             default_collation: utf8mb4_unicode_ci
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="db" config="service" >}}
-    type: mariadb:{{% latest "mariadb" %}}
-    configuration:
-        properties:
-            max_allowed_packet: 64
-            default_charset: utf8mb4
-            default_collation: utf8mb4_unicode_ci
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 You can also change a table's character set and collation through `ALTER TABLE` commands:
 
@@ -559,7 +418,6 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 
 ## Storage Engine
 
-{{% version/specific %}}
 It's best to use the InnoDB storage engine wherever possible.
 MyISAM is only properly supported in non-Dedicated environments.
 In Dedicated environments, there is no replication of MyISAM tables.
@@ -567,12 +425,6 @@ In Dedicated environments, there is no replication of MyISAM tables.
 If MyISAM tables have been inadvertently created or imported in a Dedicated environment
 (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
 convert them to use the InnoDB storage engine as follows:
-<--->
-It's best to use the InnoDB storage engine wherever possible instead of MyISAM.
-If MyISAM tables have been inadvertently created or imported in your environments
-(if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
-convert them to use the InnoDB storage engine as follows:
-{{% /version/specific %}}
 
 1. Rename the existing table.
 
@@ -660,12 +512,8 @@ To ensure people who review code changes can't access personally identifiable in
 
 ## Replication
 
-{{% version/specific %}}
 In non-Dedicated environments, there is no on-site primary/replica supports.
 In Dedicated environments, it's provided automatically as part of the default configuration.
-<--->
-There is no on-site primary/replica support in your environments.
-{{% /version/specific %}}
 
 In rare cases (such as for certain backup purposes),
 you can also enable [remote replication](./mysql-replication.md) to your own replica data.

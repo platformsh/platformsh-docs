@@ -14,8 +14,6 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 
 ## Supported versions
 
-{{% version/specific %}}
-<!-- API Version 1 -->
 <!--
 To update the versions in this table, use docs/data/registry.json
 -->
@@ -40,17 +38,6 @@ To update the versions in this table, use docs/data/registry.json
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream.
 
-<--->
-<!-- API Version 2 -->
-
-In the list below, notice that there you only specify the major version.
-Each version represents a rolling release of the latest minor version available from the upstream.
-The latest compatible minor version and patches are applied automatically.
-
-{{< image-versions image="opensearch" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://opensearch.org/lines/2x.html) and [`1.x`](https://opensearch.org/lines/1x.html) release lines.
 
 ## Deprecated versions
@@ -58,9 +45,6 @@ You can see the latest minor and patch versions of OpenSearch available from the
 The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream,
 or are no longer the recommended way to configure the service on {{% vendor/name %}}.
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -79,13 +63,6 @@ or are no longer the recommended way to configure the service on {{% vendor/name
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
-
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
 
@@ -93,17 +70,17 @@ switch to [a supported version](#supported-versions).
 
 {{% service-values-change %}}
 
-```yaml
+```json
 {
     "username": null,
     "scheme": "http",
-    "service": "opensearch12",
+    "service": "opensearch",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.{{< vendor/urlraw "hostname" >}}",
+    "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
-    "host": "opensearch.internal",
+    "cluster": "azertyuiopqsdf-main-7rqtwti",
+    "host": "ossearch.internal",
     "rel": "opensearch",
     "path": null,
     "query": [],
@@ -122,36 +99,17 @@ switch to [a supported version](#supported-versions).
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-{{< version/specific >}}
-<!-- Version 1: .environment shortcode + context -->
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    searchopen: "searchopen:opensearch"
-{{< /snippet >}}
-{{< snippet name="searchopen" config="service" placeholder="true" >}}
+    ossearch: "opensearch:opensearch"
+{{% /snippet %}}
+{{% snippet name="opensearch" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 256
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-# Relationships enable an app container's access to a service.
-relationships:
-    searchopen: "searchopen:opensearch"
-{{< /snippet >}}
-{{< snippet name="searchopen" config="service" placeholder="true" >}}
-    type: opensearch:{{% latest "opensearch" %}}
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 {{% v2connect2app serviceName="searchopen" relationship="searchopen" var="OPENSEARCH_HOSTS" %}}
 
@@ -160,13 +118,13 @@ relationships:
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].scheme")
-export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].host")
-export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].port")
+export OS_SCHEME=$(echo $RELATIONSHIPS_JSON | jq -r ".ossearch[0].scheme")
+export OS_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".ossearch[0].host")
+export OS_PORT=$(echo $RELATIONSHIPS_JSON | jq -r ".ossearch[0].port")
 
 # Surface more common OpenSearch connection string variables for use in app.
-export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".searchopen[0].username")
-export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".searchopen[0].password")
+export OPENSEARCH_USERNAME=$(echo $RELATIONSHIPS_JSON | jq -r ".ossearch[0].username")
+export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".ossearch[0].password")
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 
@@ -188,32 +146,15 @@ No username or password is required to connect to it.
 You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="opensearch" config="service"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
-    type: opensearch:{{% latest "opensearch" %}}
-    configuration:
-        authentication:
-            enabled: true
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
@@ -222,72 +163,36 @@ in the `username` and `password` properties.
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.
-To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `search:opensearch` as its upstream
-(where `search` is whatever you named the service).
+To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `opensearch:opensearch` as its upstream
+(where `opensearch` is whatever you named the service).
 For example:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="routes"}
-{{< snippet name="search:opensearch" config="route" subDom="os" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
+{{% snippet name="opensearch:opensearch" config="route" subDom="os" / %}}
+{{% snippet name="opensearch" config="service" placeholder="true"  %}}
     type: opensearch:{{% latest "opensearch" %}}
     disk: 2048
     configuration:
         authentication:
             enabled: true
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="routes"}
-{{< snippet name="search:opensearch" config="route" subDom="os" />}}
-{{< snippet name="search" config="service" placeholder="true" >}}
-    type: opensearch:{{% latest "opensearch" %}}
-    configuration:
-        authentication:
-            enabled: true
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 ## Plugins
 
 OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
+{{% snippet name="opensearch" config="service"  %}}
     type: "opensearch:{{% latest "opensearch" %}}"
     disk: 1024
     configuration:
         plugins:
             - analysis-icu
             - lang-python
-{{< /snippet >}}
+{{% /snippet %}}
 ```
-
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="services"}
-{{< snippet name="search" config="service" >}}
-    type: "opensearch:{{% latest "opensearch" %}}"
-    configuration:
-        plugins:
-            - analysis-icu
-            - lang-python
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
 

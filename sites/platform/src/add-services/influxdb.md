@@ -14,9 +14,6 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 {{% major-minor-versions-note configMinor="true" %}}
 
-{{% version/specific %}}
-<!-- API Version 1 -->
-
 <table>
     <thead>
         <tr>
@@ -34,22 +31,12 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="influxdb" status="supported" environment="grid" >}}
-
-{{% /version/specific %}}
-
 {{% image-versions-legacy "influxdb" %}}
 
 ## Deprecated versions
 
 The following versions are still available in your projects,
 but they're at their end of life and are no longer receiving security updates from upstream.
-
-{{% version/specific %}}
-<!-- API Version 1 -->
 
 <table>
     <thead>
@@ -68,13 +55,6 @@ but they're at their end of life and are no longer receiving security updates fr
     </tbody>
 </table>
 
-<--->
-<!-- API Version 2 -->
-
-{{< image-versions image="influxdb" status="deprecated" environment="grid" >}}
-
-{{% /version/specific %}}
-
 To ensure your project remains stable in the future,
 switch to a [supported version](#supported-versions).
 See more information on [how to upgrade to version 2.3 or later](#upgrade-to-version-23-or-later).
@@ -83,81 +63,62 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 {{% service-values-change %}}
 
-```yaml
-    {
-      "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
-      "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb27",
-      "type": "influxdb:2.7",
-      "rel": "influxdb",
-      "scheme": "http",
-      "username": "admin",
-      "password": "ChangeMe",
-      "port": 8086,
-      "path": null,
-      "query": {
-        "org": "main",
-        "bucket": "main",
-        "api_token": "d85b1219ee8cef8f84d33216257e44d51ddd52e89ae7acbd5ab1d01d320e2f7f"
-      },
-      "fragment": null,
-      "public": false,
-      "host_mapped": false,
-      "ip": "169.254.99.35"
-    }
+```json
+{
+  "host": "influxdbdatabase.internal",
+  "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiopqsdf-main-bvxea6i",
+  "service": "influxdb",
+  "type": "influxdb:{{< latest "influxdb" >}}",
+  "rel": "influxdb",
+  "scheme": "http",
+  "username": "admin",
+  "password": "ChangeMe",
+  "port": 8086,
+  "path": null,
+  "query": {
+    "org": "main",
+    "bucket": "main",
+    "api_token": "azertyuiopqsdfghjklm1234567890"
+  },
+  "fragment": null,
+  "public": false,
+  "host_mapped": false,
+  "ip": "123.456.78.90"
+}
 ```
 
 ## Usage example
 
 {{% endpoint-description type="influxdb" /%}}
 
-{{< version/specific >}}
-<!-- Version 1 -->
-
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    influxtimedb: "timedb:influxdb"
-{{< /snippet >}}
-{{< snippet name="timedb" config="service" placeholder="true" >}}
+    influxdbdatabase: "influxdb:influxdb"
+{{% /snippet %}}
+{{% snippet name="influxdb" config="service" placeholder="true"  %}}
     type: influxdb:{{% latest "influxdb" %}}
     disk: 256
-{{< /snippet >}}
+{{% /snippet %}}
 ```
 
-<--->
-<!-- Version 2 -->
-
-```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-# Relationships enable an app container's access to a service.
-relationships:
-    influxtimedb: "timedb:influxdb"
-{{< /snippet >}}
-{{< snippet name="timedb" config="service" placeholder="true" >}}
-    type: influxdb:{{% latest "influxdb" %}}
-{{< /snippet >}}
-```
-
-{{< /version/specific >}}
-
-{{% v2connect2app serviceName="timedb" relationship="influxtimedb" var="INFLUX_HOST"%}}
+{{% v2connect2app serviceName="influxdb" relationship="influxdbdatabase" var="INFLUX_HOST"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for common InfluxDB credentials.
-export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].username")
-export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].host")
-export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.org")
-export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.api_token")
-export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxtimedb[0].query.bucket")
+export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].username")
+export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].host")
+export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].query.org")
+export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].query.api_token")
+export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].query.bucket")
 ```
 
-{{< /v2connect2app >}}
+{{% /v2connect2app %}}
 
 ## Export data
 
@@ -173,7 +134,7 @@ To export your data from InfluxDB, follow these steps:
    This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
 
    ```bash
-   SSH tunnel opened to influxdb at: http://127.0.0.1:30000
+   SSH tunnel opened to influxdbdatabase at: http://127.0.0.1:30000
    ```
 
 3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
@@ -200,33 +161,33 @@ or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environ
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
 - Rename the `user` key to `username`.
-- Move the `org`, `bucket` and  `api_token` keys so they're contained in a dictionary under the `query` key.
+- Move the `org`, `bucket` and `api_token` keys so they're contained in a dictionary under the `query` key.
 
 If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
 
-```yaml
-    {
-      "host": "influxdb27.internal",
-      "hostname": "3xqrvge7ohuvzhjcityyphqcja.influxdb27.service._.ca-1.{{< vendor/urlraw "hostname" >}}",
-      "cluster": "jqwcjci6jmwpw-main-bvxea6i",
-      "service": "influxdb27",
-      "type": "influxdb:{{< latest "influxdb" >}}",
-      "rel": "influxdb",
-      "scheme": "http",
-      "username": "admin",
-      "password": "ChangeMe",
-      "port": 8086,
-      "path": null,
-      "query": {
-        "org": "main",
-        "bucket": "main",
-        "api_token": "d85b1219ee8cef8f84d33216257e44d51ddd52e89ae7acbd5ab1d01d320e2f7f"
-      },
-      "fragment": null,
-      "public": false,
-      "host_mapped": false,
-      "ip": "169.254.99.35"
-    }
+```json
+{
+  "host": "influxdbdatabase.internal",
+  "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiopqsdf-main-bvxea6i",
+  "service": "influxdb",
+  "type": "influxdb:{{< latest "influxdb" >}}",
+  "rel": "influxdb",
+  "scheme": "http",
+  "username": "admin",
+  "password": "ChangeMe",
+  "port": 8086,
+  "path": null,
+  "query": {
+    "org": "main",
+    "bucket": "main",
+    "api_token": "azertyuiopqsdfghjklm1234567890"
+  },
+  "fragment": null,
+  "public": false,
+  "host_mapped": false,
+  "ip": "123.456.78.90"
+}
 ```
 
 ### From a 1.x version

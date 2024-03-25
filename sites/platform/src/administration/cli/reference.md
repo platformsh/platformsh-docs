@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.0.9
+# Platform.sh CLI 5.0.11
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -1441,13 +1441,13 @@ Restore an environment backup
 ### Usage
 
 ```
-platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
+platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore-code] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
 ```
 
 #### Arguments
 
 * `backup`(optional)
-  The name of the backup. Defaults to the most recent one
+  The ID of the backup. Defaults to the most recent one
 
 #### Options
 
@@ -1456,6 +1456,9 @@ platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [-p|--proj
 
 * `--branch-from` (expects a value)
   If the --target does not yet exist, this specifies the parent of the new environment
+
+* `--restore-code`
+  Whether code should be restored as well as data
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3055,13 +3058,13 @@ Aliases: `push`
 ### Usage
 
 ```
-platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [--resources-init RESOURCES-INIT] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
+platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
 ```
 
 #### Arguments
 
 * `source`(optional)
-  The source ref: a branch name or commit hash
+  The Git source ref, e.g. a branch name or a commit hash.
 
 #### Options
 
@@ -3078,19 +3081,16 @@ platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upst
   Set the target environment as the upstream for the source branch. This will also set the target project as the remote for the local repository.
 
 * `--activate`
-  Activate the environment before pushing
+  Activate the environment. Paused environments will be resumed. This will ensure the environment is active even if no changes were pushed.
 
 * `--parent` (expects a value)
-  Set the new environment parent (only used with --activate)
+  Set the environment parent (only used with --activate)
 
 * `--type` (expects a value)
   Set the environment type (only used with --activate )
 
 * `--no-clone-parent`
   Do not clone the parent branch's data (only used with --activate)
-
-* `--resources-init` (expects a value)
-  Set the resources to use for new services: default, parent, minimum, or manual
 
 * `--no-wait` (`-W`)
   Do not wait for the operation to complete
@@ -3131,7 +3131,7 @@ platform environment:push
 platform environment:push --no-wait
 ```
 
-* Push code, first branching or activating the environment as a child of 'develop':
+* Push code, branching or activating the environment as a child of 'develop':
 ```
 platform environment:push --activate --parent develop
 ```
@@ -3456,7 +3456,9 @@ platform sync [--rebase] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [
 This command synchronizes to a child environment from its parent environment.
 
 Synchronizing "code" means there will be a Git merge from the parent to the
-child. Synchronizing "data" means that all files in all services (including
+child.
+
+Synchronizing "data" means that all files in all services (including
 static files, databases, logs, search indices, etc.) will be copied from the
 parent to the child.
 
@@ -5772,7 +5774,7 @@ to STDERR.
   The initial project title
 
 * `--region` (expects a value)
-  The region where the project will be hosted
+  The region where the project will be hosted.
 
 * `--plan` (expects a value)
   The subscription plan

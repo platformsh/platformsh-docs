@@ -90,9 +90,9 @@ in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ 
 You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
 With this definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
-now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>`.
+now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding {{ if eq $docVersion 2 }}[service environment variables](/development/variables/_index.md#service-environment-variables){{ else }}[`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables){{ end }}.
 {{- else -}}
-now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
+now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding {{ if eq $docVersion 2 }}[service environment variables](/development/variables/_index.md#service-environment-variables){{ else }} [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables){{ end }}.
 {{- end -}}
 
 <!-- For services with a PHP extension -->
@@ -246,7 +246,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
     {{ $appInner = "\n..." }}
 
 {{ else if eq $type "vault-kms" }}
-    {{ $appInner = "\nrelationships:\n    vault_service: \"vault-kms:manage_keys\"" }}
+    {{ $appInner = "\nrelationships:\n    vault_secret: \"vault-kms:manage_keys\"" }}
 {{ else }}
 
     {{ $relationshipName := index $data "docs" "relationship_name" }}
@@ -356,7 +356,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 {{ if eq $type "mariadb" }}
 ### OracleMySQL example
 
-{{ $serviceName := "dbmysql" }}
+{{ $serviceName := "oracle-mysql" }}
 {{ $serviceInner := "\n    type: oracle-mysql:8.0" }}
 
 {{ if eq $docVersion 1 }}
@@ -367,7 +367,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 ```
 {{ end }}
 
-{{$appInner := "relationships:\n    mysqldatabase: \"dbmysql:mysql\"" }}
+{{$appInner := "relationships:\n    oracledatabase: \"oracle-mysql:mysql\"" }}
 
 {{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)

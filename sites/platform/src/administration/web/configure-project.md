@@ -14,27 +14,13 @@ The settings are divided into several sections.
 
 The **General** section shows you the project's region and allows you to update the project name and [timezone](../../projects/change-project-timezone.md).
 
-{{% version/specific %}}
 ![configure project](/images/management-console/settings-general.png "0.5")
-<--->
-![configure project](/images/console/settings-general.png "1.0")
-{{% /version/specific %}}
 
 ## Access
 
-{{% version/specific %}}
 The **Access** section allows you to [manage user access to the project](../users.md).
 
 ![Project configure icon](/images/management-console/settings-project-access.png "0.7")
-<--->
-The **Access** section allows you to [manage user access to the project](../users.md).
-
-<!-- @todo: for the release of teams -->
-<!-- The **Access** section allows you to [manage user access](../users.md),
-and [teams access](../teams.md) to a project. -->
-
-![Project configure icon](/images/console/settings-access-users.png "0.7")
-{{% /version/specific %}}
 
 ## Certificates
 

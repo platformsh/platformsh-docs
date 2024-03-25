@@ -10,49 +10,31 @@ Only use this feature to address edge cases where you need to proxy to another, 
 To expose your app to the outside world, see [how to define routes](../define-routes/_index.md).
 
 {{< /note >}}
-​
+
 Sometimes you want your app to pass requests on to a different {{% vendor/name %}} project.
-Basic redirects only work within the same project, so use proxy routes for routes elsewhere.​
+Basic redirects only work within the same project, so use proxy routes for routes elsewhere.
 
 You can define an external proxy on your {{% vendor/name %}} project by defining a route like the following:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml {configFile="routes"}
-routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://www.example.com
-```
-{{< /version/specific >}}
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/foo/index.html`.
-​
+
 You can also define a proxy route to an URL composed of an IP address and a port:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://192.0.2.0:8000
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml {configFile="routes"}
-routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://192.0.2.0:8000
-```
-{{< /version/specific >}}
+
+{{< note >}}
+Cache is disabled on this type of route and cannot be enabled.
+{{< /note >}}
 
 ## URL paths
 
@@ -61,22 +43,11 @@ In the basic example above, the route preserves the URL path, `/foo`, in the req
 If you want to proxy a route to `https://www.example.com` without the URL path `/foo`,
 add a trailing slash `/` to the `to` definition.
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com/
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml {configFile="routes"}
-routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://www.example.com/
-```
-{{< /version/specific >}}
 
 The trailing slash makes the proxy route interpret the location as having a different path.
 So requests for `https://{default}/foo/index.html` are forwarded to `https://www.example.com/index.html`.
@@ -84,22 +55,11 @@ So requests for `https://{default}/foo/index.html` are forwarded to `https://www
 To override the URL path entirely, define a route that contains its own path.
 For example:
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/foo:
     type: proxy
     to: https://www.example.com/bar
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml {configFile="routes"}
-routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://www.example.com/bar
-```
-{{< /version/specific >}}
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/bar/index.html`.
 
@@ -116,8 +76,6 @@ Use proxy routes so a single project can access different projects using the sam
 In the following example, a single project specifies proxy routes to three apps with the same `default` base URL.
 Each app handles a different language.
 
-{{< version/specific >}}
-<!-- Platform.sh configuration-->
 ```yaml {configFile="routes"}
 https://{default}/en:
     type: proxy
@@ -131,23 +89,6 @@ https://{default}/pt:
     type: proxy
     to: https://pt.example.com/
 ```
-<--->
-<!-- Upsun configuration -->
-```yaml {configFile="routes"}
-routes:
-    https://{default}/en:
-        type: proxy
-        to: https://en.example.com/
-
-    https://{default}/jp:
-        type: proxy
-        to: https://jp.example.com/
-
-    https://{default}/pt:
-        type: proxy
-        to: https://pt.example.com/
-```
-{{< /version/specific >}}
 
 The apps behind the proxy need to ensure links to assets are shown to the target domain.
 For example, by changing `https://en.example.com/style.css` to `https://example.com/en/style.css`.
@@ -183,5 +124,5 @@ sequenceDiagram
 This architecture makes the router of a single project into the central element of your app.
 This setup may make scaling more difficult as the router scales with the size of that project.
 The router can become a bottleneck for all external sites and acts as a single point of failure.
-​
+
 For larger projects, you should handle multiple websites with the same base URL via a [CDN](../domains/cdn/_index.md).
