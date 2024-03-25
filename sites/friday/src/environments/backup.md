@@ -59,17 +59,86 @@ For consistent backups, create the backups during non-peak hours for your site.
 
 ## Retention
 
-For information on how long backups are retained, see the [data retention policy](../security/data-retention.md).
+[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.</br>
+
+The maximum number of manual backups is configurable. Once the limit is reached, a new manual backup will replace the oldest backup.
+
+With the default configuration [Automated backups](../environments/backup.md#use-automated-backups) are retained for 2 days
+(meaning, 2 days worth of backups are retained at any given point).
+The retention time changes with the configuration of the automated backups.
+
 
 ## Use automated backups
 
-{{< vendor/name >}} provides 1 automated backup a day for your production environment,
+In {{< vendor/name >}} automated backups are fully configurable per environment type. You can build the schedule that fit your policy for the production, the staging and the developments environments.
+
+
+On a given environment type, you can configure:
+- the total number of backups (manual and automated)
+- the total number of manual backups
+- multiple schedules for automated backups
+
+A schedule is composed of an interval and a count. The interval defines the frequence of the backup. The count defines the number of backups to retain.
+
+An interval can be a couple of hours, days, weeks, months or years,
+- 'h' for hour
+- 'd' for day
+- 'w' for week
+- 'M for month
+- 'y' for year
+
+For example, if you want to take a backup every day and keep if 7 backups:
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} project:curl settings -X PATCH -d '{"data_retention": {"production": {"default_config": {"schedule": [{"interval": "1d", "count": 7},]}}}}'
+```
+
+Multiple schedule can be used to iplement you own backup policy and to keep multiple recent backups and less old backups.
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} project:curl settings -X PATCH -d '{"data_retention": {"production": {"default_config": {"schedule": [{"interval": "1d", "count": 7}, {"interval": "1w", "count": 4}, {"interval": "1M", "count": 12}]}}}}'
+```
+
+It will take:
+- a backup every day for a 7 days
+- a backup every week for 4 weeks
+- a backup every month for 12 months
+
+
+To configure the maximum number of backups on the production environment:
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} project:curl /settings -X PATCH -d '{"data_retention": {"production": {"max_backups": 10}}}'
+```
+
+To configure the maxiume number of manual backups on the production environment.
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} project:curl /settings -X PATCH -d '{"data_retention": {"production": {"default_config":  {"manual_count": 1}}}}'
+```
+
+
+### Default configuration
+
+By default {{< vendor/name >}} provides 1 automated backup a day for your production environment,
 with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).
+
+It it equivalent to one schedule with a "1d" interval and a count of 2.
 
 For more information on the backups {{< vendor/name >}} provides,
 see the [{{< vendor/name >}} backup policy](/security/backups.md).
 
 Automated backups are always [live](#live-backups).
+
+
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} project:curl settings -X PATCH -d '{"build_resources": {"cpu": 4.0, "memory": 2048}}'
+```
+
+
+
+
 
 ## Live backups
 

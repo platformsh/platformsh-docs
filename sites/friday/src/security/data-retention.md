@@ -29,12 +29,7 @@ When an environment is deleted, its application logs are deleted as well.
 
 ## Backups
 
-[Automated backups](../environments/backup.md#use-automated-backups) are retained for 2 days
-(meaning, 2 days worth of backups are retained at any given point).
-
-[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.</br>
-As {{< vendor/name >}} provides a maximum of [2 manual backups per environment type](/security/backups.md),
-the third manual backup automatically replaces the oldest backup.
+The backups retention depends on the [automated backup configuration](../environments/backup.md#use-automated-backups).
 
 ## Tombstone backups
 
@@ -51,4 +46,4 @@ We have configured our Google Analytics account to store data for 14 months from
 ## Trials
 
 User data - which includes pushed code and data contained within services - is retained for a shorter period during trials.
-See [Trial details](/glossary#trial). 
+See [Trial details](/glossary#trial).
