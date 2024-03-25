@@ -1,7 +1,7 @@
 name: Manage environment
 on:
   pull_request_target:
-    branches: [main]
+    branches: [main, ga-staging]
     types:
       - opened
       - reopened
