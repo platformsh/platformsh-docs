@@ -22,9 +22,9 @@ you still need to add some required files and make a few changes to your Upsun c
 There are many ways you can set up a WordPress site or Upsun project.
 The instructions on this page were designed based on the following assumptions:
 
-- You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress)
-- You do not have a `composer.json` file, or are comfortable making changes to your existing version
-- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide
+- You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
+- You do not have a `composer.json` file, or are comfortable making changes to your existing version.
+- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
 
 ## 1. Add required files
 
@@ -37,11 +37,10 @@ To ensure you have all the required files and directories in your project, follo
    - The [wp-cli.yml](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-cli.yml) file contains the configuration values, related to your site, for the [WordPress CLI](https://wp-cli.org/) to use
    - The [wp-config.php](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-config.php) file contains your site's base configuration details, such as database connection information
 
-2. To ensure Git tracks your empty folders, add a `.gitkeep` file to your project.
+2. Optional: To support non-public plugins, add a `plugins` directory to your project.
+To ensure Git tracks empty folders, add a `plugins/.gitkeep` file as well.
 
-3. Optional: To support non-public plugins, add a `plugins` directory to your project.
-
-4. Add and commit your changes.
+3. Add and commit your changes.
 
    ```bash {location="Terminal"}
    git add .
@@ -82,7 +81,7 @@ applications:
 {{< note theme="info" >}}
 If you're migrating your site, you may already have a `composer.json` file.
 You may even have generated your own instead of starting from the Platform.sh template version.</br>
-If so, you may also have added a `wordpress-install-dir` property for `extras` in your `composer.json` file.</br>
+If so, you may also have added a [`wordpress-install-dir` property](https://github.com/johnpbloch/wordpress-core-installer?tab=readme-ov-file#usage) for `extras` in your `composer.json` file.</br>
 In this case, set `root:` to the name of the directory where you are installing WordPress.
 {{< /note >}}
 
@@ -158,10 +157,11 @@ applications:
             root: "/"
         type: 'php:8.3'
         ...
-        build: |
-            set -eux
-            composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
-            rsync -a plugins/ wordpress/wp-content/plugins/
+        hooks:
+            build: |
+                set -eux
+                composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
+                rsync -a plugins/ wordpress/wp-content/plugins/
 ```
 
 You can adjust the `composer install` command to meet your specific requirements.
@@ -191,20 +191,22 @@ applications:
             root: "/"
         type: 'php:8.3'
         ...
-        deploy: |
-            set -eux
-            # Flushes the object cache
-            wp cache flush
-            # Runs the WordPress database update procedure
-            wp core update-db
-            # Runs all due cron events
-            wp cron event run --due-now
+        hooks:
+            deploy: |
+                set -eux
+                # Flushes the object cache
+                wp cache flush
+                # Runs the WordPress database update procedure
+                wp core update-db
+                # Runs all due cron events
+                wp cron event run --due-now
 ```
 
 ## 6. Configure your default route
 
 Next, instruct the [router](learn/overview/structure.md#router) how to handle requests to your WordPress app.
-To do so, locate the `routes:` section, and beneath it, the `"https://{default}/":` route.</br>
+To do so, locate the `routes:` section, and beneath it, the `"https://{default}/":` route.
+
 Update the route as follows:
 
 ```yaml {location="./.upsun/config.yaml"}
@@ -214,15 +216,20 @@ applications:
             root: "/"
         type: 'php:8.3'
         ...
-        "https://{default}/":
-            type: upstream
-            upstream: "wordpress-upsun:http"
-            cache:
-                enabled: true
-                cookies:
-                    - '/^wordpress_*/'
-                    - '/^wp-*/'
+
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "myapp:http"
+        cache:
+            enabled: true
+            cookies:
+                - '/^wordpress_*/'
+                - '/^wp-*/'
 ```
+
+Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage. 
+If these strings aren't the same, the WordPress deployment will not succeed. 
 
 ## 7. Update your MariaDB service relationship
 
