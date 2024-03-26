@@ -1,6 +1,6 @@
 ---
 title: "Single-runtime image"
-weight: 4
+weight: 3
 description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
 ---
 

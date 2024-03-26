@@ -22,7 +22,7 @@ See [all of the options you can use](/create-apps/app-reference/single-runtime-i
 
 ## Composable image (BETA)
 
-The {{% vendor/name %}} composable image provides more flexibility than built-in images.
+The {{% vendor/name %}} composable image provides more flexibility than single-runtime images.
 When using a composable image, you can define a stack (or group of packages) for your application container to use.
 
 There are over 80,000 packages available from the [Nix Packages collection](https://search.nixos.org/) that you can add to your stack.
