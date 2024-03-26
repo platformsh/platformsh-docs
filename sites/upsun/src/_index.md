@@ -48,11 +48,7 @@ After going through the **Get started** section, you may want to know more about
 Now that you understand the basic rules of {{% vendor/name %}}, you're likely ready to deploy your own custom code in a chosen framework.
 The **Frameworks** section is a collection of framework-specific how-to guides - from best practices to configuration, local development, and more.
 
-| Language              | Frameworks                                                                                                                  |
-| :----------------     |:----------------------------------------------------------------------------------------------------------------------------|
-| [Python](/languages/python/_index.md)                | [Django](/get-started/stacks/django.md)<br/>[Flask](/get-started/stacks/flask.md)                                           |
-| [PHP](/languages/php/_index.md)                      | [Symfony](/get-started/stacks/symfony/_index.md)<br/>[Laravel](/get-started/stacks/laravel.md)                                     |
-| [Javascript/Node.js](/languages/nodejs/_index.md)     | [Express](/get-started/stacks/express.md)<br/>[Next.js](/get-started/stacks/nextjs.md)<br/>[Strapi](/get-started/stacks/strapi.md) |
+{{< frameworks-landing >}}
 
 ### Reference
 
