@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.0.11
+# Platform.sh CLI 5.0.12
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -5600,7 +5600,7 @@ platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, email*, owner*, permissions*, created_at, first_name, last_name, updated_at, username (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, email*, owner*, permissions*, created_at, first_name, last_name, mfa_enabled, sso_enabled, updated_at, username (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header

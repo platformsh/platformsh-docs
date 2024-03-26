@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.0.11
+# Upsun CLI 5.0.12
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -1465,7 +1465,7 @@ upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore-co
   Whether code should be restored as well as data
 
 * `--resources-init` (expects a value)
-  Set the resources to use for new services: parent (default), default, minimum, or manual.
+  Set the resources to use for new services: parent, default or minimum. If not set, "parent" will be used.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2291,7 +2291,7 @@ upsun environment:activate [--parent PARENT] [--resources-init RESOURCES-INIT] [
   Set a new environment parent before activating
 
 * `--resources-init` (expects a value)
-  Set the resources to use for new services: parent (default), default, minimum, or manual.
+  Set the resources to use for new services: parent, default or minimum. If not set, "parent" will be used.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2362,7 +2362,7 @@ upsun branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout] [
   Do not check out the branch locally
 
 * `--resources-init` (expects a value)
-  Set the resources to use for new services: parent (default), default, minimum, or manual.
+  Set the resources to use for new services: parent, default or minimum. If not set, "parent" will be used.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -2979,7 +2979,7 @@ This command will initiate a Git merge of the specified environment into its par
 #### Options
 
 * `--resources-init` (expects a value)
-  Set the resources to use for new services: child (default), default, minimum, or manual.
+  Set the resources to use for new services: child, default, minimum or manual. If not set, "child" will be used.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3102,7 +3102,7 @@ upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstrea
   Do not clone the parent branch's data (only used with --activate)
 
 * `--resources-init` (expects a value)
-  Set the resources to use for new services: default, parent, minimum, or manual.
+  Set the resources to use for new services: parent, default, minimum, or manual. Currently the default is "default" but this will change to "parent" in future.
 
 * `--no-wait` (`-W`)
   Do not wait for the operation to complete
@@ -5479,7 +5479,7 @@ upsun org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [--d
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, email*, owner*, permissions*, created_at, first_name, last_name, updated_at, username (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, email*, owner*, permissions*, created_at, first_name, last_name, mfa_enabled, sso_enabled, updated_at, username (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
