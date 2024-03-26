@@ -79,4 +79,4 @@ title=Java
 ## Set a cron timezone
 
 You can set a specific timezone for your crons so they don't run in your app runtime timezone (or container timezone if no app runtime timezone is set on your project).
-To do so, [set the `timezone` top-level property](/create-apps/app-reference/builtin-image.md#top-level-properties) in your app configuration.
+To do so, [set the `timezone` top-level property](/create-apps/app-reference/single-runtime-image.md#top-level-properties) in your app configuration.

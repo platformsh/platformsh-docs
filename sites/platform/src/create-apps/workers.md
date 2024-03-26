@@ -5,7 +5,7 @@ description: Interact with your worker instances to handle background tasks for 
 
 Workers are instances of your code that aren't open to connections from other apps or services or the outside world.
 They're good for handling background tasks.
-See how to [configure a worker](/create-apps/app-reference/builtin-image.md#workers) for your app.
+See how to [configure a worker](/create-apps/app-reference/single-runtime-image.md#workers) for your app.
 
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
 
@@ -72,13 +72,13 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/builtin-image.md#crons)
-run only on the [`web`](/create-apps/app-reference/builtin-image.md#web) container, not on workers.
+Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
+run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`size`](/create-apps/app-reference/builtin-image.md#sizes), [`relationships`](/create-apps/app-reference/builtin-image.md#relationships),
-[`access`](/create-apps/app-reference/builtin-image.md#access), [`disk`](/create-apps/app-reference/builtin-image.md), [`mount`](/create-apps/app-reference/builtin-image.md#mounts), and [`variables`](/create-apps/app-reference/builtin-image.md#variables)
+Any top-level definitions for [`size`](/create-apps/app-reference/single-runtime-image.md#sizes), [`relationships`](/create-apps/app-reference/single-runtime-image.md#relationships),
+[`access`](/create-apps/app-reference/single-runtime-image.md#access), [`disk`](/create-apps/app-reference/single-runtime-image.md), [`mount`](/create-apps/app-reference/single-runtime-image.md#mounts), and [`variables`](/create-apps/app-reference/single-runtime-image.md#variables)
 are inherited by every worker, unless overridden explicitly.
 
 That means, for example, that the following two `{{< vendor/configfile "app" >}}` definitions produce identical workers.

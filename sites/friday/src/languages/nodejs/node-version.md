@@ -35,7 +35,7 @@ including Windows Subsystem for Linux.
 title=.nvmrc
 +++
 
-Create a `.nvmrc` file in [your app root](/create-apps/app-reference/builtin-image.md#root-directory):
+Create a `.nvmrc` file in [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
 
 ```yaml {location=".nvmrc"}
 v16.13.2
@@ -47,7 +47,7 @@ v16.13.2
 title=.n-node-version/.node-version
 +++
 
-Create a `.n-node-version` or `.node-version` file in [your app root](/create-apps/app-reference/builtin-image.md#root-directory):
+Create a `.n-node-version` or `.node-version` file in [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
 
 ```yaml {location=".n-node-version or .node-version"}
 16.13.2

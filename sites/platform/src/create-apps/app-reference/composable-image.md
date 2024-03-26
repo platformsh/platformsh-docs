@@ -64,7 +64,7 @@ To override any part of a property, you have to provide the entire property.
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                             |
 
 {{% note %}}
-Please note that, even if available in [Application reference](/create-apps/app-reference/builtin-image.md) when using the built-in image
+Please note that, even if available in [Application reference](/create-apps/app-reference/single-runtime-image.md) when using the built-in image
 of defining images to use in your application container, the  ``type``, ``build``, ``dependencies``, and ``runtime`` keywords
 are not supported if you choose to use Composable Image (`stack`).
 {{% /note %}}
@@ -304,7 +304,7 @@ applications:
 
 ### Mix of images
 
-In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [built-in image](/create-apps/app-reference/builtin-image.md) and [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) per application.
+In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [built-in image](/create-apps/app-reference/single-runtime-image.md) and [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) per application.
 
 As an example configuration for a ``frontend`` and a ``backend`` application:
 

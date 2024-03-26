@@ -297,7 +297,7 @@ make sure you [change the source root](#change-the-source-root-of-your-app) for 
 ## Change the source root of your app
 
 When your app's code base and configuration file aren't located at the same directory level in your project repository,
-you need to [define a root directory](/create-apps/app-reference/builtin-image.md#root-directory) for your app.
+you need to [define a root directory](/create-apps/app-reference/single-runtime-image.md#root-directory) for your app.
 
 To do so, add a new `source.root` property in your app configuration.
 

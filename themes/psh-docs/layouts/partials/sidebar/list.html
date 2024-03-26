@@ -90,6 +90,7 @@
           <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+              {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
           </a>
 
           <!-- If this item has children -->
@@ -113,6 +114,7 @@
                     <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
                         {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
                         {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+                        {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
                     </a>
                   </li>
                 {{ end }}

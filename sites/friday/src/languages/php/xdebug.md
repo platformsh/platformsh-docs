@@ -33,7 +33,7 @@ You also need:
 
 Xdebug runs as a second PHP-FPM process used only for debugging requests, leaving the normal process unaffected.
 
-To enable Xdebug, add the following to your [app configuration](/create-apps/app-reference/builtin-image.md):
+To enable Xdebug, add the following to your [app configuration](/create-apps/app-reference/single-runtime-image.md):
 
 ```yaml {configFile="app"}
 applications:
@@ -117,7 +117,7 @@ The common steps for setup usually include:
     The Port should always be `443` and the Debugger set to `Xdebug`.
 4. Ensuring path mappings is enabled.
     This lets you define what remote paths on the server correspond to what path on your local machine.
-    In the majority of cases you can just define [your app root](/create-apps/app-reference/builtin-image.md#root-directory)
+    In the majority of cases you can just define [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory)
     to map to `app`.
 5. Listening for connections.
 6. Starting debugging. While in listen mode, start the `{{% vendor/cli %}} xdebug` tunnel.

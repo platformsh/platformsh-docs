@@ -6,7 +6,7 @@ description: See all of the options for controlling your apps and how they're bu
 
 {{% description %}}
 
-There is two choice on how to define your apps, either using [built-in images](/create-apps/app-reference/builtin-image.md) or [Composable Images](/create-apps/app-reference/composable-image.md).
+There is two choice on how to define your apps, either using [built-in images](/create-apps/app-reference/single-runtime-image.md) or [Composable Images](/create-apps/app-reference/composable-image.md).
 
 ## Built-in images
 {{% vendor/name %}} is providing and maintaining a list of runtime images that you can use for each of your application containers,

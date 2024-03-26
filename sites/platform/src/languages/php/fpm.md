@@ -14,7 +14,7 @@ By default, {{% vendor/name %}} automatically sets a maximum number of PHP-FPM w
 This number is calculated based on three parameters:
 
 - The container memory: the amount of memory you can allot for PHP processing
-  depending on [app size](/create-apps/app-reference/builtin-image.md#sizes).
+  depending on [app size](/create-apps/app-reference/single-runtime-image.md#sizes).
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
 
@@ -103,7 +103,7 @@ These values allow most programs to run,
 but you can amend them to fit your needs.
 
 To do so, adjust your [app configuration](../../create-apps/_index.md).
-Under `runtime` in the [`sizing_hints` setting](/create-apps/app-reference/builtin-image.md#sizing-hints),
+Under `runtime` in the [`sizing_hints` setting](/create-apps/app-reference/single-runtime-image.md#sizing-hints),
 set the values for `reserved_memory` and `request_memory`.
 
 For example,

@@ -48,7 +48,7 @@ graph LR
 
 The `relationships` block defines the connection between Varnish and your app.
 You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
-<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](/create-apps/app-reference/builtin-image.md).
+<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](/create-apps/app-reference/single-runtime-image.md).
 
 The `configuration` block must reference a VCL file inside the `{{< vendor/configdir >}}` directory.
 The `path` defines the file relative to the `{{< vendor/configdir >}}` directory.
@@ -274,7 +274,7 @@ which provides access to some Varnish analysis and debugging tools.
 
 You can't use it from an app fronted by Varnish because of the restriction with [circular relationships](#circular-relationships).
 To access the stats, create a **separate app** (`stats-app`) with a relationship *to* Varnish, but not *from* it.
-Define [app configuration](/create-apps/app-reference/builtin-image.md) similar to the following:
+Define [app configuration](/create-apps/app-reference/single-runtime-image.md) similar to the following:
 
 ```yaml {configFile="apps"}
 {{% snippet name="stats-app" config="apps" root="stats" %}}
@@ -330,5 +330,5 @@ To access the Varnish stats endpoint from the command line:
 
 1. Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
    (replace `stats-app` with the name you gave the app).
-2. Display the [relationships array](/create-apps/app-reference/builtin-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
+2. Display the [relationships array](/create-apps/app-reference/single-runtime-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

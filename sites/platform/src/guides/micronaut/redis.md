@@ -21,7 +21,7 @@ In your [service configuration](../../add-services/_index.md), include Persisten
 
 ## 2. Add the Redis relationship
 
-In your [app configuration](/create-apps/app-reference/builtin-image.md), use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](/create-apps/app-reference/single-runtime-image.md), use the service name `redisdata` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="registry/images/examples/full/redis-persistent.app.yaml" highlight="yaml" configFile="app" >}}
 

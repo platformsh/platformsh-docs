@@ -303,7 +303,7 @@ To test responses, [set up a webhook](./webhooks.md#setup).
 
 ### Cron
 
-When a cron job is triggered, the activity contains all the [job's information](/create-apps/app-reference/builtin-image.md#crons).
+When a cron job is triggered, the activity contains all the [job's information](/create-apps/app-reference/single-runtime-image.md#crons).
 The following example response was triggered by a setting
 where the cron is scheduled to run every five minutes (`5 * * * *`)
 with the command `sleep 60 && echo sleep-60-finished && date` and times out after 86,400 seconds.
@@ -540,8 +540,8 @@ The `environment` property contains the settings for the environment that was pu
 ```
 
 The `deployment` property contains the settings for the deployment,
-including the [image type](/create-apps/app-reference/builtin-image.md#types) and
-[resource allocation](/create-apps/app-reference/builtin-image.md#sizes).
+including the [image type](/create-apps/app-reference/single-runtime-image.md#types) and
+[resource allocation](/create-apps/app-reference/single-runtime-image.md#sizes).
 
 The following example shows a shortened excerpt of the `deployment` property:
 

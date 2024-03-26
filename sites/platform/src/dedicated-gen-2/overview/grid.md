@@ -78,7 +78,7 @@ This shouldn't affect you most of the time, but may influence certain advanced u
 
 ## Cron tasks interrupted by deploys
 
-How [cron tasks](/create-apps/app-reference/builtin-image.md#crons) interact with deploys changes based on the environment.
+How [cron tasks](/create-apps/app-reference/single-runtime-image.md#crons) interact with deploys changes based on the environment.
 
 On Grid environments, a running cron task blocks a deploy until the cron is complete.
 On {{% names/dedicated-gen-2 %}} environments, a deploy terminates a running cron task.
@@ -98,14 +98,14 @@ It's assumed you want the settings the same, unless you state otherwise in the t
 
 The following settings require a [support ticket](/learn/overview/get-support):
 
-* [Worker instances](/create-apps/app-reference/builtin-image.md#workers)
+* [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
 * [Service configuration](../../add-services/_index.md)
 * Relationships among services and apps
 * Plan upsizing
 * Increasing storage
 * Allocating storage among mounts and services
 * [PHP extensions](../../languages/php/extensions.md)
-* Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/builtin-image.md#locations))
+* Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations))
 
 ## Logs
 

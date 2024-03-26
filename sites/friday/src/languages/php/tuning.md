@@ -18,7 +18,7 @@ To make a PHP-based site run faster, the first step is to upgrade the PHP versio
 Upgrading the PHP version might require changes to your app.
 For more details and recommendations, see the [PHP migration guides](https://www.php.net/manual/en/migration80.php).
 
-To change your PHP version, change the [`type` in your app configuration](/create-apps/app-reference/builtin-image.md#types).
+To change your PHP version, change the [`type` in your app configuration](/create-apps/app-reference/single-runtime-image.md#types).
 Before merging to production, test the change on a branch and make sure that your app is working as expected.
 
 ## Optimize the FPM worker count
@@ -60,7 +60,7 @@ applications:
                php:
                      opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
 ```
-`{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](/create-apps/app-reference/builtin-image.md#root-directory).
+`{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
 
 The following example uses a `preload.php` file as the preload script.
@@ -95,7 +95,7 @@ To determine the maximum number of files to cache, follow these steps:
 
 1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
    by running `{{% vendor/cli %}} ssh`.
-2. Determine roughly how many `.php` files your app has by running this command from [your app root](/create-apps/app-reference/builtin-image.md#root-directory):
+2. Determine roughly how many `.php` files your app has by running this command from [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
 
    ```bash
    find . -type f -name '*.php' | wc -l

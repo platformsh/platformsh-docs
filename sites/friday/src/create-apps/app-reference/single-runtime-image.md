@@ -1,5 +1,5 @@
 ---
-title: "Built-in Image"
+title: "Single-runtime image"
 weight: 4
 description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
 ---
@@ -99,7 +99,7 @@ applications:
 
 ### Mix of images
 
-In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [built-in image](/create-apps/app-reference/builtin-image.md) and [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) per application.
+In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [single-runtime image](/create-apps/app-reference/single-runtime-image.md) and [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) per application.
 
 As an example configuration for a ``frontend`` and a ``backend`` application:
 

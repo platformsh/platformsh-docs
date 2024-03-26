@@ -105,7 +105,7 @@ Burst allows your container to use additional resources when they aren't needed 
 If you have a container in a prolonged burst state, you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md)
-* Changing your [app size](/create-apps/app-reference/builtin-image.md#sizes)
+* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)
 
@@ -124,7 +124,7 @@ If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* Changing your [app size](/create-apps/app-reference/builtin-image.md#sizes)
+* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
   or [service size](../../add-services/_index.md#size)
 * [Increasing your plan](../../administration/pricing/_index.md)
 

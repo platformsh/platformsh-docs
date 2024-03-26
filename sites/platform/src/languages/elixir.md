@@ -79,7 +79,7 @@ hooks:
 ```
 {{< note >}}
 
-That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](/create-apps/app-reference/builtin-image.md#root-directory).
+That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 {{< /note >}}
 
