@@ -18,7 +18,7 @@ When using a built-in image, you can only set one runtime per application contai
 
 {{% /note %}}
 
-See [all of the options you can use](/create-apps/app-reference/single-runtime-image.md) to define your app using a built-in image.
+See [all of the options you can use](/create-apps/app-reference/single-runtime-image.md) to define your app using a single-runtime image.
 
 ## Composable image (BETA)
 
