@@ -1,5 +1,6 @@
 ---
 title: "Troubleshoot disks"
+weight: 10
 ---
 
 {{% troubleshoot %}}
