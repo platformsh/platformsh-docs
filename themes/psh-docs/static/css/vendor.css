@@ -124,3 +124,7 @@ h4.font-semibold {
 summary {
   cursor: pointer;
 }
+
+.framework-table {
+    border-bottom: 2px solid var(--tw-prose-td-borders) !important;
+}

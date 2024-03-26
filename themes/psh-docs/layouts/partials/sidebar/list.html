@@ -87,7 +87,13 @@
       {{ end }}
       <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
         <div class="flex items-center pl-4 justify-between{{ if ne .Kind "section" }} py-2 pl-4 {{ end }}">
-          <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
+          {{ $destination := .RelPermalink }}
+          {{ if .Params.redirect }}
+            {{ with .GetPage .Params.redirect }}
+              {{ $destination = .RelPermalink }}
+            {{ end }}
+          {{ end }}
+          <a href="{{ $destination }}" destination="{{ $destination }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
           </a>
