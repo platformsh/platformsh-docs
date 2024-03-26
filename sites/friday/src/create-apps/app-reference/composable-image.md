@@ -115,7 +115,7 @@ The Nix packages listed in the following table are officially supported by Upsun
 However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
 This includes packages from the ``unstable`` channel,
 like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
-While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not Upsun. 
+While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not Upsun.
 {{% /note %}}
 
 Depending on the Nix package, you can select only the major runtime version,
@@ -172,11 +172,7 @@ follow these steps:
 ![Screenshot of the Nix package sets selection for PHP@8.3](/images/nixos/nixos-packages.png "0.5")
 
 To install the desired extensions or packages, follow these steps:
-
-{{< codetabs >}}
-+++
-title=PHP
-+++
+#### PHP extensions
 
 To enable [PHP extensions](/languages/php/extensions.md),
 specify a list of `extensions` below the language definition.</br>
@@ -227,13 +223,11 @@ applications:
           - zip
           - imagick
 ```
-
 {{% /note %}}
 
-<--->
-+++
-title=Python
-+++
+Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
+
+#### Python
 
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
@@ -248,10 +242,6 @@ applications:
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 ```
-
-{{< /codetabs >}}
-
-Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
 
 ### Example configuration
 
