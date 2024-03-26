@@ -15,121 +15,247 @@ Before you proceed, be sure to checkout the [{{% vendor/name %}} demo app](https
 
 {{< /note >}}
 
-Now that you have completed the [Getting started guide](/get-started/here/_index.md), there are **six remaining changes**
-required in order to have a successful deployment of Django on Upsun. Alternatively, you can read the blog post
-[_Up(sun) and running with Django_](https://upsun.com/blog/setting-up-django-on-upsun/) which walks through the steps
-required to run Django on Upsun.
+Now that you have completed the [Getting started guide](/get-started/here/_index.md), there are **a few remaining changes**
+that may be needed in order to have a successful deployment of Django on Upsun. 
+Alternatively, you can read the blog post [_Up(sun) and running with Django_](https://upsun.com/blog/setting-up-django-on-upsun/) which walks through the steps required to run Django on Upsun.
 
-## `.environment`
-Your Django app, depending on your `settings.py`, may require environment variables that have not been set. Open the `.environment` file and add them:
-```shell
+## 1. Configure with environment variables
+
+Your `settings.py` file may allow for environment variables to be set for common pieces of configuration. 
+In this case, add and commit a `.environment` file that includes those details. 
+
+```shell {location=".environment"}
 export DJANGO_SETTINGS_MODULE=config.settings.production
 export DJANGO_SECRET_KEY="$PLATFORM_PROJECT_ENTROPY"
-export DJANGO_ALLOWED_HOSTS=".platformsh.site"
+export DJANGO_ALLOWED_HOSTS=".{{< vendor/urlraw "hostname" >}}"
 ```
-This section appends Django’s allowed hosts to include all URLs generated for Upsun preview environments, to update
-Django’s secret key to match the unique project hash, and to leverage production settings (in this case) across all
-Upsun environments.
 
-## `.upsun/config.yaml`
-Similarly, there are several changes we need to make to the Upsun configuration file so that Upsun knows how your Django
-application should behave. Open the `.upsun/config.yaml` file and make the changes below.
-### Start command
-Find the `web:commands:start` section. Change the following line from:
-```yaml
-start: "echo 'Put your web server command in here! You need to listen to \"$UNIX\" unix socket. Read more about it here: https://docs.upsun.com/create-apps/app-reference.html#web-commands'; sleep 60"
+Not all Django apps will allow for configuration in this way.
+See the following sections to see how other common settings should be set on Upsun.
+
+## 2. Configure `ALLOWED_HOSTS`
+
+If your `settings.py` does not allow you to use an environment variable (like `DJANGO_ALLOWED_HOSTS` above) to configure allowed hosts, update `settings.py` to include `{{< vendor/urlraw "hostname" >}}`:
+
+```py {location="settings.py"}
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.{{< vendor/urlraw "hostname" >}}',
+]
 ```
+
+Appending `.{{< vendor/urlraw "hostname" >}}` to `ALLOWED_HOSTS` will allow for all URLs generated for Upsun preview environments.
+
+## 3. Upsun-specific settings
+
+Near the bottom of your `settings.py` file, define a block that detects when Django is running on an Upsun environment that will override previous settings. 
+If your configuration is split into a `production.py` file for production settings, place it there instead. 
+
+```py {location="settings.py"}
+# Production/Upsun settings.
+if (os.getenv('PLATFORM_APPLICATION_NAME') is not None):
+    DEBUG = False
+
+    # Static dir.
+    if (os.getenv('PLATFORM_APP_DIR') is not None):
+        STATIC_ROOT = os.path.join(os.getenv('PLATFORM_APP_DIR'), 'static')
+
+    # Secret Key.
+    if (os.getenv('PLATFORM_PROJECT_ENTROPY') is not None):
+        SECRET_KEY = os.getenv('PLATFORM_PROJECT_ENTROPY')
+
+    # Production database configuration.
+    if (os.getenv('PLATFORM_ENVIRONMENT') is not None):
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': os.getenv('DATABASE_PATH'),
+                'USER': os.getenv('DATABASE_USERNAME'),
+                'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+                'HOST': os.getenv('DATABASE_HOST'),
+                'PORT': os.getenv('DATABASE_PORT'),
+            },
+            'sqlite': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            }
+        }
+```
+
+This update includes a few important changes:
+
+1. **Overwrites.** If the `PLATFORM_APPLICATION_NAME` Upsun built-in variable is found (that is, Django is running on an Upsun environment), override your previous settings.
+No matter what environment type we run on Upsun, this file uses production settings for Upsun (i.e. `DEBUG = False`).
+1. **Static.** `STATIC_ROOT`, and the `static` files path is updated relative to the application root on Upsun.
+1. **Secret key.** All Upsun projects come with a unique hash environment variable `PLATFORM_PROJECT_ENTROPY` that can be used to update your `SECRET_KEY`.
+1. **Databases.** When Django is running on an Upsun enviroment _at runtime_, it will have access to service containers like databases and caches. 
+Every service container you configure in `.upsun/config.yaml` will have a unique relationship name (`applications:<APP_NAME>:relationships:<RELATIONSHIPNAME>`), which Upsun will automatically use to expose connection credentials through environment variables (for example, via `RELATIONSHIPNAME_HOST`). 
+Update `settings.py` according to the example above (which configures a PostgreSQL service), where the relationship `database` results in environment variables that are leveraged to update the `DATABASES` setting for your application.
+You can use the exact same logic to configure `CACHES` from the `rediscache` relationship using the exposed `REDISCACHE_` environment variables to setup `django_redis.cache.RedisCache`. 
+
+## 4. Starting the application
+
+Find the `web:commands:start` section. 
+Change the following line from:
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        web:
+            commands:
+                start: "echo 'Put your web server command in here!..."
+            upstream:
+                socket_family: unix
+```
+
 to
-```yaml
-start: "gunicorn -b unix:$SOCKET config.wsgi"
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        web:
+            commands:
+                start: "gunicorn -b unix:$SOCKET config.wsgi"
+            upstream:
+                socket_family: unix
 ```
+
 If your Django instance requires a different Web server, we also support [several other options](/languages/python/server.md).
 
-### Static assets
-In order to access Django's static assets we need to add a second location to the `web:locations` block. In the
-`.upsun/config.yaml` file, locate the `web:locations` section. Expand what is currently there to include a location for
-`/static`:
+## 5. Configure static assets
 
-```yaml
+In order to access Django's static assets we need to add a second location to the `web:locations` block. 
+In the `.upsun/config.yaml` file, locate the `web:locations` section. 
+Expand what is currently there to include a location for `/static`:
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        web:
             locations:
-              "/":
-                "passthru": true
-              "/static":
-                "allow": true
-                "expires": "1h"
-                "root": "static"
+                "/":
+                    "passthru": true
+                "/static":
+                    "allow": true
+                    "expires": "1h"
+                    "root": "static"
 ```
 
+## 6. Install dependencies and builds
 
-### Installation during the Build Hook
-Next we need to instruct Upsun to install our python and node dependencies. Scroll down a bit farther and find the
-`hooks:build` section. Change the following lines from:
-```yaml
-    build: |
-      set -eux
+Next we need to instruct Upsun to install our Python and Node (if neeeded) dependencies. 
+Find the `hooks:build` section and change the following lines from:
 
-      # Add build steps here.
-      # echo 'I am a build step'
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        build: |
+            set -eux
+
+            # Add build steps here.
+            # echo 'I am a build step'
 ```
+
 to:
-```yaml
-    build: |
-      set -eux
-      pip install --upgrade pip
-      pip install -r requirements.txt
-      npm install
-      npm run build
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        build: |
+            set -eux
+
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            npm install
+            npm run build
 ```
+
+Remove the `npm` steps if not required for your application's assets.
 If your project uses a different package manager, we also support [several other options](/languages/python/dependencies.md).
 
-### Deploy Hook
-Just below that, find the `deploy` section and change the following lines from:
-```yaml
-      deploy: |
-        set -eux
-        # echo 'Put your deploy command here'
+## 7. Configure the deploy phase
+
+Find the `deploy` section and change the following lines from:
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        deploy: |
+            set -eux
+
+            # echo 'Put your deploy command here'
 ```
+
 to:
-```yaml
-      deploy: |
-        set -eux
-        python manage.py collectstatic --noinput
-        python manage.py migrate
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        deploy: |
+            set -eux
+
+            python manage.py collectstatic --noinput
+            python manage.py migrate
 ```
 
-### Mounts
-Since Django requires a writable location, we'll need to attach writable mount. Locate the `mounts` section (currently
-commented). Change the following lines from:
+## 8. Allow write access where needed
 
-```yaml
-    # mounts:
-    #   "/.cache": # Represents the path in the app.
-    #     source: "local" # "local" sources are unique to the app, while "service" sources can be shared among apps.
-    #     source_path: "cache" # The subdirectory within the mounted disk (the source) where the mount should point.
+Since Django can require a writable locations at runtime, we'll need to attach writable mounts. 
+Locate the `mounts` section (currently commented), and change the following lines from:
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
+        # mounts:
+        #     "/.cache":
+        #         source: "local"
+        #         source_path: "cache"
 ```
-to
 
-```yaml
+to locations that require write access:
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+    myapp:
+        ...
         mounts:
-          "/staticfiles":
-            "source": "local"
-            "source_path": "static_assets"
+            "/staticfiles":
+                source: "local"
+                source_path: "static_assets"
 ```
-## Commit and push
-You can now commit the changes to `.environment` and `.upsun/config.yaml` and push to Upsun.
-## Further Documentation
+
+You can now commit all of the above changes and push to Upsun.
+
+```bash
+git add .
+git commit -m "Add changes to complete my Upsun configuration"
+git push
+```
+
+## Further resources
+
+### Documentation
 
 - [Python documentation](/languages/python/)
 - [Managing dependencies](/languages/python/dependencies)
 - [Configuring web servers](/languages/python/server)
 
-## Community content
+### Community content
 
 - [Django topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=django)
 - [Python topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=python)
 
-<!-- ## Blogs -->
+### Blogs
 
-
+- [_Up(sun) and running with Django_](https://upsun.com/blog/setting-up-django-on-upsun/)
 
 <!-- ## Video -->
