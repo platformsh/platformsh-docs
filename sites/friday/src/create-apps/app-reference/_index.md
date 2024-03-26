@@ -5,10 +5,10 @@ description: Configure your app and control how it's built and deployed on {{% v
 layout: single
 ---
 
-To define your app, you can either use one of {{% vendor/name %}}'s [built-in images](/create-apps/app-reference/single-runtime-image.md)
+To define your app, you can either use one of {{% vendor/name %}}'s [Single-runtime image](/create-apps/app-reference/single-runtime-image.md)
 or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
 
-## Built-in images
+## Single-runtime image
 
 {{% vendor/name %}} provides and maintains a list of runtime images you can use for each of your application containers.
 
