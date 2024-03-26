@@ -14,7 +14,7 @@ or its [composable image (BETA)](/create-apps/app-reference/composable-image.md)
 
 {{% note %}}
 
-When using a built-in image, you can only set one runtime per application container.
+When using a single-runtime image, you can only set one runtime per application container.
 
 {{% /note %}}
 
