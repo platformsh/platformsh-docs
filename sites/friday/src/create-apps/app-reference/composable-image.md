@@ -5,15 +5,15 @@ description: Use {{% vendor/name %}}'s composable image to build and deploy your
 beta: true
 banner:
   title: Beta Feature
-  body: The Upsun composable image is currently available in Beta.
+  body: The {{% vendor/name %}} composable image is currently available in Beta.
         This feature as well as its documentation is subject to change.
 ---
 
-The Upsun composable image provides enhanced flexibility when defining your app.
+The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
 It allows you to install several runtimes and tools in your application container,
 in a **"one image to rule them all"** approach.
 
-The Upsun composable image built on [Nix](https://nix.dev), which offers the following benefits:
+The {{% vendor/name %}} composable image built on [Nix](https://nix.dev), which offers the following benefits:
 
 - You can add as many packages to your application container as you need,
   choosing from [the Nixpkgs collection](https://search.nixos.org/packages), a library of over 80,000 packages.
@@ -60,7 +60,7 @@ To override any part of a property, you have to provide the entire property.
 
 | Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |--------------------|-----------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `stack`            | An array of Nix [packages](#stack)                | Yes      | No               | A list of packages from our collection of supported runtimes and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                                           |
+| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from our collection of supported runtimes and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                                           |
 | `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
 | `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
@@ -111,11 +111,11 @@ and visit the documentation page dedicated to your runtime.
 ### Supported Nix packages
 
 {{% note %}}
-The Nix packages listed in the following table are officially supported by Upsun to provide optimal user experience.</br>
+The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
 However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
 This includes packages from the ``unstable`` channel,
 like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
-While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not Upsun.
+While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
 {{% /note %}}
 
 Depending on the Nix package, you can select only the major runtime version,
@@ -171,12 +171,7 @@ follow these steps:
 
 ![Screenshot of the Nix package sets selection for PHP@8.3](/images/nixos/nixos-packages.png "0.5")
 
-To install the desired extensions or packages, follow these steps:
-
-{{< codetabs >}}
-+++
-title=PHP
-+++
+#### Install PHP extensions
 
 To enable [PHP extensions](/languages/php/extensions.md),
 specify a list of `extensions` below the language definition.</br>
@@ -230,10 +225,7 @@ applications:
 
 {{% /note %}}
 
-<--->
-+++
-title=Python
-+++
+#### Install Python packages
 
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
@@ -248,8 +240,6 @@ applications:
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 ```
-
-{{< /codetabs >}}
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
 
@@ -1278,11 +1268,11 @@ The following table shows the properties that can be set in `source`:
 
 ## Container profile
 
-By default, Upsun allocates a container profile to each app and service depending on the range of resources it’s
+By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it’s
 expected to need.
 
 Each container profile gives you access to a specific list of CPU and RAM combinations.
-Using the Upsun CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
+Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
 - [Container profile types and resources](/manage-resources/adjust-resources#advanced-container-profiles)
 - [Default container profiles](/manage-resources/adjust-resources#default-container-profiles) for runtime and service

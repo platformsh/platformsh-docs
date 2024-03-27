@@ -1,41 +1,39 @@
 ---
 title: "Composable image"
-weight: 5
-description: See all of the options for composable image to built and deployed your application on {{% vendor/name %}}.
+weight: 4
+description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
+beta: true
+banner:
+  title: Beta Feature
+  body: The {{% vendor/name %}} composable image is currently available in Beta.
+        This feature as well as its documentation is subject to change.
 ---
 
-{{% description %}}
+The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
+It allows you to install several runtimes and tools in your application container,
+in a **"one image to rule them all"** approach.
 
-For single-app projects, the configuration is all done in a `{{< vendor/configfile "app" >}}` file,
+The {{% vendor/name %}} composable image built on [Nix](https://nix.dev), which offers the following benefits:
+
+- You can add as many packages to your application container as you need,
+  choosing from [the Nixpkgs collection](https://search.nixos.org/packages), a library of over 80,000 packages.
+- The packages you add are treated like values and built in total isolation,
+  meaning you can install different versions of the same package very easily.
+- With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
+  What works on your local machine is guaranteed to work on any other machine.
+
+To help you quickly configure your composable image from your `{{< vendor/configfile "app" >}}` file (located at the root of your Git repository),
+see this [configuration example](../_index.md#comprehensive-example).
+
+See a more detailed introduction to the composable image in [this video](https://www.youtube.com/watch?v=emOt32DVl28).
+
+{{% note %}}
+
+You can configure single-app projects entirely from your `{{< vendor/configfile "app" >}}` file,
 usually located at the root of your app folder in your Git repository.
-[Multi-app projects](../multi-app/_index.md) can be set up in various ways.
+You can set up [multi-app projects in various ways](../multi-app/_index.md).
 
-## What is a Composable Image?
-
-Composable image is a new way to install different runtimes and tools in your application container, built-in using [NixOs](https://nix.dev/reference/glossary#term-NixOS).
-That way, your application container becomes fully flexible with an easier way to install things, with a library of 80'000+ available packages.
-
-[NixOs](https://nix.dev/reference/glossary#term-NixOS) is a Linux distribution based on [Nix](https://nix.dev/reference/glossary#term-Nix) and [NixPkgs](https://nix.dev/reference/glossary#term-Nixpkgs).
-It's a functional package manager, which is based on the [Nix Language](https://nix.dev/tutorials/nix-language).
-With it, packages are backed as values and all of them are built in total isolation.
-Which make it possible to install different versions of the same package very easily.
-With [Nix](https://nix.dev/reference/glossary#term-Nix), there is no undeclared dependencies in your source code
-and if it works locally, it will work on yours.
-
-
-{{% note title="TODO" %}}
-TODO: What is NixOs ? complete the definition as i'm not sure of it :P
-
-Intersting quote from Jerome's internal presentation: https://drive.google.com/file/d/1_w4NwEae3RWt6lYYW_2Er7Fy7zRJ7tac/view
-
-- `One image to rule them all`
 {{% /note %}}
-
-If you want to learn more about Nix, please have a look on [Jérôme Vieilledent's presentation](https://www.youtube.com/watch?v=emOt32DVl28) during the Symfony Con Brussels 2023 (our Product Manager of that Composable Image feature).
-
-See a [comprehensive example](../_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
-
-For reference, see a [log of changes to app configuration](../upgrading.md).
 
 ## Top-level properties
 
@@ -47,7 +45,7 @@ To override any part of a property, you have to provide the entire property.
 | Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                    |
 |--------------------|-----------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                 |
-| `stack`            | An array of [NixOs runtimes](#stack)                | Yes      | No               | The list of runtime images to use with a specific app. Format: <br>`<runtime>@<version>`.                                                                                                                                                                      |
+| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from our collection of supported runtimes and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                               |
 | `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                        |
 | `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                        |
 | `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                |
@@ -69,52 +67,49 @@ of defining images to use in your application container, the  ``type``, ``build`
 are not supported if you choose to use Composable Image (`stack`).
 {{% /note %}}
 
-## Root directory
-
-{{% note title="TODO REMOVE ?" %}}
-Does this section can't be removed from here as the [source](#source) exists at the end ?
-{{% /note %}}
-
-Some of the properties you can define are relative to your app's root directory.
-The root defaults to the root of the repository.
-
-```yaml {configFile="app"}
-applications:
-  frontend:
-    stack: [ "nodejs:{{% latest nodejs %}}" ]
-    # Default behavior of source.root
-    source:
-      root: "/"
-    # Additional frontend configuration
-```
-
-That is, if a custom value for `source.root` is not provided in your configuration, the default behavior is equivalent
-to the above.
-
-To specify another directory, for example for a [multi-app project](../multi-app/_index.md),
-use the [`source.root` property](#source).
-
 ## Stack
 
-The ``stack`` keyword is used for defining runtimes and other binaries (like `wkhtmltopdf`, or `imagemagick`, see list
-below),
-as a YAML array, that you would like to install in your application container.
-The version is the major (`X`) and sometimes minor (`X.Y`) version numbers,
-depending on the service, as in the following table.
-Security and other patches are taken care of for you automatically.
+Use the ``stack`` key to define which runtimes and binaries you want to install in your application container.
+Define them as a YAML array as follows:
 
 ```yaml {configFile="app"}
-applications:
-  app:
-    stack: [ "<runtime>@<version>" ]
+myapp:
+    stack: [ "<nixpackage>@<version>" ]
     # OR
     stack:
-      - "<runtime>@<version>"
+      - "<nixpackage>@<version>"
 ```
 
-Available languages and their supported versions:
+To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
+To add a tool to your stack, use the `<nixpackage>` format as no version is needed.
 
-| **Language**                                 | **`runtime`** | **Supported `version`**    |
+{{% note %}}
+If you add multiple runtimes to your application container,
+the first declared runtime becomes the primary runtime.
+The primary runtime is the one that is automatically started.</br>
+If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
+
+To start other declared runtimes, you need to start them manually, using [web commands](#web-commands).
+To find out which start command to use, go to the [Languages](/languages/_index.md) section,
+and visit the documentation page dedicated to your runtime.
+
+{{% /note %}}
+
+### Supported Nix packages
+
+{{% note %}}
+The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
+However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
+This includes packages from the ``unstable`` channel,
+like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
+{{% /note %}}
+
+Depending on the Nix package, you can select only the major runtime version,
+or the major and minor runtime versions as shown in the following table.
+Security and other patches are applied automatically.
+
+| **Language**                                 | **`Nix package`** | **Supported `version`**    |
 |----------------------------------------------|---------------|----------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
 | [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
@@ -127,32 +122,13 @@ Available languages and their supported versions:
 | [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
 | [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
 
-Available tools and their supported versions:
+**Example:**
 
-| **Tool**                                                             | **`runtime`** | **Supported `version`** |
-|----------------------------------------------------------------------|---------------|-------------------------|
-| [Face detector](https://www.thregr.org/~wavexx/software/facedetect/) | `facedetect`  | none                    |
-| [GNU Compiler Collection](https://gcc.gnu.org/)                      | `gcc`         | none                    |
-| [Graph visualization tools](https://graphviz.org/)                   | `graphviz`    | none                    |
-| [ImageMagick](http://www.imagemagick.org/)                           | `imagemagick` | none                    |
-| [WkHtmlToPdf](https://wkhtmltopdf.org/)                              | `wkhtmltopdf` | none                    |
-| [Yarn](https://classic.yarnpkg.com/)                                 | `yarn`        | none                    |
-
-{{% note title="TODO" %}}
-TODO REMOVE exhaustive list of runtime and tools here https://lab.plat.farm/images/generic/-/blob/Nix/flake.nix?ref_type=heads#L161
-{{% /note %}}
-
-To add a tool in your `stack`, please use the format `<runtime>` for the tool, as no `version` is provided.
-
-Format:
-* Language: `<runtime>@<version>`
-* Tool: `<runtime>`
-
-As an example for PHP version {{% latest php %}} and ``facedetect``:
+You want to add PHP version {{% latest php %}} and ``facedetect`` to your application container.
+To do so, use the following configuration:
 
 ```yaml {configFile="app"}
-applications:
-  app:
+myapp:
     stack: [ "php@{{% latest php %}}", "facedetect" ]
     # OR
     stack:
@@ -160,72 +136,37 @@ applications:
       - "facedetect"
 ```
 
-{{% note %}}
-Any packages from [NixOS](https://search.nixos.org/) can be installed within your `stack`,
-even the ones from the ``unstable`` channel,
-like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).
-{{% /note %}}
-
-
 {{% note title="TODO" %}}
 Thread on how to configure extension
 https://platformsh.slack.com/archives/C05293DK8EP/p1710924878478049
 Waiting for engineers to decide if either we keep or remove this section
 {{% /note %}}
 
-The following table presents the various possible modifications to your PHP runtime:
+### PHP extensions and Python packages
 
-| Name                        | Type                                                       | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
-| `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
-| `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+When you add PHP or Python to your application container,
+you can define which extensions (for PHP) or packages (for Python) you also want to add to your stack.
 
-{{% note title="TODO" %}}
-@Jerome: all of this is still valid?
-{{% /note %}}
-As an example:
+To find out which extensions you can install with your runtime,
+follow these steps:
 
-```yaml {configFile="app"}
-applications:
-  frontend:
-    stack:
-      - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extension:
-          - gd
-    # Additional frontend configuration
-```
+1. Go to the [NixOS search](https://search.nixos.org/).
+2. Enter a runtime and click **Search**.
+3. In the **Package sets** side bar, select the right set of extensions/packages for your runtime version.</br>
+   You can choose the desired extensions/packages from the filtered results.
 
-You can also set your [app's runtime timezone](/create-apps/timezone.md).
+![Screenshot of the Nix package sets selection for PHP@8.3](/images/nixos/nixos-packages.png "0.5")
 
-### Extensions/Packages
+#### Install PHP extensions
 
-You can define, per runtime, PHP extensions or Python packages that you would like to add in your stack.
-To find out which extensions could be installed with your runtime, in
-the [NixOs search](https://search.nixos.org/packages?from=0&size=50&sort=relevance&type=packages&query=php#) of a
-runtime, filter results using the ``Package sets`` on the left and then, choose on the listed packages.
-![Screenshot of the NixOs package sets selection for PHP@8.3](/images/nixos/nixos-packages.png "0.5")
-
-{{% note title="TODO" %}}
-I'm not sure how to add a special note about Blackfire package not available (yet)
-{{% /note %}}
-
-{{< codetabs >}}
-+++
-title=PHP
-+++
-You can enable/disable [PHP extensions](/languages/php/extensions.md) just with a list of `extensions` (or `disabled_extensions`) below the language definition:
+To enable [PHP extensions](/languages/php/extensions.md),
+specify a list of `extensions` below the language definition.</br>
+To disable [PHP extensions](/languages/php/extensions.md),
+specify a list of `disabled_extensions` below the language definition.</br>
+For instance:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
+myapp:
     source:
       root: "/"
     stack:
@@ -240,18 +181,23 @@ applications:
 ```
 
 {{% note %}}
-To find out the name of the PHP package you want to use, use the ``PHP upstream extension`` value from the [NixOs search engine](https://search.nixos.org/packages?channel=unstable&show=php82Extensions.gd).
-If the maintainer of the package does not provide such information (sorry about that), remember that PHP package names on NixOs always respect format ``<PHP><VERSION>Extensions.<EXTENSION-NAME>``,
-and you need to copy the ``<EXTENSION-NAME>``.
+To help you find out the name of the PHP package you want to use,
+some maintainers provide a ``PHP upstream extension`` value in the [NixOS search engine](https://search.nixos.org/packages?channel=unstable&show=php82Extensions.gd).
 
-Example for using [`ZIP` PHP package](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.zip&from=0&type=packages&query=php+zip)
-and [`Imagemagick` PHP package](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.imagick&from=0&type=packages&query=php+imagick):
-* [`ZIP` PHP package]: value of the ``PHP upstream extension`` is `zip`.
-* [`Imagemagick` PHP package]: no value of the ``PHP upstream extension``, use the ``<EXTENSION-NAME>=imagick``.
+![Screenshot of an upstream extension value shown in the NixOS search](/images/nixos/nixossearch-upstream-value.png "0.5")
+
+If no such information is provided, note that PHP package names on NixOS always respect the ``<PHP><VERSION>Extensions.<EXTENSION-NAME>`` format.</br>
+Therefore, you can copy the ``<EXTENSION-NAME>`` as shown in the NixOS search and apply this format.
+
+**Example:**
+
+You want to install the `ZIP` and `Imagemagick` PHP packages.</br>
+The value of the ``PHP upstream extension`` for the `ZIP` PHP package is [provided by the maintainer](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.zip&from=0&type=packages&query=php+zip): it is `zip`.</br>
+The value of the ``PHP upstream extension`` for the `Imagemagick` PHP package is [**not** provided by the maintainer](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.imagick&from=0&type=packages&query=php+imagick).
+Use the ``<EXTENSION-NAME>``, which is ``imagick``.
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
+myapp:
     source:
       root: "/"
     stack:
@@ -263,33 +209,29 @@ applications:
 
 {{% /note %}}
 
-<--->
-+++
-title=Python
-+++
-Python packages are installed as new package in your stack, by using the full name of the package.
+#### Install Python packages
 
-Example for installing [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq):
+To install Python packages, add them to your stack as new packages.
+To do so, use the full name of the package.
+
+For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+use the following configuration:
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
+myapp:
     stack:
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 ```
 
-{{< /codetabs >}}
-
-Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md):
+Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
 
 ### Example configuration
 
-These are used in the format `<runtime>@<version>`:
+Here is an example of composable image configuration. Note the use of the `<nixpackage>@<version>` format.
 
 ```yaml {configFile="app"}
-applications:
-  myapp:
+myapp:
     stack:
       - "php@{{% latest "php" %}}"
           extensions:
@@ -302,15 +244,16 @@ applications:
       - "yq"                   # tool
 ```
 
-### Mix of images
+### Combine single-runtime and composable images
 
-In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [built-in image](/create-apps/app-reference/single-runtime-image.md) and [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) per application.
+In a [multiple application context](/create-apps/multi-app/_index.md),
+you can use a mix of [single-runtime images](/create-apps/app-reference/single-runtime-image.md)
+and [composable images](/create-apps/app-reference/composable-image.md).
 
-As an example configuration for a ``frontend`` and a ``backend`` application:
+Here is an example configuration for a ``frontend`` app and a ``backend`` app:
 
 ```yaml {configFile="app"}
-applications:
-  frontend:
+app1:
     stack:
       - "php@{{% latest "php" %}}"
         extensions:
@@ -320,9 +263,21 @@ applications:
           - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
-  backend:
+app2:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
+
+{{% note %}}
+If you add multiple runtimes to your application container,
+the first declared runtime becomes the primary runtime.
+The primary runtime is the one that is automatically started.</br>
+If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
+
+To start other declared runtimes, you need to start them manually, using [web commands](#web-commands).
+To find out which start command to use, go to the [Languages](/languages/_index.md) section,
+and visit the documentation page dedicated to your language.
+
+{{% /note %}}
 
 ## Sizes
 
@@ -443,7 +398,7 @@ See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-fold
 | ------------- |-------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `source`      | `local`, `service`, or `tmp`  | Yes      | Specifies the type of the mount: <br/><br/>- `local` mounts are unique to your app. They can be useful to store files that remain local to the app instance, such as application logs.</br> `local` mounts require disk space. To successfully set up a local mount, set the `disk` key in your app configuration. <br/><br/>- `service` mounts point to [Network Storage](/add-services/network-storage.md) services that can be shared between several apps. <br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.</br> The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br> Note that the `/tmp` directory has **a maximum allocation of 8 GB**. |
 | `source_path` | `string`                      | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory.  <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                       |
-| `service`     | `string`                      |          | Only for `service` mounts: the name of the [Network Storage service](/add-services/network-storage.md).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `service`     | `string`                      |          | Only for `service` mounts: the name of the [Network Storage service](/add-services/network-storage.md). |
 
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
