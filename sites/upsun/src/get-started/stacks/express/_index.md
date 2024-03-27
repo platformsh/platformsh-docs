@@ -323,6 +323,7 @@ Add an integration to your existing third-party repository:
 
 - [JavaScript/Node.js documentation](/languages/nodejs/)
 - [Managing dependencies](/languages/nodejs#dependencies)
+- [Add a database to Express](/get-started/stacks/express/add-database)
 
 ### Community content
 
