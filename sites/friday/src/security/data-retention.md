@@ -26,10 +26,9 @@ See how to [access logs](../increase-observability/logs/access-logs.md).
 
 When an environment is deleted, its application logs are deleted as well.
 
-
 ## Backups
 
-The backups retention depends on the [automated backup configuration](../environments/backup.md#use-automated-backups).
+The backups retention depends on the [automated backup policy](../environments/backup.md#automated-backups).
 
 ## Tombstone backups
 

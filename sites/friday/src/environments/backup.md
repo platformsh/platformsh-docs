@@ -57,88 +57,98 @@ To avoid this downtime, use [live backups](#live-backups).
 
 For consistent backups, create the backups during non-peak hours for your site.
 
-## Retention
+## Data retention
 
-[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.</br>
+### Manual backups
 
-The maximum number of manual backups is configurable. Once the limit is reached, a new manual backup will replace the oldest backup.
+[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
-With the default configuration [Automated backups](../environments/backup.md#use-automated-backups) are retained for 2 days
+You can configure the maximum number of manual backups. Once that number is reached, any new manual backup automatically replaces the oldest backup.
+
+### Automated backups
+
+[Automated backups](#use-automated-backups) are retained for 2 days when you use the [default backup policy](#default-backup-policy)
 (meaning, 2 days worth of backups are retained at any given point).
-The retention time changes with the configuration of the automated backups.
 
+When you [configure your own automated backup policy](#configure-a-backup-policy),
+the retention time varies based on that configuration.
 
-## Use automated backups
+Automated backups are always [live](#live-backups).
 
-In {{< vendor/name >}} automated backups are fully configurable per environment type. You can build the schedule that fit your policy for the production, the staging and the developments environments.
+## Backup policy
 
+### Default backup policy
+
+By default, {{< vendor/name >}} provides 1 automated backup a day for your production environment,
+with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).
+
+You can [configure your own backup policy](#configure-a-backup-policy).
+The default backup policy is equivalent to a custom backup policy using a `1d` interval and a count of `2` (see below).
+
+### Configure a backup policy
+
+{{< vendor/name >}} allows you to fully configure your own backup policy.
+You can setup a different automated backup schedule per environment type (production, staging, and development environments).
 
 On a given environment type, you can configure:
-- the total number of backups (manual and automated)
-- the total number of manual backups
-- multiple schedules for automated backups
 
-A schedule is composed of an interval and a count. The interval defines the frequence of the backup. The count defines the number of backups to retain.
+- The total number of backups (manual and automated)
+- The total number of manual backups specifically
+- Multiple schedules for automated backups
 
-An interval can be a couple of hours, days, weeks, months or years,
-- 'h' for hour
-- 'd' for day
-- 'w' for week
-- 'M for month
-- 'y' for year
+An automated backup schedule is composed of an interval and a count.</br>
+The interval defines the frequency of the backups.
+An interval can be a couple of hours, days, weeks, months, or years.
+To configure an interval, use the following values:
 
-For example, if you want to take a backup every day and keep if 7 backups:
+- ``h`` for hour
+- ``d`` for day
+- ``w`` for week
+- ``M`` for month
+- ``y`` for year
+
+The count defines the number of backups to retain.
+
+### Configuration examples
+
+To take a backup every day and keep up to 7 backups,
+run the following command:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:curl settings -X PATCH -d '{"data_retention": {"production": {"default_config": {"schedule": [{"interval": "1d", "count": 7},]}}}}'
 ```
 
-Multiple schedule can be used to iplement you own backup policy and to keep multiple recent backups and less old backups.
+#### Configure multiple automated backup schedules
+
+You can use multiple schedules to implement you own backup policy.
+For instance, you may want to keep multiple recent backups and fewer older backups,
+using a command similar to the following:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:curl settings -X PATCH -d '{"data_retention": {"production": {"default_config": {"schedule": [{"interval": "1d", "count": 7}, {"interval": "1w", "count": 4}, {"interval": "1M", "count": 12}]}}}}'
 ```
 
-It will take:
-- a backup every day for a 7 days
-- a backup every week for 4 weeks
-- a backup every month for 12 months
+The command results in:
 
+- A backup every day for 7 days
+- A backup every week for 4 weeks
+- A backup every month for 12 months
 
-To configure the maximum number of backups on the production environment:
+#### Set a limit for backups
+
+To configure the maximum number of backups (automated and manual backups alike) on your production environment,
+run a command similar to the following:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:curl /settings -X PATCH -d '{"data_retention": {"production": {"max_backups": 10}}}'
 ```
 
-To configure the maxiume number of manual backups on the production environment.
+To configure the maximum number of manual backups on the production environment,
+run a command similar to the following:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:curl /settings -X PATCH -d '{"data_retention": {"production": {"default_config":  {"manual_count": 1}}}}'
 ```
-
-
-### Default configuration
-
-By default {{< vendor/name >}} provides 1 automated backup a day for your production environment,
-with a [2-day retention](/security/data-retention.md) (2 days worth of backups are retained at any given point).
-
-It it equivalent to one schedule with a "1d" interval and a count of 2.
-
-For more information on the backups {{< vendor/name >}} provides,
-see the [{{< vendor/name >}} backup policy](/security/backups.md).
-
-Automated backups are always [live](#live-backups).
-
-
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} project:curl settings -X PATCH -d '{"build_resources": {"cpu": 4.0, "memory": 2048}}'
-```
-
-
-
-
 
 ## Live backups
 
@@ -174,10 +184,6 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 
 ## Create a manual backup
 
-{{< vendor/name >}} provides up to 2 manual backups of your production environment,
-plus 2 manual backups you can use for your [preview environments](/glossary/_index.md).
-For more information, see the [{{< vendor/name >}} backup policy](/security/backups.md).
-
 You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
 
 {{< codetabs >}}
@@ -198,6 +204,8 @@ title=In the Console
 
 {{< /codetabs >}}
 
+See more information on [backup policies](#backup-policy) and [data retention](#data-retention).
+
 ### Automate manual backups
 
 You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
@@ -205,8 +213,8 @@ The cron job uses the CLI command to back up the environment.
 It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-an-environment).
 
 Although this process is automated,
-backups created in this way count as manual for the [backup schedule](#backup-schedule).
-They don't affect the automated backups taken as part of the schedule.
+backups created in this way count as [manual backups](#manual-backups).
+They don't affect the automated backups taken as part of [a schedule](#configure-a-backup-policy).
 
 ## Physical storage location
 
