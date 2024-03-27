@@ -5,10 +5,8 @@ description: Configure and use the PHP continuous profiler.
 weight: 30
 ---
 
-## Continuous profiling on {{% vendor/name %}}
-
 {{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
-It is available directly from the Console under the `Profiling` tab of your environments.
+It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
 The PHP continuous profiling is currently made accross 4 dimensions:
 - **CPU Time**:  Time spent running on the CPU
@@ -21,7 +19,7 @@ collecting information 100 times per second.
 
 ## Prerequisites
 
-{{< vendor/name >}} Continuous Profiler requires [`PHP >=8.2`](/languages/php.md).
+{{< vendor/name >}} Continuous Profiler requires [`PHP >=8.2`](/languages/php/_index.md).
 
 ## Installation
 
@@ -32,8 +30,7 @@ PHP images matching its requirements. There is no installation required.
 
 The PHP continuous profiler is enabled by default without configuration.
 
-Optionnaly, you could override the following environment variables:
+Optionally, you can override the following environment variables:
 
-- `DD_PROFILING_ENABLED=true`: force the PHP continuous profiler activation/deactivation
-- `DD_PROFILING_LOG_LEVEL=off`: control the PHP contiunous profiler log level
-
+- `DD_PROFILING_ENABLED=true`: forces the PHP continuous profiler activation/deactivation
+- `DD_PROFILING_LOG_LEVEL=off`: controls the PHP continuous profiler log level
