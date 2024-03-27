@@ -49,6 +49,7 @@ To define the service, use the `redis-persistent` type:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
     type: redis-persistent:<VERSION>
+    disk: 256
 ```
 
 Note that persistent Redis requires `disk` to store data.
@@ -95,6 +96,7 @@ runtime:
 # The name of the service container. Must be unique within a project.
 cacheredis:
     type: redis-persistent:7.0
+    disk: 256
 ```
 
 #### [App configuration](../../add-services/_index.md)
