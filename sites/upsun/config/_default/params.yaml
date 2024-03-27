@@ -1,12 +1,12 @@
 
 # Basics
 version: "1.0.19"
-description: Deploy Friday User Documentation
-author: Deploy Friday
+description: UPSUN User Documentation
+author: Upsun
 title: User documentation
 issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
-folder: "sites/friday"
+folder: "sites/upsun"
 editPageButton: true
 
 theme:
@@ -23,8 +23,8 @@ vendor:
         active: true
         link: https://upsun.com/register/
         cta: Get your Upsun free trial
-        title: Upsun Beta
-        description: "Access our newest offering - <a href=\"https://upsun.com/blog/upsun-origin-story/\">Upsun</a>!<br/><br/>Get your free trial by clicking the link below.<br/><br/>"
+        title: Sign up
+        description: "Get your free trial by clicking the link below.<br/><br/>"
     psh_ref: Platform.sh
     config:
         version: 2
@@ -62,7 +62,7 @@ gtm: "GTM-NN9T4G2T"
 headerActions:
   headerActionPrimary:
     destination: https://upsun.com/register/
-    linkText: Sign up for Upsun Beta
+    linkText: Sign up
   headerActionSecondary:
     destination: https://console.upsun.com/
     linkText: Log in
