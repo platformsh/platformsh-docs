@@ -4,6 +4,7 @@ sidebarTitle: "Elasticsearch"
 description: |
     Add an Elasticsearch server to your site and connect it to Drupal.
 weight: -100
+premium: true
 ---
 
 ## Requirements
@@ -11,6 +12,8 @@ weight: -100
 ### Add an Elasticsearch service
 
 {{% endpoint-description type="elasticsearch" noApp=true /%}}
+
+{{< premium-features/add-on feature="Elasticsearch" >}}
 
 ### Add the Drupal modules
 
