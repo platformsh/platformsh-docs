@@ -114,7 +114,11 @@ composer require drupal/redis
 ```
 
 Then commit the resulting changes to your `composer.json`
-and `composer.lock` files.
+and `composer.lock` files. Afterwards, you can enable the module with:
+
+```bash
+platform drush enable redis
+```
 
 ## Configure your Redis service
 
