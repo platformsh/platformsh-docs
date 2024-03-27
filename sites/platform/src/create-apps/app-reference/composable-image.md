@@ -1,6 +1,6 @@
 ---
 title: "Composable image"
-weight: 5
+weight: 4
 description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
 beta: true
 banner:
@@ -62,9 +62,8 @@ To override any part of a property, you have to provide the entire property.
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                             |
 
 {{% note %}}
-Please note that, even if available in [Application reference](/create-apps/app-reference/single-runtime-image.md) when using the built-in image
-of defining images to use in your application container, the  ``type``, ``build``, ``dependencies``, and ``runtime`` keywords
-are not supported if you choose to use Composable Image (`stack`).
+The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are **not** supported when using the composable image (`stack`).
+They are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 {{% /note %}}
 
 ## Stack
