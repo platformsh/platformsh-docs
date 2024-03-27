@@ -115,7 +115,18 @@ To take a backup every day and keep up to 7 backups,
 run the following command:
 
 ```bash {location="Terminal"}
-{{% vendor/cli %}} project:curl settings -X PATCH -d '{"data_retention": {"production": {"default_config": {"schedule": [{"interval": "1d", "count": 7},]}}}}'
+{{% vendor/cli %}} project:curl settings -X PATCH \
+   -d '{
+       "data_retention": {
+          "production": {
+             "default_config": {
+                "schedule": [
+                  {"interval": "1d", "count": 7}, 
+                 ]
+              }
+           }
+        }
+      }'
 ```
 
 #### Configure multiple automated backup schedules
@@ -125,7 +136,20 @@ For instance, you may want to keep multiple recent backups and fewer older backu
 using a command similar to the following:
 
 ```bash {location="Terminal"}
-{{% vendor/cli %}} project:curl settings -X PATCH -d '{"data_retention": {"production": {"default_config": {"schedule": [{"interval": "1d", "count": 7}, {"interval": "1w", "count": 4}, {"interval": "1M", "count": 12}]}}}}'
+{{% vendor/cli %}} project:curl settings -X PATCH \
+   -d '{
+       "data_retention": {
+          "production": {
+             "default_config": {
+                "schedule": [
+                  {"interval": "1d", "count": 7}, 
+                  {"interval": "1w", "count": 4}, 
+                  {"interval": "1M", "count": 12}
+                 ]
+              }
+           }
+        }
+      }'
 ```
 
 The command results in:
