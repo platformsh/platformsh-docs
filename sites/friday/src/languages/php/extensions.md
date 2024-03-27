@@ -4,7 +4,14 @@ weight: 1
 description: See what PHP extensions are available with each PHP version on {{% vendor/name %}}.
 ---
 
-{{% composable/disclaimer %}}
+{{% note theme="warning" %}}
+
+You can now use the [Upsun composable image (BETA)](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
+When using the composable image, see how you can:
+- [Manage PHP extensions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages)
+- [Modify your PHP runtime](#modify-your-php-runtime-when-using-a-composable-image)
+
+{{% /note %}}
 
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for {{% vendor/name %}} containers.
