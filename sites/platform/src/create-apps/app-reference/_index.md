@@ -1,23 +1,39 @@
 ---
 title: "App reference"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: Configure your app and control how it's built and deployed on {{% vendor/name %}}.
+layout: single
 ---
 
-{{% description %}}
+To define your app, you can either use one of {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
+or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
 
-There is two choice on how to define your apps, either using [built-in images](/create-apps/app-reference/single-runtime-image.md) or [Composable Images](/create-apps/app-reference/composable-image.md).
+## Single-runtime image
 
-## Built-in images
-{{% vendor/name %}} is providing and maintaining a list of runtime images that you can use for each of your application containers,
+{{% vendor/name %}} provides and maintains a list of runtime images you can use for each of your application containers.
 
-Limitation is that you can set only on runtime per application container.
+{{% note %}}
 
-## Composable Images
-{{% vendor/name %}} allow you to define a Stack (group of packages) that your application container will use, based on more than 80'000 available [NixOs packages](https://search.nixos.org/) (even the unstable ones),
-and you can add as many packages as needed by your application within the same application container.
+When using a single-runtime image, you can only set one runtime per application container.
 
-Limitation is that {{% vendor/name %}} only maintains a [set of packages](/create-apps/app-reference/composable-image.md#stack) and won't support other packages.
-Other packages support is NixOs' duty.
+{{% /note %}}
 
-## More information
+See [all of the options you can use](/create-apps/app-reference/single-runtime-image.md) to define your app using a single-runtime image.
+
+## Composable image (BETA)
+
+The {{% vendor/name %}} composable image provides more flexibility than single-runtime images.
+When using a composable image, you can define a stack (or group of packages) for your application container to use.
+
+There are over 80,000 packages available from the [Nix Packages collection](https://search.nixos.org/) that you can add to your stack.
+You can add as many packages to your application container as you need.
+
+{{% note %}}
+
+{{% vendor/name %}} guarantees optimal user experience with the specific [set of packages](/create-apps/app-reference/composable-image.md#supported-nix-packages) it supports.
+You can use any other package available from the [Nix Packages collection](https://search.nixos.org/), including unstable ones,
+but NixOs is reponsible for their support.
+
+{{% /note %}}
+
+See [all of the options you can use](/create-apps/app-reference/composable-image.md) to define your app using the composable image.

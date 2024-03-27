@@ -5,7 +5,7 @@ description: Configure your app and control how it's built and deployed on {{% v
 layout: single
 ---
 
-To define your app, you can either use one of {{% vendor/name %}}'s [Single-runtime image](/create-apps/app-reference/single-runtime-image.md)
+To define your app, you can either use one of {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
 or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
 
 ## Single-runtime image
@@ -30,7 +30,7 @@ You can add as many packages to your application container as you need.
 
 {{% note %}}
 
-Upsun guarantees optimal user experience with the specific [set of packages](/create-apps/app-reference/composable-image.md#stack) it supports.
+{{% vendor/name %}} guarantees optimal user experience with the specific [set of packages](/create-apps/app-reference/composable-image.md#supported-nix-packages) it supports.
 You can use any other package available from the [Nix Packages collection](https://search.nixos.org/), including unstable ones,
 but NixOs is reponsible for their support.
 
