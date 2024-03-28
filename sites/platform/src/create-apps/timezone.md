@@ -1,6 +1,7 @@
 ---
 title: "Timezones"
 description: Learn more about the different timezones on {{% vendor/name %}} and when you can customize them.
+weight: 9
 ---
 
 On {{% vendor/name %}}, there are several timezones you might want to keep in mind.
