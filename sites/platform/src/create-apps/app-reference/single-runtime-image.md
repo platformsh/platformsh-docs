@@ -56,6 +56,12 @@ use the [`source.root` property](#source).
 
 ## Types
 
+{{% note theme="info" %}}
+You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
+See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image#supported-nix-packages) for more information.
+{{% /note %}}
+
 The `type` defines the base container image used to run the application.
 The version is the major (`X`) and sometimes minor (`X.Y`) version numbers,
 depending on the service, as in the following table.
@@ -924,6 +930,12 @@ The following table presents the various possible modifications to your PHP or L
 You can also set your [app's runtime timezone](/create-apps/timezone.md).
 
 ### Extensions
+
+{{% note theme="info" %}}
+You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
+See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#primary-application-properties).
+{{% /note %}}
 
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
 

@@ -130,7 +130,7 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version**    |
+| **Language**                                 | **Nix package** | **Supported version(s)**    |
 |----------------------------------------------|---------------|----------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
 | [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
