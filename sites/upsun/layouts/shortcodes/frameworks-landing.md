@@ -1,5 +1,5 @@
 {{ $python := "[Django](/get-started/stacks/django.md)<br/>[Flask](/get-started/stacks/flask.md)" }}
-{{ $php := "[Symfony](/get-started/stacks/symfony/_index.md)<br/>[Laravel](/get-started/stacks/laravel.md)" }}
+{{ $php := "[Laravel](/get-started/stacks/laravel.md)<br/>[Symfony](/get-started/stacks/symfony/_index.md)<br/>[WordPress](/get-started/stacks/wordpress.md)" }}
 {{ $nodejs := "[Express](/get-started/stacks/express.md)<br/>[Next.js](/get-started/stacks/nextjs.md)<br/>[Strapi](/get-started/stacks/strapi.md)" }}
 
 <table>
