@@ -61,7 +61,7 @@ This lets you carry out various actions from a terminal.
 ### Code
 
 To start a project, you should have code on your computer that you'd like to deploy.
-It can be a basic "Hello World" site, such as you can find in the [{{% vendor/name %}} demos](https://github.com/platformsh-demos).
+It can be a basic "Hello World" site, such as you can find in the [{{% vendor/name %}} demos](https://github.com/orgs/platformsh/repositories?type=all&q=topic%3Ademo).
 Just something that you know runs.
 
 An alternative is one of the [{{% vendor/name %}} templates](../development/templates.md).
