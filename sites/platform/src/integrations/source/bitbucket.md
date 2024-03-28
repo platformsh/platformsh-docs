@@ -92,7 +92,7 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
+| `fetch-branches` | `true`  | Whether to update branches on {{% vendor/name %}} with changes pushed to Bitbucket and create new branches as inactive environments. |
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `resync-pull-requests` | `false` | Whether to sync data from the parent environment on every push to a pull request. |
