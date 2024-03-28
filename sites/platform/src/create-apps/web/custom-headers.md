@@ -5,7 +5,7 @@ description: Set custom headers for your static content such as custom content-t
 ---
 
 When your app responds to dynamic requests, it can generate headers on the fly.
-To set headers for static content, add them in [your `web` configuration](../app-reference.md#web).
+To set headers for static content, add them in [your `web` configuration](/create-apps/app-reference/single-runtime-image.md#web).
 
 You might want to do so to add custom content-type headers, limit what other sites can embed your content,
 or allow cross origin requests.
@@ -29,7 +29,7 @@ web:
 This sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.
 Now your files can only be embedded within your site.
 
-Now set up an exception for MP3 files using a [rule](../app-reference.md#rules):
+Now set up an exception for MP3 files using a [rule](/create-apps/app-reference/single-runtime-image.md#rules):
 
 ```yaml {configFile="app"}
 web:

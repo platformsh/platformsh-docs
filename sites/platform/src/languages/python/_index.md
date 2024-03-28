@@ -4,6 +4,8 @@ description: Get started creating Python apps on {{% vendor/name %}}.
 layout: single
 ---
 
+{{% composable/disclaimer %}}
+
 Python is a general purpose scripting language often used in web development.
 You can deploy Python apps on {{% vendor/name %}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
@@ -154,7 +156,7 @@ For more about managing packages with pip, Pipenv, and Poetry,
 see how to [manage dependencies](./dependencies.md).
 
 To add global dependencies (packages available as commands),
-add them to the `dependencies` in your [app configuration](../../create-apps/app-reference.md#dependencies):
+add them to the `dependencies` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#dependencies):
 
 ```yaml {configFile="app"}
 dependencies:

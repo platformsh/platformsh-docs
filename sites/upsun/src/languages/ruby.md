@@ -4,6 +4,8 @@ description: |
   {{% vendor/name %}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
+{{% composable/disclaimer %}}
+
 {{% description %}}
 
 ## Supported versions
@@ -83,7 +85,7 @@ applications:
 
 3. Build your application with the build hook.
 
-    Assuming you have your dependencies stored in the `Gemfile` at [your app root](../create-apps/app-reference.md#root-directory),
+    Assuming you have your dependencies stored in the `Gemfile` at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
     create a hook like the following:
 
 ```yaml {configFile="app"}

@@ -3,6 +3,8 @@ title: "Elixir"
 description: "{{% vendor/name %}} supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. {{% vendor/name %}} Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7."
 ---
 
+{{% composable/disclaimer %}}
+
 {{% description %}}
 
 ## Supported versions
@@ -78,7 +80,7 @@ applications:
 
 {{< note >}}
 
-That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
+That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 {{< /note >}}
 

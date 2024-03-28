@@ -167,7 +167,7 @@ public class App {
 ### Access complex values
 
 Variables can have nested structures.
-The following example shows nested structures in an [app configuration](../../create-apps/app-reference.md#variables):
+The following example shows nested structures in an [app configuration](/create-apps/app-reference/single-runtime-image.md#variables):
 
 {{% version/specific %}}
 <!-- Platform.sh -->
@@ -365,8 +365,8 @@ and at runtime.
 | `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `{{< vendor/prefix >}}_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
 | `{{< vendor/prefix >}}_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
-| `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is unset or set to `tcp`. |
-| `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](../../create-apps/app-reference.md#upstream) is set to `unix`. |
+| `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is unset or set to `tcp`. |
+| `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is set to `unix`. |
 
 ### `PLATFORM_APPLICATION`
 
@@ -410,7 +410,7 @@ The following example shows the process, though you have to modify it to fit you
 
    ```yaml {configFile="app"}
    applications:
-    {{< variable "APP_NAME" >}}  
+    {{< variable "APP_NAME" >}}
        mounts:
            /config:
                source: storage

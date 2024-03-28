@@ -124,3 +124,9 @@ h4.font-semibold {
 summary {
   cursor: pointer;
 }
+
+/* This would turn off the sticky table header, if desired later. */
+/* thead {
+    position: static !important;
+    top: auto !important;
+} */

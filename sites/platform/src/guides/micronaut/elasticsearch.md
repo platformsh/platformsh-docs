@@ -7,10 +7,10 @@ description: |
     Configure a Micronaut application with Elasticsearch.
 ---
 
-Micronaut provides two ways of accessing Elasticsearch: via the lower level `RestClient` or via the `RestHighLevelClient`. To initialize Elasticsearch in your project's cluster so that it can be accessed by a Micronaut application, it is necessary to modify two files. 
+Micronaut provides two ways of accessing Elasticsearch: via the lower level `RestClient` or via the `RestHighLevelClient`. To initialize Elasticsearch in your project's cluster so that it can be accessed by a Micronaut application, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a service configuration to an existing Micronaut project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/micronaut/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add the Elasticsearch service
@@ -21,7 +21,7 @@ In your [service configuration](../../add-services/_index.md), include Elasticse
 
 ## 2. Add the Elasticsearch relationship
 
-In your [app configuration](../../create-apps/app-reference.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
+In your [app configuration](/create-apps/app-reference/single-runtime-image.md), use the service name `searchelastic` to grant the application access to Elasticsearch via a relationship:
 
 {{< readFile file="registry/images/examples/full/elasticsearch.app.yaml" highlight="yaml" configFile="app" >}}
 
