@@ -10,14 +10,7 @@ or its [composable image (BETA)](/create-apps/app-reference/composable-image.md)
 
 ## Single-runtime image
 
-{{% vendor/name %}} provides and maintains a list of runtime images you can use for each of your application containers.
-
-{{% note %}}
-
-When using a single-runtime image, you can only set one runtime per application container.
-
-{{% /note %}}
-
+{{% vendor/name %}} provides and maintains a list of single-runtime images you can use for each of your application containers.</br>
 See [all of the options you can use](/create-apps/app-reference/single-runtime-image.md) to define your app using a single-runtime image.
 
 ## Composable image (BETA)

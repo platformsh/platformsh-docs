@@ -4,7 +4,13 @@ description: Deploy PHP apps on {{% vendor/name %}}.
 layout: single
 ---
 
-{{% composable/disclaimer %}}
+{{% note theme="info" %}}
+
+You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+To find out more about this feature, see the [dedicated documentation page](/create-apps/app-reference/composable-image.md).</br>
+Also, see how you can [modify your PHP runtime when using a composable image](#modify-your-php-runtime-when-using-a-composable-image).
+
+{{% /note %}}
 
 ## Supported versions
 
@@ -600,3 +606,48 @@ See [complete working examples for C and Rust](https://github.com/platformsh-exa
 ## Project templates
 
 {{< repolist lang="php" displayName="PHP" >}}
+
+## Modify your PHP runtime when using a composable image
+
+{{% note theme= "warning" %}}
+
+This section is only relevant when using the Upsun [composable image (BETA)](/create-apps/app-reference/composable-image.md).
+
+{{% /note %}}
+
+The following table presents the possible modifications you can make to your PHP runtime:
+
+| Name                        | Type                                                       | Description                                                                                |
+|-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
+| `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
+| `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
+| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
+| `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+
+{{% note title="TODO" %}}
+@Jerome: is all of this still valid? `request_terminate_timeout`, `sizing_hints`, `xdebug`?
+{{% /note %}}
+
+Here is an example configuration:
+
+```yaml {configFile="app"}
+applications:
+  frontend:
+    stack:
+      - "php@{{% latest "php" %}}":
+        extensions:
+          - apcu
+          - sodium
+          - xsl
+          - pdo_sqlite
+        disabled_extension:
+          - gd
+    # Additional frontend configuration
+```
+
+{{% note %}}
+
+You can also set your [app's runtime timezone](/create-apps/timezone.md).
+
+{{% /note %}}

@@ -4,7 +4,7 @@ description: Deploy PHP apps on {{% vendor/name %}}.
 layout: single
 ---
 
-{{% note theme="warning" %}}
+{{% note theme="info" %}}
 
 You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
 To find out more about this feature, see the [dedicated documentation page](/create-apps/app-reference/composable-image.md).</br>

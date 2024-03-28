@@ -4,7 +4,7 @@ weight: 1
 description: See what PHP extensions are available with each PHP version on {{% vendor/name %}}.
 ---
 
-{{% note theme="warning" %}}
+{{% note theme="info" %}}
 
 You can now use the [Upsun composable image (BETA)](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 When using the composable image, see how you can:
@@ -16,7 +16,7 @@ When using the composable image, see how you can:
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for {{% vendor/name %}} containers.
 
-{{< note version="1" theme="warning" >}}
+{{< note version="1" theme="warning" title="Warning" >}}
 
 The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).

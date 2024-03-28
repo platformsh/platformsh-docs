@@ -13,31 +13,28 @@ The {{% vendor/name %}} composable image provides enhanced flexibility when defi
 It allows you to install several runtimes and tools in your application container,
 in a **"one image to rule them all"** approach.
 
-The {{% vendor/name %}} composable image built on [Nix](https://nix.dev), which offers the following benefits:
+The composable image is built on [Nix](https://nix.dev), which offers the following benefits:
 
 - You can add as many packages to your application container as you need,
-  choosing from [the Nixpkgs collection](https://search.nixos.org/packages), a library of over 80,000 packages.
-- The packages you add are treated like values and built in total isolation,
-  meaning you can install different versions of the same package very easily.
+  choosing from over 80,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
+- The packages you add are built in total isolation, so you can easily install different versions of the same package.
 - With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
   What works on your local machine is guaranteed to work on any other machine.
 
-To help you quickly configure your composable image from your `{{< vendor/configfile "app" >}}` file (located at the root of your Git repository),
-see this [configuration example](../_index.md#comprehensive-example).
+This page introduces all the settings available to configure your composable image from your `{{< vendor/configfile "app" >}}` file
+(usually located at the root of your Git repository).</br>
+Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-See a more detailed introduction to the composable image in [this video](https://www.youtube.com/watch?v=emOt32DVl28).
+{{% note theme="info" title="Further resources"%}}
 
-{{% note %}}
-
-You can configure single-app projects entirely from your `{{< vendor/configfile "app" >}}` file,
-usually located at the root of your app folder in your Git repository.
-You can set up [multi-app projects in various ways](../multi-app/_index.md).
+For a more detailed introduction to the composable image, check out [this video](https://www.youtube.com/watch?v=emOt32DVl28).</br>
+If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
 
 {{% /note %}}
 
 ## Top-level properties
 
-The following table presents all properties available at the top level of the YAML for the app.
+The following table presents all the properties you can use at the top level of your app's YAML configuration file.
 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
@@ -45,7 +42,7 @@ To override any part of a property, you have to provide the entire property.
 | Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                    |
 |--------------------|-----------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                 |
-| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from our collection of supported runtimes and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                               |
+| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                               |
 | `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                        |
 | `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                        |
 | `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                |
@@ -60,10 +57,10 @@ To override any part of a property, you have to provide the entire property.
 | `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                   |
 | `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                     |
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                             |
-
 {{% note %}}
-The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are **not** supported when using the composable image (`stack`).
-They are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+They are **not** supported when using the composable image.
+They are replaced by the `stack` key.
 {{% /note %}}
 
 ## Stack
@@ -80,18 +77,20 @@ myapp:
 ```
 
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
-To add a tool to your stack, use the `<nixpackage>` format as no version is needed.
+To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
 
-{{% note %}}
+#### Primary runtime
+
 If you add multiple runtimes to your application container,
 the first declared runtime becomes the primary runtime.
-The primary runtime is the one that is automatically started.</br>
-If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
+The primary runtime is the one that is automatically started.
 
 To start other declared runtimes, you need to start them manually, using [web commands](#web-commands).
 To find out which start command to use, go to the [Languages](/languages/_index.md) section,
 and visit the documentation page dedicated to your runtime.
 
+{{% note %}}
+If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
 ### Supported Nix packages
@@ -105,10 +104,10 @@ While available for you to install, packages that aren't listed in the following
 {{% /note %}}
 
 Depending on the Nix package, you can select only the major runtime version,
-or the major and minor runtime versions as shown in the following table.
+or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **`Nix package`** | **Supported `version`**    |
+| **Language**                                 | **Nix package** | **Supported version**    |
 |----------------------------------------------|---------------|----------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
 | [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
@@ -134,12 +133,6 @@ myapp:
       - "php@{{% latest php %}}"
       - "facedetect"
 ```
-
-{{% note title="TODO" %}}
-Thread on how to configure extension
-https://platformsh.slack.com/archives/C05293DK8EP/p1710924878478049
-Waiting for engineers to decide if either we keep or remove this section
-{{% /note %}}
 
 ### PHP extensions and Python packages
 
@@ -185,28 +178,12 @@ some maintainers provide a ``PHP upstream extension`` value in the [NixOS search
 
 ![Screenshot of an upstream extension value shown in the NixOS search](/images/nixos/nixossearch-upstream-value.png "0.5")
 
-If no such information is provided, note that PHP package names on NixOS always respect the ``<PHP><VERSION>Extensions.<EXTENSION-NAME>`` format.</br>
-Therefore, you can copy the ``<EXTENSION-NAME>`` as shown in the NixOS search and apply this format.
-
-**Example:**
-
-You want to install the `ZIP` and `Imagemagick` PHP packages.</br>
-The value of the ``PHP upstream extension`` for the `ZIP` PHP package is [provided by the maintainer](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.zip&from=0&type=packages&query=php+zip): it is `zip`.</br>
-The value of the ``PHP upstream extension`` for the `Imagemagick` PHP package is [**not** provided by the maintainer](https://search.nixos.org/packages?channel=unstable&show=php83Extensions.imagick&from=0&type=packages&query=php+imagick).
-Use the ``<EXTENSION-NAME>``, which is ``imagick``.
-
-```yaml {configFile="app"}
-myapp:
-    source:
-      root: "/"
-    stack:
-      - "php@{{% latest "php" %}}":
-        extensions:
-          - zip
-          - imagick
-```
+If this information is not provided, note that PHP package names on NixOS always respect the ``<PHP><VERSION>Extensions.<EXTENSION-NAME>`` format.</br>
+Therefore, you can copy the ``<EXTENSION-NAME>`` as shown in the NixOS search results, and use it in your configuration.
 
 {{% /note %}}
+
+Note that you can use environment variables or your `php.ini` file to [include further configuration options](/languages/php/_index.md#customize-php-settings) for your PHP extensions.
 
 #### Install Python packages
 
@@ -227,7 +204,7 @@ Alternatively, if you need to include configuration options for your extensions,
 
 ### Example configuration
 
-Here is an example of composable image configuration. Note the use of the `<nixpackage>@<version>` format.
+Here is a full composable image configuration example. Note the use of the `<nixpackage>@<version>` format.
 
 ```yaml {configFile="app"}
 myapp:
@@ -248,8 +225,7 @@ myapp:
 In a [multiple application context](/create-apps/multi-app/_index.md),
 you can use a mix of [single-runtime images](/create-apps/app-reference/single-runtime-image.md)
 and [composable images](/create-apps/app-reference/composable-image.md).
-
-Here is an example configuration for a ``frontend`` app and a ``backend`` app:
+Here is an example configuration including a ``frontend`` app and a ``backend`` app:
 
 ```yaml {configFile="app"}
 app1:
@@ -269,13 +245,13 @@ app2:
 {{% note %}}
 If you add multiple runtimes to your application container,
 the first declared runtime becomes the primary runtime.
-The primary runtime is the one that is automatically started.</br>
-If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
+The primary runtime is the one that is automatically started.
 
 To start other declared runtimes, you need to start them manually, using [web commands](#web-commands).
 To find out which start command to use, go to the [Languages](/languages/_index.md) section,
 and visit the documentation page dedicated to your language.
 
+If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
 ## Sizes
