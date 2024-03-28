@@ -1154,7 +1154,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 {{% note theme="info" %}}
 You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
-See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#primary-application-properties).
+See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#top-level-properties).
 {{% /note %}}
 
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
