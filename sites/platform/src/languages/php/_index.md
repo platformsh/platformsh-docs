@@ -619,10 +619,10 @@ The following table presents the possible modifications you can make to your PHP
 
 | Name                        | Type                                                       | Description                                                                                |
 |-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
+| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
 | `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
 | `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
+| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
 | `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
 {{% note title="TODO" %}}
