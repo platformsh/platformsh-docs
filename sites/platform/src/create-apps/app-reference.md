@@ -95,6 +95,51 @@ To do so, set `size` to one of the following values:
 
 The total resources allocated across all apps and services can't exceed what's in your plan.
 
+### Container profiles: vCPU and Memory
+
+We use different container profiles to ensure that each container gets the right amount of vCPU and memory for its specific use case. Ideally you want to give databases the biggest part of your memory, and apps the biggest part of the vCPU.
+
+There are 3 types of container profiles. 
+
+1. `HIGH_CPU`: php, nodejs, python, ... 
+2. `HIGH_MEMORY`: mariadb, mongodb, mysql-oracle, ...
+3. `BALANCED`: redis, ...
+
+The size of the container and the container profile determines how much vCPU and memory (in [MB](https://docs.platform.sh/glossary.html#mb)) it gets.
+
+#### `HIGH_CPU` profile 
+
+| Size |  CPU  | MEMORY   |
+| ---- | ----- | -------- |
+| S    | 0.40  | 128 MB   |
+| M    | 0.40  | 128 MB   |
+| L    | 1.20  | 256 MB   |
+| XL   | 2.50  | 384 MB   |
+| 2XL  | 5.00  | 768 MB   |
+| 4XL  | 10.00 | 1536 MB  |
+
+#### `HIGH_MEMORY` profile
+
+| Size | CPU  | MEMORY    |
+| ---- | ---- | --------- |
+| S    | 0.25 | 128 MB    |
+| M    | 0.25 | 288 MB    |
+| L    | 0.40 | 1280 MB   |
+| XL   | 0.75 | 2624 MB   |
+| 2XL  | 1.50 | 5248 MB   |
+| 4XL  | 3.00 | 10496 MB  |
+
+#### `BALANCED` profile
+
+| Size | CPU  | MEMORY   |
+| ---- | ---- | -------- |
+| S    | 0.05 | 32 MB    |
+| M    | 0.05 | 64 MB    |
+| L    | 0.08 | 256 MB   |
+| XL   | 0.10 | 512 MB   |
+| 2XL  | 0.20 | 1024 MB  |
+| 4XL  | 0.40 | 2048 MB  |
+
 ### Sizes in preview environments
 
 Containers in preview environments don't follow the `size` specification.
