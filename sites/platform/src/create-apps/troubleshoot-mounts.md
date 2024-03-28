@@ -1,5 +1,6 @@
 ---
 title: "Troubleshoot mounts"
+weight: 11
 ---
 
 {{% troubleshoot %}}

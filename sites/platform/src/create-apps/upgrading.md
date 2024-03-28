@@ -1,5 +1,6 @@
 ---
 title: "Upgrading"
+weight: 12
 ---
 
 ## Changes in version 2022.02

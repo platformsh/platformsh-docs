@@ -47,7 +47,7 @@ but if you don't, the search field doesn't appear in the sidebar.
 1. To run the docs alone, clone this repository and install dependencies:
 
     ```bash
-    cd sites/platform # or cd sites/friday
+    cd sites/platform # or cd sites/upsun
     npm install
     ```
 
@@ -161,15 +161,15 @@ When you add a white label documentation, you want vendor-specific values, such 
 
 For example, if you add a white label documentation for a product called MyGreatProduct,
 you want every instance of `Platform.sh` and `Platform.sh CLI` to be automatically substituted by `MyGreatProduct` and `MyGreatProduct CLI` respectively.
-To achieve that result, use the settings placeholders defined in the `sites/friday/config/_default/params.yaml` file:
+To achieve that result, use the settings placeholders defined in the `sites/upsun/config/_default/params.yaml` file:
 
 ```yaml
 # Vendorization
 vendor:
-    name: Deploy Friday
-    cli: friday
-    env_prefix: FRIDAY
-    config_dir: .friday
+    name: Upsun
+    cli: upsun
+    env_prefix: PLATFORM
+    config_dir: .upsun
 ```
 
 Each of them can be used in any templates (HTML or MarkDown) using shortcodes:
@@ -207,7 +207,7 @@ To do so, you could implement the following file structure:
 
 ```bash
 sites
-├── friday
+├── upsun
 │   └── src
 │       └── tutorials
 │           └── migrating

@@ -3,7 +3,7 @@
 cleanup(){
     echo "* CLEANING UP OLD DOCS INDEX"
     rm -f output/platform_index.json
-    rm -f output/friday_index.json
+    rm -f output/upsun_index.json
 
 }
 
@@ -27,9 +27,9 @@ update_index(){
     POETRY_LOCATION=/app/.local/bin/poetry
     # Update indexes
     $POETRY_LOCATION run python createPrimaryIndex.py platform
-    $POETRY_LOCATION run python createPrimaryIndex.py friday
+    $POETRY_LOCATION run python createPrimaryIndex.py upsun
     $POETRY_LOCATION run python main.py platform
-    $POETRY_LOCATION run python main.py friday
+    $POETRY_LOCATION run python main.py upsun
 }
 
 # scrape

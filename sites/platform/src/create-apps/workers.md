@@ -1,6 +1,7 @@
 ---
 title: "Work with workers"
 description: Interact with your worker instances to handle background tasks for your apps.
+weight: 15
 ---
 
 Workers are instances of your code that aren't open to connections from other apps or services or the outside world.

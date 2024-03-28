@@ -1,7 +1,7 @@
 name: Check internal links
 on:
   pull_request:
-    branches: [main]
+    branches: [main, ga-staging]
     types: [opened,reopened,synchronize,labeled,unlabeled]
 
 

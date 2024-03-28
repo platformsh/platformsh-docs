@@ -2,6 +2,7 @@
 title: Use build and deploy hooks
 description: Add custom scripts at different stages in the build and deploy process.
 layout: single
+weight: 13
 ---
 
 As your app goes through the [build and deploy process](/learn/overview/build-deploy.md),
