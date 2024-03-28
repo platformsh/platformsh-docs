@@ -35,6 +35,7 @@ vendor:
             services: .upsun/config.yaml
             app: .upsun/config.yaml
             apps: .upsun/config.yaml
+            env: .environment
         prefix:
             apps: applications
             services: services
