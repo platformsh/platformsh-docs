@@ -123,7 +123,7 @@ To set one up, follow these steps:
                           allow: true
                           expires: 1w
    ```
-2. To make the location writable, set up [a mount](/create-apps/app-reference.md#mounts).</br>
+2. To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).</br>
    To do so, locate the `mounts:` section that is commented it out, and update it as follows:
 
    ```yaml {location="./.upsun/config.yaml"}
@@ -233,7 +233,7 @@ If these strings aren't the same, the WordPress deployment will not succeed.
 
 ## 7. Update your MariaDB service relationship
 
-You need to update the name used to represent the [relationship](/create-apps/app-reference.md#relationships) between your app and your MariaDB service.
+You need to update the name used to represent the [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) between your app and your MariaDB service.
 To do so, locate the `relationships:` top-level property.
 Update the relationship for the database service as follows:
 
