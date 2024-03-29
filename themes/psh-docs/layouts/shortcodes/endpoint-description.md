@@ -77,7 +77,6 @@ To define the relationship, use the following configuration:
 
 ```yaml {configFile="app"}
 {{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $relationshipInner ) }}
-
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 

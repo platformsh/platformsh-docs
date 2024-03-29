@@ -93,18 +93,6 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 {{% endpoint-description type="influxdb" /%}}
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
-# Relationships enable an app container's access to a service.
-relationships:
-    influxdb: "influxdb:influxdb"
-{{% /snippet %}}
-{{% snippet name="influxdb" config="service" placeholder="true"  %}}
-    type: influxdb:{{% latest "influxdb" %}}
-    disk: 256
-{{% /snippet %}}
-```
-
-```yaml {configFile="app"}
 # The name of the app container. Must be unique within a project.
 name: myapp
 
@@ -112,7 +100,7 @@ name: myapp
 
 # Relationships enable an app container's access to a service.
 relationships:
-    influxdb:
+    influxdb: 
 ```
 
 ```yaml {configFile="services"}

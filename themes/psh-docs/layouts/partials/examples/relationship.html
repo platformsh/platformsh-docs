@@ -13,10 +13,11 @@
    {{- $serviceName = .servName -}}
  {{- end -}}
  {{ $relationshipComment := "# Relationships enable access from this app to a given service." }}
- {{ $relationshipComment = printf "%s\n# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint." $relationshipComment}}
+ {{ $relationshipComment = printf "%s\n# The example below shows simplified configuration leveraging a default service" $relationshipComment}}
+ {{ $relationshipComment = printf "%s\n# (identified from the relationship name) and a default endpoint." $relationshipComment}}
  {{ $relationshipComment = printf "%s\n# See the Application reference for all options for defining relationships and endpoints." $relationshipComment}}
  
- {{- $l1 := printf "\n%s\nrelationships:" $relationshipComment}}
+ {{- $l1 := printf "%s\nrelationships:" $relationshipComment}}
  
  {{- $endpoint := index .data "endpoint" -}}
  <!-- The Vault service needs explicitly defined endpoints -->
@@ -30,6 +31,6 @@
  {{- if eq (index .data "type") "vault-kms" -}}
  {{- printf "%s\n%s" $l1 $l2 | safeHTML -}}
  {{- else -}}
- {{- printf "%s\n%s" $l1 $l2_updated | safeHTML -}}
+ {{- printf "%s\n%s" $l1 $l2_updated | safeHTML | chomp -}}
  {{- end -}}
  
