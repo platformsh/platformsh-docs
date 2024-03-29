@@ -5,8 +5,7 @@ sectionBefore: PHP
 layout: single
 weight: -65
 description: |
-  Welcome to the {{% vendor/name %}} documentation specific to the [Laravel](https://www.laravel.com/) framework on {{% vendor/name %}}.
-  It includes common reference materials useful for deploying Laravel, but also external community and blog resources that cover more advanced topics relevant for the framework.
+  Complete the last required steps to successfully deploy Laravel on {{% vendor/name %}}.
 ---
 
 {{< note theme="info" >}}
@@ -16,14 +15,11 @@ They provide all of the core concepts and common commands you need to know befor
 
 {{< /note >}}
 
-## Get started
-
 {{< get-started/steps >}}
 
 ## Further resources
 
 ### Documentation
-
 
 - [PHP documentation](/languages/php/)
 
@@ -43,9 +39,10 @@ They provide all of the core concepts and common commands you need to know befor
 
 - [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
 
-
 ### Blogs
 
 - [_Upsun: the missing PaaS to scale Laravel applications_](https://upsun.com/blog/paas-to-scale-laravel-apps/)
 
 <!-- ## Video -->
+
+{{< guide-buttons next="Get started" nextLink="/get-started/stacks/laravel/get-started.md" type="*" >}}

@@ -19,3 +19,5 @@ Laravel](https://docs.blackfire.io/php/integrations/laravel/index):
 
 Please refer to the [Blackfire documentation](https://docs.blackfire.io/testing-cookbooks/tests#the-code-blackfire-yaml-code-file) to set up a `.blackfire.yml` configuration to enable custom [performance tests](https://docs.blackfire.io/testing-cookbooks/index)
 and automated [builds](https://docs.blackfire.io/builds-cookbooks/index).
+
+{{< guide-buttons previous="Back" next="Debug with Telescope" nextLink="/get-started/stacks/laravel/laravel-telescope.md" type="*" >}}

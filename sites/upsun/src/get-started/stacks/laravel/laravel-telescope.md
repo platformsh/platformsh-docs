@@ -5,69 +5,73 @@ description: |
     Setting up Laravel Telescope for debugging Laravel
 ---
 
-Laravel Telescope makes a wonderful companion to your local Laravel development environment. 
-Telescope provides insight into the requests coming into your application, exceptions, log entries, database queries, queued jobs, mail, notifications, cache operations, scheduled tasks, variable dumps, and more.
+Laravel Telescope complements your local Laravel development environment. 
+With Telescope, get insight into the requests coming into your app, exceptions, log entries, database queries, queued jobs, mail, notifications, cache operations, scheduled tasks, variable dumps, and more.
 
-Our goal is to setup Laravel Telescope only on **non-production** environments.
+To set up Laravel Telescope on your **non-production** environments,
+follow these steps.
 
 ## 1. Create the APP_DEBUG variable
 
-Start by adding the `APP_DEBUG` & `TELESCOPE_ENABLED` variables on your project:
+To add the `APP_DEBUG` & `TELESCOPE_ENABLED` variables on your project, run the following commands:
 
-```bash
+```bash {location="Terminal"}
 {{< vendor/cli >}} variable:create --level environment --name env:APP_DEBUG --value false
 {{< vendor/cli >}} variable:create --level environment --name env:TELESCOPE_ENABLED --value false
 ```
 
-Note that we are setting the default values for our main environment to `false`. 
-We can now override them on the other non-production environments (`{{< variable "ENVIRONMENT" >}}` below):
+Note that the default values for your main environment are set to `false`. 
+To override them on other non-production environments, run the following commands:
 
-```bash
+```bash {location="Terminal"}
 {{< vendor/cli >}} variable:update -e {{< variable "ENVIRONMENT" >}} --value true env:APP_DEBUG
 {{< vendor/cli >}} variable:update -e {{< variable "ENVIRONMENT" >}} --value true env:TELESCOPE_ENABLED
 ```
 
-## 2. Add Telescope to the project
+## 2. Add Telescope to your project
 
-Use Composer to add Laravel Telescope to your local project:
+1. Run the following Composer command:
 
-```bash
-composer require laravel/telescope && php artisan telescope:install
-```
+   ```bash {location="Terminal"}
+   composer require laravel/telescope && php artisan telescope:install
+   ```
 
-We also need to add the `install` command in our `build` hook so it's run on every deploy. 
-Head to `{{< vendor/configfile "app" >}}` and update it with the following:
+2. Add the `install` command to your `build` hook in your app configuration,
+   so it's run on every deploy.
 
-```yaml {configFile="app"}
-applications:
-    myapp:
-        [...]
-        hooks:
-            build: |
-                    set -eux
-                    composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
-                    php artisan telescope:install
-```
+   ```yaml {configFile="app"}
+   applications:
+       myapp:
+           [...]
+           hooks:
+               build: |
+                       set -eux
+                       composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
+                       php artisan telescope:install
+   ```
 
-Please refer to the official [Laravel Telecope documentation](https://laravel.com/docs/master/telescope#installation) for more options and managing authentication for the dashboard.
+For more options and information on how to manage authentication for the dashboard,
+see the [Laravel Telecope documentation](https://laravel.com/docs/master/telescope#installation).
 
 ## 3. Deploy the new release
 
-You can now enable it by pushing the change to `{{< vendor/name >}}`:
+To enable Telescope, push your changes to {{% vendor/name %}}:
 
-```bash
+```bash {location="Terminal"}
 git add .
 git commit -m "Enable Laravel Horizon"
 {{< vendor/cli >}} push
 ```
 
-Once done, you can now access the `/telescope` endpoint of your application.
+You can now access the `/telescope` endpoint of your app.
 
 ![Laravel Horizon Dashboard](/images/guides/laravel/telescope-dashboard.png "0.5")
 
 {{< note theme="tip" >}}
 
-Telescope uses a gate defined `TelescopeServiceProvider.php` to authorize access to the dashboard. 
+Telescope uses a gate defined in `TelescopeServiceProvider.php` to authorize access to the dashboard. 
 Check that the logic here matches your needs.
 
 {{< /note >}}
+
+{{< guide-buttons previous="Back" next="FAQ" nextLink="/get-started/stacks/laravel/faq.md" type="*" >}}

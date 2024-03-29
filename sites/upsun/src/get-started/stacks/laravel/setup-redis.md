@@ -1,43 +1,39 @@
 ---
-title: "Setting up Redis"
+title: "Set up Redis"
 weight: -119
 description: |
     Setting up Redis for cache, sessions & queues
 ---
 
-With Laravel, you can use Redis for handling:
+With Laravel, you can use Redis to handle session storage, cache storage, and queues.
 
-- Sessions storage
-- Cache storage
-- Queues
+## 1. Add the Redis service
 
-## Adding the Redis service
+1. [Add the service](/add-services.md#add-a-service) to your app configuration using the `services` top-level key:
 
-Head to `{{< vendor/configfile "app" >}}` and add the following to the `services` key:
+   ```yaml {configFile="app"}
+   services:
+       [...]
+       redis:
+          type: redis:7.0
+   ```
 
-```yaml {configFile="app"}
-services:
-    [...]
-    redis:
-        type: redis:7.0
-```
+2. To connect the service to your app, add the following relationship:
 
-You can now add it to your application(s) `relationships`:
+   ```yaml {configFile="app"}
+   applications:
+       myapp:
+           [...]
+           relationships:
+              redis: "redis:redis"
 
-```yaml {configFile="app"}
-applications:
-    myapp:
-        [...]
-        relationships:
-            redis: "redis:redis"
+   services:
+       [...]
+       redis:
+           type: redis:7.0
+   ```
 
-services:
-    [...]
-    redis:
-        type: redis:7.0
-```
-
-## Redis service configuration
+## 2. Configure your Redis service
 
 The [Redis](/add-services/redis) configuration is exposed via the following environment variables
 (where `REDIS` is the upper-cased version of the key defined in the relationship):
@@ -47,10 +43,10 @@ The [Redis](/add-services/redis) configuration is exposed via the following envi
 - `REDIS_PORT`: The Redis port
 - `REDIS_SCHEME`: The Redis scheme
 
-If the relationship is named `redis`, Laravel automatically detects these variables and configure its own redis driver the right way.
+If the relationship is named `redis`, Laravel automatically detects these variables and configure its own Redis driver the right way.
 If not, you can map the variables in the `.environment` file.
 
-You can specify the Redis client in your `.environment` configuration:
+You can specify the Redis client in your `.environment` file:
 
 ```bash  {configFile="env"}
 export REDIS_CLIENT="phpredis"
@@ -71,28 +67,31 @@ applications:
 
 {{< /note >}}
 
-## Storing Laravel cache in Redis
+## 3. Store the Laravel cache in Redis
 
-In order to enable cache storage in redis, just add the following to your `.environment` file:
+To enable cache storage in Redis, add the following environment variable to your `.environment` file:
 
 ```bash  {configFile="env"}
 export CACHE_STORE="redis"
 ```
 
-## Storing Laravel sessions in Redis
+## 4. Store Laravel sessions in Redis
 
-For storing sessions, Laravel relies on the `SESSION_DRIVER` variable. Again, add this new variable to the `.environment` file:
+Laravel relies on the `SESSION_DRIVER` variable to store sessions. Therefore, add the following environment variable to your `.environment` file:
 
 ```bash  {configFile="env"}
 export SESSION_DRIVER="redis"
 ```
 
-## Using Redis for Laravel queues
+## 5. Use Redis for Laravel queues
 
-For a basic queueing system, just configure the `QUEUE_CONNECTION` in `.environment`:
+For a basic queueing system, configure the `QUEUE_CONNECTION` in your `.environment` file as follows:
 
 ```bash  {configFile="env"}
 export QUEUE_CONNECTION="redis"
 ```
 
-Please refer to [Laravel Queues documentation](https://laravel.com/docs/master/queues) for a more in-depth view of the options or review [our Horizon configuration page](./laravel-horizon).
+For more information, see the [Laravel Queues documentation](https://laravel.com/docs/master/queues)
+and {{% vendor/name %}}'s [Horizon configuration page](./laravel-horizon).
+
+{{< guide-buttons previous="Back" next="Handle queues with Horizon" nextLink="/get-started/stacks/laravel/laravel-horizon.md" type="*" >}}

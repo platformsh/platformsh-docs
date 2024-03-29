@@ -1,5 +1,5 @@
 ---
-title: "Cron Jobs"
+title: "Set up cron jobs"
 weight: -105
 description: |
     Understand how to configure Laravel cron jobs.
@@ -7,10 +7,12 @@ description: |
 
 Cron jobs allow you to run scheduled tasks at specified times or intervals.
 
-While you can run your own custom tasks, Laravel provides a scheduler to simplify the implementation. You can refer to the [Task Scheduling documentation](https://laravel.com/docs/master/scheduling) to see how to implement it code-wise.
+While you can run your own custom tasks, Laravel provides a scheduler to simplify the implementation.
+To implement it, see the Laravel [Task Scheduling documentation](https://laravel.com/docs/master/scheduling).
 
-Implementing a cron task in {{< vendor/name >}} is done through the `{{< vendor/configfile "app" >}}` `crons` key. 
-Add the `artisan schedule:run` command to it:
+## Set up a cron job
+
+To set up a cron job, update your {{% vendor/name %}} configuration as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -22,6 +24,8 @@ applications:
                 cmd: |
                     php artisan schedule:run >> /dev/null 2>&1
 ```
+
+## Run cron jobs based on environment type
 
 To run a command in a cron hook for specific environment types,
 use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
@@ -40,11 +44,14 @@ applications:
                     fi
 ```
 
-Please note that cron tasks execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes. 
-Please refer to the full [crons documentation](/create-apps/app-reference.html#crons).
+## Run the Laravel scheduler every minute
 
-An alternative way that guarantees that the scheduler is run every minute is to implement `artisan schedule:work` in a worker. 
-To do so, add a new worker configuration in your `{{< vendor/configfile "app" >}}`:
+Cron job execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes. 
+For more information, see the [documentation on crons](/create-apps/app-reference.html#crons).
+
+However, you can add a [worker](/create-apps/app-reference#workers)
+and specify a start command that [runs the scheduler every minute](https://laravel.com/docs/11.x/scheduling#running-the-scheduler-locally).
+To do so, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
@@ -60,8 +67,10 @@ applications:
 
 {{< note title="Warning" theme="warning" >}}
 
-Web and worker containers don't share mounts targets.
+Web and worker containers don't share mount targets.
 You can't share files between those containers using the filesystem.
 To share data between containers, use [services](/add-services/_index.md).
 
 {{< /note >}}
+
+{{< guide-buttons previous="Back" next="Manage observability with Blackfire" nextLink="/get-started/stacks/laravel/blackfire.md" type="*" >}}
