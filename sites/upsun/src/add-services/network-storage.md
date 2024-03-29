@@ -44,27 +44,38 @@ It's also possible to have one app mount a `source_path` that's a subdirectory o
 For example:
 
 ```yaml {configFile="apps"}
-{{% snippet name="app1" config="apps" %}}
-...
-mounts:
-    'web/uploads':
-        source: service
-        service: files
-        source_path: uploads
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    app1:
+        # The location of the application's code.
+        source:
+            root: "app1"
+        
+        [...]
 
-{{% snippet name="app2" config="apps" globKey="false" %}}
-...
-mounts:
-    'process':
-        source: service
-        service: files
-        source_path: uploads/incoming
-    'done':
-        source: service
-        service: files
-        source_path: uploads/done
-{{% /snippet %}}
+        mounts:
+            'web/uploads':
+                source: service
+                service: files
+                source_path: uploads
+
+    # The name of the app container. Must be unique within a project.
+    app2:
+        # The location of the application's code.
+        source:
+            root: "app2"
+        
+        [...]
+
+        mounts:
+            'process':
+                source: service
+                service: files
+                source_path: uploads/incoming
+            'done':
+                source: service
+                service: files
+                source_path: uploads/done
 ```
 
 In this example, `app1` has access to the entire `uploads` directory by writing to `web/uploads`.
@@ -82,64 +93,63 @@ Drupal files directories are shared between the `web` and `worker` instances,
 while the Drush backup directory is unique to the `web` instance.
 
 ```yaml {configFile="app"}
-name: 'app'
-type: 'php:7.2'
+applications:
+    myapp:
 
-relationships:
-    mariadbdatabase: 'mariadb:mysql'
+        source:
+            root: "/"
 
-hooks:
-  # ...
+        type: "php:{{% latest "php" %}}"
 
-web:
-    locations:
-        '/':
-            # ...
+        relationships:
+            mariadb:
 
-mounts:
-    # The public and private files directories are
-    # network mounts shared by web and workers.
-    'web/sites/default/files':
-        source: service
-        service: files
-        source_path: files
-    'private':
-        source: service
-        service: files
-        source_path: private
-    # The backup, temp, and cache directories for
-    # Drupal's CLI tools don't need to be shared between web and workers.
-    # It wouldn't hurt anything to make them network
-    # shares, however.
-    '/.drush':
-        source: storage
-        source_path: drush
-    'tmp':
-        source: tmp
-        source_path: tmp
-    'drush-backups':
-        source: storage
-        source_path: drush-backups
-    '/.console':
-        source: storage
-        source_path: console
+        [...]
 
-# Crons run on the web container, so they have the
-# same mounts as the web container.
-crons:
-    drupal:
-        spec: '*/20 * * * *'
-        commands:
-            start: 'cd web ; drush core-cron'
+        mounts:
+            # The public and private files directories are
+            # network mounts shared by web and workers.
+            'web/sites/default/files':
+                source: service
+                service: files
+                source_path: files
+            'private':
+                source: service
+                service: files
+                source_path: private
+            # The backup, temp, and cache directories for
+            # Drupal's CLI tools don't need to be shared between web and workers.
+            # It wouldn't hurt anything to make them network
+            # shares, however.
+            '/.drush':
+                source: storage
+                source_path: drush
+            'tmp':
+                source: tmp
+                source_path: tmp
+            'drush-backups':
+                source: storage
+                source_path: drush-backups
+            '/.console':
+                source: storage
+                source_path: console
 
-# The worker defined here also has the same 6 mounts;
-# 2 of them are shared with the web container,
-# the other 4 are local to the worker.
-workers:
-    queue:
-        commands:
-            start: |
-                cd web && drush queue-run myqueue
+        # Crons run on the web container, so they have the
+        # same mounts as the web container.
+        crons:
+            drupal:
+                spec: '*/20 * * * *'
+                commands:
+                    start: 'cd web ; drush core-cron'
+
+        # The worker defined here also has the same 6 mounts;
+        # 2 of them are shared with the web container,
+        # the other 4 are local to the worker.
+        workers:
+            queue:
+                commands:
+                    start: |
+                        cd web && drush queue-run myqueue
 ```
 
 ## How can I migrate data from a `storage` mount to a `service` mount?
@@ -151,18 +161,34 @@ To move data from a `storage` mount to a `service` one, follow these instruction
 Assuming you have the following `storage` mount:
 
 ```yaml {configFile="app"}
-mounts:
-    web/uploads:
-        source: storage
-        source_path: uploads
+applications:
+    myapp:
+
+        [...]
+
+        mounts:
+            web/uploads:
+                source: storage
+                source_path: uploads
 ```
 
 1. Add a new `network-storage` service to your configuration:
 
    ```yaml {configFile="services"}
-   # The name of the service container. Must be unique within a project.
-   network-storage:
-       type: network-storage:{{% latest "network-storage" %}}
+    applications:
+        myapp:
+
+            [...]
+
+            mounts:
+                web/uploads:
+                    source: storage
+                    source_path: uploads
+
+    services:
+        # The name of the service container. Must be unique within a project.
+        network-storage:
+            type: network-storage:{{% latest "network-storage" %}}
    ```
 
    {{< note >}}
@@ -174,15 +200,25 @@ mounts:
 
 2. Add a new `service` mount, named `new-uploads`:
 
-   ```yaml {configFile="app"}
-   mounts:
-       web/uploads:
-           source: storage
-           source_path: uploads
-       new-uploads:
-           source: service
-           service: files
-           source_path: uploads
+   ```yaml {configFile="services"}
+    applications:
+        myapp:
+
+            [...]
+
+            mounts:
+                web/uploads:
+                    source: storage
+                    source_path: uploads
+                new-uploads:
+                    source: service
+                    service: files
+                    source_path: uploads
+
+    services:
+        # The name of the service container. Must be unique within a project.
+        network-storage:
+            type: network-storage:{{% latest "network-storage" %}}
    ```
 
    Note that each mount is on a different storage service, which is why they can have the same `source_path`.
@@ -198,15 +234,25 @@ mounts:
 5. Reverse the mounts.
    To do so, rename the `storage` mount to `old-uploads`, and point the `web/uploads` directory to the `service` mount:
 
-   ```yaml {configFile="app"}
-   mounts:
-       old-uploads:
-           source: storage
-           source_path: uploads
-       web/uploads:
-           source: service
-           service: files
-           source_path: uploads
+   ```yaml {configFile="services"}
+    applications:
+        myapp:
+
+            [...]
+
+            mounts:
+                old-uploads:
+                    source: storage
+                    source_path: uploads
+                web/uploads:
+                    source: service
+                    service: files
+                    source_path: uploads
+
+    services:
+        # The name of the service container. Must be unique within a project.
+        network-storage:
+            type: network-storage:{{% latest "network-storage" %}}
    ```
 
 6. Push your changes and check that the files are now accessible from the `service` mount (now named `web/uploads`).
