@@ -1,7 +1,7 @@
 name: Check labels
 on:
   pull_request_target:
-    branches: [main]
+    branches: [main, ga-staging]
     types: [labeled,opened,reopened,synchronize]
 
 env:
