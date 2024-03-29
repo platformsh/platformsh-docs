@@ -2,21 +2,22 @@
 title: "Add a database"
 weight: -130
 description: |
-  Once Your Express application has been deployed on {{% vendor/name %}}, you might want to add a service to your application.
+  Once your Express app has been deployed on {{% vendor/name %}}, you might want to add a service to it.
 ---
 
 {{% description %}}
 
 {{% vendor/name %}} projects already include a [variety of managed services](/add-services.html#available-services), so you don’t have to subscribe to an external cache or search-engine services.
 
-As these services are included in your project, you can manage them through Git and they’re backed up along with the rest of your project.
-Your project source code defines the services configuration in the main `.{{% vendor/cli %}}/config.yaml` file, and this is where you can add new services.
+As these services are included in your project, you can manage them through Git.
+They’re backed up along with the rest of your project.
+You can add new services and manage existing service configurations from your `.{{% vendor/cli %}}/config.yaml` file.
 
-As an example on how to do so, to add a [MariaDB database engine](/add-services/mysql.html) into your Express project, complete the following steps:
+For example, to add a [MariaDB database engine](/add-services/mysql.html) to your Express project, complete the following steps:
 
 ## 1. Create a new branch for testing
 
-Create a new branch using the following command:
+To create a new branch, run the following command:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} environment:branch add-mysql-database
@@ -40,7 +41,7 @@ applications:
 	    type: mariadb:{{% latest "mariadb" %}}
 ```
 
-Connect the service to your application ``app`` by adding a relationships setting into your `app` definition:
+To connect the service to your application (``app``), add the following relationship:
 
 ```yaml {location=".upsun/config.yaml"}
 applications:
@@ -66,26 +67,28 @@ git commit -am "adding MariaDb database service"
 {{% vendor/cli %}} push
 ```
 
-{{% vendor/name %}} will now read your configuration files and deploy your project using [default container resources](/manage-resources/resource-init.md).
+{{% vendor/name %}} now reads your configuration files and deploys your project using [default container resources](/manage-resources/resource-init.md).
 If you don't want to use those default resources,
 define your own [resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy),
 or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
 ## 3. Connect to the service
 
-In order to configure your Express application to use this new database, 
+To configure your Express app so it uses your new database, 
 you need a Node.s module named `mysql2`. 
-Install it by running the following command:
+To install it, run the following command:
 
 ```bash {location="Terminal"}
 npm install mysql2
 ```
 
-Wherever your application code attemps to connect to the database service, know that Upsun will automatically generate environment variables containing connection credentials as a function of the relationship name. 
-In this example, the MariaDB service access is granted to the application container via the relationship `database`. 
-Because of this Upsun will generate the variable `DATABASE_HOST` (among many others), using this name.
+Wherever your application code attemps to connect to the database service,
+Upsun will automatically generate environment variables containing connection credentials as a function of the relationship name.
 
-Take a look at the example below to see how this credential variable naming convention is used to connect to a MariaDB service, then replicate in your own application.
+In this example, the MariaDB service access is granted to the application container via the relationship `database`. 
+Upsun will therefore generate the variable `DATABASE_HOST` (among many others), using this name.
+
+Here's an example of how this credential variable naming convention is used to connect to a MariaDB service:
 
 ```javascript {location="index.js"}
 const express = require('express')
@@ -165,7 +168,8 @@ app.listen(port, function() {
 });
 ```
 
-Commit your changes and deploy your changes:
+Commit and deploy your changes:
+
 ```bash {location="Terminal"}
 git add package.json package-lock.json index.js && git commit -m "adding MariaDb database service"
 {{% vendor/cli %}} push
@@ -174,7 +178,7 @@ git add package.json package-lock.json index.js && git commit -m "adding MariaDb
 
 ## 4. Merge to production
 
-When satisfied with your changes, merge them to the main branch, and remove the feature branch:
+When satisfied with your changes, merge them to the main branch:
 
 ```bash {location="Terminal"}
 {{% vendor/cli %}} merge
@@ -186,7 +190,8 @@ You can [adjust your project resources](/manage-resources/adjust-resources.md) a
 
 ## 5. Remove the feature branch
 
-Then, you need to remove the feature branch
+Then, remove the feature branch:
+
 ```bash {location="Terminal"}
 {{% vendor/cli %}} checkout main
 git pull {{% vendor/cli %}} main
@@ -195,12 +200,14 @@ git fetch --prune
 ```
 
 {{< note >}}
-During `environment:delete` CLI command, it will ask question regarding deactivation and deletion of your `add-mysql-database` environment. Please say `yes` (`y`) to all of them.
+When the `environment:delete` CLI command is run, the CLI suggests you deactivate and delete your `add-mysql-database` environment.
+Make sure you opt in.
 {{< /note >}}
 
 ## Tips & Tricks
 
-You can get your project relationships information using the following command:
+You can get your project's relationship information using the following command:
+
 ```bash {location="Terminal"}
 {{% vendor/cli %}} relationships
   ...
