@@ -26,15 +26,15 @@ title= Service environment variables
 +++
 
 ```bash
-KAFKAQUEUE_SERVICE=kafka
-KAFKAQUEUE_IP=123.456.78.90
-KAFKAQUEUE_HOSTNAME=azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-KAFKAQUEUE_CLUSTER=azertyuiop-main-7rqtwti
-KAFKAQUEUE_HOST=kafkaqueue.internal
-KAFKAQUEUE_REL=kafka
-KAFKAQUEUE_SCHEME=kafka
-KAFKAQUEUE_TYPE=kafka:{{< latest "kafka" >}}
-KAFKAQUEUE_PORT=9092
+KAFKA_SERVICE=kafka
+KAFKA_IP=123.456.78.90
+KAFKA_HOSTNAME=azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+KAFKA_CLUSTER=azertyuiop-main-7rqtwti
+KAFKA_HOST=kafka.internal
+KAFKA_REL=kafka
+KAFKA_SCHEME=kafka
+KAFKA_TYPE=kafka:{{< latest "kafka" >}}
+KAFKA_PORT=9092
 ```
 
 <--->
@@ -52,7 +52,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiop-main-7rqtwti",
-    "host": "kafkaqueue.internal",
+    "host": "kafka.internal",
     "rel": "kafka",
     "scheme": "kafka",
     "type": "kafka:{{< latest "kafka" >}}",
@@ -67,7 +67,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_SOLR_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.kafkaqueue[0].host')"
+export APP_SOLR_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.kafka[0].host')"
 ```
 
 {{< /codetabs >}}

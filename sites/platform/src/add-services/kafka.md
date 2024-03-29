@@ -41,7 +41,7 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiop-main-7rqtwti",
-    "host": "kafkaqueue.internal",
+    "host": "kafka.internal",
     "rel": "kafka",
     "scheme": "kafka",
     "type": "kafka:{{< latest "kafka" >}}",
@@ -80,7 +80,7 @@ highlight=ruby
 
 # Producer
 require "kafka"
-kafka = Kafka.new(["kafkaqueue.internal:9092"], client_id: "my-application")
+kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
 kafka.deliver_message("Hello, World!", topic: "greetings")
 
 # Consumer
