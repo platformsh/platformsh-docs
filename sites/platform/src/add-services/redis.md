@@ -122,13 +122,22 @@ To define the relationship, use the `redis` endpoint :
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+    <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-For PHP, enable the extension for the service:
+You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
@@ -152,7 +161,7 @@ redis:
 
 ```yaml {configFile="app"}
 relationships:
-  rediscache: "redis:redis"
+    redis: 
 ```
 
 ### Use in app
@@ -229,13 +238,22 @@ To define the relationship, use the `redis` endpoint :
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+    <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-For PHP, enable the extension for the service:
+You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
@@ -259,7 +277,7 @@ redis:
 
 ```yaml {configFile="app"}
 relationships:
-    rediscache: "redis:redis"
+    redis:
 ```
 
 ### Use in app
@@ -320,7 +338,7 @@ Use the Redis [`select` command](https://redis.io/commands/select):
 ```php
 <?php
 $redis = new Redis();
-$redis->connect(getenv('CACHE_HOST'), getenv('CACHE_PORT'));
+$redis->connect(getenv('REDIS_HOST'), getenv('REDIS_PORT'));
 
 $redis->select(0);       // switch to DB 0
 $redis->set('x', '42');  // write 42 to x
@@ -342,8 +360,8 @@ the Python library suggests using separate client instances for each database:
 import os
 from redis import Redis
 
-database0 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=0)
-database1 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=1)
+database0 = Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db=0)
+database1 = Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db=1)
 ```
 
 <--->
@@ -382,7 +400,7 @@ const value = await client.get('x');     // returns 42
   "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "port": 6379,
   "cluster": "azertyuiopqsdf-main-7rqtwti",
-  "host": "rediscache.internal",
+  "host": "redis.internal",
   "rel": "redis",
   "path": null,
   "query": [],
@@ -402,11 +420,11 @@ it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
-{{% snippet name="redis" config="service" %}}
+# The name of the service container. Must be unique within a project.
+redis:
     type: "redis:{{% latest "redis" %}}"
     configuration:
         maxmemory_policy: allkeys-lfu
-{{% /snippet %}}
 ```
 
 The following table presents the possible values:
@@ -458,18 +476,17 @@ which means Redis stores and retrieves the data saved into sessions.
 To set up Redis as your session handler, add a configuration similar to the following:
 
 ```yaml {configFile="services" v2Hide="true"}
-{{% snippet name="data" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+redissessions:
     type: "redis-persistent:{{% latest "redis" %}}"
     disk: 256
-{{% /snippet %}}
 ```
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="false"  %}}
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    sessionstorage: "data:redis"
+    redissessions: 
 
 variables:
     php:
@@ -481,10 +498,4 @@ web:
         '/':
             root: 'web'
             passthru: '/index.php'
-{{% /snippet %}}
-
-{{% snippet name="data" config="service" placeholder="true"  %}}
-    type: "redis-persistent:{{% latest "redis" %}}"
-    disk: 256
-{{% /snippet %}}
 ```
