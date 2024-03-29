@@ -65,7 +65,7 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 ```json
 {
-  "host": "influxdbdatabase.internal",
+  "host": "influxdb.internal",
   "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "cluster": "azertyuiopqsdf-main-bvxea6i",
   "service": "influxdb",
@@ -96,7 +96,7 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 {{% snippet name="myapp" config="app" root="myapp"  %}}
 # Relationships enable an app container's access to a service.
 relationships:
-    influxdbdatabase: "influxdb:influxdb"
+    influxdb: "influxdb:influxdb"
 {{% /snippet %}}
 {{% snippet name="influxdb" config="service" placeholder="true"  %}}
     type: influxdb:{{% latest "influxdb" %}}
@@ -104,18 +104,34 @@ relationships:
 {{% /snippet %}}
 ```
 
-{{% v2connect2app serviceName="influxdb" relationship="influxdbdatabase" var="INFLUX_HOST"%}}
+```yaml {configFile="app"}
+# The name of the app container. Must be unique within a project.
+name: myapp
+
+[...]
+
+# Relationships enable an app container's access to a service.
+relationships:
+    influxdb:
+```
+
+```yaml {configFile="services"}
+influxdb:
+    type: influxdb:{{% latest "influxdb" %}}
+```
+
+{{% v2connect2app serviceName="influxdb" relationship="influxdb" var="INFLUX_HOST"%}}
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
 export RELATIONSHIPS_JSON=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for common InfluxDB credentials.
-export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].username")
-export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].host")
-export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].query.org")
-export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].query.api_token")
-export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdbdatabase[0].query.bucket")
+export INFLUX_USER=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].username")
+export INFLUX_HOST=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].host")
+export INFLUX_ORG=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.org")
+export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.api_token")
+export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.bucket")
 ```
 
 {{% /v2connect2app %}}
@@ -134,7 +150,7 @@ To export your data from InfluxDB, follow these steps:
    This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
 
    ```bash
-   SSH tunnel opened to influxdbdatabase at: http://127.0.0.1:30000
+   SSH tunnel opened to {{<variable "RELATIONSHIP_NAME" >}} at: http://127.0.0.1:30000
    ```
 
 3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
@@ -167,7 +183,7 @@ If you're relying on any other attributes connecting to InfluxDB, they remain ac
 
 ```json
 {
-  "host": "influxdbdatabase.internal",
+  "host": "influxdb.internal",
   "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "cluster": "azertyuiopqsdf-main-bvxea6i",
   "service": "influxdb",
