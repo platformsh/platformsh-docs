@@ -34,15 +34,15 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-MEMCACHEDCACHE_SERVICE=memcached
-MEMCACHEDCACHE_IP=123.456.78.90
-MEMCACHEDCACHE_HOSTNAME=azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-MEMCACHEDCACHE_CLUSTER=azertyuiopqsdf-main-afdwftq
-MEMCACHEDCACHE_HOST=memcachedcache.internal
-MEMCACHEDCACHE_REL=memcached
-MEMCACHEDCACHE_SCHEME=memcached
-MEMCACHEDCACHE_TYPE=memcached:{{% latest "memcached" %}}
-MEMCACHEDCACHE_PORT=11211
+MEMCACHED_SERVICE=memcached
+MEMCACHED_IP=123.456.78.90
+MEMCACHED_HOSTNAME=azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+MEMCACHED_CLUSTER=azertyuiopqsdf-main-afdwftq
+MEMCACHED_HOST=memcachedcache.internal
+MEMCACHED_REL=memcached
+MEMCACHED_SCHEME=memcached
+MEMCACHED_TYPE=memcached:{{% latest "memcached" %}}
+MEMCACHED_PORT=11211
 ```
 
 <--->
@@ -60,7 +60,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "memcachedcache.internal",
+    "host": "memcached.internal",
     "rel": "memcached",
     "scheme": "memcached",
     "type": "memcached:{{% latest "memcached" %}}",
@@ -75,7 +75,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_MEMCACHED_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.memcachedcache[0].host')"
+export APP_MEMCACHED_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.memcached[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -85,17 +85,22 @@ export APP_MEMCACHED_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.memcachedcache[
 {{% endpoint-description type="memcached" php=true python=true /%}}
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "/"
 
-# Other options...
+        [...]
 
-# Relationships enable an app container's access to a service.
-relationships:
-    memcachedcache: "memcached:memcached"
-{{% /snippet %}}
-{{% snippet name="memcached" config="service" placeholder="true"  %}}
-    type: memcached:{{% latest "memcached" %}}
-{{% /snippet %}}
+        # Relationships enable an app container's access to a service.
+        relationships:
+            memcached:
+
+service:
+    memcached:
+        type: memcached:{{% latest "memcached" %}}
 ```
 
 {{% v2connect2app serviceName="memcached" relationship="memcachedcache" var="CACHE_URL"%}}
@@ -103,7 +108,7 @@ relationships:
 ```bash {location="myapp/.environment"}
 # Surface a Memcached connection string for use in app.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export CACHE_URL="${MEMCACHEDCACHE_HOST}:${MEMCACHEDCACHE_PORT}"
+export CACHE_URL="${MEMCACHED_HOST}:${MEMCACHED_PORT}"
 ```
 
 {{% /v2connect2app %}}
@@ -111,11 +116,11 @@ export CACHE_URL="${MEMCACHEDCACHE_HOST}:${MEMCACHEDCACHE_PORT}"
 ## Accessing Memcached directly
 
 To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool.
-Assuming your Memcached relationship is named `memcachedcache`, the host name `MEMCACHEDCACHE_HOST` and port number `MEMCACHEDCACHE_PORT` obtained from the [service environment variable](#relationship-reference) would be `memcachedcache.internal` and `11211`.
+Assuming your Memcached relationship is named `memcached`, the host name `MEMCACHED_HOST` and port number `MEMCACHED_PORT` obtained from the [service environment variable](#relationship-reference) would be `memcached.internal` and `11211`.
 <br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash {location="Terminal"}
-netcat memcachedcache.internal 11211
+netcat memcached.internal 11211
 ```
 
 {{% service-values-change %}}
