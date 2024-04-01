@@ -86,54 +86,52 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: python:{{% latest "python" %}}
-    mounts:
-        test:
-            source: storage
-            source_path: test
-    relationships:
-        database: 'mysqldb:mysql'
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-services:
-    mysqldb:
+        type: python:{{% latest "python" %}}
+        mounts:
+            test:
+                source: storage
+                source_path: test
+        relationships:
+            mysql:
+        workers:
+            queue:
+                commands:
+                    start: |
+                        python queue-worker.py
+            mail:
+                commands:
+                    start: |
+                        python mail-worker.py
+    services:
+    mysql:
         type: mariadb:{{% latest "mariadb" %}}
 ```
 
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: python:{{% latest "python" %}}
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-            mounts:
-                test:
-                    source: storage
-                    source_path: test
-            relationships:
-                database: 'mysqldb:mysql'
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-            mounts:
-                test:
-                    source: storage
-                    source_path: test
-            relationships:
-                database: 'mysqldb:mysql'
+        type: python:{{% latest "python" %}}
+        workers:
+            queue:
+                commands:
+                    start: |
+                        python queue-worker.py
+                mounts:
+                    test:
+                        source: storage
+                        source_path: test
+                mysql:
+            mail:
+                commands:
+                    start: |
+                        python mail-worker.py
+                mounts:
+                    test:
+                        source: storage
+                        source_path: test
+                mysql:
 services:
-    mysqldb:
+    mysql:
         type: mariadb:{{% latest "mariadb" %}}
 ```
 
@@ -154,62 +152,62 @@ For example, consider the following configuration:
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: "python:{{% latest "python" %}}"
-    hooks:
-        build: |
-        pip install -r requirements.txt
-        pip install -e .
-        pip install gunicorn
-    relationships:
-        database: 'mysqldb:mysql'
-        messages: 'rabbitqueue:rabbitmq'
-    variables:
-        env:
-            type: 'none'
-    web:
-        commands:
-            start: "gunicorn -b $PORT project.wsgi:application"
+        type: "python:{{% latest "python" %}}"
+        hooks:
+            build: |
+            pip install -r requirements.txt
+            pip install -e .
+            pip install gunicorn
+        relationships:
+            mysql:
+            rabbitmq:
         variables:
             env:
-                type: 'web'
-        mounts:
-            uploads:
-                source: storage
-                source_path: uploads
-        locations:
-            "/":
-                root: ""
-                passthru: true
-                allow: false
-            "/static":
-                root: "static/"
-                allow: true
-    workers:
-        queue:
+                type: 'none'
+        web:
             commands:
-                start: |
-                    python queue-worker.py
+                start: "gunicorn -b $PORT project.wsgi:application"
             variables:
                 env:
-                    type: 'worker'
+                    type: 'web'
             mounts:
-                scratch:
+                uploads:
                     source: storage
-                    source_path: scratch
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-            variables:
-                env:
-                    type: 'worker'
-            mounts: {}
-            relationships:
-                emails: 'rabbitqueue:rabbitmq'
+                    source_path: uploads
+            locations:
+                "/":
+                    root: ""
+                    passthru: true
+                    allow: false
+                "/static":
+                    root: "static/"
+                    allow: true
+        workers:
+            queue:
+                commands:
+                    start: |
+                        python queue-worker.py
+                variables:
+                    env:
+                        type: 'worker'
+                mounts:
+                    scratch:
+                        source: storage
+                        source_path: scratch
+            mail:
+                commands:
+                    start: |
+                        python mail-worker.py
+                variables:
+                    env:
+                        type: 'worker'
+                mounts: {}
+                relationships:
+                    rabbitmq:
 services:
-    mysqldb:
+    mysql:
         type: 'mariadb:{{% latest "mariadb" %}}'
-    rabbitqueue:
+    rabbitmq:
         type: 'rabbitmq:{{% latest "rabbitmq" %}}'
 ```
 
@@ -273,33 +271,33 @@ and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: "nodejs:{{% latest "nodejs" %}}"
+        type: "nodejs:{{% latest "nodejs" %}}"
 
-    # Define a web instance
-    web:
-        locations:
-            "/":
-                root: "public"
-                passthru: true
-                index: ['index.html']
+        # Define a web instance
+        web:
+            locations:
+                "/":
+                    root: "public"
+                    passthru: true
+                    index: ['index.html']
 
-    mounts:
-        # Define a storage mount that's available to both instances together
-        'shared_dir':
-            source: storage
-            service: files
-            source_path: our_stuff
+        mounts:
+            # Define a storage mount that's available to both instances together
+            'shared_dir':
+                source: storage
+                service: files
+                source_path: our_stuff
 
-        # Define a local mount that's available to each instance separately
-        'local_dir':
-            source: tmp
-            source_path: my_stuff
+            # Define a local mount that's available to each instance separately
+            'local_dir':
+                source: tmp
+                source_path: my_stuff
 
-    # Define a worker instance from the same code but with a different start
-    workers:
-        queue:
-            commands:
-                start: ./start.sh
+        # Define a worker instance from the same code but with a different start
+        workers:
+            queue:
+                commands:
+                    start: ./start.sh
 ```
 
 Both the `web` instance and `queue` worker have their own, dedicated `local_dir` mount.
