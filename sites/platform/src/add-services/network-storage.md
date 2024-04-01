@@ -81,7 +81,7 @@ the files are shared between the two applications even if the mount location is 
 
 It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
 For example:
-z
+
 ```yaml {configFile="apps"}
 # The name of the app container. Must be unique within a project.
 app1:
