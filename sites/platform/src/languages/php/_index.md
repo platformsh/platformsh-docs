@@ -632,18 +632,18 @@ The following table presents the possible modifications you can make to your PHP
 Here is an example configuration:
 
 ```yaml {configFile="app"}
-applications:
-  frontend:
-    stack:
-      - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extension:
-          - gd
-    # Additional frontend configuration
+name: frontend
+
+stack:
+    - "php@{{% latest "php" %}}":
+    extensions:
+        - apcu
+        - sodium
+        - xsl
+        - pdo_sqlite
+    disabled_extension:
+        - gd
+# Additional frontend configuration
 ```
 
 {{% note %}}
