@@ -4,6 +4,8 @@ description: |
   {{% vendor/name %}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
+{{% composable/disclaimer %}}
+
 {{% description %}}
 
 ## Supported versions
@@ -83,7 +85,7 @@ applications:
 
 3. Build your application with the build hook.
 
-    Assuming you have your dependencies stored in the `Gemfile` at [your app root](../create-apps/app-reference.md#root-directory),
+    Assuming you have your dependencies stored in the `Gemfile` at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
     create a hook like the following:
 
 ```yaml {configFile="app"}
@@ -235,6 +237,7 @@ routes:
 Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
+# The name of the app, which must be unique within a project.
 applications:
     app:
         type: 'ruby:{{% latest "ruby" %}}'
@@ -244,7 +247,7 @@ applications:
                 yarn: "*"
 
         relationships:
-            database: "database:mysql"
+            mysql: 
 
         variables:
             env:
@@ -351,7 +354,7 @@ routes:
     ...
 
 services:
-    database:
+    mysql:
         type: mysql:{{% latest "mariadb" %}}
 ```
 ## Connecting to services
@@ -363,14 +366,14 @@ applications:
     app:
         type: 'ruby:{{% latest "ruby" %}}'
         relationships:
-            database: "database:mysql"
+            mysql: 
         ...
 
 routes:
     ...
 
 services:
-    database:
+    mysql:
         type: mysql:{{% latest "mariadb" %}}
 ```
 By using the following Ruby function calls, you can obtain the database details.
@@ -385,7 +388,7 @@ This should give you something like the following:
 
 ```json
 {
-   "database" : [
+   "mysql" : [
       {
          "path" : "main",
          "query" : {
@@ -394,7 +397,7 @@ This should give you something like the following:
          "port" : 3306,
          "username" : "user",
          "password" : "",
-         "host" : "database.internal",
+         "host" : "mysql.internal",
          "ip" : "246.0.241.50",
          "scheme" : "mysql"
       }

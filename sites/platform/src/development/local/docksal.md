@@ -56,7 +56,7 @@ These files are ignored by {{% vendor/name %}}.
 
 ## 5. Add commands
 
-Docksal doesn't automatically copy over any commands you have in your [build flavor](../../create-apps/app-reference.md#build)
+Docksal doesn't automatically copy over any commands you have in your [build flavor](/create-apps/app-reference/single-runtime-image.md#build)
 and [hooks](../../create-apps/hooks/_index.md).
 To get your project running like on {{% vendor/name %}}, you have to add the commands to Docksal.
 

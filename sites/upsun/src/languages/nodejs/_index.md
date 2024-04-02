@@ -7,6 +7,8 @@ keywords:
   - bun runtime
 ---
 
+{{% composable/disclaimer %}}
+
 Node.js is a popular asynchronous JavaScript runtime.
 Deploy scalable Node.js apps of all sizes on {{% vendor/name %}}.
 You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app/_index.md).
@@ -156,13 +158,13 @@ applications:
 ## Dependencies
 
 By default, {{% vendor/name %}} assumes you're using npm as a package manager.
-If your code has a `package.json`, the following command is run as part of the default [build flavor](../../create-apps/app-reference.md#build):
+If your code has a `package.json`, the following command is run as part of the default [build flavor](/create-apps/app-reference/single-runtime-image.md#build):
 
 ```bash
 npm prune --userconfig .npmrc && npm install --userconfig .npmrc
 ```
 
-This means you can specify configuration in a `.npmrc` file in [your app root](../../create-apps/app-reference.md#root-directory).
+This means you can specify configuration in a `.npmrc` file in [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 ### Use Yarn as a package manager
 
@@ -377,6 +379,6 @@ highlight=js
 All major Javascript/Node.js web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Express](/get-started/stacks/express.md)
+- [Express](/get-started/stacks/express)
 - [Next.js](/get-started/stacks/nextjs.md)
 - [Strapi](/get-started/stacks/strapi)

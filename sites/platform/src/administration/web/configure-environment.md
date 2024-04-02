@@ -41,7 +41,7 @@ There are also additional options:
 * **Code**
   * **CLI** for the command to get your project set up locally with the [{{% vendor/name %}} CLI](../cli/_index.md).
   * **Git** for the command to clone the codebase via Git.
-  
+
     If you're using {{% vendor/name %}} as your primary remote repository, the command clones from the project.
     If you have set up an [external integration](../../integrations/source/_index.md),
     the command clones directly from the integrated remote repository.
@@ -61,7 +61,7 @@ If this message isn't updated once your [default environment](../../environments
 follow these steps:
 
 1. Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
-2. Verify that your [application](../../create-apps/app-reference.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
+2. Verify that your [application](/create-apps/app-reference/single-runtime-image.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
 3. Check that your default environment is [active](../../environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Environment settings

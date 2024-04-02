@@ -13,10 +13,13 @@ It is available directly from the Console under the `Profiling` tab of your envi
 The GO continuous profiling is currently made accross 6 dimensions:
 - **Allocations**: Number of objects allocated
 - **Allocated Memory**: Number of bytes allocated
-- **CPU**:  Time spent running on the CPU
+- **CPU**: Time spent running on the CPU
 - **Goroutines**: Number of goroutines (both on-CPU and off-CPU)
-- **Heap Live Objects**: Number of objects allocated that are not yet garbage collected.
-- **Heap Live Size**: Number of bytes allocated that are not yet garbage collected.
+- **Heap Live Objects**: Number of objects allocated that are not yet garbage collected
+- **Heap Live Size**: Number of bytes allocated that are not yet garbage collected
+
+The default sampling frequency is 100 Hz. This means the Go continuous profiler is
+collecting information 100 times per second.
 
 ## Prerequisites
 
@@ -63,7 +66,7 @@ The `Start` function accepts the following options:
 - `WithCPUDuration`: specifies the length at which to collect CPU profiles.
 The default is 45 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_CPU_DURATION`.
 
-- `WithCPUProfileRate`: sets the CPU profiling rate to Hz samples per second.
+- `WithCPUProfileRate`: sets the CPU profiling rate in Hz (number of samples per second).
 The default is defined by the Go runtime as 100 Hz. Can also be set via the environment
 variable `BLACKFIRE_CONPROF_CPU_PROFILERATE`.
 

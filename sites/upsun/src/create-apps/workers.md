@@ -5,7 +5,7 @@ description: Interact with your worker instances to handle background tasks for 
 
 Workers are instances of your code that aren't open to connections from other apps or services or the outside world.
 They're good for handling background tasks.
-See how to [configure a worker](./app-reference.md#workers) for your app.
+See how to [configure a worker](/create-apps/app-reference/single-runtime-image.md#workers) for your app.
 
 ## Access the worker container
 
@@ -70,13 +70,13 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](./app-reference.md#crons)
-run only on the [`web`](./app-reference.md#web) container, not on workers.
+Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
+run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`relationships`](./app-reference.md#relationships),
-[`access`](./app-reference.md#access), [`mount`](./app-reference.md#mounts), and [`variables`](./app-reference.md#variables)
+Any top-level definitions for [`relationships`](/create-apps/app-reference/single-runtime-image.md#relationships),
+[`access`](/create-apps/app-reference/single-runtime-image.md#access), [`mount`](/create-apps/app-reference/single-runtime-image.md#mounts), and [`variables`](/create-apps/app-reference/single-runtime-image.md#variables)
 are inherited by every worker, unless overridden explicitly.
 
 Likewise [resources defined for the application container](/manage-resources/_index.md) are inherited by every worker, unless overridden explicitly.
@@ -86,61 +86,59 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: python:{{% latest "python" %}}
-    mounts:
-        test:
-            source: storage
-            source_path: test
-    relationships:
-        database: 'mysqldb:mysql'
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-services:
-    mysqldb:
+        type: python:{{% latest "python" %}}
+        mounts:
+            test:
+                source: storage
+                source_path: test
+        relationships:
+            mysql:
+        workers:
+            queue:
+                commands:
+                    start: |
+                        python queue-worker.py
+            mail:
+                commands:
+                    start: |
+                        python mail-worker.py
+    services:
+    mysql:
         type: mariadb:{{% latest "mariadb" %}}
 ```
 
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: python:{{% latest "python" %}}
-    workers:
-        queue:
-            commands:
-                start: |
-                    python queue-worker.py
-            mounts:
-                test:
-                    source: storage
-                    source_path: test
-            relationships:
-                database: 'mysqldb:mysql'
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-            mounts:
-                test:
-                    source: storage
-                    source_path: test
-            relationships:
-                database: 'mysqldb:mysql'
+        type: python:{{% latest "python" %}}
+        workers:
+            queue:
+                commands:
+                    start: |
+                        python queue-worker.py
+                mounts:
+                    test:
+                        source: storage
+                        source_path: test
+                mysql:
+            mail:
+                commands:
+                    start: |
+                        python mail-worker.py
+                mounts:
+                    test:
+                        source: storage
+                        source_path: test
+                mysql:
 services:
-    mysqldb:
+    mysql:
         type: mariadb:{{% latest "mariadb" %}}
 ```
 
 In both cases, there are two worker instances named `queue` and `mail`.
 Both have access to a MySQL/MariaDB service defined in `{{< vendor/configfile "services" >}}`,
-through a [relationship](/create-apps/app-reference.md#relationships) that is identical to the _name_ of that service (`mysql`).
-Both also have their own separate [`storage` mount](/create-apps/app-reference.md#mounts).
+through a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) that is identical to the _name_ of that service (`mysql`).
+Both also have their own separate [`storage` mount](/create-apps/app-reference/single-runtime-image.md#mounts).
 
 ## Customizing a worker
 
@@ -154,62 +152,62 @@ For example, consider the following configuration:
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: "python:{{% latest "python" %}}"
-    hooks:
-        build: |
-        pip install -r requirements.txt
-        pip install -e .
-        pip install gunicorn
-    relationships:
-        database: 'mysqldb:mysql'
-        messages: 'rabbitqueue:rabbitmq'
-    variables:
-        env:
-            type: 'none'
-    web:
-        commands:
-            start: "gunicorn -b $PORT project.wsgi:application"
+        type: "python:{{% latest "python" %}}"
+        hooks:
+            build: |
+            pip install -r requirements.txt
+            pip install -e .
+            pip install gunicorn
+        relationships:
+            mysql:
+            rabbitmq:
         variables:
             env:
-                type: 'web'
-        mounts:
-            uploads:
-                source: storage
-                source_path: uploads
-        locations:
-            "/":
-                root: ""
-                passthru: true
-                allow: false
-            "/static":
-                root: "static/"
-                allow: true
-    workers:
-        queue:
+                type: 'none'
+        web:
             commands:
-                start: |
-                    python queue-worker.py
+                start: "gunicorn -b $PORT project.wsgi:application"
             variables:
                 env:
-                    type: 'worker'
+                    type: 'web'
             mounts:
-                scratch:
+                uploads:
                     source: storage
-                    source_path: scratch
-        mail:
-            commands:
-                start: |
-                    python mail-worker.py
-            variables:
-                env:
-                    type: 'worker'
-            mounts: {}
-            relationships:
-                emails: 'rabbitqueue:rabbitmq'
+                    source_path: uploads
+            locations:
+                "/":
+                    root: ""
+                    passthru: true
+                    allow: false
+                "/static":
+                    root: "static/"
+                    allow: true
+        workers:
+            queue:
+                commands:
+                    start: |
+                        python queue-worker.py
+                variables:
+                    env:
+                        type: 'worker'
+                mounts:
+                    scratch:
+                        source: storage
+                        source_path: scratch
+            mail:
+                commands:
+                    start: |
+                        python mail-worker.py
+                variables:
+                    env:
+                        type: 'worker'
+                mounts: {}
+                relationships:
+                    rabbitmq:
 services:
-    mysqldb:
+    mysql:
         type: 'mariadb:{{% latest "mariadb" %}}'
-    rabbitqueue:
+    rabbitmq:
         type: 'rabbitmq:{{% latest "rabbitmq" %}}'
 ```
 
@@ -261,7 +259,7 @@ and, if appropriate, adjust its behavior accordingly.
 
 ## Mounts
 
-When defining a [worker](../create-apps/app-reference.md#workers) instance,
+When defining a [worker](../create-apps/app-reference/single-runtime-image.md#workers) instance,
 keep in mind what mount behavior you want.
 
 `tmp` and `instance` local mounts are a separate storage area for each instance,
@@ -273,38 +271,38 @@ and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
 ```yaml {configFile="app"}
 applications:
     app: #The name of the app, which must be unique within the project.
-    type: "nodejs:{{% latest "nodejs" %}}"
+        type: "nodejs:{{% latest "nodejs" %}}"
 
-    # Define a web instance
-    web:
-        locations:
-            "/":
-                root: "public"
-                passthru: true
-                index: ['index.html']
+        # Define a web instance
+        web:
+            locations:
+                "/":
+                    root: "public"
+                    passthru: true
+                    index: ['index.html']
 
-    mounts:
-        # Define a storage mount that's available to both instances together
-        'shared_dir':
-            source: storage
-            service: files
-            source_path: our_stuff
+        mounts:
+            # Define a storage mount that's available to both instances together
+            'shared_dir':
+                source: storage
+                service: files
+                source_path: our_stuff
 
-        # Define a local mount that's available to each instance separately
-        'local_dir':
-            source: tmp
-            source_path: my_stuff
+            # Define a local mount that's available to each instance separately
+            'local_dir':
+                source: tmp
+                source_path: my_stuff
 
-    # Define a worker instance from the same code but with a different start
-    workers:
-        queue:
-            commands:
-                start: ./start.sh
+        # Define a worker instance from the same code but with a different start
+        workers:
+            queue:
+                commands:
+                    start: ./start.sh
 ```
 
 Both the `web` instance and `queue` worker have their own, dedicated `local_dir` mount.
 Note that:
-- Each `local_dir` mount is a [`tmp` mount](/create-apps/app-reference.md#mounts) with a **maximum allocation of 8 GB**.</br>
+- Each `local_dir` mount is a [`tmp` mount](/create-apps/app-reference/single-runtime-image.md#mounts) with a **maximum allocation of 8 GB**.</br>
 - `tmp` mounts **may be removed** during infrastructure maintenance operations.
 
 Both the `web` instance and `queue` worker also have a `shared_dir` mount pointing to the same network storage space.

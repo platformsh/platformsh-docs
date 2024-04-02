@@ -3,7 +3,9 @@
 {{ $relationship := .Get "relationship" }}
 {{ $var := .Get "var" }}
 
-This configuration defines a single application `myapp`, whose source code exists in the directory `<PROJECT_ROOT>/myapp`, and has been provided access to the service (`{{ $serviceName }}`) via the relationship `{{ $relationship }}`.
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `{{ $serviceName }}` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 {{ if eq .Site.Params.vendor.config.version 1 }}
 From this, `myapp` can retrieve access credentials to the service through the environment variable [`{{ .Site.Params.vendor.env_prefix }}_RELATIONSHIPS`](#relationship-reference).

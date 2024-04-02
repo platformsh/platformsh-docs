@@ -55,19 +55,19 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-MONGODBDATABASE_USERNAME=main
-MONGODBDATABASE_SCHEME=mongodb
-MONGODBDATABASE_SERVICE=mongodb
-MONGODBDATABASE_IP=123.456.78.90
-MONGODBDATABASE_HOSTNAME=azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-MONGODBDATABASE_CLUSTER=azertyuiop-main-7rqtwti
-MONGODBDATABASE_HOST=mongodbdatabase.internal
-MONGODBDATABASE_REL=mongodb
-MONGODBDATABASE_QUERY={'is_master': True}
-MONGODBDATABASE_PATH=main
-MONGODBDATABASE_PASSWORD=
-MONGODBDATABASE_TYPE=mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
-MONGODBDATABASE_PORT=27017
+MONGODB_USERNAME=main
+MONGODBBASE_SCHEME=mongodb
+MONGODB_SERVICE=mongodb
+MONGODB_IP=123.456.78.90
+MONGODB_HOSTNAME=azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+MONGODB_CLUSTER=azertyuiop-main-7rqtwti
+MONGODB_HOST=mongodbdatabase.internal
+MONGODB_REL=mongodb
+MONGODB_QUERY={'is_master': True}
+MONGODB_PATH=main
+MONGODB_PASSWORD=
+MONGODB_TYPE=mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+MONGODB_PORT=27017
 ```
 
 <--->
@@ -87,7 +87,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiop-main-7rqtwti",
-    "host": "mongodbdatabase.internal",
+    "host": "mongodb.internal",
     "rel": "mongodb",
     "query": {
         "is_master": true
@@ -106,7 +106,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_MONGODBDATABASE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodbdatabase[0].host')"
+export APP_MONGODBDATABASE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -122,30 +122,35 @@ export APP_MONGODBDATABASE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodbda
 {{% endpoint-description type="mongodb" php=true /%}}
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "/"
 
-# Other options...
+        [...]
 
-# Relationships enable an app container's access to a service.
-relationships:
-    mongodbdatabase: "mongodb:mongodb"
-{{% /snippet %}}
-{{% snippet name="mongodb" config="service" placeholder="true"  %}}
-    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
-{{% /snippet %}}
+        # Relationships enable an app container's access to a service.
+        relationships:
+            mongodb:
+
+service:
+    mongodb:
+        type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 ```
 
-{{% v2connect2app serviceName="mongodb" relationship="mongodbdatabase" var="DATABASE_URL"%}}
+{{% v2connect2app serviceName="mongodb" relationship="mongodb" var="DATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export DB_CONNECTION=="${MONGODBDATABASE_SCHEME}"
-export DB_USERNAME="${MONGODBDATABASE_USERNAME}"
-export DB_PASSWORD="${MONGODBDATABASE_PASSWORD}"
-export DB_HOST="${MONGODBDATABASE_HOST}"
-export DB_PORT="${MONGODBDATABASE_PORT}"
-export DB_DATABASE="${MONGODBDATABASE_PATH}"
+export DB_CONNECTION=="${MONGODB_SCHEME}"
+export DB_USERNAME="${MONGODB_USERNAME}"
+export DB_PASSWORD="${MONGODB_PASSWORD}"
+export DB_HOST="${MONGODB_HOST}"
+export DB_PORT="${MONGODB_PORT}"
+export DB_DATABASE="${MONGODB_PATH}"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -160,13 +165,13 @@ Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
-mongo {{< variable "MONGODBDATABASE_HOST" >}}
+mongo {{< variable "MONGODB_HOST" >}}
 ```
 
 With the example value, that would be the following:
 
 ```bash
-mongo mongodbdatabase.internal
+mongo mongodb.internal
 ```
 
 {{% service-values-change %}}
@@ -185,8 +190,7 @@ First, open an SSH tunnel with the {{% vendor/name %}} CLI:
 That opens an SSH tunnel to all services on your current environment and produce output like the following:
 
 ```bash
-SSH tunnel opened on port 30000 to relationship: database
-SSH tunnel opened on port 30001 to relationship: redis
+SSH tunnel opened on port 30000 to relationship: mongodb
 ```
 
 The port may vary in your case.

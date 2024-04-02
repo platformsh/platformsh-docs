@@ -33,7 +33,7 @@ graph LR
 
 The `relationships` block defines the connection between Varnish and your app.
 You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
-<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](../create-apps/app-reference.md).
+<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](/create-apps/app-reference/single-runtime-image.md).
 
 The `configuration` block must reference a VCL file inside the `{{< vendor/configdir >}}` directory.
 The `path` defines the file relative to the `{{< vendor/configdir >}}` directory.
@@ -99,25 +99,38 @@ your VCL templates needs logic to determine where each request is forwarded.
 For example, you might have the following configuration for two apps:
 
 ```yaml {configFile="services"}
-{{% snippet name="varnish" config="service" %}}
-    type: varnish:{{% latest "varnish" %}}
-    relationships:
-        blog: 'blog:http'
-        main: 'app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
-{{% /snippet %}}
-{{% snippet name="blog" config="apps" placeholder="true" root="backends/blog" %}}
-# The type of the application to build.
-type: "php:{{% latest "php" %}}"
-{{% /snippet %}}
+# The name of the service container. Must be unique within a project.
+services:
+    varnish:
+        type: varnish:{{% latest "varnish" %}}
+        relationships:
+            blog:
+                service: blog
+                endpoint: http
+            main:
+                service: app
+                endpoint: http
+        configuration:
+            vcl: !include
+                type: string
+                path: config.vcl
 
-{{% snippet name="app" config="apps" globKey="false" placeholder="true" root="backends/main" %}}
-# The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    blog:
+        # The location of the application's code.
+        source:
+            root: "backends/blog"
+        # The type of the application to build.
+        type: "php:{{% latest "php" %}}"
+
+    # The name of the app container. Must be unique within a project.
+    app:
+        # The location of the application's code.
+        source:
+            root: "backends/main"
+        # The type of the application to build.
+        type: "nodejs:{{% latest "php" %}}"
 ```
 
 You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
@@ -140,10 +153,12 @@ Also disable the router cache as Varnish now provides caching.
 To forward all incoming requests to Varnish rather than your app, you could have the following:
 
 ```yaml {configFile="routes"}
-{{% snippet name="varnish:http" config="route" redirect="false" %}}
-cache:
-    enabled: false
-{{% /snippet %}}
+routes:
+    "https://{default}/":
+        type: upstream
+        upstream: "varnish:http"
+        cache:
+            enabled: false
 ```
 
 Varnish forwards requests to your app based on the specified VCL template.
@@ -259,46 +274,45 @@ which provides access to some Varnish analysis and debugging tools.
 
 You can't use it from an app fronted by Varnish because of the restriction with [circular relationships](#circular-relationships).
 To access the stats, create a **separate app** (`stats-app`) with a relationship *to* Varnish, but not *from* it.
-Define [app configuration](../create-apps/app-reference.md) similar to the following:
+Define [app configuration](/create-apps/app-reference/single-runtime-image.md) similar to the following:
 
 ```yaml {configFile="apps"}
-{{% snippet name="stats-app" config="apps" root="stats" %}}
-# The type of the application to build.
-type: "python:{{% latest "python" %}}"
-# Unique relationship _to_ Varnish from 'stats-app', where no relationship
-#   is defined _from_ Varnish to the same app, to avoid circular relationships.
-relationships:
-    varnishstats: "varnish:http+stats"
-{{% /snippet %}}
-{{% snippet name="main-app" config="apps" globKey="false" root="backends/main" %}}
-# The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
-{{% /snippet %}}
-{{% snippet name="varnish" config="service" placeholder="true" %}}
-    type: varnish:{{% latest "varnish" %}}
-    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
-    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
-    relationships:
-        main: 'main-app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
-{{% /snippet %}}
-```
+applications:
+    # The name of the app container. Must be unique within a project.
+    stats-app:
+        # The location of the application's code.
+        source:
+            root: "stats"
+        # The type of the application to build.
+        type: "python:{{% latest "python" %}}"
+        # Unique relationship _to_ Varnish from 'stats-app', where no relationship
+        #   is defined _from_ Varnish to the same app, to avoid circular relationships.
+        relationships:
+            varnishstats: 
+                service: varnish
+                endpoint: "http+stats"
+    # The name of the app container. Must be unique within a project.
+    main-app:
+        # The location of the application's code.
+        source:
+            root: "backends/main"
+        # The type of the application to build.
+        type: "nodejs:{{% latest "nodejs" %}}"
 
-```yaml {configFile="services" v2Hide="true"}
-{{% snippet name="varnish" config="service" %}}
-    type: varnish:{{% latest "varnish" %}}
-    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
-    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
-    relationships:
-        main: 'app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    varnish:
+        type: varnish:{{% latest "varnish" %}}
+        # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
+        #   is defined _to_ Varnish to the same app, to avoid circular relationships.
+        relationships:
+            main: 
+                service: "main-app"
+                endpoint: http
+        configuration:
+            vcl: !include
+                type: string
+                path: config.vcl
 ```
 
 
@@ -315,5 +329,5 @@ To access the Varnish stats endpoint from the command line:
 
 1. Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
    (replace `stats-app` with the name you gave the app).
-2. Display the [relationships array](../create-apps/app-reference.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
+2. Display the [relationships array](/create-apps/app-reference/single-runtime-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

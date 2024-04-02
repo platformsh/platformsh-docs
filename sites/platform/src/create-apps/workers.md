@@ -6,7 +6,7 @@ weight: 15
 
 Workers are instances of your code that aren't open to connections from other apps or services or the outside world.
 They're good for handling background tasks.
-See how to [configure a worker](./app-reference.md#workers) for your app.
+See how to [configure a worker](/create-apps/app-reference/single-runtime-image.md#workers) for your app.
 
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](../administration/pricing/_index.md#multiple-apps-in-a-single-project).
 
@@ -73,13 +73,13 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](./app-reference.md#crons)
-run only on the [`web`](./app-reference.md#web) container, not on workers.
+Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
+run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`size`](./app-reference.md#sizes), [`relationships`](./app-reference.md#relationships),
-[`access`](./app-reference.md#access), [`disk`](./app-reference.md), [`mount`](./app-reference.md#mounts), and [`variables`](./app-reference.md#variables)
+Any top-level definitions for [`size`](/create-apps/app-reference/single-runtime-image.md#sizes), [`relationships`](/create-apps/app-reference/single-runtime-image.md#relationships),
+[`access`](/create-apps/app-reference/single-runtime-image.md#access), [`disk`](/create-apps/app-reference/single-runtime-image.md), [`mount`](/create-apps/app-reference/single-runtime-image.md#mounts), and [`variables`](/create-apps/app-reference/single-runtime-image.md#variables)
 are inherited by every worker, unless overridden explicitly.
 
 That means, for example, that the following two `{{< vendor/configfile "app" >}}` definitions produce identical workers.
@@ -93,7 +93,7 @@ mounts:
         source: local
         source_path: test
 relationships:
-    database: 'mysqldb:mysql'
+    mysql:
 workers:
     queue:
         commands:
@@ -118,7 +118,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            database: 'mysqldb:mysql'
+            mysql: 
     mail:
         commands:
             start: |
@@ -129,7 +129,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            database: 'mysqldb:mysql'
+            mysql: 
 ```
 
 In both cases, there are two worker instances named `queue` and `mail`.
@@ -146,10 +146,10 @@ while `variables` lets you instruct the application to run differently as a work
 For example, consider the following configuration:
 
 ```yaml {configFile="services"}
-mysqldb:
+mysql:
     type: "mariadb:{{% latest "mariadb" %}}"
     disk: 2048
-rabbitqueue:
+rabbitmq:
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 512
 ```
@@ -163,8 +163,8 @@ hooks:
        pip install -e .
        pip install gunicorn
 relationships:
-    database: 'mysqldb:mysql'
-    messages: 'rabbitqueue:rabbitmq'
+    mysql: 
+    rabbitmq: 
 variables:
     env:
         type: 'none'
@@ -211,7 +211,7 @@ workers:
         disk: 256
         mounts: {}
         relationships:
-            emails: 'rabbitqueue:rabbitmq'
+            rabbitmq: 
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.
