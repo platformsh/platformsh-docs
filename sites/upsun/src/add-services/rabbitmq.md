@@ -36,23 +36,23 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-RABBITMQQUEUE_USERNAME=guest
-RABBITMQQUEUE_SCHEME=amqp
-RABBITMQQUEUE_SERVICE=rabbitmq
-RABBITMQQUEUE_FRAGMENT=
-RABBITMQQUEUE_EPOCH=0
-RABBITMQQUEUE_IP=123.456.78.90
-RABBITMQQUEUE_HOSTNAME=azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-RABBITMQQUEUE_PORT=5672
-RABBITMQQUEUE_CLUSTER=azertyuiop-main-afdwftq
-RABBITMQQUEUE_HOST=rabbitmqqueue.internal
-RABBITMQQUEUE_REL=rabbitmq
-RABBITMQQUEUE_PATH=
-RABBITMQQUEUE_QUERY={}
-RABBITMQQUEUE_PASSWORD=ChangeMe
-RABBITMQQUEUE_TYPE=rabbitmq:{{% latest "rabbitmq" %}}
-RABBITMQQUEUE_PUBLIC=false
-RABBITMQQUEUE_HOST_MAPPED=false
+RABBITMQ_USERNAME=guest
+RABBITMQ_SCHEME=amqp
+RABBITMQ_SERVICE=rabbitmq
+RABBITMQ_FRAGMENT=
+RABBITMQ_EPOCH=0
+RABBITMQ_IP=123.456.78.90
+RABBITMQ_HOSTNAME=azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+RABBITMQ_PORT=5672
+RABBITMQ_CLUSTER=azertyuiop-main-afdwftq
+RABBITMQ_HOST=rabbitmq.internal
+RABBITMQ_REL=rabbitmq
+RABBITMQ_PATH=
+RABBITMQ_QUERY={}
+RABBITMQ_PASSWORD=ChangeMe
+RABBITMQ_TYPE=rabbitmq:{{% latest "rabbitmq" %}}
+RABBITMQ_PUBLIC=false
+RABBITMQ_HOST_MAPPED=false
 ```
 
 <--->
@@ -74,7 +74,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "hostname": "azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 5672,
     "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "rabbitmqqueue.internal",
+    "host": "rabbitmq.internal",
     "rel": "rabbitmq",
     "path": null,
     "query": [],
@@ -92,7 +92,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_RABBITMQ_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmqqueue[0].host')"
+export APP_RABBITMQ_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmq[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -102,27 +102,35 @@ export APP_RABBITMQ_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmqqueue[0]
 {{% endpoint-description type="rabbitmq" /%}}
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
-# Relationships enable an app container's access to a service.
-relationships:
-    rabbitmqqueue: "rabbitmq:rabbitmq"
-{{% /snippet %}}
-{{% snippet name="rabbitmq" config="service" placeholder="true"  %}}
-    type: rabbitmq:{{% latest "rabbitmq" %}}
-    disk: 256
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+        
+        [...]
+
+        # Relationships enable an app container's access to a service.
+        relationships:
+            rabbitmq:
+
+services:
+    # The name of the service container. Must be unique within a project.
+    rabbitmq:
+        type: rabbitmq:{{% latest "rabbitmq" %}}
 ```
 
-{{% v2connect2app serviceName="rabbitmq" relationship="rabbitmqqueue" var="AMQP_URL"%}}
+{{% v2connect2app serviceName="rabbitmq" relationship="rabbitmq" var="AMQP_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export QUEUE_SCHEME=${RABBITMQQUEUE_SCHEME}
-export QUEUE_USERNAME=${RABBITMQQUEUE_USERNAME}
-export QUEUE_PASSWORD=${RABBITMQQUEUE_PASSWORD}
-export QUEUE_HOST=${RABBITMQQUEUE_HOST}
-export QUEUE_PORT=${RABBITMQQUEUE_PORT}
+export QUEUE_SCHEME=${RABBITMQ_SCHEME}
+export QUEUE_USERNAME=${RABBITMQ_USERNAME}
+export QUEUE_PASSWORD=${RABBITMQ_PASSWORD}
+export QUEUE_HOST=${RABBITMQ_HOST}
+export QUEUE_PORT=${RABBITMQ_PORT}
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
@@ -186,13 +194,14 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 ```yaml {configFile="services"}
-{{% snippet name="rabbitmq" config="service"  %}}
-    type: "rabbitmq:{{% latest "rabbitmq" %}}"
-    configuration:
-        vhosts:
-            - host1
-            - host2
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    rabbitmq:
+        type: "rabbitmq:{{% latest "rabbitmq" %}}"
+        configuration:
+            vhosts:
+                - host1
+                - host2
 ```
 
 ## Upgrading

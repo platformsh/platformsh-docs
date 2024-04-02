@@ -122,7 +122,7 @@ This variable is a base64-encoded JSON object with keys of the relationship name
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
 ```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
+export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
 ```
 
 | Article                                                      | Source                                                       |
@@ -138,10 +138,10 @@ you have the option to move the variable environment to another file: a [`.envir
 E.g.:
 
 ```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host"`
-export DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password"`
-export DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username"`
-export DB_DATABASE=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path"`
+export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
+export DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].password"`
+export DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].username"`
+export DB_DATABASE=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].path"`
 export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
 export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
@@ -156,7 +156,7 @@ disk: 1024
 hooks:
     build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
 relationships:
-    database: "db:postgresql"
+    postgresql:
 web:
     commands:
         start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
@@ -170,7 +170,7 @@ This library provides a streamlined way to interact with a {{% vendor/name %}} e
 import Config;
 
 Config config = new Config();
-MySQL database = config.getCredential("database", MySQL::new);
+MySQL database = config.getCredential("postgresql", MySQL::new);
 DataSource dataSource = database.get();
 ```
 

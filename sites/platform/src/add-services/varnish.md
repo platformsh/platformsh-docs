@@ -114,25 +114,35 @@ your VCL templates needs logic to determine where each request is forwarded.
 For example, you might have the following configuration for two apps:
 
 ```yaml {configFile="services"}
-{{% snippet name="varnish" config="service" %}}
+varnish:
     type: varnish:{{% latest "varnish" %}}
     relationships:
-        blog: 'blog:http'
-        main: 'app:http'
+        blog:
+            service: blog
+            endpoint: http
+        main:
+            service: app
+            endpoint: http
     configuration:
         vcl: !include
             type: string
             path: config.vcl
-{{% /snippet %}}
-{{% snippet name="blog" config="apps" placeholder="true" root="backends/blog" %}}
-# The type of the application to build.
-type: "php:{{% latest "php" %}}"
-{{% /snippet %}}
+```
 
-{{% snippet name="app" config="apps" globKey="false" placeholder="true" root="backends/main" %}}
-# The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
-{{% /snippet %}}
+```yaml {configFile="apps"}
+blog:
+    # The location of the application's code.
+    source:
+        root: "backends/blog"
+    # The type of the application to build.
+    type: "php:{{% latest "php" %}}"
+
+app:
+    # The location of the application's code.
+    source:
+        root: "backends/main"
+    # The type of the application to build.
+    type: "nodejs:{{% latest "nodejs" %}}"
 ```
 
 You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
@@ -155,10 +165,11 @@ Also disable the router cache as Varnish now provides caching.
 To forward all incoming requests to Varnish rather than your app, you could have the following:
 
 ```yaml {configFile="routes"}
-{{% snippet name="varnish:http" config="route" redirect="false" %}}
-cache:
-    enabled: false
-{{% /snippet %}}
+"https://{default}/":
+    type: upstream
+    upstream: "varnish:http"
+    cache:
+        enabled: false
 ```
 
 Varnish forwards requests to your app based on the specified VCL template.
@@ -277,43 +288,42 @@ To access the stats, create a **separate app** (`stats-app`) with a relationship
 Define [app configuration](../create-apps/app-reference.md) similar to the following:
 
 ```yaml {configFile="apps"}
-{{% snippet name="stats-app" config="apps" root="stats" %}}
-# The type of the application to build.
-type: "python:{{% latest "python" %}}"
-# Unique relationship _to_ Varnish from 'stats-app', where no relationship
-#   is defined _from_ Varnish to the same app, to avoid circular relationships.
-relationships:
-    varnishstats: "varnish:http+stats"
-{{% /snippet %}}
-{{% snippet name="main-app" config="apps" globKey="false" root="backends/main" %}}
-# The type of the application to build.
-type: "nodejs:{{% latest "nodejs" %}}"
-{{% /snippet %}}
-{{% snippet name="varnish" config="service" placeholder="true" %}}
-    type: varnish:{{% latest "varnish" %}}
-    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
-    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
+# The name of the app container. Must be unique within a project.
+stats-app:
+    # The location of the application's code.
+    source:
+        root: "stats"
+    # The type of the application to build.
+    type: "python:{{% latest "python" %}}"
+    # Unique relationship _to_ Varnish from 'stats-app', where no relationship
+    #   is defined _from_ Varnish to the same app, to avoid circular relationships.
     relationships:
-        main: 'main-app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
-{{% /snippet %}}
+        varnishstats: 
+            service: varnish
+            endpoint: "http+stats"
+# The name of the app container. Must be unique within a project.
+main-app:
+    # The location of the application's code.
+    source:
+        root: "backends/main"
+    # The type of the application to build.
+    type: "nodejs:{{% latest "nodejs" %}}"
 ```
 
 ```yaml {configFile="services" v2Hide="true"}
-{{% snippet name="varnish" config="service" %}}
+# The name of the service container. Must be unique within a project.
+varnish:
     type: varnish:{{% latest "varnish" %}}
     # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
     #   is defined _to_ Varnish to the same app, to avoid circular relationships.
     relationships:
-        main: 'app:http'
+        main: 
+            service: "main-app"
+            endpoint: http
     configuration:
         vcl: !include
             type: string
             path: config.vcl
-{{% /snippet %}}
 ```
 
 

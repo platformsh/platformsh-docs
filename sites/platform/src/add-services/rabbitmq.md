@@ -71,7 +71,7 @@ and your messages a safe place to live until they're received.
   "hostname": "azertyuiopqsdfghjklm.rabbitmq.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "port": 5672,
   "cluster": "azertyuiopqsdf-main-afdwftq",
-  "host": "rabbitmqqueue.internal",
+  "host": "rabbitmq.internal",
   "rel": "rabbitmq",
   "path": null,
   "query": [],
@@ -184,14 +184,14 @@ which can be useful for separating resources, such as exchanges, queues, and bin
 To create virtual hosts, add them to your configuration as in the following example:
 
 ```yaml {configFile="services"}
-{{% snippet name="rabbitmq" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+rabbitmq:
     type: "rabbitmq:{{% latest "rabbitmq" %}}"
     disk: 512
     configuration:
         vhosts:
             - host1
             - host2
-{{% /snippet %}}
 ```
 
 ## Upgrading

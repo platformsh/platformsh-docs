@@ -43,23 +43,23 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-POSTGRESQLDATABASE_USERNAME=main
-POSTGRESQLDATABASE_SCHEME=pgsql
-POSTGRESQLDATABASE_SERVICE=postgresql
-POSTGRESQLDATABASE_FRAGMENT=
-POSTGRESQLDATABASE_IP=123.456.78.90
-POSTGRESQLDATABASE_HOSTNAME=azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-POSTGRESQLDATABASE_PORT=5432
-POSTGRESQLDATABASE_CLUSTER=azertyuiopqsdf-main-afdwftq
-POSTGRESQLDATABASE_EPOCH=0
-POSTGRESQLDATABASE_HOST=postgresqldatabase.internal
-POSTGRESQLDATABASE_REL=postgresql
-POSTGRESQLDATABASE_PATH=main
-POSTGRESQLDATABASE_QUERY={'is_master': True}
-POSTGRESQLDATABASE_PASSWORD=ChangeMe
-POSTGRESQLDATABASE_TYPE=postgresql:{{% latest "postgresql" %}}
-POSTGRESQLDATABASE_PUBLIC=false
-POSTGRESQLDATABASE_HOST_MAPPED=false
+POSTGRESQL_USERNAME=main
+POSTGRESQL_SCHEME=pgsql
+POSTGRESQL_SERVICE=postgresql
+POSTGRESQL_FRAGMENT=
+POSTGRESQL_IP=123.456.78.90
+POSTGRESQL_HOSTNAME=azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+POSTGRESQL_PORT=5432
+POSTGRESQL_CLUSTER=azertyuiopqsdf-main-afdwftq
+POSTGRESQL_EPOCH=0
+POSTGRESQL_HOST=postgresql.internal
+POSTGRESQL_REL=postgresql
+POSTGRESQL_PATH=main
+POSTGRESQL_QUERY={'is_master': True}
+POSTGRESQL_PASSWORD=ChangeMe
+POSTGRESQL_TYPE=postgresql:{{% latest "postgresql" %}}
+POSTGRESQL_PUBLIC=false
+POSTGRESQL_HOST_MAPPED=false
 ```
 
 <--->
@@ -81,7 +81,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "hostname": "azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 5432,
     "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "postgresqldatabase.internal",
+    "host": "postgresql.internal",
     "rel": "postgresql",
     "path": "main",
     "query": {
@@ -101,7 +101,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_POSTGRESQL_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresqldatabase[0].host')"
+export APP_POSTGRESQL_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -111,27 +111,36 @@ export APP_POSTGRESQL_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresqldata
 {{% endpoint-description type="postgresql" php=true /%}}
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp" %}}
-# Relationships enable an app container's access to a service.
-relationships:
-    postgresqldatabase: "postgresql:postgresql"
-{{% /snippet %}}
-{{% snippet name="postgresql" config="service" placeholder="true" %}}
-    type: postgresql:{{% latest "postgresql" %}}
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+
+        [...]
+
+        # Relationships enable an app container's access to a service.
+        relationships:
+            postgresql:
+
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: postgresql:{{% latest "postgresql" %}}
 ```
 
-{{% v2connect2app serviceName="postgresql" relationship="postgresqldatabase" var="DATABASE_URL"%}}
+{{% v2connect2app serviceName="postgresql" relationship="postgresql" var="DATABASE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export DB_CONNECTION="${POSTGRESQLDATABASE_SCHEME}"
-export DB_USERNAME="${POSTGRESQLDATABASE_USERNAME}"
-export DB_PASSWORD="${POSTGRESQLDATABASE_PASSWORD}"
-export DB_HOST="${POSTGRESQLDATABASE_HOST}"
-export DB_PORT="${POSTGRESQLDATABASE_PORT}"
-export DB_DATABASE="${POSTGRESQLDATABASE_PATH}"
+export DB_CONNECTION="${POSTGRESQL_SCHEME}"
+export DB_USERNAME="${POSTGRESQL_USERNAME}"
+export DB_PASSWORD="${POSTGRESQL_PASSWORD}"
+export DB_HOST="${POSTGRESQL_HOST}"
+export DB_PORT="${POSTGRESQL_PORT}"
+export DB_DATABASE="${POSTGRESQL_PATH}"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -144,17 +153,17 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from your app container via [SSH](../development/ssh/_index.md).
-From your [relationship data](#relationship-reference), you need: `POSTGRESQLDATABASE_USERNAME`, `POSTGRESQLDATABASE_HOST`, and `POSTGRESQLDATABASE_PORT`.
+From your [relationship data](#relationship-reference), you need: `POSTGRESQL_USERNAME`, `POSTGRESQL_HOST`, and `POSTGRESQL_PORT`.
 Then run the following command:
 
 ```bash
-psql -U {{< variable "POSTGRESQLDATABASE_USERNAME" >}} -h {{< variable "POSTGRESQLDATABASE_HOST" >}} -p {{< variable "POSTGRESQLDATABASE_PORT" >}}
+psql -U {{< variable "POSTGRESQL_USERNAME" >}} -h {{< variable "POSTGRESQL_HOST" >}} -p {{< variable "POSTGRESQL_PORT" >}}
 ```
 
 Using the values from the [example](#relationship-reference), that would be:
 
 ```bash
-psql -U main -h postgresqldatabase.internal -p 5432
+psql -U main -h postgresql.internal -p 5432
 ```
 
 {{% service-values-change %}}
@@ -170,7 +179,7 @@ The easiest way to download all data in a PostgreSQL instance is with the {{< ve
 If you have multiple SQL databases it prompts you which one to export. You can also specify one by relationship name explicitly:
 
 ```bash
-{{% vendor/cli %}} db:dump --relationship postgresqldatabase
+{{% vendor/cli %}} db:dump --relationship postgresql
 ```
 
 By default the file is uncompressed. If you want to compress it, use the `--gzip` (`-z`) option:
@@ -205,7 +214,7 @@ That works for any SQL file, so the usual caveats about importing an SQL dump ap
 As with exporting, you can also specify a specific environment to use and a specific database relationship to use, if there are multiple.
 
 ```bash
-{{% vendor/cli %}} sql --relationship postgresqldatabase -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
+{{% vendor/cli %}} sql --relationship postgresql -e {{< variable "BRANCH_NAME" >}} < my_database_backup.sql
 ```
 
 {{< note >}}
@@ -236,26 +245,27 @@ Under the `configuration` key of your service there are two additional keys:
 Consider the following illustrative example:
 
 ```yaml {configFile="services"}
-{{% snippet name="postgresql" config="service" %}}
-    type: "postgresql:{{% latest "postgresql" %}}"
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
-            importer:
-                default_database: legacy
-                privileges:
-                    legacy: rw
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: "postgresql:{{% latest "postgresql" %}}"
+        configuration:
+            databases:
+                - main
+                - legacy
+            endpoints:
+                admin:
+                    privileges:
+                        main: admin
+                        legacy: admin
+                reporter:
+                    default_database: main
+                    privileges:
+                        main: ro
+                importer:
+                    default_database: legacy
+                    privileges:
+                        legacy: rw
 ```
 
 This example creates a single PostgreSQL service named `postgresql`. The server has two databases, `main` and `legacy` with three endpoints created.
@@ -269,33 +279,47 @@ If a given endpoint has access to multiple databases you should also specify whi
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
 ```yaml {configFile="app"}
-{{% snippet name="false" config="app" root="false" %}}
-relationships:
-    database: "postgresql:admin"
-    reports: "postgresql:reporter"
-    imports: "postgresql:importer"
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
 
-{{% snippet name="postgresql" config="service" placeholder="true" %}}
-    type: "postgresql:{{% latest "postgresql" %}}"
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
-            importer:
-                default_database: legacy
-                privileges:
-                    legacy: rw
-{{% /snippet %}}
+        source:
+            root: "/"
+
+        [...]
+
+        relationships:
+            database: 
+                service: postgresql
+                endpoint: admin
+            reports: 
+                service: postgresql
+                endpoint: reporter
+            imports:
+                service: postgresql
+                endpoint: importer
+
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: "postgresql:{{% latest "postgresql" %}}"
+        configuration:
+            databases:
+                - main
+                - legacy
+            endpoints:
+                admin:
+                    privileges:
+                        main: admin
+                        legacy: admin
+                reporter:
+                    default_database: main
+                    privileges:
+                        main: ro
+                importer:
+                    default_database: legacy
+                    privileges:
+                        legacy: rw
 ```
 
 Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
@@ -304,47 +328,50 @@ They'll be available in the [service environment variables](/development/variabl
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
 ```yaml {configFile="services"}
-{{% snippet name="postgresql" config="service" %}}
-    type: "postgresql:{{% latest "postgresql" %}}"
-    configuration:
-        databases:
-            - main
-        endpoints:
-            postgresql:
-                default_database: main
-                privileges:
-                    main: admin
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: "postgresql:{{% latest "postgresql" %}}"
+        configuration:
+            databases:
+                - main
+            endpoints:
+                postgresql:
+                    default_database: main
+                    privileges:
+                        main: admin
 ```
 
 If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="postgresql" config="service" %}}
-    type: "postgresql:{{% latest "postgresql" %}}"
-    configuration:
-        databases:
-            - main
-        endpoints: <your configuration>
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: "postgresql:{{% latest "postgresql" %}}"
+        configuration:
+            databases:
+                - main
+            endpoints: <your configuration>
 ```
 
 Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
 
 ```yaml {configFile="services"}
-{{% snippet name="postgresql" config="service" %}}
-    type: "postgresql:{{% latest "postgresql" %}}"
-    configuration:
-        databases:
-            - firstdb
-            - seconddb
-            - thirddb
-        endpoints:
-            main:
-                firstdb: admin
-                seconddb: admin
-                thirddb: admin
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: "postgresql:{{% latest "postgresql" %}}"
+        configuration:
+            databases:
+                - firstdb
+                - seconddb
+                - thirddb
+            endpoints:
+                main:
+                    firstdb: admin
+                    seconddb: admin
+                    thirddb: admin
 ```
 
 {{% databases-passwords %}}
@@ -358,13 +385,14 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 {{% vendor/name %}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{% snippet name="postgresql" config="service" %}}
-    type: "postgresql:{{% latest "postgresql" %}}"
-    configuration:
-        extensions:
-            - pg_trgm
-            - hstore
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    postgresql:
+        type: "postgresql:{{% latest "postgresql" %}}"
+        configuration:
+            extensions:
+                - pg_trgm
+                - hstore
 ```
 
 In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.

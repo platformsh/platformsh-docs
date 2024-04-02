@@ -43,24 +43,24 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-OSSEARCH_USERNAME=
-OSSEARCH_SCHEME=http
-OSSEARCH_SERVICE=opensearch
-OSSEARCH_FRAGMENT=
-OSSEARCH_IP=123.456.78.90
-OSSEARCH_INSTANCE_IPS=['123.456.78.90']
-OSSEARCH_HOSTNAME=azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-OSSEARCH_PORT=9200
-OSSEARCH_CLUSTER=azertyuiopqsdf-main-afdwftq
-OSSEARCH_EPOCH=0
-OSSEARCH_HOST=ossearch.internal
-OSSEARCH_REL=opensearch
-OSSEARCH_PATH=
-OSSEARCH_PASSWORD=ChangeMe
-OSSEARCH_QUERY={}
-OSSEARCH_TYPE=opensearch:{{% latest "opensearch" %}}
-OSSEARCH_PUBLIC=false
-OSSEARCH_HOST_MAPPED=false
+OPENSEARCH_USERNAME=
+OPENSEARCH_SCHEME=http
+OPENSEARCH_SERVICE=opensearch
+OPENSEARCH_FRAGMENT=
+OPENSEARCH_IP=123.456.78.90
+OPENSEARCH_INSTANCE_IPS=['123.456.78.90']
+OPENSEARCH_HOSTNAME=azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+OPENSEARCH_PORT=9200
+OPENSEARCH_CLUSTER=azertyuiopqsdf-main-afdwftq
+OPENSEARCH_EPOCH=0
+OPENSEARCH_HOST=opensearch.internal
+OPENSEARCH_REL=opensearch
+OPENSEARCH_PATH=
+OPENSEARCH_PASSWORD=ChangeMe
+OPENSEARCH_QUERY={}
+OPENSEARCH_TYPE=opensearch:{{% latest "opensearch" %}}
+OPENSEARCH_PUBLIC=false
+OPENSEARCH_HOST_MAPPED=false
 ```
 
 <--->
@@ -82,7 +82,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "ossearch.internal",
+    "host": "opensearch.internal",
     "rel": "opensearch",
     "path": null,
     "query": [],
@@ -100,7 +100,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_OPENSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.ossearch[0].host')"
+export APP_OPENSEARCH_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.opensearch[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -114,28 +114,37 @@ export APP_OPENSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.ossearch[0].ho
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
-# Relationships enable an app container's access to a service.
-relationships:
-    ossearch: "opensearch:opensearch"
-{{% /snippet %}}
-{{% snippet name="opensearch" config="service" placeholder="true"  %}}
-    type: opensearch:{{% latest "opensearch" %}}
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+
+        [...]
+
+        # Relationships enable an app container's access to a service.
+        relationships:
+            opensearch:
+
+services:
+    # The name of the service container. Must be unique within a project.
+    opensearch:
+        type: opensearch:{{% latest "opensearch" %}}
 ```
 
-{{% v2connect2app serviceName="opensearch" relationship="ossearch" var="OSSEARCH_HOSTS" %}}
+{{% v2connect2app serviceName="opensearch" relationship="opensearch" var="OPENSEARCH_HOSTS" %}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export OS_SCHEME=${OSSEARCH_SCHEME}
-export OS_HOST=${OSSEARCH_HOST}
-export OS_PORT=${OSSEARCH_PORT}
+export OS_SCHEME=${OPENSEARCH_SCHEME}
+export OS_HOST=${OPENSEARCH_HOST}
+export OS_PORT=${OPENSEARCH_PORT}
 
 # Surface more common OpenSearch connection string variables for use in app.
-export OPENSEARCH_USERNAME=${OSSEARCH_USERNAME}
-export OPENSEARCH_PASSWORD=${OSSEARCH_PASSWORD}
+export OS_USERNAME=${OPENSEARCH_USERNAME}
+export OS_PASSWORD=${OPENSEARCH_PASSWORD}
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 
@@ -158,17 +167,18 @@ You may optionally enable HTTP Basic authentication.
 To do so, include the following in your `{{< vendor/configfile "services" >}}` configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="opensearch" config="service"  %}}
-    type: opensearch:{{% latest "opensearch" %}}
-    configuration:
-        authentication:
-            enabled: true
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    opensearch:
+        type: opensearch:{{% latest "opensearch" %}}
+        configuration:
+            authentication:
+                enabled: true
 ```
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
-in the `OSSEARCH_USERNAME` and `OSSEARCH_PASSWORD` [service environment variables](/development/variables/_index.md#service-environment-variables).
+in the `OPENSEARCH_USERNAME` and `OPENSEARCH_PASSWORD` [service environment variables](/development/variables/_index.md#service-environment-variables).
 {{% service-values-change %}}
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
@@ -178,13 +188,20 @@ To do so, add a route to `{{< vendor/configfile "routes" >}}` that has `opensear
 For example:
 
 ```yaml {configFile="routes"}
-{{% snippet name="opensearch:opensearch" config="route" subDom="os" / %}}
-{{% snippet name="opensearch" config="service" placeholder="true"  %}}
-    type: opensearch:{{% latest "opensearch" %}}
-    configuration:
-        authentication:
-            enabled: true
-{{% /snippet %}}
+routes:
+    "https://www.os.{default}/":
+        type: redirect
+        to: "https://os.{default}/"
+    "https://os.{default}/":
+        type: upstream
+        upstream: "opensearch:opensearch"
+
+services:
+    # The name of the service container. Must be unique within a project.
+    opensearch:
+        configuration:
+            authentication:
+                enabled: true
 ```
 
 ## Plugins
@@ -193,13 +210,13 @@ OpenSearch offers a number of plugins.
 To enable them, list them under the `configuration.plugins` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-{{% snippet name="opensearch" config="service"  %}}
-    type: "opensearch:{{% latest "opensearch" %}}"
-    configuration:
-        plugins:
-            - analysis-icu
-            - lang-python
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    opensearch:
+        configuration:
+            plugins:
+                - analysis-icu
+                - lang-python
 ```
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
