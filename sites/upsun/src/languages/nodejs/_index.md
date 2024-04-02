@@ -381,4 +381,4 @@ See dedicated guides for deploying and working with them:
 
 - [Express](/get-started/stacks/express)
 - [Next.js](/get-started/stacks/nextjs.md)
-- [Strapi](/get-started/stacks/strapi.md)
+- [Strapi](/get-started/stacks/strapi)
