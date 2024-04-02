@@ -51,23 +51,23 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-REDISCACHE_USERNAME=
-REDISCACHE_SCHEME=redis
-REDISCACHE_SERVICE=redis
-REDISCACHE_FRAGMENT=
-REDISCACHE_IP=123.456.78.90
-REDISCACHE_EPOCH=0
-REDISCACHE_HOSTNAME=azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-REDISCACHE_PORT=6379
-REDISCACHE_CLUSTER=azertyuiopqsdf-main-afdwftq
-REDISCACHE_HOST=rediscache.internal
-REDISCACHE_REL=redis
-REDISCACHE_PATH=
-REDISCACHE_QUERY={}
-REDISCACHE_PASSWORD=
-REDISCACHE_TYPE=redis:{{% latest "redis" %}}
-REDISCACHE_PUBLIC=false
-REDISCACHE_HOST_MAPPED=false
+REDIS_USERNAME=
+REDIS_SCHEME=redis
+REDIS_SERVICE=redis
+REDIS_FRAGMENT=
+REDIS_IP=123.456.78.90
+REDIS_EPOCH=0
+REDIS_HOSTNAME=azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+REDIS_PORT=6379
+REDIS_CLUSTER=azertyuiopqsdf-main-afdwftq
+REDIS_HOST=rediscache.internal
+REDIS_REL=redis
+REDIS_PATH=
+REDIS_QUERY={}
+REDIS_PASSWORD=
+REDIS_TYPE=redis:{{% latest "redis" %}}
+REDIS_PUBLIC=false
+REDIS_HOST_MAPPED=false
 ```
 
 <--->
@@ -89,7 +89,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 6379,
     "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "rediscache.internal",
+    "host": "redis.internal",
     "rel": "redis",
     "path": null,
     "query": [],
@@ -107,7 +107,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_REDIS_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.rediscache[0].host')"
+export APP_REDIS_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -168,9 +168,14 @@ To define the relationship, use the `redis` endpoint :
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
+        source:
+            root: "myapp"
+        
+        [...]
+
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -178,21 +183,32 @@ services:
         type: redis-persistent:<VERSION>
 ```
 
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-For PHP, enable the extension for the service:
+You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-        # PHP extensions.
+        source:
+            root: "myapp"
+        
+        [...]
+
         runtime:
             extensions:
                 - redis
+
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -204,13 +220,18 @@ services:
 
 #### [Service](/add-services/_index.md) and [app](/create-apps/_index.md) configuration
 
-```yaml {configFile="services"}
+```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    myapp:
+    <APP_NAME>:
+        source:
+            root: "myapp"
+        
+        [...]
+
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "redis:redis"
+            redis:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -223,31 +244,36 @@ services:
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        source:
+            root: "myapp"
+        
+        [...]
 
-# Other options...
+        # Relationships enable access from this app to a given service.
+        relationships:
+            redis:
 
-# Relationships enable an app container's access to a service.
-relationships:
-    rediscache: "redis:redis"
-{{% /snippet %}}
-{{% snippet name="redis" config="service" placeholder="true"  %}}
-    type: redis-persistent:{{% latest "redis" %}}
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    redis:
+        type: redis-persistent:{{% latest "redis" %}}
 ```
 
-{{% v2connect2app serviceName="redis" relationship="rediscache" var="REDIS_URL"%}}
+{{% v2connect2app serviceName="redis" relationship="redis" var="CACHE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export CACHE_HOST="${REDISCACHE_HOST}"
-export CACHE_PORT="${REDISCACHE_PORT}"
-export CACHE_PASSWORD="${REDISCACHE_PASSWORD}"
-export CACHE_SCHEME="${REDISCACHE_SCHEME}"
+export CACHE_HOST="${REDIS_HOST}"
+export CACHE_PORT="${REDIS_PORT}"
+export CACHE_PASSWORD="${REDIS_PASSWORD}"
+export CACHE_SCHEME="${REDIS_SCHEME}"
 
 # Surface a Redis connection string for use in app.
-export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
+export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
 {{% /v2connect2app %}}
@@ -291,9 +317,14 @@ To define the relationship, use the `redis` endpoint :
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
+        source:
+            root: "myapp"
+        
+        [...]
+
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -301,21 +332,32 @@ services:
         type: redis:<VERSION>
 ```
 
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-For PHP, enable the extension for the service:
+You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-        # PHP extensions.
+        source:
+            root: "myapp"
+        
+        [...]
+
         runtime:
             extensions:
                 - redis
+
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -330,10 +372,15 @@ services:
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    myapp:
+    <APP_NAME>:
+        source:
+            root: "myapp"
+        
+        [...]
+
         # Relationships enable access from this app to a given service.
         relationships:
-            rediscache: "redis:redis"
+            redis:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -346,31 +393,36 @@ services:
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        source:
+            root: "myapp"
+        
+        [...]
 
-# Other options...
+        # Relationships enable access from this app to a given service.
+        relationships:
+            redis:
 
-# Relationships enable an app container's access to a service.
-relationships:
-    rediscache: "redis:redis"
-{{% /snippet %}}
-{{% snippet name="redis" config="service" placeholder="true"  %}}
-    type: redis:{{% latest "redis" %}}
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    redis:
+        type: redis:{{% latest "redis" %}}
 ```
 
-{{% v2connect2app serviceName="redis" relationship="rediscache" var="REDIS_URL"%}}
+{{% v2connect2app serviceName="redis" relationship="redis" var="CACHE_URL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export CACHE_HOST="${REDISCACHE_HOST}"
-export CACHE_PORT="${REDISCACHE_PORT}"
-export CACHE_PASSWORD="${REDISCACHE_PASSWORD}"
-export CACHE_SCHEME="${REDISCACHE_SCHEME}"
+export CACHE_HOST="${REDIS_HOST}"
+export CACHE_PORT="${REDIS_PORT}"
+export CACHE_PASSWORD="${REDIS_PASSWORD}"
+export CACHE_SCHEME="${REDIS_SCHEME}"
 
 # Surface a Redis connection string for use in app.
-export REDIS_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
+export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
 {{% /v2connect2app %}}
@@ -395,7 +447,7 @@ Use the Redis [`select` command](https://redis.io/commands/select):
 ```php
 <?php
 $redis = new Redis();
-$redis->connect(getenv('CACHE_HOST'), getenv('CACHE_PORT'));
+$redis->connect(getenv('REDIS_HOST'), getenv('REDIS_PORT'));
 
 $redis->select(0);       // switch to DB 0
 $redis->set('x', '42');  // write 42 to x
@@ -417,8 +469,8 @@ the Python library suggests using separate client instances for each database:
 import os
 from redis import Redis
 
-database0 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=0)
-database1 = Redis(host=os.getenv('CACHE_HOST'), port=os.getenv('CACHE_PORT'), db=1)
+database0 = Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db=0)
+database1 = Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db=1)
 ```
 
 <--->
@@ -432,7 +484,7 @@ Use the Redis [`select` command](https://redis.io/commands/select):
 ```javascript
 const redis = require('redis');
 
-const client = redis.createClient(process.env.CACHE_PORT, process.env.CACHE_HOST);
+const client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST);
 
 await client.SELECT(0);                  // switch to DB 0
 await client.set('x', '42');             // write 42 to x
@@ -450,11 +502,12 @@ it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
-{{% snippet name="redis" config="service" %}}
-    type: "redis:{{% latest "redis" %}}"
-    configuration:
-        maxmemory_policy: allkeys-lfu
-{{% /snippet %}}
+services:
+    # The name of the service container. Must be unique within a project.
+    redis:
+        type: "redis:{{% latest "redis" %}}"
+        configuration:
+            maxmemory_policy: allkeys-lfu
 ```
 
 The following table presents the possible values:
@@ -486,7 +539,7 @@ After you've retrieved the hostname and port, [open an SSH session](../developme
 To access your Redis service, run the following command:
 
 ```bash
-redis-cli -h {{< variable "REDISCACHE_HOSTNAME" >}} -p {{< variable "REDISCACHE_PORT" >}}
+redis-cli -h {{< variable "REDIS_HOSTNAME" >}} -p {{< variable "REDIS_PORT" >}}
 ```
 
 {{% version/specific %}}
@@ -497,7 +550,7 @@ Note that the `CONFIG GET` and `CONFIG SET` admin commands might be restricted o
 {{% /version/specific %}}
 
 ```bash
-redis-cli -h {{< variable "REDISCACHE_HOSTNAME" >}} -p {{< variable "REDISCACHE_PORT" >}} info
+redis-cli -h {{< variable "REDIS_HOSTNAME" >}} -p {{< variable "REDIS_PORT" >}} info
 ```
 
 ## Use Redis as a handler for PHP sessions
@@ -509,32 +562,31 @@ which means Redis stores and retrieves the data saved into sessions.
 
 To set up Redis as your session handler, add a configuration similar to the following:
 
-```yaml {configFile="services" v2Hide="true"}
-{{% snippet name="data" config="service"  %}}
-    type: "redis-persistent:{{% latest "redis" %}}"
-{{% /snippet %}}
-```
-
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="false"  %}}
-type: "php:{{% latest "php" %}}"
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        source:
+            root: "myapp"
 
-relationships:
-    sessionstorage: "data:redis"
+            type: "php:{{% latest "php" %}}"
 
-variables:
-    php:
-        session.save_handler: redis
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+            relationships:
+                redissession:
 
-web:
-    locations:
-        '/':
-            root: 'web'
-            passthru: '/index.php'
-{{% /snippet %}}
+            variables:
+                php:
+                    session.save_handler: redis
+                    session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
 
-{{% snippet name="data" config="service" placeholder="true"  %}}
-    type: "redis-persistent:{{% latest "redis" %}}"
-{{% /snippet %}}
+            web:
+                locations:
+                    '/':
+                        root: 'web'
+                        passthru: '/index.php'
+                        
+services:
+    # The name of the service container. Must be unique within a project.
+    redissession:
+        type: "redis-persistent:{{% latest "redis" %}}"
 ```

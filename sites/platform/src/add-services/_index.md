@@ -28,27 +28,27 @@ All service configuration happens in the `{{< vendor/configfile "services" >}}` 
 Configure your service in the following pattern:
 
 ```yaml {configFile="services"}
-{{% snippet name="SERVICE_NAME" config="service" %}}
+# The name of the service container. Must be unique within a project.
+SERVICE_NAME:
     type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
     # Other options...
-{{% /snippet %}}
 ```
 
 An example service configuration for two databases might look like this:
 
 ```yaml {configFile="services"}
-{{% snippet name="database1" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+mariadb:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-{{% /snippet %}}
-{{% snippet name="database2" config="service" globKey="false"  %}}
+# The name of the service container. Must be unique within a project.
+postgresql:
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
-{{% /snippet %}}
 ```
 
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `database1` and `database2`), which you use to identify the service in step 2.
+The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
 
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -96,40 +96,43 @@ This is done in your [app configuration for relationships](/create-apps/app-refe
 The relationship follows this pattern:
 
 ```yaml {configFile="app"}
-{{% snippet name="<APP_NAME>" config="app" root="false"%}}
-
 # Other options...
 
 # Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    {{< variable "RELATIONSHIP_NAME" >}}: "{{< variable "SERVICE_NAME" >}}:{{< variable "ENDPOINT" >}}"
-{{% /snippet %}}
-{{% snippet name="SERVICE_NAME" config="service" placeholder="true"%}}
-    type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
-    # Other options...
-{{% /snippet %}}
+    {{<variable "SERVICE_NAME" >}}:
 ```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 
 ```yaml {configFile="app"}
-{{< snippet name="<APP_NAME>" config="app" root="false">}}
-
 # Other options...
 
-# Relationships enable an app container's to a service.
+# Relationships enable an app container's access to a service.
 relationships:
-    mysql_database: "database1:mysql"
-    postgresql_database: "database2:postgresql"
-{{% /snippet %}}
-{{% snippet name="database1" config="service" placeholder="true"  %}}
+    mariadb:
+    postgresql:
+```
+
+```yaml {configFile="services"}
+mariadb:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
-{{% /snippet %}}
-{{% snippet name="database2" config="service" globKey="false" placeholder="true"  %}}
+postgresql:
     type: postgresql:{{% latest "postgresql" %}}
     disk: 1024
-{{% /snippet %}}
 ```
 
 As with the service name, you can give the relationship any name you want
@@ -201,17 +204,17 @@ To get the credentials for a given service, run the following command:
 You get output like the following:
 
 ```yaml
-database:
+mariadb:
     -
         username: user
         scheme: mysql
-        service: database
+        service: mariadb
         fragment: null
         ip: 198.51.100.37
-        hostname: abcdefghijklm1234567890123.database.service._.eu.{{< vendor/urlraw "hostname" >}}
+        hostname: abcdefghijklm1234567890123.mariadb.service._.eu.{{< vendor/urlraw "hostname" >}}
         public: false
         cluster: abcdefgh1234567-main-abcd123
-        host: database.internal
+        host: mariadb.internal
         rel: mysql
         query:
             is_master: true
@@ -220,10 +223,10 @@ database:
         type: 'mariadb:10.6'
         port: 3306
         host_mapped: false
-        url: 'mysql://user:@database.internal:3306/main'
+        url: 'mysql://user:@mariadb.internal:3306/main'
 ```
 
-With this example, you can connect to the `database` relationship
+With this example, you can connect to the `mariadb` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 

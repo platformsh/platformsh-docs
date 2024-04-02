@@ -13,6 +13,9 @@
 <!-- Get registry data for the service type. -->
 
 {{ $data := index .Site.Data.registry ( $type ) }}
+{{ if eq $type "redis-persistent" }}
+    {{ $data = index .Site.Data.registry "redis" }}
+{{ end }}
 
 {{ $headerLevel }} 1. Configure the service
 
@@ -26,7 +29,7 @@ To define the service, use {{ if eq ($type) "mariadb" }}
   the `{{ $type }}` type{{ end }}:
 
 <!-- Create an example services.yaml file from data in the registry. -->
-{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion) }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion "type" $type) }}
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
 ```yaml {configFile="services"}
@@ -34,13 +37,8 @@ To define the service, use {{ if eq ($type) "mariadb" }}
 ```
 
 {{ if eq $type "redis-persistent" }}
-Note that persistent Redis requires disk space to store data.
-For more information, refer to the [dedicated Redis page](/add-services/redis.md).
-
-If want to use ephemeral Redis instead, use the `redis` type:
-
-  {{ $redis_data := index .Site.Data.registry "redis" }}
-  {{ partial "examples/servicedefn" (dict "context" . "data" $redis_data "docVersion" $docVersion ) }}
+Persistent Redis requires disk space to store data.
+If you want to use ephemeral Redis instead, [use the `redis` type](/add-services/redis.md#ephemeral-redis).
 
 {{ else if eq $type "network-storage" }}
 `<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
@@ -68,27 +66,32 @@ Back up your data before changing the service.
 
 {{ $headerLevel }} 2. Add the relationship
 
+To define the relationship, use the following configuration:
+
 <!-- Network storage services are different and handled below -->
 {{ if ne $type "network-storage" }}
-<!-- Clarify the endpoint that should be used. -->
-<!-- If a link and text have been set, adds exception that directs users to the subsection that describes explicit endpoints. -->
-To define the relationship, use the {{ if eq $type "vault-kms" }}endpoint you [defined
-in step 1](#1-configure-the-service){{ else }}`{{ $data.endpoint }}` endpoint{{ end }}
-{{ if and (gt (len ( $sectionLink )) 0) (gt (len ( $multipleText )) 0) }} (unless you have [multiple {{$multipleText}}]({{ $sectionLink }})){{ end }}:
 
 <!-- Create a dummy example `relationships` block from the registry's example naming in `.docs` -->
-{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion ) }}
+{{ $serviceInner := partial "examples/servicedefn" (dict "context" . "data" $data "docVersion" $docVersion "type" $type) }}
 {{ $relationshipInner := partial "examples/relationship" (dict "context" . "data" $data ) }}
 
 ```yaml {configFile="app"}
 {{ partial "snippet" (dict "context" . "name" "<APP_NAME>" "config" "app" "root" "false" "Inner" $relationshipInner ) }}
-
 {{ partial "snippet" (dict "context" . "name" "<SERVICE_NAME>" "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
 ```
 
 <!-- Adds a note about naming conventions between relationship and service names. Keep em unique. -->
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it's best if they're distinct.
-With this definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
+
+With the above definition, the application container {{ if eq $docVersion 2 }}(`<APP_NAME>`) {{ end }}
 {{- if ne (.Get "noApp" ) true -}}
 now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding {{ if eq $docVersion 2 }}[service environment variables](/development/variables/_index.md#service-environment-variables){{ else }}[`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables){{ end }}.
 {{- else -}}
@@ -151,9 +154,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 
 <!-- Describe app configuration for network storage services -->
 {{ else }}
-Add the service to your app configuration:
-
-{{$inner := "\nmounts:\n    '<MOUNT_PATH>':\n        source: service\n" }}
+{{$inner := "\nmounts:\n    '<TARGET_PATH>':\n        source: service\n" }}
 {{ $inner = printf "%s        service: <SERVICE_NAME>\n        source_path: <SOURCE_PATH>" $inner }}
 
 ```yaml {configFile="app"}
@@ -172,17 +173,14 @@ Add the service to your app configuration:
 {{ end }}
 {{ end }} <!-- end check for Varnish -->
 
-<!-- Add example heading for all but MariaDB/Oracle MySQL and Redis, which need two -->
-{{ $skip_heading := slice "mariadb" "redis"}}
+<!-- Add example heading for all but MariaDB/Oracle MySQL -->
+{{ $skip_heading := slice "mariadb" }}
 {{ if not (in $skip_heading $type) }}
 {{ $headerLevel }} Example Configuration
 {{ end }}
 
 {{ if eq $type "mariadb" }}
 ### MariaDB example
-<!-- Same for Redis -->
-{{ else if eq $type "redis" }}
-### Ephemeral example
 {{ end }}
 
 {{ $appName := "myapp" }}
@@ -196,7 +194,7 @@ Add the service to your app configuration:
 {{ $serviceName := index $data "docs" "service_name" }}
 {{ $serviceInner := "" }}
 {{ if eq $type "varnish" }}
-  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName "docVersion" $docVersion ) }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "relName" "application" "appName" $appName "docVersion" $docVersion "type" $type ) }}
 {{ else if eq $type "vault-kms" }}
   {{ $latest := partial "examples/latest" (dict "data" $data )}}
   {{ if eq $docVersion 2 }}
@@ -215,7 +213,7 @@ Add the service to your app configuration:
   {{ $serviceInner = printf "%s\n                  key: vault-sign" $serviceInner }}
   {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
 {{ else }}
-  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "docVersion" $docVersion ) }}
+  {{ $serviceInner = partial "examples/servicedefn" (dict "context" . "data" $data "latest" "true" "docVersion" $docVersion "type" $type ) }}
 {{ end }}
 
 {{ if eq $docVersion 1 }}
@@ -292,7 +290,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 {{ $serviceInner = printf "%s\n                  key: signing-key" $serviceInner }}
 {{ $serviceInner = printf "%s\n                  type: sign" $serviceInner }}
 
-{{ $appInner = "\nrelationships:\n    vault_manage: \"vault-kms:management\"\n    vault_sign: \"vault-kms:sign_and_verify\"" }}
+{{ $appInner = "\nrelationships:\n    vault_manage:\n        service: vault-kms\n        endpoint: management\n    vault_sign:\n        service: vault-kms\n        endpoint: sign_and_verify" }}
 
 {{ if eq $docVersion 1 }}
 #### [Service definition](/add-services)
@@ -322,41 +320,10 @@ If you're using a [premium version](add-services/elasticsearch.md#supported-vers
 use the `elasticsearch-enterprise` type in the service definition.
 {{ end }}
 
-[//]: # (@todo update the example)
-{{ if eq $type "redis" }}
-### Persistent example
-
-{{ $serviceName := "data" }}
-{{ $serviceInner := "\n    type: redis-persistent:7.0\n    disk: 256" }}
-
-{{ if eq $docVersion 1 }}
-#### [Service definition](/add-services)
-```yaml {configFile="services"}
-{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "Inner" $serviceInner ) }}
-```
-{{ end }}
-
-{{$appInner := "relationships:\n    redisdata: \"data:redis\"" }}
-
-{{ if eq $docVersion 2 }}
-#### [App](/create-apps) and [Service configuration](/add-services)
-{{ else }}
-
-#### [App configuration](/create-apps)
-{{ end }}
-
-```yaml {configFile="app"}
-{{ partial "snippet" (dict "context" . "name" $appName "config" "app" "root" "false" "Inner" $appInner ) }}
-
-{{ partial "snippet" (dict "context" . "name" $serviceName "config" "service" "placeholder" "true" "Inner" $serviceInner ) }}
-```
-
-{{ end }}
-
 {{ if eq $type "mariadb" }}
 ### OracleMySQL example
 
-{{ $serviceName := "oracle-mysql" }}
+{{ $serviceName := "oraclemysql" }}
 {{ $serviceInner := "\n    type: oracle-mysql:8.0" }}
 
 {{ if eq $docVersion 1 }}
@@ -367,7 +334,7 @@ use the `elasticsearch-enterprise` type in the service definition.
 ```
 {{ end }}
 
-{{$appInner := "relationships:\n    oracledatabase: \"oracle-mysql:mysql\"" }}
+{{$appInner := "relationships:\n    oraclemysql: " }}
 
 {{ if eq $docVersion 2 }}
 #### [App](/create-apps) and [Service configuration](/add-services)
@@ -395,4 +362,3 @@ add a configuration file similar to the following to your project.
 {{ end }}
 {{ end }}
 <!-- shortcode end {{ .Name }} -->
-

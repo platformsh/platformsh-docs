@@ -39,22 +39,22 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-INFLUXDBDATABASE_HOST=influxdbdatabase.internal
-INFLUXDBDATABASE_HOSTNAME=azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-INFLUXDBDATABASE_CLUSTER=azertyuiopqsdf-main-bvxea6i
-INFLUXDBDATABASE_SERVICE=influxdb
-INFLUXDBDATABASE_TYPE=influxdb:{{< latest "influxdb" >}}
-INFLUXDBDATABASE_REL=influxdb
-INFLUXDBDATABASE_SCHEME=http
-INFLUXDBDATABASE_USERNAME=admin
-INFLUXDBDATABASE_PASSWORD=ChangeMe
-INFLUXDBDATABASE_PORT=8086
-INFLUXDBDATABASE_PATH=
-INFLUXDBDATABASE_QUERY={'org': 'main', 'bucket': 'main', 'api_token': 'azertyuiopqsdfghjklm1234567890'}
-INFLUXDBDATABASE_FRAGMENT=
-INFLUXDBDATABASE_PUBLIC=false
-INFLUXDBDATABASE_HOST_MAPPED=false
-INFLUXDBDATABASE_IP=123.456.78.90
+INFLUXDB_HOST=influxdb.internal
+INFLUXDB_HOSTNAME=azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+INFLUXDB_CLUSTER=azertyuiopqsdf-main-bvxea6i
+INFLUXDB_SERVICE=influxdb
+INFLUXDB_TYPE=influxdb:{{< latest "influxdb" >}}
+INFLUXDB_REL=influxdb
+INFLUXDB_SCHEME=http
+INFLUXDB_USERNAME=admin
+INFLUXDB_PASSWORD=ChangeMe
+INFLUXDB_PORT=8086
+INFLUXDB_PATH=
+INFLUXDB_QUERY={'org': 'main', 'bucket': 'main', 'api_token': 'azertyuiopqsdfghjklm1234567890'}
+INFLUXDB_FRAGMENT=
+INFLUXDB_PUBLIC=false
+INFLUXDB_HOST_MAPPED=false
+INFLUXDB_IP=123.456.78.90
 ```
 
 <--->
@@ -68,7 +68,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-  "host": "influxdbdatabase.internal",
+  "host": "influxdb.internal",
   "hostname": "azertyuiopqsdfghjklm.influxdb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "cluster": "azertyuiopqsdf-main-bvxea6i",
   "service": "influxdb",
@@ -98,7 +98,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_INFLUXDB_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdbdatabase[0].host')"
+export APP_INFLUXDB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdb[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -108,14 +108,22 @@ export APP_INFLUXDB_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdbdatabase
 {{% endpoint-description type="influxdb" /%}}
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
-# Relationships enable an app container's access to a service.
-relationships:
-    influxdbdatabase: "influxdb:influxdb"
-{{% /snippet %}}
-{{% snippet name="influxdb" config="service" placeholder="true"  %}}
-    type: influxdb:{{% latest "influxdb" %}}
-{{% /snippet %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "/"
+
+        [...]
+
+        # Relationships enable an app container's access to a service.
+        relationships:
+            influxdb:
+
+service:
+    influxdb:
+        type: influxdb:{{% latest "influxdb" %}}
 ```
 
 {{% v2connect2app serviceName="influxdb" relationship="influxdbdatabase" var="INFLUX_HOST"%}}
@@ -123,11 +131,11 @@ relationships:
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export INFLUX_USER=${INFLUXDBDATABASE_USERNAME}
-export INFLUX_HOST=${INFLUXDBDATABASE_HOST}
-export INFLUX_ORG=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".org")
-export INFLUX_TOKEN=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".api_token")
-export INFLUX_BUCKET=$(echo $INFLUXDBDATABASE_QUERY | jq -r ".bucket")
+export INFLUX_USER=${INFLUXDB_USERNAME}
+export INFLUX_HOST=${INFLUXDB_HOST}
+export INFLUX_ORG=$(echo $INFLUXDB_QUERY | jq -r ".org")
+export INFLUX_TOKEN=$(echo $INFLUXDB_QUERY | jq -r ".api_token")
+export INFLUX_BUCKET=$(echo $INFLUXDB_QUERY | jq -r ".bucket")
 ```
 
 {{% /v2connect2app %}}
@@ -146,7 +154,7 @@ To export your data from InfluxDB, follow these steps:
    This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
 
    ```bash
-   SSH tunnel opened to influxdbdatabase at: http://127.0.0.1:30000
+   SSH tunnel opened to {{<variable "RELATIONSHIP_NAME" >}} at: http://127.0.0.1:30000
    ```
 
 3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:

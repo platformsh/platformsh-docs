@@ -628,7 +628,7 @@ applications:
 All major PHP web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Laravel](/get-started/stacks/laravel.md)
+- [Laravel](/get-started/stacks/laravel)
 - [Symfony](/get-started/stacks/symfony/_index.md)
 
 ## Modify your PHP runtime when using a composable image

@@ -128,11 +128,12 @@ applications:
             php:
                 composer/composer: '^2'
 
-        # The app's relationships (connections) with services or other applications.
-        # The key is the relationship name that can be viewed in the app.
-        # The value is specific to how the service is configured.
+        # Relationships enable an app container's access to a service or another app.
+        # The example below shows simplified configuration leveraging a default service 
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            database: 'mysqldb:mysql'
+            mysql:
 
         # Scripts that are run as part of the build and deploy process.
         hooks:
@@ -168,5 +169,6 @@ applications:
                     passthru: '/app.php'
 
 services:
-    mysqldb:
+    mysql:
         type: mariadb:{{% latest "mariadb" %}}
+```

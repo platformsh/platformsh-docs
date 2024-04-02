@@ -82,15 +82,15 @@ the files are shared between the two applications even if the mount location is 
 It's also possible to have one app mount a `source_path` that's a subdirectory of another application's mount.
 For example:
 
-`app1`:
-
 ```yaml {configFile="apps"}
 # The name of the app container. Must be unique within a project.
 app1:
     # The location of the application's code.
     source:
-        root: "/"
-    ...
+        root: "app1"
+    
+    [...]
+
     mounts:
         'web/uploads':
             source: service
@@ -101,8 +101,10 @@ app1:
 app2:
     # The location of the application's code.
     source:
-        root: "/"
-    ...
+        root: "app2"
+    
+    [...]
+
     mounts:
         'process':
             source: service
@@ -140,6 +142,8 @@ You can then use this service to  define a `network_dir` network mount and a `lo
 to be used by a `web` instance and a `queue` worker instance:
 
 ```yaml {configFile="app"}
+name: myapp
+
 # The type of the application to build.
 type: "nodejs:20"
 
@@ -165,9 +169,6 @@ mounts:
     'local_dir':
         source: local
         source_path: my_stuff
-
-# Define how much space is available to local mounts
-disk: 512
 
 # Define a web instance
 web:
@@ -201,11 +202,13 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 (This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
 ```yaml {configFile="app"}
+name: myapp
+
 # The type of the application to build.
-"php:{{% latest "php" %}}"
+type: "php:{{% latest "php" %}}"
 
 relationships:
-    mariadbdatabase: "mariadb:mysql"
+    mariadb:
 
 disk: 1024
 

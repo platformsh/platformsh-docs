@@ -149,12 +149,17 @@ See [Config Reader Documentation](../development/variables/use-variables.md#acce
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a relationship defined in `{{< vendor/configfile "app" >}}`:
+Given a [relationship](/create-apps/app-reference.md#relationships) defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service 
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    postgresdatabase: "dbpostgres:postgresql"
+    postgresql: 
 ```
+
 Assuming you have in `mix.exs` the Poison library to parse JSON:
 
 ```elixir
@@ -169,7 +174,7 @@ And assuming you use `ecto` you could put in `config/config.exs`:
 
 ```elixir
 relationships = Poison.decode!(Base.decode64!(System.get_env("PLATFORM_RELATIONSHIPS")))
-[postgresql_config | _tail] = relationships["postgresdatabase"]
+[postgresql_config | _tail] = relationships["postgresql"]
 
 config :my_app, Repo,
   database: postgresql_config["path"],

@@ -93,7 +93,7 @@ mounts:
         source: local
         source_path: test
 relationships:
-    database: 'mysqldb:mysql'
+    mysql:
 workers:
     queue:
         commands:
@@ -118,7 +118,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            database: 'mysqldb:mysql'
+            mysql: 
     mail:
         commands:
             start: |
@@ -129,7 +129,7 @@ workers:
                 source: local
                 source_path: test
         relationships:
-            database: 'mysqldb:mysql'
+            mysql: 
 ```
 
 In both cases, there are two worker instances named `queue` and `mail`.
@@ -146,10 +146,10 @@ while `variables` lets you instruct the application to run differently as a work
 For example, consider the following configuration:
 
 ```yaml {configFile="services"}
-mysqldb:
+mysql:
     type: "mariadb:{{% latest "mariadb" %}}"
     disk: 2048
-rabbitqueue:
+rabbitmq:
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 512
 ```
@@ -163,8 +163,8 @@ hooks:
        pip install -e .
        pip install gunicorn
 relationships:
-    database: 'mysqldb:mysql'
-    messages: 'rabbitqueue:rabbitmq'
+    mysql: 
+    rabbitmq: 
 variables:
     env:
         type: 'none'
@@ -211,7 +211,7 @@ workers:
         disk: 256
         mounts: {}
         relationships:
-            emails: 'rabbitqueue:rabbitmq'
+            rabbitmq: 
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.

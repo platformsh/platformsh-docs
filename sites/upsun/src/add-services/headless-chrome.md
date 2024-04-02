@@ -27,15 +27,15 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-CHROMEHEADLESSBROWSER_SERVICE=chromeheadless
-CHROMEHEADLESSBROWSER_IP=123.456.78.90
-CHROMEHEADLESSBROWSER_HOSTNAME=azertyuiopqsdfghjklm.chromeheadless.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-CHROMEHEADLESSBROWSER_CLUSTER=azertyuiop-main-7rqtwti
-CHROMEHEADLESSBROWSER_HOST=chromeheadlessbrowser.internal
-CHROMEHEADLESSBROWSER_REL=http
-CHROMEHEADLESSBROWSER_SCHEME=http
-CHROMEHEADLESSBROWSER_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
-CHROMEHEADLESSBROWSER_PORT=9222
+CHROMEHEADLESS_SERVICE=chromeheadless
+CHROMEHEADLESS_IP=123.456.78.90
+CHROMEHEADLESS_HOSTNAME=azertyuiopqsdfghjklm.chromeheadless.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CHROMEHEADLESS_CLUSTER=azertyuiop-main-7rqtwti
+CHROMEHEADLESS_HOST=chromeheadless.internal
+CHROMEHEADLESS_REL=http
+CHROMEHEADLESS_SCHEME=http
+CHROMEHEADLESS_TYPE=chrome-headless:{{< latest "chrome-headless" >}}
+CHROMEHEADLESS_PORT=9222
 ```
 
 <--->
@@ -53,7 +53,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.chromeheadless.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiop-main-7rqtwti",
-    "host": "chromeheadlessbrowser.internal",
+    "host": "chromeheadless.internal",
     "rel": "http",
     "scheme": "http",
     "type": "chrome-headless:{{< latest "chrome-headless" >}}",
@@ -68,7 +68,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_HEADLESSCHROME_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.chromeheadlessbrowser[0].host')"
+export APP_HEADLESSCHROME_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.chromeheadless[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -123,27 +123,34 @@ yarn add puppeteer
 Configuration for a project looks similar to the following:
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
-type: "nodejs:{{% latest "nodejs" %}}"
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "/"
+            type: "nodejs:{{% latest "nodejs" %}}"
 
-# Other options...
+            [...]
 
-# Relationships enable an app container's access to a service.
-relationships:
-    chromeheadlessbrowser: "chromeheadless:http"
-{{% /snippet %}}
-{{% snippet name="chromeheadless" config="service" placeholder="true"  %}}
-    type: chrome-headless:{{% latest "chrome-headless" %}}
-{{% /snippet %}}
+            # Relationships enable an app container's access to a service.
+            relationships:
+                chromeheadless: 
+                    service: chromeheadless
+                    endpoint: http
+services:
+    # The name of the service container. Must be unique within a project.
+    chromeheadless:
+        type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
-{{% v2connect2app serviceName="chromeheadless" relationship="chromeheadlessbrowser" var="CHROME_BASEURL"%}}
+{{% v2connect2app serviceName="chromeheadless" relationship="chromeheadless" var="CHROME_BASEURL"%}}
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export CHROME_IP=${CHROMEHEADLESSBROWSER_IP}
-export CHROME_PORT=${CHROMEHEADLESSBROWSER_PORT}
+export CHROME_IP=${CHROMEHEADLESS_IP}
+export CHROME_PORT=${CHROMEHEADLESS_PORT}
 
 # Combine into a single base URL to be used within app.
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
