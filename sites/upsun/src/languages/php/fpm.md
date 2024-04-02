@@ -4,6 +4,8 @@ description: "Learn how to adjust the maximum number of PHP-FPM workers for your
 weight: 5
 ---
 
+{{% composable/disclaimer %}}
+
 PHP-FPM helps improve your app's performance
 by maintaining pools of workers that can process PHP requests.
 This is particularly useful when your app needs to handle a high number of simultaneous requests.
@@ -89,7 +91,7 @@ These values allow most programs to run,
 but you can amend them to fit your needs.
 
 To do so, adjust your [app configuration](../../create-apps/_index.md).
-Under `runtime` in the [`sizing_hints` setting](../../create-apps/app-reference.md#sizing-hints),
+Under `runtime` in the [`sizing_hints` setting](/create-apps/app-reference/single-runtime-image.md#sizing-hints),
 set the values for `reserved_memory` and `request_memory`.
 
 For example,

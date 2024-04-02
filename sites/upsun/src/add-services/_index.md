@@ -67,7 +67,7 @@ The following table presents the keys you can define for each service:
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
-| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/app-reference.md#relationships). The `endpoint_name` for apps is always `http`. |
+| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships). The `endpoint_name` for apps is always `http`. |
 
 ##### Resources (CPU, RAM, disk)
 
@@ -80,7 +80,10 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### 2. Connect the service
 
-To connect the service, use the following configuration:
+Once you have configured a service, you need to create a relationship to connect it to an app.
+This is done in your [app configuration for relationships](/create-apps/app-reference/single-runtime-image.md#relationships).
+
+The relationship follows this pattern:
 
 ```yaml {configFile="app"}
 applications:
@@ -104,12 +107,12 @@ services:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
 

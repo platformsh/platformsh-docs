@@ -3,6 +3,8 @@ title: "Elixir"
 description: "{{% vendor/name %}} supports building and deploying applications written in Elixir. There is no default flavor for the build phase, but you can define it explicitly in your build hook. {{% vendor/name %}} Elixir images support both committed dependencies and download-on-demand. The underlying Erlang version is 22.0.7."
 ---
 
+{{% composable/disclaimer %}}
+
 {{% description %}}
 
 ## Supported versions
@@ -77,7 +79,7 @@ hooks:
 ```
 {{< note >}}
 
-That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](../create-apps/app-reference.md#root-directory).
+That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 {{< /note >}}
 
@@ -147,7 +149,7 @@ See [Config Reader Documentation](../development/variables/use-variables.md#acce
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a [relationship](/create-apps/app-reference.md#relationships) defined in `{{< vendor/configfile "app" >}}`:
+Given a [relationship](/create-apps/app-reference/single-runtime-image#relationships) defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
 # Relationships enable an app container's access to a service.

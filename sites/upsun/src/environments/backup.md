@@ -23,7 +23,7 @@ first activate it.
 1. As an [admin user](../administration/users.md), you can do a backup of your environment.
    This backup includes the complete data and code of the environment.
    All persistent data from all running [services](../add-services/_index.md)
-   and any files stored on [mounts](../create-apps/app-reference.md#mounts) are included.
+   and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
    The backup is stored internally on {{% vendor/name %}}.
    That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
    If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
@@ -232,7 +232,7 @@ See more information on [backup policies](#backup-policy) and [data retention](#
 
 ### Automate manual backups
 
-You can also automate the process of creating manual backups through [cron jobs](../create-apps/app-reference.md#crons).
+You can also automate the process of creating manual backups through [cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
 The cron job uses the CLI command to back up the environment.
 It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-an-environment).
 

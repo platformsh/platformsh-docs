@@ -20,13 +20,13 @@ This YAML file is located in your ``.upsun`` directory, at the root of your proj
 ```
 ## Mandatory top-level keys
 In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
-- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference.html)
+- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image)
 - ``routes``: this section of the file contains all of your [route definitions](/define-routes.md) (for each of your apps)
 - ``services``: this section of the file contains all of your [service definitions](/add-services.md) (for each of your apps)
 
 This looks like:
 ```yaml {location="{{< vendor/configfile "apps" >}}"}
-{{< code-link destination="/create-apps/app-reference.md" text="applications" title="Complete list of all available properties" >}}:
+{{< code-link destination="/create-apps/app-reference/single-runtime-image.html" text="applications" title="Complete list of all available properties" >}}:
   app:
     ...
 
@@ -50,8 +50,8 @@ Any YAML files located at the first level of your ``.upsun`` folder, at the root
 The following rules apply to YAML files contained in the ``.upsun`` folder:
 
 - All the existing YAML files located at the first level of the ``.upsun`` folder are taken into account.
-- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference.md).
-- All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference.md).
+- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference/single-runtime-image.md).
+- All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference/single-runtime-image.md).
 
 {{% note title="Warning" theme="warning"%}}
 When {{% vendor/name %}} combines all the YAML files located at the first level of the ``.upsun`` folder, only the top-level keys (`applications`, `services`, and `routes`) are merged. So if you define an app named ``app`` in two different YAML files, {{% vendor/name %}} only takes the second one into account.
