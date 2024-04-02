@@ -639,7 +639,10 @@ This section is only relevant when using the Upsun [composable image (BETA)](/cr
 
 {{% /note %}}
 
-The following table presents the possible modifications you can make to your PHP runtime:
+The following table presents the possible modifications you can make to your PHP primary runtime using the `stack` key and composable image.
+Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
+Xdebug is an exception, and should be configured from its extension listing.
+See the example below for more details.
 
 | Name                        | Type                                                       | Description                                                                                |
 |-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
@@ -649,25 +652,35 @@ The following table presents the possible modifications you can make to your PHP
 | `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
 | `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
-{{% note title="TODO" %}}
-@Jerome: is all of this still valid? `request_terminate_timeout`, `sizing_hints`, `xdebug`?
-{{% /note %}}
-
 Here is an example configuration:
 
 ```yaml {configFile="app"}
 applications:
+
   frontend:
+
     stack:
-      - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extension:
-          - gd
-    # Additional frontend configuration
+      - "php@8.3":
+          extensions:
+            - apcu # A PHP extension made available to the PHP runtime
+            - sodium
+            - xsl
+            - pdo_sqlite
+            - xdebug:
+                idekey: YOUR_KEY
+
+          disabled_extensions:
+            - gd
+
+          request_terminate_timeout: 200
+
+          sizing_hints:
+            request_memory: 45
+            reserved_memory: 70
+
+      - "php83Extensions.apcu" # A PHP extension made available to all runtimes.
+      - "python@3.12"
+      - "python312Packages.yq"
 ```
 
 {{% note %}}
