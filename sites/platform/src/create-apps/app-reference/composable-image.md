@@ -68,7 +68,7 @@ They are replaced by the `stack` key.
 Use the ``stack`` key to define which runtimes and binaries you want to install in your application container.
 Define them as a YAML array as follows:
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 myapp:
     stack: [ "<nixpackage>@<version>" ]
     # OR
@@ -125,7 +125,7 @@ Security and other patches are applied automatically.
 You want to add PHP version {{% latest php %}} and ``facedetect`` to your application container.
 To do so, use the following configuration:
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 myapp:
     stack: [ "php@{{% latest php %}}", "facedetect" ]
     # OR
@@ -157,7 +157,7 @@ To disable [PHP extensions](/languages/php/extensions.md),
 specify a list of `disabled_extensions` below the language definition.</br>
 For instance:
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 myapp:
     source:
       root: "/"
@@ -193,7 +193,7 @@ To do so, use the full name of the package.
 For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
 use the following configuration:
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 myapp:
     stack:
       - "python@3.12"
@@ -206,7 +206,7 @@ Alternatively, if you need to include configuration options for your extensions,
 
 Here is a full composable image configuration example. Note the use of the `<nixpackage>@<version>` format.
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 myapp:
     stack:
       - "php@{{% latest "php" %}}"
@@ -227,7 +227,7 @@ you can use a mix of [single-runtime images](/create-apps/app-reference/single-r
 and [composable images](/create-apps/app-reference/composable-image.md).
 Here is an example configuration including a ``frontend`` app and a ``backend`` app:
 
-```yaml {configFile="app"}
+```yaml {configFile="apps"}
 app1:
     stack:
       - "php@{{% latest "php" %}}"
