@@ -114,14 +114,34 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
-| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitHub repository. Automatically disabled when fetching branches is disabled. |
+| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. When enabled, merging environments must be done on the source repository rather than on the Platform.sh project. When enabled, merging on a Platform.sh isn't possible. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitHub repository. When enabled, branching (creating environments) must be done on the source repository rather than on the Platform.sh project. Branches created on Platform.sh that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `build-draft-pull-requests` | `true` | Whether to also track and build draft pull requests. Automatically disabled when pull requests aren’t built. |
 | `pull-requests-clone-parent-data` | `true` | 	Whether to clone data from the parent environment when creating a pull request environment. |
 | `build-pull-requests-post-merge`| `false` | Whether to build what would be the result of merging each pull request. Turning it on forces rebuilds any time something is merged to the target branch. |
 
 To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+
+{{< note theme="info" title="Sync, fetch, and prune">}}
+An integration from GitHub to Platform.sh establishes that
+
+1. GitHub is the source of truth, where Git operations occur, and
+2. Platform.sh is a mirror of that repository - provisioning infrastructure according to configuration, and orchestrating environments according to the branch structure of the GitHub repository.
+
+Actions that take place on Platform.sh should not, by default, affect commits on GitHub.
+Because of this you will notice that the GitHub integration enables both `fetch-branches` (track branches on GitHub) and `prune-branches` (delete branches that don't exist on GitHub) by default. 
+
+You can change these settings if you would need to, but we recommend keeping them as is in most cases.
+
+When enabled by default, you are limited by design as to what actions can be performed within the context of a Platform.sh project with a GitHub integration:
+
+| Action         | Observation         | Intended behavior |
+| :---------------- | :---------------- | :------- |
+| Branch from parent | Running [`environment:branch`](/administration/cli/reference#environmentbranch) with the CLI, or selecting **Branch** in Console produces a new child environment, but it's deleted shortly after automatically. | Contribute to the GitHub repository itself by creating a branch and pull request. When the PR has been opened, a new environment will be provisioned for it.  |
+| Merge in parent | Running [`environment:merge`](/administration/cli/reference#environmentmerge) with the CLI fails locally, and the **Merge** option in Console is not clickable. | Review and merge pull requests and/or branches on the GitHub repository. |
+| Merge into child (sync code) | Running [`environment:synchronize`](/administration/cli/reference#environmentsynchronize) with the CLI fails locally, and the **Sync** option in Console won't allow me to include `code` in that sync. | Perform the merge locally from a matching branch on GitHub. For example, clone the most recent parent (`git pull origin parent-branch`), switch to the pull request branch (`git checkout ga-staging`), and then merge the parent into the current branch (`git merge main`). |
+{{< /note >}}
 
 {{% source-integration/validate source="GitHub" %}}
 1. In your GitHub repository, click **Settings** > **Webhooks** > **Add webhook**.
