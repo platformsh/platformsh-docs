@@ -35,8 +35,7 @@ WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /in
 ```
 
 This means your PHP process is running longer than allowed.
-You can adjust the `max_execution_time` value in `php.ini`,
-but there is still a hard cap of 5 minutes on any web request.
+You can adjust the `max_execution_time` value in `php.ini`. See also `request_terminate_timeout` in the [App reference](/create-apps/app-reference/single-runtime-image.md#runtime). 
 
 The most common causes of a timeout are an infinite loop (which is a bug that you should fix)
 or the work itself requires a long time to complete.
