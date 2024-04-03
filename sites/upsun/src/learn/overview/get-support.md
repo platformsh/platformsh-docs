@@ -27,15 +27,15 @@ Once you submit a ticket, you see it in a list of all tickets created, for all p
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
-## Slack
-
-To talk about app development or framework-related questions,
-join other customers and engineers in the [public Slack channel](https://chat.platform.sh/).
-
 ## Community
 
-The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how-to guides with suggestions
+To talk about app development or framework-related questions,
+join other customers and engineers in the [Discord](https://discord.gg/PkMc2pVCDV).
+
+Also, the [{{% vendor/name %}} Community forum](https://community.platform.sh/) has how-to guides with suggestions
 on how to get the most out of {{% vendor/name %}}.
+
+{{% community-buttons %}}
 
 ## Contact Sales
 
@@ -59,3 +59,4 @@ as well as any linked Ibexa Cloud or Shopware PaaS accounts you may hold.
 4. Check that the pre-filled information is correct and click **Submit**.
 5. Read the consequences of account deletion and click **Submit request** to confirm.</br>
    Your request is now submitted and will be handled by Support shortly.
+   
