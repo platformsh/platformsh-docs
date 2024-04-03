@@ -641,7 +641,6 @@ This section is only relevant when using the Upsun [composable image (BETA)](/cr
 
 The following table presents the possible modifications you can make to your PHP primary runtime using the `stack` key and composable image.
 Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
-Xdebug is an exception, and should be configured from its extension listing.
 See the example below for more details.
 
 | Name                        | Type                                                       | Description                                                                                |
@@ -666,8 +665,9 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-            - xdebug:
-                idekey: YOUR_KEY
+
+          xdebug:
+            idekey: YOUR_KEY
 
           disabled_extensions:
             - gd
