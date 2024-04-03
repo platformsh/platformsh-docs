@@ -1,0 +1,93 @@
+---
+title: "Extensions"
+weight: 1
+description: See what PHP extensions are available with each PHP version on {{% vendor/name %}}.
+---
+
+{{% note theme="info" %}}
+
+You can now use the [{{% vendor/name %}} composable image (BETA)](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
+When using the composable image, see how you can:
+- [Manage PHP extensions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages)
+- [Modify your PHP runtime](#modify-your-php-runtime-when-using-a-composable-image)
+
+{{% /note %}}
+
+PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
+Some of them are available for {{% vendor/name %}} containers.
+
+{{< note version="1" theme="warning" title="Warning" >}}
+
+The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
+See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
+
+{{< /note >}}
+
+You can define the PHP extensions you want to enable or disable:
+
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        runtime:
+            extensions:
+                - raphf
+                - http
+                - igbinary
+                - redis
+            disabled_extensions:
+                - sqlite3
+```
+You can also [include configuration options](/create-apps/app-reference/single-runtime-image.md#extensions) for specific extensions.
+
+The following table shows all extensions that are available (Avail) and on by default (Def).
+You can turn on the available ones with the `extensions` key
+and turn off those on by default with the `disabled_extensions` key.
+(Extensions marked with `*` are built in and can't be turned off.)
+
+{{< php-extensions/grid >}}
+
+Some built-in modules are always on:
+
+- `date`
+- `filter`
+- `hash`
+- `json` (from 8.0)
+- `libxml`
+- `openssl`
+- `pcntl`
+- `pcre`
+- `Reflection`
+- `session`
+- `SPL`
+- `standard`
+- `Zend OPcache` (from 5.5)
+- `zlib`
+
+To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
+
+```bash
+{{% vendor/cli %}} ssh "php -m"
+```
+
+## Custom PHP extensions
+
+It's possible to use an extension not listed here,
+but it takes slightly more work:
+
+1. Download the `.so` file for the extension as part of your build hook using `curl` or similar.
+   It can also be added to your Git repository if the file isn't publicly downloadable,
+   but committing large binary blobs to Git is generally not recommended.
+
+2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
+   For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
+   your configuration looks like the following:
+
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'php:{{% latest "php" %}}'
+        variables:
+            php:
+                extension: /app/spiffy.so
+```

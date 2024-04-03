@@ -41,71 +41,7 @@ to [persistent Redis](../../add-services/redis.md#persistent-redis) (`redis-pers
 
 ## Add a Redis service
 
-### 1. Configure the service
-
-To define the service, use the `redis-persistent` type:
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-<SERVICE_NAME>:
-    type: redis-persistent:<VERSION>
-    disk: 256
-```
-
-Note that persistent Redis requires `disk` to store data.
-For more information, refer to the [dedicated Redis page](../../add-services/redis.md).
-
-If want to use ephemeral Redis instead, use the `redis` type:
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-<SERVICE_NAME>:
-    type: redis:<VERSION>
-```
-
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
-
-### 2. Add the relationship
-
-To define the relationship, use the `redis` endpoint :
-
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:redis"
-```
-
-You can define `<SERVICE_NAME>` and `<RELATIONSHIP_NAME>` as you like, but it’s best if they’re distinct.
-With this definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>`.
-
-For PHP, enable the extension for the service:
-
-```yaml {configFile="app"}
-# PHP extensions.
-runtime:
-    extensions:
-        - redis
-```
-
-### Example Configuration
-
-#### [Service definition](../../add-services/_index.md)
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-cacheredis:
-    type: redis-persistent:7.0
-    disk: 256
-```
-
-#### [App configuration](../../add-services/_index.md)
-
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-relationships:
-    rediscache: "cacheredis:redis"
-```
+{{% endpoint-description type="redis-persistent" noApp=true /%}}
 
 ### 3. Add the Drupal module
 

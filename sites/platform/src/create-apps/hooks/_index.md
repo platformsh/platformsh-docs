@@ -2,6 +2,7 @@
 title: Use build and deploy hooks
 description: Add custom scripts at different stages in the build and deploy process.
 layout: single
+weight: 13
 ---
 
 As your app goes through the [build and deploy process](/learn/overview/build-deploy.md),
@@ -33,7 +34,7 @@ In this case, the app has two sets of dependencies:
 
 Create your `build` hook to install them all:
 
-1. Create a `build` hook in your [app configuration](../app-reference.md):
+1. Create a `build` hook in your [app configuration](/create-apps/app-reference/single-runtime-image.md):
 
    ```yaml {configfile="app" dir="client" }
    hooks:
@@ -66,7 +67,7 @@ Create your `build` hook to install them all:
    Copy the files in this directory into a `client/platformsh-scripts/test` directory.
    This script debugs the connection between Next.js and Drupal.
 4. In the hook, switch to the directory with the testing script.
-   Each hook starts in the [app root](../app-reference.md#root-directory).
+   Each hook starts in the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
    In this case, the app root is `client`.
    To run commands from a different directory, you need to change directories (relative to the app root):
 
@@ -112,12 +113,12 @@ Because these steps should be done before the site accepts request, they should 
 All of this configuration and preparation can be handled in a bash script.
 
 <!-- @todo: this context is not so simple to disentangle, so leaving for now -->
-1. Copy the [preparation script from the Platform.sh template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/platformsh-scripts/hooks.deploy.sh)
+1. Copy the [preparation script from the {{% vendor/name %}} template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/platformsh-scripts/hooks.deploy.sh)
    into a file called `hooks.deploy.sh` in a `api/platformsh-scripts` directory.
    Note that hooks are executed using the dash shell, not the bash shell used by SSH logins.
 2. Copy the [Drush configuration script from the template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/drush/platformsh_generate_drush_yml.php)
    into a `drush/platformsh_generate_drush_yml.php` file.
-3. Set a [mount](../app-reference.md#mounts).
+3. Set a [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
    Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
    So create a mount where you can write the Drush configuration:
 
@@ -163,7 +164,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
        api: 'api:http'
    ```
 
-2. Set [mounts](../app-reference.md#mounts).
+2. Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
    Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
    Create mounts for your Next.js files:
 
