@@ -17,7 +17,7 @@ The composable image is built on [Nix](https://nix.dev), which offers the follow
 
 - You can add as many packages to your application container as you need,
   choosing from over 80,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
-- The packages you add are built in total isolation, so you can easily install different versions of the same package.
+- The packages you add are built in total isolation, so you can install different versions of the same package.
 - With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
   What works on your local machine is guaranteed to work on any other machine.
 

@@ -79,7 +79,7 @@ use the [`source.root` property](#source).
 ## Types
 
 {{% note theme="info" %}}
-You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
 See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image#supported-nix-packages) for more information.
 {{% /note %}}
@@ -223,20 +223,12 @@ applications:
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-folders).
 
-<<<<<<<< HEAD:sites/upsun/src/create-apps/app-reference/single-runtime-image.md
 | Name          | Type                           | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |---------------|--------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `source`      | `storage`, `tmp`, or `service` | Yes      | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount). |
 | `source_path` | `string`                       | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                         |
 | `service`     | `string`                       |          | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage.                                                                                                                                                                                                                                                                                                                                                                                     |
-========
 
-| Name          | Type                 | Required | Description |
-| ------------- | -------------------- | -------- | ----------- |
-| `source`      | `storage`, `instance`, `tmp` (also called `temporary`), or `service` | Yes | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` (or `temporary`) mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount).|
-| `source_path` | `string`             | No      | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files. |
-| `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
->>>>>>>> ga-staging:sites/upsun/src/create-apps/app-reference.md
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
@@ -1152,7 +1144,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 ### Extensions
 
 {{% note theme="info" %}}
-You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
 See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#top-level-properties).
 {{% /note %}}
@@ -1212,11 +1204,11 @@ The following table shows the properties that can be set in `source`:
 
 ## Container profile
 
-By default, Upsun allocates a container profile to each app and service depending on the range of resources it’s
+By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it’s
 expected to need.
 
 Each container profile gives you access to a specific list of CPU and RAM combinations.
-Using the Upsun CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
+Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
 - [Container profile types and resources](/manage-resources/adjust-resources#advanced-container-profiles)
 - [Default container profiles](/manage-resources/adjust-resources#default-container-profiles) for runtime and service
