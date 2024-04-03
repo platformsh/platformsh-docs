@@ -1,5 +1,5 @@
 ---
-title: Deploying Express on Upsun
+title: Deploying Express on {{% vendor/name %}}
 sectionBefore: Javascript/Node.js
 sidebarTitle: Express
 weight: -100
@@ -291,7 +291,7 @@ To make changes to your project, follow these steps:
     block content
       h1= title
    -  p Welcome to #{title}
-   +  p Welcome to #{title} on Upsun
+   +  p Welcome to #{title} on {{% vendor/name %}}
    ``
 
 3. Commit your changes:
@@ -341,4 +341,4 @@ To make changes to your project, follow these steps:
 
 ### Blogs
 
-- [A quick-start guide on hosting Express on Upsun](https://upsun.com/blog/setting-up-express-on-upsun/)
+- [A quick-start guide on hosting Express on {{% vendor/name %}}](https://upsun.com/blog/setting-up-express-on-upsun/)

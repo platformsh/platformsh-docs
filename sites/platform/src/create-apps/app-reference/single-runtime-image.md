@@ -57,7 +57,7 @@ use the [`source.root` property](#source).
 ## Types
 
 {{% note theme="info" %}}
-You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
 See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image#supported-nix-packages) for more information.
 {{% /note %}}
@@ -133,7 +133,7 @@ For more information, see how to [define relationships between your apps](/creat
 New syntax (default and explicit endpoints) described below is supported by most, but not all, image types 
 (`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
 This syntax is currently being rolled out for all images. 
-If you encounter this error, use the "legacy" Platform.sh configuration noted at the bottom of this section. 
+If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section. 
 
 {{< /note >}}
 
@@ -1079,7 +1079,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 ### Extensions
 
 {{% note theme="info" %}}
-You can now use the Upsun composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
 See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#top-level-properties).
 {{% /note %}}

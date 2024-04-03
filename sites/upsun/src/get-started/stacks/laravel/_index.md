@@ -1,5 +1,5 @@
 ---
-title: Deploying Laravel on Upsun
+title: Deploying Laravel on {{% vendor/name %}}
 sidebarTitle: Laravel
 sectionBefore: PHP
 layout: single

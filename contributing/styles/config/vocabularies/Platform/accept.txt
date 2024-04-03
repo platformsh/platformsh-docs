@@ -26,6 +26,7 @@ CDNs?
 CMS
 CNAMEs?
 [Cc]onfig
+[Cc]omposable
 Corepack
 CPUs?
 [Cc]ron
@@ -101,6 +102,7 @@ Nagios
 Namecheap
 namespace
 Neve
+Nixpkgs
 [Nn]ginx
 NodePing
 Nori

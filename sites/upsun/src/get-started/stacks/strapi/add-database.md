@@ -7,14 +7,14 @@ description: |
 
 {{% description %}}
 
-This guide will show you how to provision and connect to two different databases on Upsun:
+This guide will show you how to provision and connect to two different databases on {{% vendor/name %}}:
 
 - PostgreSQL
 - Oracle MySQL
 
 ## 1. Branch
 
-Like all updates to your Upsun projects, first create a new dedicated environment to test this change.
+Like all updates to your {{% vendor/name %}} projects, first create a new dedicated environment to test this change.
 
 ```bash
 git checkout -b upgrade-db
@@ -141,7 +141,7 @@ export DATABASE_PASSWORD="$DB_PASSWORD"
 export DATABASE_SCHEME="$DB_SCHEME"
 
 # Set secrets needed by Strapi, if they are not set
-# Prefer setting these as project secret variables with upsun variable:create env:SECRET_NAME --sensitive=true
+# Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
 if [[ -z "$ADMIN_JWT_SECRET" ]]; then
   export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
@@ -156,7 +156,7 @@ if [[ -z "$APP_KEYS" ]]; then
 fi
 ```
 
-Upsun will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore. 
+{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore. 
 Remove the first block (pertaining to `DATABASE` credentials).
 
 Then, add a single additional variable that will set the `DATABASE_CLIENT` variable at the appropriate time:
@@ -167,7 +167,7 @@ title=PostgreSQL
 +++
 ```bash {location=".environment"}
 # Set secrets needed by Strapi, if they are not set
-# Prefer setting these as project secret variables with upsun variable:create env:SECRET_NAME --sensitive=true
+# Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
 if [[ -z "$ADMIN_JWT_SECRET" ]]; then
   export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
@@ -193,7 +193,7 @@ title=Oracle MySQL
 +++
 ```bash {location=".environment"}
 # Set secrets needed by Strapi, if they are not set
-# Prefer setting these as project secret variables with upsun variable:create env:SECRET_NAME --sensitive=true
+# Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
 if [[ -z "$ADMIN_JWT_SECRET" ]]; then
   export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
@@ -216,7 +216,7 @@ fi
 
 ## 6. Push to the environment
 
-Commit and push the changes to the Upsun environment:
+Commit and push the changes to the {{% vendor/name %}} environment:
 
 ```bash
 git commit -am "Add a new service"
@@ -224,6 +224,6 @@ git push origin upgrade-db
 ```
 
 {{< note theme="info">}}
-If you are using Upsun as your primary remote, you can use the `upsun branch` and `upsun push` commands directly.
+If you are using {{% vendor/name %}} as your primary remote, you can use the `{{% vendor/cli %}} branch` and `{{% vendor/cli %}} push` commands directly.
 If instead you had already set up an integration to GitHub, GitLab or Bitbucket, make sure to open a pull/merge request to judge the revision.
 {{< /note >}}

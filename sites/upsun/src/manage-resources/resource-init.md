@@ -56,7 +56,7 @@ Note that you can [monitor these costs](/administration/billing/monitor-billing.
 
 {{% note theme="info" title="More information on..."%}} 
 <details>
-  <summary><b>Upsun minimum resources</b></summary>
+  <summary><b>{{% vendor/name %}} minimum resources</b></summary>
 
 The following table shows the resources {{% vendor/name %}} allocates to your containers when you opt for the `minimum` [resource initialization strategy](#specify-a-resource-initialization-strategy).
 
@@ -130,13 +130,13 @@ you can use a [Git push option](/environments/_index.md#push-options) to specify
 To do so, run the following command:
 
 ```bash {location="Terminal"}
-upsun push --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+{{% vendor/cli %}} push --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` strategy for your deployment, run the following command:
 
 ```bash {location="Terminal"}
-upsun push --resources-init=minimum
+{{% vendor/cli %}} push --resources-init=minimum
 ```
 
 {{< note >}}
@@ -144,7 +144,7 @@ upsun push --resources-init=minimum
 Alternatively, you can use the official Git syntax for [push options](/environments/_index.md#push-options):
 
 ```bash {location="Terminal"}
-git push upsun -o resources.init=minimum
+git push {{% vendor/cli %}} -o resources.init=minimum
 ```
 
 {{< /note >}}
@@ -185,13 +185,13 @@ To specify a resource initialization strategy for an existing source integration
 run the following command:
 
 ```bash {location="Terminal"}
-upsun integration:update --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+{{% vendor/cli %}} integration:update --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` strategy for your deployment, run the the following command:
 
 ```bash {location="Terminal"}
-upsun integration:update --resources-init=minimum
+{{% vendor/cli %}} integration:update --resources-init=minimum
 ```
 
 {{< /codetabs >}}
@@ -227,13 +227,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash {location="Terminal"}
-upsun environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+{{% vendor/cli %}} environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-upsun environment:branch --resources-init=minimum
+{{% vendor/cli %}} environment:branch --resources-init=minimum
 ```
 
 <--->
@@ -280,13 +280,13 @@ title=Using the CLI
 Run the following command:
 
 ```bash {location="Terminal"}
-upsun environment:merge --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+{{% vendor/cli %}} environment:merge --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `manual` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-upsun environment:merge --resources-init=manual
+{{% vendor/cli %}} environment:merge --resources-init=manual
 ```
 
 <--->
@@ -321,13 +321,13 @@ You can also specify a different resource initialization strategy using the CLI.
 To do so, run the following command:
 
 ```bash {location="Terminal"}
-upsun environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+{{% vendor/cli %}} environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-upsun environment:activate --resources-init=minimum
+{{% vendor/cli %}} environment:activate --resources-init=minimum
 ```
 
 {{% note %}}
@@ -373,13 +373,13 @@ you can specify a different resource initialization strategy for all of them.
 Run the following command:
 
 ```bash {location="Terminal"}
-upsun backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
+{{% vendor/cli %}} backup:restore --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
 For example, to use the `minimum` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-upsun backup:restore --resources-init=minimum
+{{% vendor/cli %}} backup:restore --resources-init=minimum
 ```
 
 <--->
@@ -433,25 +433,25 @@ Run the following commands depending on your needs:
 - Sync only resources:
 
   ```bash {location="Terminal"}
-  upsun sync resources
+  {{% vendor/cli %}} sync resources
   ```
 
 - Sync only code:
 
   ```bash {location="Terminal"}
-  upsun sync code
+  {{% vendor/cli %}} sync code
   ```
 
 - Sync only data:
 
   ```bash {location="Terminal"}
-  upsun sync data
+  {{% vendor/cli %}} sync data
   ```
 
 - Sync everything:
 
   ```bash {location="Terminal"}
-  upsun sync code data resources
+  {{% vendor/cli %}} sync code data resources
   ```
  
   You can adjust the command depending on the exact combination of elements you want to sync.

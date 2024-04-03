@@ -9,8 +9,8 @@ In addition to the [basic functions you should be familiar with](./what-is-yaml.
 
 ## YAML file location
 
-When you run the [`upsun project:init` command](/get-started/here/configure/_index.md), a default ``config.yaml`` file is generated in the `.upsun` folder. It contains the minimum default configuration based on your detected local stack.
-This YAML file is located in your ``.upsun`` directory, at the root of your project source code, and is a good starting point before customization.
+When you run the [`{{% vendor/cli %}} project:init` command](/get-started/here/configure/_index.md), a default ``config.yaml`` file is generated in the `.{{% vendor/cli %}}` folder. It contains the minimum default configuration based on your detected local stack.
+This YAML file is located in your ``.{{% vendor/cli %}}`` directory, at the root of your project source code, and is a good starting point before customization.
 
 ```bash
 .
@@ -34,7 +34,7 @@ This looks like:
   mariadb:
     type: mariadb:10.6 # All available versions are: 10.6, 10.5, 10.4, 10.3
 
-{{< code-link destination="/define-routes.md" text="routes" title="The routes of the project. Each route describes how an incoming URL is going to be processed by Upsun (Staging). Click for more information." >}}:
+{{< code-link destination="/define-routes.md" text="routes" title="The routes of the project. Each route describes how an incoming URL is going to be processed by {{% vendor/name %}} (Staging). Click for more information." >}}:
   "https://{default}/":
     type: upstream
     upstream: "app:http"

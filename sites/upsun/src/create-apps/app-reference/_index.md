@@ -25,7 +25,7 @@ You can add as many packages to your application container as you need.
 
 {{% vendor/name %}} guarantees optimal user experience with the specific [set of packages](/create-apps/app-reference/composable-image.md#supported-nix-packages) it supports.
 You can use any other package available from the [Nix Packages collection](https://search.nixos.org/), including unstable ones,
-but NixOs is reponsible for their support.
+but NixOs is responsible for their support.
 
 {{% /note %}}
 

@@ -1,5 +1,5 @@
 ---
-title: Deploy WordPress on Upsun
+title: Deploy WordPress on {{% vendor/name %}}
 sidebarTitle: WordPress
 weight: -55
 description: |
@@ -15,11 +15,11 @@ They provide all the core concepts and common commands you need to know before u
 {{< /note >}}
 
 For WordPress to successfully deploy and operate, after completing the [Getting started guide](/get-started/here/_index.md),
-you still need to add some required files and make a few changes to your Upsun configuration.
+you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
 
 ## Before you begin
 
-There are many ways you can set up a WordPress site or Upsun project.
+There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
 
 - You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
@@ -252,7 +252,7 @@ You can now commit all the changes made to `.upsun/config.yaml` and push to Upsu
 
    ```bash {location="Terminal"}
    git add .
-   git commit -m "Add changes to complete my Upsun configuration"
+   git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
    git push
    ```
 

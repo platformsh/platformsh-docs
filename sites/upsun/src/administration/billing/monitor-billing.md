@@ -15,7 +15,7 @@ keywords:
 ---
 
 To help you manage costs related to your organization,
-Upsun provides estimates for the current month and the next.
+{{% vendor/name %}} provides estimates for the current month and the next.
 
 You can set billing alerts to ensure you don't overspend,
 and track resource usage on each of your projects.

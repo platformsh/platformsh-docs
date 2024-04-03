@@ -61,10 +61,10 @@ Commit your new files:
 git add . && git commit -m "Add configuration for {{% vendor/name %}}."
 ```
 
-Push up to your Upsun project:
+Push up to your {{% vendor/name %}} project:
 
 ```bash
-upsun push
+{{% vendor/cli %}} push
 ```
 
 {{% vendor/name %}} now reads your configuration files, begins building your application image and allocates resources to your various containers.
@@ -85,7 +85,7 @@ title=Using {{% vendor/name %}} CLI
 Found 749 commits
 
 E: Error parsing configuration files:
-- : Configuration directory '.upsun' not found.
+- : Configuration directory '.{{% vendor/cli %}}' not found.
 
 E: Error: Invalid configuration files, aborting build
 ```
@@ -96,7 +96,7 @@ title=Using Console
 ![Create project options](/images/console/first-fail.png "0.4")
 {{< /codetabs >}}
 
-This error is triggered because you have not yet added Upsun configuration to your project to setup deployments.
+This error is triggered because you have not yet added {{% vendor/name %}} configuration to your project to setup deployments.
 
 ## Errors
 
