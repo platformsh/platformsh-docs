@@ -5,7 +5,7 @@ weight: 50
 description: How to work on a daily basis with an {{% vendor/name %}} project?
 ---
 
-Upsun allows you to make changes to your project and test them on a preview environment before introducing them to Production.
+{{% vendor/name %}} allows you to make changes to your project and test them on a preview environment before introducing them to Production.
 
 In your project, the default branch (e.g. `main`, `master`, whichever chosen during project creation) always represents the production environment.
 Other branches are for developing new features, fixing bugs, or updating the infrastructure.

@@ -281,7 +281,7 @@ To do so, follow these steps.
 3. Set up a way for your local instance of Flask to communicate with your database service:
 
    ```bash {location="Terminal"} 
-   upsun tunnel:open -y
+   {{% vendor/cli %}} tunnel:open -y
    ```
 
    This opens an SSH tunnel to all the services for the app.
@@ -296,7 +296,7 @@ To do so, follow these steps.
    Set the following environment variable:
 
    ```bash {location=".environment"} 
-   export PLATFORM_RELATIONSHIPS="$(upsun tunnel:info --encode)"
+   export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
    ```
 
    Since you now have this environmental variable set locally, you can reuse your `.environment` file for {{% vendor/name %}} to recreate

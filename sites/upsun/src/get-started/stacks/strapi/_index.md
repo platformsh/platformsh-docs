@@ -1,5 +1,5 @@
 ---
-title: Deploying Strapi on Upsun
+title: Deploying Strapi on {{% vendor/name %}}
 sidebarTitle: Strapi
 weight: -90
 layout: single
@@ -45,7 +45,7 @@ To create your Strapi app, follow these steps.
    {{< note >}}
    You can view the running app locally by running `yarn develop`.
    The local server will be visible at `localhost:1337`.
-   You can create your first administrator user locally, but you will have to recreate that user once you've deployed to Upsun.
+   You can create your first administrator user locally, but you will have to recreate that user once you've deployed to {{% vendor/name %}}.
    {{< /note >}}
 
 ## 2. Create a new project

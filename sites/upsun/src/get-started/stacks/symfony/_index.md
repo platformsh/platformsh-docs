@@ -1,10 +1,10 @@
 ---
-title: Deploying Symfony on Upsun
+title: Deploying Symfony on {{% vendor/name %}}
 sidebarTitle: Symfony
 layout: single
 weight: -60
 description: |
-  Welcome to the Upsun documentation specific to the [Symfony](https://www.symfony.com/) framework on Upsun.
+  Welcome to the {{% vendor/name %}} documentation specific to the [Symfony](https://www.symfony.com/) framework on {{% vendor/name %}}.
   It includes common reference materials useful for deploying Symfony, but also external community and blog resources that cover more advanced topics relevant for the framework.
 ---
 

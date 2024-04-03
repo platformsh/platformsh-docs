@@ -41,13 +41,13 @@ While the guide has been written to accommodate the following stacks, it is not 
 {{% guides/requirements %}}
 
 {{% note theme="info" title="Trials" %}}
-When you create your first organization on Upsun, you are also activating your trial for that organization.
+When you create your first organization on {{% vendor/name %}}, you are also activating your trial for that organization.
 Get [more information on trials](/glossary#trial).
 {{% /note %}}
 
 ## Initialize your Git repository
 
-A Git repository is required for Upsun projects.
+A Git repository is required for {{% vendor/name %}} projects.
 If you haven't already done so, initialize a Git repository for your codebase, and commit your files:
 
 ```bash {location="Terminal"}
@@ -61,7 +61,7 @@ Your Git configuration may result in different default branches (like `master`),
 
 {{< note theme="info" title="Don't commit dependencies" >}}
 
-Whether you're migrating your own project, or testing Upsun with a starter project, **never commit your app's dependencies**.
+Whether you're migrating your own project, or testing {{% vendor/name %}} with a starter project, **never commit your app's dependencies**.
 Make sure you ignore directories containing dependencies by updating your `.gitignore` file.
 
 ```bash

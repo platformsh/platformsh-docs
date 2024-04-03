@@ -1,5 +1,5 @@
 ---
-title: Deploying Next.js on Upsun
+title: Deploying Next.js on {{% vendor/name %}}
 sidebarTitle: Next.js
 weight: -97
 layout: single
@@ -293,7 +293,7 @@ To make changes to your project, follow these steps:
     block content
       h1= title
    -  p Welcome to #{title}
-   +  p Welcome to #{title} on Upsun
+   +  p Welcome to #{title} on {{% vendor/name %}}
    ``
 
 3. Commit your changes:
@@ -342,4 +342,4 @@ To make changes to your project, follow these steps:
 
 ### Blogs
 
-- [A quick-start guide on hosting Next.js on Upsun](https://upsun.com/blog/setting-up-next-js-on-upsun/)
+- [A quick-start guide on hosting Next.js on {{% vendor/name %}}](https://upsun.com/blog/setting-up-next-js-on-upsun/)
