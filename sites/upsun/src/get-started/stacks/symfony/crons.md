@@ -1,5 +1,6 @@
 ---
-title: "Cron Jobs"
+title: "Set up cron jobs"
+sidebarTitle: "Cron jobs"
 weight: -105
 description: |
     Understand how to configure Symfony cron jobs.
@@ -56,3 +57,5 @@ To use a custom SMTP and/or custom sender address, follow these steps:
    Note that only SMTP connections are supported.
 
 3. To disable the provided SMTP service, run `symfony {{% vendor/cli %}}:env:info enable_smtp false`.
+
+{{< guide-buttons previous="Back" next="Manage observability with Blackfire" nextLink="/get-started/stacks/symfony/blackfire.md" type="*" >}}

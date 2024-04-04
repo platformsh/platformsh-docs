@@ -1,5 +1,5 @@
 ---
-title: Deploying Strapi on {{% vendor/name %}}
+title: Deploy Strapi on {{% vendor/name %}}
 sidebarTitle: Strapi
 weight: -90
 layout: single

@@ -195,4 +195,4 @@ Add an integration to your existing third-party repository:
 - [GitHub](/integrations/source/github.md)
 - [GitLab](/integrations/source/gitlab.md)
 
-{{< guide-buttons previous="Back" next="Environment variables" nextLink="/get-started/stacks/laravel/environment-variables.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Configure environment variables" nextLink="/get-started/stacks/laravel/environment-variables.md" type="*" >}}

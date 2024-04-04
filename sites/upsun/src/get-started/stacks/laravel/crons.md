@@ -1,5 +1,6 @@
 ---
 title: "Set up cron jobs"
+sidebarTitle: Cron jobs
 weight: -105
 description: |
     Understand how to configure Laravel cron jobs.

@@ -1,5 +1,6 @@
 ---
-title: "Environment Variables"
+title: "Configure environment variables"
+sidebartitle: "Environment variables"
 weight: -120
 description: |
     Learn about the environment variables added by the Symfony integration.
@@ -283,3 +284,5 @@ The [Apache Kafka](/add-services/kafka) configuration is exposed via the followi
 - `KAFKA_HOST`
 - `KAFKA_PORT`
 - `KAFKA_IP`
+
+{{< guide-buttons previous="Back" next="Configure workers" nextLink="/get-started/stacks/symfony/workers.md" type="*" >}}

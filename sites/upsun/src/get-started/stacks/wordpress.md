@@ -17,7 +17,9 @@ They provide all the core concepts and common commands you need to know before u
 For WordPress to successfully deploy and operate, after completing the [Getting started guide](/get-started/here/_index.md),
 you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
 
-## Before you begin
+{{% guides/requirements name="WordPress" %}}
+
+{{< note theme="info" title="Assumptions" >}}
 
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
@@ -25,6 +27,8 @@ The instructions on this page were designed based on the following assumptions:
 - You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
 - You do not have a `composer.json` file, or are comfortable making changes to your existing version.
 - You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
+
+{{< /note >}}
 
 ## 1. Add required files
 
@@ -262,7 +266,14 @@ You can now commit all the changes made to `.upsun/config.yaml` and push to Upsu
 ### Documentation
 
 - [PHP documentation](/languages/php/)
-- [Authenticated Composer repositories](/languages/php/composer-auth.md)
+
+- [Extensions](/languages/php/extensions)
+
+- [Performance tuning](/languages/php/tuning)
+
+- [PHP-FPM sizing](/languages/php/fpm)
+
+- [Authenticated Composer](/languages/php/composer-auth)
 
 ### Community content
 

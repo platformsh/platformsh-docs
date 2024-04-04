@@ -1,5 +1,5 @@
 ---
-title: Deploying Laravel on {{% vendor/name %}}
+title: Deploy Laravel on {{% vendor/name %}}
 sidebarTitle: Laravel
 sectionBefore: PHP
 layout: single
@@ -45,4 +45,4 @@ They provide all of the core concepts and common commands you need to know befor
 
 <!-- ## Video -->
 
-{{< guide-buttons next="Get started" nextLink="/get-started/stacks/laravel/get-started.md" type="*" >}}
+{{< guide-buttons next="Get started" nextLink="/get-started/stacks/laravel/environment-variables.md" type="*" >}}

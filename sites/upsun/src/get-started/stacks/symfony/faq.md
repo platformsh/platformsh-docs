@@ -115,3 +115,5 @@ If you've already created a custom homepage, make sure you perform the following
 ## Other issues
 
 For other issues unrelated to Symfony, see [Troubleshoot development](/development/troubleshoot.html).
+
+{{< guide-buttons previous="Back" next="Symfony CLI tips" nextLink="/get-started/stacks/symfony/symfony-cli-tips.md" type="*" >}}

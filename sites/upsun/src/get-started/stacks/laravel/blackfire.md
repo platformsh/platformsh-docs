@@ -1,5 +1,5 @@
 ---
-title: "Continous Observability with Blackfire"
+title: "Manage continous observability with Blackfire"
 sidebarTitle: "Blackfire"
 weight: -90
 description: Set up a continuous observability strategy for your Laravel app with Blackfire.

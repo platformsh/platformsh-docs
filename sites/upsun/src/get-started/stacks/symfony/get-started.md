@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get started
 weight: -255
 layout: single
 description: |
@@ -18,12 +18,12 @@ So when using Symfony, you can replace `{{% vendor/cli %}} <command>` by `symfon
 
 {{< /note >}}
 
-## Create your Symfony app
+## 1. Create your Symfony app
 
 To get familiar with {{% vendor/name %}}, create a new Symfony project from scratch.
 The present tutorial uses the [Symfony Demo](https://symfony.com/doc/current/setup.html#the-symfony-demo-application) app as an example :
 
-```bash
+```bash {location="Terminal"}
 symfony new {{< variable "PROJECT_NAME" >}} --demo --{{% vendor/cli %}}
 cd {{< variable "PROJECT_NAME" >}}
 ```
@@ -39,31 +39,26 @@ To do so, follow these steps:
 1. To generate a sensible default {{% vendor/name %}} configuration,
    run the following command from within the project's directory:
 
-   ```bash
+   ```bash {location="Terminal"}
    symfony project:init --{{% vendor/cli %}}
    ```
 
-   This generates the following set of configuration files: `{{< vendor/configfile "app" >}}`, and `php.ini`.
+   This generates the `{{< vendor/configfile "app" >}}` and `php.ini` configuration files.
 
-2. Commit these new files to your repository:
+2. Add and commit your changes:
 
-   ```bash
+   ```bash {location="Terminal"}
    git add {{< vendor/configfile "app" >}} php.ini
    git commit -m "Add {{% vendor/name %}} configuration"
    ```
 
 {{< /note >}}
 
-{{% vendor/name %}} manages the entire infrastructure of your project,
-from code to services (such as databases, queues, or search engines),
-all the way to email sending, [cron jobs](./crons), and [workers](./workers).
-This infrastructure is described through configuration files stored alongside your code.
+## 2. Create your {{% vendor/name %}} project
 
-## Create the project
+To create a project on {{% vendor/name %}}, run the following command from within the project's directory:
 
-To create the project on {{% vendor/name %}}, run the following command from within the project's directory:
-
-```bash
+```bash {location="Terminal"}
 symfony {{% vendor/cli %}}:create --title PROJECT_TITLE --set-remote
 ```
 
@@ -73,41 +68,41 @@ The `--set-remote` flag sets the new project as the remote for this repository.
 
 You can link any repository to an existing {{% vendor/name %}} project using the following command:
 
-```bash
+```bash {location="Terminal"}
 symfony {{% vendor/cli %}}:set-remote {{< variable "PROJECT_ID" >}}
 ```
 
 {{< /note >}}
 
-## Deploy your project
+## 3. Deploy your project
 
 To deploy your project, run the following command:
 
-```bash
+```bash {location="Terminal"}
 symfony {{% vendor/cli %}}:deploy
 ```
-
-{{< note title="Tip" >}}
 
 During deployment, the logs from the {{% vendor/name %}} API are displayed in your terminal so you can monitor progress.
 To stop the display of the logs **without interrupting the deployment**,
 use `CTRL+C` in your terminal.
 To go back to displaying the logs, run `symfony {{% vendor/cli %}}:activity:log`.
 
-{{< /note >}}
-
 Congratulations, your first Symfony app has been deployed on {{% vendor/name %}}!
+
+{{< note title="Tip" theme="info" >}}
 
 Now that your app is deployed in production mode,
 you can define a custom domain for your live website.
 To do so, see how to [set up a custom domain on {{% vendor/name %}}](/administration/web/configure-project.html#domains),
 or run the following command:
 
-```bash
+```bash {location="Terminal"}
 symfony {{% vendor/cli %}}:domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
 
-## Make changes to your project
+{{< /note >}}
+
+## 4. Make changes to your project
 
 Now that your project is deployed, you can start making changes to it.
 For example, you might want to fix a bug or add a new feature.
@@ -119,11 +114,11 @@ To make changes to your project, follow these steps:
 
 1. Create a new environment (a Git branch) to make changes without impacting production:
 
-   ```bash
+   ```bash {location="Terminal"}
    symfony {{% vendor/cli %}}:branch feat-a
    ```
 
-   This command creates a new local `feat-a` Git branch based on the main Git branch
+   This command creates a new local `feat-a` Git branch based on the main Git branch,
    and activates a related environment on {{% vendor/name %}}.
    The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
 
@@ -143,22 +138,22 @@ To make changes to your project, follow these steps:
 
    ```
 
-3. Commit your changes:
+3. Add and commit your changes:
 
-   ```bash
+   ```bash {location="Terminal"}
    git commit -a -m "Update text"
    ```
 
 4. Deploy your changes to the `feat-a` environment:
 
-   ```bash
+   ```bash {location="Terminal"}
    symfony {{% vendor/cli %}}:deploy
    ```
    
    Note that each environment has its own domain name.
    To view the domain name of your new environment, run the following command:
 
-   ```bash
+   ```bash {location="Terminal"}
    symfony {{% vendor/cli %}}:url --primary
    ```
 
@@ -166,7 +161,7 @@ To make changes to your project, follow these steps:
    When satisfied with your changes, merge them to the main branch, deploy,
    and remove the feature branch:
 
-   ```bash
+   ```bash {location="Terminal"}
    git checkout main
    git merge feat-a
    symfony environment:delete feat-a
@@ -174,16 +169,12 @@ To make changes to your project, follow these steps:
    symfony {{% vendor/cli %}}:deploy
    ```
 
-   {{< note >}}
+   Note that deploying to production is fast because the image built for the `feat-a` environment is reused.
 
-   Deploying to production was fast because the image built for the `feat-a` environment was reused.
+   For a long running branch, keep the code up-to-date with the main branch by using `git merge main` or `git rebase main`.
+   Also, keep the data in sync with the production environment by using `symfony {{% vendor/cli %}}:env:sync`.
 
-   {{< /note >}}
-
-   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
-   You can also keep the data in sync with the production environment by using `symfony {{% vendor/cli %}}:env:sync`.
-
-## Use a third-party Git provider
+## 5. Optional: Use a third-party Git provider
 
 When you choose to use a third-party Git hosting service,
 the {{% vendor/name %}} Git repository becomes a read-only mirror of the third-party repository.
@@ -195,109 +186,4 @@ Add an integration to your existing third-party repository:
 - [GitHub](/integrations/source/github.md)
 - [GitLab](/integrations/source/gitlab.md)
 
-## Next steps
-
-### Symfony integration
-
-Learn more about the [Symfony integration](./integration), 
-a set of tools and auto-configurations that makes it easier to use {{% vendor/name %}} for Symfony projects.
-
-### Environment variables
-
-When you use the Symfony integration,
-more [environment variables](./environment-variables) related to Symfony are defined.
-
-### Local development
-
-Once Symfony has been deployed on {{% vendor/name %}},
-you might want to [set up a local development environment](./local).
-
-### Symfony CLI tips
-
-You might find the following commands useful when using the Symfony CLI.
-
--   Open the web administration console:
-
-    ```bash
-    symfony {{% vendor/cli %}}:web
-    ```
-
--   Open the URL of the current environment:
-
-    ```bash
-    symfony {{% vendor/cli %}}:url
-    ```
-
--   Open an SSH connection to your environment:
-
-    ```bash
-    symfony {{% vendor/cli %}}:ssh
-    ```
-
--   Configure a project for {{% vendor/name %}}:
-
-    ```bash
-    symfony project:init --{{% vendor/cli %}}
-    ```
-
--   Get a list of all the domains:
-
-    ```bash
-    symfony {{% vendor/cli %}}:domains
-    ```
-
--   Create a new environment:
-
-    ```bash
-    symfony {{% vendor/cli %}}:branch new-branch
-    ```
-
--   Get a list of all the environments:
-
-    ```bash
-    symfony {{% vendor/cli %}}:environments
-    ```
-
--   Push code to the current environment:
-
-    ```bash
-    symfony {{% vendor/cli %}}:push
-    ```
-
--   Get a list of all the active projects:
-
-    ```bash
-    symfony {{% vendor/cli %}}:projects
-    ```
-
--   Add a user to the project:
-
-    ```bash
-    symfony {{% vendor/cli %}}:user:add
-    ```
-
--   List variables:
-
-    ```bash
-    symfony {{% vendor/cli %}}:variables
-    ```
-
-You might find the following commands useful when using the Symfony CLI with a database.
-
--   Create a local dump of the remote database:
-
-    ```bash
-    symfony {{% vendor/cli %}}:db:dump --relationship database
-    ```
-
--   Run an SQL query on the remote database:
-
-    ```bash
-    symfony {{% vendor/cli %}}:sql 'SHOW TABLES'
-    ```
-
--   Import a local SQL file into a remote database:
-
-    ```bash
-    symfony {{% vendor/cli %}}:sql < my_database_backup.sql
-    ```
+{{< guide-buttons previous="Back" next="Symfony integration" nextLink="/get-started/stacks/symfony/integration.md" type="*" >}}
