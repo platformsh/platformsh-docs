@@ -1,5 +1,5 @@
 ---
-title: Deploying Django on {{% vendor/name %}}
+title: Deploy Django on {{% vendor/name %}}
 sidebarTitle: Django
 sectionBefore: Python
 layout: single
@@ -17,6 +17,8 @@ They provide all of the core concepts and common commands you need to know befor
 
 For Django to successfully deploy and operate, after completing the [Getting started guide](/get-started/here/_index.md),
 you still need to make a few changes to your {{% vendor/name %}} configuration.
+
+{{% guides/requirements name="Django" %}}
 
 ## 1. Leverage environment variables
 

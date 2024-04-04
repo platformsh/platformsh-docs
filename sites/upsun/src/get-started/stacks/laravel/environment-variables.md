@@ -1,5 +1,6 @@
 ---
-title: "Environment Variables"
+title: "Configure environment variables"
+sidebarTitle: Environment variables
 weight: -120
 description: |
     Learn about the environment variables added by the {{% vendor/name %}} CLI.
