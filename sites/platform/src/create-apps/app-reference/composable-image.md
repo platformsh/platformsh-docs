@@ -1106,10 +1106,6 @@ The following table shows the properties that can be set in `sizing_hints`:
 
 See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
 
-{{% note title="TODO" %}}
-Not sure if applicable.
-{{% /note %}}
-
 ## Source
 
 The following table shows the properties that can be set in `source`:
