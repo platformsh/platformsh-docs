@@ -1,5 +1,5 @@
 ---
-title: Deploying Express on {{% vendor/name %}}
+title: Deploy Express on {{% vendor/name %}}
 sectionBefore: Javascript/Node.js
 sidebarTitle: Express
 weight: -100

@@ -1,58 +1,46 @@
 ---
-title: Deploying Symfony on {{% vendor/name %}}
+title: Deploy Symfony on {{% vendor/name %}}
 sidebarTitle: Symfony
 layout: single
 weight: -60
 description: |
-  Welcome to the {{% vendor/name %}} documentation specific to the [Symfony](https://www.symfony.com/) framework on {{% vendor/name %}}.
-  It includes common reference materials useful for deploying Symfony, but also external community and blog resources that cover more advanced topics relevant for the framework.
+  Complete the last required steps to successfully deploy Symfony on {{% vendor/name %}}.
 ---
 
-{{< note title="Hello, there!" theme="info" >}}
+{{< note title="Note" theme="info" >}}
 
-{{% description %}}
-
-Before you proceed, be sure to checkout the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md). These two resources provide all of the core concepts and common commands you'll need to know before using the materials below.
+Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
+They provide all of the core concepts and common commands you need to know before using the materials below.
 
 {{< /note >}}
 
 {{< get-started/steps >}}
 
-[//]: # (## Getting started)
+## Further resources
 
-[//]: # ()
-[//]: # (- [Upsun demo application]&#40;https://console.upsun.com/projects/create-project&#41;)
+### Documentation
 
-[//]: # (- [Upsun Getting started guide]&#40;/get-started/here/_index.md&#41;)
+- [PHP documentation](/languages/php/)
 
-[//]: # (- [What is Upsun?]&#40;/learn/overview&#41;)
+- [Extensions](/languages/php/extensions)
 
-[//]: # ()
-[//]: # (## Documentation)
+- [Performance tuning](/languages/php/tuning)
 
-[//]: # ()
-[//]: # (- [PHP documentation]&#40;/languages/php/&#41;)
+- [PHP-FPM sizing](/languages/php/fpm)
 
-[//]: # (- [Extensions]&#40;/languages/php/extensions&#41;)
+- [Swoole on {{% vendor/name %}}](/languages/php/swoole)
 
-[//]: # (- [Performance tuning]&#40;/languages/php/tuning&#41;)
+- [Authenticated Composer](/languages/php/composer-auth)
 
-[//]: # (- [PHP-FPM sizing]&#40;/languages/php/fpm&#41;)
+### Community content
 
-[//]: # (- [Swoole on Upsun]&#40;/languages/php/swoole&#41;)
+- [Symfony topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=symfony)
 
-[//]: # (- [Authenticated Composer]&#40;/languages/php/composer-auth&#41;)
+- [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
 
-[//]: # ()
-[//]: # (## Community content)
+### Videos
 
-[//]: # ()
-[//]: # (- [Symfony topics]&#40;https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=symfony&#41;)
+- [Refactoring monolith to multi-app](https://youtu.be/5hApjWiTO1M?feature=shared)
+- [{{% vendor/name %}}: From zero to scaling hero](https://youtu.be/FEFBUomV5aY?feature=shared)
 
-[//]: # (- [PHP topics]&#40;https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php&#41;)
-
-[//]: # ()
-[//]: # (<!-- ## Blogs -->)
-
-[//]: # ()
-[//]: # (<!-- ## Video -->)
+{{< guide-buttons next="Get started" nextLink="/get-started/stacks/symfony/get-started.md" type="*" >}}

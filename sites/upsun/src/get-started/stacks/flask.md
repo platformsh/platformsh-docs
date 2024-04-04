@@ -1,5 +1,5 @@
 ---
-title: Deploying Flask on {{% vendor/name %}}
+title: Deploy Flask on {{% vendor/name %}}
 sidebarTitle: Flask
 weight: -75
 description: |
@@ -15,6 +15,8 @@ They provide all of the core concepts and common commands you need to know befor
 
 For Flask to successfully deploy and operate, after completing the [Getting started guide](/get-started/here/_index.md),
 you still need to make a few changes to your {{% vendor/name %}} configuration.
+
+{{% guides/requirements name="Django" %}}
 
 ## 1. Leverage environment variables
 

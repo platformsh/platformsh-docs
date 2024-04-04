@@ -1,5 +1,5 @@
 ---
-title: Deploying Next.js on {{% vendor/name %}}
+title: Deploy Next.js on {{% vendor/name %}}
 sidebarTitle: Next.js
 weight: -97
 layout: single
