@@ -100,11 +100,7 @@ Until you do, your site can appear offline because requests are lost.
 
 To use `A` records, follow these steps:
 
-1.  To get the IP addresses of your project's production environment, run the following command:
-
-    ```bash
-    dig +short $({{% vendor/cli %}} environment:info edge_hostname)
-    ```
+1.  [Get the IP addresses](/development/regions.md#public-ip-addresses) of your project's production environment.
      
 2.  Follow the instructions on [how to set up a custom domain](./_index.md).
     When you come to configuring your DNS provider, instead of a `CNAME` record,
