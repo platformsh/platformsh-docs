@@ -39,9 +39,9 @@ app:
 ```
 
 See more information on the required minimal settings:
-- [Top-level properties](../app-reference.md#top-level-properties).
-- [`web` property](../app-reference.md#web).
-- [`locations` properties](../app-reference.md#locations).
+- [Top-level properties](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
+- [`web` property](/create-apps/app-reference/single-runtime-image.md#web).
+- [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
 
 ## Add more features
 
@@ -62,7 +62,7 @@ web:
             allow: true
 ```
 
-See more information on [`locations` properties](../app-reference.md#locations).
+See more information on [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
 
 ### Create cache rules
 

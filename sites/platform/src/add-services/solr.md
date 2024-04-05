@@ -70,7 +70,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
     "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 8080,
     "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "solrsearch.internal",
+    "host": "solr.internal",
     "rel": "solr",
     "path": "solr\/collection1",
     "query": [],
@@ -134,12 +134,12 @@ For Solr 4, {{% vendor/name %}} supports only a single core per server called `c
 You must provide your own Solr configuration via a `core_config` key in your `{{< vendor/configfile "services" >}}`:
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+solr:
     type: "solr:4.10"
     disk: 1024
     configuration:
         core_config: !archive "{{< variable "DIRECTORY" >}}"
-{{% /snippet %}}
 ```
 
 {{< variable "DIRECTORY" >}} points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.
@@ -147,12 +147,12 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `schema.xml` file is located at `{{< vendor/configdir >}}/solr/conf/schema.xml`. You can then reference that path like this -
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+solr:
     type: "solr:4.10"
     disk: 1024
     configuration:
         core_config: !archive "solr/conf/"
-{{% /snippet %}}
 ```
 
 ## Solr 6 and later
@@ -160,7 +160,8 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 For Solr 6 and later {{% vendor/name %}} supports multiple cores via different endpoints. Cores and endpoints are defined separately, with endpoints referencing cores. Each core may have its own configuration or share a configuration. It is best illustrated with an example.
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+solr:
     type: solr:{{% latest "solr" %}}
     disk: 1024
     configuration:
@@ -174,7 +175,6 @@ For Solr 6 and later {{% vendor/name %}} supports multiple cores via different e
                 core: mainindex
             extra:
                 core: extraindex
-{{% /snippet %}}
 ```
 
 The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined:
@@ -187,29 +187,19 @@ It then defines two endpoints: `main` is connected to the `mainindex` core while
 Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="false"  %}}
+name: myapp
+
 type: "php:{{% latest "php" %}}"
 
-relationships:
-    solrsearch1: 'solr:main'
-    solrsearch2: 'solr:extra'
-{{% /snippet %}}
+[...]
 
-{{% snippet name="solr" config="service" placeholder="true" %}}
-    type: solr:{{% latest "solr" %}}
-    disk: 1024
-    configuration:
-        cores:
-            mainindex:
-                conf_dir: !archive "core1-conf"
-            extraindex:
-                conf_dir: !archive "core2-conf"
-        endpoints:
-            main:
-                core: mainindex
-            extra:
-                core: extraindex
-{{% /snippet %}}
+relationships:
+    solrsearch1: 
+        service: solr
+        endpoint: main
+    solrsearch2:
+        service: solr
+        endpoint: extra
 ```
 
 That is, the application's environment would include a `solrsearch1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solrsearch2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -242,7 +232,8 @@ The relationships array would then look something like the following:
 For even more customizability, it's also possible to define Solr configsets. For example, the following snippet would define one configset, which would be used by all cores. Specific details can then be overridden by individual cores using `core_properties`, which is equivalent to the Solr `core.properties` file.
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+solr:
     type: solr:8.4
     disk: 1024
     configuration:
@@ -262,7 +253,6 @@ For even more customizability, it's also possible to define Solr configsets. For
                 core: english_index
             arabic:
                 core: arabic_index
-{{% /snippet %}}
 ```
 
 In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created:
@@ -281,7 +271,8 @@ Note that not all core properties features make sense to specify in the `core_pr
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service" %}}
+# The name of the service container. Must be unique within a project.
+solr:
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -290,7 +281,6 @@ If you don't specify any configuration, the following default is used:
         endpoints:
             solr:
                 core: collection1
-{{% /snippet %}}
 ```
 
 The example configuration directory is equivalent to the [Solr example configuration set](https://github.com/apache/solr/tree/main/solr/server/solr/configsets/sample_techproducts_configs/conf).
@@ -302,7 +292,8 @@ You are strongly recommended to define your own configuration with a custom core
 If you don't specify any configuration, the following default is used:
 
 ```yaml {configFile="services"}
-{{% snippet name="solr" config="service" %}}
+# The name of the service container. Must be unique within a project.
+solr:
     type: solr:{{% latest "solr" %}}
     configuration:
         cores:
@@ -310,7 +301,6 @@ If you don't specify any configuration, the following default is used:
         endpoints:
             solr:
                 core: collection1
-{{% /snippet %}}
 ```
 
 The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.

@@ -3,6 +3,8 @@ title: "Lisp"
 description: "{{% vendor/name %}} supports building and deploying applications written in Lisp using Common Lisp (the SBCL version) with ASDF and Quick Lisp support. They're compiled during the Build phase, and support both committed dependencies and download-on-demand."
 ---
 
+{{% composable/disclaimer %}}
+
 {{% description %}}
 
 ## Supported versions
@@ -134,7 +136,7 @@ Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
 relationships:
-    pg: postgresql:postgresql
+    postgresql: 
 ```
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
@@ -149,7 +151,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 (defvar *pg-spec* nil)
 
 (defun setup-postgresql ()
-  (let* ((pg-relationship (first (jsown:val (relationships) "pg")))
+  (let* ((pg-relationship (first (jsown:val (relationships) "postgresql")))
          (database (jsown:val pg-relationship "path"))
          (username (jsown:val pg-relationship "username"))
          (password (jsown:val pg-relationship "password"))

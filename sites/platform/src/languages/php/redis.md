@@ -4,6 +4,8 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
+{{% composable/disclaimer %}}
+
 [Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{% vendor/name %}}.
 It's frequently used for caching.
 
@@ -71,7 +73,7 @@ That's only for pre-built extensions.
 1. Download the Relay/PhpRedis source code.
 2. Check out the version specified in the build hook.
 3. Compile the extension.
-4. Copy the resulting `relay.so`/`redis.so` file to [your app root](../../create-apps/app-reference.md#root-directory).
+4. Copy the resulting `relay.so`/`redis.so` file to [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 5. Add a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
 
 If the script doesn't find a `$PLATFORM_CACHE_DIR` directory defined, it exits silently.

@@ -7,10 +7,10 @@ description: |
     Configure a Spring application with MongoDB.
 ---
 
-To activate MongoDB and then have it accessed by the Spring application already in {{% vendor/name %}}, it is necessary to modify two files. 
+To activate MongoDB and then have it accessed by the Spring application already in {{% vendor/name %}}, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a MongoDB service configuration to an existing Spring project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/spring/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects. 
+This guide only covers the *addition* of a MongoDB service configuration to an existing Spring project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/spring/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add the MongoDB service
@@ -25,7 +25,7 @@ dbmongo:
 
 ## 2. Grant access to MongoDb through a relationship
 
-In your [app configuration](../../create-apps/app-reference.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
+In your [app configuration](/create-apps/app-reference/single-runtime-image.md), use the service name `dbmongo` to grant the application access to MongoDB via a relationship:
 
 {{< readFile file="registry/images/examples/full/mongodb.app.yaml" highlight="yaml" configFile="app" >}}
 

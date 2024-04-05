@@ -1,0 +1,136 @@
+
+# Basics
+version: "1.0.19"
+description: UPSUN User Documentation
+author: Upsun
+title: User documentation
+issuerepo: "https://github.com/platformsh/platformsh-docs/"
+repo: "https://github.com/platformsh/platformsh-docs/"
+folder: "sites/upsun"
+editPageButton: true
+
+theme:
+    use_vendor: true
+
+# Vendorization
+vendor:
+    name: Upsun
+    cli: upsun
+    altname: upsun
+    env_prefix: PLATFORM
+    cli_prefix: UPSUN
+    recruit:
+        active: true
+        link: https://upsun.com/register/
+        cta: Get your Upsun free trial
+        title: Sign up
+        description: "Get your free trial by clicking the link below.<br/><br/>"
+    psh_ref: Platform.sh
+    config:
+        version: 2
+        dir: .upsun
+        filename: config.yaml
+        files:
+            routes: .upsun/config.yaml
+            services: .upsun/config.yaml
+            app: .upsun/config.yaml
+            apps: .upsun/config.yaml
+            env: .environment
+        prefix:
+            apps: applications
+            services: services
+            routes: routes
+    urls:
+        main: https://upsun.com
+        docs: https://docs.upsun.com
+        support: https://support.upsun.com
+        sales: https://upsun.com/contact
+        console: https://console.upsun.com/
+        api: https://proxy.upsun.com/
+        host: upsun.com
+        hostname: platformsh.site
+        register: https://auth.upsun.com/register
+
+# Images (kept in static/)
+logo: "images/logo.svg"
+logolinksto: "https://upsun.com"
+logoAlt: "Upsun"
+favicon: "images/favicon.ico"
+
+gtm: "GTM-NN9T4G2T"
+
+# Actions in main header
+headerActions:
+  headerActionPrimary:
+    destination: https://upsun.com/register/
+    linkText: Sign up
+  headerActionSecondary:
+    destination: https://console.upsun.com/
+    linkText: Log in
+
+# Search
+rank: 1
+site: docs
+# Don't include trailing slash. It's just easier that way.
+rooturl: "https://docs.upsun.com"
+
+# 404
+_404:
+  title: "Lost in space"
+  image: "/images/404/404-8.png"
+  issues: "https://github.com/platformsh/platformsh-docs/issues/new"
+
+navSections:
+  get-started:
+    title: Get started
+    section: get-started
+    weight: -120
+  learn:
+    title: Learn
+    section: learn
+    weight: -110
+  home:
+    title: Reference
+    section: home
+    weight: -90
+
+nonDocsSections:
+  apidocs:
+    title: API Documentation
+    link: https://proxy.upsun.com/docs
+    weight: -80
+
+# Metadata
+meta:
+  sitename: "Upsun User Documentation"
+  description: Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
+  url: "https://docs.upsun.com"
+  twittercard:
+    card: "summary_large_image"
+    site: "@upsuncom"
+    title: "Upsun User Documentation"
+    description: "Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    creator: "@upsuncom"
+    image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
+  keywords:
+    - PaaS
+    - cloud hosting
+    - DevOps
+    - PHP
+    - Node.js
+    - Go
+    - Golang
+    - Python
+    - .NET
+    - Ruby
+    - Java
+    - Drupal
+    - Wordpress
+    - Symfony
+    - Maven
+    - Lisp
+    - Hibernate
+    - Jakarta
+    - Spring
+    - TYPO3

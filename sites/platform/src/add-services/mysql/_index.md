@@ -166,7 +166,8 @@ You can configure your MySQL service in the [services configuration](../_index.m
 Example configuration:
 
 ```yaml {configFile="services"}
-{{% snippet name="mariadb" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+mariadb:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -179,7 +180,6 @@ Example configuration:
                     main: admin
         properties:
             max_allowed_packet: 64
-{{% /snippet %}}
 ```
 
 {{% relationship-ref-intro %}}
@@ -198,7 +198,7 @@ Example configuration:
   "hostname": "azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "port": 3306,
   "cluster": "azertyuiop-main-7rqtwti",
-  "host": "mariadbdatabase.internal",
+  "host": "mariadb.internal",
   "rel": "mysql",
   "path": "main",
   "query": {
@@ -223,7 +223,7 @@ Example configuration:
   "hostname": "azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
   "port": 3306,
   "cluster": "azertyuiop-main-afdwftq",
-  "host": "oracledatabase.internal",
+  "host": "oraclemysql.internal",
   "rel": "mysql",
   "path": "main",
   "query": {
@@ -251,13 +251,13 @@ mysql -h {{< variable "HOST" >}} -P {{< variable "PORT" >}} -u {{< variable "USE
 Assuming the values from the [MariaDB reference](#mariadb-reference), that would be:
 
 ```bash
-mysql -h mariadbdatabase.internal -P 3306 -u user main
+mysql -h mariadb.internal -P 3306 -u user main
 ```
 
 If your database relationship has a password, pass the `-p` switch and enter the password when prompted:
 
 ```bash
-mysql -p -h mariadbdatabase.internal -P 3306 -u user main
+mysql -p -h mariadb.internal -P 3306 -u user main
 ```
 
 ## Define permissions
@@ -290,7 +290,8 @@ You can also specify multiple `endpoints` for [permissions](#define-permissions)
 If neither `schemas` nor `endpoints` is included, it's equivalent to the following default:
 
 ```yaml {configFile="services"}
-{{% snippet name="mariadb" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+mariadb:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -301,7 +302,6 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
                 default_schema: main
                 privileges:
                     main: admin
-{{% /snippet %}}
 ```
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
@@ -323,7 +323,8 @@ Access to the database is defined through three endpoints:
 * `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml {configFile="services"}
-{{% snippet name="mariadb" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+mariadb:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -343,22 +344,20 @@ Access to the database is defined through three endpoints:
                 default_schema: legacy
                 privileges:
                     legacy: rw
-{{% /snippet %}}
 ```
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp" %}}
+name: myapp
 
-# Other options...
+[...]
 
 # Relationships enable an app container's access to a service.
 relationships:
     database: "mariadb:admin"
     reports: "mariadb:reporter"
     imports: "mariadb:importer"
-{{% /snippet %}}
 ```
 
 These relationships are then available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference).
@@ -388,7 +387,8 @@ It offers the following properties:
 An example of setting these properties:
 
 ```yaml {configFile="services"}
-{{% snippet name="db" config="service"  %}}
+# The name of the service container. Must be unique within a project.
+mariadb:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 2048
     configuration:
@@ -396,7 +396,6 @@ An example of setting these properties:
             max_allowed_packet: 64
             default_charset: utf8mb4
             default_collation: utf8mb4_unicode_ci
-{{% /snippet %}}
 ```
 
 You can also change a table's character set and collation through `ALTER TABLE` commands:
