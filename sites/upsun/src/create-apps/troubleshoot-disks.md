@@ -48,11 +48,11 @@ W: [Errno 28] No space left on device: ...
 ```
 
 This is caused by the amount of disk provided to the build container before deployment.
-Application images are restricted to 4&nbsp;GB during build, no matter how much writable disk has been set aside for the deployed application.
+Application images are restricted to 8&nbsp;GB during build, no matter how much writable disk has been set aside for the deployed application.
 
 Some build tools (yarn/npm) store cache for different versions of their modules.
 This can cause the build cache to grow over time beyond the maximum.
 Try [clearing the build cache](../development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
-If for some reason your application absolutely requires more than 4&nbsp;GB during build,
+If for some reason your application absolutely requires more than 8&nbsp;GB during build,
 you can open a [support ticket](/learn/overview/get-support) to have this limit increased.
