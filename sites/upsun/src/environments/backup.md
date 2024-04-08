@@ -48,7 +48,7 @@ first activate it.
 
 {{% note %}}
 
-You may not want the code from the backup to be restored at step 2.</br>
+You may not want the code from the backup to be restored at step 2.
 For instance, if you have deleted containers since the backup, you may not want them to be restored with the backup.
 
 In this case, you can opt out of restoring the code.
