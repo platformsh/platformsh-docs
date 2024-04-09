@@ -52,7 +52,7 @@ You may not want the code from the backup to be restored at step 2.
 For instance, if you have deleted containers since the backup, you may not want them to be restored with the backup.
 
 In this case, you can opt out of restoring the code.
-To do so, when you restore your backup, use the `--restore-code` flag and set it to `false`.
+To do so, when you restore your backup, use the `--no-restore-code` flag.
 {{% /note %}}
 
 ## Backups and downtime
