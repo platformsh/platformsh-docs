@@ -240,6 +240,9 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
     {{ $appInner = "\nmounts:\n    'my/files':\n        source: service\n" }}
     {{ $appInner = printf "%s        service: files\n        source_path: files" $appInner }}
 
+{{ else if eq $type "gotenberg" }}
+    {{ $appInner = "\nrelationships:\n    gotenberg: \"gotenberg8:http\"" }}
+
 {{ else if eq $type "varnish" }}
     {{ $appInner = "\n..." }}
 

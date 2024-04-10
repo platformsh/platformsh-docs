@@ -272,6 +272,28 @@
       ]
     }
   },
+  "gotenberg": {
+    "description": "",
+    "disk": true,
+    "docs": {
+      "relationship_name": "gotenberg",
+      "service_name": "gotenberg",
+      "url": "/add-services/gotenberg.html"
+    },
+    "endpoint": "gotenberg8",
+    "min_disk_size": null,
+    "name": "Gotenberg",
+    "repo_name": "gotenberg",
+    "runtime": false,
+    "type": "gotenberg:8",
+    "versions": {
+      "deprecated": [
+      ],
+      "supported": [
+        "8"
+      ]
+    }
+  },
   "influxdb": {
     "description": "",
     "disk": true,
