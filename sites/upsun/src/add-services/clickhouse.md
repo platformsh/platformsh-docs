@@ -19,6 +19,7 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 ## Supported versions
 
+- 24.3
 - 23.8
 
 {{% vendor/name %}} plans on supporting long-term support ClickHouse versions in priority.
@@ -48,7 +49,7 @@ CLICKHOUSEDATABASE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< v
 CLICKHOUSEDATABASE_EPOCH=0
 CLICKHOUSEDATABASE_REL=clickhouse
 CLICKHOUSEDATABASE_SCHEME=clickhouse
-CLICKHOUSEDATABASE_TYPE=clickhouse:23
+CLICKHOUSEDATABASE_TYPE=clickhouse:24
 CLICKHOUSEDATABASE_PUBLIC=false
 ```
 
@@ -80,7 +81,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
       "epoch": 0,
       "rel": "clickhouse",
       "scheme": "clickhouse",
-      "type": "clickhouse:23",
+      "type": "clickhouse:24",
       "public": false
     }
 ```
@@ -185,7 +186,7 @@ applications:
             clickhousedatabase: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:23
+    type: clickhouse:24
 ```
 
 <--->
@@ -206,7 +207,7 @@ applications:
             clickhousedatabase: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:23
+    type: clickhouse:24
 ```
 
 {{< /codetabs >}}
@@ -227,7 +228,7 @@ applications:
 
 services:
   clickhouse:
-    type: clickhouse:23
+    type: clickhouse:24
     configuration:
       databases:
         - main
