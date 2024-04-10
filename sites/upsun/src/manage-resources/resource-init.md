@@ -357,8 +357,12 @@ you can restore it to your current environment or a different environment.
 Each container already running on the environment keeps its existing resources.
 
 You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
+<<<<<<< HEAD
 By default, code is restored as part of the backup.
 Therefore, previously deleted containers are restored using the `backup` strategy,
+=======
+These containers are restored to your current environment using the `backup` strategy,
+>>>>>>> main
 which grants them the same resources they were using when the backup was taken.
 
 {{% note %}}
@@ -407,9 +411,18 @@ By default, code is restored as part of the backup.
 Therefore, previously deleted containers are restored using the `backup` strategy,
 which grants them the same resources they were using when the backup was taken.
 
+<<<<<<< HEAD
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
 To do so, when you restore your backup, use the `--no-code` flag.
+=======
+You may have deleted containers between the moment you took the backup, and the moment you restore it.
+These containers are restored to your current environment using the `backup` strategy,
+which grants them the same resources they were using when the backup was taken.
+
+If you want to specify a different resource initialization strategy for those previously deleted containers,
+restore your backup via the CLI.
+>>>>>>> main
 {{% /note %}}
 
 {{< /codetabs >}}
