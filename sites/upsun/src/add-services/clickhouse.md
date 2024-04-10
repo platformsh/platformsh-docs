@@ -12,7 +12,7 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 {{% vendor/name %}} supports ClickHouse with the following limitations:
 
-- High availibility of service isn't supported.
+- High availability of service isn't supported.
 - You can only configure single-node ClickHouse clusters.
 
 {{% /note %}}
