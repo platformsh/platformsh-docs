@@ -9,7 +9,7 @@ Because there's no need to wait for responses from servers, the sites may load f
 
 As an example, this documentation is built using a tool called Hugo and served by {{% vendor/name %}} as a static site.
 You can see the [entire repository on GitHub](https://github.com/platformsh/platformsh-docs),
-including its [app configuration](https://github.com/platformsh/platformsh-docs/blob/main/docs/.platform.app.yaml).
+including its [app configuration](https://github.com/platformsh/platformsh-docs/blob/main/.platform/applications.yaml).
 
 To learn how to serve your static site using {{% vendor/name %}},
 you can start with the required [minimal app configuration](#minimal-app-configuration) and build on it,
