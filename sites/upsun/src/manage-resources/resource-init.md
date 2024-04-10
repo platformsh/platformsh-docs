@@ -364,7 +364,7 @@ which grants them the same resources they were using when the backup was taken.
 {{% note %}}
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, when you restore your backup, use the `--no-restore-code` flag.
+To do so, when you restore your backup, use the `--no-code` flag.
 {{% /note %}}
 
 When you restore previously deleted containers,
@@ -409,7 +409,7 @@ which grants them the same resources they were using when the backup was taken.
 
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, when you restore your backup, use the `--no-restore-code` flag.
+To do so, when you restore your backup, use the `--no-code` flag.
 {{% /note %}}
 
 {{< /codetabs >}}
