@@ -286,7 +286,7 @@ By default, {{% vendor/name %}} allocates a container profile to each app and se
   Ideally you want to give databases the biggest part of your memory, and apps the biggest part of your CPU.
 
 The container profile and the [size of the container](#sizes) determine
-how much CPU and memory (in [MB](https://docs.platform.sh/glossary.html#mb)) the container gets.
+how much CPU and memory (in [MB] (/glossary.md#mb)) the container gets.
 
 There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``HIGH_MEMORY``.
 
@@ -344,9 +344,8 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | MongoDB                 | HIGH_MEMORY      |
 | MongoDB Premium         | HIGH_MEMORY      |
 | Network Storage         | HIGH_MEMORY      |
-| NodeJS                  | HIGH_CPU         |  
+| Node.js                 | HIGH_CPU         |  
 | OpenSearch              | HIGH_MEMORY      |
-| Oracle Java             | HIGH_MEMORY      |  
 | Oracle MySQL            | HIGH_MEMORY      |
 | PHP                     | HIGH_CPU         | 
 | PostgreSQL              | HIGH_MEMORY      |
