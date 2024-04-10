@@ -350,7 +350,7 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | PHP                     | HIGH_CPU         | 
 | PostgreSQL              | HIGH_MEMORY      |
 | Python                  | HIGH_CPU         | 
-| Rabbitmq                | HIGH_MEMORY      |
+| RabbitMQ                | HIGH_MEMORY      |
 | Redis ephemeral         | BALANCED         |
 | Redis persistent        | BALANCED         |
 | Ruby                    | HIGH_CPU         |
