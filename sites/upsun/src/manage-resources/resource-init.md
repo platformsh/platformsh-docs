@@ -77,9 +77,8 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | MongoDB                 | 0.1  | 448 MB | 256 MB  | 
 | MongoDB Premium         | 0.1  | 448 MB | 256 MB  |
 | Network Storage         | 0.1  | 448 MB | 256 MB  | 
-| NodeJS                  | 0.1  | 64 MB  | 0 MB    |
-| OpenSearch              | 0.1  | 448 MB | 256 MB  | 
-| Oracle Java             | 0.1  | 448 MB | 0 MB    |
+| Node.js                 | 0.1  | 64 MB  | 0 MB    |
+| OpenSearch              | 0.1  | 448 MB | 256 MB  |
 | Oracle MySQL            | 0.1  | 448 MB | 256 MB  | 
 | PHP                     | 0.1  | 64 MB  | 0 MB    |
 | PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
