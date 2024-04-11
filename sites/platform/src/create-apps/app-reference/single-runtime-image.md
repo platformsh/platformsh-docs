@@ -117,14 +117,14 @@ There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``
 
 #### ``HIGH_CPU`` container profile
 
-  | Size |  CPU  | MEMORY   |
-  | ---- | ----- | -------- |
-  | S    | 0.40  | 128 MB   |
-  | M    | 0.40  | 128 MB   |
-  | L    | 1.20  | 256 MB   |
-  | XL   | 2.50  | 384 MB   |
-  | 2XL  | 5.00  | 768 MB   |
-  | 4XL  | 10.00 | 1536 MB  |
+| Size |  CPU  | MEMORY   |
+| ---- | ----- | -------- |
+| S    | 0.40  | 128 MB   |
+| M    | 0.40  | 128 MB   |
+| L    | 1.20  | 256 MB   |
+| XL   | 2.50  | 384 MB   |
+| 2XL  | 5.00  | 768 MB   |
+| 4XL  | 10.00 | 1536 MB  |
 
 #### `BALANCED` container profile
 
