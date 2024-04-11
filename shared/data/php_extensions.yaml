@@ -1388,7 +1388,6 @@ grid:
       - tidy
       - uuid
       - xdebug
-      - xsl
       - yaml
     default:
       - bcmath
