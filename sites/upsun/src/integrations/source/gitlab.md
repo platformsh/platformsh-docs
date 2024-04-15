@@ -95,7 +95,7 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. |
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitLab repository. Automatically disabled when fetching branches is disabled. |
 | `build-merge-requests` | `true` | Whether to track all merge requests and create active environments from them, which builds the merge request. |
 | `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
