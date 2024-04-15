@@ -53,6 +53,19 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 
 {{< /note >}}
 
+{{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
+
+It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
+You can use the CLI, along with the [environment type distinction](/glossary#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+
+To do so, run the following command:
+
+```bash
+{{% vendor/cli %}} redeploy -e $({{% vendor/cli %}} environment:list --type production --pipe)
+```
+
+{{< /note >}}
+
 ### Manually trigger builds
 
 To increase performance and keep applications the same across environments,
