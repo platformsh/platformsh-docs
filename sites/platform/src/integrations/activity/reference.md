@@ -126,7 +126,7 @@ The following table presents the possible activity types:
 | `environment.backup.delete`          | A user deleted a [backup](/environments/backup.md).                                                                                                                                                                              |
 | `environment.branch`                 | A [new branch](/environments.md#create-environments) has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`.                                                                     |
 | `environment.certificate.renewal`    | An environment's SSL certificate has been [renewed](/define-routes/https.md#certificate-renewals).                                                                                                                               |
-| `environment.cron`                   | A [cron job](/create-apps/app-reference.md#crons) has completed.                                                                                                                                                                 |
+| `environment.cron`                   | A [cron job](/create-apps/app-reference/single-runtime-image.md#crons) has completed.                                                                                                                                                                 |
 | `environment.deactivate`             | An environment has been made [inactive](/glossary.md#inactive-environment).                                                                                                                                                      |
 | `environment.delete`                 | An environment's code was deleted through Git.                                                                                                                                                                                   |
 | `environment.domain.create`          | A new [domain](administration/web/configure-project.md#domains) has been associated with the environment.                                                                                                                        |
@@ -333,8 +333,7 @@ To test responses, [set up a webhook](./webhooks.md#setup).
 
 ### Cron
 
-When a cron job is triggered, the activity contains all
-the [job's information](../../create-apps/app-reference.md#crons).
+When a cron job is triggered, the activity contains all the [job's information](/create-apps/app-reference/single-runtime-image.md#crons).
 The following example response was triggered by a setting
 where the cron is scheduled to run every five minutes (`5 * * * *`)
 with the command `sleep 60 && echo sleep-60-finished && date` and times out after 86,400 seconds.
@@ -571,8 +570,8 @@ The `environment` property contains the settings for the environment that was pu
 ```
 
 The `deployment` property contains the settings for the deployment,
-including the [image type](../../create-apps/app-reference.md#types) and
-[resource allocation](../../create-apps/app-reference.md#sizes).
+including the [image type](/create-apps/app-reference/single-runtime-image.md#types) and
+[resource allocation](/create-apps/app-reference/single-runtime-image.md#sizes).
 
 The following example shows a shortened excerpt of the `deployment` property:
 

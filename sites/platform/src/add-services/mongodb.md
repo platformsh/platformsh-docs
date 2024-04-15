@@ -91,7 +91,7 @@ If you want to experiment with a later version without committing to it use a pr
     "ip": "123.456.78.90",
     "hostname": "azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "cluster": "azertyuiop-main-7rqtwti",
-    "host": "mongodbdatabase.internal",
+    "host": "mongodb.internal",
     "rel": "mongodb",
     "query": {
         "is_master": true
@@ -162,13 +162,13 @@ Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
-mongo {{< variable "MONGODBDATABASE_HOST" >}}
+mongo {{< variable "MONGODB_HOST" >}}
 ```
 
 With the example value, that would be the following:
 
 ```bash
-mongo mongodbdatabase.internal
+mongo mongodb.internal
 ```
 
 {{% service-values-change %}}
@@ -187,8 +187,7 @@ First, open an SSH tunnel with the {{% vendor/name %}} CLI:
 That opens an SSH tunnel to all services on your current environment and produce output like the following:
 
 ```bash
-SSH tunnel opened on port 30000 to relationship: database
-SSH tunnel opened on port 30001 to relationship: redis
+SSH tunnel opened on port 30000 to relationship: mongodb
 ```
 
 The port may vary in your case.

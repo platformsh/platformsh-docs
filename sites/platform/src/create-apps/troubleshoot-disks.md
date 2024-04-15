@@ -1,5 +1,6 @@
 ---
 title: "Troubleshoot disks"
+weight: 10
 ---
 
 {{% troubleshoot %}}
@@ -22,7 +23,7 @@ Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing
 To fix the error, do one of the following:
 
 * Lower the `disk` parameters to a value within your plan's storage limits.
-  Note the [limits to downsizing disks](./app-reference.md#downsize-a-disk).
+  Note the [limits to downsizing disks](/create-apps/app-reference/single-runtime-image.md#downsize-a-disk).
 * Increase your plan's storage limits.
   This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
 
@@ -74,11 +75,11 @@ W: [Errno 28] No space left on device: ...
 ```
 
 This is caused by the amount of disk provided to the build container before deployment.
-Application images are restricted to 4&nbsp;GB during build, no matter how much writable disk has been set aside for the deployed application.
+Application images are restricted to 8&nbsp;GB during build, no matter how much writable disk has been set aside for the deployed application.
 
 Some build tools (yarn/npm) store cache for different versions of their modules.
 This can cause the build cache to grow over time beyond the maximum.
 Try [clearing the build cache](../development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
-If for some reason your application absolutely requires more than 4&nbsp;GB during build,
+If for some reason your application absolutely requires more than 8&nbsp;GB during build,
 you can open a [support ticket](/learn/overview/get-support) to have this limit increased.

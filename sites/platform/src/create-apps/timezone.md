@@ -1,6 +1,7 @@
 ---
 title: "Timezones"
 description: Learn more about the different timezones on {{% vendor/name %}} and when you can customize them.
+weight: 9
 ---
 
 On {{% vendor/name %}}, there are several timezones you might want to keep in mind.
@@ -79,4 +80,4 @@ title=Java
 ## Set a cron timezone
 
 You can set a specific timezone for your crons so they don't run in your app runtime timezone (or container timezone if no app runtime timezone is set on your project).
-To do so, [set the `timezone` top-level property](../create-apps/app-reference.md#top-level-properties) in your app configuration.
+To do so, [set the `timezone` top-level property](/create-apps/app-reference/single-runtime-image.md#top-level-properties) in your app configuration.

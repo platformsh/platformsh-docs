@@ -1,5 +1,6 @@
 ---
 title: "Upgrading"
+weight: 12
 ---
 
 ## Changes in version 2022.02
@@ -25,7 +26,7 @@ title: "Upgrading"
   ```
 
   The new syntax offers greater flexibility and configuration.
-  For more details, see the [full specification for cron jobs](./app-reference.md#crons).
+  For more details, see the [full specification for cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
 
 ## Changes in version 2019.05
 
@@ -57,7 +58,7 @@ For example, the following `{{< vendor/configfile "services" >}}` snippet:
     ```
 
 * The syntax for the `mounts` key in `{{< vendor/configfile "app" >}}` has changed.
-Rather than a parsed string, the value of each mount is a [multi-key definition](./app-reference.md#mounts).
+Rather than a parsed string, the value of each mount is a [multi-key definition](/create-apps/app-reference/single-runtime-image.md#mounts).
 That is, the following example:
 
     ```yaml
@@ -97,7 +98,7 @@ disable client-side caching. This change only affects static files served
 directly by the web server. Responses served from `passthru` URLs continue to use
 whatever caching headers were set by the application..
 
-To enable caching on your static files, make sure you include an `expires` key in your [web configuration](./app-reference.md), as shown below:
+To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/create-apps/app-reference/single-runtime-image.md), as shown below:
 
 ```yaml
 web:

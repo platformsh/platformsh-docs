@@ -4,6 +4,8 @@ description: |
   {{% vendor/name %}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
+{{% composable/disclaimer %}}
+
 {{% description %}}
 
 ## Supported versions
@@ -85,7 +87,7 @@ You can change it.
 
 3. Build your application with the build hook.
 
-    Assuming you have your dependencies stored in the `Gemfile` at [your app root](../create-apps/app-reference.md#root-directory),
+    Assuming you have your dependencies stored in the `Gemfile` at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
     create a hook like the following:
 
 ```yaml {configFile="app"}
@@ -208,6 +210,7 @@ mounts:
 Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
+# The name of the app, which must be unique within a project.
 name: 'app'
 
 type: "ruby:3.0"
@@ -216,8 +219,11 @@ dependencies:
     nodejs:
         yarn: "*"
 
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    database: "database:mysql"
+    mysql: 
 
 disk: 2048
 
@@ -311,7 +317,7 @@ This example assumes there is a MySQL instance.
 To configure it, [create a service](../add-services/_index.md) such as the following:
 
 ```yaml {configFile="services"}
-database:
+mysql:
     type: mysql:{{% latest "mariadb" %}}
     disk: 2048
 ```
@@ -321,7 +327,7 @@ Once you have a service, link to it in your [app configuration](../create-apps/_
 
 ```yaml {configFile="app"}
 relationships:
-    database: "database:mysql"
+    mysql: 
 ```
 By using the following Ruby function calls, you can obtain the database details.
 
@@ -335,7 +341,7 @@ This should give you something like the following:
 
 ```json
 {
-   "database" : [
+   "mysql" : [
       {
          "path" : "main",
          "query" : {
@@ -344,7 +350,7 @@ This should give you something like the following:
          "port" : 3306,
          "username" : "user",
          "password" : "",
-         "host" : "database.internal",
+         "host" : "mysql.internal",
          "ip" : "246.0.241.50",
          "scheme" : "mysql"
       }
