@@ -95,8 +95,8 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. |
-| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitLab repository. Automatically disabled when fetching branches is disabled. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on a {{% vendor/name %}} isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-merge-requests` | `true` | Whether to track all merge requests and create active environments from them, which builds the merge request. |
 | `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
 | `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
@@ -116,5 +116,9 @@ To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid
 ## Source of truth
 
 {{< source-integration/source-of-truth source="GitLab" >}}
+
+### Sync, fetch, and prune
+
+{{% source-integration/sync-fetch-prune service="GitLab" %}}
 
 {{% source-integration/url source="GitLab" %}}
