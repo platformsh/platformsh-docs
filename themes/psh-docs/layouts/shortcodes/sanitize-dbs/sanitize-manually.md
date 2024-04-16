@@ -57,6 +57,9 @@ Assumptions:
     ```yaml {configFile="app"}
     hooks:
         deploy: |
+
+            # ...
+            
             cd /app/public
             if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                 # Do whatever you want on the production site.
@@ -71,9 +74,14 @@ Assumptions:
     ```yaml {configFile="app"}
     applications:
         myapp:
-            ...
+            
+            # ...
+            
             hooks:
                 deploy: |
+
+                    # ...
+
                     cd /app/public
                     if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
                         # Do whatever you want on the production site.
