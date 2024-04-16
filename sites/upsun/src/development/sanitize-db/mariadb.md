@@ -28,6 +28,9 @@ for preview environments:
 ```yaml {configFile="app"}
 hooks:
     deploy: |
+
+        # ...
+
         cd /app/public
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
             # Do whatever you want on the production site.
@@ -46,8 +49,11 @@ use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the fo
 ```yaml {configFile="app"}
 hooks:
     deploy: |
+
+        # ...
+
         cd /app/public
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] && [ "$(drush state:get --format=string mymodule.sanitized)" != yes ]; then
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] || [ "$(drush state:get --format=string mymodule.sanitized)" != yes ]; then
             # Do whatever you want on the production site.
         else
             drush -y sql:sanitize
