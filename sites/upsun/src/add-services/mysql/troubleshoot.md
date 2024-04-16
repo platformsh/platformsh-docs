@@ -85,3 +85,223 @@ and tries to re-establish the connection.
 
 Alternatively, if your worker is idle for too long it can self-terminate.
 {{% vendor/name %}} automatically restarts the worker process and the new process can establish a new database connection.
+
+## Too many connections
+
+If you get the [error message](https://mariadb.com/kb/en/e1040/) `Error 1040: Too many connections`, a common way to fix is to increase the `max_connections` property for the MariaDB service's configuration.
+On {{% vendor/name %}}, however, [this is not a configurable property](/add-services/mysql#configure-the-database) -- at least not directly.
+
+### TLDR: how to fix
+
+While `max_connections` isn't a property that can be configured directly in {{% vendor/name %}} service configurations, 
+there are one of two quick changes you can make to your services configuration to increase `max_connections` and deal with `Error 1040`.
+
+Given the following services configuration for MariaDB:
+
+```yaml {configFile="services"}
+services:
+    # The name of the service container. Must be unique within a project.
+    mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+        configuration:
+            properties:
+                max_allowed_packet: 16
+```
+
+And assuming you have set the resources for that service using the CLI command:
+
+```bash
+{{% vendor/cli %}} resources:set --size mariadb:1
+```
+
+`max_connections` in this case is `332` as set by {{% vendor/name %}} (see [how it works](#how-it-works)).
+
+`max_connections` can be **increased** by _either_:
+
+- **decreasing** `max_allowed_packet` (i.e. `16` → `15` will result in `max_connections=355`)
+- **increasing** `size` using the `resources:set` command (i.e. `1` → `2` will result in `max_connections=500`)
+
+### How it works
+
+Behind the scenes, `max_connections` is calculated from a few values that you _can_ change:
+
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.platform/services.yaml` file with an integer value. 
+The default value of `16` is shown below to illustrate:
+
+    ```yaml {configFile="services"}
+    services:
+        # The name of the service container. Must be unique within a project.
+        mariadb:
+            type: mariadb:{{% latest "mariadb" %}}
+            configuration:
+                properties:
+                    max_allowed_packet: 16
+    ```
+
+1. **The memory available to the service**: Resources are provisioned to {{% vendor/name %}} containers according to your definition via the API, often through the `resources:set` CLI command:
+
+    ```bash
+    {{% vendor/cli %}} resources:set --size mariadb:1
+    ```
+
+    The memory for a given container from its `size` is dependent on its [***container profile***](/manage-resources/adjust-resources#advanced-container-profiles).
+    
+    [MariaDB](/manage-resources/adjust-resources#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources#advanced-container-profiles), which for `--size mariadb:1` has 1 CPU and 2432 MB of memory.
+
+
+If we assume the configuration above, where
+
+- `--size  mariadb:1`, which we know now is `2432` MB, referred to below as `application_size`
+- `mariadb.configuration.properties.max_allowed_packet: 16`
+- You are not also adjusting `container_profile`, but are instead using the default `HIGH_MEMORY` profile assigned to MariaDB images. [Reassigning a different profile](/manage-resources/adjust-resources#adjust-a-container-profile) will change the behavior below slightly.
+
+`max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to: 
+
+\begin{aligned}
+\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr]
+\end{aligned}
+
+This calculation uses three additional calculations:
+
+\begin{aligned}
+\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
+\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 \newline \newline
+\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}}
+\end{aligned}
+
+So for our current example, where:
+
+\begin{aligned}
+\texttt{application_size} = 2432 \newline
+\texttt{max_allowed_packet} = 16
+\end{aligned}
+
+We get:
+
+\begin{aligned}
+\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 1.7395 \times 10^{-3}
+\end{aligned}
+
+\begin{aligned}
+\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 = (1280 * 2) + 512 = 5376
+\end{aligned}
+
+\begin{aligned}
+\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
+\texttt{FREE_MEMORY} = 3072 - \left( 50 + 0.0009155... \right) = 5325.998...
+\end{aligned}
+
+\begin{aligned}
+\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr] = \text{int}\Biggl[ \min \left( \frac{3021.999084}{16}, 500 \right) \Biggr] = \text{int}\Biggl[ 332.87... \Biggr]
+\end{aligned}
+
+\begin{aligned}
+\texttt{max_connections} = 332
+\end{aligned}
+
+You can consult the table below for additional example calculations of `max_connections` for all `size` settings and for a number of `max_allow_packet` settings.
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+    <tbody>
+        <tr>     
+            <td rowspan="2" align="center"><b>MariaDB <code>max_connections</code></td>
+            <td colspan="6" align="center"><b><code>application_size</code><br><code>size</code> (memory in MB)</b></td>
+        </tr>
+        <tr align="center">
+            <td><b>0.1 (448 MB)</b></td>
+            <td><b>0.25 (832 MB)</b></td>
+            <td><b>0.5 (1408 MB)</b></td>
+            <td><b>1 (2432 MB)</b></td>
+            <td><b>2 (4032 MB)</b></td>
+            <td><b>4 (6720 MB)</b></td>
+            <td><b>6 (9024 MB)</b></td>
+            <td><b>8 (11200 MB)</b></td>
+        </tr>
+        <tr align="center">
+            <td><b>1<br>(min)</b></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>2</b></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>8</b></td>
+            <td>169</td>
+            <td>265</td>
+            <td>409</td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>16<br>(default)</b></td>
+            <td>84</td>
+            <td>132</td>
+            <td>204</td>
+            <td>332</td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>32</b></td>
+            <td>42</td>
+            <td>66</td>
+            <td>102</td>
+            <td>166</td>
+            <td>266</td>
+            <td>434</td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>64</b></td>
+            <td>21</td>
+            <td>33</td>
+            <td>51</td>
+            <td>83</td>
+            <td>133</td>
+            <td>217</td>
+            <td>289</td>
+            <td>357</td>
+        </tr>
+        <tr align="center">
+            <td><b>100<br>(max)</b></td>
+            <td>13</td>
+            <td>21</td>
+            <td>32</td>
+            <td>53</td>
+            <td>85</td>
+            <td>139</td>
+            <td>185</td>
+            <td>228</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+Notice two things. First, the maximum value for `max_connections` is 500, indicated with italicized integers in the table.
+
+Second, that `max_connections` can be **increased** in your environments by either:
+
+1. **decreasing** `max_allow_packet` value in your services configuration
+1. **increasing** the service's resources by using the CLI command `resources:set` and the `--size` flag

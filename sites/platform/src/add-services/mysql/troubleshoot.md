@@ -113,6 +113,7 @@ mariadb:
 ```
 
 `max_connections` in this case is `188` as set by {{% vendor/name %}} (see [how it works](#how-it-works)).
+
 `max_connections` can be **increased** by _either_:
 
 - **decreasing** `max_allowed_packet` (i.e. `16` → `15` will result in `max_connections=201`)
@@ -149,6 +150,7 @@ The default value of `16` is shown below to illustrate:
     ```
 
     The memory for a given container from its `size` is dependent on its [***container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
+
     [MariaDB](/create-apps/app-reference/single-runtime-image#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image#high_memory-container-profile), which for `size: L` has 0.40 CPU and 1280 MB of memory.
 
 
@@ -211,12 +213,12 @@ You can consult the table below for additional example calculations of `max_conn
             <td colspan="6" align="center"><b><code>application_size</code><br><code>size</code> (memory in MB)</b></td>
         </tr>
         <tr align="center">
-            <td><b>S<br>(128 MB)</b></td>
-            <td><b>M<br>(288 MB)</b></td>
-            <td><b>L<br>(1280 MB)</b></td>
-            <td><b>XL<br>(2624 MB)</b></td>
-            <td><b>2XL<br>(5248 MB)</b></td>
-            <td><b>4XL<br>(10496 MB)</b></td>
+            <td><b>S (128 MB)</b></td>
+            <td><b>M (288 MB)</b></td>
+            <td><b>L (1280 MB)</b></td>
+            <td><b>XL (2624 MB)</b></td>
+            <td><b>2XL (5248 MB)</b></td>
+            <td><b>4XL (10496 MB)</b></td>
         </tr>
         <tr align="center">
             <td><b>1<br>(min)</b></td>
@@ -285,7 +287,9 @@ You can consult the table below for additional example calculations of `max_conn
 </table>
 </div>
 
-Notice two things:
+Notice two things. First, the maximum value for `max_connections` is 500, indicated with italicized integers in the table.
 
-- The maximum value for `max_connections` is 500, indicated with italicized integers in the table.
-- That `max_connections` can be **increased** in your environments by either 1) **decreasing** `max_allow_packet`, or 2) **increasing** the plan `size`.
+Second, that `max_connections` can be **increased** in your environments by either:
+
+1. **decreasing** `max_allow_packet` value in your services configuration
+1. **increasing** the plan `size`
