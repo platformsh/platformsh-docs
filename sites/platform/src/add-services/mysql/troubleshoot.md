@@ -83,3 +83,209 @@ and tries to re-establish the connection.
 
 Alternatively, if your worker is idle for too long it can self-terminate.
 {{% vendor/name %}} automatically restarts the worker process and the new process can establish a new database connection.
+
+## Too many connections
+
+{{% note %}}
+The details below pertain to DG3 and Professional/Grid {{% vendor/name %}} projects.
+For DG2 projects, feel free to consult with support to set `max_connections` directly.
+{{% /note %}}
+
+If you get the [error message](https://mariadb.com/kb/en/e1040/) `Error 1040: Too many connections`, a common way to fix is to increase the `max_connections` property for the MariaDB service's configuration.
+On {{% vendor/name %}}, however, [this is not a configurable property](/add-services/mysql#configure-the-database) -- at least not directly.
+
+### TLDR: how to fix
+
+While `max_connections` isn't a property that can be configured directly in {{% vendor/name %}} service configurations, 
+there are one of two quick changes you can make to your services configuration to increase `max_connections` and deal with `Error 1040`.
+
+Given the following services configuration for MariaDB:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    disk: 2048
+    size: L
+    configuration:
+        properties:
+            max_allowed_packet: 16
+```
+
+`max_connections` in this case is `188` as set by {{% vendor/name %}} (see [how it works](#how-it-works)).
+`max_connections` can be **increased** by _either_:
+
+- **decreasing** `max_allowed_packet` (i.e. `16` → `14` will result in `max_connections=215`)
+- **increasing** `size` (i.e. `L` → `XL` will result in `max_connections=356`)
+
+### How it works
+
+Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from a few values that you _can_ change:
+
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.platform/services.yaml` file with an integer value. 
+The default value of `16` is shown below to illustrate:
+
+    ```yaml {configFile="services"}
+    # The name of the service container. Must be unique within a project.
+    mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+        disk: 2048
+        configuration:
+            properties:
+                max_allowed_packet: 16
+    ```
+
+1. **The memory available to the service**: Each {{% vendor/name %}} plan distributes resources among all of the containers in a cluster. The _strategy_ for how that is done can either be determined for you by {{% vendor/name %}} (equivalent to setting `size: AUTO`) or by setting a container size explicitly:
+
+    ```yaml {configFile="services"}
+    # The name of the service container. Must be unique within a project.
+    mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+        disk: 2048
+        size: L
+        configuration:
+            properties:
+                max_allowed_packet: 16
+    ```
+
+    The memory for a given container from its `size` is dependent on its [***container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
+    [MariaDB](/create-apps/app-reference/single-runtime-image#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image#high_memory-container-profile), which for `size: L` has 0.40 CPU and 1280 MB of memory.
+
+
+If we assume the configuration above, where
+
+- `mariadb.size: L`, which we know now is `1280` MB, referred to below as `application_size`
+- `mariadb.configuration.properties.max_allowed_packet: 16`
+
+`max_allowed_packet` is `188`, which is determined by {{% vendor/name %}} according to: 
+
+\begin{aligned}
+\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr]
+\end{aligned}
+
+This calculation uses three additional calculations:
+
+\begin{aligned}
+\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
+\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 \newline \newline
+\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}}
+\end{aligned}
+
+So for our current example, where:
+
+\begin{aligned}
+\texttt{application_size} = 1280 \newline
+\texttt{max_allowed_packet} = 16
+\end{aligned}
+
+We get:
+
+\begin{aligned}
+\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 9.155 \times 10^{-4}
+\end{aligned}
+
+\begin{aligned}
+\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 = (1280 * 2) + 512 = 3072
+\end{aligned}
+
+\begin{aligned}
+\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
+\texttt{FREE_MEMORY} = 3072 - \left( 50 + 0.0009155... \right) = 3021.999084
+\end{aligned}
+
+\begin{aligned}
+\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr] = \text{int}\Biggl[ \min \left( \frac{3021.999084}{16}, 500 \right) \Biggr] = \text{int}\Biggl[ 188.87... \Biggr]
+\end{aligned}
+
+\begin{aligned}
+\texttt{max_connections} = 188
+\end{aligned}
+
+You can consult the table below for additional example calculations of `max_connections` for all `size` settings and for a number of `max_allow_packet` settings.
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+    <tbody>
+        <tr>     
+            <td rowspan="2" align="center"><b>MariaDB <code>max_connections</code> <br/> for common combinations <br/> of <code>size</code> & <br/> <code>max_allow_packet</code></b></td>
+            <td colspan="6" align="center"><b><code>application_size</code><br><code>size</code> (memory in MB)</b></td>
+        </tr>
+        <tr align="center">
+            <td><b>S<br>(128 MB)</b></td>
+            <td><b>M<br>(288 MB)</b></td>
+            <td><b>L<br>(1280 MB)</b></td>
+            <td><b>XL<br>(2624 MB)</b></td>
+            <td><b>2XL<br>(5248 MB)</b></td>
+            <td><b>4XL<br>(10496 MB)</b></td>
+        </tr>
+        <tr align="center">
+            <td><b>1<br>(min)</b></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>2</b></td>
+            <td>358</td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>8</b></td>
+            <td>89</td>
+            <td>129</td>
+            <td>377</td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>16<br>(default)</b></td>
+            <td>44</td>
+            <td>64</td>
+            <td>188</td>
+            <td>356</td>
+            <td><i>500</i></td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>32</b></td>
+            <td>22</td>
+            <td>32</td>
+            <td>94</td>
+            <td>178</td>
+            <td>342</td>
+            <td><i>500</i></td>
+        </tr>
+        <tr align="center">
+            <td><b>64</b></td>
+            <td>11</td>
+            <td>16</td>
+            <td>47</td>
+            <td>89</td>
+            <td>171</td>
+            <td>335</td>
+        </tr>
+        <tr align="center">
+            <td><b>100<br>(max)</b></td>
+            <td>7</td>
+            <td>10</td>
+            <td>30</td>
+            <td>57</td>
+            <td>109</td>
+            <td>214</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+Notice two things:
+
+- The maximum value for `max_connections` is 500, indicated with italicized integers in the table.
+- That `max_connections` can be **increased** in your environments by either 1) **decreasing** `max_allow_packet`, or 2) **increasing** the plan `size`.
