@@ -43,6 +43,10 @@ For example:
 type: 'ruby:{{% latest "ruby" %}}'
 ```
 
+{{% deprecated-versions %}}
+
+{{< image-versions image="ruby" status="deprecated" >}}
+
 ## Unicorn based Rails configuration
 
 This example uses Unicorn to run a Ruby application.

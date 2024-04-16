@@ -15,6 +15,8 @@ with all the services needed for it to run.
 Each project can include multiple environments,
 often divided into [environment types](../administration/users.md#environment-type-roles).
 If you have a live site, you have at least a production environment.
+You may also have additional environments of the Staging or Development [environment type](../administration/users.md#environment-type-roles), but there will only ever be one production environment.
+
 You can think of other environments as copies of your live site
 where you can run tests without worrying about damaging anything in production.
 Once you have completed your tests,
