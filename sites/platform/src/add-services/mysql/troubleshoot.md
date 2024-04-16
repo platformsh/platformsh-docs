@@ -115,7 +115,7 @@ mariadb:
 `max_connections` in this case is `188` as set by {{% vendor/name %}} (see [how it works](#how-it-works)).
 `max_connections` can be **increased** by _either_:
 
-- **decreasing** `max_allowed_packet` (i.e. `16` → `14` will result in `max_connections=215`)
+- **decreasing** `max_allowed_packet` (i.e. `16` → `15` will result in `max_connections=201`)
 - **increasing** `size` (i.e. `L` → `XL` will result in `max_connections=356`)
 
 ### How it works
