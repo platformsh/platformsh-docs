@@ -31,8 +31,7 @@ Before starting the migration process, you need to plan for it:
 
 In the target region, [create a new project from scratch]({{% create-project-link scratch=true %}}).
 
-If you plan to test for long, start with a Development plan and upsize it before switching the DNS.
-Otherwise, use the desired plan size from the start.
+If you plan to test for long, start with the least amount of resources on the project and then upsize it before switching the DNS.
 
 ## 3. Add code and environments
 
