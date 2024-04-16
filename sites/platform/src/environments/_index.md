@@ -46,6 +46,11 @@ you can even have environments created automatically for your pull requests and 
 You can also have branches that aren't tied to a running instance of your application.
 These are called [inactive environments](#environment-status).
 
+{{% note theme="info" %}}
+Application containers on created preview environments [default to a size of Standard](/administration/pricing#preview-environments). 
+This behavior can be modified by those with manage plans permission to [increase Environments application size](/administration/pricing#preview-environments).
+{{% /note %}}
+
 ## Default environment
 
 Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
