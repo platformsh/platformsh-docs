@@ -99,7 +99,7 @@ title= Using the CLI
 +++
 
 To define how many instances of an app or worker you want to deploy,
-you can use the {{% vendor/name %}} CLI's interactive prompts,
+you can use the {{% vendor/name %}} CLI interactive prompts,
 or run commands manually.
 
 - **Interactive prompts:**

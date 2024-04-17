@@ -10,7 +10,7 @@ weight: 30
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the Console under the `Profiling` tab of your environments.
 
-The Node.js continuous profiling is currently made accross 3 dimensions:
+The Node.js continuous profiling is currently made across 3 dimensions:
 - **CPU Time**:  Time spent running on the CPU
 - **Wall-time**: Elapsed time per function call
 - **Heap**: Memory allocation and reserved space over time
@@ -74,7 +74,7 @@ The `start` function accepts an object as a parameter with the following keys:
 
 Stops the continuous profiling probe.
 
-## A simple example application
+## An example application
 
 1. Get the Continuous Profiler NodeJS library
 
