@@ -101,9 +101,9 @@ You can specify a resource initialization strategy when performing the following
 | Action                                                                | Available strategies                     | Default  |
 |-----------------------------------------------------------------------|------------------------------------------|----------|
 | [First deployment](#first-deployment) | `parent`, `default`, `minimum`, `manual` | `parent` |
-| [Environment branch](#environment-creation) | `parent`, `default`, `minimum` | `parent` |
+| [Environment branch](#environment-branch) | `parent`, `default`, `minimum` | `parent` |
 | [Environment merge](#environment-merge) | `child`, `default`, `minimum`, `manual` | `child` |
-| [Environment activation](#activating-an-environment) | `parent`, `default`, `minimum` | `parent` | 
+| [Environment activation](#environment-activation) | `parent`, `default`, `minimum` | `parent` | 
 | [Backup restoration](#backup-restoration) | `backup`, `parent`, `default`, `minimum` | `backup` |
 
 ### First deployment
@@ -115,7 +115,7 @@ Default: `parent`
 
 {{% /note %}} 
 
-You can define [which resource initialization strategy](#resource-initialization-strategies) {{% vendor/name %}} uses to allocate resources
+You can define [which resource initialization strategy](#specify-a-resource-initialization-strategy) {{% vendor/name %}} uses to allocate resources
 when you first deploy your project or add a new container.
 
 {{< codetabs >}}
@@ -168,7 +168,7 @@ it applies to **all** the deployments you launch through that source integration
 
 To specify a resource initialization strategy when [creating your source integration](/integrations/source/_index.md),
 include the `--resources-init` flag in your source integration options.</br>
-For example, if you [set up a GitHub integration](), use the following options:
+For example, if you [set up a GitHub integration](/integrations/source/github), use the following options:
 
 ```bash {location="Terminal"}
 platform integration:add \

@@ -176,7 +176,7 @@ Then in your program you could access the PostgreSQL instance as follows:
 ## Example
 
 The following is a basic example of a Hunchentoot-based web app
-(you can find the corresponding `.asd` and {{% vendor/name %}} `.yaml` files in the [template](#project-templates)):
+(you can find the corresponding `.asd` and {{% vendor/name %}} `.yaml` files in the example):
 
 ```lisp
 (defpackage #:example

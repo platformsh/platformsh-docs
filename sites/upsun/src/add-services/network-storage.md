@@ -34,7 +34,7 @@ Any change to the service version results in existing data becoming inaccessible
 ## Multi-application usage
 
 If your project contains [multiple apps](../create-apps/multi-app/_index.md),
-they may [share `storage` mounts](/create-apps/app-reference/_index.md#data-sharing-through-mounts).
+they may [share `storage` mounts](/create-apps/app-reference/single-runtime-image#share-a-mount-between-several-apps).
 
 Alternatively, they may use shared `service` mounts.
 If the `source_path` is the same for both apps,

@@ -560,7 +560,7 @@ If they exit, they're automatically restarted.
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
-the [top-level properties](#top-level-properties).
+the [top-level properties](#primary-application-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
@@ -1057,7 +1057,7 @@ The offset is a random number of seconds up to 20 minutes or the cron frequency,
 Crons are also paused while activities such as [backups](/environments/backup) are running.
 The crons are queued to run after the other activity finishes.
 
-To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
+To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
 
 ### Paused crons
 
@@ -1126,7 +1126,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 {{% note theme="info" %}}
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
-See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#top-level-properties).
+See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#primary-application-properties).
 {{% /note %}}
 
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
