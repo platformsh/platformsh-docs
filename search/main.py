@@ -28,7 +28,7 @@ class Search:
         # Data available to the dropdown React app in docs, used to fill out autocomplete results.
         self.displayed_attributes = ['keywords', 'title', 'description', 'url', 'site', 'section']
         # Data actually searchable by our queries.
-        self.searchable_attributes = ['keywords', 'title', 'pageUrl', 'section', 'description', 'url']
+        self.searchable_attributes = ['keywords', 'title', 'pageUrl', 'section', 'text', 'url']
 
         # Show results for one query with the listed pages, when they by default would not show up as best results.
         # Note: these aren't automatically two-way, which is why they're all defined twice.
