@@ -95,9 +95,9 @@ npm run develop
 Before pushing, please duplicate the test suite locally by running:
 
 ```bash
-./tests.sh platform
+npm run test -- platform
 # OR
-./tests.sh upsun
+npm run test -- upsun
 ```
 
 depending on which set of docs you've contributed to.
