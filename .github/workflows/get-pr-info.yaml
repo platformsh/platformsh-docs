@@ -206,7 +206,7 @@ jobs:
       # If there are no changed pages, create a comment
       # with a link to general URL
       - name: Comment without links
-        if: steps.get-files.outputs.changed_files == '' && steps.get_env_url.outputs.env_status == 'success'
+        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == '' && steps.get_env_url.outputs.env_status == 'success'
         env:
           ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
