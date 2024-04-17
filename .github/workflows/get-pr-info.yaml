@@ -201,7 +201,7 @@ jobs:
           PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
           PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
         run: |
-          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages (Platform.sh):\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\nSee the changed pages (Upsun):\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Platform.sh docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>\n\n<details>\n<summary>Upsun docs</summary><br/>\n\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
 
       # If there are no changed pages, create a comment
       # with a link to general URL
