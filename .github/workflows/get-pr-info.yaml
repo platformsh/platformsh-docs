@@ -196,7 +196,7 @@ jobs:
 
       # If there are changed pages, create a comment with a checklist
       - name: Comment with links
-        if: steps.get-files.outputs.changed_files_platform != || && steps.get-files.outputs.changed_files_upsun != ''
+        if: steps.get-files.outputs.changed_files_platform != '' || steps.get-files.outputs.changed_files_upsun != ''
         env:
           PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
           PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
