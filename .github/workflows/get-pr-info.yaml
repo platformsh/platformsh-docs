@@ -1,6 +1,6 @@
 name: Get info on PR
 on:
-  pull_request_target:
+  pull_request:
     branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
@@ -9,6 +9,7 @@ env:
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
+  UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
 jobs:
   get_pr_info:
     runs-on: ubuntu-latest
@@ -114,7 +115,7 @@ jobs:
       - name: Create failure report
         if: steps.get_env_url.outputs.env_status == 'failure'
         run: |
-          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/652soceglkw4u/${{ steps.branch_name.outputs.branch_name }}" > pr_comment.txt
+          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ steps.branch_name.outputs.branch_name }}" > pr_comment.txt
 
       # Create a list of relevant changed pages
       - name: Report environment URL
@@ -154,6 +155,24 @@ jobs:
 
               files+=("$ENV_URL$page")
             fi
+
+            if [[ $file = "sites/upsun/src/"*".md" ]]; then
+
+              # Remove file extension
+              page=${file/.md/.html}
+
+              # Remove initial directory
+              page=${page/"sites/upsun/src/"/}
+
+              # Shift index pages up a level
+              page=${page/"/_index.html"/".html"}
+
+              # Adjust URL for Upsun docs.
+              UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
+
+              files+=("$UPSUN_ENV_URL$page")
+            fi
+
           done
 
           # If there are changed files, return a list
@@ -180,7 +199,8 @@ jobs:
         env:
           ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
-          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n$ENV_URL" > pr_comment.txt
+          UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
 
       - uses: actions/upload-artifact@v2
         with:
