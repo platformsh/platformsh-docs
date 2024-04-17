@@ -1,7 +1,7 @@
 name: Get info on PR
 on:
   pull_request_target:
-    branches: [main, ga-staging]
+    branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
 env:
