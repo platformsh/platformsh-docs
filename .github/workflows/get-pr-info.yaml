@@ -138,7 +138,8 @@ jobs:
         env:
           ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
         run: |
-          files=()
+          files_platform=()
+          files_upsun=()
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
 
             # Rewrite all Markdown files in the source to be links in the final environment
@@ -153,7 +154,7 @@ jobs:
               # Shift index pages up a level
               page=${page/"/_index.html"/".html"}
 
-              files+=("$ENV_URL$page")
+              files_platform+=("$ENV_URL$page")
             fi
 
             if [[ $file = "sites/upsun/src/"*".md" ]]; then
@@ -170,27 +171,37 @@ jobs:
               # Adjust URL for Upsun docs.
               UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
 
-              files+=("$UPSUN_ENV_URL$page")
+              files_upsun+=("$UPSUN_ENV_URL$page")
             fi
 
           done
 
-          # If there are changed files, return a list
+          # If there are changed files for Platform.sh, return a list
           # Using "\n" here creates problems in passing data to the next step, so replace there instead
-          if (( ${#files[@]} != 0 )); then
-            echo $(printf "||%s" "${files[@]}")
-            echo changed_files=$(printf "||%s" "${files[@]}") >> $GITHUB_OUTPUT
+          if (( ${#files_platform[@]} != 0 )); then
+            echo $(printf "||%s" "${files_platform[@]}")
+            echo changed_files_platform=$(printf "||%s" "${files_platform[@]}") >> $GITHUB_OUTPUT
           else
-            echo changed_files="" >> $GITHUB_OUTPUT
+            echo changed_files_platform="" >> $GITHUB_OUTPUT
+          fi
+
+          # If there are changed files for Upsun, return a list
+          # Using "\n" here creates problems in passing data to the next step, so replace there instead
+          if (( ${#files_upsun[@]} != 0 )); then
+            echo $(printf "||%s" "${files_upsun[@]}")
+            echo changed_files_upsun=$(printf "||%s" "${files_upsun[@]}") >> $GITHUB_OUTPUT
+          else
+            echo changed_files_upsun="" >> $GITHUB_OUTPUT
           fi
 
       # If there are changed pages, create a comment with a checklist
       - name: Comment with links
-        if: steps.get-files.outputs.changed_files != ''
+        if: steps.get-files.outputs.changed_files_platform != || && steps.get-files.outputs.changed_files_upsun != ''
         env:
-          PAGES: ${{ steps.get-files.outputs.changed_files }}
+          PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
+          PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
         run: |
-          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n${PAGES//||/'\n- [ ] '}" > pr_comment.txt
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages (Platform.sh):\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\nSee the changed pages (Upsun):\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
 
       # If there are no changed pages, create a comment
       # with a link to general URL
