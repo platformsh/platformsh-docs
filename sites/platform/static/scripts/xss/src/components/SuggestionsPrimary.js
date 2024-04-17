@@ -40,7 +40,7 @@ const SuggestionsPrimary = ({ hits, title }) => {
         </p>
         )}
       {/* eslint-disable-next-line no-underscore-dangle, react/no-danger */}
-      <p className="truncate mb-2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r._formatted.text) }} />
+      <p className="truncate mb-2" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(r._formatted.description) }} />
     </li>
   ))
 
