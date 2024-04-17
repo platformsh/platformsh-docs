@@ -14,6 +14,9 @@ jobs:
       ) &&
       contains(github.event.pull_request.labels.*.name, vars.LBL_MRKDWNPROSE)
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        site: ['platform', 'upsun']
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -23,11 +26,11 @@ jobs:
       with:
         node-version: 16
         cache: 'npm'
-        cache-dependency-path: sites/platform/package-lock.json
+        cache-dependency-path: sites/${{ matrix.site }}/package-lock.json
 
     - name: Run lint markdown
       run: |
-        cd sites/platform
+        cd sites/${{ matrix.site }}
         npm ci
         npm run lint:markdown
 
@@ -40,6 +43,9 @@ jobs:
       ) &&
       contains(github.event.pull_request.labels.*.name, vars.LBL_MRKDWNPROSE)
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        site: ['platform', 'upsun']
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -50,6 +56,6 @@ jobs:
           version: 3.0.7
           fail_on_error: true
           reporter: github-check
-          files: sites/platform/src
+          files: sites/${{ matrix.site }}/src
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
