@@ -514,6 +514,53 @@ mounts:
 
 The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing files in that directory.
 
+### Overlapping mounts
+
+The locations of mounts as they are visible to application containers can overlap somewhat.
+For example:
+
+```yaml
+applications:
+  my_app:
+    # ...
+    mounts:
+      'var/cache_a':
+        source: service
+        service: ns_service
+        source_path: cacheA
+      'var/cache_b':
+        source: tmp
+        source_path: cacheB
+      'var/cache_c':
+        source: local
+        source_path: cacheC
+```
+
+In this case, it does not matter that each mount is of a different `source` type.
+Each mount is restricted to a subfolder within `var`, and all is well. 
+
+The following, however, is not allowed and will result in a failure:
+
+```yaml
+applications:
+  my_app:
+    # ...
+    mounts:
+      'var/':
+        source: service
+        service: ns_service
+        source_path: cacheA
+      'var/cache_b':
+        source: tmp
+        source_path: cacheB
+      'var/cache_c':
+        source: local
+        source_path: cacheC
+```
+
+The `service` mount type specifically exists to share data between instances of the same application, whereas `tmp` and `instance` are meant to restrict data to build time and runtime of a single application instance, respectively.
+These allowances are not compatible, and will result in an error if pushed.
+
 ## Web
 
 Use the `web` key to configure the web server running in front of your app.
