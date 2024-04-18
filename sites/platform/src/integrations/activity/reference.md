@@ -282,7 +282,7 @@ The following table presents the most notable properties of the project:
 | Name                           | Description                                                                             |
 |--------------------------------|-----------------------------------------------------------------------------------------|
 | `payload.project.timezone`     | Your project's [timezone](../../projects/change-project-timezone.md).                   |
-| `payload.project.region`       | Your project's [region](../../development/regions.md#regions).                          |
+| `payload.project.region`       | Your project's [region](/development/regions#regions).                          |
 | `payload.project.title`        | Your project's name.                                                                    |
 | `payload.project.subscription` | All of the details about your project's [plan](../../administration/pricing/_index.md). |
 

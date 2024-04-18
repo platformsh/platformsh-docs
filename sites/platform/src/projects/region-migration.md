@@ -4,7 +4,7 @@ sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
 ---
 
-To host your project data, {{% vendor/name %}} offers several [regions](../development/regions.md).
+To host your project data, {{% vendor/name %}} offers several [regions](/development/regions).
 You specify a region when you create a project.
 
 You can also change the project's region after it's created.
@@ -13,7 +13,7 @@ You can also change the project's region after it's created.
 
 - Different data centers are located in different geographic areas.
   You may want your site close to your users for improved performance.
-- You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
+- You may want to move to a region with a lower [environmental impact](/development/regions#environmental-impact).
 - Some regions are running older versions of the {{% vendor/name %}} orchestration system that offers fewer features.
   If you are on one of those legacy regions, you can migrate to one of the newer regions.
 

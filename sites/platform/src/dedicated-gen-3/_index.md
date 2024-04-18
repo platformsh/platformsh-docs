@@ -15,7 +15,7 @@ high availability for all your services and apps,
 stricter isolation requirements,
 as well as additional compliance frameworks.
 
-To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provider](../development/regions.md#regions),
+To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provider](/development/regions#regions),
 [contact {{% vendor/name %}}](https://platform.sh/contact).
 Note that existing Grid and {{% names/dedicated-gen-2 %}} projects can't be migrated to {{% names/dedicated-gen-3 %}} at this time.
 

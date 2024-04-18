@@ -20,7 +20,7 @@ First, create a {{% vendor/name %}} project by running the following command:
 Then go through each of the steps to create the project:
 
 1. Give it a title.
-2. Choose a [region](../../development/regions.md).
+2. Choose a [region](/development/regions).
    The CLI lists each region's location, cloud provider, and average carbon intensity.
 3. Choose a plan.
    A Development plan is enough before you deploy anything.

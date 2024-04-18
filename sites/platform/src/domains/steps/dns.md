@@ -14,7 +14,7 @@ Available workarounds depend on your DNS provider.
  
 Each site on {{% vendor/name %}} is made up of a set of containers.
 To map incoming requests to the appropriate container,
-{{% vendor/name %}} runs routers in [each region](../../development/regions.md).
+{{% vendor/name %}} runs routers in [each region](/development/regions).
 A router's IP address can change in two cases:
 - During an upgrade or maintenance operation, routers can be taken offline while changes are applied.
 - During a region upscale or downscale, routers can be added or removed.
@@ -100,7 +100,7 @@ Until you do, your site can appear offline because requests are lost.
 
 To use `A` records, follow these steps:
 
-1.  [Get the IP addresses](/development/regions.md#public-ip-addresses) of your project's production environment.
+1.  [Get the IP addresses](/development/regions#public-ip-addresses) of your project's production environment.
      
 2.  Follow the instructions on [how to set up a custom domain](./_index.md).
     When you come to configuring your DNS provider, instead of a `CNAME` record,

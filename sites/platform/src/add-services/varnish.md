@@ -245,7 +245,7 @@ The following example shows how to set up purging.
 
    This list ensures that only requests from the listed IPs are accepted.
    Choose which IPs to allow.
-   If you are sending requests from an app, checkout the [outbound IPs for the region](../development/regions.md#public-ip-addresses).
+   If you are sending requests from an app, checkout the [outbound IPs for the region](/development/regions#public-ip-addresses).
 
    Alternatively, you could code in a token that must be sent with the request.
 

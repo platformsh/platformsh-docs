@@ -45,7 +45,7 @@ Run the following command:
 {{% vendor/cli %}} project:create
 ```
 
-When prompted, fill in details like the project name, [region](/development/regions.md), and [plan](/administration/pricing/_index.md).
+When prompted, fill in details like the project name, [region](/development/regions), and [plan](/administration/pricing/_index.md).
 
 <--->
 
@@ -55,7 +55,7 @@ title=In the Console
 
 [Create a new project from scratch]({{% create-project-link scratch=true %}}).
 
-In the form, fill in details like the project name and [region](/development/regions.md).
+In the form, fill in details like the project name and [region](/development/regions).
 The project is automatically created with a [Development plan](/administration/pricing/_index.md),
 which you can then upgrade.
 
@@ -80,7 +80,7 @@ Then run the following command to create a project:
 {{% vendor/cli %}} project:create
 ```
 
-When prompted, fill in details like the project name, [region](/development/regions.md), and the name of your organization.
+When prompted, fill in details like the project name, [region](/development/regions), and the name of your organization.
 
 <--->
 
@@ -94,7 +94,7 @@ If you do not already have an organization created to put the project, you'll fi
 
 Once you have done so, select that organization from the dropdown, and select **Create from scratch**.
 
-In the form, fill in details like the project name and [region](/development/regions.md).
+In the form, fill in details like the project name and [region](/development/regions).
 You'll be able to define resources for the project after your first push.
 
 {{< /codetabs >}}
