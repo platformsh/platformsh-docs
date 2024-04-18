@@ -210,7 +210,7 @@ You can consult the table below for additional example calculations of `max_conn
     <tbody>
         <tr>     
             <td rowspan="2" align="center"><b>MariaDB <code>max_connections</code> <br/> for common combinations <br/> of <code>size</code> & <br/> <code>max_allow_packet</code></b></td>
-            <td colspan="6" align="center"><b><code>application_size</code><br><code>size</code> (memory in MB)</b></td>
+            <td colspan="6" align="center"><b><code>application_size</code><br><br><code>size</code> (memory in MB)</b></td>
         </tr>
         <tr align="center">
             <td><b>S (128 MB)</b></td>
