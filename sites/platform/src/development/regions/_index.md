@@ -3,6 +3,7 @@
 # Styles: See `docs/static/styles/user-customizations.css` under `Region information`
 # Table shortcode: See `docs/layouts/shortcodes/regions.html`.
 title: Regions
+layout: single
 weight: 14
 description: See information about {{% vendor/name %}} regions, including their environmental impact and IP addresses.
 ---
@@ -29,6 +30,11 @@ For example, to get a list of the regions and their carbon intensities, run the 
 
 See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
 
+{{% note theme="info" %}}
+{{% vendor/name %}} sends out a yearly report to all organizations describing that organization’s annual CO<sub>2</sub>eq emissions for that year.
+[Find out more](/development/regions/footprint-report-faq).
+{{% /note %}}
+
 ## Region availability
 
 The regions listed here may be different from those available to you when you create a new project.
@@ -53,7 +59,7 @@ A legacy region is a region running an older version of the {{% vendor/name %}} 
 It doesn't include all available features.
 
 If you’re on a legacy region and want all features now,
-[migrate your project](../projects/region-migration.md) to a newer region.
+[migrate your project](/projects/region-migration.md) to a newer region.
 
 ## Public IP addresses
 
