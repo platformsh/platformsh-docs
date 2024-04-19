@@ -130,3 +130,8 @@ summary {
     position: static !important;
     top: auto !important;
 } */
+
+.related-content {
+    background: #DFDAFF;
+    padding: 0.5rem 2rem 1.5rem 2rem;
+}
