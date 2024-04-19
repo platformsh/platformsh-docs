@@ -1,6 +1,6 @@
 name: Get info on PR
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
     types: [labeled,opened,reopened,synchronize]
 
