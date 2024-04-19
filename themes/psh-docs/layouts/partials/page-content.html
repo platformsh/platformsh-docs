@@ -87,6 +87,18 @@
         </button>
       {{ end }}
     {{ end }}
+
+    {{ if .context.Params.related }}
+    <div class="related-content">
+      <h3>Related content</h3>
+        <ul>
+          {{ range .context.Params.related }}
+            <li><a href="{{ .url }}" target="_blank">{{ .title }}</a></li>
+          {{ end }}
+        </ul>
+    </div>
+    {{ end }}
+
   </div>
 
 </div>
