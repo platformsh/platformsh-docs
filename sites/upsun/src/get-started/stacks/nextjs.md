@@ -186,6 +186,22 @@ To generate these files, run the following command at the root of your project:
 
 Follow the prompts.
 
+```yaml {configFile="apps"}
+applications:
+    myapp:
+       type: "nodejs:20"
+       hooks:
+          build: |
+             set -eux
+             npm run build
+       web:
+          commands:
+             start: npm run start -- -p $PORT
+```
+
+As an example, above is the minimum configuration needed to deploy a Next.js application on {{% vendor/name %}} without any services.
+Depending on your answers to the prompts, you may also have `relationships` and `services` defined.
+
 To commit your new files, run the following commands:
 
 ```bash {location="Terminal"}
