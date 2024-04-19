@@ -17,6 +17,7 @@ Bootsnap
 Brotli
 [Bb]undler
 CacheTool
+callee
 cgroups
 charset
 client_id
@@ -50,7 +51,9 @@ geocod(?:er|ing)
 gitmoji
 glibc
 Goldmark
+[Gg]oroutines
 Gradle
+grayscale
 Gunicorn
 gzip
 hardcode
@@ -69,6 +72,7 @@ IDEs?
 IPs?
 JVM
 imagetragick
+impactful
 jpegoptim
 [Kk]afka
 Lando
@@ -107,6 +111,7 @@ Nixpkgs
 NodePing
 Nori
 npm
+npx
 nvm
 OAuth
 octothorpe

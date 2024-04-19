@@ -67,7 +67,7 @@ You can configure the maximum number of manual backups. Once that number is reac
 
 ### Automated backups
 
-[Automated backups](#use-automated-backups) are retained for 2 days when you use the [default backup policy](#default-backup-policy)
+Automated backups are retained for 2 days when you use the [default backup policy](#default-backup-policy)
 (meaning, 2 days worth of backups are retained at any given point).
 
 When you [configure your own automated backup policy](#configure-a-backup-policy),
