@@ -964,7 +964,6 @@ the [top-level properties](#primary-application-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
-- `build` and `dependencies` properties, which must be the same
 - `crons` as cron jobs don't run on workers
 - `hooks` as the `build` hook must be the same
   and the `deploy` and `post_deploy` hooks don't run on workers.

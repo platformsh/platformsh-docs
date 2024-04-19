@@ -871,7 +871,6 @@ the [top-level properties](#top-level-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
-- `build` and `dependencies` properties, which must be the same
 - `crons` as cron jobs don't run on workers
 - `hooks` as the `build` hook must be the same
   and the `deploy` and `post_deploy` hooks don't run on workers.
@@ -1035,58 +1034,6 @@ www.google.com
 www.platform.sh
 ```
 
-## Build
-
-The only property of the `build` dictionary is `flavor`, which specifies a default set of build tasks to run.
-Flavors are language-specific.
-
-See what the build flavor is for your language:
-
-- [Node.js](/languages/nodejs/_index.md#dependencies)
-- [PHP](/languages/php/_index.md#dependencies)
-
-In all languages, you can also specify a flavor of `none` to take no action at all
-(which is the default for any language other than PHP and Node.js).
-
-```yaml {configFile="app"}
-build:
-    flavor: none
-```
-## Dependencies
-
-Installs global dependencies as part of the build process.
-They're independent of your app's dependencies
-and are available in the `PATH` during the build process and in the runtime environment.
-They're installed before the `build` hook runs using a package manager for the language.
-
-| Language | Key name              | Package manager                                                                                                    |
-| -------- | --------------------- |--------------------------------------------------------------------------------------------------------------------|
-| PHP      | `php`                 | [Composer](https://getcomposer.org/)                                                                               |
-| Python 2 | `python` or `python2` | [Pip 2](https://packaging.python.org/tutorials/installing-packages/)                                               |
-| Python 3 | `python3`             | [Pip 3](https://packaging.python.org/tutorials/installing-packages/)                                               |
-| Ruby     | `ruby`                | [Bundler](https://bundler.io/)                                                                                     |
-| Node.js  | `nodejs`              | [npm](https://www.npmjs.com/) (see [how to use yarn](/languages/nodejs/_index.md#use-yarn-as-a-package-manager))   |
-| Java     | `java`                | [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/) |
-
-The format for package names and version constraints are defined by the specific package manager.
-
-An example of dependencies in multiple languages:
-
-```yaml {configFile="app"}
-dependencies:
-    php: # Specify one Composer package per line.
-        drush/drush: '8.0.0'
-        composer/composer: '^2'
-    python2: # Specify one Python 2 package per line.
-        behave: '*'
-        requests: '*'
-    python3: # Specify one Python 3 package per line.
-        numpy: '*'
-    ruby: # Specify one Bundler package per line.
-        sass: '3.4.7'
-    nodejs: # Specify one NPM package per line.
-        pm2: '^4.5.0'
-```
 ## Hooks
 
 There are three different hooks that run as part of the process of building and deploying your app.
@@ -1097,8 +1044,6 @@ Only the `build` hook is run for [worker instances](#workers), while [web instan
 The process is ordered as:
 
 1. Variables accessible at build time become available.
-1. [Build flavor](#build) runs if applicable.
-1. Any [dependencies](#dependencies) are installed.
 1. The `build` hook is run.
 1. The file system is changed to read only (except for any [mounts](#mounts)).
 1. The app container starts. Variables accessible at runtime and services become available.
