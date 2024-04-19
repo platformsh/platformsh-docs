@@ -102,7 +102,7 @@ applications:
                 commands:
                     start: |
                         python mail-worker.py
-    services:
+services:
     mysql:
         type: mariadb:{{% latest "mariadb" %}}
 ```
