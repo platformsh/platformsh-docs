@@ -21,7 +21,7 @@ The HTTP metrics dashboard can help you:
 
 The **HTTP requests** graph provides an aggregated view of the health of HTTP
 requests made to the application. It reflects the status responses
-(e.g. 1XX, 2XX, 3XX, 4XX, 5XX) of HTTP requests across a defined timeframe.
+(e.g. 1XX, 2XX, 3XX, 4XX, 5XX) of HTTP requests across a defined time frame.
 
 This graph helps identify surge of error responses or periods of elevated
 request activity.
@@ -41,7 +41,7 @@ and track bandwidth usage.
 
 The **Top 10 URL Impact** graph and list pinpoint high-traffic or resource-intensive
 URLs for targeted optimization or investigation. It showcases the evolution over
-time of the top-10 most impactful URLs during a given timeframe.
+time of the top-10 most impactful URLs during a given time frame.
 
 This graph helps identify potential trouble spots, understand user behavior, and
 prioritize areas for optimization.

@@ -24,7 +24,7 @@ Meanwhile, monitoring traces and extended traces are based on the sample rate, w
 
 A [blog post](https://blog.blackfire.io/understanding-monitoring-traces-extended-traces-and-profiles.html) provides all the details on the differences and complementarity between Blackfire's monitoring traces, extended traces, and profiles.
 
-## Continuous Profiling: Probabilitic observability
+## Continuous Profiling: Probabilistic observability
 
 Probabilistic profiling involves capturing data intermittently. It collects information at defined intervals, logging functions or services activated by any ongoing request or script. This approach provides a more comprehensive view of your application’s performance over time, but certain event nuances may be overlooked due to the frequency of sampling.
 

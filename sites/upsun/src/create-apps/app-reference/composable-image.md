@@ -792,7 +792,7 @@ If they exit, they're automatically restarted.
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
-the [top-level properties](#top-level-properties).
+the [top-level properties](#primary-application-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
@@ -1222,7 +1222,7 @@ The offset is a random number of seconds up to 20 minutes or the cron frequency,
 Crons are also paused while activities such as [backups](/environments/backup) are running.
 The crons are queued to run after the other activity finishes.
 
-To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
+To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
 
 ### Paused crons
 
