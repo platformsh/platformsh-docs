@@ -14,7 +14,7 @@ These sections provide Python-specific configuration details, but you can also r
 ## Managing dependencies
 
 Pip comes pre-installed in all `python` runtime containers. 
-With it, you can add `pip install` to your build hook and be well on your way to builing your apps. 
+With it, you can add `pip install` to your build hook and be well on your way to building your apps. 
 
 Alternatively, you can [use a different package manager](/languages/python/dependencies), such as Poetry or Pipvenv.
 

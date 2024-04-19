@@ -18,6 +18,7 @@ To switch from Elasticsearch, follow the same procedure as for [upgrading](#upgr
 To update the versions in this table, use docs/data/registry.json
 -->
 
+<!-- vale on -->
 <table>
     <thead>
         <tr>
@@ -34,6 +35,7 @@ To update the versions in this table, use docs/data/registry.json
         </tr>
     </tbody>
 </table>
+<!-- vale off -->
 
 On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
 The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream (starting with opensearch 1.3).

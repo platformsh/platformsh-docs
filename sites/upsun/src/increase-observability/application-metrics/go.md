@@ -10,7 +10,7 @@ weight: 30
 {{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the Console under the `Profiling` tab of your environments.
 
-The GO continuous profiling is currently made accross 6 dimensions:
+The GO continuous profiling is currently made across 6 dimensions:
 - **Allocations**: Number of objects allocated
 - **Allocated Memory**: Number of bytes allocated
 - **CPU**: Time spent running on the CPU
@@ -94,7 +94,7 @@ There is also some additional configuration that can be done using environment v
 Stops the continuous profiling probe.
 
 
-## A simple example application
+## An example application
 
 1. Get the Blackfire Continuous Profiler Go library
 
