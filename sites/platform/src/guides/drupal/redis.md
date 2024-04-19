@@ -145,15 +145,7 @@ To configure your Redis service, follow these steps:
 To verify that Redis is running, run the following command:
 
 ```bash
-{{% vendor/cli %}} ssh 'echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq'
-```
-
-In the output, retrieve the value of the `host` property for your Redis relationship.
-
-Then, run the following command:
-
-```bash
-{{% vendor/cli %}} ssh -- redis-cli -h {{< variable "HOST" >}} info
+{{% vendor/cli %}} redis info
 ```
 
 The output produces information and statistics about Redis,

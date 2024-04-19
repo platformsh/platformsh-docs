@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "test": "./tests.sh",
     "develop:docs": "./docs/local_docs.sh",
     "develop:search": "./search/local_search.sh",
     "develop": "cross-env FORCE_COLOR=1 npm-run-all -l -p develop:*"

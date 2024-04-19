@@ -21,8 +21,8 @@ This YAML file is located in your ``.{{% vendor/cli %}}`` directory, at the root
 ## Mandatory top-level keys
 In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
 - ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image)
-- ``routes``: this section of the file contains all of your [route definitions](/define-routes.md) (for each of your apps)
-- ``services``: this section of the file contains all of your [service definitions](/add-services.md) (for each of your apps)
+- ``routes``: this section of the file contains all of your [route definitions](/define-routes) (for each of your apps)
+- ``services``: this section of the file contains all of your [service definitions](/add-services) (for each of your apps)
 
 This looks like:
 ```yaml {location="{{< vendor/configfile "apps" >}}"}
@@ -34,7 +34,7 @@ This looks like:
   mariadb:
     type: mariadb:10.6 # All available versions are: 10.6, 10.5, 10.4, 10.3
 
-{{< code-link destination="/define-routes.md" text="routes" title="The routes of the project. Each route describes how an incoming URL is going to be processed by {{% vendor/name %}} (Staging). Click for more information." >}}:
+{{< code-link destination="/define-routes.html" text="routes" title="The routes of the project. Each route describes how an incoming URL is going to be processed by {{% vendor/name %}} (Staging). Click for more information." >}}:
   "https://{default}/":
     type: upstream
     upstream: "app:http"

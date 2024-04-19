@@ -1,7 +1,7 @@
 name: Check internal links
 on:
   pull_request:
-    branches: [main, ga-staging]
+    branches: [main]
     types: [opened,reopened,synchronize,labeled,unlabeled]
 
 
@@ -9,6 +9,9 @@ jobs:
   check-internal-links:
     name: Check internal links
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        site: ['platform', 'upsun']
     # Run only for PRs from default repo and approved PRs from forks
     if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps:
@@ -19,16 +22,16 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: sites/platform/package-lock.json
+          cache-dependency-path: sites/${{ matrix.site }}/package-lock.json
 
       - name: Install dependencies
         run: |
-          cd sites/platform
+          cd sites/${{ matrix.site }}
           npm ci
 
       - name: Build search script
         run: |
-          cd sites/platform
+          cd sites/${{ matrix.site }}
           npm run build:search
 
       - name: Set up Hugo
@@ -38,17 +41,17 @@ jobs:
 
       - name: Build Hugo site
         run: |
-          cd sites/platform
+          cd sites/${{ matrix.site }}
           hugo
 
       - name: Minify assets
         run: |
-          cd sites/platform
+          cd sites/${{ matrix.site }}
           npm run build:assets
 
       - name: Check links in Markdown
         run: |
           set -e
-          cd sites/platform
+          cd sites/${{ matrix.site }}
           curl https://htmltest.wjdp.uk | bash
           bin/htmltest

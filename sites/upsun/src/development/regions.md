@@ -31,7 +31,7 @@ See all available information in the [API documentation](https://api.platform.sh
 
 ### Greener Region Discount
 
-You can get a 3% discount on your resource usage if you host your project in one of Upsun's eco-friendly regions:
+You can get a 3% discount on your resource usage if you host your project in one of {{% vendor/name %}}'s eco-friendly regions:
 
 - Quebec, Canada (`ca-central-1`),
 - Stockholm, Sweden (`eu-north-1`),
