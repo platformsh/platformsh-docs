@@ -27,7 +27,7 @@ Packagist is the primary Composer repository for public PHP packages. But you ca
 
 {{% vendor/name %}} provides additional configuration possibilities to control:
 
-- [PHP-FPM runtime configuration](/create-apps/app-reference#runtime)
+- [PHP-FPM runtime configuration](/create-apps/app-reference/single-runtime-image#runtime)
 - [PHP settings](/languages/php#php-settings)
 
 ## Enabling/disabling extensions

@@ -15,6 +15,8 @@ with all the services needed for it to run.
 Each project can include multiple environments,
 often divided into [environment types](../administration/users.md#environment-type-roles).
 If you have a live site, you have at least a production environment.
+You may also have additional environments of the Staging or Development [environment type](../administration/users.md#environment-type-roles), but there will only ever be one production environment.
+
 You can think of other environments as copies of your live site
 where you can run tests without worrying about damaging anything in production.
 Once you have completed your tests,
@@ -43,6 +45,11 @@ you can even have environments created automatically for your pull requests and 
 
 You can also have branches that aren't tied to a running instance of your application.
 These are called [inactive environments](#environment-status).
+
+{{% note theme="info" %}}
+Application containers on created preview environments [default to a size of Standard](/administration/pricing#preview-environments). 
+This behavior can be modified by those with manage plans permission to [increase Environments application size](/administration/pricing#preview-environments).
+{{% /note %}}
 
 ## Default environment
 

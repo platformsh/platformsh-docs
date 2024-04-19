@@ -7,8 +7,7 @@ description: |
 {{% description %}}
 
 {{< note >}}
-The upstream now maintains two versions for Tideways, and both plugins are available on {{% vendor/name %}}:
-* [Tideways_XHProf](https://github.com/tideways/php-xhprof-extension): The open source version and so no licensing is required (On the downside, less integration services are available). You can use it in combination with [XHProf UI](https://github.com/phacility/xhprof).
+The Tideways upstream is available as a plugin on {{% vendor/name %}}:
 * [tideways](https://tideways.com): The bundle proprietary full version of the product and plugins, which the rest of the guide is mostly aimed to cover.
 {{< /note >}}
 

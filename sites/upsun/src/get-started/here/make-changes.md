@@ -74,7 +74,7 @@ Deploying after a merge is fast because the image built for the feature environm
 {{< /note >}}
 
 ## 6. Keep your branch up to date
-For a long running dev branch, to keep the code up-to-date with the `main` branch, use `git merge main` or `git rebase main`.
+For a long running development branch, to keep the code up-to-date with the `main` branch, use `git merge main` or `git rebase main`.
 You can also keep the data in sync with the parent environment by using [`{{% vendor/cli %}} env:sync data`](/administration/cli/reference.html#environmentsynchronize).
 
 {{< guide-buttons previous="Back" next="Local development" nextLink="/get-started/here/local" type="*" >}}

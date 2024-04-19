@@ -92,8 +92,8 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to track all branches and create inactive environments from them. |
-| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. Automatically disabled when fetching branches is disabled. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on a {{% vendor/name %}} isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `resync-pull-requests` | `false` | Whether to sync data from the parent environment on every push to a pull request. |
 
@@ -131,5 +131,9 @@ Copy the token.
 ## Source of truth
 
 {{< source-integration/source-of-truth source="Bitbucket" >}}
+
+### Sync, fetch, and prune
+
+{{% source-integration/sync-fetch-prune service="Bitbucket" %}}
 
 {{% source-integration/url source="Bitbucket" %}}

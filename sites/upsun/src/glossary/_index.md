@@ -204,8 +204,8 @@ even though it has mostly replaced SSL for online encrypted connections.
 
 ## Trial
 
-When you create your first organization on Upsun, you are also activating your trial for that organization.
-This trial grants you a certain amount of time and resources to try out the Upsun platform, and comes with the following restrictions:
+When you create your first organization on {{% vendor/name %}}, you are also activating your trial for that organization.
+This trial grants you a certain amount of time and resources to try out the {{% vendor/name %}} platform, and comes with the following restrictions:
 
 1. A trial lasts for **5 days**, which starts automatically from creating your first organization.
 1. A trial allows for **one (1)** active [project](#project) at a time.

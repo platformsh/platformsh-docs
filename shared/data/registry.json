@@ -610,6 +610,7 @@
     "premium": true,
     "versions": {
       "supported": [
+        "7.0",
         "6.0",
         "5.0",
         "4.4",
@@ -1097,6 +1098,28 @@
     "runtime": true,
     "type": "ruby",
     "versions": {
+      "deprecated": [
+        "2.7",
+        "2.6",
+        "2.5",
+        "2.4",
+        "2.3"
+      ],
+      "supported": [
+        "3.3",
+        "3.2",
+        "3.1",
+        "3.0"
+      ],
+      "legacy": [
+        "2.7",
+        "2.6",
+        "2.5",
+        "2.4",
+        "2.3"
+      ]
+    },
+    "versions-dedicated-gen-3": {
       "deprecated": [
         "2.7",
         "2.6",

@@ -184,7 +184,7 @@ title=In the Console
 {{ $OptionsTable := print `
 | CLI flag | Default | Description |
 | -------- | ------- | ----------- |
-| <code>fetch-branches</code> | <code>true</code> | Whether to track all branches and create inactive environments from them. |
+| <code>fetch-branches</code> | <code>true</code> | Whether to mirror and update branches on ` .Site.Params.vendor.name ` and create inactive environments from them. |
 | <code>prune-branches</code> | <code>true</code> | Whether to delete branches from ` .Site.Params.vendor.name ` that don't exist in the ` $source ` repository. Automatically disabled when fetching branches is disabled. |
 | <code>build-` $pull `-requests</code> | <code>true</code> | Whether to track all ` $pull ` requests and create active environments from them, which builds the ` $pull ` request. | ` $draftOption `
 ` $cloneOption $extraOption }}

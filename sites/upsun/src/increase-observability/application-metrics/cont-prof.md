@@ -32,7 +32,7 @@ The intensity of a node's background color is directly proportional to the resou
 
 ![Routes](/images/observability/cont-prof-color-code.png "0.5")
 
-The contrast between the dimension color and the greyscale of regular nodes has been designed to ensure accessibility for all users and allow colorblind users to benefit from this feature.
+The contrast between the dimension color and the grayscale of regular nodes has been designed to ensure accessibility for all users and allow colorblind users to benefit from this feature.
 
 ## Flame graph
 
@@ -58,7 +58,7 @@ Clicking on a frame narrows down the flame graph to the callers and callee nodes
 
 ## Table view
 
-The table view displays a list of all the frames sorted by their resource consumption, for the selected dimension and timeframe. By default, the table is sorted by `self` resource consumption, which is the total value of the frame, minus the combined total values of its direct children.
+The table view displays a list of all the frames sorted by their resource consumption, for the selected dimension and time frame. By default, the table is sorted by `self` resource consumption, which is the total value of the frame, minus the combined total values of its direct children.
 
 ![Routes](/images/observability/table-view.png "0.5")
 

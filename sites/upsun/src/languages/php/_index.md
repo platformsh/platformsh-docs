@@ -8,7 +8,7 @@ layout: single
 
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 To find out more about this feature, see the [dedicated documentation page](/create-apps/app-reference/composable-image.md).</br>
-Also, see how you can [modify your PHP runtime when using a composable image](#modify-your-php-runtime-when-using-a-composable-image).
+Also, see how you can [modify your PHP runtime when using the composable image](#modify-your-php-runtime-when-using-the-composable-image).
 
 {{% /note %}}
 
@@ -631,7 +631,7 @@ See dedicated guides for deploying and working with them:
 - [Laravel](/get-started/stacks/laravel)
 - [Symfony](/get-started/stacks/symfony/_index.md)
 
-## Modify your PHP runtime when using a composable image
+## Modify your PHP runtime when using the composable image
 
 {{% note theme= "warning" %}}
 
