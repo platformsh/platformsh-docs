@@ -37,7 +37,7 @@ applications:
 ```
 
 See more information on the required minimal settings:
-- [Top-level properties](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
+- [Top-level properties](/create-apps/app-reference/single-runtime-image#primary-application-properties).
 - [`web` property](/create-apps/app-reference/single-runtime-image.md#web).
 - [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
 

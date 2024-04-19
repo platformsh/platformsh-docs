@@ -79,7 +79,7 @@ Make sure you have added your public SSH key to your provider and that your user
 
 ## Add a second authentication factor
 
-If your organization has [multifactor authentication set up](./_index.md#multifactor-authentication-mfa-over-ssh),
+If your organization has multifactor authentication set up,
 you may get an error like the following when trying to log into your environment with SSH keys:
 
 ```bash

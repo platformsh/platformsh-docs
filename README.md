@@ -90,6 +90,18 @@ After cloning the repository, run the following command in your terminal:
 npm run develop
 ```
 
+### Running tests locally
+
+Before pushing, please duplicate the test suite locally by running:
+
+```bash
+npm run test -- platform
+# OR
+npm run test -- upsun
+```
+
+depending on which set of docs you've contributed to.
+
 ## Cache of static assets
 
 Given that the website itself isn't updated so often,

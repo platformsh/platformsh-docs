@@ -41,7 +41,7 @@ They provide all of the core concepts and common commands you need to know befor
 
 ### Blogs
 
-- [_Upsun: the missing PaaS to scale Laravel applications_](https://upsun.com/blog/paas-to-scale-laravel-apps/)
+- [_{{% vendor/name %}}: the missing PaaS to scale Laravel applications_](https://upsun.com/blog/paas-to-scale-laravel-apps/)
 
 <!-- ## Video -->
 

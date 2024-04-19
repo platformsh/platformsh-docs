@@ -9,6 +9,11 @@ keywords:
   - "automated code update"
   - "source operations"
   - "source operation"
+related:
+    - title: "How to automatically update Composer dependencies with Source Operations"
+      url: "https://support.platform.sh/hc/en-us/community/posts/16439718312210-How-to-automatically-update-Composer-dependencies-with-Source-Operations"
+    - title: "Fully automated dependency updates with source operations"
+      url: "https://support.platform.sh/hc/en-us/community/posts/16439634128786-Fully-automated-dependency-updates-with-source-operations"
 ---
 
 On {{% vendor/name %}}, you can run automated code updates through a feature called **source operations**.

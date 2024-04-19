@@ -443,10 +443,23 @@ The following table presents the possible values:
 For more information on the different policies,
 see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
 
-## Access your Redis service through the Redis CLI
+## Access your Redis service 
 
 After you've [configured your Redis service](#usage-example),
-you can access it using the [Redis CLI](https://redis.io/docs/ui/cli/).
+you can access it using either the {{% vendor/name %}} CLI 
+or through the [Redis CLI](https://redis.io/docs/ui/cli/).
+
+### {{% vendor/name %}} CLI
+
+Unlike the Redis CLI, connecting via the {{% vendor/name %}} CLI does not require additional authentication steps if you are already authenticated in your terminal.
+
+Access your Redis service by running the command:
+
+```bash
+{{% vendor/cli %}} redis
+```
+
+### Redis CLI
 
 Retrieve the hostname and port you can connect to
 through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).

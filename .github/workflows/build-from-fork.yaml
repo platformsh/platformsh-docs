@@ -2,7 +2,7 @@ name: Build from fork
 
 on:
   pull_request_target:
-    branches: [main, ga-staging]
+    branches: [main]
     types: [labeled,unlabeled,synchronize]
 
 env:
