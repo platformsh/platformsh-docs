@@ -420,9 +420,15 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            database: "mariadb:admin"
-            reports: "mariadb:reporter"
-            imports: "mariadb:importer"
+            database: 
+                service: "mariadb"
+                endpoint: "admin"
+            reports:
+                service: "mariadb"
+                endpoint: "reporter"
+            imports:
+                service: "mariadb"
+                endpoint: "importer"
 ```
 
 These relationships are then available in the [service environment variables](#relationship-reference).
