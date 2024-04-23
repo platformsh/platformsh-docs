@@ -34,7 +34,7 @@ The instructions on this page were designed based on the following assumptions:
 
 To ensure you have all the required files and directories in your project, follow these steps:
 
-1. Copy the following files from the [Platform.sh WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
+1. Copy the following files from the [WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
    and add them to the root of your project:
 
    - The [composer.json](https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/61da65da21039b280b588642cd329a2eb253e472/composer.json) file declares project dependencies and specifies project settings and metadata for [Composer](https://getcomposer.org/) to use
@@ -252,7 +252,7 @@ applications:
             database: "mariadb:mysql"
 ```
 
-You can now commit all the changes made to `.upsun/config.yaml` and push to Upsun.
+You can now commit all the changes made to `.upsun/config.yaml` and push to {{% vendor/name %}}.
 
    ```bash {location="Terminal"}
    git add .
@@ -282,6 +282,6 @@ You can now commit all the changes made to `.upsun/config.yaml` and push to Upsu
 
 ### Blogs
 
-- [To Upsun, a WordPress migration story](https://upsun.com/blog/to-upsun-a-wordpress-migration-story/)
+- [To {{% vendor/name %}}, a WordPress migration story](https://upsun.com/blog/to-upsun-a-wordpress-migration-story/)
 
 <!-- ## Video -->

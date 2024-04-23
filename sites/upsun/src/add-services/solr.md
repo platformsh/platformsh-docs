@@ -113,7 +113,7 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            solrsearch: "solr:solr"
+            solr:
 
 services:
     # The name of the service container. Must be unique within a project.

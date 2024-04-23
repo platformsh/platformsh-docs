@@ -184,7 +184,7 @@ Once you have committed the above changes and pushed, you need to activate the p
 
 ### Verifying Redis is running
 
-Run this command in a SSH session in your environment: `redis-cli -h redis.internal info`.
+Run this command in a SSH session in your environment: `{{% vendor/cli %}} redis info`.
 You should run it before you push all this new code to your repository.
 
 This should give you a baseline of activity on your Redis installation.

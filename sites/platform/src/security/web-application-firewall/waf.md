@@ -12,6 +12,11 @@ This WAF monitors requests to your app and blocks suspicious ones.
 All traffic to {{% vendor/name %}} endpoints is also filtered
 using a system that takes into account traffic patterns and abuse scores.
 
+{{% note %}}
+The {{% vendor/name %}} WAF is not configurable.
+If you are looking for more advanced, configurable options that can be added to the {{% vendor/name %}} WAF, see [the Fastly Next-Gen WAF](/security/web-application-firewall/fastly-waf).
+{{% /note %}}
+
 ## CRLF injection prevention
 
 Carriage return and line feed (CRLF) injection occurs when an attacker injects a CRLF character sequence to manipulate HTTP requests.

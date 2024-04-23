@@ -34,7 +34,7 @@ Make sure your public key has been uploaded to your user account. Check it in th
 
 A given SSH key pair can only be linked to a single user account.
 If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
-Generate a new pair of SSH keys for the second user account you want to add.
+[Generate a new pair of SSH keys](/development/ssh/ssh-keys#add-ssh-keys) for the second user account you want to add.
 
 ## Check your SSH agent
 
@@ -79,7 +79,7 @@ Make sure you have added your public SSH key to your provider and that your user
 
 ## Add a second authentication factor
 
-If your organization has [multifactor authentication set up](./_index.md#multifactor-authentication-mfa-over-ssh),
+If your organization has multifactor authentication set up,
 you may get an error like the following when trying to log into your environment with SSH keys:
 
 ```bash

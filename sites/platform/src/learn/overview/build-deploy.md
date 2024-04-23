@@ -72,8 +72,11 @@ but the file system is read-only.
    New branches have file systems cloned from their parent.
 1. **Expose services**:
    Networking connections are opened between any containers specified in your app and services configurations.
-1. **Run start commands**:
-   The commands necessary to start your app are run.
+1. **Run (pre-) start commands**:
+   The [commands](/create-apps/app-reference/single-runtime-image#web-commands) necessary to start your app are run. 
+   Often this stage will only include a start command, which is restarted if ever terminated going forward. 
+   You may also, however, define a `pre_start` command, when you need to run _per-instance_ actions. 
+   In this case, as you might expect, the `pre_start` command is run, then the `start` command.
 1. **Run deploy hook**:
    The `deploy` hook is any number of shell commands you can run to finish your deployment.
    This can include clearing caches, running database migrations, and setting configuration that requires relationship information.

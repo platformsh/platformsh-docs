@@ -52,7 +52,7 @@ Note that you can [monitor these costs](/administration/billing/monitor-billing.
 | `minimum`  | Initializes new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes new containers using the same resources as on the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 | `child`    | Initializes new containers using the same resources as on the child environment. Only relevant during merge activities. |
-| `backup`   | When restoring a backup, intitializes new containers using the same resources as when the backup was taken. |
+| `backup`   | When restoring a backup, initializes new containers using the same resources as when the backup was taken. |
 
 {{% note theme="info" title="More information on..."%}} 
 <details>
@@ -77,9 +77,8 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | MongoDB                 | 0.1  | 448 MB | 256 MB  | 
 | MongoDB Premium         | 0.1  | 448 MB | 256 MB  |
 | Network Storage         | 0.1  | 448 MB | 256 MB  | 
-| NodeJS                  | 0.1  | 64 MB  | 0 MB    |
-| OpenSearch              | 0.1  | 448 MB | 256 MB  | 
-| Oracle Java             | 0.1  | 448 MB | 0 MB    |
+| Node.js                 | 0.1  | 64 MB  | 0 MB    |
+| OpenSearch              | 0.1  | 448 MB | 256 MB  |
 | Oracle MySQL            | 0.1  | 448 MB | 256 MB  | 
 | PHP                     | 0.1  | 64 MB  | 0 MB    |
 | PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
@@ -102,9 +101,9 @@ You can specify a resource initialization strategy when performing the following
 | Action                                                                | Available strategies                     | Default  |
 |-----------------------------------------------------------------------|------------------------------------------|----------|
 | [First deployment](#first-deployment) | `parent`, `default`, `minimum`, `manual` | `parent` |
-| [Environment branch](#environment-creation) | `parent`, `default`, `minimum` | `parent` |
+| [Environment branch](#environment-branch) | `parent`, `default`, `minimum` | `parent` |
 | [Environment merge](#environment-merge) | `child`, `default`, `minimum`, `manual` | `child` |
-| [Environment activation](#activating-an-environment) | `parent`, `default`, `minimum` | `parent` | 
+| [Environment activation](#environment-activation) | `parent`, `default`, `minimum` | `parent` | 
 | [Backup restoration](#backup-restoration) | `backup`, `parent`, `default`, `minimum` | `backup` |
 
 ### First deployment
@@ -116,7 +115,7 @@ Default: `parent`
 
 {{% /note %}} 
 
-You can define [which resource initialization strategy](#resource-initialization-strategies) {{% vendor/name %}} uses to allocate resources
+You can define [which resource initialization strategy](#specify-a-resource-initialization-strategy) {{% vendor/name %}} uses to allocate resources
 when you first deploy your project or add a new container.
 
 {{< codetabs >}}
@@ -169,7 +168,7 @@ it applies to **all** the deployments you launch through that source integration
 
 To specify a resource initialization strategy when [creating your source integration](/integrations/source/_index.md),
 include the `--resources-init` flag in your source integration options.</br>
-For example, if you [set up a GitHub integration](), use the following options:
+For example, if you [set up a GitHub integration](/integrations/source/github), use the following options:
 
 ```bash {location="Terminal"}
 platform integration:add \

@@ -102,7 +102,7 @@ applications:
                 commands:
                     start: |
                         python mail-worker.py
-    services:
+services:
     mysql:
         type: mariadb:{{% latest "mariadb" %}}
 ```
@@ -241,8 +241,8 @@ The `mail` instance is a worker that isn't web-accessible.
 
 {{< note >}}
 
-{{% vendor/name %}} automatically allocates [default resources](/manage-resources/resource-init.html) to each instance,
-unless you [define a different resource initialization strategy](/manage-resources/resource-init.md#define-a-resource-initialization-strategy).
+{{% vendor/name %}} automatically allocates [default resources](/manage-resources/resource-init) to each instance,
+unless you [define a different resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy).
 You can also [adjust resources](/manage-resources/adjust-resources.md) after your project has been deployed.
 
 {{< /note >}}

@@ -199,6 +199,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [service environment variables](development/variables.html#service-environment-variables).
+You can retrieve your new credentials through the [service environment variables](/development/variables#service-environment-variables).
 
 {{< /note >}}

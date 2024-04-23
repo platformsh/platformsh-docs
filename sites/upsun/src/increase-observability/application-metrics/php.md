@@ -8,7 +8,7 @@ weight: 30
 {{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
-The PHP continuous profiling is currently made accross 4 dimensions:
+The PHP continuous profiling is currently made across 4 dimensions:
 - **CPU Time**:  Time spent running on the CPU
 - **Wall-time**: Elapsed time per function call
 - **Allocated Memory**: Number of bytes allocated in memory

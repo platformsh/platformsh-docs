@@ -101,7 +101,7 @@ Congratulations, your first Laravel app has been deployed on {{% vendor/name %}}
 {{< note title="Tip" theme="info" >}}
 
 Now that your app is deployed in production mode,
-you can [set up a custom domain](http://localhost:53846/domains/steps.html).
+you can [set up a custom domain](/domains/steps).
 {{< /note >}}
 
 ## 4. Configure write access
@@ -113,7 +113,7 @@ The {{% vendor/name %}} default configuration stipulates three writable folders 
 - `"storage"`
 
 If your application writes content outside of these default ones,
-you can [set up mounts](/create-apps/app-reference.html#mounts).
+you can [set up mounts](/create-apps/app-reference/single-runtime-image#mounts).
 
 ## 5. Make changes to your project
 

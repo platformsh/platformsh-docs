@@ -80,10 +80,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### 2. Connect the service
 
-Once you have configured a service, you need to create a relationship to connect it to an app.
-This is done in your [app configuration for relationships](/create-apps/app-reference/single-runtime-image.md#relationships).
-
-The relationship follows this pattern:
+To connect the service, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
@@ -243,3 +240,13 @@ With the example above, you connect to a URL like the following:
 `mysql://user:@127.0.0.1:30000/main`
 
 {{< /codetabs >}}
+
+## Upgrading services
+
+{{% vendor/name %}} provides a large number of [managed service versions](#available-services). 
+As new versions are made available, you will inevitably upgrade infrastructure to a more recent (or latest version).
+
+When you do so, we would recommend:
+
+1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first. 
+1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability). 
