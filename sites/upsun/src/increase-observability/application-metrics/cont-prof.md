@@ -20,7 +20,7 @@ ensuring the smooth running of software in live environments.
 It is available directly from the Console under the `Profiling` tab of your environments.
 
 The Continuous Profiling dashboard lets you visualize the profiling data of a specific application.
-It is composed of several views: flame graph, table view and a split view combining the flame graph and table views.
+It is composed of several views: flame graph, table view, and a split view combining the flame graph and table views.
 
 Each view helps make sense of the profiling data for the selected dimension and time frame. The available dimensions vary with the runtime profiled.
 
