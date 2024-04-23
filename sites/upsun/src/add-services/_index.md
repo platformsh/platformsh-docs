@@ -80,10 +80,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### 2. Connect the service
 
-Once you have configured a service, you need to create a relationship to connect it to an app.
-This is done in your [app configuration for relationships](/create-apps/app-reference/single-runtime-image.md#relationships).
-
-The relationship follows this pattern:
+To connect the service, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:

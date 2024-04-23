@@ -179,7 +179,7 @@ follow these steps:
 
 Some third-party services, such as [Elasticsearch](../../add-services/elasticsearch.md) and [OpenSearch](../../add-services/opensearch.md),
 support ingesting log messages through an HTTP endpoint.
-You can use HTTP forwarding to forward {{% vendor/name %}}and Blackfire logs to such third-party services.
+You can use HTTP forwarding to forward {{% vendor/name %}} and Blackfire logs to such third-party services.
 
 HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the endpoint.
 
