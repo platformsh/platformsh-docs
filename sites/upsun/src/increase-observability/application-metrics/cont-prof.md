@@ -20,7 +20,7 @@ ensuring the smooth running of software in live environments.
 It is available directly from the Console under the `Profiling` tab of your environments.
 
 The Continuous Profiling dashboard lets you visualize the profiling data of a specific application.
-It is composed of several views: flame graph, table view, sandwich view and a split view combining the flame graph and table views.
+It is composed of several views: flame graph, table view and a split view combining the flame graph and table views.
 
 Each view helps make sense of the profiling data for the selected dimension and time frame. The available dimensions vary with the runtime profiled.
 
@@ -58,14 +58,6 @@ Clicking on a frame narrows down the flame graph to the callers and callee nodes
 
 ## Table view
 
-The table view displays a list of all the frames sorted by their resource consumption, for the selected dimension and time frame. By default, the table is sorted by `self` resource consumption, which is the total value of the frame, minus the combined total values of its direct children.
+The table view displays a list of all the frames sorted by their resource consumption, for the selected dimension and time frame. By default, the table is sorted by `exclusive` resource consumption, which is the total value of the frame, minus the combined total values of its direct children.
 
 ![Routes](/images/observability/table-view.png "0.5")
-
-## Sandwich view
-
-The sandwich view displays the context of the selected frame with the function’s callers on top and callees at the bottom.
-
-![Routes](/images/observability/sandwich-view.png "0.5")
-
-This view provides a combined overview of the function's context. If the function appears in several spots in the flame graph, all these contexts are aggregated and displayed in the sandwich view.
