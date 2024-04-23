@@ -1130,6 +1130,7 @@ grid:
       - tidy
       - uuid
       - xdebug
+      - xmlrpc
       - xsl
       - yaml
     default:
@@ -1197,6 +1198,9 @@ grid:
       - newrelic
       - oauth
       - odbc
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - protobuf
@@ -1205,6 +1209,7 @@ grid:
       - rdkafka
       - readline
       - redis
+      - shmop
       - snmp
       - sodium
       - sourceguardian
@@ -1216,6 +1221,7 @@ grid:
       - tidy
       - uuid
       - xdebug
+      - xmlrpc
       - xsl
       - yaml
     default:
@@ -1287,6 +1293,9 @@ grid:
       - odbc
       - openswoole
       - opentelemetry
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
@@ -1294,6 +1303,7 @@ grid:
       - rdkafka
       - readline
       - redis
+      - shmop
       - snmp
       - sodium
       - sourceguardian
@@ -1305,6 +1315,7 @@ grid:
       - tidy
       - uuid
       - xdebug
+      - xmlrpc
       - xsl
       - yaml
     default:
@@ -1365,6 +1376,7 @@ grid:
       - ldap
       - mailparse
       - memcached
+      - mongodb
       - msgpack
       - mysql
       - newrelic
@@ -1372,6 +1384,9 @@ grid:
       - odbc
       - openswoole
       - opentelemetry
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - pspell
@@ -1379,15 +1394,19 @@ grid:
       - rdkafka
       - readline
       - redis
+      - shmop
       - snmp
       - sodium
       - sqlsrv
       - ssh2
       - swoole
       - sybase
+      - tideways
       - tidy
       - uuid
       - xdebug
+      - xmlrpc
+      - xsl
       - yaml
     default:
       - bcmath
