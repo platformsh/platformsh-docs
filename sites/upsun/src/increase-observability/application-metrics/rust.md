@@ -14,7 +14,7 @@ The Rust continuous profiling is currently made across 3 dimensions:
 - **Allocations**: Time spent running on the CPU
 
 The default sampling frequency is 100 Hz. This means the Rust continuous profiler is
-collecting information 100 times per second.
+collecting information 100 times per second. The allocated memory sampling frequency is 524288 Hz.
 
 ## Installation
 
