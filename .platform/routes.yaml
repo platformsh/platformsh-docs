@@ -364,7 +364,7 @@ https://docs.upsun.com/:
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
 
-      # Redirects for moved GS guides
+      # Redirects for moved Upsun GS guides
       "/get-started/express/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
       "/get-started/flask/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
       "/get-started/laravel/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
