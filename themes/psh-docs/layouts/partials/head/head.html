@@ -27,4 +27,8 @@
   {{ partial "head/css" . }}
   {{ partial "scripts/global" . }}
 
+  {{ if .Param "math" }}
+    {{ partialCached "head/math.html" . }}
+  {{ end }}
+
 </head>
