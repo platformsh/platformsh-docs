@@ -88,13 +88,15 @@ Alternatively, if your worker is idle for too long it can self-terminate.
 
 ## Too many connections
 
-If you get the [error message](https://mariadb.com/kb/en/e1040/) `Error 1040: Too many connections`, a common way to fix is to increase the `max_connections` property for the MariaDB service's configuration.
-On {{% vendor/name %}}, however, [this is not a configurable property](/add-services/mysql#configure-the-database) -- at least not directly.
+You may get the following [error message](https://mariadb.com/kb/en/e1040/): `Error 1040: Too many connections`.
 
-### TLDR: how to fix
+A common way to solve this issue is to increase the `max_connections` property in your MariaDB service configuration.
+However, on {{% vendor/name %}}, you **cannot** configure `max_connections` directly.
 
-While `max_connections` isn't a property that can be configured directly in {{% vendor/name %}} service configurations, 
-there are one of two quick changes you can make to your services configuration to increase `max_connections` and deal with `Error 1040`.
+### Quick fix
+
+You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations. 
+However, to solve `Error 1040`, you can increase `max_connections` indirectly.
 
 Given the following services configuration for MariaDB:
 
@@ -108,24 +110,24 @@ services:
                 max_allowed_packet: 16
 ```
 
-And assuming you have set the resources for that service using the CLI command:
+And assuming you have set the resources for that service using the following CLI command:
 
 ```bash
 {{% vendor/cli %}} resources:set --size mariadb:1
 ```
 
-`max_connections` in this case is `332` as set by {{% vendor/name %}} (see [how it works](#how-it-works)).
+`max_connections` in this case is `332` as [set by {{% vendor/name %}}](#how-it-works):
 
-`max_connections` can be **increased** by _either_:
+To **increase** `max_connections`, you can **either**:
 
-- **decreasing** `max_allowed_packet` (i.e. `16` → `15` will result in `max_connections=355`)
-- **increasing** `size` using the `resources:set` command (i.e. `1` → `2` will result in `max_connections=500`)
+- **decrease** `max_allowed_packet` (for example, `16` → `15` results in `max_connections=355`)
+- or **increase** `size` using the `resources:set` command (for example, `1` → `2`  results in `max_connections=500`)
 
 ### How it works
 
-Behind the scenes, `max_connections` is calculated from a few values that you _can_ change:
+Behind the scenes, `max_connections` is calculated from values that you _can_ change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.platform/services.yaml` file with an integer value. 
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.upsun/config.yaml` file with an integer value. 
 The default value of `16` is shown below to illustrate:
 
     ```yaml {configFile="services"}
@@ -144,16 +146,17 @@ The default value of `16` is shown below to illustrate:
     {{% vendor/cli %}} resources:set --size mariadb:1
     ```
 
-    The memory for a given container from its `size` is dependent on its [***container profile***](/manage-resources/adjust-resources#advanced-container-profiles).
+    The memory for a given container from its `size` depends on its [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
     
-    [MariaDB](/manage-resources/adjust-resources#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources#advanced-container-profiles), which for `--size mariadb:1` has 1 CPU and 2432 MB of memory.
+    For example, [MariaDB](/manage-resources/adjust-resources#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
+    For `--size mariadb:1`, it means 1 CPU and 2432 MB of memory.
 
 
-If we assume the configuration above, where
+If we assume the configuration above, where:
 
-- `--size  mariadb:1`, which we know now is `2432` MB, referred to below as `application_size`
+- `--size  mariadb:1`, which we know is `2432` MB, referred to below as `application_size`
 - `mariadb.configuration.properties.max_allowed_packet: 16`
-- You are not also adjusting `container_profile`, but are instead using the default `HIGH_MEMORY` profile assigned to MariaDB images. [Reassigning a different profile](/manage-resources/adjust-resources#adjust-a-container-profile) will change the behavior below slightly.
+- You are using the default `HIGH_MEMORY` profile assigned to MariaDB containers. [Changing the container profile](/manage-resources/adjust-resources#adjust-a-container-profile) changes the behavior below.
 
 `max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to: 
 
@@ -176,7 +179,7 @@ So for our current example, where:
 \texttt{max_allowed_packet} = 16
 \end{aligned}
 
-We get:
+You get:
 
 \begin{aligned}
 \texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 1.7395 \times 10^{-3}
@@ -199,7 +202,8 @@ We get:
 \texttt{max_connections} = 332
 \end{aligned}
 
-You can consult the table below for additional example calculations of `max_connections` for all `size` settings and for a number of `max_allow_packet` settings.
+The following table provides additional example calculations of `max_connections` for all `size` settings
+and for a number of `max_allow_packet` settings.
 
 <div class="table_component" role="region" tabindex="0">
 <table>
@@ -299,9 +303,11 @@ You can consult the table below for additional example calculations of `max_conn
 </table>
 </div>
 
-Notice two things. First, the maximum value for `max_connections` is 500, indicated with italicized integers in the table.
+{{% note%}}
+The maximum value for `max_connections` is 500, indicated with italicized integers in the table.
 
-Second, that `max_connections` can be **increased** in your environments by either:
+Also, you can **increase** `max_connections` in your environments by either:
 
-1. **decreasing** `max_allow_packet` value in your services configuration
-1. **increasing** the service's resources by using the CLI command `resources:set` and the `--size` flag
+- **decreasing** the `max_allow_packet` value in your service configuration
+- or **increasing** the service's resources by using the CLI command `resources:set` and the `--size` flag
+{{% /note%}}
