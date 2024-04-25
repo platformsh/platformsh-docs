@@ -13,6 +13,8 @@ Consult each of the individual service documentation to see how to retrieve and 
     {{ $suffix = "use-vault-kms" }}
 {{ else if eq .File.Path "add-services/varnish.md" }}
     {{ $suffix = "usage-example" }}
+{{ else if eq .File.Path "add-services/gotenberg.md" }}
+    {{ $suffix = "usage-example" }}
 {{ else if eq .File.Path "add-services/clickhouse.md" }}
     {{ $suffix = "usage-example" }}
 {{ end }}
