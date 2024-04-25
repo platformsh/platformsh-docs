@@ -365,11 +365,11 @@ https://docs.upsun.com/:
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
 
       # Redirects for moved Upsun GS guides
-      "/get-started/express/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
-      "/get-started/flask/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
-      "/get-started/laravel/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
-      "/get-started/nextjs/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
-      "/get-started/strapi/(.*).html": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
+      "/get-started/express(.*)": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
+      "/get-started/flask(.*)": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
+      "/get-started/laravel(.*)": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
+      "/get-started/nextjs(.*)": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
+      "/get-started/strapi(.*)": { "to": "/get-started/stacks.html", "code": 301, "prefix": false }
 
 # "https://docs.deployfriday.net/":
 #     type: redirect
