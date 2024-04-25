@@ -218,7 +218,7 @@ You can merge this change into production.
 
 3. Fill it with the following example, depending on your package manager:
 
-{{< codetabs >}}
+   {{< codetabs >}}
 +++
 title=Pip
 +++
@@ -382,7 +382,7 @@ ddev restart
 
 ```
 
-{{< /codetabs >}}
+   {{< /codetabs >}}
 
 4. To commit and push the revisions, run the following command:
 
