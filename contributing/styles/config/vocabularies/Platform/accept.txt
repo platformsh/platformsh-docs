@@ -51,6 +51,7 @@ geocod(?:er|ing)
 gitmoji
 glibc
 Goldmark
+Gotenberg
 [Gg]oroutines
 Gradle
 grayscale
@@ -132,6 +133,7 @@ pentests
 pgRouting
 PHPMailer
 PHPStorm
+Pimcore
 Pipenv
 Pixelant
 plaintext
