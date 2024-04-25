@@ -32,11 +32,27 @@ outputs:
       - HTML
       - RSS
 
+# Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:
     goldmark:
         renderer:
             unsafe: true
-
+    # goldmark:
+        extensions:
+            passthrough:
+                delimiters:
+                    block:
+                    - - \[
+                      - \]
+                    - - $$
+                      - $$
+                    inline:
+                    - - \(
+                      - \)
+            enable: true
+params:
+    math: true
+    
 module:
     _merge: deep
     mounts:
