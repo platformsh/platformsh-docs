@@ -115,7 +115,7 @@ applications:
     type: 'nodejs:{{% latest "nodejs" %}}
   frontend:
     stack:
-      - "php@{{% latest "php" %}}"
+      - "php@{{% latest "php" %}}":
         extensions:
           - apcu
           - sodium

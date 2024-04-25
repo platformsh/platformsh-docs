@@ -356,9 +356,18 @@ you can restore it to your current environment or a different environment.
 Each container already running on the environment keeps its existing resources.
 
 You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
-These containers are restored to your current environment using the `backup` strategy,
+By default, code is restored as part of the backup.
+Therefore, previously deleted containers are restored using the `backup` strategy,
 which grants them the same resources they were using when the backup was taken.
-However, you can specify a different resource initialization strategy for those previously deleted containers.
+
+{{% note %}}
+If you don't want to restore previously deleted containers,
+opt out of restoring the code.
+To do so, when you restore your backup, use the `--no-code` flag.
+{{% /note %}}
+
+When you restore previously deleted containers,
+you can specify a different resource initialization strategy for them.
 
 ## Backup restoration to a different environment
 
@@ -392,13 +401,14 @@ Each container already running on your current environment keeps its existing re
 Therefore, you don't need to specify a resource initialization strategy. 
 
 {{% note %}}
-
-You may have deleted containers between the moment you took the backup, and the moment you restore it.
-These containers are restored to your current environment using the `backup` strategy,
+You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
+By default, code is restored as part of the backup.
+Therefore, previously deleted containers are restored using the `backup` strategy,
 which grants them the same resources they were using when the backup was taken.
 
-If you want to specify a different resource initialization strategy for those previously deleted containers,
-restore your backup via the CLI.
+If you don't want to restore previously deleted containers,
+opt out of restoring the code.
+To do so, when you restore your backup, use the `--no-code` flag.
 {{% /note %}}
 
 {{< /codetabs >}}

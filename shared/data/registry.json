@@ -958,6 +958,7 @@
     "type": "rabbitmq",
     "versions": {
       "deprecated": [
+        "3.11",
         "3.10",
         "3.9",
         "3.8",
@@ -967,8 +968,7 @@
       ],
       "supported": [
         "3.13",
-        "3.12",
-        "3.11"
+        "3.12"
       ],
       "legacy": [
         "3.8",
@@ -979,22 +979,26 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
-        "3.11",
-        "3.10",
-        "3.9"
+        "3.13",
+        "3.12"
       ],
       "deprecated": [
+        "3.11",
+        "3.10",
+        "3.9",
         "3.8",
         "3.7"
       ]
     },
     "versions-dedicated-gen-3": {
-      "deprecated": [],
-      "supported": [
-        "3.12",
+      "deprecated": [
         "3.11",
         "3.10",
         "3.9"
+      ],
+      "supported": [
+        "3.13",
+        "3.12"
       ]
     }
   },
