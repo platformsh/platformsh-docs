@@ -7,19 +7,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','{{ $id }}');</script> -->
 <!-- End Google Tag Manager -->
-<!-- 
+<!--
 {{ partial "header/gtm_script" . }} -->
 
 <!-- Heap -->
 <!-- Initialize Heap with a development value -->
 {{ $heapID := "816119933" }}
 <!-- Get Heap ID from environment variable for production-->
-{{ if eq (string .Site.Params.vendor.config.version) "1"}}
+{{ if eq (string site.Params.vendor.config.version) "1"}}
     {{ with os.Getenv "HUGO_HEAP_ID_PLATFORM" }}
       {{ $heapID = . }}
     {{ end }}
 {{ end }}
-{{ if eq (string .Site.Params.vendor.config.version) "2"}}
+{{ if eq (string site.Params.vendor.config.version) "2"}}
     {{ with os.Getenv "HUGO_HEAP_ID_UPSUN" }}
       {{ $heapID = . }}
     {{ end }}
