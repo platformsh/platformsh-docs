@@ -237,7 +237,7 @@ Here is a full composable image configuration example. Note the use of the `<nix
 applications:
   myapp:
     stack:
-      - "php@{{% latest "php" %}}"
+      - "php@{{% latest "php" %}}":
           extensions:
             - apcu
             - sodium
@@ -259,7 +259,7 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 applications:
   frontend:
     stack:
-      - "php@{{% latest "php" %}}"
+      - "php@{{% latest "php" %}}":
         extensions:
           - apcu
           - sodium
