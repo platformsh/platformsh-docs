@@ -387,11 +387,6 @@ For Rails, you have two choices:
 - New images are released on a regular basis to apply security patches.
   To avoid issues when such updates are performed, use `ruby "~>3.1"` in your `Gemfile`.
 
-## Project templates
-
-{{< repolist lang="ruby" displayName="Ruby" >}}
-
-
 ## Troubleshooting
 
 By default, deployments have `BUNDLE_DEPLOYMENT=1` to ensure projects have a `Gemfile.lock` file.
