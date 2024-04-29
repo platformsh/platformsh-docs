@@ -82,6 +82,12 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 To connect the service, use the following configuration:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -101,7 +107,7 @@ services:
         # Other options...
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -111,7 +117,44 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    {{<variable "APP_NAME" >}}:
+        # ...
+        relationships:
+            {{% variable "RELATIONSHIP_NAME" %}}:
+                service: {{% variable "SERVICE_NAME" %}}
+                endpoint: {{% variable "ENDPOINT_NAME" %}}
+            # OR as a shorter notation
+            {{% variable "RELATIONSHIP_NAME" %}}: {{% variable "SERVICE_NAME" %}}:{{% variable "ENDPOINT_NAME" %}}
+
+services:
+    # The name of the service container. Must be unique within a project.
+    {{<variable "SERVICE_NAME" >}}:
+        type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+        # Other options...
+```
+
+- `RELATIONSHIP_NAME` is the name you want to give to the relationship.
+- `SERVICE_NAME` is the name of the service as defined in the `services` section.
+- `ENDPOINT_NAME` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
+
+{{< /codetabs >}}
+
 An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="apps"}
 applications:
@@ -127,9 +170,30 @@ services:
         type: postgresql:{{% latest "postgresql" %}}
 ```
 
+<--->
+
++++
+title=Using explicit endpoints
++++
+```yaml {configFile="apps"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    {{<variable "APP_NAME" >}}:
+        relationships:
+            database: mariadb:mysql
+            database2: postgresql:postgresql
+services:
+    mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+    postgresql:
+        type: postgresql:{{% latest "postgresql" %}}
+```
+
 As with the service name, you can give the relationship any name you want
 with lowercase alphanumeric characters, hyphens, and underscores.
 It helps if the service name and relationship name are different, but it isn't required.
+
+{{< /codetabs >}}
 
 Each service offers one or more endpoints for connections, depending on the service.
 An endpoint is a named set of credentials to give access to other apps and services in your project.
@@ -243,10 +307,10 @@ With the example above, you connect to a URL like the following:
 
 ## Upgrading services
 
-{{% vendor/name %}} provides a large number of [managed service versions](#available-services). 
+{{% vendor/name %}} provides a large number of [managed service versions](#available-services).
 As new versions are made available, you will inevitably upgrade infrastructure to a more recent (or latest version).
 
 When you do so, we would recommend:
 
-1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first. 
-1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability). 
+1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first.
+1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).
