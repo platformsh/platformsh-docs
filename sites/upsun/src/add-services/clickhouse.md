@@ -125,6 +125,32 @@ This protocol is used by ClickHouse apps and processes such as `clickhouse-serve
 
 Use the following configuration:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+      relationships:
+        <SERVICE_NAME>:
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: clickhouse:<VERSION>
+```
+You can define ``<SERVICE_NAME>`` as you like.
+<--->
+
++++
+title=Using explicit endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -140,6 +166,9 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
+
+{{< /codetabs >}}
+
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 #### `clickhouse-http` endpoint
@@ -148,6 +177,33 @@ The `clickhouse-http` endpoint allows you to use the HTTP API Port for HTTP requ
 This protocol is used by [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/), [ODBC](https://learn.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc?view=sql-server-ver16), and web interfaces.
 
 Use the following configuration:
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        relationships:
+            <SERVICE_NAME>:
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: clickhouse:<VERSION>
+```
+
+You can define ``<SERVICE_NAME>`` as you like.
+
+<--->
+
++++
+title=Using explicit endpoints
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -164,6 +220,9 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
+
+{{< /codetabs >}}
+
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### Example configuration
@@ -209,6 +268,8 @@ services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:24
 ```
+
+If you want to change the ``clickhouse`` endpoint to ``clickhouse-http``, you need to use explicit endpoint definition as it defaults to ``clickhouse`` endpoint when using default endpoint (aka. {{% variable "SERVICE_NAME" %}} as relationship definition).
 
 {{< /codetabs >}}
 
