@@ -109,13 +109,13 @@ Note that when you enable or disable HSTS, the entire domain is affected.
 Make sure you only add the HSTS configuration to a single route.
 Having different routes with conflicting HSTS configurations can cause issues.
 
-### Enable client-authenticated TLS
+### Enable mTLS
 
 Standard TLS connections are useful to verify the identity of web servers and their certificates.
 But you can also instruct your web server to verify the identity of clients and their certificates.
 This allows you to restrict access to trusted users.
 
-To do so, enable client-authenticated TLS by adding the following configuration:
+To do so, enable mTLS by adding the following configuration:
 
 ```yaml {configFile="routes"}
 tls:

@@ -238,7 +238,7 @@ Notice the `relationship` (`{{ $varnishRelName }}`) defined for the service `{{ 
 {{ if eq $type "network-storage" }}
 
     {{ $appInner = "\nmounts:\n    'my/files':\n        source: service\n" }}
-    {{ $appInner = printf "%s        service: files\n        source_path: files" $appInner }}
+    {{ $appInner = printf "%s        service: network-storage\n        source_path: files" $appInner }}
 
 {{ else if eq $type "varnish" }}
     {{ $appInner = "\n..." }}
