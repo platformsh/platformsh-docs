@@ -22,7 +22,7 @@ applications:
         crons:
             snapshot:
                 spec: * * * * *
-                cmd: |
+                commands: |
                     php artisan schedule:run >> /dev/null 2>&1
 ```
 
@@ -38,7 +38,7 @@ applications:
         crons:
             snapshot:
                 spec: 0 5 * * *
-                cmd: |
+                commands: |
                     # only run for the production environment, aka main branch
                     if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
                         php artisan schedule:run >> /dev/null 2>&1
