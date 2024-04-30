@@ -1243,6 +1243,7 @@ The following table shows the properties for each job:
 
 Note that you can [cancel pending or running crons](/environments/cancel-activity.md).
 
+
 ### Cron commands
 
 | Name    | Type     | Required | Description                                                                                                                                                                                                                                                                        |
