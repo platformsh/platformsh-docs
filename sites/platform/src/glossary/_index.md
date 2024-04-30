@@ -67,6 +67,16 @@ For example, to create the branch `develop` as a [preview environment](#preview-
 {{% vendor/cli %}} branch develop main --type development
 ```
 
+{{< note theme="warning" title="Warning" >}}
+
+If you're using a [source integration](/integrations/source/_index.md),
+running this command results in an error stating that the operation is not available.
+
+This is because when a source integration is enabled,
+all branching and merging must be managed through the upstream repository to avoid merge conflicts.
+
+{{< /note >}}
+
 {{< /codetabs >}}
 
 ## Cluster
