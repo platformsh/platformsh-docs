@@ -90,7 +90,7 @@ Both methods are highly insecure, and we highly recommend against them.
 ### Client-authenticated TLS
 
 If your CDN provider supports it,
-you can secure your site through [client-authenticated TLS](../../define-routes/https.md#enable-client-authenticated-tls).
+you can secure your site through [mTLS](../../define-routes/https.md#enable-mtls-support).
 
 To enable client-authenticated TLS, follow these steps:
 
