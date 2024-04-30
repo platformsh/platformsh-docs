@@ -4,6 +4,8 @@ sidebarTitle: "Content delivery networks"
 weight: 3
 description: Improve performance for distributed end-users of your website with a content delivery network (CDN).
 layout: single
+keywords:
+    - mTLS support
 ---
 
 Using a CDN speeds up the delivery of your site's content to its users.
@@ -87,12 +89,12 @@ Furthermore, IP based filtering will usually be impossible due to the fact that 
 
 Both methods are highly insecure, and we highly recommend against them.
 
-### Client-authenticated TLS
+### Enable mTLS
 
 If your CDN provider supports it,
-you can secure your site through [client-authenticated TLS](../../define-routes/https.md#enable-client-authenticated-tls).
+you can secure your site through [mTLS](../../define-routes/https.md#enable-mtls).
 
-To enable client-authenticated TLS, follow these steps:
+To enable mTLS, follow these steps:
 
 1.  Obtain an Origin Certificate Authority (CA) certificate from your CDN provider.
 
@@ -116,7 +118,7 @@ To enable client-authenticated TLS, follow these steps:
 The procedure can vary depending on your CDN.
 Contact your CDN provider for specific assistance.
 
-Note that client-authenticated TLS is a mutual authentication process.
+Note that mTLS is a mutual authentication process.
 It allows your CDN to check that it's communicating with your {{% vendor/name %}} server
 and vice versa.
 So in addition to the CA certificate supplied by your CDN provider,

@@ -66,5 +66,5 @@ as well as several other needs by Ibexa DXP and it's underlying HttpCache system
 
 ## Configure Fastly
 
-See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#client-authenticated-tls) on {{% vendor/name %}}.
+See the alternate [Go-live process for Fastly](/domains/cdn/_index.md#enable-mtls) on {{% vendor/name %}}.
 This process is the same for any application.

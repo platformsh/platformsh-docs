@@ -5,6 +5,8 @@ weight: 2
 description: Bring your content closer to users with a Fastly CDN fully managed by {{% vendor/name %}}.
 banner:
     type: tiered-feature
+keywords:
+  - mTLS
 ---
 
 Instead of starting your own Fastly subscription and [managing your CDN yourself](./fastly.md),
