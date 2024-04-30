@@ -2,6 +2,8 @@
 title: "Configure a third-party TLS certificate"
 weight: 2
 sidebarTitle: "Custom TLS certificates"
+keywords:
+  - mTLS
 ---
 
 {{% vendor/name %}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
