@@ -1,6 +1,6 @@
 ---
 title: "Composable image"
-weight: 4
+weight: 5
 description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
 beta: true
 banner:
