@@ -92,9 +92,13 @@ app1:
     [...]
 
     mounts:
+        # The path to your mount within the app container (relative to the app's root).
         'web/uploads':
+            # Specifies that the mount points to a network storage service that can be shared between apps.
             source: service
-            service: files
+            # The name of the network storage service the mount points to.
+            service: network-storage
+            # Specifies where your mount points inside the external directory that is mounted to your app container.
             source_path: uploads
 
 # The name of the app container. Must be unique within a project.
@@ -106,13 +110,26 @@ app2:
     [...]
 
     mounts:
+        # The path to your mount within the app container (relative to the app's root).
         'process':
+            # Specifies that the mount points to a network storage service that can be shared between apps.
             source: service
-            service: files
+            # The name of the network storage service the mount points to.
+            service: network-storage
+            # Specifies where your mount points inside the external directory that is mounted to your app container.
+            # Since the target is the uploads directory app1's mount already points to,
+            # the network storage service is effectively shared between app1 and app2. 
             source_path: uploads/incoming
+         
+        # The path to your mount within the app container (relative to the app's root). 
         'done':
+            # Specifies that the mount points to a network storage service that can be shared between apps.
             source: service
-            service: files
+            # The name of the network storage service the mount points to.
+            service: network-storage
+            # Specifies where your mount points inside the external directory that is mounted to your app container.
+            # Since the target is the uploads directory app1's mount already points to,
+            # the network storage service is effectively shared between app1 and app2. 
             source_path: uploads/done
 ```
 
@@ -129,10 +146,10 @@ keep in mind what mount behavior you want.
 `local` mounts are a separate storage area for each instance,
 while `service` mounts can be shared between instances.
 
-For example, you can define a network storage service:
+For example, you can define a network storage service called `files`:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
+# The name of the network storage service. Must be unique within a project.
 files:
     type: network-storage:{{% latest "network-storage" %}}
     disk: 2048
@@ -147,30 +164,22 @@ name: myapp
 # The type of the application to build.
 type: "nodejs:20"
 
-# Define a web instance
-web:
-    locations:
-        "/":
-            root: "public"
-            passthru: true
-            index: ['index.html']
-
-# Define how much space is available to local mounts
+# Defines how much space is available to local mounts.
 disk: 512
 
 mounts:
-    # Define a network storage mount that's available to both instances together
+    # Defines a network storage mount that can be shared by both worker instances.
     'network_dir':
         source: service
         service: files
         source_path: our_stuff
 
-    # Define a local mount that's available to each instance separately
+    # Defines a local mount that's available to each instance separately.
     'local_dir':
         source: local
         source_path: my_stuff
 
-# Define a web instance
+# Defines a web instance.
 web:
     locations:
         "/":
@@ -178,7 +187,7 @@ web:
             passthru: true
             index: ['index.html']
 
-# Define a worker instance from the same code but with a different start
+# Define a queue worker instance from the same code but with a different start.
 workers:
     queue:
         commands:
