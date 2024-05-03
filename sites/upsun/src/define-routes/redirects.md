@@ -290,6 +290,9 @@ while redirects from `/here` default to `302` ("found", as long as the resource 
 
 ### Manage caching
 
+You can [set an expiration time on your redirects](#set-an-expiration-time-on-your-redirects)
+or even [disable caching on your redirects](#disable-caching-on-your-redirects).
+
 #### Set an expiration time on your redirects
 
 You can specify how long you want your redirects to be cached for.
