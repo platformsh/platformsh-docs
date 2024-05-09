@@ -130,18 +130,19 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**    |
-|----------------------------------------------|---------------|----------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15, 1.14                 |
-| [Go](/languages/go.html)                     | `golang`      | 1.22, 1.21, 1.20           |
-| [Java](/languages/java.html)                 | `java`        | 21                         |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                          |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 21, 20, 18                 |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                          |
-| [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
-| [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
+| **Language**                                 | **Nix package** | **Supported version(s)**             |
+|----------------------------------------------|---------------|----------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
+| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
+| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
+| [Java](/languages/java.html)                 | `java`        | 21                                     |
+| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
+| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
+| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
+| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
 
 **Example:**
 
