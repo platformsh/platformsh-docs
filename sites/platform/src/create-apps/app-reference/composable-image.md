@@ -1209,7 +1209,8 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    commands: 'php artisan schedule:run'
+    commands: 
+      start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
 
@@ -1226,11 +1227,12 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    commands: |
-      # Only run for the production environment, aka main branch
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-          croncape symfony ...
-      fi
+    commands: 
+      start: |
+        # Only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+            croncape symfony ...
+        fi
 {{< /snippet >}}
 ```
 
