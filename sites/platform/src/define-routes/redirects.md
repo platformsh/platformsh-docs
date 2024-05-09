@@ -41,7 +41,7 @@ Two keys are available under `redirects`:
 
 | Key                | Required | Description |
 | ------------------ | -------- | ----------- |
-| `expires`          | No       | The duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`. |
+| `expires`          | No       | The duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`.</br> To disable caching for all your redirects, set `expires` to `0`. You can also [disable caching on a specific redirect](#disable-caching-on-your-redirects). |
 | `paths`            | Yes      | The paths to be redirected |
 
 Each rule under `paths` is defined by a key describing:
@@ -56,8 +56,8 @@ The value object is defined with the following keys:
 | `regexp`           | No       | `false` | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions).|
 | `prefix`           | No       | `true`, but not supported if `regexp` is `true` | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).|
 | `append_suffix`    | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`  | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).|
-| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#using-codes). |
-| `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. | The duration the redirect is cached for. [More information](#using-expires).
+| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#specify-a-http-status-code). |
+| `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. To [disable caching on a specific redirect](#disable-caching-on-your-redirects), set `expires` to `0`. | The duration the redirect is cached for. [More information](#manage-caching).
 
 To set up partial redirects, you can use regular expressions (`regexp`).</br>
 Alternatively, and in many cases, you can use the `prefix` and/or `append_suffix` keys to achieve the same results.</br>
@@ -260,11 +260,9 @@ https://{default}/:
 
 A request to `/from/some/path` (and any path after `/from`) redirects to just `/to`.
 
-### Further examples
+### Specify a HTTP status code
 
-#### Using `codes`
-
-In the following example using the `codes` key:
+To set a specific HTTP status code for your redirect, use the `codes` key:
 
 ```yaml
 https://{default}/:
@@ -279,30 +277,104 @@ https://{default}/:
                 to: 'https://example.com/there'
    ```
 
-Redirects from `/from` use a `308` HTTP status code, but redirects from `/here` default to `302`.
+In this example, redirects from `/from` use a `308` HTTP status code,
+while redirects from `/here` default to `302` ("found", as long as the resource is indeed found as a result from the redirect).
 
-#### Using `expires`
+### Manage caching
 
-The `expires` key defaults to the `expires` value defined directly under the `redirects` key.
-However, at this level the expiration of individual partial redirects can be fine-tuned:
+You can [set an expiration time on your redirects](#set-an-expiration-time-on-your-redirects)
+or even [disable caching](#disable-caching-on-your-redirects) on them.
+
+#### Set an expiration time on your redirects
+
+You can specify how long you want your redirects to be cached for.
+To do so, use the `expires` key under the `redirects` key.
+
+In the following example, all redirects are cached for two weeks:
 
 ```yaml
 https://{default}/:
     type: upstream
     # ...
     redirects:
-        expires: 1d
+        expires: 2w
         paths:
             '/from':
                 to: 'https://example.com/'
             '/here':
                 to: 'https://example.com/there'
-                expires: 2w
 ```
 
-In the above example, redirects from `/from` are set to expire in one day, but redirects from `/here` are set to expire in two weeks.
+If you want to set a different expiration time for a specific redirect,
+use the same `expires` key, but under the `paths` key.
 
-## Application-driven redirects
+In the following example:
+
+- The first redirect uses the default expiration time set on all redirects
+  and is cached for two weeks
+- The second redirect ignores the default expiration time set on all redirects,
+  and is cached for three days instead
+
+```yaml
+https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+        expires: 2w
+        paths:
+            '/from':
+                to: 'https://example.com/'
+            '/here':
+                to: 'https://example.com/there'
+                expires: 3d
+```
+
+{{% note %}}
+You can set an expiration time on a specific redirect (under the `paths` key)
+even if you haven't defined a default expiration time on all your redirects (under the `redirects` key).
+
+The expiration time you set on a specific redirect (under the `paths` key) overwrites any default expiration time
+you may have set on all your redirects (under the `redirects` key).
+{{% /note %}}
+
+#### Disable caching on your redirects
+
+To disable caching on all your redirects, set the `expires` key to `0` under the `redirects` key:
+
+```yaml
+https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+        expires: 0
+        paths:
+            '/from':
+                to: 'https://example.com/'
+            '/here':
+                to: 'https://example.com/there'
+```
+
+To disable caching on a specific redirect only,
+set the `expires` key to `0` under the relevant path in the `paths` section.
+
+In the following example, caching is disabled on the second redirect only:
+
+```yaml
+https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+        paths:
+            '/from':
+                to: 'https://example.com/'
+            '/here':
+                to: 'https://example.com/there'
+                expires: 0
+```
+
+## Other redirects
+
+### Application-driven redirects
 
 If neither whole-route or partial redirects satisfy your redirection needs,
 you can still implement redirects directly in your application.
@@ -310,8 +382,8 @@ If sent with the appropriate caching headers,
 this is nearly as efficient as implementing the redirect through one of the two configurations described above.
 Implementing application-driven redirects depends on your own code or framework and is beyond the scope of this documentation.
 
-## Query-strings based redirect are unsupported
+### Query-strings based redirects
 
-{{% vendor/name %}} does not support redirects based on query strings.
+{{% vendor/name %}} **does not** support redirects based on query strings.
 
 If you want to redirect based on query strings, this logic has to be implemented by your application.

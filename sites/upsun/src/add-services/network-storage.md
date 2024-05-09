@@ -54,9 +54,13 @@ applications:
         [...]
 
         mounts:
+            # The path to your mount within the app container (relative to the app's root).
             'web/uploads':
+                # Specifies that the mount points to a network storage service that can be shared between apps.
                 source: service
-                service: files
+                # The name of the network storage service the mount points to.
+                service: network-storage
+                # Specifies where your mount points inside the external directory that is mounted to your app container.
                 source_path: uploads
 
     # The name of the app container. Must be unique within a project.
@@ -68,13 +72,25 @@ applications:
         [...]
 
         mounts:
+            # The path to your mount within the app container (relative to the app's root).
             'process':
+                # Specifies that the mount points to a network storage service that can be shared between apps.
                 source: service
-                service: files
+                # The name of the network storage service the mount points to.
+                service: network-storage
+                # Specifies where your mount points inside the external directory that is mounted to your app container.
+                # Since the target is the uploads directory app1's mount already points to,
+                # the network storage service is effectively shared between app1 and app2. 
                 source_path: uploads/incoming
+            # The path to your mount within the app container (relative to the app's root). 
             'done':
+                # Specifies that the mount points to a network storage service that can be shared between apps.
                 source: service
-                service: files
+                # The name of the network storage service the mount points to.
+                service: network-storage
+                # Specifies where your mount points inside the external directory that is mounted to your app container.
+                # Since the target is the uploads directory app1's mount already points to,
+                # the network storage service is effectively shared between app1 and app2. 
                 source_path: uploads/done
 ```
 
@@ -212,7 +228,7 @@ applications:
                     source_path: uploads
                 new-uploads:
                     source: service
-                    service: files
+                    service: network-storage
                     source_path: uploads
 
     services:
@@ -246,7 +262,7 @@ applications:
                     source_path: uploads
                 web/uploads:
                     source: service
-                    service: files
+                    service: network-storage
                     source_path: uploads
 
     services:
