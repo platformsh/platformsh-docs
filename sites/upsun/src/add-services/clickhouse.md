@@ -34,23 +34,23 @@ title= Service environment variables
 {{% service-values-change %}}
 
 ```bash
-CLICKHOUSEDATABASE_USERNAME=main
-CLICKHOUSEDATABASE_FRAGMENT=
-CLICKHOUSEDATABASE_IP=123.456.78.90
-CLICKHOUSEDATABASE_CLUSTER=azertyuiop-main-afdwftq
-CLICKHOUSEDATABASE_HOST=clickhousedatabase.internal
-CLICKHOUSEDATABASE_PATH=main
-CLICKHOUSEDATABASE_QUERY={'is_master': True}
-CLICKHOUSEDATABASE_PASSWORD=ChangeMe
-CLICKHOUSEDATABASE_PORT=9000
-CLICKHOUSEDATABASE_HOST_MAPPED=false
-CLICKHOUSEDATABASE_SERVICE=clickhouse
-CLICKHOUSEDATABASE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-CLICKHOUSEDATABASE_EPOCH=0
-CLICKHOUSEDATABASE_REL=clickhouse
-CLICKHOUSEDATABASE_SCHEME=clickhouse
-CLICKHOUSEDATABASE_TYPE=clickhouse:24
-CLICKHOUSEDATABASE_PUBLIC=false
+CLICKHOUSE_USERNAME=main
+CLICKHOUSE_FRAGMENT=
+CLICKHOUSE_IP=123.456.78.90
+CLICKHOUSE_CLUSTER=azertyuiop-main-afdwftq
+CLICKHOUSE_HOST=clickhouse.internal
+CLICKHOUSE_PATH=main
+CLICKHOUSE_QUERY={'is_master': True}
+CLICKHOUSE_PASSWORD=ChangeMe
+CLICKHOUSE_PORT=9000
+CLICKHOUSE_HOST_MAPPED=false
+CLICKHOUSE_SERVICE=clickhouse
+CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+CLICKHOUSE_EPOCH=0
+CLICKHOUSE_REL=clickhouse
+CLICKHOUSE_SCHEME=https/http
+CLICKHOUSE_TYPE=clickhouse:24
+CLICKHOUSE_PUBLIC=false
 ```
 
 <--->
@@ -68,7 +68,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
       "fragment": null,
       "ip": "123.456.78.90",
       "cluster": "azertyuiop-main-afdwftq",
-      "host": "clickhousedatabase.internal",
+      "host": "clickhouse.internal",
       "path": "main",
       "query": {
         "is_master": true
@@ -80,7 +80,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
       "hostname": "azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
       "epoch": 0,
       "rel": "clickhouse",
-      "scheme": "clickhouse",
+      "scheme": "https",
       "type": "clickhouse:24",
       "public": false
     }
@@ -94,7 +94,7 @@ in a [`.environment` file](/development/variables/set-variables.md#use-env-files
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhousedatabase[0].host')"
+export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhouse[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -139,7 +139,7 @@ services:
         type: clickhouse:<VERSION>
 ```
 
-You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 #### `clickhouse-http` endpoint
@@ -163,7 +163,7 @@ services:
         type: clickhouse:<VERSION>
 ```
 
-You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it’s best if they’re distinct.
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### Example configuration
@@ -183,7 +183,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhousedatabase: "clickhouse:clickhouse"
+            clickhouse: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:24
@@ -204,7 +204,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhousedatabase: "clickhouse:clickhouse-http"
+            clickhouse: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
     type: clickhouse:24
@@ -250,4 +250,3 @@ services:
           privileges:
             legacy: rw
 ```
-
