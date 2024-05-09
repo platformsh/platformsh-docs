@@ -11,7 +11,9 @@ for high-performance data retrieval and key-value storage.
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Drupal](../guides/drupal/redis.md)
 - [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)
@@ -20,8 +22,6 @@ for high-performance data retrieval and key-value storage.
 - [Quarkus](../guides/quarkus/redis.md)
 - [Spring](../guides/spring/redis.md)
 - [WordPress](../guides/wordpress/redis.md)
-
-{{% /frameworks %}}
 
 ## Supported versions
 

@@ -8,14 +8,14 @@ premium: true
 
 {{< description >}}
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
 - [Micronaut](../guides/micronaut/mongodb.md)
 - [Quarkus](../guides/quarkus/mongodb.md)
 - [Spring](../guides/spring/mongodb.md)
-
-{{% /frameworks %}}
 
 ## Supported versions
 

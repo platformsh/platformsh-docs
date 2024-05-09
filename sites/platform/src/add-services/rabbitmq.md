@@ -10,11 +10,11 @@ that supports multiple messaging protocols, such as the Advanced Message Queuing
 It gives your apps a common platform to send and receive messages
 and your messages a safe place to live until they're received.
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Spring](../guides/spring/rabbitmq.md)
-
-{{% /frameworks %}}
 
 ## Supported versions
 

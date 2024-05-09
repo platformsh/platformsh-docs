@@ -8,13 +8,13 @@ Apache Solr is a scalable and fault-tolerant search index.
 
 Solr search with generic schemas provided, and a custom schema is also supported. See the [Solr documentation](https://lucene.apache.org/solr/6_3_0/index.html) for more information.
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Ibexa DXP](../guides/ibexa/deploy.md#solr-specificity)
 - [Jakarta EE](../guides/jakarta/deploy.md#apache-solr)
 - [Spring](../guides/spring/solr.md)
-
-{{% /frameworks %}}
 
 ## Supported versions
 

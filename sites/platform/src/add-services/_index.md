@@ -74,9 +74,16 @@ The following table presents the keys you can define for each service:
 
 ##### Disk
 
-{{% disk-space-mb %}}
+You configure the disk size in [MB](/glossary.md#mb).
+Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal.
+When checking available space, note whether it's reported in MB or MiB.
 
-{{% disk-downsize type="service" %}}
+You can decrease the size of an existing disk for a service.
+If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used.
+  You need to [create new backups](/environments/backup).
+- The downsize fails if there's more data on the disk than the desired size.
 
 ##### Size
 
@@ -230,7 +237,7 @@ With this example, you can connect to the `mariadb` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ### 2. Open an SSH tunnel
 
