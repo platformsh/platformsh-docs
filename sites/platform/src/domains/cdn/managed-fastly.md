@@ -50,3 +50,19 @@ To add it to your CDN configuration, open a [support ticket](/learn/overview/get
 Note that when you add your own third-party TLS certificates,
 you are responsible for renewing them in due time.
 Failure to do so may result in outages and compromised security for your site.
+
+### Retrieve your Fastly API token
+
+The API token for your managed Fastly CDN is stored in the `FASTLY_API_TOKEN` environment variable.
+
+This variable is usually set in the `/master/settings/variables` folder of your project,
+and you can access it [from a shell](/development/variables/use-variables.md#access-variables-in-a-shell)
+or directly [in your app](/development/variables/use-variables.md#access-variables-in-your-app).
+
+{{% note %}}
+
+Older projects may not have the `FASTLY_API_TOKEN` environment variable set.</br>
+In this case, the Fastly API token is stored in a text file called `fastly_tokens.txt` on the server,
+typically located at `/mnt/shared/fastly_tokens.txt`.
+
+{{% /note %}}
