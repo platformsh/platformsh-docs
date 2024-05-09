@@ -12,7 +12,7 @@ To set up a cron job, add a configuration similar to the following:
 crons:
     snapshot:
         spec: 0 5 * * *
-        cmd: |
+        commands: |
             croncape symfony ...
 ```
 
@@ -23,7 +23,7 @@ use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 crons:
     snapshot:
         spec: 0 5 * * *
-        cmd: |
+        commands: |
             # only run for the production environment, aka main branch
             if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
                 croncape symfony ...
