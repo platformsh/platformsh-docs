@@ -22,8 +22,9 @@ applications:
         crons:
             snapshot:
                 spec: * * * * *
-                cmd: |
-                    php artisan schedule:run >> /dev/null 2>&1
+                commands: 
+                    start: |
+                        php artisan schedule:run >> /dev/null 2>&1
 ```
 
 ## Run cron jobs based on environment type
@@ -38,11 +39,12 @@ applications:
         crons:
             snapshot:
                 spec: 0 5 * * *
-                cmd: |
-                    # only run for the production environment, aka main branch
-                    if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-                        php artisan schedule:run >> /dev/null 2>&1
-                    fi
+                commands: 
+                    start: |
+                        # only run for the production environment, aka main branch
+                        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+                            php artisan schedule:run >> /dev/null 2>&1
+                        fi
 ```
 
 ## Run the Laravel scheduler every minute

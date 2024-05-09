@@ -1121,6 +1121,14 @@ The following table shows the properties for each job:
 
 Note that you can [cancel pending or running crons](/environments/cancel-activity.md).
 
+{{< note >}}
+
+The use of the `cmd` key is now deprecated in favor of the `commands`key.</br>
+Make sure you set your new cron jobs using the `commands` key,
+and update your existing cron jobs to ensure continuity.
+
+{{< /note >}}
+
 ### Cron commands
 
 | Name    | Type     | Required | Description                                                                                                                                                                                                                                                                        |
@@ -1201,7 +1209,8 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    cmd: 'php artisan schedule:run'
+    commands: 
+      start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
 
@@ -1218,11 +1227,12 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    cmd: |
-      # Only run for the production environment, aka main branch
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-          croncape symfony ...
-      fi
+    commands: 
+      start: |
+        # Only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+            croncape symfony ...
+        fi
 {{< /snippet >}}
 ```
 
