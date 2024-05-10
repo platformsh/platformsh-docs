@@ -25,7 +25,9 @@ If you use one of the following frameworks, follow its guide:
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -44,7 +46,12 @@ If you use one of the following frameworks, follow its guide:
     </tbody>
 </table>
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 <table>
     <thead>
@@ -386,9 +393,13 @@ const value = await client.get('x');     // returns 42
 
 {{< /codetabs >}}
 
-{{% relationship-ref-intro %}}
+## Relationship reference 
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {

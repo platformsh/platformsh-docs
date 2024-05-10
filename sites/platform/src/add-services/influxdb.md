@@ -140,7 +140,7 @@ With the above definition, the application container now has [access to the serv
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
-mariadb:
+influxdb:
     type: influxdb:{{% latest "influxdb" %}}
     disk: 256
 ```
@@ -176,7 +176,11 @@ influxdb:
     type: influxdb:{{% latest "influxdb" %}}
 ```
 
-{{% v2connect2app serviceName="influxdb" relationship="influxdb" var="INFLUX_HOST"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, `myapp` can retrieve access credentials to the service through the environment variable `{{< vendor/prefix >}}_RELATIONSHIPS`. That variable is a base64-encoded JSON object, but can be decoded at runtime (using the built-in tool `jq`) to provide more accessible environment variables to use within the application itself:
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -190,7 +194,11 @@ export INFLUX_TOKEN=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.api_t
 export INFLUX_BUCKET=$(echo $RELATIONSHIPS_JSON | jq -r ".influxdb[0].query.bucket")
 ```
 
-{{% /v2connect2app %}}
+The above file &mdash; `.environment` in the `myapp` directory &mdash; is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `INFLUX_HOST` can be used within the application to connect to the service.
+
+Note that `INFLUX_HOST` and all {{< vendor/name >}}-provided environment variables like `{{% vendor/prefix %}}_RELATIONSHIPS`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
 
 ## Export data
 

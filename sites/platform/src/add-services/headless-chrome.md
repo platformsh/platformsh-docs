@@ -111,9 +111,8 @@ With the above definition, the application container now has [access to the serv
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
-mariadb:
+chrome-headless:
     type: chrome-headless:{{% latest "chrome-headless" %}}
-    disk: 256
 ```
 
 #### [App configuration](/create-apps)

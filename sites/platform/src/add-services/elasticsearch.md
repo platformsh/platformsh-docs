@@ -162,7 +162,7 @@ With the above definition, the application container now has [access to the serv
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
-mariadb:
+elasticsearch:
     type: elasticsearch:{{% latest "elasticsearch" %}}
     disk: 256
 ```
