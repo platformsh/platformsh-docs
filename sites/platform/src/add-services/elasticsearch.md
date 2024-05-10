@@ -253,7 +253,8 @@ use the `elasticsearch-enterprise` type.
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
 in the `username` and `password` properties.
-{{% service-values-change %}}
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 This functionality is generally not required if Elasticsearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose Elasticsearch directly to the web.

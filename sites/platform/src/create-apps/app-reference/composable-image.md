@@ -559,11 +559,14 @@ So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
-{{% disk-space-mb %}}
+You configure the disk size in [MB](/glossary#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
 ### Downsize a disk
 
-{{% disk-downsize type="app" %}}
+You can decrease the size of an existing disk for an app. If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
 

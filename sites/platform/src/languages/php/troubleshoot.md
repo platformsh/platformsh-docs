@@ -6,7 +6,7 @@ description: Learn how to troubleshoot common issues in PHP.
 
 {{% composable/disclaimer %}}
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 ## Server reached `max_children`
 

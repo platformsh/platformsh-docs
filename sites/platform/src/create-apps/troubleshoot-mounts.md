@@ -3,7 +3,7 @@ title: "Troubleshoot mounts"
 weight: 11
 ---
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 ## Overlapping folders
 
