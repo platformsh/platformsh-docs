@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.0.12
+# Platform.sh CLI 5.0.13
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -1441,7 +1441,7 @@ Restore an environment backup
 ### Usage
 
 ```
-platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore-code] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
+platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--no-code] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
 ```
 
 #### Arguments
@@ -1457,8 +1457,8 @@ platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore
 * `--branch-from` (expects a value)
   If the --target does not yet exist, this specifies the parent of the new environment
 
-* `--restore-code`
-  Whether code should be restored as well as data
+* `--no-code`
+  Do not restore code, only data.
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -4084,10 +4084,13 @@ Aliases: `integrations`
 ### Usage
 
 ```
-platform integrations [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+platform integrations [-t|--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
+
+* `--type` (`-t`) (expects a value)
+  Filter by type
 
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
