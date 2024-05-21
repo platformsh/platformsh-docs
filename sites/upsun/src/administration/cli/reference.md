@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.0.12
+# Upsun CLI 5.0.13
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -1445,7 +1445,7 @@ Restore an environment backup
 ### Usage
 
 ```
-upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore-code] [--resources-init RESOURCES-INIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
+upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--no-code] [--resources-init RESOURCES-INIT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<backup>]
 ```
 
 #### Arguments
@@ -1461,8 +1461,8 @@ upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--restore-co
 * `--branch-from` (expects a value)
   If the --target does not yet exist, this specifies the parent of the new environment
 
-* `--restore-code`
-  Whether code should be restored as well as data
+* `--no-code`
+  Do not restore code, only data.
 
 * `--resources-init` (expects a value)
   Set the resources to use for new services: parent, default or minimum. If not set, "parent" will be used.
@@ -4104,10 +4104,13 @@ Aliases: `integrations`
 ### Usage
 
 ```
-upsun integrations [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+upsun integrations [-t|--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
+
+* `--type` (`-t`) (expects a value)
+  Filter by type
 
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
