@@ -93,12 +93,16 @@ navSections:
     title: Reference
     section: home
     weight: -90
+  white-labels:
+    title: Partnerships
+    section: white-labels
+    weight: -80
 
 nonDocsSections:
   apidocs:
-    title: API Documentation
+    title: API documentation
     link: https://api.platform.sh/docs
-    weight: -80
+    weight: -70
   # community:
   #   title: Community Forum
   #   link: https://community.platform.sh
