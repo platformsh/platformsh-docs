@@ -189,13 +189,13 @@ applications:
       root: "/"
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extensions:
-          - gd
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+          disabled_extensions:
+            - gd
 ```
 
 {{% note %}}
@@ -261,11 +261,11 @@ applications:
   frontend:
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
   backend:
