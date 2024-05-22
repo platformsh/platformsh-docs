@@ -94,6 +94,7 @@
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
               {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
+              {{ if .Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
           </a>
 
           <!-- If this item has children -->
