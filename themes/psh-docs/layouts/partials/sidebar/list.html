@@ -51,6 +51,9 @@
     <h4 class="pr-2 font-semibold">
       <a href="{{ .Context.RelPermalink }}" destination="{{ .Context.RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
         {{ $itemTitle }}
+        {{ if .Context.Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+        {{ if .Context.Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
+        {{ if .Context.Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
       </a> 
       
     </h4>
@@ -91,6 +94,7 @@
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
               {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
+              {{ if .Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
           </a>
 
           <!-- If this item has children -->
