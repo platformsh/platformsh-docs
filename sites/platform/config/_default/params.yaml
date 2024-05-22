@@ -93,16 +93,20 @@ navSections:
     title: Reference
     section: home
     weight: -90
-  white-labels:
-    title: Partnerships
-    section: white-labels
-    weight: -80
 
 nonDocsSections:
   apidocs:
     title: API documentation
     link: https://api.platform.sh/docs
     weight: -70
+  pimcore:
+    title: Pimcore PaaS
+    link: https://pimcore.com/docs/platform/next/Paas/
+    weight: -60
+  shopware:
+    title: Shopware PaaS
+    link: https://developer.shopware.com/docs/products/paas/
+    weight: -50
   # community:
   #   title: Community Forum
   #   link: https://community.platform.sh
