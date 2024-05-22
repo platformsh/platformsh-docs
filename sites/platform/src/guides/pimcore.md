@@ -3,6 +3,7 @@ title: Pimcore PaaS
 weight: -95
 description: |
   Learn about Pimcore's PaaS solution, powered by {{% vendor/name %}}
+partner: true
 ---
 
 [Pimcore](https://pimcore.com/) is an open-source digital platform that aggregates, enriches, and manages enterprise data.

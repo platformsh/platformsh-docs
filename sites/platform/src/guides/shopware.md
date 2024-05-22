@@ -3,6 +3,7 @@ title: Shopware PaaS
 weight: -95
 description: |
   Learn about Shopware's PaaS solution, powered by {{% vendor/name %}}
+partner: true
 ---
 
 [Shopware](https://www.shopware.com/) is an e-commerce platform to power your online business by offering top-of-the-line performance, agility, and security.
