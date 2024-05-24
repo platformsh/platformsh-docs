@@ -24,7 +24,7 @@ symfony cloud:sql < dump.sql
 ```
 {{ else }}
 ```bash
-{{ `{{< vendor/cli >}}` | .Page.RenderString }} sql < dump.sql
+{{ `{{% vendor/cli %}}` | .Page.RenderString }} sql < dump.sql
 ```
 {{ end }}
 
@@ -42,18 +42,18 @@ all of your user files to your local `files/user` directory and your public file
 {{ end }}, but adjust accordingly for their actual locations.
 
 Next, upload your files to your mounts
-using the {{ if $isSymfony }}`symfony cloud:mount:upload`{{ else }}`{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload`{{ end }} command.
+using the {{ if $isSymfony }}`symfony cloud:mount:upload`{{ else }}`{{ `{{% vendor/cli %}}` | .Page.RenderString }} mount:upload`{{ end }} command.
 Run the following command from your local Git repository root,
 modifying the `--source` path if needed.
 
 {{ if $isWordPress }}
 ```bash
-{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads
+{{ `{{% vendor/cli %}}` | .Page.RenderString }} mount:upload --mount wordpress/wp-content/uploads --source ./wordpress/wp-content/uploads
 ```
 {{ else }}
 ```bash
-{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload --mount src/main/resources/files/user --source ./files/user
-{{ `{{< vendor/cli >}}` | .Page.RenderString }} mount:upload --mount src/main/resources/files/public --source ./files/public
+{{ `{{% vendor/cli %}}` | .Page.RenderString }} mount:upload --mount src/main/resources/files/user --source ./files/user
+{{ `{{% vendor/cli %}}` | .Page.RenderString }} mount:upload --mount src/main/resources/files/public --source ./files/public
 ```
 {{ end }}
 
