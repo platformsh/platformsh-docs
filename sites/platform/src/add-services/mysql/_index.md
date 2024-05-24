@@ -65,9 +65,17 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Switching type and version
+### Upgrade
 
-To switch service types:
+When upgrading your service, skipping versions may result in data loss.
+Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+and check that each upgrade commit translates into an actual deployment.
+
+To upgrade, update the service version in your [service configuration](../_index.md).
+
+### Change the service type
+
+To change the service type:
 
 1. [Export your data](#exporting-data).
    {{% note %}}
