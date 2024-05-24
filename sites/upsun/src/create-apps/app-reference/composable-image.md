@@ -102,6 +102,16 @@ applications:
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
 To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
 
+{{% note theme=warning title="Warning" %}}
+While technically available during the build phase, `nix` commands aren't supported at runtime as the image becomes read-only.
+
+When using the {{% vendor/name %}} composable image, you don't need `nix` commands.
+Everything you install using the `stack` key is readily available to you as the binaries are linked and included in `$PATH`.
+
+For instance, to [start a secondary runtime](#primary-runtime),
+just issue the command (e.g. in the [`start` command](/create-apps/app-reference/composable-image.md#web-commands)) instead of the `nix run` command.
+{{% /note %}}
+
 #### Primary runtime
 
 If you add multiple runtimes to your application container,
