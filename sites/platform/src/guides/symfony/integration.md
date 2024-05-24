@@ -216,7 +216,7 @@ hooks:
 
         # Setup everything to use the Node installation
         unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${SYMFONY_APP_DIR}/.nvm
+        export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
         set +x && . "${NVM_DIR}/nvm.sh" use --lts && set -x
         # Starting from here, everything is setup to use the same Node
         yarn encore dev
@@ -236,7 +236,7 @@ hooks:
 
         cd web/js_app
         unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${SYMFONY_APP_DIR}/.nvm
+        export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
 
         NODE_VERSION=8 yarn-install
 
