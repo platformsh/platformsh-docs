@@ -16,3 +16,5 @@ They provide all the core concepts and common commands you need to know before u
 {{< /note >}}
 
 {{< frameworks-landing >}}
+
+Find out more about the many [languages {{% vendor/name %}} supports](/languages/_index.md).
