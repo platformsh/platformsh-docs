@@ -38,16 +38,26 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Switching type and version
+### Upgrade
 
-If you change the service type, your data is removed.
+When upgrading your service, skipping versions may result in data loss.
+Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+and check that each upgrade commit translates into an actual deployment.
 
-To switch service types:
+To upgrade, update the service version in your [service configuration](../_index.md).
+
+### Change the service type
+
+To change the service type:
 
 1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
-1. Specify a new service type.
-1. [Import your data](#importing-data) into the new service.
+   {{% note %}}
+   Changing the service type, especially when done repeatedly, may result in data loss.
+   Backing up your data is therefore crucial.
+   {{% /note %}}
+2. Remove the old service from your [service configuration](../_index.md).
+3. Specify a new service type.
+4. [Import your data](#importing-data) into the new service.
 
 ### Downgrade
 
