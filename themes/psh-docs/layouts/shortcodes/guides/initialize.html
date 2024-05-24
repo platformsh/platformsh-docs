@@ -1,6 +1,6 @@
 <!-- shortcode start {{ .Name }} -->
 {{ $isSymfony := eq ( .Get "name" ) "Symfony" }}
-{{ $cliCommand := `{{< vendor/cli >}}` | .Page.RenderString }}
+{{ $cliCommand := `{{% vendor/cli %}}` | .Page.RenderString }}
 {{ if $isSymfony }}
   {{ $cliCommand = "symfony" }}
 {{ end }}
