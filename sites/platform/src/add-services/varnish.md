@@ -72,7 +72,7 @@ You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
 The `configuration` block must reference a VCL file inside the `{{< vendor/configdir >}}` directory.
 The `path` defines the file relative to the `{{< vendor/configdir >}}` directory.
 
-#### Example configuration
+### Example configuration
 
 ##### [Service definition](/add-services)
 

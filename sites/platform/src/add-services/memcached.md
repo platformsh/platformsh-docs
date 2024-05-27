@@ -43,6 +43,8 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
+## Relationship reference
+
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
