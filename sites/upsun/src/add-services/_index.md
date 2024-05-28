@@ -74,9 +74,16 @@ The following table presents the keys you can define for each service:
 {{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your services.
 For more information, see how to [manage resources](/manage-resources.md).
 
-{{% disk-space-mb %}}
+You configure the disk size in [MB](/glossary.md#mb).
+Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal.
+When checking available space, note whether it's reported in MB or MiB.
 
-{{% disk-downsize type="service" %}}
+You can decrease the size of an existing disk for a service.
+If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used.
+  You need to [create new backups](/environments/backup).
+- The downsize fails if there's more data on the disk than the desired size.
 
 ### 2. Connect the service
 
