@@ -7,6 +7,9 @@ banner:
   title: Beta Feature
   body: The {{% vendor/name %}} composable image is currently available in Beta.
         This feature as well as its documentation is subject to change.
+keywords:
+  - sleepy crons
+  - sleepy_crons
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
@@ -341,12 +344,12 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | Container               | Profile          |
 |-------------------------|------------------|
 | Chrome Headless         | HIGH_CPU         |
-| .NET                    | HIGH_CPU         |  
+| .NET                    | HIGH_CPU         |
 | Elasticsearch           | HIGH_MEMORY      |
 | Elasticsearch Premium   | HIGH_MEMORY      |
 | Elixir                  | HIGH_CPU         |
 | Go                      | HIGH_CPU         |
-| InfluxDB                | HIGH_MEMORY      |  
+| InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
 | Lisp                    | HIGH_CPU         |
@@ -355,17 +358,17 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | MongoDB                 | HIGH_MEMORY      |
 | MongoDB Premium         | HIGH_MEMORY      |
 | Network Storage         | HIGH_MEMORY      |
-| Node.js                 | HIGH_CPU         |  
+| Node.js                 | HIGH_CPU         |
 | OpenSearch              | HIGH_MEMORY      |
 | Oracle MySQL            | HIGH_MEMORY      |
-| PHP                     | HIGH_CPU         | 
+| PHP                     | HIGH_CPU         |
 | PostgreSQL              | HIGH_MEMORY      |
-| Python                  | HIGH_CPU         | 
+| Python                  | HIGH_CPU         |
 | RabbitMQ                | HIGH_MEMORY      |
 | Redis ephemeral         | BALANCED         |
 | Redis persistent        | BALANCED         |
 | Ruby                    | HIGH_CPU         |
-| Rust                    | HIGH_CPU         | 
+| Rust                    | HIGH_CPU         |
 | Solr                    | HIGH_MEMORY      |
 | Varnish                 | HIGH_MEMORY      |
 | Vault KMS               | HIGH_MEMORY      |
@@ -398,10 +401,10 @@ For more information, see how to [define relationships between your apps](/creat
 
 {{< note title="Availability" theme="info">}}
 
-New syntax (default and explicit endpoints) described below is supported by most, but not all, image types 
+New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
 (`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
-This syntax is currently being rolled out for all images. 
-If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section. 
+This syntax is currently being rolled out for all images.
+If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
 {{< /note >}}
 
@@ -417,7 +420,7 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "SERVICE_NAME" %}}: 
+    {{% variable "SERVICE_NAME" %}}:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
@@ -428,7 +431,7 @@ For example, if you define the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb: 
+    mariadb:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
@@ -449,7 +452,7 @@ You can define any number of relationships in this way:
 relationships:
     mariadb:
     redis:
-    elasticsearch: 
+    elasticsearch:
 ```
 
 {{< note title="Tip" theme="info" >}}
@@ -466,7 +469,7 @@ where
 {{< variable "SERVICE_NAME_A" >}}:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 256
-{{< variable "SERVICE_NAME_B" >}}: 
+{{< variable "SERVICE_NAME_B" >}}:
     type: redis:{{% latest "redis" %}}
     disk: 256
 {{< variable "SERVICE_NAME_C" >}}:
@@ -487,7 +490,7 @@ Use the following configuration:
 ```yaml {configFile="app"}
 relationships:
     {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}} 
+        service: {{% variable "SERVICE_NAME" %}}
         endpoint: {{% variable "ENDPOINT_NAME" %}}
 ```
 
@@ -500,7 +503,7 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    database: # The name of the relationship. 
+    database: # The name of the relationship.
         service: mariadb
         endpoint: db1
 ```
@@ -520,7 +523,7 @@ see each service's dedicated page:
 
 ```yaml {configFile="app"}
 relationships:
-    database1: 
+    database1:
         service: mariadb
         endpoint: admin
     database2:
@@ -695,7 +698,7 @@ applications:
 ```
 
 In this case, it does not matter that each mount is of a different `source` type.
-Each mount is restricted to a subfolder within `var`, and all is well. 
+Each mount is restricted to a subfolder within `var`, and all is well.
 
 The following, however, is not allowed and will result in a failure:
 
@@ -1220,7 +1223,7 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    commands: 
+    commands:
       start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
@@ -1238,7 +1241,7 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    commands: 
+    commands:
       start: |
         # Only run for the production environment, aka main branch
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
