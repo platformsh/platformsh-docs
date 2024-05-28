@@ -229,7 +229,9 @@ With this example, you can connect to the `mariadb` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
 
 ### 2. Open an SSH tunnel
 

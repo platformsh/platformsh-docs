@@ -11,21 +11,13 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-{{% frameworks version="1" %}}
-
-- [Drupal](../guides/drupal/elasticsearch.md)
-- [Jakarta EE](../guides/jakarta/deploy.md#elasticsearch)
-- [Micronaut](../guides/micronaut/elasticsearch.md)
-- [Quarkus](../guides/quarkus/elasticsearch.md)
-- [Spring](../guides/spring/elasticsearch.md)
-
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+You can select the major and minor version.
 
-{{% major-minor-versions-note configMinor="true" %}}
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
 
 ## Deprecated versions
 
