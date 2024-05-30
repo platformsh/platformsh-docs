@@ -10,3 +10,11 @@ Ibexa DXP is a digital experience platform with a focus on delivering effective 
 Ibexa Cloud is the fastest solution based on Platform.sh to build and run Ibexa projects.
 
 See how to [install Ibexa DXP on Platform.sh through Ibexa Cloud](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/).
+
+## Redis
+
+See [How to enable addtional services](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/#additional-services)
+
+## Solr
+
+See [How to enable addtional services](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/#additional-services)
