@@ -21,8 +21,8 @@ For each service [defined via a relationship](#usage-example) to your applicatio
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Here is example information available through the [service environment variables](/development/variables.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](development/variables/use-variables.md#use-provided-variables).
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
@@ -31,7 +31,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 GOTENBERG_INSTANCE_IPS=["249.45.240.83"]

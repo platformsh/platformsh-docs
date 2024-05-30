@@ -11,14 +11,6 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
-## Use a framework
-
-If you use one of the following frameworks, follow its guide:
-
-- [Hibernate](../../guides/hibernate/deploy.md#mysql)
-- [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
-- [Spring](../../guides/spring/mysql.md)
-
 ## Supported versions
 
 You can select the major and minor version.
@@ -64,11 +56,11 @@ To downgrade your database, follow these steps:
 
 ## Relationship reference
 
-For each service [defined via a relationship](/add-services/mysql.md#usage-example) to your application,
+For each service [defined via a relationship](#usage-example) to your application,
 Upsun automatically generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Here is example information available through the [service environment variables](/development/variables.md#service-environment-variables) themselves,
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
 or through the [``PLATFORM_RELATIONSHIPS`` environment variable](development/variables/use-variables.md#use-provided-variables).
 
 ### MariaDB reference
@@ -80,7 +72,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 MARIADB_USERNAME=user
@@ -155,7 +147,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 ORACLEMYSQL_USERNAME=user
@@ -267,7 +259,7 @@ providing a [relationship](create-apps/app-reference/single-runtime-image.md#rel
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### MariaDB example
 
@@ -334,10 +326,10 @@ service:
 ```
 
 This configuration defines a single application (``myapp``), whose source code exists in the ``<PROJECT_ROOT>/myapp`` directory.
-``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](add-services/mysql.md#oracle-mysql-reference)
+``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#oracle-mysql-reference)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](/add-services/mysql.md#relationship-reference).
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -355,12 +347,12 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by Upsun into the runtime environment, so that the variable ``MARIADB_URL`` can be used within the application to connect to the service.
 
-Note that ``MARIADB_URL``, and all [Upsun-service environment variables](/development/variables.md#service-environment-variables) like ``MARIADB_HOST``,
+Note that ``MARIADB_URL``, and all [Upsun-service environment variables](/development/variables/_index.md#service-environment-variables) like ``MARIADB_HOST``,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``upsun ify`` command to [migrate a codebase to Upsun](/get-started.md).
+A file very similar to this is generated automatically for your when using the ``upsun ify`` command to [migrate a codebase to Upsun](/get-started/_index.md).
 
 ### Configure connections
 
@@ -377,7 +369,7 @@ The result is the complete [information for all relationships](#relationship-ref
 
 You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
 

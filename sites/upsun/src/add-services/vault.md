@@ -28,8 +28,8 @@ For each service [defined via a relationship](#usage-example) to your applicatio
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Here is example information available through the [service environment variables](/development/variables.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](development/variables/use-variables.md#use-provided-variables).
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
@@ -38,7 +38,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 VAULT_SERVICE_USERNAME=
@@ -184,7 +184,7 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 If you split the service into multiple endpoints, define multiple relationships.
 
@@ -256,7 +256,7 @@ you can use any of the policies you [defined in your `{{< vendor/configfile "ser
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](development/variables.md#service-environment-variables) directly rather than hard coding any values.
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 The following examples use cURL as an example, which you could do in a hook or after accessing your app with SSH.
 Adapt the examples for your app's language.
