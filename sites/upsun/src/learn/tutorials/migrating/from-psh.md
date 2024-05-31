@@ -200,7 +200,7 @@ To ensure continuity when migrating from {{% vendor/psh_ref %}} to {{% vendor/na
 the `local` mount type works as an alias for the `instance` mount type.
 However, it is recommended to [change the type](/create-apps/app-reference/single-runtime-image.html#define-a-mount) of your `local` mounts to `instance`.
 
-For instance:
+For example:
 
 ```yaml {configFile="app"}
 applications:
