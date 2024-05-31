@@ -195,27 +195,7 @@ mounts:
         source_path: private
 ```
 
-{{< note >}}
-{{< vendor/name >}} doesn't currently support the same `local` mounts as {{< vendor/psh_ref >}}.
-It only supports `tmp`, `storage`, and `service` [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
-Before transferring your files, change the `source` of your existing `local` mounts to a supported mount type.
-{{< /note >}}
-
-For instance:
-
-```yaml {configFile="app"}
-applications:
-    myapp:
-        mounts:
-            'web/uploads':
-                source: storage
-                source_path: uploads
-            'private':
-                source: tmp
-                source_path: private
-```
-
-Then, to upload your files, run a command similar to the following:
+Upload to each mount by running the following commands:
 
 ```bash
 {{% vendor/cli %}} mount:upload --mount web/uploads --source ./uploads
