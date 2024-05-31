@@ -33,7 +33,7 @@ or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/va
 title= Service environment variables
 +++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -154,7 +154,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     chrome-headless:
-        type: chrome-headless:120
+        type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
 ### Use in app
@@ -235,5 +235,10 @@ export CHROME_PORT=${CHROMEHEADLESS_PORT}
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
 ```
 
-Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
+The above file &mdash; `.environment` in the `myapp` directory &mdash; is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `CHROME_BASEURL` can be used within the application to connect to the service.
 
+Note that `CHROME_BASEURL` and all {{< vendor/name >}} [service environment variables](/development/variables.html#service-environment-variables) like `CHROMEHEADLESS_HOST`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
+
+Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.

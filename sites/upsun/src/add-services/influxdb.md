@@ -135,20 +135,17 @@ To define the relationship, use the following configruation:
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
-
-        [...]
-
-        # Relationships enable an app container's access to a service.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            influxdb:
-
-service:
-    influxdb:
-        type: influxdb:{{% latest "influxdb" %}}
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: influxdb:<VERSION>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
@@ -165,14 +162,21 @@ With the above definition, the application container (``<APP_NAME>``) now has [a
 
 ### Example configuration
 
-```bash {location="myapp/.environment"}
-# Set environment variables for common InfluxDB credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export INFLUX_USER=${INFLUXDB_USERNAME}
-export INFLUX_HOST=${INFLUXDB_HOST}
-export INFLUX_ORG=$(echo $INFLUXDB_QUERY | jq -r ".org")
-export INFLUX_TOKEN=$(echo $INFLUXDB_QUERY | jq -r ".api_token")
-export INFLUX_BUCKET=$(echo $INFLUXDB_QUERY | jq -r ".bucket")
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            influxdb: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    influxdb:
+        type: influxdb:{{% latest "influxdb" %}}
 ```
 
 ### Use in app
@@ -195,7 +199,7 @@ applications:
 
 service:
     influxdb:
-        type: influxdb:2.7
+        type: influxdb:{{% latest "influxdb" %}}
 ```
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
@@ -204,9 +208,9 @@ This configuration defines a single application (`myapp`), whose source code exi
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
-```yaml
+```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
-# For more information, please visit https://docs.upsun.com/development/variables.html#service-environment-variables.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
 export INFLUX_USER=${INFLUXDB_USERNAME}
 export INFLUX_HOST=${INFLUXDB_HOST}
 export INFLUX_ORG=$(echo $INFLUXDB_QUERY | jq -r ".org")
@@ -221,7 +225,7 @@ are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/name %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Export data
 

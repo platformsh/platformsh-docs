@@ -28,7 +28,7 @@ in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
 or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 

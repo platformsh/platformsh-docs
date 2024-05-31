@@ -35,7 +35,7 @@ or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/va
 title= Service environment variables
 +++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -240,7 +240,7 @@ Note that ``CACHE_URL``, and all [{{% vendor/name %}}-service environment variab
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/name %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Accessing Memcached directly
 
@@ -252,6 +252,6 @@ Assuming your Memcached relationship is named `memcached`, the host name `MEMCAC
 netcat memcached.internal 11211
 ```
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.

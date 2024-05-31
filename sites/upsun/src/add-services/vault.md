@@ -254,7 +254,7 @@ To connect your app to the Vault KMS, use a token that's defined in the [service
 With this token for authentication,
 you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 

@@ -46,7 +46,7 @@ or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/va
 title= Service environment variables
 +++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/name %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -189,7 +189,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
@@ -285,7 +285,7 @@ are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/name %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Ephemeral Redis
 
@@ -347,7 +347,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
@@ -443,7 +443,7 @@ are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/name %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Multiple databases
 
