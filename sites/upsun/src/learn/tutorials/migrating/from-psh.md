@@ -198,7 +198,7 @@ mounts:
 `instance` mounts on {{% vendor/name %}} are the equivalent of `local` mounts on {{% vendor/psh_ref %}}.
 To ensure continuity when migrating from {{% vendor/psh_ref %}} to {{% vendor/name %}},
 the `local` mount type works as an alias for the `instance` mount type.
-However, it is recommended to [change the type](/create-apps/app-reference/single-runtime-image.html#define-a-mount) of your `local` mounts to `instance`.
+However, it is recommended to change the type of your `local` mounts to `instance` or another [supported mount type](/create-apps/app-reference/single-runtime-image.html#define-a-mount).
 
 For example:
 
@@ -207,7 +207,7 @@ applications:
     myapp:
         mounts:
             'web/uploads':
-                source: instance
+                source: storage
                 source_path: uploads
             'private':
                 source: instance
