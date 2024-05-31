@@ -195,23 +195,22 @@ mounts:
         source_path: private
 ```
 
-{{< note >}}
-{{< vendor/name >}} doesn't currently support the same `local` mounts as {{< vendor/psh_ref >}}.
-It only supports `tmp`, `storage`, and `service` [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
-Before transferring your files, change the `source` of your existing `local` mounts to a supported mount type.
-{{< /note >}}
+`instance` mounts on {{% vendor/name %}} are the equivalent of `local` mounts on {{% vendor/psh_ref %}}.
+To ensure continuity when migrating from {{% vendor/psh_ref %}} to {{% vendor/name %}},
+the `local` mount type works as an alias for the `instance` mount type.
+However, it is recommended to [change the type](/create-apps/app-reference/single-runtime-image.html#define-a-mount) of your `local` mounts to `instance`.
 
-For instance:
+For example:
 
 ```yaml {configFile="app"}
 applications:
     myapp:
         mounts:
             'web/uploads':
-                source: storage
+                source: instance
                 source_path: uploads
             'private':
-                source: tmp
+                source: instance
                 source_path: private
 ```
 
