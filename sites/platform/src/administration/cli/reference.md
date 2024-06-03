@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.0.13
+# Platform.sh CLI 5.0.14
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -174,6 +174,10 @@ showTitle: false
 * [`repo:cat`](#repocat)
 * [`repo:ls`](#repols)
 * [`repo:read`](#reporead)
+
+**resources**
+
+* [`resources:build:get`](#resourcesbuildget)
 
 **route**
 
@@ -1054,7 +1058,7 @@ Aliases: `login`
 ### Usage
 
 ```
-platform login [-f|--force] [--browser BROWSER] [--pipe]
+platform login [-f|--force] [--method METHOD] [--max-age MAX-AGE] [--browser BROWSER] [--pipe]
 ```
 
 Use this command to log in to the Platform.sh CLI using a web browser.
@@ -1075,6 +1079,12 @@ PLATFORMSH_CLI_TOKEN environment variable.
 
 * `--force` (`-f`)
   Log in again, even if already logged in
+
+* `--method` (expects a value)
+  Require specific authentication method(s)
+
+* `--max-age` (expects a value)
+  The maximum age (in seconds) of the web authentication session
 
 * `--browser` (expects a value)
   The browser to use to open the URL. Set 0 for none.
@@ -2433,7 +2443,7 @@ Delete one or more environments
 ### Usage
 
 ```
-platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
+platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
 When a Platform.sh environment is deleted, it will become "inactive": it will
@@ -2469,6 +2479,15 @@ This command allows you to delete environments as well as their Git branches.
 
 * `--inactive`
   Delete all inactive environments (adding to any others selected)
+
+* `--status` (expects a value)
+  Delete all environments of a status (adding to any others selected) Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--only-status` (expects a value)
+  Only delete environments of a specific status Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--exclude-status` (expects a value)
+  Environment status(es) of which not to delete Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--merged`
   Delete all merged environments (adding to any others selected)
@@ -2824,13 +2843,16 @@ Aliases: `environments`, `env`
 ### Usage
 
 ```
-platform environments [-I|--no-inactive] [--pipe] [--refresh REFRESH] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
+platform environments [-I|--no-inactive] [--status STATUS] [--pipe] [--refresh REFRESH] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--project PROJECT]
 ```
 
 #### Options
 
 * `--no-inactive` (`-I`)
   Do not show inactive environments
+
+* `--status` (expects a value)
+  Filter environments by status (active, inactive, dirty, paused, deleting). Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--pipe`
   Output a simple list of environment IDs.
@@ -6257,6 +6279,47 @@ platform read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVI
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `resources:build:get`
+
+View the build resources of a project
+
+Aliases: `build-resources:get`, `build-resources`
+
+### Usage
+
+```
+platform build-resources:get [-p|--project PROJECT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
+
+#### Options
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: cpu, memory. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
 
 * `--help` (`-h`)
   Display this help message
