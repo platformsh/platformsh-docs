@@ -147,11 +147,5 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     kafka:
-        type: kafka:3.7
+        type: kafka:{{% latest "kafka" %}}
 ```
-
-### Use in app
-
-To use the configured service in your app, add a configuration file similar to the following to your project.
-
-(The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)

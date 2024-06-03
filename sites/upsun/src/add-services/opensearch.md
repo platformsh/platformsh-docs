@@ -159,7 +159,7 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### Example configuration
 
@@ -225,7 +225,7 @@ export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``OPENSEARCH_HOSTS`` can be used within the application to connect to the service.
 
-Note that ``OPENSEARCH_HOSTS``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``OPENSEARCH_HOST``, are environment-dependent.
+Note that ``OPENSEARCH_HOSTS``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``OPENSEARCH_HOST``, are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 

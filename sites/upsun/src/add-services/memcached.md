@@ -108,20 +108,17 @@ To define the relationship, use the following configuration:
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
-
-        [...]
-
-        # Relationships enable an app container's access to a service.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            memcached:
-
-service:
-    memcached:
-        type: memcached:{{% latest "memcached" %}}
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: memcached:<VERSION>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -131,8 +128,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
-Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
@@ -196,7 +192,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     memcached:
-        type: memcached:1.6
+        type: memcached:{{% latest "memcached" %}}
 ```
 
 ### Use in app
@@ -219,7 +215,7 @@ applications:
 
 service:
     memcached:
-        type: memcached:1.6
+        type: memcached:{{% latest "memcached" %}}
 ```
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
@@ -236,7 +232,7 @@ export CACHE_URL="${MEMCACHED_HOST}:${MEMCACHED_PORT}"
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
 
-Note that ``CACHE_URL``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``MEMCACHEDCACHE_HOST``, are environment-dependent.
+Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``MEMCACHEDCACHE_HOST``, are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 

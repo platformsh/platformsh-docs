@@ -97,7 +97,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     network-storage:
-        type: network-storage:2.0
+        type: network-storage:{{% latest "network-storage" %}}
 ```
 
 ## Multi-application usage

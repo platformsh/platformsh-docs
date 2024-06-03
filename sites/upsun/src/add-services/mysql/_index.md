@@ -33,16 +33,26 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Switching type and version
+### Upgrade
 
-If you change the service type, your data is removed.
+When upgrading your service, skipping versions may result in data loss.
+Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+and check that each upgrade commit translates into an actual deployment.
 
-To switch service types:
+To upgrade, update the service version in your [service configuration](../_index.md).
+
+### Change the service type
+
+To change the service type:
 
 1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
-1. Specify a new service type.
-1. [Import your data](#importing-data) into the new service.
+   {{% note %}}
+   Changing the service type, especially when done repeatedly, may result in data loss.
+   Backing up your data is therefore crucial.
+   {{% /note %}}
+2. Remove the old service from your [service configuration](../_index.md).
+3. Specify a new service type.
+4. [Import your data](#importing-data) into the new service.
 
 ### Downgrade
 
@@ -251,7 +261,7 @@ services:
         type: mariadb:<VERSION>
 ```
 
-You can define <SERVICE_NAME> as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes,
@@ -259,34 +269,28 @@ providing a [relationship](create-apps/app-reference/single-runtime-image.md#rel
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### MariaDB example
-
-#### [App](/create-apps/_index.md) and [service](/add-services/_index.md) configuration
 
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
-
-        [...]
-
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            mariadb:
+            mariadb: 
 
-service:
+services:
+    # The name of the service container. Must be unique within a project.
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}
 ```
 
 ### OracleMySQL example
-
-#### [App](/create-apps/_index.md) and [service](/add-services/_index.md) configuration
 
 ```yaml {configFile="app"}
 applications:
@@ -299,7 +303,7 @@ applications:
 service:
     # The name of the service container. Must be unique within a project.
     oraclemysql:
-        type: oracle-mysql:8.0
+        type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 
 ### Use in app
@@ -322,11 +326,11 @@ applications:
 
 service:
     mariadb:
-        type: mariadb:11.2
+        type: mariadb:{{% latest "mariadb" %}}
 ```
 
 This configuration defines a single application (``myapp``), whose source code exists in the ``<PROJECT_ROOT>/myapp`` directory.
-``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#oracle-mysql-reference)
+``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
@@ -347,7 +351,7 @@ export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by Upsun into the runtime environment, so that the variable ``MARIADB_URL`` can be used within the application to connect to the service.
 
-Note that ``MARIADB_URL``, and all [Upsun-service environment variables](/development/variables/_index.md#service-environment-variables) like ``MARIADB_HOST``,
+Note that ``MARIADB_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``MARIADB_HOST``,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
