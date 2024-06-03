@@ -70,7 +70,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     varnish:
-        type: varnish:7.3
+        type: varnish:{{% latest "varnish" %}}
         relationships:
             application: 'myapp:http'
         configuration:

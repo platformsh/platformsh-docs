@@ -164,7 +164,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     solr:
-        type: solr:9.4
+        type: solr:{{% latest "solr" %}}
 ```
 
 ### Use in app
@@ -188,7 +188,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     solr:
-        type: solr:9.4
+        type: solr:{{% latest "solr" %}}
 ```
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
@@ -212,7 +212,7 @@ export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_H
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``SEARCH_URL`` can be used within the application to connect to the service.
 
-Note that ``SEARCH_URL``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``SOLR_HOST``, are environment-dependent.
+Note that ``SEARCH_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``SOLR_HOST``, are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
