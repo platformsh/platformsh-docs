@@ -102,6 +102,11 @@ A notification can trigger a message to be sent to a [Slack app](https://api.sla
     ```bash
     {{% vendor/cli %}} integration:add --type health.slack ... --channel '#project-notifications' ...
     ```
+{{% note theme="info" %}}
+If you are _not_ a workspace admin, but an admin has approved your app for installation it may first be necessary to install the application to the desired channel within Slack prior to running the above command. 
+{{% /note %}}
+
+
 1. {{% vendor/name %}} will then send an initial message to the channel once the integration is successfully configured. 
 
 {{< note theme="info" title="Bot users v. Slack apps">}}
