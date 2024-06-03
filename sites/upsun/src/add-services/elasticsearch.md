@@ -135,7 +135,7 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the following configuration:
 
-```yaml
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:

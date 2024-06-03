@@ -84,7 +84,7 @@ services:
 
 ### Example configuration
 
-```yaml
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:

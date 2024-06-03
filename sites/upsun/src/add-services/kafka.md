@@ -90,7 +90,7 @@ export APP_KAFKA_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.kafka[0].host')"
 
 To define the service, use the ``kafka`` type:
 
-```yaml
+```yaml {configFile="app"}
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -103,7 +103,7 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the following configuration:
 
-```yaml
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
@@ -133,7 +133,7 @@ With the above definition, the application container (``<APP_NAME>``) now has [a
 
 ### Example configuration
 
-```yaml
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:

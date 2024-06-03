@@ -183,7 +183,7 @@ services:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-```yaml
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:

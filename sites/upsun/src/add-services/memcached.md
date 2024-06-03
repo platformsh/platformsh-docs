@@ -92,7 +92,7 @@ export APP_MEMCACHED_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.memcached[0].hos
 
 To define the service, use the ``memcached`` type:
 
-```yaml
+```yaml {configFile="app"}
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -132,7 +132,7 @@ With the above definition, the application container now has [access to the serv
 
 For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
-```yaml
+```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
@@ -155,7 +155,7 @@ services:
 
 For Python, include the proper dependency:
 
-```yaml
+```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
@@ -178,7 +178,7 @@ services:
 
 ### Example configuration
 
-```yaml
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
@@ -199,7 +199,7 @@ services:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-```yaml
+```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
