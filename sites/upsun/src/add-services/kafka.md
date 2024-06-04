@@ -149,3 +149,36 @@ services:
     kafka:
         type: kafka:{{% latest "kafka" %}}
 ```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Python
+file=static/files/fetch/examples/python/kafka
+highlight=python
++++
+
+<--->
+
++++
+title=Ruby
+highlight=ruby
++++
+
+## With the ruby-kafka gem
+
+# Producer
+require "kafka"
+kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
+kafka.deliver_message("Hello, World!", topic: "greetings")
+
+# Consumer
+kafka.each_message(topic: "greetings") do |message|
+  puts message.offset, message.key, message.value
+end
+
+{{< /codetabs >}}

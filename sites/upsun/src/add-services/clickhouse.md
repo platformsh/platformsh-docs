@@ -31,7 +31,7 @@ For each service [defined via a relationship](#usage-example) to your applicatio
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/_index.md#use-provided-variables).
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
@@ -68,7 +68,7 @@ CLICKHOUSE_PUBLIC=false
 title= `PLATFORM_RELATIONSHIPS` environment variable
 +++
 
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/_index.md#use-provided-variables).
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
 
 ```json
