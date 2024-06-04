@@ -74,40 +74,53 @@ You can also configure a custom `--from-address`. The `--from-address` is whatev
 
 ### Slack notifications
 
-A notification can trigger a message to be sent to a [Slack app](https://api.slack.com/apps).
+A notification can trigger a message to be posted to a Slack channel via a [Slack app](https://api.slack.com/apps).
 
-1. [Create a Slack app](https://api.slack.com/apps), if you haven't done so already.
-    Choose whether to build the app from scratch, or via [an app manifest](https://api.slack.com/concepts/manifests).
-    Give the app a name and pick a workspace to develop your app in. 
-    Note that if you are not an admin of the workspace, you will need to request approval to install it there later.
-1. Once created, go to **OAuth & Permissions** under **Features** in the sidebar.
-1. Towards the bottom of the page there is a card titled **Scopes**.
-    Under **User Token Scopes**, **Add an OAuth Scope** - specifically the `chat:write` scope.
+#### 1. Optional: Create a Slack app
+
+{{% note %}}
+If you are already have a Slack app, you can jump to [enabling notifications](#2-enable-notifications).
+{{% /note %}}
+
+1. Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
+2. Click **Create an App**.
+3. Choose if you want to build your app from scratch, or via [an app manifest](https://api.slack.com/concepts/manifests).
+4. Give your app a name.
+5. Select a workspace to install your app in.
+   {{% note %}}
+   If you are not an admin of the selected workspace, request approval to install your app there.
+   {{% /note %}}
+6. Click **Create App**.
+
+#### 2. Enable notifications
+
+1. Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
+2. Go to **Features** > **OAuth & Permissions** in the sidebar.
+3. Scroll down to the **Scopes** area and select **User Token Scopes**.
+4. Click **Add an OAuth Scope** to add the `chat:write` scope.
 
     ![Slack app scopes](/images/slack/slack-app-scopes.png "0.30")
 
-1. Under **Settings** in the sidebar select **Install app**. 
-    Add this point, if you are _not_ an admin of the workspace, you will need to provide a link to actually install the app into the workspace and onto a channel.
-    Once the app is approved and installed, a **User OAuth Token** will be provided in your app settings. 
-    Copy the token, and use in the next step. 
-1. Using the **User OAuth Token**, run the command
+5. Go to **Settings** > **Install app** in the sidebar.
+   {{% note %}}
+   If you are _not_ an admin of the workspace, you need to provide a link to install the app into the workspace and onto a channel.
+
+   Once the app is approved and installed, a **User OAuth Token** is provided in your app settings. 
+   Copy the token, and use it in the next step.
+   {{% /note %}}
+
+6. Using the **User OAuth Token**, run the following command:
 
     ```bash
     {{% vendor/cli %}} integration:add --type health.slack --token {{% variable "USER_OAUTH_TOKEN" %}} --channel {{% variable "CHANNEL_NAME" %}} --project {{% variable "PROJECT_ID" %}}
     ```
 
-    If the channel you're installing the app is called `project-notifications`, write the channel name in the command above as you would reference it within Slack. 
-    That is, 
+    For example, if you want your Slack app to post messages in the `project-notifications` channel, write the channel name in the command as you would reference it within Slack:
 
     ```bash
     {{% vendor/cli %}} integration:add --type health.slack ... --channel '#project-notifications' ...
     ```
-{{% note theme="info" %}}
-If you are _not_ a workspace admin, but an admin has approved your app for installation it may first be necessary to install the application to the desired channel within Slack prior to running the above command. 
-{{% /note %}}
-
-
-1. {{% vendor/name %}} will then send an initial message to the channel once the integration is successfully configured. 
+6. When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel. 
 
 {{< note theme="info" title="Bot users v. Slack apps">}}
 Previously, {{% vendor/name %}} allowed for the configuration of health notifications sent to Slack via _bot users_ and their associated API tokens.
