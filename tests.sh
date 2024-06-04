@@ -28,4 +28,4 @@ bin/htmltest
 npm run lint:markdown
 
 # 7. Linting (Lint prose)
-vale src
+vale src --config='../../.vale.ini'
