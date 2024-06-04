@@ -67,7 +67,7 @@ To downgrade your database, follow these steps:
 ## Relationship reference
 
 For each service [defined via a relationship](#usage-example) to your application,
-Upsun automatically generates corresponding environment variables within your application container,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
 in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
@@ -80,7 +80,7 @@ or through the [``PLATFORM_RELATIONSHIPS`` environment variable](development/var
 title= Service environment variables
 +++
 
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -155,7 +155,7 @@ export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -
 title= Service environment variables
 +++
 
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -349,14 +349,14 @@ export DB_DATABASE=${MARIADB_PATH}
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by Upsun into the runtime environment, so that the variable ``MARIADB_URL`` can be used within the application to connect to the service.
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``MARIADB_URL`` can be used within the application to connect to the service.
 
 Note that ``MARIADB_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``MARIADB_HOST``,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``upsun ify`` command to [migrate a codebase to Upsun](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ### Configure connections
 
@@ -371,7 +371,7 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `DATABASE_URL` property, defined on step [Use in app](#use-in-app).
 <BR>Use the `DATABASE_URL` property as your connection.
 
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
