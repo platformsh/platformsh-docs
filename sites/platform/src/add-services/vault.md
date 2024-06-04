@@ -134,7 +134,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 
 ### Example configuration
 
-### [Service definition](/add-services/_index.md)
+### [Service definition](/add-services.html)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -164,7 +164,7 @@ relationships:
 
 ### Multiple endpoints configuration
 
-### [Service definition](/add-services/_index.md)
+### [Service definition](/add-services.html)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.

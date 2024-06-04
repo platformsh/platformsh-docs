@@ -64,7 +64,7 @@ runtime:
 
 ### Example configuration
 
-### [Service definition](/add-services)
+### [Service definition](/add-services.html)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
