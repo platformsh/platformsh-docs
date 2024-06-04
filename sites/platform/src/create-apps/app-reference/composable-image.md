@@ -28,12 +28,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-{{% note theme="info" title="Further resources"%}}
-
-For a more detailed introduction to the composable image, check out [this video](https://www.youtube.com/watch?v=emOt32DVl28).</br>
 If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
-
-{{% /note %}}
 
 ## Top-level properties
 
