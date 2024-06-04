@@ -95,7 +95,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     }
 ```
 
-Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/_index.md#use-env-files):
+Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.html#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
