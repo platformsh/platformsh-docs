@@ -43,15 +43,16 @@ This estimate is based on:
 - Your resource allocation on each project
 
 The estimate includes the history of changes made since the beginning of the month.
-**It cannot be 100% accurate, as it is impossible to know exactly what your future usage will be.**</br>
-However, for maximum accuracy, the current month estimate includes three underlying estimates,
+**It cannot be 100% accurate, as it is impossible to know exactly what your future usage will be.**
+
+However, for maximum accuracy, the current month estimate includes the following underlying estimates,
 each with its own calculation:
 
-- A [user management estimate](#user-management-estimate)
-- An [accumulated resource usage estimate](#accumulated-resource-usage-estimate)
-- An [allocated resource usage estimate](#allocated-resource-usage-estimate)
+{{< codetabs >}}
 
-#### User management estimate
++++
+title=User management estimate
++++
 
 The following formula is used to estimate how much user license and user management add-on fees may cost you this month:</br>
 `unit price x prorated quantity`.
@@ -63,7 +64,11 @@ The following formula is used to estimate how much user license and user managem
 
 All items used for the calculation are displayed in the **Overview** tab.
 
-#### Accumulated resource usage estimate
+<--->
+
++++
+title=Accumulated resource usage estimate
++++
 
 The resources consumed for builds, bandwidth, and log forwarding are accumulated resources.</br>
 The following formula is used to estimate how much accumulated resource usage may cost you this month:</br>
@@ -77,7 +82,11 @@ The following formula is used to estimate how much accumulated resource usage ma
 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
 
-#### Allocated resource usage estimate
+<--->
+
++++
+title=Allocated resource usage estimate
++++
 
 The resources consumed by your applications and services (CPU, RAM, and storage) are allocated resources.</br>
 The following formula is used to estimate how much allocated resource usage may cost you this month:</br>
@@ -89,6 +98,8 @@ The following formula is used to estimate how much allocated resource usage may 
 | `prorated quantity`  | An average of past changes and current settings, applied for all the remaining days in the month. |
 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
+
+{{< /codetabs >}}
 
 ### Next month estimate
 
@@ -116,7 +127,7 @@ To access your current invoice and a history of past invoices, open the **Invoic
 
 ![Invoices tab in the Console](/images/billing/invoices-tab.png)
 
-## Set a billing alert
+## Manage billing alerts
 
 {{% note theme="info" title="Feature availability" %}}
 
@@ -125,6 +136,8 @@ users with the [**Manage Billing** permission](/administration/users.md#organiza
 and identified billing contacts.
 
 {{% /note %}}
+
+### Set a billing alert
 
 You can set billing alerts to receive an email when your [current month estimate](#current-month-estimate) reaches a defined threshold.
 
@@ -146,8 +159,20 @@ To set a billing alert on your organization:
 5. Enter a threshold.
 6. Click **Create alert**.
 
-Note that you can edit or delete a billing alert by clicking the billing alert button in the **Overview** tab:
-![Billing alert button in the Console](/images/billing/billing-alert-button.png "0.1") 
+### Edit a billing alert
+
+To edit or delete a billing alert, click the billing alert button in the **Overview** tab:
+
+![Billing alert button in the Console](/images/billing/billing-alert-button.png "0.1")
+
+Change the monthly threshold and click **Save**, or click **Delete alert**.
+
+To change the currency of your billing alerts, [contact support](/learn/overview/get-support.md).
+
+{{% note theme="warning" title="Warning"%}}
+After Support changes the currency, your existing billing alerts are **not** automatically converted to the new currency.
+Edit your billing alerts to have correct amounts in the new currency.
+{{% /note %}}
 
 ## Track resource usage on a project
 

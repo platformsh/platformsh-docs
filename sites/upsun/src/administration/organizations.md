@@ -108,6 +108,14 @@ To verify the changes, run:
 
 {{< /codetabs >}}
 
+{{% note %}}
+
+To monitor your spend, you can [set billing alerts](/administration/billing/monitor-billing.html#manage-billing-alerts) on your new organization.
+Billing alerts are based on a [current month estimate](/administration/billing/monitor-billing.html#current-month-estimate).
+Once that estimate reaches a defined threshold, you receive an email notification.
+
+{{% /note %}}
+
 ## Delete an existing organization
 
 As an organization owner, you can delete your own organization.
