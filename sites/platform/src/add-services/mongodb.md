@@ -179,7 +179,7 @@ runtime:
 
 #### Example configuration
 
-##### [Service definition](/add-services)
+##### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -188,7 +188,7 @@ mongodb-enterprise:
     disk: 512
 ```
 
-##### [App configuration](/create-apps)
+##### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.

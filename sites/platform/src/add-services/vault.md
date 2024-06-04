@@ -128,13 +128,13 @@ and matches in both the application and services configuration.
 The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships. 
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 If you split the service into multiple endpoints, define multiple relationships.
 
 ### Example configuration
 
-### [Service definition](/add-services)
+### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -164,7 +164,7 @@ relationships:
 
 ### Multiple endpoints configuration
 
-### [Service definition](/add-services)
+### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.

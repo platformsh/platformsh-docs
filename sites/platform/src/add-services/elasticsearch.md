@@ -158,7 +158,7 @@ With the above definition, the application container now has [access to the serv
 
 ### Example configuration
 
-### [Service definition](/add-services)
+### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -167,7 +167,7 @@ elasticsearch:
     disk: 256
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.

@@ -74,7 +74,7 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 
 ### Example configuration
 
-##### [Service definition](/add-services)
+##### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
