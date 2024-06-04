@@ -7,6 +7,9 @@ banner:
   title: Beta Feature
   body: The {{% vendor/name %}} composable image is currently available in Beta.
         This feature as well as its documentation is subject to change.
+keywords:
+  - sleepy crons
+  - sleepy_crons
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
@@ -25,12 +28,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-{{% note theme="info" title="Further resources"%}}
-
-For a more detailed introduction to the composable image, check out [this video](https://www.youtube.com/watch?v=emOt32DVl28).</br>
 If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
-
-{{% /note %}}
 
 ## Top-level properties
 
@@ -78,6 +76,16 @@ myapp:
 
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
 To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
+
+{{% note theme=warning title="Warning" %}}
+While technically available during the build phase, `nix` commands aren't supported at runtime as the image becomes read-only.
+
+When using the {{% vendor/name %}} composable image, you don't need `nix` commands.
+Everything you install using the `stack` key is readily available to you as the binaries are linked and included in `$PATH`.
+
+For instance, to [start a secondary runtime](#primary-runtime),
+just issue the command (e.g. in the [`start` command](/create-apps/app-reference/composable-image.md#web-commands)) instead of the `nix run` command.
+{{% /note %}}
 
 #### Primary runtime
 
@@ -164,13 +172,13 @@ myapp:
       root: "/"
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extensions:
-          - gd
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+          disabled_extensions:
+            - gd
 ```
 
 {{% note %}}
@@ -232,11 +240,11 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 app1:
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 app2:
@@ -331,12 +339,12 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | Container               | Profile          |
 |-------------------------|------------------|
 | Chrome Headless         | HIGH_CPU         |
-| .NET                    | HIGH_CPU         |  
+| .NET                    | HIGH_CPU         |
 | Elasticsearch           | HIGH_MEMORY      |
 | Elasticsearch Premium   | HIGH_MEMORY      |
 | Elixir                  | HIGH_CPU         |
 | Go                      | HIGH_CPU         |
-| InfluxDB                | HIGH_MEMORY      |  
+| InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
 | Lisp                    | HIGH_CPU         |
@@ -345,17 +353,17 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | MongoDB                 | HIGH_MEMORY      |
 | MongoDB Premium         | HIGH_MEMORY      |
 | Network Storage         | HIGH_MEMORY      |
-| Node.js                 | HIGH_CPU         |  
+| Node.js                 | HIGH_CPU         |
 | OpenSearch              | HIGH_MEMORY      |
 | Oracle MySQL            | HIGH_MEMORY      |
-| PHP                     | HIGH_CPU         | 
+| PHP                     | HIGH_CPU         |
 | PostgreSQL              | HIGH_MEMORY      |
-| Python                  | HIGH_CPU         | 
+| Python                  | HIGH_CPU         |
 | RabbitMQ                | HIGH_MEMORY      |
 | Redis ephemeral         | BALANCED         |
 | Redis persistent        | BALANCED         |
 | Ruby                    | HIGH_CPU         |
-| Rust                    | HIGH_CPU         | 
+| Rust                    | HIGH_CPU         |
 | Solr                    | HIGH_MEMORY      |
 | Varnish                 | HIGH_MEMORY      |
 | Vault KMS               | HIGH_MEMORY      |
@@ -388,10 +396,10 @@ For more information, see how to [define relationships between your apps](/creat
 
 {{< note title="Availability" theme="info">}}
 
-New syntax (default and explicit endpoints) described below is supported by most, but not all, image types 
+New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
 (`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
-This syntax is currently being rolled out for all images. 
-If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section. 
+This syntax is currently being rolled out for all images.
+If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
 {{< /note >}}
 
@@ -407,7 +415,7 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "SERVICE_NAME" %}}: 
+    {{% variable "SERVICE_NAME" %}}:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
@@ -418,7 +426,7 @@ For example, if you define the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb: 
+    mariadb:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
@@ -439,7 +447,7 @@ You can define any number of relationships in this way:
 relationships:
     mariadb:
     redis:
-    elasticsearch: 
+    elasticsearch:
 ```
 
 {{< note title="Tip" theme="info" >}}
@@ -456,7 +464,7 @@ where
 {{< variable "SERVICE_NAME_A" >}}:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 256
-{{< variable "SERVICE_NAME_B" >}}: 
+{{< variable "SERVICE_NAME_B" >}}:
     type: redis:{{% latest "redis" %}}
     disk: 256
 {{< variable "SERVICE_NAME_C" >}}:
@@ -477,7 +485,7 @@ Use the following configuration:
 ```yaml {configFile="app"}
 relationships:
     {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}} 
+        service: {{% variable "SERVICE_NAME" %}}
         endpoint: {{% variable "ENDPOINT_NAME" %}}
 ```
 
@@ -490,7 +498,7 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    database: # The name of the relationship. 
+    database: # The name of the relationship.
         service: mariadb
         endpoint: db1
 ```
@@ -510,7 +518,7 @@ see each service's dedicated page:
 
 ```yaml {configFile="app"}
 relationships:
-    database1: 
+    database1:
         service: mariadb
         endpoint: admin
     database2:
@@ -688,7 +696,7 @@ applications:
 ```
 
 In this case, it does not matter that each mount is of a different `source` type.
-Each mount is restricted to a subfolder within `var`, and all is well. 
+Each mount is restricted to a subfolder within `var`, and all is well.
 
 The following, however, is not allowed and will result in a failure:
 
@@ -1213,7 +1221,7 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    commands: 
+    commands:
       start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
@@ -1231,7 +1239,7 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    commands: 
+    commands:
       start: |
         # Only run for the production environment, aka main branch
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then

@@ -25,12 +25,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-{{% note theme="info" title="Further resources"%}}
-
-For a more detailed introduction to the composable image, check out [this video](https://www.youtube.com/watch?v=emOt32DVl28).</br>
 If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
-
-{{% /note %}}
 
 ## Primary application properties
 
@@ -101,6 +96,16 @@ applications:
 
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
 To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
+
+{{% note theme=warning title="Warning" %}}
+While technically available during the build phase, `nix` commands aren't supported at runtime as the image becomes read-only.
+
+When using the {{% vendor/name %}} composable image, you don't need `nix` commands.
+Everything you install using the `stack` key is readily available to you as the binaries are linked and included in `$PATH`.
+
+For instance, to [start a secondary runtime](#primary-runtime),
+just issue the command (e.g. in the [`start` command](/create-apps/app-reference/composable-image.md#web-commands)) instead of the `nix run` command.
+{{% /note %}}
 
 #### Primary runtime
 
@@ -189,13 +194,13 @@ applications:
       root: "/"
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extensions:
-          - gd
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+          disabled_extensions:
+            - gd
 ```
 
 {{% note %}}
@@ -261,11 +266,11 @@ applications:
   frontend:
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
   backend:
