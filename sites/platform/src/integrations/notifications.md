@@ -74,17 +74,60 @@ You can also configure a custom `--from-address`. The `--from-address` is whatev
 
 ### Slack notifications
 
-A notification can trigger a message to be sent to a Slack bot.
-First, create a new custom "[bot user](https://api.slack.com/bot-users)" for your Slack group and configure the channels you wish it to live in.
-Note the API token is the "Bot User OAuth Access Token" provided by Slack.
+A notification can trigger a message to be posted to a Slack channel via a [Slack app](https://api.slack.com/apps).
 
-Then register that Slack bot with {{% vendor/name %}} using a `health.slack` integration:
+#### 1. Optional: Create a Slack app
 
-```bash
-{{% vendor/cli %}} integration:add --type health.slack --token YOUR_API_TOKEN --channel '#channelname'
-```
+{{% note %}}
+If you are already have a Slack app, you can jump to [enabling notifications](#2-enable-notifications).
+{{% /note %}}
 
-That will trigger the corresponding bot to post a notification to the `#channelname` channel in your Slack group.
+1. Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
+2. Click **Create an App**.
+3. Choose if you want to build your app from scratch, or via [an app manifest](https://api.slack.com/concepts/manifests).
+4. Give your app a name.
+5. Select a workspace to install your app in.
+   {{% note %}}
+   If you are not an admin of the selected workspace, request approval to install your app there.
+   {{% /note %}}
+6. Click **Create App**.
+
+#### 2. Enable notifications
+
+1. Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
+2. Go to **Features** > **OAuth & Permissions** in the sidebar.
+3. Scroll down to the **Scopes** area and select **User Token Scopes**.
+4. Click **Add an OAuth Scope** to add the `chat:write` scope.
+
+    ![Slack app scopes](/images/slack/slack-app-scopes.png "0.30")
+
+5. Go to **Settings** > **Install app** in the sidebar.
+   {{% note %}}
+   If you are _not_ an admin of the workspace, you need to provide a link to install the app into the workspace and onto a channel.
+
+   Once the app is approved and installed, a **User OAuth Token** is provided in your app settings. 
+   Copy the token, and use it in the next step.
+   {{% /note %}}
+
+6. Using the **User OAuth Token**, run the following command:
+
+    ```bash
+    {{% vendor/cli %}} integration:add --type health.slack --token {{% variable "USER_OAUTH_TOKEN" %}} --channel {{% variable "CHANNEL_NAME" %}} --project {{% variable "PROJECT_ID" %}}
+    ```
+
+    For example, if you want your Slack app to post messages in the `project-notifications` channel, write the channel name in the command as you would reference it within Slack:
+
+    ```bash
+    {{% vendor/cli %}} integration:add --type health.slack ... --channel '#project-notifications' ...
+    ```
+6. When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel. 
+
+{{< note theme="info" title="Bot users v. Slack apps">}}
+Previously, {{% vendor/name %}} allowed for the configuration of health notifications sent to Slack via _bot users_ and their associated API tokens.
+As of June 2024, Slack has deprecated bot users, and integrations must be configured using Slack apps as described above.
+
+If you already have defined an integration using a bot user API token, it will continue to work properly, though you should consider upgrading your processes to the above settings to avoid any future retirement. 
+{{< /note >}}
 
 ### PagerDuty notifications
 
