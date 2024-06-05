@@ -14,8 +14,6 @@ You can also change the project's region after it's created.
 - Different data centers are located in different geographic areas.
   You may want your site close to your users for improved performance.
 - You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
-- Some regions are running older versions of the {{% vendor/name %}} orchestration system that offers fewer features.
-  If you are on one of those legacy regions, you can migrate to one of the newer regions.
 
 ## 1. Plan the migration
 
