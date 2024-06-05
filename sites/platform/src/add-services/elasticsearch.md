@@ -117,7 +117,7 @@ For [premium versions](#supported-versions), the service type is `elasticsearch-
 
 ### 1. Configure the service
 
-To define the service, use the `elasticsearch`:
+To define the service, use the `elasticsearch` type:
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.

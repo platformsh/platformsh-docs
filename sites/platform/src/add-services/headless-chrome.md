@@ -68,7 +68,7 @@ See how to [manage your Node.js version](../languages/nodejs/node-version.md).
 
 ### 1. Configure the service
 
-To define the service, use the `chrome-headless`:
+To define the service, use the `chrome-headless` type:
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.

@@ -97,7 +97,7 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 
 ### 1. Configure the service
 
-To define the service, use the `influxdb`:
+To define the service, use the `influxdb` type:
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.

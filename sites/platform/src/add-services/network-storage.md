@@ -80,7 +80,7 @@ so migrate to one of the [supported versions](#supported-versions).
 
 ### 1. Configure the service
 
-To define the service, use the `network-storage`:
+To define the service, use the `network-storage` type:
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
