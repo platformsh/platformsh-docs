@@ -14,7 +14,7 @@ for high-performance data retrieval and key-value storage.
 {{% frameworks version="1" %}}
 
 - [Drupal](../guides/drupal/redis.md)
-- [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)
+- [Ibexa DXP](../guides/ibexa/deploy.md#redis)
 - [Jakarta EE](../guides/jakarta/deploy.md#redis)
 - [Micronaut](../guides/micronaut/redis.md)
 - [Quarkus](../guides/quarkus/redis.md)
