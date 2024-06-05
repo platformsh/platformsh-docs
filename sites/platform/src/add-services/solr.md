@@ -12,7 +12,7 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 If you use one of the following frameworks, follow its guide:
 
-- [Ibexa DXP](../guides/ibexa/deploy.md#solr-specificity)
+- [Ibexa DXP](../guides/ibexa/deploy.md#solr)
 - [Jakarta EE](../guides/jakarta/deploy.md#apache-solr)
 - [Spring](../guides/spring/solr.md)
 
