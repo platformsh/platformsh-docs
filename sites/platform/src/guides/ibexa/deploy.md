@@ -17,4 +17,4 @@ See [how to enable additional services](https://doc.ibexa.co/en/latest/getting_s
 
 ## Solr
 
-See [How to enable addtional services](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/#additional-services)
+See [how to enable additional services](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/#additional-services)
