@@ -13,7 +13,7 @@ See how to [install Ibexa DXP on Platform.sh through Ibexa Cloud](https://doc.ib
 
 ## Redis
 
-See [How to enable addtional services](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/#additional-services)
+See [how to enable additional services](https://doc.ibexa.co/en/latest/getting_started/install_on_ibexa_cloud/#additional-services)
 
 ## Solr
 
