@@ -8,17 +8,15 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Hibernate](../guides/hibernate/deploy.md#postgresql)
 - [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
 - [Spring](../guides/spring/postgresql.md)
 
-{{% /frameworks %}}
-
 ## Supported versions
-
-{{% major-minor-versions-note %}}
 
 <table>
     <thead>
@@ -46,7 +44,12 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{< /note >}}
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 <table>
     <thead>
@@ -65,9 +68,13 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
     </tbody>
 </table>
 
-{{% relationship-ref-intro %}}
+## Relationship reference 
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
@@ -94,7 +101,79 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 ## Usage example
 
-{{% endpoint-description type="postgresql" php=true /%}}
+### 1. Configure the service
+
+To define the service, use the `postgresql` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: postgresql:<VERSION>
+    disk: 256
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
+
+```yaml {configFile="apps"}
+# PHP extensions.
+runtime:
+    extensions:
+        - pdo_pgsql
+```
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+postgresql:
+    type: postgresql:{{% latest "postgresql" %}}
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+   postgresql: 
+```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
 
 <!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs >}}
@@ -157,7 +236,7 @@ Using the values from the [example](#relationship-reference), that would be:
 psql -U main -h postgresql.internal -p 5432
 ```
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ## Exporting data
 
@@ -334,7 +413,30 @@ postgresql:
                 thirddb: admin
 ```
 
-{{% databases-passwords %}}
+## Password generation
+
+When you connect your app to a database,
+an empty password is generated for the database by default.
+This can cause issues with your app.
+
+To generate real passwords for your database,
+define custom endpoints in your [service configuration](#1-configure-the-service).
+For each custom endpoint you create,
+you get an automatically generated password,
+similarly to when you create [multiple databases](#multiple-databases).
+Note that you can't customize these automatically generated passwords.
+
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
+you can retrieve the password for each endpoint
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables) 
+within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
+Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
+
+When you switch from the default configuration with an empty password to custom endpoints,
+make sure your service name remains unchanged.
+Failure to do so results in the creation of a new service,
+which removes any existing data from your database.
 
 ## Service timezone
 
