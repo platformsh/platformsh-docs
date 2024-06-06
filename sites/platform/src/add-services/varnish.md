@@ -10,7 +10,9 @@ But you can include Varnish as a service.
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -44,7 +46,24 @@ graph LR
 
 ## Usage example
 
-{{% endpoint-description type="varnish" noApp=true %}}
+### 1. Configure the service
+
+To define the service, use the `varnish` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: varnish:<VERSION>
+    relationships:
+        <RELATIONSHIP_NAME>: '<APP_NAME>:http'
+    configuration:
+        vcl: !include
+            type: string
+            path: config.vcl
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
 
 The `relationships` block defines the connection between Varnish and your app.
 You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
@@ -53,7 +72,23 @@ You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
 The `configuration` block must reference a VCL file inside the `{{< vendor/configdir >}}` directory.
 The `path` defines the file relative to the `{{< vendor/configdir >}}` directory.
 
-{{% /endpoint-description %}}
+### Example configuration
+
+##### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+varnish:
+    type: varnish:7.3
+    relationships:
+        application: 'myapp:http'
+    configuration:
+        vcl: !include
+            type: string
+            path: config.vcl
+```
+
+Notice the `relationship` (`application`) defined for the service `varnish` granting access to the application container `myapp`.
 
 ### 2. Create a VCL template
 

@@ -511,7 +511,7 @@ see each service's dedicated page:
  - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
  - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
- - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
+ - [Vault KMS](add-services/vault.md#multiple-endpoints-configuration) (multiple permissions)
 
  You can add as many relationships as you want to your app configuration,
  using both default and explicit endpoints according to your needs:
@@ -567,11 +567,14 @@ So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
-{{% disk-space-mb %}}
+You configure the disk size in [MB](/glossary#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
 ### Downsize a disk
 
-{{% disk-downsize type="app" %}}
+You can decrease the size of an existing disk for an app. If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
 

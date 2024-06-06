@@ -5,7 +5,7 @@ description: |
   Headless Chrome is a headless browser that can be configured on projects like any other service on {{% vendor/name %}}.
 ---
 
-{{% description %}}
+Headless Chrome is a headless browser that can be configured on projects like any other service on {{% vendor/name %}}.
 
 You can interact with the `chrome-headless` service container using Puppeteer, a Node.js library that provides an API to control Chrome over the DevTools Protocol.
 
@@ -13,7 +13,10 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Supported versions
 
-{{% major-minor-versions-note %}}
+You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
+
+Patch versions are applied periodically for bug fixes and the like. 
+When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -32,9 +35,13 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
     </tbody>
 </table>
 
-{{% relationship-ref-intro %}}
+## Relationship reference
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```yaml
 {
@@ -59,7 +66,67 @@ See how to [manage your Node.js version](../languages/nodejs/node-version.md).
 
 ## Usage example
 
-{{% endpoint-description type="chrome-headless" /%}}
+### 1. Configure the service
+
+To define the service, use the `chrome-headless` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: chrome-headless:<VERSION>
+    disk: 256
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+chrome-headless:
+    type: chrome-headless:{{% latest "chrome-headless" %}}
+```
+
+#### [App configuration](/create-apps)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    chrome-headless: 
+```
+
+### Use in app
 
 After configuration, include [Puppeteer](https://www.npmjs.com/package/puppeteer) as a dependency:
 

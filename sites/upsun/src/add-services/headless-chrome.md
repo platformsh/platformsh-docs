@@ -13,18 +13,29 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 ## Supported versions
 
-{{% major-minor-versions-note %}}
+You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="chrome-headless" status="supported" environment="grid" >}}
 
-{{% relationship-ref-intro %}}
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 CHROMEHEADLESS_SERVICE=chromeheadless
@@ -82,7 +93,71 @@ See how to [manage your Node.js version](../languages/nodejs/node-version.md).
 
 ## Usage example
 
-{{% endpoint-description type="chrome-headless" /%}}
+### 1. Configure the service
+
+To define the service, use the `chrome-headless` type:
+
+```yaml {configFile="app"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: chrome-headless:<VERSION>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configruation:
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: chrome-headless:<VERSION>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+### Example configuration
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            chrome-headless: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    chrome-headless:
+        type: chrome-headless:{{% latest "chrome-headless" %}}
+```
+
+### Use in app
 
 After configuration, include [Puppeteer](https://www.npmjs.com/package/puppeteer) as a dependency:
 
@@ -144,7 +219,11 @@ services:
         type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
-{{% v2connect2app serviceName="chromeheadless" relationship="chromeheadless" var="CHROME_BASEURL"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `chromeheadless` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, `myapp` can retrieve access credentials to the service through the [relationship environment variable](/add-services/elasticsearch.md#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
@@ -156,7 +235,10 @@ export CHROME_PORT=${CHROMEHEADLESS_PORT}
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
 ```
 
-{{% /v2connect2app %}}
+The above file &mdash; `.environment` in the `myapp` directory &mdash; is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `CHROME_BASEURL` can be used within the application to connect to the service.
+
+Note that `CHROME_BASEURL` and all {{< vendor/name >}} [service environment variables](/development/variables.html#service-environment-variables) like `CHROMEHEADLESS_HOST`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
 
 Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
-

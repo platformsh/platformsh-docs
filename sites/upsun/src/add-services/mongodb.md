@@ -8,18 +8,12 @@ premium: true
 
 {{< description >}}
 
-{{% frameworks version="1" %}}
-
-- [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
-- [Micronaut](../guides/micronaut/mongodb.md)
-- [Quarkus](../guides/quarkus/mongodb.md)
-- [Spring](../guides/spring/mongodb.md)
-
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like.
+When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}
 
@@ -45,14 +39,23 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{< image-versions image="mongodb" status="deprecated" environment="grid" >}}
 
-{{% relationship-ref-intro %}}
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 MONGODB_USERNAME=main
@@ -115,11 +118,183 @@ export APP_MONGODBDATABASE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb[0]
 
 ### Enterprise edition example
 
-{{% endpoint-description type="mongodb-enterprise" php=true noApp=true /%}}
+#### 1. Configure the service
+
+To define the service, use the ``mongodb-enterprise`` type:
+
+```yaml {configFile="apps"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: mongodb-enterprise:<VERSION>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+
+#### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: mongodb-enterprise:<VERSION>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
+
+```yaml {configFile="apps"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+       # PHP extensions.
+        runtime:
+            extensions:
+                - mongodb
+         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: mongodb-enterprise:<VERSION>
+```
+
+#### Example configuration
+
+```yaml {configFile="apps"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            mongodb-enterprise: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    mongodb-enterprise:
+        type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+```
 
 ### Legacy edition example
 
-{{% endpoint-description type="mongodb" php=true /%}}
+#### 1. Configure the service
+
+To define the service, use the ``mongodb`` type:
+
+```yaml {configFile="app"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: mongodb:<VERSION>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+
+#### 2. Add the relationship
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: mongodb:<VERSION>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+       # PHP extensions.
+        runtime:
+            extensions:
+                - mongodb
+         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: mongodb:<VERSION>
+```
+
+#### Example configuration
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            mongodb: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    mongodb:
+        type: mongodb:4.0.3
+```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
 
 ```yaml {configFile="app"}
 applications:
@@ -140,7 +315,11 @@ service:
         type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 ```
 
-{{% v2connect2app serviceName="mongodb" relationship="mongodb" var="DATABASE_URL"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `mongodb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -156,7 +335,13 @@ export DB_DATABASE="${MONGODB_PATH}"
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
 ```
 
-{{% /v2connect2app %}}
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``DATABASE_URL`` can be used within the application to connect to the service.
+
+Note that ``DATABASE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``MONGODB_HOST``, are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Access the service directly
 
@@ -174,7 +359,9 @@ With the example value, that would be the following:
 mongo mongodb.internal
 ```
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ## Exporting data
 

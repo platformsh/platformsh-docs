@@ -102,6 +102,10 @@ npm run test -- upsun
 
 depending on which set of docs you've contributed to.
 
+### Visual regression testing
+
+See [`vrt-docs-migration`](https://github.com/gilzow/vrt-docs-migration) for more details.
+
 ## Cache of static assets
 
 Given that the website itself isn't updated so often,

@@ -11,11 +11,15 @@ You can deploy Python apps on {{% vendor/name %}} using a server or a project su
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="python" status="supported" environment="grid" >}}
 
-{{% language-specification type="python" display_name="Python" %}}
+### Specify the language
+
+To use Node.js, specify ``python`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
 
 ```yaml {configFile="app"}
 applications:

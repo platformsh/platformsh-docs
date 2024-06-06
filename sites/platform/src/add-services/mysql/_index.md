@@ -11,17 +11,19 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/learn/)
 or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Hibernate](../../guides/hibernate/deploy.md#mysql)
 - [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
 - [Spring](../../guides/spring/mysql.md)
 
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 The service types `mariadb` and `mysql` both refer to MariaDB.
 The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
@@ -59,7 +61,12 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 | **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
 |----------------------------------|---------------|-------------------------|
@@ -100,7 +107,93 @@ To downgrade your database, follow these steps:
 
 Configure your service with at least 256 MB in disk space.
 
-{{% endpoint-description type="mariadb" sectionLink="#multiple-databases" multipleText="databases" /%}}
+### 1. Configure the service
+
+To define the service, use the `mariadb` or `mysql` type for MariaDB or the `oracle-mysql` type for Oracle MySQL:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: mariadb:<VERSION>
+    disk: 256
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+### MariaDB example
+
+#### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    mariadb: 
+```
+
+### OracleMySQL example
+
+#### [Service definition](/add-services)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+oraclemysql:
+    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+    disk: 256
+```
+
+#### [App configuration](/create-apps)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    oraclemysql: 
+```
+
+### Use in app
+
+To use the configured service in your app,
+add a configuration file similar to the following to your project.
 
 {{< codetabs >}}
 
@@ -157,7 +250,8 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
 
@@ -190,9 +284,12 @@ mariadb:
             max_allowed_packet: 64
 ```
 
-{{% relationship-ref-intro %}}
+## Relationship reference
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ### MariaDB reference
 
@@ -427,7 +524,30 @@ They can, however, be set indirectly, which can be useful for solving `Too many 
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details. 
 {{% /note %}}
 
-{{% databases-passwords %}}
+## Password generation
+
+When you connect your app to a database,
+an empty password is generated for the database by default.
+This can cause issues with your app.
+
+To generate real passwords for your database,
+define custom endpoints in your [service configuration](#1-configure-the-service).
+For each custom endpoint you create,
+you get an automatically generated password,
+similarly to when you create [multiple databases](#multiple-databases).
+Note that you can't customize these automatically generated passwords.
+
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
+you can retrieve the password for each endpoint
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
+Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
+
+When you switch from the default configuration with an empty password to custom endpoints,
+make sure your service name remains unchanged.
+Failure to do so results in the creation of a new service,
+which removes any existing data from your database.
 
 ## Storage Engine
 

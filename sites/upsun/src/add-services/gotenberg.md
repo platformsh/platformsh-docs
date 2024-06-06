@@ -11,16 +11,27 @@ For more information, see the [Gotenberg documentation](https://gotenberg.dev/do
 
 - 8
 
-{{% major-minor-versions-note configMinor="false" %}}
+You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-{{% relationship-ref-intro %}}
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 GOTENBERG_INSTANCE_IPS=["249.45.240.83"]

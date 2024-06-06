@@ -10,15 +10,12 @@ that supports multiple messaging protocols, such as the Advanced Message Queuing
 It gives your apps a common platform to send and receive messages
 and your messages a safe place to live until they're received.
 
-{{% frameworks version="1" %}}
-
-- [Spring](../guides/spring/rabbitmq.md)
-
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like.
+When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="rabbitmq" status="supported" environment="grid" >}}
 
@@ -26,14 +23,23 @@ and your messages a safe place to live until they're received.
 
 {{< image-versions image="rabbitmq" status="deprecated" environment="grid" >}}
 
-{{% relationship-ref-intro %}}
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 RABBITMQ_USERNAME=guest
@@ -99,7 +105,73 @@ export APP_RABBITMQ_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmq[0].host'
 
 ## Usage example
 
-{{% endpoint-description type="rabbitmq" /%}}
+### 1. Configure the service
+
+To define the service, use the ``rabbitmq`` type:
+
+```yaml {configFile="app"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: rabbitmq:<VERSION>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: rabbitmq:<VERSION>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+### Example configuration
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            rabbitmq: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    rabbitmq:
+        type: rabbitmq:{{% latest "rabbitmq" %}}
+```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
 
 ```yaml {configFile="app"}
 applications:
@@ -121,11 +193,15 @@ services:
         type: rabbitmq:{{% latest "rabbitmq" %}}
 ```
 
-{{% v2connect2app serviceName="rabbitmq" relationship="rabbitmq" var="AMQP_URL"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `rabbitmq` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
+# For more information, please visit https://docs.upsun.com/development/variables.html#service-environment-variables.
 export QUEUE_SCHEME=${RABBITMQ_SCHEME}
 export QUEUE_USERNAME=${RABBITMQ_USERNAME}
 export QUEUE_PASSWORD=${RABBITMQ_PASSWORD}
@@ -136,7 +212,13 @@ export QUEUE_PORT=${RABBITMQ_PORT}
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
 ```
 
-{{% /v2connect2app %}}
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``AMQP_URL`` can be used within the application to connect to the service.
+
+Note that ``AMQP_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``RABBITMQ_HOST``, are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Connect to RabbitMQ
 

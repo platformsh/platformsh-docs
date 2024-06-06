@@ -6,7 +6,7 @@ description: Learn how to troubleshoot common issues in PHP.
 
 {{% composable/disclaimer %}}
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 ## Server reached `max_children`
 
@@ -60,6 +60,7 @@ Otherwise, you may check if the following options are applicable:
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
   Refer to [how caching works](../../define-routes/cache.md).
 - Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
+
 ## Troubleshoot a crashed PHP process
 
 If your PHP process crashed with a segmentation fault,

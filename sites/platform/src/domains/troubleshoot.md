@@ -205,6 +205,6 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 ## Something still wrong?
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 If your website is still not working as expected, [contact support](/learn/overview/get-support.md).

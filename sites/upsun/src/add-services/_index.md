@@ -74,9 +74,16 @@ The following table presents the keys you can define for each service:
 {{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your services.
 For more information, see how to [manage resources](/manage-resources.md).
 
-{{% disk-space-mb %}}
+You configure the disk size in [MB](/glossary.md#mb).
+Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal.
+When checking available space, note whether it's reported in MB or MiB.
 
-{{% disk-downsize type="service" %}}
+You can decrease the size of an existing disk for a service.
+If you do so, be aware that:
+
+- You need to [create new backups](/environments/backup) that the downsized disk can accommodate.
+  Backups from before the downsize cannot be restored unless you increase the disk size again.
+- The downsize fails if there's more data on the disk than the desired size.
 
 ### 2. Connect the service
 
@@ -222,7 +229,9 @@ With this example, you can connect to the `mariadb` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ### 2. Open an SSH tunnel
 
