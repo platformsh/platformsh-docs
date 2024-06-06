@@ -81,9 +81,8 @@ When checking available space, note whether it's reported in MB or MiB.
 You can decrease the size of an existing disk for a service.
 If you do so, be aware that:
 
-- Backups from before the downsize are incompatible and can no longer be used.
-  You need to [create new backups](/environments/backup).
 - The downsize fails if there's more data on the disk than the desired size.
+- Backups from before the downsize can still be restored.
 
 ##### Size
 

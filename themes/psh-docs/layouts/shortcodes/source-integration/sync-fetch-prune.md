@@ -1,14 +1,13 @@
 {{ $type := .Get "service" }}
 
-An integration from {{ $type }} to {{ .Site.Params.vendor.name }} establishes that
+An integration from {{ $type }} to {{ .Site.Params.vendor.name }} establishes that:
 
-1. {{ $type }} is the source of truth, where Git operations occur, and
-2. {{ .Site.Params.vendor.name }} is a mirror of that repository - provisioning infrastructure according to configuration, and orchestrating environments according to the branch structure of the {{ $type }} repository.
+- {{ $type }} is the source of truth, where Git operations occur
+- {{ .Site.Params.vendor.name }} is a mirror of that repository - provisioning infrastructure according to configuration, and orchestrating environments according to the branch structure of the {{ $type }} repository
 
-Actions that take place on {{ .Site.Params.vendor.name }} should not, by default, affect commits on {{ $type }}.
-Because of this you will notice that the {{ $type }} integration enables both `fetch-branches` (track branches on {{ $type }}) and `prune-branches` (delete branches that don't exist on {{ $type }}) by default. 
-
-You can change these settings if you would need to, but we recommend keeping them as is in most cases.
+Actions that take place on {{ .Site.Params.vendor.name }} don't affect commits on {{ $type }}.
+Because of this, the {{ $type }} integration enables both `fetch-branches` (track branches on {{ $type }}) and `prune-branches` (delete branches that don't exist on {{ $type }}) by default.
+You can change these settings but it is recommend to keep them.
 
 When enabled by default, you are limited by design as to what actions can be performed within the context of a {{ .Site.Params.vendor.name }} project with a {{ $type }} integration:
 
