@@ -283,7 +283,7 @@ see each service's dedicated page:
  - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
  - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
- - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
+ - [Vault KMS](add-services/vault.md#multiple-endpoints-example) (multiple permissions)
 
  You can add as many relationships as you want to your app configuration,
  using both default and explicit endpoints according to your needs:
@@ -350,7 +350,10 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### Downsize a disk
 
-{{% disk-downsize type="app" %}}
+You can decrease the size of an existing disk for an app. If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
 

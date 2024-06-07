@@ -12,11 +12,12 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. 
+When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="influxdb" status="supported" environment="grid" >}}
-
-{{% image-versions-legacy "influxdb" %}}
 
 ## Deprecated versions
 
@@ -29,14 +30,23 @@ To ensure your project remains stable in the future,
 switch to a [supported version](#supported-versions).
 See more information on [how to upgrade to version 2.3 or later](#upgrade-to-version-23-or-later).
 
-{{% relationship-ref-intro %}}
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 INFLUXDB_HOST=influxdb.internal
@@ -105,9 +115,75 @@ export APP_INFLUXDB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdb[0].host'
 
 ## Usage example
 
-{{% endpoint-description type="influxdb" /%}}
+### 1. Configure the service
+
+To define the service, use the `influxdb` type:
 
 ```yaml {configFile="app"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: influxdb:<VERSION>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configruation:
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: influxdb:<VERSION>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](/add-services/influxdb.md#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+### Example configuration
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            influxdb: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    influxdb:
+        type: influxdb:{{% latest "influxdb" %}}
+```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
@@ -126,7 +202,11 @@ service:
         type: influxdb:{{% latest "influxdb" %}}
 ```
 
-{{% v2connect2app serviceName="influxdb" relationship="influxdbdatabase" var="INFLUX_HOST"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
@@ -138,7 +218,14 @@ export INFLUX_TOKEN=$(echo $INFLUXDB_QUERY | jq -r ".api_token")
 export INFLUX_BUCKET=$(echo $INFLUXDB_QUERY | jq -r ".bucket")
 ```
 
-{{% /v2connect2app %}}
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``INFLUX_HOST`` can be used within the application to connect to the service.
+
+Note that ``INFLUX_HOST``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``INFLUXDBDATABASE_HOST``,
+are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Export data
 
@@ -199,6 +286,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [service environment variables](/development/variables#service-environment-variables).
+You can retrieve your new credentials through the [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 {{< /note >}}

@@ -6,21 +6,23 @@ description: |
 sidebarTitle: "Memcached"
 ---
 
-{{% description %}}
+Memcached is an in-memory object store well-suited for application level caching.
 
 See the [Memcached documentation](https://memcached.org) for more information.
 
 Both Memcached and Redis can be used for application caching. As a general rule, Memcached is simpler and thus more widely supported while Redis is more robust. {{% vendor/name %}} recommends using Redis if possible but Memcached is fully supported if an application favors that cache service.
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Drupal](../guides/drupal/memcached.md)
 
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -41,9 +43,13 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 \* No High-Availability on {{% names/dedicated-gen-2 %}}.
 
-{{% relationship-ref-intro %}}
+## Relationship reference
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
@@ -61,7 +67,69 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 ## Usage example
 
-{{% endpoint-description type="memcached" php=true python=true /%}}
+### 1. Configure the service
+
+To define the service, use the `memcached` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: memcached:<VERSION>
+    disk: 256
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+memcached:
+    type: memcached:{{% latest "memcached" %}}
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    memcached: 
+```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
 
 {{< codetabs >}}
 
@@ -115,4 +183,4 @@ Assuming your Memcached relationship is named `memcached`, the host name and por
 netcat memcached.internal 11211
 ```
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.

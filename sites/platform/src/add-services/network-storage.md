@@ -21,7 +21,9 @@ If your app does this regularly, a local mount is more effective.
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -50,7 +52,12 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{< /note >}}
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 <table>
     <thead>
@@ -71,7 +78,68 @@ Any change to the service version results in existing data becoming inaccessible
 
 ## Usage example
 
-{{% endpoint-description type="network-storage" noApp=true /%}}
+### 1. Configure the service
+
+To define the service, use the `network-storage` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: network-storage:<VERSION>
+    disk: 256
+```
+
+`<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
+
+- Contain at most 63 characters
+- Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
+- Start with an alphanumeric character
+- End with an alphanumeric character
+
+This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the mount
+
+To define the mount accessible by your application, use the following configuration:
+
+```yaml {configFile="apps"}
+mounts:
+    '<TARGET_PATH>':
+        source: service
+        service: <SERVICE_NAME>
+        source_path: <SOURCE_PATH>
+```
+
+- `<TARGET_PATH>` is the path to your mount within the app container (relative to the app’s root).
+- `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+- `<SOURCE_PATH>` specifies where the mount points inside the service.</br>
+  If the `source_path` is an empty string (`""`), your mount points to the entire service.</br>
+  If you don’t define a `source_path`, {{ .Site.Params.vendor.name }} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
+  For example, if your mount lives in the `/my/files/` directory within your app container, it will point to a `my/files` directory within the service.
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+network-storage:
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+mounts:
+    'my/files':
+        source: service
+        service: network-storage
+        source_path: files
+```
 
 ## Multi-application usage
 

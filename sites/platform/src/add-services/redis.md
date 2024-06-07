@@ -11,21 +11,23 @@ for high-performance data retrieval and key-value storage.
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 
-{{% frameworks version="1" %}}
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Drupal](../guides/drupal/redis.md)
-- [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)
+- [Ibexa DXP](../guides/ibexa/deploy.md#redis)
 - [Jakarta EE](../guides/jakarta/deploy.md#redis)
 - [Micronaut](../guides/micronaut/redis.md)
 - [Quarkus](../guides/quarkus/redis.md)
 - [Spring](../guides/spring/redis.md)
 - [WordPress](../guides/wordpress/redis.md)
 
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -44,7 +46,12 @@ for high-performance data retrieval and key-value storage.
     </tbody>
 </table>
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 <table>
     <thead>
@@ -135,7 +142,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
@@ -449,9 +456,13 @@ relationships:
     endpoint: reporter-replica
 ```
 
-{{% relationship-ref-intro %}}
+## Relationship reference 
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {

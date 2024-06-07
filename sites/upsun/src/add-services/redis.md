@@ -11,21 +11,12 @@ for high-performance data retrieval and key-value storage.
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
 - [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 
-{{% frameworks version="1" %}}
-
-- [Drupal](../guides/drupal/redis.md)
-- [Ibexa DXP](../guides/ibexa/deploy.md#cache-and-sessions)
-- [Jakarta EE](../guides/jakarta/deploy.md#redis)
-- [Micronaut](../guides/micronaut/redis.md)
-- [Quarkus](../guides/quarkus/redis.md)
-- [Spring](../guides/spring/redis.md)
-- [WordPress](../guides/wordpress/redis.md)
-
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like.
+When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="redis" status="supported" environment="grid" >}}
 
@@ -41,14 +32,23 @@ while Redis 2.8 only supports a single database.
 Depending on your needs,
 you can set up Redis as [persistent](#persistent-redis) or [ephemeral](#ephemeral-redis).
 
-{{% relationship-ref-intro %}}
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 REDIS_USERNAME=
@@ -189,7 +189,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
@@ -217,8 +217,6 @@ services:
 ```
 
 ### Configuration example
-
-#### [Service](/add-services/_index.md) and [app](/create-apps/_index.md) configuration
 
 ```yaml {configFile="app"}
 applications:
@@ -262,7 +260,11 @@ services:
         type: redis-persistent:{{% latest "redis" %}}
 ```
 
-{{% v2connect2app serviceName="redis" relationship="redis" var="CACHE_URL"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -276,7 +278,14 @@ export CACHE_SCHEME="${REDIS_SCHEME}"
 export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-{{% /v2connect2app %}}
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
+
+Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``REDIS_HOST``,
+are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Ephemeral Redis
 
@@ -338,7 +347,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
@@ -366,8 +375,6 @@ services:
 ```
 
 ### Configuration example
-
-#### [Service](add-services/_index.md) and [app](/create-apps/_index.md) configuration
 
 ```yaml {configFile="app"}
 applications:
@@ -411,7 +418,11 @@ services:
         type: redis:{{% latest "redis" %}}
 ```
 
-{{% v2connect2app serviceName="redis" relationship="redis" var="CACHE_URL"%}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -425,7 +436,14 @@ export CACHE_SCHEME="${REDIS_SCHEME}"
 export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-{{% /v2connect2app %}}
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
+
+Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``REDIS_HOST``,
+are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Multiple databases
 

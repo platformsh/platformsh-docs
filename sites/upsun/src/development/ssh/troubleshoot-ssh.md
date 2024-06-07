@@ -154,6 +154,6 @@ You can use this information to make one last check of the private key file.
 
 ## Something still wrong?
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.

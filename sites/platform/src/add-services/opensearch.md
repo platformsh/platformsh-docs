@@ -6,7 +6,7 @@ description: |
 sidebarTitle: "OpenSearch"
 ---
 
-{{% description %}}
+OpenSearch is a distributed RESTful search engine built for the cloud.
 
 See the [OpenSearch documentation](https://opensearch.org/docs/latest/) for more information.
 
@@ -68,9 +68,13 @@ or are no longer the recommended way to configure the service on {{% vendor/name
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
 
-{{% relationship-ref-intro %}}
+## Relationship reference 
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
@@ -95,7 +99,66 @@ switch to [a supported version](#supported-versions).
 
 ## Usage example
 
-{{% endpoint-description type="opensearch" noApp=true /%}}
+### 1. Configure the service
+
+To define the service, use the `opensearch` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: opensearch:<VERSION>
+    disk: 256
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+opensearch:
+    type: opensearch:{{% latest "opensearch" %}}
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+   opensearch: 
+```
 
 ### Use in app
 
@@ -110,7 +173,11 @@ relationships:
     opensearch: 
 ```
 
-{{% v2connect2app serviceName="opensearch" relationship="opensearch" var="OPENSEARCH_HOSTS" %}}
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `opensearch` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+
+From this, `myapp` can retrieve access credentials to the service through the environment variable `{{< vendor/prefix >}}_RELATIONSHIPS`. That variable is a base64-encoded JSON object, but can be decoded at runtime (using the built-in tool `jq`) to provide more accessible environment variables to use within the application itself:
 
 ```bash {location="myapp/.environment"}
 # Decode the built-in credentials object variable.
@@ -127,7 +194,11 @@ export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".opensearch[0].p
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 
-{{% /v2connect2app %}}
+The above file &mdash; `.environment` in the `myapp` directory &mdash; is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `OPENSEARCH_HOSTS` can be used within the application to connect to the service.
+
+Note that `OPENSEARCH_HOSTS` and all {{< vendor/name >}}-provided environment variables like `{{% vendor/prefix %}}_RELATIONSHIPS`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
 
 {{< note >}}
 
@@ -159,7 +230,7 @@ That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
 in the `username` and `password` properties.
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 This functionality is generally not required if OpenSearch isn't exposed on its own public HTTP route.
 However, certain applications may require it, or it allows you to safely expose OpenSearch directly to the web.

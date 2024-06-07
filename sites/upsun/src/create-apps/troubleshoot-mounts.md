@@ -2,7 +2,7 @@
 title: "Troubleshoot mounts"
 ---
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 ## Overlapping folders
 

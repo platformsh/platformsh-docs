@@ -12,13 +12,25 @@ It is a framework for storing, reading and analyzing streaming data. See the [Ka
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like.
+When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="kafka" status="supported" environment="grid" >}}
 
-{{% relationship-ref-intro %}}
+## Relationship reference
 
-{{% service-values-change %}}
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 {{< codetabs >}}
 +++
@@ -74,6 +86,99 @@ export APP_KAFKA_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.kafka[0].host')"
 
 ## Usage example
 
-{{% endpoint-description type="kafka" /%}}
+### 1. Configure the service
 
-(The specific way to inject configuration into your application varies. Consult your application or framework's documentation.)
+To define the service, use the ``kafka`` type:
+
+```yaml {configFile="app"}
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: kafka:<VERSION>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <SERVICE_NAME>: 
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: kafka:<VERSION>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](/add-services/kafka.md#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables)
+
+### Example configuration
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            kafka: 
+
+services:
+    # The name of the service container. Must be unique within a project.
+    kafka:
+        type: kafka:{{% latest "kafka" %}}
+```
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Python
+file=static/files/fetch/examples/python/kafka
+highlight=python
++++
+
+<--->
+
++++
+title=Ruby
+highlight=ruby
++++
+
+## With the ruby-kafka gem
+
+# Producer
+require "kafka"
+kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
+kafka.deliver_message("Hello, World!", topic: "greetings")
+
+# Consumer
+kafka.each_message(topic: "greetings") do |message|
+  puts message.offset, message.key, message.value
+end
+
+{{< /codetabs >}}
