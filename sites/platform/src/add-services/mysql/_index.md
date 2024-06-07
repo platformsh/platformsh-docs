@@ -289,9 +289,71 @@ Possible permissions:
 | Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
 | Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables. |
 
+### Restrict access to database replicas only
+
+{{< partial "banners/replicas/body.md" >}}
+
+For security reasons, you can grant your app access to replicas instead of your actual database.
+To do so, when defining the relationship between your app and database,
+make sure you do the following:
+
+1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2. Add the `-replica` suffix to the name of the endpoint you want to use.
+
+This results in the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}:
+        service: {{% variable "SERVICE_NAME" %}}
+        endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+```
+
+For example, if you define a `mariadb` database as follows:
+
+```yaml {configFile="services"}
+mariadb:
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
+    configuration:
+      schemas:
+        - main
+    endpoints:
+      admin:
+        default_schema: main
+        privileges:
+          main: admin
+      reporter:
+        privileges:
+          main: ro
+```
+
+To create a replica of the `mariadb` database and allow your app to connect to it
+through the `admin` endpoint with admin permissions,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: admin-replica
+```
+
+To create a replica of the `mariadb` database and allow your app to connect to it
+through the `reporter` endpoint with read-only permissions instead,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: reporter-replica
+```
+
 ## Multiple databases
 
 With version `10.0` or later, you can define multiple databases.
+
 To do so, define multiple `schemas` in your [service configuration](#configuration-options).
 
 You can also specify multiple `endpoints` for [permissions](#define-permissions).
