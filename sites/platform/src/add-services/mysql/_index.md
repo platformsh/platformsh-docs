@@ -450,7 +450,7 @@ relationships:
     endpoint: reporter-replica
 ```
 
-### Give access to both the main database and its replicas
+### Grant access to the main database and its replicas
 
 {{< partial "banners/replicas/body.md" >}}
 
