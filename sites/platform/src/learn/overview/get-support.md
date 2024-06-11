@@ -48,7 +48,7 @@ To permanently delete your {{% vendor/name %}} account, follow these steps:
 
 {{% note theme=warning title="Warning"%}}
 
-Deleting your {{% vendor/name %}} account automatically deletes any linked Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
+Deleting your {{% vendor/name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
 {{% /note %}} 
 
