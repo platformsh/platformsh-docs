@@ -126,10 +126,10 @@ const Search = ({ fullPage }) => {
     <>
       <form onSubmit={handleSubmit} className={`${fullPage ? 'max-w-4xl bg-grey mb-4' : ''}`}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
+        <label className="sr-only" htmlFor={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}>Search our docs</label>
         <div className="flex items-center">
           <input
-            id="searchwicon"
+            id={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}
             value={query}
             placeholder="What are you looking for?"
             onChange={handleInputChange}
