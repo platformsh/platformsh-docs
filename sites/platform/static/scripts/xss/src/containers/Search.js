@@ -129,7 +129,7 @@ const Search = ({ fullPage }) => {
         <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
         <div className="flex items-center">
           <input
-            id="searchwicon"
+            id={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}
             value={query}
             placeholder="What are you looking for?"
             onChange={handleInputChange}
