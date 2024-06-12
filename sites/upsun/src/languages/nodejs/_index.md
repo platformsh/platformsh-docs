@@ -15,11 +15,15 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 ## Supported versions
 
-{{% major-minor-versions-note %}}
+You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="nodejs" status="supported" environment="grid" >}}
 
-{{% language-specification type="nodejs" display_name="Node.js" %}}
+### Specify the language
+
+To use Node.js, specify ``nodejs`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
 
 ```yaml {configFile="app"}
 applications:

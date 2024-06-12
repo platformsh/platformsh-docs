@@ -1,12 +1,15 @@
 ---
 title: "Composable image"
-weight: 4
+weight: 5
 description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
 beta: true
 banner:
   title: Beta Feature
   body: The {{% vendor/name %}} composable image is currently available in Beta.
         This feature as well as its documentation is subject to change.
+keywords:
+  - sleepy crons
+  - sleepy_crons
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
@@ -25,12 +28,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-{{% note theme="info" title="Further resources"%}}
-
-For a more detailed introduction to the composable image, check out [this video](https://www.youtube.com/watch?v=emOt32DVl28).</br>
 If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
-
-{{% /note %}}
 
 ## Top-level properties
 
@@ -79,6 +77,16 @@ myapp:
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
 To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
 
+{{% note theme=warning title="Warning" %}}
+While technically available during the build phase, `nix` commands aren't supported at runtime as the image becomes read-only.
+
+When using the {{% vendor/name %}} composable image, you don't need `nix` commands.
+Everything you install using the `stack` key is readily available to you as the binaries are linked and included in `$PATH`.
+
+For instance, to [start a secondary runtime](#primary-runtime),
+just issue the command (e.g. in the [`start` command](/create-apps/app-reference/composable-image.md#web-commands)) instead of the `nix run` command.
+{{% /note %}}
+
 #### Primary runtime
 
 If you add multiple runtimes to your application container,
@@ -107,18 +115,19 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**    |
-|----------------------------------------------|---------------|----------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15, 1.14                 |
-| [Go](/languages/go.html)                     | `golang`      | 1.22, 1.21, 1.20           |
-| [Java](/languages/java.html)                 | `java`        | 21                         |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                          |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 21, 20, 18                 |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                          |
-| [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
-| [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
+| **Language**                                 | **Nix package** | **Supported version(s)**             |
+|----------------------------------------------|---------------|----------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
+| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
+| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
+| [Java](/languages/java.html)                 | `java`        | 21                                     |
+| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
+| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
+| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
+| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
 
 **Example:**
 
@@ -163,13 +172,13 @@ myapp:
       root: "/"
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extensions:
-          - gd
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+          disabled_extensions:
+            - gd
 ```
 
 {{% note %}}
@@ -209,7 +218,7 @@ Here is a full composable image configuration example. Note the use of the `<nix
 ```yaml {configFile="apps"}
 myapp:
     stack:
-      - "php@{{% latest "php" %}}"
+      - "php@{{% latest "php" %}}":
           extensions:
             - apcu
             - sodium
@@ -230,12 +239,12 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 ```yaml {configFile="apps"}
 app1:
     stack:
-      - "php@{{% latest "php" %}}"
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+      - "php@{{% latest "php" %}}":
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 app2:
@@ -330,12 +339,12 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | Container               | Profile          |
 |-------------------------|------------------|
 | Chrome Headless         | HIGH_CPU         |
-| .NET                    | HIGH_CPU         |  
+| .NET                    | HIGH_CPU         |
 | Elasticsearch           | HIGH_MEMORY      |
 | Elasticsearch Premium   | HIGH_MEMORY      |
 | Elixir                  | HIGH_CPU         |
 | Go                      | HIGH_CPU         |
-| InfluxDB                | HIGH_MEMORY      |  
+| InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
 | Lisp                    | HIGH_CPU         |
@@ -344,17 +353,17 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | MongoDB                 | HIGH_MEMORY      |
 | MongoDB Premium         | HIGH_MEMORY      |
 | Network Storage         | HIGH_MEMORY      |
-| Node.js                 | HIGH_CPU         |  
+| Node.js                 | HIGH_CPU         |
 | OpenSearch              | HIGH_MEMORY      |
 | Oracle MySQL            | HIGH_MEMORY      |
-| PHP                     | HIGH_CPU         | 
+| PHP                     | HIGH_CPU         |
 | PostgreSQL              | HIGH_MEMORY      |
-| Python                  | HIGH_CPU         | 
+| Python                  | HIGH_CPU         |
 | RabbitMQ                | HIGH_MEMORY      |
 | Redis ephemeral         | BALANCED         |
 | Redis persistent        | BALANCED         |
 | Ruby                    | HIGH_CPU         |
-| Rust                    | HIGH_CPU         | 
+| Rust                    | HIGH_CPU         |
 | Solr                    | HIGH_MEMORY      |
 | Varnish                 | HIGH_MEMORY      |
 | Vault KMS               | HIGH_MEMORY      |
@@ -387,10 +396,10 @@ For more information, see how to [define relationships between your apps](/creat
 
 {{< note title="Availability" theme="info">}}
 
-New syntax (default and explicit endpoints) described below is supported by most, but not all, image types 
+New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
 (`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
-This syntax is currently being rolled out for all images. 
-If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section. 
+This syntax is currently being rolled out for all images.
+If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
 {{< /note >}}
 
@@ -406,7 +415,7 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "SERVICE_NAME" %}}: 
+    {{% variable "SERVICE_NAME" %}}:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
@@ -417,7 +426,7 @@ For example, if you define the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb: 
+    mariadb:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
@@ -438,7 +447,7 @@ You can define any number of relationships in this way:
 relationships:
     mariadb:
     redis:
-    elasticsearch: 
+    elasticsearch:
 ```
 
 {{< note title="Tip" theme="info" >}}
@@ -455,7 +464,7 @@ where
 {{< variable "SERVICE_NAME_A" >}}:
     type: mariadb:{{% latest "mariadb" %}}
     disk: 256
-{{< variable "SERVICE_NAME_B" >}}: 
+{{< variable "SERVICE_NAME_B" >}}:
     type: redis:{{% latest "redis" %}}
     disk: 256
 {{< variable "SERVICE_NAME_C" >}}:
@@ -476,7 +485,7 @@ Use the following configuration:
 ```yaml {configFile="app"}
 relationships:
     {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}} 
+        service: {{% variable "SERVICE_NAME" %}}
         endpoint: {{% variable "ENDPOINT_NAME" %}}
 ```
 
@@ -489,7 +498,7 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    database: # The name of the relationship. 
+    database: # The name of the relationship.
         service: mariadb
         endpoint: db1
 ```
@@ -502,14 +511,14 @@ see each service's dedicated page:
  - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
  - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
- - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
+ - [Vault KMS](add-services/vault.md#multiple-endpoints-configuration) (multiple permissions)
 
  You can add as many relationships as you want to your app configuration,
  using both default and explicit endpoints according to your needs:
 
 ```yaml {configFile="app"}
 relationships:
-    database1: 
+    database1:
         service: mariadb
         endpoint: admin
     database2:
@@ -558,11 +567,14 @@ So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
-{{% disk-space-mb %}}
+You configure the disk size in [MB](/glossary#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
 ### Downsize a disk
 
-{{% disk-downsize type="app" %}}
+You can decrease the size of an existing disk for an app. If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
 
@@ -684,7 +696,7 @@ applications:
 ```
 
 In this case, it does not matter that each mount is of a different `source` type.
-Each mount is restricted to a subfolder within `var`, and all is well. 
+Each mount is restricted to a subfolder within `var`, and all is well.
 
 The following, however, is not allowed and will result in a failure:
 
@@ -1121,6 +1133,14 @@ The following table shows the properties for each job:
 
 Note that you can [cancel pending or running crons](/environments/cancel-activity.md).
 
+{{< note >}}
+
+The use of the `cmd` key is now deprecated in favor of the `commands`key.</br>
+Make sure you set your new cron jobs using the `commands` key,
+and update your existing cron jobs to ensure continuity.
+
+{{< /note >}}
+
 ### Cron commands
 
 | Name    | Type     | Required | Description                                                                                                                                                                                                                                                                        |
@@ -1201,7 +1221,8 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    cmd: 'php artisan schedule:run'
+    commands:
+      start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
 
@@ -1218,11 +1239,12 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    cmd: |
-      # Only run for the production environment, aka main branch
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-          croncape symfony ...
-      fi
+    commands:
+      start: |
+        # Only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+            croncape symfony ...
+        fi
 {{< /snippet >}}
 ```
 

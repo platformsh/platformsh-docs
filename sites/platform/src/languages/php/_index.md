@@ -14,7 +14,9 @@ Also, see how you can [modify your PHP runtime when using a composable image](#m
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -192,7 +194,7 @@ dependencies:
         require:
             "platformsh/client": "2.x-dev"
 ```
-   This is equivalent to `composer require platform/client 2.x-dev`.
+   This is equivalent to `composer require platformsh/client 2.x-dev`.
 
 2. Add the repository to use:
 
@@ -203,7 +205,7 @@ repositories:
 ```
 That installs `platformsh/client` from the specified repository URL as a global dependency.
 
-For example, to install Composer 2 and the `platform/client 2.x-dev` library from a custom repository,
+For example, to install Composer 2 and the `platformsh/client 2.x-dev` library from a custom repository,
 use the following:
 
 ```yaml {configFile="app"}

@@ -10,7 +10,9 @@ description: |
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 ### Ruby MRI
 
@@ -386,11 +388,6 @@ For Rails, you have two choices:
 
 - New images are released on a regular basis to apply security patches.
   To avoid issues when such updates are performed, use `ruby "~>3.1"` in your `Gemfile`.
-
-## Project templates
-
-{{< repolist lang="ruby" displayName="Ruby" >}}
-
 
 ## Troubleshooting
 

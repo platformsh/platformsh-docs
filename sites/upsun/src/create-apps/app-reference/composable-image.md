@@ -25,12 +25,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-{{% note theme="info" title="Further resources"%}}
-
-For a more detailed introduction to the composable image, check out [this video](https://www.youtube.com/watch?v=emOt32DVl28).</br>
 If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
-
-{{% /note %}}
 
 ## Primary application properties
 
@@ -102,6 +97,16 @@ applications:
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
 To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
 
+{{% note theme=warning title="Warning" %}}
+While technically available during the build phase, `nix` commands aren't supported at runtime as the image becomes read-only.
+
+When using the {{% vendor/name %}} composable image, you don't need `nix` commands.
+Everything you install using the `stack` key is readily available to you as the binaries are linked and included in `$PATH`.
+
+For instance, to [start a secondary runtime](#primary-runtime),
+just issue the command (e.g. in the [`start` command](/create-apps/app-reference/composable-image.md#web-commands)) instead of the `nix run` command.
+{{% /note %}}
+
 #### Primary runtime
 
 If you add multiple runtimes to your application container,
@@ -130,18 +135,19 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**    |
-|----------------------------------------------|---------------|----------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                          |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                          |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15, 1.14                 |
-| [Go](/languages/go.html)                     | `golang`      | 1.22, 1.21, 1.20           |
-| [Java](/languages/java.html)                 | `java`        | 21                         |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                          |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 21, 20, 18                 |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                          |
-| [PHP](/languages/php.html)                   | `php`         | 8.3, 8.2, 8.1              |
-| [Python](/languages/python.html)             | `python`      | 3.12, 3.11, 3.10, 3.9, 2.7 |
+| **Language**                                 | **Nix package** | **Supported version(s)**             |
+|----------------------------------------------|---------------|----------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
+| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
+| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
+| [Java](/languages/java.html)                 | `java`        | 21                                     |
+| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
+| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
+| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
+| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
 
 **Example:**
 
@@ -188,13 +194,13 @@ applications:
       root: "/"
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
-        disabled_extensions:
-          - gd
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
+          disabled_extensions:
+            - gd
 ```
 
 {{% note %}}
@@ -237,7 +243,7 @@ Here is a full composable image configuration example. Note the use of the `<nix
 applications:
   myapp:
     stack:
-      - "php@{{% latest "php" %}}"
+      - "php@{{% latest "php" %}}":
           extensions:
             - apcu
             - sodium
@@ -259,12 +265,12 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 applications:
   frontend:
     stack:
-      - "php@{{% latest "php" %}}"
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+      - "php@{{% latest "php" %}}":
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
   backend:
@@ -455,7 +461,7 @@ see each service's dedicated page:
  - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
  - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
- - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
+ - [Vault KMS](add-services/vault.md#multiple-endpoints-example) (multiple permissions)
 
  You can add as many relationships as you want to your app configuration,
  using both default and explicit endpoints according to your needs:
@@ -522,7 +528,10 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### Downsize a disk
 
-{{% disk-downsize type="app" %}}
+You can decrease the size of an existing disk for an app. If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
 
@@ -1243,6 +1252,7 @@ The following table shows the properties for each job:
 
 Note that you can [cancel pending or running crons](/environments/cancel-activity.md).
 
+
 ### Cron commands
 
 | Name    | Type     | Required | Description                                                                                                                                                                                                                                                                        |
@@ -1325,7 +1335,8 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    cmd: 'php artisan schedule:run'
+    commands: 
+      start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
 
@@ -1342,11 +1353,12 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    cmd: |
-      # Only run for the production environment, aka main branch
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-          croncape symfony ...
-      fi
+    commands: 
+      start: |
+        # Only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+            croncape symfony ...
+        fi
 {{< /snippet >}}
 ```
 

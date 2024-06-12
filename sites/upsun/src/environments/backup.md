@@ -46,6 +46,15 @@ first activate it.
 
    b) To use your latest code instead, just redeploy your environment or push a new change.
 
+{{% note %}}
+
+You may not want the code from the backup to be restored at step 2.
+For instance, if you have deleted containers since the backup, you may not want them to be restored with the backup.
+
+In this case, you can opt out of restoring the code.
+To do so, when you restore your backup, use the `--no-code` flag.
+{{% /note %}}
+
 ## Backups and downtime
 
 By default, creating a manual backup causes a momentary pause in site availability so that all requests can complete.

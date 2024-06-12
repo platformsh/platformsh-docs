@@ -6,24 +6,32 @@ sidebarTitle: "MongoDB"
 premium: true
 ---
 
-{{< description >}}
+MongoDB is a cross-platform, document-oriented database.
 
-{{% frameworks version="1" %}}
+For more information on using MongoDB, see [MongoDB's own documentation](https://docs.mongodb.com/manual/).
+
+## Use a framework
+
+If you use one of the following frameworks, follow its guide:
 
 - [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
 - [Micronaut](../guides/micronaut/mongodb.md)
 - [Quarkus](../guides/quarkus/mongodb.md)
 - [Spring](../guides/spring/mongodb.md)
 
-{{% /frameworks %}}
-
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 ### Enterprise edition
 
-{{% premium-features/add-on feature="MongoDB Enterprise" %}}
+{{% note title="Premium Service" theme="info" %}}
+MongoDB Enterprise isn’t included in any {{< vendor/name >}} plan. 
+You need to add it separately at an additional cost. 
+To add MongoDB Enterprise, [contact Sales](https://platform.sh/contact/).
+{{% /note %}}
 
 <table>
     <thead>
@@ -42,7 +50,12 @@ premium: true
     </tbody>
 </table>
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 <table>
     <thead>
@@ -75,13 +88,22 @@ If you want to experiment with a later version without committing to it use a pr
 
 {{< /note >}}
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 {{< image-versions image="mongodb" status="deprecated" environment="grid" >}}
 
-{{% relationship-ref-intro %}}
+## Relationship reference
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
@@ -107,11 +129,147 @@ If you want to experiment with a later version without committing to it use a pr
 
 ### Enterprise edition example
 
-{{% endpoint-description type="mongodb-enterprise" php=true noApp=true /%}}
+#### 1. Configure the service
+
+To define the service, use the `mongodb-enterprise` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: mongodb-enterprise:<VERSION>
+    disk: 512
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+#### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
+
+```yaml {configFile="apps"}
+# PHP extensions.
+runtime:
+    extensions:
+        - mongodb
+```
+
+#### Example configuration
+
+##### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+mongodb-enterprise:
+    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+    disk: 512
+```
+
+##### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    mongodb-enterprise: 
+```
 
 ### Legacy edition example
 
-{{% endpoint-description type="mongodb" php=true /%}}
+#### 1. Configure the service
+
+To define the service, use the `mongodb` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: mongodb:<VERSION>
+    disk: 512
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+#### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <SERVICE_NAME>: 
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+(the network address a service is accessible from) that is identical to the _name_ of that service.
+
+Depending on your needs, instead of default endpoint configuration,
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+For PHP, enable the [extension](/languages/php/extensions) for the service:
+
+```yaml {configFile="apps"}
+# PHP extensions.
+runtime:
+    extensions:
+        - mongodb
+```
+
+#### Example configuration
+
+##### [Service definition](/add-services)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+mongodb:
+    type: mongodb:{{% latest "mongodb" %}}
+    disk: 512
+```
+
+##### [App configuration](/create-apps)
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    mongodb: 
+```
 
 {{< codetabs >}}
 
@@ -171,7 +329,7 @@ With the example value, that would be the following:
 mongo mongodb.internal
 ```
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ## Exporting data
 

@@ -24,14 +24,23 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 {{% vendor/name %}} plans on supporting long-term support ClickHouse versions in priority.
 
-{{% relationship-ref-intro %}}
+## Relationship reference
+
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
 +++
 title= Service environment variables
 +++
 
-{{% service-values-change %}}
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
 CLICKHOUSE_USERNAME=main
@@ -86,8 +95,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     }
 ```
 
-Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information
-in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.html#use-env-files):
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
@@ -136,8 +144,8 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-      relationships:
-        <SERVICE_NAME>:
+        relationships:
+            <SERVICE_NAME>:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -166,10 +174,8 @@ services:
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
-
-{{< /codetabs >}}
-
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+{{< /codetabs >}}
 
 #### `clickhouse-http` endpoint
 
@@ -177,6 +183,7 @@ The `clickhouse-http` endpoint allows you to use the HTTP API Port for HTTP requ
 This protocol is used by [JDBC](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/), [ODBC](https://learn.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc?view=sql-server-ver16), and web interfaces.
 
 Use the following configuration:
+
 {{< codetabs >}}
 
 +++
@@ -219,18 +226,41 @@ services:
         type: clickhouse:<VERSION>
 ```
 
-You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
-
-{{< /codetabs >}}
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
 
 With this definition, the application container (``<APP_NAME>``) now has access to the service via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
 
 {{< codetabs >}}
 
 +++
-title= With ``clickhouse`` endpoint
+title= With ``clickhouse`` default endpoint
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+        # Relationships enable an app container's access to a service.
+        relationships:
+            clickhouse:
+services:
+    clickhouse:
+        # The name of the service container. Must be unique within a project.
+        type: clickhouse:24
+```
+
+<--->
+
++++
+title= With ``clickhouse`` explicit endpoint
 +++
 
 ```yaml {configFile="app"}
@@ -244,8 +274,9 @@ applications:
         relationships:
             clickhouse: "clickhouse:clickhouse"
 services:
-    # The name of the service container. Must be unique within a project.
-    type: clickhouse:24
+    clickhouse:
+        # The name of the service container. Must be unique within a project.
+        type: clickhouse:24
 ```
 
 <--->
@@ -266,7 +297,8 @@ applications:
             clickhouse: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:24
+    clickhouse:
+        type: clickhouse:24
 ```
 
 If you want to change the ``clickhouse`` endpoint to ``clickhouse-http``, you need to use explicit endpoint definition as it defaults to ``clickhouse`` endpoint when using default endpoint (aka. {{% variable "SERVICE_NAME" %}} as relationship definition).

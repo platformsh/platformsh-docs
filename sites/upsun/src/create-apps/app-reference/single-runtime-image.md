@@ -115,7 +115,7 @@ applications:
     type: 'nodejs:{{% latest "nodejs" %}}
   frontend:
     stack:
-      - "php@{{% latest "php" %}}"
+      - "php@{{% latest "php" %}}":
         extensions:
           - apcu
           - sodium
@@ -283,7 +283,7 @@ see each service's dedicated page:
  - [PostgreSQL](/add-services/postgresql/_index.md#multiple-databases) (multiple databases and permissions)
  - [Redis](/add-services/redis/_index.md#multiple-databases) (multiple databases)
  - [Solr](add-services/solr/_index.md#solr-6-and-later) (multiple cores)
- - [Vault KMS](add-services/vault/_index.md#multiple-endpoints-example) (multiple permissions)
+ - [Vault KMS](add-services/vault.md#multiple-endpoints-example) (multiple permissions)
 
  You can add as many relationships as you want to your app configuration,
  using both default and explicit endpoints according to your needs:
@@ -350,7 +350,10 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ### Downsize a disk
 
-{{% disk-downsize type="app" %}}
+You can decrease the size of an existing disk for an app. If you do so, be aware that:
+
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
 
@@ -1206,7 +1209,8 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    cmd: 'php artisan schedule:run'
+    commands: 
+      start: 'php artisan schedule:run'
   {{< /snippet >}}
 ```
 
@@ -1223,11 +1227,12 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    cmd: |
-      # Only run for the production environment, aka main branch
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-          croncape symfony ...
-      fi
+    commands: 
+      start: |
+        # Only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+            croncape symfony ...
+        fi
   {{< /snippet >}}
 ```
 

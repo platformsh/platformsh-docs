@@ -21,7 +21,9 @@ If your app does this regularly, a local mount is more effective.
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -50,7 +52,12 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{< /note >}}
 
-{{% deprecated-versions %}}
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
 <table>
     <thead>
@@ -71,7 +78,68 @@ Any change to the service version results in existing data becoming inaccessible
 
 ## Usage example
 
-{{% endpoint-description type="network-storage" noApp=true /%}}
+### 1. Configure the service
+
+To define the service, use the `network-storage` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: network-storage:<VERSION>
+    disk: 256
+```
+
+`<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
+
+- Contain at most 63 characters
+- Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
+- Start with an alphanumeric character
+- End with an alphanumeric character
+
+This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
+
+### 2. Add the mount
+
+To define the mount accessible by your application, use the following configuration:
+
+```yaml {configFile="apps"}
+mounts:
+    '<TARGET_PATH>':
+        source: service
+        service: <SERVICE_NAME>
+        source_path: <SOURCE_PATH>
+```
+
+- `<TARGET_PATH>` is the path to your mount within the app container (relative to the app’s root).
+- `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+- `<SOURCE_PATH>` specifies where the mount points inside the service.</br>
+  If the `source_path` is an empty string (`""`), your mount points to the entire service.</br>
+  If you don’t define a `source_path`, {{ .Site.Params.vendor.name }} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
+  For example, if your mount lives in the `/my/files/` directory within your app container, it will point to a `my/files` directory within the service.
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+network-storage:
+    type: network-storage:{{% latest "network-storage" %}}
+    disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
+```yaml {configFile="apps"}
+mounts:
+    'my/files':
+        source: service
+        service: network-storage
+        source_path: files
+```
 
 ## Multi-application usage
 
@@ -92,9 +160,13 @@ app1:
     [...]
 
     mounts:
+        # The path to your mount within the app container (relative to the app's root).
         'web/uploads':
+            # Specifies that the mount points to a network storage service that can be shared between apps.
             source: service
-            service: files
+            # The name of the network storage service the mount points to.
+            service: network-storage
+            # Specifies where your mount points inside the external directory that is mounted to your app container.
             source_path: uploads
 
 # The name of the app container. Must be unique within a project.
@@ -106,13 +178,26 @@ app2:
     [...]
 
     mounts:
+        # The path to your mount within the app container (relative to the app's root).
         'process':
+            # Specifies that the mount points to a network storage service that can be shared between apps.
             source: service
-            service: files
+            # The name of the network storage service the mount points to.
+            service: network-storage
+            # Specifies where your mount points inside the external directory that is mounted to your app container.
+            # Since the target is the uploads directory app1's mount already points to,
+            # the network storage service is effectively shared between app1 and app2. 
             source_path: uploads/incoming
+         
+        # The path to your mount within the app container (relative to the app's root). 
         'done':
+            # Specifies that the mount points to a network storage service that can be shared between apps.
             source: service
-            service: files
+            # The name of the network storage service the mount points to.
+            service: network-storage
+            # Specifies where your mount points inside the external directory that is mounted to your app container.
+            # Since the target is the uploads directory app1's mount already points to,
+            # the network storage service is effectively shared between app1 and app2. 
             source_path: uploads/done
 ```
 
@@ -129,10 +214,10 @@ keep in mind what mount behavior you want.
 `local` mounts are a separate storage area for each instance,
 while `service` mounts can be shared between instances.
 
-For example, you can define a network storage service:
+For example, you can define a network storage service called `files`:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
+# The name of the network storage service. Must be unique within a project.
 files:
     type: network-storage:{{% latest "network-storage" %}}
     disk: 2048
@@ -147,30 +232,22 @@ name: myapp
 # The type of the application to build.
 type: "nodejs:20"
 
-# Define a web instance
-web:
-    locations:
-        "/":
-            root: "public"
-            passthru: true
-            index: ['index.html']
-
-# Define how much space is available to local mounts
+# Defines how much space is available to local mounts.
 disk: 512
 
 mounts:
-    # Define a network storage mount that's available to both instances together
+    # Defines a network storage mount that can be shared by both worker instances.
     'network_dir':
         source: service
         service: files
         source_path: our_stuff
 
-    # Define a local mount that's available to each instance separately
+    # Defines a local mount that's available to each instance separately.
     'local_dir':
         source: local
         source_path: my_stuff
 
-# Define a web instance
+# Defines a web instance.
 web:
     locations:
         "/":
@@ -178,7 +255,7 @@ web:
             passthru: true
             index: ['index.html']
 
-# Define a worker instance from the same code but with a different start
+# Define a queue worker instance from the same code but with a different start.
 workers:
     queue:
         commands:

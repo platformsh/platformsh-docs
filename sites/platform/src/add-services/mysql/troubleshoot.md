@@ -3,7 +3,7 @@ title: Troubleshoot MySQL
 sidebarTitle: Troubleshoot
 ---
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 ## Lock wait timeout
 

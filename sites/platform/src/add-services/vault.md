@@ -14,7 +14,9 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 
 ## Supported versions
 
-{{% major-minor-versions-note configMinor="true" %}}
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 <table>
     <thead>
@@ -33,9 +35,13 @@ To store secrets such as API keys, create sensitive [environment variables](../d
     </tbody>
 </table>
 
-{{% relationship-ref-intro %}}
+## Relationship reference 
 
-{{% service-values-change %}}
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
@@ -65,7 +71,25 @@ To store secrets such as API keys, create sensitive [environment variables](../d
 
 ## Usage example
 
-{{% endpoint-description type="vault-kms" noApp=true %}}
+### 1. Configure the service
+
+To define the service, use the `vault-kms` type:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+    type: vault-kms:<VERSION>
+    disk: 512
+    configuration:
+        endpoints:
+            <ENDPOINT_ID>:
+                - policy: <POLICY>
+                  key: <KEY_NAME>
+                  type: <ENDPOINT_TYPE>
+```
+
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Back up your data before changing the service.
 
 - {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
 - {{< variable "VERSION" >}} is a supported version of the service.
@@ -83,7 +107,96 @@ You can create multiple endpoints, such as to have key management separate from 
 
 512 MB is the minimum required disk space for the Vault KMS service.
 
-{{% /endpoint-description %}}
+### 2. Add the relationship
+
+To define the relationship, use the following configuration:
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: <ENDPOINT_ID>
+```
+
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships. 
+That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
+
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+If you split the service into multiple endpoints, define multiple relationships.
+
+### Example configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+vault-kms:
+    type: vault-kms:1.12
+    disk: 512
+    configuration:
+        endpoints:
+            manage_keys:
+                - policy: admin
+                  key: vault-sign
+                  type: sign
+                - policy: sign
+                  key: vault-sign
+                  type: sign
+                - policy: verify
+                  key: vault-sign
+                  type: sign
+```
+
+#### [App configuration](/create-apps)
+
+```yaml {configFile="apps"}
+relationships:
+    vault_secret: "vault-kms:manage_keys"
+```
+
+### Multiple endpoints configuration
+
+### [Service definition](/add-services.html)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+vault-kms:
+    type: vault-kms:1.12
+    disk: 512
+    configuration:
+        endpoints:
+            management:
+                - policy: admin
+                  key: admin-key
+                  type: sign
+            sign_and_verify:
+                - policy: sign
+                  key: signing-key
+                  type: sign
+                - policy: verify
+                  key: signing-key
+                  type: sign
+```
+
+#### [App configuration](/create-apps)
+
+```yaml {configFile="apps"}
+relationships:
+    vault_manage:
+        service: vault-kms
+        endpoint: management
+    vault_sign:
+        service: vault-kms
+        endpoint: sign_and_verify
+```
 
 ## Use Vault KMS
 
@@ -91,7 +204,7 @@ To connect your app to the Vault KMS, use a token that's defined in the `{{< ven
 With this token for authentication,
 you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
 
-{{% service-values-change %}}
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 The following examples use cURL as an example, which you could do in a hook or after accessing your app with SSH.
 Adapt the examples for your app's language.

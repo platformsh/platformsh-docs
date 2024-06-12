@@ -3,7 +3,7 @@ title: "Troubleshoot disks"
 weight: 10
 ---
 
-{{% troubleshoot %}}
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 ## Exceeding plan storage limit
 

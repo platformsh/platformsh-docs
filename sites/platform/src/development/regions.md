@@ -35,8 +35,6 @@ The regions listed here may be different from those available to you when you cr
 Each organization can have its own rules for what regions to allow.
 When adding a new project, you only see regions allowed by your organization.
 
-The list of regions includes legacy regions as reference.
-
 ## Region location
 
 To find out where a given region is hosted, use the following command:
@@ -46,14 +44,6 @@ To find out where a given region is hosted, use the following command:
 ```
 
 The returned list contains, for each available region, its name, provider, geographic zone and its timezone.
-
-### Legacy regions
-
-A legacy region is a region running an older version of the {{% vendor/name %}} orchestration system.
-It doesn't include all available features.
-
-If you’re on a legacy region and want all features now,
-[migrate your project](../projects/region-migration.md) to a newer region.
 
 ## Public IP addresses
 
