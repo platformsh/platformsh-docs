@@ -153,7 +153,7 @@ The `cookies` key allows you to define a list of cookies you want to include in 
 
 | Possible values          | Description                                                                           | Default |
 |--------------------------|---------------------------------------------------------------------------------------|---------|
-| `['*']`                  | Any request with a cookie bypasses the cache.</br> In this case, {{% vendor/name %}} adds the `X-Platform-Cache: BYPASS` HTTP header in the router. As a result, all cookies bypass the cache.</br>Note that the same behaviour applies if the `Set-Cookie` header is present. | Yes |
+| `['*']`                  | Any request with a cookie bypasses the cache.</br></br> Note that this is achieved by {{% vendor/name %}} adding the `X-Platform-Cache: BYPASS` HTTP header in the router, and that the same behaviour applies if the `Set-Cookie` header is present. | Yes |
 | `[]`                     | Ignore all cookies.                                                                   | No |
 |`['cookie_1','cookie_2']` | A list of allowed cookies to include in the cache key. All other cookies are ignored. | No |
 
