@@ -133,6 +133,12 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the following configuration:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -142,7 +148,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -159,9 +165,49 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:opensearch"
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: opensearch:<VERSION>
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -172,17 +218,46 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            opensearch: 
-
+            opensearch:
 services:
     # The name of the service container. Must be unique within a project.
     opensearch:
-        type: opensearch:2
+        type: opensearch:{{% latest "opensearch" %}}
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            opensearch: "opensearch:opensearch"
+services:
+    # The name of the service container. Must be unique within a project.
+    opensearch:
+        type: opensearch:{{% latest "opensearch" %}}
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -197,12 +272,38 @@ applications:
         # Relationships enable an app container's access to a service.
         relationships:
             opensearch:
-
 services:
     # The name of the service container. Must be unique within a project.
     opensearch:
         type: opensearch:{{% latest "opensearch" %}}
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+
+        [...]
+
+        # Relationships enable an app container's access to a service.
+        relationships:
+            opensearch: "opensearch:opensearch"
+services:
+    # The name of the service container. Must be unique within a project.
+    opensearch:
+        type: opensearch:{{% latest "opensearch" %}}
+```
+
+{{< /codetabs >}}
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `opensearch` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)

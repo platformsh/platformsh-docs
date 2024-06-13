@@ -52,7 +52,7 @@ services:
 
 This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the mount
@@ -63,7 +63,7 @@ To define the mount accessible by your application, use the following configurat
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-       mounts:
+        mounts:
             '<TARGET_PATH>':
                 source: service
                 service: <SERVICE_NAME>
@@ -88,7 +88,7 @@ services:
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
-       mounts:
+        mounts:
             'my/files':
                 source: service
                 service: network-storage
@@ -119,7 +119,7 @@ applications:
         # The location of the application's code.
         source:
             root: "app1"
-        
+
         [...]
 
         mounts:
@@ -137,7 +137,7 @@ applications:
         # The location of the application's code.
         source:
             root: "app2"
-        
+
         [...]
 
         mounts:
@@ -149,9 +149,9 @@ applications:
                 service: network-storage
                 # Specifies where your mount points inside the external directory that is mounted to your app container.
                 # Since the target is the uploads directory app1's mount already points to,
-                # the network storage service is effectively shared between app1 and app2. 
+                # the network storage service is effectively shared between app1 and app2.
                 source_path: uploads/incoming
-            # The path to your mount within the app container (relative to the app's root). 
+            # The path to your mount within the app container (relative to the app's root).
             'done':
                 # Specifies that the mount points to a network storage service that can be shared between apps.
                 source: service
@@ -159,7 +159,7 @@ applications:
                 service: network-storage
                 # Specifies where your mount points inside the external directory that is mounted to your app container.
                 # Since the target is the uploads directory app1's mount already points to,
-                # the network storage service is effectively shared between app1 and app2. 
+                # the network storage service is effectively shared between app1 and app2.
                 source_path: uploads/done
 ```
 
