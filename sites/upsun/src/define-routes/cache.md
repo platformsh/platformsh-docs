@@ -167,11 +167,12 @@ With the following configuration, the cache key depends on the value of the `foo
 Other cookies are ignored.
 
 ```yaml {configFile="routes"}
-https://{default}/:
-    # ...
-        cache:
-            enabled: true
-            cookies: ["foo"]
+routes:
+    https://{default}/:
+        # ...
+            cache:
+                enabled: true
+                cookies: ["foo"]
 ```
 
 #### Example with a regular expression
