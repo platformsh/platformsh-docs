@@ -73,7 +73,7 @@ mariadb:
   to: "https://{default}/"
 ```
 
-In these files, you can use any of the [available YAML tags](./yaml-structure.md) you need.
+In these files, you can use any of the [available YAML tags](./platform-yaml-tags.md) you need.
 
 ## Multi-app
 In a [multiple application](/create-apps/multi-app/_index.md) context, you can also group all of your app configurations in a global ``.platform/applications.yaml`` file.
