@@ -1,0 +1,21 @@
+name: runs E2E tests
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: URL to test against
+        type: string
+        required: true
+
+
+jobs:
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+         project: ./sites/platform
+        env:
+          CYPRESS_baseUrl: ${{ inputs.url }}
+          CYPRESS_environment: github
