@@ -5,7 +5,7 @@ module.exports = defineConfig({
     baseUrl: 'http://localhost:1313/',
     env: {
       barfoo: "from config",
-      env: "local",
+      environment: "local",
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

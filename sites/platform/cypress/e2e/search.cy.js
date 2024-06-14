@@ -31,7 +31,8 @@ describe("Home",()=>{
         cy.wait('@searchresultsopensearch')
       }
 
-      cy.get("#xssroot").find("h2")
+      cy.get("#xssroot").find("h2").as("searchresultsheader")
+      cy.get("@searchresultsheader")
         .should("exist")
         .contains("Documentation")
       cy.get("#xssroot").find("li").contains("OpenSearch").should("exist")
