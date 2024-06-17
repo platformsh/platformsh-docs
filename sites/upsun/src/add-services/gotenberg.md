@@ -117,7 +117,7 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -169,7 +169,7 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            gotenberg:
+            gotenberg: 
 services:
     # The name of the service container. Must be unique within a project.
     gotenberg:

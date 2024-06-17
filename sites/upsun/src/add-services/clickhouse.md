@@ -145,7 +145,7 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -198,7 +198,7 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -252,7 +252,7 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse:
+            clickhouse: 
 services:
     clickhouse:
         # The name of the service container. Must be unique within a project.

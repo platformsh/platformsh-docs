@@ -53,7 +53,7 @@ applications:
         [...]
 
         relationships:
-            database:
+            database: 
 
 {{< code-link destination="/add-services.html#available-services" text="services" title="Click to see the complete list of all available services" >}}:
     database:

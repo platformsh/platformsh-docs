@@ -148,7 +148,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -220,7 +220,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            opensearch:
+            opensearch: 
 services:
     # The name of the service container. Must be unique within a project.
     opensearch:
@@ -275,7 +275,7 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            opensearch:
+            opensearch: 
 services:
     # The name of the service container. Must be unique within a project.
     opensearch:

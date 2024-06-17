@@ -150,7 +150,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -222,7 +222,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            elasticsearch:
+            elasticsearch: 
 services:
     # The name of the service container. Must be unique within a project.
     elasticsearch:
@@ -280,7 +280,7 @@ applications:
             root: "myapp"
         # Relationships enable access from this app to a given service.
         relationships:
-            elasticsearch:
+            elasticsearch: 
 services:
     elasticsearch:
         type: elasticsearch:{{% latest "elasticsearch" %}}

@@ -77,7 +77,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 relationships:
-    <SERVICE_NAME>:
+    <SERVICE_NAME>: 
 ```
 
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -138,7 +138,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 relationships:
-    gotenberg:
+    gotenberg: 
 ```
 
 <--->

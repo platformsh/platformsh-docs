@@ -181,7 +181,7 @@ applications:
 
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -254,7 +254,7 @@ applications:
                 - redis
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -313,7 +313,7 @@ applications:
                 - redis
         # Relationships enable access from this app to a given service.
         relationships:
-            redis:
+            redis: 
 services:
     # The name of the service container. Must be unique within a project.
     redis:
@@ -380,7 +380,7 @@ applications:
 
         # Relationships enable access from this app to a given service.
         relationships:
-            redis:
+            redis: 
 services:
     # The name of the service container. Must be unique within a project.
     redis:
@@ -500,7 +500,7 @@ applications:
 
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -575,7 +575,7 @@ applications:
 
         # Relationships enable access from this app to a given service.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -641,7 +641,7 @@ applications:
 
         # Relationships enable access from this app to a given service.
         relationships:
-            redis:
+            redis: 
 services:
     # The name of the service container. Must be unique within a project.
     redis:
@@ -708,7 +708,7 @@ applications:
                 - redis
         # Relationships enable access from this app to a given service.
         relationships:
-            redis:
+            redis: 
 services:
     # The name of the service container. Must be unique within a project.
     redis:
@@ -940,7 +940,7 @@ applications:
                     - redis
 
             relationships:
-                redissession:
+                redissession: 
 
             variables:
                 php:

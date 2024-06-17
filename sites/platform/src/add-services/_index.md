@@ -115,7 +115,7 @@ title=Using default endpoints
 # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    {{<variable "<SERVICE_NAME>" >}}:
+    {{<variable "<SERVICE_NAME>" >}}: 
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services

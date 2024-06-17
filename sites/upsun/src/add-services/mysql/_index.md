@@ -260,7 +260,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>:
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -330,7 +330,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            mariadb:
+            mariadb: 
 services:
     # The name of the service container. Must be unique within a project.
     mariadb:
@@ -377,7 +377,7 @@ applications:
     myapp:
         # The location of the application's code.
         relationships:
-            oracle-mysql:
+            oracle-mysql: 
 service:
     # The name of the service container. Must be unique within a project.
     oracle-mysql:
@@ -432,7 +432,7 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            mariadb:
+            mariadb: 
 service:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}

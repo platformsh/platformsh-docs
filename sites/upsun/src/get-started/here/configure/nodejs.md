@@ -113,7 +113,7 @@ applications:
       root: "/"
     type: "nodejs:20"
     relationships:
-      postgresql:
+      postgresql: 
     mounts:
       ...
     web:

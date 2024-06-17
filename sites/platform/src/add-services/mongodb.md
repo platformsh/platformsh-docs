@@ -159,7 +159,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>:
+    <SERVICE_NAME>: 
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -237,7 +237,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mongodb-enterprise:
+    mongodb-enterprise: 
 ```
 
 <--->
@@ -291,7 +291,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>:
+    <SERVICE_NAME>: 
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -369,7 +369,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mongodb:
+    mongodb: 
 ```
 
 <--->

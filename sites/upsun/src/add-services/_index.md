@@ -106,7 +106,7 @@ applications:
         # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            {{<variable "SERVICE_NAME" >}}:
+            {{<variable "SERVICE_NAME" >}}: 
 services:
     # The name of the service container. Must be unique within a project.
     {{<variable "SERVICE_NAME" >}}:
@@ -171,8 +171,8 @@ applications:
     # The name of the app container. Must be unique within a project.
     {{<variable "APP_NAME" >}}:
         relationships:
-            mariadb:
-            postgresql:
+            mariadb: 
+            postgresql: 
 services:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}

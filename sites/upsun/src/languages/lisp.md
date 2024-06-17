@@ -152,7 +152,7 @@ applications:
     app:
         type: 'lisp:{{% latest "lisp" %}}'
         relationships:
-            postgresql:
+            postgresql: 
 ```
 
 <--->

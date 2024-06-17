@@ -58,7 +58,7 @@ applications:
 
 services:
     database:
-	    type: postgresql:{{% latest "postgresql" %}}
+	type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
@@ -76,7 +76,7 @@ applications:
 
 services:
     database:
-	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+	type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
@@ -98,11 +98,11 @@ applications:
         [...]
 
         relationships:
-            database:
+            database: 
 
 services:
     database:
-	    type: postgresql:{{% latest "postgresql" %}}
+	type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
@@ -119,11 +119,11 @@ applications:
         [...]
 
         relationships:
-            database:
+            database: 
 
 services:
     database:
-	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+	type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
