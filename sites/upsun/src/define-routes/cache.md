@@ -182,11 +182,12 @@ An entry that begins and ends with a `/` is interpreted as a PCRE regular expres
 For example:
 
 ```yaml {configFile="routes"}
-https://{default}/:
-    # ...
-        cache:
-            enabled: true
-            cookies: ['/^SS?ESS/']
+routes:
+     https://{default}/:
+         # ...
+             cache:
+                 enabled: true
+                 cookies: ['/^SS?ESS/']
 ```
 
 This configuration causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
