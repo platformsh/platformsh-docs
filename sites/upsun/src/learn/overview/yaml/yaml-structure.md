@@ -40,7 +40,7 @@ This looks like:
     upstream: "app:http"
 ```
 
-Below these three top-level key sections, you can use any of the [available YAML tags](./yaml-structure.md) you need.
+Below these three top-level key sections, you can use any of the [available YAML tags](./platform-yaml-tags.md) you need.
 
 {{% note %}}
 Any YAML files located at the first level of your ``.upsun`` folder, at the root of your project source code, are taken in account. See [Rules on YAML files](#rules-on-yaml-files).
