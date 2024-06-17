@@ -149,12 +149,17 @@ A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org
 
 ### `cookies`
 
-A list of allowed cookie names to include values for in the cache key.
+The `cookies` key allows you to define a list of cookies you want to include in the cache key, if any.
 
-All cookies bypass the cache when using the default (`['*']`) or if the `Set-Cookie` header is present.
-This is done by sending the following header: `X-Platform-Cache: BYPASS`.
+| Possible values          | Description                                                                           | Default |
+|--------------------------|---------------------------------------------------------------------------------------|---------|
+| `['*']`                  | Any request with a cookie bypasses the cache.</br></br> Note that this is achieved by {{% vendor/name %}} adding the `X-Platform-Cache: BYPASS` HTTP header in the router, and that the same behaviour applies if the `Set-Cookie` header is present. | Yes |
+| `[]`                     | Ignore all cookies.                                                                   | No |
+|`['cookie_1','cookie_2']` | A list of allowed cookies to include in the cache key. All other cookies are ignored. | No |
 
-For example, for the cache key to depend on the value of the `foo` cookie in the request.
+#### Example with a single value
+
+With the following configuration, the cache key depends on the value of the `foo` cookie in the request.
 Other cookies are ignored.
 
 ```yaml {configFile="routes"}
@@ -165,16 +170,9 @@ https://{default}/:
             cookies: ["foo"]
 ```
 
-{{< note title="none">}}
-**Type:** List
+#### Example with a regular expression
 
-**Values:**
-* `['*']`: any request with a cookie bypasses the cache [default]
-* `[]`: Ignore all cookies
-* `['cookie_1','cookie_2']`: A list of allowed cookies to include in the cache key. All other cookies are ignored.
-{{< /note >}}
-
-A cookie value may also be a regular expression.
+A cookie value can also be a regular expression.
 An entry that begins and ends with a `/` is interpreted as a PCRE regular expression to match the cookie name.
 For example:
 
@@ -186,9 +184,10 @@ https://{default}/:
             cookies: ['/^SS?ESS/']
 ```
 
-Causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
+This configuration causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
 Other cookies are ignored for caching.
-If your site uses a session cookie as well as 3rd party cookies, say from an analytics service,
+
+If your site uses a session cookie as well as third-party cookies, say from an analytics service,
 this is the recommended approach.
 
 ### `default_ttl`
