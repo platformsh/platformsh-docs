@@ -118,12 +118,18 @@ To define the service, use the `mariadb` or `mysql` type for MariaDB or the `ora
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
 
 To define the relationship, use the following configuration:
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
@@ -131,10 +137,10 @@ To define the relationship, use the following configuration:
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+    <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -144,7 +150,36 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: "mysql"
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 ### MariaDB example
 
@@ -159,14 +194,39 @@ mariadb:
 
 #### [App configuration](/create-apps/_index.md)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mariadb: 
+    mariadb:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    mariadb:
+        service: "mariadb"
+        endpoint: "mysql"
+```
+
+{{< /codetabs >}}
 
 ### OracleMySQL example
 
@@ -181,14 +241,38 @@ oraclemysql:
 
 #### [App configuration](/create-apps)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    oraclemysql: 
+    oraclemysql:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    oraclemysql:
+        service: "oraclemysql"
+        endpoint: "mysql"
+```
+{{< /codetabs >}}
 
 ### Use in app
 
@@ -250,7 +334,7 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
@@ -460,9 +544,17 @@ name: myapp
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: "mariadb:admin"
-    reports: "mariadb:reporter"
-    imports: "mariadb:importer"
+    # Please note: Legacy definition of the relationship is still supported:
+    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+    database:
+        service: "mariadb"
+        endpoint: "admin"
+    reports:
+        service: "mariadb"
+        endpoint: "reporter"
+    imports:
+        service: "mariadb"
+        endpoint: "importer"
 ```
 
 These relationships are then available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference).
@@ -519,9 +611,9 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 {{% note theme="info" %}}
-MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration. 
-They can, however, be set indirectly, which can be useful for solving `Too many connection` errors. 
-See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details. 
+MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
+They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
+See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details.
 {{% /note %}}
 
 ## Password generation

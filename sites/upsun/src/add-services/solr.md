@@ -165,11 +165,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:solr"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "solr"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -223,11 +225,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     myapp:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            solr: "solr:solr"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            solr:
+                service: "solr"
+                endpoint: "solr"
 services:
     # The name of the service container. Must be unique within a project.
     solr:
@@ -260,7 +264,6 @@ applications:
         # Relationships enable an app container's access to a service.
         relationships:
             solr:
-
 services:
     # The name of the service container. Must be unique within a project.
     solr:
@@ -285,8 +288,11 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            solr: "solr:solr"
-
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            solr:
+                service: "solr"
+                endpoint: "solr"
 services:
     # The name of the service container. Must be unique within a project.
     solr:
@@ -304,11 +310,11 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit https://docs.upsun.com/development/variables.html#service-environment-variables.
-export QUEUE_SCHEME=${RABBITMQ_SCHEME}
-export QUEUE_USERNAME=${RABBITMQ_USERNAME}
-export QUEUE_PASSWORD=${RABBITMQ_PASSWORD}
-export QUEUE_HOST=${RABBITMQ_HOST}
-export QUEUE_PORT=${RABBITMQ_PORT}
+export QUEUE_SCHEME=${SOLR_SCHEME}
+export QUEUE_USERNAME=${SOLR_USERNAME}
+export QUEUE_PASSWORD=${SOLR_PASSWORD}
+export QUEUE_HOST=${SOLR_HOST}
+export QUEUE_PORT=${SOLR_PORT}
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"

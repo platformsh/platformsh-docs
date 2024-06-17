@@ -146,7 +146,6 @@ applications:
         # Relationships enable access from this app to a given service.
         relationships:
             <SERVICE_NAME>:
-
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -165,8 +164,11 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse"
-
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -197,7 +199,6 @@ applications:
         # Relationships enable access from this app to a given service.
         relationships:
             <SERVICE_NAME>:
-
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -218,8 +219,9 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:clickhouse-http"
-
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -272,7 +274,11 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse: "clickhouse:clickhouse"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            clickhouse:
+                service: "clickhouse"
+                endpoint: "clickhouse"
 services:
     clickhouse:
         # The name of the service container. Must be unique within a project.
@@ -294,7 +300,11 @@ applications:
             root: "myapp"
         # Relationships enable an app container's access to a service.
         relationships:
-            clickhouse: "clickhouse:clickhouse-http"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            clickhouse:
+                service: "clickhouse"
+                endpoint: "clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
     clickhouse:
@@ -313,33 +323,40 @@ To do so, you can use a configuration similar to the following:
 ```yaml {configFile="app"}
 # Complete list of all available properties: https://docs.upsun.com/create-apps/app-reference.html
 applications:
-  myapp:
-    relationships:
-      clickhouse-admin: "clickhouse:admin"
-      clickhouse-reporter: "clickhouse:reporter"
-      clickhouse-importer: "clickhouse:importer"
-
+    myapp:
+      relationships:
+          # Please note: Legacy definition of the relationship is still supported:
+          # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+          clickhouse-admin:
+              service: "clickhouse"
+              endpoint: "admin"
+          clickhouse-reporter:
+              service: "clickhouse"
+              endpoint: "reporter"
+          clickhouse-importer:
+              service: "clickhouse"
+              endpoint: "importer"
 services:
-  clickhouse:
-    type: clickhouse:24
-    configuration:
-      databases:
-        - main
-        - legacy
-      endpoints:
-        admin:
-          port: 9000 # binary port
-          privileges:
-            main: admin
-            legacy: admin
+    clickhouse:
+        type: clickhouse:24
+        configuration:
+            databases:
+                - main
+                - legacy
+        endpoints:
+            admin:
+                port: 9000 # binary port
+            privileges:
+                main: admin
+                legacy: admin
         reporter:
-          default_database: main
-          port: 8123 # http port
-          privileges:
-            main: ro
+            default_database: main
+            port: 8123 # http port
+            privileges:
+                main: ro
         importer:
-          default_database: legacy
-          port: 9000 # binary port
-          privileges:
-            legacy: rw
+            default_database: legacy
+            port: 9000 # binary port
+            privileges:
+                legacy: rw
 ```

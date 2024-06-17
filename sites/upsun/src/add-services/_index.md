@@ -134,12 +134,15 @@ title=Using explicit endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     {{<variable "APP_NAME" >}}:
-        # ...
+        # Other options...
+
+        # Relationships enable an app container's access to a service.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             {{% variable "RELATIONSHIP_NAME" %}}:
                 service: {{% variable "SERVICE_NAME" %}}
                 endpoint: {{% variable "ENDPOINT_NAME" %}}
-            # OR as a shorter notation
+            # OR as a shorter notation (Legacy)
             {{% variable "RELATIONSHIP_NAME" %}}: {{% variable "SERVICE_NAME" %}}:{{% variable "ENDPOINT_NAME" %}}
 
 services:
@@ -187,8 +190,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     {{<variable "APP_NAME" >}}:
         relationships:
-            database: mariadb:mysql
-            database2: postgresql:postgresql
+            database:
+                service: "mariadb"
+                endpoint: "mysql"
+            postgresql:
+                service: "postgresql"
+                endpoint: "postgresql"
 services:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}

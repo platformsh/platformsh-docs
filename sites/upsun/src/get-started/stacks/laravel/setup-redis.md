@@ -25,7 +25,7 @@ With Laravel, you can use Redis to handle session storage, cache storage, and qu
        myapp:
            [...]
            relationships:
-              redis: "redis:redis"
+              redis:
 
    services:
        [...]

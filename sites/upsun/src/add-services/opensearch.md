@@ -178,11 +178,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:opensearch"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "opensearch"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -236,11 +238,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     myapp:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            opensearch: "opensearch:opensearch"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            opensearch:
+                service: "opensearch"
+                endpoint: "opensearch"
 services:
     # The name of the service container. Must be unique within a project.
     opensearch:
@@ -296,7 +300,11 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            opensearch: "opensearch:opensearch"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            opensearch:
+                service: "opensearch"
+                endpoint: "opensearch"
 services:
     # The name of the service container. Must be unique within a project.
     opensearch:

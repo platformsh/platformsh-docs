@@ -355,7 +355,6 @@ applications:
         # Relationships enable an app container's access to a service.
         relationships:
             memcached:
-
 service:
     memcached:
         type: memcached:{{% latest "memcached" %}}
@@ -379,8 +378,11 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            memcached: "memcached:memcached"
-
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            memcached:
+                service: "memcached"
+                endpoint: "memcached"
 service:
     memcached:
         type: memcached:{{% latest "memcached" %}}

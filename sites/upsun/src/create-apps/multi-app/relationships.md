@@ -31,7 +31,9 @@ In your app configuration for `app1`, define a relationship to `app2`:
 applications:
   app1:
     relationships:
-      api: "app2:http"
+      api:
+        service: "app2"
+        endpoint: "http"
 ```
 
 Once they're both built, `app1` can access `app2` at the following URL: `http://api.internal`.</br>

@@ -13,7 +13,7 @@ These sections provide Javascript/Node.js-specific configuration details, but yo
 
 ## Build flavors
 
-By default, {{% vendor/name %}} makes assumptions about how you want to build your application. 
+By default, {{% vendor/name %}} makes assumptions about how you want to build your application.
 Namely, that you are managing your dependencies with npm, and that the very first thing you'd like to run is a particular and common production flavor of `npm install`.
 
 This is called a build `flavor`, but its assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
@@ -113,7 +113,7 @@ applications:
       root: "/"
     type: "nodejs:20"
     relationships:
-      postgresql: "postgresql:postgresql"
+      postgresql:
     mounts:
       ...
     web:
@@ -158,7 +158,7 @@ The {{% vendor/name %}} documentation includes a wide array of community resourc
 
 While there are virtually no restrictions to you deploying any kind of application on {{% vendor/name %}}, configuration may still be unclear at this point.
 
-Not to worry! The {{% vendor/name %}} community is here to help. 
+Not to worry! The {{% vendor/name %}} community is here to help.
 Come and say hello, share your work, ask for help, and peek in on what others are working on.
 
 Welcome to the {{% vendor/name %}} community!

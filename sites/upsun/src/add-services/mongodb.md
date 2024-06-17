@@ -59,7 +59,7 @@ Note that the information about the relationship can change when an app is redep
 
 ```bash
 MONGODB_USERNAME=main
-MONGODBBASE_SCHEME=mongodb
+MONGODB_SCHEME=mongodb
 MONGODB_SERVICE=mongodb
 MONGODB_IP=123.456.78.90
 MONGODB_HOSTNAME=azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}
@@ -179,11 +179,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "mongodb"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -245,11 +247,13 @@ applications:
             extensions:
                 - mongodb
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "mongodb"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -301,11 +305,13 @@ applications:
             extensions:
                 - mongodb
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            mongodb-enterprise: "mongodb-enterprise:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            mongodb-enterprise:
+                service: "mongodb-enterprise"
+                endpoint: "mongodb"
 services:
     # The name of the service container. Must be unique within a project.
     mongodb-enterprise:
@@ -376,11 +382,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "mongodb"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -442,11 +450,13 @@ applications:
             extensions:
                 - mongodb
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "mongodb"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -498,11 +508,13 @@ applications:
             extensions:
                 - mongodb
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            mongodb: "mongodb:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            mongodb:
+                service: "mongodb"
+                endpoint: "mongodb"
 services:
     # The name of the service container. Must be unique within a project.
     mongodb:
@@ -557,7 +569,11 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            mongodb: "mongodb:mongodb"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            mongodb:
+                service: "mongodb"
+                endpoint: "mongodb"
 service:
     mongodb:
         type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}

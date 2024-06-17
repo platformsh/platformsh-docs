@@ -74,7 +74,9 @@ applications:
     type: php:8.2
 
     relationships:
-      database: "database:postgresql"
+      database:
+        service: "database"
+        endpoint: "postgresql"
 
     mounts:
       "/var/cache": "shared:files/cache"

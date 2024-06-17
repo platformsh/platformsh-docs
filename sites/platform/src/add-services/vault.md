@@ -35,12 +35,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -88,7 +88,7 @@ To define the service, use the `vault-kms` type:
                   type: <ENDPOINT_TYPE>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 - {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
@@ -122,10 +122,10 @@ relationships:
         endpoint: <ENDPOINT_ID>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships. 
+The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships.
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -159,7 +159,11 @@ vault-kms:
 
 ```yaml {configFile="apps"}
 relationships:
-    vault_secret: "vault-kms:manage_keys"
+    # Please note: Legacy definition of the relationship is still supported:
+    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+    vault_secret:
+        service: "vault-kms"
+        endpoint: "manage_keys"
 ```
 
 ### Multiple endpoints configuration
@@ -190,6 +194,8 @@ vault-kms:
 
 ```yaml {configFile="apps"}
 relationships:
+    # Please note: Legacy definition of the relationship is still supported.
+    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
     vault_manage:
         service: vault-kms
         endpoint: management

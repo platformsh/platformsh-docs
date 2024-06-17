@@ -118,7 +118,6 @@ applications:
         # Relationships enable access from this app to a given service.
         relationships:
             <SERVICE_NAME>:
-
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -137,8 +136,11 @@ applications:
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:http"
-
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "http"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -168,7 +170,6 @@ applications:
         # Relationships enable access from this app to a given service.
         relationships:
             gotenberg:
-
 services:
     # The name of the service container. Must be unique within a project.
     gotenberg:
@@ -187,8 +188,11 @@ applications:
     myapp:
         # Relationships enable access from this app to a given service.
         relationships:
-            gotenberg: "gotenberg:http"
-
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            gotenberg:
+                service: "gotenberg"
+                endpoint: "http"
 services:
     # The name of the service container. Must be unique within a project.
     gotenberg:

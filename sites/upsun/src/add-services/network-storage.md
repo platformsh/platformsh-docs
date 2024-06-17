@@ -186,9 +186,6 @@ applications:
 
         type: "php:{{% latest "php" %}}"
 
-        relationships:
-            mariadb:
-
         [...]
 
         mounts:

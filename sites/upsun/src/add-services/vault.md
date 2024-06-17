@@ -41,24 +41,24 @@ You can obtain the complete list of available service environment variables in y
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
-VAULT_SERVICE_USERNAME=
-VAULT_SERVICE_SCHEME=http
-VAULT_SERVICE_SERVICE=vault-kms
-VAULT_SERVICE_FRAGMENT=
-VAULT_SERVICE_IP=123.456.78.90
-VAULT_SERVICE_INSTANCE_IPS=['123.456.78.90']
-VAULT_SERVICE_HOSTNAME=azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-VAULT_SERVICE_PORT=8200
-VAULT_SERVICE_CLUSTER=azertyuiopqsdf-main-afdwftq
-VAULT_SERVICE_HOST=vault_secret.internal
-VAULT_SERVICE_REL=manage_keys
-VAULT_SERVICE_PATH=/
-VAULT_SERVICE_QUERY={'is_master': True}
-VAULT_SERVICE_PASSWORD=ChangeMe
-VAULT_SERVICE_EPOCH=0
-VAULT_SERVICE_TYPE=vault-kms:{{% latest "vault-kms" %}}
-VAULT_SERVICE_PUBLIC=false
-VAULT_SERVICE_HOST_MAPPED=false
+VAULT_USERNAME=
+VAULT_SCHEME=http
+VAULT_SERVICE=vault-kms
+VAULT_FRAGMENT=
+VAULT_IP=123.456.78.90
+VAULT_INSTANCE_IPS=['123.456.78.90']
+VAULT_HOSTNAME=azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+VAULT_PORT=8200
+VAULT_CLUSTER=azertyuiopqsdf-main-afdwftq
+VAULT_HOST=vault_secret.internal
+VAULT_REL=manage_keys
+VAULT_PATH=/
+VAULT_QUERY={'is_master': True}
+VAULT_PASSWORD=ChangeMe
+VAULT_EPOCH=0
+VAULT_TYPE=vault-kms:{{% latest "vault-kms" %}}
+VAULT_PUBLIC=false
+VAULT_HOST_MAPPED=false
 ```
 
 <--->
@@ -127,7 +127,7 @@ services:
                       type: <ENDPOINT_TYPE>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 - {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
@@ -155,10 +155,10 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: <ENDPOINT_ID>

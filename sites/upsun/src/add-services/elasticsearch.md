@@ -51,22 +51,22 @@ You can obtain the complete list of available service environment variables in y
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
-ESSEARCH_USERNAME=
-ESSEARCH_SCHEME=http
-ESSEARCH_SERVICE=elasticsearch
-ESSEARCH_FRAGMENT=null
-ESSEARCH_IP=123.456.78.90
-ESSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-ESSEARCH_PORT=9200
-ESSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
-ESSEARCH_HOST=essearch.internal
-ESSEARCH_REL=elasticsearch
-ESSEARCH_PATH=
-ESSEARCH_QUERY=[]
-ESSEARCH_PASSWORD=ChangeMe
-ESSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
-ESSEARCH_PUBLIC=false
-ESSEARCH_HOST_MAPPED=false
+ELASTICSEARCH_USERNAME=
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_SERVICE=elasticsearch
+ELASTICSEARCH_FRAGMENT=null
+ELASTICSEARCH_IP=123.456.78.90
+ELASTICSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
+ELASTICSEARCH_HOST=elasticsearch.internal
+ELASTICSEARCH_REL=elasticsearch
+ELASTICSEARCH_PATH=
+ELASTICSEARCH_QUERY=[]
+ELASTICSEARCH_PASSWORD=ChangeMe
+ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
+ELASTICSEARCH_PUBLIC=false
+ELASTICSEARCH_HOST_MAPPED=false
 ```
 
 <--->
@@ -88,7 +88,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "essearch.internal",
+    "host": "elasticsearch.internal",
     "rel": "elasticsearch",
     "path": null,
     "query": [],
@@ -106,7 +106,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.essearch[0].host')"
+export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsearch[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -180,11 +180,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:elasticsearch"
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            <RELATIONSHIP_NAME>:
+                service: "<SERVICE_NAME>"
+                endpoint: "elasticsearch"
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -221,7 +223,6 @@ applications:
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             elasticsearch:
-
 services:
     # The name of the service container. Must be unique within a project.
     elasticsearch:
@@ -241,12 +242,13 @@ applications:
     # The name of the app container. Must be unique within a project.
     myapp:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            elasticsearch: "elasticsearch:elasticsearch"
-
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            elasticsearch:
+                service: "elasticsearch"
+                endpoint: "elasticsearch"
 services:
     # The name of the service container. Must be unique within a project.
     elasticsearch:
@@ -271,18 +273,17 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    # The location of the application's code.
-    source:
-      root: "myapp"
-    # Relationships enable access from this app to a given service.
-    relationships:
-      elasticsearch:
-
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+        # Relationships enable access from this app to a given service.
+        relationships:
+            elasticsearch:
 services:
-  elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    elasticsearch:
+        type: elasticsearch:{{% latest "elasticsearch" %}}
 
 ```
 
@@ -293,18 +294,21 @@ title=Using explicit endpoints
 +++
 ```yaml {configFile="app"}
 applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    # The location of the application's code.
-    source:
-      root: "myapp"
-    # Relationships enable access from this app to a given service.
-    relationships:
-      elasticsearch: "elasticsearch:elasticsearch"
-
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+        # Relationships enable access from this app to a given service.
+        relationships:
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            elasticsearch:
+                service: "elasticsearch"
+                endpoint: "elasticsearch"
 services:
-  elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    elasticsearch:
+        type: elasticsearch:{{% latest "elasticsearch" %}}
 ```
 
 {{< /codetabs >}}

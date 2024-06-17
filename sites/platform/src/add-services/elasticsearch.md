@@ -26,8 +26,8 @@ If you use one of the following frameworks, follow its guide:
 From version 7.11 onward:
 
 {{% note title="Premium Service" theme="info" %}}
-Elasticsearch isn’t included in any {{< vendor/name >}} plan. 
-You need to add it separately at an additional cost. 
+Elasticsearch isn’t included in any {{< vendor/name >}} plan.
+You need to add it separately at an additional cost.
 To add Elasticsearch, [contact Sales](https://platform.sh/contact/).
 {{% /note %}}
 
@@ -52,7 +52,7 @@ The following premium versions are supported:
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 ## Deprecated versions
@@ -100,7 +100,7 @@ Note that the information about the relationship can change when an app is redep
     "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "essearch.internal",
+    "host": "elasticsearch.internal",
     "rel": "elasticsearch",
     "path": null,
     "query": [],
@@ -128,12 +128,18 @@ To define the service, use the `elasticsearch` type:
 
 If you’re using a [premium version](add-services/elasticsearch.md#supported-versions), use the `elasticsearch-enterprise` type instead.
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
 
 To define the relationship, use the following configuration:
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
@@ -141,10 +147,10 @@ To define the relationship, use the following configuration:
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+    <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -154,7 +160,36 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: "elasticsearch"
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
 
@@ -167,7 +202,16 @@ elasticsearch:
     disk: 256
 ```
 
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type in the service definition.
+
 #### [App configuration](/create-apps/_index.md)
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
@@ -175,11 +219,27 @@ elasticsearch:
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    elasticsearch: 
+    elasticsearch:
 ```
 
-If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
-use the `elasticsearch-enterprise` type in the service definition.
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+    elasticsearch:
+        service: "elasticsearch"
+        endpoint: "elasticsearch"
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 

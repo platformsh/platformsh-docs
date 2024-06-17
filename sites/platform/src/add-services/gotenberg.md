@@ -1,7 +1,7 @@
 ---
 title: "Gotenberg"
 weight: -95
-description: Gotenberg is a user-friendly API for PDF files.  
+description: Gotenberg is a user-friendly API for PDF files.
 ---
 
 Gotenberg is a stateless API for converting various document formats into PDF files.
@@ -13,7 +13,7 @@ For more information, see the [Gotenberg documentation](https://gotenberg.dev/do
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 ## Relationship reference
@@ -21,50 +21,20 @@ When you deploy your app, you always get the latest available patches.
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-{{< codetabs >}}
-+++
-title= Service environment variables
-+++
-
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
-So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
-
-```bash
-GOTENBERG_INSTANCE_IPS=["249.45.240.83"]
-GOTENBERG_SCHEME=http
-GOTENBERG_HOSTNAME=rssjaxyeoorjje6axcq35xu5gq.gotenberg.service._.eu-5.{{< vendor/urlraw "hostname" >}}
-GOTENBERG_SERVICE=gotenberg
-GOTENBERG_CLUSTER=p2f2xrzyq7a6k-main-bvxea6i
-GOTENBERG_IP=169.254.137.3
-GOTENBERG_TYPE=gotenberg:8
-GOTENBERG_HOST=gotenberg.internal
-GOTENBERG_PORT=3000
-GOTENBERG_REL=http
-```
-
-<--->
-
-+++
-title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
-
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
-The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
-
 ```json
 {
       "host": "gotenberg.internal",
-      "hostname": "rssjaxyeoorjje6axcq35xu5gq.gotenberg.service._.eu-5.{{< vendor/urlraw "hostname" >}}",
-      "cluster": "p2f2xrzyq7a6k-main-bvxea6i",
+      "hostname": "azertyuiopqsdfghjklm.gotenberg.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+      "cluster": "azertyuiopqsdf-main-7rqtwti",
       "service": "gotenberg",
       "rel": "http",
       "scheme": "http",
       "port": "3000",
       "type": "gotenberg:8",
       "instance_ips": [
-      "249.45.240.83"
+          "123.456.78.90"
       ],
-      "ip": "169.254.137.3",
+      "ip": "123.456.78.90",
       "url": "http://gotenberg.internal:3000"
     }
 ```
@@ -79,8 +49,6 @@ export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 # Set environment variables for individual credentials.
 export APP_GOTENBERG_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.gotenberg[0].host')"
 ```
-
-{{< /codetabs >}}
 
 ## Usage example
 
@@ -100,10 +68,16 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the ``http`` endpoint:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:http"
+    <SERVICE_NAME>:
 ```
 
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -112,6 +86,34 @@ With the above definition, {{% vendor/name %}} uses the `http` endpoint,
 providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the _name_ of the service.
 
 The application has access to the service via this relationship and its corresponding `PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: "http"
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 The `http` endpoint uses port `3000` by default.
 
@@ -127,11 +129,35 @@ gotenberg:
 
 #### [App configuration](/create-apps/_index.md)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 relationships:
-    gotenberg: "gotenberg:http"
+    gotenberg:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    gotenberg:
+        service: "gotenberg"
+        endpoint: "http"
+```
+
+{{< /codetabs >}}
 
 ## Generate a PDF using Gotenberg
 

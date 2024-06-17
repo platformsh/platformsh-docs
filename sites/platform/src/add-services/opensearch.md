@@ -68,12 +68,12 @@ or are no longer the recommended way to configure the service on {{% vendor/name
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -110,12 +110,18 @@ To define the service, use the `opensearch` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
 
 To define the relationship, use the following configuration:
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
@@ -123,10 +129,10 @@ To define the relationship, use the following configuration:
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+    <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -136,7 +142,36 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    <RELATIONSHIP_NAME>:
+        service: "<SERVICE_NAME>"
+        endpoint: "opensearch"
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
 
@@ -151,18 +186,49 @@ opensearch:
 
 #### [App configuration](/create-apps/_index.md)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-   opensearch: 
+    opensearch:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    opensearch:
+        service: "opensearch"
+        endpoint: "opensearch"
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 name: myapp
@@ -170,8 +236,27 @@ name: myapp
 [...]
 
 relationships:
-    opensearch: 
+    opensearch:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+name: myapp
+
+[...]
+
+relationships:
+    opensearch:
+        service: "opensearch"
+        endpoint: "opensearch"
+```
+
+{{< /codetabs >}}
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `opensearch` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)

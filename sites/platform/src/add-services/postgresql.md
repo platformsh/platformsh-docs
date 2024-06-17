@@ -68,12 +68,12 @@ so migrate to one of the [supported versions](#supported-versions).
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -112,12 +112,18 @@ To define the service, use the `postgresql` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
 
 To define the relationship, use the following configuration:
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
@@ -125,10 +131,10 @@ To define the relationship, use the following configuration:
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+    <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -138,7 +144,36 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    <RELATIONSHIP_NAME>:
+        service: "<SERVICE_NAME>"
+        endpoint: "postgresql"
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
@@ -162,14 +197,39 @@ postgresql:
 
 #### [App configuration](/create-apps/_index.md)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-   postgresql: 
+    postgresql:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="apps"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Please note: Legacy definition of the relationship is still supported:
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+    postgresql:
+        service: "ostgresql"
+        endpoint: "postgresql"
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
@@ -350,15 +410,17 @@ Once these endpoints are defined, you need to expose them to your application as
 
 ```yaml {configFile="app"}
 relationships:
-    database: 
-        service: postgresql
-        endpoint: admin
-    reports: 
-        service: postgresql
-        endpoint: reporter
+    # Please note: Legacy definition of the relationship is still supported:
+    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+    database:
+        service: "postgresql"
+        endpoint: "admin"
+    reports:
+        service: "postgresql"
+        endpoint: "reporter"
     imports:
-        service: postgresql
-        endpoint: importer
+        service: "postgresql"
+        endpoint: "importer"
 ```
 
 Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
@@ -428,7 +490,7 @@ Note that you can't customize these automatically generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables) 
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
 within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
