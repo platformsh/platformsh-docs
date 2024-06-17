@@ -13,7 +13,7 @@ They provide all of the core concepts and common commands you need to know befor
 
 {{< /note >}}
 
-For Flask to successfully deploy and operate, after completing the [Getting started guide](/get-started/here/_index.md),
+For Flask to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="Django" %}}
