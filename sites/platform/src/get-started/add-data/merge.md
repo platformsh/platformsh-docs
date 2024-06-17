@@ -39,7 +39,9 @@ Add a database service (or choose [another service](../../add-services/_index.md
 
    ```yaml {configFile="app"}
    relationships:
-       database: "db:mysql"
+       database:
+           service: "db"
+           endpoint: "mysql"
    ```
 
    This relationship is where connections are made.

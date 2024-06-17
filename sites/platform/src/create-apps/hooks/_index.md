@@ -161,7 +161,9 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
    ```yaml {configfile="app" dir="client"}
    relationships:
-       api: 'api:http'
+       api:
+           service: 'api'
+           endpoint: 'http'
    ```
 
 2. Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
@@ -231,8 +233,12 @@ dependencies:
 
 # The relationships of the app with services or other apps.
 relationships:
-    database: 'db:mysql'
-    redis: 'cache:redis'
+    database:
+      service: 'db'
+      endpoint: 'mysql'
+    redis:
+      service: 'cache'
+      endpoint: 'redis'
 
 # The hooks executed at various points in the lifecycle of the app.
 hooks:
@@ -275,7 +281,9 @@ build:
     flavor: none
 
 relationships:
-    api: 'api:http'
+    api:
+      service: 'api'
+      endpoint: 'http'
 
 # The hooks that are triggered when the package is deployed.
 hooks:

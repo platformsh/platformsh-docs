@@ -30,7 +30,9 @@ To use MongoDB with a Strapi v3 application on {{% vendor/name %}}, follow these
 
    ```yaml
    relationships:
-       mongodatabase: "mongodb:mongodb"
+       mongodatabase:
+           service: "mongodb"
+           endpoint: "mongodb"
    ```
 
 1. In the `config` folder, locate the `database.js` file, and replace its content with the following:
