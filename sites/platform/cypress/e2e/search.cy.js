@@ -77,8 +77,11 @@ describe("Home",()=>{
         },{ fixture: "searchosresults" }).as("searchresultsopensearch")
       }
 
+      console.log('Pausing before starting')
+      cy.wait(1000)
+      console.log('finished pausing')
       // no idea why but type will NOT work consistently unless we add a scrollIntoView before we try to type
-      cy.get("#searchwicon-header").wait(500).type("24.55 gb")
+      cy.get("#searchwicon-header").type("24.55 gb")
 
       if ('local' == Cypress.env('environment')) {
         cy.wait('@searchresultsopensearch')
