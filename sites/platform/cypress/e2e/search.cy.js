@@ -7,15 +7,12 @@ describe("Home",()=>{
       cy.intercept("/indexes/platform_docs/search*", { "hits":[] })
     }
 
-    cy.visit("/")
+    //cy.visit("/")
   })
 
   context("Search tests",()=>{
-    it("Search feature works", () => {
-      ///cy.wait("@noSearchResults")
-      //cy.intercept("/\/indexes\/platform_docs\/search[^q]+q=opensearch/",{ fixture: "searchosresults" }).as("searchresultsopensearch")
-      console.log("Env is " + Cypress.env('environment'))
-      console.log("Barfoo is " + Cypress.env('barfoo'))
+    it("Searches for something that should match in both", () => {
+      cy.visit("/")
       if('local' == Cypress.env('environment')) {
         cy.intercept({
           pathname: '/indexes/platform_docs/search',
@@ -32,10 +29,78 @@ describe("Home",()=>{
       }
 
       cy.get("#xssroot").find("h2").as("searchresultsheader")
-      cy.get("@searchresultsheader")
-        .should("exist")
-        .contains("Documentation")
+      cy.get("@searchresultsheader").should("exist")
+      cy.get("@searchresultsheader").contains("Documentation")
       cy.get("#xssroot").find("li").contains("OpenSearch").should("exist")
+
+      cy.get("#searchwicon-header").type("{enter}")
+      cy.location("pathname").should(
+        "eq",
+        "/search.html"
+      )
+
+      cy.get("#xssSearchPage").find("h2").as("searchpageresults")
+      cy.get("@searchpageresults").should("exist")
+      cy.get("@searchpageresults").contains("Documentation")
+
+      cy.get("#xssSearchPage").find("li").contains("OpenSearch").should("exist")
+
+    })
+
+    it("Searches for something that should not match on platformsh", ()=>{
+      cy.visit("/")
+      cy.get("#searchwicon-header").type("vertical scaling")
+      cy.get("#xssroot").find("h2").as("searchresultsheader")
+      cy.get("@searchresultsheader").should("exist")
+      cy.get("@searchresultsheader").contains("No results")
+      cy.get("#xssroot").find("p").contains("No documentation matched")
+
+      cy.get("#searchwicon-header").type("{enter}")
+      cy.location("pathname").should(
+        "eq",
+        "/search.html"
+      )
+
+      cy.get("#xssSearchPage").find("h2").as("searchpageresults")
+      cy.get("@searchpageresults").should("exist")
+      cy.get("@searchpageresults").contains("No results")
+    })
+
+    it("Searches for something that should ONLY match on platformsh", () => {
+      cy.visit("/")
+      if('local' == Cypress.env('environment')) {
+        cy.intercept({
+          pathname: '/indexes/platform_docs/search',
+          query: {
+            q: 'opensearch'
+          }
+        },{ fixture: "searchosresults" }).as("searchresultsopensearch")
+      }
+
+      // no idea why but type will NOT work consistently unless we add a scrollIntoView before we try to type
+      cy.get("#searchwicon-header").type("24.55 gb")
+
+      if ('local' == Cypress.env('environment')) {
+        cy.wait('@searchresultsopensearch')
+      }
+
+      cy.get("#xssroot").find("h2").as("searchresultsheader")
+      cy.get("@searchresultsheader").should("exist")
+      cy.get("@searchresultsheader").contains("Documentation")
+      cy.get("#xssroot").find("li").contains("24.55").should("exist")
+
+      cy.get("#searchwicon-header").type("{enter}")
+      cy.location("pathname").should(
+        "eq",
+        "/search.html"
+      )
+
+      cy.get("#xssSearchPage").find("h2").as("searchpageresults")
+      cy.get("@searchpageresults").should("exist")
+      cy.get("@searchpageresults").contains("Documentation")
+
+      cy.get("#xssSearchPage").find("li").contains("24.55").should("exist")
+
     })
   })
 })
