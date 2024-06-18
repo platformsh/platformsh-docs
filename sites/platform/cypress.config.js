@@ -10,5 +10,12 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    blockHosts: [
+      'www.googletagmanager.com',
+      'cdn.cookielaw.org',
+      'cdn.heapanalytics.com',
+      'heapanalytics.com',
+      'cdn.matomo.cloud',
+    ],
   },
 });
