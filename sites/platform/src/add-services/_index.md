@@ -30,7 +30,7 @@ Configure your service in the following pattern:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 SERVICE_NAME:
-    type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+    type: <SERVICE_TYPE>:<VERSION>
     # Other options...
 ```
 
@@ -48,7 +48,7 @@ postgresql:
 ```
 
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
+The top-level key is a custom service name (``<SERVICE_NAME>``: in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
 
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -115,7 +115,7 @@ title=Using default endpoints
 # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    {{<variable "<SERVICE_NAME>" >}}: 
+    <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -136,13 +136,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
-# Please note: Legacy definition of the relationship is still supported:
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
-    {{<variable "<RELATIONSHIP_NAME>" >}}:
-        service: {{<variable "<SERVICE_NAME>" >}}
-        endpoint: {{<variable "<ENDPOINT_NAME>" >}}
+    <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: <ENDPOINT_NAME>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -183,16 +184,18 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 # Other options...
 
-# Relationships enable an app container's access to a service.
-# Please note: Legacy definition of the relationship is still supported:
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with explicitly set service names and endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     mariadb:
-        service: "mariadb"
-        endpoint: "mysql"
+        service: mariadb
+        endpoint: mysql
     postgresql:
-        service: "postgresql"
-        endpoint: "mysql"
+        service: postgresql
+        endpoint: mysql
 ```
 
 {{< /codetabs >}}
@@ -264,7 +267,6 @@ title=Through an SSH tunnel
 Connecting to a service using an SSH tunnel is a two-step process.
 
 ### 1. Obtain service credentials
-
 
 To get the credentials for a given service, run the following command:
 

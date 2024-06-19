@@ -144,8 +144,11 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -163,12 +166,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
-                service: "<SERVICE_NAME>"
-                endpoint: "clickhouse"
+                service: <SERVICE_NAME>
+                endpoint: clickhouse
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -197,8 +200,11 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -218,10 +224,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <RELATIONSHIP_NAME>:
-                service: "<SERVICE_NAME>"
-                endpoint: "clickhouse-http"
+                service: <SERVICE_NAME>
+                endpoint: clickhouse-http
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -250,9 +258,12 @@ applications:
         # The location of the application's code.
         source:
             root: "myapp"
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            clickhouse: 
+            clickhouse:
 services:
     clickhouse:
         # The name of the service container. Must be unique within a project.
@@ -272,13 +283,13 @@ applications:
         # The location of the application's code.
         source:
             root: "myapp"
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             clickhouse:
-                service: "clickhouse"
-                endpoint: "clickhouse"
+                service: clickhouse
+                endpoint: clickhouse
 services:
     clickhouse:
         # The name of the service container. Must be unique within a project.
@@ -298,13 +309,13 @@ applications:
         # The location of the application's code.
         source:
             root: "myapp"
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             clickhouse:
-                service: "clickhouse"
-                endpoint: "clickhouse-http"
+                service: clickhouse
+                endpoint: clickhouse-http
 services:
     # The name of the service container. Must be unique within a project.
     clickhouse:
@@ -324,18 +335,19 @@ To do so, you can use a configuration similar to the following:
 # Complete list of all available properties: https://docs.upsun.com/create-apps/app-reference.html
 applications:
     myapp:
+      # Relationships enable access from this app to a given service.
+      # The example below shows configuration with explicitly set service names and endpoints.
+      # See the Application reference for all options for defining relationships and endpoints.
       relationships:
-          # Please note: Legacy definition of the relationship is still supported:
-          # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
           clickhouse-admin:
-              service: "clickhouse"
-              endpoint: "admin"
+              service: clickhouse
+              endpoint: admin
           clickhouse-reporter:
-              service: "clickhouse"
-              endpoint: "reporter"
+              service: clickhouse
+              endpoint: reporter
           clickhouse-importer:
-              service: "clickhouse"
-              endpoint: "importer"
+              service: clickhouse
+              endpoint: importer
 services:
     clickhouse:
         type: clickhouse:24

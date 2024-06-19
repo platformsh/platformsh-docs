@@ -143,7 +143,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -173,13 +173,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
-                service: "<SERVICE_NAME>"
-                endpoint: "postgresql"
+                service: <SERVICE_NAME>
+                endpoint: postgresql
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -241,13 +240,12 @@ applications:
             extensions:
                 - pdo_pgsql
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
-                service: "<SERVICE_NAME>"
-                endpoint: "postgresql"
+                service: <SERVICE_NAME>
+                endpoint: postgresql
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -277,7 +275,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            postgresql: 
+            postgresql:
 services:
     # The name of the service container. Must be unique within a project.
     postgresql:
@@ -299,13 +297,12 @@ applications:
             extensions:
                 - pdo_pgsql
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             postgresql:
-                service: "postgresql"
-                endpoint: "postgresql"
+                service: postgresql
+                endpoint: postgresql
 services:
     # The name of the service container. Must be unique within a project.
     postgresql:
@@ -334,9 +331,12 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            postgresql: 
+            postgresql:
 services:
     # The name of the service container. Must be unique within a project.
     postgresql:
@@ -359,13 +359,13 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             postgresql:
-                service: "postgresql"
-                endpoint: "postgresql"
+                service: postgresql
+                endpoint: postgresql
 services:
     # The name of the service container. Must be unique within a project.
     postgresql:
@@ -544,9 +544,10 @@ applications:
 
         [...]
 
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with explicitly set service names and endpoints.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             database:
                 service: postgresql
                 endpoint: admin

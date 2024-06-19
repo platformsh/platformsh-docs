@@ -155,10 +155,7 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: <ENDPOINT_ID>

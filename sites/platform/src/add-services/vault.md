@@ -91,11 +91,11 @@ To define the service, use the `vault-kms` type:
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-- {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
-- {{< variable "VERSION" >}} is a supported version of the service.
-- {{< variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
-- {{< variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
-- {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
+- ``<SERVICE_NAME>`` is the name you choose to identify the service.
+- ``<VERSION>`` is a supported version of the service.
+- ``<ENDPOINT_ID>`` is an identifier you choose for the endpoint.
+- ``<KEY_NAME>`` is the name of the key to be stored in the Vault KMS.
+- ``<POLICY>`` is one of the available [policies](#policies) based on what you want to accomplish.
 - The `type` is one of:
 
   - `sign`: for signing payloads, with the type `ecdsa-p256`
@@ -113,9 +113,10 @@ To define the relationship, use the following configuration:
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     <RELATIONSHIP_NAME>:
         service: <SERVICE_NAME>

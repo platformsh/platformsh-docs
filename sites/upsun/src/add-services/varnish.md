@@ -327,13 +327,11 @@ applications:
         # The type of the application to build.
         type: "python:{{% latest "python" %}}"
         # Unique relationship _to_ Varnish from 'stats-app', where no relationship
-        #   is defined _from_ Varnish to the same app, to avoid circular relationships.
+        # is defined _from_ Varnish to the same app, to avoid circular relationships.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             varnishstats:
-                service: "varnish"
-                endpoint: "http+stats"
+                service: varnish
+                endpoint: http+stats
     # The name of the app container. Must be unique within a project.
     main-app:
         # The location of the application's code.

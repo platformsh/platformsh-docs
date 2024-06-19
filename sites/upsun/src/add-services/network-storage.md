@@ -64,7 +64,7 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         mounts:
-            '<TARGET_PATH>':
+            <TARGET_PATH>:
                 source: service
                 service: <SERVICE_NAME>
                 source_path: <SOURCE_PATH>

@@ -107,7 +107,7 @@ To define the mount accessible by your application, use the following configurat
 
 ```yaml {configFile="apps"}
 mounts:
-    '<TARGET_PATH>':
+    <TARGET_PATH>:
         source: service
         service: <SERVICE_NAME>
         source_path: <SOURCE_PATH>

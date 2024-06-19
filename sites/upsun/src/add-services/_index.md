@@ -98,7 +98,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    {{<variable "APP_NAME" >}}:
+    <APP_NAME>:
 
         # Other options...
 
@@ -106,11 +106,11 @@ applications:
         # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            {{<variable "SERVICE_NAME" >}}: 
+            <SERVICE_NAME>: 
 services:
     # The name of the service container. Must be unique within a project.
-    {{<variable "SERVICE_NAME" >}}:
-        type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+    <SERVICE_NAME>:
+        type: <SERVICE_TYPE>:<VERSION>
         # Other options...
 ```
 
@@ -133,28 +133,27 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    {{<variable "APP_NAME" >}}:
+    <APP_NAME>:
         # Other options...
 
         # Relationships enable an app container's access to a service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            {{% variable "RELATIONSHIP_NAME" %}}:
-                service: {{% variable "SERVICE_NAME" %}}
-                endpoint: {{% variable "ENDPOINT_NAME" %}}
-            # OR as a shorter notation (Legacy)
-            {{% variable "RELATIONSHIP_NAME" %}}: {{% variable "SERVICE_NAME" %}}:{{% variable "ENDPOINT_NAME" %}}
+            <RELATIONSHIP_NAME>:
+                service: <SERVICE_NAME>
+                endpoint: <ENDPOINT_NAME>
 
 services:
     # The name of the service container. Must be unique within a project.
-    {{<variable "SERVICE_NAME" >}}:
-        type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+    <SERVICE_NAME>:
+        type: <SERVICE_TYPE>:<VERSION>
         # Other options...
 ```
 
-- `RELATIONSHIP_NAME` is the name you want to give to the relationship.
-- `SERVICE_NAME` is the name of the service as defined in the `services` section.
-- `ENDPOINT_NAME` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
+- `<RELATIONSHIP_NAME>` is the name you want to give to the relationship.
+- `<SERVICE_NAME>` is the name of the service as defined in the `services` section.
+- `<ENDPOINT_NAME>` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
 
 {{< /codetabs >}}
 
@@ -168,11 +167,14 @@ title=Using default endpoints
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    {{<variable "APP_NAME" >}}:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    <APP_NAME>:
         relationships:
-            mariadb: 
-            postgresql: 
+            mariadb:
+            postgresql:
 services:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -188,14 +190,17 @@ title=Using explicit endpoints
 ```yaml {configFile="apps"}
 applications:
     # The name of the app container. Must be unique within a project.
-    {{<variable "APP_NAME" >}}:
+    <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with explicitly set service names and endpoints.
+    # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             database:
-                service: "mariadb"
-                endpoint: "mysql"
+                service: mariadb
+                endpoint: mysql
             postgresql:
-                service: "postgresql"
-                endpoint: "postgresql"
+                service: postgresql
+                endpoint: postgresql
 services:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}

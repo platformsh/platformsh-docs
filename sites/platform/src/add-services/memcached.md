@@ -97,7 +97,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+    <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -120,13 +120,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
-# Please note: Legacy definition of the relationship is still supported:
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     <RELATIONSHIP_NAME>:
-        service: "<SERVICE_NAME>"
-        endpoint: "memcached"
+        service: <SERVICE_NAME>
+        endpoint: memcached
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -165,7 +166,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    memcached: 
+    memcached:
 ```
 
 <--->
@@ -176,13 +177,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
-# Please note: Legacy definition of the relationship is still supported:
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     memcached:
-        service: "memcached"
-        endpoint: "memcached"
+        service: memcached
+        endpoint: memcached
 ```
 
 {{< /codetabs >}}

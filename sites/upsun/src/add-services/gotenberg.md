@@ -116,8 +116,11 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -135,12 +138,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
-                service: "<SERVICE_NAME>"
-                endpoint: "http"
+                service: <SERVICE_NAME>
+                endpoint: http
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -167,9 +170,12 @@ title=Using default endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
-        # Relationships enable access from this app to a given service.
+         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            gotenberg: 
+            gotenberg:
 services:
     # The name of the service container. Must be unique within a project.
     gotenberg:
@@ -187,12 +193,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     myapp:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             gotenberg:
-                service: "gotenberg"
-                endpoint: "http"
+                service: gotenberg
+                endpoint: http
 services:
     # The name of the service container. Must be unique within a project.
     gotenberg:

@@ -288,13 +288,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             <RELATIONSHIP_NAME>:
-                service: "<SERVICE_NAME>"
-                endpoint: "mysql"
+                service: <SERVICE_NAME>
+                endpoint: mysql
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -330,7 +329,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            mariadb: 
+            mariadb:
 services:
     # The name of the service container. Must be unique within a project.
     mariadb:
@@ -348,13 +347,12 @@ applications:
     # The name of the app container. Must be unique within a project.
     myapp:
         # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             mariadb:
-                service: "mariadb"
-                endpoint: "mysql"
+                service: mariadb
+                endpoint: mysql
 services:
     # The name of the service container. Must be unique within a project.
     mariadb:
@@ -377,7 +375,7 @@ applications:
     myapp:
         # The location of the application's code.
         relationships:
-            oracle-mysql: 
+            oracle-mysql:
 service:
     # The name of the service container. Must be unique within a project.
     oracle-mysql:
@@ -394,13 +392,13 @@ title=Using explicit endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
-        # The location of the application's code.
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             oracle-mysql:
-                service: "oracle-mysql_service"
-                endpoint: "mysql"
+                service: oracle-mysql_service
+                endpoint: mysql
 service:
     # The name of the service container. Must be unique within a project.
     oracle-mysql_service:
@@ -432,7 +430,7 @@ applications:
 
         # Relationships enable an app container's access to a service.
         relationships:
-            mariadb: 
+            mariadb:
 service:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -454,13 +452,13 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
-        # Please note: Legacy definition of the relationship is still supported:
-        # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             mariadb:
-                service: "mariadb"
-                endpoint: "mysql"
+                service: mariadb
+                endpoint: mysql
 service:
     mariadb:
         type: mariadb:{{% latest "mariadb" %}}
@@ -668,19 +666,19 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
-        # Please note: Legacy definition of the relationship is still supported:
-        # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with explicitly set service names and endpoints.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             database:
-                service: "mariadb"
-                endpoint: "admin"
+                service: mariadb
+                endpoint: admin
             reports:
-                service: "mariadb"
-                endpoint: "reporter"
+                service: mariadb
+                endpoint: reporter
             imports:
-                service: "mariadb"
-                endpoint: "importer"
+                service: mariadb
+                endpoint: importer
 ```
 
 These relationships are then available in the [service environment variables](#relationship-reference).

@@ -95,12 +95,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
-# Please note: Legacy definition of the relationship is still supported:
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     <RELATIONSHIP_NAME>:
         service: <SERVICE_NAME>
-        endpoint: "http"
+        endpoint: http
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -138,7 +140,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 relationships:
-    gotenberg: 
+    gotenberg:
 ```
 
 <--->
@@ -149,12 +151,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
-# Please note: Legacy definition of the relationship is still supported:
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     gotenberg:
-        service: "gotenberg"
-        endpoint: "http"
+        service: gotenberg
+        endpoint: http
 ```
 
 {{< /codetabs >}}

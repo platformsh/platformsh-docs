@@ -85,7 +85,7 @@ title=Using default endpoints
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+    <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -108,13 +108,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
-    {{<variable "<RELATIONSHIP_NAME>" >}}:
-        service: {{<variable "<SERVICE_NAME>" >}}
-        endpoint: "kafka"
+    <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: kafka
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -165,13 +166,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 # Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
-# Please note: Legacy definition of the relationship is still supported:
+# Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     kafka:
-        service: "kafka"
-        endpoint: "kafka"
+        service: kafka
+        endpoint: kafka
 ```
 
 {{< /codetabs >}}

@@ -119,7 +119,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -146,8 +146,7 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
@@ -190,7 +189,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -212,8 +211,7 @@ applications:
             extensions:
                 - memcached
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
@@ -245,7 +243,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -268,8 +266,7 @@ applications:
             python:
                 python-memcached: '*'
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
@@ -299,7 +296,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            memcached: 
+            memcached:
 
 services:
     # The name of the service container. Must be unique within a project.
@@ -309,13 +306,16 @@ services:
 
 <--->
 
++++
+title=Using explicit endpoints
++++
+
 ```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
+        # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             memcached: "memcached:memcached"
@@ -325,10 +325,6 @@ services:
     memcached:
         type: memcached:{{% latest "memcached" %}}
 ```
-
-+++
-title=Using explicit endpoints
-+++
 
 {{< /codetabs >}}
 
@@ -352,9 +348,12 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            memcached: 
+            memcached:
 service:
     memcached:
         type: memcached:{{% latest "memcached" %}}
@@ -376,13 +375,12 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
             memcached:
-                service: "memcached"
-                endpoint: "memcached"
+                service: memcached
+                endpoint: memcached
 service:
     memcached:
         type: memcached:{{% latest "memcached" %}}
