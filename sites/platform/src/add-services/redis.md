@@ -242,7 +242,7 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 relationships:
-    redis: 
+    redis:
 ```
 
 <--->
@@ -415,7 +415,7 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 relationships:
-    redis: 
+    redis:
 ```
 
 <--->

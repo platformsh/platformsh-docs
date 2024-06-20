@@ -238,7 +238,7 @@ name: myapp
 [...]
 
 relationships:
-    opensearch: 
+    opensearch:
 ```
 
 <--->

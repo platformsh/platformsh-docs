@@ -28,8 +28,8 @@ Configure your service in the following pattern:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 services:
-    {{<variable "SERVICE_NAME" >}}:
-        type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
+    <SERVICE_NAME>:
+        type: <SERVICE_TYPE>:<VERSION>
         # Other options...
 ```
 
@@ -106,7 +106,7 @@ applications:
         # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:

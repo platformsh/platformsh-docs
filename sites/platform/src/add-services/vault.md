@@ -115,8 +115,6 @@ To define the relationship, use the following configuration:
 # Relationships enable access from this app to a given service.
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
     <RELATIONSHIP_NAME>:
         service: <SERVICE_NAME>
