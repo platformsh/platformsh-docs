@@ -72,52 +72,10 @@ IdentityFile ~/.ssh/id_{{% vendor/alt-name %}}
 Be aware that, above, `{{% vendor/alt-name %}}` stands for a hostname.
 Each different hostname you connect to {{< vendor/name >}} at may have to be specified in the host line, separated by spaces.
 
-## Check your git integrations
+## Check your Git integrations
 
-If your project is integrated with another git provider (such as GitHub), that provider controls git operations.
+If your project is integrated with another Git provider (such as GitHub), that provider controls Git operations.
 Make sure you have added your public SSH key to your provider and that your user there has access.
-
-## Add a second authentication factor
-
-If your organization has [multifactor authentication set up](./_index.md#multifactor-authentication-mfa-over-ssh),
-you may get an error like the following when trying to log into your environment with SSH keys:
-
-```bash
-Hello {{< variable "NAME" >}} (UUID: {{< variable "USER_ID" >}}), you successfully authenticated, but could not connect to service {{< variable "USER_ID" >}} --app
-(reason: access requires MFA)
-{{< variable "ENVIRONMENT_ID" >}}@ssh.{{< variable "REGION" >}}.{{< vendor/urlraw "host" >}}: Permission denied (publickey)
-```
-
-If you are using just `ssh` and not `{{% vendor/cli %}} ssh`, you may see only the second half of the error:
-
-```bash
-{{< variable "ENVIRONMENT_ID" >}}@ssh.{{< variable "REGION" >}}.{{< vendor/urlraw "host" >}}: Permission denied (publickey)
-```
-
-To resolve this:
-
-{{< codetabs >}}
-+++
-title=Using the CLI
-+++
-
-Log in using the browser by running `{{% vendor/cli %}} login`.
-
-<--->
-
-+++
-title=In the Console
-+++
-
-1. Open the user menu (your name or profile picture).
-2. Click **My profile**
-3. Click **Security**.
-4. Click **Set up application**.
-5. Follow the instructions for the chosen authentication app.
-6. Click **Verify & save**.
-7. Refresh your SSH credentials by running `{{% vendor/cli %}} login -f` in the CLI.
-
-{{< /codetabs >}}
 
 ## Generate SSH debug information
 
@@ -154,6 +112,10 @@ You can use this information to make one last check of the private key file.
 
 ## Something still wrong?
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+When trying to connect to an environment in an organization that enforces MFA,
+you may encounter error messages.
+To solve this, [enable MFA on your user account](/administration/security/mfa.md#on-your-user-account).
+
+For other potential issues, see how to [troubleshoot development](/development/troubleshoot) in general.
 
 If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.

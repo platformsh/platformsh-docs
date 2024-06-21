@@ -164,13 +164,4 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 
-## Multifactor authentication (MFA) over SSH
-
-{{< premium-features/tiered "Enterprise and Elite" >}}
-
-To enhance security, Enterprise and Elite customers can enforce MFA over SSH within their organization.
-When this is enabled, every project contributor within your organization must enable MFA in their account
-to run Git commands or to SSH in an environment.
-To enable this feature, open a [support ticket](/learn/overview/get-support) and request for MFA over SSH to be enforced within your organization.
-
-If you have trouble accessing an environment with MFA enabled, see how to [add a second factor](./troubleshoot-ssh.md#add-a-second-authentication-factor).
+Note that, for enhanced security, you can [enable Multi-Factor Authentication (MFA)](/administration/security/mfa.md) within your organization.
