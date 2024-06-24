@@ -1,8 +1,8 @@
 # Platform.sh User Documentation
 
-This repository holds the public user documentation for Platform.sh.
+This repository holds the public user documentation for Platform.sh and Upsun.
 
-The documentation site ([docs.platform.sh](https://docs.platform.sh/)) is itself hosted on Platform.sh
+The documentation sites ([docs.platform.sh](https://docs.platform.sh/) and [docs.upsun.com](https://docs.upsun.com/) are themselves hosted on Platform.sh
 and built using the powerful Platform.sh build-and-deploy system.
 
 Every pull request (PR) is automatically built on Platform.sh
