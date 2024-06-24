@@ -15,41 +15,21 @@ banner:
 To enhance security, you can [enforce MFA within your organization](#within-your-organization).
 This provides an extra layer of protection for connections made through both SSH and the {{% vendor/name %}} API.
 
-When MFA is enforced within an organization, every project contributor must [enable MFA on their user account](#on-your-user-account) to perform the following actions:
-
-- Run Git commands
-- SSH in an environment
-- Connect through the {{% vendor/name %}} API, to trigger a Console or CLI action for example
+When MFA is enforced, every project contributor must [enable MFA for their user account](#for-your-user-account) to run Git commands, SSH into an environment, and connect to the organization through the {{% vendor/name %}} API (for example, to trigger a Console or CLI action).
 
 ## Enable MFA
 
 ### Within your organization
 
-As an admin user, to enable MFA, open a [support ticket](/learn/overview/get-support)
+As an **admin user**, to enable MFA, open a [support ticket](/learn/overview/get-support)
 and request for MFA over SSH and API to be enforced within your organization.
 
-### On your user account
+### For your user account
 
-To establish a successful connection to an environment within an organization that enforces MFA,
-you need to enable MFA on your user account.
+As a project contributor, you **must** enable MFA for your user account to:
 
-Otherwise, connection attempts will result in error messages such as the following:
-
-```bash
-Error: The service doesn't exist or you do not have access to it.
-Service: abcdefg123456-main-bvxea6i--app
-User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
-```
-
-```bash
-Error: Access denied
-Service: abcdefg123456-main-bvxea6i--app
-User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
-Parameters: {"amr":["mfa","sso:acme"]}
-Detail: Additional authentication is required:
-	 - Multi-factor authentication (MFA)
-	 - Single sign-on (SSO), provider: "acme"
-```
+- Access an organization that enforces MFA in the Console
+- Successfully connect to environments in that organization via SSH or the {{% vendor/name %}} API
 
 To enable MFA on your user account, follow these steps:
 
@@ -76,3 +56,28 @@ title=In the Console
 
 {{< /codetabs >}}
 
+## Troubleshoot MFA-related error messages
+
+If you haven't enabled MFA for your user account and try to SSH into an environment that is protected by MFA,
+you get an error message similar to the following ones:
+
+```bash
+Error: The service doesn't exist or you do not have access to it.
+Service: abcdefg123456-main-bvxea6i--app
+User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
+```
+
+```bash
+Error: Access denied
+Service: abcdefg123456-main-bvxea6i--app
+User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
+Parameters: {"amr":["mfa","sso:acme"]}
+Detail: Additional authentication is required:
+	 - Multi-factor authentication (MFA)
+	 - Single sign-on (SSO), provider: "acme"
+```
+
+To solve this, [enable MFA for your user account](#for-your-user-account).
+
+Alternatively, open the Console and select the desired organization.
+Follow the instructions so you can effectively access its contents.
