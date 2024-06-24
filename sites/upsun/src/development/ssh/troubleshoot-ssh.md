@@ -114,7 +114,7 @@ You can use this information to make one last check of the private key file.
 
 When trying to connect to an environment in an organization that has MFA enforced,
 you may encounter error messages.
-To solve this, [enable MFA on your user account](/administration/mfa.md#for-your-user-account).
+To solve this, [enable MFA for your user account](/administration/mfa.md#for-your-user-account).
 
 For other potential issues, see how to [troubleshoot development](/development/troubleshoot) in general.
 
