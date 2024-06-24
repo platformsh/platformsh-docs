@@ -26,12 +26,12 @@ and request for MFA over SSH and API to be enforced within your organization.
 
 ### For your user account
 
-As a project contributor, you **must** enable MFA for your user account to:
+As a project contributor, you **must** enable MFA for your user account so you can:
 
 - Access an organization that enforces MFA in the Console
 - Successfully connect to environments in that organization via SSH or the {{% vendor/name %}} API
 
-To enable MFA on your user account, follow these steps:
+To enable MFA for your user account, follow these steps:
 
 {{< codetabs >}}
 +++
