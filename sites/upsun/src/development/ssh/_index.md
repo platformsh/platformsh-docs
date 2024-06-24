@@ -164,4 +164,4 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 
-Note that, for enhanced security, you can [enable Multi-Factor Authentication (MFA)](/administration/mfa.md) within your organization.
+Note that, for enhanced security, you can [enable multi-factor authentication (MFA)](/administration/mfa.md) within your organization.

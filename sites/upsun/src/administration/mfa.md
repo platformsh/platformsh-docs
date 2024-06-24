@@ -1,5 +1,5 @@
 ---
-title: Multi-Factor Authentication (MFA)
+title: Multi-factor authentication (MFA)
 weight: 4
 keywords: 
 - 2fa
@@ -21,16 +21,12 @@ When MFA is enforced, every project contributor must [enable MFA for their user 
 
 ### For your user account
 
-{{< note theme="warning" title="Warning">}}
+To [enforce MFA within an organization](#within-your-organization), organization owners and admin users must enable MFA for their user account first.
 
-Enabling MFA for your user account is mandatory for **organization owners** or **admin users** to [enforce MFA within a whole organization](#within-your-organization).
-
-It is also mandatory for project contributors so they can:
+Project contributors **must** also enable MFA for their user account so they can:
 
 - Access an organization that enforces MFA in the Console
 - Successfully connect to environments in that organization via SSH or the {{% vendor/name %}} API
-
-{{< /note >}}
 
 To enable MFA for your user account, follow these steps:
 
