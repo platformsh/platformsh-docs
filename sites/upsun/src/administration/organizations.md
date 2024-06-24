@@ -173,7 +173,7 @@ add the standard user management add-on to your organization.
 
 To do so, follow these steps:
 
-1. Navigate to your organization.
+1. In the Console, navigate to your organization.
 2. Open the user menu (your name or profile picture).
 3. In the **Organization add-ons** section of the **Overview** tab,
    locate the **User management** panel and click **Upgrade**.
