@@ -27,3 +27,4 @@ To redeem a voucher, follow these steps:
 4. Open the **Vouchers** tab.
 5. Enter your voucher code.
 6. Click **Redeem**.
+

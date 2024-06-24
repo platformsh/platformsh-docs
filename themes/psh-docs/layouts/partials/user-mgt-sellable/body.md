@@ -1,4 +1,4 @@
 {{ $content := `This feature is available as part of the Standard User Management add-on.
-To add it to your project, [administer your organization's billing](/administration/billing/billing-admin).`}}
+See how you can [add it to your organization](/administration/organizations.md#add-the-standard-user-management-add-on).`}}
 
 {{ partial "premium-features/banner" ( dict "context" . "content" $content "title" "Feature Availability" )}}

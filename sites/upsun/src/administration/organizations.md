@@ -165,3 +165,24 @@ Ownership transfer automatically transfers subscription charges to the new organ
 To transfer an organization to a different owner, first make sure that user is part of the organization.
 If they aren't yet, [add them](./users.md#add-a-user-to-an-organization).
 Then open a [support ticket](/learn/overview/get-support) from the current organization to ask for the transfer.
+
+## Add the standard user management add-on
+
+If you need to set up custom organization permissions and teams,
+add the standard user management add-on to your organization.
+
+To do so, follow these steps:
+
+1. Navigate to your organization.
+2. Open the user menu (your name or profile picture).
+3. In the **Organization add-ons** section of the **Overview** tab,
+   locate the **User management** panel and click **Upgrade**.
+4. In the pop-up window, select **Standard user management** and check the 30-day commitment box.
+5. Click **Upgrade**. 
+
+After the add-on is added to your organization,
+you can remove it from the same location in the **Overview** tab
+by clicking **Downgrade**.
+
+Once the minimum 30-day commitment period is over,
+the add-on is removed from your organization and you are no longer billed for it.
