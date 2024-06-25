@@ -221,6 +221,12 @@ For more information on project access control, see how to [manage project users
 
 ### Organization permissions
 
+{{< note theme="info" >}}
+
+To create custom organization permissions, [upgrade to the Standard User Management add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
+
+{{< /note >}}
+
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
@@ -238,7 +244,7 @@ you can invite other users to your organization and grant them the following per
 - **List projects** (`projects:list`):
   See all projects in an organization, even those the user can't access.
 
-{{< note theme="info" >}}
+{{< note >}}
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
