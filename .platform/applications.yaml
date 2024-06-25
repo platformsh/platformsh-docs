@@ -4,6 +4,8 @@
     # The type key specifies the language and version for your application.
     type: 'nodejs:20'
 
+    container_profile: HIGH_MEMORY
+
     # Specify the Hugo version as an env variable.
     variables:
         env:
