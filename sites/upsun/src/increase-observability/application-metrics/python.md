@@ -5,7 +5,7 @@ description: Configure and use the Python continuous profiler.
 weight: 30
 ---
 
-{{< partial "/continuous-profiling-sellable/body.md" >}}
+{{< partial "continuous-profiling-sellable/body.md" >}}
 
 {{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.

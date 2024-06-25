@@ -5,7 +5,7 @@ description: Configure and use the NodeJS continuous profiler.
 weight: 30
 ---
 
-{{< partial "/continuous-profiling-sellable/body.md" >}}
+{{< partial "continuous-profiling-sellable/body.md" >}}
 
 ## Continuous profiling on {{% vendor/name %}}
 
