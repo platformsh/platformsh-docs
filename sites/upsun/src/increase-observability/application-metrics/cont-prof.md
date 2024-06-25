@@ -4,6 +4,8 @@ description: Understanding the Continuous Profiling dashboard
 weight: 20
 ---
 
+{{< partial "add-ons/continuous-profiling-sellable/body.md" >}}
+
 Continuous profiling is a multi-dimensional performance optimization technique
 where web applications are monitored and profiled in real-time. Lightweight and
 scalable, it's tailored for holistic application oversight.

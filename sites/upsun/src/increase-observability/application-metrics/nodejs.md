@@ -5,6 +5,8 @@ description: Configure and use the NodeJS continuous profiler.
 weight: 30
 ---
 
+{{< partial "add-ons/continuous-profiling-sellable/body.md" >}}
+
 ## Continuous profiling on {{% vendor/name %}}
 
 {{< vendor/name >}} Continuous Profiling is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
