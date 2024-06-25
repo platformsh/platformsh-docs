@@ -26,7 +26,7 @@ By default, organization owners have **Project admin** access on all of the proj
 
 {{< note theme="info" title="Available add-on" >}}
 
-{{% vendor/name %}} offers free viewer permissions as part of the [Standard User Management add-on](./billing/add-ons.md#standard-user-management-add-on).
+{{% vendor/name %}} offers free viewer permissions as part of the [Standard User Management add-on](/sites/upsun/src/administration/billing/add-ons.md#standard-user-management-add-on).
 
 {{< /note >}}
 
@@ -263,7 +263,7 @@ except through an [ownership transfer](../administration/organizations.md#transf
 
 {{< note theme="info" title="Available add-on" >}}
 
-To be able to create custom organization permissions, [upgrade to the Standard User Management add-on](./billing/add-ons.md#standard-user-management-add-on).
+To be able to create custom organization permissions, [upgrade to the Standard User Management add-on](/sites/upsun/src/administration/billing/add-ons.md#standard-user-management-add-on).
 
 {{< /note >}}
 
