@@ -1,7 +1,6 @@
 {{ $source := .Get "source" }}
 <p>When you add an integration, your {{ $source }} repository is considered to be the source of truth for the project.
-Your {{ .Site.Params.vendor.name }} project is only a mirror of that repository and you should only push commits to {{ $source }}.
-Any changes you push to {{ .Site.Params.vendor.name }} get overwritten by the integration when changes happen in your {{ $source }} repository.</p>
+Your {{ .Site.Params.vendor.name }} project is only a mirror of that repository and you can only push commits to {{ $source }}.
 
 <p>To clone your code, follow these steps:</p>
 
