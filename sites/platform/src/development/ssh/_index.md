@@ -164,7 +164,7 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 
-## Multifactor authentication (MFA) over SSH
+## Multi-factor authentication over SSH
 
 {{< premium-features/tiered "Enterprise and Elite" >}}
 

@@ -12,7 +12,7 @@ description: Enable multi-factor authentication on your {{% vendor/name %}} acco
 ---
 
 For improved security, you can enable multi-factor authentication (MFA) for the Console and CLI.
-Organizations can also [enforce MFA over SSH for all their projects](../../development/ssh/_index.md#multifactor-authentication-mfa-over-ssh).
+Organizations can also [enforce MFA over SSH for all their projects](../../development/ssh/_index.md#multifactor-authentication-over-ssh).
 
 1.  In the [Console](../../administration/web/_index.md),
     open the user menu (your name or profile picture).
