@@ -7,44 +7,21 @@ keywords:
 - two factor
 - mfa
 - multifactor authentication
-description: Enhance security within your organization by enforcing MFA over SSH and the {{% vendor/name %}} API.
-banner: 
-    type: tiered-feature
+description: Enhance your organizations' security with Multi-Factor Authentication (MFA).
 ---
 
-To enhance security, you can [enforce MFA within your organization](#within-your-organization).
-This provides an extra layer of protection for connections made through both SSH and the {{% vendor/name %}} API.
+Multi-Factor Authentication (MFA) enhances security by protecting both your organization and every user account that interacts with it
+through SSH or the {{% vendor/name %}} API.
 
-When MFA is enforced, every project contributor must [enable MFA for their user account](#for-your-user-account) to run Git commands, SSH into an environment, and connect to the organization through the {{% vendor/name %}} API (for example, to trigger a Console or CLI action).
+When MFA is enforced within an organization, every project contributor **must** enable MFA on their user account so they can run Git commands,
+SSH into an environment, or trigger actions through the {{% vendor/name %}} API.
 
-## Enable MFA
+## Enable MFA on your user account
 
-### Within your organization
+To access an organization that enforces MFA or any of its projects,
+you **must** enable MFA on your user account.
 
-As an **admin user**, to enable MFA, open a [support ticket](/learn/overview/get-support)
-and request for MFA over SSH and API to be enforced within your organization.
-
-### For your user account
-
-As a project contributor, you **must** enable MFA for your user account so you can:
-
-- Access an organization that enforces MFA in the Console
-- Successfully connect to environments in that organization via SSH or the {{% vendor/name %}} API
-
-To enable MFA for your user account, follow these steps:
-
-{{< codetabs >}}
-+++
-title=Using the CLI
-+++
-
-Log in using the browser by running `{{% vendor/cli %}} login`.
-
-<--->
-
-+++
-title=In the Console
-+++
+To do so, follow these steps:
 
 1. In the Console, open the user menu (your name or profile picture).
 2. Click **My profile**
@@ -54,30 +31,9 @@ title=In the Console
 6. Click **Verify & save**.
 7. Refresh your SSH credentials by running `{{% vendor/cli %}} login -f` in the CLI.
 
-{{< /codetabs >}}
+## Enforce MFA within your organization
 
-## Troubleshoot MFA-related error messages
+{{< premium-features/tiered "Elite and Enterprise" >}}
 
-If you haven't enabled MFA for your user account and try to SSH into an environment that is protected by MFA,
-you get an error message similar to the following ones:
-
-```bash
-Error: The service doesn't exist or you do not have access to it.
-Service: abcdefg123456-main-bvxea6i--app
-User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
-```
-
-```bash
-Error: Access denied
-Service: abcdefg123456-main-bvxea6i--app
-User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
-Parameters: {"amr":["mfa","sso:acme"]}
-Detail: Additional authentication is required:
-	 - Multi-factor authentication (MFA)
-	 - Single sign-on (SSO), provider: "acme"
-```
-
-To solve this, [enable MFA for your user account](#for-your-user-account).
-
-Alternatively, open the Console and select the desired organization.
-Follow the instructions so you can effectively access its contents.
+As an **admin user**, to enable MFA, open a [support ticket](/learn/overview/get-support)
+and request for MFA to be enforced within your organization.

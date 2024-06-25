@@ -1,4 +1,4 @@
 ---
 title: Security
-description: For enhanced security, enable multi-factor authentication (MFA) or Single Sign-On (SSO).
+description: For enhanced security, enable Multi-Factor Authentication (MFA) or Single Sign-On (SSO).
 ---

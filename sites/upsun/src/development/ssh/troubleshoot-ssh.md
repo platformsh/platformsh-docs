@@ -110,12 +110,28 @@ GIT_SSH_COMMAND="ssh -v" git clone {{< variable "REPO_URL" >}}
 
 You can use this information to make one last check of the private key file.
 
+## MFA-related error message
+
+If you haven't enabled MFA for your user account and try to SSH into an environment that is protected by MFA,
+you get the following error message:
+
+```bash
+Error: Access denied
+Service: abcdefg123456-main-bvxea6i--app
+User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
+Parameters: {"amr":["mfa","sso:acme"]}
+Detail: Additional authentication is required:
+	 - Multi-factor authentication (MFA)
+	 - Single sign-on (SSO), provider: "acme"
+```
+
+To solve this, [enable MFA for your user account](#for-your-user-account).
+
+Alternatively, open the Console and select the desired organization.
+Follow the instructions so you can effectively access its contents.
+
 ## Something still wrong?
 
-When trying to connect to an environment in an organization that has MFA enforced,
-you may encounter error messages.
-To solve this, [enable MFA for your user account](/administration/mfa.md#for-your-user-account).
-
-For other potential issues, see how to [troubleshoot development](/development/troubleshoot) in general.
+For more generic information, see how to [troubleshoot development](/development/troubleshoot) in general.
 
 If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.
