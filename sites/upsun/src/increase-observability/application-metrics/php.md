@@ -5,6 +5,8 @@ description: Configure and use the PHP continuous profiler.
 weight: 30
 ---
 
+{{< partial "add-ons/continuous-profiling/body.md" >}}
+
 {{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
