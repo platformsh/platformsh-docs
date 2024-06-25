@@ -24,6 +24,12 @@ A user can have one of the following roles to control their access at project le
 
 By default, organization owners have **Project admin** access on all of the projects within their organization.
 
+{{< note theme="info" title="Available add-on" >}}
+
+{{% vendor/name %}} offers free viewer permissions as part of the [Standard User Management add-on](administration/billing/add-ons.md#standard-user-management-add-on).
+
+{{< /note >}}
+
 ### Environment type roles
 
 An environment type (Production, Staging, and Development) groups one or more environments together so that you can manage access for all environments of that type:
@@ -260,6 +266,12 @@ Organization owners have all permissions within their organization.
 Their permission level can't be edited.
 Organization owners can't be removed from their organization,
 except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
+
+{{< note theme="info" title="Available add-on" >}}
+
+To be able to create custom organization permissions, [upgrade to the Standard User Management add-on](administration/billing/add-ons.md#standard-user-management-add-on).
+
+{{< /note >}}
 
 ### Add a user to an organization
 
