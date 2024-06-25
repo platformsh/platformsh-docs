@@ -5,7 +5,7 @@ description: Configure and use the Go continuous profiler.
 weight: 30
 ---
 
-{{< partial "add-ons/continuous-profiling-sellable/body.md" >}}
+{{< partial "/continuous-profiling-sellable/body.md" >}}
 
 ## Continuous profiling on {{% vendor/name %}}
 
