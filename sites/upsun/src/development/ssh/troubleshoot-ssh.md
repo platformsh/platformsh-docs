@@ -125,7 +125,7 @@ Detail: Additional authentication is required:
 	 - Single sign-on (SSO), provider: "acme"
 ```
 
-To solve this, [enable MFA for your user account](#for-your-user-account).
+To solve this, [enable MFA for your user account](#enforce-mfa-on-your-user-account).
 
 Alternatively, open the Console and select the desired organization.
 Follow the instructions so you can effectively access its contents.
