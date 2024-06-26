@@ -20,8 +20,10 @@ SSH into an environment, or trigger actions through the {{% vendor/name %}} API.
 
 To access an organization that enforces MFA or any of its projects,
 you **must** enable MFA on your user account.
+Failure to do so results in forbidden access to the organization from the Console or API,
+and an [error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-message) when trying to SSH into its environments.
 
-To do so, follow these steps:
+To enable MFA on your user account, follow these steps:
 
 1. In the Console, open the user menu (your name or profile picture).
 2. Click **My profile**
