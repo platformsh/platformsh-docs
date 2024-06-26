@@ -37,7 +37,7 @@ To do so, follow these steps:
 
 Only **organization owners** and **admin users** can enable MFA within an organization.
 However, even if you have the required permissions,
-you **must** [enable MFA for your user account](#enforce-mfa-on-your-user-account) prior to enforcing it within the whole organization.
+you **must** [enable MFA for your user account](#enable-mfa-on-your-user-account) prior to enforcing it within the whole organization.
 
 {{< /note >}}
 
@@ -50,7 +50,7 @@ To enable MFA within your organization, follow these steps:
 
 {{< note >}}
 
-Under **User security settings**, you can view which users in your organization have [activated MFA for their user accounts](#for-your-user-account).
+Under **User security settings**, you can view which users in your organization have [activated MFA for their user accounts](#enable-mfa-on-your-user-account).
 
 {{< /note >}}
 
