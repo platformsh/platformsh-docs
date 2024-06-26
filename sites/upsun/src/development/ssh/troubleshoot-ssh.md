@@ -131,6 +131,6 @@ Follow the instructions so you can effectively access its contents.
 
 ## Something still wrong?
 
-For more generic information, see how to [troubleshoot development](/development/troubleshoot) in general.
+For more general information, see how to [troubleshoot development](/development/troubleshoot).
 
 If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.
