@@ -119,10 +119,9 @@ you get the following error message:
 Error: Access denied
 Service: abcdefg123456-main-bvxea6i--app
 User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
-Parameters: {"amr":["mfa","sso:acme"]}
+Parameters: {"amr":["mfa"]}
 Detail: Additional authentication is required:
 	 - Multi-factor authentication (MFA)
-	 - Single sign-on (SSO), provider: "acme"
 ```
 
 To solve this, [enable MFA on your user account](../../administration/mfa.md#enable-mfa-on-your-user-account).
