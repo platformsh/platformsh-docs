@@ -167,7 +167,7 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
 ## SSH into an MFA-protected environment
 
 For enhanced security, as an organization owner or admin user,
-you can [enable Multi-Factor Authentication (MFA)](/administration/security/mfa.md) within your organization.
+you can [enforce Multi-Factor Authentication (MFA) within your organization](/administration/security/mfa.md#enforce-mfa-within-your-organization).
 
 As a project contributor, if you haven't enabled MFA on your user account and SSH into an environment that is protected by MFA,
 you get an error message. See how you can [troubleshoot that error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-message).
