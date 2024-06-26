@@ -17,8 +17,8 @@ You can do so directly from the Console.
 
 The Standard User Management add-on gives you access to the following features:
 
-- Free viewer permissions
-- Custom organization permissions
+- Free [viewer permissions](../users.md)
+- Custom [organization permissions](../users.md#organization-permissions)
 - [Teams](/administration/teams.md)
 - [MFA enforcement within an organization](/administration/web/mfa.md)
 
@@ -45,7 +45,7 @@ the add-on is removed from your organization and you are no longer billed for it
 
 By default, {{% vendor/name %}} offers 15 minutes of continuous profiling per project and for free.
 When you upgrade to the continuous profiling add-on,
-you get 30 days of continuous profiling per project and for a fixed fee.
+you get 30 days of continuous profiling per project for a fixed fee.
 For more information on incurred costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 
 ### Upgrade to the Continuous Profiling add-on

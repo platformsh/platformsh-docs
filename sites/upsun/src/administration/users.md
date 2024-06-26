@@ -8,6 +8,14 @@ description: Manage user access and permissions across all your projects and org
 {{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
+{{< note theme="info" title="Available add-on" >}}
+
+The Standard User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
+[teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/web/mfa.md).
+See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
+
+{{< /note >}}
+
 ## Manage project access
 
 If you have set up an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
@@ -23,12 +31,6 @@ A user can have one of the following roles to control their access at project le
 | Project viewer | Yes              | No        | No                 | No              | No                                  |
 
 By default, organization owners have **Project admin** access on all of the projects within their organization.
-
-{{< note theme="info" title="Available add-on" >}}
-
-{{% vendor/name %}} offers free viewer permissions as part of the [Standard User Management add-on](administration/billing/add-on-subscription.md#standard-user-management-add-on).
-
-{{< /note >}}
 
 ### Environment type roles
 
