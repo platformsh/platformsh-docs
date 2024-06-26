@@ -8,7 +8,7 @@ description: Manage user access and permissions across all your projects and org
 {{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
-{{< note theme="info" title="Available add-on" >}}
+{{< note title="Available add-on" >}}
 
 The Standard User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
 [teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/web/mfa.md).
@@ -229,12 +229,6 @@ For more information on project access control, see how to [manage project users
 
 ### Organization permissions
 
-{{< note theme="info" >}}
-
-To create custom organization permissions, [upgrade to the Standard User Management add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
-
-{{< /note >}}
-
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
@@ -269,7 +263,7 @@ Their permission level can't be edited.
 Organization owners can't be removed from their organization,
 except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
 
-{{< note theme="info" title="Available add-on" >}}
+{{< note title="Available add-on" >}}
 
 To be able to create custom organization permissions, [upgrade to the Standard User Management add-on](administration/billing/add-on-subscription.md#standard-user-management-add-on).
 
