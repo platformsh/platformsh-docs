@@ -112,7 +112,7 @@ You can use this information to make one last check of the private key file.
 
 ## MFA-related error message
 
-If you haven't enabled MFA for your user account and try to SSH into an environment that is protected by MFA,
+If you haven't enabled MFA on your user account and try to SSH into an environment that is protected by MFA,
 you get the following error message:
 
 ```bash
@@ -125,7 +125,7 @@ Detail: Additional authentication is required:
 	 - Single sign-on (SSO), provider: "acme"
 ```
 
-To solve this, [enable MFA for your user account](../../administration/mfa.md#enable-mfa-on-your-user-account).
+To solve this, [enable MFA on your user account](../../administration/mfa.md#enable-mfa-on-your-user-account).
 
 Alternatively, open the Console and select the desired organization.
 Follow the instructions so you can effectively access its contents.
