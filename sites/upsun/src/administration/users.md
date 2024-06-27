@@ -8,6 +8,14 @@ description: Manage user access and permissions across all your projects and org
 {{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
+{{< note title="Available add-on" >}}
+
+The Standard User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
+[teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/web/mfa.md).
+See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
+
+{{< /note >}}
+
 ## Manage project access
 
 If you have set up an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
@@ -238,7 +246,7 @@ you can invite other users to your organization and grant them the following per
 - **List projects** (`projects:list`):
   See all projects in an organization, even those the user can't access.
 
-{{< note theme="info" >}}
+{{< note >}}
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
@@ -254,6 +262,12 @@ Organization owners have all permissions within their organization.
 Their permission level can't be edited.
 Organization owners can't be removed from their organization,
 except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
+
+{{< note title="Available add-on" >}}
+
+To be able to create custom organization permissions, [upgrade to the Standard User Management add-on](administration/billing/add-on-subscription.md#standard-user-management-add-on).
+
+{{< /note >}}
 
 ### Add a user to an organization
 
