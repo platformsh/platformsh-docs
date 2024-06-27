@@ -27,7 +27,7 @@ The Standard User Management add-on gives you access to the following features:
 To upgrade to the Standard User Management add-on, follow these steps:
 
 1. In the Console, navigate to your organization.
-2. Open the user menu (your name or profile picture).
+2. Open the user menu (your name or profile picture), then select **Billing**.
 3. In the **Organization add-ons** section of the **Overview** tab,
    locate the **User management** panel and click **Upgrade**.
 4. In the pop-up window, select **Standard user management** and check the 30-day commitment box.
@@ -53,7 +53,7 @@ For more information on incurred costs, see the [{{% vendor/name %}} pricing pag
 To upgrade to this add-on, follow these steps:
 
 1. In the Console, navigate to your organization.
-2. Open the user menu (your name or profile picture).
+2. Open the user menu (your name or profile picture), then select **Billing**.
 3. In the **Overview** tab, find the project on which you want to activate full continuous profiling.
 4. Click **{{< icon more >}} More** next to that project.
 5. Click **Project billing**.
