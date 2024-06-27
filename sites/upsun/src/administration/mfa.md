@@ -35,7 +35,10 @@ To enable MFA on your user account, follow these steps:
 
 ## Enforce MFA within your organization
 
-{{< note title="Permissions">}}
+{{< note theme="info" title="Feature Availability">}}
+
+This feature is available as part of the Standard User Management add-on.
+To add it to your project, [administer your organization's billing](/administration/billing/billing-admin).
 
 Only **organization owners** and **admin users** can enable MFA within an organization.
 However, even if you have the required permissions,
