@@ -13,30 +13,27 @@ keywords:
   - "scaling"
 ---
 
-When you first deploy your project, or add a new app or service to it,
+When you first deploy your project or add a new app or service to it,
 {{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md#default-resources) to each of your containers.
 If you don't want to use those default resources, define a different [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy).
 
 After the initial deployment, or if you opt for the `Manual` [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy),
 you can adjust container resources manually.
-To do so, follow the instructions on this page.
+To do, follow the instructions on this page.
 
-{{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each app and service.
-You can also add instances for each app depending on your needs.
+{{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your apps and services.
+You can also add instances for each of your apps depending on your needs.
 
 For example, you can scale vertically and allocate more resources to your production and staging environments
 than to your development environments.
 This flexibility allows you to optimize performance and costs.
 
-You can also scale horizontally if your apps are struggling with high load, or if you're expecting a traffic spike,
+You can even scale horizontally if your apps are struggling with high load, or if you're expecting a traffic spike,
 by adding more instances for your apps and workers.
 
-{{< note >}}
-
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
-You can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
-{{< /note >}}
+Note that you can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
 ## Vertical scaling
 
@@ -49,16 +46,12 @@ follow these steps:
 title= Using the CLI
 +++
 
-To set resources for each of your apps and services,
-you can use the {{% vendor/name %}} CLI interactive prompts, or run commands manually.
-
-- **Interactive prompts:**
-
-Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each app and service.
+Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each of your apps and services.
 
 {{< note >}}
 
 For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
 Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
 you may need to set the resources again.
 
@@ -66,41 +59,6 @@ you may need to set the resources again.
 
 After you've set resources, your environment is redeployed,
 which causes a short downtime.
-
-- **Manual commands:**
-
-Use the following CLI flags:
-
-| CLI flag        | Description                     | 
-| --------------- | --------------------------------|
-| `size`          | Allows you to define how much CPU you want to allocate to each app or service.</br>The amount of CPU then determines how much RAM is also allocated, based on the [container profile](#advanced-container-profiles). |
-| `disk`          | Allows you to define how much disk/storage you want to allocate to each app or service. |
-
-_Example 1:_
-
-The following command allocates `0.1` CPU to the `frontend` app, `0.25` CPU to the `backend` app, and `1` CPU to the `database` service.
-The amount of RAM these settings translate into depends on each [container profile](#advanced-container-profiles).
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set --size frontend:0.1,backend:0.25,database:1
-```
-
-_Example 2:_
-
-The following command allocates `640 MB` of disk to the `backend` app, and `2048 MB` to the `database` service:
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set --disk backend:640,database:2048
-```
-
-_Example 3:_
-
-You can also use wildcards. For example, if you have two apps named `frontend` and `backend`,
-you could allocate the same CPU and RAM combination to both by using the following command:
-
-```bash {location="Terminal"}
-{{% vendor/cli %}} resources:set --size '*end:0.1'
-```
 
 <--->
 
@@ -146,7 +104,7 @@ or run commands manually.
 
 - **Interactive prompts:**
 
-  Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each app and service.
+  Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each of your apps and services.
 
   {{% note %}}
   For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
