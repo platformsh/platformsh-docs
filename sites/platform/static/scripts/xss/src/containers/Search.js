@@ -7,6 +7,7 @@ import Suggestions from 'components/Suggestions'
 import SuggestionsPrimary from 'components/SuggestionsPrimary'
 
 const getConfig = async () => {
+  console.log('Retrieving config')
   // Primary configuration occurs here,
   // which allows the Search bar in docs to communicate with the Meilisearch service.
   // The `config.json` file does not exist at build time,
@@ -15,6 +16,7 @@ const getConfig = async () => {
   // here if they are not yet set, but a file works just fine.
   // The mount `public/scripts/xss/dist/config` has been defined to support this.
   const response = await fetch(`/scripts/xss/dist/config/config.json?version=${Date.now().toString()}`);
+  console.log('returning config')
   return response.json();
 }
 
@@ -42,6 +44,14 @@ const Search = ({ fullPage }) => {
   const limit = fullPage ? maxResults : 7
 
   const getInfo = (infoConfig, infoQuery) => {
+    if (!Object.hasOwn(infoConfig, 'url')) {
+      console.log('Get info called but config object has missing properties!')
+      console.log('trying to get config props again')
+      // eslint-disable-next-line no-param-reassign
+      infoConfig = getConfig().then((value) => {
+        setConfig(value)
+      })
+    }
     axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section`, { params: {}, headers: { Authorization: `Bearer ${infoConfig.public_api_key}` } })
       .then(({ data }) => {
         setHits({
