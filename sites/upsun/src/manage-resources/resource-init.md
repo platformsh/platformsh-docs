@@ -37,7 +37,7 @@ You can also [adjust resources](/manage-resources/adjust-resources.md) after you
 {{% note %}}
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
-You can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
+Note that you can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
 {{% /note %}}
 
@@ -52,7 +52,7 @@ You can [monitor these costs](/administration/billing/monitor-billing.md) in the
 | `minimum`  | Initializes new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes new containers using the same resources as on the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 | `child`    | Initializes new containers using the same resources as on the child environment. Only relevant during merge activities. |
-| `backup`   | When restoring a backup, all containers are restored using the same resources as when the backup was taken. |
+| `backup`   | When restoring a backup, initializes new containers using the same resources as when the backup was taken. |
 
 {{% note theme="info" title="More information on..."%}} 
 <details>
@@ -353,12 +353,12 @@ you can restore it to your current environment or a different environment.
 
 ## Backup restoration to your current environment
 
-By default, when you [restore a backup](/environments/restore.md) using the CLI, it is restored to your current environment.
+Each container already running on the environment keeps its existing resources.
 
-Containers are restored using the `backup` strategy, meaning:
-- The resources of every container running on the environment are reverted to their original state when the backup was taken.
-- If you deleted a container between the moment you took the backup and the moment you restore it, that container is relaunched
-  using the resources from when the backup was taken.
+You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
+By default, code is restored as part of the backup.
+Therefore, previously deleted containers are restored using the `backup` strategy,
+which grants them the same resources they were using when the backup was taken.
 
 {{% note %}}
 If you don't want to restore previously deleted containers,
@@ -397,15 +397,18 @@ title=In the Console
 
 When you [restore a backup](/environments/restore.md) using the Console, it is restored to your current environment.
 
-Containers are restored using the `backup` strategy, meaning:
-- The resources of every container running on the environment are reverted to their original state when the backup was taken.
-- If you deleted a container between the moment you took the backup and the moment you restore it, that container is relaunched
-  using the resources from when the backup was taken.
+Each container already running on your current environment keeps its existing resources.
+Therefore, you don't need to specify a resource initialization strategy. 
 
 {{% note %}}
+You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
+By default, code is restored as part of the backup.
+Therefore, previously deleted containers are restored using the `backup` strategy,
+which grants them the same resources they were using when the backup was taken.
+
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, restore the backup using the CLI and use the `--no-code` flag.
+To do so, when you restore your backup, use the `--no-code` flag.
 {{% /note %}}
 
 {{< /codetabs >}}
