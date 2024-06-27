@@ -356,7 +356,7 @@ you can restore it to your current environment or a different environment.
 By default, when you [restore a backup](/environments/restore.md) using the CLI, it is restored to your current environment.
 
 Containers are restored using the `backup` strategy, meaning:
-- Each container that's already running on the environment sees its resources restored to what they were when the backup was taken.
+- The resources of each container already running on the environment are restored to what they were when the backup was taken.
 - If you deleted a container between the moment you took the backup and the moment you restore it, that container is relaunched
   using the resources from when the backup was taken.
 
@@ -398,7 +398,7 @@ title=In the Console
 When you [restore a backup](/environments/restore.md) using the Console, it is restored to your current environment.
 
 Containers are restored using the `backup` strategy, meaning:
-- Each container that's already running on the environment sees its resources restored to what they were when the backup was taken.
+- The resources of each container already running on the environment are restored to what they were when the backup was taken.
 - If you deleted a container between the moment you took the backup and the moment you restore it, that container is relaunched
   using the resources from when the backup was taken.
 
