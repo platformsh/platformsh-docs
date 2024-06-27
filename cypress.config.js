@@ -1,10 +1,11 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: 'k7k61v',
   e2e: {
     baseUrl: 'http://localhost:1313/',
     env: {
-      barfoo: "from config",
+      site: 'not set',
       environment: "local",
     },
     setupNodeEvents(on, config) {

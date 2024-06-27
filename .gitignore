@@ -9,5 +9,5 @@ vale
 vrt-docs-migration
 sites/bin
 bin
-sites/platform/cypress/e2e/1-getting-started
-sites/platform/cypress/e2e/2-advanced-examples
+cypress/e2e/1-getting-started
+cypress/e2e/2-advanced-examples
