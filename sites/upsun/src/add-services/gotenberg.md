@@ -1,7 +1,7 @@
 ---
 title: "Gotenberg"
 weight: -95
-description: Gotenberg is a user-friendly API for PDF files.  
+description: Gotenberg is a user-friendly API for PDF files.
 ---
 
 Gotenberg is a stateless API for converting various document formats into PDF files.
@@ -105,21 +105,54 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the ``http`` endpoint:
 
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:http"
-
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
         type: gotenberg:<VERSION>
 ```
-
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <RELATIONSHIP_NAME>:
+                service: <SERVICE_NAME>
+                endpoint: http
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: gotenberg:<VERSION>
+```
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+{{< /codetabs >}}
 
 With the above definition, {{% vendor/name %}} uses the `http` endpoint,
 providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the _name_ of that service.
@@ -128,19 +161,52 @@ The `http` endpoint uses port `3000` by default.
 
 ### Example configuration
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
-        # Relationships enable access from this app to a given service.
+         # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            gotenberg: "gotenberg:http"
-
+            gotenberg:
 services:
     # The name of the service container. Must be unique within a project.
     gotenberg:
         type: gotenberg:8
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            gotenberg:
+                service: gotenberg
+                endpoint: http
+services:
+    # The name of the service container. Must be unique within a project.
+    gotenberg:
+        type: gotenberg:8
+```
+
+{{< /codetabs >}}
+
 
 ## Generate a PDF using Gotenberg
 

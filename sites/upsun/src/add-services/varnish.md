@@ -49,7 +49,7 @@ services:
                 path: config.vcl
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 The `relationships` block defines the connection between Varnish and your app.
@@ -327,11 +327,11 @@ applications:
         # The type of the application to build.
         type: "python:{{% latest "python" %}}"
         # Unique relationship _to_ Varnish from 'stats-app', where no relationship
-        #   is defined _from_ Varnish to the same app, to avoid circular relationships.
+        # is defined _from_ Varnish to the same app, to avoid circular relationships.
         relationships:
-            varnishstats: 
+            varnishstats:
                 service: varnish
-                endpoint: "http+stats"
+                endpoint: http+stats
     # The name of the app container. Must be unique within a project.
     main-app:
         # The location of the application's code.
@@ -347,9 +347,9 @@ services:
         # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
         #   is defined _to_ Varnish to the same app, to avoid circular relationships.
         relationships:
-            main: 
+            main:
                 service: "main-app"
-                endpoint: http
+                endpoint: "http
         configuration:
             vcl: !include
                 type: string

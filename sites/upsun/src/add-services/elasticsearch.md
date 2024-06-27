@@ -51,22 +51,22 @@ You can obtain the complete list of available service environment variables in y
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
-ESSEARCH_USERNAME=
-ESSEARCH_SCHEME=http
-ESSEARCH_SERVICE=elasticsearch
-ESSEARCH_FRAGMENT=null
-ESSEARCH_IP=123.456.78.90
-ESSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-ESSEARCH_PORT=9200
-ESSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
-ESSEARCH_HOST=essearch.internal
-ESSEARCH_REL=elasticsearch
-ESSEARCH_PATH=
-ESSEARCH_QUERY=[]
-ESSEARCH_PASSWORD=ChangeMe
-ESSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
-ESSEARCH_PUBLIC=false
-ESSEARCH_HOST_MAPPED=false
+ELASTICSEARCH_USERNAME=
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_SERVICE=elasticsearch
+ELASTICSEARCH_FRAGMENT=null
+ELASTICSEARCH_IP=123.456.78.90
+ELASTICSEARCH_HOSTNAME=azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_CLUSTER=azertyuiopqsdf-main-7rqtwti
+ELASTICSEARCH_HOST=elasticsearch.internal
+ELASTICSEARCH_REL=elasticsearch
+ELASTICSEARCH_PATH=
+ELASTICSEARCH_QUERY=[]
+ELASTICSEARCH_PASSWORD=ChangeMe
+ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
+ELASTICSEARCH_PUBLIC=false
+ELASTICSEARCH_HOST_MAPPED=false
 ```
 
 <--->
@@ -88,7 +88,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
     "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
     "port": 9200,
     "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "essearch.internal",
+    "host": "elasticsearch.internal",
     "rel": "elasticsearch",
     "path": null,
     "query": [],
@@ -106,7 +106,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
 
 # Set environment variables for individual credentials.
-export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.essearch[0].host')"
+export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsearch[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -135,6 +135,12 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the following configuration:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -144,14 +150,14 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
         type: elasticsearch:<VERSION>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -161,9 +167,50 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <RELATIONSHIP_NAME>:
+                service: <SERVICE_NAME>
+                endpoint: elasticsearch
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: elasticsearch:<VERSION>
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
+{{< /codetabs >}}
+
 ### Example configuration
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="services"}
 applications:
@@ -174,8 +221,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            elasticsearch: 
-
+            elasticsearch:
 services:
     # The name of the service container. Must be unique within a project.
     elasticsearch:
@@ -184,28 +230,92 @@ services:
 
 If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
 
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            elasticsearch:
+                service: elasticsearch
+                endpoint: elasticsearch
+services:
+    # The name of the service container. Must be unique within a project.
+    elasticsearch:
+        type: elasticsearch:{{% latest "elasticsearch" %}}
+```
+
+If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
+
+{{< /codetabs >}}
+
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
-{{% snippet name="myapp" config="app" root="myapp"  %}}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            elasticsearch:
+services:
+    elasticsearch:
+        type: elasticsearch:{{% latest "elasticsearch" %}}
 
-# Other options...
-
-# Relationships enable an app container's access to a service.
-relationships:
-    essearch: "elasticsearch:elasticsearch"
-{{% /snippet %}}
-{{% snippet name="elasticsearch" config="service" placeholder="true"  %}}
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-{{% /snippet %}}
 ```
 
+<--->
+
++++
+title=Using explicit endpoints
++++
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            elasticsearch:
+                service: elasticsearch
+                endpoint: elasticsearch
+services:
+    elasticsearch:
+        type: elasticsearch:{{% latest "elasticsearch" %}}
+```
+
+{{< /codetabs >}}
+
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `elasticsearch` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+`myapp` has access to the `elasticsearch` service, via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, `myapp` can retrieve access credentials to the service through the [relationship environment variable](/add-services/elasticsearch.md#relationship-reference).
@@ -213,19 +323,19 @@ From this, `myapp` can retrieve access credentials to the service through the [r
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export ELASTIC_SCHEME=${ESSEARCH_SCHEME}
-export ELASTIC_HOST=${ESSEARCH_HOST}
-export ELASTIC_PORT=${ESSEARCH_PORT}
+export ELASTIC_SCHEME=${ELASTICSEARCH_SCHEME}
+export ELASTIC_HOST=${ELASTICSEARCH_HOST}
+export ELASTIC_PORT=${ELASTICSEARCH_PORT}
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=${ESSEARCH_USERNAME}
-export ELASTIC_PASSWORD=${ESSEARCH_PASSWORD}
+export ELASTIC_USERNAME=${ELASTICSEARCH_USERNAME}
+export ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD}
 export ELASTIC_HOSTS=["$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT"]
 ```
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``ELASTIC_HOSTS`` can be used within the application to connect to the service.
 
-Note that ``ELASTIC_HOSTS``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``ESSEARCH_HOST``,
+Note that ``ELASTIC_HOSTS``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``ELASTICSEARCH_HOST``,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.

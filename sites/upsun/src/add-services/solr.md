@@ -120,6 +120,12 @@ Note that changing the name of the service replaces it with a brand new service 
 
 To define the relationship, use the following configuration:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -129,7 +135,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
+            <SERVICE_NAME>:
 services:
     # The name of the service container. Must be unique within a project.
     <SERVICE_NAME>:
@@ -146,9 +152,50 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    <APP_NAME>:
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            <RELATIONSHIP_NAME>:
+                service: <SERVICE_NAME>
+                endpoint: solr
+services:
+    # The name of the service container. Must be unique within a project.
+    <SERVICE_NAME>:
+        type: solr:<VERSION>
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -159,17 +206,48 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            solr: 
-
+            solr:
 services:
     # The name of the service container. Must be unique within a project.
     solr:
         type: solr:{{% latest "solr" %}}
 ```
 
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            solr:
+                service: solr
+                endpoint: solr
+services:
+    # The name of the service container. Must be unique within a project.
+    solr:
+        type: solr:{{% latest "solr" %}}
+```
+
+{{< /codetabs >}}
+
+
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 applications:
@@ -181,15 +259,48 @@ applications:
 
         [...]
 
-        # Relationships enable an app container's access to a service.
+        # Relationships enable access from this app to a given service.
+        # The example below shows simplified configuration leveraging a default service
+        # (identified from the relationship name) and a default endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             solr:
-
 services:
     # The name of the service container. Must be unique within a project.
     solr:
         type: solr:{{% latest "solr" %}}
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    # The name of the app container. Must be unique within a project.
+    myapp:
+        # The location of the application's code.
+        source:
+            root: "myapp"
+
+        [...]
+
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with an explicitly set service name and endpoint.
+        # See the Application reference for all options for defining relationships and endpoints.
+        relationships:
+            solr:
+                service: solr
+                endpoint: solr
+services:
+    # The name of the service container. Must be unique within a project.
+    solr:
+        type: solr:{{% latest "solr" %}}
+```
+
+{{< /codetabs >}}
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `solr` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
@@ -200,11 +311,11 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit https://docs.upsun.com/development/variables.html#service-environment-variables.
-export QUEUE_SCHEME=${RABBITMQ_SCHEME}
-export QUEUE_USERNAME=${RABBITMQ_USERNAME}
-export QUEUE_PASSWORD=${RABBITMQ_PASSWORD}
-export QUEUE_HOST=${RABBITMQ_HOST}
-export QUEUE_PORT=${RABBITMQ_PORT}
+export QUEUE_SCHEME=${SOLR_SCHEME}
+export QUEUE_USERNAME=${SOLR_USERNAME}
+export QUEUE_PASSWORD=${SOLR_PASSWORD}
+export QUEUE_HOST=${SOLR_HOST}
+export QUEUE_PORT=${SOLR_PORT}
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
@@ -281,7 +392,7 @@ Each endpoint is then available in the relationships definition in `{{< vendor/c
 applications:
     # The name of the app container. Must be unique within a project.
     myapp:
-    
+
         type: "php:{{% latest "php" %}}"
 
         source:
@@ -289,8 +400,11 @@ applications:
 
         [...]
 
+        # Relationships enable access from this app to a given service.
+        # The example below shows configuration with explicitly set service names and endpoints.
+        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            solrsearch1: 
+            solrsearch1:
                 service: solr
                 endpoint: main
             solrsearch2:

@@ -62,7 +62,7 @@ To define the service, use the `varnish` type:
             path: config.vcl
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 The `relationships` block defines the connection between Varnish and your app.
@@ -152,12 +152,8 @@ For example, you might have the following configuration for two apps:
 varnish:
     type: varnish:{{% latest "varnish" %}}
     relationships:
-        blog:
-            service: blog
-            endpoint: http
-        main:
-            service: app
-            endpoint: http
+        blog: 'blog:http'
+        main: 'app:http'
     configuration:
         vcl: !include
             type: string
@@ -333,7 +329,7 @@ stats-app:
     # Unique relationship _to_ Varnish from 'stats-app', where no relationship
     #   is defined _from_ Varnish to the same app, to avoid circular relationships.
     relationships:
-        varnishstats: 
+        varnishstats:
             service: varnish
             endpoint: "http+stats"
 # The name of the app container. Must be unique within a project.
@@ -352,9 +348,7 @@ varnish:
     # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
     #   is defined _to_ Varnish to the same app, to avoid circular relationships.
     relationships:
-        main: 
-            service: "main-app"
-            endpoint: http
+        main: "main-app:http"
     configuration:
         vcl: !include
             type: string

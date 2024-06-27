@@ -50,12 +50,14 @@ name: myapp
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: 
-        service: mariadb
-        endpoint: mysql
-    replication: 
-        service: mariadb
-        endpoint: replicator
+    # Please note: Legacy definition of the relationship is still supported:
+    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+    database:
+        service: "mariadb"
+        endpoint: "mysql"
+    replication:
+        service: "mariadb"
+        endpoint: "replicator"
 ```
 
 ## Getting the Primary's Binary Log Co-ordinates
