@@ -1,0 +1,4 @@
+<!-- Creates single page banner note for warning about a feature being part of the Observability Suite -->
+{{ if .Params.replicas }}
+  {{ partial "replicas/body.md" . }}
+{{ end }}

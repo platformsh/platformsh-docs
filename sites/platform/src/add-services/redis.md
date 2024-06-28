@@ -393,6 +393,69 @@ const value = await client.get('x');     // returns 42
 
 {{< /codetabs >}}
 
+## Restrict access to database replicas only
+
+{{< partial "banners/replicas/body.md" >}}
+
+For security reasons, you can grant your app access to replicas instead of your actual database.
+To do so, when defining the relationship between your app and database,
+make sure you do the following:
+
+1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2. Add the `-replica` suffix to the name of the endpoint you want to use.
+
+This results in the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}:
+        service: {{% variable "SERVICE_NAME" %}}
+        endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+```
+
+For example, if you define a `redis-persistent` database as follows:
+
+```yaml {configFile="services"}
+postgresql:
+    type: "redis-persistent:16"
+    disk: 2048
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+```
+
+To create a replica of the `redis-persistent` database and allow your app to connect to it
+through the `admin` endpoint with admin permissions,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  redis-persistent:
+    service: redis-persistent
+    endpoint: admin-replica
+```
+
+To create a replica of the `redis-persistent` database and allow your app to connect to it
+through the `reporter` endpoint with read-only permissions instead,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  redis-persistent:
+    service: redis-persistent
+    endpoint: reporter-replica
+```
+
 ## Relationship reference 
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
