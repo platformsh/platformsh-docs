@@ -396,7 +396,7 @@ title=In the Console
 +++
 
 When you [restore a backup](/environments/restore.md) using the Console, it is restored to your current environment.
-The resources of every container running on the environment are reverted to their original state when the backup was taken.
+The resources of every container already running on the environment are reverted to their original state when the backup was taken.
 
 If you deleted containers after backing up but before restoring, they are recreated using the `backup` strategy.
 Meaning, they are granted the same resources as in the backup.
@@ -406,9 +406,6 @@ If you don't want to restore previously deleted containers,
 opt out of restoring the code.
 To do so, restore the backup using the CLI, and use the `--no-code` flag.
 {{% /note %}}
-
-When you restore previously deleted containers,
-you can specify a different resource initialization strategy for them.
 
 {{< /codetabs >}}
 
