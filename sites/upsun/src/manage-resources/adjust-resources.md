@@ -69,7 +69,7 @@ which causes a short downtime.
 
 - **Manual commands:**
 
-Run he `resources:set` command using the following CLI options:
+Run the `resources:set` command using the following CLI options:
 
 | CLI option        | Description                     | 
 | ----------------- | --------------------------------|
