@@ -52,7 +52,7 @@ You can [monitor these costs](/administration/billing/monitor-billing.md) in the
 | `minimum`  | Initializes new containers using the {{% vendor/name %}} minimum resources (see below). |
 | `parent`   | Initializes new containers using the same resources as on the parent environment.</br>If there is no parent environment, or if the container doesn't already exist on the parent, the `default` strategy applies instead. |
 | `child`    | Initializes new containers using the same resources as on the child environment. Only relevant during merge activities. |
-| `backup`   | When restoring a backup, all containers are restored using the same resources as when the backup was taken. |
+| `backup`   | When restoring a backup, initializes new containers using the same resources as when the backup was taken. |
 
 {{% note theme="info" title="More information on..."%}} 
 <details>
