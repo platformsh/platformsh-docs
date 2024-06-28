@@ -163,3 +163,11 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
 * [Using API tokens](../../administration/cli/api-tokens.md)
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
+
+## SSH into an MFA-protected environment
+
+For enhanced security, as an organization owner or admin user,
+you can [enforce Multi-Factor Authentication (MFA) within your organization](/administration/mfa.md#enforce-mfa-within-your-organization).
+
+As a project contributor, if you haven't enabled MFA on your user account and SSH into an environment that is protected by MFA,
+you get an error message. See how you can [troubleshoot that error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-message).

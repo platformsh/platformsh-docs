@@ -20,7 +20,7 @@ The Standard User Management add-on gives you access to the following features:
 - Free [viewer permissions](../users.md)
 - Custom [organization permissions](../users.md#organization-permissions)
 - [Teams](/administration/teams.md)
-- [MFA enforcement within an organization](/administration/web/mfa.md)
+- [MFA enforcement within an organization](/administration/mfa.md)
 
 ### Upgrade to the Standard User Management add-on
 
