@@ -354,11 +354,10 @@ you can restore it to your current environment or a different environment.
 ## Backup restoration to your current environment
 
 By default, when you [restore a backup](/environments/restore.md) using the CLI, it is restored to your current environment.
+The resources of every container running on the environment are reverted to their original state when the backup was taken.
 
-Containers are restored using the `backup` strategy, meaning:
-- The resources of every container running on the environment are reverted to their original state when the backup was taken.
-- If you deleted a container between the moment you took the backup and the moment you restore it, that container is relaunched
-  using the resources from when the backup was taken.
+If you deleted containers after backing up but before restoring, they are recreated using the `backup` strategy.
+Meaning, they are granted the same resources as in the backup.
 
 {{% note %}}
 If you don't want to restore previously deleted containers,
@@ -372,8 +371,9 @@ you can specify a different resource initialization strategy for them.
 ## Backup restoration to a different environment
 
 The `backup` strategy also applies by default.
-However, as all the apps and services are initialized as new containers on the environment,
-you can specify a different resource initialization strategy for all of them. 
+All apps and services are initialized as new containers on the environment,
+and granted the same resources as in the backup.
+Note that you can specify a different resource initialization strategy for all of them.
 
 ## Specify a resource initialization strategy when restoring a backup via the CLI
 
@@ -396,17 +396,19 @@ title=In the Console
 +++
 
 When you [restore a backup](/environments/restore.md) using the Console, it is restored to your current environment.
+The resources of every container running on the environment are reverted to their original state when the backup was taken.
 
-Containers are restored using the `backup` strategy, meaning:
-- The resources of every container running on the environment are reverted to their original state when the backup was taken.
-- If you deleted a container between the moment you took the backup and the moment you restore it, that container is relaunched
-  using the resources from when the backup was taken.
+If you deleted containers after backing up but before restoring, they are recreated using the `backup` strategy.
+Meaning, they are granted the same resources as in the backup.
 
 {{% note %}}
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, restore the backup using the CLI and use the `--no-code` flag.
+To do so, when you restore your backup, use the `--no-code` flag.
 {{% /note %}}
+
+When you restore previously deleted containers,
+you can specify a different resource initialization strategy for them.
 
 {{< /codetabs >}}
 

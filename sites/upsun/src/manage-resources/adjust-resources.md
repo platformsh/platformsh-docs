@@ -69,12 +69,12 @@ which causes a short downtime.
 
 - **Manual commands:**
 
-Use the following CLI flags:
+Run he `resources:set` command using the following CLI options:
 
-| CLI flag        | Description                     | 
-| --------------- | --------------------------------|
-| `size`          | Allows you to define how much CPU you want to allocate to each app or service.</br>The amount of CPU then determines how much RAM is also allocated, based on the [container profile](#advanced-container-profiles). |
-| `disk`          | Allows you to define how much disk/storage you want to allocate to each app or service. |
+| CLI option        | Description                     | 
+| ----------------- | --------------------------------|
+| `size`            | Allows you to define how much CPU you want to allocate to each app or service.</br>The amount of CPU then determines how much RAM is also allocated, based on the [container profile](#advanced-container-profiles). |
+| `disk`            | Allows you to define how much disk/storage you want to allocate to each app or service. |
 
 _Example 1:_
 
