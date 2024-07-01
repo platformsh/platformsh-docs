@@ -76,21 +76,82 @@ In such cases, add the inbound IP addresses for your region to your allow list.
 
 On the xxx the outbound IPs of all our GCP regions will changed:
 
-| Regions | New outbound IPs |
-|---------|------------------|
-| United Kingdom (uk-1) |
-- 35.246.36.142
-- 34.147.217.161
-- 34.89.33.176 |
-| Germany (de-2) |
-- 34.159.207.210
-- 34.159.181.149
-- 34.107.79.7 |
-| Switzerland (ch-1) |
-- 34.65.197.163
-- 34.65.144.16
-- 34.65.72.28 |
-| East (us-4) |
-- 104.196.203.234
-- 34.148.171.57
-- 35.243.131.172 |
+<table class="table-auto text-center" style="max-width: calc(100vw - 2rem);">
+    <tbody>
+        <!-- Header -->
+        <tr class="hidden md:table-row [&_th]:px-6 [&_th]:py-5 md:sticky md:top-24 md:z-20">
+            <th>Region</th>
+            <th>New outbound IPs</th>
+        </tr>
+        <tr class="flex wrap flex-col mb-6 border-t border-slate md:table-row [&>td]:align-middle [&_ul]:!my-2">
+            <!-- Region overview -->
+            <td class="relative block md:table-cell py-4 px-2 bg-stone">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Region</span>
+                <h4 class="font-black !text-2xl !mt-4">United Kingdom (uk-1)</h4>
+                <code class="!bg-snow">uk-1.platform.sh</code>
+            </td>
+            <!-- Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>35.246.36.142</li>
+                    <li>34.147.217.161</li>
+                    <li>34.89.33.176 |</li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="flex wrap flex-col mb-6 border-t border-slate md:table-row [&>td]:align-middle [&_ul]:!my-2">
+            <!-- Region overview -->
+            <td class="relative block md:table-cell py-4 px-2 bg-stone">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Region</span>
+                <h4 class="font-black !text-2xl !mt-4">Germany (de-2)</h4>
+                <code class="!bg-snow">de-2.platform.sh</code>
+            </td>
+            <!-- Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>34.159.207.210</li>
+                    <li>34.159.181.149</li>
+                    <li>34.107.79.7</li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="flex wrap flex-col mb-6 border-t border-slate md:table-row [&>td]:align-middle [&_ul]:!my-2">
+            <!-- Region overview -->
+            <td class="relative block md:table-cell py-4 px-2 bg-stone">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Region</span>
+                <h4 class="font-black !text-2xl !mt-4">Switzerland (ch-1)</h4>
+                <code class="!bg-snow">ch-1.platform.sh</code>
+            </td>
+            <!-- Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>34.65.197.163</li>
+                    <li>34.65.144.16</li>
+                    <li>34.65.72.28</li>
+                </ul>
+            </td>
+        </tr>
+        <tr class="flex wrap flex-col mb-6 border-t border-slate md:table-row [&>td]:align-middle [&_ul]:!my-2">
+            <!-- Region overview -->
+            <td class="relative block md:table-cell py-4 px-2 bg-stone">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Region</span>
+                <h4 class="font-black !text-2xl !mt-4">East (us-4)</h4>
+                <code class="!bg-snow">us-4.platform.sh</code>
+            </td>
+            <!-- Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>104.196.203.234</li>
+                    <li>34.148.171.57</li>
+                    <li>35.243.131.172</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+|  |
+-
