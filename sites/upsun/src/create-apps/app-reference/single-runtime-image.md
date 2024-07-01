@@ -79,7 +79,7 @@ use the [`source.root` property](#source).
 ## Types
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
 If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
 See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image#supported-nix-packages) for more information.
 {{% /note %}}
@@ -105,7 +105,7 @@ applications:
 
 ### Mix of images
 
-In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [single-runtime image](/create-apps/app-reference/single-runtime-image.md) and [Composable Image (BETA)](/create-apps/app-reference/composable-image.md) per application.
+In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [single-runtime image](/create-apps/app-reference/single-runtime-image.md) and [Composable Image](/create-apps/app-reference/composable-image.md) per application.
 
 As an example configuration for a ``frontend`` and a ``backend`` application:
 
@@ -1342,7 +1342,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 ### Extensions
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
 See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#primary-application-properties).
 {{% /note %}}
