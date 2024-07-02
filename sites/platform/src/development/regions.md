@@ -74,7 +74,13 @@ In such cases, add the inbound IP addresses for your region to your allow list.
 
 ### Upcomming changes for outbound IPs for all GCP regions
 
-On the Xxx the outbound IPs of all our GCP regions will changed:
+
+{{< note title="Outbound IPS changes" theme="info" >}}
+
+On the Xxx the outbound IPs of the GCP regions will changed, please update any configuration before that date.
+
+{{< /note >}}
+
 
 <table class="table-auto text-center" style="max-width: calc(100vw - 2rem);">
     <tbody>
