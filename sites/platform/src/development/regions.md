@@ -81,6 +81,7 @@ On the Xxx the outbound IPs of all our GCP regions will changed:
         <!-- Header -->
         <tr class="hidden md:table-row [&_th]:px-6 [&_th]:py-5 md:sticky md:top-24 md:z-20">
             <th>Region</th>
+            <th>Old outbound IPs</th>
             <th>New outbound IPs</th>
         </tr>
         <tr class="flex wrap flex-col mb-6 border-t border-slate md:table-row [&>td]:align-middle [&_ul]:!my-2">
@@ -90,7 +91,16 @@ On the Xxx the outbound IPs of all our GCP regions will changed:
                 <h4 class="font-black !text-2xl !mt-4">United Kingdom (uk-1)</h4>
                 <code class="!bg-snow">uk-1.platform.sh</code>
             </td>
-            <!-- Outbound ips -->
+            <!-- Old Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>35.242.142.110</li>
+                    <li>35.189.126.202</li>
+                    <li>35.242.183.249</li>
+                </ul>
+            </td>
+            <!-- New Outbound ips -->
             <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
                 <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
                 <ul>
@@ -107,7 +117,16 @@ On the Xxx the outbound IPs of all our GCP regions will changed:
                 <h4 class="font-black !text-2xl !mt-4">Germany (de-2)</h4>
                 <code class="!bg-snow">de-2.platform.sh</code>
             </td>
-            <!-- Outbound ips -->
+            <!-- Old Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>35.246.248.138</li>
+                    <li>35.246.184.45</li>
+                    <li>35.242.229.239</li>
+                </ul>
+            </td>
+            <!-- New  Outbound ips -->
             <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
                 <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
                 <ul>
@@ -124,7 +143,16 @@ On the Xxx the outbound IPs of all our GCP regions will changed:
                 <h4 class="font-black !text-2xl !mt-4">Switzerland (ch-1)</h4>
                 <code class="!bg-snow">ch-1.platform.sh</code>
             </td>
-            <!-- Outbound ips -->
+            <!-- Old Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>34.65.236.213</li>
+                    <li>34.65.152.61</li>
+                    <li>34.65.244.185</li>
+                </ul>
+            </td>
+            <!-- New Outbound ips -->
             <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
                 <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
                 <ul>
@@ -141,7 +169,16 @@ On the Xxx the outbound IPs of all our GCP regions will changed:
                 <h4 class="font-black !text-2xl !mt-4">East (us-4)</h4>
                 <code class="!bg-snow">us-4.platform.sh</code>
             </td>
-            <!-- Outbound ips -->
+            <!-- Old Outbound ips -->
+            <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
+                <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
+                <ul>
+                    <li>34.73.189.215</li>
+                    <li>34.74.8.155</li>
+                    <li>34.75.104.115</li>
+                </ul>
+            </td>
+            <!-- New Outbound ips -->
             <td class="relative block md:table-cell p-6 pt-10 z-10 bg-snow">
                 <span class="md:hidden z-10 absolute rounded tx-sm top-0 left-0 p-2 bg-skye-light">Outbound ips</span>
                 <ul>
@@ -153,5 +190,3 @@ On the Xxx the outbound IPs of all our GCP regions will changed:
         </tr>
     </tbody>
 </table>
-|  |
--
