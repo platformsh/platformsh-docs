@@ -106,9 +106,9 @@ describe("Searches",()=>{
         },{ fixture: "searchosresults" }).as("searchresultsopensearch")
       }
 
-      // console.log('Pausing before starting')
-      // cy.wait(1000)
-      // console.log('finished pausing')
+      console.log('Pausing before starting')
+      cy.wait(1000)
+      console.log('finished pausing')
 
       cy.get("#searchwicon-header").clear().type(searchDetails.search)
 
