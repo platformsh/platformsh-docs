@@ -130,6 +130,19 @@ To solve this, [enable MFA on your user account](/administration/security/mfa.md
 Alternatively, open the Console and select the desired organization.
 Follow the instructions so you can effectively access its contents.
 
+Similarly for bot users and CLI tokens, you may see the message:
+
+```bash
+  [RequestException]                                           
+  Multi-factor authentication (MFA) is required.               
+  The API token may need to be re-created after enabling MFA.  
+```
+
+In this case, as described, it will be necessary to:
+
+1. Enable MFA on the (bot) user account associated with the token.
+2. Generate a new access token, and then replace its value in your workflow that requires the token (such as updating a GitHub workflow secret variable).
+
 ## Something still wrong?
 
 For more general information, see how to [troubleshoot development](/development/troubleshoot).
