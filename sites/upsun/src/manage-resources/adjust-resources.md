@@ -206,11 +206,13 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | Container               | Default profile  |
 |-------------------------|------------------|
 | Chrome Headless         | HIGH_CPU         |
+| ClickHouse              | HIGH_MEMORY      |
 | .NET                    | HIGH_CPU         |  
 | Elasticsearch           | HIGH_MEMORY      |
 | Elasticsearch Premium   | HIGH_MEMORY      |
 | Elixir                  | HIGH_CPU         |
 | Go                      | HIGH_CPU         |
+| Gotenberg               | HIGH_MEMORY      |
 | InfluxDB                | HIGH_MEMORY      |  
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
@@ -227,7 +229,7 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | PHP                     | HIGH_CPU         | 
 | PostgreSQL              | HIGH_MEMORY      |
 | Python                  | HIGH_CPU         | 
-| Rabbitmq                | HIGH_MEMORY      |
+| RabbitMQ                | HIGH_MEMORY      |
 | Redis ephemeral         | BALANCED         |
 | Redis persistent        | BALANCED         |
 | Ruby                    | HIGH_CPU         |
