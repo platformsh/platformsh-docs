@@ -72,52 +72,10 @@ IdentityFile ~/.ssh/id_{{% vendor/alt-name %}}
 Be aware that, above, `{{% vendor/alt-name %}}` stands for a hostname.
 Each different hostname you connect to {{< vendor/name >}} at may have to be specified in the host line, separated by spaces.
 
-## Check your git integrations
+## Check your Git integrations
 
-If your project is integrated with another git provider (such as GitHub), that provider controls git operations.
+If your project is integrated with another Git provider (such as GitHub), that provider controls Git operations.
 Make sure you have added your public SSH key to your provider and that your user there has access.
-
-## Add a second authentication factor
-
-If your organization has [multifactor authentication set up](./_index.md#multifactor-authentication-mfa-over-ssh),
-you may get an error like the following when trying to log into your environment with SSH keys:
-
-```bash
-Hello {{< variable "NAME" >}} (UUID: {{< variable "USER_ID" >}}), you successfully authenticated, but could not connect to service {{< variable "USER_ID" >}} --app
-(reason: access requires MFA)
-{{< variable "ENVIRONMENT_ID" >}}@ssh.{{< variable "REGION" >}}.{{< vendor/urlraw "host" >}}: Permission denied (publickey)
-```
-
-If you are using just `ssh` and not `{{% vendor/cli %}} ssh`, you may see only the second half of the error:
-
-```bash
-{{< variable "ENVIRONMENT_ID" >}}@ssh.{{< variable "REGION" >}}.{{< vendor/urlraw "host" >}}: Permission denied (publickey)
-```
-
-To resolve this:
-
-{{< codetabs >}}
-+++
-title=Using the CLI
-+++
-
-Log in using the browser by running `{{% vendor/cli %}} login`.
-
-<--->
-
-+++
-title=In the Console
-+++
-
-1. Open the user menu (your name or profile picture).
-2. Click **My profile**
-3. Click **Security**.
-4. Click **Set up application**.
-5. Follow the instructions for the chosen authentication app.
-6. Click **Verify & save**.
-7. Refresh your SSH credentials by running `{{% vendor/cli %}} login -f` in the CLI.
-
-{{< /codetabs >}}
 
 ## Generate SSH debug information
 
@@ -151,6 +109,39 @@ GIT_SSH_COMMAND="ssh -v" git clone {{< variable "REPO_URL" >}}
 ```
 
 You can use this information to make one last check of the private key file.
+
+## MFA-related error message
+
+If you haven't enabled MFA on your user account and try to SSH into an environment that is protected by MFA,
+you get the following error message:
+
+```bash
+Error: Access denied
+Service: abcdefg123456-main-bvxea6i--app
+User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
+Parameters: {"amr":["mfa","sso:acme"]}
+Detail: Additional authentication is required:
+	 - Multi-factor authentication (MFA)
+	 - Single sign-on (SSO), provider: "acme"
+```
+
+To solve this, [enable MFA on your user account](/administration/security/mfa.md#enable-mfa-on-your-user-account).
+
+Alternatively, open the Console and select the desired organization.
+Follow the instructions so you can effectively access its contents.
+
+Similarly for bot users and CLI tokens, you may see the message:
+
+```bash
+  [RequestException]                                           
+  Multi-factor authentication (MFA) is required.               
+  The API token may need to be re-created after enabling MFA.  
+```
+
+In this case, as described, it will be necessary to:
+
+1. Enable MFA on the (bot) user account associated with the token.
+2. Generate a new access token, and then replace its value in your workflow that requires the token (such as updating a GitHub workflow secret variable).
 
 ## Something still wrong?
 

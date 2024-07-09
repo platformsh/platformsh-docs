@@ -1,5 +1,5 @@
 ---
-title: "Single sign-on (SSO)"
+title: "Single Sign-On (SSO)"
 weight: 4
 description: |
   {{% vendor/name %}} allows you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
