@@ -145,7 +145,7 @@ Please stay tuned for more details.
                 <ul style="list-style: none;">
                     <li>35.246.36.142</li>
                     <li>34.147.217.161</li>
-                    <li>34.89.33.176 |</li>
+                    <li>34.89.33.176</li>
                 </ul>
             </td>
         </tr>
