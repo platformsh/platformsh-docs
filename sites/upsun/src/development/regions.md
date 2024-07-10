@@ -229,3 +229,53 @@ Please stay tuned for more details.
         </tr>
     </tbody>
 </table>
+
+#### How to audit the potential impact on an organization
+
+You can determine which of your project are potentially impacted by this change via the CLI or the Console. 
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+For a given organization {{< variable "ORG_NAME" >}}, run the following command: 
+
+```bash {location="Terminal"}
+{{% vendor/cli %}} project:list -o {{< variable "ORG_NAME" >}} --region={{< variable "REGION" >}}
+```
+
+Where {{< variable "REGION" >}} is one of the impacted GCP regions:
+
+- `ch-1.{{% vendor/urlraw "host" %}}`
+- `uk-1.{{% vendor/urlraw "host" %}}`
+- `de-2.{{% vendor/urlraw "host" %}}`
+- `us-4.{{% vendor/urlraw "host" %}}`
+
+There is a community-maintained [Region auditing snippet](https://github.com/platformsh/snippets/blob/main/src/region-audit.sh) you can use for this case:
+
+```bash
+curl -s https://raw.githubusercontent.com/platformsh/snippets/region-audit/src/region-audit.sh | bash -s -- {{< variable "ORG_NAME" >}} ch-1,uk-1,de-2,us-4 {{< vendor/cli >}}
+```
+
+<--->
+
++++
+title=In the Console
++++
+
+1. Navigate to the organization ({{< variable "ORG_NAME" >}}) you'd like to audit at `https://console.upsun.com/ORG_NAME`.
+    This view shows all of your projects within the organization {{< variable "ORG_NAME" >}} (assuming you have at least [`projects:list`](/administration/users#organization-permissions) permissions on the organization).
+2. On the left hand side, under the **Filter** heading, expand the **Region** option.
+3. Under Region, select the following region filters:
+    - Germany (de-2)
+    - Switzerland (ch-1)
+    - United Kingdom (uk-1)
+    - United States - East (us-4)
+
+![Console filter GCP IP changes](/images/gcpaffected.png "0.40")
+
+{{< /codetabs >}}
+
+Not every project listed in this audit will necessarily be impacted by the change, only those that are explicitly using the outbound IPs in some way.
