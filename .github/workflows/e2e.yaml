@@ -15,7 +15,7 @@ jobs:
       - name: Download info on PR
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: get-urls.yaml
+          workflow: get-pr-info.yaml
           workflow_conclusion: completed
           name: pr-info
       - name: retrieve url
