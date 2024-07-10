@@ -188,6 +188,7 @@ transclusion
 [Uu]nencoded
 unencrypted
 unmerged
+Upsun
 Uvicorn
 Uvloop
 [Uu]nmount
