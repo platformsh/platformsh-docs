@@ -1,7 +1,7 @@
 ---
 title: "Ruby"
 description: |
-  {{% vendor/name %}} supports deploying any Ruby application. Your application can use any Ruby application server such as Unicorn or Puma and deploying a Rails or a Sinatra app is very straight forward.
+  {{% vendor/name %}} supports deploying any Ruby application. Your application can use any Ruby application server such as Puma or Unicorn and deploying a Rails or a Sinatra app is very straight forward.
 ---
 
 {{% composable/disclaimer %}}
@@ -41,10 +41,10 @@ applications:
 
 {{< image-versions image="ruby" status="deprecated" >}}
 
-## Unicorn based Rails configuration
+## Puma based Rails configuration
 
-This example uses Unicorn to run a Ruby application.
-You could use any Ruby application server such as Puma or Thin.
+This example uses Puma to run a Ruby application.
+You could use any Ruby application server such as Unicorn.
 
 Configure the `{{< vendor/configfile "app" >}}` file with a few key settings as listed below.
 A complete example is included at the end of this section.
@@ -71,24 +71,22 @@ applications:
         type: 'ruby:{{% latest "ruby" %}}'
         variables:
             env:
-                BUNDLE_CACHE_ALL: '1'
-                BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby <2.7, this doesn't work well
-                BUNDLE_DEPLOYMENT: '1'
-                BUNDLE_ERROR_ON_STDERR: '1'
+                PIDFILE: "tmp/server.pid" # Allow to start puma directly even if `tmp/pids` directory is not created
+                RAILS_ENV: "production"
                 BUNDLE_WITHOUT: 'development:test'
-                DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
-                EXECJS_RUNTIME: 'Node'
-                NODE_ENV: 'production'
-                NODE_VERSION: v14.17.6
-                NVM_VERSION: v0.38.0
-                RACK_ENV: 'production'
-                RAILS_ENV: 'production'
-                RAILS_LOG_TO_STDOUT: '1' # log to /var/log/app.log
-                RAILS_TMP: '/tmp'
+                TARGET_RUBY_VERSION: '~>{{% latest "ruby" %}}' # this will allow to not fail on PATCH update of the image
 ```
 
-   The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
-    You can change it.
+   The `SECRET_KEY_BASE` variable is generated automatically based on the
+   [`PLATFORM_PROJECT_ENTROPY`
+   variable](../development/variables/use-variables.md#use-provided-variables) but you can change it.
+
+   Based on TARGET_RUBY_VERSION, we recommand to set on your Gemfile so next
+   PATCH release of ruby doesn't fail the build:
+
+   ```ruby
+   ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+   ```
 
 3. Build your application with the build hook.
 
@@ -104,43 +102,8 @@ applications:
         hooks:
             build: |
                 set -e
-
-                echo "Installing NVM $NVM_VERSION"
-                unset NPM_CONFIG_PREFIX
-                export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
-                # install.sh automatically installs NodeJS based on the presence of $NODE_VERSION
-                curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
-                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-                # we install the bundled bundler version and fallback to a default (in env vars above)
-                export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || $DEFAULT_BUNDLER_VERSION
-                echo "Install bundler $BUNDLER_VERSION"
-                gem install --no-document bundler -v $BUNDLER_VERSION
-
-                echo "Installing gems"
-                # We copy the bundle directory to the {{% vendor/name %}} cache directory for
-                # safe keeping, then restore from there on the next build. That allows
-                # bundler to skip downloading code it doesn't need to.
-                [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
-                    rsync -az --delete "$PLATFORM_CACHE_DIR/bundle/" vendor/bundle/
-                mkdir -p "$PLATFORM_CACHE_DIR/bundle"
                 bundle install
-                # synchronize updated cache for next build
-                [ -d "vendor/bundle" ] && \
-                    rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
-
-                # precompile assets
-                echo "Precompiling assets"
-                # We copy the webpacker directory to the {{% vendor/name %}} cache directory for
-                # safe keeping, then restore from there on the next build. That allows
-                # bundler to skip downloading code it doesn't need to.
-                mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
-                mkdir -p "$RAILS_TMP/cache/webpacker"
-                [ -d "$PLATFORM_CACHE_DIR/webpacker" ] && \
-                    rsync -az --delete "$PLATFORM_CACHE_DIR/webpacker/" $RAILS_TMP/cache/webpacker/
-                # We dont need secret here https://github.com/rails/rails/issues/32947
-                SECRET_KEY_BASE=1 bundle exec rails assets:precompile
-                rsync -az --delete $RAILS_TMP/cache/webpacker/ "$PLATFORM_CACHE_DIR/webpacker/"
+                bundle exec rails assets:precompile
             deploy: bundle exec rake db:migrate
 ```
 
@@ -172,13 +135,16 @@ applications:
             upstream:
                 socket_family: unix
             commands:
-                start: "bundle exec unicorn -l $SOCKET"
+                # for puma
+                start: "bundle exec puma -b unix://$SOCKET"
+                # for unicorn
+                # start: "bundle exec unicorn -l $SOCKET"
 ```
-   This assumes you have Unicorn as a dependency in your Gemfile:
+
+   This assumes you have Puma as a dependency in your Gemfile:
 
    ```ruby
-   # Use Unicorn as the app server
-   gem "unicorn", "~> 6.0", :group => :production
+   gem "puma", ">= 5.0"
    ```
 
 5. Define the web locations your application is using:
@@ -254,24 +220,25 @@ applications:
                 yarn: "*"
 
         relationships:
-            mysql: 
+            mysql:
 
         variables:
             env:
-                BUNDLE_CACHE_ALL: '1'
-                BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well
-                BUNDLE_DEPLOYMENT: '1'
-                BUNDLE_ERROR_ON_STDERR: '1'
+                BUNDLE_CACHE_ALL: '1' # Default, Cache all gems, including path and git gems.
+                BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well, but should be safe on modern Rubies.
+                BUNDLE_DEPLOYMENT: '1' # Default, Disallow changes to the Gemfile.
+                BUNDLE_ERROR_ON_STDERR: '1' # Default.
                 BUNDLE_WITHOUT: 'development:test'
-                DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
-                EXECJS_RUNTIME: 'Node'
+                PIDFILE: "tmp/server.pid" # Allow to start puma directly even if `tmp/pids` directory is not created
+                DEFAULT_BUNDLER_VERSION: "2.5.14" # In case none is mentioned in Gemfile.lock
+                EXECJS_RUNTIME: 'Node' # If you need one on your assets https://github.com/rails/execjs#readme
                 NODE_ENV: 'production'
                 NODE_VERSION: v14.17.6
                 NVM_VERSION: v0.38.0
                 RACK_ENV: 'production'
                 RAILS_ENV: 'production'
-                RAILS_LOG_TO_STDOUT: '1'
-                RAILS_TMP: '/tmp'
+                RAILS_LOG_TO_STDOUT: '1' # Default
+                RAILS_TMP: '/tmp' # Default
 
         hooks:
             build: |
@@ -306,6 +273,7 @@ applications:
                 # We copy the webpacker directory to the {{% vendor/name %}} cache directory for
                 # safe keeping, then restore from there on the next build. That allows
                 # bundler to skip downloading code it doesn't need to.
+                # https://guides.rubyonrails.org/asset_pipeline.html
                 mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
                 mkdir -p "$RAILS_TMP/cache/webpacker"
                 [ -d "$PLATFORM_CACHE_DIR/webpacker" ] && \
@@ -330,7 +298,10 @@ applications:
             upstream:
                 socket_family: unix
             commands:
-                start: "bundle exec unicorn -l $SOCKET"
+                # for puma
+                start: "bundle exec puma -b unix://$SOCKET"
+                # for unicorn
+                # start: "bundle exec unicorn -l $SOCKET"
 
             locations:
                 "/":
@@ -373,7 +344,7 @@ applications:
     app:
         type: 'ruby:{{% latest "ruby" %}}'
         relationships:
-            mysql: 
+            mysql:
         ...
 
 routes:
@@ -425,9 +396,14 @@ For Rails, you can use the standard Rails `config/database.yml` with the values 
 
 - For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
   and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
-
 - New images are released on a regular basis to apply security patches.
-  To avoid issues when such updates are performed, use `ruby "~>3.1"` in your `Gemfile`.
+  To avoid issues when such updates are performed, use
+
+  ``` ruby
+  ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+  ```
+
+  in your `Gemfile`.
 
 
 {{< repolist lang="ruby" displayName="Ruby" >}}

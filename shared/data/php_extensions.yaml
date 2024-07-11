@@ -1397,6 +1397,7 @@ grid:
       - shmop
       - snmp
       - sodium
+      - sourceguardian
       - sqlsrv
       - ssh2
       - swoole
