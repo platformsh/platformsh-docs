@@ -27,6 +27,7 @@ Once you submit a ticket, you see it in a list of all tickets created, for all p
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
+<!-- vale off -->
 ## Slack
 
 To talk about app development or framework-related questions,
@@ -36,6 +37,7 @@ join other customers and engineers in the [public Slack channel](https://chat.pl
 
 The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how-to guides with suggestions
 on how to get the most out of {{% vendor/name %}}.
+<!-- vale on -->
 
 ## Contact Sales
 

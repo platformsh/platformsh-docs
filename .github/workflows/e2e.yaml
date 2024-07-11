@@ -1,0 +1,52 @@
+name: runs E2E tests
+on:
+  workflow_run:
+    workflows: [Get info on PR]
+    types:
+      - completed
+
+jobs:
+  setup_matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      psh_url: ${{ steps.retrieve-url.outputs.psh_url }}
+      up_url:  ${{ steps.retrieve-url.outputs.up_url }}
+    steps:
+      - name: Download info on PR
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: get-pr-info.yaml
+          workflow_conclusion: completed
+          name: pr-info
+      - name: retrieve url
+        id: retrieve-url
+        run: |
+          PSH_URL=$(cat environment_url.txt)
+          echo "PSH URL is $PSH_URL"
+          UP_URL="https://docs.upsun.com.${PSH_URL:8}"
+          echo "UP URL is ${UP_URL}"
+          echo "psh_url=$PSH_URL" >> $GITHUB_OUTPUT
+          echo "up_url=$UP_URL" >> $GITHUB_OUTPUT
+
+  run_test:
+    runs-on: ubuntu-latest
+    needs: setup_matrix
+    strategy:
+      matrix:
+        include:
+          - site: platformsh
+            url: ${{ needs.setup_matrix.outputs.psh_url }}
+          - site: upsun
+            url: ${{ needs.setup_matrix.outputs.up_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+          wait-on: ${{ matrix.url }}
+          record: true
+        env:
+          CYPRESS_baseUrl: ${{ matrix.url }}
+          CYPRESS_environment: github
+          CYPRESS_site: ${{ matrix.site }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
