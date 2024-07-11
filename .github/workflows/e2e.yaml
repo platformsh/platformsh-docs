@@ -52,3 +52,12 @@ jobs:
           CYPRESS_site: ${{ matrix.site }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  run_all_tests:
+    name: Run E2E tests for all sites
+    runs-on: ubuntu-latest
+    needs: run_test
+    if: failure() || cancelled()
+    steps:
+      - name: Fail on purpose
+        run: exit 1
