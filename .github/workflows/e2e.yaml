@@ -7,6 +7,7 @@ on:
 
 jobs:
   setup_matrix:
+    name: Setup E2E Matrix
     runs-on: ubuntu-latest
     outputs:
       psh_url: ${{ steps.retrieve-url.outputs.psh_url }}
@@ -30,6 +31,7 @@ jobs:
 
   run_test:
     runs-on: ubuntu-latest
+    name: Run E2E tests
     needs: setup_matrix
     strategy:
       matrix:
