@@ -31,7 +31,7 @@ jobs:
 
   run_test:
     runs-on: ubuntu-latest
-    name: Run E2E tests
+    name: Run E2E tests (${{ matrix.site }})
     needs: setup_matrix
     strategy:
       matrix:
