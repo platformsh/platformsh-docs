@@ -22,6 +22,7 @@ describe("Searches",()=>{
         },{ fixture: "opensearchresults" }).as("searchresultsopensearch")
       }
 
+      cy.wait(1000)
       cy.get("#searchwicon-header").type("opensearch")
 
       if ('local' == Cypress.env('environment')) {
@@ -60,6 +61,7 @@ describe("Searches",()=>{
       }
 
       cy.visit("/")
+      cy.wait(1000)
       cy.get("#searchwicon-header").type(searchDetails.search)
       cy.get("#xssroot").find("h2").as("searchresultsheader")
       cy.get("@searchresultsheader").should("exist")
@@ -106,9 +108,9 @@ describe("Searches",()=>{
         },{ fixture: "searchosresults" }).as("searchresultsopensearch")
       }
 
-      console.log('Pausing before starting')
+      //console.log('Pausing before starting')
       cy.wait(1000)
-      console.log('finished pausing')
+      //console.log('finished pausing')
 
       cy.get("#searchwicon-header").clear().type(searchDetails.search)
 
