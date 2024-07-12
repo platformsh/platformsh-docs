@@ -7,6 +7,7 @@ on:
 
 jobs:
   setup_matrix:
+    name: Setup E2E Matrix
     runs-on: ubuntu-latest
     outputs:
       psh_url: ${{ steps.retrieve-url.outputs.psh_url }}
@@ -30,6 +31,7 @@ jobs:
 
   run_test:
     runs-on: ubuntu-latest
+    name: Run E2E tests (${{ matrix.site }})
     needs: setup_matrix
     strategy:
       matrix:
@@ -50,3 +52,12 @@ jobs:
           CYPRESS_site: ${{ matrix.site }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  run_all_tests:
+    name: Run E2E tests for all sites
+    runs-on: ubuntu-latest
+    needs: run_test
+    if: failure() || cancelled()
+    steps:
+      - name: Fail on purpose
+        run: exit 1
