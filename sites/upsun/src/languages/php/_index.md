@@ -494,11 +494,9 @@ title=Run a custom script
 {{< snippet name="myapp" config="app" root="myapp" >}}
 web:
     commands:
-        start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
+        start: /usr/bin/start-php-app
 {{< /snippet >}}
 ```
-
-   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 <--->
 
@@ -514,11 +512,9 @@ title=Run a custom web server
 {{< snippet name="myapp" config="app" root="myapp" >}}
 web:
     commands:
-        start: /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
+        start: /usr/bin/start-php-app
 {{< /snippet >}}
 ```
-
-   {{<variable "PATH_TO_APP" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 3.  Configure the container to listen on a TCP socket:
 
@@ -564,12 +560,12 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
 {{< snippet name="myapp" config="app" root="myapp" >}}
 web:
     commands:
-        start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app {{< variable "PATH_TO_APP" >}}
+        start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app
 {{< /snippet >}}
 ```
 
    {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
-   Both {{<variable "PATH_TO_SCRIPT" >}} and {{<variable "PATH_TO_APP" >}} are file paths relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+   {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 {{< /codetabs >}}
 
