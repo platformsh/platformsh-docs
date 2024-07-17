@@ -25,7 +25,7 @@ Rust images. There is no installation required nor minimal Rust version needed.
 
 The Rust continuous profiler is enabled by default without configuration.
 
-It is recommended to build your Rust application in [debug mode](https://doc.rust-lang.org/book/ch14-01-release-profiles.html) to benefit from comprehensive stacktrace and information that could be offuscated and collapsed otherwise.
+It is recommended to build your Rust application in [debug mode](https://doc.rust-lang.org/book/ch14-01-release-profiles.html) to benefit from comprehensive stacktrace and information that could be obfuscated and collapsed otherwise.
 
 Optionally, you can override the following environment variables:
 
