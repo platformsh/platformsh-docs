@@ -295,7 +295,7 @@ https://docs.upsun.com/:
       "/anchors/environments/active.html": { "to": "/environments.html#environment-status", "code": 301, "prefix": false }
       "/anchors/backups/schedule.html": { "to": "/security/data-retention.html#grid-backups", "code": 301, "prefix": false }
       "/anchors/config/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
-      "/anchors/cli/tokens.html": { "to": "/development/cli/api-tokens.html", "code": 301, "prefix": false }
+      "/anchors/cli/tokens.html": { "to": "/administration/cli/api-tokens.html", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
       "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
