@@ -27,7 +27,6 @@ The Rust continuous profiler is enabled by default without configuration.
 
 It is recommended to build your Rust application in [debug mode](https://doc.rust-lang.org/book/ch14-01-release-profiles.html) to benefit from comprehensive stacktrace and information that could be obfuscated and collapsed otherwise.
 
-Optionally, you can override the following environment variables:
-
-- `DD_PROFILING_ENABLED=true`: forces the Rust continuous profiler activation/deactivation
-- `DD_PROFILING_LOG_LEVEL=off`: controls the Rust continuous profiler log level
+```shell
+$ cargo build
+```
