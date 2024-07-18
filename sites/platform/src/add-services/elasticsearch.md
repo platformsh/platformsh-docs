@@ -282,7 +282,6 @@ elasticsearch:
     configuration:
         plugins:
             - analysis-icu
-            - lang-python
 ```
 
 If you're using a [premium version](#supported-versions),
