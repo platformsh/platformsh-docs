@@ -25,7 +25,7 @@ When you set up or update an integration, it also needs permission to manage its
 This means your user needs to be a repository admin to create the integration.
 You can remove this permission after setup.
 
-Make sure you give your token a description.
+Make sure you give your token a description, and set it to "No expiration".
 
 If you're generating a classic personal access token,
 ensure the token has the appropriate scopes based on what you want to do:
