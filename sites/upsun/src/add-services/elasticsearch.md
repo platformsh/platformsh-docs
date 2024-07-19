@@ -296,7 +296,6 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
     configuration:
         plugins:
             - analysis-icu
-            - lang-python
 {{% /snippet %}}
 ```
 
