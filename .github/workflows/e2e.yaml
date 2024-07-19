@@ -9,6 +9,7 @@ jobs:
   setup_matrix:
     name: Setup E2E Matrix
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
     outputs:
       psh_url: ${{ steps.retrieve-url.outputs.psh_url }}
       up_url:  ${{ steps.retrieve-url.outputs.up_url }}
