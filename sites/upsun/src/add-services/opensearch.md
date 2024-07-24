@@ -410,7 +410,6 @@ services:
         configuration:
             plugins:
                 - analysis-icu
-                - lang-python
 ```
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.
