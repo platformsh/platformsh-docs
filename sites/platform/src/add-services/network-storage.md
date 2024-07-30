@@ -117,7 +117,7 @@ mounts:
 - `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
 - `<SOURCE_PATH>` specifies where the mount points inside the service.</br>
   If the `source_path` is an empty string (`""`), your mount points to the entire service.</br>
-  If you don’t define a `source_path`, {{ .Site.Params.vendor.name }} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
+  If you don’t define a `source_path`, {{% vendor/name %}} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
   For example, if your mount lives in the `/my/files/` directory within your app container, it will point to a `my/files` directory within the service.
 
 ### Example configuration
