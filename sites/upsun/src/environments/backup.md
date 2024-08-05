@@ -53,6 +53,8 @@ For instance, if you have deleted containers since the backup, you may not want 
 
 In this case, you can opt out of restoring the code.
 To do so, when you restore your backup, use the `--no-code` flag.
+
+Also, see [how resource allocation works](/manage-resources/resource-init.html#backup-restoration) when you restore a backup.
 {{% /note %}}
 
 ## Backups and downtime
