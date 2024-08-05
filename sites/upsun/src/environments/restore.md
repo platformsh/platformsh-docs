@@ -90,7 +90,10 @@ So any future (re)deployments use the current Git repository to build the enviro
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-See [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
+Note that you can also opt out of restoring the code entirely by using the `--no-code` flag.
+For more information, see [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
+
+Also, see [how resource allocation works](/manage-resources/resource-init.html#backup-restoration) when you restore a backup.
 
 {{< /note >}}
 
