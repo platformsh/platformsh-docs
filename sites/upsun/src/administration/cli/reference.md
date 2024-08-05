@@ -6071,9 +6071,9 @@ upsun repo:cat [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENV
 
 ### Examples
 
-* Read the services configuration file:
+* Read the configuration file:
 ```
-upsun repo:cat .upsun/services.yaml
+upsun repo:cat .upsun/config.yaml
 ```
 
 ## `repo:ls`

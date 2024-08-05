@@ -4,7 +4,7 @@ weight: -205
 description: See how to add services such as databases, cache, and search engines and configure them to suit your needs.
 layout: single
 keywords:
-  - "services.yaml"
+  - services
 ---
 
 {{% vendor/name %}} includes many services, so you don't have to subscribe to external cache or search engine services.
