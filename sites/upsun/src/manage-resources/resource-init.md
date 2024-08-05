@@ -416,7 +416,7 @@ Meaning, they are granted the same resources as in the backup.
 {{% note %}}
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, restore the backup using the CLI, and use the `--no-code` flag.
+To do so, restore the backup using the CLI, and use the `--no-code` option.
 {{% /note %}}
 
 {{< /codetabs >}}
