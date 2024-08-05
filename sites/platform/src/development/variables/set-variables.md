@@ -219,6 +219,7 @@ if [ -f "deploy/environment.tracker.txt" ]; then
 else
     echo "File not found."
     export DEPLOY='Never on a Friday'
+fi
 ```
 
 While sanity checks like this are useful during troubleshooting, you shouldn't include such commands in your final code.
