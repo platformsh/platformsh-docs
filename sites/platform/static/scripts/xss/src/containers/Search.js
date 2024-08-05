@@ -42,6 +42,12 @@ const Search = ({ fullPage }) => {
   const limit = fullPage ? maxResults : 7
 
   const getInfo = (infoConfig, infoQuery) => {
+    if (!Object.hasOwn(infoConfig, 'url')) {
+      // eslint-disable-next-line no-param-reassign
+      infoConfig = getConfig().then((value) => {
+        setConfig(value)
+      })
+    }
     axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section`, { params: {}, headers: { Authorization: `Bearer ${infoConfig.public_api_key}` } })
       .then(({ data }) => {
         setHits({
@@ -126,10 +132,10 @@ const Search = ({ fullPage }) => {
     <>
       <form onSubmit={handleSubmit} className={`${fullPage ? 'max-w-4xl bg-grey mb-4' : ''}`}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label className="sr-only" htmlFor="searchwicon">Search our docs</label>
+        <label className="sr-only" htmlFor={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}>Search our docs</label>
         <div className="flex items-center">
           <input
-            id="searchwicon"
+            id={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}
             value={query}
             placeholder="What are you looking for?"
             onChange={handleInputChange}
