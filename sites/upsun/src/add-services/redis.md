@@ -160,7 +160,7 @@ services:
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the `redis` endpoint :
 
@@ -174,21 +174,12 @@ title=Using default endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-        source:
-            root: "myapp"
-
-        [...]
-
         # Relationships enable access from this app to a given service.
         # The example below shows simplified configuration leveraging a default service
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <SERVICE_NAME>:
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -209,11 +200,6 @@ title=Using explicit endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-        source:
-            root: "myapp"
-
-        [...]
-
         # Relationships enable access from this app to a given service.
         # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
@@ -221,10 +207,6 @@ applications:
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: redis
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -251,7 +233,7 @@ title=Using default endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-      # PHP extensions.
+        # PHP extensions.
         runtime:
             extensions:
                 - redis
@@ -260,11 +242,7 @@ applications:
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
-            <SERVICE_NAME>: 
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
+            <SERVICE_NAME>:
 ```
 
 <--->
@@ -288,10 +266,6 @@ applications:
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: redis
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
 ```
 
 {{< /codetabs >}}
@@ -317,6 +291,7 @@ applications:
         runtime:
             extensions:
                 - redis
+
         # Relationships enable access from this app to a given service.
         # The example below shows simplified configuration leveraging a default service
         # (identified from the relationship name) and a default endpoint.
@@ -348,6 +323,7 @@ applications:
         runtime:
             extensions:
                 - redis
+
         # Relationships enable access from this app to a given service.
         # The example below shows configuration with an explicitly set service name and endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
@@ -491,7 +467,7 @@ services:
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the `redis` endpoint :
 
@@ -505,21 +481,12 @@ title=Using default endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-        source:
-            root: "myapp"
-
-        [...]
-
         # Relationships enable access from this app to a given service.
         # The example below shows simplified configuration leveraging a default service
         # (identified from the relationship name) and a default endpoint.
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <SERVICE_NAME>:
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -547,10 +514,6 @@ applications:
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: redis
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -963,7 +926,7 @@ applications:
                     - redis
 
             relationships:
-                redissession: 
+                redissession:
 
             variables:
                 php:

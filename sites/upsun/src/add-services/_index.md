@@ -85,9 +85,9 @@ If you do so, be aware that:
   Backups from before the downsize cannot be restored unless you increase the disk size again.
 - The downsize fails if there's more data on the disk than the desired size.
 
-### 2. Connect the service
+### 2. Define the relationship
 
-To connect the service, use the following configuration:
+To define the relationship, use the following configuration:
 
 {{< codetabs >}}
 
@@ -99,7 +99,6 @@ title=Using default endpoints
 applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
-
         # Other options...
 
         # Relationships enable an app container's access to a service.
@@ -107,11 +106,6 @@ applications:
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <SERVICE_NAME>:
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: <SERVICE_TYPE>:<VERSION>
-        # Other options...
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -143,12 +137,6 @@ applications:
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: <ENDPOINT_NAME>
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: <SERVICE_TYPE>:<VERSION>
-        # Other options...
 ```
 
 - `<RELATIONSHIP_NAME>` is the name you want to give to the relationship.
@@ -189,11 +177,11 @@ title=Using explicit endpoints
 +++
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
     # Relationships enable access from this app to a given service.
     # The example below shows configuration with explicitly set service names and endpoints.
     # See the Application reference for all options for defining relationships and endpoints.
+
+    <APP_NAME>:
         relationships:
             database:
                 service: mariadb

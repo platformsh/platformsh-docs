@@ -146,7 +146,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 512 MB is the minimum required disk space for the Vault KMS service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 

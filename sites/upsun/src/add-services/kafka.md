@@ -99,7 +99,7 @@ services:
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -119,10 +119,6 @@ applications:
         # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <SERVICE_NAME>:
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: kafka:<VERSION>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -154,10 +150,6 @@ applications:
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
                 endpoint: kafka
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: kafka:<VERSION>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
