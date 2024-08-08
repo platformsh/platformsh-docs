@@ -136,14 +136,14 @@ To define the service, use the `mongodb-enterprise` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: mongodb-enterprise:<VERSION>
-    disk: 512
+  type: mongodb-enterprise:<VERSION>
+  disk: 512
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -154,11 +154,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <SERVICE_NAME>:
 ```
 
@@ -181,15 +182,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: mongodb
+      service: <SERVICE_NAME>
+      endpoint: mongodb
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -207,10 +209,11 @@ With the above definition, the application container now has access to the servi
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="apps"}
-# PHP extensions.
-runtime:
+app:
+  # PHP extensions.
+  runtime:
     extensions:
-        - mongodb
+      - mongodb
 ```
 
 #### Example configuration
@@ -220,8 +223,8 @@ runtime:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 mongodb-enterprise:
-    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
-    disk: 512
+  type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+  disk: 512
 ```
 
 ##### [App configuration](/create-apps/_index.md)
@@ -233,11 +236,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     mongodb-enterprise:
 ```
 
@@ -248,15 +252,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     mongodb-enterprise:
-        service: mongodb-enterprise
-        endpoint: mongodb
+      service: mongodb-enterprise
+      endpoint: mongodb
 ```
 
 {{< /codetabs >}}
@@ -270,14 +275,14 @@ To define the service, use the `mongodb` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: mongodb:<VERSION>
-    disk: 512
+  type: mongodb:<VERSION>
+  disk: 512
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -288,11 +293,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <SERVICE_NAME>:
 ```
 
@@ -315,15 +321,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: mongodb
+      service: <SERVICE_NAME>
+      endpoint: mongodb
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -341,10 +348,11 @@ With the above definition, the application container now has access to the servi
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="apps"}
-# PHP extensions.
-runtime:
+app:
+  # PHP extensions.
+  runtime:
     extensions:
-        - mongodb
+      - mongodb
 ```
 
 #### Example configuration
@@ -367,11 +375,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     mongodb:
 ```
 
@@ -382,15 +391,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     mongodb:
-        service: mongodb
-        endpoint: mongodb
+      service: mongodb
+      endpoint: mongodb
 ```
 
 {{< /codetabs >}}

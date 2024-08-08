@@ -78,14 +78,14 @@ To define the service, use the `vault-kms` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: vault-kms:<VERSION>
-    disk: 512
-    configuration:
-        endpoints:
-            <ENDPOINT_ID>:
-                - policy: <POLICY>
-                  key: <KEY_NAME>
-                  type: <ENDPOINT_TYPE>
+  type: vault-kms:<VERSION>
+  disk: 512
+  configuration:
+    endpoints:
+      <ENDPOINT_ID>:
+        - policy: <POLICY>
+          key: <KEY_NAME>
+          type: <ENDPOINT_TYPE>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -107,18 +107,19 @@ You can create multiple endpoints, such as to have key management separate from 
 
 512 MB is the minimum required disk space for the Vault KMS service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: <ENDPOINT_ID>
+      service: <SERVICE_NAME>
+      endpoint: <ENDPOINT_ID>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -138,31 +139,32 @@ If you split the service into multiple endpoints, define multiple relationships.
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 vault-kms:
-    type: vault-kms:1.12
-    disk: 512
-    configuration:
-        endpoints:
-            manage_keys:
-                - policy: admin
-                  key: vault-sign
-                  type: sign
-                - policy: sign
-                  key: vault-sign
-                  type: sign
-                - policy: verify
-                  key: vault-sign
-                  type: sign
+  type: vault-kms:1.12
+  disk: 512
+  configuration:
+    endpoints:
+      manage_keys:
+        - policy: admin
+          key: vault-sign
+          type: sign
+        - policy: sign
+          key: vault-sign
+          type: sign
+        - policy: verify
+          key: vault-sign
+          type: sign
 ```
 
 #### [App configuration](/create-apps)
 
 ```yaml {configFile="apps"}
-relationships:
+app:
+  relationships:
     # Please note: Legacy definition of the relationship is still supported:
     # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
     vault_secret:
-        service: "vault-kms"
-        endpoint: "manage_keys"
+      service: "vault-kms"
+      endpoint: "manage_keys"
 ```
 
 ### Multiple endpoints configuration
@@ -172,35 +174,36 @@ relationships:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 vault-kms:
-    type: vault-kms:1.12
-    disk: 512
-    configuration:
-        endpoints:
-            management:
-                - policy: admin
-                  key: admin-key
-                  type: sign
-            sign_and_verify:
-                - policy: sign
-                  key: signing-key
-                  type: sign
-                - policy: verify
-                  key: signing-key
-                  type: sign
+  type: vault-kms:1.12
+  disk: 512
+  configuration:
+    endpoints:
+      management:
+        - policy: admin
+          key: admin-key
+          type: sign
+      sign_and_verify:
+        - policy: sign
+          key: signing-key
+          type: sign
+        - policy: verify
+          key: signing-key
+          type: sign
 ```
 
 #### [App configuration](/create-apps)
 
 ```yaml {configFile="apps"}
-relationships:
+app:
+  relationships:
     # Please note: Legacy definition of the relationship is still supported.
     # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
     vault_manage:
-        service: vault-kms
-        endpoint: management
+      service: vault-kms
+      endpoint: management
     vault_sign:
-        service: vault-kms
-        endpoint: sign_and_verify
+      service: vault-kms
+      endpoint: sign_and_verify
 ```
 
 ## Use Vault KMS

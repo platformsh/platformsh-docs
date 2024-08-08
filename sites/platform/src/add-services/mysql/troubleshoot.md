@@ -105,12 +105,12 @@ For example, in the following service configuration for MariaDB, `max_connection
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
-    size: L
-    configuration:
-        properties:
-            max_allowed_packet: 16
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
+  size: L
+  configuration:
+    properties:
+      max_allowed_packet: 16
 ```
 
 To **increase** `max_connections`, you can **either**:
@@ -129,11 +129,11 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
    ```yaml {configFile="services"}
    # The name of the service container. Must be unique within a project.
    mariadb:
-       type: mariadb:{{% latest "mariadb" %}}
-       disk: 2048
-       configuration:
-           properties:
-               max_allowed_packet: 16
+     type: mariadb:{{% latest "mariadb" %}}
+     disk: 2048
+     configuration:
+       properties:
+          max_allowed_packet: 16
     ```
 
 1. **The memory available to the service**: Resources are distributed across the containers
@@ -143,12 +143,12 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
     ```yaml {configFile="services"}
     # The name of the service container. Must be unique within a project.
     mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        disk: 2048
-        size: L
-        configuration:
-            properties:
-                max_allowed_packet: 16
+      type: mariadb:{{% latest "mariadb" %}}
+      disk: 2048
+      size: L
+      configuration:
+        properties:
+          max_allowed_packet: 16
     ```
 
     The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).

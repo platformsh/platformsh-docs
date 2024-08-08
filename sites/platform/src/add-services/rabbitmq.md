@@ -101,14 +101,14 @@ To define the service, use the `rabbitmq` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: rabbitmq:<VERSION>
-    disk: 512
+  type: rabbitmq:<VERSION>
+  disk: 512
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -119,11 +119,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <SERVICE_NAME>:
 ```
 
@@ -146,15 +147,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: rabbitmq
+      service: <SERVICE_NAME>
+      endpoint: rabbitmq
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -176,8 +178,8 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 rabbitmq:
-    type: rabbitmq:{{% latest "rabbitmq" %}}
-    disk: 512
+  type: rabbitmq:{{% latest "rabbitmq" %}}
+  disk: 512
 ```
 
 #### [App configuration](/create-apps)
@@ -189,11 +191,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     rabbitmq:
 ```
 
@@ -204,15 +207,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     rabbitmq:
-        service: rabbitmq
-        endpoint: rabbitmq
+      service: rabbitmq
+      endpoint: rabbitmq
 ```
 
 {{< /codetabs >}}
@@ -321,12 +325,12 @@ To create virtual hosts, add them to your configuration as in the following exam
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 rabbitmq:
-    type: "rabbitmq:{{% latest "rabbitmq" %}}"
-    disk: 512
-    configuration:
-        vhosts:
-            - host1
-            - host2
+  type: "rabbitmq:{{% latest "rabbitmq" %}}"
+  disk: 512
+  configuration:
+    vhosts:
+      - host1
+      - host2
 ```
 
 ## Upgrading

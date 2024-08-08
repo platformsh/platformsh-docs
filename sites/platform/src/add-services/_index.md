@@ -30,8 +30,8 @@ Configure your service in the following pattern:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 SERVICE_NAME:
-    type: <SERVICE_TYPE>:<VERSION>
-    # Other options...
+  type: <SERVICE_TYPE>:<VERSION>
+  # Other options...
 ```
 
 An example service configuration for two databases might look like this:
@@ -39,12 +39,12 @@ An example service configuration for two databases might look like this:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: postgresql:{{% latest "postgresql" %}}
-    disk: 1024
+  type: postgresql:{{% latest "postgresql" %}}
+  disk: 1024
 ```
 
 This YAML file is a dictionary defining all of the services you want to use.
@@ -107,13 +107,14 @@ The relationship follows this pattern:
 title=Using default endpoints
 +++
 
-```yaml {configFile="app"}
-# Other options...
+```yaml {configFile="apps"}
+app:
+  # Other options...
 
-# Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+  # Relationships enable an app container's access to a service.
+  # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <SERVICE_NAME>:
 ```
 
@@ -134,15 +135,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: <ENDPOINT_NAME>
+      service: <SERVICE_NAME>
+      endpoint: <ENDPOINT_NAME>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -165,11 +167,12 @@ An example relationship to connect to the databases given in the [example in ste
 title=Using default endpoints
 +++
 
-```yaml {configFile="app"}
-# Other options...
+```yaml {configFile="apps"}
+app:
+  # Other options...
 
-# Relationships enable an app container's access to a service.
-relationships:
+  # Relationships enable an app container's access to a service.
+  relationships:
     mariadb:
     postgresql:
 ```
@@ -180,32 +183,33 @@ relationships:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="app"}
-# Other options...
+```yaml {configFile="apps"}
+app:
+  # Other options...
 
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with explicitly set service names and endpoints.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with explicitly set service names and endpoints.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     mariadb:
-        service: mariadb
-        endpoint: mysql
+      service: mariadb
+      endpoint: mysql
     postgresql:
-        service: postgresql
-        endpoint: mysql
+      service: postgresql
+      endpoint: mysql
 ```
 
 {{< /codetabs >}}
 
 ```yaml {configFile="services"}
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
 postgresql:
-    type: postgresql:{{% latest "postgresql" %}}
-    disk: 1024
+  type: postgresql:{{% latest "postgresql" %}}
+  disk: 1024
 ```
 
 As with the service name, you can give the relationship any name you want
@@ -277,25 +281,25 @@ You get output like the following:
 
 ```yaml
 mariadb:
-    -
-        username: user
-        scheme: mysql
-        service: mariadb
-        fragment: null
-        ip: 198.51.100.37
-        hostname: abcdefghijklm1234567890123.mariadb.service._.eu.{{< vendor/urlraw "hostname" >}}
-        public: false
-        cluster: abcdefgh1234567-main-abcd123
-        host: mariadb.internal
-        rel: mysql
-        query:
-            is_master: true
-        path: main
-        password: ''
-        type: 'mariadb:10.6'
-        port: 3306
-        host_mapped: false
-        url: 'mysql://user:@mariadb.internal:3306/main'
+  -
+    username: user
+    scheme: mysql
+    service: mariadb
+    fragment: null
+    ip: 198.51.100.37
+    hostname: abcdefghijklm1234567890123.mariadb.service._.eu.{{< vendor/urlraw "hostname" >}}
+    public: false
+    cluster: abcdefgh1234567-main-abcd123
+    host: mariadb.internal
+    rel: mysql
+    query:
+        is_master: true
+    path: main
+    password: ''
+    type: 'mariadb:10.6'
+    port: 3306
+    host_mapped: false
+    url: 'mysql://user:@mariadb.internal:3306/main'
 ```
 
 With this example, you can connect to the `mariadb` relationship

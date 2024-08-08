@@ -122,8 +122,8 @@ To define the service, use the `elasticsearch` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: elasticsearch:<VERSION>
-    disk: 256
+  type: elasticsearch:<VERSION>
+  disk: 256
 ```
 
 If you’re using a [premium version](add-services/elasticsearch.md#supported-versions), use the `elasticsearch-enterprise` type instead.
@@ -131,7 +131,7 @@ If you’re using a [premium version](add-services/elasticsearch.md#supported-ve
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -142,11 +142,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <SERVICE_NAME>:
 ```
 
@@ -169,15 +170,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: elasticsearch
+      service: <SERVICE_NAME>
+      endpoint: elasticsearch
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -199,8 +201,8 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 256
+  type: elasticsearch:{{% latest "elasticsearch" %}}
+  disk: 256
 ```
 
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
@@ -215,11 +217,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     elasticsearch:
 ```
 
@@ -230,15 +233,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     elasticsearch:
-        service: elasticsearch
-        endpoint: elasticsearch
+      service: elasticsearch
+      endpoint: elasticsearch
 ```
 
 {{< /codetabs >}}
@@ -302,11 +306,11 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 2048
-    configuration:
-        authentication:
-            enabled: true
+  type: elasticsearch:{{% latest "elasticsearch" %}}
+  disk: 2048
+  configuration:
+    authentication:
+      enabled: true
 ```
 
 If you're using a [premium version](#supported-versions),
@@ -327,8 +331,8 @@ For example:
 
 ```yaml {configFile="routes"}
 "https://es.{default}/":
-    type: upstream
-    upstream: "elasticsearch:elasticsearch"
+  type: upstream
+  upstream: "elasticsearch:elasticsearch"
 ```
 
 ## Plugins
@@ -339,11 +343,11 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 1024
-    configuration:
-        plugins:
-            - analysis-icu
+  type: elasticsearch:{{% latest "elasticsearch" %}}
+  disk: 1024
+  configuration:
+    plugins:
+      - analysis-icu
 ```
 
 If you're using a [premium version](#supported-versions),

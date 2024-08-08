@@ -108,14 +108,14 @@ To define the service, use the `postgresql` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: postgresql:<VERSION>
-    disk: 256
+  type: postgresql:<VERSION>
+  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -126,11 +126,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     <SERVICE_NAME>:
 ```
 
@@ -153,15 +154,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: postgresql
+      service: <SERVICE_NAME>
+      endpoint: postgresql
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -179,10 +181,11 @@ With the above definition, the application container now has [access to the serv
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="apps"}
-# PHP extensions.
-runtime:
+app:
+  # PHP extensions.
+  runtime:
     extensions:
-        - pdo_pgsql
+      - pdo_pgsql
 ```
 
 ### Example configuration
@@ -192,8 +195,8 @@ runtime:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: postgresql:{{% latest "postgresql" %}}
-    disk: 256
+  type: postgresql:{{% latest "postgresql" %}}
+  disk: 256
 ```
 
 #### [App configuration](/create-apps/_index.md)
@@ -205,11 +208,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows simplified configuration leveraging a default service
+  # (identified from the relationship name) and a default endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  relationships:
     postgresql:
 ```
 
@@ -220,15 +224,16 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="apps"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     postgresql:
-        service: postgresql
-        endpoint: postgresql
+      service: postgresql
+      endpoint: postgresql
 ```
 
 {{< /codetabs >}}
@@ -379,25 +384,25 @@ Consider the following illustrative example:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: "postgresql:{{% latest "postgresql" %}}"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
-            importer:
-                default_database: legacy
-                privileges:
-                    legacy: rw
+  type: "postgresql:{{% latest "postgresql" %}}"
+  disk: 2048
+  configuration:
+    databases:
+      - main
+      - legacy
+    endpoints:
+      admin:
+        privileges:
+          main: admin
+          legacy: admin
+      reporter:
+        default_database: main
+        privileges:
+          main: ro
+      importer:
+        default_database: legacy
+        privileges:
+          legacy: rw
 ```
 
 This example creates a single PostgreSQL service named `postgresql`. The server has two databases, `main` and `legacy` with three endpoints created.
@@ -410,19 +415,20 @@ If a given endpoint has access to multiple databases you should also specify whi
 
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
-```yaml {configFile="app"}
-relationships:
+```yaml {configFile="apps"}
+app:
+  relationships:
     # Please note: Legacy definition of the relationship is still supported:
     # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
     database:
-        service: postgresql
-        endpoint: admin
+      service: postgresql
+      endpoint: admin
     reports:
-        service: postgresql
-        endpoint: reporter
+      service: postgresql
+      endpoint: reporter
     imports:
-        service: postgresql
-        endpoint: importer
+      service: postgresql
+      endpoint: importer
 ```
 
 Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
@@ -433,16 +439,16 @@ A service configuration without the `configuration` block defined is equivalent 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: "postgresql:{{% latest "postgresql" %}}"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-        endpoints:
-            postgresql:
-                default_database: main
-                privileges:
-                    main: admin
+  type: "postgresql:{{% latest "postgresql" %}}"
+  disk: 2048
+  configuration:
+    databases:
+      - main
+    endpoints:
+      postgresql:
+        default_database: main
+        privileges:
+          main: admin
 ```
 
 If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
@@ -450,12 +456,12 @@ If you do not define `database` but `endpoints` are defined, then the single dat
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: "postgresql:{{% latest "postgresql" %}}"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-        endpoints: <your configuration>
+  type: "postgresql:{{% latest "postgresql" %}}"
+  disk: 2048
+  configuration:
+    databases:
+      - main
+    endpoints: <your configuration>
 ```
 
 Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
@@ -463,18 +469,18 @@ Alternatively, if you define multiple databases but no endpoints, a single user 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: "postgresql:{{% latest "postgresql" %}}"
-    disk: 2048
-    configuration:
-        databases:
-            - firstdb
-            - seconddb
-            - thirddb
-        endpoints:
-            main:
-                firstdb: admin
-                seconddb: admin
-                thirddb: admin
+  type: "postgresql:{{% latest "postgresql" %}}"
+  disk: 2048
+  configuration:
+    databases:
+      - firstdb
+      - seconddb
+      - thirddb
+    endpoints:
+      main:
+        firstdb: admin
+        seconddb: admin
+        thirddb: admin
 ```
 
 ## Password generation
@@ -515,54 +521,57 @@ make sure you do the following:
 
 This results in the following configuration:
 
-```yaml {configFile="app"}
-relationships:
+```yaml {configFile="apps"}
+app:
+  relationships:
     {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}}
-        endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+      service: {{% variable "SERVICE_NAME" %}}
+      endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
 ```
 
 For example, if you define a `postgresql` database as follows:
 
 ```yaml {configFile="services"}
 postgresql:
-    type: "postgresql:16"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
+  type: "postgresql:16"
+  disk: 2048
+  configuration:
+    databases:
+      - main
+      - legacy
+    endpoints:
+      admin:
+        privileges:
+          main: admin
+          legacy: admin
+      reporter:
+        default_database: main
+        privileges:
+          main: ro
 ```
 
 To create a replica of the `postgresql` database and allow your app to connect to it
 through the `admin` endpoint with admin permissions,
 use the following configuration:
 
-```yaml {configFile="app"}
-relationships:
-  postgresql:
-    service: postgresql
-    endpoint: admin-replica
+```yaml {configFile="apps"}
+app:
+  relationships:
+    postgresql:
+      service: postgresql
+      endpoint: admin-replica
 ```
 
 To create a replica of the `postgresql` database and allow your app to connect to it
 through the `reporter` endpoint with read-only permissions instead,
 use the following configuration:
 
-```yaml {configFile="app"}
-relationships:
-  postgresql:
-    service: postgresql
-    endpoint: reporter-replica
+```yaml {configFile="apps"}
+app:
+  relationships:
+    postgresql:
+      service: postgresql
+      endpoint: reporter-replica
 ```
 
 ## Service timezone
@@ -576,12 +585,12 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: "postgresql:{{% latest "postgresql" %}}"
-    disk: 2048
-    configuration:
-        extensions:
-            - pg_trgm
-            - hstore
+  type: "postgresql:{{% latest "postgresql" %}}"
+  disk: 2048
+  configuration:
+    extensions:
+      - pg_trgm
+      - hstore
 ```
 
 In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.

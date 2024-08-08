@@ -56,15 +56,15 @@ export APP_GOTENBERG_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.gotenberg[0].ho
 
 To define the service, use the `gotenberg` type:
 
-```yaml {configFile="app"}
+```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: gotenberg:<VERSION>
+  type: gotenberg:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the ``http`` endpoint:
 
@@ -74,10 +74,11 @@ To define the relationship, use the ``http`` endpoint:
 title=Using default endpoints
 +++
 
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-relationships:
-    <SERVICE_NAME>: 
+```yaml {configFile="apps"}
+app:
+  # Relationships enable access from this app to a given service.
+  relationships:
+    <SERVICE_NAME>:
 ```
 
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -93,16 +94,17 @@ The application has access to the service via this relationship and its correspo
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+```yaml {configFile="apps"}
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: http
+      service: <SERVICE_NAME>
+      endpoint: http
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -126,7 +128,7 @@ The `http` endpoint uses port `3000` by default.
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 gotenberg:
-    type: gotenberg:8
+  type: gotenberg:8
 ```
 
 #### [App configuration](/create-apps/_index.md)
@@ -137,9 +139,10 @@ gotenberg:
 title=Using default endpoints
 +++
 
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-relationships:
+```yaml {configFile="apps"}
+app:
+  # Relationships enable access from this app to a given service.
+  relationships:
     gotenberg:
 ```
 
@@ -149,16 +152,17 @@ relationships:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+```yaml {configFile="apps"}
+app:
+  # Relationships enable access from this app to a given service.
+  # The example below shows configuration with an explicitly set service name and endpoint.
+  # See the Application reference for all options for defining relationships and endpoints.
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  relationships:
     gotenberg:
-        service: gotenberg
-        endpoint: http
+      service: gotenberg
+      endpoint: http
 ```
 
 {{< /codetabs >}}
