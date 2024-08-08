@@ -115,24 +115,24 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "username": "user",
-    "scheme": "mysql",
-    "service": "mariadb",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "azertyuiop-main-7rqtwti",
-    "host": "mariadb.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "mariadb:{{% latest "mariadb" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": "user",
+  "scheme": "mysql",
+  "service": "mariadb",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.mariadb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 3306,
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "mariadb.internal",
+  "rel": "mysql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "",
+  "type": "mariadb:{{% latest "mariadb" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -190,24 +190,24 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "username": "user",
-    "scheme": "mysql",
-    "service": "oracle-mysql",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 3306,
-    "cluster": "azertyuiop-main-afdwftq",
-    "host": "oracle_mysql.internal",
-    "rel": "mysql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "",
-    "type": "oracle-mysql:{{< latest "oracle-mysql" >}}",
-    "public": false,
-    "host_mapped": false
+  "username": "user",
+  "scheme": "mysql",
+  "service": "oracle-mysql",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.oracle-mysql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 3306,
+  "cluster": "azertyuiop-main-afdwftq",
+  "host": "oracle_mysql.internal",
+  "rel": "mysql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "",
+  "type": "oracle-mysql:{{< latest "oracle-mysql" >}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -233,9 +233,9 @@ To define the service, use the ``mariadb`` or ``mysql`` type for MariaDB or the 
 
 ```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: mariadb:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: mariadb:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -253,14 +253,14 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -281,15 +281,15 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: mysql
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: mysql
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -314,18 +314,18 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mariadb:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mariadb:
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 <--->
@@ -336,19 +336,19 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mariadb:
-                service: mariadb
-                endpoint: mysql
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mariadb:
+        service: mariadb
+        endpoint: mysql
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
+# The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 {{< /codetabs >}}
@@ -363,15 +363,15 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        relationships:
-            oracle-mysql:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    relationships:
+      oracle-mysql:
 service:
-    # The name of the service container. Must be unique within a project.
-    oracle-mysql:
-        type: oracle-mysql:{{% latest "oracle-mysql" %}}
+  # The name of the service container. Must be unique within a project.
+  oracle-mysql:
+    type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 
 <--->
@@ -382,19 +382,19 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            oracle-mysql:
-                service: oracle-mysql_service
-                endpoint: mysql
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      oracle-mysql:
+        service: oracle-mysql_service
+        endpoint: mysql
 service:
-    # The name of the service container. Must be unique within a project.
-    oracle-mysql_service:
-        type: oracle-mysql:{{% latest "oracle-mysql" %}}
+  # The name of the service container. Must be unique within a project.
+  oracle-mysql_service:
+    type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 
 {{< /codetabs >}}
@@ -412,20 +412,20 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
 
-        [...]
+    [...]
 
-        # Relationships enable an app container's access to a service.
-        relationships:
-            mariadb:
+    # Relationships enable an app container's access to a service.
+    relationships:
+      mariadb:
 service:
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 <--->
@@ -436,34 +436,34 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "myapp"
 
-        [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mariadb:
-                service: mariadb
-                endpoint: mysql
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mariadb:
+        service: mariadb
+        endpoint: mysql
 service:
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 {{< /codetabs >}}
 
 
-This configuration defines a single application (``myapp``), whose source code exists in the ``<PROJECT_ROOT>/myapp`` directory.
-``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+This configuration defines a single application (``app``), whose source code exists in the ``<PROJECT_ROOT>/myapp`` directory.
+``app`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, ``app`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -521,19 +521,19 @@ Example configuration:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            schemas:
-                - main
-            endpoints:
-                mysql:
-                    default_schema: main
-                    privileges:
-                        main: admin
-            properties:
-                max_allowed_packet: 64
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      schemas:
+        - main
+      endpoints:
+        mysql:
+          default_schema: main
+          privileges:
+            main: admin
+      properties:
+        max_allowed_packet: 64
 ```
 
 ## Access the service directly
@@ -591,17 +591,17 @@ If neither `schemas` nor `endpoints` is included, it's equivalent to the followi
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            schemas:
-                - main
-            endpoints:
-                mysql:
-                    default_schema: main
-                    privileges:
-                        main: admin
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      schemas:
+        - main
+      endpoints:
+        mysql:
+          default_schema: main
+          privileges:
+            main: admin
 ```
 
 If either `schemas` or `endpoints` are defined, no default is applied and you have to specify the full configuration.
@@ -624,53 +624,53 @@ Access to the database is defined through three endpoints:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            schemas:
-                - main
-                - legacy
-            endpoints:
-                admin:
-                    default_schema: main
-                    privileges:
-                        main: admin
-                        legacy: admin
-                reporter:
-                    privileges:
-                        main: ro
-                importer:
-                    default_schema: legacy
-                    privileges:
-                        legacy: rw
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      schemas:
+        - main
+        - legacy
+      endpoints:
+        admin:
+          default_schema: main
+          privileges:
+            main: admin
+            legacy: admin
+        reporter:
+          privileges:
+            main: ro
+        importer:
+          default_schema: legacy
+          privileges:
+            legacy: rw
 ```
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "myapp"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "myapp"
 
-        [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with explicitly set service names and endpoints.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            database:
-                service: mariadb
-                endpoint: admin
-            reports:
-                service: mariadb
-                endpoint: reporter
-            imports:
-                service: mariadb
-                endpoint: importer
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with explicitly set service names and endpoints.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      database:
+        service: mariadb
+        endpoint: admin
+      reports:
+        service: mariadb
+        endpoint: reporter
+      imports:
+        service: mariadb
+        endpoint: importer
 ```
 
 These relationships are then available in the [service environment variables](#relationship-reference).
@@ -701,14 +701,14 @@ An example of setting these properties:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            properties:
-                max_allowed_packet: 64
-                default_charset: utf8mb4
-                default_collation: utf8mb4_unicode_ci
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      properties:
+        max_allowed_packet: 64
+        default_charset: utf8mb4
+        default_collation: utf8mb4_unicode_ci
 ```
 
 You can also change a table's character set and collation through `ALTER TABLE` commands:

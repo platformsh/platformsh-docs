@@ -60,15 +60,15 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "service": "kafka",
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "azertyuiop-main-7rqtwti",
-    "host": "kafka.internal",
-    "rel": "kafka",
-    "scheme": "kafka",
-    "type": "kafka:{{< latest "kafka" >}}",
-    "port": 9092
+  "service": "kafka",
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "kafka.internal",
+  "rel": "kafka",
+  "scheme": "kafka",
+  "type": "kafka:{{< latest "kafka" >}}",
+  "port": 9092
 }
 ```
 
@@ -92,9 +92,9 @@ To define the service, use the ``kafka`` type:
 
 ```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: kafka:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: kafka:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -109,16 +109,16 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="services"}
+```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -139,17 +139,17 @@ With the above definition, the application container (``<APP_NAME>``) now has [a
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="services"}
+```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: kafka
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: kafka
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -172,20 +172,20 @@ With the above definition, the application container now has [access to the serv
 title=Using default endpoints
 +++
 
-```yaml {configFile="services"}
+```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            kafka:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      kafka:
 services:
-    # The name of the service container. Must be unique within a project.
-    kafka:
-        type: kafka:{{% latest "kafka" %}}
+  # The name of the service container. Must be unique within a project.
+  kafka:
+    type: kafka:{{% latest "kafka" %}}
 ```
 
 <--->
@@ -194,21 +194,21 @@ services:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="services"}
+```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            kafka:
-                service: kafka
-                endpoint: kafka
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      kafka:
+        service: kafka
+        endpoint: kafka
 services:
-    # The name of the service container. Must be unique within a project.
-    kafka:
-        type: kafka:{{% latest "kafka" %}}
+  # The name of the service container. Must be unique within a project.
+  kafka:
+    type: kafka:{{% latest "kafka" %}}
 ```
 
 {{< /codetabs >}}

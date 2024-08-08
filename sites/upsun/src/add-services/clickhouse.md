@@ -73,26 +73,26 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-      "username": "main",
-      "fragment": null,
-      "ip": "123.456.78.90",
-      "cluster": "azertyuiop-main-afdwftq",
-      "host": "clickhouse.internal",
-      "path": "main",
-      "query": {
-        "is_master": true
-      },
-      "password": "ChangeMe",
-      "port": 9000,
-      "host_mapped": false,
-      "service": "clickhouse",
-      "hostname": "azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-      "epoch": 0,
-      "rel": "clickhouse",
-      "scheme": "https",
-      "type": "clickhouse:24",
-      "public": false
-    }
+  "username": "main",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "cluster": "azertyuiop-main-afdwftq",
+  "host": "clickhouse.internal",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "ChangeMe",
+  "port": 9000,
+  "host_mapped": false,
+  "service": "clickhouse",
+  "hostname": "azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "epoch": 0,
+  "rel": "clickhouse",
+  "scheme": "https",
+  "type": "clickhouse:24",
+  "public": false
+}
 ```
 
 Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.html#use-env-files):
@@ -115,9 +115,9 @@ To define the service, use the `clickhouse` type:
 
 ```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: clickhouse:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: clickhouse:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -141,14 +141,14 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 You can define ``<SERVICE_NAME>`` as you like.
 <--->
@@ -159,15 +159,15 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: clickhouse
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: clickhouse
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, but it's best if they're distinct.
@@ -183,19 +183,19 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: clickhouse-http
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: clickhouse-http
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: clickhouse:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+      type: clickhouse:<VERSION>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -213,21 +213,21 @@ title= With ``clickhouse`` default endpoint
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "myapp"
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            clickhouse:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      clickhouse:
 services:
-    clickhouse:
-        # The name of the service container. Must be unique within a project.
-        type: clickhouse:24
+  # The name of the service container. Must be unique within a project.
+  clickhouse:
+    type: clickhouse:24
 ```
 
 <--->
@@ -238,22 +238,22 @@ title= With ``clickhouse`` explicit endpoint
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "myapp"
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            clickhouse:
-                service: clickhouse
-                endpoint: clickhouse
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      clickhouse:
+        service: clickhouse
+        endpoint: clickhouse
 services:
-    clickhouse:
-        # The name of the service container. Must be unique within a project.
-        type: clickhouse:24
+  # The name of the service container. Must be unique within a project.
+  clickhouse:
+    type: clickhouse:24
 ```
 
 <--->
@@ -264,22 +264,22 @@ title= With ``clickhouse-http`` endpoint
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "myapp"
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            clickhouse:
-                service: clickhouse
-                endpoint: clickhouse-http
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      clickhouse:
+        service: clickhouse
+        endpoint: clickhouse-http
 services:
-    # The name of the service container. Must be unique within a project.
-    clickhouse:
-        type: clickhouse:24
+  # The name of the service container. Must be unique within a project.
+  clickhouse:
+    type: clickhouse:24
 ```
 
 If you want to change the ``clickhouse`` endpoint to ``clickhouse-http``, you need to use explicit endpoint definition as it defaults to ``clickhouse`` endpoint when using default endpoint (aka. {{% variable "SERVICE_NAME" %}} as relationship definition).
@@ -294,41 +294,41 @@ To do so, you can use a configuration similar to the following:
 ```yaml {configFile="app"}
 # Complete list of all available properties: https://docs.upsun.com/create-apps/app-reference.html
 applications:
-    myapp:
-      # Relationships enable access from this app to a given service.
-      # The example below shows configuration with explicitly set service names and endpoints.
-      # See the Application reference for all options for defining relationships and endpoints.
-      relationships:
-          clickhouse-admin:
-              service: clickhouse
-              endpoint: admin
-          clickhouse-reporter:
-              service: clickhouse
-              endpoint: reporter
-          clickhouse-importer:
-              service: clickhouse
-              endpoint: importer
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with explicitly set service names and endpoints.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      clickhouse-admin:
+        service: clickhouse
+        endpoint: admin
+      clickhouse-reporter:
+        service: clickhouse
+        endpoint: reporter
+      clickhouse-importer:
+        service: clickhouse
+        endpoint: importer
 services:
-    clickhouse:
-        type: clickhouse:24
-        configuration:
-            databases:
-                - main
-                - legacy
-        endpoints:
-            admin:
-                port: 9000 # binary port
-            privileges:
-                main: admin
-                legacy: admin
-        reporter:
-            default_database: main
-            port: 8123 # http port
-            privileges:
-                main: ro
-        importer:
-            default_database: legacy
-            port: 9000 # binary port
-            privileges:
-                legacy: rw
+  clickhouse:
+    type: clickhouse:24
+    configuration:
+      databases:
+        - main
+        - legacy
+    endpoints:
+      admin:
+        port: 9000 # binary port
+      privileges:
+        main: admin
+        legacy: admin
+    reporter:
+      default_database: main
+      port: 8123 # http port
+      privileges:
+        main: ro
+    importer:
+      default_database: legacy
+      port: 9000 # binary port
+      privileges:
+        legacy: rw
 ```

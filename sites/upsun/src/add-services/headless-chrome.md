@@ -60,15 +60,15 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "service": "chrome-headless",
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.chrome-headless.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "azertyuiop-main-7rqtwti",
-    "host": "chrome-headless.internal",
-    "rel": "http",
-    "scheme": "http",
-    "type": "chrome-headless:{{< latest "chrome-headless" >}}",
-    "port": 9222
+  "service": "chrome-headless",
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.chrome-headless.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "chrome-headless.internal",
+  "rel": "http",
+  "scheme": "http",
+  "type": "chrome-headless:{{< latest "chrome-headless" >}}",
+  "port": 9222
 }
 ```
 
@@ -99,9 +99,9 @@ To define the service, use the `chrome-headless` type:
 
 ```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: chrome-headless:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: chrome-headless:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -118,14 +118,14 @@ title=Using default endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -148,15 +148,15 @@ title=Using explicit endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: http
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: http
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -181,18 +181,18 @@ title=Using default endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            chrome-headless:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      chrome-headless:
 services:
-    # The name of the service container. Must be unique within a project.
-    chrome-headless:
-        type: chrome-headless:{{% latest "chrome-headless" %}}
+  # The name of the service container. Must be unique within a project.
+  chrome-headless:
+    type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
 <--->
@@ -203,19 +203,19 @@ title=Using explicit endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            chrome-headless:
-                service: chrome-headless
-                endpoint: http
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      chrome-headless:
+        service: chrome-headless
+        endpoint: http
 services:
-    # The name of the service container. Must be unique within a project.
-    chrome-headless:
-        type: chrome-headless:{{% latest "chrome-headless" %}}
+  # The name of the service container. Must be unique within a project.
+  chrome-headless:
+    type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
 {{< /codetabs >}}
@@ -268,25 +268,25 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
-            type: "nodejs:{{% latest "nodejs" %}}"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "myapp"
+      type: "nodejs:{{% latest "nodejs" %}}"
 
-            [...]
+      [...]
 
-            # Relationships enable access from this app to a given service.
-            # The example below shows simplified configuration leveraging a default service
-            # (identified from the relationship name) and a default endpoint.
-            # See the Application reference for all options for defining relationships and endpoints.
-            relationships:
-                chrome-headless:
+      # Relationships enable access from this app to a given service.
+      # The example below shows simplified configuration leveraging a default service
+      # (identified from the relationship name) and a default endpoint.
+      # See the Application reference for all options for defining relationships and endpoints.
+      relationships:
+        chrome-headless:
 services:
-    # The name of the service container. Must be unique within a project.
-    chrome-headless:
-        type: chrome-headless:{{% latest "chrome-headless" %}}
+  # The name of the service container. Must be unique within a project.
+  chrome-headless:
+    type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
 <--->
@@ -297,36 +297,36 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
-            type: "nodejs:{{% latest "nodejs" %}}"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "myapp"
+      type: "nodejs:{{% latest "nodejs" %}}"
 
-            [...]
+      [...]
 
-            # Relationships enable access from this app to a given service.
-            # The example below shows configuration with an explicitly set service name and endpoint.
-            # See the Application reference for all options for defining relationships and endpoints.
-            relationships:
-                chrome-headless:
-                    service: chrome-headless
-                    endpoint: http
+      # Relationships enable access from this app to a given service.
+      # The example below shows configuration with an explicitly set service name and endpoint.
+      # See the Application reference for all options for defining relationships and endpoints.
+      relationships:
+        chrome-headless:
+          service: chrome-headless
+          endpoint: http
 services:
-    # The name of the service container. Must be unique within a project.
-    chrome-headless:
-        type: chrome-headless:{{% latest "chrome-headless" %}}
+  # The name of the service container. Must be unique within a project.
+  chrome-headless:
+    type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
 {{< /codetabs >}}
 
 
-This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `chromeheadless` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+This configuration defines a single application (`app`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`app` has access to the `chrome-headless` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, `myapp` can retrieve access credentials to the service through the [relationship environment variable](/add-services/elasticsearch.md#relationship-reference).
+From this, `app` can retrieve access credentials to the service through the [relationship environment variable](/add-services/elasticsearch.md#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,

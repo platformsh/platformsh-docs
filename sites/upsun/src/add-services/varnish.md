@@ -38,15 +38,15 @@ To define the service, use the `varnish` type:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: varnish:<VERSION>
-        relationships:
-            <RELATIONSHIP_NAME>: '<APP_NAME>:http'
-        configuration:
-            vcl: !include
-                type: string
-                path: config.vcl
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: varnish:<VERSION>
+    relationships:
+      <RELATIONSHIP_NAME>: '<APP_NAME>:http'
+    configuration:
+      vcl: !include
+        type: string
+        path: config.vcl
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -64,22 +64,22 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 ```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
-    myapp:
+    app:
        ...
 
 services:
-    # The name of the service container. Must be unique within a project.
-    varnish:
-        type: varnish:{{% latest "varnish" %}}
-        relationships:
-            application: 'myapp:http'
-        configuration:
-            vcl: !include
-                type: string
-                path: config.vcl
+  # The name of the service container. Must be unique within a project.
+  varnish:
+    type: varnish:{{% latest "varnish" %}}
+    relationships:
+      application: 'app:http'
+    configuration:
+      vcl: !include
+        type: string
+        path: config.vcl
 ```
 
-Notice the `relationship` (`application`) defined for the service `varnish` granting access to the application container `myapp`.
+Notice the `relationship` (`application`) defined for the service `varnish` granting access to the application container `app`.
 
 ### 2. Create a VCL template
 
@@ -142,47 +142,47 @@ For example, you might have the following configuration for two apps:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 services:
-    varnish:
-        type: varnish:{{% latest "varnish" %}}
-        relationships:
-            blog:
-                service: blog
-                endpoint: http
-            main:
-                service: app
-                endpoint: http
-        configuration:
-            vcl: !include
-                type: string
-                path: config.vcl
+  varnish:
+    type: varnish:{{% latest "varnish" %}}
+    relationships:
+      blog:
+        service: blog
+        endpoint: http
+      main:
+        service: app
+        endpoint: http
+    configuration:
+      vcl: !include
+        type: string
+        path: config.vcl
 
 applications:
-    # The name of the app container. Must be unique within a project.
-    blog:
-        # The location of the application's code.
-        source:
-            root: "backends/blog"
-        # The type of the application to build.
-        type: "php:{{% latest "php" %}}"
+  # The name of the app container. Must be unique within a project.
+  blog:
+    # The location of the application's code.
+    source:
+      root: "backends/blog"
+    # The type of the application to build.
+    type: "php:{{% latest "php" %}}"
 
-    # The name of the app container. Must be unique within a project.
-    app:
-        # The location of the application's code.
-        source:
-            root: "backends/main"
-        # The type of the application to build.
-        type: "nodejs:{{% latest "php" %}}"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "backends/main"
+    # The type of the application to build.
+    type: "nodejs:{{% latest "php" %}}"
 ```
 
 You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
 
 ```bash {location="config.vcl" dir="true"}
 sub vcl_recv {
-    if (req.url ~ "^/blog/") {
-        set req.backend_hint = blog.backend();
-    } else {
-        set req.backend_hint = main.backend();
-    }
+  if (req.url ~ "^/blog/") {
+      set req.backend_hint = blog.backend();
+  } else {
+      set req.backend_hint = main.backend();
+  }
 }
 ```
 
@@ -195,11 +195,11 @@ To forward all incoming requests to Varnish rather than your app, you could have
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "varnish:http"
-        cache:
-            enabled: false
+  "https://{default}/":
+    type: upstream
+    upstream: "varnish:http"
+    cache:
+      enabled: false
 ```
 
 Varnish forwards requests to your app based on the specified VCL template.
@@ -319,41 +319,41 @@ Define [app configuration](/create-apps/app-reference/single-runtime-image.md) s
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    stats-app:
-        # The location of the application's code.
-        source:
-            root: "stats"
-        # The type of the application to build.
-        type: "python:{{% latest "python" %}}"
-        # Unique relationship _to_ Varnish from 'stats-app', where no relationship
-        # is defined _from_ Varnish to the same app, to avoid circular relationships.
-        relationships:
-            varnishstats:
-                service: varnish
-                endpoint: http+stats
-    # The name of the app container. Must be unique within a project.
-    main-app:
-        # The location of the application's code.
-        source:
-            root: "backends/main"
-        # The type of the application to build.
-        type: "nodejs:{{% latest "nodejs" %}}"
+  # The name of the app container. Must be unique within a project.
+  stats-app:
+    # The location of the application's code.
+    source:
+      root: "stats"
+    # The type of the application to build.
+    type: "python:{{% latest "python" %}}"
+    # Unique relationship _to_ Varnish from 'stats-app', where no relationship
+    # is defined _from_ Varnish to the same app, to avoid circular relationships.
+    relationships:
+      varnishstats:
+        service: varnish
+        endpoint: http+stats
+  # The name of the app container. Must be unique within a project.
+  main-app:
+    # The location of the application's code.
+    source:
+      root: "backends/main"
+    # The type of the application to build.
+    type: "nodejs:{{% latest "nodejs" %}}"
 
 services:
-    # The name of the service container. Must be unique within a project.
-    varnish:
-        type: varnish:{{% latest "varnish" %}}
-        # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
-        #   is defined _to_ Varnish to the same app, to avoid circular relationships.
-        relationships:
-            main:
-                service: "main-app"
-                endpoint: "http
-        configuration:
-            vcl: !include
-                type: string
-                path: config.vcl
+  # The name of the service container. Must be unique within a project.
+  varnish:
+    type: varnish:{{% latest "varnish" %}}
+    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
+    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
+    relationships:
+      main:
+        service: "main-app"
+        endpoint: "http
+    configuration:
+      vcl: !include
+        type: string
+        path: config.vcl
 ```
 
 

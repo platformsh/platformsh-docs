@@ -189,60 +189,60 @@ If you split the service into multiple endpoints, define multiple relationships.
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-       relationships:
-            vault_secret: "vault-kms:manage_keys"
+  # The name of the app container. Must be unique within a project.
+  app:
+    relationships:
+      vault_secret: "vault-kms:manage_keys"
 
 services:
-    # The name of the service container. Must be unique within a project.
-    vault-kms:
-        type: vault-kms:1.12
-        configuration:
-            endpoints:
-                manage_keys:
-                    - policy: admin
-                      key: vault-sign
-                      type: sign
-                    - policy: sign
-                      key: vault-sign
-                      type: sign
-                    - policy: verify
-                      key: vault-sign
-                      type: sign
+  # The name of the service container. Must be unique within a project.
+  vault-kms:
+    type: vault-kms:1.12
+    configuration:
+      endpoints:
+        manage_keys:
+          - policy: admin
+            key: vault-sign
+            type: sign
+          - policy: sign
+            key: vault-sign
+            type: sign
+          - policy: verify
+            key: vault-sign
+            type: sign
 ```
 
 ## Multiple endpoints example
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-       relationships:
-            vault_manage:
-                service: vault-kms
-                endpoint: management
-            vault_sign:
-                service: vault-kms
-                endpoint: sign_and_verify
+  # The name of the app container. Must be unique within a project.
+  app:
+   relationships:
+      vault_manage:
+        service: vault-kms
+        endpoint: management
+      vault_sign:
+        service: vault-kms
+        endpoint: sign_and_verify
 
 services:
-    # The name of the service container. Must be unique within a project.
-    vault-kms:
-        type: vault-kms:1.12
-        configuration:
-            endpoints:
-                management:
-                    - policy: admin
-                      key: admin-key
-                      type: sign
-                sign_and_verify:
-                    - policy: sign
-                      key: signing-key
-                      type: sign
-                    - policy: verify
-                      key: signing-key
-                      type: sign
+  # The name of the service container. Must be unique within a project.
+  vault-kms:
+    type: vault-kms:1.12
+    configuration:
+      endpoints:
+        management:
+          - policy: admin
+            key: admin-key
+            type: sign
+        sign_and_verify:
+          - policy: sign
+            key: signing-key
+            type: sign
+          - policy: verify
+            key: signing-key
+            type: sign
 ```
 
 ## Use Vault KMS

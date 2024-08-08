@@ -139,14 +139,14 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -169,15 +169,15 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: influxdb
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: influxdb
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -202,18 +202,18 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            influxdb:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      influxdb:
 services:
-    # The name of the service container. Must be unique within a project.
-    influxdb:
-        type: influxdb:{{% latest "influxdb" %}}
+  # The name of the service container. Must be unique within a project.
+  influxdb:
+    type: influxdb:{{% latest "influxdb" %}}
 ```
 
 <--->
@@ -224,19 +224,19 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            influxdb:
-                service: influxdb
-                endpoint: influxdb
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      influxdb:
+        service: influxdb
+        endpoint: influxdb
 services:
-    # The name of the service container. Must be unique within a project.
-    influxdb:
-        type: influxdb:{{% latest "influxdb" %}}
+  # The name of the service container. Must be unique within a project.
+  influxdb:
+    type: influxdb:{{% latest "influxdb" %}}
 ```
 
 {{< /codetabs >}}
@@ -254,23 +254,23 @@ title=Using default endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
 
-        [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            influxdb:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      influxdb:
 service:
-    influxdb:
-        type: influxdb:{{% latest "influxdb" %}}
+  influxdb:
+    type: influxdb:{{% latest "influxdb" %}}
 ```
 
 <--->
@@ -281,33 +281,33 @@ title=Using explicit endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "myapp"
 
-        [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            influxdb:
-                service: influxdb
-                endpoint: influxdb
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      influxdb:
+        service: influxdb
+        endpoint: influxdb
 service:
-    influxdb:
-        type: influxdb:{{% latest "influxdb" %}}
+  influxdb:
+    type: influxdb:{{% latest "influxdb" %}}
 ```
 
 {{< /codetabs >}}
 
-This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+This configuration defines a single application (`app`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`app` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, ``app`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.

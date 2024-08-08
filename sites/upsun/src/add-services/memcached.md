@@ -62,15 +62,15 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "service": "memcached",
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "memcached.internal",
-    "rel": "memcached",
-    "scheme": "memcached",
-    "type": "memcached:{{% latest "memcached" %}}",
-    "port": 11211
+  "service": "memcached",
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.memcached.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiopqsdf-main-afdwftq",
+  "host": "memcached.internal",
+  "rel": "memcached",
+  "scheme": "memcached",
+  "type": "memcached:{{% latest "memcached" %}}",
+  "port": 11211
 }
 ```
 
@@ -94,9 +94,9 @@ To define the service, use the ``memcached`` type:
 
 ```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: memcached:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: memcached:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -112,14 +112,14 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -139,13 +139,13 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -170,18 +170,18 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - memcached
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - memcached
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 <--->
@@ -192,17 +192,17 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - memcached
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-           <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - memcached
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
 ```
 {{< /codetabs >}}
 
@@ -216,18 +216,18 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Build dependencies per runtime.
-        dependencies:
-            python:
-                python-memcached: '*'
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Build dependencies per runtime.
+    dependencies:
+      python:
+        python-memcached: '*'
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 <--->
@@ -239,17 +239,17 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Build dependencies per runtime.
-        dependencies:
-            python:
-                python-memcached: '*'
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Build dependencies per runtime.
+    dependencies:
+      python:
+        python-memcached: '*'
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>: "<SERVICE_NAME>:memcached"
 ```
 
 {{< /codetabs >}}
@@ -263,21 +263,21 @@ applications:
 title=Using default endpoints
 +++
 
-```yaml {configFile="services"}
+```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            memcached:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      memcached:
 
 services:
-    # The name of the service container. Must be unique within a project.
-    memcached:
-        type: memcached:{{% latest "memcached" %}}
+  # The name of the service container. Must be unique within a project.
+  memcached:
+    type: memcached:{{% latest "memcached" %}}
 ```
 
 <--->
@@ -288,18 +288,18 @@ title=Using explicit endpoints
 
 ```yaml {configFile="services"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            memcached: "memcached:memcached"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      memcached: "memcached:memcached"
 
 services:
-    # The name of the service container. Must be unique within a project.
-    memcached:
-        type: memcached:{{% latest "memcached" %}}
+  # The name of the service container. Must be unique within a project.
+  memcached:
+    type: memcached:{{% latest "memcached" %}}
 ```
 
 {{< /codetabs >}}
@@ -316,28 +316,28 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
 
-        # PHP extensions.
-        runtime:
-          extensions:
-            - memcached
+    # PHP extensions.
+    runtime:
+      extensions:
+        - memcached
 
-      [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            memcached:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+        memcached:
 service:
-    memcached:
-        type: memcached:{{% latest "memcached" %}}
+  memcached:
+    type: memcached:{{% latest "memcached" %}}
 ```
 
 <--->
@@ -348,34 +348,34 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
 
-        # PHP extensions.
-        runtime:
-          extensions:
-            - memcached
+    # PHP extensions.
+    runtime:
+      extensions:
+        - memcached
 
-        [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            memcached:
-                service: memcached
-                endpoint: memcached
+    # Relationships enable access from this app to a given service.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      memcached:
+        service: memcached
+        endpoint: memcached
 service:
-    memcached:
-        type: memcached:{{% latest "memcached" %}}
+  memcached:
+    type: memcached:{{% latest "memcached" %}}
 ```
 
 {{< /codetabs >}}
 
-This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+This configuration defines a single application (`app`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`app` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).

@@ -84,21 +84,21 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "username": "main",
-    "scheme": "mongodb",
-    "service": "mongodb",
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "azertyuiop-main-7rqtwti",
-    "host": "mongodb.internal",
-    "rel": "mongodb",
-    "query": {
-        "is_master": true
-    },
-    "path": "main",
-    "password": null,
-    "type": "mongodb-enterprise:{{% latest "mongodb-enterprise" %}}",
-    "port": 27017
+  "username": "main",
+  "scheme": "mongodb",
+  "service": "mongodb",
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.mongodb.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "mongodb.internal",
+  "rel": "mongodb",
+  "query": {
+    "is_master": true
+  },
+  "path": "main",
+  "password": null,
+  "type": "mongodb-enterprise:{{% latest "mongodb-enterprise" %}}",
+  "port": 27017
 }
 ```
 
@@ -122,11 +122,11 @@ export APP_MONGODBDATABASE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mongodb[0]
 
 To define the service, use the ``mongodb-enterprise`` type:
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: mongodb-enterprise:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: mongodb-enterprise:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -140,16 +140,16 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -172,15 +172,15 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: mongodb
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: mongodb
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -205,18 +205,18 @@ title=Using default endpoints
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 <--->
@@ -227,19 +227,19 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: mongodb
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: mongodb
 ```
 
 {{< /codetabs >}}
@@ -254,22 +254,22 @@ title=Using default endpoints
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mongodb-enterprise:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mongodb-enterprise:
 services:
-    # The name of the service container. Must be unique within a project.
-    mongodb-enterprise:
-        type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+  # The name of the service container. Must be unique within a project.
+  mongodb-enterprise:
+    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 ```
 
 <--->
@@ -280,23 +280,23 @@ title=Using explicit endpoints
 
 ```yaml {configFile="apps"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mongodb-enterprise:
-                service: mongodb-enterprise
-                endpoint: mongodb
+  # The name of the app container. Must be unique within a project.
+  app:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mongodb-enterprise:
+        service: mongodb-enterprise
+        endpoint: mongodb
 services:
-    # The name of the service container. Must be unique within a project.
-    mongodb-enterprise:
-        type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+  # The name of the service container. Must be unique within a project.
+  mongodb-enterprise:
+    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 ```
 
 {{< /codetabs >}}
@@ -309,9 +309,9 @@ To define the service, use the ``mongodb`` type:
 
 ```yaml {configFile="app"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: mongodb:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: mongodb:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
@@ -328,14 +328,14 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -358,15 +358,15 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: mongodb
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: mongodb
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -391,18 +391,18 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <SERVICE_NAME>:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 <--->
@@ -413,19 +413,19 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            <RELATIONSHIP_NAME>:
-                service: <SERVICE_NAME>
-                endpoint: mongodb
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: mongodb
 ```
 
 {{< /codetabs >}}
@@ -440,22 +440,22 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mongodb:
+  # The name of the app container. Must be unique within a project.
+  app:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mongodb:
 services:
-    # The name of the service container. Must be unique within a project.
-    mongodb:
-        type: mongodb:4.0.3
+  # The name of the service container. Must be unique within a project.
+  mongodb:
+    type: mongodb:4.0.3
 ```
 
 <--->
@@ -466,23 +466,23 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # PHP extensions.
-        runtime:
-            extensions:
-                - mongodb
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mongodb:
-                service: mongodb
-                endpoint: mongodb
+  # The name of the app container. Must be unique within a project.
+  app:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mongodb:
+        service: mongodb
+        endpoint: mongodb
 services:
-    # The name of the service container. Must be unique within a project.
-    mongodb:
-        type: mongodb:4.0.3
+  # The name of the service container. Must be unique within a project.
+  mongodb:
+    type: mongodb:4.0.3
 ```
 
 {{< /codetabs >}}
@@ -500,27 +500,27 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+    app:
+      # The location of the application's code.
+      source:
+        root: "/"
 
-        # PHP extensions.
-        runtime:
-          extensions:
-            - mongodb
+      # PHP extensions.
+      runtime:
+        extensions:
+          - mongodb
 
-        [...]
+      [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mongodb:
+      # Relationships enable access from this app to a given service.
+      # The example below shows simplified configuration leveraging a default service
+      # (identified from the relationship name) and a default endpoint.
+      # See the Application reference for all options for defining relationships and endpoints.
+      relationships:
+        mongodb:
 service:
-    mongodb:
-        type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+  mongodb:
+    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 ```
 
 <--->
@@ -531,29 +531,29 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "/"
+  # The name of the app container. Must be unique within a project.
+  app:
+    # The location of the application's code.
+    source:
+      root: "/"
 
-        # PHP extensions.
-        runtime:
-          extensions:
-            - mongodb
+    # PHP extensions.
+    runtime:
+      extensions:
+        - mongodb
 
-        [...]
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        # The example below shows configuration with an explicitly set service name and endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mongodb:
-                service: mongodb
-                endpoint: mongodb
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mongodb:
+        service: mongodb
+        endpoint: mongodb
 service:
-    mongodb:
-        type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
+  mongodb:
+    type: mongodb-enterprise:{{% latest "mongodb-enterprise" %}}
 ```
 
 {{< /codetabs >}}

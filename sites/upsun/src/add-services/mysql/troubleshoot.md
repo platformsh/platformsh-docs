@@ -102,12 +102,12 @@ Given the following services configuration for MariaDB:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            properties:
-                max_allowed_packet: 16
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      properties:
+        max_allowed_packet: 16
 ```
 
 And assuming you have set the resources for that service using the following CLI command:
@@ -132,12 +132,12 @@ The default value of `16` is shown below to illustrate:
 
     ```yaml {configFile="services"}
     services:
-        # The name of the service container. Must be unique within a project.
-        mariadb:
-            type: mariadb:{{% latest "mariadb" %}}
-            configuration:
-                properties:
-                    max_allowed_packet: 16
+      # The name of the service container. Must be unique within a project.
+      mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+        configuration:
+          properties:
+            max_allowed_packet: 16
     ```
 
 1. **The memory available to the service**: Resources are provisioned to {{% vendor/name %}} containers according to your definition via the API, often through the `resources:set` CLI command:
