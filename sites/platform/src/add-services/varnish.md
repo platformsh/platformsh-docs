@@ -38,10 +38,10 @@ The Varnish service sits between the router and all apps in the project.
 
 ``` mermaid
 graph LR
-    A(Request) -->B(Router)
-    B --> C{Varnish}
-    C -->D[App 1]
-    C -->E[App 2]
+  A(Request) -->B(Router)
+  B --> C{Varnish}
+  C -->D[App 1]
+  C -->E[App 2]
 ```
 
 ## Usage example

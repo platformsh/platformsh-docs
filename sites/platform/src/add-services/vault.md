@@ -111,15 +111,14 @@ You can create multiple endpoints, such as to have key management separate from 
 
 To define the relationship, use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: <ENDPOINT_ID>
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: <ENDPOINT_ID>
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -157,14 +156,13 @@ vault-kms:
 
 #### [App configuration](/create-apps)
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    # Please note: Legacy definition of the relationship is still supported:
-    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-    vault_secret:
-      service: "vault-kms"
-      endpoint: "manage_keys"
+```yaml {configFile="app"}
+relationships:
+  # Please note: Legacy definition of the relationship is still supported:
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  vault_secret:
+    service: "vault-kms"
+    endpoint: "manage_keys"
 ```
 
 ### Multiple endpoints configuration
@@ -193,17 +191,16 @@ vault-kms:
 
 #### [App configuration](/create-apps)
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    # Please note: Legacy definition of the relationship is still supported.
-    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-    vault_manage:
-      service: vault-kms
-      endpoint: management
-    vault_sign:
-      service: vault-kms
-      endpoint: sign_and_verify
+```yaml {configFile="app"}
+relationships:
+  # Please note: Legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  vault_manage:
+    service: vault-kms
+    endpoint: management
+  vault_sign:
+    service: vault-kms
+    endpoint: sign_and_verify
 ```
 
 ## Use Vault KMS

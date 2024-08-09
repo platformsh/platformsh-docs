@@ -43,21 +43,21 @@ This creates a `replicator` user, and grants read-only and table locking rights 
 Even if you won't be accessing the replication endpoint from your application, you still need to expose it to an application as a relationship so that you can connect to it over SSH.
 Add a new relationship to your application container:
 
-```yaml {configFile="apps"}
-app:
+```yaml {configFile="app"}
+name: app
 
-  [...]
+[...]
 
-  # Relationships enable an app container's access to a service.
-  relationships:
-    # Please note: Legacy definition of the relationship is still supported:
-    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-    database:
-      service: "mariadb"
-      endpoint: "mysql"
-    replication:
-      service: "mariadb"
-      endpoint: "replicator"
+# Relationships enable an app container's access to a service.
+relationships:
+  # Please note: Legacy definition of the relationship is still supported:
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  database:
+    service: "mariadb"
+    endpoint: "mysql"
+  replication:
+    service: "mariadb"
+    endpoint: "replicator"
 ```
 
 ## Getting the Primary's Binary Log Co-ordinates

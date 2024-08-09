@@ -107,15 +107,16 @@ The relationship follows this pattern:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Other options...
+```yaml {configFile="app"}
+name: app
 
-  # Relationships enable an app container's access to a service.
-  # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+# Other options...
+
+# Relationships enable an app container's access to a service.
+# The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -134,17 +135,16 @@ you can use [explicit endpoint configuration](/create-apps/app-reference/single-
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: <ENDPOINT_NAME>
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: <ENDPOINT_NAME>
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -167,14 +167,14 @@ An example relationship to connect to the databases given in the [example in ste
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Other options...
+```yaml {configFile="app"}
+name: app
+# Other options...
 
-  # Relationships enable an app container's access to a service.
-  relationships:
-    mariadb:
-    postgresql:
+# Relationships enable an app container's access to a service.
+relationships:
+  mariadb:
+  postgresql:
 ```
 
 <--->
@@ -183,22 +183,22 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Other options...
+```yaml {configFile="app"}
+name: app
+# Other options...
 
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with explicitly set service names and endpoints.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    mariadb:
-      service: mariadb
-      endpoint: mysql
-    postgresql:
-      service: postgresql
-      endpoint: mysql
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with explicitly set service names and endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: mysql
+  postgresql:
+    service: postgresql
+    endpoint: mysql
 ```
 
 {{< /codetabs >}}

@@ -78,22 +78,22 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 
 ```json
 {
-    "username": null,
-    "scheme": "http",
-    "service": "opensearch",
-    "fragment": null,
-    "ip": "169.254.99.100",
-    "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 9200,
-    "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "opensearch.internal",
-    "rel": "opensearch",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "opensearch:{{% latest "opensearch" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "http",
+  "service": "opensearch",
+  "fragment": null,
+  "ip": "169.254.99.100",
+  "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 9200,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "opensearch.internal",
+  "rel": "opensearch",
+  "path": null,
+  "query": [],
+  "password": "ChangeMe",
+  "type": "opensearch:{{% latest "opensearch" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -123,14 +123,13 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -151,17 +150,16 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: opensearch
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: opensearch
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -195,14 +193,13 @@ opensearch:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    opensearch:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  opensearch:
 ```
 
 <--->
@@ -211,17 +208,16 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    opensearch:
-      service: opensearch
-      endpoint: opensearch
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  opensearch:
+    service: opensearch
+    endpoint: opensearch
 ```
 
 {{< /codetabs >}}
@@ -236,13 +232,13 @@ To use the configured service in your app, add a configuration file similar to t
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
+```yaml {configFile="app"}
+name: app
 
-  [...]
+[...]
 
-  relationships:
-    opensearch:
+relationships:
+  opensearch:
 ```
 
 <--->
@@ -251,15 +247,15 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
+```yaml {configFile="app"}
+name: app
 
-  [...]
+[...]
 
-  relationships:
-    opensearch:
-      service: opensearch
-      endpoint: opensearch
+relationships:
+  opensearch:
+    service: opensearch
+    endpoint: opensearch
 ```
 
 {{< /codetabs >}}

@@ -73,22 +73,22 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 
 ```json
 {
-    "username": null,
-    "scheme": "solr",
-    "service": "solr",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 8080,
-    "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "solr.internal",
-    "rel": "solr",
-    "path": "solr\/collection1",
-    "query": [],
-    "password": null,
-    "type": "solr:{{% latest "solr" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "solr",
+  "service": "solr",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 8080,
+  "cluster": "azertyuiopqsdf-main-afdwftq",
+  "host": "solr.internal",
+  "rel": "solr",
+  "path": "solr\/collection1",
+  "query": [],
+  "password": null,
+  "type": "solr:{{% latest "solr" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -118,14 +118,13 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -146,16 +145,15 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: solr
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: solr
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -189,14 +187,13 @@ solr:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    solr:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  solr:
 ```
 
 <--->
@@ -205,16 +202,15 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app
-  # Relationships enable access from this app to a given service.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    solr:
-      service: solr
-      endpoint: solr
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  solr:
+    service: solr
+    endpoint: solr
 ```
 
 {{< /codetabs >}}
@@ -324,16 +320,16 @@ It then defines two endpoints: `main` is connected to the `mainindex` core while
 
 Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
-```yaml {configFile="apps"}
-app:
+```yaml {configFile="app"}
+name: app
 
-  type: "php:{{% latest "php" %}}"
+type: "php:{{% latest "php" %}}"
 
-  [...]
+[...]
 
-  relationships:
-    solrsearch1: "solr:main"
-    solrsearch2: "solr:extra"
+relationships:
+  solrsearch1: "solr:main"
+  solrsearch2: "solr:extra"
 ```
 
 That is, the application's environment would include a `solrsearch1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solrsearch2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -342,22 +338,22 @@ The relationships array would then look something like the following:
 
 ```json
 {
-    "solrsearch1": [
-        {
-            "path": "solr/mainindex",
-            "host": "248.0.65.197",
-            "scheme": "solr",
-            "port": 8080
-        }
-    ],
-    "solrsearch2": [
-        {
-            "path": "solr/extraindex",
-            "host": "248.0.65.197",
-            "scheme": "solr",
-            "port": 8080
-        }
-    ]
+  "solrsearch1": [
+    {
+      "path": "solr/mainindex",
+      "host": "248.0.65.197",
+      "scheme": "solr",
+      "port": 8080
+    }
+  ],
+  "solrsearch2": [
+    {
+      "path": "solr/extraindex",
+      "host": "248.0.65.197",
+      "scheme": "solr",
+      "port": 8080
+    }
+  ]
 }
 ```
 

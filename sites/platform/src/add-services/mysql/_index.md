@@ -131,14 +131,13 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -159,17 +158,16 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: mysql
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: mysql
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -203,14 +201,13 @@ mariadb:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    mariadb:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  mariadb:
 ```
 
 <--->
@@ -219,17 +216,16 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    mariadb:
-      service: mariadb
-      endpoint: mysql
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: mysql
 ```
 
 {{< /codetabs >}}
@@ -253,14 +249,13 @@ oraclemysql:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    oraclemysql:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  oraclemysql:
 ```
 
 <--->
@@ -269,17 +264,16 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    oraclemysql:
-      service: oraclemysql
-      endpoint: mysql
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  oraclemysql:
+    service: oraclemysql
+    endpoint: mysql
 ```
 {{< /codetabs >}}
 
@@ -495,12 +489,11 @@ make sure you do the following:
 
 This results in the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    {{% variable "RELATIONSHIP_NAME" %}}:
-      service: {{% variable "SERVICE_NAME" %}}
-      endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+```yaml {configFile="app"}
+relationships:
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
 ```
 
 For example, if you define a `mariadb` database as follows:
@@ -526,24 +519,22 @@ To create a replica of the `mariadb` database and allow your app to connect to i
 through the `admin` endpoint with admin permissions,
 use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    mariadb:
-      service: mariadb
-      endpoint: admin-replica
+```yaml {configFile="app"}
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: admin-replica
 ```
 
 To create a replica of the `mariadb` database and allow your app to connect to it
 through the `reporter` endpoint with read-only permissions instead,
 use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    mariadb:
-      service: mariadb
-      endpoint: reporter-replica
+```yaml {configFile="app"}
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: reporter-replica
 ```
 
 ### Grant access to the main database and its replicas
@@ -563,12 +554,11 @@ make sure you do the following:
 This results in the following configuration,
 which creates a replica on each of the secondary nodes:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    {{% variable "RELATIONSHIP_NAME" %}}:
-      service: {{% variable "SERVICE_NAME" %}}
-      endpoint: {{% variable "ENDPOINT_NAME" %}}-all
+```yaml {configFile="app"}
+relationships:
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}-all
 ```
 
 For example, if you define a `mariadb` database as follows:
@@ -577,41 +567,39 @@ For example, if you define a `mariadb` database as follows:
 mariadb:
   type: mariadb:{{% latest "mariadb" %}}
   disk: 2048
-    configuration:
-      schemas:
-        - main
-    endpoints:
-      admin:
-        default_schema: main
-        privileges:
-          main: admin
-      reporter:
-        privileges:
-          main: ro
+  configuration:
+    schemas:
+      - main
+  endpoints:
+    admin:
+      default_schema: main
+      privileges:
+        main: admin
+    reporter:
+      privileges:
+        main: ro
 ```
 
 To allow your app to connect to your main database and both its replicas
 through the `admin` endpoint with admin permissions,
 use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    mariadb:
-      service: mariadb
-      endpoint: admin-all
+```yaml {configFile="app"}
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: admin-all
 ```
 
 To allow your app to connect to your main database and both its replicas
 through the `reporter` endpoint with read-only permissions,
 use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    mariadb:
-      service: mariadb
-      endpoint: reporter-all
+```yaml {configFile="app"}
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: reporter-all
 ```
 
 ## Multiple databases
@@ -682,24 +670,24 @@ mariadb:
 
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="apps"}
-app:
+```yaml {configFile="app"}
+name: app
 
-  [...]
+[...]
 
-  # Relationships enable an app container's access to a service.
-  relationships:
-    # Note that legacy definition of the relationship is still supported.
-    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-    database:
-      service: mariadb
-      endpoint: admin
-    reports:
-      service: mariadb
-      endpoint: reporter
-    imports:
-      service: mariadb
-      endpoint: importer
+# Relationships enable an app container's access to a service.
+relationships:
+  # Note that legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  database:
+    service: mariadb
+    endpoint: admin
+  reports:
+    service: mariadb
+    endpoint: reporter
+  imports:
+    service: mariadb
+    endpoint: importer
 ```
 
 These relationships are then available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](#relationship-reference).

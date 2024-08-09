@@ -41,15 +41,15 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 
 ```json
 {
-    "service": "kafka",
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "azertyuiop-main-7rqtwti",
-    "host": "kafka.internal",
-    "rel": "kafka",
-    "scheme": "kafka",
-    "type": "kafka:{{< latest "kafka" >}}",
-    "port": 9092
+  "service": "kafka",
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.kafka.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "kafka.internal",
+  "rel": "kafka",
+  "scheme": "kafka",
+  "type": "kafka:{{< latest "kafka" >}}",
+  "port": 9092
 }
 ```
 
@@ -79,14 +79,14 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -107,17 +107,17 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: kafka
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: kafka
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -151,14 +151,14 @@ kafka:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    kafka:
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  kafka:
 ```
 
 <--->
@@ -167,17 +167,17 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    kafka:
-      service: kafka
-      endpoint: kafka
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  kafka:
+    service: kafka
+    endpoint: kafka
 ```
 
 {{< /codetabs >}}

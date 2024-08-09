@@ -78,24 +78,24 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 
 ```json
 {
-    "username": "main",
-    "scheme": "pgsql",
-    "service": "postgresql",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 5432,
-    "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "postgresql.internal",
-    "rel": "postgresql",
-    "path": "main",
-    "query": {
-        "is_master": true
-    },
-    "password": "ChangeMe",
-    "type": "postgresql:{{% latest "postgresql" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": "main",
+  "scheme": "pgsql",
+  "service": "postgresql",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 5432,
+  "cluster": "azertyuiopqsdf-main-afdwftq",
+  "host": "postgresql.internal",
+  "rel": "postgresql",
+  "path": "main",
+  "query": {
+    "is_master": true
+  },
+  "password": "ChangeMe",
+  "type": "postgresql:{{% latest "postgresql" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -125,14 +125,13 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -153,17 +152,16 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: postgresql
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: postgresql
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -180,12 +178,11 @@ With the above definition, the application container now has [access to the serv
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
-```yaml {configFile="apps"}
-app:
-  # PHP extensions.
-  runtime:
-    extensions:
-      - pdo_pgsql
+```yaml {configFile="app"}
+# PHP extensions.
+runtime:
+  extensions:
+    - pdo_pgsql
 ```
 
 ### Example configuration
@@ -207,14 +204,13 @@ postgresql:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    postgresql:
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  postgresql:
 ```
 
 <--->
@@ -223,17 +219,16 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    postgresql:
-      service: postgresql
-      endpoint: postgresql
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  postgresql:
+    service: postgresql
+    endpoint: postgresql
 ```
 
 {{< /codetabs >}}
@@ -415,20 +410,19 @@ If a given endpoint has access to multiple databases you should also specify whi
 
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    # Please note: Legacy definition of the relationship is still supported:
-    # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-    database:
-      service: postgresql
-      endpoint: admin
-    reports:
-      service: postgresql
-      endpoint: reporter
-    imports:
-      service: postgresql
-      endpoint: importer
+```yaml {configFile="app"}
+relationships:
+  # Please note: Legacy definition of the relationship is still supported:
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  database:
+    service: postgresql
+    endpoint: admin
+  reports:
+    service: postgresql
+    endpoint: reporter
+  imports:
+    service: postgresql
+    endpoint: importer
 ```
 
 Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
@@ -521,12 +515,11 @@ make sure you do the following:
 
 This results in the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    {{% variable "RELATIONSHIP_NAME" %}}:
-      service: {{% variable "SERVICE_NAME" %}}
-      endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+```yaml {configFile="app"}
+relationships:
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
 ```
 
 For example, if you define a `postgresql` database as follows:
@@ -554,24 +547,22 @@ To create a replica of the `postgresql` database and allow your app to connect t
 through the `admin` endpoint with admin permissions,
 use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    postgresql:
-      service: postgresql
-      endpoint: admin-replica
+```yaml {configFile="app"}
+relationships:
+  postgresql:
+    service: postgresql
+    endpoint: admin-replica
 ```
 
 To create a replica of the `postgresql` database and allow your app to connect to it
 through the `reporter` endpoint with read-only permissions instead,
 use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  relationships:
-    postgresql:
-      service: postgresql
-      endpoint: reporter-replica
+```yaml {configFile="app"}
+relationships:
+  postgresql:
+    service: postgresql
+    endpoint: reporter-replica
 ```
 
 ## Service timezone

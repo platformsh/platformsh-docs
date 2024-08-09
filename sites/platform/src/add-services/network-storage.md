@@ -105,13 +105,13 @@ Back up your data before changing the service.
 
 To define the mount accessible by your application, use the following configuration:
 
-```yaml {configFile="apps"}
-app:
-  mounts:
-    <TARGET_PATH>:
-      source: service
-      service: <SERVICE_NAME>
-      source_path: <SOURCE_PATH>
+```yaml {configFile="app"}
+name: app
+mounts:
+  <TARGET_PATH>:
+    source: service
+    service: <SERVICE_NAME>
+    source_path: <SOURCE_PATH>
 ```
 
 - `<TARGET_PATH>` is the path to your mount within the app container (relative to the app’s root).
@@ -134,13 +134,13 @@ network-storage:
 
 #### [App configuration](/create-apps/_index.md)
 
-```yaml {configFile="apps"}
-app:
-  mounts:
-    'my/files':
-      source: service
-      service: network-storage
-      source_path: files
+```yaml {configFile="app"}
+name: app
+mounts:
+  'my/files':
+    source: service
+    service: network-storage
+    source_path: files
 ```
 
 ## Multi-application usage
@@ -342,12 +342,12 @@ However, the process is fundamentally "just" moving files around on disk, so it'
 
 Suppose you have this mount configuration:
 
-```yaml {configFile="apps"}
-app:
-  mounts:
-    web/uploads:
-      source: local
-      source_path: uploads
+```yaml {configFile="app"}
+name: app
+mounts:
+  web/uploads:
+    source: local
+    source_path: uploads
 ```
 
 And want to move that to a network storage mount.
@@ -366,16 +366,15 @@ The following approximate steps do so with a minimum of service interruption.
 2. Add a new mount (`new-uploads`) to the network storage service on a non-public directory.
    (Remember the `source_path` can be the same since they're on different storage services.)
 
-   ```yaml {configFile="apps"}
-   app:
-     mounts:
-       web/uploads:
-         source: local
-         source_path: uploads
-       new-uploads:
-         source: service
-         service: files
-         source_path: uploads
+   ```yaml {configFile="app"}
+   mounts:
+     web/uploads:
+       source: local
+       source_path: uploads
+     new-uploads:
+       source: service
+       service: files
+       source_path: uploads
    ```
 
 3. Deploy these changes.
@@ -390,16 +389,15 @@ The following approximate steps do so with a minimum of service interruption.
    Point the `web/uploads` directory to the network mount instead.
    Commit and push the change, testing to make sure the network files are accessible.
 
-   ```yaml {configFile="apps"}
-   app:
-     mounts:
-       old-uploads:
-         source: local
-         source_path: uploads
-       web/uploads:
-         source: service
-         service: files
-         source_path: uploads
+   ```yaml {configFile="app"}
+   mounts:
+     old-uploads:
+       source: local
+       source_path: uploads
+     web/uploads:
+       source: service
+       service: files
+       source_path: uploads
    ```
 
 5. Clean up.

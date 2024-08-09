@@ -45,15 +45,15 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 
 ```json
 {
-    "service": "chrome-headless",
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.chrome-headless.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "cluster": "azertyuiop-main-7rqtwti",
-    "host": "chrome-headless.internal",
-    "rel": "http",
-    "scheme": "http",
-    "type": "chrome-headless:{{< latest "chrome-headless" >}}",
-    "port": 9222
+  "service": "chrome-headless",
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.chrome-headless.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "cluster": "azertyuiop-main-7rqtwti",
+  "host": "chrome-headless.internal",
+  "rel": "http",
+  "scheme": "http",
+  "type": "chrome-headless:{{< latest "chrome-headless" >}}",
+  "port": 9222
 }
 ```
 
@@ -90,14 +90,14 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -118,17 +118,17 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: http
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: http
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -161,14 +161,14 @@ chrome-headless:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    chrome-headless:
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  chrome-headless:
 ```
 
 <--->
@@ -177,17 +177,17 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    chrome-headless:
-      service: chrome-headless
-      endpoint: http
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  chrome-headless:
+    service: chrome-headless
+    endpoint: http
 ```
 
 {{< /codetabs >}}
@@ -243,19 +243,19 @@ and use them to define the `browserURL` parameter of `puppeteer.connect()` withi
 
 ```js
 exports.getBrowser = async function (url) {
-    try {
-        // Connect to chrome-headless using pre-formatted puppeteer credentials
-        const formattedURL = config.formattedCredentials('chromeheadless', 'puppeteer');
-        const browser = await puppeteer.connect({browserURL: formattedURL});
+  try {
+    // Connect to chrome-headless using pre-formatted puppeteer credentials
+    const formattedURL = config.formattedCredentials('chromeheadless', 'puppeteer');
+    const browser = await puppeteer.connect({browserURL: formattedURL});
 
-        ...
+    ...
 
-        return browser
+    return browser
 
-    } catch (error) {
-        console.error({ error }, 'Something happened!');
-        browser.close();
-    }
+  } catch (error) {
+    console.error({ error }, 'Something happened!');
+    browser.close();
+  }
 };
 ```
 

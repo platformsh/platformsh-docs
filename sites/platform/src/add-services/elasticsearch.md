@@ -92,22 +92,22 @@ Note that the information about the relationship can change when an app is redep
 
 ```json
 {
-    "username": null,
-    "scheme": "http",
-    "service": "elasticsearch",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 9200,
-    "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "elasticsearch.internal",
-    "rel": "elasticsearch",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "elasticsearch:{{< latest "elasticsearch" >}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "http",
+  "service": "elasticsearch",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.elasticsearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 9200,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "elasticsearch.internal",
+  "rel": "elasticsearch",
+  "path": null,
+  "query": [],
+  "password": "ChangeMe",
+  "type": "elasticsearch:{{< latest "elasticsearch" >}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -141,14 +141,14 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    <SERVICE_NAME>:
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -169,17 +169,17 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    <RELATIONSHIP_NAME>:
-      service: <SERVICE_NAME>
-      endpoint: elasticsearch
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: elasticsearch
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -216,14 +216,14 @@ use the `elasticsearch-enterprise` type in the service definition.
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows simplified configuration leveraging a default service
-  # (identified from the relationship name) and a default endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  relationships:
-    elasticsearch:
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  elasticsearch:
 ```
 
 <--->
@@ -232,17 +232,17 @@ app:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
-app:
-  # Relationships enable access from this app to a given service.
-  # The example below shows configuration with an explicitly set service name and endpoint.
-  # See the Application reference for all options for defining relationships and endpoints.
-  # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  relationships:
-    elasticsearch:
-      service: elasticsearch
-      endpoint: elasticsearch
+```yaml {configFile="app"}
+name: app
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  elasticsearch:
+    service: elasticsearch
+    endpoint: elasticsearch
 ```
 
 {{< /codetabs >}}
