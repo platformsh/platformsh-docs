@@ -107,10 +107,10 @@ and nonexistent files are handled by `app.php`:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            root: 'public'
-            passthru: '/app.php'
+  locations:
+    '/':
+      root: 'public'
+      passthru: '/app.php'
 ```
 See how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
 To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).

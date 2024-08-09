@@ -18,21 +18,21 @@ To use MongoDB with a Strapi v3 application on {{% vendor/name %}}, follow these
 
 1. Replace the PostgreSQL configuration in your `{{< vendor/configfile "services" >}}` file with the following:
 
-   ```yaml
+   ```yaml {configFile="services"}
    mongodb:
-       type: mongodb:3.6
-       disk: 512
+     type: mongodb:3.6
+     disk: 512
    ```
 
   **_Note that the minimum disk size for MongoDB is 512MB._**
 
 1. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the MongoDB database you added:
 
-   ```yaml
+   ```yaml {configFile="app"}
    relationships:
-       mongodatabase:
-           service: "mongodb"
-           endpoint: "mongodb"
+     mongodatabase:
+       service: "mongodb"
+       endpoint: "mongodb"
    ```
 
 1. In the `config` folder, locate the `database.js` file, and replace its content with the following:

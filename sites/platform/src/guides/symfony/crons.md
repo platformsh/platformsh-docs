@@ -10,10 +10,10 @@ To set up a cron job, add a configuration similar to the following:
 
 ```yaml {configFile="app"}
 crons:
-    snapshot:
-        spec: 0 5 * * *
-        commands: |
-            croncape symfony ...
+  snapshot:
+    spec: 0 5 * * *
+    commands: |
+      croncape symfony ...
 ```
 
 To run a command in a cron hook for specific environment types,
@@ -21,13 +21,13 @@ use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 
 ```yaml {configFile="app"}
 crons:
-    snapshot:
-        spec: 0 5 * * *
-        commands: |
-            # only run for the production environment, aka main branch
-            if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-                croncape symfony ...
-            fi
+  snapshot:
+    spec: 0 5 * * *
+    commands: |
+      # only run for the production environment, aka main branch
+      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+        croncape symfony ...
+      fi
 ```
 
 ## Use croncape
@@ -58,7 +58,7 @@ To use a custom SMTP and/or custom sender address, follow these steps:
 3. To disable the provided SMTP service, run `symfony cloud:env:info enable_smtp false`.
 
 {{% note theme="info" %}}
-To use `croncape`, SMTP must be enabled on the environment, where the [`PLATFORM_SMTP_HOST`](/development/variables/use-variables#use-provided-variables) environment variable is accessible. 
+To use `croncape`, SMTP must be enabled on the environment, where the [`PLATFORM_SMTP_HOST`](/development/variables/use-variables#use-provided-variables) environment variable is accessible.
 This variable is available, and SMTP enabled, by default on all production environments.
 
 This is not the case for preview (non-production) environments, where it must be enabled with the command `symfony cloud:env:info enable_smtp true`.

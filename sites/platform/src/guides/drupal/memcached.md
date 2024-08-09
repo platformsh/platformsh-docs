@@ -21,8 +21,8 @@ To define the service, use the `memcached`:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: memcached:<VERSION>
-    disk: 256
+  type: memcached:<VERSION>
+  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -38,13 +38,13 @@ To define the relationship, use the following configuration:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -65,16 +65,16 @@ With the above definition, the application container now has access to the servi
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
-    <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: memcached
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: memcached
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -94,8 +94,8 @@ For PHP, enable the [extension](/languages/php/extensions) for the service:
 ```yaml {configFile="app"}
 # PHP extensions.
 runtime:
-    extensions:
-        - memcached
+  extensions:
+    - memcached
 ```
 
 ### Example configuration
@@ -105,7 +105,7 @@ runtime:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 memcached:
-    type: memcached:{{% latest "memcached" %}}
+  type: memcached:{{% latest "memcached" %}}
 ```
 
 #### [App configuration](/create-apps)
@@ -116,13 +116,13 @@ memcached:
 title=Using default endpoints
 +++
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    memcached:
+  memcached:
 ```
 
 <--->
@@ -131,16 +131,16 @@ relationships:
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
 # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
 relationships:
-    memcached:
-        service: memcached
-        endpoint: memcached
+  memcached:
+    service: memcached
+    endpoint: memcached
 ```
 
 {{< /codetabs >}}

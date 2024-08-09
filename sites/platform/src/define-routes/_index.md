@@ -30,8 +30,8 @@ this is equivalent to the following:
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: app:http
+  type: upstream
+  upstream: app:http
 ```
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
@@ -48,12 +48,12 @@ Define your routes like this:
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 
 "https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
+  type: redirect
+  to: "https://{default}/"
 ```
 
 This affects your [default domain](#default).
@@ -76,12 +76,12 @@ So you might define routes for 2 apps named `app` and `api` as follows:
 
 ```yaml {configFile="routes"}
 "https://{default}":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 
 "https://subdomain.example.com":
-    type: upstream
-    upstream: "api:http"
+  type: upstream
+  upstream: "api:http"
 ```
 
 Both of these routes would be resolved with trailing slashes.
@@ -131,16 +131,16 @@ You can use the `{default}` placeholder:
 
 ```yaml {configFile="routes"}
 "https://{default}/blog":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 ```
 
 And you can use an absolute URL:
 
 ```yaml {configFile="routes"}
 "https://example.com/blog":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 ```
 
 In both cases, the URLs for your Production environment are the same.
@@ -168,8 +168,8 @@ If you used the `{default}` placeholder:
 
 ```yaml {configFile="routes"}
 "https://{default}/blog":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 ```
 
 The generated URL for the `feature` environment was:
@@ -182,8 +182,8 @@ If you used an absolute URL:
 
 ```yaml {configFile="routes"}
 "https://example.com/blog":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 ```
 
 The generated URL for the `feature` environment was:
@@ -204,12 +204,12 @@ You can then define the following routes:
 
 ```yaml {configFile="routes"}
 "https://{all}/":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "app:http"
 
 "https://www.{all}/":
-    type: redirect
-    to: "https://{all}/"
+  type: redirect
+  to: "https://{all}/"
 ```
 
 The first route means you're serving the same content at multiple domains:
@@ -227,12 +227,12 @@ Say you have two apps named `app1` and `app2` and define two routes like this:
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "app1:http"
+  type: upstream
+  upstream: "app1:http"
 
 "https://{all}/":
-    type: upstream
-    upstream: "app2:http"
+  type: upstream
+  upstream: "app2:http"
 ```
 
 Requests to your default domain are served by `app1`.
@@ -286,13 +286,13 @@ You can define your routes like this:
 
 ```yaml {configFile="routes"}
 "https://site1.{default}/":
-    type: upstream
-    upstream: 'app1:http'
+  type: upstream
+  upstream: 'app1:http'
 
 "https://site2.{default}/":
-    type: upstream
-    id: 'the-second'
-    upstream: 'app2:http'
+  type: upstream
+  id: 'the-second'
+  upstream: 'app2:http'
 ```
 
 To see the generated routes on your `feature` environment, run:
@@ -353,10 +353,10 @@ So you can define a route like this:
 
 ```yaml {configFile="routes"}
 "http://{default}/":
-    type: upstream
-    upstream: "app:http"
-    attributes:
-        "foo": "bar"
+  type: upstream
+  upstream: "app:http"
+  attributes:
+    "foo": "bar"
 ```
 
 The attributes appear in the routes data like so:
@@ -449,34 +449,34 @@ which is a requirement for the router caching.
 
 ```yaml {configFile="routes"}
 "https://{default}/ws":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: false
+  type: upstream
+  upstream: "app:http"
+  cache:
+    enabled: false
 
 # Below HTTP config may not be necessary for every Websocket client.
 # It is required for some, as only defining an HTTPS config may trigger an automatic redirect to HTTP.
 "http://{default}/ws":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: false
+  type: upstream
+  upstream: "app:http"
+  cache:
+    enabled: false
 ```
 
 2. [Disable request buffering](../create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
 web:
-    commands:
-        start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
-    upstream:
-        socket_family: tcp
-        protocol: http
-    locations:
-        '/':
-            passthru: true
-            request_buffering:
-                enabled: false
+  commands:
+    start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
+  upstream:
+    socket_family: tcp
+    protocol: http
+  locations:
+    '/':
+      passthru: true
+      request_buffering:
+        enabled: false
 ```
 
 ## `.htaccess` files

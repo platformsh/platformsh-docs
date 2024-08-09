@@ -32,13 +32,13 @@ To configure the HTTP cache, add a `cache` key to your route. You may like to st
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    type: upstream
-    upstream: app:http
-    cache:
-        enabled: true
-        default_ttl: 0
-        cookies: ['*']
-        headers: ['Accept', 'Accept-Language']
+  type: upstream
+  upstream: app:http
+  cache:
+    enabled: true
+    default_ttl: 0
+    cookies: ['*']
+    headers: ['Accept', 'Accept-Language']
 ```
 
 ## Example
@@ -49,13 +49,13 @@ The presence of any cookie in the request disables caching of that response.
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    type: upstream
-    upstream: app:http
-    cache:
-        enabled: true
-        headers: ['Accept', 'Accept-Language', 'X-Language-Locale']
-        cookies: ['*']
-        default_ttl: 60
+  type: upstream
+  upstream: app:http
+  cache:
+    enabled: true
+    headers: ['Accept', 'Accept-Language', 'X-Language-Locale']
+    cookies: ['*']
+    default_ttl: 60
 ```
 
 ## How it works
@@ -70,11 +70,11 @@ The default value for these keys are the following:
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    # ...
-        cache:
-            enabled: true
-            cookies: ['*']
-            headers: ['Accept', 'Accept-Language']
+  # ...
+    cache:
+      enabled: true
+      cookies: ['*']
+      headers: ['Accept', 'Accept-Language']
 ```
 
 ### Duration
@@ -119,10 +119,10 @@ For example, if the `headers` key is the following, {{% vendor/name %}} caches a
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    # ...
-        cache:
-            enabled: true
-            headers: ["Accept"]
+  # ...
+    cache:
+      enabled: true
+      headers: ["Accept"]
 ```
 
 {{< note title="none">}}
@@ -164,10 +164,10 @@ Other cookies are ignored.
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    # ...
-        cache:
-            enabled: true
-            cookies: ["foo"]
+  # ...
+    cache:
+      enabled: true
+      cookies: ["foo"]
 ```
 
 #### Example with a regular expression
@@ -178,10 +178,10 @@ For example:
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    # ...
-        cache:
-            enabled: true
-            cookies: ['/^SS?ESS/']
+  # ...
+    cache:
+      enabled: true
+      cookies: ['/^SS?ESS/']
 ```
 
 This configuration causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
@@ -222,22 +222,22 @@ If you need fine-grained caching, you can set up caching rules for several route
 
 ```yaml {configFile="routes"}
 https://{default}/:
-    type: upstream
-    upstream: app:http
-    cache:
-        enabled: true
+  type: upstream
+  upstream: app:http
+  cache:
+    enabled: true
 
 https://{default}/foo/:
-    type: upstream
-    upstream: app:http
-    cache:
-        enabled: false
+  type: upstream
+  upstream: app:http
+  cache:
+    enabled: false
 
 https://{default}/foo/bar/:
-    type: upstream
-    upstream: app:http
-    cache:
-        enabled: true
+  type: upstream
+  upstream: app:http
+  cache:
+    enabled: true
 ```
 
 With this configuration, the following routes are cached:
@@ -262,10 +262,10 @@ This is a case of allowing only a subset of cookies to invalidate the cache.
 
 ```yaml {configFile="routes"}
 https://{default}/:
-# ...
+  # ...
     cache:
-        enabled: true
-        cookies: ["MYCOOKIE"]
+      enabled: true
+      cookies: ["MYCOOKIE"]
 ```
 
 ### Cache HTTP and HTTPS separately using the `Vary` header

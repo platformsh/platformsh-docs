@@ -15,63 +15,64 @@ to install the specific version you want to use.
 
 1.  Add your target Python version as a [variable](../../development/variables/_index.md):
 
-```yaml {configFile="app"}
+    ```yaml {configFile="app"}
     variables:
-        env:
-            # Update for your desired Python version.
-            PYTHON_VERSION: "3.11.0"
-```
+      env:
+        # Update for your desired Python version.
+        PYTHON_VERSION: "3.11.0"
+    ```
 
 2.  Add Pyenv in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
-```yaml {configFile="app"}
+    ```yaml {configFile="app"}
     hooks:
-        build: |
-            # Exit the hook on any failure
-            set -e
+      build: |
+        # Exit the hook on any failure
+        set -e
 
-            # Clone Pyenv to the build cache if not present
-            if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv" ]; then
-                mkdir -p $PLATFORM_CACHE_DIR/.pyenv
-                git clone https://github.com/pyenv/pyenv.git $PLATFORM_CACHE_DIR/.pyenv
-            fi
+        # Clone Pyenv to the build cache if not present
+        if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv" ]; then
+            mkdir -p $PLATFORM_CACHE_DIR/.pyenv
+            git clone https://github.com/pyenv/pyenv.git $PLATFORM_CACHE_DIR/.pyenv
+        fi
 
-            # Pyenv environment variables
-            export PYENV_ROOT="$PLATFORM_CACHE_DIR/.pyenv"
-            export PATH="$PYENV_ROOT/bin:$PATH"
+        # Pyenv environment variables
+        export PYENV_ROOT="$PLATFORM_CACHE_DIR/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
 
-            # Initialize Pyenv
-            if command -v pyenv 1>/dev/null 2>&1; then
-                eval "$(pyenv init --path)"
-            fi
+        # Initialize Pyenv
+        if command -v pyenv 1>/dev/null 2>&1; then
+            eval "$(pyenv init --path)"
+        fi
 
-            # Install desired Python version
-            mkdir -p $PLATFORM_CACHE_DIR/.pyenv/versions
-            if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv/versions/$PYTHON_VERSION" ]; then
-                pyenv install $PYTHON_VERSION
-            fi
+        # Install desired Python version
+        mkdir -p $PLATFORM_CACHE_DIR/.pyenv/versions
+        if [ ! -d "$PLATFORM_CACHE_DIR/.pyenv/versions/$PYTHON_VERSION" ]; then
+            pyenv install $PYTHON_VERSION
+        fi
 
-            # Set global Python version
-            pyenv global $PYTHON_VERSION
-```
-Now your build hook can use the specified version of Python.
-You can verify this by running `python --version`.
+        # Set global Python version
+        pyenv global $PYTHON_VERSION
+    ```
 
-If you want this Python version to be available in the runtime environment, follow these steps:
+    Now your build hook can use the specified version of Python.
+    You can verify this by running `python --version`.
+
+    If you want this Python version to be available in the runtime environment, follow these steps:
 
 1.  Copy Pyenv to your runtime environment at the end of your build hook:
 
-```yaml {configFile="app"}
+    ```yaml {configFile="app"}
     hooks:
-        build: |
-            ...
+      build: |
+        ...
 
-            # Copy Pyenv directory to runtime directory
-            cp -R $PLATFORM_CACHE_DIR/.pyenv $PLATFORM_APP_DIR
+        # Copy Pyenv directory to runtime directory
+        cp -R $PLATFORM_CACHE_DIR/.pyenv $PLATFORM_APP_DIR
 
-            # Rehash Pyenv for new (runtime) location
-            PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
-```
+        # Rehash Pyenv for new (runtime) location
+        PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
+    ```
 2.  Create an [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script):
 
     ```bash
@@ -84,4 +85,4 @@ If you want this Python version to be available in the runtime environment, foll
     export PATH=/app/.pyenv/bin:/app/.pyenv/shims:$PATH
     ```
 
-Now the specified Python version is used in the runtime environment.
+    Now the specified Python version is used in the runtime environment.

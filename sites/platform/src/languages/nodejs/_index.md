@@ -17,7 +17,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 <table>
@@ -88,8 +88,8 @@ Add the following to your app configuration:
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        sharp: "*"
+  nodejs:
+    sharp: "*"
 ```
 
 These are now available as commands, the same as installing with `npm install -g`.
@@ -101,12 +101,12 @@ Include any commands needed to build and setup your app in the `hooks`, as in th
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        sharp: "*"
+  nodejs:
+    sharp: "*"
 hooks:
-    build: |
-        npm run setup-assets
-        npm run build
+  build: |
+    npm run setup-assets
+    npm run build
 ```
 
 ### 4. Start your app
@@ -116,15 +116,15 @@ Specify a command to start serving your app (it must be a process running in the
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        sharp: "*"
+  nodejs:
+    sharp: "*"
 hooks:
-    build: |
-        npm run setup-assets
-        npm run build
+  build: |
+    npm run setup-assets
+    npm run build
 web:
-    commands:
-        start: node index.js
+  commands:
+    start: node index.js
 ```
 
 ### 5. Listen on the right port
@@ -159,17 +159,17 @@ type: 'nodejs:{{% latest "nodejs" %}}'
 disk: 512
 
 dependencies:
-    nodejs:
-        sharp: "*"
+  nodejs:
+    sharp: "*"
 
 hooks:
-    build: |
-        npm run setup-assets
-        npm run build
+  build: |
+    npm run setup-assets
+    npm run build
 
 web:
-    commands:
-        start: "node index.js"
+  commands:
+    start: "node index.js"
 ```
 
 ## Dependencies
@@ -190,8 +190,8 @@ To switch to Yarn to manage dependencies, follow these steps:
 1. Turn off the default use of npm:
 
 ```yaml {configFile="app"}
-   build:
-       flavor: none
+build:
+   flavor: none
 ```
 
 2. Specify the version of Yarn you want:
@@ -214,11 +214,11 @@ title=Yarn 3.x and Node.js 16+
 3. Use Corepack to run Yarn in your build hook:
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="/" >}}
+{{< snippet name="app" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
-    build: |
-        corepack yarn install
+  build: |
+    corepack yarn install
 {{< /snippet >}}
 ```
 
@@ -234,8 +234,8 @@ title=Yarn 3.x and Node.js 14
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        corepack: "*"
+  nodejs:
+    corepack: "*"
 {{< /snippet >}}
 ```
 
@@ -245,8 +245,8 @@ dependencies:
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
-    build: |
-        corepack yarn install
+  build: |
+    corepack yarn install
 {{< /snippet >}}
 ```
 
@@ -262,8 +262,8 @@ title=Yarn < 3
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        yarn: "1.22.19"
+  nodejs:
+    yarn: "1.22.19"
 {{< /snippet >}}
 ```
 
@@ -273,8 +273,8 @@ dependencies:
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
-    build: |
-        yarn --frozen-lockfile
+  build: |
+    yarn --frozen-lockfile
 {{< /snippet >}}
 ```
 
@@ -290,14 +290,14 @@ use the following configuration:
 ```yaml {configFile="app"}
 # The name of your app.
 name: myapp
-    # Choose Node.js version 20 or above.
-    type: 'nodejs:20'
-    # Override the default Node.js build flavor.
-    build:
-    	flavor: none
-    # Use Bun to install the dependencies.
-    hooks:
-    	build: bun install
+# Choose Node.js version 20 or above.
+type: 'nodejs:20'
+# Override the default Node.js build flavor.
+build:
+  flavor: none
+# Use Bun to install the dependencies.
+hooks:
+  build: bun install
 ```
 
 #### Use Bun as a runtime
@@ -307,18 +307,18 @@ You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here
 ```yaml {configFile="app"}
 # The name of your app.
 name: myapp
-    # Choose Node.js version 20 or above.
-    type: 'nodejs:20'
-    # Override the default Node.js build flavor.
-    build:
-    	flavor: none
-    # Use Bun to install the dependencies.
-    hooks:
-    	build: bun install
-    # In the start command replace node with Bun.
-    web:
-    	commands:
-    		start: 'bun app.js'
+# Choose Node.js version 20 or above.
+type: 'nodejs:20'
+# Override the default Node.js build flavor.
+build:
+  flavor: none
+# Use Bun to install the dependencies.
+hooks:
+  build: bun install
+# In the start command replace node with Bun.
+web:
+  commands:
+    start: 'bun app.js'
 ```
 
 ## Connecting to services

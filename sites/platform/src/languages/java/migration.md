@@ -43,10 +43,10 @@ name: app
 type: 'java:<VERSION>' [1]
 disk: 1024
 hooks:
-    build: [2]
+  build: [2]
 web:
-    commands:
-        start: [3]
+  commands:
+    start: [3]
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
 2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
@@ -63,11 +63,11 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "app:http" [1]
+  type: upstream
+  upstream: "app:http" [1]
 "https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
+  type: redirect
+  to: "https://{default}/"
 ```
 1. It defines the application will link in the route, e.g.: `"app:http"`
 
@@ -151,17 +151,17 @@ export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 
 This `.environment` can interact to each application file. E.g.:
 
-```yaml
+```yaml {configFile="app"}
 name: app
 type: "java:11"
 disk: 1024
 hooks:
-    build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+  build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
 relationships:
-    postgresql:
+  postgresql:
 web:
-    commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
+  commands:
+    start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
 ```
 ### Using Java Config Reader
 
