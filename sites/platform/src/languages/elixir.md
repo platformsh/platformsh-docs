@@ -30,14 +30,16 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
-```yaml {configFile="app"}
-type: 'elixir:<VERSION_NUMBER>'
+```yaml {configFile="apps"}
+app:
+  type: 'elixir:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
-type: 'elixir:{{% latest "elixir" %}}'
+```yaml {configFile="apps"}
+app:
+  type: 'elixir:{{% latest "elixir" %}}'
 ```
 
 ## Built-in variables
@@ -155,11 +157,11 @@ Given a [relationship](/create-apps/app-reference/single-runtime-image#relations
 
 ```yaml {configFile="app"}
 # Relationships enable an app container's access to a service.
-# The example below shows simplified configuration leveraging a default service 
+# The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    postgresql: 
+    postgresql:
 ```
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:

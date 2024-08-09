@@ -58,7 +58,7 @@ applications:
 
 services:
     database:
-	    type: postgresql:{{% latest "postgresql" %}}
+	type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
@@ -76,7 +76,7 @@ applications:
 
 services:
     database:
-	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+	type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
@@ -98,11 +98,11 @@ applications:
         [...]
 
         relationships:
-            database: "database:postgresql"
+            database: 
 
 services:
     database:
-	    type: postgresql:{{% latest "postgresql" %}}
+	type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
@@ -119,11 +119,11 @@ applications:
         [...]
 
         relationships:
-            database: "database:mysql"
+            database: 
 
 services:
     database:
-	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+	type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
@@ -156,7 +156,7 @@ if [[ -z "$APP_KEYS" ]]; then
 fi
 ```
 
-{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore. 
+{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore.
 Remove the first block (pertaining to `DATABASE` credentials).
 
 Then, add a single additional variable that will set the `DATABASE_CLIENT` variable at the appropriate time:

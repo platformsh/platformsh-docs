@@ -232,8 +232,8 @@ routes:
                 - '/^wp-*/'
 ```
 
-Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage. 
-If these strings aren't the same, the WordPress deployment will not succeed. 
+Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
+If these strings aren't the same, the WordPress deployment will not succeed.
 
 ## 7. Update your MariaDB service relationship
 

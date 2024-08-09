@@ -31,7 +31,9 @@ To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these st
 
    ```yaml
    relationships:
-       mysqldatabase: "mysql:mysql"
+       mysqldatabase:
+           service: "mysql"
+           endpoint: "mysql"
    ```
 
 4. In the `config` folder, locate the `database.js` file, and replace its content with the following:

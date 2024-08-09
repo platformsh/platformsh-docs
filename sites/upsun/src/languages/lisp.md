@@ -141,6 +141,12 @@ The following is an example of accessing a PostgreSQL instance:
 
 Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
     app:
@@ -148,6 +154,27 @@ applications:
         relationships:
             postgresql: 
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+    app:
+        type: 'lisp:{{% latest "lisp" %}}'
+        relationships:
+            # Please note: Legacy definition of the relationship is still supported:
+            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+            postgresql:
+                service: 'postgresql'
+                endpoint: 'postgresql'
+```
+
+{{< /codetabs >}}
+
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:
 

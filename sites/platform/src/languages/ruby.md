@@ -35,14 +35,16 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 {{% language-specification type="ruby" display_name="Ruby" %}}
 
-```yaml {configFile="app"}
-type: 'ruby:<VERSION_NUMBER>'
+```yaml {configFile="apps"}
+app:
+  type: 'ruby:<VERSION_NUMBER>'
 ```
 
 For example:
 
-```yaml {configFile="app"}
-type: 'ruby:{{% latest "ruby" %}}'
+```yaml {configFile="apps"}
+app:
+  type: 'ruby:{{% latest "ruby" %}}'
 ```
 
 {{% deprecated-versions %}}
@@ -59,8 +61,9 @@ A complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
-```yaml {configFile="app"}
-type: 'ruby:{{% latest "ruby" %}}'
+```yaml {configFile="apps"}
+app:
+  type: 'ruby:{{% latest "ruby" %}}'
 ```
 
 2. Setup environment variables.

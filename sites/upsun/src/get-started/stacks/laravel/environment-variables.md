@@ -79,7 +79,9 @@ For example, if you have the following relationships in your configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    database: "securitydb:postgresql"
+    database:
+        service: "securitydb"
+        endpoint: "postgresql"
 ```
 
 The environment variables for the database service is prefixed by `DATABASE_`,
@@ -96,7 +98,7 @@ To add specific variables available during the build, run `{{% vendor/cli %}} va
 
 ### Emails
 
-{{% vendor/name %}} provides a SMTP service for sending emails. 
+{{% vendor/name %}} provides a SMTP service for sending emails.
 To configure email in Laravel, add the following mapping to your `.environment` file:
 
 ```bash  {configFile="env"}
