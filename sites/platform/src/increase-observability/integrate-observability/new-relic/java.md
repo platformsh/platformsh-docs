@@ -81,52 +81,52 @@ Unzip `newrelic-java.zip` by configuring `maven-dependency-plugin` in your `pom.
 
 The next step is to [configure your app](../../../create-apps/_index.md) to set the agent in the JVM parameters:
 
-```yaml
+```yaml {configFile="app"}
 name: app
 type: 'java:8'
 disk: 1024
 
 hooks:
-    build: |
-        mvn clean package
-        rm -rf newrelic/
-        mv target/newrelic/ newrelic/
+  build: |
+    mvn clean package
+    rm -rf newrelic/
+    mv target/newrelic/ newrelic/
 
 web:
-    commands:
-        start: |
-            java -jar \
-            -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError \
-            -javaagent:/app/newrelic/newrelic.jar
+  commands:
+    start: |
+      java -jar \
+      -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError \
+      -javaagent:/app/newrelic/newrelic.jar
 ```
 
 ### Manual Configuration
 
 To use this installation it is only required that you modify `{{< vendor/configfile "app" >}}`, which will download and set the New Relic Java agent for you.
 
-```yaml
+```yaml {configFile="app"}
 name: app
 type: 'java:8'
 disk: 1024
 
 variables:
-    env:
-        NEW_RELIC_URL: https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip
+  env:
+    NEW_RELIC_URL: https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip
 
 hooks:
-    build: |
-        mvn clean package
-        rm -rf newrelic
-        curl -O $NEW_RELIC_URL
-        unzip newrelic-java.zip
+  build: |
+    mvn clean package
+    rm -rf newrelic
+    curl -O $NEW_RELIC_URL
+    unzip newrelic-java.zip
 
 web:
-    commands:
-        start: |
-            java -jar \
-            -Xmx$(jq .info.limits.memory /run/config.json)m \
-            -XX:+ExitOnOutOfMemoryError \
-            -javaagent:/app/newrelic/newrelic.jar
+  commands:
+    start: |
+      java -jar \
+      -Xmx$(jq .info.limits.memory /run/config.json)m \
+      -XX:+ExitOnOutOfMemoryError \
+      -javaagent:/app/newrelic/newrelic.jar
 ```
 
 You need to wait a bit for your New Relic dashboard to be generated.

@@ -49,10 +49,10 @@ title=Pip
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
+  upstream:
+    socket_family: unix
+  commands:
+    start: "gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 ```
 
 <--->
@@ -62,10 +62,10 @@ title=Pipenv
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "pipenv run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
+  upstream:
+    socket_family: unix
+  commands:
+    start: "pipenv run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 ```
 
 <--->
@@ -75,10 +75,10 @@ title=Poetry
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "poetry run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
+  upstream:
+    socket_family: unix
+  commands:
+    start: "poetry run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 ```
 
 {{< /codetabs >}}

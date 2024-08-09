@@ -313,7 +313,8 @@ from the [unified app configuration](#unified-app-configuration) example project
 you could add the following configuration:
 
 ```yaml {configFile="apps"}
-source:
+admin:
+  source:
     root: admin
 ```
 

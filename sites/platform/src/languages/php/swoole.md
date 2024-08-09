@@ -40,14 +40,14 @@ Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: tcp
-        protocol: http
-    commands:
-        start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
-    locations:
-        "/":
-            passthru: true
-            scripts: false
-            allow: false
+  upstream:
+    socket_family: tcp
+    protocol: http
+  commands:
+    start: php {{<variable "PATH_TO_SWOOLE_START_COMMAND" >}} --port=$PORT
+  locations:
+    "/":
+      passthru: true
+      scripts: false
+      allow: false
 ```

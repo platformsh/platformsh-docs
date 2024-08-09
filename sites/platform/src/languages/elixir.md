@@ -66,8 +66,8 @@ If you are using Hex to manage your dependencies, you need to specify the `MIX_E
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        MIX_ENV: 'prod'
+  env:
+    MIX_ENV: 'prod'
 ```
 The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
 You can change it.
@@ -76,10 +76,10 @@ Include in your build hook the steps to retrieve a local Hex and `rebar`, and th
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        mix local.hex --force
-        mix local.rebar --force
-        mix do deps.get --only prod, deps.compile, compile
+  build: |
+    mix local.hex --force
+    mix local.rebar --force
+    mix do deps.get --only prod, deps.compile, compile
 ```
 {{< note >}}
 
@@ -98,22 +98,22 @@ name: app
 type: 'elixir:{{% latest "elixir" %}}'
 
 variables:
-    env:
-        MIX_ENV: 'prod'
+  env:
+    MIX_ENV: 'prod'
 
 hooks:
-    build: |
-        mix local.hex --force
-        mix local.rebar --force
-        mix do deps.get --only prod, deps.compile, compile
+  build: |
+    mix local.hex --force
+    mix local.rebar --force
+    mix do deps.get --only prod, deps.compile, compile
 
 web:
-    commands:
-        start: mix phx.server
-    locations:
-        /:
-            allow: false
-            passthru: true
+  commands:
+    start: mix phx.server
+  locations:
+    /:
+      allow: false
+      passthru: true
 ```
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
@@ -161,7 +161,7 @@ Given a [relationship](/create-apps/app-reference/single-runtime-image#relations
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    postgresql:
+  postgresql:
 ```
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:
@@ -189,8 +189,9 @@ config :my_app, Repo,
 
 and setup Ecto during the deploy hook:
 
-```yaml
-deploy: |
+```yaml {configFile="app"}
+hooks:
+  deploy: |
     mix do ecto.setup
 ```
 

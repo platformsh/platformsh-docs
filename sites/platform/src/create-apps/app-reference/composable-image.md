@@ -67,11 +67,11 @@ Use the ``stack`` key to define which runtimes and binaries you want to install 
 Define them as a YAML array as follows:
 
 ```yaml {configFile="apps"}
-myapp:
-    stack: [ "<nixpackage>@<version>" ]
-    # OR
-    stack:
-      - "<nixpackage>@<version>"
+app:
+  stack: [ "<nixpackage>@<version>" ]
+  # OR
+  stack:
+    - "<nixpackage>@<version>"
 ```
 
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
@@ -135,12 +135,12 @@ You want to add PHP version {{% latest php %}} and ``facedetect`` to your applic
 To do so, use the following configuration:
 
 ```yaml {configFile="apps"}
-myapp:
-    stack: [ "php@{{% latest php %}}", "facedetect" ]
-    # OR
-    stack:
-      - "php@{{% latest php %}}"
-      - "facedetect"
+app:
+  stack: [ "php@{{% latest php %}}", "facedetect" ]
+  # OR
+  stack:
+    - "php@{{% latest php %}}"
+    - "facedetect"
 ```
 
 ### PHP extensions and Python packages
@@ -167,18 +167,18 @@ specify a list of `disabled_extensions` below the language definition.</br>
 For instance:
 
 ```yaml {configFile="apps"}
-myapp:
-    source:
-      root: "/"
-    stack:
-      - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
-          disabled_extensions:
-            - gd
+app:
+  source:
+    root: "/"
+  stack:
+    - "php@{{% latest "php" %}}":
+        extensions:
+          - apcu
+          - sodium
+          - xsl
+          - pdo_sqlite
+        disabled_extensions:
+          - gd
 ```
 
 {{% note %}}
@@ -203,10 +203,10 @@ For instance, to install [``python312Packages.yq``](https://search.nixos.org/pac
 use the following configuration:
 
 ```yaml {configFile="apps"}
-myapp:
-    stack:
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+app:
+  stack:
+    - "python@3.12"
+    - "python312Packages.yq" # python package specific
 ```
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
@@ -217,16 +217,16 @@ Here is a full composable image configuration example. Note the use of the `<nix
 
 ```yaml {configFile="apps"}
 myapp:
-    stack:
-      - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
-      - "yq"                   # tool
+  stack:
+    - "php@{{% latest "php" %}}":
+        extensions:
+          - apcu
+          - sodium
+          - xsl
+          - pdo_sqlite
+    - "python@3.12"
+    - "python312Packages.yq" # python package specific
+    - "yq"                   # tool
 ```
 
 ### Combine single-runtime and composable images
@@ -415,7 +415,7 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "SERVICE_NAME" %}}:
+  {{% variable "SERVICE_NAME" %}}:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
@@ -426,7 +426,7 @@ For example, if you define the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb:
+  mariadb:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
@@ -436,18 +436,18 @@ For reference, the equivalent configuration using explicit endpoints would be th
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb:
-        service: mariadb
-        endpoint: mysql
+  mariadb:
+    service: mariadb
+    endpoint: mysql
 ```
 
 You can define any number of relationships in this way:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb:
-    redis:
-    elasticsearch:
+  mariadb:
+  redis:
+  elasticsearch:
 ```
 
 {{< note title="Tip" theme="info" >}}
@@ -462,14 +462,14 @@ where
 
 ```yaml {configFile="services"}
 {{< variable "SERVICE_NAME_A" >}}:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 256
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 256
 {{< variable "SERVICE_NAME_B" >}}:
-    type: redis:{{% latest "redis" %}}
-    disk: 256
+  type: redis:{{% latest "redis" %}}
+  disk: 256
 {{< variable "SERVICE_NAME_C" >}}:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 256
+  type: elasticsearch:{{% latest "elasticsearch" %}}
+  disk: 256
 ```
 
 {{< /note >}}
@@ -484,9 +484,9 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}}
-        endpoint: {{% variable "ENDPOINT_NAME" %}}
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}
 ```
 
 - `RELATIONSHIP_NAME` is the name you want to give to the relationship.
@@ -498,9 +498,9 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    database: # The name of the relationship.
-        service: mariadb
-        endpoint: db1
+  database: # The name of the relationship.
+    service: mariadb
+    endpoint: db1
 ```
 
 For more information on how to handle multiple databases, multiple cores,
@@ -518,16 +518,16 @@ see each service's dedicated page:
 
 ```yaml {configFile="app"}
 relationships:
-    database1:
-        service: mariadb
-        endpoint: admin
-    database2:
-        service: mariadb
-        endpoint: legacy
-    cache:
-        service: redis
-    search:
-        service: elasticsearch
+  database1:
+    service: mariadb
+    endpoint: admin
+  database2:
+    service: mariadb
+    endpoint: legacy
+  cache:
+    service: redis
+  search:
+    service: elasticsearch
 ```
 
 {{< /codetabs >}}
@@ -536,16 +536,16 @@ relationships:
 
 The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
 
-```yaml
+```yaml {configFile="app"}
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
+  <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
 ```
 
 For example:
 
-```yaml
+```yaml {configFile="app"}
 relationships:
-    database: "mariadb:mysql"
+  database: "mariadb:mysql"
 ```
 
 Feel free to use this until the default and explicit endpoint syntax is supported on all images.
@@ -601,9 +601,9 @@ To define a mount, use the following configuration:
 
 ```yaml {configFile="app"}
 mounts:
-    '{{< variable "MOUNT_PATH" >}}':
-        source: {{< variable "MOUNT_TYPE" >}}
-        source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
+  '{{< variable "MOUNT_PATH" >}}':
+    source: {{< variable "MOUNT_TYPE" >}}
+    source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
 {{< variable "MOUNT_PATH" >}} is the path to your mount **within the app container** (relative to the app's root).
@@ -629,21 +629,21 @@ The files still exist on disk until manually removed
 
 ```yaml {configFile="app"}
 mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
-    '/.tmp_platformsh':
-        source: tmp
-        source_path: files/.tmp_platformsh
-    '/build':
-        source: local
-        source_path: files/build
-    '/.cache':
-        source: tmp
-        source_path: files/.cache
-    '/node_modules/.cache':
-        source: tmp
-        source_path: files/node_modules/.cache
+  'web/uploads':
+    source: local
+    source_path: uploads
+  '/.tmp_platformsh':
+    source: tmp
+    source_path: files/.tmp_platformsh
+  '/build':
+    source: local
+    source_path: files/build
+  '/.cache':
+    source: tmp
+    source_path: files/.cache
+  '/node_modules/.cache':
+    source: tmp
+    source_path: files/node_modules/.cache
 ```
 
 For examples of how to set up a `service` mount, see the dedicated [Network Storage page](/add-services/network-storage.md).
@@ -656,8 +656,8 @@ Say you have a `/my/cache/` mount with an undefined `source_path`:
 
 ```yaml {configFile="app"}
 mounts:
-    '/my/cache/':
-        source: tmp
+  '/my/cache/':
+    source: tmp
 ```
 
 If you rename the mount to `/cache/files/`, it will point to a new, empty `/cache/files/` directory.
@@ -666,9 +666,9 @@ To ensure continuity, you need to explicitly define the `source_path` as the pre
 
  ```yaml {configFile="app"}
 mounts:
-    '/cache/files/':
-        source: tmp
-        source_path: my/cache
+  '/cache/files/':
+    source: tmp
+    source_path: my/cache
 ```
 
 The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing files in that directory.
@@ -678,9 +678,9 @@ The `/cache/files/` mount will point to the original `/my/cache/` directory, mai
 The locations of mounts as they are visible to application containers can overlap somewhat.
 For example:
 
-```yaml
+```yaml {configFile="apps"}
 applications:
-  my_app:
+  app:
     # ...
     mounts:
       'var/cache_a':
@@ -700,9 +700,9 @@ Each mount is restricted to a subfolder within `var`, and all is well.
 
 The following, however, is not allowed and will result in a failure:
 
-```yaml
+```yaml {configFile="apps"}
 applications:
-  my_app:
+  app:
     # ...
     mounts:
       'var/':
@@ -743,8 +743,8 @@ Example:
 
 ```yaml {configFile="app"}
 web:
-    commands:
-        start: 'uwsgi --ini conf/server.ini'
+  commands:
+    start: 'uwsgi --ini conf/server.ini'
 ```
 
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
@@ -782,9 +782,9 @@ The following example is the default on non-PHP containers:
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: tcp
-        protocol: http
+  upstream:
+    socket_family: tcp
+    protocol: http
 ```
 
 #### Where to listen
@@ -834,17 +834,17 @@ This is overridden by a rule that explicitly allows common image file formats.
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            # Handle dynamic requests
-            root: 'public'
-            passthru: '/index.php'
-            # Disallow static files
-            allow: false
-            rules:
-                # Allow common image files only.
-                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-                    allow: true
+  locations:
+    '/':
+      # Handle dynamic requests
+      root: 'public'
+      passthru: '/index.php'
+      # Disallow static files
+      allow: false
+      rules:
+        # Allow common image files only.
+        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+          allow: true
 ```
 
 #### Request buffering
@@ -861,12 +861,12 @@ The default configuration would look like this:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            passthru: true
-            request_buffering:
-                enabled: true
-                max_request_size: 250m
+  locations:
+    '/':
+      passthru: true
+      request_buffering:
+        enabled: true
+        max_request_size: 250m
 ```
 
 ## Workers
@@ -891,11 +891,11 @@ A worker named `queue` that was small and had a different start command could lo
 
 ```yaml {configFile="app"}
 workers:
-    queue:
-        size: S
-        commands:
-            start: |
-                ./worker.sh
+  queue:
+    size: S
+    commands:
+      start: |
+        ./worker.sh
 ```
 
 For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
@@ -914,7 +914,7 @@ can access the deployed environment via SSH:
 
 ```yaml {configFile="app"}
 access:
-    ssh: admin
+  ssh: admin
 ```
 
 ## Variables
@@ -938,10 +938,10 @@ The following example sets two variables:
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        AUTHOR: 'Juan'
-    d8config:
-        "system.site:name": 'My site rocks'
+  env:
+    AUTHOR: 'Juan'
+  d8config:
+    "system.site:name": 'My site rocks'
 ```
 
 You can also define and access more [complex values](/development/variables/use-variables.md#access-complex-values).
@@ -968,8 +968,8 @@ The default settings would look like this:
 
 ```yaml {configFile="app"}
 firewall:
-    outbound:
-        - ips: [ "0.0.0.0/0" ]
+  outbound:
+    - ips: [ "0.0.0.0/0" ]
 ```
 
 ### Support for rules
@@ -987,10 +987,10 @@ and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
 ```yaml {configFile="app"}
 firewall:
-    outbound:
-        - ips: [ "1.2.3.4/32" ]
-          ports: [ 443 ]
-        - ports: [ 80 ]
+  outbound:
+    - ips: [ "1.2.3.4/32" ]
+      ports: [ 443 ]
+    - ports: [ 80 ]
 ```
 
 ### Outbound traffic to CDNs
@@ -1013,13 +1013,13 @@ An example rule filtering by domain:
 
 ```yaml {configFile="app"}
 firewall:
-    outbound:
-        - protocol: tcp
-          domains: ["api.stripe.com", "api.twilio.com"]
-          ports: [80, 443]
-        - protocol: tcp
-          ips: ["1.2.3.4/29","2.3.4.5"]
-          ports: [22]
+  outbound:
+    - protocol: tcp
+      domains: ["api.stripe.com", "api.twilio.com"]
+      ports: [80, 443]
+    - protocol: tcp
+      ips: ["1.2.3.4/29","2.3.4.5"]
+      ports: [22]
 ```
 
 #### Determine which domains to allow
@@ -1150,12 +1150,12 @@ and update your existing cron jobs to ensure continuity.
 
 ```yaml {configFile="app"}
 crons:
-    mycommand:
-        spec: 'H * * * *'
-        commands:
-            start: sleep 60 && echo sleep-60-finished && date
-            stop: killall sleep
-        shutdown_timeout: 18
+  mycommand:
+    spec: 'H * * * *'
+    commands:
+      start: sleep 60 && echo sleep-60-finished && date
+      stop: killall sleep
+    shutdown_timeout: 18
 ```
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.

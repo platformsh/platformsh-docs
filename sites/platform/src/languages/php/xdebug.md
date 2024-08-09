@@ -38,8 +38,8 @@ To enable Xdebug, add the following to your [app configuration](/create-apps/app
 
 ```yaml {configFile="app"}
 runtime:
-    xdebug:
-        idekey: {{< variable "YOUR_KEY" >}}
+  xdebug:
+    idekey: {{< variable "YOUR_KEY" >}}
 ```
 {{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
@@ -53,10 +53,10 @@ Depending on the cookies already listed, the result should look similar to the f
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    # ...
-    cache:
-        enabled: true
-        cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+  # ...
+  cache:
+    enabled: true
+    cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 Xdebug has several configuration options available.
 They can be set the same way as any other [PHP setting](./_index.md#php-settings).
