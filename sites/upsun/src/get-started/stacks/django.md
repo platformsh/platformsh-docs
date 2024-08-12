@@ -22,8 +22,8 @@ you still need to make a few changes to your {{% vendor/name %}} configuration.
 
 ## 1. Leverage environment variables
 
-Your `settings.py` file may allow for environment variables to be set for common pieces of configuration. 
-In this case, add and commit a `.environment` file that includes those details. 
+Your `settings.py` file may allow for environment variables to be set for common pieces of configuration.
+In this case, add and commit a `.environment` file that includes those details.
 
 ```bash {location=".environment"}
 export DJANGO_SETTINGS_MODULE=config.settings.production
@@ -60,7 +60,7 @@ Near the bottom of your `settings.py` file, define a block that:
 - Detects when Django is running on an {{% vendor/name %}} environment
 - Override previous settings
 
-If your configuration is split into a `production.py` file for production settings, place it there instead. 
+If your configuration is split into a `production.py` file for production settings, place it there instead.
 
 ```py {location="settings.py"}
 # Production/{{% vendor/name %}} settings.
@@ -105,21 +105,21 @@ No matter what environment type we run on {{% vendor/name %}}, this file uses pr
 Every service container you configure in `.upsun/config.yaml` has a unique relationship name (`applications:<APP_NAME>:relationships:<RELATIONSHIPNAME>`).
 {{% vendor/name %}} automatically uses this relationship name to expose connection credentials through environment variables (for example, via `RELATIONSHIPNAME_HOST`).</br>
 Update `settings.py` according to the example above (which configures a PostgreSQL service), where the relationship `database` results in environment variables that are leveraged to update the `DATABASES` setting for your application.</br>
-You can use the exact same logic to configure `CACHES` from the `rediscache` relationship using the exposed `REDISCACHE_` environment variables to setup `django_redis.cache.RedisCache`. 
+You can use the exact same logic to configure `CACHES` from the `rediscache` relationship using the exposed `REDISCACHE_` environment variables to setup `django_redis.cache.RedisCache`.
 
 ## 4. Start the app
 
 In your app configuration, locate the `web:commands:start` section and update it as follows:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        web:
-            commands:
-                start: "gunicorn -b unix:$SOCKET config.wsgi"
-            upstream:
-                socket_family: unix
+  app:
+    ...
+    web:
+      commands:
+        start: "gunicorn -b unix:$SOCKET config.wsgi"
+      upstream:
+        socket_family: unix
 ```
 
 Note that if your Django instance requires a different web server,
@@ -127,39 +127,39 @@ Note that if your Django instance requires a different web server,
 
 ## 5. Configure static assets
 
-To access Django's static assets, you need to add a second location to the `web:locations` section of your app configuration. 
+To access Django's static assets, you need to add a second location to the `web:locations` section of your app configuration.
 Locate the `web:locations` section and add a location for `/static`:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        web:
-            locations:
-                "/":
-                    "passthru": true
-                "/static":
-                    "allow": true
-                    "expires": "1h"
-                    "root": "static"
+  app:
+    ...
+    web:
+      locations:
+        "/":
+          "passthru": true
+        "/static":
+          "allow": true
+          "expires": "1h"
+          "root": "static"
 ```
 
 ## 6. Install dependencies and builds
 
-Instruct {{% vendor/name %}} to install your Python and Node (if needed) dependencies. 
+Instruct {{% vendor/name %}} to install your Python and Node (if needed) dependencies.
 Locate the `hooks:build` section and update it as follows:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        build: |
-            set -eux
+  app:
+    ...
+    build: |
+      set -eux
 
-            pip install --upgrade pip
-            pip install -r requirements.txt
-            npm install
-            npm run build
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      npm install
+      npm run build
 ```
 
 Remove the `npm` steps if not required for your app's assets.
@@ -170,30 +170,30 @@ Note that if your project uses a different package manager,
 
 In your app configuration, locate the `deploy` section and update it as follows:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        deploy: |
-            set -eux
+  app:
+    ...
+    deploy: |
+      set -eux
 
-            python manage.py collectstatic --noinput
-            python manage.py migrate
+      python manage.py collectstatic --noinput
+      python manage.py migrate
 ```
 
 ## 8. Allow write access where needed
 
-Since Django can require a writable locations at runtime, you need to set up writable mounts. 
+Since Django can require a writable locations at runtime, you need to set up writable mounts.
 To do so, locate the `mounts` section (currently commented), and update it as follows:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        mounts:
-            "/staticfiles":
-                source: "local"
-                source_path: "static_assets"
+  app:
+    ...
+    mounts:
+      "/staticfiles":
+        source: "local"
+        source_path: "static_assets"
 ```
 
 You can now commit all of the above changes and push to {{% vendor/name %}}.

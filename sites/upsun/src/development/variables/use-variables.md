@@ -169,47 +169,25 @@ public class App {
 Variables can have nested structures.
 The following example shows nested structures in an [app configuration](/create-apps/app-reference/single-runtime-image.md#variables):
 
-{{% version/specific %}}
-<!-- Platform.sh -->
-```yaml {configFile="app"}
-variables:
-    env:
-        BASIC: "a string"
-        INGREDIENTS:
-            - 'peanut butter'
-            - 'jelly'
-        QUANTITIES:
-            "milk": "1 liter"
-            "cookies": "1 kg"
-    stuff:
-        STEPS: ['one', 'two', 'three']
-        COLORS:
-            red: '#FF0000'
-            green: '#00FF00'
-            blue: '#0000FF'
-```
-<--->
-<!-- Upsun -->
 ```yaml {configFile="app"}
 applications:
-    {{< variable "APP_NAME" >}}:
-        variables:
-            env:
-                BASIC: "a string"
-                INGREDIENTS:
-                    - 'peanut butter'
-                    - 'jelly'
-                QUANTITIES:
-                    "milk": "1 liter"
-                    "cookies": "1 kg"
-            stuff:
-                STEPS: ['one', 'two', 'three']
-                COLORS:
-                     red: '#FF0000'
-                     green: '#00FF00'
-                     blue: '#0000FF'
+  {{< variable "APP_NAME" >}}:
+    variables:
+      env:
+        BASIC: "a string"
+        INGREDIENTS:
+          - 'peanut butter'
+          - 'jelly'
+        QUANTITIES:
+          "milk": "1 liter"
+          "cookies": "1 kg"
+      stuff:
+        STEPS: ['one', 'two', 'three']
+        COLORS:
+          red: '#FF0000'
+          green: '#00FF00'
+          blue: '#0000FF'
 ```
-{{% /version/specific %}}
 
 You can access these nested variables as follows:
 
@@ -472,13 +450,13 @@ title= `PLATFORM_RELATIONSHIPS` environment variable
 
 5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
 
- ```yaml {configFile="app"}
-   applications:
-    {{< variable "APP_NAME" >}}
-       hooks:
-           deploy: |
-               bash export-config.sh
-   ```
+    ```yaml {configFile="app"}
+    applications:
+      {{< variable "APP_NAME" >}}
+        hooks:
+          deploy: |
+            bash export-config.sh
+    ```
 
 Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.
 Your script writes to that file on each deploy with updated information.

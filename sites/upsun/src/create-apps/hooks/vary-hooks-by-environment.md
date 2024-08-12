@@ -14,13 +14,13 @@ Check the `PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production en
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        hooks:
-            deploy: |
-                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                    # Run commands only when deploying to production
-                else
-                    # Run commands only when deploying to development or staging environments
-                fi
-                # Commands to run regardless of the environment
+  app:
+    hooks:
+      deploy: |
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+          # Run commands only when deploying to production
+        else
+          # Run commands only when deploying to development or staging environments
+        fi
+        # Commands to run regardless of the environment
 ```

@@ -57,22 +57,22 @@
         {{- end -}}
 
         {{- if and (eq $placeholder "true") (not .Inner) -}}
-            {{- $prepend = printf "# %s#    %s" $applicationsKey "..." -}}
+            {{- $prepend = printf "# %s#  %s" $applicationsKey "..." -}}
         {{- else -}}
             {{- if eq $name "false" -}}
                 {{- $name = "myapp" -}}
             {{- end -}}
-            {{- $prepend = printf "%s    %s\n    %s:" $applicationsKey $appNameComment $name -}}
+            {{- $prepend = printf "%s  %s\n  %s:" $applicationsKey $appNameComment $name -}}
             {{- if ne $root "false" -}}
-                {{- $prepend = printf "%s\n        %s\n        source:\n            root: \"%s\"" $prepend $rootComment $root -}}
+                {{- $prepend = printf "%s\n    %s\n    source:\n      root: \"%s\"" $prepend $rootComment $root -}}
             {{- end -}}
 
-            {{- $indent := "       " }}
+            {{- $indent := "    " }}
             {{- $indentCount := 0 }}
             {{- range split (trim .Inner "\n") "\n" -}}
                 {{- if ne (len .) 1 -}}
                     {{- if eq $indentCount 1 -}}
-                        {{- $indent = "        " -}}
+                        {{- $indent = "    " -}}
                     {{- end -}}
                     {{- $content = printf "%s\n%s%s" $content $indent . -}}
                     {{- $indentCount = 1 -}}

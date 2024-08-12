@@ -35,16 +35,16 @@ title=Composer
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 source:
-    operations:
-        update:
-            command: |
-                set -e
-                composer update
-                git add composer.lock
-                git add -A
-                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Composer dependencies"
+  operations:
+    update:
+      command: |
+        set -e
+        composer update
+        git add composer.lock
+        git add -A
+        git diff-index --quiet HEAD || git commit --allow-empty -m "Update Composer dependencies"
 {{< /snippet >}}
 ```
 
@@ -54,16 +54,16 @@ title=npm
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 source:
-    operations:
-        update:
-            command: |
-                set -e
-                npm update
-                git add package.json package-lock.json 
-                git add -A
-                git diff-index --quiet HEAD || git commit --allow-empty -m "Update npm dependencies"
+  operations:
+    update:
+      command: |
+        set -e
+        npm update
+        git add package.json package-lock.json
+        git add -A
+        git diff-index --quiet HEAD || git commit --allow-empty -m "Update npm dependencies"
 {{< /snippet >}}
 ```
 
@@ -73,16 +73,16 @@ title=Yarn
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 source:
-    operations:
-        update:
-            command: |
-                set -e
-                yarn upgrade
-                git add yarn.lock
-                git add -A
-                git diff-index --quiet HEAD || git commit --allow-empty -m "Update yarn dependencies"
+  operations:
+    update:
+      command: |
+        set -e
+        yarn upgrade
+        git add yarn.lock
+        git add -A
+        git diff-index --quiet HEAD || git commit --allow-empty -m "Update yarn dependencies"
 {{< /snippet >}}
 ```
 
@@ -92,17 +92,17 @@ title=Go
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 source:
-    operations:
-        update:
-            command: |
-                set -e
-                go get -u
-                go mod tidy
-                git add go.mod go.sum
-                git add -A
-                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Go dependencies"
+  operations:
+    update:
+      command: |
+        set -e
+        go get -u
+        go mod tidy
+        git add go.mod go.sum
+        git add -A
+        git diff-index --quiet HEAD || git commit --allow-empty -m "Update Go dependencies"
 {{< /snippet >}}
 ```
 
@@ -112,16 +112,16 @@ title=Pipenv
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 source:
-    operations:
-        update:
-            command: |
-                set -e
-                pipenv update
-                git add Pipfile Pipfile.lock
-                git add -A
-                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Python dependencies"
+  operations:
+    update:
+      command: |
+        set -e
+        pipenv update
+        git add Pipfile Pipfile.lock
+        git add -A
+        git diff-index --quiet HEAD || git commit --allow-empty -m "Update Python dependencies"
 {{< /snippet >}}
 ```
 
@@ -131,16 +131,16 @@ title=Bundler
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 source:
-    operations:
-        update:
-            command: |
-                set -e
-                bundle update --all
-                git add Gemfile Gemfile.lock
-                git add -A
-                git diff-index --quiet HEAD || git commit --allow-empty -m "Update Ruby dependencies"
+  operations:
+    update:
+      command: |
+        set -e
+        bundle update --all
+        git add Gemfile Gemfile.lock
+        git add -A
+        git diff-index --quiet HEAD || git commit --allow-empty -m "Update Ruby dependencies"
 {{< /snippet >}}
 ```
 
@@ -201,15 +201,15 @@ Make sure you carefully check your [user access on this project](/administration
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        hooks:
-            build: |
-                set -e
-                echo "Installing {{% vendor/name %}} CLI"
-                curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+  app:
+    hooks:
+      build: |
+        set -e
+        echo "Installing {{% vendor/name %}} CLI"
+        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-                echo "Testing {{% vendor/name %}} CLI"
-                {{% vendor/cli %}}
+        echo "Testing {{% vendor/name %}} CLI"
+        {{% vendor/cli %}}
 ```
 
 3. Then, to configure a cron job to automatically update your dependencies once a day,
@@ -217,17 +217,17 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        # ...
-        crons:
-            update:
-                # Run the code below every day at midnight.
-                spec: '0 0 * * *'
-                commands:
-                    start: |
-                        set -e
-                        {{% vendor/cli %}} sync -e development code data --no-wait --yes
-                        {{% vendor/cli %}} source-operation:run update --no-wait --yes
+  app:
+    # ...
+    crons:
+      update:
+        # Run the code below every day at midnight.
+        spec: '0 0 * * *'
+        commands:
+          start: |
+            set -e
+            {{% vendor/cli %}} sync -e development code data --no-wait --yes
+            {{% vendor/cli %}} source-operation:run update --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
@@ -241,7 +241,7 @@ you can configure activity scripts or webhooks.
 ### Notifications through an activity script
 
 After you've defined a source operation to [update your dependencies on your project](#1-define-a-source-operation-to-update-your-dependencies),
-you can configure an activity script 
+you can configure an activity script
 to receive notifications every time a dependency update is triggered.
 
 {{< note title="Example" >}}
@@ -265,7 +265,7 @@ To do so, follow these steps:
      * the {{% vendor/name %}} CLI.
      *
      * Replace SLACK_URL in the following script with your Slack webhook URL.
-     * Get one here: https://api.slack.com/messaging/webhooks 
+     * Get one here: https://api.slack.com/messaging/webhooks
      * You should get something like: const url = 'https://hooks.slack.com/...';
      *
      * activity.text: a brief, one-line statement of what happened.
@@ -307,7 +307,7 @@ To do so, follow these steps:
     add the following flag to the command: `--environments=your_environment_name`.
 
 Anytime a dependency is updated via a source operation,
-the activity script now reports it to Slack. 
+the activity script now reports it to Slack.
 
 {{< /note >}}
 

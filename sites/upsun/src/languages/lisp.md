@@ -20,18 +20,18 @@ When you deploy your app, you always get the latest available patches.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'lisp:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'lisp:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'lisp:{{% latest "lisp" %}}'
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'lisp:{{% latest "lisp" %}}'
 ```
 
 ## Assumptions
@@ -46,10 +46,10 @@ If you don't want these assumptions, you can disable this behavior by specifying
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'lisp:{{% latest "lisp" %}}'
-        build:
-            flavor: none
+  app:
+    type: 'lisp:{{% latest "lisp" %}}'
+    build:
+      flavor: none
 ```
 
 ## Dependencies
@@ -62,28 +62,28 @@ If you wish to change the distributions that QuickLisp is using, you can specify
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'lisp:<VERSION_NUMBER>'
-        runtime:
-            quicklisp:
-                {{< variable "DISTRIBUTION_NAME" >}}:
-                    url: "..."
-                    version: "..."
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'lisp:<VERSION_NUMBER>'
+    runtime:
+      quicklisp:
+        {{< variable "DISTRIBUTION_NAME" >}}:
+          url: "..."
+          version: "..."
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'lisp:{{% latest "lisp" %}}'
-        runtime:
-            quicklisp:
-                quicklisp:
-                    url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
-                    version: '2019-07-11'
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'lisp:{{% latest "lisp" %}}'
+    runtime:
+      quicklisp:
+        quicklisp:
+          url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
+          version: '2019-07-11'
 ```
 
 ## Built-in variables
@@ -105,15 +105,15 @@ The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run 
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'lisp:{{% latest "lisp" %}}'
-        web:
-            commands:
-                start: ./example
-            locations:
-                /:
-                    allow: false
-                    passthru: true
+  app:
+    type: 'lisp:{{% latest "lisp" %}}'
+    web:
+      commands:
+        start: ./example
+      locations:
+        /:
+          allow: false
+          passthru: true
 ```
 
 Note that a proxy server is still in front of your app.
@@ -149,10 +149,10 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'lisp:{{% latest "lisp" %}}'
-        relationships:
-            postgresql: 
+  app:
+    type: 'lisp:{{% latest "lisp" %}}'
+    relationships:
+      postgresql:
 ```
 
 <--->
@@ -163,14 +163,14 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'lisp:{{% latest "lisp" %}}'
-        relationships:
-            # Please note: Legacy definition of the relationship is still supported:
-            # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-            postgresql:
-                service: 'postgresql'
-                endpoint: 'postgresql'
+  app:
+    type: 'lisp:{{% latest "lisp" %}}'
+    relationships:
+      # Please note: Legacy definition of the relationship is still supported:
+      # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+      postgresql:
+        service: 'postgresql'
+        endpoint: 'postgresql'
 ```
 
 {{< /codetabs >}}

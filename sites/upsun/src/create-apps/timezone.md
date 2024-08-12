@@ -39,10 +39,10 @@ title=PHP
 Add the following to your app configuration:
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 variables:
-    php:
-        "date.timezone": "Europe/Paris"
+  php:
+    "date.timezone": "Europe/Paris"
 {{< /snippet >}}
 ```
 

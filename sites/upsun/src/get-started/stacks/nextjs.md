@@ -81,7 +81,7 @@ title=Using the Console
 2. Click **Create from scratch**.
 
 3. Fill in details like the project name and [region](/development/regions.md).
-   
+
    {{% note %}}
 
    You can define resources for your project later on, after your first push.
@@ -188,15 +188,15 @@ Follow the prompts.
 
 ```yaml {configFile="apps"}
 applications:
-    myapp:
-       type: "nodejs:20"
-       hooks:
-          build: |
-             set -eux
-             npm run build
-       web:
-          commands:
-             start: npm run start -- -p $PORT
+  app:
+    type: "nodejs:20"
+    hooks:
+      build: |
+        set -eux
+        npm run build
+    web:
+      commands:
+        start: npm run start -- -p $PORT
 ```
 
 As an example, above is the minimum configuration needed to deploy a Next.js application on {{% vendor/name %}} without any services.
@@ -305,7 +305,7 @@ To make changes to your project, follow these steps:
    --- a/views/index.jade
    +++ b/views/index.jade
    @@ -2,4 +2,4 @@ extends layout
- 
+
     block content
       h1= title
    -  p Welcome to #{title}
@@ -337,7 +337,7 @@ To make changes to your project, follow these steps:
    {{% vendor/cli %}} environment:delete feat-a
    git fetch --prune
    ```
-   
+
    Note that deploying to production is fast because the image built for the `feat-a` environment is reused.
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.

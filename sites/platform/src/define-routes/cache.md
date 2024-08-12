@@ -71,10 +71,10 @@ The default value for these keys are the following:
 ```yaml {configFile="routes"}
 https://{default}/:
   # ...
-    cache:
-      enabled: true
-      cookies: ['*']
-      headers: ['Accept', 'Accept-Language']
+  cache:
+    enabled: true
+    cookies: ['*']
+    headers: ['Accept', 'Accept-Language']
 ```
 
 ### Duration
@@ -120,9 +120,9 @@ For example, if the `headers` key is the following, {{% vendor/name %}} caches a
 ```yaml {configFile="routes"}
 https://{default}/:
   # ...
-    cache:
-      enabled: true
-      headers: ["Accept"]
+  cache:
+    enabled: true
+    headers: ["Accept"]
 ```
 
 {{< note title="none">}}
@@ -165,9 +165,9 @@ Other cookies are ignored.
 ```yaml {configFile="routes"}
 https://{default}/:
   # ...
-    cache:
-      enabled: true
-      cookies: ["foo"]
+  cache:
+    enabled: true
+    cookies: ["foo"]
 ```
 
 #### Example with a regular expression
@@ -179,9 +179,9 @@ For example:
 ```yaml {configFile="routes"}
 https://{default}/:
   # ...
-    cache:
-      enabled: true
-      cookies: ['/^SS?ESS/']
+  cache:
+    enabled: true
+    cookies: ['/^SS?ESS/']
 ```
 
 This configuration causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
@@ -263,9 +263,9 @@ This is a case of allowing only a subset of cookies to invalidate the cache.
 ```yaml {configFile="routes"}
 https://{default}/:
   # ...
-    cache:
-      enabled: true
-      cookies: ["MYCOOKIE"]
+  cache:
+    enabled: true
+    cookies: ["MYCOOKIE"]
 ```
 
 ### Cache HTTP and HTTPS separately using the `Vary` header

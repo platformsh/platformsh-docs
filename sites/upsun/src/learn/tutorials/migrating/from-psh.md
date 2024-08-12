@@ -185,12 +185,14 @@ Upload to each mount separately.
 
 Suppose you have the following mounts defined:
 
-```yaml {location=".platform.app.yaml"}
-mounts:
-    'web/uploads':
+```yaml {configFile="app"}
+applications:
+  app:
+    mounts:
+      'web/uploads':
         source: local
         source_path: uploads
-    'private':
+      'private':
         source: local
         source_path: private
 ```
@@ -205,14 +207,14 @@ For example:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        mounts:
-            'web/uploads':
-                source: instance
-                source_path: uploads
-            'private':
-                source: instance
-                source_path: private
+  app:
+    mounts:
+      'web/uploads':
+        source: instance
+        source_path: uploads
+      'private':
+        source: instance
+        source_path: private
 ```
 
 Then, to upload your files, run a command similar to the following:

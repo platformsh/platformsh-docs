@@ -42,16 +42,16 @@ To do so, modify your [app configuration](../../create-apps/_index.md), as in th
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
-        # Install dependencies
-        pip install -r requirements.txt
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
+    # Install dependencies
+    pip install -r requirements.txt
 {{< /snippet >}}
 ```
 <--->
@@ -59,19 +59,19 @@ hooks:
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
-    env:
-        PIP_VERSION: '22.3.1'
+  env:
+    PIP_VERSION: '22.3.1'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download a specific version of pip
-        python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
-        # Install dependencies
-        pip install -r requirements.txt
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download a specific version of pip
+    python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
+    # Install dependencies
+    pip install -r requirements.txt
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -99,20 +99,20 @@ Because Pipenv depends on pip, you might want to also specify the pip version.
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 dependencies:
-    python3:
-        pipenv: '*'
+  python3:
+    pipenv: '*'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
-        # Install dependencies
-        # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
-        pipenv install --deploy
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
+    # Install dependencies
+    # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
+    pipenv install --deploy
 {{< /snippet >}}
 ```
 <--->
@@ -120,23 +120,23 @@ hooks:
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
-    env:
-        PIP_VERSION: '22.3.1'
+  env:
+    PIP_VERSION: '22.3.1'
 dependencies:
-    python3:
-        pipenv: '2022.12.19'
+  python3:
+    pipenv: '2022.12.19'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download a specific version of pip
-        python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
-        # Install dependencies
-        # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
-        pipenv install --deploy
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download a specific version of pip
+    python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
+    # Install dependencies
+    # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
+    pipenv install --deploy
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -161,13 +161,13 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        variables:
-            env:
-                POETRY_VIRTUALENVS_IN_PROJECT: true
-                POETRY_VIRTUALENVS_CREATE: true
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'python:{{% latest "python" %}}'
+    variables:
+      env:
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+        POETRY_VIRTUALENVS_CREATE: true
 ```
 2.  Install Poetry.
     You can specify the latest or a specific version of Poetry in your deployments to ensure repeatable builds.
@@ -177,30 +177,30 @@ applications:
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
-    env:
-        POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+  env:
+    POETRY_VIRTUALENVS_IN_PROJECT: true
+    POETRY_VIRTUALENVS_CREATE: true
 
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
+  build: |
+    # Fail the build if any errors occur
+    set -eu
 
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
 
-        # Install and configure Poetry
-        export PIP_USER=false
-        curl -sSL https://install.python-poetry.org | python3 -
-        # Update PATH to make Poetry available in this hook
-        export PATH="/app/.local/bin:$PATH"
-        export PIP_USER=true
+    # Install and configure Poetry
+    export PIP_USER=false
+    curl -sSL https://install.python-poetry.org | python3 -
+    # Update PATH to make Poetry available in this hook
+    export PATH="/app/.local/bin:$PATH"
+    export PIP_USER=true
 
-        # Install dependencies
-        poetry install
+    # Install dependencies
+    poetry install
 {{< /snippet >}}
 ```
 <--->
@@ -208,33 +208,33 @@ hooks:
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
-    env:
-        POETRY_VERSION: '1.4.0'
-        POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+  env:
+    POETRY_VERSION: '1.4.0'
+    POETRY_VIRTUALENVS_IN_PROJECT: true
+    POETRY_VIRTUALENVS_CREATE: true
 
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
+  build: |
+    # Fail the build if any errors occur
+    set -eu
 
-        # Download the latest version of pip
-        python3.11 -m pip install --upgrade pip
+    # Download the latest version of pip
+    python3.11 -m pip install --upgrade pip
 
-        # Install and configure Poetry
-        # Set user to false to install Poetry globally
-        export PIP_USER=false
-        curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
-        # Update PATH to make Poetry available in this hook
-        export PATH="/app/.local/bin:$PATH"
-        # Set user to true to install dependencies only in the virtual environment
-        export PIP_USER=true
+    # Install and configure Poetry
+    # Set user to false to install Poetry globally
+    export PIP_USER=false
+    curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
+    # Update PATH to make Poetry available in this hook
+    export PATH="/app/.local/bin:$PATH"
+    # Set user to true to install dependencies only in the virtual environment
+    export PIP_USER=true
 
-        # Install dependencies
-        poetry install
+    # Install dependencies
+    poetry install
 {{< /snippet >}}
 ```
     {{< /codetabs >}}
@@ -249,6 +249,6 @@ hooks:
     ```text {location=".environment"}
     # Updates PATH when Poetry is used, making it available during deploys, start commands, and SSH.
     if [ -n "$POETRY_VERSION" ]; then
-        export PATH="/app/.local/bin:$PATH"
+      export PATH="/app/.local/bin:$PATH"
     fi
     ```

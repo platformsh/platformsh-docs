@@ -57,11 +57,11 @@ To disable it, change your cache configuration for the routes behind a CDN to th
 ```yaml {configFile="routes"}
 routes:
   "https://{default}/":
-     type: upstream
-     upstream: "app:http"
-     cache:
-         # Disable the HTTP cache on this route. It's handled by the CDN instead.
-         enabled: false
+    type: upstream
+    upstream: "app:http"
+    cache:
+      # Disable the HTTP cache on this route. It's handled by the CDN instead.
+      enabled: false
 ```
 
 ## Prevent direct access to your server
@@ -94,13 +94,13 @@ To enable mTLS, follow these steps:
 
     ```yaml {configFile="routes"}
     routes:
-        "https://{default}":
-            tls:
-                client_authentication: "require"
-                client_certificate_authorities:
-                    - !include
-                        type: string
-                        path: cdn.crt
+      "https://{default}":
+        tls:
+          client_authentication: "require"
+          client_certificate_authorities:
+            - !include
+              type: string
+              path: cdn.crt
     ```
 
 The procedure can vary depending on your CDN.

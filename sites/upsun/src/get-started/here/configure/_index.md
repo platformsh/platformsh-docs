@@ -32,20 +32,20 @@ Follow the prompts. The `{{% vendor/cli %}} project:init` command does the follo
 The generated configuration varies slightly based on your answers to these prompts and whether a framework is detected.
 However, the structure of the configuration file remains similar to the following:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications:" title="Top-level key for all applications" >}}
-    # Configuration for all applications within an environment.
-    {{< code-link destination="/create-apps/app-reference.html" text="myapp:" title="Configuration for a unique application" >}}
-        # configuration for the application 'myapp'
+  # Configuration for all applications within an environment.
+  {{< code-link destination="/create-apps/app-reference.html" text="app:" title="Configuration for a unique application" >}}
+    # configuration for the application 'app'
 
 {{< code-link destination="/add-services.html" text="services:" title="Top-level key for all services" >}}
-    # Configuration for all services within an environment.
-    {{< code-link destination="/add-services.html" text="db:" title="Configuration for a unique service" >}}
-        # configuration for service 'db'
+  # Configuration for all services within an environment.
+  {{< code-link destination="/add-services.html" text="db:" title="Configuration for a unique service" >}}
+    # configuration for service 'db'
 
 {{< code-link destination="/define-routes.html" text="routes:" title="Top-level key for all routes, configuring how requests are handled by the Router" >}}
-    # Configuration for routing to applications
-    {{< code-link destination="/define-routes.html" text="'https://{default}/':" title="Configuration for a unique service" >}}
+  # Configuration for routing to applications
+  {{< code-link destination="/define-routes.html" text="'https://{default}/':" title="Configuration for a unique service" >}}
 ```
 {{% note %}}
 If you want more information on the structure of this configuration file, see the dedicated [YAML page](/learn/overview/yaml/_index.md).

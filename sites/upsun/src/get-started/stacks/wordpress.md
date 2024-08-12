@@ -26,7 +26,7 @@ The instructions on this page were designed based on the following assumptions:
 
 - You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
 - You do not have a `composer.json` file, or are comfortable making changes to your existing version.
-- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
+- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `app`, which you will notice is the top-level key in all configuration below.
 
 {{< /note >}}
 
@@ -59,27 +59,27 @@ make the following changes to your `./.upsun/config.yaml` file.
 
 Locate the `web:locations` section and update the root (`/`) location as follows:
 
-```yaml {location="./.upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.3'
-        web:
-          locations:
-              "/":
-                  passthru: "/index.php"
-                  root: "wordpress"
-                  index:
-                      - "index.php"
-                  expires: 600
-                  scripts: true
-                  allow: true
-                  rules:
-                      ^/license\.text$:
-                          allow: false
-                      ^/readme\.html$:
-                          allow: false
+  app:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    web:
+      locations:
+        "/":
+          passthru: "/index.php"
+          root: "wordpress"
+          index:
+            - "index.php"
+          expires: 600
+          scripts: true
+          allow: true
+          rules:
+            ^/license\.text$:
+              allow: false
+            ^/readme\.html$:
+              allow: false
 ```
 
 {{< note theme="info" >}}
@@ -97,50 +97,50 @@ To set one up, follow these steps:
 1. Create the location.</br>
    To do so, add a `/wp-content/uploads` location as follows:
 
-   ```yaml {location="./.upsun/config.yaml"}
+   ```yaml {configFile="app"}
    applications:
-       myapp:
-           source:
-               root: "/"
-           type: 'php:8.3'
-        web:
-          locations:
-              "/":
-                  passthru: "/index.php"
-                  root: "wordpress"
-                  index:
-                      - "index.php"
-                  expires: 600
-                  scripts: true
-                  allow: true
-                  rules:
-                      ^/license\.text$:
-                          allow: false
-                      ^/readme\.html$:
-                          allow: false
-              "/wp-content/uploads":
-                  root: "wordpress/wp-content/uploads"
-                  scripts: false
-                  allow: false
-                  rules:
-                      '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
-                          allow: true
-                          expires: 1w
+     app:
+       source:
+         root: "/"
+       type: 'php:8.3'
+       web:
+         locations:
+           "/":
+             passthru: "/index.php"
+             root: "wordpress"
+             index:
+               - "index.php"
+             expires: 600
+             scripts: true
+             allow: true
+             rules:
+               ^/license\.text$:
+                 allow: false
+               ^/readme\.html$:
+                 allow: false
+           "/wp-content/uploads":
+             root: "wordpress/wp-content/uploads"
+             scripts: false
+             allow: false
+             rules:
+               '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
+                 allow: true
+                 expires: 1w
    ```
 2. To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).</br>
    To do so, locate the `mounts:` section that is commented it out, and update it as follows:
 
-   ```yaml {location="./.upsun/config.yaml"}
+   ```yaml {configFile="app"}
    applications:
-      myapp:
-          source:
-              root: "/"
-          type: 'php:8.3'
-          ...
-          mounts:
-              "wordpress/wp-content/uploads":
-                  source: storage
-                  source_path: "uploads"
+     app:
+       source:
+         root: "/"
+       type: 'php:8.3'
+       ...
+       mounts:
+         "wordpress/wp-content/uploads":
+           source: storage
+           source_path: "uploads"
    ```
 
    {{< note theme="info" >}}
@@ -154,18 +154,18 @@ To ensure your Composer dependencies are installed during the [build stage](/lea
 locate the `build:` section (below the `hooks:` section).</br>
 Update the `build:` section as follows:
 
-```yaml {location="./.upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.3'
-        ...
-        hooks:
-            build: |
-                set -eux
-                composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
-                rsync -a plugins/ wordpress/wp-content/plugins/
+  app:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    hooks:
+      build: |
+        set -eux
+        composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
+        rsync -a plugins/ wordpress/wp-content/plugins/
 ```
 
 You can adjust the `composer install` command to meet your specific requirements.
@@ -188,22 +188,22 @@ To launch these tasks during the deploy hook,
 locate the `deploy:` section (below the `build:` section).</br>
 Update the `deploy:` section as follows:
 
-```yaml {location="./.upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.3'
-        ...
-        hooks:
-            deploy: |
-                set -eux
-                # Flushes the object cache
-                wp cache flush
-                # Runs the WordPress database update procedure
-                wp core update-db
-                # Runs all due cron events
-                wp cron event run --due-now
+  app:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    hooks:
+      deploy: |
+        set -eux
+        # Flushes the object cache
+        wp cache flush
+        # Runs the WordPress database update procedure
+        wp core update-db
+        # Runs all due cron events
+        wp cron event run --due-now
 ```
 
 ## 6. Configure your default route
@@ -213,26 +213,26 @@ To do so, locate the `routes:` section, and beneath it, the `"https://{default}/
 
 Update the route as follows:
 
-```yaml {location="./.upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.3'
-        ...
+  app:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
 
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "myapp:http"
-        cache:
-            enabled: true
-            cookies:
-                - '/^wordpress_*/'
-                - '/^wp-*/'
+  "https://{default}/":
+    type: upstream
+    upstream: "app:http"
+    cache:
+      enabled: true
+      cookies:
+        - '/^wordpress_*/'
+        - '/^wp-*/'
 ```
 
-Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
+Matching the application name `app` with the `upstream` definition `app:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
 ## 7. Update your MariaDB service relationship
@@ -241,15 +241,15 @@ You need to update the name used to represent the [relationship](/create-apps/ap
 To do so, locate the `relationships:` top-level property.
 Update the relationship for the database service as follows:
 
-```yaml {location="./.upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        source:
-            root: "/"
-        type: 'php:8.3'
-        ...
-        relationships:
-            database: "mariadb:mysql"
+  app:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    relationships:
+      database: "mariadb:mysql"
 ```
 
 You can now commit all the changes made to `.upsun/config.yaml` and push to {{% vendor/name %}}.

@@ -27,37 +27,37 @@ To create a new branch, run the following command:
 
 Configure the MariaDB service by adding a `database` service to your `.{{% vendor/cli %}}/config.yaml` file:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-express-app:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  app:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
 {{< code-link destination="/add-services.html#available-services" text="services" title="Click to see the complete list of all available services" >}}:
-    database:
-	    type: mariadb:{{% latest "mariadb" %}}
+  database:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 To connect the service to your application (``app``), add the following relationship:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-express-app:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  app:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
-        relationships:
-            database: 
+    relationships:
+      database:
 
 {{< code-link destination="/add-services.html#available-services" text="services" title="Click to see the complete list of all available services" >}}:
-    database:
-	    type: mariadb:{{% latest "mariadb" %}}
+  database:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 Commit your change:

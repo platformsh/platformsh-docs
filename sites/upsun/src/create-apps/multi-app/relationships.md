@@ -27,7 +27,7 @@ You have two apps, `app1` and `app2`, and `app1` needs data from `app2`.
 
 In your app configuration for `app1`, define a relationship to `app2`:
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 applications:
   app1:
     relationships:

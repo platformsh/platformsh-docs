@@ -29,9 +29,9 @@ this is equivalent to the following:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: app:http
+  "https://{default}/":
+    type: upstream
+    upstream: app:http
 ```
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
@@ -48,13 +48,13 @@ Define your routes like this:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "app:http"
+  "https://{default}/":
+    type: upstream
+    upstream: "app:http"
 
-    "https://www.{default}/":
-        type: redirect
-        to: "https://{default}/"
+  "https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
 ```
 
 This affects your [default domain](#default).
@@ -75,13 +75,13 @@ So you might define routes for 2 apps named `app` and `api` as follows:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}":
-        type: upstream
-        upstream: "app:http"
+  "https://{default}":
+    type: upstream
+    upstream: "app:http"
 
-    "https://subdomain.example.com":
-        type: upstream
-        upstream: "api:http"
+  "https://subdomain.example.com":
+    type: upstream
+    upstream: "api:http"
 ```
 
 Both of these routes would be resolved with trailing slashes.
@@ -132,18 +132,18 @@ You can use the `{default}` placeholder:
 <!-- Upsun configuration-->
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/blog":
-        type: upstream
-        upstream: "app:http"
+  "https://{default}/blog":
+    type: upstream
+    upstream: "app:http"
 ```
 
 And you can use an absolute URL:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://example.com/blog":
-        type: upstream
-        upstream: "app:http"
+  "https://example.com/blog":
+    type: upstream
+    upstream: "app:http"
 ```
 
 In both cases, the URLs for your Production environment are the same.
@@ -173,13 +173,13 @@ You can then define the following routes:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{all}/":
-        type: upstream
-        upstream: "app:http"
+  "https://{all}/":
+    type: upstream
+    upstream: "app:http"
 
-    "https://www.{all}/":
-        type: redirect
-        to: "https://{all}/"
+  "https://www.{all}/":
+    type: redirect
+    to: "https://{all}/"
 ```
 
 The first route means you're serving the same content at multiple domains:
@@ -197,13 +197,13 @@ Say you have two apps named `app1` and `app2` and define two routes like this:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "app1:http"
+  "https://{default}/":
+    type: upstream
+    upstream: "app1:http"
 
-    "https://{all}/":
-        type: upstream
-        upstream: "app2:http"
+  "https://{all}/":
+    type: upstream
+    upstream: "app2:http"
 ```
 
 Requests to your default domain are served by `app1`.
@@ -245,14 +245,14 @@ You can define your routes like this:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://site1.{default}/":
-        type: upstream
-        upstream: 'app1:http'
+  "https://site1.{default}/":
+    type: upstream
+    upstream: 'app1:http'
 
-    "https://site2.{default}/":
-        type: upstream
-        id: 'the-second'
-        upstream: 'app2:http'
+  "https://site2.{default}/":
+    type: upstream
+    id: 'the-second'
+    upstream: 'app2:http'
 ```
 
 To see the generated routes on your `feature` environment, run:
@@ -265,38 +265,38 @@ The result is something like this:
 
 ```json
 {
-    "https://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
-        "primary": true,
-        "id": null,
-        "attributes": {},
-        "type": "upstream",
-        "upstream": "app1",
-        "original_url": "https://site1.{default}/"
-    },
-    "https://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
-        "primary": null,
-        "id": "the-second",
-        "attributes": {},
-        "type": "upstream",
-        "upstream": "app2",
-        "original_url": "https://site2.{default}/"
-    },
-    "http://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
-        "to": "https://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/",
-        "original_url": "http://site1.{default}/",
-        "type": "redirect",
-        "primary": null,
-        "id": null,
-        "attributes": {}
-    },
-    "http://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
-        "to": "https://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/",
-        "original_url": "http://site2.{default}/",
-        "type": "redirect",
-        "primary": null,
-        "id": null,
-        "attributes": {},
-    }
+  "https://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
+    "primary": true,
+    "id": null,
+    "attributes": {},
+    "type": "upstream",
+    "upstream": "app1",
+    "original_url": "https://site1.{default}/"
+  },
+  "https://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
+    "primary": null,
+    "id": "the-second",
+    "attributes": {},
+    "type": "upstream",
+    "upstream": "app2",
+    "original_url": "https://site2.{default}/"
+  },
+  "http://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
+    "to": "https://site1.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/",
+    "original_url": "http://site1.{default}/",
+    "type": "redirect",
+    "primary": null,
+    "id": null,
+    "attributes": {}
+  },
+  "http://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
+    "to": "https://site2.feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/",
+    "original_url": "http://site2.{default}/",
+    "type": "redirect",
+    "primary": null,
+    "id": null,
+    "attributes": {},
+  }
 }
 ```
 
@@ -313,25 +313,25 @@ So you can define a route like this:
 
 ```yaml {configFile="routes"}
 routes:
-    "http://{default}/":
-        type: upstream
-        upstream: "app:http"
-        attributes:
-            "foo": "bar"
+  "http://{default}/":
+    type: upstream
+    upstream: "app:http"
+    attributes:
+        "foo": "bar"
 ```
 
 The attributes appear in the routes data like so:
 
 ```json
 "https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
-    "primary": true,
-    "id": null,
-    "attributes": {
-        "foo": "bar"
-    },
-    "type": "upstream",
-    "upstream": "app",
-    "original_url": "https://{default}/"
+  "primary": true,
+  "id": null,
+  "attributes": {
+    "foo": "bar"
+  },
+  "type": "upstream",
+  "upstream": "app",
+  "original_url": "https://{default}/"
 }
 ```
 
@@ -410,34 +410,36 @@ which is a requirement for the router caching.
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/ws":
-        type: upstream
-        upstream: "app:http"
-        cache:
-            enabled: false
+  "https://{default}/ws":
+    type: upstream
+    upstream: "app:http"
+    cache:
+      enabled: false
 
-    # Below HTTP config may not be necessary for every Websocket client.
-    "https://{default}/ws":
-        type: upstream
-        upstream: "app:http"
-        cache:
-            enabled: false
+  # Below HTTP config may not be necessary for every Websocket client.
+  "https://{default}/ws":
+    type: upstream
+    upstream: "app:http"
+    cache:
+      enabled: false
 ```
 
 2. [Disable request buffering](/create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
-web:
-    commands:
+applications:
+  app:
+    web:
+      commands:
         start: /app/.linuxbrew/bin/websocketd --port=$PORT ./wsmanager.sh
-    upstream:
+      upstream:
         socket_family: tcp
         protocol: http
-    locations:
+      locations:
         '/':
-            passthru: true
-            request_buffering:
-                enabled: false
+          passthru: true
+          request_buffering:
+              enabled: false
 ```
 
 ## `.htaccess` files

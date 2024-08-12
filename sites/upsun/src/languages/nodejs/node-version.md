@@ -76,12 +76,12 @@ This property accepts either an exact version or a range:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            nodejs:
-                n: "*"
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      nodejs:
+        n: "*"
 ```
    Adding it as a dependency ensures it's cached for future builds.
 
@@ -89,39 +89,39 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            nodejs:
-                n: "*"
-        variables:
-            env:
-                N_PREFIX: /app/.global
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      nodejs:
+        n: "*"
+    variables:
+      env:
+        N_PREFIX: /app/.global
 ```
 4. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            nodejs:
-                n: "*"
-        variables:
-            env:
-                N_PREFIX: /app/.global
-        hooks:
-            build: |
-                # Exit the hook on any failure
-                set -e
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      nodejs:
+        n: "*"
+    variables:
+      env:
+        N_PREFIX: /app/.global
+    hooks:
+      build: |
+        # Exit the hook on any failure
+        set -e
 
-                # Install the version specified in the .nvmrc file
-                n auto
+        # Install the version specified in the .nvmrc file
+        n auto
 
-                # Reset the location hash to recognize the newly installed version
-                hash -r
+        # Reset the location hash to recognize the newly installed version
+        hash -r
 ```
 Now your hooks should be able to use the specified version of Node.js.
 You can verify this by running `node -v`.
@@ -130,25 +130,25 @@ Your final app configuration should look something like this:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            nodejs:
-                n: "*"
-        variables:
-            env:
-                N_PREFIX: /app/.global
-        hooks:
-            build: |
-                # Exit the hook on any failure
-                set -e
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      nodejs:
+        n: "*"
+    variables:
+      env:
+        N_PREFIX: /app/.global
+    hooks:
+      build: |
+        # Exit the hook on any failure
+        set -e
 
-                # Install the version specified in the .nvmrc file
-                n auto
+        # Install the version specified in the .nvmrc file
+        n auto
 
-                # Reset the location hash to recognize the newly installed version
-                hash -r
+        # Reset the location hash to recognize the newly installed version
+        hash -r
 ```
 ## Use `nvm`
 
@@ -163,58 +163,60 @@ You can use it to:
 To use `nvm`, follow these steps:
 
 1. Define which `nvm` version to use using an [environment variable](../../development/variables/_index.md).
-   Add it to your [app configuration](../../create-apps/_index.md):
+    Add it to your [app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
+    ```yaml {configFile="app"}
+    applications:
+      # The app's name, which must be unique within the project.
+      app:
         type: 'python:{{% latest "python" %}}'
         variables:
-            env:
-                # Update for your desired NVM version.
-                NVM_VERSION: v0.39.3
-```
+          env:
+            # Update for your desired NVM version.
+            NVM_VERSION: v0.39.3
+    ```
+
 2. Define your desired Node.js version using an environment variable.
-   For your base version, set it in your app configuration:
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
+    For your base version, set it in your app configuration:
+
+    ```yaml {configFile="app"}
+    applications:
+      # The app's name, which must be unique within the project.
+      app:
         type: 'python:{{% latest "python" %}}'
         variables:
-            env:
-                # Update these for your desired NVM and Node versions.
-                NVM_VERSION: v0.39.3
-                NODE_VERSION: v18.14.2
-```
-   To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
+          env:
+            # Update these for your desired NVM and Node versions.
+            NVM_VERSION: v0.39.3
+            NODE_VERSION: v18.14.2
+    ```
+    To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
 
 3. Add a `.nvm` directory to your cache in your [build hook](../../create-apps/hooks/_index.md):
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
+    ```yaml {configFile="app"}
+    applications:
+      # The app's name, which must be unique within the project.
+      app:
         type: 'python:{{% latest "python" %}}'
         variables:
-            env:
-                # Update these for your desired NVM and Node versions.
-                NVM_VERSION: v0.39.3
-                NODE_VERSION: v18.14.2
+          env:
+            # Update these for your desired NVM and Node versions.
+            NVM_VERSION: v0.39.3
+            NODE_VERSION: v18.14.2
         hooks:
-            build: |
-                set -e
-                unset NPM_CONFIG_PREFIX
-                export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+          build: |
+            set -e
+            unset NPM_CONFIG_PREFIX
+            export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
 
-                # Link cache with app
-                if [ ! -d "$PLATFORM_CACHE_DIR/.nvm" ]; then
-                    mkdir -p $PLATFORM_CACHE_DIR/.nvm
-                fi
-                ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
-```
+            # Link cache with app
+            if [ ! -d "$PLATFORM_CACHE_DIR/.nvm" ]; then
+                mkdir -p $PLATFORM_CACHE_DIR/.nvm
+            fi
+            ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
+    ```
    {{< note >}}
 
    Instead of using a symlink between your cache and application directories,
@@ -229,86 +231,86 @@ applications:
 
 4. Use the cache directory and install based on the variables if not present:
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
+    ```yaml {configFile="app"}
+    applications:
+      # The app's name, which must be unique within the project.
+      app:
         type: 'python:{{% latest "python" %}}'
         variables:
-            env:
-                # Update these for your desired NVM and Node versions.
-                NVM_VERSION: v0.39.3
-                NODE_VERSION: v18.14.2
+          env:
+            # Update these for your desired NVM and Node versions.
+            NVM_VERSION: v0.39.3
+            NODE_VERSION: v18.14.2
         hooks:
-            build: |
-                ...
-                # Check for Node.js version and install if not present
-                if [ ! -d "$PLATFORM_CACHE_DIR/.nvm/versions/node/$NODE_VERSION" ]; then
+          build: |
+            ...
+            # Check for Node.js version and install if not present
+            if [ ! -d "$PLATFORM_CACHE_DIR/.nvm/versions/node/$NODE_VERSION" ]; then
 
-                    # Get nvm install script if correct version not present
-                    export NVM_INSTALL_FILE="${PLATFORM_CACHE_DIR}/nvm_${NVM_VERSION}_install.sh"
-                    if [ ! -f "$NVM_INSTALL_FILE" ]; then
-                        wget -nc -O "$NVM_INSTALL_FILE" "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh"
-                    fi
+              # Get nvm install script if correct version not present
+              export NVM_INSTALL_FILE="${PLATFORM_CACHE_DIR}/nvm_${NVM_VERSION}_install.sh"
+              if [ ! -f "$NVM_INSTALL_FILE" ]; then
+                  wget -nc -O "$NVM_INSTALL_FILE" "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh"
+              fi
 
-                    # Install, automatically using NODE_VERSION
-                    bash $NVM_INSTALL_FILE
-                fi
+              # Install, automatically using NODE_VERSION
+              bash $NVM_INSTALL_FILE
+            fi
 
-                # Activate nvm
-                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            # Activate nvm
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-                # Use the specified version
-                nvm use "$NODE_VERSION"
-```
+            # Use the specified version
+            nvm use "$NODE_VERSION"
+    ```
 5. Optional: To use the specified Node.js version in the runtime container and not just the build,
    activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
 
-   ```bash {location=".environment"}
-   unset NPM_CONFIG_PREFIX
-   export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
-   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-   ```
+    ```bash {location=".environment"}
+    unset NPM_CONFIG_PREFIX
+    export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    ```
 
-Your final app configuration should look something like the following:
+    Your final app configuration should look something like the following:
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
+    ```yaml {configFile="app"}
+    applications:
+      # The app's name, which must be unique within the project.
+      app:
         type: 'python:{{% latest "python" %}}'
         variables:
-            env:
-                # Update these for your desired NVM and Node versions.
-                NVM_VERSION: v0.39.3
-                NODE_VERSION: v18.14.2
+          env:
+            # Update these for your desired NVM and Node versions.
+            NVM_VERSION: v0.39.3
+            NODE_VERSION: v18.14.2
         hooks:
-            build: |
-                set -e
-                unset NPM_CONFIG_PREFIX
-                export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+          build: |
+            set -e
+            unset NPM_CONFIG_PREFIX
+            export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
 
-                # Link cache with app
-                if [ ! -d "$PLATFORM_CACHE_DIR/.nvm" ]; then
-                    mkdir -p $PLATFORM_CACHE_DIR/.nvm
-                fi
-                ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
-                # Check for Node.js version and install if not present
-                if [ ! -d "$PLATFORM_CACHE_DIR/.nvm/versions/node/$NODE_VERSION" ]; then
+            # Link cache with app
+            if [ ! -d "$PLATFORM_CACHE_DIR/.nvm" ]; then
+              mkdir -p $PLATFORM_CACHE_DIR/.nvm
+            fi
+            ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
+            # Check for Node.js version and install if not present
+            if [ ! -d "$PLATFORM_CACHE_DIR/.nvm/versions/node/$NODE_VERSION" ]; then
 
-                    # Get nvm install script if correct version not present
-                    export NVM_INSTALL_FILE="${PLATFORM_CACHE_DIR}/nvm_${NVM_VERSION}_install.sh"
-                    if [ ! -f "$NVM_INSTALL_FILE" ]; then
-                        wget -nc -O "$NVM_INSTALL_FILE" "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh"
-                    fi
+              # Get nvm install script if correct version not present
+              export NVM_INSTALL_FILE="${PLATFORM_CACHE_DIR}/nvm_${NVM_VERSION}_install.sh"
+              if [ ! -f "$NVM_INSTALL_FILE" ]; then
+                  wget -nc -O "$NVM_INSTALL_FILE" "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh"
+              fi
 
-                    # Install, automatically using NODE_VERSION
-                    bash $NVM_INSTALL_FILE
-                fi
+              # Install, automatically using NODE_VERSION
+              bash $NVM_INSTALL_FILE
+            fi
 
-                # Activate nvm
-                [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            # Activate nvm
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-                # Use the specified version
-                nvm use "$NODE_VERSION"
-```
+            # Use the specified version
+            nvm use "$NODE_VERSION"
+    ```

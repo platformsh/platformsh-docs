@@ -31,14 +31,14 @@ The most straightforward data structure involves defining key–value pairs wher
 
 So you could have a basic configuration for an app:
 
-```yaml
+```yaml {configFile="app"}
 applications:
-    myapp:
-        type: "golang:1.18"
-        source:
-            root: /app
-        hooks:
-            build: ./build.sh
+  app:
+    type: "golang:1.18"
+    source:
+      root: /app
+    hooks:
+      build: ./build.sh
 ```
 
 You can spot three key–value pairs:
@@ -71,16 +71,16 @@ So you could expand the configuration from before to add another mapping:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        type: "golang:1.18"
+  app:
+    type: "golang:1.18"
 
-        web:
-            commands:
-                start: ./bin/app
-            locations:
-                '/':
-                    passthru: true
-                    allow: false
+    web:
+      commands:
+        start: ./bin/app
+      locations:
+        '/':
+          passthru: true
+          allow: false
 ```
 
 This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
@@ -95,28 +95,28 @@ In addition to maps defining further key–value pairs, you can also use sequenc
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        web:
-            locations:
-                '/':
-                    index:
-                        - index.html
-                        - index.htm
-                    passthru: true
-                    allow: false
+  app:
+    web:
+      locations:
+        '/':
+          index:
+            - index.html
+            - index.htm
+          passthru: true
+          allow: false
 ```
 
 You can also define sequences using a flow syntax:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        web:
-            locations:
-                '/':
-                    index: [index.html, index.htm]
-                    passthru: true
-                    allow: false
+  app:
+    web:
+      locations:
+        '/':
+          index: [index.html, index.htm]
+          passthru: true
+          allow: false
 ```
 
 In either case, you get a list of values within `index`:
@@ -133,11 +133,11 @@ So you could add a multi-line string to a `build` key in the `hooks` map:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        hooks:
-            build: |
-                set -x -e
-                cp a.txt b.txt
+  app:
+    hooks:
+      build: |
+        set -x -e
+        cp a.txt b.txt
 ```
 
 And the resulting value preserves the line break.
@@ -158,15 +158,15 @@ The following example shows 4 different workers:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        workers:
-            queue1: &runner
-                commands:
-                    start: python queue-worker.py
-            queue2: *runner
-            queue3:
-                <<: *runner
+  app:
+    ...
+    workers:
+      queue1: &runner
+        commands:
+          start: python queue-worker.py
+      queue2: *runner
+      queue3:
+        <<: *runner
 ```
 
 All of the workers above are identical to each other.

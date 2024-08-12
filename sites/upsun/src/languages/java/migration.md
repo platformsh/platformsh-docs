@@ -40,14 +40,14 @@ and [services](../../add-services/_index.md).
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'java:<VERSION>'
+  app:
+    type: 'java:<VERSION>'
 
-        hooks:
-            build: [2]
-        web:
-            commands:
-                start: [3]
+    hooks:
+      build: [2]
+    web:
+      commands:
+        start: [3]
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
 2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar. For example, `mvn clean package`.
@@ -64,22 +64,22 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 
 ```yaml {configFile="app"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "app:http" [1]
-    "https://www.{default}/":
-        type: redirect
-        to: "https://{default}/"
+  "https://{default}/":
+    type: upstream
+    upstream: "app:http" [1]
+  "https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"
 
 applications:
-    app:
-        type: 'java:<VERSION>'
+  app:
+    type: 'java:<VERSION>'
 
-        hooks:
-            build: [2]
-        web:
-            commands:
-                start: [3]
+    hooks:
+      build: [2]
+    web:
+      commands:
+        start: [3]
 ```
 1. It defines the application will link in the route. For example,`"app:http"`.
 
@@ -236,16 +236,16 @@ This `.environment` file can interact to each application file.
 
 **Example:**
 
-```yaml
+```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'java:{{% latest "java" %}}'
-        hooks:
-            build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
-        relationships:
-            postgresql:
-        web:
-            commands:
-                start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'java:{{% latest "java" %}}'
+    hooks:
+      build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true
+    relationships:
+      postgresql:
+    web:
+      commands:
+        start: java -jar $JAVA_OPTS $CREDENTIAL -Dquarkus.http.port=$PORT jarfile.jar
 ```

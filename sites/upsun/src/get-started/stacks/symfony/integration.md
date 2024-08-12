@@ -19,15 +19,17 @@ The Symfony integration is automatically enabled when:
 If you already have a {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
-   ```yaml {configFile="app"}
+```yaml {configFile="app"}
+applications:
+  app:
     hooks:
-        build: |
-            set -x -e
+      build: |
+        set -x -e
 
-            curl -fs https://get.symfony.com/cloud/configurator | bash
+        curl -fs https://get.symfony.com/cloud/configurator | bash
 
-            # ...
-   ```
+        # ...
+```
 
 The **configurator** enables the following integration:
 
@@ -64,15 +66,17 @@ The `hooks` section defines the scripts that {{% vendor/name %}} runs at specifi
 Here's the default `hooks` section optimized for Symfony projects:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
+applications:
+  app:
+    hooks:
+      build: |
         set -x -e
 
         curl -s https://get.symfony.com/cloud/configurator | bash
 
         symfony-build
 
-    deploy: |
+      deploy: |
         set -x -e
 
         symfony-deploy
@@ -96,11 +100,13 @@ During the `deploy` or `post_deploy` hooks, you can execute actions for a specif
 To do so, in your `{{< vendor/configfile "app" >}}`file,
 use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](/development/variables/_index.md)) in a condition:
 
-```yaml
-hooks:
-    deploy: |
+```yaml {configFile="app"}
+applications:
+  app:
+    hooks:
+      deploy: |
         if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
-            symfony console app:dev:anonymize
+          symfony console app:dev:anonymize
         fi
 ```
 
@@ -124,8 +130,10 @@ Use it as the main build script in your `build` hook.
 To override the flags used by Composer, use the `$COMPOSER_FLAGS` environment variable:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
+applications:
+  app:
+    hooks:
+      build: |
         set -x -e
 
         curl -s https://get.symfony.com/cloud/configurator | bash
@@ -173,8 +181,10 @@ To ensure your app can be built properly, run `php-ext-install` after the [confi
 but before [symfony-build](#symfony-build):
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
+applications:
+  app:
+    hooks:
+      build: |
         set -x -e
 
         curl -s https://get.symfony.com/cloud/configurator | bash
@@ -188,8 +198,10 @@ When installing [PECL](https://pecl.php.net/) PHP extensions, you can configure
 them directly as *variables* instead:
 
 ```yaml {configFile="app"}
-variables:
-    php-ext:
+applications:
+  app:
+    variables:
+      php-ext:
         redis: 5.3.2
 ```
 
@@ -206,8 +218,10 @@ If you need to use the Node installation setup by [symfony-build](#symfony-build
 use the following configuration:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
+applications:
+  app:
+    hooks:
+      build: |
         set -x -e
 
         curl -s https://get.symfony.com/cloud/configurator | bash
@@ -226,8 +240,10 @@ If you want to use two different Node versions,
 use the following configuration instead:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
+applications:
+  app:
+    hooks:
+      build: |
         set -x -e
 
         curl -s https://get.symfony.com/cloud/configurator | bash

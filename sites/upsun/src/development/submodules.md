@@ -127,21 +127,21 @@ To do so, follow these steps:
    Add the following configuration to your `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="false" >}}
+{{< snippet name="app" config="app" root="false" >}}
 source:
-    operations:
-        rebuild:
-            command: |
-                set -e
-                git submodule update --init --recursive
-                git submodule update --remote --checkout
-                git add admin api gatsby mercure
-                if ! git diff-index --quiet HEAD; then
-                    git commit -m "Updating submodules admin, api, gatsby and mercure"
-                fi
+  operations:
+    rebuild:
+      command: |
+        set -e
+        git submodule update --init --recursive
+        git submodule update --remote --checkout
+        git add admin api gatsby mercure
+        if ! git diff-index --quiet HEAD; then
+          git commit -m "Updating submodules admin, api, gatsby and mercure"
+        fi
 {{< /snippet >}}
 ```
-   
+
    For multiple app projects, make sure you define your source operation
    in the configuration of an app whose source code **is not** in a submodule.
 
@@ -156,24 +156,24 @@ type: 'nodejs:{{% latest "nodejs" %}}'
 
 # The web key configures the web server running in front of your app.
 web:
-  # Commands are run once after deployment to start the application process.
-    commands:
-        # The command to launch your app. If it terminates, it’s restarted immediately.
-        # As this app will handle source operation only, no need to keep it alive (sleep)
-        start: |
-            sleep infinity
+# Commands are run once after deployment to start the application process.
+  commands:
+    # The command to launch your app. If it terminates, it’s restarted immediately.
+    # As this app will handle source operation only, no need to keep it alive (sleep)
+    start: |
+      sleep infinity
 source:
-    operations:
-        update-submodules:
-            command: |
-                set -e
-                git submodule update --init --recursive
-                git submodule update --remote --checkout
-                git add .
-                if ! git diff-index --quiet HEAD; then
-                  git commit -m "Updating submodules"
-                fi
-                # "git push" is automatic at the end of this command
+  operations:
+    update-submodules:
+      command: |
+        set -e
+        git submodule update --init --recursive
+        git submodule update --remote --checkout
+        git add .
+        if ! git diff-index --quiet HEAD; then
+          git commit -m "Updating submodules"
+        fi
+        # "git push" is automatic at the end of this command
 {{< /snippet >}}
 ```
 

@@ -79,9 +79,11 @@ Set up a script by following these steps:
 4.  Update the deploy hook to run your script on each deploy.
 
     ```yaml {configFile="app"}
-    hooks:
-        build: ...
-        deploy: |
+    applications:
+      app:
+        hooks:
+          build: ...
+          deploy: |
             python manage.py migrate
             bash sanitize.sh
     ```

@@ -39,7 +39,7 @@ Below are some examples from common Node.js framework configuration:
 title=Next.js
 +++
 
-```yaml {location="{{% vendor/configfile "apps" %}}"}
+```yaml {configFile="app"}
 applications:
   app:
     source:
@@ -72,7 +72,7 @@ routes:
 title=Express
 +++
 
-```yaml {location="{{% vendor/configfile "apps" %}}"}
+```yaml {configFile="app"}
 applications:
   app:
     source:
@@ -106,14 +106,14 @@ routes:
 title=Strapi
 +++
 
-```yaml {location=".{{% vendor/cli %}}/config.yaml"}
+```yaml {configFile="app"}
 applications:
   app:
     source:
       root: "/"
     type: "nodejs:20"
     relationships:
-      postgresql: 
+      postgresql:
     mounts:
       ...
     web:

@@ -47,36 +47,36 @@ Add a new service to your `.upsun/config.yaml` file:
 +++
 title=PostgreSQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  app:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
 services:
-    database:
-	type: postgresql:{{% latest "postgresql" %}}
+  database:
+	  type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
 +++
 title=Oracle MySQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  app:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
 services:
-    database:
-	type: oracle-mysql:{{% latest "oracle-mysql" %}}
+  database:
+	  type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
@@ -88,42 +88,42 @@ Add a new relationship to your `.upsun/config.yaml` file to allow access to the 
 +++
 title=PostgreSQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  app:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
-        relationships:
-            database: 
+    relationships:
+      database:
 
 services:
-    database:
-	type: postgresql:{{% latest "postgresql" %}}
+  database:
+	  type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
 +++
 title=Oracle MySQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  app:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
-        relationships:
-            database: 
+    relationships:
+      database:
 
 services:
-    database:
-	type: oracle-mysql:{{% latest "oracle-mysql" %}}
+  database:
+	  type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 

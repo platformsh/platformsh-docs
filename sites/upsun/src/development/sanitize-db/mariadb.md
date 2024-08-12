@@ -26,16 +26,18 @@ Add your script to sanitize the database to [a `deploy` hook](../../create-apps/
 for preview environments:
 
 ```yaml {configFile="app"}
-hooks:
-    deploy: |
+applications:
+  app:
+    hooks:
+      deploy: |
 
         # ...
 
         cd /app/public
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-            # Do whatever you want on the production site.
+          # Do whatever you want on the production site.
         else
-            drush -y sql:sanitize
+          drush -y sql:sanitize
         fi
         drush -y updatedb
 ```
@@ -47,17 +49,19 @@ To sanitize only on the initial deploy and not all future deploys,
 use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the following example:
 
 ```yaml {configFile="app"}
-hooks:
-    deploy: |
+applications:
+  app:
+    hooks:
+      deploy: |
 
         # ...
 
         cd /app/public
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] || [ "$(drush state:get --format=string mymodule.sanitized)" != yes ]; then
-            # Do whatever you want on the production site.
+          # Do whatever you want on the production site.
         else
-            drush -y sql:sanitize
-            drush state:set --input-format=string mymodule.sanitized yes
+          drush -y sql:sanitize
+          drush state:set --input-format=string mymodule.sanitized yes
         fi
 ```
 

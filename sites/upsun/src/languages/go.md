@@ -20,18 +20,18 @@ When you deploy your app, you always get the latest available patches.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'golang:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'golang:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'golang:{{% latest "golang" %}}'
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'golang:{{% latest "golang" %}}'
 ```
 
 {{% deprecated-versions %}}
@@ -50,30 +50,30 @@ The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run 
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'golang:{{% latest "golang" %}}'
+  # The app's name, which must be unique within the project.
+  app:
+    type: 'golang:{{% latest "golang" %}}'
 
-        hooks:
-            build: |
-                # Modify this line if you want to build differently or
-                # use an alternate name for your executable.
-                go build -o bin/app
+    hooks:
+      build: |
+        # Modify this line if you want to build differently or
+        # use an alternate name for your executable.
+        go build -o bin/app
 
-        web:
-            upstream:
-                socket_family: tcp
-                protocol: http
+    web:
+      upstream:
+        socket_family: tcp
+        protocol: http
 
-            commands:
-                # If you change the build output in the build hook above, update this line as well.
-                start: ./bin/app
+      commands:
+        # If you change the build output in the build hook above, update this line as well.
+        start: ./bin/app
 
-            locations:
-                /:
-                    # Route all requests to the Go app, unconditionally.
-                    allow: false
-                    passthru: true
+      locations:
+        /:
+          # Route all requests to the Go app, unconditionally.
+          allow: false
+          passthru: true
 ```
 
 Note that there is still an Nginx proxy server sitting in front of your application.
