@@ -133,7 +133,7 @@ To run the [Gatsby build](https://www.gatsbyjs.com/docs/conceptual/overview-of-t
 define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="app" >}}
+{{< snippet name="app" config="app" root="myapp" >}}
 
 operations:
   gatsby-build:

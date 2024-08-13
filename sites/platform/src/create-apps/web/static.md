@@ -57,7 +57,7 @@ use the following configuration:
 web:
   locations:
     '/':
-      ...
+      # ...
       scripts: false
       allow: true
 ```
@@ -76,7 +76,7 @@ To do so, use a configuration similar to the following:
 web:
   locations:
     '/':
-      ...
+      # ...
       expires: 24h
       rules:
         \.(css|js|gif|jpe?g|png|svg)$:
@@ -88,7 +88,7 @@ You can also set a `Cache-Control` header in your rules.
 web:
   locations:
     '/':
-      ...
+      # ...
       expires: 24h
       rules:
         \.(css|js|gif|jpe?g|png|svg)$:

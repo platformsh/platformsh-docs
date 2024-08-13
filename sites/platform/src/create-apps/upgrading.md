@@ -239,7 +239,7 @@ web:
 
 We generally try to keep backward compatibility with previous configuration formats. Here is what happens if you don't upgrade your configuration:
 
-```yaml
+```yaml {configFile="app"}
 web:
   # The following parameters are automatically moved as a "/" block in the
   # "locations" object, and are invalid if there is a valid "locations" block.
