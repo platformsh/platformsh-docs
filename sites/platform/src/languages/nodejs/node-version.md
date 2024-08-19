@@ -177,17 +177,6 @@ hooks:
         fi
         ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
 ```
-   {{< note >}}
-
-   Instead of using a symlink between your cache and application directories,
-   you might need to copy the content of `$PLATFORM_CACHE_DIR/.nvm` into `$PLATFORM_APP_DIR/.nvm` manually.
-   To do so, run the following command:
-
-   ```bash
-   rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR
-   ```
-
-   {{< /note >}}
 
 4. Use the cache directory and install based on the variables if not present:
 
@@ -214,14 +203,25 @@ hooks:
         # Use the specified version
         nvm use "$NODE_VERSION"
 ```
-5. Optional: To use the specified Node.js version in the runtime container and not just the build,
-   activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
+5. Optional: To use the specified Node.js version in the runtime container and not just the build, activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
 
    ```bash {location=".environment"}
    unset NPM_CONFIG_PREFIX
    export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
    ```
+
+   {{< note >}}
+
+   Instead of using a symlink between your cache and application directories,
+   you will need to copy the content of `$PLATFORM_CACHE_DIR/.nvm` into `$PLATFORM_APP_DIR/.nvm` manually.
+   To do so, add the following command:
+
+   ```bash
+   rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR
+   ```
+
+   {{< /note >}}
 
 Your final app configuration should look something like the following:
 
