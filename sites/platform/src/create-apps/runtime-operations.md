@@ -133,7 +133,7 @@ To run the [Gatsby build](https://www.gatsbyjs.com/docs/conceptual/overview-of-t
 define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
   gatsby-build:
@@ -158,7 +158,7 @@ To run the [Next.js build](https://nextjs.org/docs/deployment#nextjs-build-api) 
 define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
   next-build:
@@ -191,7 +191,7 @@ title=Ping your app
 To ping your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
   pm2-ping:
@@ -218,7 +218,7 @@ title=Reload your app
 To reload your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
   pm2-reload:
@@ -244,7 +244,7 @@ title=Restart your app
 To restart your Node.js app, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
   pm2-restart:
@@ -271,7 +271,7 @@ On a Django project, you can [define custom `django-admin` commands](https://doc
 To do so, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: python:{{% latest "python" %}}
 

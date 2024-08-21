@@ -216,7 +216,7 @@ For more information, see how to [define relationships between your apps](/creat
 {{< note title="Availability" theme="info">}}
 
 New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
-(`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
+(`Relationship 'SERVICE_NAME' of application 'myapp' ... targets a service without a valid default endpoint configuration.`).
 This syntax is currently being rolled out for all images.
 If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
@@ -499,7 +499,7 @@ For example:
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     # ...
     mounts:
       'var/cache_a':
@@ -521,7 +521,7 @@ The following, however, is not allowed and will result in a failure:
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     # ...
     mounts:
       'var/':

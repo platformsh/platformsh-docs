@@ -35,7 +35,7 @@ The `{{< vendor/configfile "app" >}}` file on the [previous page](/guides/micron
 Consider this simplified `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: "java:11"
 

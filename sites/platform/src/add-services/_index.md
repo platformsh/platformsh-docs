@@ -108,7 +108,7 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 # Other options...
 
@@ -168,7 +168,7 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # Other options...
 
 # Relationships enable an app container's access to a service.
@@ -184,7 +184,7 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # Other options...
 
 # Relationships enable access from this app to a given service.
@@ -293,7 +293,7 @@ mariadb:
     host: mariadb.internal
     rel: mysql
     query:
-        is_master: true
+      is_master: true
     path: main
     password: ''
     type: 'mariadb:10.6'

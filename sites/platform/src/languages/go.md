@@ -57,7 +57,7 @@ Assuming your `go.mod` and `go.sum` files are present in your repository, your a
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: golang:1.14
 

@@ -75,7 +75,7 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # Relationships enable access from this app to a given service.
 relationships:
   <SERVICE_NAME>:
@@ -95,7 +95,7 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # Relationships enable access from this app to a given service.
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
@@ -140,7 +140,7 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # Relationships enable access from this app to a given service.
 relationships:
   gotenberg:
@@ -153,7 +153,7 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # Relationships enable access from this app to a given service.
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.

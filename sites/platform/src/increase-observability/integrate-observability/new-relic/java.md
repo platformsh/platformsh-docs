@@ -82,7 +82,7 @@ Unzip `newrelic-java.zip` by configuring `maven-dependency-plugin` in your `pom.
 The next step is to [configure your app](../../../create-apps/_index.md) to set the agent in the JVM parameters:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: 'java:8'
 disk: 1024
 
@@ -105,7 +105,7 @@ web:
 To use this installation it is only required that you modify `{{< vendor/configfile "app" >}}`, which will download and set the New Relic Java agent for you.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: 'java:8'
 disk: 1024
 

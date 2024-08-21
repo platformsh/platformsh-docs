@@ -108,7 +108,7 @@ The common steps for setup usually include:
 4. Ensuring path mappings is enabled.
     This lets you define what remote paths on the server correspond to what path on your local machine.
     In the majority of cases you can just define [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory)
-    to map to `app`.
+    to map to `myapp`.
 5. Listening for connections.
 6. Starting debugging. While in listen mode, start the `{{% vendor/cli %}} xdebug` tunnel.
     Use the Xdebug helper plugin for your browser to enable debugging.

@@ -96,7 +96,7 @@ To ensure consistent behaviour that doesn't depend on which browser the client
 is using, the new default behaviour is to set these headers to values that
 disable client-side caching. This change only affects static files served
 directly by the web server. Responses served from `passthru` URLs continue to use
-whatever caching headers were set by the application..
+whatever caching headers were set by the application.
 
 To enable caching on your static files, make sure you include an `expires` key in your [web configuration](/create-apps/app-reference/single-runtime-image.md), as shown below:
 

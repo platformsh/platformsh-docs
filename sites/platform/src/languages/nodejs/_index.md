@@ -214,7 +214,7 @@ title=Yarn 3.x and Node.js 16+
 3. Use Corepack to run Yarn in your build hook:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
   build: |

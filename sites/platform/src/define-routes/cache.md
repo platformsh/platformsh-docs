@@ -33,7 +33,7 @@ To configure the HTTP cache, add a `cache` key to your route. You may like to st
 ```yaml {configFile="routes"}
 https://{default}/:
   type: upstream
-  upstream: app:http
+  upstream: myapp:http
   cache:
     enabled: true
     default_ttl: 0
@@ -50,7 +50,7 @@ The presence of any cookie in the request disables caching of that response.
 ```yaml {configFile="routes"}
 https://{default}/:
   type: upstream
-  upstream: app:http
+  upstream: myapp:http
   cache:
     enabled: true
     headers: ['Accept', 'Accept-Language', 'X-Language-Locale']
@@ -223,19 +223,19 @@ If you need fine-grained caching, you can set up caching rules for several route
 ```yaml {configFile="routes"}
 https://{default}/:
   type: upstream
-  upstream: app:http
+  upstream: myapp:http
   cache:
     enabled: true
 
 https://{default}/foo/:
   type: upstream
-  upstream: app:http
+  upstream: myapp:http
   cache:
     enabled: false
 
 https://{default}/foo/bar/:
   type: upstream
-  upstream: app:http
+  upstream: myapp:http
   cache:
     enabled: true
 ```

@@ -15,7 +15,7 @@ Start by enabling SSI:
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   ssi:
     enabled: true
 ```
@@ -54,7 +54,7 @@ For example, you can activate SSI on one route with cache disabled and enable ca
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   ssi:
     enabled: true
   cache:
@@ -62,7 +62,7 @@ For example, you can activate SSI on one route with cache disabled and enable ca
 
 "https://{default}/cache":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   cache:
     enabled: true
 ```

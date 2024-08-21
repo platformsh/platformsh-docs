@@ -29,7 +29,7 @@ For example, to include another ``.platform/app1.yaml`` file in the main `{{% ve
 
 ```yaml {location=".platform/app1.yaml"}
 source:
-root: "/"
+  root: "/"
 type: "nodejs:20"
 web:
   commands:
@@ -44,7 +44,7 @@ locations:
 And including it:
 
 ```yaml {configFile="apps"}
-app: !include
+myapp: !include
   type: yaml
   path: ./app1.yaml
 # or as default type is "yaml", it could be:

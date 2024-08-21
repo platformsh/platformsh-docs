@@ -31,14 +31,14 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 {{% language-specification type="elixir" display_name="Elixir" %}}
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   type: 'elixir:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   type: 'elixir:{{% latest "elixir" %}}'
 ```
 
@@ -93,7 +93,7 @@ you can then start it from the `web.commands.start` directive.
 The following basic app configuration is sufficient to run most Elixir applications.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: 'elixir:{{% latest "elixir" %}}'
 

@@ -174,7 +174,7 @@ A complete example is included at the end of this section.
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 ```
 ### Complete app configuration
 
@@ -182,7 +182,7 @@ Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
 # The name of the app, which must be unique within a project.
-name: 'app'
+name: 'myapp'
 
 type: "ruby:3.0"
 
@@ -317,20 +317,20 @@ This should give you something like the following:
 
 ```json
 {
-   "mysql" : [
-      {
-         "path" : "main",
-         "query" : {
-            "is_master" : true
-         },
-         "port" : 3306,
-         "username" : "user",
-         "password" : "",
-         "host" : "mysql.internal",
-         "ip" : "246.0.241.50",
-         "scheme" : "mysql"
-      }
-   ]
+  "mysql" : [
+    {
+      "path" : "main",
+      "query" : {
+        "is_master" : true
+      },
+      "port" : 3306,
+      "username" : "user",
+      "password" : "",
+      "host" : "mysql.internal",
+      "ip" : "246.0.241.50",
+      "scheme" : "mysql"
+    }
+  ]
 }
 ```
 

@@ -53,7 +53,7 @@ To enable HTTPS, add a routing configuration similar to the following:
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 
 "https://www.{default}/":
   type: redirect

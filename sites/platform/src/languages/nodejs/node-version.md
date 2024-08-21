@@ -108,7 +108,7 @@ You can verify this by running `node -v`.
 Your final app configuration should look something like this:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: 'python:{{% latest "python" %}}'
 dependencies:
   nodejs:
@@ -225,7 +225,7 @@ hooks:
 Your final app configuration should look something like the following:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: 'python:{{% latest "python" %}}'
 variables:
   env:

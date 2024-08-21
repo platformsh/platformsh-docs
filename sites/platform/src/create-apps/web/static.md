@@ -21,7 +21,7 @@ To successfully serve a static site using {{% vendor/name %}},
 you need to set up a minimal app configuration similar to the following:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 # The type of the application to build.
 type: "nodejs:{{% latest "nodejs" %}}"
 
@@ -117,7 +117,7 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 ## Complete example configuration
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: 'python:3.11'
 

@@ -32,7 +32,7 @@ The most straightforward data structure involves defining key–value pairs wher
 So you could have a basic configuration for an app:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "golang:1.18"
 disk: 1024
 ```
@@ -66,7 +66,7 @@ In contrast, when you define mappings, the order doesn't matter.
 So you could expand the configuration from before to add another mapping:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "golang:1.18"
 disk: 1024
 

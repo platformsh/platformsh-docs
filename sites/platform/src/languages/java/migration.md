@@ -39,7 +39,7 @@ and [services](../../add-services/_index.md).
 ### Application
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: 'java:<VERSION>' [1]
 disk: 1024
 hooks:
@@ -64,12 +64,12 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http" [1]
+  upstream: "myapp:http" [1]
 "https://www.{default}/":
   type: redirect
   to: "https://{default}/"
 ```
-1. It defines the application will link in the route, e.g.: `"app:http"`
+1. It defines the application will link in the route, e.g.: `"myapp:http"`
 
 {{< note >}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
@@ -152,7 +152,7 @@ export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 This `.environment` can interact to each application file. E.g.:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "java:11"
 disk: 1024
 hooks:

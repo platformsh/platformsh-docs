@@ -67,7 +67,7 @@ Use the ``stack`` key to define which runtimes and binaries you want to install 
 Define them as a YAML array as follows:
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   stack: [ "<nixpackage>@<version>" ]
   # OR
   stack:
@@ -135,7 +135,7 @@ You want to add PHP version {{% latest php %}} and ``facedetect`` to your applic
 To do so, use the following configuration:
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   stack: [ "php@{{% latest php %}}", "facedetect" ]
   # OR
   stack:
@@ -167,7 +167,7 @@ specify a list of `disabled_extensions` below the language definition.</br>
 For instance:
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   source:
     root: "/"
   stack:
@@ -203,7 +203,7 @@ For instance, to install [``python312Packages.yq``](https://search.nixos.org/pac
 use the following configuration:
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   stack:
     - "python@3.12"
     - "python312Packages.yq" # python package specific
@@ -237,7 +237,7 @@ and [composable images](/create-apps/app-reference/composable-image.md).
 Here is an example configuration including a ``frontend`` app and a ``backend`` app:
 
 ```yaml {configFile="apps"}
-app1:
+backend:
     stack:
       - "php@{{% latest "php" %}}":
           extensions:
@@ -247,7 +247,7 @@ app1:
             - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
-app2:
+frontend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
 
@@ -397,7 +397,7 @@ For more information, see how to [define relationships between your apps](/creat
 {{< note title="Availability" theme="info">}}
 
 New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
-(`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
+(`Relationship 'SERVICE_NAME' of application 'myapp' ... targets a service without a valid default endpoint configuration.`).
 This syntax is currently being rolled out for all images.
 If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
@@ -680,7 +680,7 @@ For example:
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     # ...
     mounts:
       'var/cache_a':
@@ -702,7 +702,7 @@ The following, however, is not allowed and will result in a failure:
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     # ...
     mounts:
       'var/':

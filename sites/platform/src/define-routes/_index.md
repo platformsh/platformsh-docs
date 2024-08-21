@@ -25,13 +25,13 @@ These examples show how to define routes.
 ### Default route definition
 
 If you don't include a file defining routes, a single default route is deployed.
-If you have one app to direct traffic to and its name is `app`,
+If you have one app to direct traffic to and its name is `myapp`,
 this is equivalent to the following:
 
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: app:http
+  upstream: myapp:http
 ```
 
 All traffic to your domain (say, `https://example.com`) is sent to your app.
@@ -41,7 +41,7 @@ It affects your [default domain](#default).
 ### Basic redirect definition
 
 In a basic situation, you have one app to direct traffic to.
-Say its name is `app`.
+Say its name is `myapp`.
 And say you want to redirect requests from `https://www.example.com` to `https://example.com`.
 
 Define your routes like this:
@@ -49,7 +49,7 @@ Define your routes like this:
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 
 "https://www.{default}/":
   type: redirect
@@ -72,12 +72,12 @@ The specifics of configuring the Router container for multiple applications is e
 ## Trailing slashes
 
 All defined routes have at least a slash in the path.
-So you might define routes for 2 apps named `app` and `api` as follows:
+So you might define routes for 2 apps named `myapp` and `api` as follows:
 
 ```yaml {configFile="routes"}
 "https://{default}":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 
 "https://subdomain.example.com":
   type: upstream
@@ -95,7 +95,7 @@ you see the following resolved routes (assuming `example.com` is your default do
     "id": null,
     "attributes": {},
     "type": "upstream",
-    "upstream": "app",
+    "upstream": "myapp",
     "original_url": "https://{default}"
   },
   "https://subdomain.example.com/": {
@@ -119,7 +119,7 @@ Each route in your configuration file is defined in one of two ways:
 The available placeholders are `{default}` and `{all}`.
 They stand in for the [custom domains](../domains/steps/_index.md) you've defined in your project.
 
-These domains can be top-level domains (`example.com`) or subdomains (`app.example.com`).
+These domains can be top-level domains (`example.com`) or subdomains (`myapp.example.com`).
 
 ### `{default}`
 
@@ -132,7 +132,7 @@ You can use the `{default}` placeholder:
 ```yaml {configFile="routes"}
 "https://{default}/blog":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 ```
 
 And you can use an absolute URL:
@@ -140,7 +140,7 @@ And you can use an absolute URL:
 ```yaml {configFile="routes"}
 "https://example.com/blog":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 ```
 
 In both cases, the URLs for your Production environment are the same.
@@ -169,7 +169,7 @@ If you used the `{default}` placeholder:
 ```yaml {configFile="routes"}
 "https://{default}/blog":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 ```
 
 The generated URL for the `feature` environment was:
@@ -183,7 +183,7 @@ If you used an absolute URL:
 ```yaml {configFile="routes"}
 "https://example.com/blog":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 ```
 
 The generated URL for the `feature` environment was:
@@ -205,7 +205,7 @@ You can then define the following routes:
 ```yaml {configFile="routes"}
 "https://{all}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 
 "https://www.{all}/":
   type: redirect
@@ -354,7 +354,7 @@ So you can define a route like this:
 ```yaml {configFile="routes"}
 "http://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   attributes:
     "foo": "bar"
 ```
@@ -363,14 +363,14 @@ The attributes appear in the routes data like so:
 
 ```json
 "https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/": {
-    "primary": true,
-    "id": null,
-    "attributes": {
-        "foo": "bar"
-    },
-    "type": "upstream",
-    "upstream": "app",
-    "original_url": "https://{default}/"
+  "primary": true,
+  "id": null,
+  "attributes": {
+    "foo": "bar"
+  },
+  "type": "upstream",
+  "upstream": "myapp",
+  "original_url": "https://{default}/"
 }
 ```
 
@@ -429,10 +429,10 @@ Routes on the project Example (abcdef123456), environment main (type: production
 +---------------------------+----------+---------------------------+
 | Route                     | Type     | To                        |
 +---------------------------+----------+---------------------------+
-| https://app.{default}/    | upstream | app:http                  |
-| https://app.{default}/api | upstream | api:http                  |
-| http://app.{default}/     | redirect | https://app.{default}/    |
-| http://app.{default}/api  | redirect | https://app.{default}/api |
+| https://www.{default}/    | upstream | myapp:http                  |
+| https://www.{default}/api | upstream | api:http                  |
+| http://www.{default}/     | redirect | https://www.{default}/    |
+| http://www.{default}/api  | redirect | https://www.{default}/api |
 +-----------------------+----------+-------------------------------+
 
 To view a single route, run: {{% vendor/cli %}} route:get <route>
@@ -450,7 +450,7 @@ which is a requirement for the router caching.
 ```yaml {configFile="routes"}
 "https://{default}/ws":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   cache:
     enabled: false
 
@@ -458,7 +458,7 @@ which is a requirement for the router caching.
 # It is required for some, as only defining an HTTPS config may trigger an automatic redirect to HTTP.
 "http://{default}/ws":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   cache:
     enabled: false
 ```

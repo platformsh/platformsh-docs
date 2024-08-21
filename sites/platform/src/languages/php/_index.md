@@ -120,17 +120,17 @@ To have more control, you can define rules to specify which files you want to al
 A complete basic app configuration looks like the following:
 
 ```yaml {configFile="app"}
-name: 'app'
+name: 'myapp'
 
 type: 'php:{{% latest "php" %}}'
 
 disk: 2048
 
 web:
-    locations:
-        '/':
-            root: 'public'
-            passthru: '/app.php'
+  locations:
+    '/':
+      root: 'public'
+      passthru: '/app.php'
 ```
 ## Dependencies
 
@@ -145,8 +145,8 @@ To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configu
 
 ```yaml {configFile="app"}
 dependencies:
-    php:
-        composer/composer: '^2'
+  php:
+    composer/composer: '^2'
 ```
 Adding a dependency to the [dependencies block](/create-apps/app-reference/single-runtime-image.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
@@ -190,9 +190,9 @@ To install from an alternative repository:
 
 ```yaml {configFile="app"}
 dependencies:
-    php:
-        require:
-            "platformsh/client": "2.x-dev"
+  php:
+    require:
+      "platformsh/client": "2.x-dev"
 ```
    This is equivalent to `composer require platformsh/client 2.x-dev`.
 
@@ -200,8 +200,8 @@ dependencies:
 
 ```yaml {configFile="app"}
 repositories:
-    - type: vcs
-      url: "git@github.com:platformsh/platformsh-client-php.git"
+  - type: vcs
+    url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 That installs `platformsh/client` from the specified repository URL as a global dependency.
 
@@ -210,13 +210,13 @@ use the following:
 
 ```yaml {configFile="app"}
 dependencies:
-    php:
-        composer/composer: '^2'
-        require:
-            "platformsh/client": "2.x-dev"
-        repositories:
-            - type: vcs
-              url: "git@github.com:platformsh/platformsh-client-php.git"
+  php:
+    composer/composer: '^2'
+    require:
+      "platformsh/client": "2.x-dev"
+    repositories:
+      - type: vcs
+        url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 ## Connect to services
 

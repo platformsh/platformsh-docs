@@ -39,7 +39,7 @@ you might elect to rely more heavily on environment variables in its place.
 Consider this simplified `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "java:11"
 disk: 1024
 hooks:

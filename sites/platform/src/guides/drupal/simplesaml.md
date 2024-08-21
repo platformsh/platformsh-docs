@@ -34,7 +34,7 @@ It should end up looking approximately like this:
 ```yaml {configFile="routes"}
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
   cache:
     enabled: true
     cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']

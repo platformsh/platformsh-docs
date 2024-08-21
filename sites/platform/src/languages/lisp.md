@@ -99,7 +99,7 @@ Note that the start command _must_ run in the foreground. Should the program ter
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Lisp applications.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: lisp:1.5
 web:
   commands:
