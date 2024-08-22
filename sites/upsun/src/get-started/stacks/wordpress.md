@@ -26,7 +26,7 @@ The instructions on this page were designed based on the following assumptions:
 
 - You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
 - You do not have a `composer.json` file, or are comfortable making changes to your existing version.
-- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `app`, which you will notice is the top-level key in all configuration below.
+- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
 
 {{< /note >}}
 
@@ -61,7 +61,7 @@ Locate the `web:locations` section and update the root (`/`) location as follows
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: 'php:8.3'
@@ -99,7 +99,7 @@ To set one up, follow these steps:
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        source:
          root: "/"
        type: 'php:8.3'
@@ -132,7 +132,7 @@ To set one up, follow these steps:
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        source:
          root: "/"
        type: 'php:8.3'
@@ -156,7 +156,7 @@ Update the `build:` section as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: 'php:8.3'
@@ -190,7 +190,7 @@ Update the `deploy:` section as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: 'php:8.3'
@@ -215,7 +215,7 @@ Update the route as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: 'php:8.3'
@@ -224,7 +224,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
     cache:
       enabled: true
       cookies:
@@ -232,7 +232,7 @@ routes:
         - '/^wp-*/'
 ```
 
-Matching the application name `app` with the `upstream` definition `app:http` is the most important setting to ensure at this stage.
+Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
 ## 7. Update your MariaDB service relationship
@@ -243,11 +243,11 @@ Update the relationship for the database service as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: 'php:8.3'
-    ...
+    # ...
     relationships:
       database: "mariadb:mysql"
 ```

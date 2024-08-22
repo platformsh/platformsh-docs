@@ -33,7 +33,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'ruby:{{% latest "ruby" %}}'
 ```
 
@@ -54,7 +54,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
     ```
 
@@ -67,7 +67,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
         variables:
           env:
@@ -96,7 +96,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
         ...
         hooks:
@@ -116,7 +116,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
         ...
         dependencies:
@@ -129,7 +129,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
         ...
         web:
@@ -153,7 +153,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
         ...
         web:
@@ -176,7 +176,7 @@ A complete example is included at the end of this section.
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'ruby:{{% latest "ruby" %}}'
         ...
         mounts:
@@ -205,7 +205,7 @@ A complete example is included at the end of this section.
     routes:
       "https://{default}/":
         type: upstream
-        upstream: "app:http"
+        upstream: "myapp:http"
     ```
 ### Complete app configuration
 
@@ -214,7 +214,7 @@ Here is a complete `{{< vendor/configfile "app" >}}` file:
 ```yaml {configFile="app"}
 # The name of the app, which must be unique within a project.
 applications:
-  app:
+  myapp:
     type: 'ruby:{{% latest "ruby" %}}'
 
     dependencies:
@@ -315,7 +315,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
 
 services:
   ...
@@ -343,7 +343,7 @@ Once you have a service, link to it in your [app configuration](../create-apps/_
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'ruby:{{% latest "ruby" %}}'
     relationships:
       mysql:

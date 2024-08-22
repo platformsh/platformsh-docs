@@ -30,7 +30,7 @@ The following example shows such a basic setup for Node.js:
 # Top-level key, which contains configurations for all app containers.
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     # The language and version for your app.
     type: 'nodejs:{{% latest "nodejs" %}}'
 
@@ -125,7 +125,7 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     # The language and version for your app.
     type: 'php:{{% latest "php" %}}'
 
@@ -188,7 +188,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     # The list of packages you want installed (from the {{% vendor/name %}} collection
     # of supported runtimes and/or from Nixpkgs).
     # For more information, see the Composable image page in the App reference section.

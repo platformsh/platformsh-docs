@@ -74,7 +74,7 @@ For example, if you have a build hook like the following:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -e
@@ -92,7 +92,7 @@ And replace the hook with an include tag for an identical result:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: !include
         type: string
@@ -222,7 +222,7 @@ and including it:
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     !include ./apps/my-app.yaml
 ```
 

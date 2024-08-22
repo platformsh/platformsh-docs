@@ -14,7 +14,7 @@ If so, add a [rule](/create-apps/app-reference/single-runtime-image.md#rules) si
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:
@@ -31,7 +31,7 @@ You could rewrite requests to do that behind the scenes:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:

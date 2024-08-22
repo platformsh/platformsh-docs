@@ -190,7 +190,7 @@ If you split the service into multiple endpoints, define multiple relationships.
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     relationships:
       vault_secret: "vault-kms:manage_keys"
 
@@ -217,7 +217,7 @@ services:
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
    relationships:
       vault_manage:
         service: vault-kms

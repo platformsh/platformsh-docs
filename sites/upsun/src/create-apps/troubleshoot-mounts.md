@@ -47,7 +47,7 @@ This example defines two mounts, one named `private` and one `upload`:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     mounts:
       'private':
         source: storage
@@ -62,7 +62,7 @@ To make `uploads` accessible, define a location with different rules as in the f
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     web:
       locations:
         '/':
@@ -84,7 +84,7 @@ To mount a directory starting with a dot, put a `/` at the start of its definiti
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     web:
       mounts:
         '/.myhiddenfolder':

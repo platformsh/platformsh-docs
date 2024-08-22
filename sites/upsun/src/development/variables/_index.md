@@ -206,7 +206,7 @@ All the non-alphanumerical or `_` characters (`[^0-9A-Z_]`) are transformed into
 **Example:**
 
 For a relationship named ``database`` to a service named `postgresl`,
-the following environment variables are automatically generated in your `app` container:
+the following environment variables are automatically generated in your `myapp` container:
 
 ```bash
 DATABASE_URL=pgsql://main:main@postgresql.internal:5432/main

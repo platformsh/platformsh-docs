@@ -63,7 +63,7 @@ The syntax is similar to the following:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
@@ -75,7 +75,7 @@ For example, to update a file from a remote location, you could define an operat
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
@@ -138,7 +138,7 @@ to pass to a source operation similar to the following:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
@@ -252,7 +252,7 @@ Make sure you carefully check your [user access on this project](../administrati
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -e
@@ -268,7 +268,7 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
@@ -316,7 +316,7 @@ The following source operation syncronizes your branch with an upstream Git repo
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
@@ -344,7 +344,7 @@ and you need to quickly revert to the previous state.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
@@ -363,7 +363,7 @@ The following source operation uses Composer to update Drupal Core:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: php:{{% latest "php" %}}
     source:
       root: "/"
@@ -388,7 +388,7 @@ or [overriding it](#use-variables-in-your-source-operations) when running the so
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: php:{{% latest "php" %}}
     source:
       root: "/"
@@ -412,7 +412,7 @@ The following source operation updates all Git submodules recursively:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: php:{{% latest "php" %}}
     source:
       root: "/"

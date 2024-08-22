@@ -31,7 +31,7 @@ Any tagged version of the library is acceptable:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     hooks:
       build: |
@@ -57,7 +57,7 @@ Any tagged version of the library is acceptable:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     hooks:
       build: |

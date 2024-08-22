@@ -41,7 +41,7 @@ To override them on other non-production environments, run the following command
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        [...]
        hooks:
          build: |

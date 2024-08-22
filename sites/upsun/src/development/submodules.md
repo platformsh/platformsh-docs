@@ -127,7 +127,7 @@ To do so, follow these steps:
    Add the following configuration to your `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="false" >}}
+{{< snippet name="myapp" config="app" root="false" >}}
 source:
   operations:
     rebuild:

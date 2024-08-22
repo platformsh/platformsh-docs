@@ -14,7 +14,7 @@ To deploy a worker, add an entry under the `workers` section [in your app config
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     workers:
       mails:
         commands:

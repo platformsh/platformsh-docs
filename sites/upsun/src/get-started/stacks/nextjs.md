@@ -188,7 +188,7 @@ Follow the prompts.
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     type: "nodejs:20"
     hooks:
       build: |

@@ -36,7 +36,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
 ```
 
@@ -56,7 +56,7 @@ and add it to your [app configuration](../../create-apps/_index.md):
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
 ```
 ### 2. Serve your app
@@ -91,7 +91,7 @@ and nonexistent files are handled by `app.php`:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     web:
       locations:
@@ -109,7 +109,7 @@ A complete basic app configuration looks like the following:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     web:
       locations:
@@ -131,7 +131,7 @@ To use Composer 2.x on your project, either use PHP 8.2+ or, in your app configu
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     [...]
     dependencies:
@@ -157,7 +157,7 @@ Set the build flavor to `none` and add the commands you need to your `build` hoo
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     [...]
     build:
@@ -186,7 +186,7 @@ To install from an alternative repository:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     [...]
     dependencies:
@@ -201,7 +201,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     [...]
     dependencies:
@@ -220,7 +220,7 @@ use the following:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     [...]
     dependencies:
@@ -434,7 +434,7 @@ For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       php:
@@ -492,7 +492,7 @@ title=Run a custom script
 2. Specify an alternative `start` command by adapting the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 web:
   commands:
     start: /usr/bin/start-php-app
@@ -510,7 +510,7 @@ title=Run a custom web server
 2.  Specify an alternative `start` command by adapting the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 web:
   commands:
     start: /usr/bin/start-php-app
@@ -520,7 +520,7 @@ web:
 3.  Configure the container to listen on a TCP socket:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 web:
   upstream:
     socket_family: tcp
@@ -536,7 +536,7 @@ especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](ht
 4.  Optional: Override redirects to let the custom web server handle them:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 locations:
   "/":
     passthru: true
@@ -558,7 +558,7 @@ To execute runtime-specific tasks (such as clearing cache) before your app start
 2.  Specify an alternative `start` command by adapting the following:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 web:
   commands:
     start: bash {{< variable "PATH_TO_SCRIPT" >}} && /usr/bin/start-php-app
@@ -592,7 +592,7 @@ To leverage FFIs, follow these steps:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     runtime:
       extensions:
@@ -607,7 +607,7 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       php:

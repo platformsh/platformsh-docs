@@ -40,7 +40,7 @@ and [services](../../add-services/_index.md).
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'java:<VERSION>'
 
     hooks:
@@ -66,13 +66,13 @@ Be aware that after the build, it creates a read-only system. You have the [moun
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http" [1]
+    upstream: "myapp:http" [1]
   "https://www.{default}/":
     type: redirect
     to: "https://{default}/"
 
 applications:
-  app:
+  myapp:
     type: 'java:<VERSION>'
 
     hooks:
@@ -81,7 +81,7 @@ applications:
       commands:
         start: [3]
 ```
-1. It defines the application will link in the route. For example,`"app:http"`.
+1. It defines the application will link in the route. For example,`"myapp:http"`.
 
 {{< note version="1" >}}
 Application instances have a limited amount of memory at build time, which has a maximum of 8 GB.
@@ -239,7 +239,7 @@ This `.environment` file can interact to each application file.
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'java:{{% latest "java" %}}'
     hooks:
       build: ./mvnw package -DskipTests -Dquarkus.package.uber-jar=true

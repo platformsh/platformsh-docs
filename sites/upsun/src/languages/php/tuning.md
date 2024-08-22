@@ -54,7 +54,7 @@ To enable preloading, add a variable that specifies a preload script:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       php:
@@ -111,7 +111,7 @@ An example configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       php:
@@ -156,7 +156,7 @@ To determine the total amount of memory to use, follow these steps:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       php:
@@ -185,7 +185,7 @@ Timestamp validation can be disabled by adding the following variable to your [a
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
     php:

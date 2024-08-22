@@ -27,7 +27,7 @@ for preview environments:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       deploy: |
 
@@ -50,7 +50,7 @@ use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the fo
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       deploy: |
 

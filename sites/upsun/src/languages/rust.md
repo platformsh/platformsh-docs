@@ -40,7 +40,7 @@ See the [complete example](#complete-example) below for more details.
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
 
     # The language and version for your app.
     type: 'rust:1'
@@ -120,7 +120,7 @@ Follow these steps:
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
 
         # The language and version for your app.
         type: 'rust:1'

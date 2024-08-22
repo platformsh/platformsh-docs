@@ -30,7 +30,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'elixir:{{% latest "elixir" %}}'
 ```
 
@@ -58,7 +58,7 @@ If you are using Hex to manage your dependencies, you need to specify the `MIX_E
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'elixir:{{% latest "elixir" %}}'
     variables:
       env:
@@ -71,7 +71,7 @@ Include in your build hook the steps to retrieve a local Hex and `rebar`, and th
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'elixir:{{% latest "elixir" %}}'
     hooks:
       build: |
@@ -94,7 +94,7 @@ The following basic app configuration is sufficient to run most Elixir applicati
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'elixir:{{% latest "elixir" %}}'
 
     variables:
@@ -143,7 +143,7 @@ Given a [relationship](/create-apps/app-reference/single-runtime-image#relations
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'elixir:{{% latest "elixir" %}}'
 
     [...]
@@ -183,7 +183,7 @@ and setup Ecto during the deploy hook:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       deploy: |
         mix do ecto.setup

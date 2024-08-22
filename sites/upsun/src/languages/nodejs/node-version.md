@@ -77,7 +77,7 @@ This property accepts either an exact version or a range:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       nodejs:
@@ -90,7 +90,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       nodejs:
@@ -104,7 +104,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       nodejs:
@@ -131,7 +131,7 @@ Your final app configuration should look something like this:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       nodejs:
@@ -168,7 +168,7 @@ To use `nvm`, follow these steps:
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'python:{{% latest "python" %}}'
         variables:
           env:
@@ -183,7 +183,7 @@ To use `nvm`, follow these steps:
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'python:{{% latest "python" %}}'
         variables:
           env:
@@ -198,7 +198,7 @@ To use `nvm`, follow these steps:
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'python:{{% latest "python" %}}'
         variables:
           env:
@@ -234,7 +234,7 @@ To use `nvm`, follow these steps:
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'python:{{% latest "python" %}}'
         variables:
           env:
@@ -277,7 +277,7 @@ To use `nvm`, follow these steps:
     ```yaml {configFile="app"}
     applications:
       # The app's name, which must be unique within the project.
-      app:
+      myapp:
         type: 'python:{{% latest "python" %}}'
         variables:
           env:

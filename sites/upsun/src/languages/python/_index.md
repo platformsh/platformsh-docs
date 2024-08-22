@@ -33,7 +33,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
 ```
 
@@ -56,7 +56,7 @@ Once you have it configured, add the following configuration to get it running o
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
 ```
 2.  Install the requirements for your app.
@@ -64,7 +64,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:
@@ -79,7 +79,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     web:
       # Start your app with the configuration you define
@@ -100,7 +100,7 @@ Follow these steps to get your server started.
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
 ```
 2.  Define the conditions for your web server:
@@ -108,7 +108,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     web:
       upstream:
@@ -148,7 +148,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:
@@ -181,7 +181,7 @@ add them to the `dependencies` in your [app configuration](/create-apps/app-refe
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:
@@ -192,7 +192,7 @@ For example, to use `pipenv` to manage requirements and a virtual environment, a
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:

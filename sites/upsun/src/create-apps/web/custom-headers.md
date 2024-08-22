@@ -18,7 +18,7 @@ Start by defining a header for files in general:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -39,7 +39,7 @@ Now set up an exception for MP3 files using a [rule](/create-apps/app-reference/
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -62,7 +62,7 @@ Now set a rule for MP4 files.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -95,7 +95,7 @@ You can do so for specific origins or for all origins with a wildcard.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:

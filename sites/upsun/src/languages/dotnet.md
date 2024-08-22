@@ -31,7 +31,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'dotnet:{{% latest "dotnet" %}}'
 ```
 
@@ -42,7 +42,7 @@ with the default [framework-dependent deployment](https://docs.microsoft.com/en-
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'dotnet:{{% latest "dotnet" %}}'
     hooks:
       build: |
@@ -89,7 +89,7 @@ while routing other traffic to the .NET application.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'dotnet:{{% latest "dotnet" %}}'
     web:
       locations:
@@ -110,7 +110,7 @@ You can also route all requests to the application unconditionally:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'dotnet:{{% latest "dotnet" %}}'
     web:
       locations:

@@ -85,7 +85,7 @@ That means, for example, that the following two `{{< vendor/configfile "app" >}}
 
 ```yaml {configFile="app"}
 applications:
-  app: #The name of the app, which must be unique within the project.
+  myapp: #The name of the app, which must be unique within the project.
     type: python:{{% latest "python" %}}
     mounts:
       test:
@@ -109,7 +109,7 @@ services:
 
 ```yaml {configFile="app"}
 applications:
-  app: #The name of the app, which must be unique within the project.
+  myapp: #The name of the app, which must be unique within the project.
     type: python:{{% latest "python" %}}
     workers:
       queue:
@@ -151,7 +151,7 @@ For example, consider the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app: #The name of the app, which must be unique within the project.
+  myapp: #The name of the app, which must be unique within the project.
     type: "python:{{% latest "python" %}}"
     hooks:
       build: |
@@ -270,7 +270,7 @@ and a `tmp` mount (called `local_dir`) to be used by a `queue` worker instance:
 
 ```yaml {configFile="app"}
 applications:
-  app: #The name of the app, which must be unique within the project.
+  myapp: #The name of the app, which must be unique within the project.
     type: "nodejs:{{% latest "nodejs" %}}"
 
     # Define a web instance

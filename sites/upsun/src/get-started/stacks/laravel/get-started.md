@@ -39,7 +39,7 @@ This guide provides instructions for deploying and working with Laravel on {{% v
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        [...]
        runtime:
          extensions:

@@ -18,7 +18,7 @@ to install the specific version you want to use.
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       env:
@@ -30,7 +30,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     variables:
       env:
@@ -75,7 +75,7 @@ If you want this Python version to be available in the runtime environment, foll
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     hooks:
       build: |

@@ -113,7 +113,7 @@ In your app configuration, locate the `web:commands:start` section and update it
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     web:
       commands:
@@ -132,7 +132,7 @@ Locate the `web:locations` section and add a location for `/static`:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     web:
       locations:
@@ -151,7 +151,7 @@ Locate the `hooks:build` section and update it as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     build: |
       set -eux
@@ -172,7 +172,7 @@ In your app configuration, locate the `deploy` section and update it as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     deploy: |
       set -eux
@@ -188,7 +188,7 @@ To do so, locate the `mounts` section (currently commented), and update it as fo
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     mounts:
       "/staticfiles":

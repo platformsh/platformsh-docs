@@ -18,7 +18,7 @@ you need to set up a minimal app configuration similar to the following:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -53,7 +53,7 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -78,7 +78,7 @@ To do so, use a configuration similar to the following:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -96,7 +96,7 @@ applications:
 You can also set a `Cache-Control` header in your rules.
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     web:
       locations:
         '/':
@@ -119,7 +119,7 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "nodejs:{{% latest "nodejs" %}}"
     source:
@@ -136,7 +136,7 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # The type of the application to build.
     type: "python:{{% latest "python" %}}"
     source:

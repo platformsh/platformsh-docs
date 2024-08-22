@@ -42,7 +42,7 @@ To do so, modify your [app configuration](../../create-apps/_index.md), as in th
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 hooks:
   build: |
@@ -59,7 +59,7 @@ hooks:
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
   env:
@@ -99,7 +99,7 @@ Because Pipenv depends on pip, you might want to also specify the pip version.
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 dependencies:
   python3:
@@ -120,7 +120,7 @@ hooks:
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
   env:
@@ -162,7 +162,7 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     variables:
       env:
@@ -177,7 +177,7 @@ applications:
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
   env:
@@ -208,7 +208,7 @@ hooks:
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
   env:

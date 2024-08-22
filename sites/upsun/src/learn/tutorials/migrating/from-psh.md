@@ -187,7 +187,7 @@ Suppose you have the following mounts defined:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     mounts:
       'web/uploads':
         source: local
@@ -207,7 +207,7 @@ For example:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     mounts:
       'web/uploads':
         source: instance

@@ -102,7 +102,7 @@ you can use:
 <--->
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     runtime:
       sizing_hints:

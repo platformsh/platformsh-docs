@@ -24,7 +24,7 @@ The Gunicorn server is broadly compatible with various web frameworks, light on 
 title=Pip (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -43,7 +43,7 @@ web:
 title=Pip (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -64,7 +64,7 @@ web:
 title=Pipenv (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -83,7 +83,7 @@ web:
 title=Pipenv (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -104,7 +104,7 @@ web:
 title=Poetry (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -123,7 +123,7 @@ web:
 title=Poetry (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -156,7 +156,7 @@ adjust the start command to the following:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     web:
       upstream:
@@ -176,7 +176,7 @@ developed to power Django Channels.
 title=Pip (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -195,7 +195,7 @@ web:
 title=Pip (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -216,7 +216,7 @@ web:
 title=Pipenv (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -235,7 +235,7 @@ web:
 title=Pipenv (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -256,7 +256,7 @@ web:
 title=Poetry (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -275,7 +275,7 @@ web:
 title=Poetry (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -304,7 +304,7 @@ web:
 title=Pip (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -323,7 +323,7 @@ web:
 title=Pip (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -344,7 +344,7 @@ web:
 title=Pipenv (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -363,7 +363,7 @@ web:
 title=Pipenv (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -384,7 +384,7 @@ web:
 title=Poetry (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -403,7 +403,7 @@ web:
 title=Poetry (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -440,7 +440,7 @@ See how to [set variables](../../development/variables/set-variables.md).
 title=Pip (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -459,7 +459,7 @@ web:
 title=Pip (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -480,7 +480,7 @@ web:
 title=Pipenv (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -499,7 +499,7 @@ web:
 title=Pipenv (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -520,7 +520,7 @@ web:
 title=Poetry (TCP)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   commands:
@@ -539,7 +539,7 @@ web:
 title=Poetry (Unix)
 +++
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
   upstream:
@@ -571,7 +571,7 @@ adjust the start command to the following:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'python:{{% latest "python" %}}'
     web:
       upstream:

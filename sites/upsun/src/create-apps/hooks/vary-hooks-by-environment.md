@@ -14,7 +14,7 @@ Check the `PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production en
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       deploy: |
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then

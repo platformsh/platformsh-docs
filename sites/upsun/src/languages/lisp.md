@@ -30,7 +30,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'lisp:{{% latest "lisp" %}}'
 ```
 
@@ -46,7 +46,7 @@ If you don't want these assumptions, you can disable this behavior by specifying
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'lisp:{{% latest "lisp" %}}'
     build:
       flavor: none
@@ -77,7 +77,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'lisp:{{% latest "lisp" %}}'
     runtime:
       quicklisp:
@@ -105,7 +105,7 @@ The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run 
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'lisp:{{% latest "lisp" %}}'
     web:
       commands:
@@ -149,7 +149,7 @@ title=Using default endpoints
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'lisp:{{% latest "lisp" %}}'
     relationships:
       postgresql:
@@ -163,7 +163,7 @@ title=Using explicit endpoints
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'lisp:{{% latest "lisp" %}}'
     relationships:
       # Please note: Legacy definition of the relationship is still supported:

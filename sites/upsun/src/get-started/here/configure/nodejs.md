@@ -41,7 +41,7 @@ title=Next.js
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -59,7 +59,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -74,7 +74,7 @@ title=Express
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -92,7 +92,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -108,7 +108,7 @@ title=Strapi
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -136,7 +136,7 @@ services:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":

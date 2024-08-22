@@ -102,7 +102,7 @@ use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](/development/variable
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       deploy: |
         if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
@@ -131,7 +131,7 @@ To override the flags used by Composer, use the `$COMPOSER_FLAGS` environment va
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -x -e
@@ -182,7 +182,7 @@ but before [symfony-build](#symfony-build):
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -x -e
@@ -199,7 +199,7 @@ them directly as *variables* instead:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     variables:
       php-ext:
         redis: 5.3.2
@@ -219,7 +219,7 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -x -e
@@ -241,7 +241,7 @@ use the following configuration instead:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -x -e

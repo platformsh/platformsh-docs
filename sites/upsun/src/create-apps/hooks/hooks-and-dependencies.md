@@ -22,7 +22,7 @@ Set your app configuration to have Sass available globally and use it:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # Ensure sass is available globally
     dependencies:
       nodejs:

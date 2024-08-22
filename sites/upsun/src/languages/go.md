@@ -30,7 +30,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'golang:{{% latest "golang" %}}'
 ```
 
@@ -51,7 +51,7 @@ The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run 
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'golang:{{% latest "golang" %}}'
 
     hooks:

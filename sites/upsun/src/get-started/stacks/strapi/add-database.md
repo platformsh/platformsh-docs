@@ -49,7 +49,7 @@ title=PostgreSQL
 +++
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -67,7 +67,7 @@ title=Oracle MySQL
 +++
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -90,7 +90,7 @@ title=PostgreSQL
 +++
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -111,7 +111,7 @@ title=Oracle MySQL
 +++
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"

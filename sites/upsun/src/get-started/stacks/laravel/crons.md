@@ -17,7 +17,7 @@ To set up a cron job, update your {{% vendor/name %}} configuration as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     [...]
     crons:
       snapshot:
@@ -34,7 +34,7 @@ use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     [...]
     crons:
       snapshot:

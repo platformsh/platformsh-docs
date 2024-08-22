@@ -87,7 +87,7 @@ Define them as a YAML array as follows:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     stack: [ "<nixpackage>@<version>" ]
     # OR
     stack:
@@ -156,7 +156,7 @@ To do so, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     stack: [ "php@{{% latest php %}}", "facedetect" ]
     # OR
     stack:
@@ -332,7 +332,7 @@ For more information, see how to [define relationships between your apps](/creat
 {{< note title="Availability" theme="info">}}
 
 New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
-(`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
+(`Relationship 'SERVICE_NAME' of application 'myapp' ... targets a service without a valid default endpoint configuration.`).
 This syntax is currently being rolled out for all images.
 If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
@@ -590,7 +590,7 @@ or until the app container is moved to another host during a maintenance operati
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "nodejs@{{% latest nodejs %}}" ]
@@ -751,7 +751,7 @@ For example:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # ...
     mounts:
       'var/cache_a':
@@ -772,7 +772,7 @@ The following, however, is not allowed and will result in a failure:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # ...
     mounts:
       'var/':
@@ -812,7 +812,7 @@ Example:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -856,7 +856,7 @@ The following example is the default on non-PHP containers:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -913,7 +913,7 @@ This is overridden by a rule that explicitly allows common image file formats.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -945,7 +945,7 @@ The default configuration would look like this:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -980,7 +980,7 @@ A worker named `queue` that was small and had a different start command could lo
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -1008,7 +1008,7 @@ can access the deployed environment via SSH:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -1037,7 +1037,7 @@ The following example sets two variables:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -1072,7 +1072,7 @@ The default settings would look like this:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -1095,7 +1095,7 @@ and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -1126,7 +1126,7 @@ An example rule filtering by domain:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "python@{{% latest python %}}" ]
@@ -1261,7 +1261,7 @@ Note that you can [cancel pending or running crons](/environments/cancel-activit
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "nodejs@{{% latest nodejs %}}" ]
@@ -1286,7 +1286,7 @@ title=Drupal
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 stack: [ "php@{{% latest php %}}" ]
 crons:
   # Run Drupal's cron tasks every 19 minutes.
@@ -1310,7 +1310,7 @@ title=Ruby on Rails
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 stack: [ "ruby@{{% latest ruby %}}" ]
 crons:
   # Execute a rake script every 19 minutes.
@@ -1328,7 +1328,7 @@ title=Laravel
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 stack: [ "php@{{% latest php %}}" ]
 crons:
   # Run Laravel's scheduler every 5 minutes.
@@ -1346,7 +1346,7 @@ title=Symfony
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 stack: [ "php@{{% latest php %}}" ]
 crons:
   # Take a backup of the environment every day at 5:00 AM.
@@ -1372,7 +1372,7 @@ To do so, use a configuration similar to the following:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "php@{{% latest php %}}" ]
@@ -1493,7 +1493,7 @@ So in the following example, if your app tries to access `api.example.com`, it's
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     stack: [ "php@{{% latest php %}}" ]

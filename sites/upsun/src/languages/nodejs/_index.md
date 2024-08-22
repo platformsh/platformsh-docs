@@ -37,7 +37,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'nodejs:{{% latest "nodejs" %}}'
 ```
 
@@ -60,7 +60,7 @@ and add it to your app configuration:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'nodejs:{{% latest "nodejs" %}}'
 ```
 
@@ -71,7 +71,7 @@ Add the following to your app configuration:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'nodejs:{{% latest "nodejs" %}}'
     dependencies:
       nodejs:
@@ -87,7 +87,7 @@ Include any commands needed to build and setup your app in the `hooks`, as in th
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'nodejs:{{% latest "nodejs" %}}'
     dependencies:
       nodejs:
@@ -105,7 +105,7 @@ Specify a command to start serving your app (it must be a process running in the
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'nodejs:{{% latest "nodejs" %}}'
     dependencies:
       nodejs:
@@ -179,7 +179,7 @@ To switch to Yarn to manage dependencies, follow these steps:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'nodejs:{{% latest "nodejs" %}}'
     build:
       flavor: none
@@ -205,7 +205,7 @@ title=Yarn 3.x and Node.js 16+
 3. Use Corepack to run Yarn in your build hook:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
   build: |
@@ -222,7 +222,7 @@ title=Yarn 3.x and Node.js 14
 3. Enable Corepack (which is opt-in):
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
   nodejs:
@@ -233,7 +233,7 @@ dependencies:
 4. Use Corepack to run Yarn in your build hook:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
   build: |
@@ -250,7 +250,7 @@ title=Yarn < 3
 3. Add Yarn as a global dependency:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
   nodejs:
@@ -261,7 +261,7 @@ dependencies:
 4. Install dependencies in the `build` hook:
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="/" >}}
+{{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
   build: |
@@ -281,7 +281,7 @@ use the following configuration:
 ```yaml {configFile="app"}
 applications:
   # The name of your app.
-  app:
+  myapp:
   # Choose Node.js version 20 or above.
     type: 'nodejs:20'
     # Override the default Node.js build flavor.
@@ -299,7 +299,7 @@ You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here
 ```yaml {configFile="app"}
 applications:
   # The name of your app.
-  app:
+  myapp:
     # Choose Node.js version 20 or above.
     type: 'nodejs:20'
     # Override the default Node.js build flavor.

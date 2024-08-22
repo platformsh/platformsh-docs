@@ -29,7 +29,7 @@ and that the app has been granted access to those services via the following [re
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     [...]
     relationships:
       mysql: ...
@@ -79,7 +79,7 @@ For example, if you have the following relationships in your configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     relationships:
       database:
         service: "securitydb"

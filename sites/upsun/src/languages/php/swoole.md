@@ -38,7 +38,7 @@ Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: 'php:{{% latest "php" %}}'
     web:
       upstream:

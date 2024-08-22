@@ -35,7 +35,7 @@ For example:
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'java:{{% latest "java" %}}'
 ```
 
@@ -58,7 +58,7 @@ Add something like the following to your [app configuration](../../create-apps/_
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  app:
+  myapp:
     type: 'java:{{% latest "java" %}}'
 
     variables:

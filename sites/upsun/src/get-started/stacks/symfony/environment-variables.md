@@ -104,7 +104,7 @@ For example, if you have the following [relationships](/create-apps/app-referenc
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     relationships:
       database:
         service: securitydb

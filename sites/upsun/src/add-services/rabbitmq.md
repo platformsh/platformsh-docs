@@ -194,8 +194,8 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
-    # Relati<onships enable access from this app to a given service.
+  myapp:
+    # Relationships enable access from this app to a given service.
     # The example below shows simplified configuration leveraging a default service
     # (identified from the relationship name) and a default endpoint.
     # See the Application reference for all options for defining relationships and endpoints.
@@ -216,7 +216,7 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # Relationships enable access from this app to a given service.
     # The example below shows configuration with an explicitly set service name and endpoint.
     # See the Application reference for all options for defining relationships and endpoints.
@@ -245,7 +245,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "myapp"
@@ -273,7 +273,7 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "myapp"
@@ -294,11 +294,11 @@ services:
 ```
 {{< /codetabs >}}
 
-This configuration defines a single application (`app`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`app` has access to the `rabbitmq` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `rabbitmq` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``app`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.

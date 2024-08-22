@@ -64,7 +64,7 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 ```yaml {configFile="services"}
 applications:
     # The name of the app container. Must be unique within a project.
-    app:
+    myapp:
        ...
 
 services:
@@ -72,14 +72,14 @@ services:
   varnish:
     type: varnish:{{% latest "varnish" %}}
     relationships:
-      application: 'app:http'
+      application: 'myapp:http'
     configuration:
       vcl: !include
         type: string
         path: config.vcl
 ```
 
-Notice the `relationship` (`application`) defined for the service `varnish` granting access to the application container `app`.
+Notice the `relationship` (`application`) defined for the service `varnish` granting access to the application container `myapp`.
 
 ### 2. Create a VCL template
 
@@ -149,7 +149,7 @@ services:
         service: blog
         endpoint: http
       main:
-        service: app
+        service: myapp
         endpoint: http
     configuration:
       vcl: !include
@@ -166,7 +166,7 @@ applications:
     type: "php:{{% latest "php" %}}"
 
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "backends/main"

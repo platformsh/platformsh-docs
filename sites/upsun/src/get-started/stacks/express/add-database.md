@@ -29,7 +29,7 @@ Configure the MariaDB service by adding a `database` service to your `.{{% vendo
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -41,11 +41,11 @@ applications:
     type: mariadb:{{% latest "mariadb" %}}
 ```
 
-To connect the service to your application (``app``), add the following relationship:
+To connect the service to your application (``myapp``), add the following relationship:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"

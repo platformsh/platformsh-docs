@@ -26,7 +26,7 @@ This procedure assumes you have followed the steps on [how to configure Redis an
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        [...]
        hooks:
          build: |
@@ -42,7 +42,7 @@ To do so, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     [...]
   {{< variable "APP_NAME" >}}:
     [...]

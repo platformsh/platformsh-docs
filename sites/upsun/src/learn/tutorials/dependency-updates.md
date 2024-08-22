@@ -35,7 +35,7 @@ title=Composer
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
   operations:
     update:
@@ -54,7 +54,7 @@ title=npm
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
   operations:
     update:
@@ -73,7 +73,7 @@ title=Yarn
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
   operations:
     update:
@@ -92,7 +92,7 @@ title=Go
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
   operations:
     update:
@@ -112,7 +112,7 @@ title=Pipenv
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
   operations:
     update:
@@ -131,7 +131,7 @@ title=Bundler
 +++
 
 ```yaml {configFile="app"}
-{{< snippet name="app" config="app" root="myapp" >}}
+{{< snippet name="myapp" config="app" root="myapp" >}}
 source:
   operations:
     update:
@@ -201,7 +201,7 @@ Make sure you carefully check your [user access on this project](/administration
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -e
@@ -217,7 +217,7 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # ...
     crons:
       update:

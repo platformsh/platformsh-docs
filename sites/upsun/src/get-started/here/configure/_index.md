@@ -35,7 +35,7 @@ However, the structure of the configuration file remains similar to the followin
 ```yaml {configFile="app"}
 {{< code-link destination="/create-apps/app-reference.html" text="applications:" title="Top-level key for all applications" >}}
   # Configuration for all applications within an environment.
-  {{< code-link destination="/create-apps/app-reference.html" text="app:" title="Configuration for a unique application" >}}
+  {{< code-link destination="/create-apps/app-reference.html" text="myapp:" title="Configuration for a unique application" >}}
     # configuration for the application 'app'
 
 {{< code-link destination="/add-services.html" text="services:" title="Top-level key for all services" >}}

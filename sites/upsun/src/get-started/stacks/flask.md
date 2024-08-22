@@ -117,7 +117,7 @@ In your app configuration, locate the section dedicated to mounts and update it 
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     mounts:
       "<APP_NAME>/static":
@@ -137,7 +137,7 @@ In your app configuration, locate the section dedicated to it and update it as f
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
@@ -157,7 +157,7 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
@@ -181,7 +181,7 @@ In your app configuration, locate the section dedicated to it:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
@@ -198,7 +198,7 @@ Add `npm run build`:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
@@ -218,7 +218,7 @@ To do so, in your app configuration, locate the section dedicated to the web ser
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#web
@@ -232,7 +232,7 @@ Also, change the `socket_family` value from `unix` to `tcp`:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     ...
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#web
@@ -347,7 +347,7 @@ To do so, follow these steps.
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        ...
        # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
        # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks

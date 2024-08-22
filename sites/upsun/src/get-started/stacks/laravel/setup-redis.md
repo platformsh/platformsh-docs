@@ -22,7 +22,7 @@ With Laravel, you can use Redis to handle session storage, cache storage, and qu
 
    ```yaml {configFile="app"}
    applications:
-     app:
+     myapp:
        [...]
        relationships:
          redis:
@@ -58,7 +58,7 @@ If using `phpredis`, make sure you add `redis` in the list of PHP `runtime` exte
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     [...]
     runtime:
       extensions:

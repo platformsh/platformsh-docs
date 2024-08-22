@@ -33,7 +33,7 @@ So you could have a basic configuration for an app:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: "golang:1.18"
     source:
       root: /app
@@ -71,7 +71,7 @@ So you could expand the configuration from before to add another mapping:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     type: "golang:1.18"
 
     web:
@@ -95,7 +95,7 @@ In addition to maps defining further key–value pairs, you can also use sequenc
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     web:
       locations:
         '/':
@@ -110,7 +110,7 @@ You can also define sequences using a flow syntax:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     web:
       locations:
         '/':
@@ -133,7 +133,7 @@ So you could add a multi-line string to a `build` key in the `hooks` map:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     hooks:
       build: |
         set -x -e
@@ -158,8 +158,8 @@ The following example shows 4 different workers:
 
 ```yaml {configFile="app"}
 applications:
-  app:
-    ...
+  myapp:
+    # ...
     workers:
       queue1: &runner
         commands:

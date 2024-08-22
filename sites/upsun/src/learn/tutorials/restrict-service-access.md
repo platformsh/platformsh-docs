@@ -46,7 +46,7 @@ Edit your app configuration and add new relationships to your new endpoints:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     # ...
     relationships:
       database:
@@ -67,7 +67,7 @@ Edit your app configuration to add a new worker which:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     workers:
       data_access:
         mounts: {}

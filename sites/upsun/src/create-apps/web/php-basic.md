@@ -13,7 +13,7 @@ Start by defining your document root (where all your publicly visible pages are)
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:
@@ -28,7 +28,7 @@ Define where all requests that don't match a file in the document root are sent.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:
@@ -47,7 +47,7 @@ and responses aren't cached.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:
@@ -67,7 +67,7 @@ For example, you might want to allow all kinds of files except mp4 files.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:
@@ -90,7 +90,7 @@ You could define a specific cache time for them and limit them to only static im
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:
@@ -117,7 +117,7 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     web:

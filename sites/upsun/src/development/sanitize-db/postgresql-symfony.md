@@ -94,7 +94,7 @@ Set up a script by following these steps:
 
     ```yaml {configFile="app"}
     applications:
-      app:
+      myapp:
         hooks:
           build: ...
           deploy: |
@@ -108,7 +108,7 @@ Set up a script by following these steps:
 
     ```yaml {configFile="app"}
     applications:
-      app:
+      myapp:
         hooks:
           build: ...
           deploy: |

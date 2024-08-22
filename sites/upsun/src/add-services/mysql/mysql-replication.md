@@ -46,7 +46,7 @@ Add a new relationship to your application container:
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "/"

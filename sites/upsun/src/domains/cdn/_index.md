@@ -58,7 +58,7 @@ To disable it, change your cache configuration for the routes behind a CDN to th
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
     cache:
       # Disable the HTTP cache on this route. It's handled by the CDN instead.
       enabled: false
