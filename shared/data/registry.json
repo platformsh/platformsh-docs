@@ -460,6 +460,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "10.11 Galera",
         "10.8 Galera",
         "10.7 Galera",
         "10.6 Galera",
