@@ -28,9 +28,16 @@ outputs:
       - HTML
       - JSON
       - RSS
+      - devcenter
     section:
       - HTML
       - RSS
+
+outputFormats:
+  devcenter:
+    mediaType: "application/json"
+    baseName: "json/devcenter"
+    isPlainText: true
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:
@@ -52,7 +59,7 @@ markup:
             enable: true
 params:
     math: true
-    
+
 module:
     _merge: deep
     mounts:
