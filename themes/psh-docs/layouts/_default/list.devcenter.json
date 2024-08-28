@@ -1,6 +1,6 @@
 {{/* FlexSearch Data structure for use in devcenter.upsun.com */}}
 {{- $indexType := site.Params.search.flexsearch.index | default "content" -}}
-{{- $baseURL := .Site.BaseURL -}}
+{{- $baseURL := strings.TrimSuffix "/" .Site.BaseURL  -}}
 {{- if not (in (slice "content" "summary" "heading" "title" ) $indexType) -}}
   {{- errorf "unknown flexsearch index type: %s" $indexType -}}
 {{- end -}}
