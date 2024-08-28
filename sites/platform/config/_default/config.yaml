@@ -1,5 +1,5 @@
 # Basics
-baseURL: /
+# baseURL: /
 title: Platform.sh Documentation
 author: Platform.sh
 description: Platform.sh User Documentation
@@ -24,13 +24,20 @@ baseURL: "https://docs.platform.sh"
 summaryLength: 3
 
 outputs:
-    home: 
+    home:
       - HTML
       - JSON
       - RSS
+      - devcenter
     section:
       - HTML
       - RSS
+
+outputFormats:
+  devcenter:
+    mediaType: "application/json"
+    baseName: "json/devcenter"
+    isPlainText: true
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:
@@ -64,10 +71,10 @@ module:
 
         - source: "../../shared/data"
           target: "data"
-          
+
         - source: "src"
           target: "content"
-          
+
           lang: "en"
         - source: "static"
           target: "static"
@@ -79,5 +86,5 @@ security:
     - ^GITHUB_
     - ^HUGO_HEAP_ID
   http:
-    methods: 
+    methods:
     - GET
