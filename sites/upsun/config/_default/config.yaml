@@ -1,5 +1,5 @@
 # Basics
-baseURL: /
+#baseURL: /
 title: Upsun documentation
 author: Upsun
 description: Upsun User Documentation
@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy"]
 
-#baseURL: "https://docs.upsun.com"
+baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
