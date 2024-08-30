@@ -22,9 +22,10 @@ vendor:
     recruit:
         active: true
         link: https://upsun.com/register/
-        cta: Get your Upsun free trial
-        title: Sign up
-        description: "Get your free trial by clicking the link below.<br/><br/>"
+        cta: Activate your 15-day trial
+        title: Try Upsun for 15 days
+        description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
+        fine: "¹Terms and condition apply"
     psh_ref: Platform.sh
     config:
         version: 2
