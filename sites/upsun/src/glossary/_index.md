@@ -133,6 +133,20 @@ as it merely describes a non-production environment.
 
 Find out more about [user roles on each environment type](../administration/users.md#environment-type-roles).
 
+## First Project Incentive
+
+To help you get started {{< vendor/name >}} offers a monthly $19 USD perk called the First Project Incentive.
+
+### How do I apply this perk?
+
+Whether you are a new or existing customer, **_no action is needed_**. Just visit the billing section of your organization to see it applied.
+
+### Why don't I see the full amount applied to my bill?
+
+There are two reasons why you may not see the full amount applied to your bill.
+
+1. The First Project Incentive is prorated. If your billing cycle has started mid-month, it will be reflected in the amount applied to your bill.
+2. Your bill can never be less than $0. For example, if your total bill for the month is $10, the First Project Incentive will only apply up to $10.
 
 ## Inactive environment
 
