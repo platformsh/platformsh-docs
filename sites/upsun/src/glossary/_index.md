@@ -217,7 +217,7 @@ even though it has mostly replaced SSL for online encrypted connections.
 When you create your first organization on {{% vendor/name %}}, you are also activating your trial for that organization.
 This trial grants you a certain amount of time and resources to try out the {{% vendor/name %}} platform, and comes with the following restrictions:
 
-1. A trial lasts for **5 days**, which starts automatically from creating your first organization.
+1. A trial lasts for **15 days**, which starts automatically from creating your first organization.
 1. A trial allows for **one (1)** active [project](#project) at a time.
 1. For a trial project, the trial allows for **two (2)** [active environments](#active-environment).
 1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources):
@@ -229,6 +229,6 @@ This trial grants you a certain amount of time and resources to try out the {{% 
 If your trial ends before adding payment details, there are additional things to keep in mind:
 
 - When a trial expires, both the organization and the project are suspended.
-- Projects where no code has been pushed are deleted **1 day** after a trial expires. 
+- Projects where no code has been pushed are deleted **1 day** after a trial expires.
 - Projects where code _has_ been pushed are deleted **5 days** after the trial expires.
 - Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support#delete-your-account).
