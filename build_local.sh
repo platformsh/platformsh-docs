@@ -17,7 +17,7 @@ clean_file () {
         echo "$FILE exists. Removing..."
         rm $FILE
         echo "Done."
-    else 
+    else
         echo "$FILE does not exist. All is well."
     fi
 }
@@ -36,7 +36,6 @@ npm install
 npm run build
 npm run build:search
 hugo
-npm run build:assets
 
 clear
 
