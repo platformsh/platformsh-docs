@@ -25,7 +25,7 @@ vendor:
         cta: Activate your 15-day trial
         title: Try Upsun for 15 days
         description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
-        fine: "¹Terms and condition apply"
+        fine: "¹Terms and conditions apply"
     psh_ref: Platform.sh
     config:
         version: 2
