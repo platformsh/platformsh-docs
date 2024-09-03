@@ -96,16 +96,3 @@ security:
     - ^HUGO_HEAP_ID
   http:
     methods: none
-
-# Minification settings
-minify:
-  minifyOutput: true
-
-# Environment-specific configuration
-environments:
-  production:
-    minify:
-      minifyOutput: true
-  development:
-    minify:
-      minifyOutput: false

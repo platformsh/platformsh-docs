@@ -1,24 +1,24 @@
 <!-- stylesheets using `minify` will be minified in production -->
 <!-- Vendor overrides -->
 {{ if eq .Site.Params.theme.use_vendor true }}
-  {{ $vendorCSS := resources.Get "css/vendor.css" | minify | fingerprint }}
+  {{ $vendorCSS := resources.Get "css/vendor.css" | postCSS | fingerprint }}
   <link rel="stylesheet" href="{{ printf "%s?version=%s" $vendorCSS.RelPermalink $.Site.Params.version }}">
 {{ end }}
 
 <!-- Asciinema player: moved to tailwind config.css -->
 
 <!-- Syntax highlighting -->
-{{ $syntaxHighlightingCSS := resources.Get "css/vendor.css" | minify | fingerprint }}
+{{ $syntaxHighlightingCSS := resources.Get "css/vendor.css" | postCSS | fingerprint }}
 <link rel="stylesheet" href="{{ printf "%s?version=%s" $syntaxHighlightingCSS.RelPermalink $.Site.Params.version }}">
 
 <!-- TailwindCSS files -->
-{{ $mainStyle := resources.Get "css/main.css" | resources.PostCSS | minify | fingerprint }}
+{{ $mainStyle := resources.Get "css/main.css" | postCSS | fingerprint }}
 <link rel="stylesheet" href="{{ printf "%s?version=%s" $mainStyle.RelPermalink $.Site.Params.version }}">
 
 <!-- Print stylesheets -->
 {{ with .File }}
   {{- if eq .Dir "security/transparency/" -}}
-    {{ $transparencyReportsCSS := resources.Get "css/print/transparency-reports.css" | minify | fingerprint }}
+    {{ $transparencyReportsCSS := resources.Get "css/print/transparency-reports.css" | postCSS | fingerprint }}
     <link rel="stylesheet" href="{{ printf "%s?version=%s" $transparencyReportsCSS.RelPermalink $.Site.Params.version }}">
   {{- end -}}
 {{ end }}
