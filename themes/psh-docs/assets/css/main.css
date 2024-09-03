@@ -1,3 +1,5 @@
+/* Relative to site directory */
+@import './node_modules/asciinema-player/dist/bundle/asciinema-player.css';
 /* Base TailwindCSS styles */
 /* https://tailwindcss.com/docs/functions-and-directives#tailwind */
 
