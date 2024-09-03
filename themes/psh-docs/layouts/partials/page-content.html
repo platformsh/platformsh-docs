@@ -60,11 +60,13 @@
       class="bg-gradient-to-b from-[#FF4A11] from-0% via-[#ED49F0] via-45% to-[#DDF933] to-100% rounded-2xl p-[1px] my-1">
       <div class="rounded-2xl p-5 bg-[#f9f9f9] flex-col justify-start items-start gap-4 inline-flex">
         {{ $recruitment := .context.Site.Params.vendor.recruit }}
+        {{ $vendorName := .context.Site.Params.vendor.name }}
         <div
           class="bg-clip-text text-transparent bg-gradient-to-r from-[#806BFF] to-[#ED49F0] text-xl font-bold leading-normal">
           {{ index $recruitment "title" }}
         </div>
         <div class="main-section justify-start items-start gap-2.5 inline-flex">
+          {{ if eq $vendorName "Upsun" }}
           <div class="artwork">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
               <path
@@ -82,6 +84,7 @@
                 stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
+          {{ end }}
           <div class="main-copy flex-col justify-start items-start gap-2 inline-flex">
             <div class="self-stretch text-black text-sm font-semibold leading-normal">
               {{ index $recruitment "description"}}

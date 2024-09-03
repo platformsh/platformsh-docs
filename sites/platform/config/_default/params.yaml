@@ -18,10 +18,10 @@ vendor:
     cli_prefix: PLATFORMSH
     recruit:
         active: true
-        link: https://upsun.com/register/
-        cta: Get your Upsun free trial
-        title: Sign up for Upsun
-        description: "Get your free trial by clicking the link below."
+        link: https://auth.api.platform.sh/register/
+        cta: Activate your trial
+        title: Try for 30 days
+        description: "Flexible, version-controlled infrastructure provisioning and development-to-production workflows"
     config:
         version: 1
         dir: .platform
