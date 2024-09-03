@@ -88,3 +88,16 @@ security:
   http:
     methods:
     - GET
+
+# Minification settings
+minify:
+  minifyOutput: true
+
+# Environment-specific configuration
+environments:
+  production:
+    minify:
+      minifyOutput: true
+  development:
+    minify:
+      minifyOutput: false
