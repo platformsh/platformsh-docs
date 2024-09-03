@@ -21,7 +21,7 @@ vendor:
         link: https://upsun.com/register/
         cta: Get your Upsun free trial
         title: Sign up for Upsun
-        description: "Get your free trial by clicking the link below.<br/><br/>"
+        description: "Get your free trial by clicking the link below."
     config:
         version: 1
         dir: .platform
