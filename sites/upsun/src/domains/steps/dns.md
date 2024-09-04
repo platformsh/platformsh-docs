@@ -49,7 +49,7 @@ and [Cloudflare](../cdn/cloudflare.md#3-handle-apex-domains).
  
 ### Custom records
 
-Some DNS providers offer custom records such as `ANAME` or `ALIAS` records,
+Some DNS providers offer custom records such as `ANAME`, `ALIAS` or `HTTPS` records,
 which you can manage like `CNAME` records.
 But unlike `CNAME` records, these custom records can point to apex domains.
  
