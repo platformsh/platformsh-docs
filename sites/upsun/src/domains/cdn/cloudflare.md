@@ -31,7 +31,7 @@ you need to [create `CNAME` records for your domain names](../../domains/steps/d
 through your DNS provider.
 
 But `CNAME` records can't point to apex domains.
-As a workaround, Cloudflare offers [`CNAME` flattening](https://developers.cloudflare.com/dns/additional-options/cname-flattening/).
+As a workaround, Cloudflare offers [`HTTPS` records](https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/#svcb-and-https) and [`CNAME` flattening](https://developers.cloudflare.com/dns/additional-options/cname-flattening/).
 
 ## 4. Mitigate security risks
 
