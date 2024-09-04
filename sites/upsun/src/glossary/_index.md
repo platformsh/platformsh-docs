@@ -133,6 +133,20 @@ as it merely describes a non-production environment.
 
 Find out more about [user roles on each environment type](../administration/users.md#environment-type-roles).
 
+## First Project Incentive
+
+To help you get started {{< vendor/name >}} offers a monthly $19 USD perk called the First Project Incentive.
+
+### How do I apply this perk?
+
+Whether you are a new or existing customer, **_no action is needed_**. Just visit the billing section of your organization to see it applied.
+
+### Why don't I see the full amount applied to my bill?
+
+There are two reasons why you may not see the full amount applied to your bill.
+
+1. The First Project Incentive is prorated. If your billing cycle has started mid-month, it will be reflected in the amount applied to your bill.
+2. Your bill can never be less than $0. For example, if your total bill for the month is $10, the First Project Incentive will only apply up to $10.
 
 ## Inactive environment
 
@@ -217,7 +231,7 @@ even though it has mostly replaced SSL for online encrypted connections.
 When you create your first organization on {{% vendor/name %}}, you are also activating your trial for that organization.
 This trial grants you a certain amount of time and resources to try out the {{% vendor/name %}} platform, and comes with the following restrictions:
 
-1. A trial lasts for **5 days**, which starts automatically from creating your first organization.
+1. A trial lasts for **15 days**, which starts automatically from creating your first organization.
 1. A trial allows for **one (1)** active [project](#project) at a time.
 1. For a trial project, the trial allows for **two (2)** [active environments](#active-environment).
 1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources):
@@ -229,6 +243,6 @@ This trial grants you a certain amount of time and resources to try out the {{% 
 If your trial ends before adding payment details, there are additional things to keep in mind:
 
 - When a trial expires, both the organization and the project are suspended.
-- Projects where no code has been pushed are deleted **1 day** after a trial expires. 
+- Projects where no code has been pushed are deleted **1 day** after a trial expires.
 - Projects where code _has_ been pushed are deleted **5 days** after the trial expires.
 - Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support#delete-your-account).
