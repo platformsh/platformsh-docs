@@ -39,9 +39,9 @@ Below are some examples from common Node.js framework configuration:
 title=Next.js
 +++
 
-```yaml {location="{{% vendor/configfile "apps" %}}"}
+```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -59,7 +59,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -72,9 +72,9 @@ routes:
 title=Express
 +++
 
-```yaml {location="{{% vendor/configfile "apps" %}}"}
+```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -92,7 +92,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -106,14 +106,14 @@ routes:
 title=Strapi
 +++
 
-```yaml {location=".{{% vendor/cli %}}/config.yaml"}
+```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
     relationships:
-      postgresql: 
+      postgresql:
     mounts:
       ...
     web:
@@ -136,7 +136,7 @@ services:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":

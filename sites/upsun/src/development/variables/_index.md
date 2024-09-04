@@ -184,10 +184,10 @@ For example, to change the PHP memory limit for all environments, use the follow
 
 ```yaml {configFile="app"}
 applications:
-    {{< variable "APP_NAME" >}}:
-        variables:
-            php:
-                memory_limit: "256M"
+  {{< variable "APP_NAME" >}}:
+    variables:
+      php:
+        memory_limit: "256M"
 ```
 
 ## Framework-specific variables
@@ -206,7 +206,7 @@ All the non-alphanumerical or `_` characters (`[^0-9A-Z_]`) are transformed into
 **Example:**
 
 For a relationship named ``database`` to a service named `postgresl`,
-the following environment variables are automatically generated in your `app` container:
+the following environment variables are automatically generated in your `myapp` container:
 
 ```bash
 DATABASE_URL=pgsql://main:main@postgresql.internal:5432/main

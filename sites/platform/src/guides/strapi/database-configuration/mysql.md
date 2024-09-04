@@ -19,21 +19,21 @@ To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these st
 
 2. Replace the PostgreSQL configuration in your `{{< vendor/configfile "services" >}}` file with the following:
 
-   ```yaml
+   ```yaml {configFile="services"}
    mysql:
-       type: oracle-mysql:8.0
-       disk: 256
+     type: oracle-mysql:8.0
+     disk: 256
    ```
 
    **_Note that the minimum disk size for MySQL/Oracle MySQL is 256MB._**
 
 3. In your `{{< vendor/configfile "app" >}}` file, replace the relationship name to match the MySQL database you added:
 
-   ```yaml
+   ```yaml {configFile="app"}
    relationships:
-       mysqldatabase:
-           service: "mysql"
-           endpoint: "mysql"
+     mysqldatabase:
+       service: "mysql"
+       endpoint: "mysql"
    ```
 
 4. In the `config` folder, locate the `database.js` file, and replace its content with the following:

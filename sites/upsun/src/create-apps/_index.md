@@ -29,25 +29,25 @@ The following example shows such a basic setup for Node.js:
 ```yaml {configFile="app"}
 # Top-level key, which contains configurations for all app containers.
 applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-        # The language and version for your app.
-        type: 'nodejs:{{% latest "nodejs" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    # The language and version for your app.
+    type: 'nodejs:{{% latest "nodejs" %}}'
 
-        # The app's configuration when it's exposed to the web.
-        web:
-            commands:
-                start: npm start
-            locations:
-                '/':
-                    # The public directory relative to the app root.
-                    root: 'public'
-                    # Forward resources to the app.
-                    passthru: true
-                    # What files to use when serving a directory.
-                    index: ["index.html"]
-                    # Allow files even without specified rules.
-                    allow: true
+    # The app's configuration when it's exposed to the web.
+    web:
+      commands:
+        start: npm start
+      locations:
+        '/':
+          # The public directory relative to the app root.
+          root: 'public'
+          # Forward resources to the app.
+          passthru: true
+          # What files to use when serving a directory.
+          index: ["index.html"]
+          # Allow files even without specified rules.
+          allow: true
 ```
 
 ## Use multiple apps
@@ -124,59 +124,59 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-        # The language and version for your app.
-        type: 'php:{{% latest "php" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    # The language and version for your app.
+    type: 'php:{{% latest "php" %}}'
 
-        # Global dependencies to be added and cached and then available as commands.
-        dependencies:
-            php:
-                composer/composer: '^2'
+    # Global dependencies to be added and cached and then available as commands.
+    dependencies:
+      php:
+        composer/composer: '^2'
 
-        # Relationships enable an app container's access to a service or another app.
-        # The example below shows simplified configuration leveraging a default service 
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mysql:
+    # Relationships enable an app container's access to a service or another app.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mysql:
 
-        # Scripts that are run as part of the build and deploy process.
-        hooks:
-            # Build hooks can modify app files on disk but not access any services like databases.
-            build: ./build.sh
-            # Deploy hooks can access services but the file system is now read-only.
-            deploy: ./deploy.sh
-            # Post deploy hooks run when the app is accepting outside requests.
-            post_deploy: ./post_deploy.sh
+    # Scripts that are run as part of the build and deploy process.
+    hooks:
+      # Build hooks can modify app files on disk but not access any services like databases.
+      build: ./build.sh
+      # Deploy hooks can access services but the file system is now read-only.
+      deploy: ./deploy.sh
+      # Post deploy hooks run when the app is accepting outside requests.
+      post_deploy: ./post_deploy.sh
 
-        # Define writable, persistent filesystem mounts.
-        # The key is the directory path relative to the application root.
-        # In this case, `web-files` is just a unique name for the mount.
-        mounts:
-            'web/files':
-                source: storage
-                source_path: 'web-files'
+    # Define writable, persistent filesystem mounts.
+    # The key is the directory path relative to the application root.
+    # In this case, `web-files` is just a unique name for the mount.
+    mounts:
+      'web/files':
+        source: storage
+        source_path: 'web-files'
 
-        # The app's configuration when it's exposed to the web.
-        web:
-            locations:
-                '/':
-                    # The app's public directory relative to its root.
-                    root: 'public'
-                    # A front controller to determine how to handle requests.
-                    passthru: '/app.php'
-                # Allow uploaded files to be served, but don't run scripts.
-                # Missing files get sent to the front controller.
-                '/files':
-                    root: 'web/files'
-                    scripts: false
-                    allow: true
-                    passthru: '/app.php'
+    # The app's configuration when it's exposed to the web.
+    web:
+      locations:
+        '/':
+          # The app's public directory relative to its root.
+          root: 'public'
+          # A front controller to determine how to handle requests.
+          passthru: '/app.php'
+        # Allow uploaded files to be served, but don't run scripts.
+        # Missing files get sent to the front controller.
+        '/files':
+          root: 'web/files'
+          scripts: false
+          allow: true
+          passthru: '/app.php'
 
 services:
-    mysql:
-        type: mariadb:{{% latest "mariadb" %}}
+  mysql:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 <--->
@@ -187,61 +187,61 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-        # The list of packages you want installed (from the {{% vendor/name %}} collection
-        # of supported runtimes and/or from Nixpkgs).
-        # For more information, see the Composable image page in the App reference section.
-        stack:
-            - "php@8.3"
-              # The list of PHP extensions you want installed.
-              extensions:
-                - apcu
-                - ctype
-                - iconv
-                - mbstring
-                - pdo_pgsql
-                - sodium
-                - xsl
-        # Relationships enable an app container's access to a service or another app.
-        # The example below shows simplified configuration leveraging a default service 
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            mysql:
+  # The app's name, which must be unique within the project.
+  myapp:
+    # The list of packages you want installed (from the {{% vendor/name %}} collection
+    # of supported runtimes and/or from Nixpkgs).
+    # For more information, see the Composable image page in the App reference section.
+    stack:
+      - "php@8.3"
+          # The list of PHP extensions you want installed.
+          extensions:
+            - apcu
+            - ctype
+            - iconv
+            - mbstring
+            - pdo_pgsql
+            - sodium
+            - xsl
+    # Relationships enable an app container's access to a service or another app.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mysql:
 
-        # Scripts that are run as part of the build and deploy process.
-        hooks:
-            # Build hooks can modify app files on disk but not access any services like databases.
-            build: ./build.sh
-            # Deploy hooks can access services but the file system is now read-only.
-            deploy: ./deploy.sh
-            # Post deploy hooks run when the app is accepting outside requests.
-            post_deploy: ./post_deploy.sh
+    # Scripts that are run as part of the build and deploy process.
+    hooks:
+      # Build hooks can modify app files on disk but not access any services like databases.
+      build: ./build.sh
+      # Deploy hooks can access services but the file system is now read-only.
+      deploy: ./deploy.sh
+      # Post deploy hooks run when the app is accepting outside requests.
+      post_deploy: ./post_deploy.sh
 
-        # Define writable, persistent filesystem mounts.
-        # The key is the directory path relative to the application root.
-        # In this case, `web-files` is just a unique name for the mount.
-        mounts:
-            'web/files':
-                source: storage
-                source_path: 'web-files'
+    # Define writable, persistent filesystem mounts.
+    # The key is the directory path relative to the application root.
+    # In this case, `web-files` is just a unique name for the mount.
+    mounts:
+      'web/files':
+        source: storage
+        source_path: 'web-files'
 
-        # The app's configuration when it's exposed to the web.
-        web:
-            locations:
-                '/':
-                    # The app's public directory relative to its root.
-                    root: 'public'
-                    # A front controller to determine how to handle requests.
-                    passthru: '/app.php'
-                # Allow uploaded files to be served, but don't run scripts.
-                # Missing files get sent to the front controller.
-                '/files':
-                    root: 'web/files'
-                    scripts: false
-                    allow: true
-                    passthru: '/app.php'
+    # The app's configuration when it's exposed to the web.
+    web:
+      locations:
+        '/':
+          # The app's public directory relative to its root.
+          root: 'public'
+          # A front controller to determine how to handle requests.
+          passthru: '/app.php'
+        # Allow uploaded files to be served, but don't run scripts.
+        # Missing files get sent to the front controller.
+        '/files':
+          root: 'web/files'
+          scripts: false
+          allow: true
+          passthru: '/app.php'
 
 services:
     mysql:

@@ -26,13 +26,13 @@ This procedure assumes you have followed the steps on [how to configure Redis an
 
    ```yaml {configFile="app"}
    applications:
-       myapp:
-           [...]
-           hooks:
-               build: |
-                       set -eux
-                       composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
-                       php artisan horizon:install
+     myapp:
+       [...]
+       hooks:
+         build: |
+           set -eux
+           composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
+           php artisan horizon:install
    ```
 
 ## 2. Create a worker to run Horizon
@@ -42,14 +42,15 @@ To do so, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
+  myapp:
     [...]
-        {{< variable "APP_NAME" >}}:
-            [...]
-            workers:
-                horizon:
-                    commands:
-                        start: |
-                            php artisan horizon
+  {{< variable "APP_NAME" >}}:
+    [...]
+    workers:
+      horizon:
+        commands:
+          start: |
+            php artisan horizon
 ```
 
 To enable the worker, push your changes to {{< vendor/name >}}:
@@ -66,7 +67,7 @@ It will spawn the Horizon process after the next deploy.
 ## 3. Access your Horizon dashboard
 
 If you have restricted access to Horizon in your `HorizonServiceProvider.php`,
-log in to your app through the web. 
+log in to your app through the web.
 Then, go to `/horizon` to access your Horizon dashboard.
 
 ![Laravel Horizon Dashboard](/images/guides/laravel/horizon-dashboard.png "0.5")

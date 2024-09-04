@@ -19,7 +19,7 @@ To create a Redis service, add the following to your [services configuration](..
 
 ```yaml {configFile="services"}
 rediscache:
-    type: redis:6.0
+  type: redis:6.0
 ```
 
 That creates a service named `rediscache` with the type `redis`, specifically version `6.0`.
@@ -32,7 +32,7 @@ add the following:
 
 ```yaml {configFile="app"}
 relationships:
-    redis: "rediscache:redis"
+  redis: "rediscache:redis"
 ```
 
 The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](../../development/variables/use-variables.md#use-provided-variables).
@@ -87,11 +87,11 @@ title=WP Redis
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        ...
-        if [ -f wordpress/wp-content/plugins/wp-redis/object-cache.php ]; then
-            cp wordpress/wp-content/plugins/wp-redis/object-cache.php wordpress/wp-content/object-cache.php
-        fi
+  build: |
+    ...
+    if [ -f wordpress/wp-content/plugins/wp-redis/object-cache.php ]; then
+        cp wordpress/wp-content/plugins/wp-redis/object-cache.php wordpress/wp-content/object-cache.php
+    fi
 ```
 
 <--->
@@ -102,11 +102,11 @@ title=Redis Object Cache
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        ...
-        if [ -f wordpress/wp-content/plugins/redis-cache/includes/object-cache.php ]; then
-            cp wordpress/wp-content/plugins/redis-cache/includes/object-cache.php wordpress/wp-content/object-cache.php
-        fi
+  build: |
+    ...
+    if [ -f wordpress/wp-content/plugins/redis-cache/includes/object-cache.php ]; then
+        cp wordpress/wp-content/plugins/redis-cache/includes/object-cache.php wordpress/wp-content/object-cache.php
+    fi
 ```
 
 {{< /codetabs >}}
@@ -115,16 +115,16 @@ It should now look something like:
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -e
-        bash .platform-scripts/install-redis.sh 6.0.12
-        # Copy manually-provided plugins into the plugins directory.
-        # This allows manually-provided and composer-provided plugins to coexist.
-        rsync -a plugins/* wordpress/wp-content/plugins/
+  build: |
+    set -e
+    bash .platform-scripts/install-redis.sh 6.0.12
+    # Copy manually-provided plugins into the plugins directory.
+    # This allows manually-provided and composer-provided plugins to coexist.
+    rsync -a plugins/* wordpress/wp-content/plugins/
 
-        if [ -f wordpress/wp-content/plugins/redis-cache/includes/object-cache.php ]; then
-            cp wordpress/wp-content/plugins/redis-cache/includes/object-cache.php wordpress/wp-content/object-cache.php
-        fi
+    if [ -f wordpress/wp-content/plugins/redis-cache/includes/object-cache.php ]; then
+      cp wordpress/wp-content/plugins/redis-cache/includes/object-cache.php wordpress/wp-content/object-cache.php
+    fi
 ```
 
 Each plugin requires slightly different configuration.

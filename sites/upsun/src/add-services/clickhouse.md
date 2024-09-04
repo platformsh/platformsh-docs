@@ -214,7 +214,7 @@ title= With ``clickhouse`` default endpoint
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "/"
@@ -239,7 +239,7 @@ title= With ``clickhouse`` explicit endpoint
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "/"
@@ -265,7 +265,7 @@ title= With ``clickhouse-http`` endpoint
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     # The location of the application's code.
     source:
       root: "/"
@@ -294,7 +294,7 @@ To do so, you can use a configuration similar to the following:
 ```yaml {configFile="app"}
 # Complete list of all available properties: https://docs.upsun.com/create-apps/app-reference.html
 applications:
-  app:
+  myapp:
     # Relationships enable access from this app to a given service.
     # The example below shows configuration with explicitly set service names and endpoints.
     # See the Application reference for all options for defining relationships and endpoints.

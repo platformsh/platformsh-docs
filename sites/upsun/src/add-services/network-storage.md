@@ -87,7 +87,7 @@ services:
 ```yaml {configFile="services"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     mounts:
       'my/files':
         source: service
@@ -179,7 +179,7 @@ while the Drush backup directory is unique to the `web` instance.
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
 
@@ -243,7 +243,7 @@ Assuming you have the following `storage` mount:
 
 ```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
 
     [...]
 

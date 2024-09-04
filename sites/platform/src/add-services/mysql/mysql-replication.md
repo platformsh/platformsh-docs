@@ -44,7 +44,7 @@ Even if you won't be accessing the replication endpoint from your application, y
 Add a new relationship to your application container:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 [...]
 

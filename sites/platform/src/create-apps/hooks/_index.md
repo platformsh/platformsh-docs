@@ -38,8 +38,8 @@ Create your `build` hook to install them all:
 
    ```yaml {configfile="app" dir="client" }
    hooks:
-       build: |
-           set -e
+     build: |
+       set -e
    ```
 
    The hook has two parts so far:
@@ -56,9 +56,9 @@ Create your `build` hook to install them all:
 
   ```yaml {configfile="app" dir="client"}
    hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
+     build: |
+       set -e
+       yarn --frozen-lockfile
    ```
 
    This installs all the dependencies for the main app.
@@ -73,23 +73,23 @@ Create your `build` hook to install them all:
 
    ```yaml {configfile="app" dir="client"}
    hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
+     build: |
+       set -e
+       yarn --frozen-lockfile
 
-           cd platformsh-scripts/test
+       cd platformsh-scripts/test
    ```
 
 5. Install the dependencies for the testing script:
 
    ```yaml {configfile="app" dir="client"}
    hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
+     build: |
+       set -e
+       yarn --frozen-lockfile
 
-           cd platformsh-scripts/test
-           yarn --frozen-lockfile
+       cd platformsh-scripts/test
+       yarn --frozen-lockfile
    ```
 
 Now all your Next.js dependencies are installed.
@@ -124,18 +124,18 @@ All of this configuration and preparation can be handled in a bash script.
 
    ```yaml {configfile="app" dir="api"}
    mounts:
-        /.drush:
-            source: storage
-            source_path: 'drush'
+     /.drush:
+       source: storage
+       source_path: 'drush'
    ```
 
 4. Add a `deploy` hook that runs the preparation script:
 
    ```yaml {configfile="app" dir="api"}
    hooks:
-       deploy: !include
-           type: string
-           path: platformsh-scripts/hooks.deploy.sh
+     deploy: !include
+       type: string
+       path: platformsh-scripts/hooks.deploy.sh
    ```
 
    This `!include` syntax tells the hook to process the script as if it were included in the YAML file directly.
@@ -161,9 +161,9 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
    ```yaml {configfile="app" dir="client"}
    relationships:
-       api:
-           service: 'api'
-           endpoint: 'http'
+     api:
+       service: 'api'
+       endpoint: 'http'
    ```
 
 2. Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
@@ -172,28 +172,28 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
    ```yaml {configfile="app" dir="client"}
    mounts:
-       /.cache:
-           source: local
-           source_path: 'cache'
-       /.next:
-           source: local
-           source_path: 'next'
-       /.pm2:
-           source: local
-           source_path: 'pm2'
-       deploy:
-           source: service
-           service: files
-           source_path: deploy
+     /.cache:
+       source: local
+       source_path: 'cache'
+     /.next:
+       source: local
+       source_path: 'next'
+     /.pm2:
+       source: local
+       source_path: 'pm2'
+     deploy:
+       source: service
+       service: files
+       source_path: deploy
    ```
 
 3. Add a `post_deploy` hook that first tests the connection between the apps:
 
    ```yaml {configfile="app" dir="client"}
    hooks:
-       post_deploy: |
-           . deploy/platformsh.environment
-           cd platformsh-scripts/test && yarn debug
+     post_deploy: |
+       . deploy/platformsh.environment
+       cd platformsh-scripts/test && yarn debug
    ```
 
    Note that you could add `set -e` here, but even if the job fails, the build/deployment itself can still be counted as successful.
@@ -202,11 +202,11 @@ So you don't have to rebuild Drupal but you still get fresh content.
 
    ```yaml {configfile="app" dir="client"}
    hooks:
-       post_deploy: |
-           . deploy/platformsh.environment
-           cd platformsh-scripts/test && yarn debug
+     post_deploy: |
+       . deploy/platformsh.environment
+       cd platformsh-scripts/test && yarn debug
 
-           cd $PLATFORM_APP_DIR && yarn build
+       cd $PLATFORM_APP_DIR && yarn build
    ```
 
    The `$PLATFORM_APP_DIR` variable represents the app root and can always get you back there.
@@ -228,39 +228,39 @@ name: 'drupal'
 type: 'php:8.1'
 
 dependencies:
-    php:
-        composer/composer: '^2'
+  php:
+    composer/composer: '^2'
 
 # The relationships of the app with services or other apps.
 relationships:
-    database:
-      service: 'db'
-      endpoint: 'mysql'
-    redis:
-      service: 'cache'
-      endpoint: 'redis'
+  database:
+    service: 'db'
+    endpoint: 'mysql'
+  redis:
+    service: 'cache'
+    endpoint: 'redis'
 
 # The hooks executed at various points in the lifecycle of the app.
 hooks:
-    deploy: !include
-      type: string
-      path: platformsh-scripts/hooks.deploy.sh
+  deploy: !include
+    type: string
+    path: platformsh-scripts/hooks.deploy.sh
 
 # The size of the persistent disk of the app (in MB).
 disk: 2048
 
 # The 'mounts' describe writable, persistent filesystem mounts in the app.
 mounts:
-    /.drush:
-        source: local
-        source_path: 'drush'
-    /drush-backups:
-        source: local
-        source_path: 'drush-backups'
-    deploy:
-        source: service
-        service: files
-        source_path: deploy
+  /.drush:
+    source: local
+    source_path: 'drush'
+  /drush-backups:
+    source: local
+    source_path: 'drush-backups'
+  deploy:
+    source: service
+    service: files
+    source_path: deploy
 ```
 
 ### Next.js
@@ -273,48 +273,48 @@ name: 'nextjs'
 type: 'nodejs:14'
 
 dependencies:
-    nodejs:
-        yarn: "1.22.17"
-        pm2: "5.2.0"
+  nodejs:
+    yarn: "1.22.17"
+    pm2: "5.2.0"
 
 build:
-    flavor: none
+  flavor: none
 
 relationships:
-    api:
-      service: 'api'
-      endpoint: 'http'
+  api:
+    service: 'api'
+    endpoint: 'http'
 
 # The hooks that are triggered when the package is deployed.
 hooks:
-    build: |
-        set -e
-        yarn --frozen-lockfile # Install dependencies for the main app
+  build: |
+    set -e
+    yarn --frozen-lockfile # Install dependencies for the main app
 
-        cd platformsh-scripts/test
-        yarn --frozen-lockfile # Install dependencies for the testing script
+    cd platformsh-scripts/test
+    yarn --frozen-lockfile # Install dependencies for the testing script
     # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
-    post_deploy: |
-        . deploy/platformsh.environment
-        cd platformsh-scripts/test && yarn debug
+  post_deploy: |
+    . deploy/platformsh.environment
+    cd platformsh-scripts/test && yarn debug
 
-        cd $PLATFORM_APP_DIR && yarn build
+    cd $PLATFORM_APP_DIR && yarn build
 
 # The size of the persistent disk of the app (in MB).
 disk: 512
 
 mounts:
-    /.cache:
-        source: local
-        source_path: 'cache'
-    /.next:
-        source: local
-        source_path: 'next'
-    /.pm2:
-        source: local
-        source_path: 'pm2'
-    deploy:
-        source: service
-        service: files
-        source_path: deploy
+  /.cache:
+    source: local
+    source_path: 'cache'
+  /.next:
+    source: local
+    source_path: 'next'
+  /.pm2:
+    source: local
+    source_path: 'pm2'
+  deploy:
+    source: service
+    service: files
+    source_path: deploy
 ```

@@ -19,10 +19,10 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 In your [service configuration](../../add-services/_index.md), include MongoDB with a [valid supported version](../../add-services/mongodb.md):
 
-```yaml
+```yaml {configFile="services"}
 dbmongo:
-    type: mongodb:3.6
-    disk: 512
+  type: mongodb:3.6
+  disk: 512
 ```
 
 ## 2. Grant access to MongoDb through a relationship

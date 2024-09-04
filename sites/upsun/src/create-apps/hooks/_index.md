@@ -31,14 +31,14 @@ Create your `build` hook to install them all:
 
 1. Create a `build` hook in your [app configuration](/create-apps/app-reference/single-runtime-image.md):
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        client:
-            source:
-                root: client
-            hooks:
-                build: |
-                    set -e
+     client:
+       source:
+         root: client
+       hooks:
+         build: |
+           set -e
    ```
 
    The hook has two parts so far:
@@ -53,15 +53,15 @@ Create your `build` hook to install them all:
      If other hooks fail, the deploy still happens.
 2. Install your top-level dependencies inside this `build` hook:
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        client:
-            source:
-                root: client
-            hooks:
-                build: |
-                    set -e
-                    yarn --frozen-lockfile
+     client:
+       source:
+         root: client
+       hooks:
+         build: |
+           set -e
+           yarn --frozen-lockfile
    ```
 
    This installs all the dependencies for the main app.
@@ -94,35 +94,35 @@ All of this configuration and preparation can be handled in a bash script.
    Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
    So create a mount where you can write the Drush configuration:
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        api:
-            source:
-                root: api
+     api:
+       source:
+         root: api
 
-            mounts:
-                /.drush:
-                    source: storage
-                    source_path: 'drush'
+       mounts:
+         /.drush:
+           source: storage
+           source_path: 'drush'
    ```
 
 4. Add a `deploy` hook that runs the preparation script:
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        api:
-            source:
-                root: api
+     api:
+       source:
+         root: api
 
-            mounts:
-                /.drush:
-                    source: storage
-                    source_path: 'drush'
+       mounts:
+         /.drush:
+           source: storage
+           source_path: 'drush'
 
-            hooks:
-                deploy: !include
-                    type: string
-                    path: platformsh-scripts/hooks.deploy.sh
+       hooks:
+         deploy: !include
+           type: string
+           path: platformsh-scripts/hooks.deploy.sh
    ```
 
    This `!include` syntax tells the hook to process the script as if it were included in the YAML file directly.
@@ -146,157 +146,156 @@ So you don't have to rebuild Drupal but you still get fresh content.
 1. Set a relationship for Next.js with Drupal.
    This allows the Next.js app to make requests and receive data from the Drupal app.
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        client:
-            source:
-                root: client
+     client:
+       source:
+         root: client
 
-            relationships:
-                api:
-                    service: 'api'
-                    endpoint: 'http'
+       relationships:
+         api:
+           service: 'api'
+           endpoint: 'http'
    ```
 
 2. Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
    Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
    Create mounts for your Next.js files:
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        client:
-            source:
-                root: client
+     client:
+       source:
+         root: client
 
-            mounts:
-                /.cache:
-                    source: tmp
-                    source_path: 'cache'
-                /.next:
-                    source: storage
-                    source_path: 'next'
-                /.pm2:
-                    source: storage
-                    source_path: 'pm2'
-                deploy:
-                    source: storage
-                    service: files
-                    source_path: deploy
+       mounts:
+         /.cache:
+           source: tmp
+           source_path: 'cache'
+         /.next:
+           source: storage
+           source_path: 'next'
+         /.pm2:
+           source: storage
+           source_path: 'pm2'
+         deploy:
+           source: storage
+           service: files
+           source_path: deploy
    ```
 
 3. Add a `post_deploy` hook that first tests the connection between the apps:
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        client:
-            source:
-                root: client
-
-            hooks:
-                post_deploy: |
-                    . deploy/platformsh.environment
-                    cd platformsh-scripts/test && yarn debug
+     client:
+       source:
+         root: client
+       hooks:
+         post_deploy: |
+           . deploy/platformsh.environment
+           cd platformsh-scripts/test && yarn debug
    ```
 
    Note that you could add `set -e` here, but even if the job fails, the build/deployment itself can still be counted as successful.
 
 4. Then build the Next.js site:
 
-   ```yaml {configfile="app"}
+   ```yaml {configFile="app"}
    applications:
-        client:
-            source:
-                root: client
-            hooks:
-                post_deploy: |
-                    . deploy/platformsh.environment
-                    cd platformsh-scripts/test && yarn debug
-                    cd $PLATFORM_APP_DIR && yarn build
+     client:
+       source:
+         root: client
+       hooks:
+         post_deploy: |
+           . deploy/platformsh.environment
+           cd platformsh-scripts/test && yarn debug
+           cd $PLATFORM_APP_DIR && yarn build
    ```
 
    The `$PLATFORM_APP_DIR` variable represents the app root and can always get you back there.
 
 ## Final hooks
 
-```yaml {configfile="app"}
+```yaml {configFile="app"}
 applications:
-    api:
-        # The runtime the app uses.
-        type: 'php:{{% latest "php" %}}'
+  api:
+    # The runtime the app uses.
+    type: 'php:{{% latest "php" %}}'
 
-        dependencies:
-            php:
-                composer/composer: '^2'
+    dependencies:
+      php:
+        composer/composer: '^2'
 
-        # The relationships of the app with services or other apps.
-        relationships:
-            database:
-                service: 'db'
-                endpoint: 'mysql'
-            redis:
-                service: 'cache'
-                endpoint: 'redis'
+    # The relationships of the app with services or other apps.
+    relationships:
+      database:
+        service: 'db'
+        endpoint: 'mysql'
+      redis:
+        service: 'cache'
+        endpoint: 'redis'
 
-        # The hooks executed at various points in the lifecycle of the app.
-        hooks:
-            deploy: !include
-            type: string
-            path: platformsh-scripts/hooks.deploy.sh
+    # The hooks executed at various points in the lifecycle of the app.
+    hooks:
+      deploy: !include
+      type: string
+      path: platformsh-scripts/hooks.deploy.sh
 
-        # The 'mounts' describe writable, persistent filesystem mounts in the app.
-        mounts:
-            /.drush:
-                source: storage
-                source_path: 'drush'
-            /drush-backups:
-                source: storage
-                source_path: 'drush-backups'
-            deploy:
-                source: service
-                service: files
-                source_path: deploy
-    client:
-        # The type key specifies the language and version for your app.
-        type: 'nodejs:{{% latest "nodejs" %}}'
+    # The 'mounts' describe writable, persistent filesystem mounts in the app.
+    mounts:
+      /.drush:
+        source: storage
+        source_path: 'drush'
+      /drush-backups:
+        source: storage
+        source_path: 'drush-backups'
+      deploy:
+        source: service
+        service: files
+        source_path: deploy
+  client:
+    # The type key specifies the language and version for your app.
+    type: 'nodejs:{{% latest "nodejs" %}}'
 
-        dependencies:
-            nodejs:
-                yarn: "1.22.17"
-                pm2: "5.2.0"
+    dependencies:
+      nodejs:
+        yarn: "1.22.17"
+        pm2: "5.2.0"
 
-        build:
-            flavor: none
+    build:
+      flavor: none
 
-        relationships:
-            api:
-                service: 'api'
-                endpoint: 'http'
+    relationships:
+      api:
+        service: 'api'
+        endpoint: 'http'
 
-        # The hooks that are triggered when the package is deployed.
-        hooks:
-            build: |
-                set -e
-                yarn --frozen-lockfile # Install dependencies for the main app
-                cd platformsh-scripts/test
-                yarn --frozen-lockfile # Install dependencies for the testing script
-            # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
-            post_deploy: |
-                . deploy/platformsh.environment
-                cd platformsh-scripts/test && yarn debug
-                cd $PLATFORM_APP_DIR && yarn build
+    # The hooks that are triggered when the package is deployed.
+    hooks:
+      build: |
+        set -e
+        yarn --frozen-lockfile # Install dependencies for the main app
+        cd platformsh-scripts/test
+        yarn --frozen-lockfile # Install dependencies for the testing script
+      # Next.js's build is delayed to the post_deploy hook, when Drupal is available for requests.
+      post_deploy: |
+        . deploy/platformsh.environment
+        cd platformsh-scripts/test && yarn debug
+        cd $PLATFORM_APP_DIR && yarn build
 
-        mounts:
-            /.cache:
-                source: tmp
-                source_path: 'cache'
-            /.next:
-                source: storage
-                source_path: 'next'
-            /.pm2:
-                source: storage
-                source_path: 'pm2'
-            deploy:
-                source: storage
-                service: files
-                source_path: deploy
+    mounts:
+        /.cache:
+            source: tmp
+            source_path: 'cache'
+        /.next:
+            source: storage
+            source_path: 'next'
+        /.pm2:
+            source: storage
+            source_path: 'pm2'
+        deploy:
+            source: storage
+            service: files
+            source_path: deploy
 ```

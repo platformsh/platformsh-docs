@@ -42,10 +42,10 @@ you could define an operation like the following:
 
 ```yaml {configFile="app"}
 operations:
-    clear-rebuild:
-        role: admin
-        commands:
-            start: drush cache:rebuild
+  clear-rebuild:
+    role: admin
+    commands:
+      start: drush cache:rebuild
 ```
 The name of the runtime operation in this case is `clear-rebuild`.
 
@@ -136,10 +136,10 @@ define a runtime operation similar to the following:
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
-    gatsby-build:
-        role: viewer
-        commands:
-            start: gatsby build
+  gatsby-build:
+    role: viewer
+    commands:
+      start: gatsby build
 {{< /snippet >}}
 ```
 
@@ -161,13 +161,13 @@ define a runtime operation similar to the following:
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
-    next-build:
-        role: admin
-        commands:
-            # All below are valid, depending on your setup
-            start: next build
-            # start: npx next build
-            # start: npm run build
+  next-build:
+    role: admin
+    commands:
+      # All below are valid, depending on your setup
+      start: next build
+      # start: npx next build
+      # start: npm run build
 {{< /snippet >}}
 ```
 
@@ -194,13 +194,13 @@ To ping your Node.js app, define a runtime operation similar to the following:
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
-    pm2-ping:
-        role: admin
-        commands:
-            start: |
-                # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
-                APP=$(cat package.json | jq -r '.name')
-                pm2 ping $APP
+  pm2-ping:
+    role: admin
+    commands:
+      start: |
+        # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
+        APP=$(cat package.json | jq -r '.name')
+        pm2 ping $APP
 {{< /snippet >}}
 ```
 
@@ -221,13 +221,13 @@ To reload your Node.js app, define a runtime operation similar to the following:
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
-    pm2-reload:
-        role: admin
-        commands:
-            start: |
-                # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
-                APP=$(cat package.json | jq -r '.name')
-                pm2 reload $APP
+  pm2-reload:
+    role: admin
+    commands:
+      start: |
+        # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
+        APP=$(cat package.json | jq -r '.name')
+        pm2 reload $APP
 {{< /snippet >}}
 ```
 To trigger your runtime operation, run a command similar to the following:
@@ -247,13 +247,13 @@ To restart your Node.js app, define a runtime operation similar to the following
 {{< snippet name="myapp" config="app" root="myapp" >}}
 
 operations:
-    pm2-restart:
-        role: admin
-        commands:
-            start: |
-                # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
-                APP=$(cat package.json | jq -r '.name')
-                pm2 restart $APP
+  pm2-restart:
+    role: admin
+    commands:
+      start: |
+        # Assuming pm2 start npm --no-daemon --watch --name $APP -- start -- -p $PORT
+        APP=$(cat package.json | jq -r '.name')
+        pm2 restart $APP
 {{< /snippet >}}
 ```
 
@@ -271,15 +271,15 @@ On a Django project, you can [define custom `django-admin` commands](https://doc
 To do so, define a runtime operation similar to the following:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: python:{{% latest "python" %}}
 
 operations:
-    manual-migration:
-        role: admin
-        commands:
-            start: python manage.py manual_migration
+  manual-migration:
+    role: admin
+    commands:
+      start: python manage.py manual_migration
 ```
 To trigger your runtime operation, run a command similar to the following:
 

@@ -321,7 +321,7 @@ It then defines two endpoints: `main` is connected to the `mainindex` core while
 Each endpoint is then available in the relationships definition in `{{< vendor/configfile "app" >}}`. For example, to allow an application to talk to both of the cores defined above its configuration should contain the following:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: "php:{{% latest "php" %}}"
 

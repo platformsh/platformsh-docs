@@ -106,7 +106,7 @@ Back up your data before changing the service.
 To define the mount accessible by your application, use the following configuration:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 mounts:
   <TARGET_PATH>:
     source: service
@@ -135,7 +135,7 @@ network-storage:
 #### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 mounts:
   'my/files':
     source: service
@@ -229,7 +229,7 @@ You can then use this service to  define a `network_dir` network mount and a `lo
 to be used by a `web` instance and a `queue` worker instance:
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   # The type of the application to build.
   type: "nodejs:20"
 
@@ -280,7 +280,7 @@ For example, the following `{{< vendor/configfile "app" >}}` file (fragment) kee
 (This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
 ```yaml {configFile="apps"}
-app:
+myapp:
   # The type of the application to build.
   type: "php:{{% latest "php" %}}"
 
@@ -343,7 +343,7 @@ However, the process is fundamentally "just" moving files around on disk, so it'
 Suppose you have this mount configuration:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 mounts:
   web/uploads:
     source: local

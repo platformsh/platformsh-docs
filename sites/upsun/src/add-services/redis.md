@@ -608,7 +608,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     source:
       root: "myapp"
 
@@ -640,7 +640,7 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     source:
       root: "myapp"
 
@@ -679,7 +679,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     source:
       root: "myapp"
 
@@ -709,7 +709,7 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     source:
       root: "myapp"
 
@@ -734,11 +734,11 @@ services:
 
 {{< /codetabs >}}
 
-This configuration defines a single application (`app`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`app` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``app`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -914,7 +914,7 @@ title=Using default endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     source:
       root: "myapp"
 
@@ -954,7 +954,7 @@ title=Using explicit endpoints
 ```yaml {configFile="app"}
 applications:
   # The name of the app container. Must be unique within a project.
-  app:
+  myapp:
     source:
       root: "myapp"
 

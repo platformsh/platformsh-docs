@@ -6,23 +6,23 @@ description: |
 ---
 
 Workers (or consumers) are a great way to off-load processing in the background
-to make an app as fast as possible. 
+to make an app as fast as possible.
 You can implement workers in Symfony smoothly thanks to the [Messenger component](https://symfony.com/doc/current/components/messenger.html).
 
 To deploy a worker, add an entry under the ``workers`` section [in your app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
 workers:
-    mails:
-        commands:
-            start: symfony console messenger:consume --time-limit=60 --memory-limit=128M
+  mails:
+    commands:
+      start: symfony console messenger:consume --time-limit=60 --memory-limit=128M
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
 integration](./integration) in your {{% vendor/name %}} app configuration.
 
 On {{% vendor/name %}}, worker containers run the exact same code as the web container.
-The container image is built only once and deployed multiple times in its own container alongside the web container. 
+The container image is built only once and deployed multiple times in its own container alongside the web container.
 The *build* hook and dependencies might not vary but,
 as these containers are independent, they can be customized the same way using common properties.
 The values defined for the main container are used as default values.

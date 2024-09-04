@@ -186,8 +186,8 @@ To do so, add [a configuration](../../define-routes/cache.md#allowing-only-speci
 
 ```yaml {configFile="routes"}
 cache:
-    enabled: true
-    cookies: ["/SESS.*/", "__blackfire"]
+  enabled: true
+  cookies: ["/SESS.*/", "__blackfire"]
 ```
 
 ## Get support

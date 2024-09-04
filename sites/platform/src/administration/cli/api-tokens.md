@@ -162,13 +162,13 @@ Then add a build hook to your app configuration to install the CLI as part of th
 <!-- @todo: CLI installation path for CI -->
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -e
-        echo "Installing {{% vendor/name %}} CLI"
-        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+  build: |
+    set -e
+    echo "Installing {{% vendor/name %}} CLI"
+    curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{% vendor/name %}} CLI"
-        {{% vendor/cli %}}
+    echo "Testing {{% vendor/name %}} CLI"
+    {{% vendor/cli %}}
 ```
 
 You can now call the CLI from within the shell on the app container or in a cron job.
@@ -180,16 +180,16 @@ You can set up a cron job on a specific type of environment.
 For example, to run the `update` source operation on your production environment,
 use the following cron job:
 
-```yaml
+```yaml {configFile="app"}
 crons:
-    update:
-       spec: '0 0 * * *'
-        commands:
-            start: |
-                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   {{% vendor/cli %}} backup:create --yes --no-wait
-                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
-                fi
+  update:
+    spec: '0 0 * * *'
+    commands:
+      start: |
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+           {{% vendor/cli %}} backup:create --yes --no-wait
+           {{% vendor/cli %}} source-operation:run update --no-wait --yes
+        fi
 ```
 
 ## Use the CLI SSH certificate for non-CLI commands

@@ -17,14 +17,14 @@ To set up a cron job, update your {{% vendor/name %}} configuration as follows:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        [...]
-        crons:
-            snapshot:
-                spec: * * * * *
-                commands: 
-                    start: |
-                        php artisan schedule:run >> /dev/null 2>&1
+  myapp:
+    [...]
+    crons:
+      snapshot:
+        spec: * * * * *
+        commands:
+          start: |
+            php artisan schedule:run >> /dev/null 2>&1
 ```
 
 ## Run cron jobs based on environment type
@@ -34,22 +34,22 @@ use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        [...]
-        crons:
-            snapshot:
-                spec: 0 5 * * *
-                commands: 
-                    start: |
-                        # only run for the production environment, aka main branch
-                        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-                            php artisan schedule:run >> /dev/null 2>&1
-                        fi
+  myapp:
+    [...]
+    crons:
+      snapshot:
+        spec: 0 5 * * *
+        commands:
+          start: |
+            # only run for the production environment, aka main branch
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+              php artisan schedule:run >> /dev/null 2>&1
+            fi
 ```
 
 ## Run the Laravel scheduler every minute
 
-Cron job execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes. 
+Cron job execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes.
 For more information, see the [documentation on crons](/create-apps/app-reference/single-runtime-image#crons).
 
 However, you can add a [worker](/create-apps/app-reference/single-runtime-image#workers)
@@ -58,14 +58,13 @@ To do so, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
+  {{< variable "APP_NAME" >}}:
     [...]
-        {{< variable "APP_NAME" >}}:
-            [...]
-            workers:
-                scheduler:
-                    commands:
-                        start: |
-                            php artisan schedule:work
+    workers:
+      scheduler:
+        commands:
+          start: |
+            php artisan schedule:work
 ```
 
 {{< note title="Warning" theme="warning" >}}

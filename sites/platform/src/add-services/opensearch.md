@@ -233,7 +233,7 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 [...]
 
@@ -248,7 +248,7 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 [...]
 

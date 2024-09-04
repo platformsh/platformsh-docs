@@ -721,7 +721,7 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "php:{{% latest "php" %}}"
 
 relationships:
@@ -746,7 +746,7 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "php:{{% latest "php" %}}"
 
 relationships:

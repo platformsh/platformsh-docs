@@ -27,14 +27,14 @@ about the app and its infrastructure.
 Assuming that MySQL, PostgreSQL, and Redis services have been added to your environment,
 and that the app has been granted access to those services via the following [relationships](/create-apps/app-reference/single-runtime-image#relationships):
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        relationships:
-            mysql: ...
-            postgresql: ...
-            redis: ...
+  myapp:
+    [...]
+    relationships:
+      mysql: ...
+      postgresql: ...
+      redis: ...
 ```
 
 You can transpose these variables to set up Laravel's default configuration in a `.environment` file:
@@ -78,8 +78,10 @@ Each exposed environment variable is prefixed by the relationship name.
 For example, if you have the following relationships in your configuration:
 
 ```yaml {configFile="app"}
-relationships:
-    database:
+applications:
+  myapp:
+    relationships:
+      database:
         service: "securitydb"
         endpoint: "postgresql"
 ```

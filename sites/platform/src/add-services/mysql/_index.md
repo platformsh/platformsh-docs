@@ -671,7 +671,7 @@ mariadb:
 Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 [...]
 

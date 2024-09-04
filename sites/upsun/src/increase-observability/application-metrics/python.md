@@ -58,8 +58,8 @@ Here is an example of how you can initiate the Python `profiler` on a basic app:
 
    ``` python
    def foo():
-       import time
-       time.sleep(1.0)
+     import time
+     time.sleep(1.0)
 
    profiler = Profiler(application_name="my-python-app", labels={'my-extra-label': 'data'})
    profiler.start()

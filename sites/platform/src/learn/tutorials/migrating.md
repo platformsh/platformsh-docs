@@ -240,31 +240,15 @@ Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:
 
-{{% version/specific %}}
-<!-- Platform.sh -->
 ```yaml {configFile="app"}
 mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
-    'private':
-        source: local
-        source_path: private
+  'web/uploads':
+    source: local
+    source_path: uploads
+  'private':
+    source: local
+    source_path: private
 ```
-<--->
-<!-- Upsun -->
-```yaml {configFile="app"}
-applications:
-    myapp:
-        mounts:
-            'web/uploads':
-                source: local
-                source_path: uploads
-            'private':
-                source: local
-                source_path: private
-```
-{{% /version/specific %}}
 
 Upload to each of directories above by running the following commands:
 
