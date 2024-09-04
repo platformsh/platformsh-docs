@@ -38,6 +38,9 @@ If you need more hostnames, you can obtain additional certificates
 or a wildcard certificate from a [third-party issuer](../domains/steps/tls.md).
 Alternatively, consider splitting your project up into multiple {{% vendor/name %}} projects.
 
+Please note that when using multiple domains, the Common Name (CN) to which the certificate is issued to
+is not guaranteed to be the same on each certificate renewal.
+
 ### Certificate renewals
 
 When you use the [TLS certificates](#tls-certificates) provided by {{% vendor/name %}},

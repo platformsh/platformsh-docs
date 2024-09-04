@@ -15,10 +15,11 @@ the proper functioning of the {{% vendor/name %}} infrastructure, application co
 have found possible bugs; or have general questions,
 open a support ticket:
 
-1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
-2. Open the user menu (your name or profile picture) and select **Support**.
-3. Click **+ New ticket**.
-4. Fill in the ticket fields and click **Submit**.
+1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/)
+2. Click the **Help** dropdown in the upper right-hand corner.
+3. Select **Support** from the options in the dropdown.
+4. Click **+ New ticket**.
+5. Fill in the ticket fields and click **Submit**.
 
 Or use these shortcuts to [access all support tickets](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets)
 or [open a new ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
