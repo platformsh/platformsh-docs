@@ -303,7 +303,8 @@ markdownify=false
 
 You can configure your PHP-FPM runtime configuration by specifying the [runtime in your app configuration](/create-apps/app-reference/single-runtime-image.md#runtime).
 
-In addition to changes in runtime, you can also change the PHP settings.
+In addition to changes in runtime, you can also change the PHP settings. These settings can be changed using `php.ini`, `app_name.variables.php` or variables. 
+
 Some commonly used settings are:
 
 | Name | Default | Description |
@@ -362,7 +363,7 @@ To see the settings used on your environment:
 
 For {{% names/dedicated-gen-2 %}}, see the [configuration options](../../dedicated-gen-2/overview/grid.md#configuration-options).
 
-You can customize PHP values for your app in two ways.
+You can customize PHP values for your app in three ways.
 The recommended method is to use variables.
 
 {{< codetabs >}}
@@ -398,6 +399,27 @@ For example, to change the PHP memory limit, use the following configuration:
 
 ```ini {location="php.ini"}
 memory_limit = 256M
+```
+<--->
+
++++
+title=Using `variables.php`
++++
+
+You can also customize your PHP settings using `app_name.variables.php`. Below is an example of how this can be done using the default values:
+
+```
+variables:
+  php:
+    'max_execution_time': 300
+    'max_file_uploads': 20
+    'max_input_time': 60
+    'max_input_vars': 1000
+    'memory_limit': '128M'
+    'post_max_size': '64M'
+    'zend.assertions': -1
+    'opcache.memory_consumption': 64
+    'opcache.validate_timestamps': 0
 ```
 
 {{< /codetabs >}}
