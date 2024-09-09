@@ -12,7 +12,7 @@
 {{- $output := dict -}}
 
 {{- range $index, $page := $pages -}}
-  {{- $pageTitle := $page.LinkTitle | default $page.File.BaseFileName -}}
+  {{- $pageTitle := $page.LinkTitle | default $page.File.BaseFileName | markdownify -}}
   {{- $pageLink := $page.RelPermalink -}}
   {{- $fullURL := printf "%s%s" $baseURL $pageLink -}}
   {{- $data := partial "utils/fragments" (dict "context" $page "type" $indexType) -}}
