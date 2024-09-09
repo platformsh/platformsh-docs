@@ -14,7 +14,7 @@ In the process, you will learn more about {{% vendor/name %}}, what it does, and
 
 {{< note title="Have you seen the demo?" theme="info" >}}
 
-Find out how {{% vendor/name %}} works and gain a better understanding of what it provides. To check the demo out, [create a new project](https://console.upsun.com/projects/create-project) and select **Deploy demo project**.
+Find out how {{% vendor/name %}} works and gain a better understanding of what it provides. To check the demo out, [create a new project](https://console.upsun.com/projects/create-project) and select **Explore Upsun with our Demo App**.
 
 {{< /note >}}
 
