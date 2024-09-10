@@ -58,16 +58,37 @@ For more possibilities, see other [runtime operation examples](#runtime-operatio
 
 ## Run a runtime operation
 
-Once you've [defined a runtime operation](#define-a-runtime-operation),
-you can trigger it through the {{% vendor/name %}} CLI.
-To do so, run the following command:
+{{< codetabs >}}
++++
+title=In the Console
++++
+
+
+
+First, make sure that you have [defined a runtime operation](#define-a-runtime-operation). Then:
+
+1. Navigate to the environment where you want to run the operation.
+2. Click {{< icon more >}} **More**.
+3. Click **Run runtime operation**.
+4. Select the operation you want to run.
+5. Click **Run**.
+
+<--->
++++
+title=Using the CLI
++++
+
+
+A runtime operation can be triggered through the {{% vendor/name %}} CLI once it has been [defined](#define-a-runtime-operation). 
+
+Run the following command:
 
 ```bash
 {{% vendor/cli %}} operation:run {{< variable "RUNTIME_OPERATION_NAME" >}} --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
 You can only trigger a runtime operation if you have permission to do so.
-Permissions are granted through the `role` option specified in the [runtime operation configuration](#define-a-runtime-operation).
+Permissions are granted through the `role` option specified in the [runtime operation configuration](#define-a-runtime-operation). This can only be done if a [runtime operation has been defined](#define-a-runtime-operation).
 
 For example, to trigger the runtime operation [defined previously](#define-a-runtime-operation),
 you could run the following command:
@@ -75,6 +96,8 @@ you could run the following command:
 ```bash
 {{% vendor/cli %}} operation:run clear-rebuild --project {{< variable "PROJECT_ID" >}} --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
+
+{{< /codetabs >}}
 
 ## List your runtime operations
 
