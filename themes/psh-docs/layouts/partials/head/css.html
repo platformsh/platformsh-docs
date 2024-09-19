@@ -1,31 +1,24 @@
-{{ $productionSuffix := "" }}
-{{ if hugo.IsProduction }}
-  {{ $productionSuffix = "-mini" }}
-{{ end }}
-
+<!-- stylesheets using `minify` will be minified in production -->
 <!-- Vendor overrides -->
 {{ if eq .Site.Params.theme.use_vendor true }}
-    <link rel="stylesheet" href="{{ printf "/css/vendor%s.css?version=%s" $productionSuffix $.Site.Params.version }}">
+  {{ $vendorCSS := resources.Get "css/vendor.css" | postCSS | fingerprint }}
+  <link rel="stylesheet" href="{{ printf "%s?version=%s" $vendorCSS.RelPermalink $.Site.Params.version }}">
 {{ end }}
 
-
-<!-- Asciinema player -->
-<link rel="stylesheet" href="{{ printf "/asciinema/asciinema-player%s.css?version=%s"  $productionSuffix $.Site.Params.version }}">
+<!-- Asciinema player: moved to tailwind config.css -->
 
 <!-- Syntax highlighting -->
-<link rel="stylesheet" href="{{ printf "/css/syntax-highlighting%s.css?version=%s"  $productionSuffix $.Site.Params.version }}">
+{{ $syntaxHighlightingCSS := resources.Get "css/vendor.css" | postCSS | fingerprint }}
+<link rel="stylesheet" href="{{ printf "%s?version=%s" $syntaxHighlightingCSS.RelPermalink $.Site.Params.version }}">
 
 <!-- TailwindCSS files -->
-{{ $style := resources.Get "css/main.css" | resources.PostCSS }}
-{{ $style = $style.RelPermalink }}
-{{ if hugo.IsProduction }}
-  {{ $style = "/css/main-mini.css" }}
-{{ end }}
-<link rel="stylesheet" href="{{ printf "%s?version=%s" $style $.Site.Params.version }}">
+{{ $mainStyle := resources.Get "css/main.css" | postCSS | fingerprint }}
+<link rel="stylesheet" href="{{ printf "%s?version=%s" $mainStyle.RelPermalink $.Site.Params.version }}">
 
 <!-- Print stylesheets -->
 {{ with .File }}
   {{- if eq .Dir "security/transparency/" -}}
-  <link rel="stylesheet" media="print" href="{{ printf "styles/print/transparency-reports.css?version=%s" $.Site.Params.version | relURL}}">
+    {{ $transparencyReportsCSS := resources.Get "css/print/transparency-reports.css" | postCSS | fingerprint }}
+    <link rel="stylesheet" href="{{ printf "%s?version=%s" $transparencyReportsCSS.RelPermalink $.Site.Params.version }}">
   {{- end -}}
 {{ end }}
