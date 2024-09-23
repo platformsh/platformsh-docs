@@ -137,7 +137,7 @@ Once `old` has been deactivated, set the project's default branch to `main`:
 title=With a source integration
 +++
 
-Once `old` has been deactivated, set the project's default branch in {{% vendor/name %}} to `main`:
+Set the project's default branch in {{% vendor/name %}} to `main`:
 
 ```bash
 {{% vendor/cli %}} project:info default_branch main

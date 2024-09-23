@@ -127,7 +127,7 @@ Once you resubmit a request, it appears under the `main` environment on {{% vend
 title=Without a source integration
 +++
 
-Once `old` has been deactivated, set the project's default branch to `main`:
+Set the project's default branch to `main`:
 
 ```bash
 {{% vendor/cli %}} project:info default_branch main
