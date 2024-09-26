@@ -85,16 +85,10 @@ In such cases, add the inbound IP addresses for your region to your allow list.
 
 ### GCP and Azure regions outbound IPs
 
-Outbound IPs on **all GCP and Azure regions** will change.
+On the 17th of March 2025, Outbound IPs on **all GCP and Azure regions** will change.
 Customer projects that refer to outbound IPs explicitly in their code and/or configuration must intervene and update to the **New outbound IPs** as soon as is possible.
 
-Note, it's not yet possible for you to update to the new outbound IPs.
-They are documented here to provide adequate time for affected customers to make the necessary updates.
-
-{{% vendor/name %}} will update this page and make an announcement when the new outbound IPs become available,
-and the final deadline - after which the **Old outbound IPs** will no longer be available.
-
-Please stay tuned for more details.
+After the 17th of March, the **Old outbound IPs** will no longer be available.
 
 <!-- On the Xxx the outbound IPs of the GCP and Azure regions will changed, please update any configuration before that date. -->
 
