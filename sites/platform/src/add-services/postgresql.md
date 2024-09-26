@@ -264,7 +264,7 @@ You can use the `--stdout` option to pipe the result to another command. For exa
 {{% vendor/cli %}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
-It is also possible to generate the dump locally if you have the `pg_dump` command installed with `{{% vendor/cli %}} tunnel:single`, the command will ask you the service and will prompt the URI string that you can use like so:
+It is also possible to generate the dump locally if you have the `pg_dump` command installed with `{{% vendor/cli %}} tunnel:single`. The command will first ask for the service and then will provide a prompt for the URI string that you can use. For example:
 
 ```bash
 pg_dump -d postgresql://REPLACE_URI_FROM_OUTPUT -f dump.sql
