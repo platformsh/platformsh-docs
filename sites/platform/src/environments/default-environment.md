@@ -119,23 +119,15 @@ Once you resubmit a request, it appears under the `main` environment on {{% vend
 
 {{< /codetabs >}}
 
-## 5. Deactivate the `old` branch
 
-To change your default branch, you first need to deactivate the existing default branch to remove protections.
-Deactivate the `old` environment without deleting it by running the following CLI command:
-
-```bash
-{{% vendor/cli %}} environment:delete --no-delete-branch old
-```
-
-## 6. Set `main` as the default branch
+## 5. Set `main` as the default branch
 
 {{< codetabs >}}
 +++
 title=Without a source integration
 +++
 
-Once `old` has been deactivated, set the project's default branch to `main`:
+Set the project's default branch to `main`:
 
 ```bash
 {{% vendor/cli %}} project:info default_branch main
@@ -159,6 +151,15 @@ Follow the instructions to change the default branch to `main` for your provider
 - [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418)
 
 {{< /codetabs >}}
+
+## 6. Deactivate the `old` branch
+
+To change your default branch, you first need to deactivate the existing default branch to remove protections.
+Deactivate the `old` environment without deleting it by running the following CLI command:
+
+```bash
+{{% vendor/cli %}} environment:delete --no-delete-branch old
+```
 
 ## 7. Update DNS records
 
