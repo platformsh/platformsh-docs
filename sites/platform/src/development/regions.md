@@ -12,7 +12,8 @@ You can choose a region based on criteria such as its closeness to your users an
 
 {{< note title="Upcoming changes!" theme="info" >}}
 
-There are upcoming changes that will affect **outbound IPs** for all GCP and Azure regions that will require your intervention
+On **17 March 2025**, outbound IPs on **all GCP and Azure regions** will change.
+These upcoming changes that will affect **outbound IPs** for all GCP and Azure regions, and will require your intervention
 if your are using public IP addresses explicitly.
 
 Please see [the documentation](#upcoming-changes) below for details and relevant deadlines.
