@@ -179,7 +179,7 @@ title=Latest version
 type: 'python:{{% latest "python" %}}'
 dependencies:
     python3:
-        poetry: '>=1.8'
+        poetry: '*'
 variables:
     env:
         POETRY_VIRTUALENVS_IN_PROJECT: true
