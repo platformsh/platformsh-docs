@@ -29,10 +29,10 @@ Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
 <!-- vale off -->
-## Slack
+## Discord
 
 To talk about app development or framework-related questions,
-join other customers and engineers in the [public Slack channel](https://chat.platform.sh/).
+join other customers and engineers in the [public Discord channel](https://chat.platform.sh/).
 
 ## Community
 
@@ -53,7 +53,7 @@ To permanently delete your {{% vendor/name %}} account, follow these steps:
 
 Deleting your {{% vendor/name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
-{{% /note %}} 
+{{% /note %}}
 
 1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
 2. Open the user menu (your name or profile picture) and select **My Profile**.
