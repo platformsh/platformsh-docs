@@ -177,65 +177,57 @@ applications:
 title=Latest version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-type: 'python:{{% latest "python" %}}'
-variables:
-  env:
-    POETRY_VIRTUALENVS_IN_PROJECT: true
-    POETRY_VIRTUALENVS_CREATE: true
-
-hooks:
-  build: |
-    # Fail the build if any errors occur
-    set -eu
-
-    # Download the latest version of pip
-    python{{% latest "python" %}} -m pip install --upgrade pip
-
-    # Install and configure Poetry
-    export PIP_USER=false
-    curl -sSL https://install.python-poetry.org | python3 -
-    # Update PATH to make Poetry available in this hook
-    export PATH="/app/.local/bin:$PATH"
-    export PIP_USER=true
-
-    # Install dependencies
-    poetry install
-{{< /snippet >}}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # The location of the application's code.
+    source:
+      root: "myapp"
+      type: 'python:{{% latest "python" %}}'
+      dependencies:
+        python3:
+          poetry: '*'
+      variables:
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+          POETRY_VIRTUALENVS_CREATE: true
+      hooks:
+        build: |
+          # Fail the build if any errors occur
+          set -eu
+          # Download the latest version of pip
+          python{{% latest "python" %}} -m pip install --upgrade pip
+          # Install dependencies
+          poetry install
 ```
 <--->
 +++
 title=Specific version
 +++
 ```yaml {configFile="app"}
-{{< snippet name="myapp" config="app" root="myapp" >}}
-type: 'python:{{% latest "python" %}}'
-variables:
-  env:
-    POETRY_VERSION: '1.4.0'
-    POETRY_VIRTUALENVS_IN_PROJECT: true
-    POETRY_VIRTUALENVS_CREATE: true
-
-hooks:
-  build: |
-    # Fail the build if any errors occur
-    set -eu
-
-    # Download the latest version of pip
-    python3.11 -m pip install --upgrade pip
-
-    # Install and configure Poetry
-    # Set user to false to install Poetry globally
-    export PIP_USER=false
-    curl -sSL https://install.python-poetry.org | python3 - --version $POETRY_VERSION
-    # Update PATH to make Poetry available in this hook
-    export PATH="/app/.local/bin:$PATH"
-    # Set user to true to install dependencies only in the virtual environment
-    export PIP_USER=true
-
-    # Install dependencies
-    poetry install
-{{< /snippet >}}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+     # The location of the application's code.
+     source:
+       root: "myapp"
+     type: 'python:{{% latest "python" %}}'
+     dependencies:
+       python3:
+         poetry: '>=1.8'
+       variables:
+         env:
+           POETRY_VIRTUALENVS_IN_PROJECT: true
+           POETRY_VIRTUALENVS_CREATE: true
+        
+        hooks:
+          build: |
+            # Fail the build if any errors occur
+            set -eu
+            # Download the latest version of pip
+            python{{% latest "python" %}} -m pip install --upgrade pip
+            # Install dependencies
+            poetry install   
 ```
     {{< /codetabs >}}
 

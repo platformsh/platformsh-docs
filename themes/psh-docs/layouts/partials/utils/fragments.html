@@ -18,15 +18,15 @@
   {{ end }}
 {{ end }}
 
-{{ $content := partial "utils/excludeSearch.html" (dict "context" . "content" $page.RawContent) }}
+{{ $content := partial "utils/excludeSearch.html" (dict "context" . "content" $page.Content) }}
 {{ $len := len $headingKeys }}
 {{ $data := dict }}
 
 {{ if eq $type "content" }}
   {{/* Include full content of the page */}}
   {{ if eq $len 0 }}
-    {{ $plainContent := partial "utils/excludeSearch.html" (dict "context" . "content" $page.RawContent) }}
-    {{ $data = $data | merge (dict "" ($plainContent | htmlUnescape | chomp)) }}
+    {{ $plainContent := partial "utils/excludeSearch.html" (dict "context" . "content" $page.Content) }}
+    {{ $data = $data | merge (dict "" ($plainContent | markdownify | htmlUnescape | chomp)) }}
   {{ else }}
     {{/* Split the raw content from bottom to top */}}
     {{ range seq $len }}

@@ -25,7 +25,29 @@ Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platfo
 
 {{% /guides/config-service %}}
 
-{{< readFile file="static/files/fetch/servicesyaml/typo3" highlight="yaml" >}}
+```yaml {configFile="services"}
+# This file describes an application's services. You can define as many services as your
+# application requires, subject to your plan's resource restrictions.
+#
+# See https://docs.platform.sh/configuration/services.html.
+
+# MariaDB/MySQL 10.4 service with 2048MB of allocated disk.
+# The service name `db` is used in defining the `database` relationship in the
+# `.platform.app.yaml` file.
+# 
+# See https://docs.platform.sh/configuration/services/mysql.html.
+db:
+    type: mysql:10.4
+    disk: 2048
+
+# Redis 5.0 service definition. 
+# The service name `cache` is used in defining the `rediscache` relationship in the
+# `.platform.app.yaml` file.
+# 
+# See https://docs.platform.sh/configuration/services/redis.html.
+cache:
+    type: redis:5.0
+```
 
 {{% guides/config-routes template="typo3" name="TYPO3" %}}
 
