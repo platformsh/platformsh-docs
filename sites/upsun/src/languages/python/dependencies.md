@@ -191,7 +191,7 @@ hooks:
         # Fail the build if any errors occur
         set -eu
         # Download the latest version of pip
-        python3.9 -m pip install --upgrade pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
         # Install dependencies
         poetry install
 {{< /snippet >}}
@@ -208,7 +208,6 @@ dependencies:
         poetry: '>=1.8'
 variables:
     env:
-        POETRY_VERSION: '1.4.0'
         POETRY_VIRTUALENVS_IN_PROJECT: true
         POETRY_VIRTUALENVS_CREATE: true
 
@@ -217,7 +216,7 @@ hooks:
         # Fail the build if any errors occur
         set -eu
         # Download the latest version of pip
-        python3.9 -m pip install --upgrade pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
         # Install dependencies
         poetry install
 {{< /snippet >}}
