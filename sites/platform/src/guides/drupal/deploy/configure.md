@@ -21,7 +21,19 @@ See an example of Redis for caching in our [Drupal template](https://github.com/
 
 {{% /guides/config-service %}}
 
-{{< readFile file="static/files/fetch/servicesyaml/drupal10" highlight="yaml" >}}
+```yaml {configFile="services"}
+# The services of the project.
+#
+# Each service listed will be deployed
+# to power your Platform.sh project.
+
+db:
+    type: mariadb:10.11
+    disk: 2048
+
+cache:
+    type: redis:7.2
+```
 
 {{% guides/config-routes template="drupal10" name="Drupal" %}}
 
