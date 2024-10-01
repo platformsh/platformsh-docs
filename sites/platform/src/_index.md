@@ -87,7 +87,7 @@ To stay informed of all the latest {{% vendor/name %}} news, join our newsletter
 
 ### Join the community
 
-The {{% vendor/name %}} community meets on both a [Community forum](https://support.platform.sh/hc/en-us/community/topics) and [Slack](https://chat.platform.sh) for questions and discussion.
+The {{% vendor/name %}} community meets on both a [Community forum](https://support.platform.sh/hc/en-us/community/topics) and [Discord](https://chat.platform.sh/) for questions and discussion.
 
 Have an experiment you'd like to share?
 Looking for a way to contribute?
