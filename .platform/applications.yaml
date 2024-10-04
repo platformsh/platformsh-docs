@@ -152,7 +152,7 @@
         set -ex
         /app/redirection-agent/redirectionio-agent --config-file "${PLATFORM_APP_DIR}/agent.yaml"
     locations:
-      /anchors:
+      /:
         allow: false
         passthru: true
 
