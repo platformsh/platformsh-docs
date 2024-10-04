@@ -150,9 +150,10 @@
     commands:
       start: |
         set -ex
-        /app/redirection-agent/redirectionio-agent -config-file "${PLATFORM_APP_DIR}/agent.yaml"
+        /app/redirection-agent/redirectionio-agent --config-file "${PLATFORM_APP_DIR}/agent.yaml"
     locations:
-      /:
+      /anchors:
+        root: /
         allow: false
         passthru: true
 
