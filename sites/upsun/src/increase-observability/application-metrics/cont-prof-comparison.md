@@ -19,7 +19,7 @@ the comparison mode.
 
 ![Routes](/images/observability/cont-prof-comparison-console.png "0.5")
 
-Once comparison enabled, you can select two timeframes referred to as ``A`` and
+With comparisons enabled, you can select two timeframes referred to as ``A`` and
 ``B``. Those times can overlap.
 
 ## Understanding continuous profiling visual comparison
