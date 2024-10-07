@@ -37,7 +37,7 @@ You can also [adjust resources](/manage-resources/adjust-resources.md) after you
 {{% note %}}
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
-Note that you can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
+You can [monitor these costs](/administration/billing/monitor-billing.md) in the Console.
 
 {{% /note %}}
 
@@ -353,17 +353,22 @@ you can restore it to your current environment or a different environment.
 
 ## Backup restoration to your current environment
 
-Each container already running on the environment keeps its existing resources.
+By default, when you [restore a backup](/environments/restore.md) using the CLI, it is restored to your current environment.
+The resources of every container already running on the environment are reverted to their original state when the backup was taken.
 
-You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
-By default, code is restored as part of the backup.
-Therefore, previously deleted containers are restored using the `backup` strategy,
-which grants them the same resources they were using when the backup was taken.
+{{% note %}}
+If you don't want to restore the resources from when the backup was taken,
+opt out of restoring the resources.
+To do so, when you restore your backup, use the `--no-resources` option.
+{{% /note %}}
+
+If you deleted containers after backing up but before restoring, they are recreated using the `backup` strategy.
+Meaning, they are granted the same resources as in the backup.
 
 {{% note %}}
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, when you restore your backup, use the `--no-code` flag.
+To do so, when you restore your backup, use the `--no-code` option.
 {{% /note %}}
 
 When you restore previously deleted containers,
@@ -372,8 +377,9 @@ you can specify a different resource initialization strategy for them.
 ## Backup restoration to a different environment
 
 The `backup` strategy also applies by default.
-However, as all the apps and services are initialized as new containers on the environment,
-you can specify a different resource initialization strategy for all of them. 
+All apps and services are initialized as new containers on the environment,
+and granted the same resources as in the backup.
+Note that you can specify a different resource initialization strategy for all of them.
 
 ## Specify a resource initialization strategy when restoring a backup via the CLI
 
@@ -396,19 +402,21 @@ title=In the Console
 +++
 
 When you [restore a backup](/environments/restore.md) using the Console, it is restored to your current environment.
-
-Each container already running on your current environment keeps its existing resources.
-Therefore, you don't need to specify a resource initialization strategy. 
+The resources of every container already running on the environment are reverted to their original state when the backup was taken.
 
 {{% note %}}
-You may have deleted containers between the moment you took the backup, and the moment you restore it.</br>
-By default, code is restored as part of the backup.
-Therefore, previously deleted containers are restored using the `backup` strategy,
-which grants them the same resources they were using when the backup was taken.
+If you don't want to restore the resources from when the backup was taken,
+opt out of restoring the resources.
+To do so, when you restore your backup, use the `--no-resources` option.
+{{% /note %}}
 
+If you deleted containers after backing up but before restoring, they are recreated using the `backup` strategy.
+Meaning, they are granted the same resources as in the backup.
+
+{{% note %}}
 If you don't want to restore previously deleted containers,
 opt out of restoring the code.
-To do so, when you restore your backup, use the `--no-code` flag.
+To do so, restore the backup using the CLI, and use the `--no-code` option.
 {{% /note %}}
 
 {{< /codetabs >}}

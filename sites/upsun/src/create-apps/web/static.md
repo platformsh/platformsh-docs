@@ -93,6 +93,21 @@ applications:
                             expires: 4w
 ```
 
+You can also set a `Cache-Control` header in your rules.
+```yaml {configFile="app"}
+web:
+    locations:
+        '/':
+            ...
+            expires: 24h
+            rules:
+                \.(css|js|gif|jpe?g|png|svg)$:
+                headers:
+                      Cache-Control: "public, max-age=2419200, immutable"
+
+If `expires` and a `Cache-Control` header are set, the rule ignores the `expires` and sets only the `Cache-Control` header. For this reason, make sure
+to add a `max-age` value, in seconds, for the `Cache-Control` header.
+
 ### Conserve the server
 
 Because your site is completely static, it doesn't need the server to be running.

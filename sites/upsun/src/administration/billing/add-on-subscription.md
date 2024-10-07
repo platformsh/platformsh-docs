@@ -17,10 +17,10 @@ You can do so directly from the Console.
 
 The Standard User Management add-on gives you access to the following features:
 
-- Free [viewer permissions](../users.md)
-- Custom [organization permissions](../users.md#organization-permissions)
+- [Free viewers](../users.md)
+- [Organization permissions](../users.md#organization-permissions)
 - [Teams](/administration/teams.md)
-- [MFA enforcement within an organization](/administration/mfa.md)
+- [MFA enforcement](/administration/mfa.md)
 
 ### Upgrade to the Standard User Management add-on
 
