@@ -192,8 +192,7 @@ cache:
 
 ## Get support
 
-If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help,
-follow these steps:
+If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help, follow these steps:
 
 1. Retrieve [startup errors](#1-retrieve-startup-errors).
 2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
