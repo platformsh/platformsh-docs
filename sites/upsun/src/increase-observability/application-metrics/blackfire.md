@@ -17,6 +17,8 @@ Alerting, and Testing features, you can achieve the following goals:
 - Create performance budgets for critical parts of your app and get alerted of any
   problem before a change hits your production
 
+  {{< youtube SNqQTYzHl0o >}}
+
 Blackfire is installed natively on {{< vendor/name >}} and [works integrally with the {{< vendor/name >}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
 

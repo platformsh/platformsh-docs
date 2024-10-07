@@ -353,7 +353,7 @@ https://docs.upsun.com/:
       "/anchors/apps/workers.html": { "to": "/create-apps/workers.html", "code": 301, "prefix": false }
       "/anchors/apps/source-ops.html": { "to": "/create-apps/source-operations.html", "code": 301, "prefix": false }
       "/anchors/apps/runtime-ops.html": { "to": "/create-apps/runtime-operations.html", "code": 301, "prefix": false }
-      "/anchors/live-backups.html": { "to": "/administration/backup-and-restore.html#live-backups", "code": 301, "prefix": false }
+      "/anchors/live-backups.html": { "to": "/environments/backup.html#live-backups", "code": 301, "prefix": false }
       "/anchors/automated-updates.html": { "to": "/learn/tutorials/dependency-updates.html", "code": 301, "prefix": false }
       # Still a Platform.sh-specific link.
       "/anchors/trust-center.html": { "to": "https://platform.sh/trust-center/", "code": 301, "prefix": false }
