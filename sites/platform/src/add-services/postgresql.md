@@ -264,6 +264,12 @@ You can use the `--stdout` option to pipe the result to another command. For exa
 {{% vendor/cli %}} db:dump --stdout | bzip2 > dump.sql.bz2
 ```
 
+It is also possible to generate the dump locally if you have the `pg_dump` command installed with `{{% vendor/cli %}} tunnel:single`. The command will first ask for the service and then will provide a prompt for the URI string that you can use. For example:
+
+```bash
+pg_dump -d postgresql://REPLACE_URI_FROM_OUTPUT -f dump.sql
+```
+
 ## Importing data
 
 Make sure that the imported file contains objects with cleared ownership and `IF EXISTS` clauses. For example, you can create a DB dump with following parameters:
@@ -437,6 +443,69 @@ When you switch from the default configuration with an empty password to custom 
 make sure your service name remains unchanged.
 Failure to do so results in the creation of a new service,
 which removes any existing data from your database.
+
+## Restrict access to database replicas only
+
+{{< partial "banners/replicas/body.md" >}}
+
+For security reasons, you can grant your app access to replicas instead of your actual database.
+To do so, when defining the relationship between your app and database,
+make sure you do the following:
+
+1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2. Add the `-replica` suffix to the name of the endpoint you want to use.
+
+This results in the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+    {{% variable "RELATIONSHIP_NAME" %}}:
+        service: {{% variable "SERVICE_NAME" %}}
+        endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+```
+
+For example, if you define a `postgresql` database as follows:
+
+```yaml {configFile="services"}
+postgresql:
+    type: "postgresql:16"
+    disk: 2048
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+```
+
+To create a replica of the `postgresql` database and allow your app to connect to it
+through the `admin` endpoint with admin permissions,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  postgresql:
+    service: postgresql
+    endpoint: admin-replica
+```
+
+To create a replica of the `postgresql` database and allow your app to connect to it
+through the `reporter` endpoint with read-only permissions instead,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  postgresql:
+    service: postgresql
+    endpoint: reporter-replica
+```
 
 ## Service timezone
 

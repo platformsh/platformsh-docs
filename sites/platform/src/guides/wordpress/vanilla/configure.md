@@ -20,7 +20,16 @@ We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version
 
 {{% /guides/config-service %}}
 
-{{< readFile file="static/files/fetch/servicesyaml/wordpress-vanilla" highlight="yaml" >}}
+```yaml
+# The services of the project.
+#
+# Each service listed will be deployed
+# to power your Platform.sh project.
+
+db:
+    type: mariadb:10.4
+    disk: 2048
+```
 
 {{% guides/config-routes template="wordpress-vanilla" name="WordPress" %}}
 

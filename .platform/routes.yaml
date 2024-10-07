@@ -295,7 +295,7 @@ https://docs.upsun.com/:
       "/anchors/environments/active.html": { "to": "/environments.html#environment-status", "code": 301, "prefix": false }
       "/anchors/backups/schedule.html": { "to": "/security/data-retention.html#grid-backups", "code": 301, "prefix": false }
       "/anchors/config/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
-      "/anchors/cli/tokens.html": { "to": "/development/cli/api-tokens.html", "code": 301, "prefix": false }
+      "/anchors/cli/tokens.html": { "to": "/administration/cli/api-tokens.html", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
       "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
@@ -353,7 +353,7 @@ https://docs.upsun.com/:
       "/anchors/apps/workers.html": { "to": "/create-apps/workers.html", "code": 301, "prefix": false }
       "/anchors/apps/source-ops.html": { "to": "/create-apps/source-operations.html", "code": 301, "prefix": false }
       "/anchors/apps/runtime-ops.html": { "to": "/create-apps/runtime-operations.html", "code": 301, "prefix": false }
-      "/anchors/live-backups.html": { "to": "/administration/backup-and-restore.html#live-backups", "code": 301, "prefix": false }
+      "/anchors/live-backups.html": { "to": "/environments/backup.html#live-backups", "code": 301, "prefix": false }
       "/anchors/automated-updates.html": { "to": "/learn/tutorials/dependency-updates.html", "code": 301, "prefix": false }
       # Still a Platform.sh-specific link.
       "/anchors/trust-center.html": { "to": "https://platform.sh/trust-center/", "code": 301, "prefix": false }

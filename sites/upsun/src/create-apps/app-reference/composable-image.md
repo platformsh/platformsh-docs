@@ -42,11 +42,11 @@ applications:
   frontend:
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "nodejs@{{% latest "nodejs" %}}"
       - "python@3.12"
     # Additional frontend configuration

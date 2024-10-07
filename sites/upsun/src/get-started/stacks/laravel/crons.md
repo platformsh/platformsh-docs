@@ -21,7 +21,7 @@ applications:
         [...]
         crons:
             snapshot:
-                spec: * * * * *
+                spec: "* * * * *"
                 commands: 
                     start: |
                         php artisan schedule:run >> /dev/null 2>&1

@@ -223,7 +223,7 @@ title=In the Console
 
 1. Navigate to your project and click {{< icon settings >}} **Settings**.
 2. Under **Environments**, select the environment you want to pause.
-3. In the **Status** tab, click **Pause environment**.
+3. In the **General** tab, click **Pause environment**.
 
 {{< /codetabs >}}
 

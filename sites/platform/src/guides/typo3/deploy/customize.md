@@ -69,7 +69,84 @@ You have to locate the site configuration files (`config.yaml`) in your reposito
 For the purposes of this guide, you need to set the `base` attribute to an environment variable called `PLATFORM_ROUTES_MAIN`.
 You can also add the definition to your existing `baseVariant` attribute for production if desired.
 
-{{< readFile file="static/files/fetch/config-examples/typo3" highlight="yaml" >}}
+```yaml
+# TYPO3 Site Handling configuration YAML.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/Basics.html.
+rootPageId: 1
+
+# The base domain used to run the TYPO3 site. Here, the environment variable `PLATFORM_ROUTES_MAIN` set in 
+# `public/typo3/conf/PlatformshConfiguration.php` is used. 
+base: '%env(PLATFORM_ROUTES_MAIN)%'
+
+# Site's available languages configuration.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/AddLanguages.html#sitehandling-addinglanguages
+languages:
+    -
+        languageId: '0'
+        title: English
+        navigationTitle: English
+        base: '/'
+        locale: en_US.UTF8
+        iso-639-1: en
+        hreflang: en-US
+        direction: ltr
+        typo3Language: default
+        flag: us
+        enabled: true
+    -
+        languageId: '2'
+        title: German
+        navigationTitle: Deutsch
+        base: '/de/'
+        locale: de_DE.UTF8
+        iso-639-1: de
+        hreflang: de-DE
+        direction: ltr
+        typo3Language: de
+        flag: de
+        fallbackType: fallback
+        fallbacks: '0'
+        enabled: true
+    -
+        languageId: '1'
+        title: Dansk
+        navigationTitle: Dansk
+        base: '/da/'
+        locale: da_DK.UTF-8
+        iso-639-1: da
+        hreflang: da-DK
+        direction: ltr
+        typo3Language: default
+        flag: dk
+        fallbackType: fallback
+        fallbacks: '0'
+        enabled: true
+
+# Configuration for how to handle error codes for the TYPO3 site.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/Basics.html.
+errorHandling:
+    -
+        errorCode: '404'
+        errorHandler: Page
+        errorContentSource: 't3://page?uid=5'
+
+# Environment-specific `base` configuration.
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/BaseVariants.html.
+baseVariants: {  }
+
+# Adding static routes for the TYPO3 site. 
+# 
+# See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/SiteHandling/StaticRoutes.html#sitehandling-staticroutes.
+routes:
+    -
+        route: robots.txt
+        type: staticText
+        content: "User-agent: *\r\nDisallow: /typo3/"
+```
 
 You define this environment variable in the next section,
 but its purpose is to retrieve the root domain
@@ -112,7 +189,87 @@ In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the librar
 - Configure the HTTP timeout to 3 seconds
   to avoid the PHP-FPM-related [deadlock described above](#avoiding-deadlock-with-the-local-page-error-handler).
 
-{{< readFile file="static/files/fetch/config-examples-platform/typo3" highlight="php" >}}
+```php
+<?php
+
+/**
+ * Platform.sh-specific configuration for TYPO3.
+ *
+ * You may edit this file as desired, but connection configuration
+ * should be based on Platform.sh environment variables.
+ */
+
+declare(strict_types=1);
+
+use Platformsh\ConfigReader\Config;
+
+// Leverages the Platform.sh Configuration Reader library for PHP.
+// 
+// See https://github.com/platformsh/config-reader-php.
+$platformConfig = new Config();
+
+// Ensures script does not run if not on Platform.sh.
+if (!$platformConfig->isValidPlatform()) {
+    return;
+}
+
+// Ensures script does not run during builds, when relationships
+// are not available.
+if ($platformConfig->inBuild()) {
+    return;
+}
+
+// Workaround to set the proper env variable for the main route (found in config/sites/main/config.yaml)
+// Relies on the `id: "main"` configuration set in `.platform/routes.yaml`.
+putenv('PLATFORM_ROUTES_MAIN=' . $platformConfig->getRoute('main')['url']);
+
+// Configure the database for `doctrine-dbal` for TYPO3 based on the Platform.sh relationships. 
+// 
+// See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/Database/Configuration/Index.html.
+// 
+// These lines depend on the database relationship being named `database`. If updating the name to 
+// something else below, be sure to update `.platform.app.yaml` to match.
+if ($platformConfig->hasRelationship('database')) {
+    $databaseConfig = $platformConfig->credentials('database');
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['driver'] = 'mysqli';
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] = $databaseConfig['host'];
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['port'] = $databaseConfig['port'];
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] = $databaseConfig['path'];
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] = $databaseConfig['username'];
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] = $databaseConfig['password'];
+}
+
+// Configure Redis as the cache backend if available. These lines depend on the Redis relationship
+// being named `rediscache`. If updating the name to something else below, be sure to update `.platform.app.yaml` to match.
+if ($platformConfig->hasRelationship('rediscache')) {
+    $redisConfig = $platformConfig->credentials('rediscache');
+    $redisHost = $redisConfig['host'];
+    $redisPort = $redisConfig['port'];
+    $list = [
+        'pages' => 3600 * 24 * 7,
+        'pagesection' => 3600 * 24 * 7,
+        'rootline' => 3600 * 24 * 7,
+        'hash' => 3600 * 24 * 7,
+        'extbase' => 3600 * 24 * 7,
+    ];
+    $counter = 1;
+    foreach ($list as $key => $lifetime) {
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$key]['backend'] = \TYPO3\CMS\Core\Cache\Backend\RedisBackend::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations'][$key]['options'] = [
+            'database' => $counter++,
+            'hostname' => $redisHost,
+            'port' => $redisPort,
+            'defaultLifetime' => $lifetime
+        ];
+    }
+}
+
+// Ensure that HTTP requests have a timeout set, to avoid sites locking up due to slow
+// outgoing HTTP requests.
+$GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
+
+// Add additional Platform.sh-specific configuration here, such as a search backend.
+```
 
 Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the {{% vendor/name %}}-specific configuration into the site if present.
 

@@ -11,7 +11,7 @@ When a user is added to a project, they are automatically added to your organiza
 {{< note title="Available add-on" >}}
 
 The Standard User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
-[teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/web/mfa.md).
+[teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/mfa.md).
 See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
 
 {{< /note >}}
@@ -44,11 +44,11 @@ An environment type (Production, Staging, and Development) groups one or more en
 
 A user can have one of the following roles on an environment type which grants them permissions on all environments of this type:
 
-| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
-|-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
-| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
-| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
-| Viewer      | Yes              | No        | Yes                | No         | No              | No              |
+| Role        | View environment | Force push | Push code | Branch environment | SSH access | Change settings | Execute actions |
+|-------------|------------------|------------|-----------|--------------------|------------|-----------------|-----------------|
+| Admin       | Yes              | Yes        | Yes       | Yes                | Yes        | Yes             | Yes             |
+| Contributor | Yes              | No         | Yes       | Yes                | Yes        | No              | No              |
+| Viewer      | Yes              | No         | No        | Yes                | No         | No              | No              |
 
 To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/app-reference/single-runtime-image.md#access).
 
@@ -229,6 +229,8 @@ For more information on project access control, see how to [manage project users
 
 ### Organization permissions
 
+{{< partial "user-mgt-sellable/body.md" >}}
+
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
@@ -262,12 +264,6 @@ Organization owners have all permissions within their organization.
 Their permission level can't be edited.
 Organization owners can't be removed from their organization,
 except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
-
-{{< note title="Available add-on" >}}
-
-To be able to create custom organization permissions, [upgrade to the Standard User Management add-on](administration/billing/add-on-subscription.md#standard-user-management-add-on).
-
-{{< /note >}}
 
 ### Add a user to an organization
 

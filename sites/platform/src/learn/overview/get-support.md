@@ -16,9 +16,10 @@ have found possible bugs; or have general questions,
 open a support ticket:
 
 1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/)
-2. Select **User menu** (your name) > **Support**.
-3. Click **+ New ticket**.
-4. Fill in the ticket fields and click **Submit**.
+2. Click the **Help** dropdown in the upper right-hand corner.
+3. Select **Support** from the options in the dropdown.
+4. Click **+ New ticket**.
+5. Fill in the ticket fields and click **Submit**.
 
 Or use these shortcuts to [access all support tickets](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets)
 or [open a new ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
@@ -27,15 +28,17 @@ Once you submit a ticket, you see it in a list of all tickets created, for all p
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
 
-## Slack
+<!-- vale off -->
+## Discord
 
 To talk about app development or framework-related questions,
-join other customers and engineers in the [public Slack channel](https://chat.platform.sh/).
+join other customers and engineers in the [public Discord channel](https://chat.platform.sh/).
 
 ## Community
 
 The [{{% vendor/name %}} Community site](https://community.platform.sh/) has how-to guides with suggestions
 on how to get the most out of {{% vendor/name %}}.
+<!-- vale on -->
 
 ## Contact Sales
 
@@ -50,7 +53,7 @@ To permanently delete your {{% vendor/name %}} account, follow these steps:
 
 Deleting your {{% vendor/name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
-{{% /note %}} 
+{{% /note %}}
 
 1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
 2. Open the user menu (your name or profile picture) and select **My Profile**.
