@@ -19,7 +19,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 ### Specify the language
 
-To use Node.js, specify ``python`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
+To use Python, specify ``python`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
 
 ```yaml {configFile="app"}
 applications:
