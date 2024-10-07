@@ -1,0 +1,22 @@
+{{/* FlexSearch Data structure for use in devcenter.upsun.com */}}
+{{- $indexType := site.Params.search.flexsearch.index | default "content" -}}
+{{- $baseURL := strings.TrimSuffix "/" .Site.BaseURL  -}}
+{{- if not (in (slice "content" "summary" "heading" "title" ) $indexType) -}}
+  {{- errorf "unknown flexsearch index type: %s" $indexType -}}
+{{- end -}}
+
+{{- $pages := where .Site.Pages "Kind" "in" (slice "page" "section") -}}
+{{- $pages = where $pages "Params.excludeSearch" "!=" true -}}
+{{- $pages = where $pages "Content" "!=" "" -}}
+
+{{- $output := dict -}}
+
+{{- range $index, $page := $pages -}}
+  {{- $pageTitle := $page.LinkTitle | default $page.File.BaseFileName | markdownify -}}
+  {{- $pageLink := $page.RelPermalink -}}
+  {{- $fullURL := printf "%s%s" $baseURL $pageLink -}}
+  {{- $data := partial "utils/fragments" (dict "context" $page "type" $indexType) -}}
+  {{- $output = $output | merge (dict $pageLink (dict "title" $pageTitle "data" $data "base" $baseURL "full" $fullURL )) -}}
+{{- end -}}
+
+{{- $output | jsonify -}}

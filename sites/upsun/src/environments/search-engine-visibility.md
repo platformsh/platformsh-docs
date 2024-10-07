@@ -52,8 +52,7 @@ X-Robots-Tag: noindex, nofollow
 That tells search engine indexers to not index these sites and not traverse links from these sites.
 This helps keep non-Production sites out of search engine indexes.
 
-You can choose whether to keep it on for production sites with custom domains.
-It's automatically on for all `{{% vendor/cli %}}.site` domains.
+It's automatically on for all `{{% vendor/cli %}}.site` domains, and it's automatically off for production environments with a custom domain.
 
 ## Alternative method
 

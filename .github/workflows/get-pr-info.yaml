@@ -213,7 +213,7 @@ jobs:
           UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
           echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: pr-info
           path: |
