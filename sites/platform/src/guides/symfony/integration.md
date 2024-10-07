@@ -21,12 +21,12 @@ integration, enable it by adding the following configuration:
 
    ```yaml {configFile="app"}
     hooks:
-        build: |
-            set -x -e
+      build: |
+        set -x -e
 
-            curl -fs https://get.symfony.com/cloud/configurator | bash
+        curl -fs https://get.symfony.com/cloud/configurator | bash
 
-            # ...
+        # ...
    ```
 
 The **configurator** enables the following integration:
@@ -65,17 +65,17 @@ Here's the default `hooks` section optimized for Symfony projects:
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -x -e
+  build: |
+    set -x -e
 
-        curl -s https://get.symfony.com/cloud/configurator | bash
+    curl -s https://get.symfony.com/cloud/configurator | bash
 
-        symfony-build
+    symfony-build
 
-    deploy: |
-        set -x -e
+  deploy: |
+    set -x -e
 
-        symfony-deploy
+    symfony-deploy
 ```
 
 {{< note title="Warning" >}}
@@ -96,12 +96,12 @@ During the `deploy` or `post_deploy` hooks, you can execute actions for a specif
 To do so, in your `{{< vendor/configfile "app" >}}`file,
 use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](../../development/variables/_index.md)) in a condition:
 
-```yaml
+```yaml {configFile="app"}
 hooks:
-    deploy: |
-        if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
-            symfony console app:dev:anonymize
-        fi
+  deploy: |
+    if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
+      symfony console app:dev:anonymize
+    fi
 ```
 
 {{< /note >}}
@@ -125,12 +125,12 @@ To override the flags used by Composer, use the `$COMPOSER_FLAGS` environment va
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -x -e
+  build: |
+    set -x -e
 
-        curl -s https://get.symfony.com/cloud/configurator | bash
+    curl -s https://get.symfony.com/cloud/configurator | bash
 
-        COMPOSER_FLAGS="--ignore-platform-reqs" symfony-build
+    COMPOSER_FLAGS="--ignore-platform-reqs" symfony-build
 ```
 
 When installing dependencies, the script automatically detects if the app is using npm or Yarn.
@@ -141,7 +141,7 @@ set `NO_NPM` or `NO_YARN` to `1` depending on your package manager.
 To customize Node/npm/Yarn behaviors,
 prefix the `symfony-build` script with the following environment variables:
 
-- ``NODE_VERSION``:  to pinpoint the Node version that nvm is going to install. 
+- ``NODE_VERSION``:  to pinpoint the Node version that nvm is going to install.
   The default value is ``--lts``.
 - ``YARN_FLAGS``: flags to pass to ``yarn install``.
   There is no default value.
@@ -174,14 +174,14 @@ but before [symfony-build](#symfony-build):
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -x -e
+  build: |
+    set -x -e
 
-        curl -s https://get.symfony.com/cloud/configurator | bash
+    curl -s https://get.symfony.com/cloud/configurator | bash
 
-        php-ext-install redis 5.3.2
+    php-ext-install redis 5.3.2
 
-        symfony-build
+    symfony-build
 ```
 
 When installing [PECL](https://pecl.php.net/) PHP extensions, you can configure
@@ -189,8 +189,8 @@ them directly as *variables* instead:
 
 ```yaml {configFile="app"}
 variables:
-    php-ext:
-        redis: 5.3.2
+  php-ext:
+    redis: 5.3.2
 ```
 
 {{< note >}}
@@ -207,19 +207,19 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -x -e
+  build: |
+    set -x -e
 
-        curl -s https://get.symfony.com/cloud/configurator | bash
+    curl -s https://get.symfony.com/cloud/configurator | bash
 
-        symfony-build
+    symfony-build
 
-        # Setup everything to use the Node installation
-        unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
-        set +x && . "${NVM_DIR}/nvm.sh" use --lts && set -x
-        # Starting from here, everything is setup to use the same Node
-        yarn encore dev
+    # Setup everything to use the Node installation
+    unset NPM_CONFIG_PREFIX
+    export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
+    set +x && . "${NVM_DIR}/nvm.sh" use --lts && set -x
+    # Starting from here, everything is setup to use the same Node
+    yarn encore dev
 ```
 
 If you want to use two different Node versions,
@@ -227,24 +227,24 @@ use the following configuration instead:
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -x -e
+  build: |
+    set -x -e
 
-        curl -s https://get.symfony.com/cloud/configurator | bash
+    curl -s https://get.symfony.com/cloud/configurator | bash
 
-        symfony-build
+    symfony-build
 
-        cd web/js_app
-        unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
+    cd web/js_app
+    unset NPM_CONFIG_PREFIX
+    export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
 
-        NODE_VERSION=8 yarn-install
+    NODE_VERSION=8 yarn-install
 
-        # Setup everything to use the Node installation
-        set +x && . "${NVM_DIR}/nvm.sh" use 8 && set -x
+    # Setup everything to use the Node installation
+    set +x && . "${NVM_DIR}/nvm.sh" use 8 && set -x
 
-        # Starting from here, everything is setup to use Node 8
-        yarn build --environment=prod
+    # Starting from here, everything is setup to use Node 8
+    yarn build --environment=prod
 ```
 
 {{< guide-buttons previous="Back" next="Environment variables" >}}

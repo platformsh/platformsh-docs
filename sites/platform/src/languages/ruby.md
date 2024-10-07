@@ -59,9 +59,9 @@ A complete example is included at the end of this section.
 
 1. Specify the language of your application (available versions are listed above):
 
-```yaml {configFile="app"}
-type: 'ruby:{{% latest "ruby" %}}'
-```
+    ```yaml {configFile="app"}
+    type: 'ruby:{{% latest "ruby" %}}'
+    ```
 
 2. Setup environment variables.
 
@@ -69,14 +69,14 @@ type: 'ruby:{{% latest "ruby" %}}'
    You can change the Rails/Bundler via those environment variables,
    some of which are defaults on {{% vendor/name %}}.
 
-```yaml {configFile="app"}
-variables:
-    env:
+    ```yaml {configFile="app"}
+    variables:
+      env:
         PIDFILE: "tmp/server.pid" # Allow to start puma directly even if `tmp/pids` directory is not created
         RAILS_ENV: "production"
         BUNDLE_WITHOUT: 'development:test'
         TARGET_RUBY_VERSION: '~>{{% latest "ruby" %}}' # this will allow to not fail on PATCH update of the image
-```
+    ```
 
    The `SECRET_KEY_BASE` variable is generated automatically based on the
    [`PLATFORM_PROJECT_ENTROPY`
@@ -94,14 +94,14 @@ variables:
     Assuming you have your dependencies stored in the `Gemfile` at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
     create a hook like the following:
 
-```yaml {configFile="app"}
-hooks:
-    build: |
+    ```yaml {configFile="app"}
+    hooks:
+      build: |
         set -e
         bundle install
         bundle exec rails assets:precompile
-    deploy: bundle exec rake db:migrate
-```
+      deploy: bundle exec rake db:migrate
+    ```
 
    These are installed as your project dependencies in your environment.
    You can also use the `dependencies` key to install global dependencies.
@@ -109,23 +109,23 @@ hooks:
 
    If you have assets, it's likely that you need NodeJS/yarn.
 
-```yaml {configFile="app"}
-dependencies:
-    nodejs:
+    ```yaml {configFile="app"}
+    dependencies:
+      nodejs:
         yarn: "*"
-```
+    ```
 4. Configure the command to start serving your application (this must be a foreground-running process) under the `web` section:
 
-```yaml {configFile="app"}
-web:
-    upstream:
+    ```yaml {configFile="app"}
+    web:
+      upstream:
         socket_family: unix
-    commands:
+      commands:
         # for puma
         start: "bundle exec puma -b unix://$SOCKET"
         # for unicorn
         # start: "bundle exec unicorn -l $SOCKET"
-```
+    ```
    This assumes you have Unicorn as a dependency in your Gemfile:
 
    ```ruby
@@ -134,15 +134,15 @@ web:
 
 5. Define the web locations your application is using:
 
-```yaml {configFile="app"}
-web:
-    locations:
+    ```yaml {configFile="app"}
+    web:
+      locations:
         "/":
-            root: "public"
-            passthru: true
-            expires: 1h
-            allow: true
-```
+          root: "public"
+          passthru: true
+          expires: 1h
+          allow: true
+    ```
    This configuration sets the web server to handle HTTP requests at `/static`
    to serve static files stored in `/app/static/` folder.
    Everything else is forwarded to your application server.
@@ -151,18 +151,18 @@ web:
    The root file system is read only.
    You must explicitly describe writable mounts.
 
-```yaml {configFile="app"}
-mounts:
-    "/log":
+    ```yaml {configFile="app"}
+    mounts:
+      "/log":
         source: local
         source_path: log
-    "/storage":
+      "/storage":
         source: local
         source_path: storage
-    "/tmp":
+      "/tmp":
         source: local
         source_path: tmp
-```
+    ```
    This setting allows your application writing temporary files to `/app/tmp`,
    logs stored in `/app/log`, and active storage in `/app/storage`.
 
@@ -171,10 +171,10 @@ mounts:
 
 7. Then, setup the routes to your application in `{{< vendor/configfile "routes" >}}`.
 
-```yaml {configFile="app"}
+```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "app:http"
+  type: upstream
+  upstream: "myapp:http"
 ```
 ### Complete app configuration
 
@@ -182,109 +182,109 @@ Here is a complete `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
 # The name of the app, which must be unique within a project.
-name: 'app'
+name: 'myapp'
 
 type: "ruby:3.0"
 
 dependencies:
-    nodejs:
-        yarn: "*"
+  nodejs:
+    yarn: "*"
 
 # Relationships enable an app container's access to a service.
 # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    mysql:
+  mysql:
 
 disk: 2048
 
 variables:
-    env:
-        BUNDLE_CACHE_ALL: '1' # Default, Cache all gems, including path and git gems.
-        BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well, but should be safe on modern Rubies.
-        BUNDLE_DEPLOYMENT: '1' # Default, Disallow changes to the Gemfile.
-        BUNDLE_ERROR_ON_STDERR: '1' # Default.
-        BUNDLE_WITHOUT: 'development:test'
-        PIDFILE: "tmp/server.pid" # Allow to start puma directly even if `tmp/pids` directory is not created
-        DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
-        EXECJS_RUNTIME: 'Node' # If you need one on your assets https://github.com/rails/execjs#readme
-        NODE_ENV: 'production'
-        NODE_VERSION: v14.17.6
-        NVM_VERSION: v0.38.0
-        RACK_ENV: 'production'
-        RAILS_ENV: 'production'
-        RAILS_LOG_TO_STDOUT: '1' # Default
-        RAILS_TMP: '/tmp' # Default
+  env:
+    BUNDLE_CACHE_ALL: '1' # Default, Cache all gems, including path and git gems.
+    BUNDLE_CLEAN: '1' # /!\ if you are working with Ruby<2.7 this doesn't work well, but should be safe on modern Rubies.
+    BUNDLE_DEPLOYMENT: '1' # Default, Disallow changes to the Gemfile.
+    BUNDLE_ERROR_ON_STDERR: '1' # Default.
+    BUNDLE_WITHOUT: 'development:test'
+    PIDFILE: "tmp/server.pid" # Allow to start puma directly even if `tmp/pids` directory is not created
+    DEFAULT_BUNDLER_VERSION: "2.2.26" # in case none is mentioned in Gemfile.lock
+    EXECJS_RUNTIME: 'Node' # If you need one on your assets https://github.com/rails/execjs#readme
+    NODE_ENV: 'production'
+    NODE_VERSION: v14.17.6
+    NVM_VERSION: v0.38.0
+    RACK_ENV: 'production'
+    RAILS_ENV: 'production'
+    RAILS_LOG_TO_STDOUT: '1' # Default
+    RAILS_TMP: '/tmp' # Default
 
 hooks:
-    build: |
-        set -e
+  build: |
+    set -e
 
-        echo "Installing NVM $NVM_VERSION"
-        unset NPM_CONFIG_PREFIX
-        export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
-        # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    echo "Installing NVM $NVM_VERSION"
+    unset NPM_CONFIG_PREFIX
+    export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+    # install.sh will automatically install NodeJS based on the presence of $NODE_VERSION
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-        # we install the bundled bundler version and fallback to a default (in env vars above)
-        export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || $DEFAULT_BUNDLER_VERSION
-        echo "Install bundler $BUNDLER_VERSION"
-        gem install --no-document bundler -v $BUNDLER_VERSION
+    # we install the bundled bundler version and fallback to a default (in env vars above)
+    export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || $DEFAULT_BUNDLER_VERSION
+    echo "Install bundler $BUNDLER_VERSION"
+    gem install --no-document bundler -v $BUNDLER_VERSION
 
-        echo "Installing gems"
-        # We copy the bundle directory to the {{% vendor/name %}} cache directory for
-        # safe keeping, then restore from there on the next build. That allows
-        # bundler to skip downloading code it doesn't need to.
-        [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
-            rsync -az --delete "$PLATFORM_CACHE_DIR/bundle/" vendor/bundle/
-        mkdir -p "$PLATFORM_CACHE_DIR/bundle"
-        bundle install
-        # synchronize updated cache for next build
-        [ -d "vendor/bundle" ] && \
-            rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
+    echo "Installing gems"
+    # We copy the bundle directory to the {{% vendor/name %}} cache directory for
+    # safe keeping, then restore from there on the next build. That allows
+    # bundler to skip downloading code it doesn't need to.
+    [ -d "$PLATFORM_CACHE_DIR/bundle" ] && \
+      rsync -az --delete "$PLATFORM_CACHE_DIR/bundle/" vendor/bundle/
+    mkdir -p "$PLATFORM_CACHE_DIR/bundle"
+    bundle install
+    # synchronize updated cache for next build
+    [ -d "vendor/bundle" ] && \
+      rsync -az --delete vendor/bundle/ "$PLATFORM_CACHE_DIR/bundle/"
 
-        # precompile assets
-        echo "Precompiling assets"
-        # We copy the webpacker directory to the {{% vendor/name %}} cache directory for
-        # safe keeping, then restore from there on the next build. That allows
-        # bundler to skip downloading code it doesn't need to.
-        # https://guides.rubyonrails.org/asset_pipeline.html
-        mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
-        mkdir -p "$RAILS_TMP/cache/webpacker"
-        [ -d "$PLATFORM_CACHE_DIR/webpacker" ] && \
-            rsync -az --delete "$PLATFORM_CACHE_DIR/webpacker/" $RAILS_TMP/cache/webpacker/
-        # We dont need secret here https://github.com/rails/rails/issues/32947
-        SECRET_KEY_BASE=1 bundle exec rails assets:precompile
-        rsync -az --delete $RAILS_TMP/cache/webpacker/ "$PLATFORM_CACHE_DIR/webpacker/"
-    deploy: bundle exec rake db:migrate
+    # precompile assets
+    echo "Precompiling assets"
+    # We copy the webpacker directory to the {{% vendor/name %}} cache directory for
+    # safe keeping, then restore from there on the next build. That allows
+    # bundler to skip downloading code it doesn't need to.
+    # https://guides.rubyonrails.org/asset_pipeline.html
+    mkdir -p "$PLATFORM_CACHE_DIR/webpacker"
+    mkdir -p "$RAILS_TMP/cache/webpacker"
+    [ -d "$PLATFORM_CACHE_DIR/webpacker" ] && \
+      rsync -az --delete "$PLATFORM_CACHE_DIR/webpacker/" $RAILS_TMP/cache/webpacker/
+    # We dont need secret here https://github.com/rails/rails/issues/32947
+    SECRET_KEY_BASE=1 bundle exec rails assets:precompile
+    rsync -az --delete $RAILS_TMP/cache/webpacker/ "$PLATFORM_CACHE_DIR/webpacker/"
+  deploy: bundle exec rake db:migrate
 
 mounts:
-    "/log":
-        source: local
-        source_path: log
-    "/storage":
-        source: local
-        source_path: storage
-    "/tmp":
-        source: local
-        source_path: tmp
+  "/log":
+    source: local
+    source_path: log
+  "/storage":
+    source: local
+    source_path: storage
+  "/tmp":
+    source: local
+    source_path: tmp
 
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        # for puma
-        start: "bundle exec puma -b unix://$SOCKET"
-        # for unicorn
-        # start: "bundle exec unicorn -l $SOCKET"
+  upstream:
+    socket_family: unix
+  commands:
+    # for puma
+    start: "bundle exec puma -b unix://$SOCKET"
+    # for unicorn
+    # start: "bundle exec unicorn -l $SOCKET"
 
-    locations:
-        "/":
-            root: "public"
-            passthru: true
-            expires: 1h
-            allow: true
+  locations:
+    "/":
+      root: "public"
+      passthru: true
+      expires: 1h
+      allow: true
 ```
 
 ## Configuring services
@@ -294,8 +294,8 @@ To configure it, [create a service](../add-services/_index.md) such as the follo
 
 ```yaml {configFile="services"}
 mysql:
-    type: mysql:{{% latest "mariadb" %}}
-    disk: 2048
+  type: mysql:{{% latest "mariadb" %}}
+  disk: 2048
 ```
 ## Connecting to services
 
@@ -303,7 +303,7 @@ Once you have a service, link to it in your [app configuration](../create-apps/_
 
 ```yaml {configFile="app"}
 relationships:
-    mysql:
+  mysql:
 ```
 By using the following Ruby function calls, you can obtain the database details.
 
@@ -317,20 +317,20 @@ This should give you something like the following:
 
 ```json
 {
-   "mysql" : [
-      {
-         "path" : "main",
-         "query" : {
-            "is_master" : true
-         },
-         "port" : 3306,
-         "username" : "user",
-         "password" : "",
-         "host" : "mysql.internal",
-         "ip" : "246.0.241.50",
-         "scheme" : "mysql"
-      }
-   ]
+  "mysql" : [
+    {
+      "path" : "main",
+      "query" : {
+        "is_master" : true
+      },
+      "port" : 3306,
+      "username" : "user",
+      "password" : "",
+      "host" : "mysql.internal",
+      "ip" : "246.0.241.50",
+      "scheme" : "mysql"
+    }
+  ]
 }
 ```
 

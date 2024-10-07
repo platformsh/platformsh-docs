@@ -30,10 +30,10 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 
 Enable the New Relic extension in your `{{< vendor/configfile "app" >}}` as follows:
 
-```yaml
+```yaml {configFile="app"}
 runtime:
-    extensions:
-        - newrelic
+  extensions:
+    - newrelic
 ```
 
 Push the changes to your {{% vendor/name %}} environment to enable New Relic as follows:

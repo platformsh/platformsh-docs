@@ -95,19 +95,19 @@ However, on {{% vendor/name %}}, you **cannot** configure `max_connections` dire
 
 ### Quick fix
 
-You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations. 
+You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations.
 However, to solve `Error 1040`, you can increase `max_connections` indirectly.
 
 Given the following services configuration for MariaDB:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            properties:
-                max_allowed_packet: 16
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      properties:
+        max_allowed_packet: 16
 ```
 
 And assuming you have set the resources for that service using the following CLI command:
@@ -127,17 +127,17 @@ To **increase** `max_connections`, you can **either**:
 
 Behind the scenes, `max_connections` is calculated from values that you _can_ change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.upsun/config.yaml` file with an integer value. 
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.upsun/config.yaml` file with an integer value.
 The default value of `16` is shown below to illustrate:
 
     ```yaml {configFile="services"}
     services:
-        # The name of the service container. Must be unique within a project.
-        mariadb:
-            type: mariadb:{{% latest "mariadb" %}}
-            configuration:
-                properties:
-                    max_allowed_packet: 16
+      # The name of the service container. Must be unique within a project.
+      mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+        configuration:
+          properties:
+            max_allowed_packet: 16
     ```
 
 1. **The memory available to the service**: Resources are provisioned to {{% vendor/name %}} containers according to your definition via the API, often through the `resources:set` CLI command:
@@ -147,7 +147,7 @@ The default value of `16` is shown below to illustrate:
     ```
 
     The memory for a given container from its `size` depends on its [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
-    
+
     For example, [MariaDB](/manage-resources/adjust-resources#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
     For `--size mariadb:1`, it means 1 CPU and 2432 MB of memory.
 
@@ -158,7 +158,7 @@ If we assume the configuration above, where:
 - `mariadb.configuration.properties.max_allowed_packet: 16`
 - You are using the default `HIGH_MEMORY` profile assigned to MariaDB containers. [Changing the container profile](/manage-resources/adjust-resources#adjust-a-container-profile) changes the behavior below.
 
-`max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to: 
+`max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to:
 
 \begin{aligned}
 \texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr]
@@ -208,7 +208,7 @@ and for a number of `max_allow_packet` settings.
 <div class="table_component" role="region" tabindex="0">
 <table>
     <tbody>
-        <tr>     
+        <tr>
             <td rowspan="2" align="center"><b>MariaDB <code>max_connections</code></td>
             <td colspan="6" align="center"><b><code>application_size</code><br><br><code>size</code> (memory in MB)</b></td>
         </tr>
@@ -303,11 +303,11 @@ and for a number of `max_allow_packet` settings.
 </table>
 </div>
 
-{{% note%}}
+{{% note %}}
 The maximum value for `max_connections` is 500, indicated with italicized integers in the table.
 
 Also, you can **increase** `max_connections` in your environments by either:
 
 - **decreasing** the `max_allow_packet` value in your service configuration
 - or **increasing** the service's resources by using the CLI command `resources:set` and the `--size` flag
-{{% /note%}}
+{{% /note %}}

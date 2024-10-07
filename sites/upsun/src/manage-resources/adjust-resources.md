@@ -71,7 +71,7 @@ which causes a short downtime.
 
 Run the `resources:set` command using the following CLI options:
 
-| CLI option        | Description                     | 
+| CLI option        | Description                     |
 | ----------------- | --------------------------------|
 | `size`            | Allows you to define how much CPU you want to allocate to each app or service.</br>The amount of CPU then determines how much RAM is also allocated, based on the [container profile](#advanced-container-profiles). |
 | `disk`            | Allows you to define how much disk/storage you want to allocate to each app or service. |
@@ -162,7 +162,7 @@ or run commands manually.
   ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count {{< variable "APP_NAME" >}}:{{< variable "NUMBER_OF_INSTANCES" >}}
   ```
-  
+
   For example, to scale your `myapp` app to 3 instances, run the following command:
 
   ```bash {location="Terminal"}
@@ -171,7 +171,7 @@ or run commands manually.
 
   You can also set the same instance count for all your apps using a wildcard.
   To do so, run the following command:
-  
+
   ```bash {location="Terminal"}
   {{% vendor/cli %}} resources:set --count '*:{{< variable "NUMBER_OF_INSTANCES" >}}'
   ```
@@ -186,7 +186,7 @@ or run commands manually.
 
   After you've set the number of instances for your apps and workers, your environment is redeployed.
   If you've made no other changes, this redeployment causes no downtime.
-  
+
   If the redeployment fails after you've run `{{% vendor/cli %}} resources:set`,
   you may need to set the resources again.
   {{% /note %}}
@@ -249,13 +249,13 @@ The following table shows the default container profiles {{% vendor/name %}} app
 |-------------------------|------------------|
 | Chrome Headless         | HIGH_CPU         |
 | ClickHouse              | HIGH_MEMORY      |
-| .NET                    | HIGH_CPU         |  
+| .NET                    | HIGH_CPU         |
 | Elasticsearch           | HIGH_MEMORY      |
 | Elasticsearch Premium   | HIGH_MEMORY      |
 | Elixir                  | HIGH_CPU         |
 | Go                      | HIGH_CPU         |
 | Gotenberg               | HIGH_MEMORY      |
-| InfluxDB                | HIGH_MEMORY      |  
+| InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
 | Lisp                    | HIGH_CPU         |
@@ -264,18 +264,18 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | MongoDB                 | HIGH_MEMORY      |
 | MongoDB Premium         | HIGH_MEMORY      |
 | Network Storage         | HIGH_MEMORY      |
-| NodeJS                  | HIGH_CPU         |  
+| NodeJS                  | HIGH_CPU         |
 | OpenSearch              | HIGH_MEMORY      |
-| Oracle Java             | HIGH_MEMORY      |  
+| Oracle Java             | HIGH_MEMORY      |
 | Oracle MySQL            | HIGH_MEMORY      |
-| PHP                     | HIGH_CPU         | 
+| PHP                     | HIGH_CPU         |
 | PostgreSQL              | HIGH_MEMORY      |
-| Python                  | HIGH_CPU         | 
+| Python                  | HIGH_CPU         |
 | RabbitMQ                | HIGH_MEMORY      |
 | Redis ephemeral         | BALANCED         |
 | Redis persistent        | BALANCED         |
 | Ruby                    | HIGH_CPU         |
-| Rust                    | HIGH_CPU         | 
+| Rust                    | HIGH_CPU         |
 | Solr                    | HIGH_MEMORY      |
 | Varnish                 | HIGH_MEMORY      |
 | Vault KMS               | HIGH_MEMORY      |
@@ -290,11 +290,11 @@ To adjust a container profile, amend the value of the `container_profile` key in
 
 ```yaml {configFile="app"}
 applications:
-    {{< variable "APP_NAME" >}}:
-        container_profile: HIGH_MEMORY
+  {{< variable "APP_NAME" >}}:
+    container_profile: HIGH_MEMORY
 
 services:
-    {{< variable "SERVICE_NAME" >}}:
-        type: {{< variable "SERVICE_TYPE" >}}:{{< variable "VERSION" >}}
-        container_profile: HIGHER_MEMORY
+  {{< variable "SERVICE_NAME" >}}:
+    type: {{< variable "SERVICE_TYPE" >}}:{{< variable "VERSION" >}}
+    container_profile: HIGHER_MEMORY
 ```

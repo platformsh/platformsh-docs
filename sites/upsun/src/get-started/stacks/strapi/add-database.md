@@ -47,36 +47,36 @@ Add a new service to your `.upsun/config.yaml` file:
 +++
 title=PostgreSQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  myapp:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
 services:
-    database:
-	    type: postgresql:{{% latest "postgresql" %}}
+  database:
+	  type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
 +++
 title=Oracle MySQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  myapp:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
 services:
-    database:
-	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+  database:
+	  type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
@@ -88,42 +88,42 @@ Add a new relationship to your `.upsun/config.yaml` file to allow access to the 
 +++
 title=PostgreSQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  myapp:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
-        relationships:
-            database: "database:postgresql"
+    relationships:
+      database:
 
 services:
-    database:
-	    type: postgresql:{{% latest "postgresql" %}}
+  database:
+	  type: postgresql:{{% latest "postgresql" %}}
 ```
 <--->
 
 +++
 title=Oracle MySQL
 +++
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    my-strapi-project:
-        source:
-            root: "/"
-        type: "nodejs:20"
+  myapp:
+    source:
+      root: "/"
+    type: "nodejs:20"
 
-        [...]
+    [...]
 
-        relationships:
-            database: "database:mysql"
+    relationships:
+      database:
 
 services:
-    database:
-	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
+  database:
+	  type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
 {{< /codetabs >}}
 
@@ -156,7 +156,7 @@ if [[ -z "$APP_KEYS" ]]; then
 fi
 ```
 
-{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore. 
+{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore.
 Remove the first block (pertaining to `DATABASE` credentials).
 
 Then, add a single additional variable that will set the `DATABASE_CLIENT` variable at the appropriate time:

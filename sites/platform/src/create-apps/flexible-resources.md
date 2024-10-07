@@ -39,9 +39,9 @@ When the `resources` key is set, the CPU sizes come from the following table:
 So you might have the `resources` set as follows:
 
 ```yaml {configFile="app"}
-resources: 
-    base_memory: 128
-    memory_ratio: 180
+resources:
+  base_memory: 128
+  memory_ratio: 180
 ```
 
 If your app is set with a `size` of `S`, it gets 218&nbsp;MB of memory: `128 + (0.5 * 180) = 218`.

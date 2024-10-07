@@ -21,22 +21,22 @@ and a Mercure Rocks server app, defined as follows:
 
 ```yaml {configFile="apps"}
 applications:
-    admin:
-        source:
-            root: admin
-        type: nodejs:{{% latest "nodejs" %}}
-    api:
-        source:
-            root: api
-        type: php:{{% latest "php" %}}
-    gatsby:
-        source:
-            root: gatsby
-        type: nodejs:{{% latest "nodejs" %}}
-    mercure:
-        source:
-            root: mercure/.config
-        type: golang:{{% latest "golang" %}}
+  admin:
+    source:
+      root: admin
+    type: nodejs:{{% latest "nodejs" %}}
+  api:
+    source:
+      root: api
+    type: php:{{% latest "php" %}}
+  gatsby:
+    source:
+      root: gatsby
+    type: nodejs:{{% latest "nodejs" %}}
+  mercure:
+    source:
+      root: mercure/.config
+    type: golang:{{% latest "golang" %}}
 ```
 {{< note >}}
 
@@ -57,12 +57,12 @@ You could define routes for your apps as follows:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://mercure.{default}/":
-        type: upstream
-        upstream: "mercure:http"
-    "https://{default}/":
-        type: upstream
-        upstream: "api:http"
+  "https://mercure.{default}/":
+    type: upstream
+    upstream: "mercure:http"
+  "https://{default}/":
+    type: upstream
+    upstream: "api:http"
 ```
 
 So if your default domain is `example.com`, that means:
@@ -83,50 +83,50 @@ Alternatively, you could define your routes as follows:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "api:http"
-    "https://{default}/admin":
-        type: upstream
-        upstream: "admin:http"
+  "https://{default}/":
+    type: upstream
+    upstream: "api:http"
+  "https://{default}/admin":
+    type: upstream
+    upstream: "admin:http"
 ```
 
 Then you would need to configure each app's `web.locations` property to match these paths:
 
 ```yaml {configFile="apps"}
 applications:
-    admin:
-        source:
-            root: admin
-        type: nodejs:{{% latest "nodejs" %}}
-        ...
-        web:
-            locations:
-              '/admin':
-                  passthru: '/admin/index.html'
-                  root: 'build'
-                  index:
-                    - 'index.html'
-    api:
-        source:
-            root: api
-        type: php:{{% latest "php" %}}
-        ...
-        web:
-            locations:
-                "/":
-                    passthru: "/index.php"
-                    root: "public"
-                    index:
-                        - index.php
+  admin:
+    source:
+      root: admin
+    type: nodejs:{{% latest "nodejs" %}}
+    ...
+    web:
+      locations:
+        '/admin':
+          passthru: '/admin/index.html'
+          root: 'build'
+          index:
+            - 'index.html'
+  api:
+    source:
+      root: api
+    type: php:{{% latest "php" %}}
+    ...
+    web:
+      locations:
+        "/":
+          passthru: "/index.php"
+          root: "public"
+          index:
+            - index.php
 
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "api:http"
-    "https://{default}/admin":
-        type: upstream
-        upstream: "admin:http"
+  "https://{default}/":
+    type: upstream
+    upstream: "api:http"
+  "https://{default}/admin":
+    type: upstream
+    upstream: "admin:http"
 ```
 
 So if your default domain is `example.com`, that means:

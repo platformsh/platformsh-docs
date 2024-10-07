@@ -80,10 +80,10 @@ Set up a script by following these steps:
 
     ```yaml {configFile="app"}
     hooks:
-        build: ...
-        deploy: |
-            python manage.py migrate
-            bash sanitize.sh
+      build: ...
+      deploy: |
+        python manage.py migrate
+        bash sanitize.sh
     ```
 
 5.  Commit your changes by running the following command:

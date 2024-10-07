@@ -183,10 +183,10 @@ For example, to change the PHP memory limit for all environments, use the follow
 
 ```yaml {configFile="app"}
 applications:
-    {{< variable "APP_NAME" >}}:
-        variables:
-            php:
-                memory_limit: "256M"
+  {{< variable "APP_NAME" >}}:
+    variables:
+      php:
+        memory_limit: "256M"
 ```
 
 ### Framework-specific variables

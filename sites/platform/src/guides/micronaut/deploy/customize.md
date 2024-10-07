@@ -30,28 +30,28 @@ compile group: 'sh.platform', name: 'config', version: '2.2.2'
 
 ## `.environment`
 
-The `{{< vendor/configfile "app" >}}` file on the [previous page](/guides/micronaut/deploy/configure.md#configure-apps-in-platformappyaml) has been pulled directly from the [Micronaut template](https://github.com/platformsh-templates/micronaut/blob/master/.platform.app.yaml). It is sufficient to deploy Micronaut on it's own, but since Micronaut makes it possible to overwrite configurations without impacting the application itself, you might elect to rely more heavily on environment variables in it's place. 
+The `{{< vendor/configfile "app" >}}` file on the [previous page](/guides/micronaut/deploy/configure.md#configure-apps-in-platformappyaml) has been pulled directly from the [Micronaut template](https://github.com/platformsh-templates/micronaut/blob/master/.platform.app.yaml). It is sufficient to deploy Micronaut on it's own, but since Micronaut makes it possible to overwrite configurations without impacting the application itself, you might elect to rely more heavily on environment variables in it's place.
 
 Consider this simplified `{{< vendor/configfile "app" >}}` file:
 
-```yaml
-name: app
+```yaml {configFile="app"}
+name: myapp
 
 type: "java:11"
 
 disk: 1024
 
 hooks:
-    build: mvn clean package
-    
+  build: mvn clean package
+
 web:
-    commands:
-        start: java -jar $JAVA_OPTS $CREDENTIAL target/file.jar
+  commands:
+    start: java -jar $JAVA_OPTS $CREDENTIAL target/file.jar
 ```
 
 On {{% vendor/name %}}, we can set the environment variable `JAVA_OPTS` by committing a `.environment` file to the repository's root. {{% vendor/name %}} runs `source .environment` in the application root when a project starts, and when logging into the environment over SSH.
 That gives you a place to do extra environment variable setup before the application runs, including modifying the system `$PATH` and other shell level customizations.
-It allows us to define `JAVA_OPTS` when running on {{% vendor/name %}}, but otherwise not be used during local development testing. 
+It allows us to define `JAVA_OPTS` when running on {{% vendor/name %}}, but otherwise not be used during local development testing.
 
 ```shell
 # .environment

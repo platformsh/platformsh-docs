@@ -27,16 +27,16 @@ You can define the PHP extensions you want to enable or disable:
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'php:{{% latest "php" %}}'
-        runtime:
-            extensions:
-                - raphf
-                - http
-                - igbinary
-                - redis
-            disabled_extensions:
-                - sqlite3
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    runtime:
+      extensions:
+        - raphf
+        - http
+        - igbinary
+        - redis
+      disabled_extensions:
+        - sqlite3
 ```
 You can also [include configuration options](/create-apps/app-reference/single-runtime-image.md#extensions) for specific extensions.
 
@@ -85,9 +85,9 @@ but it takes slightly more work:
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'php:{{% latest "php" %}}'
-        variables:
-            php:
-                extension: /app/spiffy.so
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    variables:
+      php:
+        extension: /app/spiffy.so
 ```

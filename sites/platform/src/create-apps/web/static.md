@@ -21,21 +21,21 @@ To successfully serve a static site using {{% vendor/name %}},
 you need to set up a minimal app configuration similar to the following:
 
 ```yaml {configFile="app"}
-app:
-  # The type of the application to build.
-  type: "nodejs:{{% latest "nodejs" %}}"
+name: myapp
+# The type of the application to build.
+type: "nodejs:{{% latest "nodejs" %}}"
 
-  # The web key configures the web server running in front of your app.
-  web:
-    locations:
-      /:
-        # Static site generators usually output built static files to a specific directory.
-        # Define this directory (must be an actual directory inside the root directory of your app)
-        # as the root for your static site.
-        root: "public"
-        # Files to consider when serving a request for a directory.
-        index:
-          - index.html
+# The web key configures the web server running in front of your app.
+web:
+  locations:
+    /:
+      # Static site generators usually output built static files to a specific directory.
+      # Define this directory (must be an actual directory inside the root directory of your app)
+      # as the root for your static site.
+      root: "public"
+      # Files to consider when serving a request for a directory.
+      index:
+        - index.html
 ```
 
 See more information on the required minimal settings:
@@ -55,11 +55,11 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            ...
-            scripts: false
-            allow: true
+  locations:
+    '/':
+      # ...
+      scripts: false
+      allow: true
 ```
 
 See more information on [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
@@ -74,27 +74,27 @@ To do so, use a configuration similar to the following:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            ...
-            expires: 24h
-            rules:
-                \.(css|js|gif|jpe?g|png|svg)$:
-                    expires: 4w
+  locations:
+    '/':
+      # ...
+      expires: 24h
+      rules:
+        \.(css|js|gif|jpe?g|png|svg)$:
+          expires: 4w
 ```
 
 You can also set a `Cache-Control` header in your rules.
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            ...
-            expires: 24h
-            rules:
-                \.(css|js|gif|jpe?g|png|svg)$:
-                headers:
-                      Cache-Control: "public, max-age=2419200, immutable"
-
+  locations:
+    '/':
+      # ...
+      expires: 24h
+      rules:
+        \.(css|js|gif|jpe?g|png|svg)$:
+          headers:
+            Cache-Control: "public, max-age=2419200, immutable"
+```
 If `expires` and a `Cache-Control` header are set, the rule ignores the `expires` and sets only the `Cache-Control` header. For this reason, make sure
 to add a `max-age` value, in seconds, for the `Cache-Control` header.
 
@@ -106,8 +106,8 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 web:
-    commands:
-        start: sleep infinity
+  commands:
+    start: sleep infinity
 ```
 
 
@@ -117,28 +117,28 @@ such as a [script to handle 404 errors](https://community.platform.sh/t/custom-4
 ## Complete example configuration
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: 'python:3.11'
 
 web:
-    locations:
-        '/':
-            # The public directory of the application relative to its root
-            root: 'public'
-            # The files to look for when serving a directory
-            index:
-              - 'index.html'
-            # Disable server-side scripts
-            scripts: false
-            allow: true
-            # Set caching policy
-            expires: 24h
-            rules:
-                \.(css|js|gif|jpe?g|png|svg)$:
-                    expires: 4w
+  locations:
+    '/':
+      # The public directory of the application relative to its root
+      root: 'public'
+      # The files to look for when serving a directory
+      index:
+        - 'index.html'
+      # Disable server-side scripts
+      scripts: false
+      allow: true
+      # Set caching policy
+      expires: 24h
+      rules:
+        \.(css|js|gif|jpe?g|png|svg)$:
+          expires: 4w
 
-    commands:
-        # Run a no-op process that uses no CPU resources since this is a static site
-        start: sleep infinity
+  commands:
+    # Run a no-op process that uses no CPU resources since this is a static site
+    start: sleep infinity
 ```

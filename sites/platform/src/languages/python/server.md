@@ -27,15 +27,15 @@ title=Pip (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->

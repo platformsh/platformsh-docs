@@ -33,7 +33,7 @@ These three YAML files configure the following:
 
 # A unique name for the app. Must be lowercase alphanumeric characters.
 # Changing the name destroys data associated with the app.
-name: "app"
+name: "myapp"
 
 # The runtime the application uses.
 
@@ -63,7 +63,7 @@ mariadb:
 
 "https://{default}/":
   type: upstream
-  upstream: "app:http"
+  upstream: "myapp:http"
 
 # A basic redirect definition
 # {{< code-link destination="/define-routes.html#basic-redirect-definition" text="More information" title="Click to see more information" >}}

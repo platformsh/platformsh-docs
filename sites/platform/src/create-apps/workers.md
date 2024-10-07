@@ -85,51 +85,51 @@ are inherited by every worker, unless overridden explicitly.
 That means, for example, that the following two `{{< vendor/configfile "app" >}}` definitions produce identical workers.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: python:{{% latest "python" %}}
 disk: 256
 mounts:
-    test:
-        source: local
-        source_path: test
+  test:
+    source: local
+    source_path: test
 relationships:
-    mysql:
+  mysql:
 workers:
-    queue:
-        commands:
-            start: |
-                python queue-worker.py
-    mail:
-        commands:
-            start: |
-                python mail-worker.py
+  queue:
+    commands:
+      start: |
+        python queue-worker.py
+  mail:
+    commands:
+      start: |
+        python mail-worker.py
 ```
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: python:{{% latest "python" %}}
 workers:
-    queue:
-        commands:
-            start: |
-                python queue-worker.py
-        disk: 256
-        mounts:
-            test:
-                source: local
-                source_path: test
-        relationships:
-            mysql: 
-    mail:
-        commands:
-            start: |
-                python mail-worker.py
-        disk: 256
-        mounts:
-            test:
-                source: local
-                source_path: test
-        relationships:
-            mysql: 
+  queue:
+    commands:
+      start: |
+        python queue-worker.py
+    disk: 256
+    mounts:
+      test:
+        source: local
+        source_path: test
+    relationships:
+      mysql:
+  mail:
+    commands:
+      start: |
+        python mail-worker.py
+    disk: 256
+    mounts:
+      test:
+        source: local
+        source_path: test
+    relationships:
+      mysql:
 ```
 
 In both cases, there are two worker instances named `queue` and `mail`.
@@ -147,71 +147,71 @@ For example, consider the following configuration:
 
 ```yaml {configFile="services"}
 mysql:
-    type: "mariadb:{{% latest "mariadb" %}}"
-    disk: 2048
+  type: "mariadb:{{% latest "mariadb" %}}"
+  disk: 2048
 rabbitmq:
-    type: rabbitmq:{{% latest "rabbitmq" %}}
-    disk: 512
+  type: rabbitmq:{{% latest "rabbitmq" %}}
+  disk: 512
 ```
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "python:{{% latest "python" %}}"
 disk: 2048
 hooks:
-    build: |
-       pip install -r requirements.txt
-       pip install -e .
-       pip install gunicorn
+  build: |
+    pip install -r requirements.txt
+    pip install -e .
+    pip install gunicorn
 relationships:
-    mysql: 
-    rabbitmq: 
+  mysql:
+  rabbitmq:
 variables:
-    env:
-        type: 'none'
+  env:
+    type: 'none'
 web:
-    commands:
-        start: "gunicorn -b $PORT project.wsgi:application"
-    variables:
-        env:
-            type: 'web'
-    mounts:
-        uploads:
-            source: local
-            source_path: uploads
-    locations:
-         "/":
-             root: ""
-             passthru: true
-             allow: false
-         "/static":
-             root: "static/"
-             allow: true
+  commands:
+    start: "gunicorn -b $PORT project.wsgi:application"
+  variables:
+    env:
+      type: 'web'
+  mounts:
+    uploads:
+      source: local
+      source_path: uploads
+  locations:
+    "/":
+      root: ""
+      passthru: true
+      allow: false
+    "/static":
+      root: "static/"
+      allow: true
 workers:
-    queue:
-        size: 'M'
-        commands:
-            start: |
-                python queue-worker.py
-        variables:
-            env:
-                type: 'worker'
-        disk: 512
-        mounts:
-            scratch:
-                source: local
-                source_path: scratch
-    mail:
-        size: 'S'
-        commands:
-            start: |
-                python mail-worker.py
-        variables:
-            env:
-                type: 'worker'
-        disk: 256
-        mounts: {}
-        relationships:
-            rabbitmq: 
+  queue:
+    size: 'M'
+    commands:
+      start: |
+        python queue-worker.py
+    variables:
+      env:
+        type: 'worker'
+    disk: 512
+    mounts:
+      scratch:
+        source: local
+        source_path: scratch
+  mail:
+    size: 'S'
+    commands:
+      start: |
+        python mail-worker.py
+    variables:
+      env:
+        type: 'worker'
+    disk: 256
+    mounts: {}
+    relationships:
+      rabbitmq:
 ```
 
 There's a lot going on here, but it's all reasonably straightforward.

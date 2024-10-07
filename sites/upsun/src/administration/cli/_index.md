@@ -174,7 +174,7 @@ You might want to use the CLI in a script to automate repetitive tasks such as s
 In such cases, you want to customize the CLI to bypass any confirmation questions.
 You can set the answer to every question as `yes` using the `{{% vendor/prefix_cli %}}_CLI_NO_INTERACTION` environment variable.
 
-For instance, to locally sync every mount point for your app named `app`, you could use this command:
+For instance, to locally sync every mount point for your app named `myapp`, you could use this command:
 
 ```bash
 export PLATFORM_PROJECT=my-project;

@@ -97,7 +97,7 @@ This information applies to DG3 and Professional/Grid {{% vendor/name %}} projec
 For DG2 projects, [contact Support](/learn/overview/get-support.md) to configure the `max_connections` property.
 {{% /note %}}
 
-You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations. 
+You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations.
 However, to solve `Error 1040`, you can increase `max_connections` indirectly.
 
 For example, in the following service configuration for MariaDB, `max_connections` is `188` as [set by {{% vendor/name %}}](#how-it-works):
@@ -105,12 +105,12 @@ For example, in the following service configuration for MariaDB, `max_connection
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
-    size: L
-    configuration:
-        properties:
-            max_allowed_packet: 16
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
+  size: L
+  configuration:
+    properties:
+      max_allowed_packet: 16
 ```
 
 To **increase** `max_connections`, you can **either**:
@@ -123,17 +123,17 @@ To **increase** `max_connections`, you can **either**:
 Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from values that you _can_ change:
 
 1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database)
-   in your `.platform/services.yaml` file with an integer value. 
+   in your `.platform/services.yaml` file with an integer value.
    The default value of `16` is shown below to illustrate:
 
    ```yaml {configFile="services"}
    # The name of the service container. Must be unique within a project.
    mariadb:
-       type: mariadb:{{% latest "mariadb" %}}
-           disk: 2048
-           configuration:
-               properties:
-                   max_allowed_packet: 16
+     type: mariadb:{{% latest "mariadb" %}}
+     disk: 2048
+     configuration:
+       properties:
+          max_allowed_packet: 16
     ```
 
 1. **The memory available to the service**: Resources are distributed across the containers
@@ -143,12 +143,12 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
     ```yaml {configFile="services"}
     # The name of the service container. Must be unique within a project.
     mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        disk: 2048
-        size: L
-        configuration:
-            properties:
-                max_allowed_packet: 16
+      type: mariadb:{{% latest "mariadb" %}}
+      disk: 2048
+      size: L
+      configuration:
+        properties:
+          max_allowed_packet: 16
     ```
 
     The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
@@ -161,7 +161,7 @@ If we assume the configuration above, where:
 - `mariadb.size: L`, which we know is 1280 MB, referred to below as `application_size`
 - `mariadb.configuration.properties.max_allowed_packet: 16`
 
-`max_allowed_packet` is `188`, which is determined by {{% vendor/name %}} according to: 
+`max_allowed_packet` is `188`, which is determined by {{% vendor/name %}} according to:
 
 \begin{aligned}
 \texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr]
@@ -211,7 +211,7 @@ and for a number of `max_allow_packet` settings.
 <div class="table_component" role="region" tabindex="0">
 <table>
     <tbody>
-        <tr>     
+        <tr>
             <td rowspan="2" align="center"><b>MariaDB <code>max_connections</code> <br/> for common combinations <br/> of <code>size</code> & <br/> <code>max_allow_packet</code></b></td>
             <td colspan="6" align="center"><b><code>application_size</code><br><br><code>size</code> (memory in MB)</b></td>
         </tr>

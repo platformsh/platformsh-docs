@@ -13,24 +13,24 @@ With Laravel, you can use Redis to handle session storage, cache storage, and qu
 
    ```yaml {configFile="app"}
    services:
-       [...]
-       redis:
-          type: redis:7.0
+     [...]
+     redis:
+       type: redis:7.0
    ```
 
 2. To connect the service to your app, add the following relationship:
 
    ```yaml {configFile="app"}
    applications:
-       myapp:
-           [...]
-           relationships:
-              redis: "redis:redis"
+     myapp:
+       [...]
+       relationships:
+         redis:
 
    services:
-       [...]
-       redis:
-           type: redis:7.0
+     [...]
+     redis:
+       type: redis:7.0
    ```
 
 ## 2. Configure your Redis service
@@ -58,11 +58,11 @@ If using `phpredis`, make sure you add `redis` in the list of PHP `runtime` exte
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        [...]
-        runtime:
-            extensions:
-                - redis
+  myapp:
+    [...]
+    runtime:
+      extensions:
+        - redis
 ```
 
 {{< /note >}}

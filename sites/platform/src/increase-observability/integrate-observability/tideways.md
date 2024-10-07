@@ -29,10 +29,10 @@ Add your Tideways license key as a project level variable:
 
 Enable the Tideways extension in your `{{< vendor/configfile "app" >}}` as follows:
 
-```yaml
+```yaml {configFile="app"}
 runtime:
-    extensions:
-        - tideways
+  extensions:
+    - tideways
 ```
 
 Enabling the extension also activates the Tideways background process.

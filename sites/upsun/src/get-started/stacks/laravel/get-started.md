@@ -39,12 +39,12 @@ This guide provides instructions for deploying and working with Laravel on {{% v
 
    ```yaml {configFile="app"}
    applications:
-        myapp:
-            ...
-            runtime:
-                extensions:
-                    - redis
-                    - pdo_pgsql
+     myapp:
+       [...]
+       runtime:
+         extensions:
+           - redis
+           - pdo_pgsql
    ```
    See all the [available PHP extensions](/languages/php/extensions.html).
 
@@ -127,7 +127,7 @@ To make changes to your project, follow these steps:
 
 1. Create a new environment (a Git branch) to make changes without impacting production:
 
-   ```bash {location="Terminal"}    
+   ```bash {location="Terminal"}
    {{% vendor/cli %}} branch feat-a
    ```
 
@@ -148,21 +148,21 @@ To make changes to your project, follow these steps:
 
 3. Add and commit your changes:
 
-   ```bash {location="Terminal"}   
+   ```bash {location="Terminal"}
    add .
    git commit -a -m "Update title"
    ```
 
 4. Deploy your changes to the `feat-a` environment:
 
-   ```bash {location="Terminal"}   
+   ```bash {location="Terminal"}
    {{% vendor/cli %}} deploy
    ```
 
    Note that each environment has its own domain name.
    To view the domain name of your new environment, run the following command:
 
-   ```bash {location="Terminal"}   
+   ```bash {location="Terminal"}
    {{% vendor/cli %}} url --primary
    ```
 
@@ -170,7 +170,7 @@ To make changes to your project, follow these steps:
    When satisfied with your changes, merge them to the main branch, deploy,
    and remove the feature branch:
 
-   ```bash {location="Terminal"}   
+   ```bash {location="Terminal"}
    git checkout main
    git merge feat-a
    {{% vendor/cli %}} environment:delete feat-a

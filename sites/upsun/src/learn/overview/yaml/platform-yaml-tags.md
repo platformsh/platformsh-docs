@@ -51,16 +51,16 @@ This configuration is valid:
 
 ```yaml {configFile="apps"}
 applications:
-    frontend:
-        source:
-            root: frontend
+  frontend:
+    source:
+      root: frontend
 
-        # ...
+    # ...
 
-        hooks:
-            build: !include
-                type: string
-                path: ../backend/scripts/common_build.sh
+    hooks:
+      build: !include
+        type: string
+        path: ../backend/scripts/common_build.sh
 ```
 
 {{% /note %}}
@@ -73,8 +73,10 @@ Use `string` to include an external file inline in the YAML file as if entered a
 For example, if you have a build hook like the following:
 
 ```yaml {configFile="app"}
-hooks:
-    build: |
+applications:
+  myapp:
+    hooks:
+      build: |
         set -e
         cp a.txt b.txt
 ```
@@ -89,8 +91,10 @@ cp a.txt b.txt
 And replace the hook with an include tag for an identical result:
 
 ```yaml {configFile="app"}
-hooks:
-    build: !include
+applications:
+  myapp:
+    hooks:
+      build: !include
         type: string
         path: build.sh
 ```
@@ -125,14 +129,14 @@ This configuration is valid:
 
 ```yaml {configFile="apps"}
 applications:
-    frontend:
-        source:
-            root: frontend
-        # ...
-        hooks:
-            build: !include
-                type: string
-                path: ../backend/scripts/common_build.sh
+  frontend:
+    source:
+      root: frontend
+    # ...
+    hooks:
+      build: !include
+        type: string
+        path: ../backend/scripts/common_build.sh
 ```
 
 {{% note theme="info" %}}
@@ -151,9 +155,9 @@ Then you can include it as follows:
 
 ```yaml {configFile="app"}
 some-property:
-    favicon: !include
-        type: binary
-        path: favicon.ico
+  favicon: !include
+    type: binary
+    path: favicon.ico
 ```
 
 ### `yaml`
@@ -164,37 +168,35 @@ Because `yaml` is the default, you can use it without specifying the type.
 For example, you could have your configuration for works defined in a `worker.yaml` file:
 
 ```yaml {location="worker.yaml"}
-size: S
 commands:
-    start: python queue-worker.py
+  start: python queue-worker.py
 variables:
-    env:
-        type: worker
+  env:
+    type: worker
 ```
 
 Then the following three configurations are exactly equivalent:
 
 ```yaml {configFile="app"}
 workers:
-    queue1: !include "worker.yaml"
+  queue1: !include "worker.yaml"
 ```
 
 ```yaml {configFile="app"}
 workers:
-    queue1: !include
-        type: yaml
-        path: 'worker.yaml'
+  queue1: !include
+    type: yaml
+    path: 'worker.yaml'
 ```
 
 ```yaml {configFile="app"}
 workers:
-    queue1:
-        size: S
-        commands:
-            start: python queue-worker.py
-        variables:
-            env:
-                type: worker
+  queue1:
+    commands:
+      start: python queue-worker.py
+    variables:
+      env:
+        type: worker
 ```
 
 This can help simplify more complex files.
@@ -204,23 +206,23 @@ For [multiple application](/create-apps/multi-app/_index.md) project, you can al
 
 ```yaml {location=".upsun/apps/my-app.yaml"}
 source:
-root: "/"
+  root: "/"
 type: "nodejs:18"
 web:
-    commands:
-      start: "node index.js"
-upstream:
+  commands:
+    start: "node index.js"
+  upstream:
     socket_family: tcp
-locations:
+  locations:
     "/":
-        passthru: true
+      passthru: true
 ```
 
 and including it:
 
 ```yaml {configFile="apps"}
 applications:
-  app:
+  myapp:
     !include ./apps/my-app.yaml
 ```
 
@@ -233,10 +235,9 @@ You might do so as follows:
 
 ```yaml {configFile="services"}
 mysearch:
-    type: solr:8.0
-    disk: 1024
-    configuration:
-        conf_dir: !archive "solr/conf"
+  type: solr:8.0
+  configuration:
+      conf_dir: !archive "solr/conf"
 ```
 
 The `!archive` tag means that the value for `conf_dir` isn't the string `solr/conf` but the entire `solr/conf` directory.

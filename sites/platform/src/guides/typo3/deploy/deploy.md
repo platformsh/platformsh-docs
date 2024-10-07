@@ -12,39 +12,40 @@ description: |
 
 The following section is only relevant when deploying the TYPO3 template
 or creating a new site from scratch locally using Composer.
-If you're migrating an existing site, you can move on to the next step. 
+If you're migrating an existing site, you can move on to the next step.
 
-```yaml
-    # The deploy hook runs after your application has been deployed and started.
-    # Code can't be modified at this point but the database is available.
-    # The site isn't accepting requests while this script runs so keep it
-    # fast.
-    deploy: |
-        # Exit hook immediately if a command exits with a non-zero status.
-        set -e
+```yaml {configFile="app"}
+hooks:
+  # The deploy hook runs after your application has been deployed and started.
+  # Code can't be modified at this point but the database is available.
+  # The site isn't accepting requests while this script runs so keep it
+  # fast.
+  deploy: |
+    # Exit hook immediately if a command exits with a non-zero status.
+    set -e
 
-        # Set TYPO3 site defaults on first deploy.
-        if [ ! -f var/platformsh.installed ]; then
-            # Copy the created LocalConfiguration into the writable location.
-            cp public/typo3conf/LocalConfiguration.FromSource.php var/LocalConfiguration.php
+    # Set TYPO3 site defaults on first deploy.
+    if [ ! -f var/platformsh.installed ]; then
+      # Copy the created LocalConfiguration into the writable location.
+      cp public/typo3conf/LocalConfiguration.FromSource.php var/LocalConfiguration.php
 
-            # On first install, create an inital admin user with a default password.
-            # *CHANGE THIS VALUE IMMEDIATELY AFTER INSTALLATION*
-            php vendor/bin/typo3cms install:setup \
-                --install-steps-config=src/SetupDatabase.yaml \
-                --site-setup-type=no \
-                --site-name="TYPO3 on {{% vendor/name %}}" \
-                --admin-user-name=admin \
-                --admin-password=password \
-                --skip-extension-setup \
-                --no-interaction
+      # On first install, create an inital admin user with a default password.
+      # *CHANGE THIS VALUE IMMEDIATELY AFTER INSTALLATION*
+      php vendor/bin/typo3cms install:setup \
+        --install-steps-config=src/SetupDatabase.yaml \
+        --site-setup-type=no \
+        --site-name="TYPO3 on {{% vendor/name %}}" \
+        --admin-user-name=admin \
+        --admin-password=password \
+        --skip-extension-setup \
+        --no-interaction
 
-            # Sets up all extensions that are marked as active in the system.
-            php vendor/bin/typo3cms extension:setupactive || true
+      # Sets up all extensions that are marked as active in the system.
+      php vendor/bin/typo3cms extension:setupactive || true
 
-            # Create file that indicates first deploy and installation has been completed.
-            touch var/platformsh.installed
-        fi;
+      # Create file that indicates first deploy and installation has been completed.
+      touch var/platformsh.installed
+    fi;
 ```
 
 The template is designed to run the TYPO3 installer only on the first deploy

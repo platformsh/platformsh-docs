@@ -13,10 +13,12 @@ You can implement workers in Symfony smoothly thanks to the [Messenger component
 To deploy a worker, add an entry under the `workers` section [in your app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
-workers:
-    mails:
+applications:
+  myapp:
+    workers:
+      mails:
         commands:
-            start: symfony console messenger:consume --time-limit=60 --memory-limit=128M
+          start: symfony console messenger:consume --time-limit=60 --memory-limit=128M
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
