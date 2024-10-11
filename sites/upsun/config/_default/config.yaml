@@ -95,4 +95,5 @@ security:
     - ^GITHUB_
     - ^HUGO_HEAP_ID
   http:
-    methods: none
+    methods:
+    - GET
