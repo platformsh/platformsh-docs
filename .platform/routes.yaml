@@ -270,10 +270,10 @@ https://{default}/:
     upstream: "search:http"
     id: "search"
 
-https://docs.upsun.com.{default}/anchors/:
-  type: upstream
-  upstream: redirectionio-agent:http
-  id: redirectionio
+#https://docs.upsun.com.{default}/anchors/:
+#  type: upstream
+#  upstream: redirectionio-agent:http
+#  id: redirectionio
 
 https://docs.upsun.com/:
   type: upstream
