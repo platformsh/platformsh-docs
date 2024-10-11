@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environ-url:
+        type: string
+        required: true
+        description: 'PR environment URL'
+
+jobs:
+  redirections:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/redirection-verification
+        with:
+          environment-url: ${{ inputs.environ-url }}
