@@ -3,7 +3,32 @@ const github = require('@actions/github')
 const fs = require('fs');
 const yaml = require('js-yaml');
 const axios = require('axios');
-const problems = new Map()
+const tableData = [
+  [
+    {data: 'From', header: true},
+    {data: 'To', header: true}
+  ]
+]
+
+function linkify(path,url) {
+  let link = ""
+
+  /**
+   * We only want to append the URL if the path doesnt already start with https
+   */
+  if (!path.startsWith('https:')) {
+    if(url.endsWith('/')) {
+      url = url.slice(0,-1);
+    }
+
+    link = url+path;
+
+  } else {
+    link = path;
+  }
+
+  return `<a href="${link}">${path}</a>`
+}
 
 /**
  * @todo should we verify that the URL is valid before we set it?
@@ -13,7 +38,7 @@ axios.defaults.baseURL = core.getInput('environment-url')
 
 try {
   /**
-   * Can we get the full workspace path to this file?
+   * @todo Can we get the full workspace path to this file?
    * @type {*}
    */
   const yamlData = yaml.load(fs.readFileSync('./.platform/routes.yaml', 'utf8'));
@@ -30,31 +55,29 @@ try {
     return path.startsWith('/anchors/')
   })
 
-  const validateRedirects = new Promise((resolve, reject) => {
-    RedirectKeys.forEach(async (path, index, array) => {
-      //console.log(`I'm going to test ${path} to see if it goes to ${anchors[path].to}`)
-      await axios.head(path)
-        .then((response)=>{
-          core.info(`Response for our check of ${path} is ${response.status}`)
-        })
-        .catch((err)=>{
-          core.warning(`issue encountered with path ${path}!!! Returned status is ${err.request.status}`)
-          problems.set(path,anchors[path].to)
-          //console.log(err)
-        })
-      if (index === array.length -1) resolve();
-    });
+  const validateRedirects = RedirectKeys.map(async (path, index, array) => {
+    //console.log(`I'm going to test ${path} to see if it goes to ${anchors[path].to}`)
+
+    try {
+      const response = await axios.head(path);
+      //core.info(`Response for our check of ${path} is ${response.status}`)
+      return response
+    } catch (reqerr) {
+      //core.warning(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}`)
+      let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( anchors[path].to, axios.defaults.baseURL) }]
+      tableData.push(row)
+    }
   });
 
-  validateRedirects.then(() => {
-    if(problems.size > 0) {
-      /**
-       * @todo swap this out with core.summary.addTable()
-       */
+
+  Promise.all(validateRedirects).then(() => {
+    if(tableData.length > 1) {
+
       core.error('There was an error with one or more redirects.')
-      core.startGroup('Redirections that failed')
-      core.info(Object.fromEntries((problems)).toString())
-      core.endGroup()
+
+      core.summary.addTable(tableData)
+
+      core.summary.write()
       core.setFailed('There was an error with one or more contracted redirects.')
     } else  {
       core.notice('All contracted redirections are valid.')
@@ -64,5 +87,3 @@ try {
 } catch (error) {
   core.setFailed(`Action failed with error ${error}`)
 }
-
-

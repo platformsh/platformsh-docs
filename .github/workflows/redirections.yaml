@@ -1,4 +1,9 @@
+name: Contracted Redirections Verification
 on:
+  workflow_run:
+    workflows: [ Get info on PR ]
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       environ-url:
@@ -7,10 +12,35 @@ on:
         description: 'PR environment URL'
 
 jobs:
+  # @todo this whole job is almost exactly the same job as the one in e2e.yaml. Can we move this to an action or
+  # reusable workflow?
+  get_pr_url:
+    name: Get PR URL
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    outputs:
+      up_url: ${{ steps.retrieve-url.outputs.up_url }}
+    steps:
+      - name: Download info on PR
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: get-pr-info.yaml
+          workflow_conclusion: completed
+          name: pr-info
+      - name: retrieve url
+        id: retrieve-url
+        run: |
+          PSH_URL=$(cat environment_url.txt)
+          echo "PSH URL is $PSH_URL"
+          UP_URL="https://docs.upsun.com.${PSH_URL:8}"
+          echo "UP URL is ${UP_URL}"
+          echo "up_url=$UP_URL" >> $GITHUB_OUTPUT
   redirections:
+    needs:
+      - get_pr_url
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/redirection-verification
         with:
-          environment-url: ${{ inputs.environ-url }}
+          environment-url: ${{ needs.get_pr_url.outputs.up_url }}
