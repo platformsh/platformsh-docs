@@ -89,7 +89,9 @@ In such cases, add the inbound IP addresses for your region to your allow list.
 On the 17th of March 2025, Outbound IPs on **all GCP and Azure regions** will change.
 Customer projects that refer to outbound IPs explicitly in their code and/or configuration must intervene and update to the **New outbound IPs** as soon as is possible.
 
+Before the 17th of March, no traffic go through the **New outbound IPs**.
 After the 17th of March, the **Old outbound IPs** will no longer be available.
+Allowing both new and old IP addresses in any configuration during the transition period is recommended.
 
 <!-- On the Xxx the outbound IPs of the GCP and Azure regions will changed, please update any configuration before that date. -->
 
