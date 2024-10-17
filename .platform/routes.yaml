@@ -270,6 +270,11 @@ https://{default}/:
     upstream: "search:http"
     id: "search"
 
+#https://docs.upsun.com.{default}/anchors/:
+#  type: upstream
+#  upstream: redirectionio-agent:http
+#  id: redirectionio
+
 https://docs.upsun.com/:
   type: upstream
   upstream: upsun:http
@@ -297,8 +302,9 @@ https://docs.upsun.com/:
       "/anchors/config/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
       "/anchors/cli/tokens.html": { "to": "/administration/cli/api-tokens.html", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
-      "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
       "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
+      "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
+#      "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
       # Repeated again for the below.
       # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
       "/anchors/variables/app.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
@@ -363,6 +369,9 @@ https://docs.upsun.com/:
       "/anchors/resources/flexible.html": { "to": "/create-apps/flexible-resources.html", "code": 301, "prefix": false }
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
+
+      # this one is fake to make sure we have at least one that fails
+      "/anchors/admin/test.html": {"to": "/path/to/no/where/index.html", "code": 302, "prefix": false }
 
       # Redirects for moved Upsun GS guides
       "/get-started/express/": { "to": "/get-started/stacks/express.html", "code": 301, "prefix": true, "append_suffix": false }
