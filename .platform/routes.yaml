@@ -322,7 +322,7 @@ https://docs.upsun.com/:
       "/anchors/environments/inactive.html": { "to": "/glossary.html#inactive-environment", "code": 301, "prefix": false }
       "/anchors/crons/paused.html": { "to": "/configuration/app/cron.html#paused-crons", "code": 301, "prefix": false }
       "/anchors/go-live.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
-      "/anchors/import-data/mysql.html": { "to": "/configuration/services/mysql.html#importing-data", "code": 301, "prefix": false }
+      "/anchors/import-data/mysql.html": { "to": "/add-services/mysql.html#importing-data", "code": 301, "prefix": false }
       "/anchors/import-data/postgresql.html": { "to": "/configuration/services/postgresql.html#importing-data", "code": 301, "prefix": false }
       "/anchors/integrations.html": { "to": "/integrations/overview.html", "code": 301, "prefix": false }
       "/anchors/migrating.html": { "to": "/learn/tutorials/migrating.html", "code": 301, "prefix": false }
