@@ -313,7 +313,7 @@ https://docs.upsun.com/:
       "/anchors/deploy-key.html": { "to": "/administration/web/configure-project.html#deploy-key", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/dedicated.html": { "to": "https://docs.platform.sh/dedicated/overview.html", "code": 301, "prefix": false }
-      "/anchors/dns.html": { "to": "/golive/steps/dns.html", "code": 301, "prefix": false }
+      "/anchors/dns.html": { "to": "/domains/steps.html#1-get-the-target-for-your-project", "code": 301, "prefix": false }
       "/anchors/download-code.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/domain.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
       "/anchors/subdomains.html": { "to": "/domains/steps/subdomains.html", "code": 301, "prefix": false }
@@ -370,8 +370,6 @@ https://docs.upsun.com/:
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
 
-      # this one is fake to make sure we have at least one that fails
-      "/anchors/admin/test.html": {"to": "/path/to/no/where/index.html", "code": 302, "prefix": false }
 
       # Redirects for moved Upsun GS guides
       "/get-started/express/": { "to": "/get-started/stacks/express.html", "code": 301, "prefix": true, "append_suffix": false }
