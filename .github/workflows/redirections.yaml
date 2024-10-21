@@ -17,7 +17,7 @@ jobs:
   get_pr_url:
     name: Get PR URL
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    if: github.event.pull_request.head.repo.id == 627626095 || contains(github.event.pull_request.labels.*.name, 'build-fork')
     outputs:
       up_url: ${{ steps.retrieve-url.outputs.up_url }}
     steps:
@@ -44,3 +44,11 @@ jobs:
       - uses: ./.github/actions/redirection-verification
         with:
           environment-url: ${{ needs.get_pr_url.outputs.up_url }}
+
+  check-id:
+    name: checks repo id
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.id != 627626095
+    steps:
+      - run: |
+          echo "::notice::The repo id isn't 627626095 but instead is ${{ github.event.pull_request.head.repo.id }}"

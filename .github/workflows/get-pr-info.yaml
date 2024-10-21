@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Get info on build from PR
     # Run only for PRs from default repo and approved PRs from forks
-    if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    if: github.event.pull_request.head.repo.id == 627626095 || contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps:
       - uses: actions/checkout@v3
         with:
