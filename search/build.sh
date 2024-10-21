@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 install_meilisearch() {
-    unset "${MEILI_MASTER_KEY}"
+    if [ -n "${MEILI_MASTER_KEY+x}" ]; then
+      unset "${MEILI_MASTER_KEY}"
+    fi
+
     echo "* INSTALLING MEILISEARCH"
     # Replicates Meilisearch download (https://github.com/meilisearch/MeiliSearch/blob/master/download-latest.sh) with locked version.
     release_file="meilisearch-linux-amd64"
