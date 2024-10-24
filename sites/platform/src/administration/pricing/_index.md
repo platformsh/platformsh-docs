@@ -194,7 +194,7 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 In instances where a payment has failed, Platform.sh will make three separate attempts to take the outstanding balance from your account. 
 
-These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected and this process will not consider code push.  
+These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected.  
 
 <div align="center">
 
