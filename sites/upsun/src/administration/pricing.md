@@ -29,4 +29,12 @@ A given organization's monthly billing is then made up of the sum of each of the
 You can monitor your spend from the Console via a [current month estimate](/administration/billing/monitor-billing.html#current-month-estimate) and a [next month estimate](/administration/billing/monitor-billing.html#next-month-estimate).
 You can also [set billing alerts](/administration/billing/monitor-billing.html#manage-billing-alerts) to receive an email when your current month estimate reaches a defined threshold.
 
+## Dunning process
+
+In instances where a payment has failed, your organization will be immediately restricted. Upsun will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. If your payment fails after the third attempt on the 11th, your organization will be suspended the following day. 
+
+If you are a new Upsun customer and your first payment has failed, your projects will be deleted on the 13th - two days after the final payment attempt. 
+
+For all other users, projects will be deleted on the 31st day of the month (41 days after initial charge attempt) if no payment has been made within that time. All projects on the billing subscription will be affected and this process will not consider code push. 
+
 Be sure to visit the [Pricing page](https://upsun.com/pricing/) for exact details related to {{% vendor/name %}} pricing.
