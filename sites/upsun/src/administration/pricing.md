@@ -35,6 +35,6 @@ In instances where a payment has failed, your organization will be immediately r
 
 If you are a new Upsun customer and your first payment has failed, your projects will be deleted on the 13th - two days after the final payment attempt. 
 
-For all other users, projects will be deleted on the 31st day of the month (41 days after initial charge attempt) if no payment has been made within that time. All projects on the billing subscription will be affected. 
+For all other users, projects will be deleted 41 days after the initial charge attempt if no payment has been made within that time. All projects on the billing subscription will be affected. 
 
 Be sure to visit the [Pricing page](https://upsun.com/pricing/) for exact details related to {{% vendor/name %}} pricing.
