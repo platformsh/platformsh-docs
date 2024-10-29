@@ -194,7 +194,8 @@ applications:
             clickhouse: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:24
+    clickhouse:
+        type: clickhouse:24.3
 ```
 
 <--->
@@ -215,7 +216,8 @@ applications:
             clickhouse: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:24
+    clickhouse:
+        type: clickhouse:24.3
 ```
 
 {{< /codetabs >}}
