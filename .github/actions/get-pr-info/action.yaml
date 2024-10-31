@@ -1,0 +1,90 @@
+name: Get PR URL
+description: Checks the status of the environment based on branch, returns environment URL
+inputs:
+  platformsh_token:
+    description: 'Platform.sh/Upsun.com API token'
+    required: true
+  branch:
+    description: 'Branch name we should watch for deployment'
+    required: true
+
+####
+outputs:
+  env_status:
+    description: "Final status of the PR environment"
+    value: ${{ steps.get_env_url.outputs.env_status }}
+  pr_url:
+    description: "The URL of the PR environment"
+    value: ${{ steps.get_env_url.outputs.env_url }}
+  pr_url_upsun:
+    description: "The URL of the Upsun variant of the PR environment"
+    value: ${{ steps.get_env_url.outputs.env_url_upsun }}
+
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Platform.sh CLI
+      env:
+        PLATFORMSH_CLI_TOKEN: ${{ inputs.platformsh_token }}
+      uses: ./.github/actions/set-up-cli
+    - name: Get environment URL
+      shell: bash
+      env:
+        PLATFORMSH_CLI_TOKEN: ${{ inputs.platformsh_token }}
+        BRANCH: ${{ inputs.branch }}
+        UPSUN_DOCS_PREFIX: "https://docs.upsun.com" # @todo move to a repo var?
+      id: get_env_url
+      run: |
+        COMMIT_STATUS="pending"
+
+        # Get the state of the most recent deployment activity
+        # run commands in workflows are are automatically launched with shell: /usr/bin/bash -e {0}. If for some
+        # reason the psh cli errors (e.g. branch hasn't reached psh and therefore doesnt exist, api times out, etc)
+        # this will cause our workflow to exit. Instead, call the cli with an | true so we can attempt to query again
+        STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment ${BRANCH} || true)
+        echo "::notice::Attempting to retrieve deployed environment URL. Current state is: ${STATE}"
+        # Set tries to 0 to start countdown to timeout
+        STATUS_TRY=1
+        # We'll try up to 20 minutes, so (SLEEP_TIME*NUM_ATTEMPTS)/60 = 10*
+        SLEEP_TIME=10
+        NUM_ATTEMPTS=120
+
+        # Wait until state is complete or 20 minutes has passed
+        until [ "${STATE}" = "complete" ] || [ ${STATUS_TRY} = ${NUM_ATTEMPTS} ]; do
+          sleep ${SLEEP_TIME}
+          echo "::notice::Environment is not deployed. Attempting to retrieve deployed status. Attempt ${STATUS_TRY} of ${NUM_ATTEMPTS}."
+          STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment "${BRANCH}" || true)
+          echo "::notice::Status retrieved: ${STATE}"
+
+          if [ "${STATE}" = "complete" ]; then
+            echo "::notice::Activity is complete."
+          fi
+
+          # we want to clear the cli cache every 3rd attempt in case it is caching too heavily
+          if [ $(expr ${STATUS_TRY} % 3) = 0 ]; then
+            echo "Clearing the cli cache..."
+            platform clear-cache
+          fi
+
+          STATUS_TRY=$((++STATUS_TRY))
+        done
+
+        # Get the URL of the environment
+        ENV_URL=$(platform url --primary --pipe --environment "${BRANCH}")
+
+        # Get the status of the build activity
+        COMMIT_STATUS=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "result" --limit 1 --environment "${BRANCH}")
+
+        # Report findings
+        echo "The Platform.sh environment is:"
+        echo "$COMMIT_STATUS"
+        if [ "$COMMIT_STATUS" = "success" ]; then
+          echo "Environment deployed to:"
+          echo "$ENV_URL"
+        fi
+
+        # Report the final statuses to be used in future jobs
+        echo "env_status=$COMMIT_STATUS" >> $GITHUB_OUTPUT
+        echo "env_url=$ENV_URL" >> $GITHUB_OUTPUT
+        echo "env_url_upsun=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}" >> $GITHUB_OUTPUT
