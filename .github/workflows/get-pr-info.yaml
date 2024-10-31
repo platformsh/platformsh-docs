@@ -201,7 +201,7 @@ jobs:
         run: |
           echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
 
-  run-pr-tests:
+  run-redirection-tests:
     runs-on: ubuntu-latest
     name: Verify contracted redirections
     needs:
