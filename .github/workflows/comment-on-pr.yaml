@@ -5,7 +5,7 @@
 name: Comment on PR
 on:
   workflow_run:
-    workflows: [Get info on PR]
+    workflows: [Get PR URL, dependent jobs]
     types:
       - completed
 
@@ -18,7 +18,7 @@ jobs:
       - name: Download info on PR
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: get-pr-info.yaml
+          workflow: pr-url-and-dependent.yaml
           workflow_conclusion: completed
           name: pr-info
 
