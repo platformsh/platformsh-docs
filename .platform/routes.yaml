@@ -366,7 +366,7 @@ https://docs.upsun.com/:
       "/anchors/certificates.html": { "to": "/administration/web/configure-project.html#certificates", "code": 301, "prefix": false }
       "/anchors/environments/default.html": { "to": "/environments/default-environment.html", "code": 301, "prefix": false }
       "/anchors/admin/users/org.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
-      "/anchors/resources/flexible.html": { "to": "/create-apps/flexible-resources.html", "code": 301, "prefix": false }
+      "/anchors/resources/flexible.html": { "to": "/manage-resources/adjust-resources.html", "code": 301, "prefix": false }
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
 
