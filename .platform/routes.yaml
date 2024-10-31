@@ -345,7 +345,7 @@ https://docs.upsun.com/:
       "/anchors/observability/metrics.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
       # Repeated again for the following
       # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
-      "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics/grid.html", "code": 301, "prefix": false }
+      "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
       # Not relevant for Upsun.
       "/anchors/observability/metrics/dedicated.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated.html", "code": 301, "prefix": false }
       "/anchors/observability/metrics/dedicated-gen-3.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated-generation-3.html", "code": 301, "prefix": false }
