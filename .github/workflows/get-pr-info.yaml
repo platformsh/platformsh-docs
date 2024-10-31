@@ -1,4 +1,4 @@
-name: Get-info-on-PR
+name: Get PR URL, start dependent jobs
 on:
   pull_request_target:
     branches: [main]
@@ -73,7 +73,7 @@ jobs:
       - name: Report environment URL
         if: steps.get_env_url.outputs.env_status == 'success'
         run: |
-          echo ${{ steps.get_env_url.outputs.env_url }} > environment_url.txt
+          echo ${{ steps.get_env_url.outputs.pr_url }} > environment_url.txt
 
       - name: Get changed files
         if: steps.get_env_url.outputs.env_status == 'success'
@@ -88,7 +88,7 @@ jobs:
         if: steps.get_env_url.outputs.env_status == 'success'
         id: get-files
         env:
-          ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
+          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
         run: |
           files_platform=()
           files_upsun=()
@@ -160,7 +160,7 @@ jobs:
       - name: Comment without links
         if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == '' && steps.get_env_url.outputs.env_status == 'success'
         env:
-          ENV_URL: ${{ steps.get_env_url.outputs.env_url }}
+          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
         run: |
           UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
           echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
