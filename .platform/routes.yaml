@@ -338,7 +338,7 @@ https://docs.upsun.com/:
       "/anchors/configuration/yaml.html": { "to": "/learn/overview/yaml.html", "code": 301, "prefix": false }
       "/anchors/apps/mounts.html": { "to": "/create-apps/app-reference.html#mounts", "code": 301, "prefix": false }
       "/anchors/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
-      "/anchors/backups.html": { "to": "/security/backups.html", "code": 301, "prefix": false }
+      "/anchors/backups.html": { "to": "/security/data-retention.html#backups", "code": 301, "prefix": false }
       "/anchors/admin/users.html": { "to": "/administration/users.html", "code": 301, "prefix": false }
       # No equivalent yet for Upsun.
       "/anchors/wcag.html": { "to": "https://platform.sh/wcag/", "code": 301, "prefix": false }
@@ -352,7 +352,7 @@ https://docs.upsun.com/:
       "/anchors/integrations/activities.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
       "/anchors/integrations/activity-scripts.html": { "to": "/integrations/activity.html#configuring-scripts", "code": 301, "prefix": false }
       "/anchors/integrations/source.html": { "to": "/integrations/source.html", "code": 301, "prefix": false }
-      "/anchors/apps/timezone.html": { "to": "/configuration/app/timezone.html", "code": 301, "prefix": false }
+      "/anchors/apps/timezone.html": { "to": "/create-apps/timezone.html", "code": 301, "prefix": false }
       "/anchors/organizations.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
       "/anchors/redeploy.html": { "to": "/development/troubleshoot.html#force-a-redeploy", "code": 301, "prefix": false }
       "/anchors/ssh/authenticate.html": { "to": "/development/ssh.html#authenticate-with-ssh-keys", "code": 301, "prefix": false }
