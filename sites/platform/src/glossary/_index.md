@@ -90,11 +90,11 @@ They're always deployed together as a single unit.
 
 ## {{% names/dedicated-gen-2 %}}
 
-[{{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/_index.md) are managed host clusters with triple redundancy.
+[{{% names/dedicated-gen-2 %}} environments](/dedicated-environments/dedicated-gen-2/overview.md) are managed host clusters with triple redundancy.
 Their dedicated architecture makes them differ from [Grid environments](#grid).
-See a [list of differences](../dedicated-gen-2/overview/grid.md).
+See a [list of differences](/dedicated-environments/dedicated-gen-2/environment-differences.md).
 
-These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](../dedicated-gen-3/_index.md).
+These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](/dedicated-environments/dedicated-gen-3/_index.md).
 
 ## Deprecated versions
 

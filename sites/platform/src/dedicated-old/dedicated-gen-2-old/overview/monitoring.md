@@ -8,6 +8,6 @@ description: |
 
 {{% description %}}
 
-For more information, see which [monitoring systems](../../dedicated-gen-3/monitoring.md) {{% vendor/name %}} uses to [monitor application performance](../../dedicated-gen-3/monitoring.md#application-performance-monitoring)
-and detect [availability incidents](../../dedicated-gen-3/monitoring.md#availability-incident-handling-procedure)
+For more information, see which [monitoring systems](/dedicated-environments/security-monitoring.md) {{% vendor/name %}} uses to [monitor application performance](/dedicated-environments/security-monitoring.md#application-performance-monitoring)
+and detect [availability incidents](/dedicated-environments/security-monitoring.md#availability-incident-handling-procedure)
 on both {{% names/dedicated-gen-2 %}} and {{% names/dedicated-gen-3 %}} projects.

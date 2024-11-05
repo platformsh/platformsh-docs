@@ -7,7 +7,7 @@ description: See when backups of {{% names/dedicated-gen-2 %}} environments are 
 
 {{% vendor/name %}} takes a byte-for-byte snapshot of {{% names/dedicated-gen-2 %}} production environments every 6 hours.
 Backups are retained for different durations depending on when they're taken.
-For details, see the [retention policy for backups](../../security/data-retention.md#dedicated-gen-2-backups).
+For details, see the [retention policy for backups](/security/data-retention.md#dedicated-gen-2-backups).
 
 Backups are created using snapshots saved to encrypted elastic block storage (EBS) volumes.
 An EBS snapshot is immediate, but the time it takes to write to the storage service depends on the volume of changes.

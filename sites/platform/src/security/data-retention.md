@@ -94,7 +94,7 @@ Backups for {{% names/dedicated-gen-2 %}} environments are retained based on whe
 | Weeks 8--12  | One bi-weekly backup |
 | Weeks 12--22 | One backup per month |
 
-See more about [backups of {{% names/dedicated-gen-2 %}} environments](../dedicated-gen-2/overview/backups.md).
+See more about [backups of {{% names/dedicated-gen-2 %}} environments](/dedicated-environments/dedicated-gen-2/environment-differences.md#backups).
 
 ## Tombstone backups
 

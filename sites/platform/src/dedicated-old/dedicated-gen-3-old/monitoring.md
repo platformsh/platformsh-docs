@@ -18,12 +18,12 @@ On top of internal {{% vendor/name %}} tools,
 a third-party availability monitoring system is configured for every Dedicated project.
 This further guarantees that issues are spotted and addressed as quickly as possible.
 
-If you're using a CDN, [make sure it's configured](../domains/cdn/_index.md#configure-your-cdn-to-support-high-sla)
+If you're using a CDN, [make sure it's configured](/domains/cdn/_index.md#configure-your-cdn-to-support-high-sla)
 to support automated monitoring and guarantee high SLA.
 
 ## Application performance monitoring
 
-As the official, in-house {{% vendor/name %}} observability tool, [Blackfire](../../increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies.
+As the official, in-house {{% vendor/name %}} observability tool, [Blackfire](/increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies.
 Using Blackfire on {{% vendor/name %}} enhances your experience
 and allows you to enjoy greater support as well as unique upcoming features.
 
@@ -41,8 +41,8 @@ You can subscribe to Blackfire in two different ways:
   features and usage may cost more than the equivalent bundled in the Observability Suite.
 
 {{% vendor/name %}} also supports third-party observability services
-such as [New Relic](../increase-observability/integrate-observability/new-relic/_index.md)
-and [Tideways](../increase-observability/integrate-observability/tideways.md).
+such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md)
+and [Tideways](/increase-observability/integrate-observability/tideways.md).
 You need to get your own license for them.
 These third-party services have their own associated cost,
 are language-specific, and may not be available for all languages.

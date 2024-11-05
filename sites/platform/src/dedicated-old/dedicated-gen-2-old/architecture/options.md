@@ -8,7 +8,7 @@ keywords:
 ---
 
 You can enable the following features on your {{% names/dedicated-gen-2 %}} projects,
-as well as [multiple availability zones](../../dedicated-gen-3/options.md#multiple-availability-zones).
+as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/overview.md#multiple-availability-zones).
 
 To enable an optional feature or get more information on potential fees,
 [contact Sales](https://platform.sh/contact/).
@@ -17,7 +17,7 @@ To enable an optional feature or get more information on potential fees,
 
 {{% multi-app-intro %}}
 
-For more information, see how to [configure multiple apps in a single project](../../create-apps/multi-app/_index.md).
+For more information, see how to [configure multiple apps in a single project](/create-apps/multi-app/_index.md).
 
 ## Staging environments
 
@@ -75,7 +75,7 @@ There is no cost for this functionality.
 
 ## IP restrictions
 
-{{% vendor/name %}} supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](../../environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+{{% vendor/name %}} supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](/environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
 
 Changing access control triggers a new deploy of the current environment. 
 However, the changes aren’t propagated to child environments until they’re manually redeployed.

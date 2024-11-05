@@ -13,5 +13,5 @@ allowing this architecture superior fault tolerance to traditional N-Tier instal
 Moreover, the Cores assigned to production are solely for production.
 
 For more information,
-learn about [default storage settings](../../dedicated-gen-3/_index.md#storage)
-and how your app can [connect to services](../../dedicated-gen-3/_index.md#available-services).
+learn about [default storage settings](/dedicated-environments/dedicated-gen-3/_index.md#storage)
+and how your app can [connect to services](/dedicated-environments/dedicated-gen-3/_index.md#available-services).

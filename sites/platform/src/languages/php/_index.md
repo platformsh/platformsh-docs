@@ -360,7 +360,7 @@ To see the settings used on your environment:
 
 ### Customize PHP settings
 
-For {{% names/dedicated-gen-2 %}}, see the [configuration options](../../dedicated-gen-2/overview/grid.md#configuration-options).
+For {{% names/dedicated-gen-2 %}}, see the [configuration options](/dedicated-environments/dedicated-gen-2/development).
 
 You can customize PHP values for your app in two ways.
 The recommended method is to use variables.

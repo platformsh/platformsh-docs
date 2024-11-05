@@ -15,7 +15,7 @@ high availability for all your services and apps,
 stricter isolation requirements,
 as well as additional compliance frameworks.
 
-To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provider](../development/regions.md#regions),
+To set up a {{% names/dedicated-gen-3 %}} project on [any supported cloud provider](/development/regions.md#regions),
 [contact {{% vendor/name %}}](https://platform.sh/contact).
 Note that existing Grid and {{% names/dedicated-gen-2 %}} projects can't be migrated to {{% names/dedicated-gen-3 %}} at this time.
 
@@ -40,8 +40,8 @@ The following table shows the currently available services and their versions fo
 {{< gen-3-services >}}
 
 Your app can connect to each service by referencing
-the exact same [environment variables](../development/variables/_index.md) as for Grid environments.
-See the [services documentation](../../add-services/_index.md) for service-specific details.
+the exact same [environment variables](/development/variables/_index.md) as for Grid environments.
+See the [services documentation](/add-services/_index.md) for service-specific details.
 
 ### Local mounts
 
@@ -49,12 +49,12 @@ See the [services documentation](../../add-services/_index.md) for service-speci
 and local mounts aren't shared between the three hosts.
 
 If you need a folder to be shared between your hosts,
-set up a [network storage mount](../add-services/network-storage.md).
+set up a [network storage mount](/add-services/network-storage.md).
 
 ## Differences with {{% names/dedicated-gen-2 %}}
 
 Just like {{% names/dedicated-gen-3 %}},
-[{{% names/dedicated-gen-2 %}}](../../dedicated-gen-2/overview/_index.md) ensures increased uptime
+[{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/overview/_index.md) ensures increased uptime
 and availability for your apps and services.
 But as a {{% names/dedicated-gen-2 %}} user,
 you have to go through the {{% vendor/name %}} Customer Success team to make configuration or application topology changes.

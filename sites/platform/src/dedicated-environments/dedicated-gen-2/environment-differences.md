@@ -9,7 +9,7 @@ With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environmen
 while your Development environments run on the Grid, meaning shared redundant infrastructure.
 This difference means a few configuration options and tools function differently in the different environments.
 
-These differences should be gone with [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
+These differences should be gone with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
 
 ## Syncing data between environments
 
@@ -23,7 +23,7 @@ See how to [back up and transfer data](../../development/transfer-dedicated.md#s
 
 ## Backups
 
-Production environments are [backed up automatically](./backups.md).
+Production environments are [backed up automatically](/environments/backup.md#backup-schedule).
 For other environments, trigger a [manual backup](../../environments/backup.md).
 
 ## PHP

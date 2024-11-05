@@ -80,13 +80,13 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 
 ### Dedicated Gen 2 vs Dedicated Gen 3
 
-Just like Dedicated Gen 3, [Dedicated Gen 2](https://docs.platform.sh/dedicated-gen-2/overview.html) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
+Just like Dedicated Gen 3, [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/overview.html) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
 
-To understand the differences and similarities between Dedicated Generation 2 and Dedicated Generation 3, please head to [Dedicated Gen 3 vs Dedicated Gen 2](../../dedicated-environments/dedicated-gen-3/overview.md#dedicated-gen-3-vs-dedicated-gen-2).
+To understand the differences and similarities between Dedicated Generation 2 and Dedicated Generation 3, please head to [Dedicated Gen 3 vs Dedicated Gen 2](/dedicated-environments/dedicated-gen-3/overview.md#dedicated-gen-3-vs-dedicated-gen-2).
 
 ### Optional features
 
-You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](https://docs.platform.sh/dedicated-gen-3/options.html#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
+You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/options.html#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
 
 #### Multiple applications
 
