@@ -1,0 +1,75 @@
+---
+title: "Development"
+weight: 1
+sidebarTitle: "DG2 Development"
+description: "Dedicated Gen 2 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. Every service is replicated across all three hosts in a failover configuration, allowing a site to remain up even if one of the hosts is lost entirely."
+
+---
+
+### Cluster infrastructure
+
+Dedicated Gen 2 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that’s sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime. Every service is replicated across all three hosts in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the hosts is lost entirely.
+
+**IMAGE GOES HERE**
+
+Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
+
+The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](https://docs.platform.sh/learn/overview/get-support.html).
+
+For more information, learn about [default storage settings](https://docs.platform.sh/dedicated-gen-3.html#storage) and how your app can [connect to services](https://docs.platform.sh/dedicated-gen-3.html#available-services).
+
+### Split architecture
+
+Split architecture works under Dedicated Generation 2 and allows to give more resources globally to a project. Services (data services, caching service, search engines, …) are split from application runtimes. Services will be running on a cluster of core nodes, and the application will be running on a cluster of web nodes.
+
+This allows us to grant more room for the application or the services regarding resources. Both clusters can differ in size. Split-architecture clusters can horizontally scale the application by adding additional nodes. 
+
+**IMAGE GOES HERE**
+
+### Deployment
+
+The production branch of your Git repository is designated for production and a staging branch is designated for staging. Any code merged to those branches automatically triggers a rebuild of the production or staging environment in the Dedicated Gen 2 cluster. 
+
+Any defined users or environment variables are also propagated to the Dedicated Gen 2 cluster.
+**Note**: There is no automatic cloning of data from the Dedicated Gen 2 cluster to the Development Environment the way there is between branches in the Development Environment. 
+
+Production data may still be replicated to the Development Environment manually. Deployments of other branches don’t trigger rebuilds of the Dedicated Gen 2 cluster environments.
+
+#### Deployment process 
+
+When deploying to the Dedicated Gen 2 cluster the process is slightly different than when working with Platform.sh on the Grid.
+
+-   The new application image is built in the exact same fashion as for Platform.sh Professional.
+-   Any active background tasks on the cluster, including cron tasks, are terminated.
+-   The cluster (production or staging) is closed, meaning it doesn’t accept new requests. Incoming requests receive an HTTP 500 error.
+-   The application image on all three servers is replaced with the new image.
+-   The deploy hook is run on one, and only one, of the three servers.
+-   The cluster is opened to allow new requests.
+
+The deploy usually takes approximately 30-90 seconds, although that is highly dependent on how long the deploy hook takes to run.
+
+During the deploy process the cluster is unavailable. Nearly all Dedicated Gen 2 instances are fronted by the Fastly Content Delivery Network (CDN). Fastly can be configured to allow a “grace period”, meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale. We configure a default grace period that is longer than a typical deployment, and can extend that time upon request. That means anonymous users should see no interruption in service at all. Authenticated traffic that can’t be served by the CDN still sees a brief interruption.
+
+For more information about deployment, see the [overview of the build and deploy phases](https://docs.platform.sh/learn/overview/build-deploy.html).
+
+### Storage
+
+The Development Environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an additional fee.
+
+The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each development environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your development environment reflects the amount in your Enterprise contract.
+
+A project may have up to six (6) users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the Development environment and the Dedicated Gen 2 cluster.
+
+**Note:** By default, all containers in development environments are Standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
+
+### Memory
+
+Dedicated (Generation 2) includes a single node dedicated staging with 2 CPUs. This runs the same software configuration as the production cluster but only on a single node. This is usually enough for functional testing before moving to production. Customers can upgrade their staging to a more powerful machine or add more than one dedicated staging system. Those will still be a single machine.
+
+The memory ratio will follow their production system:
+
+| SKU | CPU | Memory D-* | Memory M-* |
+| --- | --- | --- | --- |
+| STG-2 | 2 | 4 | 8 |
+| STG-4 | 4 | 8 | 16 |
+| STG-8 | 8 | 16 | 32 |
