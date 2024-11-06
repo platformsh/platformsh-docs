@@ -172,3 +172,4 @@ Note that you need to place an alias with `<<:` at the same level as the other k
 - See what {{% vendor/name %}} makes possible with [custom tags](./platform-yaml-tags.md).
 - Read everything that's possible with YAML in the [YAML specification](https://yaml.org/spec/1.2.2/).
 - See a [YAML file that explains YAML syntax](https://learnxinyminutes.com/docs/yaml/).
+- Experiment with YAML format and syntax using a [YAML validator](https://yamline.com/validator/).
