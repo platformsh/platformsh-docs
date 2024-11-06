@@ -5,7 +5,7 @@
 name: Comment on PR
 on:
   workflow_run:
-    workflows: [Get PR URL, dependent jobs]
+    workflows: ["Get PR URL, dependent jobs"]
     types:
       - completed
 
