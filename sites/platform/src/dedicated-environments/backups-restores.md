@@ -34,7 +34,11 @@ The restoration process for Dedicated Generation 2 environments may take a few h
 
 MySQL is provided as a MySQL dump file on the server. You may restore these to your site at your leisure. You are also free to make your own backups using standard tools (mysqldump, rsync, etc.) at your own leisure.
 
-**Note:** Platform.sh does not proactively overwrite your production site with a backup. You are responsible for determining a “safe” time to restore the backup, or for selectively restoring individual files if desired.
+{{< note title="Note" theme="info" >}}
+
+Platform.sh does not proactively overwrite your production site with a backup. You are responsible for determining a “safe” time to restore the backup, or for selectively restoring individual files if desired.
+
+{{< /note >}} 
 
 ## Dedicated Generation 3 
 

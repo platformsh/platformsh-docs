@@ -27,58 +27,44 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 
 | Feature | Dedicated Generation 2 | Grid |
 | --- | --- | --- |
-| Source Operations | Yes | Yes |
-| PHP version upgrade | Self-service via yaml config files | Self-service via yaml config files |
-| NodeJS version upgrade | Self-service via yaml config files | Self-service via yaml config files |
-| Cron management | Self-service via yaml config files | Self-service via yaml config files |
-| Web server internal config : locations | Self-service via yaml config files | Self-service via yaml config files |
-| CDN | Fastly | Fastly |
-| Dedicated IP | Yes | No |
-| Configuration management | Split responsibility between Hiera (psh) and yaml files (customer) | only yaml files |
-| Usable regions | Any region needed (as long as we can deploy on it) | Only the publicly available |
-| Autonomous upsize | Managed through PSH - Done upon ticket | Yes |
-| Upsize / Downsize methods | No downtime - each instance is upsize in a rolling fashion | Redeploy - Possible downtime depending on the hooks |
-| Production branch | Managed by PSH | Self-service, configurable, arbitrary |
-| Autoscaling | Yes, but not split arch and only based on error rate, not proactive yet. | No |
-| Multi AZ | Yes | No |
-| New Relic | APM + New Relic infrastructure | APM Supported only |
-| Multi-app support (PWA) | Supported through docroots (additional billing) | Supported natively. |
-| Routes management | Managed by PSH - Done upon ticket | Self-service via yaml config files |
-| Environment clone | Only on dev environments | Yes on all branches |
-| Services : Add, remove, upgrade | Managed by PSH - Done upon ticket | Self-service via yaml config files |
-| Relationships : Add, remove, update | Managed by PSH - Done upon ticket | Self-service via yaml config files |
-| Mounts management | Depends on the context: Autonomous: dev team changes it in .platform.app.yaml file. By Platform.sh if the mounts are local one | Self-service via yaml config files |
-| Workers management | Managed by PSH - Done upon ticket | Self-service via yaml config files |
-| Web server internal config : domains | Managed by PSH - Done upon ticket | Self-service via yaml config files |
-| Storage allocation between mounts, DB and services | Managed by PSH - Done upon ticket | Self-service via yaml config files |
-| Storage increase responsibility | PSH | Autonomous |
-| Cron tasks interrupted by deploys | Yes: a deploy will terminate a running cron task | No: a running cron task will block a deployment until it is complete |
-| Log exports | "Managed by PSH - Rsyslog exports |
-| Fastly log export" | "Log forwarding feature |
-| Fastly log export (where available)" |
-| Sync and Merge functionalities | Only on dev environments | Yes on all branches |
-| SLA | 99.99% | 99.90% |
-| Infrastructure | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
-| Functioning | 3 nodes are running all applications and services and are replicated | A single container is deployed per runtimes and per services |
-| Resources allocation | Resources deployed on the 3 nodes | Resources are spread through the container with fixed sizes after deploy |
-| Failover mode | Hot, but not warm FO | Supports hot, but mostly warm. The DG3 dev envs have hot FO because they have redundancy as the dedicated cluster. |
-| MySQL Replication | Yes: 3 services nodes cluster | None: standalone service container |
-| Redis Replication | Yes: 3 services nodes cluster | None: standalone service container |
-| HA | Yes | No |
-| Split Arch | Yes | n/a |
-| VPN | AWS PrivateLink, not sure for others | No |
-| Storage | Local disk are accessed either locally or via glusterfs - nfs to provide RW FS to all web instances | 100 GB self service max (but can be extended by via support) |
-| Automated backup | Yes - Managed by PSH | Yes - Managed by PSH |
-| Storgae increase effect on billing | permanent and has extra cost | permanent and has extra cost |
-| Elasticsearch premium | Yes | Yes |
-| Hosts, CPU, RAM sizing | "3 nodes min, no real max for apps. Differences between app and services. Services are capped at 3 nodes max. Note that for services only 1 node is used out of the three. Some serices can be HA'd. T mobile. 1600 CPU |
-| https://dash.pltfrm.sh/question/3826-largest-current-clusters-by-cpu-count" | Max plan for the prod environment => 16.44 vCPU (2XL plan) This is then spread between all the containers (apps/services/workers) deployed on the environment. Per container: - Max 10 vCPUs for app container (4XL size / HIGH_CPU type). - Max 3 vCPUs for service container (4XL size / HIGH_MEMORY type). Max plan for the prod environment => 24 GB RAM / 32 GB RAM (for the high-memory plan) This is then spread between all the containers (apps/services/workers) deployed on the environment. Per container: - Max 9 GB RAM for app container using the flex resource yaml config. - Max 10,496 MB RAM for service container (4XL size / HIGH_MEMORY type). Burst allowed A region is 3 to 50 currently. |
-| Database / services HA | Base. Everything is replicated.Redundant. Mariadb is basically on failover. A second db connection can be exposed for RO and local. But there are exceptions. Postgresql, memcached are not HA. But we don't have solutions setups. | We could have redundant services on the grid, the API is there but only available for DG3 dev. |
-| SFTP password access | Yes - and highly important for these clients | No |
-| Custom domains name | Supported on the production environment | On master + any other branches (brand new feature from March 2023) |
-| On-demand backup | Not supported |  |
-| MongoDB | Not supported | Standalone service container |
-| Postgresql & Replication | No. We don't really have PG on DG2. We don't know really : perf, stability, HA, cacheability. We probably usually lose deals with high volume requirements. ➡ how to migrate? Only dumps for now. Replicating in, over the web? Maybe offer DBaaS. Inter project relations, direct accesses to services ... | More data, usually requires more resourcens (mem for cache, CPU for tasks ...) Standalone service container |
+| **Source Operations** | Yes | Yes |
+| **PHP version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
+| **NodeJS version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
+| **Cron management** | Self-service via yaml config files | Self-service via yaml config files |
+|**Web server internal config : locations** | Self-service via yaml config files | Self-service via yaml config files |
+| **CDN** | Fastly | Fastly |
+| **Dedicated IP** | Yes | No |
+| **Configuration management** | Split responsibility between Platform.sh and customer | only yaml files |
+| **Usable regions** | Any region needed | Only the publicly available |
+| **Autonomous upsize** | Managed through Platform.sh| Yes |
+| **Upsize or Downsize methods** | No downtime - each instance is upsize in a rolling fashion | Redeploy - possible downtime depending on the hooks |
+| **Production branch** | Managed by Platform.sh | Self-service |
+| **Multi AZ** | Yes | No |
+| **New Relic** | APM + New Relic infrastructure | APM Supported only |
+| **Multi-app support (PWA)** | Supported through docroots | Supported natively. |
+| **Routes management** | Managed by Platform.sh | Self-service |
+| **Environment clone** | Only on development environments | Yes on all branches |
+| **Services : Add, remove, upgrade** | Managed by Platform.sh | Self-service |
+| **Relationships : Add, remove, update** | Managed by Platform.sh | Self-service |
+| **Workers management** | Managed by Platform.sh | Self-service |
+| **Web server internal config : domains** | Managed by Platform.sh | Self-service |
+| **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service |
+| **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running cron task | No: a running cron task will block a deployment until it is complete |
+| **Log exports** | Managed by Platform.sh with Rsyslog exports and Fastly log exports | Log forwarding feature and Fastly log export |
+| **Sync and merge functionalities** | Only on development environments | Yes on all branches |
+| **SLA** | 99.99% | 99.9% |
+| **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
+| **Functioning** | 3 nodes are running all applications and services and are replicated | A single container is deployed per runtimes and per services |
+| **Resources allocation** | Resources deployed on 3 nodes | Resources are spread through the container with fixed sizes after deploy |
+| **Failover mode** | Hot, but not warm FO | Supports hot, but mostly warm. The DG3 dev envs have hot FO because they have redundancy as the dedicated cluster. |
+| **MySQL Replication** | Yes: 3 services nodes cluster | None: standalone service container |
+| **Redis Replication** | Yes: 3 services nodes cluster | None: standalone service container |
+| **High Availabilty (HA)** | Yes | No |
+| **Split Architecture** | Yes | No |
+| **Storage** | Local disk are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
+| **Automated backup** | Yes | Yes |
+| **Custom domains name** | Supported on the production environment | On master + any other branches |
+| **MongoDB** | Not supported | Standalone service container |
 
 ### Dedicated Gen 2 vs Dedicated Gen 3
 
