@@ -36,12 +36,15 @@ In a Grid region, incoming and outgoing traffic is handled via central region ga
 
 Whether you choose a Grid or Dedicated environment depends on the needs you have. In the table below, you can see the different ways in which either environment might work for you: 
 
+
+
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
-| **SLA** | 99.9% | 99.99% |
-| **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure | Dedicated 3 node clusters |
-| **Functioning** | A single container is deployed per runtimes and per services | Three nodes are running all applications and services are replicated across all of them |
-| **Resources allocation** | Resources are spread through one container with fixed sizes after deployment | Resources are deployed across 3 nodes |
+| **Availability** | All support tiers | Just with Enterprise or Elite |
+| **Uptime SLA** | 99.9% with Enterprise or Elite| 99.99% with Enterprise or Elite |
+| **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
+| **Functioning** | A single container is deployed per runtime and per service| 3 nodes are running all applications and services are replicated across all of them |
+| **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across 3 nodes
 | **Usable regions** | Only the publicly available regions can be used | Any region can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is upsize in a rolling fashion |
