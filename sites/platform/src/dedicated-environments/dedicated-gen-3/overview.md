@@ -1,8 +1,7 @@
 ---
-title: "{{% names/dedicated-environments %}} Dedicated Generation 3 Overview"
-weight: 1
-sidebarTitle: "Overview"
-layout: single
+title: "Dedicated Gen 3 Overview"
+weight: -10
+sidebarTitle: "DG3 overview"
 description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and high availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
 ---
 

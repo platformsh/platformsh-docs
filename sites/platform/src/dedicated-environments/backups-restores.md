@@ -1,7 +1,7 @@
 ---
-title: "{{% names/dedicated-environments %}} Backups and restores"
+title: "Dedicated backup and restores"
 weight: 1
-sidebarTitle: "Backups and restores"
+sidebarTitle: "Dedicated backups"
 layout: single
 description:  "Backups are retained for different periods depending on various factors and whether you’re using a Dedicated Gen 2 or Dedicated Gen 3 environment. These processes can be either manual or automated."
 ---

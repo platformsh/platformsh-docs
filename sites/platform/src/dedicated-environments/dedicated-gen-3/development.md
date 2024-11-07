@@ -1,12 +1,12 @@
 ---
-title: "{{% names/dedicated-environments %}} Development"
+title: "Dedicated Gen 3 Development"
 weight: 1
-sidebarTitle: "DG3 Development"
+sidebarTitle: "DG3 development"
 layout: single
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits."
 ---
 
-{{% description %}}
+Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 3, and discover key details about [deployment](#deployment), which [regions](#regions) are supported and [storage limits](#storage).
 
 ## Cluster infrastructure 
 
@@ -14,7 +14,7 @@ Like Grid and Dedicated Generation 2 (DG2), the architecture of Dedicated Genera
 
 DG3 cluster nodes function as entrypoint, coordinator, storage, and host all in one. These clusters usually only contain a single branch (default or optionally staging) while the remainder of the project remains on a Grid host. 
 
-**IMAGE GOES HERE**
+![Dedicated cluster architecture](/images/dedicated/cluster-infrastructure.svg "0.50")
 
 On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments, with 3 hosts that run the following:
 
@@ -34,7 +34,7 @@ On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA
 
 With a HTTP connection, a cloud load balancer (ELB) sits in front of the hosts and, if Fastly is enabled, Fastly sits in front of the ELB. Therefore, the web request flow looks like this:
 
-**IMAGE GOES HERE**
+![HTTP cluster architecture](/images/dedicated/http-cluster.svg "0.50")
 
 Not that unlike Grid, DG3 clusters do not have gateway instances, meaning that the entrypoint runs directly on the DG3 hosts that also serve the application and services. 
 
@@ -42,8 +42,7 @@ Not that unlike Grid, DG3 clusters do not have gateway instances, meaning that t
 
 DG3 customers cannot SSH to the host that runs their containers, they can only access the containers. This connection is proxied through the Grid region and then to the DG3 cluster like in the diagram below:
 
-**IMAGE GOES HERE**
-
+![SSH cluster architecture](/images/dedicated/ssh-cluster.svg "0.50")
 
 In the diagram, there are only 3 hosts. Host 1 has both the entry point and app container, and the same goes for hosts 2 and 3. Each service is run on 3 High availability containers spread across each of the 3 dedicated hosts.
 

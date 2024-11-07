@@ -1,16 +1,16 @@
 ---
-title: "Development"
+title: "Dedicated Gen 2 Development"
 weight: 1
-sidebarTitle: "DG2 Development"
-description: "Dedicated Gen 2 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. Every service is replicated across all three hosts in a failover configuration, allowing a site to remain up even if one of the hosts is lost entirely."
+sidebarTitle: "DG2 development"
+description: "Learn about the cluster infrastructure of Dedicated Generation 2, and discover key details about split architecture, deployment, storage limits and memory."
 
 ---
+
+Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 2, and discover key details about [split architecture](#split-architecture), [deployment](#deployment), [storage limits](#storage) and [memory](#memory).
 
 ### Cluster infrastructure
 
 Dedicated Gen 2 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that’s sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime. Every service is replicated across all three hosts in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the hosts is lost entirely.
-
-**IMAGE GOES HERE**
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
 
@@ -24,7 +24,7 @@ Split architecture works under Dedicated Generation 2 and allows to give more re
 
 This allows us to grant more room for the application or the services regarding resources. Both clusters can differ in size. Split-architecture clusters can horizontally scale the application by adding additional nodes. 
 
-**IMAGE GOES HERE**
+![Split architecture](/images/dedicated/split-architecture.svg "0.50")
 
 ### Deployment
 
@@ -60,7 +60,11 @@ The default storage for Dedicated Gen 2 contracts is 50GB per environment (produ
 
 A project may have up to six (6) users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the Development environment and the Dedicated Gen 2 cluster.
 
-**Note:** By default, all containers in development environments are Standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
+{{< note title="Note" theme="info" >}}
+
+By default, all containers in development environments are Standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
+
+{{< /note >}}
 
 ### Memory
 
@@ -68,8 +72,8 @@ Dedicated (Generation 2) includes a single node dedicated staging with 2 CPUs. T
 
 The memory ratio will follow their production system:
 
-| SKU | CPU | Memory D-* | Memory M-* |
-| --- | --- | --- | --- |
-| STG-2 | 2 | 4 | 8 |
-| STG-4 | 4 | 8 | 16 |
-| STG-8 | 8 | 16 | 32 |
+| SKU   | CPU | Memory D-*| Memory M-* |
+| ------| ----| ----------| -----------|
+| STG-2 | 2   | 4         | 8          |
+| STG-4 | 4   | 8         | 16         |
+| STG-8 | 8   | 16        | 32         |

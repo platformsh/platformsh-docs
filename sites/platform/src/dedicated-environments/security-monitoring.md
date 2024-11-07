@@ -1,6 +1,6 @@
 ---
-title: "{{% names/dedicated-environments %}} Security and monitoring"
-weight: 1
+title: "Security and monitoring"
+weight: -17
 sidebarTitle: "Security and monitoring"
 layout: single
 description:  "Security is handled in a similar way for both Dedicated Gen 2 and Dedicated Gen 3 projects, with strict procedures that are followed to handle incidents."

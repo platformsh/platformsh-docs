@@ -1,6 +1,6 @@
 ---
-title: "{{% names/dedicated-environments %}}"
-weight: 1
+title: "Overview"
+weight: -20
 sidebarTitle: "Overview"
 layout: single
 description:  "Our Dedicated environments are well-suited for those who need more resources and redundancy for their production environment, along with stricter isolation requirements."
@@ -8,27 +8,27 @@ description:  "Our Dedicated environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Platform, you can choose to deploy it using one of three types of architecture offerings: Grid, [Dedicated Generation 2]() (DG2) or [Dedicated Generation 3]() (DG3). 
+When you create a project on Platform, you can choose to deploy it using one of three types of architecture offerings: Grid, [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/overview.md) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3/overview.md) (DG3). 
 
 ## What is Dedicated?
 
 DG2 and DG3 are classified as Dedicated environments (Dedicated). This is because your production environment is replicated across at least three virtual servers that are dedicated solely to your project.
 
-In the diagram below, we can see that the Dedicated architecture provides three virtual servers that act as isolated hosts for a site. Within each server, all the data of your site is synced. Your site is replicated across three hosts with their own dedicated IPs. 
+In the diagram below, we can see that the Dedicated architecture provides three virtual servers that act as isolated hosts for a site in a failover configuration. Within each server, all the data of your site is synced. 
 
-**IMAGE GOES HERE**
+![The dedicated architecture](/images/dedicated/dedicated-architecture.svg "0.50")
 
 Having three isolated hosts means that when one becomes unavailable, the others take over, so your site will always remain up and running. This differs from the Grid architecture, where a single host runs multiple projects from various customers simultaneously. 
 
-From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host.
+From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. 
 
-**IMAGE GOES HERE**
+![The grid architecture](/images/dedicated/grid-architecture.svg "0.50")
 
 ## Deployment
 
 With a Dedicated environment, you are given the freedom to deploy into **any region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
 
-For a full  list of public regions and IP addresses, visit the [Regions page](https://docs.platform.sh/development/regions.html#regions).**
+For a full  list of public regions and IP addresses, visit the [Regions page](https://docs.platform.sh/development/regions.html#regions).
 
 In a Grid region, incoming and outgoing traffic is handled via central region gateways, and [publicly available IP addresses](https://docs.platform.sh/development/regions.html#public-ip-addresses) can be used for external firewalls. The public IP addresses for these public regions are stable but not guaranteed never to change.
 
@@ -38,7 +38,7 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
-| SLA | 99.90% | 99.99% |
+| SLA | 99.9% | 99.99% |
 | Infrastructure | Containers with dedicated resources on top of a shared redundant infrastructure | Dedicated 3 node clusters |
 | Functioning | A single container is deployed per runtimes and per services | 3 nodes are running all applications and services and are replicated |
 | Resources allocation | Resources are spread through the container with fixed sizes after deploy | Resources deployed on 3 nodes |

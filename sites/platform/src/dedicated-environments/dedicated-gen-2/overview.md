@@ -1,12 +1,14 @@
 ---
-title: "Development"
-weight: 1
-sidebarTitle: "Dedicated Generation 2 Development"
-description: "Dedicated Generation 2 is a robust, redundant layer. It’s well-suited for those who like the Platform.sh development experience but need more resources and redundancy for their production environment. Dedicated Generation 2 consists of two parts: a Development Environment and a Dedicated Gen 2 cluster."
+title: Dedicated Gen 2 Overview
+weight: -10
+sidebarTitle: "DG2 overview"
+description: "Dedicated Generation 2 is a robust, redundant layer. It’s well-suited for those who like the Platform.sh development experience but need more resources and redundancy for their production environment."
 
 ---
 
 {{% description %}}
+
+Dedicated Generation 2 consists of two parts: a Development Environment and a Dedicated Gen 2 cluster.
 
 ### Key features
 
