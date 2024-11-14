@@ -48,7 +48,7 @@ Cloud infrastructure issues are handled by the Platform.sh Customer Success team
 
 #### Observability services
 
-As the official, in-house Platform.sh observability tool, [Blackfire](https://docs.platform.sh/increase-observability/integrate-observability/blackfire.html) provides unparalleled monitoring, profiling, and performance testing technologies. Using Blackfire on Platform.sh enhances your experience and allows you to enjoy greater support as well as unique upcoming features.
+As the official, in-house Platform.sh observability tool, [Blackfire](/increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies. Using Blackfire on Platform.sh enhances your experience and allows you to enjoy greater support as well as unique upcoming features.
 
 You can subscribe to Blackfire in two different ways:
 
