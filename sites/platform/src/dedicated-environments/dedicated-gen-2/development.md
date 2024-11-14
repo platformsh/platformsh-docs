@@ -50,7 +50,7 @@ The deploy usually takes approximately 30-90 seconds, although that is dependent
 
 During the deploy process the cluster is unavailable. Nearly all Dedicated Gen 2 instances are fronted by the Fastly Content Delivery Network (CDN). Fastly can be configured to allow a “grace period”, meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale. We configure a default grace period that is longer than a typical deployment, and can extend that time upon request. That means anonymous users should see no interruption in service at all. Authenticated traffic that can’t be served by the CDN still sees a brief interruption.
 
-For more information about deployment, see the [overview of the build and deploy phases](https://docs.platform.sh/learn/overview/build-deploy.html).
+For more information about deployment, see the [overview of the build and deploy phases](/learn/overview/build-deploy.md).
 
 ### Storage
 
