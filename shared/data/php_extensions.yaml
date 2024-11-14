@@ -1366,6 +1366,7 @@ grid:
       - blackfire
       - datadog
       - enchant
+      - event
       - ffi
       - geoip
       - gmp
@@ -1402,7 +1403,6 @@ grid:
       - ssh2
       - swoole
       - sybase
-      - tideways
       - tidy
       - uuid
       - xdebug

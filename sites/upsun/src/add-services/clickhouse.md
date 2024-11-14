@@ -58,7 +58,7 @@ CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/ur
 CLICKHOUSE_EPOCH=0
 CLICKHOUSE_REL=clickhouse
 CLICKHOUSE_SCHEME=https/http
-CLICKHOUSE_TYPE=clickhouse:24
+CLICKHOUSE_TYPE=clickhouse:24.3
 CLICKHOUSE_PUBLIC=false
 ```
 
@@ -90,7 +90,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
       "epoch": 0,
       "rel": "clickhouse",
       "scheme": "https",
-      "type": "clickhouse:24",
+      "type": "clickhouse:24.3",
       "public": false
     }
 ```
@@ -194,7 +194,8 @@ applications:
             clickhouse: "clickhouse:clickhouse"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:24
+    clickhouse:
+        type: clickhouse:24.3
 ```
 
 <--->
@@ -215,7 +216,8 @@ applications:
             clickhouse: "clickhouse:clickhouse-http"
 services:
     # The name of the service container. Must be unique within a project.
-    type: clickhouse:24
+    clickhouse:
+        type: clickhouse:24.3
 ```
 
 {{< /codetabs >}}
@@ -236,7 +238,7 @@ applications:
 
 services:
   clickhouse:
-    type: clickhouse:24
+    type: clickhouse:24.3
     configuration:
       databases:
         - main

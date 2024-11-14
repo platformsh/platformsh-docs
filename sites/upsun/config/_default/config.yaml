@@ -1,5 +1,5 @@
 # Basics
-baseURL: /
+#baseURL: /
 title: Upsun documentation
 author: Upsun
 description: Upsun User Documentation
@@ -19,7 +19,7 @@ languages:
 
 disableKinds: ["taxonomy"]
 
-#baseURL: "https://docs.upsun.com"
+baseURL: "https://docs.upsun.com"
 
 summaryLength: 3
 
@@ -28,9 +28,16 @@ outputs:
       - HTML
       - JSON
       - RSS
+      - devcenter
     section:
       - HTML
       - RSS
+
+outputFormats:
+  devcenter:
+    mediaType: "application/json"
+    baseName: "json/devcenter"
+    isPlainText: true
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:
@@ -52,7 +59,7 @@ markup:
             enable: true
 params:
     math: true
-    
+
 module:
     _merge: deep
     mounts:
@@ -88,4 +95,5 @@ security:
     - ^GITHUB_
     - ^HUGO_HEAP_ID
   http:
-    methods: none
+    methods:
+    - GET
