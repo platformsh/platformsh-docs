@@ -54,4 +54,4 @@ For Dedicated Generation 3 environments, [automated backups](https://docs.platfo
 
 ## Dedication Generation 3 restores
 
-Dedicated Generation 3 environments allow for backups and restores the same way as Grid, so you can use them with the web console and the [Platform.sh CLI](https://docs.platform.sh/administration/cli.html).
+Dedicated Generation 3 environments allow for backups and restores the same way as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
