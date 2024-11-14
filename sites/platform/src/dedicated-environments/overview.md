@@ -28,7 +28,7 @@ From the Grid architecture diagram below, we can see that projects hosted in Gri
 
 With a Dedicated environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
 
-For a full  list of public regions and IP addresses, visit the [Regions page](https://docs.platform.sh/development/regions.html#regions).
+For a full list of public regions and IP addresses, visit the [Regions page](/development/regions.md#regions).
 
 In a Grid region, incoming and outgoing traffic is handled via central region gateways, and [publicly available IP addresses](/development/regions.md#public-ip-addresses) can be used for external firewalls. The public IP addresses for these public regions are stable but not guaranteed never to change.
 
