@@ -109,7 +109,7 @@ By default, Platform.sh serves generic Platform.sh-branded error pages for error
 
 #### Remote logging 
 
-Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](https://docs.platform.sh/learn/overview/get-support.html). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
+Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support.md). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
 
 When contacting support to enable rsyslog, you need:
 
