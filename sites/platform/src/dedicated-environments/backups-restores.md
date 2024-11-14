@@ -42,7 +42,7 @@ Platform.sh does not proactively overwrite your production site with a backup. Y
 
 ## Dedicated Generation 3 
 
-For Dedicated Generation 3 environments, [automated backups](https://docs.platform.sh/environments/backup.html#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](https://docs.platform.sh/environments/backup.html#backup-schedule). [Manual backups](https://docs.platform.sh/environments/backup.html#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+For Dedicated Generation 3 environments, [automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
 |Type            |Basic                |Advanced         |Premium    |
 |----------------|---------------------|-----------------|-----------|
