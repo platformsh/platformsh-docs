@@ -55,7 +55,7 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | **SLA** | 99.99% | 99.9% |
 | **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
 | **Functioning** | 3 nodes are running all applications and services and are replicated | A single container is deployed per runtimes and per services |
-| **Resources allocation** | Resources deployed on 3 nodes | Resources are spread through the container with fixed sizes after deploy |
+| **Resources allocation** | Resources deployed on 3 nodes | Resources are spread through the container with fixed sizes after deployment |
 | **MySQL Replication** | Yes: 3 services nodes cluster | None: standalone service container |
 | **Redis Replication** | Yes: 3 services nodes cluster | None: standalone service container |
 | **High Availabilty (HA)** | Yes | No |
