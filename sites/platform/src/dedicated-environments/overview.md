@@ -69,4 +69,4 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 
 
 
-For more information about our Dedicated offerings, explore our [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2) and [Dedicated Gen 3](/dedicated-environments/dedicated-gen-3) pages.
+For more information about our Dedicated offerings, explore our [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) and [Dedicated Gen 3](/dedicated-environments/dedicated-gen-3/_index.md) pages.
