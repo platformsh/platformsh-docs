@@ -9,7 +9,7 @@ With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environmen
 while your Development environments run on the Grid, meaning shared redundant infrastructure.
 This difference means a few configuration options and tools function differently in the different environments.
 
-These differences should be gone with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
+This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects.
 
 ## Syncing data between environments
 

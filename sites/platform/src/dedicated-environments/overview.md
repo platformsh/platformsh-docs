@@ -8,7 +8,7 @@ description:  "Our Dedicated environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Platform, you can choose to deploy it using one of three types of architecture offerings: Grid, [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3) (DG3). 
+When you create a project on Platform.sh, you can choose to deploy it using one of three types of architecture offerings: Professional, [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3/_index.md) (DG3). 
 
 ## What is Dedicated?
 
@@ -30,9 +30,9 @@ With a Dedicated environment, you are given the freedom to deploy into **any pu
 
 For a full  list of public regions and IP addresses, visit the [Regions page](https://docs.platform.sh/development/regions.html#regions).
 
-In a Grid region, incoming and outgoing traffic is handled via central region gateways, and [publicly available IP addresses](https://docs.platform.sh/development/regions.html#public-ip-addresses) can be used for external firewalls. The public IP addresses for these public regions are stable but not guaranteed never to change.
+In a Grid region, incoming and outgoing traffic is handled via central region gateways, and [publicly available IP addresses](/development/regions.md#public-ip-addresses) can be used for external firewalls. The public IP addresses for these public regions are stable but not guaranteed never to change.
 
-## **Grid vs Dedicated** 
+## Grid vs Dedicated
 
 Whether you choose a Grid or Dedicated environment depends on the needs you have. In the table below, you can see the different ways in which either environment might work for you: 
 
@@ -68,4 +68,4 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 
 
 
-For more information about our Dedicated offerings, explore our [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2) and [Dedicated Gen 3](/dedicated-environments/dedicated-gen-3) pages.
+For more information about our Dedicated offerings, explore our [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) and [Dedicated Gen 3](/dedicated-environments/dedicated-gen-3/_index.md) pages.

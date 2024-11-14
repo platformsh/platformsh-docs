@@ -73,7 +73,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 
 #### Available services
 
-Your app can connect to each service by referencing the exact same [environment variables](https://docs.platform.sh/development/variables.html) as for Grid environments. 
+Your app can connect to each service by referencing the exact same [environment variables](/development/variables.md) as for Grid environments. 
 
 | Service | Supported versions |
 | --- | --- |
@@ -88,15 +88,15 @@ Your app can connect to each service by referencing the exact same [environment
 | **Solr** | 9.6, 9.4, 9.2, 9.1, 8.11 |
 | **Vault KMS** | 1.12 |
 
-See the [services documentation](https://docs.platform.sh/add-services.html) for service-specific details.
+See the [services documentation](/add-services/_index.md) for service-specific details.
 
 #### Local mounts 
 
-Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t shared between the three hosts.If you need a folder to be shared between your hosts, set up a [network storage mount](https://docs.platform.sh/add-services/network-storage.html).
+Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t shared between the three hosts. If you need a folder to be shared between your hosts, set up a [network storage mount](/add-services/network-storage.md).
 
 ### Dedicated Gen 3 vs Dedicated Gen 2
 
-Just like Dedicated Gen 3, [Dedicated Gen 2](dedicated-environments/dedicated-gen-2) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
+Just like Dedicated Gen 3, [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
 
 Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the self-service flexibility and features of Grid projects. As a Dedicated Gen 3 user, you can edit your configuration yourself and see those changes reflected in your environments on every push without opening a ticket. See the table below for more differences and similarities between Dedicated Den 3 and Dedicated Gen 2:
 
@@ -118,7 +118,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Environment clone** | Only on development environments | Yes on all branches |
 | **Services : Add, remove, upgrade**  | Managed by Platform.sh | Self-service via yaml config files |
 | **Relationships : Add, remove, update** | Managed by Platform.sh| Self-service via yaml config files |
-| **Mounts management** | - Autonomous or managed by Platform.sh | Self-service via yaml config files |
+| **Mounts management** | Autonomous or managed by Platform.sh | Self-service via yaml config files |
 | **Workers management** | Managed by Platform.sh | Self-service via yaml config files |
 | **Web server internal config: domains** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via yaml config files |
@@ -152,21 +152,11 @@ If you prefer the peace of mind of hosting across multiple AZs, you can request 
 
 #### SFTP 
 
-In addition to SSH accounts, you can create SFTP accounts with a custom user/password to [transfer files](https://docs.platform.sh/development/file-transfer.html). 
+In addition to SSH accounts, you can create SFTP accounts with a custom user/password to [transfer files](/development/file-transfer.md). 
 
 {{< note title="Note" theme="info" >}}
 
 On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. SSH public key based authentication is also supported on the SFTP account.
 
 {{< /note >}}
-
-
-
-
-
-
-
-
-
-
 

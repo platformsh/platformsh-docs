@@ -55,7 +55,7 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | **SLA** | 99.99% | 99.9% |
 | **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
 | **Functioning** | 3 nodes are running all applications and services and are replicated | A single container is deployed per runtimes and per services |
-| **Resources allocation** | Resources deployed on 3 nodes | Resources are spread through the container with fixed sizes after deploy |
+| **Resources allocation** | Resources deployed on 3 nodes | Resources are spread through the container with fixed sizes after deployment |
 | **MySQL Replication** | Yes: 3 services nodes cluster | None: standalone service container |
 | **Redis Replication** | Yes: 3 services nodes cluster | None: standalone service container |
 | **High Availabilty (HA)** | Yes | No |
@@ -73,13 +73,13 @@ To understand the differences and similarities between Dedicated Generation 2 an
 
 ### Optional features
 
-You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/options.html#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
+You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/overview.md#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
 
 #### Multiple applications
 
 You can create multiple apps within a single project so they can share data. This can be useful if you have several apps that are closely related, such as a backend-only CMS and a frontend system for content delivery and display.
 
-For more information, see how to [configure multiple apps in a single project](https://docs.platform.sh/create-apps/multi-app.html).
+For more information, see how to [configure multiple apps in a single project](/create-apps/multi-app/_index.md).
 
 #### Staging environments 
 
@@ -93,11 +93,11 @@ Speak to your sales representative about the costs associated with adding additi
 
 #### SFTP 
 
-In addition to SSH accounts, you can create sftp accounts with a custom user/password that are restricted to certain directories. These directories must be one of the writeable mounts (or rather, there’s no point assigning them to the read-only code directory).
+In addition to SSH accounts, you can create sftp accounts with a custom user/password that are restricted to certain directories. These directories must be one of the writeable mounts.
 
-There is no cost for this configuration, and you can request it at any time via a [support ticket](https://docs.platform.sh/learn/overview/get-support.html). SSH public key based authentication is also supported on the sftp account.
+There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). SSH public key based authentication is also supported on the sftp account.
 
-See how to [transfer files through sftp](https://docs.platform.sh/development/file-transfer.html).
+See how to [transfer files through sftp](/development/file-transfer.md).
 
 #### Error handling 
 
@@ -109,7 +109,7 @@ By default, Platform.sh serves generic Platform.sh-branded error pages for error
 
 #### Remote logging 
 
-Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](https://docs.platform.sh/learn/overview/get-support.html). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
+Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support.md). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
 
 When contacting support to enable rsyslog, you need:
 
@@ -121,7 +121,7 @@ There is no cost for this functionality.
 
 #### IP restrictions 
 
-Platform.sh supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](https://docs.platform.sh/environments/http-access-control.html). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+Platform.sh supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](/environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
 
 Changing access control triggers a new deployment of the current environment. However, the changes aren’t propagated to child environments until they’re manually redeployed.
 
@@ -129,7 +129,7 @@ Changing access control triggers a new deployment of the current environment. Ho
 
 Platform.sh updates the core software of the Dedicated Gen 2 cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed. 
 
-These updates are deployed automatically with no additional work required by you. We attempt to maintain parity with your development environment, but we don’t guarantee absolute parity of point versions of your Dedicated Gen 2 environments with their corresponding development environments. I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22. 
+These updates are deployed automatically with no additional work required by you. We attempt to maintain parity with your development environment, but we don’t guarantee absolute parity of point versions of your Dedicated Gen 2 environments with their corresponding development environments. For example, your development environment may have a PHP container running 8.1.30, but your production environment may lag behind at 8.1.26. 
 
 We can upgrade point releases on request and always upgrade the underlying software in the event of security release.
 

@@ -14,9 +14,9 @@ Dedicated Gen 2 clusters are launched into a Triple Redundant configuration cons
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
 
-The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](https://docs.platform.sh/learn/overview/get-support.html).
+The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](/learn/overview/get-support.md).
 
-For more information, learn about [default storage settings](https://docs.platform.sh/dedicated-gen-3.html#storage) and how your app can [connect to services](https://docs.platform.sh/dedicated-gen-3.html#available-services).
+For more information, learn about [default storage settings](/dedicated-gen-3/_index.md#storage) and how your app can [connect to services](/dedicated-gen-3/_index.md#available-services).
 
 ### Split architecture
 
@@ -46,11 +46,11 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 -   The deploy hook is run on one, and only one, of the three servers.
 -   The cluster is opened to allow new requests.
 
-The deploy usually takes approximately 30-90 seconds, although that is highly dependent on how long the deploy hook takes to run.
+The deploy usually takes approximately 30-90 seconds, although that is dependent on how your deploy hook has been configured.
 
 During the deploy process the cluster is unavailable. Nearly all Dedicated Gen 2 instances are fronted by the Fastly Content Delivery Network (CDN). Fastly can be configured to allow a “grace period”, meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale. We configure a default grace period that is longer than a typical deployment, and can extend that time upon request. That means anonymous users should see no interruption in service at all. Authenticated traffic that can’t be served by the CDN still sees a brief interruption.
 
-For more information about deployment, see the [overview of the build and deploy phases](https://docs.platform.sh/learn/overview/build-deploy.html).
+For more information about deployment, see the [overview of the build and deploy phases](/learn/overview/build-deploy.md).
 
 ### Storage
 

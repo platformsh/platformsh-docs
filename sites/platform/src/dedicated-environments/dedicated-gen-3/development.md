@@ -36,7 +36,7 @@ With a HTTP connection, a cloud load balancer (ELB) sits in front of the hosts a
 
 ![HTTP cluster architecture](/images/dedicated/http-cluster.svg "0.50")
 
-Not that unlike Grid, DG3 clusters do not have gateway instances, meaning that the entrypoint runs directly on the DG3 hosts that also serve the application and services. 
+Like Professional, DG3 clusters don't have gateway instances, meaning that the entry point runs directly on the DG3 hosts that also serve the application and services. 
 
 ### SSH clusters
 

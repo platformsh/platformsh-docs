@@ -26,13 +26,13 @@ Backups are created using snapshots saved to encrypted elastic block storage (EB
 -   Recovery Point Objective (RPO) is 6 hours (maximum time to last backup).
 -   Recovery Time Objective (RTO) depends on the size of the storage. Large EBS volumes take more time to restore.
 
-These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. To request a restoration, open a [support ticket](https://docs.platform.sh/learn/overview/get-support.html).
+These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. To request a restoration, open a [support ticket](/learn/overview/get-support.md).
 
 ## Dedicated Generation 2 restoration
  
 The restoration process for Dedicated Generation 2 environments may take a few hours, depending on the infrastructure provider in use. In the ticket, specify if you want backups of files, MySQL, or both. Uploaded files are placed in an SSH-accessible directory on the Dedicated Gen 2 cluster. 
 
-MySQL is provided as a MySQL dump file on the server. You may restore these to your site at your leisure. You are also free to make your own backups using standard tools (mysqldump, rsync, etc.) at your own leisure.
+MySQL is provided as a MySQL dump file on the server. You may restore these to your site at your leisure. You are also free to make your own backups using standard tools (mysqldump, rsync, etc.).
 
 {{< note title="Note" theme="info" >}}
 
@@ -42,7 +42,7 @@ Platform.sh does not proactively overwrite your production site with a backup. Y
 
 ## Dedicated Generation 3 
 
-For Dedicated Generation 3 environments, [automated backups](https://docs.platform.sh/environments/backup.html#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](https://docs.platform.sh/environments/backup.html#backup-schedule). [Manual backups](https://docs.platform.sh/environments/backup.html#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+For Dedicated Generation 3 environments, [automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
 |Type            |Basic                |Advanced         |Premium    |
 |----------------|---------------------|-----------------|-----------|
@@ -54,4 +54,4 @@ For Dedicated Generation 3 environments, [automated backups](https://docs.platfo
 
 ## Dedication Generation 3 restores
 
-Dedicated Generation 3 environments allow for backups and restores the same way as Grid, so you can use them with the web console and the [Platform.sh CLI](https://docs.platform.sh/administration/cli.html).
+Dedicated Generation 3 environments allow for backups and restores the same way as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
