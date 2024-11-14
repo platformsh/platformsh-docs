@@ -26,7 +26,7 @@ Backups are created using snapshots saved to encrypted elastic block storage (EB
 -   Recovery Point Objective (RPO) is 6 hours (maximum time to last backup).
 -   Recovery Time Objective (RTO) depends on the size of the storage. Large EBS volumes take more time to restore.
 
-These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. To request a restoration, open a [support ticket](https://docs.platform.sh/learn/overview/get-support.html).
+These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. To request a restoration, open a [support ticket](/learn/overview/get-support.md).
 
 ## Dedicated Generation 2 restoration
  
