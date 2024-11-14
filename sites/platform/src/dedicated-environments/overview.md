@@ -32,7 +32,7 @@ For a full  list of public regions and IP addresses, visit the [Regions page](
 
 In a Grid region, incoming and outgoing traffic is handled via central region gateways, and [publicly available IP addresses](/development/regions.md#public-ip-addresses) can be used for external firewalls. The public IP addresses for these public regions are stable but not guaranteed never to change.
 
-## **Grid vs Dedicated** 
+## Grid vs Dedicated
 
 Whether you choose a Grid or Dedicated environment depends on the needs you have. In the table below, you can see the different ways in which either environment might work for you: 
 
