@@ -160,13 +160,3 @@ On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directo
 
 {{< /note >}}
 
-
-
-
-
-
-
-
-
-
-
