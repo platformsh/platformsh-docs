@@ -24,7 +24,7 @@ There are no exceptions for this rule, so any incoming web service requests, ETL
 -   The containers must live in the same environment
 -   You need to define an explicit relationship between the containers in your [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships)
 
-All Dedicated projects are isolated and their data is fully encrypted. Should a security breach occur, Platform.sh follows a strict [security incident handling** procedure](https://docs.platform.sh/dedicated-gen-3/security.html#security-incident-handling-procedure) to deal with the issue as promptly and efficiently as possible.
+All Dedicated projects are isolated and their data is fully encrypted. Should a security breach occur, Platform.sh follows a strict [security incident handling procedure](/dedicated-gen-3/security.md#security-incident-handling-procedure) to deal with the issue as promptly and efficiently as possible.
 
 ### Encryption 
 
