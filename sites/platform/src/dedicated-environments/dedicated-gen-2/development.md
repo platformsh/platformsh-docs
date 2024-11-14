@@ -14,7 +14,7 @@ Dedicated Gen 2 clusters are launched into a Triple Redundant configuration cons
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
 
-The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](https://docs.platform.sh/learn/overview/get-support.html).
+The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](/learn/overview/get-support.md).
 
 For more information, learn about [default storage settings](https://docs.platform.sh/dedicated-gen-3.html#storage) and how your app can [connect to services](https://docs.platform.sh/dedicated-gen-3.html#available-services).
 
