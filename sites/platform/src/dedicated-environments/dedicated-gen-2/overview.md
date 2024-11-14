@@ -129,7 +129,7 @@ Changing access control triggers a new deployment of the current environment. Ho
 
 Platform.sh updates the core software of the Dedicated Gen 2 cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed. 
 
-These updates are deployed automatically with no additional work required by you. We attempt to maintain parity with your development environment, but we don’t guarantee absolute parity of point versions of your Dedicated Gen 2 environments with their corresponding development environments. I.e, your development environment may have a PHP container running 5.6.30, but your production environment may lag behind at 5.6.22. 
+These updates are deployed automatically with no additional work required by you. We attempt to maintain parity with your development environment, but we don’t guarantee absolute parity of point versions of your Dedicated Gen 2 environments with their corresponding development environments. For example, your development environment may have a PHP container running 8.1.30, but your production environment may lag behind at 8.1.26. 
 
 We can upgrade point releases on request and always upgrade the underlying software in the event of security release.
 
