@@ -26,7 +26,7 @@ From the Grid architecture diagram below, we can see that projects hosted in Gri
 
 ## Deployment
 
-With a Dedicated environment, you are given the freedom to deploy into **any region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
+With a Dedicated environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
 
 For a full  list of public regions and IP addresses, visit the [Regions page](https://docs.platform.sh/development/regions.html#regions).
 
@@ -43,20 +43,19 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Availability** | All support tiers | Just with Enterprise or Elite |
 | **Uptime SLA** | 99.9% with Enterprise or Elite| 99.99% with Enterprise or Elite |
 | **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
-| **Functioning** | A single container is deployed per runtime and per service| 3 nodes are running all applications and services are replicated across all of them |
-| **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across 3 nodes
+| **Functioning** | A single container is deployed per runtime and per service| at least 3 nodes are running all applications and services are replicated across all of them |
+| **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
 | **Usable regions** | Only the publicly available regions can be used | Any region can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is upsize in a rolling fashion |
-| **Multi-app support** | Supported natively | Supported through docroots with additional billing |
-| **Production branch** | Master or main branch | Dedicated production branch |
-| **Custom domains name** | Supported on master and any other branches | Supported on the production environment |
+| **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
+| **Custom domains name** | Supported on main and any other branches | Same as Grid |
 | **Sync and merge functionalities** | Yes on all branches | Only on Development environments |
 | **Environment clone** | Yes on all branches | Only on Development environments |
-| **MySQL Replication** | None: standalone service container | Yes: 3 services nodes cluster |
-| **Redis Replication** | None: standalone service container | Yes: 3 services nodes cluster |
+| **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
+| **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
 | **MongoDB** | Standalone service container | Yes |
-| **CDN** | Fastly for master or main and pre production | Fastly |
+| **CDN** | Fastly for main and pre production | same as Grid |
 | **PHP version upgrade** | Autonomous | Autonomous |
 | **NodeJS version upgrade**| Autonomous | Autonomous |
 | **Routes management** | Autonomous | Autonomous |
