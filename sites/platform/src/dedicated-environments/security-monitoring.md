@@ -41,7 +41,7 @@ A wide range of server metrics, including disk space, memory, and disk usage are
 
 #### Automated monitoring
 
-On top of internal Platform.sh tools, a third-party availability monitoring system is configured for every Dedicated project. This further guarantees that issues are spotted and addressed as quickly as possible. If you’re using a CDN, [make sure it’s configured](https://docs.platform.sh/domains/cdn.html#configure-your-cdn-to-support-high-sla) to support automated monitoring and guarantee high SLA.
+On top of internal Platform.sh tools, a third-party availability monitoring system is configured for every Dedicated project. This further guarantees that issues are spotted and addressed as quickly as possible. If you’re using a CDN, [make sure it’s configured](/domains/cdn/_index.md#configure-your-cdn-to-support-high-sla) to support automated monitoring and guarantee high SLA.
 
 Automated monitoring is used to keep an eye on your production environment at all times. If automated monitoring triggers an alert, or if a customer files an urgent priority ticket, an on-call engineer is immediately paged so they can respond and begin to triage the issue.
 Cloud infrastructure issues are handled by the Platform.sh Customer Success team. Note that application problems are returned to the user and may be downgraded.
