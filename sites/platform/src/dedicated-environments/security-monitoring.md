@@ -17,7 +17,7 @@ We use a combination of four trusted methods to ensure your site is secure and r
 
 ### Project isolation 
 
-All Dedicated clusters are single-tenant. The [three hosts](https://docs.platform.sh/dedicated-gen-2/overview.html) are exclusively used by a single customer and each cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers). The network is behind a firewall for incoming connections. Only ports 22 (SSH), 80 (HTTP), and 443 (HTTPS), and 2221 (SFTP) are opened to incoming traffic.
+All Dedicated clusters are single-tenant. The [three hosts](/dedicated-environments/dedicated-gen-2/overview.md) are exclusively used by a single customer and each cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers). The network is behind a firewall for incoming connections. Only ports 22 (SSH), 80 (HTTP), and 443 (HTTPS), and 2221 (SFTP) are opened to incoming traffic.
 
 There are no exceptions for this rule, so any incoming web service requests, ETL jobs, or otherwise need to transact over one of these protocols. Outgoing TCP traffic isn’t behind a firewall. Outgoing UDP traffic is disallowed. For containers to be allowed to connect to each other, the following requirement must be met:
 
