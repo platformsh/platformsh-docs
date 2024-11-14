@@ -37,7 +37,7 @@ All Dedicated projects are isolated and their data is fully encrypted. Should a 
 
 All of our Dedicated clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure.
 
-A wide range of server metrics, including disk space, memory, and disk usage are continuously measured using in-house tools. These metrics provide a complete picture of the health of your application infrastructure. As soon as a metric goes out of bounds, Platform.sh Support and Operations teams are alerted. When an outage is detected, a Point in Time report is generated so Platform.sh Support can triage the cause of the outage.
+A wide range of server metrics (disk space, memory, and disk usage) are continuously measured using in-house tools, providing a complete picture of the health of your application infrastructure. As soon as a metric goes out of bounds (i.e., an outage is detected), Support and Operations teams are alerted, a Point in Time report is generated, and the Platform.sh teams can determine and triage the cause of the outage.
 
 #### Automated monitoring
 
