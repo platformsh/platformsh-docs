@@ -96,7 +96,7 @@ Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t sh
 
 ### Dedicated Gen 3 vs Dedicated Gen 2
 
-Just like Dedicated Gen 3, [Dedicated Gen 2](dedicated-environments/dedicated-gen-2) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
+Just like Dedicated Gen 3, [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
 
 Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the self-service flexibility and features of Grid projects. As a Dedicated Gen 3 user, you can edit your configuration yourself and see those changes reflected in your environments on every push without opening a ticket. See the table below for more differences and similarities between Dedicated Den 3 and Dedicated Gen 2:
 
