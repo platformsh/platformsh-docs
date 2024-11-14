@@ -47,7 +47,7 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
 | **Usable regions** | Only the publicly available regions can be used | Any region can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
-| **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is upsize in a rolling fashion |
+| **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
 | **Custom domains name** | Supported on main and any other branches | Same as Grid |
 | **Sync and merge functionalities** | Yes on all branches | Only on Development environments |
