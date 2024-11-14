@@ -92,7 +92,7 @@ See the [services documentation](/add-services/_index.md) for service-specific 
 
 #### Local mounts 
 
-Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t shared between the three hosts.If you need a folder to be shared between your hosts, set up a [network storage mount](https://docs.platform.sh/add-services/network-storage.html).
+Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t shared between the three hosts. If you need a folder to be shared between your hosts, set up a [network storage mount](/add-services/network-storage.md).
 
 ### Dedicated Gen 3 vs Dedicated Gen 2
 
