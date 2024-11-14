@@ -8,7 +8,7 @@ description:  "Our Dedicated environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Platform, you can choose to deploy it using one of three types of architecture offerings: Grid, [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3) (DG3). 
+When you create a project on Platform.sh, you can choose to deploy it using one of three types of architecture offerings: Professional, [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3/_index.md) (DG3). 
 
 ## What is Dedicated?
 
