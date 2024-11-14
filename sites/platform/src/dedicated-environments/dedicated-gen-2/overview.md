@@ -73,7 +73,7 @@ To understand the differences and similarities between Dedicated Generation 2 an
 
 ### Optional features
 
-You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/options.html#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
+You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/overview.md#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
 
 #### Multiple applications
 
