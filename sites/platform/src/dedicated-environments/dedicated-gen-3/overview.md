@@ -11,12 +11,10 @@ description:  "Designed to cater to the needs of organizations that build demand
 
 -   **High Availability:** 99.99% SLA (service-level agreement)
 -   **Dedicated hosts:** Each DG3 cluster is provisioned with 3 dedicated hosts as the typical configuration
--   **Headless e-commerce:** Seamless headless e-commerce with multi-app support
--   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-master, disk resizing and adding, upgrading or removing services on their own
+-   **Headless architecture:** Seamless headless architecture with multi-app support
+-   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
--   **Better compliance:** DG3 is containerized and decouples the base operating system (OS) version and control plane from the service versions, so the OS and services can be upgraded independently.
--   **Better storage:** LVM storage is available, along with support for local and network storage (eg. GlusterFS). Ceph is also not used.
--   **Better hosting:** The host root file system is **read-only**. Customers can now access and use repositories and Engorgio. There is also no Puppet.
+-   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and control plane from the service versions, so the OS and services can be upgraded independently.
 -   **Better staging:** All DG3 environments come with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless.
 
 {{< note title="Note" theme="info" >}}
@@ -43,10 +41,10 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 | **Autonomous upsize** | Managed through Platform.sh | Yes |
 | **Upsize or downsize methods** | No downtime - each instance is upsize in a rolling fashion | Redeploy - possible downtime depending on the hooks |
 | **Production branch** | Managed by Platform.sh| Self-service |
-| **Autoscaling** | Yes, but not on split architecture | No |
+| **Autoscaling** | Yes | No |
 | **Multi AZ** | Yes | No |
-| **New Relic** | APM + New Relic infrastructure | APM Supported only |
-| **Multi-app support (PWA)** | Supported natively | Supported natively |
+| **New Relic** | Not supported | APM Supported only |
+| **Multi-app support** | Supported natively | Supported natively |
 | **Routes management**  | Self-service via yaml config files | Self-service via yaml config files |
 | **Environment clone** | Yes on all branches | Yes on all branches |
 | **Services : Add, remove, upgrade**  | Self-service via yaml config files | Self-service via yaml config files |
@@ -55,7 +53,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 | **Workers management**| Self-service via yaml config files | Self-service via yaml config files |
 | **Web server internal config  : domains** | Self-service via yaml config files | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Self-service via yaml config files | Self-service via yaml config files |
-| **Storage increase responsibility** | Autonomous | Autonomous |
+| **Storage increase responsibility** | Shared responsibility with Platform.sh | Self-service |
 | **Cron tasks interrupted by deploys** | No: a running cron task will block a deployment until it is complete | No: a running cron task will block a deployment until it is complete |
 | **Sync and merge functionalities** | Yes on all branches | Yes on all branches |
 | **SLA** | 99.99% | 99.9% |
@@ -69,7 +67,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 | **Automated backup** | Yes | Yes |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | No |
-| **Custom domains name** | On master + any other branches | On master + any other branches |
+| **Custom domains name** | On all branches | On all branches |
 
 #### Available services
 
@@ -118,11 +116,11 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Environment clone** | Only on development environments | Yes on all branches |
 | **Services : Add, remove, upgrade**  | Managed by Platform.sh | Self-service via yaml config files |
 | **Relationships : Add, remove, update** | Managed by Platform.sh| Self-service via yaml config files |
-| **Mounts management** | Autonomous or managed by Platform.sh | Self-service via yaml config files |
+| **Mounts management** | Self-service or managed by Platform.sh | Self-service via yaml config files |
 | **Workers management** | Managed by Platform.sh | Self-service via yaml config files |
 | **Web server internal config: domains** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via yaml config files |
-| **Storage increase responsibility** | PSH | Autonomous |
+| **Storage increase responsibility** | PSH | Self-service |
 | **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running cron task | No: a running cron task will block a deployment until it is complete |
 | **Sync and Merge functionalities** | Only on dev environments | Yes on all branches |
 | **Functioning** | 3 nodes are running all applications and services are replicated | 3 nodes are running all applications and service are replicated |

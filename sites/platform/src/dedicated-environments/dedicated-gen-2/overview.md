@@ -14,12 +14,9 @@ Dedicated Generation 2 consists of two parts: a Development Environment and a De
 
 -   **High Availability:** 99.99% SLA (service-level agreement)
 -   **Dedicated hosts:** Each DG2 cluster is provisioned with 3 dedicated hosts as the typical configuration
--   **Headless e-commerce:** Seamless headless e-commerce with multi-app support
--   **Self-service:** Customers may edit their application and service YAML files and push changes. 
--   **Compliance:** On DG2, services run on the base operating system (OS). 
+-   **Headless architecture:** Seamless headless architecture with multi-app support
+-   **Isolation:** On DG2, services run as processes on the base operating system (OS). 
 -   **Storage:** Storage allocation between mounts, DB and services is done through Platform.sh once a ticket is raised. Storage management is not self-service.
--   **Hosting:** The host root file system is **read-only**. 
--   **Staging:** All DG3 environments come with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless. 
 
 ## Dedicated Generation 2 vs Grid
 
@@ -29,7 +26,7 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | --- | --- | --- |
 | **Source Operations** | Yes | Yes |
 | **PHP version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
-| **NodeJS version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
+| **Node.js version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
 | **Cron management** | Self-service via yaml config files | Self-service via yaml config files |
 |**Web server internal config : locations** | Self-service via yaml config files | Self-service via yaml config files |
 | **CDN** | Fastly | Fastly |
@@ -37,11 +34,12 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | **Configuration management** | Split responsibility between Platform.sh and customer | only yaml files |
 | **Usable regions** | Any region needed | Only the publicly available |
 | **Autonomous upsize** | Managed through Platform.sh| Yes |
+| **Autoscaling** | Yes | No |
 | **Upsize or Downsize methods** | No downtime - each instance is upsize in a rolling fashion | Redeploy - possible downtime depending on the hooks |
 | **Production branch** | Managed by Platform.sh | Self-service |
 | **Multi AZ** | Yes | No |
 | **New Relic** | APM + New Relic infrastructure | APM Supported only |
-| **Multi-app support (PWA)** | Supported through docroots | Supported natively. |
+| **Multi-app support** | Supported through docroots | Supported natively. |
 | **Routes management** | Managed by Platform.sh | Self-service |
 | **Environment clone** | Only on development environments | Yes on all branches |
 | **Services : Add, remove, upgrade** | Managed by Platform.sh | Self-service |
@@ -62,7 +60,7 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | **Split Architecture** | Yes | No |
 | **Storage** | Local disk are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
 | **Automated backup** | Yes | Yes |
-| **Custom domains name** | Supported on the production environment | On master + any other branches |
+| **Custom domains name** | On all branches | On all branches |
 | **MongoDB** | Not supported | Standalone service container |
 
 ### Dedicated Gen 2 vs Dedicated Gen 3

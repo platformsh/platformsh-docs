@@ -16,19 +16,7 @@ DG3 cluster nodes function as entrypoint, coordinator, storage, and host all in 
 
 ![Dedicated cluster architecture](/images/dedicated/cluster-infrastructure.svg "0.50")
 
-On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments, with 3 hosts that run the following:
-
-#### Containers
-
--   Router
--   Application
--   Services (as specified for the project)
-
-#### Foundation
-
--   Coordinator agent
--   Host agent
--   Zookeeper
+On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments, with 3 hosts.
 
 ### HTTP clusters
 
@@ -36,11 +24,9 @@ With a HTTP connection, a cloud load balancer (ELB) sits in front of the hosts a
 
 ![HTTP cluster architecture](/images/dedicated/http-cluster.svg "0.50")
 
-Like Professional, DG3 clusters don't have gateway instances, meaning that the entry point runs directly on the DG3 hosts that also serve the application and services. 
-
 ### SSH clusters
 
-DG3 customers cannot SSH to the host that runs their containers, they can only access the containers. This connection is proxied through the Grid region and then to the DG3 cluster like in the diagram below:
+On DG3, customer have direct access to the application containers. This connection is proxied through the Grid region and then to the DG3 cluster like in the diagram below:
 
 ![SSH cluster architecture](/images/dedicated/ssh-cluster.svg "0.50")
 

@@ -104,5 +104,4 @@ The following settings require a [support ticket](/learn/overview/get-support):
 
 ## Logs
 
-{{% names/dedicated-gen-2 %}} environments have a slightly different location for [container logs](../../increase-observability/logs/access-logs.md).
-The difference shouldn't be noticeable if you use the CLI.
+{{% names/dedicated-gen-2 %}} environments have a slightly different location for [container logs](../../increase-observability/logs/access-logs.md). The difference shouldn't be noticeable if you use the CLI.
