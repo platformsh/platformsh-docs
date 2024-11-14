@@ -152,7 +152,7 @@ If you prefer the peace of mind of hosting across multiple AZs, you can request 
 
 #### SFTP 
 
-In addition to SSH accounts, you can create SFTP accounts with a custom user/password to [transfer files](https://docs.platform.sh/development/file-transfer.html). 
+In addition to SSH accounts, you can create SFTP accounts with a custom user/password to [transfer files](/development/file-transfer.md). 
 
 {{< note title="Note" theme="info" >}}
 
