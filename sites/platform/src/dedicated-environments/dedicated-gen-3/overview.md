@@ -73,7 +73,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 
 #### Available services
 
-Your app can connect to each service by referencing the exact same [environment variables](https://docs.platform.sh/development/variables.html) as for Grid environments. 
+Your app can connect to each service by referencing the exact same [environment variables](/development/variables.md) as for Grid environments. 
 
 | Service | Supported versions |
 | --- | --- |
