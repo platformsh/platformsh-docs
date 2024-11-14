@@ -118,7 +118,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Environment clone** | Only on development environments | Yes on all branches |
 | **Services : Add, remove, upgrade**  | Managed by Platform.sh | Self-service via yaml config files |
 | **Relationships : Add, remove, update** | Managed by Platform.sh| Self-service via yaml config files |
-| **Mounts management** | - Autonomous or managed by Platform.sh | Self-service via yaml config files |
+| **Mounts management** | Autonomous or managed by Platform.sh | Self-service via yaml config files |
 | **Workers management** | Managed by Platform.sh | Self-service via yaml config files |
 | **Web server internal config: domains** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via yaml config files |
