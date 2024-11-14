@@ -88,7 +88,7 @@ Your app can connect to each service by referencing the exact same [environment
 | **Solr** | 9.6, 9.4, 9.2, 9.1, 8.11 |
 | **Vault KMS** | 1.12 |
 
-See the [services documentation](https://docs.platform.sh/add-services.html) for service-specific details.
+See the [services documentation](/add-services/_index.md) for service-specific details.
 
 #### Local mounts 
 
