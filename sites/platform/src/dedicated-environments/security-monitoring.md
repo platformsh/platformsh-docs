@@ -54,7 +54,7 @@ You can subscribe to Blackfire in two different ways:
 
 -   As an Enterprise or Elite customer, you can sign up for the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/), which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability Suite includes all Blackfire features, support, and usage that scales with your needs. To subscribe to the Observability Suite, [contact Sales](https://platform.sh/contact/).
 -   All customers can also [subscribe to Blackfire](https://www.blackfire.io/pricing) separately. To get a quote based on the size of your cluster, [contact Sales](https://platform.sh/contact/). Note that if you subscribe to Blackfire separately, features and usage may cost more than the equivalent bundled in the Observability Suite.
-Platform.sh also supports third-party observability services such as [New Relic](https://docs.platform.sh/increase-observability/integrate-observability/new-relic.html) and [Tideways](https://docs.platform.sh/increase-observability/integrate-observability/tideways.html). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.
+Platform.sh also supports third-party observability services such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md and [Tideways](/increase-observability/integrate-observability/tideways.md). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.
 
 ### Security incident monitoring
 
