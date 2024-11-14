@@ -16,7 +16,7 @@ Each instance hosts the entire application stack, allowing this architecture sup
 
 The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](/learn/overview/get-support.md).
 
-For more information, learn about [default storage settings](https://docs.platform.sh/dedicated-gen-3.html#storage) and how your app can [connect to services](https://docs.platform.sh/dedicated-gen-3.html#available-services).
+For more information, learn about [default storage settings](/dedicated-gen-3/_index.md#storage) and how your app can [connect to services](/dedicated-gen-3/_index.md#available-services).
 
 ### Split architecture
 
