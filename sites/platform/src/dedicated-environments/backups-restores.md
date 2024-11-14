@@ -32,7 +32,7 @@ These backups are only used in cases of catastrophic failure and can only be res
  
 The restoration process for Dedicated Generation 2 environments may take a few hours, depending on the infrastructure provider in use. In the ticket, specify if you want backups of files, MySQL, or both. Uploaded files are placed in an SSH-accessible directory on the Dedicated Gen 2 cluster. 
 
-MySQL is provided as a MySQL dump file on the server. You may restore these to your site at your leisure. You are also free to make your own backups using standard tools (mysqldump, rsync, etc.) at your own leisure.
+MySQL is provided as a MySQL dump file on the server. You may restore these to your site at your leisure. You are also free to make your own backups using standard tools (mysqldump, rsync, etc.).
 
 {{< note title="Note" theme="info" >}}
 
