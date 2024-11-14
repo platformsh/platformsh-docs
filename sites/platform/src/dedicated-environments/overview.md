@@ -28,7 +28,7 @@ From the Grid architecture diagram below, we can see that projects hosted in Gri
 
 With a Dedicated environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
 
-For a full  list of public regions and IP addresses, visit the [Regions page](https://docs.platform.sh/development/regions.html#regions).
+For a full list of public regions and IP addresses, visit the [Regions page](/development/regions.md#regions).
 
 In a Grid region, incoming and outgoing traffic is handled via central region gateways, and [publicly available IP addresses](/development/regions.md#public-ip-addresses) can be used for external firewalls. The public IP addresses for these public regions are stable but not guaranteed never to change.
 
@@ -47,7 +47,7 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
 | **Usable regions** | Only the publicly available regions can be used | Any region can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
-| **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is upsize in a rolling fashion |
+| **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
 | **Custom domains name** | Supported on main and any other branches | Same as Grid |
 | **Sync and merge functionalities** | Yes on all branches | Only on Development environments |
