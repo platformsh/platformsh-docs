@@ -5,21 +5,16 @@ sidebarTitle: "Environment differences"
 description: See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your Development environments (which are Grid environments).
 ---
 
-With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are dedicated virtual machines,
-while your Development environments run on the Grid, meaning shared redundant infrastructure.
-This difference means a few configuration options and tools function differently in the different environments.
+With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are dedicated virtual machines, while your Development environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
 
 This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects.
 
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid environments,
-basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge)
-aren't available between Development environments and Production/Staging environments.
-So you don't see working buttons with those options in the Console.
+basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between Development environments and Production/Staging environments. So you don't see working buttons with those options in the Console.
 
-To transfer data between environments, backup your Production/Staging data and then synchronize Development data.
-See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
+To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
 ## Backups
 
@@ -34,7 +29,7 @@ The following table shows all of the extensions that are enabled by default in e
 To add any other extension with a pre-existing package in the Debian Apt repository,
 open a [support ticket](/learn/overview/get-support).
 
-{{< php-extensions/dedicated >}}
+{{< php-extensions/dedicated>}}
 
 ### Configuration options
 
