@@ -79,7 +79,7 @@ You can enable the following features on your Dedicated Gen 2 projects, as well 
 
 You can create multiple apps within a single project so they can share data. This can be useful if you have several apps that are closely related, such as a backend-only CMS and a frontend system for content delivery and display.
 
-For more information, see how to [configure multiple apps in a single project](https://docs.platform.sh/create-apps/multi-app.html).
+For more information, see how to [configure multiple apps in a single project](/create-apps/multi-app/_index.md).
 
 #### Staging environments 
 
