@@ -132,7 +132,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
-| **Custom domains name** | Supported on the production environment | On master + any other branches |
+| **Custom domains name** | Supported on the production environment | On production + any other branches |
 | **On-demand backup** | Not supported | Same as grid |
 
 #### Optional features
