@@ -12,20 +12,20 @@ description:  "Designed to cater to the needs of organizations that build demand
 -   **High Availability:** 99.99% SLA (service-level agreement)
 -   **Dedicated hosts:** Each DG3 cluster is provisioned with 3 dedicated hosts as the typical configuration
 -   **Headless architecture:** Seamless headless architecture with multi-app support
--   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
+-   **Self-service:** Customers may edit their application and service YAML files and push changes Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
--   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently.
--   **Better staging:** All DG3 environments come with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless.
+-   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently
+-   **Better staging:** All DG3 environments come with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
 
 {{< note title="Note" theme="info" >}}
 
-Existing Grid and Dedicated Gen 2 projects cannot be migrated to Dedicated Gen 3 at this time.
+Existing Grid and Dedicated Gen 2 projects cannot be migrated to Dedicated Gen 3.
 
 {{< /note >}} 
 
 ### Dedicated Gen 3 vs Grid
 
-Much of the tooling used on Grid regions is used for DG3, but there are still some key differences. Please find a list of the similarities and differences below: 
+Much of the tooling used on Grid is used for DG3, but there are still some differences. Please find a list of the similarities and differences below: 
 
 | Feature | DG3 | Grid  |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 | **Upsize or downsize methods** | No downtime - each instance is upsize in a rolling fashion | Redeploy - possible downtime depending on the hooks |
 | **Production branch** | Managed by Platform.sh| Self-service |
 | **Autoscaling** | Yes | No |
-| **Multi AZ** | Yes | No |
+| **Multi availability zones** | Yes | No |
 | **New Relic** | Not supported | APM Supported only |
 | **Multi-app support** | Supported natively | Supported natively |
 | **Routes management**  | Self-service via yaml config files | Self-service via yaml config files |

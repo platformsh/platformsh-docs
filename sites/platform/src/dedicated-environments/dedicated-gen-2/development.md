@@ -10,17 +10,17 @@ Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated G
 
 ### Cluster infrastructure
 
-Dedicated Gen 2 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that’s sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime. Every service is replicated across all three hosts in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the hosts is lost entirely.
+Dedicated Gen 2 and 3 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that’s sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime. Every service is replicated across all three hosts in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the hosts is lost entirely.
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
 
-The build process for your application is identical for both the Development Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. By and large the same flexibility is available but only via opening a [support ticket](/learn/overview/get-support.md).
+The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. The flexibility for DG2 and Grid can be made to be the same but only via opening a [support ticket](/learn/overview/get-support.md).
 
 For more information, learn about [default storage settings](/dedicated-gen-3/_index.md#storage) and how your app can [connect to services](/dedicated-gen-3/_index.md#available-services).
 
 ### Split architecture
 
-Split architecture works under Dedicated Generation 2 and allows to give more resources globally to a project. Services (data services, caching service, search engines, …) are split from application runtimes. Services will be running on a cluster of core nodes, and the application will be running on a cluster of web nodes.
+Split architecture works under Dedicated Generation 2 and allows to give more resources globally to a project. Services (data services, caching service or search engines) are split from application runtimes. Services will be running on a cluster of core nodes, and the application will be running on a cluster of web nodes.
 
 This allows us to grant more room for the application or the services regarding resources. Both clusters can differ in size. Split-architecture clusters can horizontally scale the application by adding additional nodes. 
 
@@ -63,7 +63,7 @@ The Development Environment for a Dedicated Gen 2 project provides production an
 
 The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each Development Environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your Development Environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 
-A project may have up to six (6) users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the Development Environment and the Dedicated Gen 2 cluster.
+A project may have up to six users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the Development Environment and the Dedicated Gen 2 cluster.
 
 {{< note title="Note" theme="info" >}}
 
@@ -73,4 +73,4 @@ While your DG2 Production and Staging Environments are on dedicated virtual mach
 
 ### Memory
 
-Dedicated (Generation 2) includes a single node dedicated staging with 2 CPUs. This runs the same software configuration as the production cluster but only on a single node. This is usually enough for functional testing before moving to production. Customers can upgrade their staging to a more powerful machine or add more than one dedicated staging system. Those will still be a single machine.
+Dedicated Generation 2 includes a single node dedicated staging with 2 CPUs. This runs the same software configuration as the production cluster but only on a single node. This is usually enough for functional testing before moving to production. You can choose to upgrade your staging to a more powerful machine or add more than one dedicated staging system. Those will still be a single machine.

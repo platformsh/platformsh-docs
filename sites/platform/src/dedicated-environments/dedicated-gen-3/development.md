@@ -14,7 +14,7 @@ Dedicated Gen 2 and 3 clusters are launched into a Triple Redundant configuratio
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
 
-Clusters in a DG3 environment can be imagined as a mini-Grid region that has no [Ceph](/glossary.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch (default or optionally staging) while the remainder of the project remains on a Grid host. 
+Clusters in a DG3 environment can be imagined as a mini-Grid region that has no [Ceph](/glossary.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
 
 ![Dedicated cluster architecture](/images/dedicated/cluster-infrastructure.svg "0.50")
 
@@ -22,13 +22,13 @@ On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA
 
 ### HTTP clusters
 
-With a HTTP connection, a cloud load balancer sits in front of the hosts and, if Fastly is enabled, Fastly sits in front of the ELB. Therefore, the web request flow looks like this:
+With a HTTP connection, a cloud load balancer sits in front of the hosts and, if Fastly is enabled, Fastly sits in front of the cloud load balancer. Therefore, the web request flow looks like this:
 
 ![HTTP cluster architecture](/images/dedicated/http-cluster.svg "0.50")
 
 ### SSH clusters
 
-On DG3, customer have direct access to the application containers. This connection is proxied through the Grid region and then to the DG3 cluster like in the diagram below:
+On DG3, customers have direct access to the application containers. This connection is proxied through the Grid region and then to the DG3 cluster like in the diagram below:
 
 ![SSH cluster architecture](/images/dedicated/ssh-cluster.svg "0.50")
 
@@ -36,7 +36,7 @@ In the diagram, there are only 3 hosts. Host 1 has both the entry point and app 
 
 ## Deployment
 
-On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are highly available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead.
+On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead.
 
 {{< note title="Note" theme="info" >}}
 
@@ -52,7 +52,6 @@ Unlike Grid, you can deploy into [any region](https://docs.platform.sh/developm
 -   Microsoft Azure (Azure)
 -   Google Cloud Platform (GCP)
 -   OVHcloud (OVH) 
-
 
 For more details on specific regions, consult the region [documentation](/development/regions.md#regions).
 

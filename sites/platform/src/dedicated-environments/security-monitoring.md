@@ -48,8 +48,6 @@ Cloud infrastructure issues are handled by the Platform.sh Customer Success team
 
 As the official, in-house Platform.sh observability tool, [Blackfire](/increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies. Using Blackfire on Platform.sh enhances your experience and allows you to enjoy greater support as well as unique upcoming features.
 
-You can subscribe to Blackfire in two different ways:
+As an Enterprise or Elite customer, you can use the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/), which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability Suite includes all Blackfire features, support, and usage that scales with your needs. 
 
--   As an Enterprise or Elite customer, you can sign up for the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/), which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability Suite includes all Blackfire features, support, and usage that scales with your needs. 
-
-Platform.sh also supports third-party observability services such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md and [Tideways](/increase-observability/integrate-observability/tideways.md). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.
+Platform.sh also supports third-party observability services such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md) and [Tideways](/increase-observability/integrate-observability/tideways.md). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.

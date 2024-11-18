@@ -15,12 +15,12 @@ Dedicated Generation 2 consists of two parts: a Development Environment and a De
 -   **High Availability:** 99.99% SLA (service-level agreement)
 -   **Dedicated hosts:** Each DG2 cluster is provisioned with 3 dedicated hosts as the typical configuration
 -   **Headless architecture:** Seamless headless architecture with multi-app support
--   **Isolation:** On DG2, services run as processes on the base operating system (OS). 
--   **Storage:** Storage allocation between mounts, DB and services is done through Platform.sh once a ticket is raised. Storage management is not self-service.
+-   **Isolation:** On DG2, services run as processes on the base operating system (OS) 
+-   **Storage:** Storage allocation between mounts, DB and services is done through Platform.sh once a ticket is raised. Storage management is not self-service
 
 ## Dedicated Generation 2 vs Grid
 
-Much of the tooling used on Grid regions is used for DG2, but there are still some key differences. Please find a list of the similarities and differences between these two environments below: 
+Much of the tooling used on Grid is used for DG2, but there are still some differences. Please find a list of the similarities and differences between these two environments below: 
 
 | Feature | Dedicated Generation 2 | Grid |
 | --- | --- | --- |
@@ -58,7 +58,7 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | **Redis Replication** | Yes: 3 services nodes cluster | None: standalone service container |
 | **High Availabilty (HA)** | Yes | No |
 | **Split Architecture** | Yes | No |
-| **Storage** | Local disk are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
+| **Storage** | Local disks are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
 | **Automated backup** | Yes | Yes |
 | **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
 | **MongoDB** | Not supported | Standalone service container |
