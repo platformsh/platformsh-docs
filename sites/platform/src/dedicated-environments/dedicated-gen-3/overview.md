@@ -132,7 +132,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
-| **Custom domains name** | Supported on the production environment | On master + any other branches |
+| **Custom domains name** | Supported on the production environment | On production + any other branches |
 | **On-demand backup** | Not supported | Same as grid |
 
 #### Optional features
@@ -144,7 +144,7 @@ You can enable the following features on your Dedicated Gen 3 projects. To enabl
 The default configuration for Dedicated clusters is to launch them into a single availability zone (AZ) for the following reasons:
 
 -   The members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks. Therefore, the latency between data centers or AZs can become a significant performance liability. When your entire cluster is deployed within a single AZ, the latency between cluster members is minimal. This has a direct effect on perceived end-user performance.
--   Network traffic between AZs is billed, whereas intra-AZ traffic isn’t. So launching Dedicated clusters across multiple AZs leads to higher costs for decreased performance.
+-   Network traffic between AZs is billed, whereas intra-AZ traffic isn’t. Launching Dedicated clusters across multiple AZs leads to higher costs and decreased performance.
 If you prefer the peace of mind of hosting across multiple AZs, you can request a different configuration.
 
 {{< note title="Note" theme="info" >}}
