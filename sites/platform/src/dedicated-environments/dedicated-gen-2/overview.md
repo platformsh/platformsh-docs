@@ -29,27 +29,27 @@ Much of the tooling used on Grid regions is used for DG2, but there are still so
 | **Node.js version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
 | **Cron management** | Self-service via yaml config files | Self-service via yaml config files |
 |**Web server internal config : locations** | Self-service via yaml config files | Self-service via yaml config files |
-| **CDN** | Fastly | Fastly |
+| **CDN** | Fastly | A managed Fastly CDN service can be purchased through Platform.sh |
 | **Dedicated IP** | Yes | No |
 | **Configuration management** | Split responsibility between Platform.sh and customer | only yaml files |
 | **Usable regions** | Any region needed | Only the publicly available |
 | **Autonomous upsize** | Managed through Platform.sh| Yes |
 | **Autoscaling** | Yes | No |
-| **Upsize or Downsize methods** | No downtime - each instance is upsize in a rolling fashion | Redeploy - possible downtime depending on the hooks |
+| **Upsize or Downsize methods** | No downtime - each instance is altered in a rolling fashion | Redeploy - possible downtime depending on the hooks |
 | **Production branch** | Managed by Platform.sh | Self-service |
-| **Multi AZ** | Yes | No |
+| **Multi availability zones ** | Yes | No |
 | **New Relic** | APM + New Relic infrastructure | APM Supported only |
 | **Multi-app support** | Supported through docroots | Supported natively. |
 | **Routes management** | Managed by Platform.sh | Self-service |
-| **Environment clone** | Only on development environments | Yes on all branches |
+| **Environment clone** | Only on Development Environments | Yes on all branches |
 | **Services : Add, remove, upgrade** | Managed by Platform.sh | Self-service |
 | **Relationships : Add, remove, update** | Managed by Platform.sh | Self-service |
 | **Workers management** | Managed by Platform.sh | Self-service |
 | **Web server internal config : domains** | Managed by Platform.sh | Self-service |
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service |
 | **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running cron task | No: a running cron task will block a deployment until it is complete |
-| **Log exports** | Managed by Platform.sh with Rsyslog exports and Fastly log exports | Log forwarding feature and Fastly log export |
-| **Sync and merge functionalities** | Only on development environments | Yes on all branches |
+| **Log exports** | Managed by Platform.sh with Rsyslog exports and Fastly log exports | Log forwarding feature and Fastly log export also available|
+| **Sync and merge functionalities** | Only on Development Environments | Yes on all branches |
 | **SLA** | 99.99% | 99.9% |
 | **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
 | **Functioning** | 3 nodes are running all applications and services and are replicated | A single container is deployed per runtimes and per services |

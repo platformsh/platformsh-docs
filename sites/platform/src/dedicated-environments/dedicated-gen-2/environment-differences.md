@@ -2,17 +2,17 @@
 title: "Environment differences"
 weight: 5
 sidebarTitle: "Environment differences"
-description: See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your Development environments (which are Grid environments).
+description: See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your Development Environments (which are Grid environments).
 ---
 
-With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are dedicated virtual machines, while your Development environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
+With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are dedicated virtual machines, while your Development Environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
 
 This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects.
 
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid environments,
-basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between Development environments and Production/Staging environments. So you don't see working buttons with those options in the Console.
+basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between Development Environments and Production/Staging environments. So you don't see working buttons with those options in the Console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
@@ -67,9 +67,7 @@ Then whenever you have Xdebug enabled, the request uses the alternate developmen
 ## Solr
 
 On Grid environments, [Solr](../../add-services/solr.md) runs as a standalone instance.
-On {{% names/dedicated-gen-2 %}} environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html):
-a cluster of Solr servers to ensure high availability.
-This shouldn't affect you most of the time, but may influence certain advanced use cases.
+On {{% names/dedicated-gen-2 %}} environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html): a cluster of Solr servers to ensure high availability. This shouldn't affect you most of the time, but may influence certain advanced use cases.
 
 ## Cron tasks interrupted by deploys
 

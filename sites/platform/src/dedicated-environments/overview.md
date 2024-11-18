@@ -36,8 +36,6 @@ In a Grid region, incoming and outgoing traffic is handled via central region ga
 
 Whether you choose a Grid or Dedicated environment depends on the needs you have. In the table below, you can see the different ways in which either environment might work for you: 
 
-
-
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
 | **Availability** | All support tiers | Just with Enterprise or Elite |
@@ -45,7 +43,7 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
 | **Functioning** | A single container is deployed per runtime and per service| at least 3 nodes are running all applications and services are replicated across all of them |
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
-| **Usable regions** | Only the publicly available regions can be used | Any region can be used to deploy |
+| **Usable regions** | Any public region can be used to deploy | Any public region of supported IaaS providers can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
@@ -54,14 +52,14 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Environment clone** | Yes on all branches | Only on Development environments |
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
-| **MongoDB** | Standalone service container | Yes |
+| **MongoDB** | Standalone service container | No |
 | **CDN** | Fastly for main and pre production | same as Grid |
 | **PHP version upgrade** | Autonomous | Autonomous |
 | **NodeJS version upgrade**| Autonomous | Autonomous |
 | **Routes management** | Autonomous | Autonomous |
 | **Crons management** | Autonomous | Autonomous |
 | **Crons tasks interrupted by deploys** | No: a running cron task will block a deployment until it is complete | Yes: a deploy will terminate a running cron task |
-| **Mounts management** | Autonomous | Either autonomous or manual |
+| **Mounts management** | Autonomous | Managed by Platform.sh (Dedicated Gen 2 only) |
 | **Workers management** | Autonomous | Managed by Platform.sh |
 | **Storage increase** | Autonomous | Managed by Platform.sh |
 | **Storage allocation between mounts, DB and services** | Autonomous | Managed by Platform.sh |

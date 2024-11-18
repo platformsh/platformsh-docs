@@ -34,7 +34,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 | **NodeJS version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
 | **Cron management** | Self-service via yaml config files | Self-service via yaml config files |
 | **Web server internal config : locations**  | Self-service via yaml config files | Self-service via yaml config files |
-| **CDN** | Fastly  | Fastly  |
+| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Platform.sh |
 | **Dedicated IP** | Yes | No |
 | **Configuration management** | Split responsibility between Platform.sh and customer | only through yaml files  |
 | **Usable regions** | Any region needed | Only the publicly available |
@@ -109,7 +109,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Dedicated IP** | Yes | Yes |
 | **Usable regions** | Any region needed | Any region needed  |
 | **Autonomous upsize** | Managed through Platform.sh | Managed through Platform.sh|
-| **Multi AZ** | Yes | Yes |
+| **Multiple availability zones** | Yes | Yes |
 | **New Relic** | APM + New Relic infrastructure | APM + New Relic infrastructure |
 | **Multi-app support (PWA)** | Supported through docroots | Supported natively |
 | **Routes management**  | Managed by Platform.sh | Self-service via yaml config files |
@@ -120,7 +120,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Workers management** | Managed by Platform.sh | Self-service via yaml config files |
 | **Web server internal config: domains** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via yaml config files |
-| **Storage increase responsibility** | PSH | Self-service |
+| **Storage increase responsibility** | Managed by Platform.sh | Self-service |
 | **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running cron task | No: a running cron task will block a deployment until it is complete |
 | **Sync and Merge functionalities** | Only on dev environments | Yes on all branches |
 | **Functioning** | 3 nodes are running all applications and services are replicated | 3 nodes are running all applications and service are replicated |
@@ -139,16 +139,21 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 
 You can enable the following features on your Dedicated Gen 3 projects. To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
 
-#### Multiple availability zones 
+##### Multiple availability zones 
 
 The default configuration for Dedicated clusters is to launch them into a single availability zone (AZ) for the following reasons:
 
 -   The members of your cluster communicate with each other via TCP to perform DB replication, cache lookup, and other associated tasks. Therefore, the latency between data centers or AZs can become a significant performance liability. When your entire cluster is deployed within a single AZ, the latency between cluster members is minimal. This has a direct effect on perceived end-user performance.
 -   Network traffic between AZs is billed, whereas intra-AZ traffic isn’t. So launching Dedicated clusters across multiple AZs leads to higher costs for decreased performance.
 If you prefer the peace of mind of hosting across multiple AZs, you can request a different configuration.
-**Note:** Platform.sh is responsible for meeting the 99.99% uptime SLA, so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
 
-#### SFTP 
+{{< note title="Note" theme="info" >}}
+
+Platform.sh is responsible for meeting the 99.99% uptime SLA, so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
+
+{{< /note >}} 
+
+##### SFTP 
 
 In addition to SSH accounts, you can create SFTP accounts with a custom user/password to [transfer files](/development/file-transfer.md). 
 

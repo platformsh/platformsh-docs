@@ -33,9 +33,9 @@ For more information about Encryption at Platform.sh, visit the [Platform.sh Tru
 
 ### Performance monitoring
 
-All of our Dedicated clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure.
+All of our Dedicated clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure. 
 
-A wide range of server metrics (disk space, memory, and disk usage) are continuously measured using in-house tools, providing a complete picture of the health of your application infrastructure. As soon as a metric goes out of bounds (i.e., an outage is detected), Support and Operations teams are alerted, a Point in Time report is generated, and the Platform.sh teams can determine and triage the cause of the outage.
+As soon as a metric goes out of bounds (i.e., an outage is detected), Support and Operations teams are alerted, a Point in Time report is generated, and the Platform.sh teams can triage the cause of the outage.
 
 #### Automated monitoring
 

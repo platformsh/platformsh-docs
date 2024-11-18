@@ -10,17 +10,19 @@ Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated G
 
 ## Cluster infrastructure 
 
-Like Grid and Dedicated Generation 2 (DG2), the architecture of Dedicated Generation 3 (DG3) is made up of clusters. Clusters in a DG3 environment can be imagined as a mini-Grid region that has no Ceph dependency, so it can run anywhere. 
+Dedicated Gen 2 and 3 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that’s sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime. Every service is replicated across all three hosts in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the hosts is lost entirely.
 
-DG3 cluster nodes function as entrypoint, coordinator, storage, and host all in one. These clusters usually only contain a single branch (default or optionally staging) while the remainder of the project remains on a Grid host. 
+Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
+
+Clusters in a DG3 environment can be imagined as a mini-Grid region that has no Ceph dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch (default or optionally staging) while the remainder of the project remains on a Grid host. 
 
 ![Dedicated cluster architecture](/images/dedicated/cluster-infrastructure.svg "0.50")
 
-On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments, with 3 hosts.
+On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments.
 
 ### HTTP clusters
 
-With a HTTP connection, a cloud load balancer (ELB) sits in front of the hosts and, if Fastly is enabled, Fastly sits in front of the ELB. Therefore, the web request flow looks like this:
+With a HTTP connection, a cloud load balancer sits in front of the hosts and, if Fastly is enabled, Fastly sits in front of the ELB. Therefore, the web request flow looks like this:
 
 ![HTTP cluster architecture](/images/dedicated/http-cluster.svg "0.50")
 
@@ -34,7 +36,7 @@ In the diagram, there are only 3 hosts. Host 1 has both the entry point and app 
 
 ## Deployment
 
-On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are highly available (HA), and branches default and (optionally) staging are deployed into their own dedicated clusters instead.
+On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are highly available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead.
 
 {{< note title="Note" theme="info" >}}
 
@@ -42,14 +44,17 @@ Existing non-HA projects cannot be converted to HA projects and vice-versa. HA p
 
 {{< /note >}}
 
-## Regions
+## Providers and regions
 
-Unlike Grid, you can deploy into [any region](https://docs.platform.sh/development/regions.html#regions) of supported IaaS providers with a Dedicated Generation 3 environment. Currently, these regions are:
+Unlike Grid, you can deploy into [any region](https://docs.platform.sh/development/regions.html#regions) of supported IaaS providers with a Dedicated Generation 3 environment. Currently, these providers are listed below:
 
 -   Amazon Web Services (AWS)
 -   Microsoft Azure (Azure)
 -   Google Cloud Platform (GCP)
 -   OVHcloud (OVH) 
+
+
+For more details on specific regions, consult the region [documentation](/development/regions.md#regions).
 
 ## Storage
 
