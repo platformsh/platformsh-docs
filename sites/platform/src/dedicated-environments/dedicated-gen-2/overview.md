@@ -8,7 +8,7 @@ description: "Dedicated Generation 2 is a robust, redundant layer. It’s well-s
 
 {{% description %}}
 
-Dedicated Generation 2 consists of two parts: a Development Environment and a Dedicated Gen 2 cluster.
+Dedicated Generation 2 consists of two parts: a development environment and a Dedicated Gen 2 cluster.
 
 ### Key features
 
@@ -41,7 +41,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **New Relic** | APM + New Relic infrastructure | APM Supported only |
 | **Multi-app support** | Supported through docroots | Supported natively. |
 | **Routes management** | Managed by Platform.sh | Self-service |
-| **Environment clone** | Only on Development Environments | Yes on all branches |
+| **Environment clone** | Only on development environments | Yes on all branches |
 | **Services : Add, remove, upgrade** | Managed by Platform.sh | Self-service |
 | **Relationships : Add, remove, update** | Managed by Platform.sh | Self-service |
 | **Workers management** | Managed by Platform.sh | Self-service |
@@ -49,7 +49,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service |
 | **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running Cron task | No: a running Cron task will block a deployment until it is complete |
 | **Log exports** | Managed by Platform.sh with Rsyslog exports and Fastly log exports | Log forwarding feature and Fastly log export also available|
-| **Sync and merge functionalities** | Only on Development Environments | Yes on all branches |
+| **Sync and merge functionalities** | Only on development environments | Yes on all branches |
 | **SLA** | 99.99% with [Enterprise or Elite](https://platform.sh/pricing/)| 99.9% with [Enterprise or Elite](https://platform.sh/pricing/)|
 | **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
 | **Functioning** | 3 nodes are running all applications and services and are replicated | A single container is deployed per runtimes and per services |
@@ -119,7 +119,7 @@ There is no cost for this functionality.
 
 #### IP restrictions 
 
-Platform.sh supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](/environments/http-access-control.md). These may be configured through the Development Environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+Platform.sh supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](/environments/http-access-control.md). These may be configured through the development environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
 
 Changing access control triggers a new deployment of the current environment. However, the changes aren’t propagated to child environments until they’re manually redeployed.
 
@@ -127,7 +127,7 @@ Changing access control triggers a new deployment of the current environment. Ho
 
 Platform.sh updates the core software of the Dedicated Gen 2 cluster (operating system, web server, PHP, MySQL, etc.) periodically, and after any significant security vulnerability is disclosed. 
 
-These updates are deployed automatically with no additional work required by you. We attempt to maintain parity with your development environment, but we don’t guarantee absolute parity of point versions of your Dedicated Gen 2 environments with their corresponding development environments. For example, your development environment may have a PHP container running 8.1.30, but your production environment may lag behind at 8.1.26. 
+These updates are deployed automatically with no additional work required by you. We attempt to maintain parity with your development environment, but we don’t guarantee absolute parity of point versions of your Dedicated Gen 2 Environments with their corresponding development environments. For example, your development environment may have a PHP container running 8.1.30, but your production environment may lag behind at 8.1.26. 
 
 We can upgrade point releases on request and always upgrade the underlying software in the event of security release.
 

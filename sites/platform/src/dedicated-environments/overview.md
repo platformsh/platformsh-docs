@@ -3,7 +3,7 @@ title: "Overview"
 weight: -20
 sidebarTitle: "Overview"
 layout: single
-description:  "Our Dedicated environments are well-suited for those who need more resources and redundancy for their production environment, along with stricter isolation requirements."
+description:  "Our Dedicated Environments are well-suited for those who need more resources and redundancy, along with stricter isolation requirements."
 ---
 
 {{% description %}}
@@ -12,7 +12,7 @@ When you create a project on Platform.sh, you can choose to deploy it using one 
 
 ## What is Dedicated?
 
-DG2 and DG3 are classified as Dedicated environments (Dedicated). This is because your production environment is replicated across at least three virtual servers that are dedicated solely to your project.
+DG2 and DG3 are classified as Dedicated Environments (Dedicated). This is because your production environment is replicated across at least three virtual servers that are dedicated solely to your project.
 
 In the diagram below, we can see that the Dedicated architecture provides three virtual servers that act as isolated hosts for a site in a failover configuration. Within each server, all the data of your site is synced. 
 
@@ -26,7 +26,7 @@ From the Grid architecture diagram below, we can see that projects hosted in Gri
 
 ## Deployment
 
-With a Dedicated environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
+With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
 
 For a full list of public regions and IP addresses, visit the [Regions page](/development/regions.md#regions).
 
@@ -34,7 +34,7 @@ In a Grid region, incoming and outgoing traffic is handled via central region ga
 
 ## Grid vs Dedicated
 
-Whether you choose a Grid or Dedicated environment depends on the needs you have. In the table below, you can see the different ways in which either environment might work for you: 
+Whether you choose a Grid or Dedicated Environment depends on the needs you have. In the table below, you can see the different ways in which either might work for you: 
 
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
@@ -48,8 +48,8 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
 | **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
-| **Sync and merge functionalities** | Yes on all branches | Only on Development environments |
-| **Environment clone** | Yes on all branches | Only on Development environments |
+| **Sync and merge functionalities** | Yes on all branches | Only on development environments |
+| **Environment clone** | Yes on all branches | Only on development environments |
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
 | **MongoDB** | Standalone service container | No |

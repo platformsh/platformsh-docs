@@ -2,17 +2,17 @@
 title: "Environment differences"
 weight: 5
 sidebarTitle: "Environment differences"
-description: See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your Development Environments (which are Grid environments).
+description: See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your development environments (which are Grid environments).
 ---
 
-With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your Development Environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
+With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your development environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
 
 This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects.
 
 ## Syncing data between environments
 
-Because of the differences between {{% names/dedicated-gen-2 %}} and Grid environments,
-basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between Development Environments and Production/Staging environments. So you don't see working buttons with those options in the Console.
+Because of the differences between {{% names/dedicated-gen-2 %}} and Grid Environments,
+basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
@@ -35,7 +35,7 @@ open a [support ticket](/learn/overview/get-support).
 
 {{< note >}}
 
-Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your Production/Staging environments. However, **for a small set of projects**, this isn't supported yet.
+Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your production or staging environments. However, **for a small set of projects**, this isn't supported yet.
 
 {{< /note >}}
 
@@ -75,7 +75,7 @@ Staging and Production environments have separate keys.
 ## Solr
 
 On Grid environments, [Solr](../../add-services/solr.md) runs as a standalone instance.
-On {{% names/dedicated-gen-2 %}} environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html): a cluster of Solr servers to ensure high availability. This shouldn't affect you most of the time, but may influence certain advanced use cases.
+On {{% names/dedicated-gen-2 %}} Environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html): a cluster of Solr servers to ensure high availability. This shouldn't affect you most of the time, but may influence certain advanced use cases.
 
 ## Cron tasks interrupted by deploys
 
@@ -92,9 +92,9 @@ So it's best to ensure your cron tasks can receive a `SIGTERM` message and termi
 
 ## Configuration & change management
 
-You can't manage some configuration settings via YAML configuration files on {{% names/dedicated-gen-2 %}} environments.
+You can't manage some configuration settings via YAML configuration files on {{% names/dedicated-gen-2 %}} Environments.
 In these cases, you need to open a [support ticket](/learn/overview/get-support).
-You can have some settings different between Staging and Production environments.
+You can have some settings different between staging and production environments.
 It's assumed you want the settings the same, unless you state otherwise in the ticket.
 
 The following settings require a [support ticket](/learn/overview/get-support):
@@ -110,4 +110,4 @@ The following settings require a [support ticket](/learn/overview/get-support):
 
 ## Logs
 
-{{% names/dedicated-gen-2 %}} environments have a slightly different location for [container logs](../../increase-observability/logs/access-logs.md). The difference shouldn't be noticeable if you use the CLI.
+{{% names/dedicated-gen-2 %}} Environments have a slightly different location for [container logs](../../increase-observability/logs/access-logs.md). The difference shouldn't be noticeable if you use the CLI.

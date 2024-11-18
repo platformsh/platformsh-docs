@@ -36,11 +36,11 @@ Any defined users or environment variables are also propagated to the Dedicated 
 
 {{< note title="Note" theme="info" >}}
 
-There is no automatic cloning of data from the Dedicated Gen 2 cluster to the Development Environment the way there is between branches in the Development Environment. 
+There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environment the way there is between branches in the development environment. 
 
 {{< /note >}} 
 
-Production data may still be replicated to the Development Environment [manually](https://docs.platform.sh/administration/cli/reference.html#environmentsynchronize). Deployments of other branches don’t trigger rebuilds of the Dedicated Gen 2 cluster environments.
+Production data may still be replicated to the development environment [manually](https://docs.platform.sh/administration/cli/reference.html#environmentsynchronize). Deployments of other branches don’t trigger rebuilds of the Dedicated Gen 2 cluster Environments.
 
 #### Deployment process 
 
@@ -61,15 +61,15 @@ For more information about deployment, see the [overview of the build and deplo
 
 ### Storage
 
-The Development Environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/). 
+The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/). 
 
-The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each Development Environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your Development Environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
+The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each development environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your development environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 
-A project may have up to six users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the Development Environment and the Dedicated Gen 2 cluster.
+A project may have up to six users associated with it at no additional charge. Additional users may be added for an additional fee. These users have access to both the development environment and the Dedicated Gen 2 cluster.
 
 {{< note title="Note" theme="info" >}}
 
-While your DG2 Production and Staging Environments are on dedicated virtual machines, your Development Environments run on the [Grid](/glossary.md#grid). This means that, by default, all containers in Development Environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
+While your DG2 production and staging Environments are on dedicated virtual machines, your development environments run on the [Grid](/glossary.md#grid). This means that, by default, all containers in development environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
 
 {{< /note >}}
 

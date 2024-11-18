@@ -15,7 +15,7 @@ description:  "Designed to cater to the needs of organizations that build demand
 -   **Self-service:** Customers may edit their application and service YAML files and push changes Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
 -   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently
--   **Better staging:** All DG3 environments come with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
+-   **Better staging:** Dedicated Gen 3 comes with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
 
 {{< note title="Note" theme="info" >}}
 
@@ -122,7 +122,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage increase responsibility** | Managed by Platform.sh | Self-service |
 | **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running Cron task | No: a running Cron task will block a deployment until it is complete |
-| **Sync and Merge functionalities** | Only on dev environments | Yes on all branches |
+| **Sync and Merge functionalities** | Only on development environments | Yes on all branches |
 | **Functioning** | 3 nodes are running all applications and services are replicated | 3 nodes are running all applications and service are replicated |
 | **Resources allocation** | Resources deployed on the 3 nodes | Resources deployed on the 3 nodes |
 | **MySQL Replication** | Yes: 3 services nodes cluster | Yes: 3 services nodes cluster |
