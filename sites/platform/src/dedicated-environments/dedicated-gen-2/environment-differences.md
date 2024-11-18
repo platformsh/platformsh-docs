@@ -34,8 +34,9 @@ open a [support ticket](/learn/overview/get-support).
 ### Configuration options
 
 {{< note >}}
-Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your Production/Staging environments.</br>
-However, **for a small set of projects**, this isn't supported yet.
+
+Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your Production/Staging environments. However, **for a small set of projects**, this isn't supported yet.
+
 {{< /note >}}
 
 
@@ -55,14 +56,21 @@ For other PHP options, such as the following, [open a support ticket](/learn/ove
 
 ### Xdebug
 
-All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process.
-This second process is used only when requests include the correct Xdebug key in a header.
+All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process. This second process is used only when requests include the correct Xdebug key in a header.
+
 So you can keep Xdebug always on and not worry about performance issues as it's ignored on most requests.
 
-To obtain the key, open a [support ticket](/learn/overview/get-support).
+**To obtain the Xdebug key:**
+
+1. Open a [support ticket](/learn/overview/get-support).
+
+{{< note >}}
+
 Staging and Production environments have separate keys.
-Set that key in the Xdebug helper for your browser.
-Then whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
+
+{{< /note >}}
+
+2. Set that key in the Xdebug helper for your browser. Whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
 
 ## Solr
 

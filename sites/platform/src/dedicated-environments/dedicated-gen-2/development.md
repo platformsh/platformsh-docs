@@ -14,15 +14,17 @@ Dedicated Gen 2 and 3 clusters are launched into a Triple Redundant configuratio
 
 Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
 
+##### Build process
+
 The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. The flexibility for DG2 and Grid can be made to be the same but only via opening a [support ticket](/learn/overview/get-support.md).
 
-For more information, learn about [default storage settings](/dedicated-gen-3/_index.md#storage) and how your app can [connect to services](/dedicated-gen-3/_index.md#available-services).
+For more information, learn about [default storage settings](#storage) and how your app can [connect to services](dedicated-environments/dedicated-gen-3/overview.md#available-services).
 
 ### Split architecture
 
 Split architecture works under Dedicated Generation 2 and allows to give more resources globally to a project. Services (data services, caching service or search engines) are split from application runtimes. Services will be running on a cluster of core nodes, and the application will be running on a cluster of web nodes.
 
-This allows us to grant more room for the application or the services regarding resources. Both clusters can differ in size. Split-architecture clusters can horizontally scale the application by adding additional nodes. 
+This allows us to grant more room for the application or the services regarding resources. Both clusters can differ in size. Split architecture clusters can horizontally scale the application by adding additional nodes. 
 
 ![Split architecture](/images/dedicated/split-architecture.svg "0.50")
 

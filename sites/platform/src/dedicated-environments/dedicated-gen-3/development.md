@@ -10,11 +10,9 @@ Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated G
 
 ## Cluster infrastructure 
 
-Dedicated Gen 2 and 3 clusters are launched into a Triple Redundant configuration consisting of 3 hosts. This is an N+1 configuration that’s sized to withstand the total loss of any one of the 3 members of the cluster without incurring any downtime. Every service is replicated across all three hosts in a failover configuration (as opposed to sharding), allowing a site to remain up even if one of the hosts is lost entirely.
-
-Each instance hosts the entire application stack, allowing this architecture superior fault tolerance to traditional N-Tier installations. Moreover, the Cores assigned to production are solely for production. 
-
 Clusters in a DG3 environment can be imagined as a mini-Grid region that has no [Ceph](/glossary.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
+
+For more information about the Dedicated clusters, visit [Dedicated Gen 2 Development](/dedicated-environments/dedicated-gen-2/development.md#cluster-infrastructure).
 
 ![Dedicated cluster architecture](/images/dedicated/cluster-infrastructure.svg "0.50")
 
