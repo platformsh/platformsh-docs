@@ -11,7 +11,7 @@ description:  "Backups are retained for different periods depending on various f
 
 ## Dedicated Generation 2 Backups
 
-Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production environments every 6 hours. Backups are retained for different durations depending on when they’re taken. 
+Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production environments every 6 hours. Backups are retained for different durations depending on when they were taken. 
 
 |When taken      |Retention            | 
 |----------------|---------------------|

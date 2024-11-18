@@ -14,7 +14,7 @@ description:  "Designed to cater to the needs of organizations that build demand
 -   **Headless architecture:** Seamless headless architecture with multi-app support
 -   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
--   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and control plane from the service versions, so the OS and services can be upgraded independently.
+-   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently.
 -   **Better staging:** All DG3 environments come with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless.
 
 {{< note title="Note" theme="info" >}}
@@ -67,7 +67,7 @@ Much of the tooling used on Grid regions is used for DG3, but there are still so
 | **Automated backup** | Yes | Yes |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | No |
-| **Custom domains name** | On all branches | On all branches |
+| **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
 
 #### Available services
 
@@ -132,7 +132,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
-| **Custom domains name** | Supported on the production environment | On production + any other branches |
+| **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
 | **On-demand backup** | Not supported | Same as grid |
 
 #### Optional features

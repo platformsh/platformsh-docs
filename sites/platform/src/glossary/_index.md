@@ -79,6 +79,10 @@ all branching and merging must be managed through the upstream repository to avo
 
 {{< /codetabs >}}
 
+## Ceph
+
+Ceph is a storage platform that provides distributed object, block and file storage built on a cluster foundation. Ceph can be used to provide reliable, redundant distributed storage for your data.
+
 ## Cluster
 
 Every active environment is deployed as a cluster,
@@ -87,6 +91,11 @@ representing the different services that make up your web application.
 That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
+
+## Control plane
+
+The control plane is Platform.sh’s orchestration, control, and management environment. It helps us to establish and operate regions, provision services and networks.
+
 
 ## {{% names/dedicated-gen-2 %}}
 

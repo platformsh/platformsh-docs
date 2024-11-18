@@ -20,7 +20,7 @@ In the diagram below, we can see that the Dedicated architecture provides three 
 
 Having three isolated hosts means that when one becomes unavailable, the others take over, so your site will always remain up and running. This differs from the Grid architecture, where a single host runs multiple projects from various customers simultaneously. 
 
-From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. There is only one host that can be relied on in a failover configuration, and this host also holds the resources of various other sites. There is also a Ceph storage dependency.
+From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. There is only one host that can be relied on in a failover configuration, and this host also holds the resources of various other sites. There is also a [Ceph](/glossary.md#ceph) storage dependency.
 
 ![The grid architecture](/images/dedicated/grid-architecture.svg "0.50")
 
@@ -47,7 +47,7 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
-| **Custom domains name** | Supported on main and any other branches | Same as Grid |
+| **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
 | **Sync and merge functionalities** | Yes on all branches | Only on Development environments |
 | **Environment clone** | Yes on all branches | Only on Development environments |
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|

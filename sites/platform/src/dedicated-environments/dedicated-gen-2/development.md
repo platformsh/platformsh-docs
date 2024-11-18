@@ -53,13 +53,13 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 
 The deploy usually takes approximately 30-90 seconds, although that is dependent on how your deploy hook has been configured.
 
-During the deploy process the cluster is unavailable. Nearly all Dedicated Gen 2 instances are fronted by the Fastly Content Delivery Network (CDN). Fastly can be configured to allow a “grace period”, meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale. We configure a default grace period that is longer than a typical deployment, and can extend that time upon request. That means anonymous users should see no interruption in service at all. Authenticated traffic that can’t be served by the CDN still sees a brief interruption.
+During the deploy process the cluster is unavailable. All Dedicated Gen 2 instances are fronted by the Fastly Content Delivery Network (CDN) unless you decide to bring your own CDN. You can also decide that you'd rather not use Fastly. Fastly can be configured to allow a “grace period”, meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale. We configure a default grace period that is longer than a typical deployment, and can extend that time upon request. That means anonymous users should see no interruption in service at all. Authenticated traffic that can’t be served by the CDN still sees a brief interruption.
 
 For more information about deployment, see the [overview of the build and deploy phases](/learn/overview/build-deploy.md).
 
 ### Storage
 
-The Development Environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an additional fee.
+The Development Environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/). 
 
 The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each Development Environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your Development Environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 
