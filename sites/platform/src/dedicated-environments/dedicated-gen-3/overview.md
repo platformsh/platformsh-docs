@@ -2,14 +2,14 @@
 title: "Dedicated Gen 3 Overview"
 weight: -10
 sidebarTitle: "DG3 overview"
-description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and high availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
+description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
 ---
 
 {{% description %}}
 
 ### Key features
 
--   **High Availability:** 99.99% SLA (service-level agreement)
+-   **High Availability:** 99.99% SLA (service-level agreement) with [Enterprise or Elite](https://platform.sh/pricing/)
 -   **Dedicated hosts:** Each DG3 cluster is provisioned with 3 dedicated hosts as the typical configuration
 -   **Headless architecture:** Seamless headless architecture with multi-app support
 -   **Self-service:** Customers may edit their application and service YAML files and push changes Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
@@ -54,9 +54,9 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **Web server internal config  : domains** | Self-service via yaml config files | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Self-service via yaml config files | Self-service via yaml config files |
 | **Storage increase responsibility** | Shared responsibility with Platform.sh | Self-service |
-| **Cron tasks interrupted by deploys** | No: a running cron task will block a deployment until it is complete | No: a running cron task will block a deployment until it is complete |
+| **Cron tasks interrupted by deploys** | No: a running Cron task will block a deployment until it is complete | No: a running Cron task will block a deployment until it is complete |
 | **Sync and merge functionalities** | Yes on all branches | Yes on all branches |
-| **SLA** | 99.99% | 99.9% |
+| **SLA** | 99.99% with [Enterprise or Elite](https://platform.sh/pricing/) | 99.9% with [Enterprise or Elite](https://platform.sh/pricing/)|
 | **Infrastructure** | Dedicated 3 node cluster | Containers with dedicated resources on top of a shared redundant infrastructure |
 | **Functioning** | 3 nodes are running all applications and services are replicated across all 3| A single container is deployed per runtimes and per services |
 | **Resources allocation** | Resources are deployed on all 3 nodes | Resources are spread through one container with fixed sizes after deployment |
@@ -67,7 +67,7 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **Automated backup** | Yes | Yes |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | No |
-| **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
+| **Custom domains name** | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
 
 #### Available services
 
@@ -121,7 +121,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Web server internal config: domains** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via yaml config files |
 | **Storage increase responsibility** | Managed by Platform.sh | Self-service |
-| **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running cron task | No: a running cron task will block a deployment until it is complete |
+| **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running Cron task | No: a running Cron task will block a deployment until it is complete |
 | **Sync and Merge functionalities** | Only on dev environments | Yes on all branches |
 | **Functioning** | 3 nodes are running all applications and services are replicated | 3 nodes are running all applications and service are replicated |
 | **Resources allocation** | Resources deployed on the 3 nodes | Resources deployed on the 3 nodes |
@@ -132,7 +132,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
-| **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
+| **Custom domains name** | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
 | **On-demand backup** | Not supported | Same as grid |
 
 #### Optional features

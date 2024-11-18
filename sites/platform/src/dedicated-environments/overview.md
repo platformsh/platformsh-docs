@@ -38,8 +38,8 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
-| **Availability** | All support tiers | Just with Enterprise or Elite |
-| **Uptime SLA** | 99.9% with Enterprise or Elite| 99.99% with Enterprise or Elite |
+| **Availability** | All support tiers | Just with [Enterprise or Elite](https://platform.sh/pricing/) |
+| **Uptime SLA** | 99.9% with [Enterprise or Elite](https://platform.sh/pricing/)| 99.99% with [Enterprise or Elite](https://platform.sh/pricing/) |
 | **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
 | **Functioning** | A single container is deployed per runtime and per service| at least 3 nodes are running all applications and services are replicated across all of them |
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
@@ -53,16 +53,16 @@ Whether you choose a Grid or Dedicated environment depends on the needs you have
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
 | **MongoDB** | Standalone service container | No |
-| **CDN** | Fastly for main and pre production | same as Grid |
-| **PHP version upgrade** | Autonomous | Autonomous |
-| **NodeJS version upgrade**| Autonomous | Autonomous |
-| **Routes management** | Autonomous | Autonomous |
-| **Crons management** | Autonomous | Autonomous |
-| **Crons tasks interrupted by deploys** | No: a running cron task will block a deployment until it is complete | Yes: a deploy will terminate a running cron task |
-| **Mounts management** | Autonomous | Managed by Platform.sh (Dedicated Gen 2 only) |
-| **Workers management** | Autonomous | Managed by Platform.sh |
-| **Storage increase** | Autonomous | Managed by Platform.sh |
-| **Storage allocation between mounts, DB and services** | Autonomous | Managed by Platform.sh |
+| **CDN** | A managed Fastly CDN service can be purchased through Platform.sh | Fastly |
+| **PHP version upgrade** | Self-service | Self-service |
+| **NodeJS version upgrade**| Self-service | Self-service |
+| **Routes management** | Self-service | Self-service |
+| **Cron management** | Self-service | Self-service |
+| **Cron tasks interrupted by deploys** | No: a running Cron task will block a deployment until it is complete | Yes: a deploy will terminate a running Cron task |
+| **Mounts management** | Self-service | Managed by Platform.sh (Dedicated Gen 2 only) |
+| **Workers management** | Self-service | Managed by Platform.sh |
+| **Storage increase** | Self-service | Managed by Platform.sh |
+| **Storage allocation between mounts, DB and services** | Self-service | Managed by Platform.sh |
 
 
 
