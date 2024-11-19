@@ -8,6 +8,8 @@ description: Platform.sh User Documentation
 theme: psh-docs
 themesdir: '../../themes'
 
+timeout: 60s
+
 uglyurls: true
 pygmentsUseClasses: true
 

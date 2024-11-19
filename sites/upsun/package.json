@@ -41,7 +41,7 @@
     "asciinema-player": "^3.0.1",
     "autoprefixer": "^10.4.13",
     "axios": "^1.7.4",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "fs-extra": "^11.1.1",
     "js-yaml": "^4.1.0",
     "mermaid": "^11.2.1",

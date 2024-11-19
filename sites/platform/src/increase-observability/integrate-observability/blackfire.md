@@ -15,7 +15,7 @@ you can achieve the following goals:
 - Promptly solve identified issues by taking advantage of actionable recommendations
 - Create performance budgets for critical parts of your app and get alerted of any problem before a change hits your production
 
-{{< youtube bS4dzuzkir0 >}}
+{{< youtube SNqQTYzHl0o >}}
 
 Blackfire is installed natively on {{% vendor/name %}} and [works integrally with the {{% vendor/name %}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
@@ -192,8 +192,7 @@ cache:
 
 ## Get support
 
-If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help,
-follow these steps:
+If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help, follow these steps:
 
 1. Retrieve [startup errors](#1-retrieve-startup-errors).
 2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
