@@ -303,7 +303,7 @@ https://docs.upsun.com/:
       "/anchors/cli/tokens.html": { "to": "/administration/cli/api-tokens.html", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
-      "/anchors/dedicated/incident-handling.html": { "to": "https://{default}/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
+      "/anchors/dedicated/incident-handling.html": { "to": "https://{default}/dedicated-environments/security-monitoring.html#performance-monitoring", "code": 301, "prefix": false }
 #      "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
       # Repeated again for the below.
       # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
