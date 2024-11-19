@@ -6,7 +6,7 @@ layout: single
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits."
 ---
 
-Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 3, and discover key details about [deployment](#deployment), which [regions](#regions) are supported and [storage limits](#storage).
+Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 3, and discover key details about [deployment](#deployment), which [regions](#providers-and-regions) are supported and [storage limits](#storage).
 
 ## Cluster infrastructure 
 
