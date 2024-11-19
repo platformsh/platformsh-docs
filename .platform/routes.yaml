@@ -303,7 +303,7 @@ https://docs.upsun.com/:
       "/anchors/cli/tokens.html": { "to": "/administration/cli/api-tokens.html", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
-      "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
+      "/anchors/dedicated/incident-handling.html": { "to": "https://{default}/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
 #      "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
       # Repeated again for the below.
       # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
@@ -312,7 +312,7 @@ https://docs.upsun.com/:
       "/anchors/create-project.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/deploy-key.html": { "to": "/administration/web/configure-project.html#deploy-key", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
-      "/anchors/dedicated.html": { "to": "https://docs.platform.sh/dedicated/overview.html", "code": 301, "prefix": false }
+      "/anchors/dedicated.html": { "to": "https://{default}/dedicated-environments/overview.html", "code": 301, "prefix": false }
       "/anchors/dns.html": { "to": "/domains/steps.html#1-get-the-target-for-your-project", "code": 301, "prefix": false }
       "/anchors/download-code.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/domain.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
@@ -347,8 +347,8 @@ https://docs.upsun.com/:
       # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
       "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
       # Not relevant for Upsun.
-      "/anchors/observability/metrics/dedicated.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated.html", "code": 301, "prefix": false }
-      "/anchors/observability/metrics/dedicated-gen-3.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated-generation-3.html", "code": 301, "prefix": false }
+      "/anchors/observability/metrics/dedicated.html": { "to": "https://{default}/increase-observability/metrics/dedicated.html", "code": 301, "prefix": false }
+      "/anchors/observability/metrics/dedicated-gen-3.html": { "to": "https://{default}/increase-observability/metrics/dedicated-generation-3.html", "code": 301, "prefix": false }
       "/anchors/integrations/activities.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
       "/anchors/integrations/activity-scripts.html": { "to": "/integrations/activity.html#configuring-scripts", "code": 301, "prefix": false }
       "/anchors/integrations/source.html": { "to": "/integrations/source.html", "code": 301, "prefix": false }
