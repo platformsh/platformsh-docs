@@ -1,0 +1,10 @@
+{{- $allDocuments := slice -}}
+{{- range .Site.RegularPages -}}
+  {{- $pageDocuments := .RawContent -}}
+  {{- range $index, $document := $pageDocuments -}}
+    {{- if not (hasPrefix $document.pageUrl "/registry") -}}
+      {{- $allDocuments = $allDocuments | append $document -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $allDocuments -}}

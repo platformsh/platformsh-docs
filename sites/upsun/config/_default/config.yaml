@@ -29,6 +29,7 @@ outputs:
       - JSON
       - RSS
       - devcenter
+      - llms
     section:
       - HTML
       - RSS
@@ -37,6 +38,10 @@ outputFormats:
   devcenter:
     mediaType: "application/json"
     baseName: "json/devcenter"
+    isPlainText: true
+  llms:
+    mediaType: "text/markdown"
+    baseName: "llms.txt"
     isPlainText: true
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
