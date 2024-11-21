@@ -175,7 +175,7 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   ./bin/htmltest
   ```
 
-- Custom workflows [check all changed files](./.github/workflows/get-pr-info.yaml) within `docs/src`
+- Custom workflows [check all changed files](./.github/workflows/pr-url-and-dependent.yaml) within `docs/src`
   and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for review.
 
 Outside of pull requests, twice a week [Muffet](https://github.com/raviqqe/muffet)

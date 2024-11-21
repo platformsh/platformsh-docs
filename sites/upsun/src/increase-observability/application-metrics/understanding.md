@@ -7,8 +7,7 @@ description: Understanding the differences between deterministic and probabilist
 Multiple application observability features are available for your {{% vendor/name %}} projects.
 
 A full access to [Blackfire](https://www.blackfire.io/) is bundled with all your PHP and Python projects.
-The continuous profiling of your NodeJS and Go applications is available directly from the Console under
-the `Profiling` tab of your environments.
+The continuous profiling of your NodeJS, Go, Ruby and Rust applications is available directly from the Console under the `Profiling` tab of your environments.
 
 ## Blackfire: Deterministic observability for PHP and Python
 

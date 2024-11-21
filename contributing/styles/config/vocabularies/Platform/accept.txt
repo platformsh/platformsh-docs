@@ -44,6 +44,7 @@ Ecto
 ESLint
 failover
 Fastly
+flamegraph
 Galera
 Gemfile
 gevent
@@ -169,6 +170,7 @@ Shopware
 shortcode
 Slowloris
 Splunk
+stacktrace
 Stempel
 stderr
 stdout
@@ -180,6 +182,7 @@ Swoole
 [Ss]yslog
 systemd
 Thorntail
+timeframe
 TLDs?
 Tomitribe
 Toran

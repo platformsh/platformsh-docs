@@ -87,18 +87,18 @@ To stay informed of all the latest {{% vendor/name %}} news, join our newsletter
 
 ### Join the community
 
-The {{% vendor/name %}} community meets on both a [Community forum](https://support.platform.sh/hc/en-us/community/topics) and [Slack](https://chat.platform.sh) for questions and discussion.
+The {{% vendor/name %}} community meets on both a [Community forum](https://support.platform.sh/hc/en-us/community/topics) and [Discord](https://discord.gg/platformsh) for questions and discussion.
 
 Have an experiment you'd like to share?
 Looking for a way to contribute?
 
 <div style="margin-top: 3rem; text-align: center;">
     <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
-    href="https://chat.platform.sh" rel="noopener">Join us on Slack</a>
+    href="https://chat.platform.sh" rel="noopener">Join us on Discord</a>
 </div>
 
 ### Contribute
-Feel free to open an issue or pull request for any of the repositories below, or let us know on [Slack](https://chat.platform.sh) if you find a problem we can help with:
+Feel free to open an issue or pull request for any of the repositories below, or let us know on [Discord](https://discord.gg/platformsh) if you find a problem we can help with:
 
 {{< home/links-github >}}
 
