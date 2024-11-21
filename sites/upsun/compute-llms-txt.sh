@@ -73,6 +73,8 @@ download_binary() {
    tar -xvf $BINARY_NAME
 
    echo "Success"
+   echo "BINARY_NAME is $BINARY_NAME; ASSET_ID is $ASSET_ID"
+   echo "https://api.github.com/repos/jgm/$TOOL/releases/assets/$ASSET_ID"
 }
 
 get_asset_id() {
@@ -113,6 +115,7 @@ ensure_environment
 VERSION=$(curl --silent -H 'Accept: application/vnd.github.v3.raw' \
   -L https://api.github.com/repos/jgm/$TOOL/tags | jq -r '.[0].name');
 
+echo "version found is $VERSION"
 run "$TOOL" "$VERSION"
 
 
