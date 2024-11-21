@@ -40,9 +40,14 @@ outputFormats:
     baseName: "json/devcenter"
     isPlainText: true
   llms:
-    mediaType: "text/markdown"
-    baseName: "llms.txt"
+    mediaType: "text/plain"
+    baseName: "llms"
     isPlainText: true
+    permalinkable: true
+
+mediaTypes:
+  text/plain:
+    suffixes: ["txt"]
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:

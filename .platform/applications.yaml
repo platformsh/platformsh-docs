@@ -96,6 +96,7 @@
             npm install
             npm run build
             ./build_docs.sh
+            ./generate_llmstxt.sh
             npm run build:assets
         deploy: |
             cd $SITE_DIR
