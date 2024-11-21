@@ -9,5 +9,5 @@ ls -la public/
 git clone https://github.com/jgm/pandoc
 
 ls -la pandoc
-
-./pandoc/pandoc public/llms.txt -o public/llms.txt -f markdown+raw_html -t markdown
+./pandoc/pandoc-cli -h
+./pandoc/pandoc-cli public/llms.txt -o public/llms.txt -f markdown+raw_html -t markdown
