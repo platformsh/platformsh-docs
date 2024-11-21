@@ -131,7 +131,9 @@ run "$TOOL" "$VERSION"
 # Treat individual build step errors as fatal for the whole build process.
 set -e
 
-ls -la sites/upsun/public/
+pwd
+ls -la $PLATFORM_APP_DIR/sites/upsun/
+ls -la $PLATFORM_APP_DIR/sites/upsun/public/
 
 ## install Pandoc https://pandoc.org/installing.html#linux
 git clone https://github.com/jgm/pandoc
