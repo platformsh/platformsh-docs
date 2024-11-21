@@ -132,6 +132,8 @@ run "$TOOL" "$VERSION"
 set -e
 
 pwd
+ls -la $PLATFORM_APP_DIR/bin
+ls -la $PLATFORM_APP_DIR/bin/pandoc
 ls -la $PLATFORM_APP_DIR/sites/upsun/
 ls -la $PLATFORM_APP_DIR/sites/upsun/public/
 
