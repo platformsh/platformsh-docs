@@ -36,7 +36,7 @@ copy_lib() {
    UPSUN_BINARY=$2;
 
    mkdir -p ${PLATFORM_APP_DIR}/bin
-   cp "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}/${UPSUN_TOOL}-${UPSUN_VERSION}" "${PLATFORM_APP_DIR}/bin/${UPSUN_TOOL}";
+   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}/${UPSUN_TOOL}-${UPSUN_VERSION}" "${PLATFORM_APP_DIR}/bin/${UPSUN_TOOL}";
    cd ${PLATFORM_APP_DIR}/bin;
    chmod +x "${UPSUN_TOOL}-${UPSUN_VERSION}";
    echo "Success"
