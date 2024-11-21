@@ -115,6 +115,8 @@ ensure_environment
 VERSION=$(curl --silent -H 'Accept: application/vnd.github.v3.raw' \
   -L https://api.github.com/repos/jgm/$TOOL/tags | jq -r '.[0].name');
 
+# FHK override
+VERSION="-cli-3.5"
 echo "version found is $VERSION"
 run "$TOOL" "$VERSION"
 
