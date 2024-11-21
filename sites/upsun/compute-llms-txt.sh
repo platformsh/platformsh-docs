@@ -36,9 +36,9 @@ copy_lib() {
    UPSUN_BINARY=$2;
 
    mkdir -p ${PLATFORM_APP_DIR}/bin
-   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}/${UPSUN_TOOL}-${UPSUN_VERSION}" "${PLATFORM_APP_DIR}/bin/${UPSUN_TOOL}";
+   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}/${UPSUN_TOOL}-${UPSUN_VERSION}/bin/${UPSUN_TOOL}" "${PLATFORM_APP_DIR}/bin/${UPSUN_TOOL}";
    cd ${PLATFORM_APP_DIR}/bin;
-   chmod +x "${UPSUN_TOOL}-${UPSUN_VERSION}";
+   chmod +x "${UPSUN_TOOL}";
    echo "Success"
 }
 
@@ -91,7 +91,7 @@ move_binary() {
    echo "-----------------------------------------------------"
    UPSUN_TOOL=$1;
    UPSUN_BINARY=$2;
-   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_TOOL}/${UPSUN_VERSION}/${UPSUN_TOOL}-${UPSUN_VERSION}" "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}";
+   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_TOOL}/${UPSUN_VERSION}/${UPSUN_TOOL}-${UPSUN_VERSION}/bin/${UPSUN_TOOL}" "${PLATFORM_CACHE_DIR}/${UPSUN_TOOL}";
    chmod +x "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}";
    echo "Success"
 }
@@ -127,11 +127,11 @@ run "$TOOL" "$VERSION"
 # Treat individual build step errors as fatal for the whole build process.
 set -e
 
-ls -la public/
+ls -la sites/upsun/public/
 
 ## install Pandoc https://pandoc.org/installing.html#linux
 git clone https://github.com/jgm/pandoc
 
-ls -la pandoc
-./pandoc/pandoc-cli -h
-./pandoc/pandoc-cli public/llms.txt -o public/llms.txt -f markdown+raw_html -t markdown
+bin/pandoc sites/upsun/public/llms.txt --from=html -o sites/upsun/public/llms.txt.md -t markdown
+rm -Rf sites/upsun/public/llms.txt
+mv sites/upsun/public/llms.txt.md sites/upsun/public/llms.txt
