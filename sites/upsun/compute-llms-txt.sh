@@ -15,7 +15,7 @@ run() {
 
    UPSUN_BINARY="${UPSUN_TOOL}"
 
-    rm -Rf ${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}
+   rm -Rf ${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}
 
    if [ ! -f "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}" ]; then
        ensure_source "$UPSUN_TOOL" "$UPSUN_VERSION";
@@ -36,9 +36,9 @@ copy_lib() {
    UPSUN_BINARY=$2;
 
    mkdir -p ${PLATFORM_APP_DIR}/bin
-   cp "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}/${UPSUN_TOOL}" "${PLATFORM_APP_DIR}/bin/${UPSUN_TOOL}";
+   cp "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}/${UPSUN_TOOL}-${UPSUN_VERSION}" "${PLATFORM_APP_DIR}/bin/${UPSUN_TOOL}";
    cd ${PLATFORM_APP_DIR}/bin;
-   chmod +x ${UPSUN_TOOL};
+   chmod +x "${UPSUN_TOOL}-${UPSUN_VERSION}";
    echo "Success"
 }
 
