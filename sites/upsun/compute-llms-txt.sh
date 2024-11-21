@@ -136,7 +136,6 @@ ls -la $PLATFORM_APP_DIR/sites/upsun/
 ls -la $PLATFORM_APP_DIR/sites/upsun/public/
 
 ## install Pandoc https://pandoc.org/installing.html#linux
-cd $PLATFORM_APP_DIR
-bin/pandoc sites/upsun/public/llms.txt --from=html -o sites/upsun/public/llms.txt.md -t markdown
+pandoc $PLATFORM_APP_DIR/sites/upsun/public/llms.txt --from=html -o $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.md -t markdown
 rm -Rf sites/upsun/public/llms.txt
 mv sites/upsun/public/llms.txt.md sites/upsun/public/llms.txt
