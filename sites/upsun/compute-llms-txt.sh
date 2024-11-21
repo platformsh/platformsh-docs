@@ -15,7 +15,7 @@ run() {
 
    UPSUN_BINARY="${UPSUN_TOOL}"
 
-   rm -Rf ${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}
+    rm -Rf ${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}
 
    if [ ! -f "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}" ]; then
        ensure_source "$UPSUN_TOOL" "$UPSUN_VERSION";
@@ -71,7 +71,6 @@ download_binary() {
      -H "Accept: application/octet-stream" "https://api.github.com/repos/jgm/$TOOL/releases/assets/$ASSET_ID" \
      -o $BINARY_NAME
    tar -xvf $BINARY_NAME
-   mv "${TOOL}_${VERSION}" "$TOOL"
 
    echo "Success"
    echo "BINARY_NAME is $BINARY_NAME; ASSET_ID is $ASSET_ID"
@@ -92,7 +91,7 @@ move_binary() {
    echo "-----------------------------------------------------"
    UPSUN_TOOL=$1;
    UPSUN_BINARY=$2;
-   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_TOOL}/${UPSUN_VERSION}/${UPSUN_TOOL}" "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}";
+   cp -r "${PLATFORM_CACHE_DIR}/${UPSUN_TOOL}/${UPSUN_VERSION}/${UPSUN_TOOL}_${UPSUN_VERSION}" "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}";
    chmod +x "${PLATFORM_CACHE_DIR}/${UPSUN_BINARY}";
    echo "Success"
 }
