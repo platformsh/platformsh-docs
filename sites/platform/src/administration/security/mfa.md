@@ -39,7 +39,7 @@ To enable MFA on your user account, follow these steps:
 TO enable MFA within your organization, follow these steps:
 
 1. In the Console, open the organization dropdown menu on the leftmost navigation.
-2. In the exanded navigation on the right hand side, click **Security**. This will take you to the **User security settings** view.
+2. In the expanded navigation on the right hand side, click **Security**. This will take you to the **User security settings** view.
 3. In the **MFA required** area, set the **Enable** toggle on.
 
 {{% note %}}
@@ -51,7 +51,7 @@ Under **User security settings**, you can view which users in your organization 
 You can send email reminders to users who haven't enabled MFA on their user account yet. To do so, follow these steps:
 
 1. In the Console, open the organization dropdown menu on the leftmost navigation.
-2. In the exanded navigation on the right hand side, click **Security**. This will take you to the **User security settings** view.
+2. In the expanded navigation on the right hand side, click **Security**. This will take you to the **User security settings** view.
 3. In the **User security settings** area, find the user you want to send a reminder to.
 4. Click **{{< icon more >}} More** next to that user.
 5. Select **Remind**.</br>

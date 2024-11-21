@@ -1,0 +1,272 @@
+name: Get PR URL, start dependent jobs
+on:
+  pull_request_target:
+    branches: [main]
+    types: [labeled,opened,reopened,synchronize]
+
+env:
+  PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
+  UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
+jobs:
+  get_pr_info:
+    runs-on: ubuntu-latest
+    name: Get info on build from PR
+    # Run only for PRs from default repo and approved PRs from forks
+    if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    outputs:
+      pr_url: ${{ steps.get_env_url.outputs.pr_url }}
+      pr_url_upsun: ${{ steps.get_env_url.outputs.pr_url_upsun }}
+
+    steps:
+      # at this point we want to checkout the repository but at the latest commit of the default branch
+      - uses: actions/checkout@v4
+
+      - name: Set branch name
+        id: branch_name
+        run: |
+          # For PRs from non-forked repos
+          if [ ${{ github.event.pull_request.head.repo.id }} == ${{ vars.REPO_ID }} ]; then
+            branch_name="${{ github.event.pull_request.head.ref }}"
+
+          # For PRs from forks
+          else
+            branch_name="${{ env.BRANCH_TITLE }}"
+          fi
+          echo "::notice::Setting branch name to ${branch_name}."
+          echo "branch_name=${branch_name}" >> $GITHUB_OUTPUT
+
+      - name: retrieve PR url
+        id: get_env_url
+        uses: ./.github/actions/get-pr-info
+        with:
+          platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+          branch: ${{ steps.branch_name.outputs.branch_name }}
+
+      #      - uses: actions/checkout@v4
+      #        with:
+      #          fetch-depth: 0
+      #          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Make artifact files
+        run: |
+          touch environment_url.txt
+          touch pr_comment.txt
+
+      - name: Save PR number
+        if: ${{ always() }}
+        run: echo ${{ github.event.number }} > pr_number.txt
+
+      - name: Save PR SHA
+        if: ${{ always() }}
+        run: echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
+
+      # If no environment URL, create a report of that
+      - name: Create failure report
+        if: steps.get_env_url.outputs.env_status == 'failure'
+        run: |
+          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ steps.branch_name.outputs.branch_name }}" > pr_comment.txt
+
+      # Create a list of relevant changed pages
+      - name: Report environment URL
+        if: steps.get_env_url.outputs.env_status == 'success'
+        run: |
+          echo ${{ steps.get_env_url.outputs.pr_url }} > environment_url.txt
+
+      - name: Get changed files
+        if: steps.get_env_url.outputs.env_status == 'success'
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          sha: ${{ github.event.pull_request.head.sha }}
+          base_sha: ${{ github.event.pull_request.base.sha }}
+
+      # Create a list of relevant changed pages
+      - name: Get list of changed files
+        if: steps.get_env_url.outputs.env_status == 'success'
+        id: get-files
+        env:
+          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
+        run: |
+          files_platform=()
+          files_upsun=()
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+
+            # Rewrite all Markdown files in the source to be links in the final environment
+            if [[ $file = "sites/platform/src/"*".md" ]]; then
+
+              # Remove file extension
+              page=${file/.md/.html}
+
+              # Remove initial directory
+              page=${page/"sites/platform/src/"/}
+
+              # Shift index pages up a level
+              page=${page/"/_index.html"/".html"}
+
+              files_platform+=("$ENV_URL$page")
+            fi
+
+            if [[ $file = "sites/upsun/src/"*".md" ]]; then
+
+              # Remove file extension
+              page=${file/.md/.html}
+
+              # Remove initial directory
+              page=${page/"sites/upsun/src/"/}
+
+              # Shift index pages up a level
+              page=${page/"/_index.html"/".html"}
+
+              # Adjust URL for Upsun docs.
+              UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
+
+              files_upsun+=("$UPSUN_ENV_URL$page")
+            fi
+
+          done
+
+          # If there are changed files for Platform.sh, return a list
+          # Using "\n" here creates problems in passing data to the next step, so replace there instead
+          if (( ${#files_platform[@]} != 0 )); then
+            echo $(printf "||%s" "${files_platform[@]}")
+            echo changed_files_platform=$(printf "||%s" "${files_platform[@]}") >> $GITHUB_OUTPUT
+          else
+            echo changed_files_platform="" >> $GITHUB_OUTPUT
+          fi
+
+          # If there are changed files for Upsun, return a list
+          # Using "\n" here creates problems in passing data to the next step, so replace there instead
+          if (( ${#files_upsun[@]} != 0 )); then
+            echo $(printf "||%s" "${files_upsun[@]}")
+            echo changed_files_upsun=$(printf "||%s" "${files_upsun[@]}") >> $GITHUB_OUTPUT
+          else
+            echo changed_files_upsun="" >> $GITHUB_OUTPUT
+          fi
+
+      # If there are changed pages, create a comment with a checklist
+      - name: Comment with links
+        if: steps.get-files.outputs.changed_files_platform != '' || steps.get-files.outputs.changed_files_upsun != ''
+        env:
+          PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
+          PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
+        run: |
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Platform.sh docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>\n\n<details>\n<summary>Upsun docs</summary><br/>\n\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
+
+      # If there are no changed pages, create a comment
+      # with a link to general URL
+      - name: Comment without links
+        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == '' && steps.get_env_url.outputs.env_status == 'success'
+        env:
+          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
+        run: |
+          UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
+          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr-info
+          path: |
+            environment_url.txt
+            pr_comment.txt
+            pr_number.txt
+            pr_sha.txt
+          retention-days: 1
+
+      # If environment failed to create, fail the workflow
+      - name: Fail workflow
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        if: steps.get_env_url.outputs.env_status != 'success'
+        run: |
+          echo "::error::The environment for pull request ${{ github.event.number }} failed to deploy. Please rerun this workflow."
+          echo "The last status we received was ${{ steps.get_env_url.outputs.env_status }}"
+          echo "List of activities that we ask for, but not limited to the last one:"
+          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ steps.branch_name.outputs.branch_name }}
+          echo "Now a list of the (up to) last 20 activities for branch ${{ steps.branch_name.outputs.branch_name }}:"
+          platform activities --environment ${{ steps.branch_name.outputs.branch_name }} --limit 20
+          # Get the ID of failed activity and output its log:
+          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }} --result=failure)
+          echo "Log for the failed activity, ID ${failedID}"
+          platform activity:log ${failedID} --environment ${{ steps.branch_name.outputs.branch_name }}
+          exit 1
+  dont_run_nonlabeled_forks:
+    name: Warn about non-labeled PRs from forks
+    if: github.event.pull_request.head.repo.id != vars.REPO_ID && !contains(github.event.pull_request.labels.*.name, 'build-fork')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Warn the environment will not be built
+        run: |
+          echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
+
+  run-redirection-tests:
+    runs-on: ubuntu-latest
+    name: Verify contracted redirections
+    needs:
+      - get_pr_info
+    # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
+    if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # we need to checkout the PR repo/branch even if it's a fork because the action in the next step needs to
+          # retrieve the contracted redirections from .platform/routes.yaml. This may change in the future if we
+          # switch to using a redirection service. Actions DO NOT have access to secrets.
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: ./.github/actions/redirection-verification
+        with:
+          environment-url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
+
+  run-e2e-test:
+    runs-on: ubuntu-latest
+    name: E2E tests
+    needs:
+      - get_pr_info
+    # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
+    if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    strategy:
+      matrix:
+        include:
+          - site: platformsh
+            url: ${{ needs.get_pr_info.outputs.pr_url }}
+          - site: upsun
+            url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
+    steps:
+      - uses: actions/checkout@v4
+        if: github.event.pull_request.head.repo.id == vars.REPO_ID
+        with:
+          # If this is the base repo, then we want to check out the PR branch so we can potentially run new tests/changes
+          # that are included in the PR.
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/checkout@v4
+        # if it isn't the base repo and we're in a fork then we'll checkout the base repo
+        if: github.event.pull_request.head.repo.id != vars.REPO_ID && contains(github.event.pull_request.labels.*.name, 'build-fork')
+      - uses: cypress-io/github-action@v6
+        with:
+          wait-on: ${{ matrix.url }}
+          record: true
+        env:
+          CYPRESS_baseUrl: ${{ matrix.url }}
+          CYPRESS_environment: github
+          CYPRESS_site: ${{ matrix.site }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  run_all_tests:
+    name: Report all E2E tests status
+    runs-on: ubuntu-latest
+    needs: run-e2e-test
+    if: ${{ always() }}
+    steps:
+      - name: Report matrix status
+        run: |
+          result="${{ needs.run-e2e-test.result }}"
+          if [[ $result == "success" || $result == "skipped" ]]; then
+            exit 0
+          else
+            exit 1
+          fi

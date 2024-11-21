@@ -1,0 +1,14 @@
+name: redirections contract verification
+description: Verifies that the redirections for our contract with console are still valid
+inputs:
+  environment-url:
+    description: 'Pull Request Environment URL'
+    required: true
+
+####
+#outputs:
+####
+
+runs:
+  using: 'node20'
+  main: index.js
