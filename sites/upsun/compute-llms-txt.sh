@@ -71,10 +71,13 @@ download_binary() {
      -H "Accept: application/octet-stream" "https://api.github.com/repos/jgm/$TOOL/releases/assets/$ASSET_ID" \
      -o $BINARY_NAME
    tar -xvf $BINARY_NAME
+   mv "${TOOL}_${VERSION}" "$TOOL"
 
    echo "Success"
    echo "BINARY_NAME is $BINARY_NAME; ASSET_ID is $ASSET_ID"
    echo "https://api.github.com/repos/jgm/$TOOL/releases/assets/$ASSET_ID"
+   pwd
+   ls -la
 }
 
 get_asset_id() {
@@ -119,7 +122,6 @@ VERSION=$(curl --silent -H 'Accept: application/vnd.github.v3.raw' \
 VERSION="3.5"
 echo "version found is $VERSION"
 run "$TOOL" "$VERSION"
-
 
 #!/usr/bin/env bash
 
