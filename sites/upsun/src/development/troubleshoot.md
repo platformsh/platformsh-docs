@@ -180,7 +180,7 @@ To avoid the error, make sure you do a full clone of the repository before pushi
 For example, for the [Checkout GitHub action](https://github.com/actions/checkout),
 set `fetch-depth: 0` to clone the full history.
 For GitLab, set clones to have a limit of `0` either in [repository settings](https://docs.gitlab.com/ee/ci/pipelines/settings.html#limit-the-number-of-changes-fetched-during-clone)
-or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/ci/large_repositories/index.html#shallow-cloning).
+or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/user/project/repository/monorepos/index.html#shallow-cloning).
 
 ## Large JSON file upload failing
 
