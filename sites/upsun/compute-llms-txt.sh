@@ -131,13 +131,9 @@ run "$TOOL" "$VERSION"
 # Treat individual build step errors as fatal for the whole build process.
 set -e
 
-pwd
-ls -la $PLATFORM_APP_DIR/bin
-ls -la $PLATFORM_APP_DIR/bin/pandoc
-ls -la $PLATFORM_APP_DIR/sites/upsun/
-ls -la $PLATFORM_APP_DIR/sites/upsun/public/
-
 ## install Pandoc https://pandoc.org/installing.html#linux
-$PLATFORM_APP_DIR/bin/pandoc $PLATFORM_APP_DIR/sites/upsun/public/llms.txt --from=html -o $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.md -t markdown
-rm -Rf sites/upsun/public/llms.txt
-mv sites/upsun/public/llms.txt.md sites/upsun/public/llms.txt
+./$PLATFORM_APP_DIR/bin/pandoc $PLATFORM_APP_DIR/sites/upsun/public/llms.txt --from=html -o $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.md -t markdown
+ls -la $PLATFORM_APP_DIR/sites/upsun/public/
+rm -Rf $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+mv $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.md $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+ls -la $PLATFORM_APP_DIR/sites/upsun/public/
