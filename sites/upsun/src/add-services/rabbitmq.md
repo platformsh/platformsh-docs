@@ -295,7 +295,7 @@ services:
 {{< /codetabs >}}
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `rabbitmq` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+`myapp` has access to the `rabbitmq` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
@@ -359,7 +359,7 @@ To open a tunnel, follow these steps.
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
-    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
+    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-define-the-relationship).
 
 2.  Open `http://localhost:15672` in your browser.
     Log in using the username and password from the [relationship](#relationship-reference).

@@ -323,7 +323,7 @@ services:
 
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `chrome-headless` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+`myapp` has access to the `chrome-headless` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, `myapp` can retrieve access credentials to the service through the [relationship environment variable](/add-services/elasticsearch.md#relationship-reference).

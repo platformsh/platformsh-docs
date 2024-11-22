@@ -460,7 +460,7 @@ service:
 
 
 This configuration defines a single application (``myapp``), whose source code exists in the ``<PROJECT_ROOT>/myapp`` directory.
-``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).

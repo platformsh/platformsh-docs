@@ -266,7 +266,7 @@ To make any calls to the Vault KMS, you need your token. Get it from the [servic
 echo ${{{< variable "RELATIONSHIP_NAME" >}}_PASSWORD}"
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the relationship name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the relationship name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 You can also store this as a variable:
 
@@ -286,7 +286,7 @@ Assign it to a variable as follows:
 VAULT_URL=${{{< variable "RELATIONSHIP_NAME" >}}_HOST}:${{{< variable "RELATIONSHIP_NAME" >}}_PORT}
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 ### Manage your keys
 
