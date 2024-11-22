@@ -91,9 +91,9 @@ Speak to your sales representative about the costs associated with adding additi
 
 #### SFTP 
 
-In addition to SSH accounts, you can create sftp accounts with a custom user/password that are restricted to certain directories. These directories must be one of the writeable mounts.
+In addition to SSH accounts, you can create SFTP accounts with a custom user/password that are restricted to certain directories. These directories must be one of the writeable mounts.
 
-There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). SSH public key based authentication is also supported on the sftp account.
+There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). SSH public key based authentication is also supported on the SFTP account.
 
 See how to [transfer files through sftp](/development/file-transfer.md).
 

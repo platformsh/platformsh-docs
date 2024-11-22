@@ -16,7 +16,7 @@ For more information about the Dedicated clusters, visit [Dedicated Gen 2 Develo
 
 ![Dedicated cluster architecture](/images/dedicated/cluster-infrastructure.svg "0.50")
 
-On a DG3 cluster, the services (mariadb, php, redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments.
+On a DG3 cluster, the services (MariaDB, PHP, Redis) run in Highly Available (HA) mode instead of as single, isolated applications. These clusters can be in either of your production or staging environments.
 
 ### HTTP clusters
 
@@ -44,7 +44,7 @@ Existing non-HA projects cannot be converted to HA projects and vice-versa. HA p
 
 ## Providers and regions
 
-Unlike Grid, you can deploy into [any region](https://docs.platform.sh/development/regions.html#regions) of supported IaaS providers with a Dedicated Generation 3 environment. Currently, these providers are listed below:
+Unlike Grid, you can deploy into [any region](/development/regions.md#regions) of supported IaaS providers with a Dedicated Generation 3 environment. Currently, these providers are listed below:
 
 -   Amazon Web Services (AWS)
 -   Microsoft Azure (Azure)

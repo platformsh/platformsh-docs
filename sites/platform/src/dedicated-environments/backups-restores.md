@@ -13,13 +13,21 @@ description:  "Backups are retained for different periods depending on various f
 
 Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production Environments every 6 hours. Backups are retained for different durations depending on when they were taken. 
 
-|When taken      |Retention            | 
-|----------------|---------------------|
-| Days 1–3       | Every backup        |  
-| Days 4–6       | One backup per day  |   
-| Weeks 2–6      | One backup per week |
-| Weeks 8–12     | One bi-weekly backup|   
-| Weeks 12–22    | One backup per month|  
+| Backup retention period     | Retention            |  # of backups from time period available |
+|----------------|---------------------|--------------------|
+| 1–3 days ago          | Every backup taken in that period | 6 (1 day) to 18 (3 days) |  
+| 4-6 days ago         | One backup per day in that period  |   1 (4 days) to 3 (6 days) |
+| 2–6 weeks ago      | One backup per week | 1 (2 weeks) to 5 (6 weeks) |
+| 8–12 weeks ago   | One bi-weekly backup | 1 (8 weeks) to 3 (12 weeks) |    
+| 12–22 weeks ago    | One backup per month | 1 (12 weeks) to 3 (22 weeks)  |
+
+Put another way, the number of backups available for restoration depending on the age of the Dedicate environment might look as follows:
+
+|  Account age    | last 72 hours  | 4-6 days ago | 2-6 weeks ago | 8-12 weeks ago | 12-22 weeks ago | Total |
+|----------------|---------------|--------------|----------------|-----------------|-------------------|-----|
+| 1 week               |         18            |        3             |          0                |            0              |              0                |   21  |
+| 12 weeks           |         18            |        3              |            5            |         3                   |               0               |  29  |
+| 52+ weeks        |         18            |        3              |            5            |         3                  |           3                    |   32 |
 
 Backups are created using snapshots saved to encrypted elastic block storage (EBS) volumes. An EBS snapshot is immediate, but the time it takes to write to the storage service depends on the volume of changes.
 
