@@ -21,7 +21,7 @@ Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production Environ
 | 8–12 weeks ago   | One bi-weekly backup | 1 (8 weeks) to 3 (12 weeks) |    
 | 12–22 weeks ago    | One backup per month | 1 (12 weeks) to 3 (22 weeks)  |
 
-Put another way, the number of backups available for restoration depending on the age of the Dedicate environment might look as follows:
+Put another way, the number of backups available for restoration depending on the age of the Dedicated environment might look as follows:
 
 |  Account age    | last 72 hours  | 4-6 days ago | 2-6 weeks ago | 8-12 weeks ago | 12-22 weeks ago | Total |
 |----------------|---------------|--------------|----------------|-----------------|-------------------|-----|
