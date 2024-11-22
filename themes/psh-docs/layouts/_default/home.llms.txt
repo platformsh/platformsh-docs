@@ -1,0 +1,5 @@
+{{- $pages := .Site.RegularPages -}}
+{{- range $pages -}}
+{{- if .Params.title }} # {{ .Params.title }} {{ end }}
+{{- .Content | replaceRE "[ \t\n\r]+" " " -}}
+{{- end -}}
