@@ -270,6 +270,11 @@ https://{default}/:
     upstream: "search:http"
     id: "search"
 
+#https://docs.upsun.com.{default}/anchors/:
+#  type: upstream
+#  upstream: redirectionio-agent:http
+#  id: redirectionio
+
 https://docs.upsun.com/:
   type: upstream
   upstream: upsun:http
@@ -297,8 +302,9 @@ https://docs.upsun.com/:
       "/anchors/config/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
       "/anchors/cli/tokens.html": { "to": "/administration/cli/api-tokens.html", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
-      "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
       "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
+      "/anchors/dedicated/incident-handling.html": { "to": "https://docs.platform.sh/dedicated/overview/monitoring.html#availability-incident-handling-procedure", "code": 301, "prefix": false }
+#      "/anchors/cli.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
       # Repeated again for the below.
       # "links.documentation.CLI": "https://docs.platform.sh/development/cli.html#cli-command-line-interface",
       "/anchors/variables/app.html": { "to": "/administration/cli.html", "code": 301, "prefix": false }
@@ -307,17 +313,17 @@ https://docs.upsun.com/:
       "/anchors/deploy-key.html": { "to": "/administration/web/configure-project.html#deploy-key", "code": 301, "prefix": false }
       # Dedicated not relevant on Upsun at MVP
       "/anchors/dedicated.html": { "to": "https://docs.platform.sh/dedicated/overview.html", "code": 301, "prefix": false }
-      "/anchors/dns.html": { "to": "/golive/steps/dns.html", "code": 301, "prefix": false }
+      "/anchors/dns.html": { "to": "/domains/steps.html#1-get-the-target-for-your-project", "code": 301, "prefix": false }
       "/anchors/download-code.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/domain.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
       "/anchors/subdomains.html": { "to": "/domains/steps/subdomains.html", "code": 301, "prefix": false }
       "/anchors/project-configuration.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/getting-started.html": { "to": "/get-started/here.html", "code": 301, "prefix": false }
       "/anchors/environments/inactive.html": { "to": "/glossary.html#inactive-environment", "code": 301, "prefix": false }
-      "/anchors/crons/paused.html": { "to": "/configuration/app/cron.html#paused-crons", "code": 301, "prefix": false }
+      "/anchors/crons/paused.html": { "to": "/create-apps/app-reference/single-runtime-image.html#paused-crons", "code": 301, "prefix": false }
       "/anchors/go-live.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
-      "/anchors/import-data/mysql.html": { "to": "/configuration/services/mysql.html#importing-data", "code": 301, "prefix": false }
-      "/anchors/import-data/postgresql.html": { "to": "/configuration/services/postgresql.html#importing-data", "code": 301, "prefix": false }
+      "/anchors/import-data/mysql.html": { "to": "/add-services/mysql.html#importing-data", "code": 301, "prefix": false }
+      "/anchors/import-data/postgresql.html": { "to": "/add-services/postgresql.html#importing-data", "code": 301, "prefix": false }
       "/anchors/integrations.html": { "to": "/integrations/overview.html", "code": 301, "prefix": false }
       "/anchors/migrating.html": { "to": "/learn/tutorials/migrating.html", "code": 301, "prefix": false }
       "/anchors/domains.html": { "to": "/domains/steps.html", "code": 301, "prefix": false }
@@ -332,21 +338,21 @@ https://docs.upsun.com/:
       "/anchors/configuration/yaml.html": { "to": "/learn/overview/yaml.html", "code": 301, "prefix": false }
       "/anchors/apps/mounts.html": { "to": "/create-apps/app-reference.html#mounts", "code": 301, "prefix": false }
       "/anchors/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
-      "/anchors/backups.html": { "to": "/security/backups.html", "code": 301, "prefix": false }
+      "/anchors/backups.html": { "to": "/environments/backup.html", "code": 301, "prefix": false }
       "/anchors/admin/users.html": { "to": "/administration/users.html", "code": 301, "prefix": false }
       # No equivalent yet for Upsun.
       "/anchors/wcag.html": { "to": "https://platform.sh/wcag/", "code": 301, "prefix": false }
       "/anchors/observability/metrics.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
       # Repeated again for the following
       # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
-      "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics/grid.html", "code": 301, "prefix": false }
+      "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
       # Not relevant for Upsun.
       "/anchors/observability/metrics/dedicated.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated.html", "code": 301, "prefix": false }
       "/anchors/observability/metrics/dedicated-gen-3.html": { "to": "https://docs.platform.sh/increase-observability/metrics/dedicated-generation-3.html", "code": 301, "prefix": false }
       "/anchors/integrations/activities.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
       "/anchors/integrations/activity-scripts.html": { "to": "/integrations/activity.html#configuring-scripts", "code": 301, "prefix": false }
       "/anchors/integrations/source.html": { "to": "/integrations/source.html", "code": 301, "prefix": false }
-      "/anchors/apps/timezone.html": { "to": "/configuration/app/timezone.html", "code": 301, "prefix": false }
+      "/anchors/apps/timezone.html": { "to": "/create-apps/timezone.html", "code": 301, "prefix": false }
       "/anchors/organizations.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
       "/anchors/redeploy.html": { "to": "/development/troubleshoot.html#force-a-redeploy", "code": 301, "prefix": false }
       "/anchors/ssh/authenticate.html": { "to": "/development/ssh.html#authenticate-with-ssh-keys", "code": 301, "prefix": false }
@@ -360,9 +366,10 @@ https://docs.upsun.com/:
       "/anchors/certificates.html": { "to": "/administration/web/configure-project.html#certificates", "code": 301, "prefix": false }
       "/anchors/environments/default.html": { "to": "/environments/default-environment.html", "code": 301, "prefix": false }
       "/anchors/admin/users/org.html": { "to": "/administration/organizations.html", "code": 301, "prefix": false }
-      "/anchors/resources/flexible.html": { "to": "/create-apps/flexible-resources.html", "code": 301, "prefix": false }
+      "/anchors/resources/flexible.html": { "to": "/manage-resources/adjust-resources.html", "code": 301, "prefix": false }
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
+
 
       # Redirects for moved Upsun GS guides
       "/get-started/express/": { "to": "/get-started/stacks/express.html", "code": 301, "prefix": true, "append_suffix": false }

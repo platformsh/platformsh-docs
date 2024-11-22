@@ -54,12 +54,13 @@ applications:
         # Customize the start command with your own target.
         start: './target/debug/hello'
 
-    locations:
-      /:
-        # Route all requests to the Rust app, unconditionally.
-        allow: false
-        passthru: true
+      locations:
+        /:
+          # Route all requests to the Rust app, unconditionally.
+          allow: false
+          passthru: true
 ```
+
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
 ## Built-in variables
