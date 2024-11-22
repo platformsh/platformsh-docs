@@ -18,6 +18,7 @@ Brotli
 [Bb]undler
 CacheTool
 callee
+Ceph
 cgroups
 charset
 client_id
@@ -38,6 +39,7 @@ denylist
 deprovision
 DNSimple
 Docksal
+docroots
 Drush
 DXP
 Ecto
@@ -51,6 +53,7 @@ gevent
 geocod(?:er|ing)
 gitmoji
 glibc
+glusterfs
 Goldmark
 Gotenberg
 [Gg]oroutines
@@ -104,6 +107,7 @@ multicast
 [Mm]ultisite
 multithread
 Munin
+mysqldump[s]
 Nagios
 Namecheap
 namespace
@@ -205,6 +209,7 @@ WWWizer
 Xdebug
 XHProf
 XPath
+yaml
 Yusuf
 Zend
 
