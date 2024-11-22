@@ -222,7 +222,7 @@ To make any calls to the Vault KMS, you need your token. Get it from the `{{< ve
 echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].password"
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
@@ -244,7 +244,7 @@ Assign it to a variable as follows:
 VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].port")
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 ### Manage your keys
 

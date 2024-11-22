@@ -295,7 +295,7 @@ To open a tunnel, follow these steps.
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
-    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
+    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-define-the-relationship).
 
    b) (On [dedicated environments](/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
 
