@@ -64,7 +64,7 @@ but the file system is read-only.
 ### Deploy steps
 
 1. **Hold requests**:
-   Incoming [idempotent requests](https://www.iana.org/assignments/http-methods/http-methods.xhtml) (like `GET`, `PUT`, `DELETE` but **not** `POST`, `PATCH` etc.) are held to prevent service interruption.
+   Incoming [idempotent requests](https://www.iana.org/assignments/http-methods/http-methods.xhtml) (like `GET`, `PUT`, `DELETE` but **not** `POST`, `PATCH` etc.) are held.
 1. **Unmount current containers**:
    Any previous containers are disconnected from their file system mounts.
 1. **Mount file systems**:
