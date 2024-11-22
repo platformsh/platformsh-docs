@@ -47,7 +47,6 @@ jobs:
       - name: Minify assets
         run: |
           cd sites/${{ matrix.site }}
-          npm run build:assets
 
       - name: Check links in Markdown
         run: |
