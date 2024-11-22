@@ -11,7 +11,7 @@ description:  "Backups are retained for different periods depending on various f
 
 ## Dedicated Generation 2 Backups
 
-Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production Environments every 6 hours. Backups are retained for different durations depending on when they were taken. 
+Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production environments every 6 hours. Backups are retained for different durations depending on when they were taken. 
 
 | Backup retention period     | Retention            |  # of backups from time period available |
 |----------------|---------------------|--------------------|
@@ -23,7 +23,7 @@ Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production Environ
 
 Put another way, the number of backups available for restoration depending on the age of the Dedicated environment might look as follows:
 
-|  Account age    | last 72 hours  | 4-6 days ago | 2-6 weeks ago | 8-12 weeks ago | 12-22 weeks ago | Total |
+|  Environment age    | 72 hours old or younger  | 4-6 days old | 2-6 weeks old | 8-12 weeks old | 12-22 old  | Total |
 |----------------|---------------|--------------|----------------|-----------------|-------------------|-----|
 | 1 week               |         18            |        3             |          0                |            0              |              0                |   21  |
 | 12 weeks           |         18            |        3              |            5            |         3                   |               0               |  29  |
