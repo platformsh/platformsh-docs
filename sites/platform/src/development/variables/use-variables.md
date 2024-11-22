@@ -354,7 +354,7 @@ and at runtime.
 
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
-[{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
+[{{% names/dedicated-gen-2 %}} instances](/dedicated-environments/dedicated-gen-2/overview/_index.md) also have the following variables available:
 
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |
@@ -363,7 +363,7 @@ and at runtime.
 
 {{< note >}}
 
-The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
+The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
 If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
 
 {{< /note >}}
