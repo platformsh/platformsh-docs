@@ -107,7 +107,7 @@ multicast
 [Mm]ultisite
 multithread
 Munin
-mysqldump[s]
+mysqldump
 Nagios
 Namecheap
 namespace
@@ -209,7 +209,6 @@ WWWizer
 Xdebug
 XHProf
 XPath
-yaml
 Yusuf
 Zend
 
