@@ -25,13 +25,13 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | Feature | Dedicated Generation 2 | Grid |
 | --- | --- | --- |
 | **Source Operations** | Yes | Yes |
-| **PHP version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
-| **Node.js version upgrade** | Self-service via yaml config files | Self-service via yaml config files |
-| **Cron management** | Self-service via yaml config files | Self-service via yaml config files |
-|**Web server internal config : locations** | Self-service via yaml config files | Self-service via yaml config files |
+| **PHP version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
+| **Node.js version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
+| **Cron management** | Self-service via YAML config files | Self-service via YAML config files |
+|**Web server internal config : locations** | Self-service via YAML config files | Self-service via YAML config files |
 | **CDN** | Fastly | A managed Fastly CDN service can be purchased through Platform.sh |
 | **Dedicated IP** | Yes | No |
-| **Configuration management** | Split responsibility between Platform.sh and customer | only yaml files |
+| **Configuration management** | Split responsibility between Platform.sh and customer | only YAML files |
 | **Usable regions** | Any region needed | Only the publicly available |
 | **Autonomous upsize** | Managed through Platform.sh| Yes |
 | **Autoscaling** | Yes | No |
@@ -56,7 +56,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **Resources allocation** | Resources deployed on 3 nodes | Resources are spread through the container with fixed sizes after deployment |
 | **MySQL Replication** | Yes: 3 services nodes cluster | None: standalone service container |
 | **Redis Replication** | Yes: 3 services nodes cluster | None: standalone service container |
-| **High Availabilty (HA)** | Yes | No |
+| **High Availability (HA)** | Yes | No |
 | **Split Architecture** | Yes | No |
 | **Storage** | Local disks are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
 | **Automated backup** | Yes | Yes |
