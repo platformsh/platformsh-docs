@@ -2,4 +2,3 @@ configuation
 MongDB
 postgreSQL
 strapi
-
