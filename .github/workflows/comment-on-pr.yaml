@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Download info on PR
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v6
         with:
           workflow: pr-url-and-dependent.yaml
           workflow_conclusion: completed
