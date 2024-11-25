@@ -24,5 +24,6 @@ Closes #{ISSUE_NUMBER}
 ## Where are changes
 
 Updates are for:
-[] platform (`sites/platform` templates)
-[] upsun (`sites/upsun` templates)
+
+- [ ] platform (`sites/platform` templates)
+- [ ] upsun (`sites/upsun` templates)
