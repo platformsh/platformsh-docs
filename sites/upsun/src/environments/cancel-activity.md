@@ -11,9 +11,9 @@ You can cancel activities using the [CLI](../administration/cli/_index.md)
 or in the [Console](../administration/web/_index.md).
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -32,14 +32,14 @@ You can also cancel a specific activity by specifying its ID:
 Get the ID from the [activity log](../increase-observability/logs/access-logs.md#activity-logs).
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Open the environment where you want to cancel an activity.
-2. In the [activity log](../increase-observability/logs/access-logs.md#activity-logs),
-   click {{< icon more >}} **More** next to the activity you want to cancel.
-3. Click **Cancel**.
+1.  Open the environment where you want to cancel an activity.
+2.  In the [activity log](../increase-observability/logs/access-logs.md#activity-logs),
+    click {{< icon more >}} **More** next to the activity you want to cancel.
+3.  Click **Cancel**.
 
 {{< /codetabs >}}
 

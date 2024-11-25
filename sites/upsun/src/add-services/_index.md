@@ -47,7 +47,7 @@ services:
 
 This YAML file contains a dictionary defining all of the services you want to use.
 The top-level key `services` defines an object of all of the services to be provisioned for the project.
-Below that, come custom service names ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
+Below that, come custom service names ({{\<variable "SERVICE\_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
 
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -63,10 +63,10 @@ Always back up your data before changing existing services in your `{{< vendor/c
 
 The following table presents the keys you can define for each service:
 
-| Name            | Type       | Required          | Description |
-| --------------- | ---------- | ----------------- | ----------- |
-| `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
-| `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
+| Name            | Type       | Required          | Description                                                                                                                                                                                                                                                                   |
+| --------------- | ---------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`.                                                                                                                                                                                            |
+| `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details.                                                                                                               |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships). The `endpoint_name` for apps is always `http`. |
 
 ##### Resources (CPU, RAM, disk)
@@ -81,9 +81,9 @@ When checking available space, note whether it's reported in MB or MiB.
 You can decrease the size of an existing disk for a service.
 If you do so, be aware that:
 
-- You need to [create new backups](/environments/backup) that the downsized disk can accommodate.
-  Backups from before the downsize cannot be restored unless you increase the disk size again.
-- The downsize fails if there's more data on the disk than the desired size.
+*   You need to [create new backups](/environments/backup) that the downsized disk can accommodate.
+    Backups from before the downsize cannot be restored unless you increase the disk size again.
+*   The downsize fails if there's more data on the disk than the desired size.
 
 ### 2. Connect the service
 
@@ -108,12 +108,12 @@ services:
         # Other options...
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -149,6 +149,7 @@ The following table presents the available service types and their versions.
 Add them to the `type` key of the [service configuration](#1-configure-the-service) in the format `type:version`.
 
 <!-- To update the versions in this table, use docs/data/registry.json -->
+
 {{% supported-services %}}
 
 ### Service versions
@@ -164,8 +165,8 @@ All services have their system timezone set to UTC by default.
 For some services, you can change the timezone for the running service
 (this doesn't affect the container itself and so logs are still in UTC).
 
-* [MySQL](./mysql/_index.md#service-timezone)
-* [PostgreSQL](./postgresql.md#service-timezone)
+*   [MySQL](./mysql/_index.md#service-timezone)
+*   [PostgreSQL](./postgresql.md#service-timezone)
 
 ## Connect to a service
 
@@ -173,9 +174,9 @@ For security reasons, you can't access services directly through HTTP.
 You can connect through your app or by opening an SSH tunnel to access the service directly.
 
 {{< codetabs >}}
-+++
+\+++
 title=In an app
-+++
+\+++
 
 Once a service is running and exposed via a relationship,
 its credentials (such as the host, username, and password) are automatically available as [service environment variables](/development/variables.html#service-environment-variables),
@@ -186,9 +187,9 @@ The service environment variable names are fixed, but the values may change if y
 So **use the environment variable** rather than hard coding the values.
 
 <--->
-+++
+\+++
 title=Through an SSH tunnel
-+++
+\+++
 
 Connecting to a service using an SSH tunnel is a two-step process.
 
@@ -229,7 +230,7 @@ With this example, you can connect to the `mariadb` relationship
 with the user `user`, an empty password, and the database name `main` (from the `path`).
 The `url` property shows a full database connection that can be used from your app.
 
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `upsun ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -252,10 +253,10 @@ With the example above, you connect to a URL like the following:
 
 ## Upgrading services
 
-{{% vendor/name %}} provides a large number of [managed service versions](#available-services). 
+{{% vendor/name %}} provides a large number of [managed service versions](#available-services).
 As new versions are made available, you will inevitably upgrade infrastructure to a more recent (or latest version).
 
 When you do so, we would recommend:
 
-1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first. 
-1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability). 
+1.  **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first.
+2.  **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).

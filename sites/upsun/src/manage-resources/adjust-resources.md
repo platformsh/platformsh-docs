@@ -45,14 +45,14 @@ follow these steps:
 
 {{< codetabs >}}
 
-+++
+\+++
 title= Using the CLI
-+++
+\+++
 
 To set resources for each of your apps and services,
 you can use the {{% vendor/name %}} CLI interactive prompts, or run commands manually.
 
-- **Interactive prompts:**
+*   **Interactive prompts:**
 
 Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each app and service.
 
@@ -67,16 +67,16 @@ you may need to set the resources again.
 After you've set resources, your environment is redeployed,
 which causes a short downtime.
 
-- **Manual commands:**
+*   **Manual commands:**
 
 Run the `resources:set` command using the following CLI options:
 
-| CLI option        | Description                     | 
-| ----------------- | --------------------------------|
-| `size`            | Allows you to define how much CPU you want to allocate to each app or service.</br>The amount of CPU then determines how much RAM is also allocated, based on the [container profile](#advanced-container-profiles). |
-| `disk`            | Allows you to define how much disk/storage you want to allocate to each app or service. |
+| CLI option | Description                                                                                                                                                                                                          |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `size`     | Allows you to define how much CPU you want to allocate to each app or service.</br>The amount of CPU then determines how much RAM is also allocated, based on the [container profile](#advanced-container-profiles). |
+| `disk`     | Allows you to define how much disk/storage you want to allocate to each app or service.                                                                                                                              |
 
-_Example 1:_
+*Example 1:*
 
 The following command allocates `0.1` CPU to the `frontend` app, `0.25` CPU to the `backend` app, and `1` CPU to the `database` service.
 The amount of RAM these settings translate into depends on each [container profile](#advanced-container-profiles).
@@ -85,7 +85,7 @@ The amount of RAM these settings translate into depends on each [container profi
 {{% vendor/cli %}} resources:set --size frontend:0.1,backend:0.25,database:1
 ```
 
-_Example 2:_
+*Example 2:*
 
 The following command allocates `640 MB` of disk to the `backend` app, and `2048 MB` to the `database` service:
 
@@ -93,7 +93,7 @@ The following command allocates `640 MB` of disk to the `backend` app, and `2048
 {{% vendor/cli %}} resources:set --disk backend:640,database:2048
 ```
 
-_Example 3:_
+*Example 3:*
 
 You can also use wildcards. For example, if you have two apps named `frontend` and `backend`,
 you could allocate the same CPU and RAM combination to both by using the following command:
@@ -104,22 +104,22 @@ you could allocate the same CPU and RAM combination to both by using the followi
 
 <--->
 
-+++
+\+++
 title= From the Console
-+++
+\+++
 
-1. Open your project.
-2. Click the **Configure resources** button in the project card or the **App & Services** panel:
-   ![Project card](/images/flexible-resources/configure-button-project-card.png "0.5")
-3. For each app and service, select a CPU & RAM combination, and enter the amount of disk/storage you want to allocate.
-   ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   {{< note >}}
-   The values from the **CPU & RAM** menu depend on the [container profile](#advanced-container-profiles) of each instance.</br>
-   If you deploy several instances of your app, the selected CPU & RAM combination isn't divided between those instances.
-   Each instance benefits from the full, selected CPU & RAM.
-   {{< /note >}}
-4. Click **Save**.</br>
-   You environment is redeployed, which causes a short downtime.
+1.  Open your project.
+2.  Click the **Configure resources** button in the project card or the **App & Services** panel:
+    ![Project card](/images/flexible-resources/configure-button-project-card.png "0.5")
+3.  For each app and service, select a CPU & RAM combination, and enter the amount of disk/storage you want to allocate.
+    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
+    {{< note >}}
+    The values from the **CPU & RAM** menu depend on the [container profile](#advanced-container-profiles) of each instance.</br>
+    If you deploy several instances of your app, the selected CPU & RAM combination isn't divided between those instances.
+    Each instance benefits from the full, selected CPU & RAM.
+    {{< /note >}}
+4.  Click **Save**.</br>
+    You environment is redeployed, which causes a short downtime.
 
 {{< /codetabs >}}
 
@@ -136,83 +136,83 @@ When you have several instances of an app, the {{% vendor/name %}} router random
 
 {{< codetabs >}}
 
-+++
+\+++
 title= Using the CLI
-+++
+\+++
 
 To define how many instances of an app or worker you want to deploy,
 you can use the {{% vendor/name %}} CLI interactive prompts,
 or run commands manually.
 
-- **Interactive prompts:**
+*   **Interactive prompts:**
 
-  Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each app and service.
+    Run the `{{% vendor/cli %}} resources:set` command, and follow the prompts to set resources for each app and service.
 
-  {{% note %}}
-  For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+    {{% note %}}
+    For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
 
-  Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
-  you may need to set the resources again.
-  {{% /note %}}
+    Note that if the deployment fails after you've run `{{% vendor/cli %}} resources:set`,
+    you may need to set the resources again.
+    {{% /note %}}
 
-- **Manual commands:**
+*   **Manual commands:**
 
-  To scale an app or worker, run the following command:
+    To scale an app or worker, run the following command:
 
-  ```bash {location="Terminal"}
-  {{% vendor/cli %}} resources:set --count {{< variable "APP_NAME" >}}:{{< variable "NUMBER_OF_INSTANCES" >}}
-  ```
-  
-  For example, to scale your `myapp` app to 3 instances, run the following command:
+    ```bash {location="Terminal"}
+    {{% vendor/cli %}} resources:set --count {{< variable "APP_NAME" >}}:{{< variable "NUMBER_OF_INSTANCES" >}}
+    ```
 
-  ```bash {location="Terminal"}
-  {{% vendor/cli %}} resources:set --count myapp:3
-  ```
+    For example, to scale your `myapp` app to 3 instances, run the following command:
 
-  You can also set the same instance count for all your apps using a wildcard.
-  To do so, run the following command:
-  
-  ```bash {location="Terminal"}
-  {{% vendor/cli %}} resources:set --count '*:{{< variable "NUMBER_OF_INSTANCES" >}}'
-  ```
+    ```bash {location="Terminal"}
+    {{% vendor/cli %}} resources:set --count myapp:3
+    ```
 
-  For example, to scale all your apps to 3 instances, run the following command:
+    You can also set the same instance count for all your apps using a wildcard.
+    To do so, run the following command:
 
-  ```bash {location="Terminal"}
-  {{% vendor/cli %}} resources:set --count '*:3'
-  ```
-  {{% note %}}
-  For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+    ```bash {location="Terminal"}
+    {{% vendor/cli %}} resources:set --count '*:{{< variable "NUMBER_OF_INSTANCES" >}}'
+    ```
 
-  After you've set the number of instances for your apps and workers, your environment is redeployed.
-  If you've made no other changes, this redeployment causes no downtime.
-  
-  If the redeployment fails after you've run `{{% vendor/cli %}} resources:set`,
-  you may need to set the resources again.
-  {{% /note %}}
+    For example, to scale all your apps to 3 instances, run the following command:
+
+    ```bash {location="Terminal"}
+    {{% vendor/cli %}} resources:set --count '*:3'
+    ```
+
+    {{% note %}}
+    For further guidance on how to set resources using the CLI, run the `{{% vendor/cli %}} resources:set --help` command.
+
+    After you've set the number of instances for your apps and workers, your environment is redeployed.
+    If you've made no other changes, this redeployment causes no downtime.
+
+    If the redeployment fails after you've run `{{% vendor/cli %}} resources:set`,
+    you may need to set the resources again.
+    {{% /note %}}
 
 <--->
 
-+++
+\+++
 title= From the Console
-+++
+\+++
 
-1. Open your project.
-1. Click the **Configure resources** button in the project card or the **App & Services** panel:
-   ![Project card](/images/flexible-resources/configure-button-project-card.png "0.5")
-1. For each of your apps and workers, select the number of instances you want to deploy.
-   ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
-   {{< note >}}
-   If you deploy several instances of your app, the [selected CPU & RAM combination](#vertical-scaling) isn't divided between those instances.
-   Each instance benefits from the full, selected CPU & RAM.
-   {{< /note >}}
-1. Click **Save**.</br>
-   Your environment is redeployed.
-   If you've only made changes to the number of instances for your apps and workers,
-   this redeployment causes no downtime.
+1.  Open your project.
+2.  Click the **Configure resources** button in the project card or the **App & Services** panel:
+    ![Project card](/images/flexible-resources/configure-button-project-card.png "0.5")
+3.  For each of your apps and workers, select the number of instances you want to deploy.
+    ![Configure your resources on the current environment window](/images/flexible-resources/configure-flexible-resources.png)
+    {{< note >}}
+    If you deploy several instances of your app, the [selected CPU & RAM combination](#vertical-scaling) isn't divided between those instances.
+    Each instance benefits from the full, selected CPU & RAM.
+    {{< /note >}}
+4.  Click **Save**.</br>
+    Your environment is redeployed.
+    If you've only made changes to the number of instances for your apps and workers,
+    this redeployment causes no downtime.
 
 {{< /codetabs >}}
-
 
 ## Advanced: Container profiles
 
@@ -224,16 +224,16 @@ Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM co
 There are four container profiles available: `HIGH_CPU`, `BALANCED`, `HIGH_MEMORY`, and `HIGHER_MEMORY`.
 The following table displays the different CPU and RAM combinations each container profile provides:
 
-| CPU  | `HIGH_CPU`   | `BALANCED` | `HIGH_MEMORY` | `HIGHER_MEMORY` |
-| ---- | ------------ | ---------- | ------------- | --------------- |
-| 0.1  | 64 MB        | 352 MB     | 448 MB        | 864 MB          |
-| 0.25 | 128 MB       | 640 MB     | 832 MB        | 1472 MB         |
-| 0.5  | 224 MB       | 1088 MB    | 1408 MB       | 2368 MB         |
-| 1    | 384 MB       | 1920 MB    | 2432 MB       | 3840 MB         |
-| 2    | 704 MB       | 2800 MB    | 4032 MB       | 6336 MB         |
-| 4    | 1216 MB      | 4800 MB    | 6720 MB       | 10496 MB        |
-| 6    | 1728 MB      | 6080 MB    | 9024 MB       | 14080 MB        |
-| 8    | 2240 MB      | 7296 MB    | 11200 MB      | 17408 MB        |
+| CPU  | `HIGH_CPU` | `BALANCED` | `HIGH_MEMORY` | `HIGHER_MEMORY` |
+| ---- | ---------- | ---------- | ------------- | --------------- |
+| 0.1  | 64 MB      | 352 MB     | 448 MB        | 864 MB          |
+| 0.25 | 128 MB     | 640 MB     | 832 MB        | 1472 MB         |
+| 0.5  | 224 MB     | 1088 MB    | 1408 MB       | 2368 MB         |
+| 1    | 384 MB     | 1920 MB    | 2432 MB       | 3840 MB         |
+| 2    | 704 MB     | 2800 MB    | 4032 MB       | 6336 MB         |
+| 4    | 1216 MB    | 4800 MB    | 6720 MB       | 10496 MB        |
+| 6    | 1728 MB    | 6080 MB    | 9024 MB       | 14080 MB        |
+| 8    | 2240 MB    | 7296 MB    | 11200 MB      | 17408 MB        |
 
 You can check which container profile is set for an app or service in your project from the Console.
 To do so, navigate to your environment and select the app or service in the tree on the left-hand side:
@@ -245,40 +245,40 @@ For information on resource-related costs, see the [{{% vendor/name %}} pricing 
 
 The following table shows the default container profiles {{% vendor/name %}} applies when first deploying your project.
 
-| Container               | Default profile  |
-|-------------------------|------------------|
-| Chrome Headless         | HIGH_CPU         |
-| ClickHouse              | HIGH_MEMORY      |
-| .NET                    | HIGH_CPU         |  
-| Elasticsearch           | HIGH_MEMORY      |
-| Elasticsearch Premium   | HIGH_MEMORY      |
-| Elixir                  | HIGH_CPU         |
-| Go                      | HIGH_CPU         |
-| Gotenberg               | HIGH_MEMORY      |
-| InfluxDB                | HIGH_MEMORY      |  
-| Java                    | HIGH_MEMORY      |
-| Kafka                   | HIGH_MEMORY      |
-| Lisp                    | HIGH_CPU         |
-| MariaDB                 | HIGH_MEMORY      |
-| Memcached               | BALANCED         |
-| MongoDB                 | HIGH_MEMORY      |
-| MongoDB Premium         | HIGH_MEMORY      |
-| Network Storage         | HIGH_MEMORY      |
-| NodeJS                  | HIGH_CPU         |  
-| OpenSearch              | HIGH_MEMORY      |
-| Oracle Java             | HIGH_MEMORY      |  
-| Oracle MySQL            | HIGH_MEMORY      |
-| PHP                     | HIGH_CPU         | 
-| PostgreSQL              | HIGH_MEMORY      |
-| Python                  | HIGH_CPU         | 
-| RabbitMQ                | HIGH_MEMORY      |
-| Redis ephemeral         | BALANCED         |
-| Redis persistent        | BALANCED         |
-| Ruby                    | HIGH_CPU         |
-| Rust                    | HIGH_CPU         | 
-| Solr                    | HIGH_MEMORY      |
-| Varnish                 | HIGH_MEMORY      |
-| Vault KMS               | HIGH_MEMORY      |
+| Container             | Default profile |
+| --------------------- | --------------- |
+| Chrome Headless       | HIGH\_CPU       |
+| ClickHouse            | HIGH\_MEMORY    |
+| .NET                  | HIGH\_CPU       |
+| Elasticsearch         | HIGH\_MEMORY    |
+| Elasticsearch Premium | HIGH\_MEMORY    |
+| Elixir                | HIGH\_CPU       |
+| Go                    | HIGH\_CPU       |
+| Gotenberg             | HIGH\_MEMORY    |
+| InfluxDB              | HIGH\_MEMORY    |
+| Java                  | HIGH\_MEMORY    |
+| Kafka                 | HIGH\_MEMORY    |
+| Lisp                  | HIGH\_CPU       |
+| MariaDB               | HIGH\_MEMORY    |
+| Memcached             | BALANCED        |
+| MongoDB               | HIGH\_MEMORY    |
+| MongoDB Premium       | HIGH\_MEMORY    |
+| Network Storage       | HIGH\_MEMORY    |
+| NodeJS                | HIGH\_CPU       |
+| OpenSearch            | HIGH\_MEMORY    |
+| Oracle Java           | HIGH\_MEMORY    |
+| Oracle MySQL          | HIGH\_MEMORY    |
+| PHP                   | HIGH\_CPU       |
+| PostgreSQL            | HIGH\_MEMORY    |
+| Python                | HIGH\_CPU       |
+| RabbitMQ              | HIGH\_MEMORY    |
+| Redis ephemeral       | BALANCED        |
+| Redis persistent      | BALANCED        |
+| Ruby                  | HIGH\_CPU       |
+| Rust                  | HIGH\_CPU       |
+| Solr                  | HIGH\_MEMORY    |
+| Varnish               | HIGH\_MEMORY    |
+| Vault KMS             | HIGH\_MEMORY    |
 
 ### Adjust a container profile
 

@@ -25,114 +25,112 @@ The settings are used to mock the conditions of the environment locally.
 
 ## Create the tethered connection
 
-1. Create a new environment based on production.
+1.  Create a new environment based on production.
 
-   ```bash
-   {{< vendor/cli >}} branch new-feature {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}}
-   ```
+    ```bash
+    {{< vendor/cli >}} branch new-feature {{< variable "PRODUCTION_ENVIRONMENT_NAME" >}}
+    ```
 
-   If you're using a [source integration](/integrations/source.html),
-   open a merge/pull request.
+    If you're using a [source integration](/integrations/source.html),
+    open a merge/pull request.
 
-1. To open an SSH tunnel to the new environment's services, run the following command:
+2.  To open an SSH tunnel to the new environment's services, run the following command:
 
-   ```bash
-   {{< vendor/cli >}} tunnel:open
-   ```
+    ```bash
+    {{< vendor/cli >}} tunnel:open
+    ```
 
-   This command returns the addresses for SSH tunnels to all of your services.
+    This command returns the addresses for SSH tunnels to all of your services.
 
-1. Export the `PLATFORMSH_RELATIONSHIPS` environment variable with information from the open tunnel:
+3.  Export the `PLATFORMSH_RELATIONSHIPS` environment variable with information from the open tunnel:
 
-   ```bash
-   export PLATFORM_RELATIONSHIPS="$({{< vendor/cli >}} tunnel:info --encode)"
-   ```
+    ```bash
+    export PLATFORM_RELATIONSHIPS="$({{< vendor/cli >}} tunnel:info --encode)"
+    ```
 
-1.  To ensure your `settings.py` file acts as if in a {{% vendor/name %}} environment,
+4.  To ensure your `settings.py` file acts as if in a {{% vendor/name %}} environment,
     mock two variables present in active environments:
 
     ```bash
     export PLATFORM_APPLICATION_NAME=django && export PLATFORM_ENVIRONMENT=new-feature
     ```
 
-1.  To install dependencies, run the command for your package manager:
+5.  To install dependencies, run the command for your package manager:
 
     {{< codetabs >}}
-+++
-title=Pip
-highlight=bash
-markdownify=false
-+++
-python pip install -r requirements.txt
-<--->
-+++
-title=Pipenv
-highlight=bash
-markdownify=false
-+++
-pipenv install
-<--->
-+++
-title=Poetry
-highlight=bash
-markdownify=false
-+++
-poetry install
+    \+++
+    title=Pip
+    highlight=bash
+    markdownify=false
+    \+++
+    python pip install -r requirements.txt
+    <--->
+    \+++
+    title=Pipenv
+    highlight=bash
+    markdownify=false
+    \+++
+    pipenv install
+    <--->
+    \+++
+    title=Poetry
+    highlight=bash
+    markdownify=false
+    \+++
+    poetry install
     {{< /codetabs >}}
 
-
-1.  Collect static assets.
+6.  Collect static assets.
 
     {{< codetabs >}}
-+++
-title=Pip
-highlight=bash
-markdownify=false
-+++
-python manage.py collectstatic
-<--->
-+++
-title=Pipenv
-highlight=bash
-markdownify=false
-+++
-pipenv run python manage.py collectstatic
-<--->
-+++
-title=Poetry
-highlight=bash
-markdownify=false
-+++
-poetry run python manage.py collectstatic 
+    \+++
+    title=Pip
+    highlight=bash
+    markdownify=false
+    \+++
+    python manage.py collectstatic
+    <--->
+    \+++
+    title=Pipenv
+    highlight=bash
+    markdownify=false
+    \+++
+    pipenv run python manage.py collectstatic
+    <--->
+    \+++
+    title=Poetry
+    highlight=bash
+    markdownify=false
+    \+++
+    poetry run python manage.py collectstatic
     {{< /codetabs >}}
 
-
-1.  To start your local server, run the following command based on your package manager:
+7.  To start your local server, run the following command based on your package manager:
 
     {{< codetabs >}}
-+++
-title=Pip
-highlight=bash
-markdownify=false
-+++
-python manage.py runserver
-<--->
-+++
-title=Pipenv
-highlight=bash
-markdownify=false
-+++
-pipenv run python manage.py runserver
-<--->
-+++
-title=Poetry
-highlight=bash
-markdownify=false
-+++
-poetry run python manage.py runserver
+    \+++
+    title=Pip
+    highlight=bash
+    markdownify=false
+    \+++
+    python manage.py runserver
+    <--->
+    \+++
+    title=Pipenv
+    highlight=bash
+    markdownify=false
+    \+++
+    pipenv run python manage.py runserver
+    <--->
+    \+++
+    title=Poetry
+    highlight=bash
+    markdownify=false
+    \+++
+    poetry run python manage.py runserver
     {{< /codetabs >}}
 
-1.  When you've finished your work, close the tunnels to your services by running the following command:
+8.  When you've finished your work, close the tunnels to your services by running the following command:
 
     ```bash
     {{< vendor/cli >}} tunnel:close --all -y
@@ -151,19 +149,18 @@ You can merge this change into production.
 
 1.  Create a new environment called `local-config`.
 
-1.  To set up a local environment for a new {{% vendor/name %}} environment, create an executable script.
+2.  To set up a local environment for a new {{% vendor/name %}} environment, create an executable script.
 
     ```bash
     touch init-local.sh && chmod +x init-local.sh
     ```
 
-1. Fill it with the following example, depending on your package manager:
+3.  Fill it with the following example, depending on your package manager:
 
     {{< codetabs >}}
-+++
-title=Pip
-+++
-
+    \+++
+    title=Pip
+    \+++
 
 ```bash {location="init-local.sh"}
 #!/usr/bin/env bash
@@ -215,9 +212,9 @@ ddev restart
 ```
 
 <--->
-+++
+\+++
 title=Pipenv
-+++
+\+++
 
 ```bash {location="init-local.sh"}
 #!/usr/bin/env bash
@@ -270,9 +267,9 @@ ddev restart
 ```
 
 <--->
-+++
+\+++
 title=Poetry
-+++
+\+++
 
 ```bash {location="init-local.sh"}
 #!/usr/bin/env bash
@@ -326,13 +323,13 @@ ddev restart
 
     {{< /codetabs >}}
 
-1. To commit and push the revisions, run the following command:
+1.  To commit and push the revisions, run the following command:
 
-   ```bash
-   git add . && git commit -m "Add local configuration" && git push {{< vendor/cli >}} local-config
-   ```
+    ```bash
+    git add . && git commit -m "Add local configuration" && git push {{< vendor/cli >}} local-config
+    ```
 
-1.  Merge the change into production.
+2.  Merge the change into production.
 
 Once the script is merged into production,
 any user can set up their local environment by running the following commands:

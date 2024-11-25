@@ -12,12 +12,12 @@ improve the performance of your apps at each stage of their lifecycle.
 With Blackfire's unique Application Performance Monitoring (APM), Profiling,
 Alerting, and Testing features, you can achieve the following goals:
 
-- Avoid performance bottlenecks by proactively identifying issues in your code
-- Promptly solve identified issues by taking advantage of actionable recommendations
-- Create performance budgets for critical parts of your app and get alerted of any
-  problem before a change hits your production
+*   Avoid performance bottlenecks by proactively identifying issues in your code
+*   Promptly solve identified issues by taking advantage of actionable recommendations
+*   Create performance budgets for critical parts of your app and get alerted of any
+    problem before a change hits your production
 
-  {{< youtube SNqQTYzHl0o >}}
+    {{< youtube SNqQTYzHl0o >}}
 
 Blackfire is installed natively on {{< vendor/name >}} and [works integrally with the {{< vendor/name >}} workflow](https://www.youtube.com/watch?v=Bq-LFjgD6L0).
 This results in an effortless setup process and smooth user experience.
@@ -49,7 +49,7 @@ This includes monitoring, profiling, alerting, and build-related features.
 Note that Blackfire monitoring is enabled by default on your production environment.
 On other environment types, you need to [enable it](#blackfire-monitoring).
 User access settings are replicated from the {{< vendor/name >}} Console to Blackfire -- this includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
- 
+
 You might have Blackfire variables already set on your project.
 In this case, the existing variables override the settings of the automated integration.
 
@@ -136,9 +136,9 @@ cache:
 If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting)
 information doesn't help, follow these steps:
 
-1. Retrieve [startup errors](#1-retrieve-startup-errors).
-2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
-3. Send this data to [Blackfire Support](https://support.blackfire.io).
+1.  Retrieve [startup errors](#1-retrieve-startup-errors).
+2.  Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
+3.  Send this data to [Blackfire Support](https://support.blackfire.io).
 
 ### 1. Retrieve startup errors
 

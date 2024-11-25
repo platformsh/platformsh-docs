@@ -7,9 +7,9 @@ description: Learn how to enable HTTPS for your site and configure TLS connectio
 Using HTTPS for your site helps ensure your users' information remains secure.
 HTTPS provides enhanced security thanks to the following characteristics:
 
-- With HTTPS, data is encrypted so user activity can't be tracked and user information can't be stolen.
-- HTTPS prevents the corruption of files transferred from a web server to a website and vice-versa.
-- HTTPS also authenticates websites, which helps build trust with your users.
+*   With HTTPS, data is encrypted so user activity can't be tracked and user information can't be stolen.
+*   HTTPS prevents the corruption of files transferred from a web server to a website and vice-versa.
+*   HTTPS also authenticates websites, which helps build trust with your users.
 
 To enable HTTPS on your site, you need [Transport Layer Security (TLS) certificates](#tls-certificates).
 
@@ -30,9 +30,9 @@ configure your own [third-party TLS certificates](../domains/steps/tls.md).
 ### Let's Encrypt limitations
 
 When you use the Let's Encrypt [TLS certificates](#tls-certificates) provided by {{% vendor/name %}},
-the following limitations apply.  
+the following limitations apply.
 
-{{% lets_encrypt_limitations %}}
+{{% lets\_encrypt\_limitations %}}
 
 If you need more hostnames, you can obtain additional certificates
 or a wildcard certificate from a [third-party issuer](../domains/steps/tls.md).
@@ -109,10 +109,10 @@ routes:
 
 The following table presents the possible properties for `strict_transport_security`:
 
-| Name                 | Type      | Default | Description                                                                                    |
-|----------------------|-----------|---------|------------------------------------------------------------------------------------------------|
-| `enabled`            | `boolean` | `null`  | If set to `true`, HSTS is enabled for 1 year. If set to `false`, other properties are ignored. |
-| `include_subdomains` | `boolean` | `false` | To specify whether HSTS applies to all subdomains.                                             |
+| Name                 | Type      | Default | Description                                                                                                                                                                                           |
+| -------------------- | --------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enabled`            | `boolean` | `null`  | If set to `true`, HSTS is enabled for 1 year. If set to `false`, other properties are ignored.                                                                                                        |
+| `include_subdomains` | `boolean` | `false` | To specify whether HSTS applies to all subdomains.                                                                                                                                                    |
 | `preload`            | `boolean` | `false` | To add your website to the [HSTS preload list](https://hstspreload.org/). Thanks to this list, most browsers are informed that your site requires HSTS before an HSTS header response is even issued. |
 
 Note that when you enable or disable HSTS, the entire domain is affected.

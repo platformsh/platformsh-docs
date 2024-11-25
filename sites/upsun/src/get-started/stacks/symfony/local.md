@@ -18,9 +18,9 @@ Symfony Server to service containers on an active {{% vendor/name %}} environmen
 
 This methodology has several advantages:
 
-- It avoids installing anything on your local machine but PHP;
-- It ensures that you are using the same versions of all services on your local
-  machine and in production.
+*   It avoids installing anything on your local machine but PHP;
+*   It ensures that you are using the same versions of all services on your local
+    machine and in production.
 
 {{< note theme="warning" title="Warning">}}
 
@@ -56,7 +56,8 @@ This starts the Symfony Server and opens the app in your local browser.
 
     ```bash
     symfony tunnel:open
-    ````
+    ```
+
     This command returns the addresses for SSH tunnels to all of your services:
 
     ```bash
@@ -95,4 +96,4 @@ This starts the Symfony Server and opens the app in your local browser.
     symfony tunnel:close --all -y
     ```
 
-{{< guide-buttons previous="Back" next="FAQ" nextLink="/get-started/stacks/symfony/faq.md" type="*" >}}
+{{< guide-buttons previous="Back" next="FAQ" nextLink="/get-started/stacks/symfony/faq.md" type="\*" >}}

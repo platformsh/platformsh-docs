@@ -57,6 +57,7 @@ variables:
     php:
         opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
 ```
+
 `{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
 
@@ -86,23 +87,24 @@ since the preload script may change some of the configuration.
 
 `opcache.max_accelerated_files` is the maximum number of files that OPcache can cache at once.
 If this value is lower than the number of files in the app,
-the cache becomes less effective because it starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)).
+the cache becomes less effective because it starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_\(computer_science\)).
 
 To determine the maximum number of files to cache, follow these steps:
 
-1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
-   by running `{{% vendor/cli %}} ssh`.
-2. Determine roughly how many `.php` files your app has by running this command from [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
+1.  Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
+    by running `{{% vendor/cli %}} ssh`.
 
-   ```bash
-   find . -type f -name '*.php' | wc -l
-   ```
+2.  Determine roughly how many `.php` files your app has by running this command from [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
+
+    ```bash
+    find . -type f -name '*.php' | wc -l
+    ```
 
     Note that the returned valued is an approximation.
     Some apps have PHP code in files that don't end in `.php` or files that are generated at runtime.
 
-3. Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
-   PHP automatically rounds the value up to the next highest prime number.
+3.  Set `opcache.max_accelerated_files` to a value slightly higher than the returned number.
+    PHP automatically rounds the value up to the next highest prime number.
 
 An example configuration:
 
@@ -111,56 +113,58 @@ variables:
     php:
         'opcache.max_accelerated_files': 22000
 ```
+
 #### Set memory consumption
 
 `opcache.memory_consumption` is the total memory (in megabytes) that OPcache can use with FastCGI.
-If the app uses more than this, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_(computer_science)) and becomes less effective.
+If the app uses more than this, the cache starts [thrashing](https://en.wikipedia.org/wiki/Thrashing_\(computer_science\)) and becomes less effective.
 
 Determining the optimal limit to memory consumption requires executing code via a web request to get adequate statistics.
 [CacheTool](https://github.com/gordalina/cachetool) is an open-source tool to help you get the statistics.
 
 To determine the total amount of memory to use, follow these steps:
 
-1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
-   by running `{{% vendor/cli %}} ssh`.
-2. Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
-3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
-4. Make CacheTool executable with `chmod +x cachetool.phar`.
-5. Check the OPcache status for FastCGI commands by running the following command:
+1.  Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
+    by running `{{% vendor/cli %}} ssh`.
+2.  Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
+3.  Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
+4.  Make CacheTool executable with `chmod +x cachetool.phar`.
+5.  Check the OPcache status for FastCGI commands by running the following command:
 
-   ```bash
-   php cachetool.phar opcache:status --fcgi=$SOCKET
-   ```
+    ```bash
+    php cachetool.phar opcache:status --fcgi=$SOCKET
+    ```
 
-   The `--fcgi=$SOCKET` option ensures the PHP-FPM process on the server connects through the right socket.
-6. Analyze the output to determine the optimal value for `opcache.memory_consumption`.
-   The most important values from CacheTool's output are the following:
+    The `--fcgi=$SOCKET` option ensures the PHP-FPM process on the server connects through the right socket.
+6.  Analyze the output to determine the optimal value for `opcache.memory_consumption`.
+    The most important values from CacheTool's output are the following:
 
-   - `Memory used`
-   - `Memory free`
-   - `Oom restarts` (out of memory restarts)
-     If the value is different than 0, you don't have enough memory allocated to OPcache.
+    *   `Memory used`
+    *   `Memory free`
+    *   `Oom restarts` (out of memory restarts)
+        If the value is different than 0, you don't have enough memory allocated to OPcache.
 
-   If `Memory free` is too low or `Oom Restarts` too high,
-   set a higher value for memory consumption.
-7. Set `opcache.memory_consumption`.
-   Note: The unit for `opcache.memory_consumption` is megabytes.
+    If `Memory free` is too low or `Oom Restarts` too high,
+    set a higher value for memory consumption.
+7.  Set `opcache.memory_consumption`.
+    Note: The unit for `opcache.memory_consumption` is megabytes.
 
-   An example configuration:
+    An example configuration:
 
 ```yaml {configFile="app"}
 variables:
       php:
          'opcache.memory_consumption': 96
 ```
-8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool
-   with the following command:
+
+8.  [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool
+    with the following command:
 
     ```bash
     php cachetool.phar opcache:status --fcgi=$SOCKET
     ```
 
-9. Remove CacheTool by deleting the `cachetools.phar` file with `rm -rf cachetools.phar`.
+9.  Remove CacheTool by deleting the `cachetools.phar` file with `rm -rf cachetools.phar`.
 
 ### Disable OPcache timestamp validation
 
@@ -179,6 +183,7 @@ variables:
       php:
          'opcache.validate_timestamps': 0
 ```
+
 When you have disabled OPcache timestamp validation,
 you need to explicitly clear OPcache on deployment by [restarting PHP-FPM](#restart-php-fpm).
 
@@ -189,8 +194,8 @@ Doing so would prevent updates to the generated code from being loaded.
 
 To force a restart of PHP-FPM:
 
-1. Connect to your app container via SSH using the [CLI](../../development/ssh/_index.md) by running `{{% vendor/cli %}} ssh`.
-2. Run `pkill -f -u "$(whoami)" php-fpm`.
+1.  Connect to your app container via SSH using the [CLI](../../development/ssh/_index.md) by running `{{% vendor/cli %}} ssh`.
+2.  Run `pkill -f -u "$(whoami)" php-fpm`.
 
 ## Optimize your code
 
@@ -198,7 +203,9 @@ To optimize your app, consider using a [profiler](../../increase-observability/i
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
 <!-- @todo: awesome-platformsh -->
+
 <!-- @todo: what is the Upsun equivalent/application? -->
+
 The web agency [Pixelant](https://www.pixelant.net/) has released a [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics)
 that offers visualization of access logs to determine how much memory requests are using on average.
 It also offers additional insights into the operation of your site and can suggest places to further optimize your configuration or when it's time to increase your plan size.

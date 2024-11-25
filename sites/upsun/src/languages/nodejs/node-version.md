@@ -16,8 +16,8 @@ you use the Node.js version that's included in that image, if any.
 If you want to use a different Node.js version, use a version manager to install it yourself.
 You can use one of the following version managers:
 
-- [Use `n`](#use-n)
-- [Use `nvm`](#use-nvm)
+*   [Use `n`](#use-n)
+*   [Use `nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
 You could also specify a different file or use [environment variables](../../development/variables/_index.md).
@@ -27,13 +27,13 @@ You could also specify a different file or use [environment variables](../../dev
 The [`n` package](https://github.com/tj/n) works for various Unix-like systems,
 including Windows Subsystem for Linux.
 
-1. Add the desired Node.js version to your environment using `.nvmrc`, `.n-node-version`, `.node-version`, or `package.json`.
+1.  Add the desired Node.js version to your environment using `.nvmrc`, `.n-node-version`, `.node-version`, or `package.json`.
 
-   {{< codetabs >}}
+    {{< codetabs >}}
 
-+++
+\+++
 title=.nvmrc
-+++
+\+++
 
 Create a `.nvmrc` file in [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
 
@@ -43,9 +43,9 @@ v16.13.2
 
 <--->
 
-+++
+\+++
 title=.n-node-version/.node-version
-+++
+\+++
 
 Create a `.n-node-version` or `.node-version` file in [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
 
@@ -55,9 +55,9 @@ Create a `.n-node-version` or `.node-version` file in [your app root](/create-ap
 
 <--->
 
-+++
+\+++
 title=package.json
-+++
+\+++
 
 Add an `engines.node` property to your `package.json`.
 This property accepts either an exact version or a range:
@@ -70,9 +70,9 @@ This property accepts either an exact version or a range:
 }
 ```
 
-   {{< /codetabs >}}
+{{< /codetabs >}}
 
-2. Add it as a dependency:
+2.  Add it as a dependency:
 
 ```yaml {configFile="app"}
 applications:
@@ -83,9 +83,10 @@ applications:
             nodejs:
                 n: "*"
 ```
-   Adding it as a dependency ensures it's cached for future builds.
 
-3. Set the location of the `n` files using the `N_PREFIX` environment variable:
+Adding it as a dependency ensures it's cached for future builds.
+
+3.  Set the location of the `n` files using the `N_PREFIX` environment variable:
 
 ```yaml {configFile="app"}
 applications:
@@ -99,7 +100,8 @@ applications:
             env:
                 N_PREFIX: /app/.global
 ```
-4. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
+
+4.  Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
 ```yaml {configFile="app"}
 applications:
@@ -123,6 +125,7 @@ applications:
                 # Reset the location hash to recognize the newly installed version
                 hash -r
 ```
+
 Now your hooks should be able to use the specified version of Node.js.
 You can verify this by running `node -v`.
 
@@ -150,20 +153,21 @@ applications:
                 # Reset the location hash to recognize the newly installed version
                 hash -r
 ```
+
 ## Use `nvm`
 
 [Node Version Manager (`nvm`)](https://github.com/nvm-sh/nvm) is a bash script for managing Node.js versions.
 
 You can use it to:
 
-- Make a specific version available in the build and optionally the runtime container.
-- Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
-  meaning you can also have different versions in different environments.
+*   Make a specific version available in the build and optionally the runtime container.
+*   Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
+    meaning you can also have different versions in different environments.
 
 To use `nvm`, follow these steps:
 
-1. Define which `nvm` version to use using an [environment variable](../../development/variables/_index.md).
-   Add it to your [app configuration](../../create-apps/_index.md):
+1.  Define which `nvm` version to use using an [environment variable](../../development/variables/_index.md).
+    Add it to your [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
 applications:
@@ -175,8 +179,9 @@ applications:
                 # Update for your desired NVM version.
                 NVM_VERSION: v0.39.3
 ```
-2. Define your desired Node.js version using an environment variable.
-   For your base version, set it in your app configuration:
+
+2.  Define your desired Node.js version using an environment variable.
+    For your base version, set it in your app configuration:
 
 ```yaml {configFile="app"}
 applications:
@@ -189,9 +194,10 @@ applications:
                 NVM_VERSION: v0.39.3
                 NODE_VERSION: v18.14.2
 ```
-   To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
 
-3. Add a `.nvm` directory to your cache in your [build hook](../../create-apps/hooks/_index.md):
+To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
+
+3.  Add a `.nvm` directory to your cache in your [build hook](../../create-apps/hooks/_index.md):
 
 ```yaml {configFile="app"}
 applications:
@@ -215,19 +221,20 @@ applications:
                 fi
                 ln -s $PLATFORM_CACHE_DIR/.nvm $NVM_DIR
 ```
-   {{< note >}}
 
-   Instead of using a symlink between your cache and application directories,
-   you might need to copy the content of `$PLATFORM_CACHE_DIR/.nvm` into `$PLATFORM_APP_DIR/.nvm` manually.
-   To do so, run the following command:
+{{< note >}}
 
-   ```bash
-   rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR
-   ```
+Instead of using a symlink between your cache and application directories,
+you might need to copy the content of `$PLATFORM_CACHE_DIR/.nvm` into `$PLATFORM_APP_DIR/.nvm` manually.
+To do so, run the following command:
 
-   {{< /note >}}
+```bash
+rsync -av $PLATFORM_CACHE_DIR/.nvm $PLATFORM_APP_DIR
+```
 
-4. Use the cache directory and install based on the variables if not present:
+{{< /note >}}
+
+4.  Use the cache directory and install based on the variables if not present:
 
 ```yaml {configFile="app"}
 applications:
@@ -261,14 +268,15 @@ applications:
                 # Use the specified version
                 nvm use "$NODE_VERSION"
 ```
-5. Optional: To use the specified Node.js version in the runtime container and not just the build,
-   activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
 
-   ```bash {location=".environment"}
-   unset NPM_CONFIG_PREFIX
-   export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
-   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-   ```
+5.  Optional: To use the specified Node.js version in the runtime container and not just the build,
+    activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
+
+    ```bash {location=".environment"}
+    unset NPM_CONFIG_PREFIX
+    export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    ```
 
 Your final app configuration should look something like the following:
 

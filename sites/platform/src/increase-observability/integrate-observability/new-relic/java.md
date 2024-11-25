@@ -30,8 +30,8 @@ Repeat these two steps for every environment you want to monitor, making sure yo
 
 To set up New Relic in the Java project, we have two ways:
 
-- Using the Maven project
-- Download the code through `{{< vendor/configfile "app" >}}`.
+*   Using the Maven project
+*   Download the code through `{{< vendor/configfile "app" >}}`.
 
 ### Using Maven
 

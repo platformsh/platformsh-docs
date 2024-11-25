@@ -9,29 +9,30 @@ To delete a {{% vendor/name %}} project, including all data, code, and active en
 
 {{< codetabs >}}
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-- On the tile of the project you want to delete, click **{{< icon more >}} More**.
-- Click **Edit plan**.
-- Click **Delete project**.
-- To confirm your choice, enter the project's name.
-- Click **Yes, Delete Project**.
+*   On the tile of the project you want to delete, click **{{< icon more >}} More**.
+*   Click **Edit plan**.
+*   Click **Delete project**.
+*   To confirm your choice, enter the project's name.
+*   Click **Yes, Delete Project**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. Run the following command:
+1.  Run the following command:
 
-   ```bash
-   {{% vendor/cli %}} project:delete --project {{< variable "PROJECT_ID" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} project:delete --project {{< variable "PROJECT_ID" >}}
+    ```
 
-2. Read the consequences to deletion and enter `y`.
-3. Enter the project title to confirm.
+2.  Read the consequences to deletion and enter `y`.
+
+3.  Enter the project title to confirm.
 
 {{< /codetabs >}}
 

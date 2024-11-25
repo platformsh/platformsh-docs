@@ -11,9 +11,9 @@ As the **official {{% vendor/name %}} observability service**,
 With Blackfire's unique Application Performance Monitoring (APM) and Profiling features,
 you can achieve the following goals:
 
-- Avoid performance bottlenecks by proactively identifying issues in your code
-- Promptly solve identified issues by taking advantage of actionable recommendations
-- Create performance budgets for critical parts of your app and get alerted of any problem before a change hits your production
+*   Avoid performance bottlenecks by proactively identifying issues in your code
+*   Promptly solve identified issues by taking advantage of actionable recommendations
+*   Create performance budgets for critical parts of your app and get alerted of any problem before a change hits your production
 
 {{< youtube SNqQTYzHl0o >}}
 
@@ -42,15 +42,15 @@ If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without
 you need to enable the integration yourself.
 To do so, follow these steps:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{% vendor/name %}} login.
-2. In your Blackfire account, create an organization.
-   If you subscribed to Blackfire independently, your organization is automatically activated.
-   If you subscribed to Blackfire through {{% vendor/name %}},
-   [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
-3. In your organization, create an environment.
-4. In your environment, click **Settings/Environment Credentials**.
-5. Retrieve your Blackfire server ID and server token.
-6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
+1.  Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{% vendor/name %}} login.
+2.  In your Blackfire account, create an organization.
+    If you subscribed to Blackfire independently, your organization is automatically activated.
+    If you subscribed to Blackfire through {{% vendor/name %}},
+    [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+3.  In your organization, create an environment.
+4.  In your environment, click **Settings/Environment Credentials**.
+5.  Retrieve your Blackfire server ID and server token.
+6.  Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire.
@@ -62,15 +62,15 @@ to let Blackfire profile the code running on your servers.
 
 To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 
-1. Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{% vendor/name %}} login.
-2. In your Blackfire account, create an organization.
-   If you subscribed to Blackfire independently, your organization is automatically activated.
-   If you subscribed to Blackfire through {{% vendor/name %}},
-   [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
-3. In your organization, create an environment.
-4. In your environment, click **Settings/Environment Credentials**.
-5. Retrieve your Blackfire server ID and server token.
-6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
+1.  Create a [Blackfire account](https://blackfire.io/signup?target=/login), preferably using your {{% vendor/name %}} login.
+2.  In your Blackfire account, create an organization.
+    If you subscribed to Blackfire independently, your organization is automatically activated.
+    If you subscribed to Blackfire through {{% vendor/name %}},
+    [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+3.  In your organization, create an environment.
+4.  In your environment, click **Settings/Environment Credentials**.
+5.  Retrieve your Blackfire server ID and server token.
+6.  Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
 If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire.
@@ -194,9 +194,9 @@ cache:
 
 If you're experiencing issues with Blackfire and [troubleshooting](#troubleshooting) information doesn't help, follow these steps:
 
-1. Retrieve [startup errors](#1-retrieve-startup-errors).
-2. Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
-3. Send this data to [Blackfire Support](https://support.blackfire.io).
+1.  Retrieve [startup errors](#1-retrieve-startup-errors).
+2.  Retrieve your [Blackfire logs](#2-retrieve-your-blackfire-logs).
+3.  Send this data to [Blackfire Support](https://support.blackfire.io).
 
 ### 1. Retrieve startup errors
 

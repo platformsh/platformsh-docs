@@ -27,28 +27,28 @@ You can filter activities by type (such as merge, sync, or redeploy).
 
 Each environment offers ways to keep environments up to date with one another:
 
-* [{{< icon branch >}} **Branch**](/glossary.md#branch) to create a new child environment.
-* [{{< icon merge >}} **Merge**](/glossary.md#merge) to copy the current environment into its parent.
-* [{{< icon sync >}} **Sync**](/glossary.md#sync)
-  to copy changes from its parent environment into the current environment.
+*   [{{< icon branch >}} **Branch**](/glossary.md#branch) to create a new child environment.
+*   [{{< icon merge >}} **Merge**](/glossary.md#merge) to copy the current environment into its parent.
+*   [{{< icon sync >}} **Sync**](/glossary.md#sync)
+    to copy changes from its parent environment into the current environment.
 
 There are also additional options:
 
-* {{< icon settings >}} **Settings** to [configure the environment](#environment-settings).
-* {{< icon more >}} **More** to get more options.
-* **URLs** to access the deployed environment from the web.
-* **SSH** to access your project using SSH.
-* **Code**
-  * **CLI** for the command to get your project set up locally with the [{{% vendor/name %}} CLI](../cli/_index.md).
-  * **Git** for the command to clone the codebase via Git.
+*   {{< icon settings >}} **Settings** to [configure the environment](#environment-settings).
+*   {{< icon more >}} **More** to get more options.
+*   **URLs** to access the deployed environment from the web.
+*   **SSH** to access your project using SSH.
+*   **Code**
+    *   **CLI** for the command to get your project set up locally with the [{{% vendor/name %}} CLI](../cli/_index.md).
+    *   **Git** for the command to clone the codebase via Git.
 
-    If you're using {{% vendor/name %}} as your primary remote repository, the command clones from the project.
-    If you have set up an [external integration](../../integrations/source/_index.md),
-    the command clones directly from the integrated remote repository.
+        If you're using {{% vendor/name %}} as your primary remote repository, the command clones from the project.
+        If you have set up an [external integration](../../integrations/source/_index.md),
+        the command clones directly from the integrated remote repository.
 
-    If the project uses an external integration to a repository that you haven't been given access to,
-    you can't clone until your access has been updated.
-    See how to [troubleshoot source integrations](../../integrations/source/troubleshoot.md).
+        If the project uses an external integration to a repository that you haven't been given access to,
+        you can't clone until your access has been updated.
+        See how to [troubleshoot source integrations](../../integrations/source/troubleshoot.md).
 
 ## Environment URL
 
@@ -60,9 +60,9 @@ While the environment is loading in the Console, a `Waiting for URL...` message 
 If this message isn't updated once your [default environment](../../environments/_index.md#default-environment)'s information is loaded,
 follow these steps:
 
-1. Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
-2. Verify that your [application](/create-apps/app-reference/single-runtime-image.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
-3. Check that your default environment is [active](../../environments/deactivate-environment.md#reactivate-an-environment).
+1.  Check that [you have defined routes](../../define-routes/_index.md) for your default environment.
+2.  Verify that your [application](/create-apps/app-reference/single-runtime-image.md), [services](../../add-services/_index.md), and [routes](../../define-routes/_index.md) configurations are correct.
+3.  Check that your default environment is [active](../../environments/deactivate-environment.md#reactivate-an-environment).
 
 ## Environment settings
 
@@ -134,11 +134,11 @@ select it in the tree or list on the left-hand side:
 The **Overview** tab gives you information about your app.
 You can see:
 
-* The language version, the container size, the amount of persistent disk,
-  the number of cron jobs, and the command to SSH into the container.
-* A summary of [metrics for the environment](../../increase-observability/metrics/_index.md).
-* All cron jobs with their name, frequency, and command.
-* All workers with their name, size, amount of persistent disk, and command to SSH into the container.
+*   The language version, the container size, the amount of persistent disk,
+    the number of cron jobs, and the command to SSH into the container.
+*   A summary of [metrics for the environment](../../increase-observability/metrics/_index.md).
+*   All cron jobs with their name, frequency, and command.
+*   All workers with their name, size, amount of persistent disk, and command to SSH into the container.
 
 To view [the configuration file where your app is set up](../../create-apps/), click **Configuration**.
 

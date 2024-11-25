@@ -14,9 +14,9 @@ you can subscribe to the Fastly Next-Gen WAF to further protect your app from se
 If you want to subscribe to the Fastly Next-Gen WAF through {{% vendor/name %}},
 you can choose from three offers:
 
-- If you subscribe to the **Basic** or **Basic configurable** offer, your WAF is fully managed by {{% vendor/name %}}.
-- If you subscribe to the **Advanced** offer, after your WAF is installed by {{% vendor/name %}},
-  you have access to more features that you manage yourself.
+*   If you subscribe to the **Basic** or **Basic configurable** offer, your WAF is fully managed by {{% vendor/name %}}.
+*   If you subscribe to the **Advanced** offer, after your WAF is installed by {{% vendor/name %}},
+    you have access to more features that you manage yourself.
 
 To view a list of all the features included in each offer, see the following table.
 
@@ -29,7 +29,7 @@ Included features may present limitations compared to those advertised by Fastly
 {{< /note >}}
 
 | Capability                                                                                                                                               | Basic offer     | Basic configurable offer          | Advanced offer                 |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------|--------------------------------|
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | --------------------------------- | ------------------------------ |
 | Available modes                                                                                                                                          | Block mode only | Block, not blocking, off modes    | Block, not blocking, off modes |
 | [Default attack signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#attacks)                             | Yes             | Yes                               | Yes                            |
 | [Default anomaly signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#anomalies)                          | Yes             | Yes                               | Yes                            |

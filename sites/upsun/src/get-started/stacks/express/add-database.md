@@ -41,7 +41,7 @@ applications:
 	    type: mariadb:{{% latest "mariadb" %}}
 ```
 
-To connect the service to your application (``app``), add the following relationship:
+To connect the service to your application (`app`), add the following relationship:
 
 ```yaml {location=".upsun/config.yaml"}
 applications:
@@ -74,8 +74,8 @@ or [amend those default container resources](/manage-resources/adjust-resources.
 
 ## 3. Connect to the service
 
-To configure your Express app so it uses your new database, 
-you need a Node.s module named `mysql2`. 
+To configure your Express app so it uses your new database,
+you need a Node.s module named `mysql2`.
 To install it, run the following command:
 
 ```bash {location="Terminal"}
@@ -85,7 +85,7 @@ npm install mysql2
 Wherever your application code attemps to connect to the database service,
 {{% vendor/name %}} will automatically generate environment variables containing connection credentials as a function of the relationship name.
 
-In this example, the MariaDB service access is granted to the application container via the relationship `database`. 
+In this example, the MariaDB service access is granted to the application container via the relationship `database`.
 {{% vendor/name %}} will therefore generate the variable `DATABASE_HOST` (among many others), using this name.
 
 Here's an example of how this credential variable naming convention is used to connect to a MariaDB service:

@@ -23,8 +23,9 @@ and the estimated average memory size of each process.
 
 You have two ways to increase the number of workers:
 
-- Adjust the [worker sizing hints](./fpm.md) for your project.
-- Upgrade your {{% vendor/name %}} plan to get more computing resources.
+*   Adjust the [worker sizing hints](./fpm.md) for your project.
+*   Upgrade your {{% vendor/name %}} plan to get more computing resources.
+
 ## Execution timeout
 
 If your PHP app can't handle the amount of traffic or is slow,
@@ -35,7 +36,7 @@ WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /in
 ```
 
 This means your PHP process is running longer than allowed.
-You can adjust the `max_execution_time` value in `php.ini`. See also `request_terminate_timeout` in the [App reference](/create-apps/app-reference/single-runtime-image.md#runtime). 
+You can adjust the `max_execution_time` value in `php.ini`. See also `request_terminate_timeout` in the [App reference](/create-apps/app-reference/single-runtime-image.md#runtime).
 
 The most common causes of a timeout are an infinite loop (which is a bug that you should fix)
 or the work itself requires a long time to complete.
@@ -48,15 +49,16 @@ which can provide an indication of what code paths to investigate.
 grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 -r -n | head -20
 ```
 
-If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
+If you see that the processing time of certain requests is slow (such as taking longer than 1000 ms),
 you should consider a continuous observability solution like [Blackfire](../../increase-observability/integrate-observability/blackfire.md)
 to monitor your app and help you improve the performance issue.
 
 Otherwise, you may check if the following options are applicable:
 
-- Find the most visited pages and see if they can be cached and/or put behind a CDN.
-  Refer to [how caching works](../../define-routes/cache.md).
-- Upgrade your {{% vendor/name %}} plan to get more computing resources.
+*   Find the most visited pages and see if they can be cached and/or put behind a CDN.
+    Refer to [how caching works](../../define-routes/cache.md).
+*   Upgrade your {{% vendor/name %}} plan to get more computing resources.
+
 ## Troubleshoot a crashed PHP process
 
 If your PHP process crashed with a segmentation fault,
@@ -82,9 +84,9 @@ WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 secon
 That means the memory usage of your container exceeds the limit allowed on your plan, so the kernel kills the offending process.
 To solve this issue, try the following approaches:
 
-- Check if the memory usage of your app is as expected and try to optimize it.
-- Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
-- Upgrade your {{% vendor/name %}} plan to get more computing resources.
+*   Check if the memory usage of your app is as expected and try to optimize it.
+*   Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
+*   Upgrade your {{% vendor/name %}} plan to get more computing resources.
 
 ## Restart PHP processes stuck during a build or deployment
 
@@ -111,11 +113,11 @@ or the requests are taking too long to be processed (such as with calls to exter
 
 To address the issue, you can:
 
-- Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
-  This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
-  For more details, consult [PHP-FPM sizing](./fpm.md).
-- Add a [CDN](../../domains/cdn/_index.md).
-- Set up [HTTP caching](/learn/bestpractices/http-caching.md).
-- Follow the global [performance tuning recommendations](./tuning.md).
-- Remove stale plugins and extensions when using a CMS.
-- Upgrade the container size to get more resources.
+*   Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
+    This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
+    For more details, consult [PHP-FPM sizing](./fpm.md).
+*   Add a [CDN](../../domains/cdn/_index.md).
+*   Set up [HTTP caching](/learn/bestpractices/http-caching.md).
+*   Follow the global [performance tuning recommendations](./tuning.md).
+*   Remove stale plugins and extensions when using a CMS.
+*   Upgrade the container size to get more resources.

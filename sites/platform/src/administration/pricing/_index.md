@@ -7,7 +7,7 @@ layout: single
 
 {{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.
 
-Full pricing information is available at https://platform.sh/pricing/.
+Full pricing information is available at <https://platform.sh/pricing/>.
 The resources listed there are for [production environments](#production-environments).
 
 You can switch between plans freely, adding or removing resources, including [extras](#extras).
@@ -55,10 +55,10 @@ If you have the [manage plans permission](../users.md#organization-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
 
-1. In your project in the Console, click **{{< icon settings >}} Settings**.
-2. Click **Edit plan**.
-3. Under **Environments application size**, select a new size.
-4. Click **Save** to accept the new plan cost.
+1.  In your project in the Console, click **{{< icon settings >}} Settings**.
+2.  Click **Edit plan**.
+3.  Under **Environments application size**, select a new size.
+4.  Click **Save** to accept the new plan cost.
 
 This increases the size for all app containers.
 It doesn't affect service containers.
@@ -67,10 +67,10 @@ It doesn't affect service containers.
 
 To switch plans, follow these steps:
 
-1. In your project in the Console, click **{{< icon settings >}} Settings**.
-2. Click **Edit plan**.
-3. Under **Plans**, select a new plan.
-4. Click **Save** to accept the new plan cost.
+1.  In your project in the Console, click **{{< icon settings >}} Settings**.
+2.  Click **Edit plan**.
+3.  Under **Plans**, select a new plan.
+4.  Click **Save** to accept the new plan cost.
 
 ## Extras
 
@@ -82,19 +82,19 @@ you're billed around 1/3 of the current price for a full month.
 
 You can add the following extras:
 
-* Users -- for an additional fee per user, except at certain [agency levels](#agencies).
-* Environments -- extra preview environments can be added in multiples of 3.
-* Storage -- extra storage can be added for a fee per 5&nbsp;GB per environment.
-  So if you have added 3 additional environments for a total of 6 preview environments,
-  the fee is multiplied by 6.
-  To ensure environments are available on demand, the fee applies to all environments you have added
-  even if you aren't currently actively using them.
+*   Users -- for an additional fee per user, except at certain [agency levels](#agencies).
+*   Environments -- extra preview environments can be added in multiples of 3.
+*   Storage -- extra storage can be added for a fee per 5 GB per environment.
+    So if you have added 3 additional environments for a total of 6 preview environments,
+    the fee is multiplied by 6.
+    To ensure environments are available on demand, the fee applies to all environments you have added
+    even if you aren't currently actively using them.
 
-  You can make any changes up to 100&nbsp;GB yourself.
-  For storage over 100&nbsp;GB, open a [support ticket](/learn/overview/get-support).
+    You can make any changes up to 100 GB yourself.
+    For storage over 100 GB, open a [support ticket](/learn/overview/get-support).
 
-  You currently can't reduce your storage on your own for technical reasons.
-  If you need to reduce storage, open a [support ticket](/learn/overview/get-support).
+    You currently can't reduce your storage on your own for technical reasons.
+    If you need to reduce storage, open a [support ticket](/learn/overview/get-support).
 
 ## Multiple apps in a single project
 
@@ -132,54 +132,57 @@ If you experience repeated overages, please reach out to your Customer Success M
 
 Plans with a Fastly CDN service or the extra Fastly Service include the following:
 
-- 1&nbsp;TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
-- 50 million ingress (incoming) requests on the CDN per month
+*   1 TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
+*   50 million ingress (incoming) requests on the CDN per month
 
 *Plans without the Fastly Service are instead charged at the following origin prices.*
 
 ### Overage prices
 
-| SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
-|-----------------|-----------------------------------------------------------------------------------------|------|------|--------|--------|------|
-| `EDGE-ORN-OVERAGE-1TB`    | Origin Egress Bandwidth: 1TB               | $209  | €155  | AU$303 | CA$284 | £161  |
-| `EDGE-BDW-OVERAGE-1TB`    | Edge Egress Bandwidth: 1TB               | $88  | €65  | AU$128 | CA$119 | £68  |
-| `EDGE-REQ-OVERAGE-50M`    | Ingress Requests: 50M               | $66  | €49  | AU$96 | CA$90 | £51  |
-
+| SKU                    | Description                  | USD  | EUR  | AUD    | CAD    | GBP  |
+| ---------------------- | ---------------------------- | ---- | ---- | ------ | ------ | ---- |
+| `EDGE-ORN-OVERAGE-1TB` | Origin Egress Bandwidth: 1TB | $209 | €155 | AU$303 | CA$284 | £161 |
+| `EDGE-BDW-OVERAGE-1TB` | Edge Egress Bandwidth: 1TB   | $88  | €65  | AU$128 | CA$119 | £68  |
+| `EDGE-REQ-OVERAGE-50M` | Ingress Requests: 50M        | $66  | €49  | AU$96  | CA$90  | £51  |
 
 ### DDoS surge protection
 
 If your site is suffering from a DDoS attack, overages may apply.
 You can contact your Customer Success Manager to add DDoS surge protection to your plan.
 
-| SKU                    | Description                                | USD    | EUR    | AUD      | CAD      | GBP    |
-|------------------------|--------------------------------------------|--------|--------|----------|----------|--------|
+| SKU                    | Description                                | USD    | EUR   | AUD      | CAD      | GBP    |
+| ---------------------- | ------------------------------------------ | ------ | ----- | -------- | -------- | ------ |
 | `EDGE-DDOS-PROTECTION` | Surge protection for DDoS related overages | $2,400 | €1778 | AU$3,480 | CA$3,257 | £1,847 |
 
 ## Agencies
 
 Agencies have access to several partner levels with many perks.
 
-* Agency partner levels: Registered, Bronze, Silver, Gold, Platinum, and Diamond
-* Free user licenses: Silver and above
-* Free development plan: Gold and above
-* Access to an agency-speciﬁc Small plan price: Bronze and above
-* Agency discounts for plans depending on the combination of the account tier and agency partner level:
+*   Agency partner levels: Registered, Bronze, Silver, Gold, Platinum, and Diamond
 
-  | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
-  |-------------------|------------|--------|--------|------|----------|---------|
-  | User license      | –          | –      | Free   | Free | Free     | Free    |
-  | Development plan  | –          | –      | –      | Free | Free     | Free    |
-  | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
-  | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
-  | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
-  | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |
+*   Free user licenses: Silver and above
 
-* Agency partners may host their own agency website for free.
-  The size of the plan depends on the agency tier as seen in the following table:
+*   Free development plan: Gold and above
 
-  | Registered | Bronze     | Silver        | Gold        | Platinum   | Diamond    |
-  |------------|------------|---------------|-------------|------------|------------|
-  | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
+*   Access to an agency-speciﬁc Small plan price: Bronze and above
+
+*   Agency discounts for plans depending on the combination of the account tier and agency partner level:
+
+    | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
+    | ----------------- | ---------- | ------ | ------ | ---- | -------- | ------- |
+    | User license      | –          | –      | Free   | Free | Free     | Free    |
+    | Development plan  | –          | –      | –      | Free | Free     | Free    |
+    | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
+    | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
+    | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
+    | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |
+
+*   Agency partners may host their own agency website for free.
+    The size of the plan depends on the agency tier as seen in the following table:
+
+    | Registered | Bronze     | Silver        | Gold        | Platinum   | Diamond    |
+    | ---------- | ---------- | ------------- | ----------- | ---------- | ---------- |
+    | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
 
 [Learn more and join today](https://platform.sh/solutions/digital-agencies/).
 
@@ -187,17 +190,17 @@ If you have any questions, don't hesitate to [contact Sales](https://platform.sh
 
 ## Sponsored sites
 
-{{% vendor/name %}} provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community. 
-That offering can include either a project on {{% vendor/name %}}, or profilable environments through Blackfire.io, depending on the needs of the project. 
+{{% vendor/name %}} provides sponsored hosting for Free Software projects, tech community events and organizations as part of our effort to support the Free Software community.
+That offering can include either a project on {{% vendor/name %}}, or profilable environments through Blackfire.io, depending on the needs of the project.
 
 ## Dunning process
 
-In instances where a payment has failed, Platform.sh will make three separate attempts to take the outstanding balance from your account. 
+In instances where a payment has failed, Platform.sh will make three separate attempts to take the outstanding balance from your account.
 
-These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected.  
+These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected.
 
 <div align="center">
 
-{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+{{< get-started/next-button next="<https://platform.sh/community/open-source/apply/>" nextText="Apply" >}}
 
 </div>

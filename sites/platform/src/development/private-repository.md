@@ -14,25 +14,24 @@ add the project's public SSH key to your Git repository's deploy keys.
 
 ## 1. Get your project's public key
 
-1. In the Console, open the project you want.
-2. Click **{{< icon settings >}} Settings**.
-3. Under **Project settings**, click **Deploy key**.
-4. Click **{{< icon copy >}} Copy**.
+1.  In the Console, open the project you want.
+2.  Click **{{< icon settings >}} Settings**.
+3.  Under **Project settings**, click **Deploy key**.
+4.  Click **{{< icon copy >}} Copy**.
 
 ![Deploy Key](/images/management-console/settings-deploy-key.png "0.5")
 
 ## 2. Add the key to your repository in your Git provider
 
-* [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
-* [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
-* [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/configure-repository-settings/)
+*   [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys)
+*   [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
+*   [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/configure-repository-settings/)
 
 If you're only pulling code, the key doesn't need write permissions.
 
 Now your {{% vendor/name %}} project can access your private repository via SSH, including to add dependencies.
 
-This means you can access the private repository through links like:
-<code>git@{{% variable "GIT_PROVIDER" %}}:{{% variable "PATH_OR_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
+This means you can access the private repository through links like: <code>git@{{% variable "GIT\_PROVIDER" %}}:{{% variable "PATH\_OR\_USERNAME" %}}/{{% variable "REPOSITORY" %}}.git</code>.
 For example, you can clone a repository in your [`build` hook](../create-apps/hooks/_index.md):
 
 ```yaml {configFile="app"}

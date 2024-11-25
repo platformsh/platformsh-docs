@@ -12,9 +12,9 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 If you use one of the following frameworks, follow its guide:
 
-- [Ibexa DXP](../guides/ibexa/deploy.md#solr)
-- [Jakarta EE](../guides/jakarta/deploy.md#apache-solr)
-- [Spring](../guides/spring/solr.md)
+*   [Ibexa DXP](../guides/ibexa/deploy.md#solr)
+*   [Jakarta EE](../guides/jakarta/deploy.md#apache-solr)
+*   [Spring](../guides/spring/solr.md)
 
 ## Supported versions
 
@@ -63,12 +63,12 @@ so migrate to one of the [supported versions](#supported-versions).
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -105,7 +105,7 @@ To define the service, use the `solr` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -121,12 +121,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -161,43 +161,43 @@ To use the configured service in your app, add a configuration file similar to t
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Go
 file=static/files/fetch/examples/golang/solr
 highlight=go
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/solr
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/solr
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/solr
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/solr
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -253,8 +253,8 @@ solr:
 
 The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined:
 
-- `mainindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core1-conf` directory
-- `extraindex` &mdash; the configuration for which is in the `{{< vendor/configdir >}}/core2-conf` directory.
+*   `mainindex` — the configuration for which is in the `{{< vendor/configdir >}}/core1-conf` directory
+*   `extraindex` — the configuration for which is in the `{{< vendor/configdir >}}/core2-conf` directory.
 
 It then defines two endpoints: `main` is connected to the `mainindex` core while `extra` is connected to the `extraindex` core. Two endpoints may be connected to the same core but at this time there would be no reason to do so. Additional options may be defined in the future.
 
@@ -331,8 +331,8 @@ solr:
 
 In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created:
 
-- `english_index` uses the defined configset, but specifically the `{{< vendor/configdir >}}/configsets/solr8/english/schema.xml` file
-- `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file.
+*   `english_index` uses the defined configset, but specifically the `{{< vendor/configdir >}}/configsets/solr8/english/schema.xml` file
+*   `arabic_index` is identical except for using the `{{< vendor/configdir >}}/configsets/solr8/arabic/schema.xml` file.
 
 Each of those cores is then exposed as its own endpoint.
 
@@ -414,9 +414,9 @@ after which the Solr server administrative interface is available at `http://loc
 This is the complete list of plugins that are available and loaded by default:
 
 | Plugin                                                                             | Description                                            | 8.11 | 9.x |
-|------------------------------------------------------------------------------------|--------------------------------------------------------|------|-----|
-| [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. |*     |*    |
-| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.                                                                                                                                      |*     |*    |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------ | ---- | --- |
+| [JTS](https://solr.apache.org/guide/8_1/spatial-search.html#jts-and-polygons-flat) | Library for creating and manipulating vector geometry. | \*   | \*  |
+| [ICU4J](https://solr.apache.org/guide/8_3/language-analysis.html)                  | Library providing Unicode and globalization support.   | \*   | \*  |
 
 ## Upgrading
 

@@ -4,22 +4,22 @@ sidebarTitle: "Fastly setup"
 weight: 1
 description: Learn how to configure your Fastly CDN.
 ---
- 
+
 You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
 
 To set up a Fastly CDN with your own Fastly subscription,
 follow the instructions on this page.
 
-If you are using a Fastly CDN provided by {{% vendor/name %}}, 
-for example as part of a Dedicated project,  
-see guidance about [Fastly CDNs managed by {{% vendor/name %}}](./managed-fastly.md).  
+If you are using a Fastly CDN provided by {{% vendor/name %}},
+for example as part of a Dedicated project,\
+see guidance about [Fastly CDNs managed by {{% vendor/name %}}](./managed-fastly.md).
 
 ## Before you begin
 
 You need:
 
-- An up-and-running {{% vendor/name %}} project
-- A [Fastly](https://www.fastly.com/) CDN subscription
+*   An up-and-running {{% vendor/name %}} project
+*   A [Fastly](https://www.fastly.com/) CDN subscription
 
 {{% disable-cache CDN="Fastly" %}}
 

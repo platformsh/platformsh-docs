@@ -21,6 +21,7 @@ The **General** section shows you the project's region and allows you to update 
 The **Access** section allows you to [manage user access to the project](../users.md).
 
 <!-- @todo: for the release of teams -->
+
 <!-- The **Access** section allows you to [manage user access](../users.md),
 and [teams access](../teams.md) to a project. -->
 

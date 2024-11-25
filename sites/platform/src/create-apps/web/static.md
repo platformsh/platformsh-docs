@@ -39,9 +39,10 @@ app:
 ```
 
 See more information on the required minimal settings:
-- [Top-level properties](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
-- [`web` property](/create-apps/app-reference/single-runtime-image.md#web).
-- [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
+
+*   [Top-level properties](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
+*   [`web` property](/create-apps/app-reference/single-runtime-image.md#web).
+*   [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
 
 ## Add more features
 
@@ -84,7 +85,8 @@ web:
 ```
 
 You can also set a `Cache-Control` header in your rules.
-```yaml {configFile="app"}
+
+````yaml {configFile="app"}
 web:
     locations:
         '/':
@@ -108,8 +110,7 @@ use the following configuration:
 web:
     commands:
         start: sleep infinity
-```
-
+````
 
 You can also use this place to start small programs,
 such as a [script to handle 404 errors](https://community.platform.sh/t/custom-404-page-for-a-static-website/637).

@@ -17,7 +17,7 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="dotnet" status="supported" environment="grid" >}}
 
-{{% language-specification type="dotnet" display_name=".Net Core" %}}
+{{% language-specification type="dotnet" display\_name=".Net Core" %}}
 
 ```yaml {configFile="app"}
 applications:
@@ -69,7 +69,7 @@ make sure to call `dotnet build-server shutdown` at the end of your build hook.
 .NET Core applications should be started using the `web.commands.start` directive in `{{< vendor/configfile "app" >}}`.
 This ensures that the command starts at the right moment and stops gracefully when a redeployment needs to be executed.
 Also, should the program terminate for any reason, it's automatically restarted.
-Note that the start command _must_ run in the foreground.
+Note that the start command *must* run in the foreground.
 
 Incoming requests are passed to the application using either a TCP (default) or Unix socket.
 The application must use the [appropriate environment variable](/create-apps/app-reference/single-runtime-image.md#where-to-listen) to determine the URI to listen on.

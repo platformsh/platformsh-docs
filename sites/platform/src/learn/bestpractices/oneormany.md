@@ -10,9 +10,10 @@ This gives you access to a large variety of setups and allows you to seamlessly 
 from a monolith with a single application server to a more elaborate and effective topology.
 
 You can set up multiple apps to achieve the following:
-- Keep your backend and frontend systems separate
-- Run workers alongside your main app
-- Or even go for a full microservices architecture
+
+*   Keep your backend and frontend systems separate
+*   Run workers alongside your main app
+*   Or even go for a full microservices architecture
 
 {{% vendor/name %}} makes implementing such setups and switching from one to the other pain-free.
 
@@ -43,31 +44,31 @@ By design, {{% vendor/name %}} doesn't allow your app to access services in anot
 
 So separate projects are appropriate in the following cases:
 
-- Your apps are for different customers/clients
-- Your apps don't need to directly connect to the same database
-- Different teams are working on different apps
-- You want to develop true microservices, where each microservice is a fully standalone process with its own data
+*   Your apps are for different customers/clients
+*   Your apps don't need to directly connect to the same database
+*   Different teams are working on different apps
+*   You want to develop true microservices, where each microservice is a fully standalone process with its own data
 
 When in doubt over your own needs,
 it's better to keep separate projects than build an architecture that may prove difficult for you to maintain.
 
 ## Clustered applications
 
-A clustered application is one where your project requires multiple _app services_ that are all part of the same conceptual project.
+A clustered application is one where your project requires multiple *app services* that are all part of the same conceptual project.
 
 Clustered applications can range from a straightforward headless architecture, where frontend and backend systems are separated,
 to micro-services with dozens of apps in multiple runtimes and frameworks forming a consistent whole.
 Meaning, removing one of the app services would break the others.
 
 {{% vendor/name %}} allows you to configure access from one service to another
-without having to worry about service discovery or complex _ingress controllers_.
+without having to worry about service discovery or complex *ingress controllers*.
 [Configuring incoming routes](/define-routes/_index.md) is straightforward.
 You can have services that are only exposed to another service as well as services that are exposed to the internet.
 
 In a clustered application, you can have one of the following configurations:
 
-- Multiple [`{{< vendor/configfile "app" >}}` files](/create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
-- A single app that spawns one or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers) that run background processes
+*   Multiple [`{{< vendor/configfile "app" >}}` files](/create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
+*   A single app that spawns one or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers) that run background processes
 
 {{< note >}}
 
@@ -81,14 +82,14 @@ and [Solr](/add-services/solr.md) services support defining multiple databases o
 which is significantly more efficient than defining multiple services.
 [Redis](/add-services/redis.md), [Memcached](/add-services/memcached.md),
 [Elasticsearch](/add-services/elasticsearch.md), and [RabbitMQ](/add-services/rabbitmq.md)
-natively support multiple bins (also called _queues_ or _indexes_) defined by the client application as part of the request.
+natively support multiple bins (also called *queues* or *indexes*) defined by the client application as part of the request.
 Therefore, they don't need additional configuration on {{% vendor/name %}}.
 
 Clustered applications are appropriate in the following cases:
 
-- You want one user-facing app and an entirely separate admin-facing app that are both operating on the same data
-- You want to have a user-facing app and a separate worker process (either the same code or separate) that handles background tasks
-- You want a single conceptual app written in multiple programming languages
+*   You want one user-facing app and an entirely separate admin-facing app that are both operating on the same data
+*   You want to have a user-facing app and a separate worker process (either the same code or separate) that handles background tasks
+*   You want a single conceptual app written in multiple programming languages
 
 ## A note on "multi-site" applications
 
@@ -101,9 +102,9 @@ is supported on {{% vendor/name %}} but makes the setup process for each site mo
 
 Leveraging the multi-site capabilities of an app are appropriate only in the following cases:
 
-- There is only a single team working on all of the "sites" involved
-- All "sites" should be updated simultaneously as a single unit
-- Each individual site is relatively low traffic, such that the aggregate traffic is appropriate for your plan size
-- All sites really do use the same codebase with no variation, just different data
+*   There is only a single team working on all of the "sites" involved
+*   All "sites" should be updated simultaneously as a single unit
+*   Each individual site is relatively low traffic, such that the aggregate traffic is appropriate for your plan size
+*   All sites really do use the same codebase with no variation, just different data
 
 Otherwise, [separate projects](#separate-projects) are a better long-term plan.

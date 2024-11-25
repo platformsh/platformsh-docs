@@ -20,9 +20,9 @@ When you create a new project,
 
 {{% vendor/name %}} monitors disk space usage on all applications and services in your cluster.
 
-* When available disk space drops below 20% or 4&nbsp;GB, whichever is smaller, a warning notification is generated.
-* When available disk space drops below 10% or 2&nbsp;GB, whichever is smaller, a critical notification is generated.
-* When available disk space returns above 20% or 4&nbsp;GB, whichever is smaller, an all-clear notification is generated.
+*   When available disk space drops below 20% or 4 GB, whichever is smaller, a warning notification is generated.
+*   When available disk space drops below 10% or 2 GB, whichever is smaller, a critical notification is generated.
+*   When available disk space returns above 20% or 4 GB, whichever is smaller, an all-clear notification is generated.
 
 Notifications are generated every 5 minutes, so there may be a brief delay between when the threshold is crossed and when the notification is triggered.
 
@@ -57,8 +57,8 @@ To edit the `recipients` that receive the default email notification, use the `i
 
 The `recipients` field may be any valid email address, or one of the following special values.
 
-* `#admins` maps to all project admins and up.
-* `#viewers` maps to everyone with access to the project.
+*   `#admins` maps to all project admins and up.
+*   `#viewers` maps to everyone with access to the project.
 
 To add a new email notification, register a `health.email` integration as follows:
 
@@ -82,34 +82,37 @@ A notification can trigger a message to be posted to a Slack channel via a [Slac
 If you are already have a Slack app, you can jump to [enabling notifications](#2-enable-notifications).
 {{% /note %}}
 
-1. Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
-2. Click **Create an App**.
-3. Choose if you want to build your app from scratch, or via [an app manifest](https://api.slack.com/concepts/manifests).
-4. Give your app a name.
-5. Select a workspace to install your app in.
-   {{% note %}}
-   If you are not an admin of the selected workspace, request approval to install your app there.
-   {{% /note %}}
-6. Click **Create App**.
+1.  Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
+2.  Click **Create an App**.
+3.  Choose if you want to build your app from scratch, or via [an app manifest](https://api.slack.com/concepts/manifests).
+4.  Give your app a name.
+5.  Select a workspace to install your app in.
+    {{% note %}}
+    If you are not an admin of the selected workspace, request approval to install your app there.
+    {{% /note %}}
+6.  Click **Create App**.
 
 #### 2. Enable notifications
 
-1. Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
-2. Go to **Features** > **OAuth & Permissions** in the sidebar.
-3. Scroll down to the **Scopes** area and select **User Token Scopes**.
-4. Click **Add an OAuth Scope** to add the `chat:write` scope.
+1.  Open the [Slack API website](https://api.slack.com/) and go to **Your apps**.
+
+2.  Go to **Features** > **OAuth & Permissions** in the sidebar.
+
+3.  Scroll down to the **Scopes** area and select **User Token Scopes**.
+
+4.  Click **Add an OAuth Scope** to add the `chat:write` scope.
 
     ![Slack app scopes](/images/slack/slack-app-scopes.png "0.30")
 
-5. Go to **Settings** > **Install app** in the sidebar.
-   {{% note %}}
-   If you are _not_ an admin of the workspace, you need to provide a link to install the app into the workspace and onto a channel.
+5.  Go to **Settings** > **Install app** in the sidebar.
+    {{% note %}}
+    If you are *not* an admin of the workspace, you need to provide a link to install the app into the workspace and onto a channel.
 
-   Once the app is approved and installed, a **User OAuth Token** is provided in your app settings. 
-   Copy the token, and use it in the next step.
-   {{% /note %}}
+    Once the app is approved and installed, a **User OAuth Token** is provided in your app settings.
+    Copy the token, and use it in the next step.
+    {{% /note %}}
 
-6. Using the **User OAuth Token**, run the following command:
+6.  Using the **User OAuth Token**, run the following command:
 
     ```bash
     {{% vendor/cli %}} integration:add --type health.slack --token {{% variable "USER_OAUTH_TOKEN" %}} --channel {{% variable "CHANNEL_NAME" %}} --project {{% variable "PROJECT_ID" %}}
@@ -120,13 +123,14 @@ If you are already have a Slack app, you can jump to [enabling notifications](#2
     ```bash
     {{% vendor/cli %}} integration:add --type health.slack ... --channel '#project-notifications' ...
     ```
-6. When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel. 
+
+7.  When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel.
 
 {{< note theme="info" title="Bot users v. Slack apps">}}
-Previously, {{% vendor/name %}} allowed for the configuration of health notifications sent to Slack via _bot users_ and their associated API tokens.
+Previously, {{% vendor/name %}} allowed for the configuration of health notifications sent to Slack via *bot users* and their associated API tokens.
 As of June 2024, Slack has deprecated bot users, and integrations must be configured using Slack apps as described above.
 
-If you already have defined an integration using a bot user API token, it will continue to work properly, though you should consider upgrading your processes to the above settings to avoid any future retirement. 
+If you already have defined an integration using a bot user API token, it will continue to work properly, though you should consider upgrading your processes to the above settings to avoid any future retirement.
 {{< /note >}}
 
 ### PagerDuty notifications
@@ -137,13 +141,11 @@ Copy the "Integration Key" as known as the "routing key" for the integration.
 
 Now register a `health.pagerduty` integration as follows:
 
-
 ```bash
 {{% vendor/cli %}} integration:add --type health.pagerduty --routing-key YOUR_ROUTING_KEY
 ```
 
 Any notification will now trigger an alert in PagerDuty.
-
 
 ## Validate the integration
 

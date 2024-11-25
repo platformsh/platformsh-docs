@@ -39,20 +39,19 @@ Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` fi
 
 {{< /note >}}
 
-
 If your project doesn't support PHP configuration through a `php.ini` file,
 you can still change all PHP options that can be changed at runtime.
 For example, change the memory limit using `ini_set('memory_limit','1024M');`.
 
 For other PHP options, such as the following, [open a support ticket](/learn/overview/get-support.md):
 
-* `max_execution_time`
-* `max_input_time`
-* `max_input_vars`
-* `memory_limit`
-* `post_max_size`
-* `request_order`
-* `upload_max_filesize`
+*   `max_execution_time`
+*   `max_input_time`
+*   `max_input_vars`
+*   `memory_limit`
+*   `post_max_size`
+*   `request_order`
+*   `upload_max_filesize`
 
 ### Xdebug
 
@@ -62,7 +61,7 @@ So you can keep Xdebug always on and not worry about performance issues as it's 
 
 **To obtain the Xdebug key:**
 
-1. Open a [support ticket](/learn/overview/get-support).
+1.  Open a [support ticket](/learn/overview/get-support).
 
 {{< note >}}
 
@@ -70,7 +69,7 @@ Staging and Production environments have separate keys.
 
 {{< /note >}}
 
-2. Set that key in the Xdebug helper for your browser. Whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
+2.  Set that key in the Xdebug helper for your browser. Whenever you have Xdebug enabled, the request uses the alternate development PHP-FPM process with Xdebug.
 
 ## Solr
 
@@ -99,14 +98,14 @@ It's assumed you want the settings the same, unless you state otherwise in the t
 
 The following settings require a [support ticket](/learn/overview/get-support):
 
-* [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
-* [Service configuration](../../add-services/_index.md)
-* Relationships among services and apps
-* Plan upsizing
-* Increasing storage
-* Allocating storage among mounts and services
-* [PHP extensions](../../languages/php/extensions.md)
-* Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations))
+*   [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
+*   [Service configuration](../../add-services/_index.md)
+*   Relationships among services and apps
+*   Plan upsizing
+*   Increasing storage
+*   Allocating storage among mounts and services
+*   [PHP extensions](../../languages/php/extensions.md)
+*   Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations))
 
 ## Logs
 

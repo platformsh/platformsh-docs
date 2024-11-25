@@ -20,38 +20,37 @@ Branching an environment means creating a new branch in the Git repository and a
 
 The new environment includes all of the parent environment's:
 
-- Code
-- Running services and their configuration (only copies, not the data)
-- Data that's stored on disk (databases, uploaded files, and so on)
+*   Code
+*   Running services and their configuration (only copies, not the data)
+*   Data that's stored on disk (databases, uploaded files, and so on)
 
 This means that when you branch an environment, you also branch the complete infrastructure.
 
 When you branch an environment, three things happen:
 
-- A new branch is created in Git.
-- Your apps are rebuilt on the new branch, if necessary.
-  (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
-- The new branch is deployed.
+*   A new branch is created in Git.
+*   Your apps are rebuilt on the new branch, if necessary.
+    (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
+*   The new branch is deployed.
 
 To create a new branch from an existing environment:
 
-
 {{< codetabs >}}
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-- Navigate to the environment you want to branch from.
-- Click {{< icon branch >}} **Branch**.
-- Enter a name for the new branch.
-- Select which environment type it should be.
-- Click **Create branch**.
+*   Navigate to the environment you want to branch from.
+*   Click {{< icon branch >}} **Branch**.
+*   Enter a name for the new branch.
+*   Select which environment type it should be.
+*   Click **Create branch**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run:
 
@@ -88,7 +87,6 @@ That may include a database container, an Elasticsearch container,
 a container for your application, and more.
 They're always deployed together as a single unit.
 
-
 ## Deprecated versions
 
 Older versions of languages and services eventually reach the end of their lives.
@@ -123,10 +121,10 @@ and you can set up any other branch as a testing environment.
 
 {{< vendor/name >}} offers three environment types:
 
-- Your **production environment** is your live site.
-- A **development environment** is an isolated environment where you can safely develop new features without affecting production.
-- A **staging environment** has a similar configuration to your production environment (but usually with less resources for cost optimization).
-  It is useful to perform user acceptance testing in a production-like setting.
+*   Your **production environment** is your live site.
+*   A **development environment** is an isolated environment where you can safely develop new features without affecting production.
+*   A **staging environment** has a similar configuration to your production environment (but usually with less resources for cost optimization).
+    It is useful to perform user acceptance testing in a production-like setting.
 
 The phrase "[preview environment](#preview-environment)" can apply to both a development or staging environment,
 as it merely describes a non-production environment.
@@ -139,14 +137,14 @@ To help you get started {{< vendor/name >}} offers a monthly $19 USD perk called
 
 ### How do I apply this perk?
 
-Whether you are a new or existing customer, **_no action is needed_**. Just visit the billing section of your organization to see it applied.
+Whether you are a new or existing customer, ***no action is needed***. Just visit the billing section of your organization to see it applied.
 
 ### Why don't I see the full amount applied to my bill?
 
 There are two reasons why you may not see the full amount applied to your bill.
 
-1. The First Project Incentive is prorated. If your billing cycle has started mid-month, it will be reflected in the amount applied to your bill.
-2. Your bill can never be less than $0. For example, if your total bill for the month is $10, the First Project Incentive will only apply up to $10.
+1.  The First Project Incentive is prorated. If your billing cycle has started mid-month, it will be reflected in the amount applied to your bill.
+2.  Your bill can never be less than $0. For example, if your total bill for the month is $10, the First Project Incentive will only apply up to $10.
 
 ## Inactive environment
 
@@ -167,8 +165,8 @@ This unit is based on powers of 10.
 
 Some reporting tools, such as those used by the [CLI](../administration/cli/_index.md),
 use binary megabytes, also known as mebibytes and abbreviated as MiB.
-This unit is based on powers of 2 and so 1&nbsp;MiB equals 1024<sup>2</sup> or 1,048,576 bytes.
-So 1&nbsp;MB is less than 1&nbsp;MiB.
+This unit is based on powers of 2 and so 1 MiB equals 1024<sup>2</sup> or 1,048,576 bytes.
+So 1 MB is less than 1 MiB.
 
 So you may see differences in the numbers you configure for a disk (in MB)
 and the values reported when you check disk size with tools that report in MiB.
@@ -180,10 +178,10 @@ and redeploying the parent.
 
 When you merge an environment, three things happen:
 
-- Any code changes are merged via Git to the parent branch.
-- Your apps rebuilt on the parent branch, if necessary.
-  (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
-- The parent branch is deployed.
+*   Any code changes are merged via Git to the parent branch.
+*   Your apps rebuilt on the parent branch, if necessary.
+    (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
+*   The parent branch is deployed.
 
 ## PaaS
 
@@ -231,18 +229,18 @@ even though it has mostly replaced SSL for online encrypted connections.
 When you create your first organization on {{% vendor/name %}}, you are also activating your trial for that organization.
 This trial grants you a certain amount of time and resources to try out the {{% vendor/name %}} platform, and comes with the following restrictions:
 
-1. A trial lasts for **15 days**, which starts automatically from creating your first organization.
-1. A trial allows for **one (1)** active [project](#project) at a time.
-1. For a trial project, the trial allows for **two (2)** [active environments](#active-environment).
-1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources):
+1.  A trial lasts for **15 days**, which starts automatically from creating your first organization.
+2.  A trial allows for **one (1)** active [project](#project) at a time.
+3.  For a trial project, the trial allows for **two (2)** [active environments](#active-environment).
+4.  At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources):
 
-    - 4.5 CPU
-    - 12 GB RAM
-    - 20 GB storage
+    *   4.5 CPU
+    *   12 GB RAM
+    *   20 GB storage
 
 If your trial ends before adding payment details, there are additional things to keep in mind:
 
-- When a trial expires, both the organization and the project are suspended.
-- Projects where no code has been pushed are deleted **1 day** after a trial expires.
-- Projects where code _has_ been pushed are deleted **5 days** after the trial expires.
-- Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support#delete-your-account).
+*   When a trial expires, both the organization and the project are suspended.
+*   Projects where no code has been pushed are deleted **1 day** after a trial expires.
+*   Projects where code *has* been pushed are deleted **5 days** after the trial expires.
+*   Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support#delete-your-account).

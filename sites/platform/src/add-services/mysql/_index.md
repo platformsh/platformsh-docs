@@ -15,9 +15,9 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more informat
 
 If you use one of the following frameworks, follow its guide:
 
-- [Hibernate](../../guides/hibernate/deploy.md#mysql)
-- [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
-- [Spring](../../guides/spring/mysql.md)
+*   [Hibernate](../../guides/hibernate/deploy.md#mysql)
+*   [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
+*   [Spring](../../guides/spring/mysql.md)
 
 ## Supported versions
 
@@ -30,9 +30,9 @@ The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
 Other than the value for their `type`,
 MySQL and MariaDB have the same behavior and the rest of this page applies to both of them.
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|---------------|-------------|--------------------|
-|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+| **`mariadb`**                                             | **`mysql`**                                             | **`oracle-mysql`**                                             |
+| --------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------------------------------- |
+| {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
 ### Supported versions on Dedicated environments
 
@@ -68,9 +68,9 @@ They're available, but they aren't receiving security updates from upstream and 
 They'll be removed in the future,
 so migrate to one of the [supported versions](#supported-versions).
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+| **`mariadb`**                                              | **`mysql`**                                                | **`oracle-mysql`**                                              |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------- |
+| {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 ### Upgrade
 
@@ -84,24 +84,24 @@ To upgrade, update the service version in your [service configuration](../_index
 
 To change the service type:
 
-1. [Export your data](#exporting-data).
-   {{% note %}}
-   Changing the service type, especially when done repeatedly, may result in data loss.
-   Backing up your data is therefore crucial.
-   {{% /note %}}
-2. Remove the old service from your [service configuration](../_index.md).
-3. Specify a new service type.
-4. [Import your data](#importing-data) into the new service.
+1.  [Export your data](#exporting-data).
+    {{% note %}}
+    Changing the service type, especially when done repeatedly, may result in data loss.
+    Backing up your data is therefore crucial.
+    {{% /note %}}
+2.  Remove the old service from your [service configuration](../_index.md).
+3.  Specify a new service type.
+4.  [Import your data](#importing-data) into the new service.
 
 ### Downgrade
 
 You can't downgrade to a previous version and retain your data.
 To downgrade your database, follow these steps:
 
-1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
-1. Add a new service with a different name and your desired version.
-1. [Import your data](#importing-data) into the new service.
+1.  [Export your data](#exporting-data).
+2.  Remove the old service from your [service configuration](../_index.md).
+3.  Add a new service with a different name and your desired version.
+4.  [Import your data](#importing-data) into the new service.
 
 ## Usage example
 
@@ -118,7 +118,7 @@ To define the service, use the `mariadb` or `mysql` type for MariaDB or the `ora
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -134,12 +134,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -197,43 +197,43 @@ add a configuration file similar to the following to your project.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Go
 file=static/files/fetch/examples/golang/mysql
 highlight=go
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/mysql
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/mysql
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/mysql
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/mysql
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -250,7 +250,7 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
@@ -259,10 +259,10 @@ You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONS
 
 You can configure your MySQL service in the [services configuration](../_index.md) with the following options:
 
-| Name         | Type                    | Version                            | Description |
-| ------------ | ----------------------- | ---------------------------------- | ----------- |
-| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
-| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| Name         | Type                    | Version                            | Description                                                                                                                   |
+| ------------ | ----------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database.                                                            |
+| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases).                                              |
 | `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
 
 Example configuration:
@@ -372,19 +372,19 @@ To do so, define multiple endpoints in your [service configuration](#configurati
 
 For each endpoint you add, you can define the following properties:
 
-| Name             | Type                     | Required | Description |
-| ---------------- | ------------------------ | -------- | ----------- |
+| Name             | Type                     | Required | Description                                                                                                                                                                                     |
+| ---------------- | ------------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
-| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
+| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has.                                                                                                                       |
 
 Possible permissions:
 
-| Name        | Type          | Description                                         |
-| ----------- | ------------- | --------------------------------------------------- |
-| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
+| Name        | Type          | Description                                                                                                                                                                                |
+| ----------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Read-only   | `ro`          | Can select, create temporary tables, and see views.                                                                                                                                        |
 | Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                               |
+| Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                                           |
 
 ### Restrict access to database replicas only
 
@@ -397,8 +397,8 @@ For security reasons, you can grant your app access to a replica instead of your
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
-2. Add the `-replica` suffix to the name of the endpoint you want to use.
+1.  Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2.  Add the `-replica` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration:
 
@@ -461,8 +461,8 @@ You may want to grant access to both your main database and its replicas.
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
-2. Add the `-all` suffix to the name of the endpoint you want to use.
+1.  Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2.  Add the `-all` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration,
 which creates a replica on each of the secondary nodes:
@@ -547,15 +547,14 @@ Removing a schema from the list of `schemas` on further deployments results in t
 
 {{</note >}}
 
-
 ### Multiple databases example
 
 The following configuration example creates a single MariaDB service named `mariadb` with two databases, `main` and `legacy`.
 Access to the database is defined through three endpoints:
 
-* `admin` has full access to both databases.
-* `reporter` has SELECT query access to `main` but no access to `legacy`.
-* `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
+*   `admin` has full access to both databases.
+*   `reporter` has SELECT query access to `main` but no access to `legacy`.
+*   `importer` has SELECT/INSERT/UPDATE/DELETE (but not DDL) access to `legacy` but no access to `main`.
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -607,7 +606,7 @@ In your settings, add the `properties` key to the `configuration` key.
 It offers the following properties:
 
 | Name                                  | Type      | Default                                                      | Description                                                                                                                                                                           |
-|---------------------------------------|-----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------- | --------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `max_allowed_packet`                  | `integer` | `16`                                                         | The maximum size for packets in MB. Can be from `1` to `100`.                                                                                                                         |
 | `default_charset`                     | `string`  | `utf8mb4` after February 2020 and `latin1` before            | The default character set. Affects any tables created after it's set.                                                                                                                 |
 | `default_collation`                   | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.                                                                                                                     |
@@ -649,9 +648,9 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 {{% note theme="info" %}}
-MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration. 
-They can, however, be set indirectly, which can be useful for solving `Too many connection` errors. 
-See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details. 
+MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
+They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
+See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details.
 {{% /note %}}
 
 ## Password generation
@@ -670,7 +669,7 @@ Note that you can't customize these automatically generated passwords.
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
 through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
- within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
 
@@ -689,17 +688,17 @@ If MyISAM tables have been inadvertently created or imported in a Dedicated envi
 (if you see `ENGINE=MyISAM` in the response to `SHOW CREATE TABLE EXISTING_TABLE`),
 convert them to use the InnoDB storage engine as follows:
 
-1. Rename the existing table.
+1.  Rename the existing table.
 
-   ```text
-   RENAME TABLE {{< variable "EXISTING_TABLE" >}} {{< variable "OLD_TABLE" >}};
-   ```
+    ```text
+    RENAME TABLE {{< variable "EXISTING_TABLE" >}} {{< variable "OLD_TABLE" >}};
+    ```
 
-1. Create a new table from the data in the existing table.
+2.  Create a new table from the data in the existing table.
 
-   ```text
-   CREATE TABLE {{< variable "EXISTING_TABLE" >}} SELECT * from {{< variable "OLD_TABLE" >}};
-   ```
+    ```text
+    CREATE TABLE {{< variable "EXISTING_TABLE" >}} SELECT * from {{< variable "OLD_TABLE" >}};
+    ```
 
 Now when you run `SHOW CREATE TABLE {{< variable "EXISTING_TABLE" >}}`, you see `ENGINE=InnoDB`.
 

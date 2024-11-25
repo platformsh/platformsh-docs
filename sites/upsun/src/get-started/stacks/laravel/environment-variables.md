@@ -39,7 +39,7 @@ applications:
 
 You can transpose these variables to set up Laravel's default configuration in a `.environment` file:
 
-```bash  {configFile="env"}
+```bash {configFile="env"}
 # Set MySQL database environment variables
 export DB_HOST="$MYSQL_HOST"
 export DB_PORT="$MYSQL_PORT"
@@ -96,10 +96,10 @@ To add specific variables available during the build, run `{{% vendor/cli %}} va
 
 ### Emails
 
-{{% vendor/name %}} provides a SMTP service for sending emails. 
+{{% vendor/name %}} provides a SMTP service for sending emails.
 To configure email in Laravel, add the following mapping to your `.environment` file:
 
-```bash  {configFile="env"}
+```bash {configFile="env"}
 # Email
 export MAIL_MAILER="smtp"
 export MAIL_HOST="${PLATFORM_SMTP_HOST}"
@@ -112,27 +112,27 @@ If your project has multiple apps,
 the configuration is exposed via the following environment variables
 (where `SOME_SERVICE` is the upper-cased version of the key defined in the relationship):
 
-- `SOME_SERVICE_URL`: The full URL of the service
-- `SOME_SERVICE_IP`: The HTTP service IP
-- `SOME_SERVICE_PORT`: The HTTP service port
-- `SOME_SERVICE_SCHEME`: The HTTP service scheme
-- `SOME_SERVICE_HOST`: The HTTP service host
+*   `SOME_SERVICE_URL`: The full URL of the service
+*   `SOME_SERVICE_IP`: The HTTP service IP
+*   `SOME_SERVICE_PORT`: The HTTP service port
+*   `SOME_SERVICE_SCHEME`: The HTTP service scheme
+*   `SOME_SERVICE_HOST`: The HTTP service host
 
 ### MySQL/MariaDB
 
 The [MySQL/MariaDB](/add-services/mysql) configuration is exposed via the following environment variables
 (where `DATABASE` is the upper-cased version of the key defined in the relationship above):
 
-- `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
-- `DATABASE_SERVER`: The database server
-- `DATABASE_DRIVER`: The database driver
-- `DATABASE_VERSION`: The database version
-- `DATABASE_HOST`: The database host
-- `DATABASE_PORT`: The database port
-- `DATABASE_NAME`: The database name
-- `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
-- `DATABASE_USERNAME`: The database username
-- `DATABASE_PASSWORD`: The database password
+*   `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
+*   `DATABASE_SERVER`: The database server
+*   `DATABASE_DRIVER`: The database driver
+*   `DATABASE_VERSION`: The database version
+*   `DATABASE_HOST`: The database host
+*   `DATABASE_PORT`: The database port
+*   `DATABASE_NAME`: The database name
+*   `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
+*   `DATABASE_USERNAME`: The database username
+*   `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
 
@@ -146,16 +146,16 @@ To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment 
 The [PostgreSQL](/add-services/postgresql) configuration is exposed via the following environment variables
 (where `DATABASE` is the upper-cased version of the key defined in the relationship):
 
-- `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
-- `DATABASE_SERVER`: The database server
-- `DATABASE_DRIVER`: The database driver
-- `DATABASE_VERSION`: The database version
-- `DATABASE_HOST`: The database host
-- `DATABASE_PORT`: The database port
-- `DATABASE_NAME`: The database name
-- `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
-- `DATABASE_USERNAME`: The database username
-- `DATABASE_PASSWORD`: The database password
+*   `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
+*   `DATABASE_SERVER`: The database server
+*   `DATABASE_DRIVER`: The database driver
+*   `DATABASE_VERSION`: The database version
+*   `DATABASE_HOST`: The database host
+*   `DATABASE_PORT`: The database port
+*   `DATABASE_NAME`: The database name
+*   `DATABASE_DATABASE`: Alias for `DATABASE_NAME`
+*   `DATABASE_USERNAME`: The database username
+*   `DATABASE_PASSWORD`: The database password
 
 {{< note title="Tip">}}
 
@@ -169,14 +169,14 @@ To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment 
 The [Redis](/add-services/redis) configuration is exposed via the following environment variables
 (where `REDIS` is the upper-cased version of the key defined in the relationship):
 
-- `REDIS_URL`: The Redis URL
-- `REDIS_HOST`: The Redis host
-- `REDIS_PORT`: The Redis port
-- `REDIS_SCHEME`: The Redis scheme
+*   `REDIS_URL`: The Redis URL
+*   `REDIS_HOST`: The Redis host
+*   `REDIS_PORT`: The Redis port
+*   `REDIS_SCHEME`: The Redis scheme
 
 You can specify the Redis client in your `.environment` file:
 
-```bash  {configFile="env"}
+```bash {configFile="env"}
 export REDIS_CLIENT="phpredis"
 ```
 
@@ -185,68 +185,68 @@ export REDIS_CLIENT="phpredis"
 The [Memcached](/add-services/memcached) configuration is exposed via the following environment variables
 (where `CACHE` is the upper-cased version of the key defined in the relationship):
 
-- `CACHE_HOST`
-- `CACHE_PORT`
-- `CACHE_IP`
+*   `CACHE_HOST`
+*   `CACHE_PORT`
+*   `CACHE_IP`
 
 ### Elasticsearch
 
 The [Elasticsearch](/add-services/elasticsearch) configuration is exposed via the following environment variables
 (where `ELASTICSEARCH` is the upper-cased version of the key defined in the relationship):
 
-- `ELASTICSEARCH_URL`: The full URL of the Elasticsearch service
-- `ELASTICSEARCH_HOST`: The Elasticsearch host
-- `ELASTICSEARCH_PORT`: The Elasticsearch port
-- `ELASTICSEARCH_SCHEME`: The Elasticsearch protocol scheme (`http` or `https`)
+*   `ELASTICSEARCH_URL`: The full URL of the Elasticsearch service
+*   `ELASTICSEARCH_HOST`: The Elasticsearch host
+*   `ELASTICSEARCH_PORT`: The Elasticsearch port
+*   `ELASTICSEARCH_SCHEME`: The Elasticsearch protocol scheme (`http` or `https`)
 
 ### RabbitMQ
 
 The [RabbitMQ](/add-services/rabbitmq) configuration is exposed via the following environment variables
 (where `RABBITMQ` is the upper-cased version of the key defined in the relationship):
 
-- `RABBITMQ_URL`: The RabbitMQ standardized URL
-- `RABBITMQ_SERVER`: The RabbitMQ server
-- `RABBITMQ_HOST`: The RabbitMQ host
-- `RABBITMQ_PORT`: The RabbitMQ port
-- `RABBITMQ_SCHEME`: The RabbitMQ scheme
-- `RABBITMQ_USER`: The RabbitMQ username
-- `RABBITMQ_USERNAME`: The RabbitMQ username
-- `RABBITMQ_PASSWORD`: The RabbitMQ password
+*   `RABBITMQ_URL`: The RabbitMQ standardized URL
+*   `RABBITMQ_SERVER`: The RabbitMQ server
+*   `RABBITMQ_HOST`: The RabbitMQ host
+*   `RABBITMQ_PORT`: The RabbitMQ port
+*   `RABBITMQ_SCHEME`: The RabbitMQ scheme
+*   `RABBITMQ_USER`: The RabbitMQ username
+*   `RABBITMQ_USERNAME`: The RabbitMQ username
+*   `RABBITMQ_PASSWORD`: The RabbitMQ password
 
 ### MongoDB
 
 The [MongoDB](/add-services/mongodb) configuration is exposed via the following environment variables
 (where `MONGODB` is the upper-cased version of the key defined in the relationship):
 
-- `MONGODB_SERVER`
-- `MONGODB_HOST`
-- `MONGODB_PORT`
-- `MONGODB_SCHEME`
-- `MONGODB_NAME`
-- `MONGODB_DATABASE`
-- `MONGODB_USER`
-- `MONGODB_USERNAME`
-- `MONGODB_PASSWORD`
+*   `MONGODB_SERVER`
+*   `MONGODB_HOST`
+*   `MONGODB_PORT`
+*   `MONGODB_SCHEME`
+*   `MONGODB_NAME`
+*   `MONGODB_DATABASE`
+*   `MONGODB_USER`
+*   `MONGODB_USERNAME`
+*   `MONGODB_PASSWORD`
 
 ### InfluxDB
 
 The [InfluxDB](/add-services/influxdb) configuration is exposed via the following environment variables
 (where `TIMEDB` is the upper-cased version of the key defined in the relationship):
 
-- `TIMEDB_SCHEME`
-- `TIMEDB_HOST`
-- `TIMEDB_PORT`
-- `TIMEDB_IP`
+*   `TIMEDB_SCHEME`
+*   `TIMEDB_HOST`
+*   `TIMEDB_PORT`
+*   `TIMEDB_IP`
 
 ### Kafka
 
 The [Apache Kafka](/add-services/kafka) configuration is exposed via the following environment variables
 (where `KAFKA` is the upper-cased version of the key defined in the relationship):
 
-- `KAFKA_URL`
-- `KAFKA_SCHEME`
-- `KAFKA_HOST`
-- `KAFKA_PORT`
-- `KAFKA_IP`
+*   `KAFKA_URL`
+*   `KAFKA_SCHEME`
+*   `KAFKA_HOST`
+*   `KAFKA_PORT`
+*   `KAFKA_IP`
 
-{{< guide-buttons previous="Back" next="Set up Redis" nextLink="/get-started/stacks/laravel/setup-redis.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Set up Redis" nextLink="/get-started/stacks/laravel/setup-redis.md" type="\*" >}}

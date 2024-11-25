@@ -113,8 +113,8 @@ you see the following resolved routes (assuming `example.com` is your default do
 
 Each route in your configuration file is defined in one of two ways:
 
-* An absolute URL such as `https://example.com/blog`
-* A URL with a placeholder such as `https://{default}/blog`
+*   An absolute URL such as `https://example.com/blog`
+*   A URL with a placeholder such as `https://{default}/blog`
 
 The available placeholders are `{default}` and `{all}`.
 They stand in for the [custom domains](../domains/steps/_index.md) you've defined in your project.
@@ -130,6 +130,7 @@ If you have set your default domain to `example.com`,
 You can use the `{default}` placeholder:
 
 <!-- Upsun configuration-->
+
 ```yaml {configFile="routes"}
 routes:
     "https://{default}/blog":
@@ -186,7 +187,7 @@ The first route means you're serving the same content at multiple domains:
 your app runs at both `https://example.com` and `https://example.net`.
 
 The second route means that `https://www.example.com` redirects to `https://example.com`
-_and_ `https://www.example.net` redirects to `https://example.net`.
+*and* `https://www.example.net` redirects to `https://example.net`.
 
 If your project has no domains or only one, `{all}` behaves exactly like `{default}`.
 
@@ -337,7 +338,7 @@ The attributes appear in the routes data like so:
 
 ## Route limits
 
-The maximum size of the routes document is 128&nbsp;KB, which should fit around 300 different routes.
+The maximum size of the routes document is 128 KB, which should fit around 300 different routes.
 If your `{{< vendor/configfile "routes" >}}` file would result in too large of a route information value, it's rejected.
 
 The full list of generated route information is often much larger than what's specified in the `{{< vendor/configfile "routes" >}}` file.
@@ -346,10 +347,10 @@ As a general rule, you should keep to your defined routes under 100.
 
 If your `{{< vendor/configfile "routes" >}}` file is rejected for being too big, do one of the following:
 
-* Move redirect routes to the application.
-* Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
+*   Move redirect routes to the application.
+*   Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
 
-{{% lets_encrypt_limitations %}}
+{{% lets\_encrypt\_limitations %}}
 
 Non-default ports (other than `80` and `443`) aren't supported and can't be included in routes configuration.
 
@@ -357,18 +358,18 @@ Non-default ports (other than `80` and `443`) aren't supported and can't be incl
 
 You can configure each route separately with the following properties:
 
-| Name         | Type      | Required                | Description |
-| ------------ | --------- | ----------------------- | ----------- |
-| `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](./proxy.md).</li></ul> |
-| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../create-apps/_index.md)) followed by `:http`. Example: `app:http` |
-| `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
-| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled. |
-| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md). |
-| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
-| `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
-| `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections). |
-| `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
+| Name         | Type      | Required                | Description                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------ | --------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected *outside* your project and requires the `to` property. See more about [proxy routes](./proxy.md).</li></ul> |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../create-apps/_index.md)) followed by `:http`. Example: `app:http`                                                                                                                                                                                                                                                                       |
+| `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code.                                                                                                                                                                                                                                                                                                          |
+| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled.                                                                                                                                                                                                                                                                                                                                                                |
+| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md).                                                                                                                                                                                                                                                                                                          |
+| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md).                                                                                                                                                                                                                                                                                          |
+| `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers).                                                                                                                                                                                                                                                                                                                                      |
+| `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route.                                                                                                                                                      |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections).                                                                                                                                                                                                                                                                                                                                       |
+| `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes).                                                                                                                                                                                                                                                                                                               |
 
 ## CLI access
 
@@ -406,7 +407,7 @@ Viewing a single route gives you more detailed info, such as its cache and SSI s
 To use the WebSocket protocol on a route, `cache` must be disabled because WebSocket is incompatible with buffering,
 which is a requirement for the router caching.
 
-1. Define a route that serves WebSocket:
+1.  Define a route that serves WebSocket:
 
 ```yaml {configFile="routes"}
 routes:
@@ -424,7 +425,7 @@ routes:
             enabled: false
 ```
 
-2. [Disable request buffering](/create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
+2.  [Disable request buffering](/create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
 web:

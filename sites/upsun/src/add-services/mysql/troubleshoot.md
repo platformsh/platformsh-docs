@@ -16,10 +16,10 @@ SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
 
 This is typically caused by one of the following:
 
-* There are multiple places acquiring locks in different order.
-  For example, code path 1 first locks record A and then locks record B,
-  while code path 2 first locks record B and then locks record A.
-* There is a long running background process executed by your application that holds the lock until it ends.
+*   There are multiple places acquiring locks in different order.
+    For example, code path 1 first locks record A and then locks record B,
+    while code path 2 first locks record B and then locks record A.
+*   There is a long running background process executed by your application that holds the lock until it ends.
 
 If you're using [MariaDB 10+](./_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
@@ -95,7 +95,7 @@ However, on {{% vendor/name %}}, you **cannot** configure `max_connections` dire
 
 ### Quick fix
 
-You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations. 
+You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations.
 However, to solve `Error 1040`, you can increase `max_connections` indirectly.
 
 Given the following services configuration for MariaDB:
@@ -120,15 +120,15 @@ And assuming you have set the resources for that service using the following CLI
 
 To **increase** `max_connections`, you can **either**:
 
-- **decrease** `max_allowed_packet` (for example, `16` → `15` results in `max_connections=355`)
-- or **increase** `size` using the `resources:set` command (for example, `1` → `2`  results in `max_connections=500`)
+*   **decrease** `max_allowed_packet` (for example, `16` → `15` results in `max_connections=355`)
+*   or **increase** `size` using the `resources:set` command (for example, `1` → `2`  results in `max_connections=500`)
 
 ### How it works
 
-Behind the scenes, `max_connections` is calculated from values that you _can_ change:
+Behind the scenes, `max_connections` is calculated from values that you *can* change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.upsun/config.yaml` file with an integer value. 
-The default value of `16` is shown below to illustrate:
+1.  **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.upsun/config.yaml` file with an integer value.
+    The default value of `16` is shown below to illustrate:
 
     ```yaml {configFile="services"}
     services:
@@ -140,66 +140,65 @@ The default value of `16` is shown below to illustrate:
                     max_allowed_packet: 16
     ```
 
-1. **The memory available to the service**: Resources are provisioned to {{% vendor/name %}} containers according to your definition via the API, often through the `resources:set` CLI command:
+2.  **The memory available to the service**: Resources are provisioned to {{% vendor/name %}} containers according to your definition via the API, often through the `resources:set` CLI command:
 
     ```bash
     {{% vendor/cli %}} resources:set --size mariadb:1
     ```
 
     The memory for a given container from its `size` depends on its [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
-    
+
     For example, [MariaDB](/manage-resources/adjust-resources#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
     For `--size mariadb:1`, it means 1 CPU and 2432 MB of memory.
 
-
 If we assume the configuration above, where:
 
-- `--size  mariadb:1`, which we know is `2432` MB, referred to below as `application_size`
-- `mariadb.configuration.properties.max_allowed_packet: 16`
-- You are using the default `HIGH_MEMORY` profile assigned to MariaDB containers. [Changing the container profile](/manage-resources/adjust-resources#adjust-a-container-profile) changes the behavior below.
+*   `--size  mariadb:1`, which we know is `2432` MB, referred to below as `application_size`
+*   `mariadb.configuration.properties.max_allowed_packet: 16`
+*   You are using the default `HIGH_MEMORY` profile assigned to MariaDB containers. [Changing the container profile](/manage-resources/adjust-resources#adjust-a-container-profile) changes the behavior below.
 
-`max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to: 
+`max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to:
 
 \begin{aligned}
-\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr]
+\texttt{max\_connections} = \text{int}\Biggl\[ \min \left( \frac{\texttt{FREE\_MEMORY}}{\texttt{max\_allowed\_packet}}, 500 \right) \Biggr]
 \end{aligned}
 
 This calculation uses three additional calculations:
 
 \begin{aligned}
-\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
-\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 \newline \newline
-\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}}
+\texttt{FREE\_MEMORY} = \texttt{AVAILABLE\_MEMORY} - \left( 50 + \texttt{innodb\_buffer\_pool\_size} \right) \newline \newline
+\texttt{AVAILABLE\_MEMORY} = (\texttt{application\_size} \* 2) + 512 \newline \newline
+\texttt{innodb\_buffer\_pool\_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application\_size} \right)}{1024^{2}}
 \end{aligned}
 
 So for our current example, where:
 
 \begin{aligned}
-\texttt{application_size} = 2432 \newline
-\texttt{max_allowed_packet} = 16
+\texttt{application\_size} = 2432 \newline
+\texttt{max\_allowed\_packet} = 16
 \end{aligned}
 
 You get:
 
 \begin{aligned}
-\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 1.7395 \times 10^{-3}
+\texttt{innodb\_buffer\_pool\_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application\_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 1.7395 \times 10^{-3}
 \end{aligned}
 
 \begin{aligned}
-\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 = (1280 * 2) + 512 = 5376
+\texttt{AVAILABLE\_MEMORY} = (\texttt{application\_size} \* 2) + 512 = (1280 \* 2) + 512 = 5376
 \end{aligned}
 
 \begin{aligned}
-\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
-\texttt{FREE_MEMORY} = 3072 - \left( 50 + 0.0009155... \right) = 5325.998...
+\texttt{FREE\_MEMORY} = \texttt{AVAILABLE\_MEMORY} - \left( 50 + \texttt{innodb\_buffer\_pool\_size} \right) \newline \newline
+\texttt{FREE\_MEMORY} = 3072 - \left( 50 + 0.0009155... \right) = 5325.998...
 \end{aligned}
 
 \begin{aligned}
-\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr] = \text{int}\Biggl[ \min \left( \frac{3021.999084}{16}, 500 \right) \Biggr] = \text{int}\Biggl[ 332.87... \Biggr]
+\texttt{max\_connections} = \text{int}\Biggl\[ \min \left( \frac{\texttt{FREE\_MEMORY}}{\texttt{max\_allowed\_packet}}, 500 \right) \Biggr] = \text{int}\Biggl\[ \min \left( \frac{3021.999084}{16}, 500 \right) \Biggr] = \text{int}\Biggl\[ 332.87... \Biggr]
 \end{aligned}
 
 \begin{aligned}
-\texttt{max_connections} = 332
+\texttt{max\_connections} = 332
 \end{aligned}
 
 The following table provides additional example calculations of `max_connections` for all `size` settings
@@ -308,6 +307,6 @@ The maximum value for `max_connections` is 500, indicated with italicized intege
 
 Also, you can **increase** `max_connections` in your environments by either:
 
-- **decreasing** the `max_allow_packet` value in your service configuration
-- or **increasing** the service's resources by using the CLI command `resources:set` and the `--size` flag
-{{% /note%}}
+*   **decreasing** the `max_allow_packet` value in your service configuration
+*   or **increasing** the service's resources by using the CLI command `resources:set` and the `--size` flag
+    {{% /note%}}

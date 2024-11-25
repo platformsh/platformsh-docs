@@ -35,12 +35,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -88,20 +88,20 @@ To define the service, use the `vault-kms` type:
                   type: <ENDPOINT_TYPE>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-- {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
-- {{< variable "VERSION" >}} is a supported version of the service.
-- {{< variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
-- {{< variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
-- {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
-- The `type` is one of:
+*   {{< variable "SERVICE\_NAME" >}} is the name you choose to identify the service.
+*   {{< variable "VERSION" >}} is a supported version of the service.
+*   {{< variable "ENDPOINT\_ID" >}} is an identifier you choose for the endpoint.
+*   {{< variable "KEY\_NAME" >}} is the name of the key to be stored in the Vault KMS.
+*   {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
+*   The `type` is one of:
 
-  - `sign`: for signing payloads, with the type `ecdsa-p256`
-  - `encrypt` (for encrypt`chacha20-poly1305`).
+    *   `sign`: for signing payloads, with the type `ecdsa-p256`
+    *   `encrypt` (for encrypt`chacha20-poly1305`).
 
-  The `type` can't be changed after creation.
+    The `type` can't be changed after creation.
 
 You can create multiple endpoints, such as to have key management separate from key use.
 
@@ -122,10 +122,10 @@ relationships:
         endpoint: <ENDPOINT_ID>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships. 
+The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships.
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -394,6 +394,7 @@ curl \
 ```
 
 In the JSON object that's returned, you can notice that the `ciphertext` is different (and now includes the new key version as a prefix) as is the `key_version`:
+
 ```json
 {
   ...
@@ -407,12 +408,12 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 ## Policies
 
-| Policy    | Endpoint | Capabilities | Purpose |
-| --------- | -------- | ------------ | ------- |
-| `admin`   | `transit/keys/${KEY}` | `read` | Access to key properties and various functions performed on keys such as rotation and deletion |
-|           | `transit/keys/${KEY}/*` | `read`, `create`, `update`, `delete` | |
-| `sign`    | `transit/sign/${KEY}/${HASH_ALGORITHM}` | `read`, `update` | Signing payloads with an existing key |
-| `verify`  | `transit/verify/${KEY}/${HASH_ALGORITHM}` | `read`, `update` | Verifying already signed payloads |
-| `encrypt` | `transit/encrypt/${KEY}` | `read`, `update` | Encrypting data with an existing key |
-| `decrypt` | `transit/decrypt/${KEY}` | `read`, `update` | Decrypting data with an existing key |
-| `rewrap`  | `transit/rewrap/${KEY}` | `read`, `update` | Re-encrypting data with a new key version without revealing the secret |
+| Policy    | Endpoint                                  | Capabilities                         | Purpose                                                                                        |
+| --------- | ----------------------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `admin`   | `transit/keys/${KEY}`                     | `read`                               | Access to key properties and various functions performed on keys such as rotation and deletion |
+|           | `transit/keys/${KEY}/*`                   | `read`, `create`, `update`, `delete` |                                                                                                |
+| `sign`    | `transit/sign/${KEY}/${HASH_ALGORITHM}`   | `read`, `update`                     | Signing payloads with an existing key                                                          |
+| `verify`  | `transit/verify/${KEY}/${HASH_ALGORITHM}` | `read`, `update`                     | Verifying already signed payloads                                                              |
+| `encrypt` | `transit/encrypt/${KEY}`                  | `read`, `update`                     | Encrypting data with an existing key                                                           |
+| `decrypt` | `transit/decrypt/${KEY}`                  | `read`, `update`                     | Decrypting data with an existing key                                                           |
+| `rewrap`  | `transit/rewrap/${KEY}`                   | `read`, `update`                     | Re-encrypting data with a new key version without revealing the secret                         |

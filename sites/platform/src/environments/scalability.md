@@ -41,12 +41,12 @@ or can be avoided by, for example, blocking a malicious bot.
 Autoscaling uses HTTP, CPU, and memory metrics to scale your Dedicated clusters.
 There are two classes of measurement that trigger an autoscaling event:
 
-- HTTP error rate trigger: A daily error rate (`50x` requests/total requests) for the last 24 hours.
-  This value is compared against 5 minute intervals of requests for the last hour of requests.
-  As soon as two interval error rates in that hour are greater than the daily error rate,
-  an autoscaling event is triggered.
+*   HTTP error rate trigger: A daily error rate (`50x` requests/total requests) for the last 24 hours.
+    This value is compared against 5 minute intervals of requests for the last hour of requests.
+    As soon as two interval error rates in that hour are greater than the daily error rate,
+    an autoscaling event is triggered.
 
-- CPU load/request trigger: autoscaling occurs when CPU usage and traffic reaches a predefined threshold.
+*   CPU load/request trigger: autoscaling occurs when CPU usage and traffic reaches a predefined threshold.
 
 ## Managed scaling for Dedicated and Grid environments
 

@@ -15,9 +15,9 @@ If your site is already live,
 remember that deactivating an environment is a destructive operation that can result in data loss.
 To minimize potential issues, take the following steps:
 
-- Switch the default environment during non-peak hours.
-- Keep your data by taking a [backup of the `old` environment](../environments/backup.md)
-- Reduce your DNS time-to-live (TTL) to a minimum.
+*   Switch the default environment during non-peak hours.
+*   Keep your data by taking a [backup of the `old` environment](../environments/backup.md)
+*   Reduce your DNS time-to-live (TTL) to a minimum.
 
 ## Requirements
 
@@ -36,9 +36,9 @@ If it does, GitHub, GitLab, or BitBucket hosts your primary remote repository fo
 ## 1. Create a `main` environment
 
 {{< codetabs >}}
-+++
+\+++
 title=Without a source integration
-+++
+\+++
 
 In your local copy of your repository, create a new environment from `old` called `main`:
 
@@ -47,9 +47,9 @@ In your local copy of your repository, create a new environment from `old` calle
 ```
 
 <--->
-+++
+\+++
 title=With a source integration
-+++
+\+++
 In your local copy of the external repository, make sure your default branch is up to date:
 
 ```bash
@@ -94,9 +94,9 @@ Use the following command to remove its parent and make it a top-level branch:
 ## 4. Make `main` the parent for other environments
 
 {{< codetabs >}}
-+++
+\+++
 title=Without a source integration
-+++
+\+++
 You probably have other environments that are children of `old`.
 For each environment, update its parent to `main`:
 
@@ -105,9 +105,9 @@ For each environment, update its parent to `main`:
 ```
 
 <--->
-+++
+\+++
 title=With a source integration
-+++
+\+++
 
 To preserve your data on {{% vendor/name %}},
 it's best to switch your work in progress to be based off of `main`.
@@ -119,13 +119,12 @@ Once you resubmit a request, it appears under the `main` environment on {{% vend
 
 {{< /codetabs >}}
 
-
 ## 5. Set `main` as the default branch
 
 {{< codetabs >}}
-+++
+\+++
 title=Without a source integration
-+++
+\+++
 
 Set the project's default branch to `main`:
 
@@ -134,9 +133,9 @@ Set the project's default branch to `main`:
 ```
 
 <--->
-+++
+\+++
 title=With a source integration
-+++
+\+++
 
 Once `old` has been deactivated, set the project's default branch in {{% vendor/name %}} to `main`:
 
@@ -146,9 +145,9 @@ Once `old` has been deactivated, set the project's default branch in {{% vendor/
 
 Follow the instructions to change the default branch to `main` for your provider:
 
-- [GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch)
-- [GitLab](https://docs.gitlab.com/ee/user/project/repository/branches/default.html#change-the-default-branch-name-for-a-project)
-- [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418)
+*   [GitHub](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch)
+*   [GitLab](https://docs.gitlab.com/ee/user/project/repository/branches/default.html#change-the-default-branch-name-for-a-project)
+*   [BitBucket](https://community.atlassian.com/t5/Bitbucket-questions/How-to-change-MAIN-branch-in-BitBucket/qaq-p/977418)
 
 {{< /codetabs >}}
 

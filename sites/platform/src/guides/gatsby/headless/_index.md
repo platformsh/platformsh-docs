@@ -55,4 +55,4 @@ Multi-application projects generally require more resources to run on {{% vendor
 
 ## Headless backends
 
-{{% vendor/name %}} maintains a number of [multi-application templates](https://github.com/platformsh-templates/?q=gatsby&type=&language=) for Gatsby, that generally have very similar configuration changes on the Gatsby side. Below are a few of those written as short guides for different backend content management systems.
+{{% vendor/name %}} maintains a number of [multi-application templates](https://github.com/platformsh-templates/?q=gatsby\&type=\&language=) for Gatsby, that generally have very similar configuration changes on the Gatsby side. Below are a few of those written as short guides for different backend content management systems.

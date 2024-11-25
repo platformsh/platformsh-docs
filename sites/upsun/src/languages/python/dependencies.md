@@ -38,9 +38,10 @@ You might want to define a specific version of pip in your deployments to furthe
 To do so, modify your [app configuration](../../create-apps/_index.md), as in the following examples:
 
 {{< codetabs >}}
-+++
+\+++
 title=Latest version
-+++
+\+++
+
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
@@ -54,10 +55,12 @@ hooks:
         pip install -r requirements.txt
 {{< /snippet >}}
 ```
+
 <--->
-+++
+\+++
 title=Specific version
-+++
+\+++
+
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
@@ -74,6 +77,7 @@ hooks:
         pip install -r requirements.txt
 {{< /snippet >}}
 ```
+
 {{< /codetabs >}}
 
 ### pip freeze
@@ -95,9 +99,10 @@ in your deployments to ensure repeatable builds.
 Because Pipenv depends on pip, you might want to also specify the pip version.
 
 {{< codetabs >}}
-+++
+\+++
 title=Latest version
-+++
+\+++
+
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
@@ -115,10 +120,12 @@ hooks:
         pipenv install --deploy
 {{< /snippet >}}
 ```
+
 <--->
-+++
+\+++
 title=Specific version
-+++
+\+++
+
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
@@ -139,6 +146,7 @@ hooks:
         pipenv install --deploy
 {{< /snippet >}}
 ```
+
 {{< /codetabs >}}
 
 ## Poetry
@@ -152,10 +160,10 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
 
 1.  Configure your virtual environment by setting two variables in your [app configuration](../../create-apps/_index.md).
 
-    - [`POETRY_VIRTUALENVS_IN_PROJECT`](https://python-poetry.org/docs/configuration/#virtualenvsin-project):
-      Setting this to `true` places the virtual environment at the root of the app container: `/app/.venv`.
-    - [`POETRY_VIRTUALENVS_CREATE`](https://python-poetry.org/docs/configuration/#virtualenvscreate):
-      Setting this to `true` ensures that the same virtual environment created during the build hook is reused in subsequent steps.
+    *   [`POETRY_VIRTUALENVS_IN_PROJECT`](https://python-poetry.org/docs/configuration/#virtualenvsin-project):
+        Setting this to `true` places the virtual environment at the root of the app container: `/app/.venv`.
+    *   [`POETRY_VIRTUALENVS_CREATE`](https://python-poetry.org/docs/configuration/#virtualenvscreate):
+        Setting this to `true` ensures that the same virtual environment created during the build hook is reused in subsequent steps.
 
     Set the variables as follows:
 
@@ -169,13 +177,15 @@ applications:
                 POETRY_VIRTUALENVS_IN_PROJECT: true
                 POETRY_VIRTUALENVS_CREATE: true
 ```
+
 2.  Install Poetry.
     You can specify the latest or a specific version of Poetry in your deployments to ensure repeatable builds.
 
     {{< codetabs >}}
-+++
-title=Latest version
-+++
+    \+++
+    title=Latest version
+    \+++
+
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -200,10 +210,12 @@ applications:
                 # Install dependencies
                 poetry install
 ```
+
 <--->
-+++
+\+++
 title=Specific version
-+++
+\+++
+
 ```yaml {configFile="app"}
 applications:
     # The name of the app container. Must be unique within a project.
@@ -229,11 +241,12 @@ applications:
                 # Install dependencies
                 poetry install   
 ```
+
     {{< /codetabs >}}
 
-3.  Make Poetry available outside the build hook.
-    Although step 2 updated the `PATH` to make Poetry available during the build hook,
-    it isn't enough to make it available at subsequent stages.
+3\.  Make Poetry available outside the build hook.
+Although step 2 updated the `PATH` to make Poetry available during the build hook,
+it isn't enough to make it available at subsequent stages.
 
     To use Poetry in a start command, a deploy hook, or during SSH sessions,
     update the `PATH` in a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).

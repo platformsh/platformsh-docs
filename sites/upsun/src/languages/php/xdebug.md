@@ -25,8 +25,8 @@ The following table shows the PHP versions where Xdebug is available:
 
 You also need:
 
-- The {{% vendor/name %}} [CLI](../../administration/cli/_index.md)
-- A Xdebug-compatible IDE installed on your machine.
+*   The {{% vendor/name %}} [CLI](../../administration/cli/_index.md)
+*   A Xdebug-compatible IDE installed on your machine.
     For setup instructions, consult your IDE's Xdebug documentation, such as that for [PHPStorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).
 
 ## 1. Set up Xdebug
@@ -43,7 +43,8 @@ applications:
             xdebug:
                 idekey: {{< variable "YOUR_KEY" >}}
 ```
-{{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
+
+{{< variable "YOUR\_KEY" >}} can be any arbitrary alphanumeric string.
 
 When that key is defined, {{% vendor/name %}} starts a second PHP-FPM process on the container that's identically configured but also has Xdebug enabled.
 Only incoming requests that have an Xdebug cookie or query parameter set are forwarded to the debug PHP-FPM process.
@@ -68,6 +69,7 @@ routes:
             enabled: true
             cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
+
 Xdebug has several configuration options available.
 They can be set the same way as any other [PHP setting](./_index.md#php-settings).
 For a full list of available options, consult the [Xdebug documentation](https://xdebug.org/docs/).
@@ -110,17 +112,17 @@ Follow the instructions for your IDE, such as those for [PHPStorm](https://www.j
 
 The common steps for setup usually include:
 
-1. Configuring the Xdebug debug port and making sure it's set to the expected value (`9003` as default or the value you chose with `--port` when opening the tunnel).
-2. Making sure that external connections are allowed.
-3. Adding a new server for your {{% vendor/name %}} environment.
+1.  Configuring the Xdebug debug port and making sure it's set to the expected value (`9003` as default or the value you chose with `--port` when opening the tunnel).
+2.  Making sure that external connections are allowed.
+3.  Adding a new server for your {{% vendor/name %}} environment.
     The Host should be the hostname of the environment on {{% vendor/name %}} you are debugging.
     The Port should always be `443` and the Debugger set to `Xdebug`.
-4. Ensuring path mappings is enabled.
+4.  Ensuring path mappings is enabled.
     This lets you define what remote paths on the server correspond to what path on your local machine.
     In the majority of cases you can just define [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory)
     to map to `app`.
-5. Listening for connections.
-6. Starting debugging. While in listen mode, start the `{{% vendor/cli %}} xdebug` tunnel.
+5.  Listening for connections.
+6.  Starting debugging. While in listen mode, start the `{{% vendor/cli %}} xdebug` tunnel.
     Use the Xdebug helper plugin for your browser to enable debugging.
     Set a break point in your app, then load a page in your browser.
     The request should pause at the break point and allow you to examine the running app.

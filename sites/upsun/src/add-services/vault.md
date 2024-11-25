@@ -23,20 +23,19 @@ When you deploy your app, you always get the latest available patches.
 
 ## Relationship reference
 
-
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `upsun ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -63,9 +62,9 @@ VAULT_SERVICE_HOST_MAPPED=false
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -127,20 +126,20 @@ services:
                       type: <ENDPOINT_TYPE>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-- {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
-- {{< variable "VERSION" >}} is a supported version of the service.
-- {{< variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
-- {{< variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
-- {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
-- The `type` is one of:
+*   {{< variable "SERVICE\_NAME" >}} is the name you choose to identify the service.
+*   {{< variable "VERSION" >}} is a supported version of the service.
+*   {{< variable "ENDPOINT\_ID" >}} is an identifier you choose for the endpoint.
+*   {{< variable "KEY\_NAME" >}} is the name of the key to be stored in the Vault KMS.
+*   {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
+*   The `type` is one of:
 
-  - `sign`: for signing payloads, with the type `ecdsa-p256`
-  - `encrypt` (for encrypt`chacha20-poly1305`).
+    *   `sign`: for signing payloads, with the type `ecdsa-p256`
+    *   `encrypt` (for encrypt`chacha20-poly1305`).
 
-  The `type` can't be changed after creation.
+    The `type` can't be changed after creation.
 
 You can create multiple endpoints, such as to have key management separate from key use.
 
@@ -179,12 +178,12 @@ and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (`<APP_NAME>`) now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 If you split the service into multiple endpoints, define multiple relationships.
 
@@ -254,7 +253,7 @@ To connect your app to the Vault KMS, use a token that's defined in the [service
 With this token for authentication,
 you can use any of the policies you [defined in your `{{< vendor/configfile "services" >}}` file](#1-configure-the-service).
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -444,6 +443,7 @@ curl \
 ```
 
 In the JSON object that's returned, you can notice that the `ciphertext` is different (and now includes the new key version as a prefix) as is the `key_version`:
+
 ```json
 {
   ...
@@ -457,12 +457,12 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 
 ## Policies
 
-| Policy    | Endpoint | Capabilities | Purpose |
-| --------- | -------- | ------------ | ------- |
-| `admin`   | `transit/keys/${KEY}` | `read` | Access to key properties and various functions performed on keys such as rotation and deletion |
-|           | `transit/keys/${KEY}/*` | `read`, `create`, `update`, `delete` | |
-| `sign`    | `transit/sign/${KEY}/${HASH_ALGORITHM}` | `read`, `update` | Signing payloads with an existing key |
-| `verify`  | `transit/verify/${KEY}/${HASH_ALGORITHM}` | `read`, `update` | Verifying already signed payloads |
-| `encrypt` | `transit/encrypt/${KEY}` | `read`, `update` | Encrypting data with an existing key |
-| `decrypt` | `transit/decrypt/${KEY}` | `read`, `update` | Decrypting data with an existing key |
-| `rewrap`  | `transit/rewrap/${KEY}` | `read`, `update` | Re-encrypting data with a new key version without revealing the secret |
+| Policy    | Endpoint                                  | Capabilities                         | Purpose                                                                                        |
+| --------- | ----------------------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `admin`   | `transit/keys/${KEY}`                     | `read`                               | Access to key properties and various functions performed on keys such as rotation and deletion |
+|           | `transit/keys/${KEY}/*`                   | `read`, `create`, `update`, `delete` |                                                                                                |
+| `sign`    | `transit/sign/${KEY}/${HASH_ALGORITHM}`   | `read`, `update`                     | Signing payloads with an existing key                                                          |
+| `verify`  | `transit/verify/${KEY}/${HASH_ALGORITHM}` | `read`, `update`                     | Verifying already signed payloads                                                              |
+| `encrypt` | `transit/encrypt/${KEY}`                  | `read`, `update`                     | Encrypting data with an existing key                                                           |
+| `decrypt` | `transit/decrypt/${KEY}`                  | `read`, `update`                     | Decrypting data with an existing key                                                           |
+| `rewrap`  | `transit/rewrap/${KEY}`                   | `read`, `update`                     | Re-encrypting data with a new key version without revealing the secret                         |

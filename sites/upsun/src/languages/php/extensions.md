@@ -8,8 +8,9 @@ description: See what PHP extensions are available with each PHP version on {{% 
 
 You can now use the [{{% vendor/name %}} composable image (BETA)](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 When using the composable image, see how you can:
-- [Manage PHP extensions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages)
-- [Modify your PHP runtime](/languages/php#modify-your-php-runtime-when-using-the-composable-image)
+
+*   [Manage PHP extensions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages)
+*   [Modify your PHP runtime](/languages/php#modify-your-php-runtime-when-using-the-composable-image)
 
 {{% /note %}}
 
@@ -38,6 +39,7 @@ applications:
             disabled_extensions:
                 - sqlite3
 ```
+
 You can also [include configuration options](/create-apps/app-reference/single-runtime-image.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
@@ -49,20 +51,20 @@ and turn off those on by default with the `disabled_extensions` key.
 
 Some built-in modules are always on:
 
-- `date`
-- `filter`
-- `hash`
-- `json` (from 8.0)
-- `libxml`
-- `openssl`
-- `pcntl`
-- `pcre`
-- `Reflection`
-- `session`
-- `SPL`
-- `standard`
-- `Zend OPcache` (from 5.5)
-- `zlib`
+*   `date`
+*   `filter`
+*   `hash`
+*   `json` (from 8.0)
+*   `libxml`
+*   `openssl`
+*   `pcntl`
+*   `pcre`
+*   `Reflection`
+*   `session`
+*   `SPL`
+*   `standard`
+*   `Zend OPcache` (from 5.5)
+*   `zlib`
 
 To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
 
@@ -75,13 +77,13 @@ To see a complete list of the compiled PHP extensions, run the following [CLI co
 It's possible to use an extension not listed here,
 but it takes slightly more work:
 
-1. Download the `.so` file for the extension as part of your build hook using `curl` or similar.
-   It can also be added to your Git repository if the file isn't publicly downloadable,
-   but committing large binary blobs to Git is generally not recommended.
+1.  Download the `.so` file for the extension as part of your build hook using `curl` or similar.
+    It can also be added to your Git repository if the file isn't publicly downloadable,
+    but committing large binary blobs to Git is generally not recommended.
 
-2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
-   For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
-   your configuration looks like the following:
+2.  Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
+    For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
+    your configuration looks like the following:
 
 ```yaml {configFile="app"}
 applications:

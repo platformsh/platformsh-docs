@@ -31,7 +31,7 @@ Assuming your `Cargo.toml` and `Cargo.lock` files are present in your repository
 you can build your app using the `cargo build` command to produce a working executable.
 
 You can then start it from the `web.commands.start` directive.
-Note that the start command _must_ run in the foreground.
+Note that the start command *must* run in the foreground.
 If the program terminates for any reason it is automatically restarted.
 
 The following basic [app configuration](../../create-apps/_index.md) is sufficient to run most Rust apps.
@@ -60,6 +60,7 @@ applications:
                     allow: false
                     passthru: true
 ```
+
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
 ## Built-in variables
@@ -92,30 +93,30 @@ Here is a basic hello world app to illustrate how you can use Rust with {{% vend
 It builds from a `hello.rs` file to serve a static `index.html`.
 Follow these steps:
 
-1. [Install Rust and Cargo](https://www.rust-lang.org/tools/install).
+1.  [Install Rust and Cargo](https://www.rust-lang.org/tools/install).
 
-2. Create a repository for your app and add the following `Cargo.toml` file:
+2.  Create a repository for your app and add the following `Cargo.toml` file:
 
-   ```toml
-   [package]
-   name = "hello_world"
-   version = "0.1.0"
-   edition = "2021"
+    ```toml
+    [package]
+    name = "hello_world"
+    version = "0.1.0"
+    edition = "2021"
 
-   [[bin]]
-   name = "hello"
-   path = "hello.rs"
+    [[bin]]
+    name = "hello"
+    path = "hello.rs"
 
-   [dependencies]
-   time = "0.1.12"
-   regex = "0.1.41"
-   base64 = "0.21.0"
-   serde = { version = "1.0", features = ["derive"] }
+    [dependencies]
+    time = "0.1.12"
+    regex = "0.1.41"
+    base64 = "0.21.0"
+    serde = { version = "1.0", features = ["derive"] }
 
-   serde_json = "1.0"
-   ```
+    serde_json = "1.0"
+    ```
 
-3. Add the following [app configuration](../../create-apps/_index.md):
+3.  Add the following [app configuration](../../create-apps/_index.md):
 
 ```yaml {configFile="app"}
 applications:
@@ -140,66 +141,67 @@ applications:
                 allow: false
                 passthru: true
 ```
-4. To generate a `Cargo.lock` file,
-   run the following command:
 
-   ```bash
-   cargo generate-lockfile
-   ```
+4.  To generate a `Cargo.lock` file,
+    run the following command:
 
-5. Add the following `hello.rs` file:
+    ```bash
+    cargo generate-lockfile
+    ```
 
-   ```rust
-   /* Simple HTTP Server */
-   /* Author : Ramesh Vyas */
-   use std::io::prelude::*;
-   use std::net::TcpListener;
-   use std::net::TcpStream;
-   use std::fs;
-   use std::env;
+5.  Add the following `hello.rs` file:
 
-   fn main() {
+    ```rust
+    /* Simple HTTP Server */
+    /* Author : Ramesh Vyas */
+    use std::io::prelude::*;
+    use std::net::TcpListener;
+    use std::net::TcpStream;
+    use std::fs;
+    use std::env;
 
-       /* Creating a Local TcpListener at Port 8888 */
-       const HOST : &str ="127.0.0.1";
-       let port : String = env::var("PORT").unwrap_or(String::from("8888"));
+    fn main() {
 
-       /* Concating Host address and Port to Create Final Endpoint */
-       let end_point : String = HOST.to_owned() + ":" +  &port;
+        /* Creating a Local TcpListener at Port 8888 */
+        const HOST : &str ="127.0.0.1";
+        let port : String = env::var("PORT").unwrap_or(String::from("8888"));
 
-       /*Creating TCP Listener at our end point */
-       let listener = TcpListener::bind(end_point).unwrap();
+        /* Concating Host address and Port to Create Final Endpoint */
+        let end_point : String = HOST.to_owned() + ":" +  &port;
 
-       println!("Web server is listening at port {}",port);
+        /*Creating TCP Listener at our end point */
+        let listener = TcpListener::bind(end_point).unwrap();
 
-       /* Connecting to any incoming connections */
-       for stream in listener.incoming() {
-           let _stream = stream.unwrap();
-           // Call Function to process any incomming connections
-           handle_connection(_stream);
-       }
+        println!("Web server is listening at port {}",port);
 
-   }
+        /* Connecting to any incoming connections */
+        for stream in listener.incoming() {
+            let _stream = stream.unwrap();
+            // Call Function to process any incomming connections
+            handle_connection(_stream);
+        }
 
-   fn handle_connection(mut stream: TcpStream) {
-       let mut buffer = [0; 1024];
-       stream.read(&mut buffer).unwrap();
+    }
 
-       let get = b"GET / HTTP/1.1\r\n";
+    fn handle_connection(mut stream: TcpStream) {
+        let mut buffer = [0; 1024];
+        stream.read(&mut buffer).unwrap();
 
-       if buffer.starts_with(get) {
-           let contents = fs::read_to_string("index.html").unwrap();
+        let get = b"GET / HTTP/1.1\r\n";
 
-           let response = format!(
-               "HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}",
-               contents.len(),
-               contents
-           );
+        if buffer.starts_with(get) {
+            let contents = fs::read_to_string("index.html").unwrap();
 
-           stream.write(response.as_bytes()).unwrap();
-           stream.flush().unwrap();
-       } else {
-           // some other request
-       }
-   }
-   ```
+            let response = format!(
+                "HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}",
+                contents.len(),
+                contents
+            );
+
+            stream.write(response.as_bytes()).unwrap();
+            stream.flush().unwrap();
+        } else {
+            // some other request
+        }
+    }
+    ```

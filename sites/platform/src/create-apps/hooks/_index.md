@@ -29,68 +29,69 @@ This makes it perfect for a `build` hook.
 
 In this case, the app has two sets of dependencies:
 
-* For the main app
-* For a script to test connections between the apps
+*   For the main app
+*   For a script to test connections between the apps
 
 Create your `build` hook to install them all:
 
-1. Create a `build` hook in your [app configuration](/create-apps/app-reference/single-runtime-image.md):
+1.  Create a `build` hook in your [app configuration](/create-apps/app-reference/single-runtime-image.md):
 
-   ```yaml {configfile="app" dir="client" }
-   hooks:
-       build: |
-           set -e
-   ```
+    ```yaml {configfile="app" dir="client" }
+    hooks:
+        build: |
+            set -e
+    ```
 
-   The hook has two parts so far:
+    The hook has two parts so far:
 
-   * The `|` means the lines that follow can contain a series of commands.
-     They aren't interpreted as new YAML properties.
-   * Adding `set -e` means that the hook fails if _any_ of the commands in it fails.
-     Without this setting, the hook fails only if its _final_ command fails.
+    *   The `|` means the lines that follow can contain a series of commands.
+        They aren't interpreted as new YAML properties.
+    *   Adding `set -e` means that the hook fails if *any* of the commands in it fails.
+        Without this setting, the hook fails only if its *final* command fails.
 
-     If a `build` hook fails for any reason, the build is aborted and the deploy doesn't happen.
-     Note that this only works for `build` hooks.
-     If other hooks fail, the deploy still happens.
-2. Install your top-level dependencies inside this `build` hook:
+        If a `build` hook fails for any reason, the build is aborted and the deploy doesn't happen.
+        Note that this only works for `build` hooks.
+        If other hooks fail, the deploy still happens.
+2.  Install your top-level dependencies inside this `build` hook:
 
-  ```yaml {configfile="app" dir="client"}
-   hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
-   ```
+```yaml {configfile="app" dir="client"}
+ hooks:
+     build: |
+         set -e
+         yarn --frozen-lockfile
+```
 
-   This installs all the dependencies for the main app.
+This installs all the dependencies for the main app.
 
-3. Copy the [testing script from the template](https://github.com/platformsh-templates/nextjs-drupal/tree/master/client/platformsh-scripts/test/next-drupal-debug).
-   Copy the files in this directory into a `client/platformsh-scripts/test` directory.
-   This script debugs the connection between Next.js and Drupal.
-4. In the hook, switch to the directory with the testing script.
-   Each hook starts in the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
-   In this case, the app root is `client`.
-   To run commands from a different directory, you need to change directories (relative to the app root):
+3.  Copy the [testing script from the template](https://github.com/platformsh-templates/nextjs-drupal/tree/master/client/platformsh-scripts/test/next-drupal-debug).
+    Copy the files in this directory into a `client/platformsh-scripts/test` directory.
+    This script debugs the connection between Next.js and Drupal.
 
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
+4.  In the hook, switch to the directory with the testing script.
+    Each hook starts in the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+    In this case, the app root is `client`.
+    To run commands from a different directory, you need to change directories (relative to the app root):
 
-           cd platformsh-scripts/test
-   ```
+    ```yaml {configfile="app" dir="client"}
+    hooks:
+        build: |
+            set -e
+            yarn --frozen-lockfile
 
-5. Install the dependencies for the testing script:
+            cd platformsh-scripts/test
+    ```
 
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       build: |
-           set -e
-           yarn --frozen-lockfile
+5.  Install the dependencies for the testing script:
 
-           cd platformsh-scripts/test
-           yarn --frozen-lockfile
-   ```
+    ```yaml {configfile="app" dir="client"}
+    hooks:
+        build: |
+            set -e
+            yarn --frozen-lockfile
+
+            cd platformsh-scripts/test
+            yarn --frozen-lockfile
+    ```
 
 Now all your Next.js dependencies are installed.
 
@@ -113,33 +114,36 @@ Because these steps should be done before the site accepts request, they should 
 All of this configuration and preparation can be handled in a bash script.
 
 <!-- @todo: this context is not so simple to disentangle, so leaving for now -->
-1. Copy the [preparation script from the {{% vendor/name %}} template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/platformsh-scripts/hooks.deploy.sh)
-   into a file called `hooks.deploy.sh` in a `api/platformsh-scripts` directory.
-   Note that hooks are executed using the dash shell, not the bash shell used by SSH logins.
-2. Copy the [Drush configuration script from the template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/drush/platformsh_generate_drush_yml.php)
-   into a `drush/platformsh_generate_drush_yml.php` file.
-3. Set a [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
-   Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
-   So create a mount where you can write the Drush configuration:
 
-   ```yaml {configfile="app" dir="api"}
-   mounts:
-        /.drush:
-            source: storage
-            source_path: 'drush'
-   ```
+1.  Copy the [preparation script from the {{% vendor/name %}} template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/platformsh-scripts/hooks.deploy.sh)
+    into a file called `hooks.deploy.sh` in a `api/platformsh-scripts` directory.
+    Note that hooks are executed using the dash shell, not the bash shell used by SSH logins.
 
-4. Add a `deploy` hook that runs the preparation script:
+2.  Copy the [Drush configuration script from the template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/drush/platformsh_generate_drush_yml.php)
+    into a `drush/platformsh_generate_drush_yml.php` file.
 
-   ```yaml {configfile="app" dir="api"}
-   hooks:
-       deploy: !include
-           type: string
-           path: platformsh-scripts/hooks.deploy.sh
-   ```
+3.  Set a [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+    Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
+    So create a mount where you can write the Drush configuration:
 
-   This `!include` syntax tells the hook to process the script as if it were included in the YAML file directly.
-   This helps with longer and more complicated scripts.
+    ```yaml {configfile="app" dir="api"}
+    mounts:
+         /.drush:
+             source: storage
+             source_path: 'drush'
+    ```
+
+4.  Add a `deploy` hook that runs the preparation script:
+
+    ```yaml {configfile="app" dir="api"}
+    hooks:
+        deploy: !include
+            type: string
+            path: platformsh-scripts/hooks.deploy.sh
+    ```
+
+    This `!include` syntax tells the hook to process the script as if it were included in the YAML file directly.
+    This helps with longer and more complicated scripts.
 
 ## Get data from Drupal to Next.js
 
@@ -156,58 +160,58 @@ On redeploys, only the `post_deploy` hook runs,
 meaning the Drupal build is reused and Next.js is built again.
 So you don't have to rebuild Drupal but you still get fresh content.
 
-1. Set a relationship for Next.js with Drupal.
-   This allows the Next.js app to make requests and receive data from the Drupal app.
+1.  Set a relationship for Next.js with Drupal.
+    This allows the Next.js app to make requests and receive data from the Drupal app.
 
-   ```yaml {configfile="app" dir="client"}
-   relationships:
-       api: 'api:http'
-   ```
+    ```yaml {configfile="app" dir="client"}
+    relationships:
+        api: 'api:http'
+    ```
 
-2. Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
-   Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
-   Create mounts for your Next.js files:
+2.  Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
+    Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
+    Create mounts for your Next.js files:
 
-   ```yaml {configfile="app" dir="client"}
-   mounts:
-       /.cache:
-           source: local
-           source_path: 'cache'
-       /.next:
-           source: local
-           source_path: 'next'
-       /.pm2:
-           source: local
-           source_path: 'pm2'
-       deploy:
-           source: service
-           service: files
-           source_path: deploy
-   ```
+    ```yaml {configfile="app" dir="client"}
+    mounts:
+        /.cache:
+            source: local
+            source_path: 'cache'
+        /.next:
+            source: local
+            source_path: 'next'
+        /.pm2:
+            source: local
+            source_path: 'pm2'
+        deploy:
+            source: service
+            service: files
+            source_path: deploy
+    ```
 
-3. Add a `post_deploy` hook that first tests the connection between the apps:
+3.  Add a `post_deploy` hook that first tests the connection between the apps:
 
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       post_deploy: |
-           . deploy/platformsh.environment
-           cd platformsh-scripts/test && yarn debug
-   ```
+    ```yaml {configfile="app" dir="client"}
+    hooks:
+        post_deploy: |
+            . deploy/platformsh.environment
+            cd platformsh-scripts/test && yarn debug
+    ```
 
-   Note that you could add `set -e` here, but even if the job fails, the build/deployment itself can still be counted as successful.
+    Note that you could add `set -e` here, but even if the job fails, the build/deployment itself can still be counted as successful.
 
-4. Then build the Next.js site:
+4.  Then build the Next.js site:
 
-   ```yaml {configfile="app" dir="client"}
-   hooks:
-       post_deploy: |
-           . deploy/platformsh.environment
-           cd platformsh-scripts/test && yarn debug
+    ```yaml {configfile="app" dir="client"}
+    hooks:
+        post_deploy: |
+            . deploy/platformsh.environment
+            cd platformsh-scripts/test && yarn debug
 
-           cd $PLATFORM_APP_DIR && yarn build
-   ```
+            cd $PLATFORM_APP_DIR && yarn build
+    ```
 
-   The `$PLATFORM_APP_DIR` variable represents the app root and can always get you back there.
+    The `$PLATFORM_APP_DIR` variable represents the app root and can always get you back there.
 
 ## Final hooks
 

@@ -19,18 +19,18 @@ the comparison mode.
 
 ![Routes](/images/observability/cont-prof-comparison-console.png "0.5")
 
-With comparisons enabled, you can select two timeframes referred to as ``A`` and
-``B``. Those times can overlap.
+With comparisons enabled, you can select two timeframes referred to as `A` and
+`B`. Those times can overlap.
 
 ## Understanding continuous profiling visual comparison
 
-The flamegraph provides a visual representation of how timeframe ``B`` compares
-to ``A`` for the selected dimension using shades of colors. The stronger the
+The flamegraph provides a visual representation of how timeframe `B` compares
+to `A` for the selected dimension using shades of colors. The stronger the
 color, the higher resource variation.
 
 ![Routes](/images/observability/cont-prof-comparison-flamegraph.png "0.5")
 
-Shades of green indicates timeframe ``B`` is consuming less resources than ``A``
+Shades of green indicates timeframe `B` is consuming less resources than `A`
 for the selected dimension. Shades of red indicate the opposite.
 
 A scale and contextual information are displayed when hovering a span. This ensures

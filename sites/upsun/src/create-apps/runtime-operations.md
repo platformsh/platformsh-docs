@@ -28,12 +28,13 @@ applications:
                 commands:
                     start: {{< variable "COMMAND" >}}
 ```
+
 When you define a runtime operation,
 you can specify which users can trigger it according to their user `role`:
 
-- `viewer`
-- `contributor`
-- `admin`
+*   `viewer`
+*   `contributor`
+*   `admin`
 
 If you don't set the `role` option when configuring your runtime operation,
 by default all users with the `contributor` role can trigger it.
@@ -52,34 +53,32 @@ applications:
                 commands:
                     start: drush cache:rebuild
 ```
+
 The name of the runtime operation in this case is `clear-rebuild`.
 
 For more possibilities, see other [runtime operation examples](#runtime-operation-examples).
 
-## Run a runtime operation 
+## Run a runtime operation
 
 {{< codetabs >}}
-+++
+\+++
 title=In the Console
-+++
-
-
+\+++
 
 First, make sure that you have [defined a runtime operation](#define-a-runtime-operation). Then:
 
-1. Navigate to the environment where you want to run the operation.
-2. Click {{< icon more >}} **More**.
-3. Click **Run runtime operation**.
-4. Select the operation you want to run.
-5. Click **Run**.
+1.  Navigate to the environment where you want to run the operation.
+2.  Click {{< icon more >}} **More**.
+3.  Click **Run runtime operation**.
+4.  Select the operation you want to run.
+5.  Click **Run**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-
-A runtime operation can be triggered through the {{% vendor/name %}} CLI once it has been [defined](#define-a-runtime-operation). 
+A runtime operation can be triggered through the {{% vendor/name %}} CLI once it has been [defined](#define-a-runtime-operation).
 
 Run the following command:
 
@@ -121,7 +120,7 @@ This is because, as its framework is being built,
 your frontend needs to pull content-related data from your backend’s API
 (to generate all the static HTML pages your site is to serve).
 To accomplish this on {{% vendor/name %}}, where each app goes through a build-deploy pipeline in parallel,
-your frontend’s build must be delayed _until after_ your backend has fully deployed.
+your frontend’s build must be delayed *until after* your backend has fully deployed.
 It's often delayed up until the [`post_deploy` hook](../create-apps/hooks/hooks-comparison.md#post-deploy-hook) stage,
 when the filesystem is read-only.
 
@@ -134,7 +133,7 @@ but want to avoid going through the whole {{% vendor/name %}} [build and deploy 
 
 The following examples assume that the frontend and backend containers are included in the same environment.
 This isn’t necessary for the commands to run successfully.<BR>
-What _is_ necessary is that the build destination for your frontend **is  writable at runtime**
+What *is* necessary is that the build destination for your frontend **is  writable at runtime**
 (meaning, you must [define a mount](/create-apps/app-reference/single-runtime-image.md#mounts) for it).
 If you don’t want to include a build within a mount (especially if your data source **isn’t** on {{% vendor/name %}}),
 you can use [source operations](../create-apps/source-operations.md) to achieve a similar effect,
@@ -143,9 +142,9 @@ but through generating a new commit.
 {{< /note >}}
 
 {{< codetabs >}}
-+++
+\+++
 title=Gatsby
-+++
+\+++
 
 To run the [Gatsby build](https://www.gatsbyjs.com/docs/conceptual/overview-of-the-gatsby-build-process/#understanding-gatsby-build-build-time) step,
 define a runtime operation similar to the following:
@@ -168,9 +167,9 @@ To trigger your runtime operation, run a command similar to the following:
 ```
 
 <--->
-+++
+\+++
 title=Next.js
-+++
+\+++
 
 To run the [Next.js build](https://nextjs.org/docs/deployment#nextjs-build-api) step,
 define a runtime operation similar to the following:
@@ -202,9 +201,9 @@ To trigger your runtime operation, run a command similar to the following:
 You can define runtime operations for common [pm2](https://pm2.io/docs/runtime/overview/) process manager tasks.
 
 {{< codetabs >}}
-+++
+\+++
 title=Ping your app
-+++
+\+++
 
 To ping your Node.js app, define a runtime operation similar to the following:
 
@@ -229,9 +228,9 @@ To trigger your runtime operation, run a command similar to the following:
 ```
 
 <--->
-+++
+\+++
 title=Reload your app
-+++
+\+++
 
 To reload your Node.js app, define a runtime operation similar to the following:
 
@@ -248,6 +247,7 @@ operations:
                 pm2 reload $APP
 {{< /snippet >}}
 ```
+
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash
@@ -255,9 +255,9 @@ To trigger your runtime operation, run a command similar to the following:
 ```
 
 <--->
-+++
+\+++
 title=Restart your app
-+++
+\+++
 
 To restart your Node.js app, define a runtime operation similar to the following:
 
@@ -300,6 +300,7 @@ applications:
                 commands:
                     start: python manage.py manual_migration
 ```
+
 To trigger your runtime operation, run a command similar to the following:
 
 ```bash

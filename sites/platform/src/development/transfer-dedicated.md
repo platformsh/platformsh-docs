@@ -43,17 +43,17 @@ Be aware that synchronizing files is a destructive operation that overwrites dat
 
 {{< /note >}}
 
-1. To download data from your Development environment to your local system, adapt the following command:
+1.  To download data from your Development environment to your local system, adapt the following command:
 
-   ```bash
-   {{% vendor/cli %}} scp --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} scp --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} -r remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}} {{< variable "LOCAL_DIRECTORY" >}}
+    ```
 
-2. To copy the local directory to the remote Staging/Production mount, adapt the following command:
+2.  To copy the local directory to the remote Staging/Production mount, adapt the following command:
 
-   ```bash
-   {{% vendor/cli %}} scp --environment {{< variable "TARGET_ENVIRONMENT" >}} -r {{< variable "LOCAL_DIRECTORY" >}} remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} scp --environment {{< variable "TARGET_ENVIRONMENT" >}} -r {{< variable "LOCAL_DIRECTORY" >}} remote:{{< variable "DIRECTORY_TO_SYNCHRONIZE" >}}
+    ```
 
 ## Synchronize a database from Development to Staging/Production
 
@@ -69,20 +69,19 @@ Be aware that this is a destructive operation that overwrites data.
 
 To synchronize your database:
 
-1. Export the Development database to your local computer:
+1.  Export the Development database to your local computer:
 
-   ```bash
-   {{% vendor/cli %}} db:dump --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} --file=dump.sql
-   ```
+    ```bash
+    {{% vendor/cli %}} db:dump --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} --file=dump.sql
+    ```
 
-   For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
+    For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
 
-2. Import the Development database dump file into the remote Staging/Production database:
+2.  Import the Development database dump file into the remote Staging/Production database:
 
-   ```bash
-   {{% vendor/cli %}} sql --environment {{< variable "TARGET_ENVIRONMENT" >}} < dump.sql
-   ```
-
+    ```bash
+    {{% vendor/cli %}} sql --environment {{< variable "TARGET_ENVIRONMENT" >}} < dump.sql
+    ```
 
 ## What's next?
 

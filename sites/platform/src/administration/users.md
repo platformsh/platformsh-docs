@@ -18,7 +18,7 @@ see how to [troubleshoot source integrations](../integrations/source/troubleshoo
 A user can have one of the following roles to control their access at project level:
 
 | Role           | View environment | Push code | Manage user access | Change settings | Execute actions on all environments |
-|----------------|------------------|-----------|--------------------|-----------------|-------------------------------------|
+| -------------- | ---------------- | --------- | ------------------ | --------------- | ----------------------------------- |
 | Project admin  | Yes              | Yes       | Yes                | Yes             | Yes                                 |
 | Project viewer | Yes              | No        | No                 | No              | No                                  |
 
@@ -28,16 +28,16 @@ By default, organization owners have **Project admin** access on all of the proj
 
 An environment type (Production, Staging, and Development) groups one or more environments together so that you can manage access for all environments of that type:
 
-- A role assigned to an environment type applies to all environments of that type.
-- Only one environment per project can be of the type: Production.
-  It is set automatically as the default branch and can't be overridden separately.
-- You can change an environment's type (except for the Production environment).
-- You can have multiple preview (staging and development) environments.
+*   A role assigned to an environment type applies to all environments of that type.
+*   Only one environment per project can be of the type: Production.
+    It is set automatically as the default branch and can't be overridden separately.
+*   You can change an environment's type (except for the Production environment).
+*   You can have multiple preview (staging and development) environments.
 
 A user can have one of the following roles on an environment type which grants them permissions on all environments of this type:
 
 | Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
-|-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
+| ----------- | ---------------- | --------- | ------------------ | ---------- | --------------- | --------------- |
 | Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
 | Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
 | Viewer      | Yes              | No        | Yes                | No         | No              | No              |
@@ -50,9 +50,9 @@ For each user, you can view a summary of their roles and permissions
 across all projects in your organization.
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 This feature is available for **v4.1.2+** of the CLI.
 
@@ -64,16 +64,16 @@ using the email address of the user whose permissions you want to view:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your organization.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user whose user permissions you want to view,
-   click **{{< icon more >}} More**.
-5. Click **Edit user**.
+1.  Navigate to your organization.
+2.  Open the user menu (your name or profile picture).
+3.  Click **Users**.
+4.  For the user whose user permissions you want to view,
+    click **{{< icon more >}} More**.
+5.  Click **Edit user**.
 
 {{< /codetabs >}}
 
@@ -84,9 +84,9 @@ To invite a user, you need to be a [project admin](#project-roles).
 To add a user, follow these steps:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To add a user, run the following command:
 
@@ -110,16 +110,16 @@ run the following command:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Select the project where you want to add a new user.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Access**.
-4. Click **+ Add**.
-5. Add the user's details and choose their permissions.
-6. Click **Save**.
+1.  Select the project where you want to add a new user.
+2.  Click {{< icon settings >}} **Settings**.
+3.  Click **Access**.
+4.  Click **+ Add**.
+5.  Add the user's details and choose their permissions.
+6.  Click **Save**.
 
 {{< /codetabs >}}
 
@@ -137,9 +137,9 @@ be an organization owner, or have the [**Manage users** permission for the organ
 To change user permissions, follow these steps:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To update an existing user's permissions, run the following command:
 
@@ -156,16 +156,16 @@ run the following command:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Select the project where you want to update user access.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Access**.
-4. Click the user you want to update permissions for.
-5. Update environment type permissions, or click **Remove user**.
-6. Click **Accept**.
+1.  Select the project where you want to update user access.
+2.  Click {{< icon settings >}} **Settings**.
+3.  Click **Access**.
+4.  Click the user you want to update permissions for.
+5.  Update environment type permissions, or click **Remove user**.
+6.  Click **Accept**.
 
 {{< /codetabs >}}
 
@@ -180,9 +180,9 @@ be an organization owner, or have the [**Manage users** permission for the organ
 To remove a user, follow these steps:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -191,17 +191,17 @@ Run the following command:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user you want to remove, click **{{< icon more >}} More**.
-5. For the project you want to remove them from, click **{{< icon more >}} More**.
-6. Click **Remove from project**.
-7. Click **Yes**.
+1.  Navigate to your organization or a project in it.
+2.  Open the user menu (your name or profile picture).
+3.  Click **Users**.
+4.  For the user you want to remove, click **{{< icon more >}} More**.
+5.  For the project you want to remove them from, click **{{< icon more >}} More**.
+6.  Click **Remove from project**.
+7.  Click **Yes**.
 
 {{< /codetabs >}}
 
@@ -224,24 +224,24 @@ For more information on project access control, see how to [manage project users
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
-- **Manage billing** (`billing`):
-  Add, remove, and edit billing information.
-  Access invoices and vouchers.
-  Users with this permission receive monthly invoices by email.
-- **Manage plans** (`plans`):
-  View and edit plans and plan options for existing projects.
-  Plan options include the amount of storage, number of environments, and number of user licenses on a project.
-- **Manage users** (`members`):
-  Add, remove, and edit organization-level users and permissions, except their own.
-  Users with this permission can't grant other users permissions that they themselves don't have.
-- **Create projects** (`projects:create`):
-  Create new projects within the organization.
-- **List projects** (`projects:list`):
-  See all projects in an organization, even those the user can't access.
+*   **Manage billing** (`billing`):
+    Add, remove, and edit billing information.
+    Access invoices and vouchers.
+    Users with this permission receive monthly invoices by email.
+*   **Manage plans** (`plans`):
+    View and edit plans and plan options for existing projects.
+    Plan options include the amount of storage, number of environments, and number of user licenses on a project.
+*   **Manage users** (`members`):
+    Add, remove, and edit organization-level users and permissions, except their own.
+    Users with this permission can't grant other users permissions that they themselves don't have.
+*   **Create projects** (`projects:create`):
+    Create new projects within the organization.
+*   **List projects** (`projects:list`):
+    See all projects in an organization, even those the user can't access.
 
 {{< note theme="info" >}}
 
-Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
+Users with the **Manage users** (`members`) permission can add, edit, or remove *any* user's permissions except their own.
 
 Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission.
 That is, they are able to see all organization projects once given billing rights.
@@ -259,9 +259,9 @@ except through an [ownership transfer](../administration/organizations.md#transf
 ### Add a user to an organization
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To invite a user to your organization, run the following command:
 
@@ -277,17 +277,17 @@ with the **Manage billing** and **Create projects** permissions, run the followi
 ```
 
 <--->
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Click **+ Invite users**.
-5. Enter the users' email addresses separated by commas.
-6. Select which organization-wide permissions they should have.
-7. Click **Invite**.
+1.  Navigate to the organization you want to manage (or a project in it).
+2.  Open the user menu (your name or profile picture).
+3.  Click **Users**.
+4.  Click **+ Invite users**.
+5.  Enter the users' email addresses separated by commas.
+6.  Select which organization-wide permissions they should have.
+7.  Click **Invite**.
 
 {{< /codetabs >}}
 
@@ -296,9 +296,9 @@ All users you invite receive an invitation email with instructions.
 ### Manage organization users
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To update permissions for a user in your organization, run the following command:
 
@@ -314,33 +314,33 @@ so that she has only the **Manage billing** permission, run the following comman
 ```
 
 <--->
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Next to the user you want to manage, click **{{< icon "more" >}} More**.
-5. Click **Edit user**.
+1.  Navigate to the organization you want to manage (or a project in it).
+2.  Open the user menu (your name or profile picture).
+3.  Click **Users**.
+4.  Next to the user you want to manage, click **{{< icon "more" >}} More**.
+5.  Click **Edit user**.
 
 You see all the projects the user is a part of and their permissions in those projects.
 You also see their permissions across the organization.
 
 To edit their organization permissions, follow these steps:
 
-1. Select or clear the checkboxes for the relevant permissions.
-2. Click **Save**.
-3. Click **Yes**.
+1.  Select or clear the checkboxes for the relevant permissions.
+2.  Click **Save**.
+3.  Click **Yes**.
 
 {{< /codetabs >}}
 
 ### Remove a user from an organization
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To update remove a user from your organization, run the following command:
 
@@ -355,15 +355,15 @@ For example, to remove `alice@example.com` from your `acme` organization, run th
 ```
 
 <--->
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Next to the user you want to remove, click **{{< icon "more" >}} More**.
-5. Click **Remove from organization**.
+1.  Navigate to the organization you want to manage (or a project in it).
+2.  Open the user menu (your name or profile picture).
+3.  Click **Users**.
+4.  Next to the user you want to remove, click **{{< icon "more" >}} More**.
+5.  Click **Remove from organization**.
 
 To delete users in bulk, select the users to remove and click **Remove users from organization**.
 

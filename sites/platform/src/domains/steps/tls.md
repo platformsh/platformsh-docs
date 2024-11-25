@@ -8,7 +8,7 @@ keywords:
 
 {{% vendor/name %}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
-To use them, you need to [specify HTTPS routes](../../define-routes/https.md#enable-https). 
+To use them, you need to [specify HTTPS routes](../../define-routes/https.md#enable-https).
 Note that some [limitations](../../define-routes/https.md#lets-encrypt-limitations) apply.
 
 {{% vendor/name %}} allows you to use third-party TLS certificates free of charge.
@@ -37,45 +37,45 @@ To add your custom certificate, follow these steps:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. Run the following command:
+1.  Run the following command:
 
-   ```bash
-   {{% vendor/cli %}} domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} domain:add {{<variable "YOUR_DOMAIN" >}} --cert {{<variable "PATH_TO_CERTIFICATE_FILE" >}} --key {{<variable "PATH_TO_PRIVATE_KEY_FILE" >}}
+    ```
 
-   For example:
+    For example:
 
-   ```bash
-   {{% vendor/cli %}} domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
-   ```
+    ```bash
+    {{% vendor/cli %}} domain:add secure.example.com --cert /etc/TLS/private/secure-example-com.crt --key /etc/TLS/private/secure-example-com.key
+    ```
 
-   You can optionally include intermediate SSL certificates by adding <code>&hyphen;&hyphen;chain {{<variable "PATH_TO_FILE" >}}</code> for each one.
+    You can optionally include intermediate SSL certificates by adding <code>‐‐chain {{\<variable "PATH\_TO\_FILE" >}}</code> for each one.
 
-2. Redeploy your production environment with the following command:
+2.  Redeploy your production environment with the following command:
 
-   ```bash
-   {{% vendor/cli %}} environment:redeploy
-   ```
+    ```bash
+    {{% vendor/cli %}} environment:redeploy
+    ```
 
 <--->
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Open the project where you want to add a certificate.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Certificates**.
-4. Click **+ Add**.
-5. Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
-6. Click **Add Certificate**.
-7. Access your production environment.
-8. Click {{< icon more >}} **More**.
-9. Click **Redeploy**.
+1.  Open the project where you want to add a certificate.
+2.  Click {{< icon settings >}} **Settings**.
+3.  Click **Certificates**.
+4.  Click **+ Add**.
+5.  Fill in your private key, public key certificate, and (optionally) intermediate SSL certificates.
+6.  Click **Add Certificate**.
+7.  Access your production environment.
+8.  Click {{< icon more >}} **More**.
+9.  Click **Redeploy**.
 
 {{< /codetabs >}}
 

@@ -34,24 +34,24 @@ Once the app has gone through all of the build steps, it can connect to services
 
 ### Build steps
 
-1. **Validate configuration**:
-   The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configuration to validate.
-2. **Pull container images**:
-   Any container images that have been built before and that don't have any changes are pulled to be reused.
-3. **Install dependencies**:
-   If you have specified additional global dependencies, they're downloaded during this step.
-   This is useful for commands you may need in the build hook.
-4. **Run build flavor commands**:
-   For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
-   You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
-5. **Run build hook**:
-   The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
-   It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
-   The committed build hook runs in the build container.
-   During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
-   Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
-6. **Freeze app container**:
-   The file system is frozen and produces a read-only container image, which is the final build artifact.
+1.  **Validate configuration**:
+    The configuration is checked by validating the `{{< vendor/configdir >}}` directory and scanning the repository for any app configuration to validate.
+2.  **Pull container images**:
+    Any container images that have been built before and that don't have any changes are pulled to be reused.
+3.  **Install dependencies**:
+    If you have specified additional global dependencies, they're downloaded during this step.
+    This is useful for commands you may need in the build hook.
+4.  **Run build flavor commands**:
+    For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
+    You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
+5.  **Run build hook**:
+    The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
+    It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
+    The committed build hook runs in the build container.
+    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
+    Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+6.  **Freeze app container**:
+    The file system is frozen and produces a read-only container image, which is the final build artifact.
 
 ## The deploy
 
@@ -63,25 +63,25 @@ but the file system is read-only.
 
 ### Deploy steps
 
-1. **Hold requests**:
-   Incoming [idempotent requests](https://www.iana.org/assignments/http-methods/http-methods.xhtml) (like `GET`, `PUT`, `DELETE` but **not** `POST`, `PATCH` etc.) are held.
-1. **Unmount current containers**:
-   Any previous containers are disconnected from their file system mounts.
-1. **Mount file systems**:
-   The file system is connected to the new containers.
-   New branches have file systems cloned from their parent.
-1. **Expose services**:
-   Networking connections are opened between any containers specified in your app and services configurations.
-1. **Run (pre-) start commands**:
-   The [commands](/create-apps/app-reference/single-runtime-image#web-commands) necessary to start your app are run. 
-   Often this stage will only include a start command, which is restarted if ever terminated going forward. 
-   You may also, however, define a `pre_start` command, when you need to run _per-instance_ actions. 
-   In this case, as you might expect, the `pre_start` command is run, then the `start` command.
-1. **Run deploy hook**:
-   The `deploy` hook is any number of shell commands you can run to finish your deployment.
-   This can include clearing caches, running database migrations, and setting configuration that requires relationship information.
-1. **Serve requests**:
-  Incoming requests to your newly deployed application are allowed.
+1.  **Hold requests**:
+    Incoming [idempotent requests](https://www.iana.org/assignments/http-methods/http-methods.xhtml) (like `GET`, `PUT`, `DELETE` but **not** `POST`, `PATCH` etc.) are held.
+2.  **Unmount current containers**:
+    Any previous containers are disconnected from their file system mounts.
+3.  **Mount file systems**:
+    The file system is connected to the new containers.
+    New branches have file systems cloned from their parent.
+4.  **Expose services**:
+    Networking connections are opened between any containers specified in your app and services configurations.
+5.  **Run (pre-) start commands**:
+    The [commands](/create-apps/app-reference/single-runtime-image#web-commands) necessary to start your app are run.
+    Often this stage will only include a start command, which is restarted if ever terminated going forward.
+    You may also, however, define a `pre_start` command, when you need to run *per-instance* actions.
+    In this case, as you might expect, the `pre_start` command is run, then the `start` command.
+6.  **Run deploy hook**:
+    The `deploy` hook is any number of shell commands you can run to finish your deployment.
+    This can include clearing caches, running database migrations, and setting configuration that requires relationship information.
+7.  **Serve requests**:
+    Incoming requests to your newly deployed application are allowed.
 
 After the deploy process is over, any commands in your `post_deploy` hook are run.
 
@@ -100,5 +100,5 @@ Deployments to a staging or development branch have no impact on the production 
 
 ## What's next
 
-* See how to [configure your app](/create-apps/_index.md) for the entire process.
-* Learn more about [using build and deploy hooks](/create-apps/hooks/_index.md).
+*   See how to [configure your app](/create-apps/_index.md) for the entire process.
+*   Learn more about [using build and deploy hooks](/create-apps/hooks/_index.md).

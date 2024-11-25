@@ -29,9 +29,9 @@ To organize your environments, you can create [hierarchical relationships](#hier
 
 You can create new environments in one of two ways:
 
--   Push a local branch through Git or a [source integration](../integrations/source/_index.md).
+*   Push a local branch through Git or a [source integration](../integrations/source/_index.md).
 
--   [Branch](/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
+*   [Branch](/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
     or the [Console](../administration/web/_index.md).
 
 When you branch an environment, you might want to create exact replicas of it.
@@ -59,18 +59,18 @@ You might want to give it a [custom domain name](../domains/steps/_index.md).
 
 Your environments can have one of two statuses:
 
--   [Active](/glossary.md#active-environment):
+*   [Active](/glossary.md#active-environment):
     A deployed environment with services and data.
 
--   [Inactive](/glossary.md#inactive-environment):
+*   [Inactive](/glossary.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
 
 You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
 
 {{< codetabs >}}
-+++
+\+++
 title=In the Console
-+++
+\+++
 
 When you open your project, inactive environments appear lighter in the environment list.
 You also can't select them from the **Environment** dropdown menu.
@@ -79,9 +79,9 @@ To check the status of an environment,
 you can also open it and view its information panel.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To check the status of all your environments, from your project directory run the `{{% vendor/cli %}} environments` command.
 
@@ -118,15 +118,15 @@ You can decide which structure best fits your needs.
 
 You may want to take one of the following approaches when creating your workflows:
 
--   **Agile**: A child environment per sprint.
+*   **Agile**: A child environment per sprint.
     Each story in the sprint can have its own environment as a child of the sprint environment.
 
--   **Developer-centric**: One QA environment and a few preview environments
+*   **Developer-centric**: One QA environment and a few preview environments
     (*per developer*, *per task*, or similar).
 
--   **Testing**: An operational test environment, a user test environment, and a few unit test environments.
+*   **Testing**: An operational test environment, a user test environment, and a few unit test environments.
 
--   **Hotfix**: One environment for each bug, security issue, or hotfix that needs deployment.
+*   **Hotfix**: One environment for each bug, security issue, or hotfix that needs deployment.
 
 #### Example workflow
 
@@ -206,9 +206,9 @@ To pause an environment, follow these steps:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -217,13 +217,13 @@ Run the following command:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your project and click {{< icon settings >}} **Settings**.
-2. Under **Environments**, select the environment you want to pause.
-3. In the **General** tab, click **Pause environment**.
+1.  Navigate to your project and click {{< icon settings >}} **Settings**.
+2.  Under **Environments**, select the environment you want to pause.
+3.  In the **General** tab, click **Pause environment**.
 
 {{< /codetabs >}}
 
@@ -234,9 +234,9 @@ You can also resume it manually at any time.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -245,13 +245,13 @@ Run the following command:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to the paused environment.
-2. In the Activity tab, click **Resume environment**.
-3. In the **Resume environment** window, click **Resume**.
+1.  Navigate to the paused environment.
+2.  In the Activity tab, click **Resume environment**.
+3.  In the **Resume environment** window, click **Resume**.
 
 {{< /codetabs >}}
 
@@ -264,15 +264,15 @@ Git provides push options to pass a string to the server (see [the official Git 
 {{% vendor/name %}} supports some of these push options,
 which allows you to push changes to your environment and trigger the following actions at the same time:
 
-| Action                                     | Command                                                                                                                 |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Activate the environment                   | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
-| Set a title for the environment            | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
-| Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |
-| Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
-| Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
-| Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
-| Define a [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy) (`default`, `manual`, `minimum`, or `parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
+| Action                                                                                                                                                                | Command                                                                              |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Activate the environment                                                                                                                                              | `git push {{% vendor/cli %}} -o "environment.status=active"`                         |
+| Set a title for the environment                                                                                                                                       | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`             |
+| Set the parent environment                                                                                                                                            | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"`      |
+| Clone the data from the parent environment                                                                                                                            | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"`           |
+| Disable the cloning of the data from the parent environment                                                                                                           | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"`          |
+| Set the environment type (`development`, `staging`, or `production`)                                                                                                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"`               |
+| Define a [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy) (`default`, `manual`, `minimum`, or `parent`) | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
 
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.

@@ -32,32 +32,32 @@ you can also define [cron jobs](/create-apps/app-reference/single-runtime-image.
 
 When you trigger a source operation, the following happens in order:
 
-1. The current environment HEAD commit is checked out in Git.
-   It doesn't have any remotes or tags defined in the project.
-   It only has the current environment branch.
+1.  The current environment HEAD commit is checked out in Git.
+    It doesn't have any remotes or tags defined in the project.
+    It only has the current environment branch.
 
-2. Sequentially, for each app that has an operation bearing [the name](#define-a-source-operation)
-   of the triggered source operation in its configuration,
-   the operation command is run in the app container.
-   The container isn't part of the environment's runtime cluster
-   and doesn't require that the environment is running.
+2.  Sequentially, for each app that has an operation bearing [the name](#define-a-source-operation)
+    of the triggered source operation in its configuration,
+    the operation command is run in the app container.
+    The container isn't part of the environment's runtime cluster
+    and doesn't require that the environment is running.
 
-   The environment has all of the variables normally available during the build phase.
-   These may be optionally overridden by the variables specified when the operation is run.
+    The environment has all of the variables normally available during the build phase.
+    These may be optionally overridden by the variables specified when the operation is run.
 
-3. If any new commits were created, they're pushed to the repository and the normal build process is triggered.
+3.  If any new commits were created, they're pushed to the repository and the normal build process is triggered.
 
-   If multiple apps in a single project both result in a new commit,
-   there are two distinct commits in the Git history but only a single new build process.
+    If multiple apps in a single project both result in a new commit,
+    there are two distinct commits in the Git history but only a single new build process.
 
 ## Define a source operation
 
 A source operation requires two things:
 
-- A name that must be unique within the application.
-  The name is the key of the block defined under `source.operations` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#source).
+*   A name that must be unique within the application.
+    The name is the key of the block defined under `source.operations` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#source).
 
-- A `command` that defines what's run when the operation is triggered.
+*   A `command` that defines what's run when the operation is triggered.
 
 The syntax is similar to the following:
 
@@ -71,6 +71,7 @@ applications:
                 {{< variable "SOURCE_OPERATION_NAME" >}}:
                     command: {{< variable "COMMAND" >}}
 ```
+
 For example, to update a file from a remote location, you could define an operation like this:
 
 ```yaml {configFile="app"}
@@ -87,6 +88,7 @@ applications:
                         git add myfile.txt
                         git commit -m "Update remote file"
 ```
+
 The name of the source operation in this case is `update-file`.
 
 For more possibilities, see other [source operation examples](#source-operation-examples).
@@ -94,21 +96,21 @@ For more possibilities, see other [source operation examples](#source-operation-
 ## Run a source operation
 
 {{< codetabs >}}
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to the environment where you want to run the operation.
-2. Click {{< icon more >}} **More**.
-3. Click **Run source operation**.
-4. Select the operation you want to run.
-5. Optional: Add the [variables](#use-variables-in-your-source-operations) required by your source operation.
-6. Click **Run**.
+1.  Navigate to the environment where you want to run the operation.
+2.  Click {{< icon more >}} **More**.
+3.  Click **Run source operation**.
+4.  Select the operation you want to run.
+5.  Optional: Add the [variables](#use-variables-in-your-source-operations) required by your source operation.
+6.  Click **Run**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -116,7 +118,7 @@ Run the following command:
 {{% vendor/cli %}} source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
 ```
 
-Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
+Replace {{< variable "SOURCE\_OPERATION\_NAME" >}} with the name of your operation, such as `update-file` in the [example above](#define-a-source-operation).
 
 {{< /codetabs >}}
 
@@ -155,9 +157,9 @@ Follow these steps to run the source operation:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
 1.  Navigate to the environment where you want to run the operation.
 
@@ -173,9 +175,9 @@ title=In the Console
 6.  Click **Run**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 ```bash
 {{% vendor/cli %}} source-operation:run update-file --variable env:FILE="example.txt"
@@ -214,9 +216,9 @@ so you can run a cron job in your app container.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=From the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -225,18 +227,18 @@ Run the following command:
 ```
 
 <--->
-+++
+\+++
 title=From the Console
-+++
+\+++
 
-1. Open the environment where you want to add the variable.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Variables**.
-4. Click **+ Add variable**.
-5. In the **Variable name** field, enter `env:{{% vendor/prefix_cli %}}_CLI_TOKEN`.
-6. In the **Value** field, enter your API token.
-7. Make sure the **Available at runtime** and **Sensitive variable** options are selected.
-8. Click **Add variable**.
+1.  Open the environment where you want to add the variable.
+2.  Click {{< icon settings >}} **Settings**.
+3.  Click **Variables**.
+4.  Click **+ Add variable**.
+5.  In the **Variable name** field, enter `env:{{% vendor/prefix_cli %}}_CLI_TOKEN`.
+6.  In the **Value** field, enter your API token.
+7.  Make sure the **Available at runtime** and **Sensitive variable** options are selected.
+8.  Click **Add variable**.
 
 {{< /codetabs >}}
 
@@ -289,6 +291,7 @@ applications:
                             {{% vendor/cli %}} sync -e development code data --no-wait --yes
                             {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
+
 The example above synchronizes the `development` environment with its parent
 and then runs the `update-file` source operation defined [previously](#define-a-source-operation).
 
@@ -304,15 +307,15 @@ You can set up a source operation and a cron job to [automate your dependency up
 
 The following source operation syncronizes your branch with an upstream Git repository.
 
-1. [Add a project-level variable](../development/variables/set-variables.md#create-project-variables)
-   named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
-   That makes that repository available as a Unix environment variable in all environments,
-   including in the source operation's environment.
+1.  [Add a project-level variable](../development/variables/set-variables.md#create-project-variables)
+    named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
+    That makes that repository available as a Unix environment variable in all environments,
+    including in the source operation's environment.
 
-   - Variable name: `env:UPSTREAM_REMOTE`
-   - Variable example value: `https://github.com/platformsh/platformsh-docs`
+    *   Variable name: `env:UPSTREAM_REMOTE`
+    *   Variable example value: `https://github.com/platformsh/platformsh-docs`
 
-2. In your app configuration, define a source operation to fetch from that upstream repository:
+2.  In your app configuration, define a source operation to fetch from that upstream repository:
 
 ```yaml {configFile="app"}
 applications:
@@ -328,11 +331,12 @@ applications:
                         git fetch --all
                         git merge upstream/main
 ```
-3. Now every time you run the `upstream-update` operation on a given branch,
-   the branch fetches all changes from the upstream git repository
-   and then merges the latest changes from the default branch in the upstream repository.
-   If there’s a conflict merging from the upstream repository,
-   the source operation fails and doesn't update from the upstream repository.
+
+3.  Now every time you run the `upstream-update` operation on a given branch,
+    the branch fetches all changes from the upstream git repository
+    and then merges the latest changes from the default branch in the upstream repository.
+    If there’s a conflict merging from the upstream repository,
+    the source operation fails and doesn't update from the upstream repository.
 
 Run the `upstream-update` operation on a preview environment rather than directly on Production.
 
@@ -375,6 +379,7 @@ applications:
                         git add composer.lock
                         git commit -m "Automated Drupal Core update."
 ```
+
 `--with-dependencies` is used to also update Drupal Core dependencies.
 Read more on how to [update Drupal Core via Composer on Drupal.org](https://www.drupal.org/docs/updating-drupal/updating-drupal-core-via-composer).
 
@@ -400,11 +405,11 @@ applications:
                         git add composer.json
                         git commit -am "Automated install of: $EXTENSION via Composer."
 ```
+
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
 
 If it's a new extension, after the source operation finishes,
 you need to enable the new extension via the Drupal management interface or using Drush.
-
 
 ### Update Git submodules
 
@@ -427,4 +432,5 @@ applications:
                         git add uppler .sha
                         git commit -m "Updating submodule to commit '$SHA'"
 ```
+
 Now every time you run the `rebuild` operation, it updates the Git submodules.

@@ -246,7 +246,6 @@ class EntityManagerConfiguration {
 You can use the same MySQL driver for MariaDB as well if you wish to do so.
 {{< /note >}}
 
-
 ### MariaDB
 
 [MariaDB](../../add-services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
@@ -400,12 +399,12 @@ To treat this issue, see the [Apache Delta Spike docs](https://deltaspike.apache
 
 ## Templates
 
-* [Apache TomEE](https://github.com/platformsh-templates/microprofile-tomee)
-* [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
-* [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
-* [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
-* [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
-* [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
-* [Quarkus](https://github.com/platformsh-templates/quarkus)
-* [Tomcat](https://github.com/platformsh-templates/tomcat)
-* [WildFly](https://github.com/platformsh-templates/microprofile-wildfly/)
+*   [Apache TomEE](https://github.com/platformsh-templates/microprofile-tomee)
+*   [Thorntail](https://github.com/platformsh-templates/microprofile-thorntail)
+*   [Payara Micro](https://github.com/platformsh-templates/microprofile-payara)
+*   [KumuluzEE](https://github.com/platformsh-templates/microprofile-kumuluzee)
+*   [Helidon](https://github.com/platformsh-templates/microprofile-helidon)
+*   [Open Liberty](https://github.com/platformsh-templates/microprofile-openliberty)
+*   [Quarkus](https://github.com/platformsh-templates/quarkus)
+*   [Tomcat](https://github.com/platformsh-templates/tomcat)
+*   [WildFly](https://github.com/platformsh-templates/microprofile-wildfly/)

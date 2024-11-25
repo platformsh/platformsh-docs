@@ -20,9 +20,9 @@ You can find a [complete reference](/create-apps/app-reference/single-runtime-im
 
 To create a very basic app, you need a few things:
 
-* A unique name not shared by any other app in the project.
-* The runtime `type` defining what language it uses.
-* A definition of how to handle requests from the outside `web`.
+*   A unique name not shared by any other app in the project.
+*   The runtime `type` defining what language it uses.
+*   A definition of how to handle requests from the outside `web`.
 
 The following example shows such a basic setup for Node.js:
 
@@ -62,9 +62,9 @@ See the various ways to set up a [multi-app project](./multi-app/_index.md).
 If you want to use one of the [databases or other services {{% vendor/name %}} provides](../add-services/_index.md),
 set it up by following these steps:
 
-1. Configure the service based on the documentation for that service.
-1. Use the information from that service inside your app's [`relationships` definition](/create-apps/app-reference/single-runtime-image.md#relationships)
-   to configure how your app communicates with the service.
+1.  Configure the service based on the documentation for that service.
+2.  Use the information from that service inside your app's [`relationships` definition](/create-apps/app-reference/single-runtime-image.md#relationships)
+    to configure how your app communicates with the service.
 
 ## Control the build and deploy process
 
@@ -95,10 +95,10 @@ For that reason, you generally shouldn't compress generated responses.
 Requests for static files that are served directly by {{% vendor/name %}} are compressed automatically
 using either gzip or Brotli compression if:
 
-* The request headers for the file support gzip or Brotli compression.
-* The file is served directly from disk by {{% vendor/name %}} and not passed through your application.
-* The file would be served with a cache expiration time in the future.
-* The file type is one of: HTML, JavaScript, JSON, PDF, PostScript, SVG, CSS, CSV, plain text, or XML.
+*   The request headers for the file support gzip or Brotli compression.
+*   The file is served directly from disk by {{% vendor/name %}} and not passed through your application.
+*   The file would be served with a cache expiration time in the future.
+*   The file type is one of: HTML, JavaScript, JSON, PDF, PostScript, SVG, CSS, CSV, plain text, or XML.
 
 Also, if there is a request for a file and another file exists with the same name plus a `.gz` or `.br` extension,
 the compressed file is served regardless of the original file type.
@@ -118,9 +118,9 @@ The following example shows a setup for a PHP app with comments to explain the s
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Single-runtime image
-+++
+\+++
 
 ```yaml {configFile="app"}
 applications:
@@ -181,9 +181,9 @@ services:
 
 <--->
 
-+++
+\+++
 title=Composable image (Beta)
-+++
+\+++
 
 ```yaml {configFile="app"}
 applications:

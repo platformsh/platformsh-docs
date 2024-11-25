@@ -10,7 +10,7 @@ without having to install tools (such as the {{% vendor/name %}} CLI) on your ma
 It's maintained by a community of developers and is a viable option for most {{% vendor/name %}} projects.
 
 This guide assumes you have a project already running within {{% vendor/name %}}.
-If you're starting from scratch, first [create a project from a template]({{% create-project-link template=true %}}).
+If you're starting from scratch, first \[create a project from a template]\({{% create-project-link template=true %}}).
 
 ## Before you begin
 
@@ -33,12 +33,12 @@ See all [restrictions on the projects directory](https://docs.docksal.io/getting
 
 To connect Docksal with your {{% vendor/name %}} account, use a {{% vendor/name %}} API token.
 
-1. [Create an API token](../../administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
-2. Add the token to your Docksal configuration by running this command:
+1.  [Create an API token](../../administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
+2.  Add the token to your Docksal configuration by running this command:
 
-   ```bash
-   fin config set --global SECRET_{{% vendor/prefix_cli %}}_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
-   ```
+    ```bash
+    fin config set --global SECRET_{{% vendor/prefix_cli %}}_CLI_TOKEN="{{< variable "API_TOKEN" >}}"
+    ```
 
 Now you can run `fin {{% vendor/cli %}} {{< variable "COMMAND" >}}` from your computer without needing to install the {{% vendor/name %}} CLI.
 
@@ -81,9 +81,9 @@ For example, to install dependencies, use a command like the following depending
 
 {{< codetabs >}}
 
-+++
+\+++
 title=npm
-+++
+\+++
 
 ```bash {location=".docksal/commands/init"}
 #!/usr/bin/env bash
@@ -96,11 +96,12 @@ echo "Installing dependencies..."
 npm install
 
 ```
+
 <--->
 
-+++
+\+++
 title=Composer
-+++
+\+++
 
 ```bash {location=".docksal/commands/init"}
 #!/usr/bin/env bash
@@ -137,9 +138,9 @@ add them to the Docksal environment.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 ```txt
 fin config set {{% variable "VARIABLE_NAME" %}}={{% variable "VARIABLE_VALUE" %}}
@@ -147,9 +148,9 @@ fin config set {{% variable "VARIABLE_NAME" %}}={{% variable "VARIABLE_VALUE" %}
 
 <--->
 
-+++
+\+++
 title=Directly in the configuration file
-+++
+\+++
 
 ```txt {location=".docksal/docksal.env"}
 {{% variable "VARIABLE_NAME" %}}={{% variable "VARIABLE_VALUE" %}}

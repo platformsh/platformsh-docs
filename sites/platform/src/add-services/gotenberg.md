@@ -9,11 +9,11 @@ For more information, see the [Gotenberg documentation](https://gotenberg.dev/do
 
 ## Supported versions
 
-- 8
+*   8
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 ## Relationship reference
@@ -22,11 +22,11 @@ Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS`
 or by running `{{% vendor/cli %}} relationships`.
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```bash
@@ -44,9 +44,9 @@ GOTENBERG_REL=http
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -98,7 +98,7 @@ Note that changing the name of the service replaces it with a brand new service 
 
 ### 2. Add the relationship
 
-To define the relationship, use the ``http`` endpoint:
+To define the relationship, use the `http` endpoint:
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
@@ -106,10 +106,10 @@ relationships:
     <RELATIONSHIP_NAME>: "<SERVICE_NAME>:http"
 ```
 
-You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
 With the above definition, {{% vendor/name %}} uses the `http` endpoint,
-providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the _name_ of the service.
+providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the *name* of the service.
 
 The application has access to the service via this relationship and its corresponding `PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 

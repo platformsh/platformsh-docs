@@ -6,9 +6,9 @@ description: Understand how to read metrics for {{< vendor/name >}} environments
 
 {{< vendor/name >}} environments consist of:
 
-* App containers: one or more [app containers](/create-apps/_index.md)
-* Service containers: zero or more [service containers](../../add-services/_index.md)
-* Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image#workers).
+*   App containers: one or more [app containers](/create-apps/_index.md)
+*   Service containers: zero or more [service containers](../../add-services/_index.md)
+*   Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app, service, and worker containers.
 These metrics are available for all of your environments.

@@ -25,17 +25,17 @@ When you deploy your app, you always get the latest available patches.
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -53,9 +53,9 @@ MEMCACHED_PORT=11211
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -90,7 +90,7 @@ export APP_MEMCACHED_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.memcached[0].hos
 
 ### 1. Configure the service
 
-To define the service, use the ``memcached`` type:
+To define the service, use the `memcached` type:
 
 ```yaml {configFile="app"}
 services:
@@ -126,7 +126,7 @@ and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -222,7 +222,7 @@ This configuration defines a single application (`myapp`), whose source code exi
 `myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, `myapp` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Surface a Memcached connection string for use in app.
@@ -230,24 +230,23 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 export CACHE_URL="${MEMCACHED_HOST}:${MEMCACHED_PORT}"
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable `CACHE_URL` can be used within the application to connect to the service.
 
-Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``MEMCACHEDCACHE_HOST``, are environment-dependent.
+Note that `CACHE_URL`, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like `MEMCACHEDCACHE_HOST`, are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the `{{% vendor/cli %}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Accessing Memcached directly
 
 To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool.
-Assuming your Memcached relationship is named `memcached`, the host name `MEMCACHED_HOST` and port number `MEMCACHED_PORT` obtained from the [service environment variable](#relationship-reference) would be `memcached.internal` and `11211`.
-<br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+Assuming your Memcached relationship is named `memcached`, the host name `MEMCACHED_HOST` and port number `MEMCACHED_PORT` obtained from the [service environment variable](#relationship-reference) would be `memcached.internal` and `11211`. <br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash {location="Terminal"}
 netcat memcached.internal 11211
 ```
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.

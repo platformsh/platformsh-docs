@@ -7,7 +7,7 @@ description: |
 {{% description %}}
 
 You can manage redirection rules on your {{% vendor/name %}} projects in two different ways, which we describe here. If neither of these options satisfy your redirection needs, you can still implement redirects directly from within your application, which if implemented with the appropriate caching headers would be almost as efficient as using the configuration options provided by {{% vendor/name %}}.
- 
+
 ## Whole-route redirects
 
 Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](./_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
@@ -39,25 +39,26 @@ This format is richer and works with any type of route, including routes served 
 
 Two keys are available under `redirects`:
 
-| Key                | Required | Description |
-| ------------------ | -------- | ----------- |
-| `expires`          | No       | The duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`.</br> To disable caching for all your redirects, set `expires` to `0`. You can also [disable caching on a specific redirect](#disable-caching-on-your-redirects). |
-| `paths`            | Yes      | The paths to be redirected |
+| Key       | Required | Description                                                                                                                                                                                                                                                       |
+| --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `expires` | No       | The duration the redirect is cached. Examples of valid values include `3600s`, `1d`, `2w`, `3m`.</br> To disable caching for all your redirects, set `expires` to `0`. You can also [disable caching on a specific redirect](#disable-caching-on-your-redirects). |
+| `paths`   | Yes      | The paths to be redirected                                                                                                                                                                                                                                        |
 
 Each rule under `paths` is defined by a key describing:
-- The expression to match against the request path
-- A value object describing both the destination to redirect to, with detail on how to handle the redirection
+
+*   The expression to match against the request path
+*   A value object describing both the destination to redirect to, with detail on how to handle the redirection
 
 The value object is defined with the following keys:
 
-| Key                | Required | Default |Description |
-| ------------------ | -------- | ----------- | ------------- |
-| `to`               | Yes      | n/a     | A relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`. |
-| `regexp`           | No       | `false` | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions).|
-| `prefix`           | No       | `true`, but not supported if `regexp` is `true` | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).|
-| `append_suffix`    | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`  | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).|
-| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#specify-a-http-status-code). |
-| `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. To [disable caching on a specific redirect](#disable-caching-on-your-redirects), set `expires` to `0`. | The duration the redirect is cached for. [More information](#manage-caching).
+| Key             | Required | Default                                                                                                                                                                                                   | Description                                                                                                                                                                                                                          |
+| --------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `to`            | Yes      | n/a                                                                                                                                                                                                       | A relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`.                                                                                                                                                       |
+| `regexp`        | No       | `false`                                                                                                                                                                                                   | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions). |
+| `prefix`        | No       | `true`, but not supported if `regexp` is `true`                                                                                                                                                           | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).                                                                    |
+| `append_suffix` | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`                                                                                                                                 | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).                                                                                                           |
+| `code`          | No       | n/a                                                                                                                                                                                                       | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#specify-a-http-status-code).                                                                                         |
+| `expires`       | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. To [disable caching on a specific redirect](#disable-caching-on-your-redirects), set `expires` to `0`. | The duration the redirect is cached for. [More information](#manage-caching).                                                                                                                                                        |
 
 To set up partial redirects, you can use regular expressions (`regexp`).</br>
 Alternatively, and in many cases, you can use the `prefix` and/or `append_suffix` keys to achieve the same results.</br>
@@ -65,9 +66,9 @@ Here are some examples to illustrate this and help you choose a method for your 
 
 {{< codetabs >}}
 
-+++
+\+++
 title= `regexp`
-+++
+\+++
 
 Consider this `regexp` redirect:
 
@@ -86,11 +87,12 @@ It achieves the same result as this basic redirect:
 
 <--->
 
-+++
+\+++
 title= `prefix`
-+++
+\+++
 
 Consider this redirect using `prefix`:
+
 ```yaml
 '/from':
     to: https//example.com/to
@@ -107,9 +109,9 @@ It achieves the same result as this `regexp` redirect:
 
 <--->
 
-+++
+\+++
 title= `append_suffix`
-+++
+\+++
 
 Consider this redirect using `append_suffix`:
 
@@ -155,10 +157,10 @@ https://{default}/:
 
 The following special arguments in the `to` statement are available when `regexp` is set to `true`:
 
-- `$is_args` evaluates to `?` or empty string
-- `$args` evaluates to the full query string if any
-- `$arg_foo` evaluates to the value of the query parameter `foo`
-- `$uri` evaluates to the full URI of the request.
+*   `$is_args` evaluates to `?` or empty string
+*   `$args` evaluates to the full query string if any
+*   `$arg_foo` evaluates to the value of the query parameter `foo`
+*   `$uri` evaluates to the full URI of the request.
 
 ### Redirects using `prefix` and `append_suffix`
 
@@ -176,7 +178,9 @@ When set to `true`, which is their default value, `prefix` and `append_suffix` a
 For example:
 
 {{< version/specific >}}
+
 <!-- Platform.sh configuration-->
+
 ```yaml
 https://{default}/:
     type: upstream
@@ -187,6 +191,7 @@ https://{default}/:
                 to: 'https://{default}/to'
                 prefix: true
 ```
+
 ```yaml
 https://{default}/:
     type: upstream
@@ -199,7 +204,9 @@ https://{default}/:
 ```
 
 <--->
+
 <!-- Upsun configuration -->
+
 ```yaml
 routes:
     https://{default}/:
@@ -211,6 +218,7 @@ routes:
                     to: 'https://{default}/to'
                     prefix: true
 ```
+
 ```yaml
 routes:
     https://{default}/:
@@ -222,12 +230,13 @@ routes:
                     to: 'https://{default}/to'
                     append_suffix: true
 ```
+
 {{< /version/specific >}}
 
 With both configurations:
 
-- `/from` redirects to `/to`
-- `/from/some/path` redirects to `/to/some/path`
+*   `/from` redirects to `/to`
+*   `/from/some/path` redirects to `/to/some/path`
 
 However, when set to `false`, `prefix` and `append_suffix` behave differently.
 For example, with the following configuration:
@@ -275,7 +284,7 @@ https://{default}/:
                 code: 308
             '/here':
                 to: 'https://example.com/there'
-   ```
+```
 
 In this example, redirects from `/from` use a `308` HTTP status code,
 while redirects from `/here` default to `302` ("found", as long as the resource is indeed found as a result from the redirect).
@@ -310,10 +319,10 @@ use the same `expires` key, but under the `paths` key.
 
 In the following example:
 
-- The first redirect uses the default expiration time set on all redirects
-  and is cached for two weeks
-- The second redirect ignores the default expiration time set on all redirects,
-  and is cached for three days instead
+*   The first redirect uses the default expiration time set on all redirects
+    and is cached for two weeks
+*   The second redirect ignores the default expiration time set on all redirects,
+    and is cached for three days instead
 
 ```yaml
 https://{default}/:

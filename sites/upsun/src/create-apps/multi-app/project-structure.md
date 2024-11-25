@@ -14,13 +14,13 @@ For example, there are various ways you could set up the following multiple apps
 
 Here are some example use cases and potential ways to organize the project:
 
-| Use case                                                                                | Structure                                                                                            |
-|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| Separate basic apps that are worked on together.                                         | [Unified app configuration](#unified-app-configuration)                                              |
-| One app depends on code from another app.                                                | [Nested directories](#nested-directories)                                                            |
+| Use case                                                                           | Structure                                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Separate basic apps that are worked on together.                                   | [Unified app configuration](#unified-app-configuration)                                              |
+| One app depends on code from another app.                                          | [Nested directories](#nested-directories)                                                            |
 | You want to keep configuration separate from code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories) |
-| You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                                              |
-| You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                                              |
+| You want multiple apps from the same source code.                                  | [Unified app configuration](#unified-app-configuration)                                              |
+| You want to control all apps in a single location.                                 | [Unified app configuration](#unified-app-configuration)                                              |
 
 ## Unified app configuration
 
@@ -43,6 +43,7 @@ you can organize your repository like this:
 └── mercure
     └── ...                 <- Mercure Rocks app code
 ```
+
 The `api` app is built from the `api-app` directory.</br>
 The `admin` app is built from the `admin` directory.</br>
 The `gatsby` app is built from the `gatsby` directory.</br>
@@ -232,7 +233,6 @@ you need to [change the source root](#change-the-source-root-of-your-app) of the
 
 Once your repository is organized, you can use a configuration similar to the following:
 
-
 ```yaml {configFile="apps"}
 applications:
     main:
@@ -268,6 +268,7 @@ So you could organize your [project repository](https://github.com/platformsh-te
 ├── @mercure    <-- Mercure rocks submodule
 └── .gitmodules
 ```
+
 [Add the submodules using the Git CLI](/development/submodules.html#clone-submodules-during-deployment).
 
 Your `.gitmodules` file would define all the submodules like this:

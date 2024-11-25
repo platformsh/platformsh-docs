@@ -10,11 +10,12 @@ sectionBefore: Integrated environments
 {{% ddev/definition %}}
 
 {{% guides/local-requirements framework="Django" %}}
-- DDEV installed on your computer.
 
-  {{% ddev/requirements %}}
+*   DDEV installed on your computer.
 
-  {{% ddev/install %}}
+    {{% ddev/requirements %}}
+
+    {{% ddev/install %}}
 
 {{% guides/django/local-assumptions %}}
 
@@ -71,9 +72,10 @@ sectionBefore: Integrated environments
     Add another item to the end of that array with the start command defined in `{{< vendor/configfile "app" >}}`:
 
     {{< codetabs >}}
-+++
-title=Pip
-+++
+    \+++
+    title=Pip
+    \+++
+
 ```yaml {location=".ddev/docker-compose.django.yaml"}
 hooks:
     post-start:
@@ -81,10 +83,12 @@ hooks:
         # {{% vendor/name %}} start command
         - exec: python manage.py runserver 0.0.0.0:8000
 ```
+
 <--->
-+++
+\+++
 title=Pipenv
-+++
+\+++
+
 ```yaml {location=".ddev/docker-compose.django.yaml"}
 hooks:
     post-start:
@@ -92,10 +96,12 @@ hooks:
         # {{% vendor/name %}} start command
         - exec: pipenv run python manage.py runserver 0.0.0.0:8000
 ```
+
 <--->
-+++
+\+++
 title=Poetry
-+++
+\+++
+
 ```yaml {location=".ddev/docker-compose.django.yaml"}
 hooks:
     post-start:
@@ -103,9 +109,10 @@ hooks:
         # {{% vendor/name %}} start command
         - exec: poetry run python manage.py runserver 0.0.0.0:8000
 ```
+
     {{< /codetabs >}}
 
-8.  Create a custom Docker Compose file to define the port exposed for the container you're building, `web`:
+8\.  Create a custom Docker Compose file to define the port exposed for the container you're building, `web`:
 
     ```yaml {location=".ddev/docker-compose.django.yaml"}
     version: "3.6"
@@ -120,13 +127,13 @@ hooks:
                 test: "true"
     ```
 
-9.  Create a custom `Dockerfile` to install Python into the container.
+9\.  Create a custom `Dockerfile` to install Python into the container.
 
     ```{location=".ddev/web-build/Dockerfile.python"}
     RUN apt-get install -y python3.10 python3-pip
     ```
 
-10. Update your allowed hosts to include the expected DDEV domain suffix:
+10\. Update your allowed hosts to include the expected DDEV domain suffix:
 
     ```py {location="APP_NAME/settings.py"}
     ALLOWED_HOSTS = [
@@ -137,7 +144,7 @@ hooks:
     ]
     ```
 
-11. Update your database configuration to include environment variables provided by DDEV:
+11\. Update your database configuration to include environment variables provided by DDEV:
 
     ```py {location="APP_NAME/settings.py"}
     DATABASES = {
@@ -155,7 +162,7 @@ hooks:
     This example assumes you have a PostgreSQL database with `db` as the relationship name.
     If you have a different setup, adjust the values accordingly.
 
-12. Start DDEV.
+12\. Start DDEV.
 
     Build and start up Django for the first time.
 
@@ -174,7 +181,7 @@ hooks:
     - Edit `router_http_port` in `.ddev/config.yaml` to another port such as `8080`.
     - Edit the `services.web.environment` variable `HTTP_EXPOSE` in `ddev/docker-compose.django.yaml` to `HTTP_EXPOSE=8080:8000`.
 
-13. Pull data from the environment.
+13\. Pull data from the environment.
 
     Exit the currently running process (`CTRL+C`)
     and then run the following command to retrieve data from the current {{% vendor/name %}} environment:
@@ -183,7 +190,7 @@ hooks:
     ddev pull {{% vendor/cli %}}
     ```
 
-14. Restart DDEV
+14\. Restart DDEV
 
     ```bash
     ddev restart
@@ -191,7 +198,7 @@ hooks:
 
     You now have a local development environment that's in sync with the `new-feature` environment on {{% vendor/name %}}.
 
-15. When you finish your work, shut down DDEV.
+15\. When you finish your work, shut down DDEV.
 
     ```bash
     ddev stop
@@ -216,12 +223,12 @@ You can merge this change into production.
     touch init-local.sh && chmod +x init-local.sh
     ```
 
-3. Fill it with the following example, depending on your package manager:
+3.  Fill it with the following example, depending on your package manager:
 
-   {{< codetabs >}}
-+++
-title=Pip
-+++
+    {{< codetabs >}}
+    \+++
+    title=Pip
+    \+++
 
 ```bash {location="init-local.sh"}
 #!/usr/bin/env bash
@@ -273,9 +280,9 @@ ddev restart
 ```
 
 <--->
-+++
+\+++
 title=Pipenv
-+++
+\+++
 
 ```bash {location="init-local.sh"}
 #!/usr/bin/env bash
@@ -328,9 +335,9 @@ ddev restart
 ```
 
 <--->
-+++
+\+++
 title=Poetry
-+++
+\+++
 
 ```bash {location="init-local.sh"}
 #!/usr/bin/env bash
@@ -382,13 +389,13 @@ ddev restart
 
 ```
 
-   {{< /codetabs >}}
+{{< /codetabs >}}
 
-4. To commit and push the revisions, run the following command:
+4.  To commit and push the revisions, run the following command:
 
-   ```bash
-   git add . && git commit -m "Add local configuration" && git push {{< vendor/cli >}} local-config
-   ```
+    ```bash
+    git add . && git commit -m "Add local configuration" && git push {{< vendor/cli >}} local-config
+    ```
 
 5.  Merge the change into production.
 

@@ -17,7 +17,7 @@ You can also develop a microservice architecture mixing JavaScript and other app
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 <table>
@@ -35,7 +35,7 @@ When you deploy your app, you always get the latest available patches.
     </tbody>
 </table>
 
-{{% language-specification type="nodejs" display_name="Node.js" %}}
+{{% language-specification type="nodejs" display\_name="Node.js" %}}
 
 ```yaml {configFile="app"}
 type: 'nodejs:<VERSION_NUMBER>'
@@ -83,7 +83,6 @@ type: 'nodejs:{{% latest "nodejs" %}}'
 ### 2. Specify any global dependencies
 
 Add the following to your app configuration:
-
 
 ```yaml {configFile="app"}
 type: 'nodejs:{{% latest "nodejs" %}}'
@@ -147,6 +146,7 @@ const server = http.createServer(function (request, response) {
 // Listen on the port from the {{% vendor/name %}} configuration
 server.listen(config.port);
 ```
+
 ### Complete example
 
 A complete basic app configuration looks like the following:
@@ -187,31 +187,31 @@ This means you can specify configuration in a `.npmrc` file in [your app root](/
 
 To switch to Yarn to manage dependencies, follow these steps:
 
-1. Turn off the default use of npm:
+1.  Turn off the default use of npm:
 
 ```yaml {configFile="app"}
    build:
        flavor: none
 ```
 
-2. Specify the version of Yarn you want:
+2.  Specify the version of Yarn you want:
 
-   ```json {location="package.json"}
-   {
-     ...
-     "packageManager": "yarn@3.2.1"
-   }
-   ```
+    ```json {location="package.json"}
+    {
+      ...
+      "packageManager": "yarn@3.2.1"
+    }
+    ```
 
 What you do next depends on the versions of Yarn and Node.js you want.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Yarn 3.x and Node.js 16+
-+++
+\+++
 
-3. Use Corepack to run Yarn in your build hook:
+3.  Use Corepack to run Yarn in your build hook:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
@@ -224,11 +224,11 @@ hooks:
 
 <--->
 
-+++
+\+++
 title=Yarn 3.x and Node.js 14
-+++
+\+++
 
-3. Enable Corepack (which is opt-in):
+3.  Enable Corepack (which is opt-in):
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
@@ -239,7 +239,7 @@ dependencies:
 {{< /snippet >}}
 ```
 
-4. Use Corepack to run Yarn in your build hook:
+4.  Use Corepack to run Yarn in your build hook:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
@@ -252,11 +252,11 @@ hooks:
 
 <--->
 
-+++
+\+++
 title=Yarn < 3
-+++
+\+++
 
-3. Add Yarn as a global dependency:
+3.  Add Yarn as a global dependency:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
@@ -267,7 +267,7 @@ dependencies:
 {{< /snippet >}}
 ```
 
-4. Install dependencies in the `build` hook:
+4.  Install dependencies in the `build` hook:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
@@ -328,59 +328,59 @@ To configure a given service, see the page dedicated to that service.
 
 {{< codetabs v2hide="true" >}}
 
-+++
+\+++
 title=Elasticsearch
 file=static/files/fetch/examples/nodejs/elasticsearch
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Memcached
 file=static/files/fetch/examples/nodejs/memcached
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MongoDB
 file=static/files/fetch/examples/nodejs/mongodb
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MySQL
 file=static/files/fetch/examples/nodejs/mysql
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PostgreSQL
 file=static/files/fetch/examples/nodejs/postgresql
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Redis
 file=static/files/fetch/examples/nodejs/redis
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Solr
 file=static/files/fetch/examples/nodejs/solr
 highlight=js
-+++
+\+++
 
 {{< /codetabs >}}
 

@@ -91,14 +91,14 @@ To define the service, use the `network-storage` type:
 
 `<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
 
-- Contain at most 63 characters
-- Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
-- Start with an alphanumeric character
-- End with an alphanumeric character
+*   Contain at most 63 characters
+*   Contain only lowercase alphanumeric characters or `-` (underscores `_` are not allowed)
+*   Start with an alphanumeric character
+*   End with an alphanumeric character
 
 This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the mount
@@ -113,12 +113,12 @@ mounts:
         source_path: <SOURCE_PATH>
 ```
 
-- `<TARGET_PATH>` is the path to your mount within the app container (relative to the app’s root).
-- `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
-- `<SOURCE_PATH>` specifies where the mount points inside the service.</br>
-  If the `source_path` is an empty string (`""`), your mount points to the entire service.</br>
-  If you don’t define a `source_path`, {{% vendor/name %}} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
-  For example, if your mount lives in the `/my/files/` directory within your app container, it will point to a `my/files` directory within the service.
+*   `<TARGET_PATH>` is the path to your mount within the app container (relative to the app’s root).
+*   `<SERVICE_NAME>` is the name you [defined in step 1](#1-configure-the-service).
+*   `<SOURCE_PATH>` specifies where the mount points inside the service.</br>
+    If the `source_path` is an empty string (`""`), your mount points to the entire service.</br>
+    If you don’t define a `source_path`, {{% vendor/name %}} uses the `MOUNT_PATH` as default value, without leading or trailing slashes.
+    For example, if your mount lives in the `/my/files/` directory within your app container, it will point to a `my/files` directory within the service.
 
 ### Example configuration
 
@@ -264,11 +264,11 @@ workers:
 
 Both the web instance and the `queue` worker have two mount points:
 
-- The `local_dir` mount on each is independent and not connected to each other at all
-  and they *each* take 1024 MB of space.
-- The `network_dir` mount on each points to the same network storage space on the `files` service.
-  They can both read and write to it simultaneously.
-  The amount of space it has available depends on the `disk` key specified for the service configuration (in this case, 2048 MB).
+*   The `local_dir` mount on each is independent and not connected to each other at all
+    and they *each* take 1024 MB of space.
+*   The `network_dir` mount on each points to the same network storage space on the `files` service.
+    They can both read and write to it simultaneously.
+    The amount of space it has available depends on the `disk` key specified for the service configuration (in this case, 2048 MB).
 
 ## How do I give my workers access to my main application's files?
 
@@ -352,64 +352,64 @@ mounts:
 And want to move that to a network storage mount.
 The following approximate steps do so with a minimum of service interruption.
 
-1. Add a new `network-storage` service, named `files`,
-   that has at least enough space for your existing files with some buffer.
+1.  Add a new `network-storage` service, named `files`,
+    that has at least enough space for your existing files with some buffer.
 
-   ```yaml {configFile="services"}
-   # The name of the service container. Must be unique within a project.
-   files:
-       type: network-storage:{{% latest "network-storage" %}}
-       disk: 1024
-   ```
+    ```yaml {configFile="services"}
+    # The name of the service container. Must be unique within a project.
+    files:
+        type: network-storage:{{% latest "network-storage" %}}
+        disk: 1024
+    ```
 
-2. Add a new mount (`new-uploads`) to the network storage service on a non-public directory.
-   (Remember the `source_path` can be the same since they're on different storage services.)
+2.  Add a new mount (`new-uploads`) to the network storage service on a non-public directory.
+    (Remember the `source_path` can be the same since they're on different storage services.)
 
-   ```yaml {configFile="app"}
-   mounts:
-       web/uploads:
-           source: local
-           source_path: uploads
-       new-uploads:
-           source: service
-           service: files
-           source_path: uploads
-   ```
+    ```yaml {configFile="app"}
+    mounts:
+        web/uploads:
+            source: local
+            source_path: uploads
+        new-uploads:
+            source: service
+            service: files
+            source_path: uploads
+    ```
 
-3. Deploy these changes.
-   Then use `rsync` to copy all files from the local mount to the network mount.
-   (Be careful of the trailing `/`.)
+3.  Deploy these changes.
+    Then use `rsync` to copy all files from the local mount to the network mount.
+    (Be careful of the trailing `/`.)
 
     ```bash
     rsync -avz web/uploads/* new-uploads/
     ```
 
-4. Reverse the mounts.
-   Point the `web/uploads` directory to the network mount instead.
-   Commit and push the change, testing to make sure the network files are accessible.
+4.  Reverse the mounts.
+    Point the `web/uploads` directory to the network mount instead.
+    Commit and push the change, testing to make sure the network files are accessible.
 
-   ```yaml {configFile="app"}
-   mounts:
-       old-uploads:
-           source: local
-           source_path: uploads
-       web/uploads:
-           source: service
-           service: files
-           source_path: uploads
-   ```
+    ```yaml {configFile="app"}
+    mounts:
+        old-uploads:
+            source: local
+            source_path: uploads
+        web/uploads:
+            source: service
+            service: files
+            source_path: uploads
+    ```
 
-5. Clean up.
-   First, run another `rsync` just to make sure any files uploaded during the transition aren't lost.
-   (Note the command is different here.)
+5.  Clean up.
+    First, run another `rsync` just to make sure any files uploaded during the transition aren't lost.
+    (Note the command is different here.)
 
-   ```bash
-   rsync -avz old-uploads/* web/uploads/
-   ```
+    ```bash
+    rsync -avz old-uploads/* web/uploads/
+    ```
 
-   Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.
-   If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
+    Once you're confident all the files are accounted for, delete the entire contents of `old-uploads`.
+    If you don't, the files remain on disk but inaccessible, just eating up disk space needlessly.
 
-   Once that's done you can remove the `old-uploads` mount and push again to finish the process
-   You are also free to reduce the `disk` size in the `{{< vendor/configfile "app" >}}` file if desired,
-   but make sure to leave enough for any remaining local mounts.
+    Once that's done you can remove the `old-uploads` mount and push again to finish the process
+    You are also free to reduce the `disk` size in the `{{< vendor/configfile "app" >}}` file if desired,
+    but make sure to leave enough for any remaining local mounts.

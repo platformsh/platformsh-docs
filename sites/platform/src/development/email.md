@@ -25,23 +25,23 @@ To turn it on for a specific environment, follow these steps:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-- Select the project with the given environment.
-- From the **Environment** menu, select the environment.
-- Click {{< icon settings >}} **Settings**.
-- In the row with **Outgoing emails**, click **Edit {{< icon chevron >}}**.
-- Select the **Email sending** checkbox.
+*   Select the project with the given environment.
+*   From the **Environment** menu, select the environment.
+*   Click {{< icon settings >}} **Settings**.
+*   In the row with **Outgoing emails**, click **Edit {{< icon chevron >}}**.
+*   Select the **Email sending** checkbox.
 
 To turn off outgoing email, clear the **Email sending** checkbox.
 
 <--->
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To turn on outgoing email, run the following command:
 
@@ -80,8 +80,8 @@ Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
 
 To have DKIM enabled for your domain:
 
-1. Open a [support ticket](/learn/overview/get-support) with the domain where you want DKIM.
-2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
+1.  Open a [support ticket](/learn/overview/get-support) with the domain where you want DKIM.
+2.  Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
 
 Checks for the expected DNS records run every 15 minutes before validation.
 
@@ -129,9 +129,9 @@ See some examples for given languages.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=PHP
-+++
+\+++
 
 To send email in PHP, you can use the built-in [`mail()` function](https://www.php.net/manual/en/function.mail.php).
 The PHP runtime is configured to send email automatically with the correct configuration.
@@ -146,9 +146,9 @@ be sure to sanitize it first.
 
 <--->
 
-+++
+\+++
 title=Java
-+++
+\+++
 
 JavaMail is a Java API used to send and receive email via SMTP, POP3, and IMAP.
 JavaMail is built into the [Jakarta EE](https://jakarta.ee/) platform, but also provides an optional package for use in Java SE.
@@ -208,8 +208,8 @@ public class JavaEmailSender {
 
 Guides on using JavaMail:
 
-- [Send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/)
-- [JavaMail API](https://javaee.github.io/javamail/)
+*   [Send email with HTML formatting and attachments](https://mkyong.com/java/java-how-to-send-email/)
+*   [JavaMail API](https://javaee.github.io/javamail/)
 
 {{< /codetabs >}}
 

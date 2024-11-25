@@ -11,23 +11,27 @@ They're usually listed in a `.gitmodules` file at the root of your Git repositor
 When you push via Git, {{% vendor/name %}} tries to clone them automatically.
 
 {{% version/specific %}}
+
 <!-- Platform.sh -->
+
 The following example is based on [a Bigfoot multi-app project](https://github.com/platformsh-templates/bigfoot-multiapp/tree/multiapp-subfolders-applications) which uses the following submodules:
 
-- A [BigFoot app](https://github.com/platformsh-templates/bigfoot-multiapp-api/tree/without-platform-app-yaml)
-- An [API Platform v3, Admin component](https://github.com/platformsh-templates/bigfoot-multiapp-admin/tree/without-platform-app-yaml)
-- A [Gatsby frontend](https://github.com/platformsh-templates/bigfoot-multiapp-gatsby/tree/without-platform-app-yaml)
-- A [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
+*   A [BigFoot app](https://github.com/platformsh-templates/bigfoot-multiapp-api/tree/without-platform-app-yaml)
+*   An [API Platform v3, Admin component](https://github.com/platformsh-templates/bigfoot-multiapp-admin/tree/without-platform-app-yaml)
+*   A [Gatsby frontend](https://github.com/platformsh-templates/bigfoot-multiapp-gatsby/tree/without-platform-app-yaml)
+*   A [Mercure Rocks server](https://github.com/platformsh-templates/bigfoot-multiapp-mercure/tree/without-platform-app-yaml)
 
 ![Diagram of a project containing multiple apps](/images/config-diagrams/multiple-app.png "0.5")
 <--->
+
 <!-- Upsun -->
+
 Say you have a multi-app project that includes the following submodules:
 
-- A BigFoot app
-- An API Platform v3, Admin component
-- A Gatsby frontend
-- A Mercure Rocks server
+*   A BigFoot app
+*   An API Platform v3, Admin component
+*   A Gatsby frontend
+*   A Mercure Rocks server
 
 {{% /version/specific %}}
 
@@ -86,9 +90,9 @@ see [how to configure it properly](create-apps/multi-app/project-structure.md#sp
 ## Update submodules
 
 {{< codetabs >}}
-+++
+\+++
 title= Manual update
-+++
+\+++
 
 When you amend your submodules' code, make sure your changes are applied by running the following commands
 before redeploying:
@@ -108,9 +112,9 @@ To specify which submodule needs to be updated, replace `[submodule]` with your 
 {{< /note >}}
 
 <--->
-+++
+\+++
 title= Automated update
-+++
+\+++
 
 {{< note theme="warning" title="Tier availability" version="1" >}}
 
@@ -123,8 +127,8 @@ or [contact our Sales team](https://platform.sh/contact/) for more information.
 Automate your submodule updates using a [source operation](create-apps/source-operations).
 To do so, follow these steps:
 
-1. Define a source operation.</br>
-   Add the following configuration to your `{{< vendor/configfile "app" >}}` file:
+1.  Define a source operation.</br>
+    Add the following configuration to your `{{< vendor/configfile "app" >}}` file:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="false" >}}
@@ -141,13 +145,13 @@ source:
                 fi
 {{< /snippet >}}
 ```
-   
-   For multiple app projects, make sure you define your source operation
-   in the configuration of an app whose source code **is not** in a submodule.
 
-   If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
-   Don't define routes so your app isn't exposed to the web.
-   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
+For multiple app projects, make sure you define your source operation
+in the configuration of an app whose source code **is not** in a submodule.
+
+If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
+Don't define routes so your app isn't exposed to the web.
+To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
 
 ```yaml {configFile="app"}
 {{< snippet name="update-submodule" config="app" root="false" >}}
@@ -177,21 +181,21 @@ source:
 {{< /snippet >}}
 ```
 
-2. Run your source operation.</br>
+2.  Run your source operation.</br>
 
-   To do so, in the [Console](../administration/web/_index.md),
-   navigate to the environment where you want to run the source operation.</br>
-   Click {{< icon more >}} **More**.</br>
-   Click **Run Source Operation**.</br>
-   Select the operation you want to run.</br>
-   Click **Run**.
+    To do so, in the [Console](../administration/web/_index.md),
+    navigate to the environment where you want to run the source operation.</br>
+    Click {{< icon more >}} **More**.</br>
+    Click **Run Source Operation**.</br>
+    Select the operation you want to run.</br>
+    Click **Run**.
 
-   Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](../administration/cli/_index.md),
-   run the following command:
+    Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](../administration/cli/_index.md),
+    run the following command:
 
-   ```bash
-   {{% vendor/cli %}} source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} source-operation:run {{< variable "SOURCE_OPERATION_NAME" >}}
+    ```
 
 {{< /codetabs >}}
 
@@ -223,7 +227,7 @@ GitProtocolError: unexpected http resp 401 for https://bitbucket.org/myusername/
 
 To fix this, follow these steps:
 
-1. Change your module declarations to use SSH for URLs.
+1.  Change your module declarations to use SSH for URLs.
 
     Your existing declaration might look like this:
 
@@ -243,8 +247,8 @@ To fix this, follow these steps:
         branch = submodule/branch
     ```
 
-2. Add the [project's public key to your remote Git repository](./private-repository.md).
-   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
+2.  Add the [project's public key to your remote Git repository](./private-repository.md).
+    This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 
@@ -252,9 +256,9 @@ Deploy keys only grant access to a single repository,
 which can cause issues when attempting to pull several repositories to the same server.
 If your server needs access to multiple repositories, follow these steps:
 
-1. [Create a machine user](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys#machine-users)
-   with access rights to each of the private repositories.
-2. Attach the deploy key to your machine user.
+1.  [Create a machine user](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys#machine-users)
+    with access rights to each of the private repositories.
+2.  Attach the deploy key to your machine user.
 
 {{< /note >}}
 
@@ -262,36 +266,37 @@ If your server needs access to multiple repositories, follow these steps:
 
 These steps aren't specific to {{% vendor/name %}}, but kept as a reference for Git so that submodules are effectively removed before entering the build process.
 
-1. In your `.gitmodules` and `.git/config` files, delete the information related to the submodule you want to remove.
+1.  In your `.gitmodules` and `.git/config` files, delete the information related to the submodule you want to remove.
 
-   ```bash
-   git submodule deinit -f path_to_submodule
-   ```
+    ```bash
+    git submodule deinit -f path_to_submodule
+    ```
 
-2. Stage changes to `.gitmodules`:
+2.  Stage changes to `.gitmodules`:
 
     ```bash
     git add .gitmodules
     ```
-3. Remove the submodule from the repository (without trailing slash):
+
+3.  Remove the submodule from the repository (without trailing slash):
 
     ```bash
     git rm --cached path_to_submodule
     ```
 
-4. Remove the submodule files in `.git` from the repository  (without trailing slash):
+4.  Remove the submodule files in `.git` from the repository  (without trailing slash):
 
     ```bash
     rm -rf .git/modules/path_to_submodule
     ```
 
-5. Commit the changes:
+5.  Commit the changes:
 
     ```bash
     git commit -m "Removed submodule."
     ```
 
-6. Remove the submodule code locally, now no longer tracked:
+6.  Remove the submodule code locally, now no longer tracked:
 
     ```bash
     rm -rf path_to_submodule

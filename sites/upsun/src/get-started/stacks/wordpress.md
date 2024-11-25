@@ -24,9 +24,9 @@ you still need to add some required files and make a few changes to your {{% ven
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
 
-- You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
-- You do not have a `composer.json` file, or are comfortable making changes to your existing version.
-- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
+*   You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
+*   You do not have a `composer.json` file, or are comfortable making changes to your existing version.
+*   You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.
 
 {{< /note >}}
 
@@ -34,23 +34,23 @@ The instructions on this page were designed based on the following assumptions:
 
 To ensure you have all the required files and directories in your project, follow these steps:
 
-1. Copy the following files from the [WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
-   and add them to the root of your project:
+1.  Copy the following files from the [WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
+    and add them to the root of your project:
 
-   - The [composer.json](https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/61da65da21039b280b588642cd329a2eb253e472/composer.json) file declares project dependencies and specifies project settings and metadata for [Composer](https://getcomposer.org/) to use
-   - The [wp-cli.yml](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-cli.yml) file contains the configuration values, related to your site, for the [WordPress CLI](https://wp-cli.org/) to use
-   - The [wp-config.php](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-config.php) file contains your site's base configuration details, such as database connection information
+    *   The [composer.json](https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/61da65da21039b280b588642cd329a2eb253e472/composer.json) file declares project dependencies and specifies project settings and metadata for [Composer](https://getcomposer.org/) to use
+    *   The [wp-cli.yml](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-cli.yml) file contains the configuration values, related to your site, for the [WordPress CLI](https://wp-cli.org/) to use
+    *   The [wp-config.php](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-config.php) file contains your site's base configuration details, such as database connection information
 
-2. Optional: To support non-public plugins, add a `plugins` directory to your project.
-To ensure Git tracks empty folders, add a `plugins/.gitkeep` file as well.
+2.  Optional: To support non-public plugins, add a `plugins` directory to your project.
+    To ensure Git tracks empty folders, add a `plugins/.gitkeep` file as well.
 
-3. Add and commit your changes.
+3.  Add and commit your changes.
 
-   ```bash {location="Terminal"}
-   git add .
-   git commit -m "Add files and directory"
-   git push
-   ```
+    ```bash {location="Terminal"}
+    git add .
+    git commit -m "Add files and directory"
+    git push
+    ```
 
 Now that you have pushed all the necessary files and directories to Upsun,
 make the following changes to your `./.upsun/config.yaml` file.
@@ -94,59 +94,59 @@ In this case, set `root:` to the name of the directory where you are installing 
 WordPress needs a writable location to store uploaded media.
 To set one up, follow these steps:
 
-1. Create the location.</br>
-   To do so, add a `/wp-content/uploads` location as follows:
+1.  Create the location.</br>
+    To do so, add a `/wp-content/uploads` location as follows:
 
-   ```yaml {location="./.upsun/config.yaml"}
-   applications:
+    ```yaml {location="./.upsun/config.yaml"}
+    applications:
+        myapp:
+            source:
+                root: "/"
+            type: 'php:8.3'
+         web:
+           locations:
+               "/":
+                   passthru: "/index.php"
+                   root: "wordpress"
+                   index:
+                       - "index.php"
+                   expires: 600
+                   scripts: true
+                   allow: true
+                   rules:
+                       ^/license\.text$:
+                           allow: false
+                       ^/readme\.html$:
+                           allow: false
+               "/wp-content/uploads":
+                   root: "wordpress/wp-content/uploads"
+                   scripts: false
+                   allow: false
+                   rules:
+                       '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
+                           allow: true
+                           expires: 1w
+    ```
+2.  To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).</br>
+    To do so, locate the `mounts:` section that is commented it out, and update it as follows:
+
+    ```yaml {location="./.upsun/config.yaml"}
+    applications:
        myapp:
            source:
                root: "/"
            type: 'php:8.3'
-        web:
-          locations:
-              "/":
-                  passthru: "/index.php"
-                  root: "wordpress"
-                  index:
-                      - "index.php"
-                  expires: 600
-                  scripts: true
-                  allow: true
-                  rules:
-                      ^/license\.text$:
-                          allow: false
-                      ^/readme\.html$:
-                          allow: false
-              "/wp-content/uploads":
-                  root: "wordpress/wp-content/uploads"
-                  scripts: false
-                  allow: false
-                  rules:
-                      '(?<!\-lock)\.(?i:jpe?g|gif|png|svg|bmp|ico|css|js(?:on)?|eot|ttf|woff|woff2|pdf|docx?|xlsx?|pp[st]x?|psd|odt|key|mp[2-5g]|m4[av]|og[gv]|wav|mov|wm[av]|avi|3g[p2])$':
-                          allow: true
-                          expires: 1w
-   ```
-2. To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).</br>
-   To do so, locate the `mounts:` section that is commented it out, and update it as follows:
+           ...
+           mounts:
+               "wordpress/wp-content/uploads":
+                   source: storage
+                   source_path: "uploads"
+    ```
 
-   ```yaml {location="./.upsun/config.yaml"}
-   applications:
-      myapp:
-          source:
-              root: "/"
-          type: 'php:8.3'
-          ...
-          mounts:
-              "wordpress/wp-content/uploads":
-                  source: storage
-                  source_path: "uploads"
-   ```
-
-   {{< note theme="info" >}}
-   If you have designated a different directory through the `wordpress-install-dir` property in your `composer.json` file, update the
-   mount location accordingly.
-   {{< /note >}}
+    {{< note theme="info" >}}
+    If you have designated a different directory through the `wordpress-install-dir` property in your `composer.json` file, update the
+    mount location accordingly.
+    {{< /note >}}
 
 ## 4. Install dependencies during the build hook
 
@@ -180,9 +180,9 @@ Therefore, the best time to launch them is during the [deploy hook](/learn/overv
 
 Such tasks include:
 
-- Flushing the object cache, which might have changed between current production and newly deployed changes
-- Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
-- Running any due cron jobs
+*   Flushing the object cache, which might have changed between current production and newly deployed changes
+*   Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
+*   Running any due cron jobs
 
 To launch these tasks during the deploy hook,
 locate the `deploy:` section (below the `build:` section).</br>
@@ -232,8 +232,8 @@ routes:
                 - '/^wp-*/'
 ```
 
-Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage. 
-If these strings aren't the same, the WordPress deployment will not succeed. 
+Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
+If these strings aren't the same, the WordPress deployment will not succeed.
 
 ## 7. Update your MariaDB service relationship
 
@@ -254,34 +254,33 @@ applications:
 
 You can now commit all the changes made to `.upsun/config.yaml` and push to {{% vendor/name %}}.
 
-   ```bash {location="Terminal"}
-   git add .
-   git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
-   git push
-   ```
-
+```bash {location="Terminal"}
+git add .
+git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
+git push
+```
 
 ## Further resources
 
 ### Documentation
 
-- [PHP documentation](/languages/php/)
+*   [PHP documentation](/languages/php/)
 
-- [Extensions](/languages/php/extensions)
+*   [Extensions](/languages/php/extensions)
 
-- [Performance tuning](/languages/php/tuning)
+*   [Performance tuning](/languages/php/tuning)
 
-- [PHP-FPM sizing](/languages/php/fpm)
+*   [PHP-FPM sizing](/languages/php/fpm)
 
-- [Authenticated Composer](/languages/php/composer-auth)
+*   [Authenticated Composer](/languages/php/composer-auth)
 
 ### Community content
 
-- [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
-- [WordPress topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=wordpress)
+*   [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93\&query=php)
+*   [WordPress topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93\&query=wordpress)
 
 ### Blogs
 
-- [To {{% vendor/name %}}, a WordPress migration story](https://upsun.com/blog/to-upsun-a-wordpress-migration-story/)
+*   [To {{% vendor/name %}}, a WordPress migration story](https://upsun.com/blog/to-upsun-a-wordpress-migration-story/)
 
 <!-- ## Video -->

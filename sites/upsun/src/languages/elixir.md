@@ -16,7 +16,7 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="elixir" status="supported" environment="grid" >}}
 
-{{% language-specification type="elixir" display_name="Elixir" %}}
+{{% language-specification type="elixir" display\_name="Elixir" %}}
 
 ```yaml {configFile="app"}
 applications:
@@ -64,6 +64,7 @@ applications:
             env:
                 MIX_ENV: 'prod'
 ```
+
 The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
 You can change it.
 
@@ -90,7 +91,6 @@ Assuming `mix.exs` is present at your app root and your build hook matches the a
 you can then start it from the `web.commands.start` directive.
 
 The following basic app configuration is sufficient to run most Elixir applications.
-
 
 ```yaml {configFile="app"}
 applications:

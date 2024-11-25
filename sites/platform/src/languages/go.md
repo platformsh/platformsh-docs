@@ -30,7 +30,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-{{% language-specification type="golang" display_name="Go" %}}
+{{% language-specification type="golang" display\_name="Go" %}}
 
 ```yaml {configFile="app"}
 type: 'golang:<VERSION_NUMBER>'
@@ -52,7 +52,7 @@ The recommended way to handle Go dependencies on {{% vendor/name %}} is using Go
 
 ## Building and running the application
 
-Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command _must_ run in the foreground. If the program terminates for any reason it is automatically restarted.
+Assuming your `go.mod` and `go.sum` files are present in your repository, your application can be built with the command `go build`, to produce a working executable. You can then start it from the `web.commands.start` directive. Note that the start command *must* run in the foreground. If the program terminates for any reason it is automatically restarted.
 
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
@@ -94,57 +94,57 @@ To access various [services](../add-services/_index.md) with Go, see the followi
 
 {{< codetabs v2hide="true" >}}
 
-+++
+\+++
 title=Memcached
 file=static/files/fetch/examples/golang/memcached
 highlight=go
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MongoDB
 file=static/files/fetch/examples/golang/mongodb
 highlight=golang
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MySQL
 file=static/files/fetch/examples/golang/mysql
 highlight=golang
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PostgreSQL
 file=static/files/fetch/examples/golang/postgresql
 highlight=golang
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=RabbitMQ
 file=static/files/fetch/examples/golang/rabbitmq
 highlight=golang
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Solr
 file=static/files/fetch/examples/golang/solr
 highlight=golang
 markdownify=false
-+++
+\+++
 
 {{< /codetabs >}}
 

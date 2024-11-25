@@ -22,17 +22,17 @@ The only files that are available are those in your mount.
 
 To make the files available in the mount, move them away and then copy them into the mount:
 
-1. In the `build` hook, use `mv` to move the files to another location.
+1.  In the `build` hook, use `mv` to move the files to another location.
 
-   ```bash
-   mv example tmp/example
-   ```
+    ```bash
+    mv example tmp/example
+    ```
 
-2. In the `deploy` hook, use `cp` to copy the files into the mount.
+2.  In the `deploy` hook, use `cp` to copy the files into the mount.
 
-   ```bash
-   cp -r tmp/example example
-   ```
+    ```bash
+    cp -r tmp/example example
+    ```
 
 To see the files without copying them, temporarily remove the mount from your app configuration.
 Then SSH into your app and view the files.
@@ -76,6 +76,7 @@ applications:
                     scripts: false
                     allow: true
 ```
+
 ## Mounts starting with a dot ignored
 
 {{% vendor/name %}} ignores YAML keys that start with a dot.
@@ -91,11 +92,13 @@ applications:
                     source: storage
                     source_path: 'myhiddenfolder'
 ```
+
 ## Disk space issues
 
 If you are worried about how much disk your mounts are using, check the size with the following command:
 
 <!-- @todo: does the previous command still work for some per-directory breakdown? -->
+
 ```bash
 {{% vendor/cli %}} resources:get
 ```

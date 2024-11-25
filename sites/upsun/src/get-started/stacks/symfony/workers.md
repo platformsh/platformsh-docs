@@ -49,4 +49,4 @@ To share data between containers, use [services](/add-services/_index.md).
 
 {{< /note >}}
 
-{{< guide-buttons previous="Back" next="Set up cron jobs" nextLink="/get-started/stacks/symfony/crons.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Set up cron jobs" nextLink="/get-started/stacks/symfony/crons.md" type="\*" >}}

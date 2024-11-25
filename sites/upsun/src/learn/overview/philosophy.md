@@ -8,7 +8,7 @@ description: Gain insight into the philosophy of {{% vendor/name %}}.
 It abstracts your project infrastructure and manages it for you,
 so you never have to configure services like a web server, a MySQL database, or a Redis cache from scratch again.
 
-{{% vendor/name %}} is built on one main idea &mdash; your server infrastructure is part of your app,
+{{% vendor/name %}} is built on one main idea — your server infrastructure is part of your app,
 so it should be version controlled along with your app.
 
 Every branch you push to your Git repository can come with bug fixes,
@@ -27,7 +27,7 @@ and dedicated HTTP endpoints (via the `{{< vendor/configfile "app" >}}` file).
 
 Projects are deployed in **environments**.
 An environment is a standalone copy of your live app which can be used for testing,
-Q&A, implementing new features, fixing bugs, and so on.
+Q\&A, implementing new features, fixing bugs, and so on.
 
 Every project you deploy on {{% vendor/name %}} is built as a *virtual cluster* containing a series of containers.
 The main branch of your Git repository is always deployed as a production cluster.
@@ -36,13 +36,13 @@ Any other branch can be deployed as a staging or development cluster.
 There are three types of containers within your cluster,
 all usually configured from a single `{{< vendor/configfile "app" >}}` file stored alongside your code:
 
-- The [*router*](/define-routes/_index.md) is a single Nginx process responsible for mapping incoming requests to an app container,
-  and for optionally providing HTTP caching.
+*   The [*router*](/define-routes/_index.md) is a single Nginx process responsible for mapping incoming requests to an app container,
+    and for optionally providing HTTP caching.
 
-- One or more [*apps*](/create-apps/_index.md) holding the code of your project.
+*   One or more [*apps*](/create-apps/_index.md) holding the code of your project.
 
-- Some optional [*services*](/add-services/_index.md) like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
-  They come as optimized pre-built images.
+*   Some optional [*services*](/add-services/_index.md) like MySQL/MariaDB, Elasticsearch, Redis, or RabbitMQ.
+    They come as optimized pre-built images.
 
 ## The workflow
 

@@ -11,23 +11,23 @@ You can also change the project's region after it's created.
 
 ## Why migrate between regions
 
-- Different data centers are located in different geographic areas.
-  You may want your site close to your users for improved performance.
-- You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
+*   Different data centers are located in different geographic areas.
+    You may want your site close to your users for improved performance.
+*   You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
 
 ## 1. Plan the migration
 
 Before starting the migration process, you need to plan for it:
 
-- Plan a time frame in which to handle the migration.
-  Your code shouldn't change during this time to ensure all changes are copied to the new project.
-  Prepare for a brief site outage when you migrate, just as with a relaunch of a site.
-- Set your DNS Time-to-Live as low as possible.
-  This ensures the switch to the new site propagates as quickly as possible.
+*   Plan a time frame in which to handle the migration.
+    Your code shouldn't change during this time to ensure all changes are copied to the new project.
+    Prepare for a brief site outage when you migrate, just as with a relaunch of a site.
+*   Set your DNS Time-to-Live as low as possible.
+    This ensures the switch to the new site propagates as quickly as possible.
 
 ## 2. Create a new project
 
-In the target region, [create a new project from scratch]({{% create-project-link scratch=true %}}).
+In the target region, \[create a new project from scratch]\({{% create-project-link scratch=true %}}).
 
 If you plan to test for long, start with the least amount of resources on the project and then upsize it before switching the DNS.
 
@@ -35,36 +35,37 @@ If you plan to test for long, start with the least amount of resources on the pr
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Without a source integration
-+++
+\+++
 
-1. Clone your existing project with Git.
-2. In the new clone, add a remote for the project:
+1.  Clone your existing project with Git.
 
-   ```bash
-   {{% vendor/cli %}} project:set-remote
-   ```
+2.  In the new clone, add a remote for the project:
 
-   Select your newly created blank project.
+    ```bash
+    {{% vendor/cli %}} project:set-remote
+    ```
 
-3. Push the code for your production branch:
+    Select your newly created blank project.
 
-   ```bash
-   {{% vendor/cli %}} push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
-   ```
+3.  Push the code for your production branch:
 
-4. (Optional) Checkout other branches and then push their code:
+    ```bash
+    {{% vendor/cli %}} push --target {{% variable "PRODUCTION_BRANCH_NAME" %}}
+    ```
 
-   ```bash
-   {{% vendor/cli %}} push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
-   ```
+4.  (Optional) Checkout other branches and then push their code:
+
+    ```bash
+    {{% vendor/cli %}} push --activate --target {{% variable "BRANCH_NAME" %}} --parent {{% variable "PRODUCTION_BRANCH_NAME" %}}
+    ```
 
 <--->
 
-+++
+\+++
 title=With a source integration
-+++
+\+++
 
 For a [source integration](../integrations/source/_index.md) with GitHub, BitBucket, or GitLab,
 add the integration to your new project.
@@ -97,19 +98,19 @@ Just rebuild the data in the new project.
 To download data from persistent services such as databases,
 see how to export and then import data for each service:
 
-- [InfluxDB](../add-services/influxdb.md#export-data)
-- [MongoDB](../add-services/mongodb.md#exporting-data)
-- [MariaDB/MySQL](../add-services/mysql/_index.md#exporting-data)
-- [PostgreSQL](../add-services/postgresql.md#exporting-data)
+*   [InfluxDB](../add-services/influxdb.md#export-data)
+*   [MongoDB](../add-services/mongodb.md#exporting-data)
+*   [MariaDB/MySQL](../add-services/mysql/_index.md#exporting-data)
+*   [PostgreSQL](../add-services/postgresql.md#exporting-data)
 
 ## 6. Migrate variables and project settings
 
 Make sure anything else connected to your old project is moved to your new project:
 
-- If you have project or environment variables defined on your old project, add them to your new project.
-  Get a list of all variables set outside of code by running `{{% vendor/cli %}} variables`.
-- Add any users to your new project that you want to continue to have access.
-- Add any existing [integrations](../integrations/_index.md).
+*   If you have project or environment variables defined on your old project, add them to your new project.
+    Get a list of all variables set outside of code by running `{{% vendor/cli %}} variables`.
+*   Add any users to your new project that you want to continue to have access.
+*   Add any existing [integrations](../integrations/_index.md).
 
 ## 7. Test the site
 
@@ -121,11 +122,11 @@ After you have finished all your testing, sync all your data (code, files, datab
 
 Now that you know the new project works, switch public traffic to that site:
 
-1. Make sure your new project has the right plan size.
-2. If possible, put your site into read-only mode or maintenance mode.
-3. Add your domain names to your new project and remove them from the old project.
-4. (Optional) Add any custom SSL certificates you have.
-5. Update your DNS provider's records to point to the new site. See more on [setting custom domains](../domains/steps/_index.md).
+1.  Make sure your new project has the right plan size.
+2.  If possible, put your site into read-only mode or maintenance mode.
+3.  Add your domain names to your new project and remove them from the old project.
+4.  (Optional) Add any custom SSL certificates you have.
+5.  Update your DNS provider's records to point to the new site. See more on [setting custom domains](../domains/steps/_index.md).
 
 It may take some time for the DNS change and SSL change to propagate.
 Until it does, some browsers may not see the new site or may get an SSL mismatch error.

@@ -7,7 +7,9 @@ description: See all of the live infrastructure metrics available to give you an
 {{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
 
 {{< version/specific >}}
+
 <!-- Platform.sh, version 1 -->
+
 Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
@@ -31,7 +33,9 @@ These metrics are available for all of your Grid environments.
 ![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
 
 <--->
+
 <!-- Version 2 -->
+
 Within the Console, metrics can be found for an environment under **Resources**.
 
 The information under **Resources** shows usage metrics for:
@@ -45,26 +49,28 @@ These metrics are available for all of your environments.
 All of the graphs show labels for the following thresholds:
 
 {{< version/specific >}}
-- Usage that crosses _80%_ results in a **warning** label.
-- Usage that crosses _90%_ results in a **critical** label.
-- On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
-<--->
-- Usage that crosses _80%_ results in a **warning** label.
-- Usage that crosses _90%_ results in a **critical** label.
-{{< /version/specific >}}
+
+*   Usage that crosses *80%* results in a **warning** label.
+*   Usage that crosses *90%* results in a **critical** label.
+*   On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses *100%* results in a **burst** label.
+    <--->
+*   Usage that crosses *80%* results in a **warning** label.
+*   Usage that crosses *90%* results in a **critical** label.
+    {{< /version/specific >}}
 
 {{< version/specific >}}
-  The burst capability is available for containerized environments
-  and allows a container to get more resources than it's allocated.
-  Burst is considered useful for infrequent activities that cause usage spikes.
+The burst capability is available for containerized environments
+and allows a container to get more resources than it's allocated.
+Burst is considered useful for infrequent activities that cause usage spikes.
 
-  On the Grid, resources are shared between customers,
-  so these additional resources aren't guaranteed and burst can only be temporary.
-  On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer,
-  but they're shared between services.
-  Therefore, burst is allowed until the dedicated resource usage is exceeded.
+On the Grid, resources are shared between customers,
+so these additional resources aren't guaranteed and burst can only be temporary.
+On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer,
+but they're shared between services.
+Therefore, burst is allowed until the dedicated resource usage is exceeded.
 <--->
 {{< /version/specific >}}
+
 ### Recommendations
 
 The default thresholds aim to give you an idea of when your hosts/containers are close to running out of resources.
@@ -72,6 +78,7 @@ The impact differs based on your specific apps and service.
 The values of the thresholds is purely informational.
 
 {{% version/specific %}}
+
 #### {{% names/dedicated-gen-2 %}} environments
 
 For {{% names/dedicated-gen-2 %}} environments, the thresholds are set for each host.
@@ -83,14 +90,16 @@ close to the 100% threshold, you might want to consider:
 {{% /version/specific %}}
 
 {{% version/specific %}}
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* [Increasing your plan](../../administration/pricing/_index.md)
-<--->
-* [Optimizing your code](../application-metrics/_index.md) (if possible)
-* [Changing your app size or service size](/manage-resources.md)
-{{% /version/specific %}}
+
+*   [Optimizing your code](../integrate-observability/_index.md) (if possible)
+*   [Increasing your plan](../../administration/pricing/_index.md)
+    <--->
+*   [Optimizing your code](../application-metrics/_index.md) (if possible)
+*   [Changing your app size or service size](/manage-resources.md)
+    {{% /version/specific %}}
 
 {{% version/specific %}}
+
 #### {{% names/dedicated-gen-3 %}} environments
 
 For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
@@ -104,10 +113,10 @@ Burst allows your container to use additional resources when they aren't needed 
 
 If you have a container in a prolonged burst state, you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md)
-* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../administration/pricing/_index.md)
+*   [Optimizing your code](../integrate-observability/_index.md)
+*   Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
+    or [service size](../../add-services/_index.md#size)
+*   [Increasing your plan](../../administration/pricing/_index.md)
 
 You can reallocate your existing resources if other containers have resources they aren't using.
 
@@ -117,16 +126,17 @@ If you have multiple containers in a burst state, review your configuration or p
 {{% /version/specific %}}
 
 {{% version/specific %}}
+
 #### Grid environments
 
 For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../administration/pricing/_index.md)
+*   [Optimizing your code](../integrate-observability/_index.md) (if possible)
+*   Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
+    or [service size](../../add-services/_index.md#size)
+*   [Increasing your plan](../../administration/pricing/_index.md)
 
 Review your configuration or plan size if your containers are in a prolonged burst
 state, because burst isn't guaranteed for long periods.
@@ -146,11 +156,11 @@ Measurements are taken for each metric every 1 minute.
 You can select a time frame over which to see these measurements for the entire **Metrics** view.
 In the primary three views, averages are shown over larger intervals.
 
-| View                                                                  | Time between measurements                     | Example                      |
-| :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
-| The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last 24 hours (*24hr*) for Dedicated and 8 hours (*8hr*) for Grid | 20 minutes for Dedicated, 10 minutes for Grid | 10:00, 10:20, 10:40, 11:00   |
+| View                                                                  | Time between measurements                     | Example                    |
+| :-------------------------------------------------------------------- | :-------------------------------------------- | :------------------------- |
+| The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02        |
+| The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02        |
+| The last 24 hours (*24hr*) for Dedicated and 8 hours (*8hr*) for Grid | 20 minutes for Dedicated, 10 minutes for Grid | 10:00, 10:20, 10:40, 11:00 |
 
 To zoom in on smaller intervals, select specific ranges in a graph.
 
@@ -161,11 +171,11 @@ Measurements are taken for each metric every 1 minute.
 You can select a time frame over which to see these measurements for the entire **Resources** view.
 In the primary three views, averages are shown over larger intervals.
 
-| View                                                                  | Time between measurements                     | Example                      |
-| :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
-| The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last 8 hours (*8hr*)                                              | 10 minutes                                    | 10:00, 10:10, 10:20, 11:00   |
+| View                        | Time between measurements | Example                    |
+| :-------------------------- | :------------------------ | :------------------------- |
+| The last 15 minutes (*15m*) | 1 minute                  | 10:00, 10:01, 10:02        |
+| The last hour (*1hr*)       | 1 minute                  | 10:00, 10:01, 10:02        |
+| The last 8 hours (*8hr*)    | 10 minutes                | 10:00, 10:10, 10:20, 11:00 |
 
 To zoom in on smaller intervals, select specific ranges in a graph.
 {{% /version/specific %}}

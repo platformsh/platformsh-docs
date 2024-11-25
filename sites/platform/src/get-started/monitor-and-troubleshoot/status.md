@@ -73,25 +73,28 @@ Webhooks enable you to monitor events as they happen.
 Say you want to get a notification any time your `main` environment gets new code or is redeployed.
 To see such a notification in action, follow these steps:
 
-1. Open [https://webhook.site/](https://webhook.site/) in a browser.
-2. Copy the URL from the body of the page.
-   Note this is not the one from the address bar with `#` in it.
-3. In a terminal, run the following command:
+1.  Open <https://webhook.site/> in a browser.
 
-   ```bash
-   {{% vendor/cli %}} integration:add --type=webhook --url <WEBHOOK_URL> --events 'environment.push,environment.redeploy' --environments 'main' --excluded-environments '' --states complete --shared-key=null
-   ```
+2.  Copy the URL from the body of the page.
+    Note this is not the one from the address bar with `#` in it.
 
-   The last three flags are all the default options.
-   You could also leave them out and just accept the defaults when the CLI prompts you.
-4. Redeploy your main environment by running this command:
+3.  In a terminal, run the following command:
 
-   ```bash
-   {{% vendor/cli %}} environment:redeploy --environment main
-   ```
+    ```bash
+    {{% vendor/cli %}} integration:add --type=webhook --url <WEBHOOK_URL> --events 'environment.push,environment.redeploy' --environments 'main' --excluded-environments '' --states complete --shared-key=null
+    ```
 
-5. After the activity has finished, see the JSON payload at the `webhook.site` page.
-   You can use its values to trigger anything you wish, including human-readable notifications elsewhere.
+    The last three flags are all the default options.
+    You could also leave them out and just accept the defaults when the CLI prompts you.
+
+4.  Redeploy your main environment by running this command:
+
+    ```bash
+    {{% vendor/cli %}} environment:redeploy --environment main
+    ```
+
+5.  After the activity has finished, see the JSON payload at the `webhook.site` page.
+    You can use its values to trigger anything you wish, including human-readable notifications elsewhere.
 
 You can also run the redeploy command for the `dev` environment and verify that it doesn't send anything.
 
@@ -102,11 +105,11 @@ That's a great start to working with {{% vendor/name %}}.
 
 Now that you've mastered the basics, you can choose more advanced tasks to complete:
 
-- Manage [multiple apps in a single project](../../create-apps/multi-app/_index.md).
-- See how to set up for [local development](../../development/local/_index.md).
-- Go live at a [custom domain](../../domains/steps/_index.md).
-- Increase observability by [integrating Blackfire](../../increase-observability/integrate-observability/blackfire.md)
-- To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](../../integrations/source/_index.md).
-- Read more on [health notifications](../../integrations/notifications.md).
-- See a reference on [all options available for activity notifications](../../integrations/activity/reference.md) or
-  use an [activity script](../../integrations/activity/_index.md) to manage activity responses in {{% vendor/name %}}.
+*   Manage [multiple apps in a single project](../../create-apps/multi-app/_index.md).
+*   See how to set up for [local development](../../development/local/_index.md).
+*   Go live at a [custom domain](../../domains/steps/_index.md).
+*   Increase observability by [integrating Blackfire](../../increase-observability/integrate-observability/blackfire.md)
+*   To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](../../integrations/source/_index.md).
+*   Read more on [health notifications](../../integrations/notifications.md).
+*   See a reference on [all options available for activity notifications](../../integrations/activity/reference.md) or
+    use an [activity script](../../integrations/activity/_index.md) to manage activity responses in {{% vendor/name %}}.

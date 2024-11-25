@@ -111,18 +111,18 @@ your project and environment are detected automatically.
 
 You can always specify the project and environment in two ways:
 
-* As arguments for the command:
+*   As arguments for the command:
 
-  ```bash
-  {{% vendor/cli %}} environment:info --project=my-project --environment=staging
-  ```
-* With environment variables:
+    ```bash
+    {{% vendor/cli %}} environment:info --project=my-project --environment=staging
+    ```
+*   With environment variables:
 
-  ```bash
-  export PLATFORM_PROJECT=my-project;
-  export PLATFORM_BRANCH=staging;
-  {{% vendor/cli %}} environment:info
-  ```
+    ```bash
+    export PLATFORM_PROJECT=my-project;
+    export PLATFORM_BRANCH=staging;
+    {{% vendor/cli %}} environment:info
+    ```
 
 In [multi-app](../../create-apps/multi-app/_index.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
@@ -189,16 +189,16 @@ The CLI provides tab autocompletion for commands, options, and some values (your
 To enable autocompletion, follow this step:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using Homebrew
-+++
+\+++
 
 Follow the [Homebrew documentation on shell completion](https://docs.brew.sh/Shell-Completion).
 
 <--->
-+++
+\+++
 title=Manually
-+++
+\+++
 
 Add the following to your shell's startup (`.bashrc`, `.zshrc`, or the equivalent):
 
@@ -239,16 +239,16 @@ run this command:
 To update to the latest version, use the same tool as for [installation](#1-install):
 
 {{< codetabs >}}
-+++
+\+++
 title=Homebrew
 highlight=bash
-+++
+\+++
 brew upgrade {{% vendor/alt-name %}}-cli
 <--->
-+++
+\+++
 title=Scoop
 highlight=bash
-+++
+\+++
 $ scoop update {{% vendor/cli %}}
 {{< /codetabs >}}
 

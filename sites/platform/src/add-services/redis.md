@@ -8,20 +8,20 @@ sidebarTitle: "Redis"
 for high-performance data retrieval and key-value storage.
 {{% vendor/name %}} supports two different Redis configurations:
 
-- [Persistent](#persistent-redis): to set up fast persistent storage for your application
-- [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
+*   [Persistent](#persistent-redis): to set up fast persistent storage for your application
+*   [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 
 ## Use a framework
 
 If you use one of the following frameworks, follow its guide:
 
-- [Drupal](../guides/drupal/redis.md)
-- [Ibexa DXP](../guides/ibexa/deploy.md#redis)
-- [Jakarta EE](../guides/jakarta/deploy.md#redis)
-- [Micronaut](../guides/micronaut/redis.md)
-- [Quarkus](../guides/quarkus/redis.md)
-- [Spring](../guides/spring/redis.md)
-- [WordPress](../guides/wordpress/redis.md)
+*   [Drupal](../guides/drupal/redis.md)
+*   [Ibexa DXP](../guides/ibexa/deploy.md#redis)
+*   [Jakarta EE](../guides/jakarta/deploy.md#redis)
+*   [Micronaut](../guides/micronaut/redis.md)
+*   [Quarkus](../guides/quarkus/redis.md)
+*   [Spring](../guides/spring/redis.md)
+*   [WordPress](../guides/wordpress/redis.md)
 
 ## Supported versions
 
@@ -97,8 +97,8 @@ set up a new service with a different name.
 and it cannot be amended.
 It is defined by comparing the following values and keeping the lower of the two:
 
-- Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
-- The amount of memory allocated to the service container
+*   Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
+*   The amount of memory allocated to the service container
 
 For instance, if your Redis container has 3072 MB of disk space and 1024 MB of memory,
 only 512 MB of RAM are actually available to the service (3072/6 = 512).
@@ -177,35 +177,35 @@ To use the configured service in your app, add a configuration file similar to t
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/redis
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/redis
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/redis
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/redis
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -293,35 +293,35 @@ To use the configured service in your app, add a configuration file similar to t
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/redis
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/redis
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/redis
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/redis
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -336,9 +336,9 @@ The way to access a particular database depends on the [client library](https://
 
 {{< codetabs >}}
 
-+++
+\+++
 title=PHP
-+++
+\+++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
 
@@ -356,9 +356,9 @@ $redis->get('x');        // returns 42
 
 <--->
 
-+++
+\+++
 title=Python
-+++
+\+++
 
 To manage [thread safety](https://github.com/redis/redis-py/blob/master/docs/advanced_features.rst#user-content-a-note-about-threading),
 the Python library suggests using separate client instances for each database:
@@ -373,9 +373,9 @@ database1 = Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db
 
 <--->
 
-+++
+\+++
 title=Node.js
-+++
+\+++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
 
@@ -401,8 +401,8 @@ For security reasons, you can grant your app access to replicas instead of your 
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
-2. Add the `-replica` suffix to the name of the endpoint you want to use.
+1.  Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2.  Add the `-replica` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration:
 
@@ -456,12 +456,12 @@ relationships:
     endpoint: reporter-replica
 ```
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -504,7 +504,7 @@ redis:
 The following table presents the possible values:
 
 | Value             | Policy description                                                                                          |
-|-------------------|-------------------------------------------------------------------------------------------------------------|
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
 | `allkeys-lru`     | Removes the oldest cache items first. This is the default policy when `maxmemory_policy` isn't set.         |
 | `noeviction`      | New items aren’t saved when the memory limit is reached.                                                    |
 | `allkeys-lfu`     | Removes least frequently used cache items first.                                                            |
@@ -517,10 +517,10 @@ The following table presents the possible values:
 For more information on the different policies,
 see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
 
-## Access your Redis service 
+## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
-you can access it using either the {{% vendor/name %}} CLI 
+you can access it using either the {{% vendor/name %}} CLI
 or through the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 ### {{% vendor/name %}} CLI

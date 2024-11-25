@@ -45,41 +45,41 @@ follow these steps:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. To enable the `prune-branches` option, you must first enable the `fetch-branches` option.
-   To do so, run the following command: 
+1.  To enable the `prune-branches` option, you must first enable the `fetch-branches` option.
+    To do so, run the following command:
 
-   ```bash
-   {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --fetch-branches true
-   ```
+    ```bash
+    {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --fetch-branches true
+    ```
 
-2. Then, to enable the `prune-branches` option, run the following command:
+2.  Then, to enable the `prune-branches` option, run the following command:
 
-   ```bash
-   {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --prune-branches true
-   ```
+    ```bash
+    {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --prune-branches true
+    ```
+
 <--->
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your project.
-2. Click {{< icon settings >}} **Settings**.
-3. Click **Project Settings**.
-4. Click **Integrations** and select your source integration.
-5. Click **Edit**.
-6. Enter your access token and click **Continue**.
-7. Select your repository and check the following boxes:
-   - **Fetch branches from the remote repository to your project** (`fetch-branches` option, mandatory to enable `prune-branches`).
-   - **Remove branches from your project that have disappeared remotely (requires the fetch branches option to be enabled)** (`prune-branches` option).
-8. Click **Save**.
+1.  Navigate to your project.
+2.  Click {{< icon settings >}} **Settings**.
+3.  Click **Project Settings**.
+4.  Click **Integrations** and select your source integration.
+5.  Click **Edit**.
+6.  Enter your access token and click **Continue**.
+7.  Select your repository and check the following boxes:
+    *   **Fetch branches from the remote repository to your project** (`fetch-branches` option, mandatory to enable `prune-branches`).
+    *   **Remove branches from your project that have disappeared remotely (requires the fetch branches option to be enabled)** (`prune-branches` option).
+8.  Click **Save**.
 
 {{< /codetabs >}}
-
 
 ## Upload your files through mounts
 
@@ -98,12 +98,12 @@ and [transfer your files directly to them](https://docs.platform.sh/development/
 ## Troubleshoot a sizeable Git repository
 
 If you're experiencing latencies or can't access your Console anymore,
-your Git repository may have become too large and may need to be cleaned up. 
+your Git repository may have become too large and may need to be cleaned up.
 To do so, follow these instructions:
 
-1. Remove old, unwanted files from your repository (especially large files).
-   You can do it manually, or use a tool such as [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/).
-2. Remove stale branches from your repository and {{% vendor/name %}} project.
-3. Rebase and/or squash commits to clean up your history.
-4. Make sure you [enable the automated pruning of old branches in your project](#enable-the-automated-pruning-of-old-branches-in-your-project)
-   and [upload your files through mounts](#upload-your-files-through-mounts) to avoid facing the same situation in the future.
+1.  Remove old, unwanted files from your repository (especially large files).
+    You can do it manually, or use a tool such as [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/).
+2.  Remove stale branches from your repository and {{% vendor/name %}} project.
+3.  Rebase and/or squash commits to clean up your history.
+4.  Make sure you [enable the automated pruning of old branches in your project](#enable-the-automated-pruning-of-old-branches-in-your-project)
+    and [upload your files through mounts](#upload-your-files-through-mounts) to avoid facing the same situation in the future.

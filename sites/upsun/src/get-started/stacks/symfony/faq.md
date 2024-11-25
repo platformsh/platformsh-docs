@@ -109,11 +109,11 @@ To fix this issue, [create your first Symfony page](https://symfony.com/doc/curr
 
 If you've already created a custom homepage, make sure you perform the following actions:
 
-1. Commit all your files.
-2. Run the `symfony deploy` command and check that the deployment is successful.
+1.  Commit all your files.
+2.  Run the `symfony deploy` command and check that the deployment is successful.
 
 ## Other issues
 
 For other issues unrelated to Symfony, see [Troubleshoot development](/development/troubleshoot.html).
 
-{{< guide-buttons previous="Back" next="Symfony CLI tips" nextLink="/get-started/stacks/symfony/symfony-cli-tips.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Symfony CLI tips" nextLink="/get-started/stacks/symfony/symfony-cli-tips.md" type="\*" >}}

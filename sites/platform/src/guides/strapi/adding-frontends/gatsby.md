@@ -39,21 +39,21 @@ You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference
 
 {{< /guides/gatsby/headless-gatsby >}}
 
-- [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/gatsby-node.js)
+*   [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/gatsby-node.js)
 
-  Dynamically creates individual pages from the data source using Gatsby's [Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/). It retrieves all of Strapi's articles and categories (see [post-install below](#deploy-and-post-install)) using the GraphQL queries `allStrapiArticle` and `allStrapiCategory` respectively. For each, a page is created (`createPage`) with an assigned `path` and formatting described by one of the template files below (`component`).
+    Dynamically creates individual pages from the data source using Gatsby's [Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/). It retrieves all of Strapi's articles and categories (see [post-install below](#deploy-and-post-install)) using the GraphQL queries `allStrapiArticle` and `allStrapiCategory` respectively. For each, a page is created (`createPage`) with an assigned `path` and formatting described by one of the template files below (`component`).
 
-- [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/article.js)
+*   [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/article.js)
 
-  The template file that defines how a single Strapi article should be formatted on Gatsby, retrieving the data from that article using the `strapiArticle` GraphQL query.
+    The template file that defines how a single Strapi article should be formatted on Gatsby, retrieving the data from that article using the `strapiArticle` GraphQL query.
 
-- [`gatsby/src/templates/category.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/category.js)
+*   [`gatsby/src/templates/category.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/category.js)
 
-  The template file that defines how a list of articles that belong to a single Category are formatted by Gatsby. It uses the `Category` query, and then filters a specific category `id` on `allStrapiArticle`.
+    The template file that defines how a list of articles that belong to a single Category are formatted by Gatsby. It uses the `Category` query, and then filters a specific category `id` on `allStrapiArticle`.
 
-- [`gatsby/src/pages/index.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/pages/index.js)
+*   [`gatsby/src/pages/index.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/pages/index.js)
 
-  Retrieves all of Strapi's content to generate a list of articles on the homepage using the `allStrapiArticle` GraphQL query.
+    Retrieves all of Strapi's content to generate a list of articles on the homepage using the `allStrapiArticle` GraphQL query.
 
 ## Deploy and post-install
 

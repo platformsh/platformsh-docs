@@ -15,7 +15,6 @@ Creating a branch on {{% vendor/name %}} copies both the code and the database t
 These code and database changes need to be tested before being merged into production.
 Depending on your processes, internal or external teams may interact with the preview environment branch.
 
-
 {{% sanitize-dbs/intro %}}
 
 ## Examples

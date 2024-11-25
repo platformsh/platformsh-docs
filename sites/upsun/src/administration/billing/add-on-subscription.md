@@ -17,21 +17,21 @@ You can do so directly from the Console.
 
 The Standard User Management add-on gives you access to the following features:
 
-- [Free viewers](../users.md)
-- [Organization permissions](../users.md#organization-permissions)
-- [Teams](/administration/teams.md)
-- [MFA enforcement](/administration/mfa.md)
+*   [Free viewers](../users.md)
+*   [Organization permissions](../users.md#organization-permissions)
+*   [Teams](/administration/teams.md)
+*   [MFA enforcement](/administration/mfa.md)
 
 ### Upgrade to the Standard User Management add-on
 
 To upgrade to the Standard User Management add-on, follow these steps:
 
-1. In the Console, navigate to your organization.
-2. Open the user menu (your name or profile picture), then select **Billing**.
-3. In the **Organization add-ons** section of the **Overview** tab,
-   locate the **User management** panel and click **Upgrade**.
-4. In the pop-up window, select **Standard user management** and check the 30-day commitment box.
-5. Click **Upgrade**.
+1.  In the Console, navigate to your organization.
+2.  Open the user menu (your name or profile picture), then select **Billing**.
+3.  In the **Organization add-ons** section of the **Overview** tab,
+    locate the **User management** panel and click **Upgrade**.
+4.  In the pop-up window, select **Standard user management** and check the 30-day commitment box.
+5.  Click **Upgrade**.
 
 After the add-on is added to your organization,
 you can remove it from the same location in the **Overview** tab
@@ -52,11 +52,11 @@ For more information on incurred costs, see the [{{% vendor/name %}} pricing pag
 
 To upgrade to this add-on, follow these steps:
 
-1. In the Console, navigate to your organization.
-2. Open the user menu (your name or profile picture), then select **Billing**.
-3. In the **Overview** tab, find the project on which you want to activate full continuous profiling.
-4. Click **{{< icon more >}} More** next to that project.
-5. Click **Project billing**.
-3. In the **Project add-ons** section,
-   locate the **Continuous profiling** panel and click **Enable**.
-5. To confirm, click **Enable**.
+1.  In the Console, navigate to your organization.
+2.  Open the user menu (your name or profile picture), then select **Billing**.
+3.  In the **Overview** tab, find the project on which you want to activate full continuous profiling.
+4.  Click **{{< icon more >}} More** next to that project.
+5.  Click **Project billing**.
+6.  In the **Project add-ons** section,
+    locate the **Continuous profiling** panel and click **Enable**.
+7.  To confirm, click **Enable**.

@@ -14,9 +14,9 @@ The examples vary based on whether you use Pip, Pipenv, or Poetry to manage depe
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Pip
-+++
+\+++
 
 ```yaml {configFile="app"}
 #########################
@@ -106,9 +106,9 @@ hooks:
 ```
 
 <--->
-+++
+\+++
 title=Pipenv
-+++
+\+++
 
 ```yaml {configFile="app"}
 #########################
@@ -209,9 +209,9 @@ hooks:
 ```
 
 <--->
-+++
+\+++
 title=Poetry
-+++
+\+++
 
 ```yaml {configFile="app"}
 #########################
@@ -324,9 +324,9 @@ It uses the Gunicorn WSGI server and Unix sockets.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Pip
-+++
+\+++
 
 ```yaml {configFile="app"}
 web:
@@ -337,9 +337,9 @@ web:
 ```
 
 <--->
-+++
+\+++
 title=Pipenv
-+++
+\+++
 
 ```yaml {configFile="app"}
 web:
@@ -350,9 +350,9 @@ web:
 ```
 
 <--->
-+++
+\+++
 title=Poetry
-+++
+\+++
 
 ```yaml {configFile="app"}
 web:

@@ -12,19 +12,19 @@ layout: list
 {{% sanitize-dbs/sanitize-intro database="PostgreSQL" %}}
 
 {{< codetabs >}}
-+++
+\+++
 title=Manually
-+++
+\+++
 {{% sanitize-dbs/sanitize-manually database="PostgreSQL" %}}
 <--->
-+++
+\+++
 title=Using a script with Django and `psql`
-+++
+\+++
 
 Assumptions:
 
-- `users` is the table where all of your PII is stored in the `staging` development database.
-- `database` is the relationship name for the PostgreSQL service.
+*   `users` is the table where all of your PII is stored in the `staging` development database.
+*   `database` is the relationship name for the PostgreSQL service.
 
 Set up a script by following these steps:
 

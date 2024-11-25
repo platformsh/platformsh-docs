@@ -22,7 +22,7 @@ When you deploy your app, you always get the latest available patches.
 All incoming requests go through the [standard router](../define-routes/_index.md).
 The Varnish service sits between the router and all apps in the project.
 
-``` mermaid
+```mermaid
 graph LR
     A(Request) -->B(Router)
     B --> C{Varnish}
@@ -49,12 +49,11 @@ services:
                 path: config.vcl
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 The `relationships` block defines the connection between Varnish and your app.
-You can define <code>{{< variable "RELATIONSHIP_NAME" >}}</code> as you like.
-<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](/create-apps/app-reference/single-runtime-image.md).
+You can define <code>{{< variable "RELATIONSHIP\_NAME" >}}</code> as you like. <code>{{< variable "APP\_NAME" >}}</code> should match your app's `name` in the [app configuration](/create-apps/app-reference/single-runtime-image.md).
 
 The `configuration` block must reference a VCL file inside the `{{< vendor/configdir >}}` directory.
 The `path` defines the file relative to the `{{< vendor/configdir >}}` directory.
@@ -89,18 +88,18 @@ add a [Varnish Configuration Language (VCL) template](https://www.varnish-softwa
 This template is supplemented by automatic additions from {{% vendor/name %}}.
 So you MUST NOT include certain features that you might elsewhere:
 
-- A `vcl_init()` function:
-   The function is automatically generated based on the relationships you defined in Step 1.
-   Each defined relationship results in a backend with the same name.
-- The VCL version at the start:
-  This is automatically generated.
-- Imports for `std` or `directors`:
-  These are already imported.
-  You can import other [modules](#include-modules).
+*   A `vcl_init()` function:
+    The function is automatically generated based on the relationships you defined in Step 1.
+    Each defined relationship results in a backend with the same name.
+*   The VCL version at the start:
+    This is automatically generated.
+*   Imports for `std` or `directors`:
+    These are already imported.
+    You can import other [modules](#include-modules).
 
 The file MUST include:
 
-- A definition of which backend to use in a  `vcl_recv()` subroutine.
+*   A definition of which backend to use in a  `vcl_recv()` subroutine.
 
 The logic varies based on whether you have one or more apps.
 
@@ -208,14 +207,14 @@ Varnish forwards requests to your app based on the specified VCL template.
 
 You can include the following optional modules in your VCL templates to add additional features:
 
-- `cookie`
-- `header`
-- `saintmode`
-- `softpurge`
-- `tcp`
-- `var`
-- `vsthrottle`
-- `xkey`
+*   `cookie`
+*   `header`
+*   `saintmode`
+*   `softpurge`
+*   `tcp`
+*   `var`
+*   `vsthrottle`
+*   `xkey`
 
 To use them, add an import to your template such as the following:
 
@@ -264,49 +263,49 @@ With Varnish, you can clear the content with [purging and banning](https://varni
 
 The following example shows how to set up purging.
 
-1. Add an access control list to your VCL template:
+1.  Add an access control list to your VCL template:
 
-   ```bash {location="config.vcl" dir="true"}
-   acl purge {
-       "localhost";
-       "192.0.2.0"/24;
-   }
-   ```
+    ```bash {location="config.vcl" dir="true"}
+    acl purge {
+        "localhost";
+        "192.0.2.0"/24;
+    }
+    ```
 
-   This list ensures that only requests from the listed IPs are accepted.
-   Choose which IPs to allow.
-   If you are sending requests from an app, checkout the [outbound IPs for the region](../development/regions.md#public-ip-addresses).
+    This list ensures that only requests from the listed IPs are accepted.
+    Choose which IPs to allow.
+    If you are sending requests from an app, checkout the [outbound IPs for the region](../development/regions.md#public-ip-addresses).
 
-   Alternatively, you could code in a token that must be sent with the request.
+    Alternatively, you could code in a token that must be sent with the request.
 
-2. Add purge handling:
+2.  Add purge handling:
 
-   ```bash {location="config.vcl" dir="true"}
-   sub vcl_recv {
-       if (req.method == "PURGE") {
-           # The {{% vendor/name %}} router provides the real client IP as X-Client-IP
-           # Use std.ip to convert the string to an IP for comparison
-           if (!std.ip(req.http.X-Client-IP, "0.0.0.0") ~ purge) {
-               # Deny all purge requests not from the allowed IPs
-               return(synth(403,"Not allowed."));
-           }
-           # Purge cache for allowed requests
-           return (purge);
-       }
-       ...
-   }
-   ```
+    ```bash {location="config.vcl" dir="true"}
+    sub vcl_recv {
+        if (req.method == "PURGE") {
+            # The {{% vendor/name %}} router provides the real client IP as X-Client-IP
+            # Use std.ip to convert the string to an IP for comparison
+            if (!std.ip(req.http.X-Client-IP, "0.0.0.0") ~ purge) {
+                # Deny all purge requests not from the allowed IPs
+                return(synth(403,"Not allowed."));
+            }
+            # Purge cache for allowed requests
+            return (purge);
+        }
+        ...
+    }
+    ```
 
-  {{< note theme="info" >}}
-  The snippet above has been produced for Varnish 7.x. If using a different version, consult the [Varnish documentation](https://varnish-cache.org/docs/) for potential differences in syntax and required parameters.
-  {{< /note >}}
+{{< note theme="info" >}}
+The snippet above has been produced for Varnish 7.x. If using a different version, consult the [Varnish documentation](https://varnish-cache.org/docs/) for potential differences in syntax and required parameters.
+{{< /note >}}
 
-3. Set up cache purging to suit your needs.
-   The following cURL call gives an example of how this can work:
+3.  Set up cache purging to suit your needs.
+    The following cURL call gives an example of how this can work:
 
-   ```bash
-   curl -X PURGE "{{< variable "URL_TO_PURGE" >}}"
-   ```
+    ```bash
+    curl -X PURGE "{{< variable "URL_TO_PURGE" >}}"
+    ```
 
 ## Stats endpoint
 
@@ -356,19 +355,18 @@ services:
                 path: config.vcl
 ```
 
-
 You choose any valid name and type.
 When the app is deployed, the app can access the Varnish service over HTTP to get diagnostic information.
 The following paths are available:
 
-- `/`: returns any error logged when generating the VCL template failed
-- `/config`: returns the generated VCL template
-- `/stats`: returns the output of `varnishstat`
-- `/logs`: returns a streaming response of `varnishlog`
+*   `/`: returns any error logged when generating the VCL template failed
+*   `/config`: returns the generated VCL template
+*   `/stats`: returns the output of `varnishstat`
+*   `/logs`: returns a streaming response of `varnishlog`
 
 To access the Varnish stats endpoint from the command line:
 
-1. Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
-   (replace `stats-app` with the name you gave the app).
-2. Display the [relationships array](/create-apps/app-reference/single-runtime-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
-3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.
+1.  Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
+    (replace `stats-app` with the name you gave the app).
+2.  Display the [relationships array](/create-apps/app-reference/single-runtime-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
+3.  Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

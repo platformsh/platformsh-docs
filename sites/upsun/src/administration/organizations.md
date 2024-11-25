@@ -10,12 +10,19 @@ You can group multiple projects in one organization and manage them together.
 To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users).
 
 <!-- {{% version/specific %}} -->
+
 <!-- To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users). -->
+
 <!-- <---> -->
+
 <!-- To manage users within your organization, you have two options: -->
+
 <!--  -->
+
 <!-- 1. [Managing users](./users.md#manage-organization-users) at an organization-wide or per-project basis - that is, individually. -->
+
 <!-- 1. [Managing users as a part of a team](/administration/teams.md). -->
+
 <!-- {{% /version/specific %}} -->
 
 ## Manage your organization settings
@@ -24,20 +31,20 @@ As an organization owner, you can manage the basic settings for your organizatio
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Settings**.
-4. Click **Edit** to edit the label or click in the **Organization URL** field to edit the URL.
-5. Click **Save**.
+1.  Navigate to the organization you want to manage (or a project in it).
+2.  Open the user menu (your name or profile picture).
+3.  Click **Settings**.
+4.  Click **Edit** to edit the label or click in the **Organization URL** field to edit the URL.
+5.  Click **Save**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To change the name (URL) and label of the `acme` organization, run:
 
@@ -60,13 +67,13 @@ you can access and download invoices and edit billing information such as the st
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to the organization you want to manage (or a project in it).
-1. Open the user menu (your name or profile picture).
-1. Click **Billing**.
+1.  Navigate to the organization you want to manage (or a project in it).
+2.  Open the user menu (your name or profile picture).
+3.  Click **Billing**.
 
 {{< /codetabs >}}
 
@@ -79,20 +86,20 @@ and organize your projects as you want.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to your existing organization or a project in it.
-1. Open the user menu (your name or profile picture).
-1. Click **Create Organization**.
-1. Enter the required information (label, organization URL, company name, country, security contact).
-1. Click **Create organization**.
+1.  Navigate to your existing organization or a project in it.
+2.  Open the user menu (your name or profile picture).
+3.  Click **Create Organization**.
+4.  Enter the required information (label, organization URL, company name, country, security contact).
+5.  Click **Create organization**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To create an organization with the label `Acme` and the name (URL) `acme`, run:
 
@@ -125,20 +132,20 @@ To have it deleted, [contact support](/learn/overview/get-support.md).
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to your existing organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Settings**.
-4. Click **Delete Organization**.
-5. Confirm your decision by clicking **Delete**.
+1.  Navigate to your existing organization or a project in it.
+2.  Open the user menu (your name or profile picture).
+3.  Click **Settings**.
+4.  Click **Delete Organization**.
+5.  Confirm your decision by clicking **Delete**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To delete the organization `acme`, run:
 
@@ -153,9 +160,9 @@ To delete the organization `acme`, run:
 You can transfer your plan ownership to a different organization at anytime.
 You have to be an organization owner or have the [manage plan permission](./users.md#organization-permissions).
 
-1. Make the new organization owner a [project admin](./users.md#)
-   for the project you want to transfer.
-2. To ask for the transfer, from your organization account open a [support ticket](/learn/overview/get-support).
+1.  Make the new organization owner a [project admin](./users.md#)
+    for the project you want to transfer.
+2.  To ask for the transfer, from your organization account open a [support ticket](/learn/overview/get-support).
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
 Ownership transfer automatically transfers subscription charges to the new organization.

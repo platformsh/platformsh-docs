@@ -73,9 +73,9 @@ To do so, [add all NodePing IP addresses](https://nodeping.com/faq.html#ip-addre
 
 If you want {{% vendor/name %}} to limit checks to one or more of the following regions, [contact Support](/learn/overview/get-support.md):
 
-- North America
-- Europe
-- East Asia / Oceania
+*   North America
+*   Europe
+*   East Asia / Oceania
 
 ## Prevent direct access to your server
 
@@ -99,7 +99,7 @@ To enable mTLS, follow these steps:
 1.  Obtain an Origin Certificate Authority (CA) certificate from your CDN provider.
 
 2.  Check that the CA certificate is a `.crt` file.
-   If the file is a `.pem` file, rename it to `cdn.crt`.
+    If the file is a `.pem` file, rename it to `cdn.crt`.
 
 3.  Add the `cdn.crt` file to your Git repository.
 

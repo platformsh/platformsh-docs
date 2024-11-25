@@ -17,20 +17,20 @@ To trigger a redeploy, follow these steps:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-- Select the project with the given environment.
-- From the **Environment** menu, select the environment.
-- Click {{< icon more >}} **More**.
-- Click **Redeploy**.
+*   Select the project with the given environment.
+*   From the **Environment** menu, select the environment.
+*   Click {{< icon more >}} **More**.
+*   Click **Redeploy**.
 
 <--->
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -123,21 +123,21 @@ it indicates your application is crashing or unavailable.
 
 Typical causes and potential solutions include:
 
-- Your app is listening at the wrong place.
-  - Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
-  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
-- Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
-  or requests can't be forwarded to it correctly.
-  - Check your `web.commands.start` entry or your `passthru` configuration.
-- The amount of traffic coming to your site exceeds the processing power of your application.
-  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-- Certain code paths in your application are too slow and timing out.
-  - Check your code is running smoothly.
-  - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
-- A PHP process is crashing because of a segmentation fault.
-  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
-- A PHP process is killed by the kernel out-of-memory killer.
-  - See [how to deal with killed processes](../languages/php/troubleshoot.md#troubleshoot-a-killed-php-process).
+*   Your app is listening at the wrong place.
+    *   Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
+    *   If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
+*   Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
+    or requests can't be forwarded to it correctly.
+    *   Check your `web.commands.start` entry or your `passthru` configuration.
+*   The amount of traffic coming to your site exceeds the processing power of your application.
+    *   You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+*   Certain code paths in your application are too slow and timing out.
+    *   Check your code is running smoothly.
+    *   Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
+*   A PHP process is crashing because of a segmentation fault.
+    *   See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
+*   A PHP process is killed by the kernel out-of-memory killer.
+    *   See [how to deal with killed processes](../languages/php/troubleshoot.md#troubleshoot-a-killed-php-process).
 
 ## Site outage
 
@@ -186,7 +186,7 @@ or using the [`GIT_DEPTH` variable](https://docs.gitlab.com/ee/user/project/repo
 
 When trying to upload a large JSON file to your API, you might see a 400 response code (`Malformed request`).
 
-{{% vendor/name %}} enforces a 10&nbsp;MB limit on files with the `application/json` `Content-Type` header.
+{{% vendor/name %}} enforces a 10 MB limit on files with the `application/json` `Content-Type` header.
 To send large files, use the `multipart/form-data` header instead:
 
 ```bash
@@ -235,10 +235,10 @@ If none of these suggestions work, open a [support ticket](/learn/overview/get-s
 
 If you see a build or deployment running longer than expected, it may be one of the following cases:
 
-- The build is blocked by a process in your `build` hook.
-- The deployment is blocked by a long-running process in your `deploy` hook.
-- The deployment is blocked by a long-running cron job in the environment.
-- The deployment is blocked by a long-running cron job in the parent environment.
+*   The build is blocked by a process in your `build` hook.
+*   The deployment is blocked by a long-running process in your `deploy` hook.
+*   The deployment is blocked by a long-running cron job in the environment.
+*   The deployment is blocked by a long-running cron job in the parent environment.
 
 To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
 
@@ -249,10 +249,10 @@ In most regions, stuck builds terminate after one hour.
 
 When a deployment is blocked, you should try the following:
 
-1. Connect to your environment using [SSH](./ssh/_index.md).
-2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
-3. Kill any long-running processes with `kill {{< variable "PID" >}}`.
-  Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
+1.  Connect to your environment using [SSH](./ssh/_index.md).
+2.  Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
+3.  Kill any long-running processes with `kill {{< variable "PID" >}}`.
+    Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
 
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
 
@@ -316,5 +316,5 @@ For static assets, set cache headers using the `expires` key in your [app config
 
 For language-specific troubleshooting for your apps:
 
-- [PHP](../languages/php/troubleshoot.md)
-- [Node JS](../languages/nodejs/debug.md)
+*   [PHP](../languages/php/troubleshoot.md)
+*   [Node JS](../languages/nodejs/debug.md)

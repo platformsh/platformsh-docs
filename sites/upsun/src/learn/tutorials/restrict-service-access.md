@@ -5,7 +5,7 @@ description: Learn how to restrict access to a service using a worker and additi
 weight: 2
 ---
 
-{{% vendor/name %}} allows you to restrict access to a service. 
+{{% vendor/name %}} allows you to restrict access to a service.
 
 In this tutorial, learn how to grant your Data team `read-only` access to your production database.
 
@@ -13,15 +13,15 @@ In this tutorial, learn how to grant your Data team `read-only` access to your p
 
 You need:
 
-- A project with a database service
-- A `viewer` user on your project
+*   A project with a database service
+*   A `viewer` user on your project
 
 ## 1. Add a read-only endpoint to your database service
 
 Edit your `{{< vendor/configfile "services" >}}` file and add the following [endpoints](/add-services/mysql/_index.md#define-permissions):
 
-- `website` with `admin` access to the `main` database
-- `reporting` with read-only `ro` access to the `main` database
+*   `website` with `admin` access to the `main` database
+*   `reporting` with read-only `ro` access to the `main` database
 
 ```yaml {configFile="services"}
 services:
@@ -61,9 +61,9 @@ applications:
 
 Edit your app configuration to add a new worker which:
 
-- Does nothing (`sleep infinity`) 
-- Can access the read-only `reporting` endpoint
-- Allows SSH access to `viewer`
+*   Does nothing (`sleep infinity`)
+*   Can access the read-only `reporting` endpoint
+*   Allows SSH access to `viewer`
 
 ```yaml {configFile="app"}
 applications:

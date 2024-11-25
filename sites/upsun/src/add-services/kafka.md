@@ -23,19 +23,19 @@ When you deploy your app, you always get the latest available patches.
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
 ```bash
 KAFKA_SERVICE=kafka
@@ -51,9 +51,9 @@ KAFKA_PORT=9092
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -88,7 +88,7 @@ export APP_KAFKA_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.kafka[0].host')"
 
 ### 1. Configure the service
 
-To define the service, use the ``kafka`` type:
+To define the service, use the `kafka` type:
 
 ```yaml {configFile="app"}
 services:
@@ -124,12 +124,12 @@ and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has [access to the service](/add-services/kafka.md#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables)
+With the above definition, the application container (`<APP_NAME>`) now has [access to the service](/add-services/kafka.md#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables)
 
 ### Example configuration
 
@@ -156,29 +156,31 @@ To use the configured service in your app, add a configuration file similar to t
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/kafka
 highlight=python
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Ruby
 highlight=ruby
-+++
+\+++
 
 ## With the ruby-kafka gem
 
 # Producer
+
 require "kafka"
-kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
-kafka.deliver_message("Hello, World!", topic: "greetings")
+kafka = Kafka.new(\["kafka.internal:9092"], client\_id: "my-application")
+kafka.deliver\_message("Hello, World!", topic: "greetings")
 
 # Consumer
-kafka.each_message(topic: "greetings") do |message|
-  puts message.offset, message.key, message.value
+
+kafka.each\_message(topic: "greetings") do |message|
+puts message.offset, message.key, message.value
 end
 
 {{< /codetabs >}}

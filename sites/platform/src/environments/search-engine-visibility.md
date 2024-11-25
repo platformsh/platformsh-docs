@@ -14,9 +14,9 @@ and then set it to be visible to search engines.
 To change your production environment's visibility to search engines, follow these steps:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 To not restrict indexers on your production environment, run the following command:
 
@@ -25,15 +25,15 @@ To not restrict indexers on your production environment, run the following comma
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-- Select the project where you want to change visibility.
-- From the **Environment** menu, select your production environment.
-- Click {{< icon settings >}} **Settings**.
-- In the row with **Hide from search engines**, click **Edit {{< icon chevron >}}**.
-- Select or clear the **Hide from search engines** checkbox.
+*   Select the project where you want to change visibility.
+*   From the **Environment** menu, select your production environment.
+*   Click {{< icon settings >}} **Settings**.
+*   In the row with **Hide from search engines**, click **Edit {{< icon chevron >}}**.
+*   Select or clear the **Hide from search engines** checkbox.
 
 {{< /codetabs >}}
 

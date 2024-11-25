@@ -49,7 +49,7 @@ applications:
 
 ## Run the Laravel scheduler every minute
 
-Cron job execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes. 
+Cron job execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes.
 For more information, see the [documentation on crons](/create-apps/app-reference/single-runtime-image#crons).
 
 However, you can add a [worker](/create-apps/app-reference/single-runtime-image#workers)
@@ -76,4 +76,4 @@ To share data between containers, use [services](/add-services/_index.md).
 
 {{< /note >}}
 
-{{< guide-buttons previous="Back" next="Manage observability with Blackfire" nextLink="/get-started/stacks/laravel/blackfire.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Manage observability with Blackfire" nextLink="/get-started/stacks/laravel/blackfire.md" type="\*" >}}

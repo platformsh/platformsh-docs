@@ -22,4 +22,4 @@ Once you have finished the demo, you'll go through the following steps to accomp
 
 {{< get-started/steps >}}
 
-{{< guide-buttons next="Setup" nextLink="/get-started/here/setup.md" type="*" >}}
+{{< guide-buttons next="Setup" nextLink="/get-started/here/setup.md" type="\*" >}}

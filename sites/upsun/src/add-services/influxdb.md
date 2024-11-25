@@ -14,7 +14,7 @@ It exposes an HTTP API for client interaction. See the [InfluxDB documentation](
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="influxdb" status="supported" environment="grid" >}}
@@ -34,17 +34,17 @@ See more information on [how to upgrade to version 2.3 or later](#upgrade-to-ver
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `upsun ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -69,9 +69,9 @@ INFLUXDB_IP=123.456.78.90
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -148,17 +148,17 @@ services:
         type: influxdb:<VERSION>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has [access to the service](/add-services/influxdb.md#use-in-app) via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (`<APP_NAME>`) now has [access to the service](/add-services/influxdb.md#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### Example configuration
 
@@ -206,7 +206,7 @@ This configuration defines a single application (`myapp`), whose source code exi
 `myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, `myapp` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
@@ -218,41 +218,42 @@ export INFLUX_TOKEN=$(echo $INFLUXDB_QUERY | jq -r ".api_token")
 export INFLUX_BUCKET=$(echo $INFLUXDB_QUERY | jq -r ".bucket")
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``INFLUX_HOST`` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable `INFLUX_HOST` can be used within the application to connect to the service.
 
-Note that ``INFLUX_HOST``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``INFLUXDBDATABASE_HOST``,
+Note that `INFLUX_HOST`, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like `INFLUXDBDATABASE_HOST`,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the `{{% vendor/cli %}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Export data
 
 To export your data from InfluxDB, follow these steps:
 
-1. Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
-2. Connect to your InfluxDB service with the [{{% vendor/name %}} CLI](../administration/cli/_index.md):
+1.  Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
 
-   ```bash
-   {{% vendor/cli %}} tunnel:single
-   ```
+2.  Connect to your InfluxDB service with the [{{% vendor/name %}} CLI](../administration/cli/_index.md):
 
-   This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
+    ```bash
+    {{% vendor/cli %}} tunnel:single
+    ```
 
-   ```bash
-   SSH tunnel opened to {{<variable "RELATIONSHIP_NAME" >}} at: http://127.0.0.1:30000
-   ```
+    This opens an SSH tunnel to your InfluxDB service on your current environment and produces output like the following:
 
-3. Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
+    ```bash
+    SSH tunnel opened to {{<variable "RELATIONSHIP_NAME" >}} at: http://127.0.0.1:30000
+    ```
 
-   ```bash
-   {{% vendor/cli %}} relationships -P {{<variable "RELATIONSHIP_NAME" >}}
-   ```
+3.  Get the username, password and token from the [relationship](#relationship-reference) by running the following command:
 
-4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
+    ```bash
+    {{% vendor/cli %}} relationships -P {{<variable "RELATIONSHIP_NAME" >}}
+    ```
 
-    ``` bash
+4.  Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
+
+    ```bash
     influx backup --host {{< variable "URL_FROM_STEP_2" >}} --token {{< variable "API_TOKEN_FROM_STEP_3" >}}
     ```
 
@@ -267,8 +268,8 @@ or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environ
 
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
-- Rename the `user` key to `username`.
-- Move the `org`, `bucket` and `api_token` keys so they're contained in a dictionary under the `query` key.
+*   Rename the `user` key to `username`.
+*   Move the `org`, `bucket` and `api_token` keys so they're contained in a dictionary under the `query` key.
 
 If you're relying on any other attributes connecting to InfluxDB, they remain accessible as environment variable from the [service environment variable](#relationship-reference), aside from those addressed above:
 

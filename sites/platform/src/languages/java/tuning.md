@@ -29,8 +29,8 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemory
 
 When migrating the application to a cloud environment, it is often essential to analyze the Garbage Collector's log and behavior. For this, there are two options:
 
-* Placing the log into the {{% vendor/name %}} `/var/log/app.log` file (which captures `STDOUT`).
-* Creating a log file specifically for the GC.
+*   Placing the log into the {{% vendor/name %}} `/var/log/app.log` file (which captures `STDOUT`).
+*   Creating a log file specifically for the GC.
 
 To use the `STDOUT` log, you can add the parameter `-XX: + PrintGCDetails`, E.g.:
 
@@ -42,12 +42,12 @@ Java supports a number of different garbage collection strategies.
 Which one is optimal for your application varies depending on your available memory, Java version, and application profile.
 Determining which is best for your application is out of scope, but the main options and how to enable them are:
 
-| Name        | Command  Flag         | Description  |
-| ------------- |:-------------:| -----:|
-|Serial Garbage Collector|-XX:+UseSerialGC|This is the simplest GC implementation, as it basically works with a single thread.|
-|Parallel Garbage Collector|-XX:+UseParallelGC|Unlike Serial Garbage Collector, this uses multiple threads for managing heap space. But it also freezes other application threads while performing GC.|
-|CMS Garbage Collector|-XX:+USeParNewGC|The Concurrent Mark Sweep (CMS) implementation uses multiple garbage collector threads for garbage collection. It's for applications that prefer shorter garbage collection pauses, and that can afford to share processor resources with the garbage collector while the application is running.|
-|G1 Garbage Collector|-XX:+UseG1GC|Garbage First, G1, is for applications running on multiprocessor machines with large memory space.|
+| Name                       |    Command  Flag   |                                                                                                                                                                                                                                                                                       Description |
+| -------------------------- | :----------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Serial Garbage Collector   |  -XX:+UseSerialGC  |                                                                                                                                                                                                               This is the simplest GC implementation, as it basically works with a single thread. |
+| Parallel Garbage Collector | -XX:+UseParallelGC |                                                                                                                                           Unlike Serial Garbage Collector, this uses multiple threads for managing heap space. But it also freezes other application threads while performing GC. |
+| CMS Garbage Collector      |  -XX:+USeParNewGC  | The Concurrent Mark Sweep (CMS) implementation uses multiple garbage collector threads for garbage collection. It's for applications that prefer shorter garbage collection pauses, and that can afford to share processor resources with the garbage collector while the application is running. |
+| G1 Garbage Collector       |    -XX:+UseG1GC    |                                                                                                                                                                                                Garbage First, G1, is for applications running on multiprocessor machines with large memory space. |
 
 The default strategy on Java 9 and later is G1.
 The GC strategy to use can be set in the start line with:
@@ -98,5 +98,5 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+UseG1GC -XX:+UseS
 
 ## References
 
-* [How to Migrate my Java application to {{% vendor/name %}}](https://community.platform.sh/t/how-to-migrate-my-java-application-to-platfrom-sh/529)
-* [Introduction to Garbage Collection Tuning](https://docs.oracle.com/en/java/javase/14/gctuning/introduction-garbage-collection-tuning.html#GUID-326EB4CF-8C8C-4267-8355-21AB04F0D304)
+*   [How to Migrate my Java application to {{% vendor/name %}}](https://community.platform.sh/t/how-to-migrate-my-java-application-to-platfrom-sh/529)
+*   [Introduction to Garbage Collection Tuning](https://docs.oracle.com/en/java/javase/14/gctuning/introduction-garbage-collection-tuning.html#GUID-326EB4CF-8C8C-4267-8355-21AB04F0D304)

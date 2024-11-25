@@ -36,17 +36,17 @@ To do so, follow the same procedure as for [upgrading](#upgrading).
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -71,9 +71,9 @@ ESSEARCH_HOST_MAPPED=false
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -127,7 +127,7 @@ services:
         type: elasticsearch:<VERSION>
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the `elasticsearch-enterprise` type instead.
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
@@ -151,12 +151,12 @@ services:
         type: elasticsearch:<VERSION>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -182,7 +182,7 @@ services:
         type: elasticsearch:{{% latest "elasticsearch" %}}
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the `elasticsearch-enterprise` type instead.
 
 ### Use in app
 
@@ -223,14 +223,14 @@ export ELASTIC_PASSWORD=${ESSEARCH_PASSWORD}
 export ELASTIC_HOSTS=["$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT"]
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``ELASTIC_HOSTS`` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable `ELASTIC_HOSTS` can be used within the application to connect to the service.
 
-Note that ``ELASTIC_HOSTS``, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like ``ESSEARCH_HOST``,
+Note that `ELASTIC_HOSTS`, and all [{{% vendor/name %}}-service environment variables](/development/variables/_index.md#service-environment-variables) like `ESSEARCH_HOST`,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the `{{% vendor/cli %}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 {{< note >}}
 
@@ -264,7 +264,7 @@ That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
 in the `username` and `password` properties.
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -310,28 +310,28 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of official Elasticsearch plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 2.4 | 5.x | 6.x | 7.x | 8.x |
-|-------------------------|-------------------------------------------------------------------------------------------|-----|-----|-----|-----|-----|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *   | *   | *   | *   |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                 |     |     | *   | *   | *   |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   | *   | *   | *   | *   |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | *   | *   | *   | *   |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | *   | *   | *   | *   |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | *   | *   | *   | *   |
-| `analysis-ukrainian`    | Ukrainian language support                                                                |     | *   | *   | *   | *   |
-| `cloud-aws`             | AWS Cloud plugin, allows storing indices on AWS S3                                        | *   |     |     |     |     |
-| `delete-by-query`       | Support for deleting documents matching a given query                                     | *   |     |     |     |     |
-| `discovery-multicast`   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |     |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   | *   |
-| `ingest-user-agent`     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   |     |     |
-| `lang-javascript`       | JavaScript language plugin, allows the use of JavaScript in Elasticsearch scripts         |     | *   |     |     |     |
-| `lang-python`           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   |     |     |     |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     | *   | *   | *   |
-| `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                  | *   | *   |     |     |     |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   | *   |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   | *   |
-| `transport-nio`         | Support for NIO transport                                                                 |     |     |     | *   | *   |
+| Plugin                  | Description                                                                              | 2.4 | 5.x | 6.x | 7.x | 8.x |
+| ----------------------- | ---------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- |
+| `analysis-icu`          | Support ICU Unicode text analysis                                                        | \*  | \*  | \*  | \*  | \*  |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                |     |     | \*  | \*  | \*  |
+| `analysis-kuromoji`     | Japanese language support                                                                | \*  | \*  | \*  | \*  | \*  |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                           | \*  | \*  | \*  | \*  | \*  |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                           | \*  | \*  | \*  | \*  | \*  |
+| `analysis-phonetic`     | Phonetic analysis                                                                        | \*  | \*  | \*  | \*  | \*  |
+| `analysis-ukrainian`    | Ukrainian language support                                                               |     | \*  | \*  | \*  | \*  |
+| `cloud-aws`             | AWS Cloud plugin, allows storing indices on AWS S3                                       | \*  |     |     |     |     |
+| `delete-by-query`       | Support for deleting documents matching a given query                                    | \*  |     |     |     |     |
+| `discovery-multicast`   | Ability to form a cluster using TCP/IP multicast messages                                | \*  |     |     |     |     |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                   |     | \*  | \*  | \*  | \*  |
+| `ingest-user-agent`     | Extracts details from the user agent string a browser sends with its web requests        |     | \*  | \*  |     |     |
+| `lang-javascript`       | JavaScript language plugin, allows the use of JavaScript in Elasticsearch scripts        |     | \*  |     |     |     |
+| `lang-python`           | Python language plugin, allows the use of Python in Elasticsearch scripts                | \*  | \*  |     |     |     |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index |     |     | \*  | \*  | \*  |
+| `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                 | \*  | \*  |     |     |     |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                 | \*  | \*  | \*  | \*  | \*  |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                       | \*  | \*  | \*  | \*  | \*  |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                |     | \*  | \*  | \*  | \*  |
+| `transport-nio`         | Support for NIO transport                                                                |     |     |     | \*  | \*  |
 
 ### Plugin removal
 

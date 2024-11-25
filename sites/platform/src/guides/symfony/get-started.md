@@ -38,21 +38,21 @@ The `--cloud` flag automatically generates the {{% vendor/name %}} configuration
 Alternatively, you can deploy an **existing Symfony project**.
 To do so, follow these steps:
 
-1. To generate a sensible default {{% vendor/name %}} configuration,
-   run the following command from within the project's directory:
+1.  To generate a sensible default {{% vendor/name %}} configuration,
+    run the following command from within the project's directory:
 
-   ```bash
-   symfony project:init
-   ```
+    ```bash
+    symfony project:init
+    ```
 
-   This generates the following set of configuration files: `{{< vendor/configfile "app" >}}`, `{{< vendor/configfile "services" >}}`, `{{< vendor/configfile "routes" >}}`, and `php.ini`.
+    This generates the following set of configuration files: `{{< vendor/configfile "app" >}}`, `{{< vendor/configfile "services" >}}`, `{{< vendor/configfile "routes" >}}`, and `php.ini`.
 
-2. Commit these new files to your repository:
+2.  Commit these new files to your repository:
 
-   ```bash
-   git add {{< vendor/configfile "app" >}} {{< vendor/configfile "services" >}} {{< vendor/configfile "routes" >}} php.ini
-   git commit -m "Add {{% vendor/name %}} configuration"
-   ```
+    ```bash
+    git add {{< vendor/configfile "app" >}} {{< vendor/configfile "services" >}} {{< vendor/configfile "routes" >}} php.ini
+    git commit -m "Add {{% vendor/name %}} configuration"
+    ```
 
 {{< /note >}}
 
@@ -109,7 +109,7 @@ or run the following command:
 symfony cloud:domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
 
-## Make changes to your project 
+## Make changes to your project
 
 Now that your project is deployed, you can start making changes to it.
 For example, you might want to fix a bug or add a new feature.
@@ -119,71 +119,71 @@ Other branches are for developing new features, fixing bugs, or updating the inf
 
 To make changes to your project, follow these steps:
 
-1. Create a new environment (a Git branch) to make changes without impacting production:
+1.  Create a new environment (a Git branch) to make changes without impacting production:
 
-   ```bash
-   symfony cloud:branch feat-a
-   ```
+    ```bash
+    symfony cloud:branch feat-a
+    ```
 
-   This command creates a new local `feat-a` Git branch based on the main Git branch
-   and activates a related environment on {{% vendor/name %}}.
-   The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
+    This command creates a new local `feat-a` Git branch based on the main Git branch
+    and activates a related environment on {{% vendor/name %}}.
+    The new environment inherits the data (service data and assets) of its parent environment (the production environment here).
 
-2. Make changes to your project.
+2.  Make changes to your project.
 
-   For example, if you created a Symfony Demo app,
-   edit the `templates/default/homepage.html.twig` template and make the following visual changes:
+    For example, if you created a Symfony Demo app,
+    edit the `templates/default/homepage.html.twig` template and make the following visual changes:
 
-   ```html {location="templates/default/homepage.html.twig"}
-   {% block body %}
-       <div class="page-header">
-   -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
-   +        <h1>Welcome to the {{% vendor/name %}} Demo</h1>
-       </div>
+    ```html {location="templates/default/homepage.html.twig"}
+    {% block body %}
+        <div class="page-header">
+    -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
+    +        <h1>Welcome to the {{% vendor/name %}} Demo</h1>
+        </div>
 
-       <div class="row">
+        <div class="row">
 
-   ```
+    ```
 
-3. Commit your changes:
+3.  Commit your changes:
 
-   ```bash
-   git commit -a -m "Update text"
-   ```
+    ```bash
+    git commit -a -m "Update text"
+    ```
 
-4. Deploy your changes to the `feat-a` environment:
+4.  Deploy your changes to the `feat-a` environment:
 
-   ```bash
-   symfony cloud:deploy
-   ```
-   
-   Note that each environment has its own domain name.
-   To view the domain name of your new environment, run the following command:
+    ```bash
+    symfony cloud:deploy
+    ```
 
-   ```bash
-   symfony cloud:url --primary
-   ```
+    Note that each environment has its own domain name.
+    To view the domain name of your new environment, run the following command:
 
-5. Iterate by changing the code, committing, and deploying.
-   When satisfied with your changes, merge them to the main branch, deploy,
-   and remove the feature branch:
+    ```bash
+    symfony cloud:url --primary
+    ```
 
-   ```bash
-   git checkout main
-   git merge feat-a
-   symfony environment:delete feat-a
-   git branch -d feat-a
-   symfony cloud:deploy
-   ```
+5.  Iterate by changing the code, committing, and deploying.
+    When satisfied with your changes, merge them to the main branch, deploy,
+    and remove the feature branch:
 
-   {{< note >}}
+    ```bash
+    git checkout main
+    git merge feat-a
+    symfony environment:delete feat-a
+    git branch -d feat-a
+    symfony cloud:deploy
+    ```
 
-   Deploying to production was fast because the image built for the `feat-a` environment was reused.
+    {{< note >}}
 
-   {{< /note >}}
+    Deploying to production was fast because the image built for the `feat-a` environment was reused.
 
-   For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
-   You can also keep the data in sync with the production environment by using `symfony cloud:env:sync`.
+    {{< /note >}}
+
+    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
+    You can also keep the data in sync with the production environment by using `symfony cloud:env:sync`.
 
 ## Use a third-party Git provider
 
@@ -193,15 +193,15 @@ changes take place in the third-party repository.
 
 Add an integration to your existing third-party repository:
 
-- [BitBucket](/integrations/source/bitbucket.md)
-- [GitHub](/integrations/source/github.md)
-- [GitLab](/integrations/source/gitlab.md)
+*   [BitBucket](/integrations/source/bitbucket.md)
+*   [GitHub](/integrations/source/github.md)
+*   [GitLab](/integrations/source/gitlab.md)
 
 ## Next steps
 
 ### Symfony integration
 
-Learn more about the [Symfony integration](./integration), 
+Learn more about the [Symfony integration](./integration),
 a set of tools and auto-configurations that makes it easier to use {{% vendor/name %}} for Symfony projects.
 
 ### Environment variables

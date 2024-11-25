@@ -25,13 +25,13 @@ main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}} has address 192
 
 If it isn't, try the following steps:
 
-- Your DNS server might not be correctly configured or the old DNS records are still cached.
-  Try removing your local DNS cache.
-- Set your computer's DNS server to any Public DNS resolver (like [CloudFlare](https://developers.cloudflare.com/1.1.1.1/) or [Google](https://developers.google.com/speed/public-dns/docs/using))
-  to see if the issue is with the DNS server you are using.
-- Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
-  If the result is different from what you got from running `host www.{{< variable "YOUR_DOMAIN" >}}`,
-  you might need to remove your test settings.
+*   Your DNS server might not be correctly configured or the old DNS records are still cached.
+    Try removing your local DNS cache.
+*   Set your computer's DNS server to any Public DNS resolver (like [CloudFlare](https://developers.cloudflare.com/1.1.1.1/) or [Google](https://developers.google.com/speed/public-dns/docs/using))
+    to see if the issue is with the DNS server you are using.
+*   Run `ping www.{{< variable "YOUR_DOMAIN" >}}`.
+    If the result is different from what you got from running `host www.{{< variable "YOUR_DOMAIN" >}}`,
+    you might need to remove your test settings.
 
 ## Verify SSL/TLS encryption
 
@@ -64,7 +64,7 @@ Provisioning certificates
   (Next refresh will be at 2023-04-28 02:22:50.639301+00:00.)
   
   E: Error: TLS Certificate provisioning failed
- ```
+```
 
 The renewal may fail because of the 64-character limit Let's Encrypt places on URLs.
 If you have a branch with a long name, the environment URL is over this limit and the certificate is rejected.
@@ -84,23 +84,23 @@ If you have a [default domain](../define-routes/_index.md#default) set up, the g
 
 The generated URLs consist of:
 
-- `{{<variable "YOUR_DOMAIN" >}}` = the amount of characters your domain has
-- `{{<variable "ENVIRONMENT" >}}` = `{{<variable "BRANCH_NAME" >}}` + 7 character hash
-- `{{<variable "PROJECT_ID" >}}` = 13 characters
-- `{{<variable "REGION" >}}` = 2 to 4 characters, depending on the region
-- `platformsh.site` = 15 characters
-- extra characters like `.` and `-` = 4 to 5 characters, depending on if you have a default domain
+*   `{{<variable "YOUR_DOMAIN" >}}` = the amount of characters your domain has
+*   `{{<variable "ENVIRONMENT" >}}` = `{{<variable "BRANCH_NAME" >}}` + 7 character hash
+*   `{{<variable "PROJECT_ID" >}}` = 13 characters
+*   `{{<variable "REGION" >}}` = 2 to 4 characters, depending on the region
+*   `platformsh.site` = 15 characters
+*   extra characters like `.` and `-` = 4 to 5 characters, depending on if you have a default domain
 
 This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without exceeding the 64-character limit,
 depending on the region.
-To ensure your renewals succeed, 
+To ensure your renewals succeed,
 keep your branch names under 20 characters.
 
 ### Ownership verification
 
 To provide a valid TLS-certificate,
 the certificate issuer checks that the requester is entitled to receive the requested certificate.
-This check is known as the _Challenge_ step.
+This check is known as the *Challenge* step.
 
 The certificate request is generated based on your [routes definition](../define-routes/_index.md).
 If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
@@ -109,9 +109,9 @@ To pass this verification, there are requirements you need to meet.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Without a CDN
-+++
+\+++
 
 {{% vendor/name %}} checks that all the routes you defined are pointing to your project.
 For the challenge to complete,
@@ -126,21 +126,21 @@ Otherwise, you get an error similar to:
 
 <--->
 
-+++
+\+++
 title=Using a CDN
-+++
+\+++
 
 When you use a CDN, to ensure the challenge succeeds, check that:
 
-- Your domains and subdomains point to your CDN
-- The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4),
-  as in `_acme-challenge.example.com`, points to your CDN
-- The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3),
-  as in `https://www.example.com/.well-known/`, is accessible with no redirects
+*   Your domains and subdomains point to your CDN
+*   The [`_acme-challenge.` subdomain](https://www.rfc-editor.org/rfc/rfc8555#section-8.4),
+    as in `_acme-challenge.example.com`, points to your CDN
+*   The [`/.well-known/` route](https://www.rfc-editor.org/rfc/rfc8555#section-8.3),
+    as in `https://www.example.com/.well-known/`, is accessible with no redirects
 
 If you don't follow those requirements, you get an error message similar to:
 
-``` text
+```text
   W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
 ```
@@ -173,18 +173,16 @@ When a certificate is renewed, the renewal bot checks that all of the defined ro
 If at least one of the routes defined in your `{{< vendor/configfile "routes" >}}` file can't be accessed,
 the renewal fails and the following error is displayed:
 
-```
-Provisioning certificates
-  Validating 2 new domains
-  W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
-  E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
-  Unable to validate domains www.example.com, will retry in the background.
-  (Next refresh will be at 2023-07-04 17:43:10.259891+00:00.)
-  Certificates
-  - certificate 61bc4c8: expiring on 2023-09-02 01:11:12+00:00, covering sdgs.un.org
+    Provisioning certificates
+      Validating 2 new domains
+      W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
+      E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: There was a problem with a DNS query during identifier validation]
+      Unable to validate domains www.example.com, will retry in the background.
+      (Next refresh will be at 2023-07-04 17:43:10.259891+00:00.)
+      Certificates
+      - certificate 61bc4c8: expiring on 2023-09-02 01:11:12+00:00, covering sdgs.un.org
 
-E: Error: TLS Certificate provisioning failed
-```
+    E: Error: TLS Certificate provisioning failed
 
 For example, if you add `example.com` and `www.example.com` to your routes configuration
 but the `www` subdomain doesn't point to your project through [a `CNAME` record](./steps/dns.md#cname-records),

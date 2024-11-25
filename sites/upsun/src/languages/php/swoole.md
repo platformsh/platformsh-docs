@@ -19,16 +19,16 @@ The `swoole` and `openswoole` extensions are [available by default](/languages/p
 For other versions of PHP, you can install both extensions manually by following the instructions on this page.</br>
 You need:
 
-- PHP 7.3+ for Swoole
-- PHP 7.4.0+ for Open Swoole
-- The [Swoole installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh).
-  {{< note >}}
-  Currently, the installation script is compatible with PHP <=8.0.</br>It is **not** compatible with PHP 8.3,
-  and the `swoole` and `openswoole` extensions are **not** available on {{% vendor/name %}} PHP 8.3 containers yet.
-  {{< /note >}}
-
+*   PHP 7.3+ for Swoole
+*   PHP 7.4.0+ for Open Swoole
+*   The [Swoole installation script](https://raw.githubusercontent.com/platformsh/snippets/main/src/install_swoole.sh).
+    {{< note >}}
+    Currently, the installation script is compatible with PHP <=8.0.</br>It is **not** compatible with PHP 8.3,
+    and the `swoole` and `openswoole` extensions are **not** available on {{% vendor/name %}} PHP 8.3 containers yet.
+    {{< /note >}}
 
 <!-- @todo: To be added once Laravel guide for Upsun is live -->
+
 {{% swoole %}}
 
 ## Use

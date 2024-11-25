@@ -47,16 +47,16 @@ They do so in different ways and so are fit for different use cases.
 
 A cron job is well suited for tasks when:
 
-* They need to happen on a fixed schedule, not continually.
-* The task itself isn't especially long, as a running cron job blocks a new deployment.
-* It's long but can be divided into many small queued tasks.
-* A delay between when a task is registered and when it actually happens is acceptable.
+*   They need to happen on a fixed schedule, not continually.
+*   The task itself isn't especially long, as a running cron job blocks a new deployment.
+*   It's long but can be divided into many small queued tasks.
+*   A delay between when a task is registered and when it actually happens is acceptable.
 
 A dedicated worker instance is a better fit if:
 
-* Tasks should happen "now", but not block a web request.
-* Tasks are large enough that they risk blocking a deploy, even if they're subdivided.
-* The task in question is a continually running process rather than a stream of discrete units of work.
+*   Tasks should happen "now", but not block a web request.
+*   Tasks are large enough that they risk blocking a deploy, even if they're subdivided.
+*   The task in question is a continually running process rather than a stream of discrete units of work.
 
 The appropriateness of one approach over the other also varies by language;
 single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.
@@ -104,6 +104,7 @@ workers:
             start: |
                 python mail-worker.py
 ```
+
 ```yaml {configFile="app"}
 name: app
 type: python:{{% latest "python" %}}
@@ -153,6 +154,7 @@ rabbitmq:
     type: rabbitmq:{{% latest "rabbitmq" %}}
     disk: 512
 ```
+
 ```yaml {configFile="app"}
 name: app
 type: "python:{{% latest "python" %}}"
@@ -221,29 +223,29 @@ That artifact (your code plus the downloaded dependencies) is deployed as three 
 
 The `web` instance starts a Gunicorn process to serve a web application.
 
-- It runs the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
-- It has an environment variable named `TYPE` with value `web`.
-- It has a writable mount at `/app/uploads` with a maximum space of 2048 MB.
-- It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `{{< vendor/configfile "services" >}}`.
-- {{% vendor/name %}} automatically allocates resources to it as available on the plan, once all fixed-size containers are allocated.
+*   It runs the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
+*   It has an environment variable named `TYPE` with value `web`.
+*   It has a writable mount at `/app/uploads` with a maximum space of 2048 MB.
+*   It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `{{< vendor/configfile "services" >}}`.
+*   {{% vendor/name %}} automatically allocates resources to it as available on the plan, once all fixed-size containers are allocated.
 
 The `queue` instance is a worker that isn't web-accessible.
 
-- It runs the `queue-worker.py` script, and restart it automatically if it ever terminates.
-- It has an environment variable named `TYPE` with value `worker`.
-- It has a writable mount at `/app/scratch` with a maximum space of 512 MB.
-- It has access to both a MySQL database and a RabbitMQ server,
-  both of which are defined in `{{< vendor/configfile "services" >}}` (because it doesn't specify otherwise).
-- It has "Medium" levels of CPU and RAM allocated to it, always.
+*   It runs the `queue-worker.py` script, and restart it automatically if it ever terminates.
+*   It has an environment variable named `TYPE` with value `worker`.
+*   It has a writable mount at `/app/scratch` with a maximum space of 512 MB.
+*   It has access to both a MySQL database and a RabbitMQ server,
+    both of which are defined in `{{< vendor/configfile "services" >}}` (because it doesn't specify otherwise).
+*   It has "Medium" levels of CPU and RAM allocated to it, always.
 
 The `mail` instance is a worker that isn't web-accessible.
 
-- It runs the `mail-worker.py` script, and restart it automatically if it ever terminates.
-- It has an environment variable named `TYPE` with value `worker`.
-- It has no writable file mounts at all.
-- It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
-  It has no access to MySQL.
-- It has "Small" levels of CPU and RAM allocated to it, always.
+*   It runs the `mail-worker.py` script, and restart it automatically if it ever terminates.
+*   It has an environment variable named `TYPE` with value `worker`.
+*   It has no writable file mounts at all.
+*   It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
+    It has no access to MySQL.
+*   It has "Small" levels of CPU and RAM allocated to it, always.
 
 This way, the web instance has a large upload space, the queue instance has a small amount of scratch space for temporary files,
 and the mail instance has no persistent writable disk space at all as it doesn't need it.

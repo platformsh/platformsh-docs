@@ -11,40 +11,39 @@ The duration of the build process is directly linked to the amount of resources 
 
 Every {{% vendor/name %}} project includes a fixed amount of build resources per month:
 
-- 2.5 hours of build CPU
-- 5 hours of build memory
+*   2.5 hours of build CPU
+*   5 hours of build memory
 
 You can adjust the amount of build resources that a project can use.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the Console
-+++
+\+++
 
-1. Navigate to your project.
-2. Access the **project settings**.
-3. Expand the Project Setting accordion and click **Resources**.
-4. Enter the amount of CPU and RAM that your build containers can use.
-5. Click **Save**.
+1.  Navigate to your project.
+2.  Access the **project settings**.
+3.  Expand the Project Setting accordion and click **Resources**.
+4.  Enter the amount of CPU and RAM that your build containers can use.
+5.  Click **Save**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. Run the following command:
-   
-   ```bash
-   {{% vendor/cli %}} resources:build:set
-   ```
-2. Enter the amount of CPU.
-3. Enter the amount of RAM.
+1.  Run the following command:
 
+    ```bash
+    {{% vendor/cli %}} resources:build:set
+    ```
+2.  Enter the amount of CPU.
+3.  Enter the amount of RAM.
 
 {{< /codetabs >}}
 
-Additional build resources (CPU and RAM) are billed by the hour. 
+Additional build resources (CPU and RAM) are billed by the hour.
 For more information on the costs incurred, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 
 {{% note %}}

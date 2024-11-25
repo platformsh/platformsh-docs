@@ -9,7 +9,7 @@ For more information, see the [Gotenberg documentation](https://gotenberg.dev/do
 
 ## Supported versions
 
-- 8
+*   8
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
@@ -19,17 +19,17 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -48,9 +48,9 @@ GOTENBERG_REL=http
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -103,7 +103,7 @@ Note that changing the name of the service replaces it with a brand new service 
 
 ### 2. Add the relationship
 
-To define the relationship, use the ``http`` endpoint:
+To define the relationship, use the `http` endpoint:
 
 ```yaml {configFile="app"}
 applications:
@@ -119,10 +119,10 @@ services:
         type: gotenberg:<VERSION>
 ```
 
-You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
+You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
 With the above definition, {{% vendor/name %}} uses the `http` endpoint,
-providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the _name_ of that service.
+providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the *name* of that service.
 
 The `http` endpoint uses port `3000` by default.
 

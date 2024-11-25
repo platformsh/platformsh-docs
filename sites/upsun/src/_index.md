@@ -17,7 +17,7 @@ This site is roughly split into categories based on where you are in your journe
 
 ### Get started
 
-If you're still unfamiliar with {{% vendor/name %}} and how it works, _but_ you're also looking to quickly start working with the platform, the **Get started** section is the right place to begin.
+If you're still unfamiliar with {{% vendor/name %}} and how it works, *but* you're also looking to quickly start working with the platform, the **Get started** section is the right place to begin.
 
 Learn the basics of how {{% vendor/name %}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments.
 
@@ -27,17 +27,17 @@ Ready to get started? [Let's go!](/get-started/here)
 
 After going through the **Get started** section, you may want to know more about how {{% vendor/name %}} works and the logic behind it. The **[Learn](/learn/_index.md)** section is a collection of tutorials and conceptual guides to help you understand the ins and outs of {{% vendor/name %}}.
 
-- [**What is {{% vendor/name %}}?**](/learn/overview/_index.md)
+*   [**What is {{% vendor/name %}}?**](/learn/overview/_index.md)
 
     With this guide, find out which problem {{% vendor/name %}} is trying to solve.
     Learn how {{% vendor/name %}}'s configuration, build and deploy pipelines, and the structure of environments play into the broader philosophy behind reliably deploying applications.
 
-- [**Tutorials**](/learn/tutorials/_index.md)
+*   [**Tutorials**](/learn/tutorials/_index.md)
 
     Once you're familiar with {{% vendor/name %}}, its basic rules and philosophy, you may be curious about how you can replicate common workflows in other tools on our platform.
     From scheduling dependency updates and backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md) provide all the information you need.
 
-- [**Best practices**](/learn/bestpractices/_index.md)
+*   [**Best practices**](/learn/bestpractices/_index.md)
 
     {{% vendor/name %}} makes deploying and managing infrastructure no different than working with Git.
     As your work becomes more experimental, however, you may be interested in optimizing your workflows, and addressing common constraints of the platform.
@@ -79,6 +79,7 @@ Looking for a way to contribute?
 </div>
 
 ### Contribute
+
 Feel free to open an issue or pull request for any of the repositories below, or let us know on [Discord](https://discord.gg/PkMc2pVCDV) if you find a problem we can help with:
 
 {{< home/links-github >}}
@@ -86,4 +87,3 @@ Feel free to open an issue or pull request for any of the repositories below, or
 ### Get support
 
 If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).
-

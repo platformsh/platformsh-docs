@@ -19,7 +19,7 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="ruby" status="supported" environment="grid" >}}
 
-{{% language-specification type="ruby" display_name="Ruby" %}}
+{{% language-specification type="ruby" display\_name="Ruby" %}}
 
 ```yaml {configFile="app"}
 applications:
@@ -49,7 +49,7 @@ You could use any Ruby application server such as Unicorn.
 Configure the `{{< vendor/configfile "app" >}}` file with a few key settings as listed below.
 A complete example is included at the end of this section.
 
-1. Specify the language of your application (available versions are listed above):
+1.  Specify the language of your application (available versions are listed above):
 
 ```yaml {configFile="app"}
 applications:
@@ -58,11 +58,11 @@ applications:
         type: 'ruby:{{% latest "ruby" %}}'
 ```
 
-2. Setup environment variables.
+2.  Setup environment variables.
 
-   Rails runs by default on a preview environment.
-   You can change the Rails/Bundler via those environment variables,
-   some of which are defaults on {{% vendor/name %}}.
+    Rails runs by default on a preview environment.
+    You can change the Rails/Bundler via those environment variables,
+    some of which are defaults on {{% vendor/name %}}.
 
 ```yaml {configFile="app"}
 applications:
@@ -77,18 +77,18 @@ applications:
                 TARGET_RUBY_VERSION: '~>{{% latest "ruby" %}}' # this will allow to not fail on PATCH update of the image
 ```
 
-   The `SECRET_KEY_BASE` variable is generated automatically based on the
-   [`PLATFORM_PROJECT_ENTROPY`
-   variable](../development/variables/use-variables.md#use-provided-variables) but you can change it.
+The `SECRET_KEY_BASE` variable is generated automatically based on the
+[`PLATFORM_PROJECT_ENTROPY`
+variable](../development/variables/use-variables.md#use-provided-variables) but you can change it.
 
-   Based on TARGET_RUBY_VERSION, we recommand to set on your Gemfile so next
-   PATCH release of ruby doesn't fail the build:
+Based on TARGET\_RUBY\_VERSION, we recommand to set on your Gemfile so next
+PATCH release of ruby doesn't fail the build:
 
-   ```ruby
-   ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
-   ```
+```ruby
+ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+```
 
-3. Build your application with the build hook.
+3.  Build your application with the build hook.
 
     Assuming you have your dependencies stored in the `Gemfile` at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
     create a hook like the following:
@@ -107,11 +107,11 @@ applications:
             deploy: bundle exec rake db:migrate
 ```
 
-  These are installed as your project dependencies in your environment.
-   You can also use the `dependencies` key to install global dependencies.
-   These can be Ruby, Python, NodeJS, or PHP libraries.
+These are installed as your project dependencies in your environment.
+You can also use the `dependencies` key to install global dependencies.
+These can be Ruby, Python, NodeJS, or PHP libraries.
 
-   If you have assets, it's likely that you need NodeJS/yarn.
+If you have assets, it's likely that you need NodeJS/yarn.
 
 ```yaml {configFile="app"}
 applications:
@@ -123,7 +123,8 @@ applications:
             nodejs:
                 yarn: "*"
 ```
-4. Configure the command to start serving your application (this must be a foreground-running process) under the `web` section:
+
+4.  Configure the command to start serving your application (this must be a foreground-running process) under the `web` section:
 
 ```yaml {configFile="app"}
 applications:
@@ -141,13 +142,13 @@ applications:
                 # start: "bundle exec unicorn -l $SOCKET"
 ```
 
-   This assumes you have Puma as a dependency in your Gemfile:
+This assumes you have Puma as a dependency in your Gemfile:
 
-   ```ruby
-   gem "puma", ">= 5.0"
-   ```
+```ruby
+gem "puma", ">= 5.0"
+```
 
-5. Define the web locations your application is using:
+5.  Define the web locations your application is using:
 
 ```yaml {configFile="app"}
 applications:
@@ -163,13 +164,14 @@ applications:
                     expires: 1h
                     allow: true
 ```
-   This configuration sets the web server to handle HTTP requests at `/static`
-   to serve static files stored in `/app/static/` folder.
-   Everything else is forwarded to your application server.
 
-6. Create any Read/Write mounts.
-   The root file system is read only.
-   You must explicitly describe writable mounts.
+This configuration sets the web server to handle HTTP requests at `/static`
+to serve static files stored in `/app/static/` folder.
+Everything else is forwarded to your application server.
+
+6.  Create any Read/Write mounts.
+    The root file system is read only.
+    You must explicitly describe writable mounts.
 
 ```yaml {configFile="app"}
 applications:
@@ -188,13 +190,14 @@ applications:
                 source: tmp
                 source_path: tmp
 ```
-   This setting allows your application writing temporary files to `/app/tmp`,
-   logs stored in `/app/log`, and active storage in `/app/storage`.
 
-   You can define other read/write mounts (your application code itself being deployed to a read-only file system).
-   Note that the file system is persistent and when you backup your cluster these mounts are also backed up.
+This setting allows your application writing temporary files to `/app/tmp`,
+logs stored in `/app/log`, and active storage in `/app/storage`.
 
-7. Then, setup the routes to your application in `{{< vendor/configfile "routes" >}}`.
+You can define other read/write mounts (your application code itself being deployed to a read-only file system).
+Note that the file system is persistent and when you backup your cluster these mounts are also backed up.
+
+7.  Then, setup the routes to your application in `{{< vendor/configfile "routes" >}}`.
 
 ```yaml {configFile="app"}
 applications:
@@ -205,6 +208,7 @@ routes:
         type: upstream
         upstream: "app:http"
 ```
+
 ### Complete app configuration
 
 Here is a complete `{{< vendor/configfile "app" >}}` file:
@@ -335,6 +339,7 @@ services:
     mysql:
         type: mysql:{{% latest "mariadb" %}}
 ```
+
 ## Connecting to services
 
 Once you have a service, link to it in your [app configuration](../create-apps/_index.md):
@@ -354,6 +359,7 @@ services:
     mysql:
         type: mysql:{{% latest "mariadb" %}}
 ```
+
 By using the following Ruby function calls, you can obtain the database details.
 
 ```ruby
@@ -387,27 +393,26 @@ For Rails, you can use the standard Rails `config/database.yml` with the values 
 
 ## Other tips
 
-- To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
-  and configure it with the local `/tmp`:
+*   To speed up boot you can use the [Bootsnap gem](https://github.com/Shopify/bootsnap)
+    and configure it with the local `/tmp`:
 
-  ```ruby {location="config/boot.rb"}
-  Bootsnap.setup(cache_dir: "/tmp/cache")
-  ```
+    ```ruby {location="config/boot.rb"}
+    Bootsnap.setup(cache_dir: "/tmp/cache")
+    ```
 
-- For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
-  and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
-- New images are released on a regular basis to apply security patches.
-  To avoid issues when such updates are performed, use
+*   For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
+    and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
 
-  ``` ruby
-  ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
-  ```
+*   New images are released on a regular basis to apply security patches.
+    To avoid issues when such updates are performed, use
 
-  in your `Gemfile`.
+    ```ruby
+    ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+    ```
 
+    in your `Gemfile`.
 
 {{< repolist lang="ruby" displayName="Ruby" >}}
-
 
 ## Troubleshooting
 
@@ -423,5 +428,5 @@ W: /app/.global/gems/bundler-2.3.5/lib/bundler/resolver.rb:268:in `block in veri
 
 To resolve this error:
 
-1. Run `bundle install` with the same `ruby` and `bundler` versions defined in your `{{< vendor/configfile "app" >}}` file.
-2. Push the `Gemfile.lock` to your repository.
+1.  Run `bundle install` with the same `ruby` and `bundler` versions defined in your `{{< vendor/configfile "app" >}}` file.
+2.  Push the `Gemfile.lock` to your repository.

@@ -15,9 +15,9 @@ There are no exceptions, so any incoming web service requests,
 or otherwise need to transact over one of these protocols.
 
 Outgoing TCP traffic isn’t behind a firewall,
-**with the exception of port 25 which is blocked**. 
+**with the exception of port 25 which is blocked**.
 
 For containers to be allowed to connect to each other, the following requirements must be met:
 
-- The containers must live in the same environment.
-- You need to define an explicit relationship between the containers in your app configuration.
+*   The containers must live in the same environment.
+*   You need to define an explicit relationship between the containers in your app configuration.

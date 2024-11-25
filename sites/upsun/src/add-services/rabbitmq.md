@@ -27,17 +27,17 @@ When you deploy your app, you always get the latest available patches.
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -63,9 +63,9 @@ RABBITMQ_HOST_MAPPED=false
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -107,7 +107,7 @@ export APP_RABBITMQ_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmq[0].host'
 
 ### 1. Configure the service
 
-To define the service, use the ``rabbitmq`` type:
+To define the service, use the `rabbitmq` type:
 
 ```yaml {configFile="app"}
 services:
@@ -143,12 +143,12 @@ and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<RELATIONSHIP_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container (`<APP_NAME>`) now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 ### Example configuration
 
@@ -197,7 +197,7 @@ This configuration defines a single application (`myapp`), whose source code exi
 `myapp` has access to the `rabbitmq` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, `myapp` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -212,21 +212,21 @@ export QUEUE_PORT=${RABBITMQ_PORT}
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``AMQP_URL`` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable `AMQP_URL` can be used within the application to connect to the service.
 
-Note that ``AMQP_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``RABBITMQ_HOST``, are environment-dependent.
+Note that `AMQP_URL`, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like `RABBITMQ_HOST`, are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the `{{% vendor/cli %}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Connect to RabbitMQ
 
 When debugging, you may want to connect directly to your RabbitMQ service.
 You can connect in multiple ways:
 
-- An [SSH tunnel](#via-ssh)
-- A [web interface](#access-the-management-ui)
+*   An [SSH tunnel](#via-ssh)
+*   A [web interface](#access-the-management-ui)
 
 In each case, you need the login credentials that you can obtain from the [relationship](#relationship-reference).
 
@@ -253,14 +253,14 @@ You can access this UI with an SSH tunnel.
 To open a tunnel, follow these steps.
 
 1.  SSH into your app container with a flag for local port forwarding:
-2.
-    ```bash
+
+2.  ```bash
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
-    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
+    {{< variable "RELATIONSHIP\_NAME" >}} is the [name you defined](#2-add-the-relationship).
 
-2.  Open `http://localhost:15672` in your browser.
+3.  Open `http://localhost:15672` in your browser.
     Log in using the username and password from the [relationship](#relationship-reference).
 
 ## Configuration options
@@ -268,7 +268,7 @@ To open a tunnel, follow these steps.
 You can configure your RabbitMQ service in the [services configuration](#1-configure-the-service) with the following options:
 
 | Name     | Type              | Required | Description                                          |
-|----------|-------------------|----------|------------------------------------------------------|
+| -------- | ----------------- | -------- | ---------------------------------------------------- |
 | `vhosts` | List of `string`s | No       | Virtual hosts used for logically grouping resources. |
 
 You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.html),

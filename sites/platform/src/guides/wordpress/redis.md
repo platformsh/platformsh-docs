@@ -43,8 +43,8 @@ If you named the service something different in step 1, change `rediscache` to t
 
 Add the Redis extension for PHP in one of two ways:
 
-* In your [app configuration](/create-apps/app-reference/single-runtime-image.md#extensions) (for extension versions tied to the PHP version)
-* Using a [builder script](../../languages/php/redis.md) (if you need more control over the extension version)
+*   In your [app configuration](/create-apps/app-reference/single-runtime-image.md#extensions) (for extension versions tied to the PHP version)
+*   Using a [builder script](../../languages/php/redis.md) (if you need more control over the extension version)
 
 ### 4. Add the Redis library
 
@@ -53,19 +53,19 @@ install your chosen Redis plugin with a Composer command depending on the plugin
 
 {{< codetabs >}}
 
-+++
+\+++
 title=WP Redis
 highlight=bash
-+++
+\+++
 
 composer require "wpackagist-plugin/wp-redis":"^1.1.4"
 
 <--->
 
-+++
+\+++
 title=Redis Object Cache
 highlight=bash
-+++
+\+++
 
 composer require "wpackagist-plugin/redis-cache":"^2.0.23"
 
@@ -81,9 +81,9 @@ Add the following line to the bottom of your `build` hook in your [app configura
 adjusting the paths based on where your plugins are located:
 
 {{< codetabs >}}
-+++
+\+++
 title=WP Redis
-+++
+\+++
 
 ```yaml {configFile="app"}
 hooks:
@@ -96,9 +96,9 @@ hooks:
 
 <--->
 
-+++
+\+++
 title=Redis Object Cache
-+++
+\+++
 
 ```yaml {configFile="app"}
 hooks:
@@ -135,13 +135,13 @@ somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
 
 The following examples assume you are using the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app).
 
-{{</ note >}}
+{{\</ note >}}
 
 {{< codetabs >}}
 
-+++
+\+++
 title=WP Redis
-+++
+\+++
 
 ```php {location="wp-config.php"}
 <?php
@@ -158,9 +158,9 @@ if ($config->hasRelationship('redis') && extension_loaded('redis')) {
 
 <--->
 
-+++
+\+++
 title=Redis Object Cache
-+++
+\+++
 
 ```php {location="wp-config.php"}
 <?php

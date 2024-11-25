@@ -11,19 +11,19 @@ You want to ensure that the process of local development is as close as possible
 
 You can achieve this through the following approaches:
 
-- [Tethered local development](/get-started/here/local/tethered)
-- DDEV (coming soon!)
+*   [Tethered local development](/get-started/here/local/tethered)
+*   DDEV (coming soon!)
 
 Each of these approaches:
 
-- Creates a local development environment for your site.
-- Syncs data from the active {{% vendor/name %}} environment where team review takes place.
-- Commits aspects of that local development method to the project so collaborators can replicate configuration to contribute.
+*   Creates a local development environment for your site.
+*   Syncs data from the active {{% vendor/name %}} environment where team review takes place.
+*   Commits aspects of that local development method to the project so collaborators can replicate configuration to contribute.
 
+[//]: # "If you're already using Docker Compose,"
 
-[//]: # (If you're already using Docker Compose,)
-[//]: # (consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}]&#40;https://community.platform.sh/t/using-docker-compose-with-django/1205&#41;.)
+[//]: # "consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}](https://community.platform.sh/t/using-docker-compose-with-django/1205)."
 
-[//]: # ({{< guide-buttons previous="Local Development" previousLink="/get-started/quick-start/use-third-part.md" type="*" >}})
+[//]: # "{{< guide-buttons previous=\"Local Development\" previousLink=\"/get-started/quick-start/use-third-part.md\" type=\"*\" >}}"
 
-{{< guide-buttons previous="Back" next="Integrations" nextLink="/get-started/here/third-party" type="*" >}}
+{{< guide-buttons previous="Back" next="Integrations" nextLink="/get-started/here/third-party" type="\*" >}}

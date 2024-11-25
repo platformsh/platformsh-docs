@@ -35,18 +35,18 @@ Enforce your users to authenticate with Google. Please open a [support ticket](/
 
 #### Issue with re-authenticating every 15 minutes
 
-If your organization has Google SSO enabled on {{% vendor/name %}}, you may be required to re-authenticate with Google every 15 minutes. This happens when {{% vendor/name %}} doesn't possess a valid refresh token from your Google account. 
+If your organization has Google SSO enabled on {{% vendor/name %}}, you may be required to re-authenticate with Google every 15 minutes. This happens when {{% vendor/name %}} doesn't possess a valid refresh token from your Google account.
 
 To resolve that, you need to:
 
-1. Go to [https://myaccount.google.com/permissions](https://myaccount.google.com/permissions) and revoke the access from the `{{% vendor/name %}}` application that has `Access given to auth.api.platform.sh`.
-2. Go to [https://auth.api.platform.sh/auth/authorize/google?prompt=consent](https://auth.api.platform.sh/auth/authorize/google?prompt=consent) for the system to obtain a valid refresh token for your Google account.
+1.  Go to <https://myaccount.google.com/permissions> and revoke the access from the `{{% vendor/name %}}` application that has `Access given to auth.api.platform.sh`.
+2.  Go to <https://auth.api.platform.sh/auth/authorize/google?prompt=consent> for the system to obtain a valid refresh token for your Google account.
 
 ### OpenId Connect
 
 {{< premium-features/tiered "Elite" >}}
 
 Enforce your users to authenticate with your OpenID Connect provider,
-such as Okta, Azure Active Directory or Ping Identity. 
+such as Okta, Azure Active Directory or Ping Identity.
 To enable SSO with your OpenID Connect provider,
-[contact Support](https://console.platform.sh/-/users/~/tickets). 
+[contact Support](https://console.platform.sh/-/users/~/tickets).

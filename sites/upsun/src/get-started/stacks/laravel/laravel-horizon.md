@@ -16,24 +16,24 @@ such as job throughput, runtime, and job failures.
 This procedure assumes you have followed the steps on [how to configure Redis and queues](/get-started/stacks/laravel/setup-redis#5-use-redis-for-laravel-queues).
 {{% /note %}}
 
-1. To add Laravel Horizon, run the following command:
+1.  To add Laravel Horizon, run the following command:
 
-   ```bash {location="Terminal"}
-   composer require laravel/horizon && php artisan horizon:install
-   ```
+    ```bash {location="Terminal"}
+    composer require laravel/horizon && php artisan horizon:install
+    ```
 
-2. Add the `install` command to your `build` hook in your app configuration, so it's run on every deploy.
+2.  Add the `install` command to your `build` hook in your app configuration, so it's run on every deploy.
 
-   ```yaml {configFile="app"}
-   applications:
-       myapp:
-           [...]
-           hooks:
-               build: |
-                       set -eux
-                       composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
-                       php artisan horizon:install
-   ```
+    ```yaml {configFile="app"}
+    applications:
+        myapp:
+            [...]
+            hooks:
+                build: |
+                        set -eux
+                        composer --no-ansi --no-interaction install --no-progress --prefer-dist --optimize-autoloader --no-dev
+                        php artisan horizon:install
+    ```
 
 ## 2. Create a worker to run Horizon
 
@@ -66,7 +66,7 @@ It will spawn the Horizon process after the next deploy.
 ## 3. Access your Horizon dashboard
 
 If you have restricted access to Horizon in your `HorizonServiceProvider.php`,
-log in to your app through the web. 
+log in to your app through the web.
 Then, go to `/horizon` to access your Horizon dashboard.
 
 ![Laravel Horizon Dashboard](/images/guides/laravel/horizon-dashboard.png "0.5")
@@ -93,4 +93,4 @@ Note that you can customize the resources of your Horizon worker container from 
 
 For more information, see how to [configure resources](/manage-resources/adjust-resources.md).
 
-{{< guide-buttons previous="Back" next="Set up cron jobs" nextLink="/get-started/stacks/laravel/crons.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Set up cron jobs" nextLink="/get-started/stacks/laravel/crons.md" type="\*" >}}

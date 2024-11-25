@@ -23,17 +23,17 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -51,9 +51,9 @@ CHROMEHEADLESS_PORT=9222
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -126,12 +126,12 @@ services:
         type: chrome-headless:<VERSION>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -163,9 +163,9 @@ After configuration, include [Puppeteer](https://www.npmjs.com/package/puppeteer
 
 {{< codetabs >}}
 
-+++
+\+++
 title=npm
-+++
+\+++
 
 ```bash
 npm install puppeteer
@@ -173,9 +173,9 @@ npm install puppeteer
 
 <--->
 
-+++
+\+++
 title=pnpm
-+++
+\+++
 
 ```bash
 pnpm add puppeteer
@@ -183,9 +183,9 @@ pnpm add puppeteer
 
 <--->
 
-+++
+\+++
 title=Yarn
-+++
+\+++
 
 ```bash
 yarn add puppeteer
@@ -235,10 +235,10 @@ export CHROME_PORT=${CHROMEHEADLESS_PORT}
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"
 ```
 
-The above file &mdash; `.environment` in the `myapp` directory &mdash; is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `CHROME_BASEURL` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `CHROME_BASEURL` can be used within the application to connect to the service.
 
 Note that `CHROME_BASEURL` and all {{< vendor/name >}} [service environment variables](/development/variables.html#service-environment-variables) like `CHROMEHEADLESS_HOST`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
 A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
 
-Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
+Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer\&version=v13.0.1\&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer\&version=v13.0.1\&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer\&version=v13.0.1\&show=api-pagepdfoptions), and much more.

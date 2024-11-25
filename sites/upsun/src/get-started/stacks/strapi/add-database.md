@@ -9,8 +9,8 @@ description: |
 
 This guide will show you how to provision and connect to two different databases on {{% vendor/name %}}:
 
-- PostgreSQL
-- Oracle MySQL
+*   PostgreSQL
+*   Oracle MySQL
 
 ## 1. Branch
 
@@ -23,20 +23,24 @@ git checkout -b upgrade-db
 ## 2. Install the Node.js package
 
 {{< codetabs >}}
-+++
+\+++
 title=PostgreSQL
-+++
+\+++
+
 ```bash
 yarn add pg
 ```
+
 <--->
 
-+++
+\+++
 title=Oracle MySQL
-+++
+\+++
+
 ```bash
 yarn add mysql
 ```
+
 {{< /codetabs >}}
 
 ## 3. Add a new service
@@ -44,9 +48,10 @@ yarn add mysql
 Add a new service to your `.upsun/config.yaml` file:
 
 {{< codetabs >}}
-+++
+\+++
 title=PostgreSQL
-+++
+\+++
+
 ```yaml {location=".upsun/config.yaml"}
 applications:
     my-strapi-project:
@@ -60,11 +65,13 @@ services:
     database:
 	    type: postgresql:{{% latest "postgresql" %}}
 ```
+
 <--->
 
-+++
+\+++
 title=Oracle MySQL
-+++
+\+++
+
 ```yaml {location=".upsun/config.yaml"}
 applications:
     my-strapi-project:
@@ -78,6 +85,7 @@ services:
     database:
 	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
+
 {{< /codetabs >}}
 
 ## 4. Add a new relationship
@@ -85,9 +93,10 @@ services:
 Add a new relationship to your `.upsun/config.yaml` file to allow access to the new service
 
 {{< codetabs >}}
-+++
+\+++
 title=PostgreSQL
-+++
+\+++
+
 ```yaml {location=".upsun/config.yaml"}
 applications:
     my-strapi-project:
@@ -104,11 +113,13 @@ services:
     database:
 	    type: postgresql:{{% latest "postgresql" %}}
 ```
+
 <--->
 
-+++
+\+++
 title=Oracle MySQL
-+++
+\+++
+
 ```yaml {location=".upsun/config.yaml"}
 applications:
     my-strapi-project:
@@ -125,6 +136,7 @@ services:
     database:
 	    type: oracle-mysql:{{% latest "oracle-mysql" %}}
 ```
+
 {{< /codetabs >}}
 
 ## 5. Update `.environment`
@@ -156,15 +168,16 @@ if [[ -z "$APP_KEYS" ]]; then
 fi
 ```
 
-{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore. 
+{{% vendor/name %}} will actually generate service credentials automatically for you in the runtime container, so we don't need the first half of this file anymore.
 Remove the first block (pertaining to `DATABASE` credentials).
 
 Then, add a single additional variable that will set the `DATABASE_CLIENT` variable at the appropriate time:
 
 {{< codetabs >}}
-+++
+\+++
 title=PostgreSQL
-+++
+\+++
+
 ```bash {location=".environment"}
 # Set secrets needed by Strapi, if they are not set
 # Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
@@ -186,11 +199,13 @@ if [[ -z "$PLATFORM_ENVIRONMENT" ]]; then
     export DATABASE_CLIENT="postgres"
 fi
 ```
+
 <--->
 
-+++
+\+++
 title=Oracle MySQL
-+++
+\+++
+
 ```bash {location=".environment"}
 # Set secrets needed by Strapi, if they are not set
 # Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
@@ -212,6 +227,7 @@ if [[ -z "$PLATFORM_ENVIRONMENT" ]]; then
     export DATABASE_CLIENT="mysql"
 fi
 ```
+
 {{< /codetabs >}}
 
 ## 6. Push to the environment

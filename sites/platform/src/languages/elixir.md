@@ -28,7 +28,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-{{% language-specification type="elixir" display_name="Elixir" %}}
+{{% language-specification type="elixir" display\_name="Elixir" %}}
 
 ```yaml {configFile="app"}
 type: 'elixir:<VERSION_NUMBER>'
@@ -67,6 +67,7 @@ variables:
     env:
         MIX_ENV: 'prod'
 ```
+
 The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
 You can change it.
 
@@ -79,6 +80,7 @@ hooks:
         mix local.rebar --force
         mix do deps.get --only prod, deps.compile, compile
 ```
+
 {{< note >}}
 
 That build hook works for most cases and assumes that your `mix.exs` file is located at [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
@@ -113,6 +115,7 @@ web:
             allow: false
             passthru: true
 ```
+
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
 
 ## Dependencies
@@ -145,7 +148,6 @@ Platformsh.Config.ecto_dsn_formatter("database")
 ```
 
 See [Config Reader Documentation](../development/variables/use-variables.md#access-variables-in-your-app) for the full API.
-
 
 ### Accessing Services Manually
 

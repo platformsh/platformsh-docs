@@ -19,12 +19,12 @@ All variables can be strings or base64-encoded JSON-serialized values.
 
 The following table defines what types of variables are available to you:
 
-| Type                                               | Definer     | Scope       | Precedence | Build | Runtime  | Uses |
-| -------------------------------------------------- | ----------- | ----------- | ---------- | ----- | -------- |----- |
-| [Application](./set-variables.md#set-variables-in-your-app) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
-| [Project](./set-variables.md#create-project-variables)               | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
-| [Environment](./set-variables.md#create-environment-specific-variables)       | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
-| [{{% vendor/name %}}](./use-variables.md#use-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{% vendor/name %}} project |
+| Type                                                                    | Definer     | Scope       | Precedence | Build | Runtime | Uses                                                                                                   |
+| ----------------------------------------------------------------------- | ----------- | ----------- | ---------- | ----- | ------- | ------------------------------------------------------------------------------------------------------ |
+| [Application](./set-variables.md#set-variables-in-your-app)             | Application | Application | 4          | Yes   | Yes     | Non-secret values that are the same across all environments                                            |
+| [Project](./set-variables.md#create-project-variables)                  | User        | Project     | 3          | Yes   | Yes     | Secret values that are the same across all environments, such as database credentials                  |
+| [Environment](./set-variables.md#create-environment-specific-variables) | User        | Environment | 2          | Some  | Yes     | Values that vary by environment, such as which database to connect to or which payment API keys to use |
+| [{{% vendor/name %}}](./use-variables.md#use-provided-variables)        | Pre-defined | Environment | 1          | Some  | Yes     | For information about your {{% vendor/name %}} project                                                 |
 
 If there are conflicts between variables with the same name, variables [take precedence](#overrides) from 1 down.
 So {{% vendor/name %}}-provided values (1) override environment variables (2), which override project variables (3),
@@ -39,27 +39,27 @@ Choose how to set the variable based on what you are trying to do.
 Some environment variables should be the same for all environments.
 For example:
 
-- Build tool versions.
-  If you have scripts that use specific versions of build tools (such as a [specific Node.js version](../../languages/nodejs/node-version.md)),
-  You want the tools to be versioned along with your code so you can track the impact of changes.
-  Set those variables [in the application](./set-variables.md#set-variables-in-your-app).
-- Credentials for common services.
-  If you have credentials for services shared across your environments,
-  you don't want to commit these secrets to code.
-  Set them as sensitive [project variables](./set-variables.md#create-project-variables).
+*   Build tool versions.
+    If you have scripts that use specific versions of build tools (such as a [specific Node.js version](../../languages/nodejs/node-version.md)),
+    You want the tools to be versioned along with your code so you can track the impact of changes.
+    Set those variables [in the application](./set-variables.md#set-variables-in-your-app).
+*   Credentials for common services.
+    If you have credentials for services shared across your environments,
+    you don't want to commit these secrets to code.
+    Set them as sensitive [project variables](./set-variables.md#create-project-variables).
 
 Other configurations should vary between environment types.
 For example:
 
-- Service configuration for databases and such.
-  This information be read from the [service environment variables](./_index.md#service-environment-variables),
-  or the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
-  It varies by environment automatically.
-- Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
-  This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
-- API keys for remote services, especially payment gateways.
-  If you have a different payment gateway for production and for testing,
-  set its keys on the [environment level](./set-variables.md#create-environment-specific-variables).
+*   Service configuration for databases and such.
+    This information be read from the [service environment variables](./_index.md#service-environment-variables),
+    or the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
+    It varies by environment automatically.
+*   Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
+    This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
+*   API keys for remote services, especially payment gateways.
+    If you have a different payment gateway for production and for testing,
+    set its keys on the [environment level](./set-variables.md#create-environment-specific-variables).
 
 ## Overrides
 
@@ -132,8 +132,11 @@ navigate in the Console to that environment's variables settings.
 This example shows how it looks within the `feature-x` environment:
 
 <!-- vale Vale.Spelling = NO -->
+
 <!-- spelling turned off because of the "api_key" -->
-![The Console showing the variables split into environment and project ones, with the environment variables `api_key` and `system_version` labeled as overridden and `debug_mode` as inherited the project variable `system_version` labeled as inactive.](/images/management-console/variables-overridden.png "0.5")
+
+![The Console showing the variables split into environment and project ones, with the environment variables api\_key and system\_version labeled as overridden and debug\_mode as inherited the project variable system\_version labeled as inactive.](/images/management-console/variables-overridden.png "0.5")
+
 <!-- vale Vale.Spelling = YES -->
 
 Project variables that conflict with environment variables are labeled as **Inactive**.
@@ -204,7 +207,7 @@ in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 **Example:**
 
-For a relationship named ``database`` to a service named `postgresl`,
+For a relationship named `database` to a service named `postgresl`,
 the following environment variables are automatically generated in your `app` container:
 
 ```bash

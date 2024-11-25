@@ -29,7 +29,7 @@ You've added the `example.com` custom domain to your production environment.
 
 You want to add the `staging.example.com` custom domain to your staging environment.
 To do so, you need to attach the new `staging.example.com` custom domain
-to its corresponding custom production domain `example.com`. 
+to its corresponding custom production domain `example.com`.
 
 You can then access your staging environment through `staging.example.com`,
 and still access your production environment through `example.com`.
@@ -42,29 +42,29 @@ you don't need to update your [routes configuration](../../define-routes/_index.
 {{% vendor/name %}} automatically figures out the routing of your preview environment
 based on the following elements:
 
-- The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
-- The custom domains for preview environments attached to each of those custom production domains
+*   The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
+*   The custom domains for preview environments attached to each of those custom production domains
 
 ## Before you start
 
 You need:
 
-- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
+*   A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR>
 
-  {{< note theme="warning" >}}
+    {{< note theme="warning" >}}
 
-  If you have a {{% names/dedicated-gen-2 %}} project,
-  currently you can only add a custom domain to the dedicated environments of your project (production and staging).
-  To do so, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
+    If you have a {{% names/dedicated-gen-2 %}} project,
+    currently you can only add a custom domain to the dedicated environments of your project (production and staging).
+    To do so, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
 
-  {{< /note >}}
+    {{< /note >}}
 
-  If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
-  it needs to be configured to operate with custom domains for preview environments.
-  For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
-- A production environment with at least one custom domain already set up
-- At least one preview (staging or development) environment
-- Optional: The [{{% vendor/name %}} CLI](../../administration/cli/_index.md) (v4.8.0+)
+    If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
+    it needs to be configured to operate with custom domains for preview environments.
+    For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
+*   A production environment with at least one custom domain already set up
+*   At least one preview (staging or development) environment
+*   Optional: The [{{% vendor/name %}} CLI](../../administration/cli/_index.md) (v4.8.0+)
 
 To prevent abuse, by default you can add custom domains to up to 5 preview environments per project only.
 This limit doesn't include the production environment,
@@ -77,7 +77,7 @@ If you delete a custom production domain,
 all of the attached custom domains for preview environments are deleted too.
 You need to rebuild the affected preview environments for the deletion to be complete.
 
- {{< /note >}}
+{{< /note >}}
 
 If you downgrade from an Elite or Enterprise plan to a Professional plan,
 all of the custom domains set up on preview environments are automatically removed.
@@ -88,37 +88,37 @@ Downgrading your plan doesn't affect custom domains set up on your production en
 To add a custom domain to a preview environment, follow these steps:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. To get the target for your preview environment,
-   run the following command:
+1.  To get the target for your preview environment,
+    run the following command:
 
-   ```bash
-   {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
+    ```
 
-2. [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
-   In particular, make sure your DNS record points to the target of your preview environment.
+2.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
+    In particular, make sure your DNS record points to the target of your preview environment.
 
-   {{< note >}}
+    {{< note >}}
 
-   Using the target of your production environment to configure your DNS provider is technically possible,
-   but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
+    Using the target of your production environment to configure your DNS provider is technically possible,
+    but {{% vendor/name %}} recommends using the target of your preview environment as a best practice.
 
-   {{< /note >}}
+    {{< /note >}}
 
-3. Run a command similar to the following:
+3.  Run a command similar to the following:
 
-   ```bash
-   {{% vendor/cli %}} domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --attach {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_ATTACH" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} domain:add staging.example.com --environment {{< variable "STAGING_ENVIRONMENT_ID" >}} --attach {{< variable "PRODUCTION_CUSTOM_DOMAIN_TO_ATTACH" >}}
+    ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
 1.  Get the target for your preview environment.</br>
     To do so, navigate to your preview environment and click **{{< icon settings >}} Settings**.</br>
@@ -163,9 +163,9 @@ You now want to add the `mydev.com` custom domain to a preview environment calle
 To do so, follow these steps:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run the following command:
 
@@ -174,9 +174,9 @@ Run the following command:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
 1.  Get the target for `Dev`.</br>
     To do so, navigate to `Dev` and click **{{< icon settings >}} Settings**.</br>
@@ -207,9 +207,9 @@ the `mydev.com` custom domain is removed too.
 ## List the custom domains of a preview environment
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run a command similar to the following:
 
@@ -218,22 +218,22 @@ Run a command similar to the following:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your preview environment and click **{{< icon settings >}} Settings**.
-2. Select the **Domains** tab.</br>
-   All the custom domains for your preview environment are displayed.
+1.  Navigate to your preview environment and click **{{< icon settings >}} Settings**.
+2.  Select the **Domains** tab.</br>
+    All the custom domains for your preview environment are displayed.
 
 {{< /codetabs >}}
 
 ## Get a specific custom domain used on a preview environment
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run a command similar to the following:
 
@@ -242,24 +242,24 @@ Run a command similar to the following:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your preview environment and click **{{< icon settings >}} Settings**.</br>
-2. Select the **Domains** tab.</br>
-   All the custom domains for the selected environment are displayed.
-3. To see which actions you can perform on a displayed custom domain,
-   click **{{< icon "more" >}} More** next to it.
+1.  Navigate to your preview environment and click **{{< icon settings >}} Settings**.</br>
+2.  Select the **Domains** tab.</br>
+    All the custom domains for the selected environment are displayed.
+3.  To see which actions you can perform on a displayed custom domain,
+    click **{{< icon "more" >}} More** next to it.
 
 {{< /codetabs >}}
 
 ## Remove a custom domain from a preview environment
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run a command similar to the following:
 
@@ -268,15 +268,15 @@ Run a command similar to the following:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to your preview environment and click **{{< icon settings >}} Settings**.
-2. Select the **Domains** tab.</br>
-   All the custom domains for the selected environment are displayed.
-3. Click **{{< icon "more" >}} More** on the custom domain you want to delete.
-4. Click **Delete**.
-5. Click **Yes, delete**.
+1.  Navigate to your preview environment and click **{{< icon settings >}} Settings**.
+2.  Select the **Domains** tab.</br>
+    All the custom domains for the selected environment are displayed.
+3.  Click **{{< icon "more" >}} More** on the custom domain you want to delete.
+4.  Click **Delete**.
+5.  Click **Yes, delete**.
 
 {{< /codetabs >}}

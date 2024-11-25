@@ -163,11 +163,11 @@ You can use `sftp` to copy files to and from a remote environment.
 {{< note >}}
 {{% vendor/name %}} supports `sftp`, but the following limitations apply:
 
-- You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
-  Custom users and passwords aren't supported.
-- `sftp` access cannot be limited to a specific directory.
-  Instead, access is given to **the whole application directory** and its mounts.
-{{< /note >}}
+*   You can only create `sftp` accounts with an existing {{% vendor/name %}} user and an SSH key.
+    Custom users and passwords aren't supported.
+*   `sftp` access cannot be limited to a specific directory.
+    Instead, access is given to **the whole application directory** and its mounts.
+    {{< /note >}}
 
 #### Open an `sftp` connection
 
@@ -186,9 +186,7 @@ Say you want to download a `diagram.png` file from the `web/uploads` directory
 (relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory)).
 To do so, run the following command:
 
-```
-sftp> get web/uploads/diagram.png
-```
+    sftp> get web/uploads/diagram.png
 
 The `diagram.png` file is copied to the current local directory.
 

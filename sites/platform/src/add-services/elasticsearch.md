@@ -15,19 +15,19 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 If you use one of the following frameworks, follow its guide:
 
-- [Drupal](../guides/drupal/elasticsearch.md)
-- [Jakarta EE](../guides/jakarta/deploy.md#elasticsearch)
-- [Micronaut](../guides/micronaut/elasticsearch.md)
-- [Quarkus](../guides/quarkus/elasticsearch.md)
-- [Spring](../guides/spring/elasticsearch.md)
+*   [Drupal](../guides/drupal/elasticsearch.md)
+*   [Jakarta EE](../guides/jakarta/deploy.md#elasticsearch)
+*   [Micronaut](../guides/micronaut/elasticsearch.md)
+*   [Quarkus](../guides/quarkus/elasticsearch.md)
+*   [Spring](../guides/spring/elasticsearch.md)
 
 ## Supported versions
 
 From version 7.11 onward:
 
 {{% note title="Premium Service" theme="info" %}}
-Elasticsearch isn’t included in any {{< vendor/name >}} plan. 
-You need to add it separately at an additional cost. 
+Elasticsearch isn’t included in any {{< vendor/name >}} plan.
+You need to add it separately at an additional cost.
 To add Elasticsearch, [contact Sales](https://platform.sh/contact/).
 {{% /note %}}
 
@@ -52,7 +52,7 @@ The following premium versions are supported:
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 ## Deprecated versions
@@ -128,7 +128,7 @@ To define the service, use the `elasticsearch` type:
 
 If you’re using a [premium version](add-services/elasticsearch.md#supported-versions), use the `elasticsearch-enterprise` type instead.
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -144,12 +144,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -189,35 +189,35 @@ Note that configuration for [premium versions](#supported-versions) may differ s
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/elasticsearch
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/elasticsearch
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/elasticsearch
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -295,28 +295,28 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of official Elasticsearch plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 2.4 | 5.x | 6.x | 7.x | 8.x |
-|-------------------------|-------------------------------------------------------------------------------------------|-----|-----|-----|-----|-----|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *   | *   | *   | *   |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                 |     |     | *   | *   | *   |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   | *   | *   | *   | *   |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | *   | *   | *   | *   |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | *   | *   | *   | *   |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | *   | *   | *   | *   |
-| `analysis-ukrainian`    | Ukrainian language support                                                                |     | *   | *   | *   | *   |
-| `cloud-aws`             | AWS Cloud plugin, allows storing indices on AWS S3                                        | *   |     |     |     |     |
-| `delete-by-query`       | Support for deleting documents matching a given query                                     | *   |     |     |     |     |
-| `discovery-multicast`   | Ability to form a cluster using TCP/IP multicast messages                                 | *   |     |     |     |     |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    |     | *   | *   | *   | *   |
-| `ingest-user-agent`     | Extracts details from the user agent string a browser sends with its web requests         |     | *   | *   |     |     |
-| `lang-javascript`       | JavaScript language plugin, allows the use of JavaScript in Elasticsearch scripts         |     | *   |     |     |     |
-| `lang-python`           | Python language plugin, allows the use of Python in Elasticsearch scripts                 | *   | *   |     |     |     |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  |     |     | *   | *   | *   |
-| `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                  | *   | *   |     |     |     |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *   | *   | *   | *   |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *   | *   | *   | *   |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 |     | *   | *   | *   | *   |
-| `transport-nio`         | Support for NIO transport                                                                 |     |     |     | *   | *   |
+| Plugin                  | Description                                                                              | 2.4 | 5.x | 6.x | 7.x | 8.x |
+| ----------------------- | ---------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- |
+| `analysis-icu`          | Support ICU Unicode text analysis                                                        | \*  | \*  | \*  | \*  | \*  |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into Elasticsearch                                |     |     | \*  | \*  | \*  |
+| `analysis-kuromoji`     | Japanese language support                                                                | \*  | \*  | \*  | \*  | \*  |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                           | \*  | \*  | \*  | \*  | \*  |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                           | \*  | \*  | \*  | \*  | \*  |
+| `analysis-phonetic`     | Phonetic analysis                                                                        | \*  | \*  | \*  | \*  | \*  |
+| `analysis-ukrainian`    | Ukrainian language support                                                               |     | \*  | \*  | \*  | \*  |
+| `cloud-aws`             | AWS Cloud plugin, allows storing indices on AWS S3                                       | \*  |     |     |     |     |
+| `delete-by-query`       | Support for deleting documents matching a given query                                    | \*  |     |     |     |     |
+| `discovery-multicast`   | Ability to form a cluster using TCP/IP multicast messages                                | \*  |     |     |     |     |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                   |     | \*  | \*  | \*  | \*  |
+| `ingest-user-agent`     | Extracts details from the user agent string a browser sends with its web requests        |     | \*  | \*  |     |     |
+| `lang-javascript`       | JavaScript language plugin, allows the use of JavaScript in Elasticsearch scripts        |     | \*  |     |     |     |
+| `lang-python`           | Python language plugin, allows the use of Python in Elasticsearch scripts                | \*  | \*  |     |     |     |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index |     |     | \*  | \*  | \*  |
+| `mapper-attachments`    | Mapper attachments plugin for indexing common file types                                 | \*  | \*  |     |     |     |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                 | \*  | \*  | \*  | \*  | \*  |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                       | \*  | \*  | \*  | \*  | \*  |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                |     | \*  | \*  | \*  | \*  |
+| `transport-nio`         | Support for NIO transport                                                                |     |     |     | \*  | \*  |
 
 ### Plugin removal
 

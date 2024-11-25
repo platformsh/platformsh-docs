@@ -25,6 +25,7 @@ applications:
                 # Update for your desired Python version.
                 PYTHON_VERSION: "3.11.0"
 ```
+
 2.  Add Pyenv in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
 
 ```yaml {configFile="app"}
@@ -65,6 +66,7 @@ applications:
                 # Set global Python version
                 pyenv global $PYTHON_VERSION
 ```
+
 Now your build hook can use the specified version of Python.
 You can verify this by running `python --version`.
 
@@ -87,6 +89,7 @@ applications:
                 # Rehash Pyenv for new (runtime) location
                 PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
 ```
+
 2.  Create an [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script):
 
     ```bash

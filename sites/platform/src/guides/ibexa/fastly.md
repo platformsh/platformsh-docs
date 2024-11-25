@@ -13,10 +13,10 @@ description: |
 In Ibexa DXP, Varnish is enabled by default when deploying on {{% vendor/name %}}
 To use Fastly, Varnish must be disabled:
 
-- Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`{{< vendor/configfile "app" >}}](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
-- Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
-- In [`{{< vendor/configfile "routes" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
-   change routes to use `app` instead of the `varnish` service you removed in previous step:
+*   Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [\`{{< vendor/configfile "app" >}}](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
+*   Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
+*   In [`{{< vendor/configfile "routes" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
+    change routes to use `app` instead of the `varnish` service you removed in previous step:
 
 ```diff
  "https://{default}/":
@@ -60,7 +60,7 @@ Note: On a {{% names/dedicated-gen-2 %}} cluster, set those values on the `produ
 There are two VCL files provided as starting points for using Fastly with Ibexa DXP;
 you can find them in `vendor/ibexa/fastly/fastly/ez_*.vcl`.
 A VCL snippet can be found in `vendor/ibexa/fastly/fastly/snippet_re_enable_shielding.vcl`.
-They handle varying cache by user context hash _(permissions)_
+They handle varying cache by user context hash *(permissions)*
 as well as several other needs by Ibexa DXP and it's underlying HttpCache system.
 
 ## Configure Fastly

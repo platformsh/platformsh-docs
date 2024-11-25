@@ -44,16 +44,16 @@ They do so in different ways and so are fit for different use cases.
 
 A cron job is well suited for tasks when:
 
-* They need to happen on a fixed schedule, not continually.
-* The task itself isn't especially long, as a running cron job blocks a new deployment.
-* It's long but can be divided into many small queued tasks.
-* A delay between when a task is registered and when it actually happens is acceptable.
+*   They need to happen on a fixed schedule, not continually.
+*   The task itself isn't especially long, as a running cron job blocks a new deployment.
+*   It's long but can be divided into many small queued tasks.
+*   A delay between when a task is registered and when it actually happens is acceptable.
 
 A dedicated worker instance is a better fit if:
 
-* Tasks should happen "now", but not block a web request.
-* Tasks are large enough that they risk blocking a deploy, even if they're subdivided.
-* The task in question is a continually running process rather than a stream of discrete units of work.
+*   Tasks should happen "now", but not block a web request.
+*   Tasks are large enough that they risk blocking a deploy, even if they're subdivided.
+*   The task in question is a continually running process rather than a stream of discrete units of work.
 
 The appropriateness of one approach over the other also varies by language;
 single-threaded languages would benefit more from either cron or workers than a language with native multi-threading, for instance.
@@ -137,7 +137,7 @@ services:
 
 In both cases, there are two worker instances named `queue` and `mail`.
 Both have access to a MySQL/MariaDB service defined in `{{< vendor/configfile "services" >}}`,
-through a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) that is identical to the _name_ of that service (`mysql`).
+through a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) that is identical to the *name* of that service (`mysql`).
 Both also have their own separate [`storage` mount](/create-apps/app-reference/single-runtime-image.md#mounts).
 
 ## Customizing a worker
@@ -218,26 +218,26 @@ That artifact (your code plus the downloaded dependencies) is deployed as three 
 
 The `web` instance starts a Gunicorn process to serve a web application.
 
-- It runs the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
-- It has an environment variable named `TYPE` with value `web`.
-- It has a writable mount at `/app/uploads`.
-- It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `{{< vendor/configfile "services" >}}`.
+*   It runs the Gunicorn process to serve web requests, defined by the `project/wsgi.py` file which contains an `application` definition.
+*   It has an environment variable named `TYPE` with value `web`.
+*   It has a writable mount at `/app/uploads`.
+*   It has access to both a MySQL database and a RabbitMQ server, both of which are defined in `{{< vendor/configfile "services" >}}`.
 
 The `queue` instance is a worker that isn't web-accessible.
 
-- It runs the `queue-worker.py` script, and restart it automatically if it ever terminates.
-- It has an environment variable named `TYPE` with value `worker`.
-- It has a writable mount at `/app/scratch`.
-- It has access to both a MySQL database and a RabbitMQ server,
-  both of which are defined in `{{< vendor/configfile "services" >}}` (because it doesn't specify otherwise).
+*   It runs the `queue-worker.py` script, and restart it automatically if it ever terminates.
+*   It has an environment variable named `TYPE` with value `worker`.
+*   It has a writable mount at `/app/scratch`.
+*   It has access to both a MySQL database and a RabbitMQ server,
+    both of which are defined in `{{< vendor/configfile "services" >}}` (because it doesn't specify otherwise).
 
 The `mail` instance is a worker that isn't web-accessible.
 
-- It runs the `mail-worker.py` script, and restart it automatically if it ever terminates.
-- It has an environment variable named `TYPE` with value `worker`.
-- It has no writable file mounts at all.
-- It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
-  It has no access to MySQL.
+*   It runs the `mail-worker.py` script, and restart it automatically if it ever terminates.
+*   It has an environment variable named `TYPE` with value `worker`.
+*   It has no writable file mounts at all.
+*   It has access only to the RabbitMQ server, through a different relationship name than on the `web` instance.
+    It has no access to MySQL.
 
 {{< note >}}
 
@@ -302,8 +302,9 @@ applications:
 
 Both the `web` instance and `queue` worker have their own, dedicated `local_dir` mount.
 Note that:
-- Each `local_dir` mount is a [`tmp` mount](/create-apps/app-reference/single-runtime-image.md#mounts) with a **maximum allocation of 8 GB**.</br>
-- `tmp` mounts **may be removed** during infrastructure maintenance operations.
+
+*   Each `local_dir` mount is a [`tmp` mount](/create-apps/app-reference/single-runtime-image.md#mounts) with a **maximum allocation of 8 GB**.</br>
+*   `tmp` mounts **may be removed** during infrastructure maintenance operations.
 
 Both the `web` instance and `queue` worker also have a `shared_dir` mount pointing to the same network storage space.
 They can both read and write to it simultaneously.

@@ -13,13 +13,13 @@ description: |
 In the Strapi template, `yarn` is run during the build hook to install all of Strapi’s dependencies, and then `yarn build` is run to build the site.
 If you would rather use npm to manage your dependencies, you can:
 
-1. Delete `yarn` from the build hook.
-2. Replace `yarn build` in the build hook with `npm run build`.
-3. Delete the `build.flavor` block.
-   When this is set to `none`, {{% vendor/name %}} to rely solely on the build hook to define the build process.
-   By default, Node.js containers run `npm install` prior to the build hook,
-   so this block can be removed entirely from the configuration.
-4. Delete the `dependencies` block, which includes yarn.
+1.  Delete `yarn` from the build hook.
+2.  Replace `yarn build` in the build hook with `npm run build`.
+3.  Delete the `build.flavor` block.
+    When this is set to `none`, {{% vendor/name %}} to rely solely on the build hook to define the build process.
+    By default, Node.js containers run `npm install` prior to the build hook,
+    so this block can be removed entirely from the configuration.
+4.  Delete the `dependencies` block, which includes yarn.
 
 The relationships block is responsible for providing access to the data sources (services) that the Strapi application needs.
 
@@ -27,11 +27,11 @@ Since {{% vendor/name %}} is read-only during build, mainly for security purpose
 {{% vendor/name %}} allows you to mount directories that need write access during the deploy phase with the `mounts` key.
 In this case, the following folders are mounted for Strapi.
 
-- `.cache` file
-- `.tmp` file
-- `database` folder
-- `extensions` folder
-- `uploads` folder in the `public` directory
+*   `.cache` file
+*   `.tmp` file
+*   `database` folder
+*   `extensions` folder
+*   `uploads` folder in the `public` directory
 
 {{< /guides/config-app >}}
 

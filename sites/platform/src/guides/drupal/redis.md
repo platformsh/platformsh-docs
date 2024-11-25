@@ -12,17 +12,17 @@ or the [official Redis documentation](https://redis.io/docs/).
 
 Follow the instructions on this page to do one of the following:
 
-- Add and configure Redis for Drupal if you have deployed Drupal manually.
-- Fine-tune your existing configuration if you have deployed Drupal using a [{{% vendor/name %}} template](../../development/templates.md).
+*   Add and configure Redis for Drupal if you have deployed Drupal manually.
+*   Fine-tune your existing configuration if you have deployed Drupal using a [{{% vendor/name %}} template](../../development/templates.md).
 
 ## Before you begin
 
 You need:
 
-- A [Drupal version deployed on {{% vendor/name %}}](../drupal/deploy/_index.md)
-- The [{{% vendor/name %}} CLI](../../administration/cli/)
-- [Composer](https://getcomposer.org/)
-- The [Config Reader library](../../guides/drupal/deploy/customize.md#install-the-config-reader)
+*   A [Drupal version deployed on {{% vendor/name %}}](../drupal/deploy/_index.md)
+*   The [{{% vendor/name %}} CLI](../../administration/cli/)
+*   [Composer](https://getcomposer.org/)
+*   The [Config Reader library](../../guides/drupal/deploy/customize.md#install-the-config-reader)
 
 You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal/deploy/customize.md#settingsphp).
 If you installed Drupal with a template, this file is already present in your project.
@@ -103,83 +103,83 @@ platform drush enable redis
 
 To configure your Redis service, follow these steps:
 
-1. Add the following code at the top of your `settings.platformsh.php` file:
+1.  Add the following code at the top of your `settings.platformsh.php` file:
 
-   ```php {location="settings.platformsh.php"}
+    ```php {location="settings.platformsh.php"}
+     <?php
+
+     $platformsh = new \Platformsh\ConfigReader\Config();
+     if (!$platformsh->inRuntime()) {
+        return;
+     }
+    ```
+
+2.  Add the following code at the end of the file:
+
+    ```php {location="settings.platformsh.php"}
     <?php
 
-    $platformsh = new \Platformsh\ConfigReader\Config();
-    if (!$platformsh->inRuntime()) {
-       return;
-    }
-   ```
+    // Enable Redis caching.
+     if ($platformsh->hasRelationship('rediscache') && !InstallerKernel::installationAttempted() && extension_loaded('redis')) {
+       $redis = $platformsh->credentials('rediscache');
 
-2. Add the following code at the end of the file:
+       // Set Redis as the default backend for any cache bin not otherwise specified.
+       $settings['cache']['default'] = 'cache.backend.redis';
+       $settings['redis.connection']['host'] = $redis['host'];
+       $settings['redis.connection']['port'] = $redis['port'];
 
-   ```php {location="settings.platformsh.php"}
-   <?php
+       // You can leverage Redis by using it for the lock and flood control systems
+       // and the cache tag checksum.
+       // To do so, apply the following changes to the container configuration.
+       // Alternatively, copy the contents of the modules/contrib/redis/example.services.yml file
+       // to your project-specific services.yml file.
+       // Modify the contents to fit your needs and remove the following line.
+       $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
 
-   // Enable Redis caching.
-    if ($platformsh->hasRelationship('rediscache') && !InstallerKernel::installationAttempted() && extension_loaded('redis')) {
-      $redis = $platformsh->credentials('rediscache');
+       // Allow the services to work before the Redis module itself is enabled.
+       $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
 
-      // Set Redis as the default backend for any cache bin not otherwise specified.
-      $settings['cache']['default'] = 'cache.backend.redis';
-      $settings['redis.connection']['host'] = $redis['host'];
-      $settings['redis.connection']['port'] = $redis['port'];
+       // To use Redis for container cache, add the classloader path manually.
+       $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
 
-      // You can leverage Redis by using it for the lock and flood control systems
-      // and the cache tag checksum.
-      // To do so, apply the following changes to the container configuration.
-      // Alternatively, copy the contents of the modules/contrib/redis/example.services.yml file
-      // to your project-specific services.yml file.
-      // Modify the contents to fit your needs and remove the following line.
-      $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
+       // Use Redis for container cache.
+       // The container cache is used to load the container definition itself.
+       // This means that any configuration stored in the container isn't available
+       // until the container definition is fully loaded.
+       // To ensure that the container cache uses Redis rather than the
+       // default SQL cache, add the following lines.
+       $settings['bootstrap_container_definition'] = [
+         'parameters' => [],
+         'services' => [
+           'redis.factory' => [
+             'class' => 'Drupal\redis\ClientFactory',
+           ],
+           'cache.backend.redis' => [
+             'class' => 'Drupal\redis\Cache\CacheBackendFactory',
+             'arguments' => ['@redis.factory', '@cache_tags_provider.container', '@serialization.phpserialize'],
+           ],
+           'cache.container' => [
+             'class' => '\Drupal\redis\Cache\PhpRedis',
+             'factory' => ['@cache.backend.redis', 'get'],
+             'arguments' => ['container'],
+           ],
+           'cache_tags_provider.container' => [
+             'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
+             'arguments' => ['@redis.factory'],
+           ],
+           'serialization.phpserialize' => [
+             'class' => 'Drupal\Component\Serialization\PhpSerialize',
+           ],
+         ],
+       ];
+     }
+    ```
 
-      // Allow the services to work before the Redis module itself is enabled.
-      $settings['container_yamls'][] = 'modules/contrib/redis/redis.services.yml';
-
-      // To use Redis for container cache, add the classloader path manually.
-      $class_loader->addPsr4('Drupal\\redis\\', 'modules/contrib/redis/src');
-
-      // Use Redis for container cache.
-      // The container cache is used to load the container definition itself.
-      // This means that any configuration stored in the container isn't available
-      // until the container definition is fully loaded.
-      // To ensure that the container cache uses Redis rather than the
-      // default SQL cache, add the following lines.
-      $settings['bootstrap_container_definition'] = [
-        'parameters' => [],
-        'services' => [
-          'redis.factory' => [
-            'class' => 'Drupal\redis\ClientFactory',
-          ],
-          'cache.backend.redis' => [
-            'class' => 'Drupal\redis\Cache\CacheBackendFactory',
-            'arguments' => ['@redis.factory', '@cache_tags_provider.container', '@serialization.phpserialize'],
-          ],
-          'cache.container' => [
-            'class' => '\Drupal\redis\Cache\PhpRedis',
-            'factory' => ['@cache.backend.redis', 'get'],
-            'arguments' => ['container'],
-          ],
-          'cache_tags_provider.container' => [
-            'class' => 'Drupal\redis\Cache\RedisCacheTagsChecksum',
-            'arguments' => ['@redis.factory'],
-          ],
-          'serialization.phpserialize' => [
-            'class' => 'Drupal\Component\Serialization\PhpSerialize',
-          ],
-        ],
-      ];
-    }
-   ```
-
-   You can customize your configuration further
-   using the inline comments from this example configuration.
-   For more information on possible configuration options,
-   see the `README.txt` file delivered with the Redis module
-   or the [official Redis documentation](https://redis.io/docs/).
+    You can customize your configuration further
+    using the inline comments from this example configuration.
+    For more information on possible configuration options,
+    see the `README.txt` file delivered with the Redis module
+    or the [official Redis documentation](https://redis.io/docs/).
 
 ## Verify Redis is running
 

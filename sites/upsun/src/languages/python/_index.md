@@ -19,7 +19,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 ### Specify the language
 
-To use Python, specify ``python`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
+To use Python, specify `python` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
 
 ```yaml {configFile="app"}
 applications:
@@ -59,6 +59,7 @@ applications:
     app:
         type: 'python:{{% latest "python" %}}'
 ```
+
 2.  Install the requirements for your app.
 
 ```yaml {configFile="app"}
@@ -74,6 +75,7 @@ applications:
                 set -eu
                 pipenv install --system --deploy
 ```
+
 3.  Define the command to start your web server:
 
 ```yaml {configFile="app"}
@@ -87,6 +89,7 @@ applications:
             commands:
                 start: python server.py
 ```
+
 You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
 See more about [running Python web servers](./server.md).
 
@@ -103,6 +106,7 @@ applications:
     app:
         type: 'python:{{% latest "python" %}}'
 ```
+
 2.  Define the conditions for your web server:
 
 ```yaml {configFile="app"}
@@ -128,6 +132,7 @@ applications:
                     passthru: true
                     expires: 1h
 ```
+
 3.  Create configuration for uWSGI such as the following:
 
     ```ini {location="config/uwsgi.ini"}
@@ -158,6 +163,7 @@ applications:
                 set -eu
                 pipenv install --system --deploy
 ```
+
 5.  Define the entry point in your app:
 
     ```python
@@ -187,6 +193,7 @@ applications:
             python3:
                 {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
 ```
+
 For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
 
 ```yaml {configFile="app"}
@@ -202,6 +209,7 @@ applications:
                 set -eu
                 pipenv install --system --deploy
 ```
+
 ## Connect to services
 
 The following examples show how to access various [services](../../add-services/_index.md) with Python.
@@ -209,84 +217,84 @@ For more information on configuring a given service, see the page for that servi
 
 {{< codetabs v2hide="true" >}}
 
-+++
+\+++
 title=Elasticsearch
 file=static/files/fetch/examples/python/elasticsearch
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Kafka
 file=static/files/fetch/examples/python/kafka
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Memcached
 file=static/files/fetch/examples/python/memcached
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MongoDB
 file=static/files/fetch/examples/python/mongodb
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MySQL
 file=static/files/fetch/examples/python/mysql
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PostgreSQL
 file=static/files/fetch/examples/python/postgresql
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=RabbitMQ
 file=static/files/fetch/examples/python/rabbitmq
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Redis
 file=static/files/fetch/examples/python/redis
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Solr
 file=static/files/fetch/examples/python/solr
 highlight=python
 markdownify=false
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -303,5 +311,5 @@ see how to [sanitize databases](../../development/sanitize-db/_index.md).
 All major Python web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Django](/get-started/stacks/django.md)
-- [Flask](/get-started/stacks/flask.md)
+*   [Django](/get-started/stacks/django.md)
+*   [Flask](/get-started/stacks/flask.md)

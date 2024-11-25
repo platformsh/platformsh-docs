@@ -16,13 +16,13 @@ For example, there are various ways you could set up the following multiple apps
 
 Here are some example use cases and potential ways to organize the project:
 
-| Use case                                                                                | Structure                                                                                            |
-|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| Separate basic apps that are worked on together.                                         | [Unified app configuration](#unified-app-configuration)                                              |
-| One app depends on code from another app.                                                | [Nested directories](#nested-directories)                                                            |
+| Use case                                                                           | Structure                                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Separate basic apps that are worked on together.                                   | [Unified app configuration](#unified-app-configuration)                                              |
+| One app depends on code from another app.                                          | [Nested directories](#nested-directories)                                                            |
 | You want to keep configuration separate from code, such as through Git submodules. | [Configuration separate from code](#split-your-code-source-into-multiple-git-submodule-repositories) |
-| You want multiple apps from the same source code.                                        | [Unified app configuration](#unified-app-configuration)                                              |
-| You want to control all apps in a single location.                                       | [Unified app configuration](#unified-app-configuration)                                              |
+| You want multiple apps from the same source code.                                  | [Unified app configuration](#unified-app-configuration)                                              |
+| You want to control all apps in a single location.                                 | [Unified app configuration](#unified-app-configuration)                                              |
 
 ## Unified app configuration
 
@@ -236,7 +236,6 @@ you need to [change the source root](#change-the-source-root-of-your-app) of the
 {{< /note >}}
 
 Once your repository is organized, you can use a configuration similar to the following:
-
 
 ```yaml {configFile="apps"}
 main:

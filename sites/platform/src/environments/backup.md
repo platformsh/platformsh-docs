@@ -19,31 +19,31 @@ To work with an [inactive environment](/glossary.md#inactive-environment), first
 
 ## How backup and restore works
 
-1. As an [admin user](../administration/users.md), you can do a backup of your environment.
-   This backup includes the complete data and code of the environment.
-   All persistent data from all running [services](../add-services/_index.md)
-   and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
-   The backup is stored internally on {{% vendor/name %}}.
-   That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
+1.  As an [admin user](../administration/users.md), you can do a backup of your environment.
+    This backup includes the complete data and code of the environment.
+    All persistent data from all running [services](../add-services/_index.md)
+    and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
+    The backup is stored internally on {{% vendor/name %}}.
+    That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
+    If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
-2. You restore your environment using the backup.
-   At this point, the data and code from the backup are restored to ensure a consistent state.
-   The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
+2.  You restore your environment using the backup.
+    At this point, the data and code from the backup are restored to ensure a consistent state.
+    The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
 
-   {{< note theme="warning" title="Warning" >}}
+    {{< note theme="warning" title="Warning" >}}
 
-   {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
+    {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
 
-   {{< /note >}}
+    {{< /note >}}
 
-3. Depending on your needs, you can do the following:
+3.  Depending on your needs, you can do the following:
 
-   a) To use the code from the time of the backup as a baseline for future changes,
-      make sure you restore it yourself in your Git repository.
-      To do so, use Git commands such as `revert`.
+    a) To use the code from the time of the backup as a baseline for future changes,
+    make sure you restore it yourself in your Git repository.
+    To do so, use Git commands such as `revert`.
 
-   b) To use your latest code instead, just redeploy your environment or push a new change.
+    b) To use your latest code instead, just redeploy your environment or push a new change.
 
 ## Backups and downtime
 
@@ -67,11 +67,11 @@ Backups for Dedicated environments have a [specific frequency](/dedicated-enviro
 On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
 
-| Schedule | Manual backups | Automated backups                                                      |
-|----------|----------------|------------------------------------------------------------------------|
-| Basic    | 2              | 2 daily backups (1 backup for each of the last 2 days) |
+| Schedule | Manual backups | Automated backups                                                                                                                                                                                           |
+| -------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Basic    | 2              | 2 daily backups (1 backup for each of the last 2 days)                                                                                                                                                      |
 | Advanced | 4              | 21 backups:</br>- 6 daily backups (1 backup for each of the last 6 days) </br>- 3 weekly backups (1 backup for each of the last 3 weeks)</br>- 12 monthly backups (1 backup for each of the last 12 months) |
-| Premium  | 4              | 44 backups:</br>- 3 backups for the last 24 hours</br>- 30 daily backups (1 backup for each of the last 30 days)</br>- 11 monthly backups (1 backup for each of the last 11 months) |
+| Premium  | 4              | 44 backups:</br>- 3 backups for the last 24 hours</br>- 30 daily backups (1 backup for each of the last 30 days)</br>- 11 monthly backups (1 backup for each of the last 11 months)                         |
 
 Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
 
@@ -89,13 +89,13 @@ The exact cost depends on the size of your storage.
 
 To upgrade to the higher schedule, follow these steps:
 
-1. In the [Console](https://console.platform.sh/), navigate to the project where you want to change the schedule.
-2. Click **{{< icon settings >}} Settings**.
-3. Click **Edit plan**.
-4. For **Backups**, click the name of your current schedule.
-   If clicking has no effect, you are already on the highest available schedule.
-5. Select the target schedule.
-6. Click **Save**.
+1.  In the [Console](https://console.platform.sh/), navigate to the project where you want to change the schedule.
+2.  Click **{{< icon settings >}} Settings**.
+3.  Click **Edit plan**.
+4.  For **Backups**, click the name of your current schedule.
+    If clicking has no effect, you are already on the highest available schedule.
+5.  Select the target schedule.
+6.  Click **Save**.
 
 To downgrade to the lower schedule, [contact support](/learn/overview/get-support.md).
 
@@ -138,9 +138,9 @@ and [{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/over
 You can create a manual live backup on a Grid project:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Use the `--live` flag:
 
@@ -149,9 +149,9 @@ Use the `--live` flag:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
 
@@ -162,20 +162,20 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
 highlight=bash
-+++
+\+++
 {{% vendor/cli %}} backup:create
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to the environment you want to back up.
-2. Click **Backups**.
-3. Click {{< icon backup >}} **Backup**.
-4. Click **Backup**.
+1.  Navigate to the environment you want to back up.
+2.  Click **Backups**.
+3.  Click {{< icon backup >}} **Backup**.
+4.  Click **Backup**.
 
 {{< /codetabs >}}
 

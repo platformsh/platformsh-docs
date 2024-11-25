@@ -84,9 +84,9 @@ because the `headers` block here overrides the more general configuration.
 
 So now you have three header configurations:
 
-* `X-Frame-Options: SAMEORIGIN` **and** `Content-Type: video/mp4` for MP4 files
-* Only `Content-Type: audio/mpeg` for MP3 files
-* Only `X-Frame-Options: SAMEORIGIN` for everything else
+*   `X-Frame-Options: SAMEORIGIN` **and** `Content-Type: video/mp4` for MP4 files
+*   Only `Content-Type: audio/mpeg` for MP3 files
+*   Only `X-Frame-Options: SAMEORIGIN` for everything else
 
 ## Cross origin requests
 
@@ -111,8 +111,8 @@ applications:
 
 If you use the wildcard value, the headers are modified for each request in the following ways:
 
-* The value of the `Access-Control-Allow-Origin` header is set to the value of the `Origin` request header.
-* The `Vary` header is included with a value of `Origin`. See why in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin).
+*   The value of the `Access-Control-Allow-Origin` header is set to the value of the `Origin` request header.
+*   The `Vary` header is included with a value of `Origin`. See why in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin).
 
 This is done so that credentialed requests can be supported.
 They would otherwise fail CORS checks if the wildcard value is used.

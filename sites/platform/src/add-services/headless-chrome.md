@@ -15,7 +15,7 @@ Puppeteer can be used to generate PDFs and screenshots of web pages, automate fo
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 <table>
@@ -40,7 +40,7 @@ When you deploy your app, you always get the latest available patches.
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```yaml
@@ -77,7 +77,7 @@ To define the service, use the `chrome-headless` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -93,12 +93,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -132,9 +132,9 @@ After configuration, include [Puppeteer](https://www.npmjs.com/package/puppeteer
 
 {{< codetabs >}}
 
-+++
+\+++
 title=npm
-+++
+\+++
 
 ```bash
 npm install puppeteer
@@ -142,9 +142,9 @@ npm install puppeteer
 
 <--->
 
-+++
+\+++
 title=pnpm
-+++
+\+++
 
 ```bash
 pnpm add puppeteer
@@ -152,9 +152,9 @@ pnpm add puppeteer
 
 <--->
 
-+++
+\+++
 title=Yarn
-+++
+\+++
 
 ```bash
 yarn add puppeteer
@@ -193,9 +193,9 @@ exports.getBrowser = async function (url) {
 };
 ```
 
-Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer&version=v13.0.1&show=api-pagepdfoptions), and much more.
+Puppeteer allows your application to [create screenshots](https://pptr.dev/#?product=Puppeteer\&version=v13.0.1\&show=api-pagescreenshotoptions), [emulate a mobile device](https://pptr.dev/#?product=Puppeteer\&version=v13.0.1\&show=api-pageemulateoptions), [generate PDFs](https://pptr.dev/#?product=Puppeteer\&version=v13.0.1\&show=api-pagepdfoptions), and much more.
 
 You can find some useful examples of using headless Chrome and Puppeteer on {{< vendor/name >}} on the Community Portal:
 
-* [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
-* [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)
+*   [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
+*   [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)

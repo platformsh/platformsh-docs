@@ -27,9 +27,9 @@ Start by creating a new environment completely isolated from production but with
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Remote
-+++
+\+++
 
 Access your app container via [SSH](../../development/ssh/_index.md):
 
@@ -39,9 +39,9 @@ Access your app container via [SSH](../../development/ssh/_index.md):
 
 <--->
 
-+++
+\+++
 title=Local
-+++
+\+++
 
 To access deployed apps and services, open tunnels to everything your app has relationships with:
 
@@ -58,14 +58,13 @@ export PORT=8888
 
 {{< /codetabs >}}
 
-
 ## 3. Run your app in inspect mode
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Remote
-+++
+\+++
 
 Stop the current process and restart it in inspect mode:
 
@@ -76,9 +75,9 @@ node --inspect <START_FILE>
 
 <--->
 
-+++
+\+++
 title=Local
-+++
+\+++
 
 In the same terminal as the previous step, run the following command:
 
@@ -87,7 +86,6 @@ node --inspect <START_FILE>
 ```
 
 {{< /codetabs >}}
-
 
 Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
 
@@ -114,9 +112,9 @@ See examples with some common tools:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using Chrome developer tools
-+++
+\+++
 
 Go to `chrome://inspect`.
 Find your running app under the `Remote Target` list.
@@ -124,19 +122,19 @@ Click **inspect** to start the debugger.
 
 <--->
 
-+++
+\+++
 title=Using Visual Studio Code
-+++
+\+++
 
 Use the `Node.js: Attach` debugger option.
 
 If you haven't created the option:
 
-1. On the **Run and Debug** tab, click `create a launch.json file`.
-2. Select `Node.js` as the environment.
-3. In the `configurations` array, start IntelliSense (usually <kbd>ctrl</kbd>+<kbd>space</kbd>).
-4. Select `Node.js: Attach`.
-5. Make sure the port is the same as in [step 4 above](#4-if-debugging-remotely-forward-the-debugger-port-locally).
+1.  On the **Run and Debug** tab, click `create a launch.json file`.
+2.  Select `Node.js` as the environment.
+3.  In the `configurations` array, start IntelliSense (usually <kbd>ctrl</kbd>+<kbd>space</kbd>).
+4.  Select `Node.js: Attach`.
+5.  Make sure the port is the same as in [step 4 above](#4-if-debugging-remotely-forward-the-debugger-port-locally).
 
 Once you have the option:
 
@@ -153,23 +151,22 @@ Set breakpoints:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Remote
-+++
+\+++
 
 In the JavaScript files from your remote site:
 On the **Run and Debug** tab under **Loaded Scripts** find `Attach: Remote Process` > `/app`.
 
 <--->
 
-+++
+\+++
 title=Local
-+++
+\+++
 
 Directly in your source files.
 
 {{< /codetabs >}}
-
 
 ## Other issues
 

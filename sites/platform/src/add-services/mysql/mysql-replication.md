@@ -119,12 +119,10 @@ mysql> SHOW VARIABLES LIKE 'server_id';
 +---------------+-------+
 ```
 
-Then set a distinct `server_id` number (e.g. server_id+1) in your replica config (e.g. `my.cnf`) under:
+Then set a distinct `server_id` number (e.g. server\_id+1) in your replica config (e.g. `my.cnf`) under:
 
-```
-[mysqld]
-server_id=2
-```
+    [mysqld]
+    server_id=2
 
 And reload the replica instance for the changes to take an effect.
 
@@ -180,7 +178,7 @@ Slave_IO_Running: Yes
 Slave_SQL_Running: Yes
 ```
 
-### [Optional/Troubleshooting] Skipping invalid binary log queries
+### \[Optional/Troubleshooting] Skipping invalid binary log queries
 
 In some cases, after applying primary's dump to the replica and starting the replica, you might experience replication errors (`Slave_SQL_Running: No` and `Error:` in the output of `SHOW SLAVE STATUS \G` above). Each of such errors needs a careful inspection, but you might be able to just skip some of them. For example:
 

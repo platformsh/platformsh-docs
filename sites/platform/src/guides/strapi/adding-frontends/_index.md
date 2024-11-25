@@ -76,5 +76,5 @@ and later modify that project to include your own code with more resources as yo
 
 ## Frontends for Strapi
 
-{{% vendor/name %}} maintains a number of [multi-application templates](https://github.com/platformsh-templates/?q=strapi&type=&language=) for Strapi that generally have very similar configuration changes on the Strapi side.
+{{% vendor/name %}} maintains a number of [multi-application templates](https://github.com/platformsh-templates/?q=strapi\&type=\&language=) for Strapi that generally have very similar configuration changes on the Strapi side.
 Below are a few of those written as short guides for different frontends.

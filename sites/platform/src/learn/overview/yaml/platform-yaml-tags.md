@@ -16,16 +16,15 @@ Use the `!include` tag to embed external files within a given YAML file.
 The tag requires two properties:
 
 | Property | Type     | Possible values               | Description                                                                                             |
-| -------- | -------- | ----------------------------- |---------------------------------------------------------------------------------------------------------|
+| -------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
 | `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root` if defined.     |
 
-
 By default, `path` is relative to the current application's directory (what you would define with `source.root`).
 
-For example, to include another ``.platform/app1.yaml`` file in the main `{{% vendor/configfile "apps" %}}`, follow these steps:
+For example, to include another `.platform/app1.yaml` file in the main `{{% vendor/configfile "apps" %}}`, follow these steps:
 
-1. Write and save your ``.platform/app1.yaml`` file:
+1.  Write and save your `.platform/app1.yaml` file:
 
 ```yaml {location=".platform/app1.yaml"}
 source:
@@ -90,7 +89,7 @@ frontend:
 
 {{% note theme="info" %}}
 
-{{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
+{{% vendor/name %}} will execute this `../backend/scripts/common_build.sh` script using [Dash](https://wiki.archlinux.org/title/Dash).
 
 {{% /note %}}
 

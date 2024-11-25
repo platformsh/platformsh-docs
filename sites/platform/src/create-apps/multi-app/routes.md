@@ -72,8 +72,8 @@ You could define routes for your apps as follows:
 
 So if your default domain is `example.com`, that means:
 
-- `https://mercure.example.com/` is served by your Mercure Rocks app (`mercure`).
-- `https://example.com/` is served by your Symfony frontend app (`api`).
+*   `https://mercure.example.com/` is served by your Mercure Rocks app (`mercure`).
+*   `https://example.com/` is served by your Symfony frontend app (`api`).
 
 {{< note >}}
 
@@ -126,8 +126,8 @@ Then you would need to configure each app's `web.locations` property to match th
 
 So if your default domain is `example.com`, that means:
 
-- `https://example.com/` is served by your Symfony frontend app (`api`).
-- `https://example.com/admin` is served by your Admin app (`admin`).
+*   `https://example.com/` is served by your Symfony frontend app (`api`).
+*   `https://example.com/admin` is served by your Admin app (`admin`).
 
 Note that in this example, for the configuration of your `admin` app,
 you need to add the URL suffix `/admin` as both an index in the `web.locations` and a value for the `passhtru` setting.

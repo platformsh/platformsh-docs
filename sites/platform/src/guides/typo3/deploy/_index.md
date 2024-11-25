@@ -7,7 +7,7 @@ description: |
     Create a {{% vendor/name %}} account, download a few tools, and prepare to deploy TYPO3.
 ---
 
-TYPO3 is an Open Source Enterprise PHP-based CMS framework. The recommended way to deploy TYPO3 on {{% vendor/name %}} is by using Composer, the PHP package management suite. 
+TYPO3 is an Open Source Enterprise PHP-based CMS framework. The recommended way to deploy TYPO3 on {{% vendor/name %}} is by using Composer, the PHP package management suite.
 
 This guide assumes you are using the well-supported Composer flavor of TYPO3.
 
@@ -18,7 +18,7 @@ there's a useful guide in the TYPO3 documentation for [migrating a TYPO3 project
 
 {{< /note >}}
 
-{{% guides/starting-point name="TYPO3" templateRepo="typo3" composerLink="https://github.com/TYPO3/TYPO3.CMS.BaseDistribution" initExample=true %}}
+{{% guides/starting-point name="TYPO3" templateRepo="typo3" composerLink="<https://github.com/TYPO3/TYPO3.CMS.BaseDistribution>" initExample=true %}}
 
 {{% guides/requirements %}}
 

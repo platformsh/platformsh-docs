@@ -12,7 +12,7 @@ The storage is allocated among your services and applications using the `disk` p
 
 You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
 For example, by setting `disk: 4096` for a MySQL service in `{{< vendor/configfile "services" >}}`
-and `disk: 4096` in `{{< vendor/configfile "app" >}}` for a plan with a 5&nbsp;GB storage limit.
+and `disk: 4096` in `{{< vendor/configfile "app" >}}` for a plan with a 5 GB storage limit.
 
 In such cases, you get an error like the following:
 
@@ -22,10 +22,10 @@ Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing
 
 To fix the error, do one of the following:
 
-* Lower the `disk` parameters to a value within your plan's storage limits.
-  Note the [limits to downsizing disks](/create-apps/app-reference/single-runtime-image.md#downsize-a-disk).
-* Increase your plan's storage limits.
-  This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
+*   Lower the `disk` parameters to a value within your plan's storage limits.
+    Note the [limits to downsizing disks](/create-apps/app-reference/single-runtime-image.md#downsize-a-disk).
+*   Increase your plan's storage limits.
+    This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
 
 ## Low disk space
 
@@ -34,9 +34,9 @@ you may receive a notification of low disk space.
 
 To solve this issue:
 
-* [Check mount usage](./troubleshoot-mounts.md#disk-space-issues)
-* [Check your database disk space](#check-your-database-disk-space) (if applicable)
-* [Increase the available disk space](#increase-available-disk-space) (if necessary)
+*   [Check mount usage](./troubleshoot-mounts.md#disk-space-issues)
+*   [Check your database disk space](#check-your-database-disk-space) (if applicable)
+*   [Increase the available disk space](#increase-available-disk-space) (if necessary)
 
 ### Check your database disk space
 
@@ -75,11 +75,11 @@ W: [Errno 28] No space left on device: ...
 ```
 
 This is caused by the amount of disk provided to the build container before deployment.
-Application images are restricted to 8&nbsp;GB during build, no matter how much writable disk has been set aside for the deployed application.
+Application images are restricted to 8 GB during build, no matter how much writable disk has been set aside for the deployed application.
 
 Some build tools (yarn/npm) store cache for different versions of their modules.
 This can cause the build cache to grow over time beyond the maximum.
 Try [clearing the build cache](../development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
-If for some reason your application absolutely requires more than 8&nbsp;GB during build,
+If for some reason your application absolutely requires more than 8 GB during build,
 you can open a [support ticket](/learn/overview/get-support) to have this limit increased.

@@ -24,10 +24,10 @@ Once the installer is complete you are presented with your new site.
 Drupal has a number of database tables that are useless when migrating
 and you're better off excluding their data.
 
-* If you're using a database cache backend then you can and should exclude all `cache_*` table data.
-  On {{% vendor/name %}} we recommend using Redis anyway,
-  and the template described on the previous pages uses Redis automatically.
-* The `sessions` table's data can also be excluded.
+*   If you're using a database cache backend then you can and should exclude all `cache_*` table data.
+    On {{% vendor/name %}} we recommend using Redis anyway,
+    and the template described on the previous pages uses Redis automatically.
+*   The `sessions` table's data can also be excluded.
 
 While you can trim the data out of these tables post-migration,
 that's wasteful of both time and disk space, so it's better to exclude that data to begin with.

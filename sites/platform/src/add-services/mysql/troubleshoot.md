@@ -16,10 +16,10 @@ SQLSTATE[HY000]: General error: 1205 Lock wait timeout exceeded;
 
 This is typically caused by one of the following:
 
-* There are multiple places acquiring locks in different order.
-  For example, code path 1 first locks record A and then locks record B,
-  while code path 2 first locks record B and then locks record A.
-* There is a long running background process executed by your application that holds the lock until it ends.
+*   There are multiple places acquiring locks in different order.
+    For example, code path 1 first locks record A and then locks record B,
+    while code path 2 first locks record B and then locks record A.
+*   There is a long running background process executed by your application that holds the lock until it ends.
 
 If you're using [MariaDB 10+](./_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
@@ -97,7 +97,7 @@ This information applies to DG3 and Professional/Grid {{% vendor/name %}} projec
 For DG2 projects, [contact Support](/learn/overview/get-support.md) to configure the `max_connections` property.
 {{% /note %}}
 
-You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations. 
+You cannot configure `max_connections` directly in {{% vendor/name %}} service configurations.
 However, to solve `Error 1040`, you can increase `max_connections` indirectly.
 
 For example, in the following service configuration for MariaDB, `max_connections` is `188` as [set by {{% vendor/name %}}](#how-it-works):
@@ -115,30 +115,30 @@ mariadb:
 
 To **increase** `max_connections`, you can **either**:
 
-- **decrease** `max_allowed_packet` (for example, `16` → `15` results in `max_connections=201`)
-- or **increase** `size` (for example, `L` → `XL` results in `max_connections=356`)
+*   **decrease** `max_allowed_packet` (for example, `16` → `15` results in `max_connections=201`)
+*   or **increase** `size` (for example, `L` → `XL` results in `max_connections=356`)
 
 ### How it works
 
-Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from values that you _can_ change:
+Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from values that you *can* change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database)
-   in your `.platform/services.yaml` file with an integer value. 
-   The default value of `16` is shown below to illustrate:
+1.  **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database)
+    in your `.platform/services.yaml` file with an integer value.
+    The default value of `16` is shown below to illustrate:
 
-   ```yaml {configFile="services"}
-   # The name of the service container. Must be unique within a project.
-   mariadb:
-       type: mariadb:{{% latest "mariadb" %}}
-           disk: 2048
-           configuration:
-               properties:
-                   max_allowed_packet: 16
+    ```yaml {configFile="services"}
+    # The name of the service container. Must be unique within a project.
+    mariadb:
+        type: mariadb:{{% latest "mariadb" %}}
+            disk: 2048
+            configuration:
+                properties:
+                    max_allowed_packet: 16
     ```
 
-1. **The memory available to the service**: Resources are distributed across the containers
-   in a cluster based on your {{% vendor/name %}} [plan size](/administration/pricing/_index.md).
-   The _strategy_ for how resources are distributed can either be determined for you by {{% vendor/name %}} (equivalent to setting `size: AUTO`) or by setting a container size explicitly:
+2.  **The memory available to the service**: Resources are distributed across the containers
+    in a cluster based on your {{% vendor/name %}} [plan size](/administration/pricing/_index.md).
+    The *strategy* for how resources are distributed can either be determined for you by {{% vendor/name %}} (equivalent to setting `size: AUTO`) or by setting a container size explicitly:
 
     ```yaml {configFile="services"}
     # The name of the service container. Must be unique within a project.
@@ -151,58 +151,58 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
                 max_allowed_packet: 16
     ```
 
-    The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
+    The memory for a given container from its `size` depends on its [container profile\*\*\*](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
 
     For example, [MariaDB](/create-apps/app-reference/single-runtime-image#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image#high_memory-container-profile).
     For `size: L`, it means 0.40 CPU and 1280 MB of memory.
 
 If we assume the configuration above, where:
 
-- `mariadb.size: L`, which we know is 1280 MB, referred to below as `application_size`
-- `mariadb.configuration.properties.max_allowed_packet: 16`
+*   `mariadb.size: L`, which we know is 1280 MB, referred to below as `application_size`
+*   `mariadb.configuration.properties.max_allowed_packet: 16`
 
-`max_allowed_packet` is `188`, which is determined by {{% vendor/name %}} according to: 
+`max_allowed_packet` is `188`, which is determined by {{% vendor/name %}} according to:
 
 \begin{aligned}
-\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr]
+\texttt{max\_connections} = \text{int}\Biggl\[ \min \left( \frac{\texttt{FREE\_MEMORY}}{\texttt{max\_allowed\_packet}}, 500 \right) \Biggr]
 \end{aligned}
 
 This calculation uses three additional calculations:
 
 \begin{aligned}
-\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
-\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 \newline \newline
-\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}}
+\texttt{FREE\_MEMORY} = \texttt{AVAILABLE\_MEMORY} - \left( 50 + \texttt{innodb\_buffer\_pool\_size} \right) \newline \newline
+\texttt{AVAILABLE\_MEMORY} = (\texttt{application\_size} \* 2) + 512 \newline \newline
+\texttt{innodb\_buffer\_pool\_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application\_size} \right)}{1024^{2}}
 \end{aligned}
 
 So for our current example, where:
 
 \begin{aligned}
-\texttt{application_size} = 1280 \newline
-\texttt{max_allowed_packet} = 16
+\texttt{application\_size} = 1280 \newline
+\texttt{max\_allowed\_packet} = 16
 \end{aligned}
 
 You get:
 
 \begin{aligned}
-\texttt{innodb_buffer_pool_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 9.155 \times 10^{-4}
+\texttt{innodb\_buffer\_pool\_size} = \frac{\text{int}\left( 0.75 \cdot \texttt{application\_size} \right)}{1024^{2}} = \frac{\text{int}\left( 0.75 \cdot \texttt{1280} \right)}{1024^{2}} \approx 9.155 \times 10^{-4}
 \end{aligned}
 
 \begin{aligned}
-\texttt{AVAILABLE_MEMORY} = (\texttt{application_size} * 2) + 512 = (1280 * 2) + 512 = 3072
+\texttt{AVAILABLE\_MEMORY} = (\texttt{application\_size} \* 2) + 512 = (1280 \* 2) + 512 = 3072
 \end{aligned}
 
 \begin{aligned}
-\texttt{FREE_MEMORY} = \texttt{AVAILABLE_MEMORY} - \left( 50 + \texttt{innodb_buffer_pool_size} \right) \newline \newline
-\texttt{FREE_MEMORY} = 3072 - \left( 50 + 0.0009155... \right) = 3021.999084
+\texttt{FREE\_MEMORY} = \texttt{AVAILABLE\_MEMORY} - \left( 50 + \texttt{innodb\_buffer\_pool\_size} \right) \newline \newline
+\texttt{FREE\_MEMORY} = 3072 - \left( 50 + 0.0009155... \right) = 3021.999084
 \end{aligned}
 
 \begin{aligned}
-\texttt{max_connections} = \text{int}\Biggl[ \min \left( \frac{\texttt{FREE_MEMORY}}{\texttt{max_allowed_packet}}, 500 \right) \Biggr] = \text{int}\Biggl[ \min \left( \frac{3021.999084}{16}, 500 \right) \Biggr] = \text{int}\Biggl[ 188.87... \Biggr]
+\texttt{max\_connections} = \text{int}\Biggl\[ \min \left( \frac{\texttt{FREE\_MEMORY}}{\texttt{max\_allowed\_packet}}, 500 \right) \Biggr] = \text{int}\Biggl\[ \min \left( \frac{3021.999084}{16}, 500 \right) \Biggr] = \text{int}\Biggl\[ 188.87... \Biggr]
 \end{aligned}
 
 \begin{aligned}
-\texttt{max_connections} = 188
+\texttt{max\_connections} = 188
 \end{aligned}
 
 The following table provides additional example calculations of `max_connections` for all `size` settings
@@ -295,6 +295,6 @@ The maximum value for `max_connections` is 500, indicated with italicized intege
 
 Also, you can **increase** `max_connections` in your environments by either:
 
-- **decreasing** the `max_allow_packet` value in your service configuration
-- or **increasing** your plan `size`
-{{% /note%}}
+*   **decreasing** the `max_allow_packet` value in your service configuration
+*   or **increasing** your plan `size`
+    {{% /note%}}

@@ -5,37 +5,37 @@ weight: 12
 
 ## Changes in version 2022.02
 
-* The cron `cmd` syntax is now deprecated in favor of `commands`.
-  Previous cron job definitions looked like this:
+*   The cron `cmd` syntax is now deprecated in favor of `commands`.
+    Previous cron job definitions looked like this:
 
-  ```yaml
-  crons:
-      sendemails:
-          spec: '*/7 * * * *'
-          cmd: cd public && send-pending-emails.sh
-  ```
+    ```yaml
+    crons:
+        sendemails:
+            spec: '*/7 * * * *'
+            cmd: cd public && send-pending-emails.sh
+    ```
 
-  They should now be written like this:
+    They should now be written like this:
 
-  ```yaml
-  crons:
-      sendemails:
-          spec: '*/7 * * * *'
-          commands:
-              start: cd public && send-pending-emails.sh
-  ```
+    ```yaml
+    crons:
+        sendemails:
+            spec: '*/7 * * * *'
+            commands:
+                start: cd public && send-pending-emails.sh
+    ```
 
-  The new syntax offers greater flexibility and configuration.
-  For more details, see the [full specification for cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
+    The new syntax offers greater flexibility and configuration.
+    For more details, see the [full specification for cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
 
 ## Changes in version 2019.05
 
-* The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option. `!include` is still available for other include types (`yaml`, `binary`, and `string`).
+*   The `!archive` tag in YAML has been un-deprecated, and is now favored over the `!include` option. `!include` is still available for other include types (`yaml`, `binary`, and `string`).
 
 ## Changes in version 2017.11 (2017-11-09)
 
-* The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/learn/overview/yaml/_index.md).
-For example, the following `{{< vendor/configfile "services" >}}` snippet:
+*   The `!archive` tag in YAML files is now deprecated in favor of the more generic [`!include`](/learn/overview/yaml/_index.md).
+    For example, the following `{{< vendor/configfile "services" >}}` snippet:
 
     ```yaml
     mysearch:
@@ -57,15 +57,15 @@ For example, the following `{{< vendor/configfile "services" >}}` snippet:
                 path: "myconfdir"
     ```
 
-* The syntax for the `mounts` key in `{{< vendor/configfile "app" >}}` has changed.
-Rather than a parsed string, the value of each mount is a [multi-key definition](/create-apps/app-reference/single-runtime-image.md#mounts).
-That is, the following example:
+*   The syntax for the `mounts` key in `{{< vendor/configfile "app" >}}` has changed.
+    Rather than a parsed string, the value of each mount is a [multi-key definition](/create-apps/app-reference/single-runtime-image.md#mounts).
+    That is, the following example:
 
     ```yaml
     mounts:
         "tmp": "shared:files/tmp"
         "logs": "shared:files/logs"
-     ```
+    ```
 
     Can now be written as:
 
@@ -82,8 +82,8 @@ That is, the following example:
 
 ## Changes in version 2016.6 (2016-11-18)
 
-* Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
-* Composer was briefly called with `--no-dev`, but as of 2016-11-21 this change has been reverted, because of the unintended effect it had on projects using the Symfony framework.
+*   Application containers now include the latest LTS version of Node.js, 6.9.1. The previously included version was 4.6.1.
+*   Composer was briefly called with `--no-dev`, but as of 2016-11-21 this change has been reverted, because of the unintended effect it had on projects using the Symfony framework.
 
 ## Changes in version 2016.5
 
@@ -188,7 +188,7 @@ crons:
  solr:
      type: solr:3.6
      disk: 1024
- ```
+```
 
 ## Changes in version 2016.3
 
@@ -269,6 +269,7 @@ type: php
 build:
     flavor: drupal
 ```
+
 Currently we only support `php` in the 'type' key. Current supported build
 flavors are `drupal`, `composer` and `symfony`.
 
@@ -287,8 +288,8 @@ Configuration items for PHP that previously was part of
 `{{< vendor/configfile "services" >}}` are now moved into `{{< vendor/configfile "app" >}}`, which
 gains the following top-level items:
 
--   `name`: should be `"php"`
--   `relationships`, `access` and `disk`: should be the same as the
+*   `name`: should be `"php"`
+*   `relationships`, `access` and `disk`: should be the same as the
     `relationships` key of PHP in `{{< vendor/configfile "services" >}}`
 
 Note that there is now a sane default for `access` (SSH access to PHP is

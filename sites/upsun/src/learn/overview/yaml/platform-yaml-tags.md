@@ -15,10 +15,10 @@ Use the `!include` tag to embed external files within a given YAML file.
 
 The tag requires two properties:
 
-| Property | Type     | Possible values               | Description |
-| -------- | -------- | ----------------------------- | ----------- |
+| Property | Type     | Possible values               | Description                                                                                             |
+| -------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `type`   | `string` | `string`, `binary`, or `yaml` | See the descriptions of [strings](#string), [binaries](#binary), and [YAML](#yaml). Defaults to `yaml`. |
-| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root`. |
+| `path`   | `string` |                               | The path to the file to include, relative to the application directory or `source.root`.                |
 
 {{% note theme="info" %}}
 
@@ -65,7 +65,6 @@ applications:
 
 {{% /note %}}
 
-
 ### `string`
 
 Use `string` to include an external file inline in the YAML file as if entered as a multi-line string.
@@ -97,7 +96,7 @@ hooks:
 
 This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
 
-Even if ``path`` is relative to the current application's directory, it is also possible to include a shell script from a directory parent to the folder however.
+Even if `path` is relative to the current application's directory, it is also possible to include a shell script from a directory parent to the folder however.
 
 For example, for the following project structure:
 
@@ -137,7 +136,7 @@ applications:
 
 {{% note theme="info" %}}
 
-Please note that {{% vendor/name %}} will execute this ``../backend/scripts/common_build.sh`` script using [Dash](https://wiki.archlinux.org/title/Dash).
+Please note that {{% vendor/name %}} will execute this `../backend/scripts/common_build.sh` script using [Dash](https://wiki.archlinux.org/title/Dash).
 
 {{% /note %}}
 
@@ -199,8 +198,7 @@ workers:
 
 This can help simplify more complex files.
 
-
-For [multiple application](/create-apps/multi-app/_index.md) project, you can also include another ``.upsun/apps/my-app.yaml`` file in the main `{{% vendor/configfile "apps" %}}`.
+For [multiple application](/create-apps/multi-app/_index.md) project, you can also include another `.upsun/apps/my-app.yaml` file in the main `{{% vendor/configfile "apps" %}}`.
 
 ```yaml {location=".upsun/apps/my-app.yaml"}
 source:

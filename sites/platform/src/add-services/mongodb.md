@@ -14,10 +14,10 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 If you use one of the following frameworks, follow its guide:
 
-- [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
-- [Micronaut](../guides/micronaut/mongodb.md)
-- [Quarkus](../guides/quarkus/mongodb.md)
-- [Spring](../guides/spring/mongodb.md)
+*   [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
+*   [Micronaut](../guides/micronaut/mongodb.md)
+*   [Quarkus](../guides/quarkus/mongodb.md)
+*   [Spring](../guides/spring/mongodb.md)
 
 ## Supported versions
 
@@ -28,8 +28,8 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 ### Enterprise edition
 
 {{% note title="Premium Service" theme="info" %}}
-MongoDB Enterprise isn’t included in any {{< vendor/name >}} plan. 
-You need to add it separately at an additional cost. 
+MongoDB Enterprise isn’t included in any {{< vendor/name >}} plan.
+You need to add it separately at an additional cost.
 To add MongoDB Enterprise, [contact Sales](https://platform.sh/contact/).
 {{% /note %}}
 
@@ -102,7 +102,7 @@ so migrate to one of the [supported versions](#supported-versions).
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -140,7 +140,7 @@ To define the service, use the `mongodb-enterprise` type:
     disk: 512
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 #### 2. Add the relationship
@@ -156,12 +156,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -212,7 +212,7 @@ To define the service, use the `mongodb` type:
     disk: 512
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 #### 2. Add the relationship
@@ -228,12 +228,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -273,43 +273,43 @@ relationships:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Go
 file=static/files/fetch/examples/golang/mongodb
 highlight=go
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/mongodb
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/mongodb
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/mongodb
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/mongodb
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 

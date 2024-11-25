@@ -7,7 +7,6 @@ description: "A description of the YAML file for {{% vendor/name %}}."
 In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML structure is important.
 {{% vendor/name %}} accepts a certain structure for YAML configuration files.
 
-
 When you run the `platform project:init` command, three default YAML configuration files are generated in the `{{< vendor/configdir >}}` folder and at the root of your source code. They contain the minimum default configuration based on your detected local stack.
 These YAML files are a good starting point before customization.
 
@@ -21,9 +20,10 @@ These YAML files are a good starting point before customization.
 ```
 
 These three YAML files configure the following:
-- ``{{< vendor/configfile "routes" "strip" >}}``: this file contains all of your [routes definition](/define-routes.md)
-- ``{{< vendor/configfile "services" "strip" >}}``: this file contains the list of your [services definition](/add-services.md)
-- ``{{< vendor/configfile "app" >}}``: this file contains your [application definition](/create-apps/app-reference/single-runtime-image)
+
+*   `{{< vendor/configfile "routes" "strip" >}}`: this file contains all of your [routes definition](/define-routes.md)
+*   `{{< vendor/configfile "services" "strip" >}}`: this file contains the list of your [services definition](/add-services.md)
+*   `{{< vendor/configfile "app" >}}`: this file contains your [application definition](/create-apps/app-reference/single-runtime-image)
 
 ## Examples
 
@@ -76,8 +76,10 @@ mariadb:
 In these files, you can use any of the [available YAML tags](./platform-yaml-tags.md) you need.
 
 ## Multi-app
-In a [multiple application](/create-apps/multi-app/_index.md) context, you can also group all of your app configurations in a global ``.platform/applications.yaml`` file.
+
+In a [multiple application](/create-apps/multi-app/_index.md) context, you can also group all of your app configurations in a global `.platform/applications.yaml` file.
 This file contains a list of app configurations, such as:
+
 ```yaml {location="{{< vendor/configfile "apps" >}}"}
 app1:
   type: php:8.3
@@ -89,4 +91,3 @@ app2:
   source:
     root: app2
 ```
-

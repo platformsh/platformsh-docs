@@ -109,8 +109,8 @@ To fix this issue, [create your first Symfony page](https://symfony.com/doc/curr
 
 If you've already created a custom homepage, make sure you perform the following actions:
 
-1. Commit all your files.
-2. Run the `symfony deploy` command and check that the deployment is successful.
+1.  Commit all your files.
+2.  Run the `symfony deploy` command and check that the deployment is successful.
 
 ## Other issues
 

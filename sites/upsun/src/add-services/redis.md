@@ -8,8 +8,8 @@ sidebarTitle: "Redis"
 for high-performance data retrieval and key-value storage.
 {{% vendor/name %}} supports two different Redis configurations:
 
-- [Persistent](#persistent-redis): to set up fast persistent storage for your application
-- [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
+*   [Persistent](#persistent-redis): to set up fast persistent storage for your application
+*   [Ephemeral](#ephemeral-redis): to set up a non-persistent cache for your application
 
 ## Supported versions
 
@@ -36,17 +36,17 @@ you can set up Redis as [persistent](#persistent-redis) or [ephemeral](#ephemera
 
 For each service [defined via a relationship](#usage-example) to your application,
 {{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+in the `$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>` format.
 
 Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+or through the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< codetabs >}}
-+++
+\+++
 title= Service environment variables
-+++
+\+++
 
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+You can obtain the complete list of available service environment variables in your app container by running `{{% vendor/cli %}} ssh env`.
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
@@ -72,9 +72,9 @@ REDIS_HOST_MAPPED=false
 
 <--->
 
-+++
+\+++
 title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
+\+++
 
 For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
@@ -133,8 +133,8 @@ set up a new service with a different name.
 and it cannot be amended.
 It is defined by comparing the following values and keeping the lower of the two:
 
-- Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
-- The amount of memory allocated to the service container
+*   Disk size/6 (based on a [recommendation from Redis](https://docs.redis.com/latest/rs/installing-upgrading/install/plan-deployment/hardware-requirements/#productionenvironment))
+*   The amount of memory allocated to the service container
 
 For instance, if your Redis container has 3072 MB of disk space and 1024 MB of memory,
 only 512 MB of RAM are actually available to the service (3072/6 = 512).
@@ -264,7 +264,7 @@ This configuration defines a single application (`myapp`), whose source code exi
 `myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, `myapp` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -278,14 +278,14 @@ export CACHE_SCHEME="${REDIS_SCHEME}"
 export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable `CACHE_URL` can be used within the application to connect to the service.
 
-Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``REDIS_HOST``,
+Note that `CACHE_URL`, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like `REDIS_HOST`,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the `{{% vendor/cli %}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Ephemeral Redis
 
@@ -422,7 +422,7 @@ This configuration defines a single application (`myapp`), whose source code exi
 `myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+From this, `myapp` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
@@ -436,14 +436,14 @@ export CACHE_SCHEME="${REDIS_SCHEME}"
 export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable `CACHE_URL` can be used within the application to connect to the service.
 
-Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``REDIS_HOST``,
+Note that `CACHE_URL`, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like `REDIS_HOST`,
 are environment-dependent.
 Unlike the build produced for a given commit,
 they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+A file very similar to this is generated automatically for your when using the `{{% vendor/cli %}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Multiple databases
 
@@ -456,9 +456,9 @@ The way to access a particular database depends on the [client library](https://
 
 {{< codetabs >}}
 
-+++
+\+++
 title=PHP
-+++
+\+++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
 
@@ -476,9 +476,9 @@ $redis->get('x');        // returns 42
 
 <--->
 
-+++
+\+++
 title=Python
-+++
+\+++
 
 To manage [thread safety](https://github.com/redis/redis-py/blob/master/docs/advanced_features.rst#user-content-a-note-about-threading),
 the Python library suggests using separate client instances for each database:
@@ -493,9 +493,9 @@ database1 = Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db
 
 <--->
 
-+++
+\+++
 title=Node.js
-+++
+\+++
 
 Use the Redis [`select` command](https://redis.io/commands/select):
 
@@ -531,7 +531,7 @@ services:
 The following table presents the possible values:
 
 | Value             | Policy description                                                                                          |
-|-------------------|-------------------------------------------------------------------------------------------------------------|
+| ----------------- | ----------------------------------------------------------------------------------------------------------- |
 | `allkeys-lru`     | Removes the oldest cache items first. This is the default policy when `maxmemory_policy` isn't set.         |
 | `noeviction`      | New items aren’t saved when the memory limit is reached.                                                    |
 | `allkeys-lfu`     | Removes least frequently used cache items first.                                                            |
@@ -544,10 +544,10 @@ The following table presents the possible values:
 For more information on the different policies,
 see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
 
-## Access your Redis service 
+## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
-you can access it using either the {{% vendor/name %}} CLI 
+you can access it using either the {{% vendor/name %}} CLI
 or through the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 ### {{% vendor/name %}} CLI

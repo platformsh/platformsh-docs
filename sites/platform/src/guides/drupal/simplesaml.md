@@ -94,9 +94,9 @@ Open the file `simplesamlphp/config/config.php` that you created earlier.
 It contains a number of configuration properties that you can adjust as needed.
 Some are best edited in-place and the file already includes ample documentation, specifically:
 
-* `auth.adminpassword`
-* `technicalcontact_name`
-* `technicalcontact_email`
+*   `auth.adminpassword`
+*   `technicalcontact_name`
+*   `technicalcontact_email`
 
 Others are a little more involved.
 In the interest of simplicity we recommend pasting the following code snippet at the end of the file, as it will override the default values in the array.

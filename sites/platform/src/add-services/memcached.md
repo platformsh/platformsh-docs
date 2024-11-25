@@ -16,7 +16,7 @@ Both Memcached and Redis can be used for application caching. As a general rule,
 
 If you use one of the following frameworks, follow its guide:
 
-- [Drupal](../guides/drupal/memcached.md)
+*   [Drupal](../guides/drupal/memcached.md)
 
 ## Supported versions
 
@@ -48,7 +48,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -78,7 +78,7 @@ To define the service, use the `memcached` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -94,12 +94,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -133,51 +133,50 @@ To use the configured service in your app, add a configuration file similar to t
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Go
 file=static/files/fetch/examples/golang/memcached
 highlight=go
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/memcached
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/memcached
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/memcached
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/memcached
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
 ## Accessing Memcached directly
 
 To access the Memcached service directly you can use `netcat` as Memcached doesn't have a dedicated client tool.
-Assuming your Memcached relationship is named `memcached`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `memcached.internal` and `11211`.
-<br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
+Assuming your Memcached relationship is named `memcached`, the host name and port number obtained from `{{< vendor/prefix >}}_RELATIONSHIPS` would be `memcached.internal` and `11211`. <br>Open an [SSH session](/development/ssh/_index.md) and access the Memcached server as follows:
 
 ```bash {location="Terminal"}
 netcat memcached.internal 11211

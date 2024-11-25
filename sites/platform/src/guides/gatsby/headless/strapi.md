@@ -23,7 +23,7 @@ description: |
 
 {{% guides/gatsby/headless-backend name="Strapi" %}}
 
-The only additional setup required to prepare the backend is to install a package that will enable GraphQL on Strapi. In your Strapi directory, add the dependency: 
+The only additional setup required to prepare the backend is to install a package that will enable GraphQL on Strapi. In your Strapi directory, add the dependency:
 
 ```bash
 yarn add strapi-plugin-graphql
@@ -43,27 +43,27 @@ If you're migrating an existing Strapi repository, adjust these values to fit yo
 
 {{< /guides/gatsby/headless-gatsby >}}
 
-- [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/gatsby-node.js) 
+*   [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/gatsby-node.js)
 
     Dynamically creates individual pages from the data source using Gatsby's [Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/). It retrieves all of Strapi's articles and categories (see [post-install below](#deploy-and-post-install)) using the GraphQL queries `allStrapiArticle` and `allStrapiCategory` respectively. For each, a page is created (`createPage`) with an assigned `path` and formatting described by one of the template files below (`component`).
 
-- [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/article.js)
+*   [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/article.js)
 
     The template file that defines how a single Strapi article should be formatted on Gatsby, retrieving the data from that article using the `strapiArticle` GraphQL query.
 
-- [`gatsby/src/templates/category.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/category.js)
+*   [`gatsby/src/templates/category.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/templates/category.js)
 
     The template file that defines how a list of articles that belong to a single Category are formatted by Gatsby. It uses the `Category` query, and then filters a specific category `id` on `allStrapiArticle`.
 
-- [`gatsby/src/pages/index.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/pages/index.js)
+*   [`gatsby/src/pages/index.js`](https://github.com/platformsh-templates/gatsby-strapi/blob/master/gatsby/src/pages/index.js)
 
-    Retrieves all of Strapi's content to generate a list of articles on the homepage using the `allStrapiArticle` GraphQL query. 
+    Retrieves all of Strapi's content to generate a list of articles on the homepage using the `allStrapiArticle` GraphQL query.
 
 ## Deploy and post-install
 
 {{< guides/gatsby/headless-postinstall name="Strapi">}}
 
-After you have deployed, you need to set up Strapi's Admin Panel and some initial content endpoints for the Gatsby frontend to consume. Create your admin user at the `backend` subdomain for Strapi. You can then follow the [template's post-install instructions](https://github.com/platformsh-templates/gatsby-strapi#user-content-post-install) to setup up some initial `Article` and `Category` content endpoints. The API you develop there is only accessible by admins by default, so be sure to adjust the permissions to public so Gatsby can access it. 
+After you have deployed, you need to set up Strapi's Admin Panel and some initial content endpoints for the Gatsby frontend to consume. Create your admin user at the `backend` subdomain for Strapi. You can then follow the [template's post-install instructions](https://github.com/platformsh-templates/gatsby-strapi#user-content-post-install) to setup up some initial `Article` and `Category` content endpoints. The API you develop there is only accessible by admins by default, so be sure to adjust the permissions to public so Gatsby can access it.
 
 {{< /guides/gatsby/headless-postinstall >}}
 

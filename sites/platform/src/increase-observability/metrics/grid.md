@@ -6,9 +6,9 @@ description: Understand how to read metrics for Grid environments.
 
 Grid environments consist of:
 
-* App containers: one or more [app containers](../../create-apps/_index.md)
-* Service containers: zero or more [service containers](../../add-services/_index.md)
-* Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
+*   App containers: one or more [app containers](../../create-apps/_index.md)
+*   Service containers: zero or more [service containers](../../add-services/_index.md)
+*   Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app and worker containers
 and CPU and disk space for service containers.
@@ -52,7 +52,7 @@ Once you've read the metrics, see [recommendations for action](./_index.md#grid-
 
 Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 1.91 GB, while the temporary disk is 3.99 GB by default.
 
 ![All of the metrics for the app container](/images/metrics/app-container.png)
 
@@ -70,8 +70,8 @@ So you don't see all of your project's allocated RAM in the graphs.
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
-as 0.95&nbsp;GB,
-while the temporary disk is 3.99&nbsp;GB by default.
+as 0.95 GB,
+while the temporary disk is 3.99 GB by default.
 
 ![All of the metrics for the MySQL container](/images/metrics/mysql-container.png)
 
@@ -79,7 +79,7 @@ while the temporary disk is 3.99&nbsp;GB by default.
 
 Metrics graphs for the Redis service container show CPU and disk allocation and usage.
 No persistent disk has been configured for Redis,
-while the temporary disk is 3.99&nbsp;GB by default.
+while the temporary disk is 3.99 GB by default.
 
 ![All of the metrics for the Redis container](/images/metrics/redis-container.png)
 
@@ -87,12 +87,12 @@ while the temporary disk is 3.99&nbsp;GB by default.
 
 Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 1.91 GB, while the temporary disk is 3.99 GB by default.
 
 ![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-worker-container.png)
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 1.91 GB, while the temporary disk is 3.99 GB by default.
 
 ![All of the metrics for the App-Horizon worker container](/images/metrics/schedule-worker-container.png)

@@ -54,6 +54,7 @@ to install the specific version you want to use.
             # Set global Python version
             pyenv global $PYTHON_VERSION
 ```
+
 Now your build hook can use the specified version of Python.
 You can verify this by running `python --version`.
 
@@ -72,6 +73,7 @@ If you want this Python version to be available in the runtime environment, foll
             # Rehash Pyenv for new (runtime) location
             PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
 ```
+
 2.  Create an [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script):
 
     ```bash

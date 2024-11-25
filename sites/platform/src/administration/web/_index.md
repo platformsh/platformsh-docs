@@ -14,7 +14,7 @@ This Console offers you ways to manage projects and environments other than the 
 
 ## Project list
 
-Opening the [Console](https://console.platform.sh) takes you to the first organization you joined as a 
+Opening the [Console](https://console.platform.sh) takes you to the first organization you joined as a
 {{% vendor/name %}} user.
 You get an overview of all your projects within that organization.
 You can narrow the list down by searching for specific projects,
@@ -30,16 +30,16 @@ You can also create a new project by clicking **+ Create project**.
 You can personalize the display settings for the Console.
 To do so:
 
-1. Open the user menu (your name or profile picture).
-2. Click **My Profile**.
-3. Choose the mode you want.
-4. Click **Save**.
+1.  Open the user menu (your name or profile picture).
+2.  Click **My Profile**.
+3.  Choose the mode you want.
+4.  Click **Save**.
 
 The Console can be displayed in three ways:
 
-* Light mode (default)
-* High contrast mode
-* Dark mode
+*   Light mode (default)
+*   High contrast mode
+*   Dark mode
 
 To meet our [commitment to accessibility](https://platform.sh/trust-center/legal/wcag/),
 all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

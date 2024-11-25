@@ -12,9 +12,9 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 If you use one of the following frameworks, follow its guide:
 
-- [Hibernate](../guides/hibernate/deploy.md#postgresql)
-- [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
-- [Spring](../guides/spring/postgresql.md)
+*   [Hibernate](../guides/hibernate/deploy.md#postgresql)
+*   [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
+*   [Spring](../guides/spring/postgresql.md)
 
 ## Supported versions
 
@@ -68,12 +68,12 @@ so migrate to one of the [supported versions](#supported-versions).
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -112,7 +112,7 @@ To define the service, use the `postgresql` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -128,12 +128,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -176,45 +176,46 @@ relationships:
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 <!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+
 {{< codetabs >}}
 
-+++
+\+++
 title=Go
 file=static/files/fetch/examples/golang/postgresql
 highlight=go
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/postgresql
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Node.js
 file=static/files/fetch/examples/nodejs/postgresql
 highlight=js
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/postgresql
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/postgresql
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -310,13 +311,13 @@ it's possible to define multiple databases as well as multiple users with differ
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 
-* `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` is created.
+*   `databases`:  This is a YAML array listing the databases that should be created. If not specified, a single database named `main` is created.
 
-  Note that removing a schema from the list of `schemas` on further deployments results in **the deletion of the schema.**
-* `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
-  * `ro`: Using this endpoint only `SELECT` queries are allowed.
-  * `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
-  * `admin`: Using this endpoint all queries are allowed, including DDL queries (`CREATE TABLE`, `DROP TABLE`, etc.).
+    Note that removing a schema from the list of `schemas` on further deployments results in **the deletion of the schema.**
+*   `endpoints`: This is a nested YAML object defining different credentials. Each endpoint may have access to one or more schemas (databases), and may have different levels of permission for each. The valid permission levels are:
+    *   `ro`: Using this endpoint only `SELECT` queries are allowed.
+    *   `rw`: Using this endpoint `SELECT` queries as well as `INSERT`/`UPDATE`/`DELETE` queries are allowed.
+    *   `admin`: Using this endpoint all queries are allowed, including DDL queries (`CREATE TABLE`, `DROP TABLE`, etc.).
 
 Consider the following illustrative example:
 
@@ -346,9 +347,9 @@ postgresql:
 
 This example creates a single PostgreSQL service named `postgresql`. The server has two databases, `main` and `legacy` with three endpoints created.
 
-* `admin`: has full access to both databases.
-* `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
-* `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
+*   `admin`: has full access to both databases.
+*   `reporter`: has `SELECT` query access to the `main` database, but no access to `legacy`.
+*   `importer`: has `SELECT`/`INSERT`/`UPDATE`/`DELETE` access (but not DDL access) to the `legacy` database. It doesn't have access to `main`.
 
 If a given endpoint has access to multiple databases you should also specify which is listed by default in the relationships array. If one isn't specified, the `path` property of the relationship is `null`. While that may be acceptable for an application that knows the name of the database it's connecting to, automated tools like the {{% vendor/name %}} CLI can't access the database on that relationship. For that reason, defining the `default_database` property is always recommended.
 
@@ -434,7 +435,7 @@ Note that you can't customize these automatically generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables) 
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
 within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
@@ -452,8 +453,8 @@ For security reasons, you can grant your app access to replicas instead of your 
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
-2. Add the `-replica` suffix to the name of the endpoint you want to use.
+1.  Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2.  Add the `-replica` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration:
 
@@ -533,60 +534,60 @@ In this case, you have `pg_trgm` installed, providing functions to determine the
 The following is the extensive list of supported extensions. Note that you can't currently add custom
 extensions not listed here.
 
-* `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
-* `address_standardizer_data_us` - For standardizing addresses based on US dataset example
-* `adminpack` - administrative functions for PostgreSQL
-* `autoinc` - functions for auto-incrementing fields
-* `bloom` - bloom access method - signature file based index (requires 9.6 or higher)
-* `btree_gin` - support for indexing common data types in GIN
-* `btree_gist` - support for indexing common data types in GiST
-* `chkpass` - data type for auto-encrypted passwords
-* `citext` - data type for case-insensitive character strings
-* `cube` - data type for multidimensional cubes
-* `dblink` - connect to other PostgreSQL databases from within a database
-* `dict_int` - text search dictionary template for integers
-* `dict_xsyn` - text search dictionary template for extended synonym processing
-* `earthdistance` - calculate great-circle distances on the surface of the Earth
-* `file_fdw` - foreign-data wrapper for flat file access
-* `fuzzystrmatch` - determine similarities and distance between strings
-* `hstore` - data type for storing sets of (key, value) pairs
-* `insert_username` - functions for tracking who changed a table
-* `intagg` - integer aggregator and enumerator (obsolete)
-* `intarray` - functions, operators, and index support for 1-D arrays of integers
-* `isn` - data types for international product numbering standards
-* `lo` - Large Object maintenance
-* `ltree` - data type for hierarchical tree-like structures
-* `moddatetime` - functions for tracking last modification time
-* `pageinspect` - inspect the contents of database pages at a low level
-* `pg_buffercache` - examine the shared buffer cache
-* `pg_freespacemap` - examine the free space map (FSM)
-* `pg_prewarm` - prewarm relation data (requires 9.6 or higher)
-* `pg_stat_statements` - track execution statistics of all SQL statements executed
-* `pg_trgm` - text similarity measurement and index searching based on trigrams
-* `pg_visibility` - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
-* `pgcrypto` - cryptographic functions
-* `pgrouting` - pgRouting Extension (requires 9.6 or higher)
-* `pgrowlocks` - show row-level locking information
-* `pgstattuple` - show tuple-level statistics
-* `plpgsql` - PL/pgSQL procedural language
-* `postgis` - PostGIS geometry, geography, and raster spatial types and functions
-* `postgis_sfcgal` - PostGIS SFCGAL functions
-* `postgis_tiger_geocoder` - PostGIS tiger geocoder and reverse geocoder
-* `postgis_topology` - PostGIS topology spatial types and functions
-* `postgres_fdw` - foreign-data wrapper for remote PostgreSQL servers
-* `refint` - functions for implementing referential integrity (obsolete)
-* `seg` - data type for representing line segments or floating-point intervals
-* `sslinfo` - information about SSL certificates
-* `tablefunc` - functions that manipulate whole tables, including `crosstab`
-* `tcn` - Triggered change notifications
-* `timetravel` - functions for implementing time travel
-* `tsearch2` - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
-* `tsm_system_rows` - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
-* `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
-* `unaccent` - text search dictionary that removes accents
-* `uuid-ossp` - generate universally unique identifiers (UUIDs)
-* `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
-* `xml2` - XPath querying and XSLT
+*   `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
+*   `address_standardizer_data_us` - For standardizing addresses based on US dataset example
+*   `adminpack` - administrative functions for PostgreSQL
+*   `autoinc` - functions for auto-incrementing fields
+*   `bloom` - bloom access method - signature file based index (requires 9.6 or higher)
+*   `btree_gin` - support for indexing common data types in GIN
+*   `btree_gist` - support for indexing common data types in GiST
+*   `chkpass` - data type for auto-encrypted passwords
+*   `citext` - data type for case-insensitive character strings
+*   `cube` - data type for multidimensional cubes
+*   `dblink` - connect to other PostgreSQL databases from within a database
+*   `dict_int` - text search dictionary template for integers
+*   `dict_xsyn` - text search dictionary template for extended synonym processing
+*   `earthdistance` - calculate great-circle distances on the surface of the Earth
+*   `file_fdw` - foreign-data wrapper for flat file access
+*   `fuzzystrmatch` - determine similarities and distance between strings
+*   `hstore` - data type for storing sets of (key, value) pairs
+*   `insert_username` - functions for tracking who changed a table
+*   `intagg` - integer aggregator and enumerator (obsolete)
+*   `intarray` - functions, operators, and index support for 1-D arrays of integers
+*   `isn` - data types for international product numbering standards
+*   `lo` - Large Object maintenance
+*   `ltree` - data type for hierarchical tree-like structures
+*   `moddatetime` - functions for tracking last modification time
+*   `pageinspect` - inspect the contents of database pages at a low level
+*   `pg_buffercache` - examine the shared buffer cache
+*   `pg_freespacemap` - examine the free space map (FSM)
+*   `pg_prewarm` - prewarm relation data (requires 9.6 or higher)
+*   `pg_stat_statements` - track execution statistics of all SQL statements executed
+*   `pg_trgm` - text similarity measurement and index searching based on trigrams
+*   `pg_visibility` - examine the visibility map (VM) and page-level visibility info (requires 9.6 or higher)
+*   `pgcrypto` - cryptographic functions
+*   `pgrouting` - pgRouting Extension (requires 9.6 or higher)
+*   `pgrowlocks` - show row-level locking information
+*   `pgstattuple` - show tuple-level statistics
+*   `plpgsql` - PL/pgSQL procedural language
+*   `postgis` - PostGIS geometry, geography, and raster spatial types and functions
+*   `postgis_sfcgal` - PostGIS SFCGAL functions
+*   `postgis_tiger_geocoder` - PostGIS tiger geocoder and reverse geocoder
+*   `postgis_topology` - PostGIS topology spatial types and functions
+*   `postgres_fdw` - foreign-data wrapper for remote PostgreSQL servers
+*   `refint` - functions for implementing referential integrity (obsolete)
+*   `seg` - data type for representing line segments or floating-point intervals
+*   `sslinfo` - information about SSL certificates
+*   `tablefunc` - functions that manipulate whole tables, including `crosstab`
+*   `tcn` - Triggered change notifications
+*   `timetravel` - functions for implementing time travel
+*   `tsearch2` - compatibility package for pre-8.3 text search functions (obsolete, only available for 9.6 and 9.3)
+*   `tsm_system_rows` - TABLESAMPLE method which accepts number of rows as a limit (requires 9.6 or higher)
+*   `tsm_system_time` - TABLESAMPLE method which accepts time in milliseconds as a limit (requires 9.6 or higher)
+*   `unaccent` - text search dictionary that removes accents
+*   `uuid-ossp` - generate universally unique identifiers (UUIDs)
+*   `vector` - Open-source [vector](https://github.com/pgvector/pgvector) similarity search for PostgreSQL 11+
+*   `xml2` - XPath querying and XSLT
 
 {{< note >}}
 
@@ -629,7 +630,7 @@ Upgrading from 12 to a higher version is possible.
 
 If you need to upgrade to version 12, follow the same steps recommended for downgrading:
 
-1. Dump the database.
-2. Remove the service.
-3. Create a new service with PostgreSQL 12.
-4. Import the dump to that service.
+1.  Dump the database.
+2.  Remove the service.
+3.  Create a new service with PostgreSQL 12.
+4.  Import the dump to that service.

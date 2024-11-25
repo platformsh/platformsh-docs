@@ -8,14 +8,14 @@ The following example activity script posts a message to a Slack channel every t
 
 To use it, follow these steps:
 
-1. In your Slack administrative interface, [create a new Slack webhook](https://api.slack.com/messaging/webhooks).
-   You get a URL starting with `https://hooks.slack.com/`.
-2. Replace `SLACK_URL` in the following script with your webhook URL.
-3. Paste the code into a `.js` file.
-4. Add it as a new [script integration](./_index.md#installing).
+1.  In your Slack administrative interface, [create a new Slack webhook](https://api.slack.com/messaging/webhooks).
+    You get a URL starting with `https://hooks.slack.com/`.
+2.  Replace `SLACK_URL` in the following script with your webhook URL.
+3.  Paste the code into a `.js` file.
+4.  Add it as a new [script integration](./_index.md#installing).
 
-   Specify which events should trigger it using the `--events` flag.
-   Optionally specify environments with the `--environments` flag.
+    Specify which events should trigger it using the `--events` flag.
+    Optionally specify environments with the `--environments` flag.
 
 Now, any activities that meet the events/environment criteria you specified are reported to Slack.
 
@@ -70,7 +70,7 @@ sendSlackMessage(activity.text, activity.log);
 
 Common properties you may want to send to Slack (in the last line of the script) include:
 
-- `activity.text`: A brief, one-line statement of what happened.
-- `activity.log`: The complete build and deploy log output, as it would be seen in the Console log screen.
+*   `activity.text`: A brief, one-line statement of what happened.
+*   `activity.log`: The complete build and deploy log output, as it would be seen in the Console log screen.
 
 For more properties, see the [activity reference](./reference.md).

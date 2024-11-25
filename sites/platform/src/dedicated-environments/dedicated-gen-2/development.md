@@ -36,7 +36,7 @@ Any defined users or environment variables are also propagated to the Dedicated 
 
 {{< note title="Note" theme="info" >}}
 
-There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environment the way there is between branches in the development environment. 
+There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environment the way there is between branches in the development environment.
 
 {{< /note >}} 
 
@@ -46,12 +46,12 @@ Production data may still be replicated to the development environment [manually
 
 When deploying to the Dedicated Gen 2 cluster the process is slightly different than when working with Platform.sh on the Grid.
 
--   The new application image is built in the exact same fashion as for the Grid.
--   Any active background tasks on the cluster, including cron tasks, are terminated.
--   The cluster (production or staging) is closed, meaning it doesn’t accept new requests. Incoming requests receive an HTTP 500 error.
--   The application image on all three servers is replaced with the new image.
--   The deploy hook is run on one, and only one, of the three servers.
--   The cluster is opened to allow new requests.
+*   The new application image is built in the exact same fashion as for the Grid.
+*   Any active background tasks on the cluster, including cron tasks, are terminated.
+*   The cluster (production or staging) is closed, meaning it doesn’t accept new requests. Incoming requests receive an HTTP 500 error.
+*   The application image on all three servers is replaced with the new image.
+*   The deploy hook is run on one, and only one, of the three servers.
+*   The cluster is opened to allow new requests.
 
 The deploy usually takes approximately 30-90 seconds, although that is dependent on how your deploy hook has been configured.
 
@@ -61,7 +61,7 @@ For more information about deployment, see the [overview of the build and deplo
 
 ### Storage
 
-The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/). 
+The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/).
 
 The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each development environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your development environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 

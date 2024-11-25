@@ -33,9 +33,9 @@ Third party integrations will be addressed at the end of this guide.
 
 Add details about your project, such as:
 
-- The name of your project.
-- The default branch of your local repository.
-- Select the region where you want your project to be hosted.
+*   The name of your project.
+*   The default branch of your local repository.
+*   Select the region where you want your project to be hosted.
 
 As suggested in the Console, connect the local copy of your repository to your project:
 
@@ -57,7 +57,7 @@ To create a new project with the {{% vendor/name %}} CLI, use the following comm
 ```
 
 {{< note theme="info" title="Default branches" >}}
-When creating a new project using the {{% vendor/name %}} CLI command `project:create`, the default production branch is set to `main`. Change it if your default branch is different (_e.g._: `master`).
+When creating a new project using the {{% vendor/name %}} CLI command `project:create`, the default production branch is set to `main`. Change it if your default branch is different (*e.g.*: `master`).
 {{< /note >}}
 
 Then, you are asked if you want to set the local remote to your new project. Enter **Yes (y)**.
@@ -78,4 +78,4 @@ So long as you chose `y` (yes) to the question `Set the new project <projectName
 
 </details>
 
-{{< guide-buttons previous="Back" next="Configure your project" nextLink="/get-started/here/configure/_index.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Configure your project" nextLink="/get-started/here/configure/\_index.md" type="\*" >}}

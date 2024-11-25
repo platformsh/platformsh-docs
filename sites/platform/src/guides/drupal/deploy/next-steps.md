@@ -58,7 +58,7 @@ All updates should be done through composer to update the lock file, and then pu
 [Drush site aliases](https://www.drush.org/latest/site-aliases/) help you manage your development websites.
 
 The {{% vendor/name %}} CLI can generate Drush aliases for you automatically
-when you clone a project using the <code>platform get {{< variable "PROJECT_ID" >}}</code> command.
+when you clone a project using the <code>platform get {{< variable "PROJECT\_ID" >}}</code> command.
 
 To see the aliases that are created, run the following command:
 

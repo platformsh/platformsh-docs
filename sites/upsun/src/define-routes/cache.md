@@ -14,12 +14,12 @@ When a request comes with the same cache key, the cached response is reused.
 
 When caching is on...
 
-* you can configure cache behavior for different location blocks in your `{{< vendor/configfile "app" >}}`;
-* the router respects whatever cache headers are sent by the application;
-* cookies bypass the cache;
-* responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
+*   you can configure cache behavior for different location blocks in your `{{< vendor/configfile "app" >}}`;
+*   the router respects whatever cache headers are sent by the application;
+*   cookies bypass the cache;
+*   responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
 
-You should _not_ use the {{% vendor/name %}} HTTP cache if you're using [Varnish](../add-services/varnish.md) or an external CDN
+You should *not* use the {{% vendor/name %}} HTTP cache if you're using [Varnish](../add-services/varnish.md) or an external CDN
 such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
 Mixing cache services together most likely results in caches that are stale and can't be cleared.
 For more details, see [best practices on HTTP caching](/learn/bestpractices/http-caching.md).
@@ -110,9 +110,10 @@ Turns the cache on or off for a route.
 **Required:** Yes
 
 **Values**
-* `true`: enable the cache for this route [default, but only if the `cache` key isn't actually specified]
-* `false`: disable the cache for this route
-{{< /note >}}
+
+*   `true`: enable the cache for this route \[default, but only if the `cache` key isn't actually specified]
+*   `false`: disable the cache for this route
+    {{< /note >}}
 
 ### `headers`
 
@@ -133,21 +134,22 @@ routes:
 **Type:** List
 
 **Values:**
-* `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language [default]
-{{< /note >}}
+
+*   `['Accept', 'Accept-Language']`: Cache on Accept & Accept-Language \[default]
+    {{< /note >}}
 
 #### Header behaviors
 
 The cache is only applied to `GET` and `HEAD` requests. Some headers trigger specific behaviors in the cache.
 
-Header field | Cache behavior
--------------|----------------
-`Cache-Control`|Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached. All other values override `default_ttl`.
-`Vary`|A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separated by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever is listed in the `{{< vendor/configfile "routes" >}}` file.
-`Set-Cookie`|Not cached
-`Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade`|Not allowed, and throws an error
-`Cookie`|Not allowed, and throws an error. Use the `cookies` value, instead.
-`Pragma`|Ignored
+| Header field                                                            | Cache behavior                                                                                                                                                                                                                                                                                             |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Cache-Control`                                                         | Responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached. All other values override `default_ttl`.                                                                                                                                                              |
+| `Vary`                                                                  | A list of header fields to be taken into account when constructing the cache key. Multiple header fields can be listed, separated by commas. The Cache key is the union of the values of the Header fields listed in Vary header, and whatever is listed in the `{{< vendor/configfile "routes" >}}` file. |
+| `Set-Cookie`                                                            | Not cached                                                                                                                                                                                                                                                                                                 |
+| `Accept-Encoding`, `Connection`, `Proxy-Authorization`, `TE`, `Upgrade` | Not allowed, and throws an error                                                                                                                                                                                                                                                                           |
+| `Cookie`                                                                | Not allowed, and throws an error. Use the `cookies` value, instead.                                                                                                                                                                                                                                        |
+| `Pragma`                                                                | Ignored                                                                                                                                                                                                                                                                                                    |
 
 A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
 
@@ -155,11 +157,11 @@ A full list of HTTP headers is available on [Wikipedia](https://en.wikipedia.org
 
 The `cookies` key allows you to define a list of cookies you want to include in the cache key, if any.
 
-| Possible values          | Description                                                                           | Default |
-|--------------------------|---------------------------------------------------------------------------------------|---------|
-| `['*']`                  | Any request with a cookie bypasses the cache.</br></br> Note that this is achieved by {{% vendor/name %}} adding the `X-Platform-Cache: BYPASS` HTTP header in the router, and that the same behaviour applies if the `Set-Cookie` header is present. | Yes |
-| `[]`                     | Ignore all cookies.                                                                   | No |
-|`['cookie_1','cookie_2']` | A list of allowed cookies to include in the cache key. All other cookies are ignored. | No |
+| Possible values           | Description                                                                                                                                                                                                                                           | Default |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `['*']`                   | Any request with a cookie bypasses the cache.</br></br> Note that this is achieved by {{% vendor/name %}} adding the `X-Platform-Cache: BYPASS` HTTP header in the router, and that the same behaviour applies if the `Set-Cookie` header is present. | Yes     |
+| `[]`                      | Ignore all cookies.                                                                                                                                                                                                                                   | No      |
+| `['cookie_1','cookie_2']` | A list of allowed cookies to include in the cache key. All other cookies are ignored.                                                                                                                                                                 | No      |
 
 #### Example with a single value
 
@@ -211,8 +213,9 @@ All static assets have a Cache-Control header with a max age defaulting to 0 (wh
 **Type:** integer
 
 **Values:**
-* `0`: Do not cache [default]. This prevents caching, _unless_ the response specifies a `Cache-Control` header value.
-{{< /note >}}
+
+*   `0`: Do not cache \[default]. This prevents caching, *unless* the response specifies a `Cache-Control` header value.
+    {{< /note >}}
 
 ## Debugging
 
@@ -249,14 +252,14 @@ routes:
 
 With this configuration, the following routes are cached:
 
--   `https://{default}/`
--   `https://{default}/foo/bar/`
--   `https://{default}/foo/bar/baz/`
+*   `https://{default}/`
+*   `https://{default}/foo/bar/`
+*   `https://{default}/foo/bar/baz/`
 
 And the following routes are **not** cached:
 
--   `https://{default}/foo/`
--   `https://{default}/foo/baz/`
+*   `https://{default}/foo/`
+*   `https://{default}/foo/baz/`
 
 {{< note >}}
 Regular expressions in routes are **not** supported.

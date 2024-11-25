@@ -19,11 +19,10 @@ Each container is an isolated instance with specific resources.
 
 Each environment has 2 to 4 types of containers, all usually configured from your `{{< vendor/configfile "app" >}}` file.
 
-- One [*router*](#router)
-- One or more [*app* containers](#apps)
-- Zero or more [*service* containers](#services)
-- Zero or more [*worker* containers](#workers)
-
+*   One [*router*](#router)
+*   One or more [*app* containers](#apps)
+*   Zero or more [*service* containers](#services)
+*   Zero or more [*worker* containers](#workers)
 
 If you have two app containers, two services (a database and a search engine), and a worker,
 requests to your environment might look something like this:

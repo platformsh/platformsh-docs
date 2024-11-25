@@ -37,19 +37,19 @@ The [Pathauto](https://www.drupal.org/project/pathauto) module helps you assign 
 
 Additionally, there has been a change to Gatsby's start command,`web.commands.start`. In the generic Gatsby template, the static files in `public` are served via the [`web.locations` block](https://github.com/platformsh-templates/gatsby/blob/c764ed717752eacc3c3f3322b7e5415e276d02df/.platform.app.yaml#L29), but that attribute is removed in the file below. Instead, two separate start commands are defined depending on which branch you are developing on. This has been included to support [Live Preview and Incremental Builds](https://www.drupal.org/project/gatsby). It isn't required, but you can consult the [section below](#live-preview-and-incremental-builds) for more information about enabling it.
 
-You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Drupal container through the `drupal` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-drupal`. 
+You can then modify [`gatsby-config.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) to read from the backend Drupal container through the `drupal` relationship defined above to configure the `baseUrl` attribute for `gatsby-source-drupal`.
 
 {{< /guides/gatsby/headless-gatsby >}}
 
-- [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/gatsby-node.js) 
+*   [`gatsby/gatsby-node.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/gatsby-node.js)
 
     Dynamically creates individual pages from the data source using Gatsby's [Node API](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/). It retrieves all of Drupal's articles (see [post-install below](#deploy-and-post-install)) using the GraphQL query `allNodeArticle`. A page is created (`createPage`) with formatting described by the template file `article.js` below (`component`). A `path` is also defined for each article, in this case using an `alias` you will define within Drupal using the Pathauto module.
 
-- [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/src/templates/article.js)
+*   [`gatsby/src/templates/article.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/src/templates/article.js)
 
     The template file that defines how a single Drupal article should be formatted on Gatsby, retrieving the data from that article using the `nodeArticle` GraphQL query.
 
-- [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/src/components/articlePreview.js)
+*   [`gatsby/src/pages/articles.js`](https://github.com/platformsh-templates/gatsby-drupal/blob/master/client/src/components/articlePreview.js)
 
     Generates previews of articles at `/articles` on the Gatsby site using the `allNodeArticle` GraphQL query.
 

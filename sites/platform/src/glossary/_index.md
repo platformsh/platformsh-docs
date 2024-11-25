@@ -20,38 +20,37 @@ Branching an environment means creating a new branch in the Git repository and a
 
 The new environment includes all of the parent environment's:
 
-- Code
-- Running services and their configuration (only copies, not the data)
-- Data that's stored on disk (databases, uploaded files, and so on)
+*   Code
+*   Running services and their configuration (only copies, not the data)
+*   Data that's stored on disk (databases, uploaded files, and so on)
 
 This means that when you branch an environment, you also branch the complete infrastructure.
 
 When you branch an environment, three things happen:
 
-- A new branch is created in Git.
-- Your apps are rebuilt on the new branch, if necessary.
-  (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
-- The new branch is deployed.
+*   A new branch is created in Git.
+*   Your apps are rebuilt on the new branch, if necessary.
+    (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
+*   The new branch is deployed.
 
 To create a new branch from an existing environment:
 
-
 {{< codetabs >}}
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-- Navigate to the environment you want to branch from.
-- Click {{< icon branch >}} **Branch**.
-- Enter a name for the new branch.
-- Select which environment type it should be.
-- Click **Create branch**.
+*   Navigate to the environment you want to branch from.
+*   Click {{< icon branch >}} **Branch**.
+*   Enter a name for the new branch.
+*   Select which environment type it should be.
+*   Click **Create branch**.
 
 <--->
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Run:
 
@@ -96,7 +95,6 @@ They're always deployed together as a single unit.
 
 The control plane is Platform.sh’s orchestration, control, and management environment. It helps us to establish and operate regions, provision services and networks.
 
-
 ## {{% names/dedicated-gen-2 %}}
 
 [{{% names/dedicated-gen-2 %}} environments](/dedicated-environments/dedicated-gen-2/overview.md) are managed host clusters with triple redundancy.
@@ -139,10 +137,10 @@ and you can set up any other branch as a testing environment.
 
 {{< vendor/name >}} offers three environment types:
 
-- Your **production environment** is your live site.
-- A **development environment** is an isolated environment where you can safely develop new features without affecting production.
-- A **staging environment** has a similar configuration to your production environment (but usually with less resources for cost optimization).
-  It is useful to perform user acceptance testing in a production-like setting.
+*   Your **production environment** is your live site.
+*   A **development environment** is an isolated environment where you can safely develop new features without affecting production.
+*   A **staging environment** has a similar configuration to your production environment (but usually with less resources for cost optimization).
+    It is useful to perform user acceptance testing in a production-like setting.
 
 The phrase "[preview environment](#preview-environment)" can apply to both a development or staging environment,
 as it merely describes a non-production environment.
@@ -174,8 +172,8 @@ This unit is based on powers of 10.
 
 Some reporting tools, such as those used by the [CLI](../administration/cli/_index.md),
 use binary megabytes, also known as mebibytes and abbreviated as MiB.
-This unit is based on powers of 2 and so 1&nbsp;MiB equals 1024<sup>2</sup> or 1,048,576 bytes.
-So 1&nbsp;MB is less than 1&nbsp;MiB.
+This unit is based on powers of 2 and so 1 MiB equals 1024<sup>2</sup> or 1,048,576 bytes.
+So 1 MB is less than 1 MiB.
 
 So you may see differences in the numbers you configure for a disk (in MB)
 and the values reported when you check disk size with tools that report in MiB.
@@ -187,10 +185,10 @@ and redeploying the parent.
 
 When you merge an environment, three things happen:
 
-- Any code changes are merged via Git to the parent branch.
-- Your apps rebuilt on the parent branch, if necessary.
-  (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
-- The parent branch is deployed.
+*   Any code changes are merged via Git to the parent branch.
+*   Your apps rebuilt on the parent branch, if necessary.
+    (This is skipped if the same code with the same [variables](../development/variables/_index.md) has been built for any environment.)
+*   The parent branch is deployed.
 
 ## PaaS
 

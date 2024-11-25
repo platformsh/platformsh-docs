@@ -35,7 +35,7 @@ That means you can, and should, view your infrastructure needs as part of your a
 You only need to write your code, including a few YAML files that specify your desired infrastructure, commit it to Git, and push.
 You don't need to set up anything manually. The web server is already set up and configured, as is any database, search engine, or cache that you specify.
 
-Every branch you push can be made a fully independent environment&mdash;complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
+Every branch you push can be made a fully independent environment—complete with your application code, a copy of your database, a copy of your search index, a copy of your user files, everything.
 Its automatically generated URL can be sent to stakeholders or automated CI systems.
 It really is "what would my site look like if I merged this to production?" every time.
 
@@ -47,8 +47,8 @@ You can use these concepts to replicate a traditional development/staging/produc
 
 Managing your full stack on {{% vendor/name %}} gives you the following unique features:
 
-1. **Unified Environment:** All of your [services](/add-services/_index.md) (MySQL, Elasticsearch, MongoDB, etc.) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you [back up an environment](/environments/backup.md), you get a fully consistent snapshot of your whole application.
-2. **Multi-Services & Multi-App:** You can deploy [multiple applications](/create-apps/multi-app/_index.md) (for example, in a microservice-based architecture), using multiple data backends (MySQL, PostgreSQL, Redis, etc.) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
-3. **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute&mdash;including all of its data&mdash;to create on-the-fly, ephemeral [preview environments](/glossary/_index.md#preview-environment) that are a byte-level copy of production.
-4. **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
-5. **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application up-to-date and secure.
+1.  **Unified Environment:** All of your [services](/add-services/_index.md) (MySQL, Elasticsearch, MongoDB, etc.) are managed inside the cluster and included in the price, with no external single-points-of-failure. When you [back up an environment](/environments/backup.md), you get a fully consistent snapshot of your whole application.
+2.  **Multi-Services & Multi-App:** You can deploy [multiple applications](/create-apps/multi-app/_index.md) (for example, in a microservice-based architecture), using multiple data backends (MySQL, PostgreSQL, Redis, etc.) written in multiple frameworks (Drupal + NodeJS + Flask, for example) in multiple languages, all in the same cluster.
+3.  **Full Cluster Cloning Technology:** The full production cluster can be cloned in under a minute—including all of its data—to create on-the-fly, ephemeral [preview environments](/glossary/_index.md#preview-environment) that are a byte-level copy of production.
+4.  **Fail-Proof Deployments:** Every time you test a new feature, you also test the deployment process.
+5.  **Continuous Deployment from the Start:** Everything is build-oriented, with a consistent, repeatable build process, simplifying the process of keeping your application up-to-date and secure.

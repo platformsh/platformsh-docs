@@ -25,7 +25,7 @@ The response differs depending on the activity and doesn't always include all fi
 The following is a shortened example of a response for an [environment sync activity](/glossary.md#sync).
 You can also see [complete examples of responses](#examples).
 
-``` json
+```json
 {
   "id": "abcdefg123456",
   ...
@@ -89,10 +89,10 @@ Different from [`project` activities](#type).
 
 The type of the activity in one of the following categories:
 
-- [Project](#project-activity-types)
-- [Environment](#environment-activity-types)
-- [Integration](#integration-activity-types)
-- [Maintenance](#maintenance-activity-types)
+*   [Project](#project-activity-types)
+*   [Environment](#environment-activity-types)
+*   [Integration](#integration-activity-types)
+*   [Maintenance](#maintenance-activity-types)
 
 #### `project` activity types
 
@@ -100,7 +100,7 @@ Activities that happened on a given project.
 The following table presents the possible activity types:
 
 | Name                        | Description                                                                                                                                                                                                                        |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `project.clear_build_cache` | The build cache is cleared.                                                                                                                                                                                                        |
 | `project.create`            | A new project is created.                                                                                                                                                                                                          |
 | `project.domain.create`     | A new [domain](administration/web/configure-project.md#domains) has been added to the project.                                                                                                                                     |
@@ -120,13 +120,13 @@ Activities that happened on an environment.
 The following table presents the possible activity types:
 
 | Name                                 | Description                                                                                                                                                                                                                      |
-|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `environment.activate`               | The environment has been made [active](/glossary.md#active-environment).                                                                                                                                                         |
 | `environment.backup`                 | A user triggered a [backup](/environments/backup.md).                                                                                                                                                                            |
 | `environment.backup.delete`          | A user deleted a [backup](/environments/backup.md).                                                                                                                                                                              |
 | `environment.branch`                 | A [new branch](/environments.md#create-environments) has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`.                                                                     |
 | `environment.certificate.renewal`    | An environment's SSL certificate has been [renewed](/define-routes/https.md#certificate-renewals).                                                                                                                               |
-| `environment.cron`                   | A [cron job](/create-apps/app-reference/single-runtime-image.md#crons) has completed.                                                                                                                                                                 |
+| `environment.cron`                   | A [cron job](/create-apps/app-reference/single-runtime-image.md#crons) has completed.                                                                                                                                            |
 | `environment.deactivate`             | An environment has been made [inactive](/glossary.md#inactive-environment).                                                                                                                                                      |
 | `environment.delete`                 | An environment's code was deleted through Git.                                                                                                                                                                                   |
 | `environment.domain.create`          | A new [domain](administration/web/configure-project.md#domains) has been associated with the environment.                                                                                                                        |
@@ -163,7 +163,7 @@ Activities that relate to an integration.
 The following table presents the possible activity types:
 
 | Name                                          | Description                                                                                                           |
-|-----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `integration.bitbucket.fetch`                 | A fetch has been triggered on your [Bitbucket Cloud](/integrations/source/bitbucket.md#bitbucket-cloud) repository.   |
 | `integration.bitbucket.register_hooks`        | An integration hook has been registered with [Bitbucket Cloud](/integrations/source/bitbucket.md#bitbucket-cloud).    |
 | `integration.bitbucket_server.fetch`          | A fetch has been triggered on your [Bitbucket Server](/integrations/source/bitbucket.md#bitbucket-server) repository. |
@@ -183,7 +183,7 @@ Activities that relate to a maintenance.
 The following table presents the possible types:
 
 | Name                  | Description                                               |
-|-----------------------|-----------------------------------------------------------|
+| --------------------- | --------------------------------------------------------- |
 | `maintenance.upgrade` | An upgrade is triggered for API Server and Metrics Server |
 
 ### `environments`
@@ -214,7 +214,7 @@ The amount of time required by the activity.
 It can include the following properties:
 
 | Name      | Description                                                  |
-|-----------|--------------------------------------------------------------|
+| --------- | ------------------------------------------------------------ |
 | `wait`    | The delay if a command is set to wait before being executed. |
 | `build`   | The execution time for the build hook.                       |
 | `deploy`  | The execution time for the deploy hook.                      |
@@ -239,7 +239,7 @@ Contains settings and details related to the completed activity.
 Its content varies based on the activity type.
 
 | Name                    | Description                                                                                                                     |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `payload.user`          | The user that triggered the activity. For details on its properties, see the [`user` payload](#user-payload).                   |
 | `payload.environment`   | The environment affected by the activity. For details on its properties, see the [`environment` payload](#environment-payload). |
 | `payload.commits`       | A list of changes with their Git metadata.                                                                                      |
@@ -252,7 +252,7 @@ Its content varies based on the activity type.
 Contains information about the {{% vendor/name %}} user that triggered the activity.
 
 | Name                        | Description                                 |
-|-----------------------------|---------------------------------------------|
+| --------------------------- | ------------------------------------------- |
 | `payload.user.created_at`   | The date the user was created.              |
 | `payload.user.display_name` | The user's name in a human-friendly format. |
 | `payload.user.id`           | The user's ID.                              |
@@ -265,7 +265,7 @@ including its settings, state, and deployment.
 The following table presents the most notable properties of the environment:
 
 | Name                                | Description                                                                                 |
-|-------------------------------------|---------------------------------------------------------------------------------------------|
+| ----------------------------------- | ------------------------------------------------------------------------------------------- |
 | `payload.environment.name`          | The environment name.                                                                       |
 | `payload.environment.type`          | The [environment type](../../administration/users.md#environment-type-roles).               |
 | `payload.environment.head_commit`   | The ID of the environment's latest Git commit.                                              |
@@ -280,7 +280,7 @@ including plan details, timezone, and region.
 The following table presents the most notable properties of the project:
 
 | Name                           | Description                                                                             |
-|--------------------------------|-----------------------------------------------------------------------------------------|
+| ------------------------------ | --------------------------------------------------------------------------------------- |
 | `payload.project.timezone`     | Your project's [timezone](../../projects/change-project-timezone.md).                   |
 | `payload.project.region`       | Your project's [region](../../development/regions.md#regions).                          |
 | `payload.project.title`        | Your project's name.                                                                    |
@@ -294,16 +294,16 @@ Contains information about the deployed environment, if one is associated with t
 The following table presents the most notable properties of the deployment:
 
 | Name                           | Description                                                                                                                            |
-|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `payload.deployment.routes`    | All the URLs connected to the environment. The list includes redirects. To exclude redirects, find objects whose `type` is `upstream`. |
 | `payload.deployment.services`  | All the services on your environment.                                                                                                  |
 | `payload.deployment.variables` | All the [variables for the environment](../../development/variables/_index.md).                                                        |
 
 The `payload.deployment` property includes the configuration extracted from the following sources:
 
-- Your [app configuration](../../create-apps/_index.md)
-- Your [routes](../../define-routes/_index.md)
-- Your [services](../../add-services/_index.md)
+*   Your [app configuration](../../create-apps/_index.md)
+*   Your [routes](../../define-routes/_index.md)
+*   Your [services](../../add-services/_index.md)
 
 ## Maximum activities and parallelism
 
@@ -313,7 +313,7 @@ For a given environment, only one activity can run at a time.
 Those queues include the following types of activities:
 
 | Name           | Description                                                                                          |
-|----------------|------------------------------------------------------------------------------------------------------|
+| -------------- | ---------------------------------------------------------------------------------------------------- |
 | `default`      | The most common activities on repositories (pushes, merges) and environments (syncs, redeployments). |
 | `integrations` | Source and webhook integration activities.                                                           |
 | `backup`       | Backup activities.                                                                                   |
@@ -340,7 +340,7 @@ with the command `sleep 60 && echo sleep-60-finished && date` and times out afte
 
 To get details about the configured cron job, see the `parameters` property:
 
-``` json
+```json
 ...
   "parameters": {
     "user": "admin",
@@ -362,7 +362,7 @@ To get details about the configured cron job, see the `parameters` property:
 
 The following example shows the full activity response to a cron job:
 
-``` json
+```json
 {
   "id": "ypalrypnezbye",
   "_links": {
@@ -502,7 +502,7 @@ The following example shows the full activity response to a cron job:
 A push activity contains several properties.
 The `commits` property contains everything related to the Git push that triggered the activity:
 
-``` json
+```json
 ...
     "commits": [
       {
@@ -523,7 +523,7 @@ The `commits` property contains everything related to the Git push that triggere
 
 The `environment` property contains the settings for the environment that was pushed to:
 
-``` json
+```json
 ...
     "environment": {
       "id": "main",
@@ -575,7 +575,7 @@ including the [image type](/create-apps/app-reference/single-runtime-image.md#ty
 
 The following example shows a shortened excerpt of the `deployment` property:
 
-``` json
+```json
 ...
  "deployment": {
       "id": "current",
@@ -640,7 +640,7 @@ The following example shows a shortened excerpt of the `deployment` property:
 
 The following example shows the full activity response to a Git push:
 
-``` json
+```json
 {
   "id": "a1kz6ffxui7em",
   "_links": {

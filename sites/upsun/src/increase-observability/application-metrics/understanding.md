@@ -18,8 +18,9 @@ The quantity of data and metrics collected differ for every layer of data Blackf
 [Profiles](https://blackfire.io/docs/profiling-cookbooks/index) are manually triggered by a Blackfire user, or automatically triggered by [Blackfire builds](https://blackfire.io/docs/builds-cookbooks/index), the synthetic monitoring feature that evaluates the performance of critical user journeys.
 
 Meanwhile, monitoring traces and extended traces are based on the sample rate, which is the percentage of requests that are monitored.  In that matter, [Blackfire monitoring](https://blackfire.io/docs/monitoring-cookbooks/index) offers a mix of two approaches:
-- a probabilistic one on how requests are selected to be instrumented
-- a deterministic one on how they are monitored, with the instrumentation starting at the very beginning of the request and ending with it
+
+*   a probabilistic one on how requests are selected to be instrumented
+*   a deterministic one on how they are monitored, with the instrumentation starting at the very beginning of the request and ending with it
 
 A [blog post](https://blog.blackfire.io/understanding-monitoring-traces-extended-traces-and-profiles.html) provides all the details on the differences and complementarity between Blackfire's monitoring traces, extended traces, and profiles.
 
@@ -35,7 +36,7 @@ You might not know all the details about a specific script. But you will have a 
 
 Both approaches have their strengths and weaknesses. One is not better than the other. It all depends on the instrumented languages and your understanding of the data.
 
-- Deterministic profiling: Its strength lies in precision and facilitating meticulous script analysis. But it’s resource-intensive, leading to considerable overhead and potential data overload, making analysis potentially tedious.
-- Probabilistic profiling: Lightweight and scalable, tailored for holistic application oversight. However, its periodic snapshots might miss rapid function calls, yielding a not-so-perfect application map.
+*   Deterministic profiling: Its strength lies in precision and facilitating meticulous script analysis. But it’s resource-intensive, leading to considerable overhead and potential data overload, making analysis potentially tedious.
+*   Probabilistic profiling: Lightweight and scalable, tailored for holistic application oversight. However, its periodic snapshots might miss rapid function calls, yielding a not-so-perfect application map.
 
 Deterministic and probabilistic profiling each hold value within the development process. The former delivers a thorough and detailed view, while the latter offers a wider, more adaptable perspective. Developers may choose one or even combine both approaches based on the project’s specifics and the issues faced.

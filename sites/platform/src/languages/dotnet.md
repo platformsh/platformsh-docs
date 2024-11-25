@@ -27,7 +27,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-{{% language-specification type="dotnet" display_name=".Net Core" %}}
+{{% language-specification type="dotnet" display\_name=".Net Core" %}}
 
 ```yaml {configFile="app"}
 type: 'dotnet:<VERSION_NUMBER>'
@@ -70,7 +70,7 @@ make sure to call `dotnet build-server shutdown` at the end of your build hook.
 .NET Core applications should be started using the `web.commands.start` directive in `{{< vendor/configfile "app" >}}`.
 This ensures that the command starts at the right moment and stops gracefully when a redeployment needs to be executed.
 Also, should the program terminate for any reason, it's automatically restarted.
-Note that the start command _must_ run in the foreground.
+Note that the start command *must* run in the foreground.
 
 Incoming requests are passed to the application using either a TCP (default) or Unix socket.
 The application must use the [appropriate environment variable](/create-apps/app-reference/single-runtime-image.md#where-to-listen) to determine the URI to listen on.
@@ -103,6 +103,7 @@ web:
     commands:
         start: "dotnet WebApplication1.dll"
 ```
+
 You can also route all requests to the application unconditionally:
 
 ```yaml {configFile="app"}

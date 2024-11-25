@@ -12,12 +12,12 @@ and store user data with an associated timezone instead.
 
 The different timezones on {{% vendor/name %}} are the following:
 
-| Timezone             | Description                                  |Customizable  |
-|----------------------|----------------------------------------------|--------------|
-| Container timezone   | The timezone for all {{% vendor/name %}} containers (UTC). |No            |
-| App runtime timezone | [Set an app runtime timezone](#set-an-app-runtime-timezone) if you want your app runtime to use a specific timezone instead of the container timezone.<BR>The app runtime timezone only affects your app itself.                | Yes         |
-| Cron timezone        | [Set a cron timezone](#set-a-cron-timezone) if you want your crons to run in a specific timezone instead of the app runtime timezone (or instead of the container timezone if no app runtime timezone is set on your project). <BR>The cron timezone only affects your cron jobs.                          | Yes         |
-| Log timezone         | The timezone for all {{% vendor/name %}} logs (UTC).      | No           |
+| Timezone             | Description                                                                                                                                                                                                                                                                       | Customizable |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Container timezone   | The timezone for all {{% vendor/name %}} containers (UTC).                                                                                                                                                                                                                        | No           |
+| App runtime timezone | [Set an app runtime timezone](#set-an-app-runtime-timezone) if you want your app runtime to use a specific timezone instead of the container timezone.<BR>The app runtime timezone only affects your app itself.                                                                  | Yes          |
+| Cron timezone        | [Set a cron timezone](#set-a-cron-timezone) if you want your crons to run in a specific timezone instead of the app runtime timezone (or instead of the container timezone if no app runtime timezone is set on your project). <BR>The cron timezone only affects your cron jobs. | Yes          |
+| Log timezone         | The timezone for all {{% vendor/name %}} logs (UTC).                                                                                                                                                                                                                              | No           |
 
 {{< note >}}
 
@@ -33,9 +33,9 @@ How you can set an app runtime timezone depends on your actual app runtime:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=PHP
-+++
+\+++
 
 Add the following to your app configuration:
 
@@ -49,31 +49,31 @@ variables:
 
 <--->
 
-+++
+\+++
 title=Node.js
-+++
+\+++
 
 Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' node server.js</code>.
 
 <--->
 
-+++
+\+++
 title=Python
-+++
+\+++
 
 Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' python server.py</code>.
 
 <--->
 
-+++
+\+++
 title=Java
-+++
+\+++
 
-- Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' java -jar ...</code> OR.
-- Set the Java virtual machine argument `user.timezone`.
-  This Java virtual machine argument takes precedence over the environment variable TZ.
-  For example, you can use the flag `-D` when running the application:
-  `java -jar -D user.timezone=GMT` or `java -jar -D user.timezone="Asia/Kolkata"`
+*   Start the server with <code>env TZ='{{% variable "TIMEZONE" %}}' java -jar ...</code> OR.
+*   Set the Java virtual machine argument `user.timezone`.
+    This Java virtual machine argument takes precedence over the environment variable TZ.
+    For example, you can use the flag `-D` when running the application:
+    `java -jar -D user.timezone=GMT` or `java -jar -D user.timezone="Asia/Kolkata"`
 
 {{< /codetabs >}}
 

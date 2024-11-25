@@ -24,6 +24,6 @@ Note that it will likely require modification for your specific setup and some c
 
 In particular, this example:
 
-* Defines two MySQL databases.
-* Uses a modified `settings.platformsh.php` that accepts a key variable from `settings.php` to specify which database and file system paths to use.
-* Extracts the `sites` directory to use from the domain.
+*   Defines two MySQL databases.
+*   Uses a modified `settings.platformsh.php` that accepts a key variable from `settings.php` to specify which database and file system paths to use.
+*   Extracts the `sites` directory to use from the domain.

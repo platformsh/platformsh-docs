@@ -9,9 +9,10 @@ weight: 30
 It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
 The Ruby continuous profiling is currently made across 3 dimensions:
-- **CPU Time**:  Time spent running on the CPU
-- **Wall-time**: elapsed time per function call
-- **Allocations**: Time spent running on the CPU
+
+*   **CPU Time**:  Time spent running on the CPU
+*   **Wall-time**: elapsed time per function call
+*   **Allocations**: Time spent running on the CPU
 
 The default sampling frequency is 100 Hz. This means the Ruby continuous profiler is
 collecting information 100 times per second.
@@ -22,27 +23,28 @@ collecting information 100 times per second.
 
 ## Installation
 
-1. Add the `datadog` gem to your `Gemfile` or `gems.rb` file:
+1.  Add the `datadog` gem to your `Gemfile` or `gems.rb` file:
 
-``` bash
+```bash
 gem 'datadog', '~> 2.0'
 ```
 
-2. Install the gems running the `bundle install` command.
+2.  Install the gems running the `bundle install` command.
 
-3. Add the ``ddprofrb exec`` command to your Ruby application start command:
+3.  Add the `ddprofrb exec` command to your Ruby application start command:
 
-``` bash
+```bash
 bundle exec ddprofrb exec ruby myrubyapp.rb
 ```
 
 Rails example:
-``` bash
+
+```bash
 bundle exec ddprofrb exec bin/rails s
 ```
 
 Alternatively, start the profiler by adding the following code in your application's entry point if you can't start it using `ddprofrb exec`:
 
-``` bash
+```bash
 require 'datadog/profiling/preload'
 ```

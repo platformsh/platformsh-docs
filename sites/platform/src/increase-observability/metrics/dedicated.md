@@ -62,7 +62,7 @@ This example should give you an idea of how the metrics appear.
 {{% names/dedicated-gen-2 %}} environments metrics show the resource usage per host within the cluster.
 
 This reference project has a single PHP application and three services: MySQL, Redis, and Solr.
-It has been granted 4&nbsp;GB of memory and 2 virtual CPUs per host based on its plan.
+It has been granted 4 GB of memory and 2 virtual CPUs per host based on its plan.
 
 The metrics below are for a single Production environment.
 
@@ -80,26 +80,26 @@ The project has 2 virtual CPUs allocated per host, as seen in the upper limit fo
 
 RAM measures overall RAM usage, displaying the percentage of the RAM available for each host.
 
-For this example, each host has been granted 4&nbsp;GB of memory.
-The upper limit in the graph is 3.62&nbsp;GB because 0.38&nbsp;GB of memory are in use by the operating system.
+For this example, each host has been granted 4 GB of memory.
+The upper limit in the graph is 3.62 GB because 0.38 GB of memory are in use by the operating system.
 
 ![A closeup of the RAM metrics](/images/metrics/ram.png "0.5")
 
 ### Disk
 
 Disk represents the plan space for all services and mounts,
-which for {{% names/dedicated-gen-2 %}} production environments is [50&nbsp;GB](/dedicated-environments/dedicated-gen-2/overview.md).
+which for {{% names/dedicated-gen-2 %}} production environments is [50 GB](/dedicated-environments/dedicated-gen-2/overview.md).
 
 This example has the following persistent disk space configured:
 
-* App: 9.78&nbsp;GB for the mount `exports`
-* MySQL: 9.78&nbsp;GB
-* Redis: no persistent disk
+*   App: 9.78 GB for the mount `exports`
+*   MySQL: 9.78 GB
+*   Redis: no persistent disk
 
 ![All of the metrics for disks](/images/metrics/disk.png)
 
 For each host, you first see metrics for the root (`/`) folder.
-Utilizing this folder doesn't count against the 50&nbsp;GB set aside for your plan:
+Utilizing this folder doesn't count against the 50 GB set aside for your plan:
 it's infrastructure disk, including the `/tmp` directory.
 It's included in the metrics so you can keep track of build artifacts you write to `/tmp`
 and make sure that they don't get too large and fill up.

@@ -13,12 +13,13 @@ weight: 30
 It is available directly from the Console under the `Profiling` tab of your environments.
 
 The GO continuous profiling is currently made across 6 dimensions:
-- **Allocations**: Number of objects allocated
-- **Allocated Memory**: Number of bytes allocated
-- **CPU**: Time spent running on the CPU
-- **Goroutines**: Number of goroutines (both on-CPU and off-CPU)
-- **Heap Live Objects**: Number of objects allocated that are not yet garbage collected
-- **Heap Live Size**: Number of bytes allocated that are not yet garbage collected
+
+*   **Allocations**: Number of objects allocated
+*   **Allocated Memory**: Number of bytes allocated
+*   **CPU**: Time spent running on the CPU
+*   **Goroutines**: Number of goroutines (both on-CPU and off-CPU)
+*   **Heap Live Objects**: Number of objects allocated that are not yet garbage collected
+*   **Heap Live Size**: Number of bytes allocated that are not yet garbage collected
 
 The default sampling frequency is 100 Hz. This means the Go continuous profiler is
 collecting information 100 times per second.
@@ -65,20 +66,20 @@ defer profiler.Stop()
 
 The `Start` function accepts the following options:
 
-- `WithCPUDuration`: specifies the length at which to collect CPU profiles.
-The default is 45 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_CPU_DURATION`.
+*   `WithCPUDuration`: specifies the length at which to collect CPU profiles.
+    The default is 45 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_CPU_DURATION`.
 
-- `WithCPUProfileRate`: sets the CPU profiling rate in Hz (number of samples per second).
-The default is defined by the Go runtime as 100 Hz. Can also be set via the environment
-variable `BLACKFIRE_CONPROF_CPU_PROFILERATE`.
+*   `WithCPUProfileRate`: sets the CPU profiling rate in Hz (number of samples per second).
+    The default is defined by the Go runtime as 100 Hz. Can also be set via the environment
+    variable `BLACKFIRE_CONPROF_CPU_PROFILERATE`.
 
-- `WithProfileTypes`: sets the profiler types. Multiple profile types can be set (`profiler.CPUProfile`, `profiler.HeapProfile`, `profiler.GoroutineProfile`).
-The default is `Profiler.CPUProfile`.
+*   `WithProfileTypes`: sets the profiler types. Multiple profile types can be set (`profiler.CPUProfile`, `profiler.HeapProfile`, `profiler.GoroutineProfile`).
+    The default is `Profiler.CPUProfile`.
 
-- `WithLabels`: sets custom labels specific to the profile payload that is sent.
+*   `WithLabels`: sets custom labels specific to the profile payload that is sent.
 
-- `WithUploadTimeout`: sets the upload timeout of the message that is sent to the Blackfire Agent.
-The default is 10 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_UPLOAD_TIMEOUT`.
+*   `WithUploadTimeout`: sets the upload timeout of the message that is sent to the Blackfire Agent.
+    The default is 10 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_UPLOAD_TIMEOUT`.
 
 {{% note theme="info" title="Note:" %}}
 If the same parameter is set by both an environment variable and a `Start` call, the explicit
@@ -87,24 +88,23 @@ parameter in the `Start` call takes precedence.
 
 There is also some additional configuration that can be done using environment variables:
 
-- `BLACKFIRE_LOG_FILE`: Sets the log file. The default is logging to `stderr`.
+*   `BLACKFIRE_LOG_FILE`: Sets the log file. The default is logging to `stderr`.
 
-- `BLACKFIRE_LOG_LEVEL`: Sets the log level. The default is logging only errors.
+*   `BLACKFIRE_LOG_LEVEL`: Sets the log level. The default is logging only errors.
 
 ### `func Stop()`
 
 Stops the continuous profiling probe.
 
-
 ## An example application
 
-1. Get the Blackfire Continuous Profiler Go library
+1.  Get the Blackfire Continuous Profiler Go library
 
 ```bash
 go get github.com/blackfireio/go-continuous-profiling
 ```
 
-2. Save the following code as `main.go` and run as follows:
+2.  Save the following code as `main.go` and run as follows:
 
 ```bash
 go run main.go

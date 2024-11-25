@@ -12,7 +12,7 @@ keywords:
 
 This guide assumes you have a project already running with {{< vendor/name >}} and you have the code on your computer.
 
-If you're starting from scratch, first [create a project from a PHP template]({{% create-project-link template=true %}}).
+If you're starting from scratch, first \[create a project from a PHP template]\({{% create-project-link template=true %}}).
 
 ## Before you begin
 

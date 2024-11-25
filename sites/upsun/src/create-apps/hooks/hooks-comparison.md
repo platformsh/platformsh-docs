@@ -5,11 +5,11 @@ description: What hooks are available in the build and deploy process and how to
 
 The following table presents the main differences among the three available hooks:
 
-| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
-| ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- | -------------------- | --------------- | --------------- |
-| `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
-| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts)                   | Yes | No  |
-| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts)                   | No  | Yes |
+| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories                                                | Blocks requests | Runs on all redeploys\* |
+| ------------- | ------------------- | ------------------- | ------------------ | ------- | ------------------------- | ------------------------------------------------------------------- | --------------- | ----------------------- |
+| `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp`              | No              | No                      |
+| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts) | Yes             | No                      |
+| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts) | No              | Yes                     |
 
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
@@ -25,22 +25,22 @@ that are available at build time.
 
 During the `build` hook, there are three writeable directories:
 
-- `$PLATFORM_APP_DIR`:
-  This is where your code is checked out and is the working directory when the `build` hook starts.
-  The contents of this directory after the build hook is the application that gets deployed.
-- `$PLATFORM_CACHE_DIR`:
-  This directory persists between builds, but isn't deployed as part of your application.
-  It's a good place for temporary build artifacts that can be reused between builds.
-  It's shared by all builds on all branches.
-- `/tmp`:
-  The temp directory is also useful for writing files that aren't needed in the final application,
-  but it's wiped between each build.
-  Note that `$PLATFORM_CACHE_DIR` is mapped to `/tmp`
-  and together they offer about 8GB of free space.
+*   `$PLATFORM_APP_DIR`:
+    This is where your code is checked out and is the working directory when the `build` hook starts.
+    The contents of this directory after the build hook is the application that gets deployed.
+*   `$PLATFORM_CACHE_DIR`:
+    This directory persists between builds, but isn't deployed as part of your application.
+    It's a good place for temporary build artifacts that can be reused between builds.
+    It's shared by all builds on all branches.
+*   `/tmp`:
+    The temp directory is also useful for writing files that aren't needed in the final application,
+    but it's wiped between each build.
+    Note that `$PLATFORM_CACHE_DIR` is mapped to `/tmp`
+    and together they offer about 8GB of free space.
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
 
-This is _not_ the disk specified by your [resources configuration](/manage-resources.md).
+This is *not* the disk specified by your [resources configuration](/manage-resources.md).
 
 If you exceed this limit, you receive a `No space left on device` error.
 See how to [troubleshoot this error](../troubleshoot-disks.md#no-space-left-on-device).

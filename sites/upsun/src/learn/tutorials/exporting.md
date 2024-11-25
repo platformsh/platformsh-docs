@@ -10,10 +10,10 @@ At any time, you can download your site's data for local development, to back up
 
 You need:
 
-- [Git](https://git-scm.com/downloads)
-- A {{% vendor/name %}} account
-- Code in your project
-- Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
+*   [Git](https://git-scm.com/downloads)
+*   A {{% vendor/name %}} account
+*   Code in your project
+*   Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
 ## 1. Download your app's code
 
@@ -23,36 +23,36 @@ To download your entire app's code history:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. List all your projects by running the following command:
+1.  List all your projects by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} projects
-   ```
+    ```bash
+    {{% vendor/cli %}} projects
+    ```
 
-2. Retrieve the project you want to back up by running the following command:
+2.  Retrieve the project you want to back up by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} get {{< variable "PROJECT_ID" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} get {{< variable "PROJECT_ID" >}}
+    ```
 
 <--->
 
-+++
+\+++
 title=Using Git
-+++
+\+++
 
-1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **Code {{< icon chevron >}}**.
-2. Click **Git**.
-3. To copy the command, click **{{< icon copy >}} Copy**.
-   The command is similar to the following:
+1.  In the \[Console]\(<https://console.{{>< vendor/urlraw "host" >}}/), open your project and click **Code {{< icon chevron >}}**.
+2.  Click **Git**.
+3.  To copy the command, click **{{< icon copy >}} Copy**.
+    The command is similar to the following:
 
-   ```text
-   git clone abcdefgh1234567@git.eu.{{< vendor/urlraw "host" >}}:abcdefgh1234567.git project-name
-   ```
+    ```text
+    git clone abcdefgh1234567@git.eu.{{< vendor/urlraw "host" >}}:abcdefgh1234567.git project-name
+    ```
 
 {{< /codetabs >}}
 
@@ -72,10 +72,10 @@ it's generally not necessary to download data as it can be rebuilt from the prim
 
 For services designed to hold persistent data, see each service's page for instructions:
 
-- [MySQL](/add-services/mysql/_index.md#exporting-data)
-- [PostgreSQL](/add-services/postgresql.md#exporting-data)
-- [MongoDB](/add-services/mongodb.md#exporting-data)
-- [InfluxDB](/add-services/influxdb.md#export-data)
+*   [MySQL](/add-services/mysql/_index.md#exporting-data)
+*   [PostgreSQL](/add-services/postgresql.md#exporting-data)
+*   [MongoDB](/add-services/mongodb.md#exporting-data)
+*   [InfluxDB](/add-services/influxdb.md#export-data)
 
 ## 4. Get environment variables
 
@@ -83,8 +83,8 @@ Environment variables can contain critical information such as tokens or additio
 
 Environment variables can have different prefixes:
 
-- Variables beginning with `env:` are exposed [as Unix environment variables](/development/variables/_index.md#top-level-environment-variables).
-- Variables beginning with `php:` are interpreted [as `php.ini` directives](/development/variables/_index.md#php-specific-variables).
+*   Variables beginning with `env:` are exposed [as Unix environment variables](/development/variables/_index.md#top-level-environment-variables).
+*   Variables beginning with `php:` are interpreted [as `php.ini` directives](/development/variables/_index.md#php-specific-variables).
 
 All other variables are [part of `$PLATFORM_VARIABLES`](/development/variables/use-variables.md#use-provided-variables).
 
@@ -92,34 +92,34 @@ To back up your environment variables:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
-1. Get the variable's values by running the following command:
+1.  Get the variable's values by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} ssh -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
-   ```
+    ```bash
+    {{% vendor/cli %}} ssh -- 'echo $PLATFORM_VARIABLES | base64 -d | jq'
+    ```
 
-   Note that you can also get all the environment variable values by running the following command:
+    Note that you can also get all the environment variable values by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} ssh -- env
-   ```
+    ```bash
+    {{% vendor/cli %}} ssh -- env
+    ```
 
-2. Store the data somewhere secure on your computer.
+2.  Store the data somewhere secure on your computer.
 
 <--->
 
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. In the [Console](https://console.{{< vendor/urlraw "host" >}}/), open your project and click **{{< icon settings >}}**.
-2. Click **Project Settings {{< icon chevron >}}**.
-3. Click **Variables** and access your variable's values and settings.
-4. Store the data somewhere secure on your computer.
+1.  In the \[Console]\(<https://console.{{>< vendor/urlraw "host" >}}/), open your project and click **{{< icon settings >}}**.
+2.  Click **Project Settings {{< icon chevron >}}**.
+3.  Click **Variables** and access your variable's values and settings.
+4.  Store the data somewhere secure on your computer.
 
 Note that in the Console, you can't access the value of variables that have been [marked as sensitive](/development/variables/set-variables.md#variable-options).
 Use the CLI to retrieve these values.
@@ -128,6 +128,6 @@ Use the CLI to retrieve these values.
 
 ## What's next
 
-- Migrate data from elsewhere [into {{% vendor/name %}}](/learn/tutorials/migrating/_index.md).
-- Migrate to [another region](/projects/region-migration.md).
-- To use data from an environment locally, export your data and set up your [local development environment](/development/local/_index.md).
+*   Migrate data from elsewhere [into {{% vendor/name %}}](/learn/tutorials/migrating/_index.md).
+*   Migrate to [another region](/projects/region-migration.md).
+*   To use data from an environment locally, export your data and set up your [local development environment](/development/local/_index.md).

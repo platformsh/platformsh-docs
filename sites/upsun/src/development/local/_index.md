@@ -24,11 +24,11 @@ If you choose to use DDEV, follow the steps [on its page](./ddev.md). Otherwise,
 
 You need to have:
 
-- A {{< vendor/name >}} account:
-  new users can [register here](https://upsun.com/register/)
-- A working project
-- [Git](https://git-scm.com/downloads)
-- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
+*   A {{< vendor/name >}} account:
+    new users can [register here](https://upsun.com/register/)
+*   A working project
+*   [Git](https://git-scm.com/downloads)
+*   The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 
 ## 1. Get your code
 
@@ -58,9 +58,9 @@ For more information, see how to [connect services](../../add-services#2-connect
 
 If your app requires services to run, you have two options for developing locally:
 
-- [Tethered local development](./tethered.md) involves running your app on a local web server
-  but keeping all other services on {{% vendor/name %}} and connecting to them over an SSH tunnel.
-- [Untethered local development](./untethered.md) involves running your entire site locally,
-  including all services.
+*   [Tethered local development](./tethered.md) involves running your app on a local web server
+    but keeping all other services on {{% vendor/name %}} and connecting to them over an SSH tunnel.
+*   [Untethered local development](./untethered.md) involves running your entire site locally,
+    including all services.
 
 Choose the option that works for you and get your services running.

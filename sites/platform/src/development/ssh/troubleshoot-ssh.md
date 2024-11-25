@@ -40,19 +40,21 @@ If you add an already used SSH key to another account, you see the error: `SSH k
 
 Check that your key is properly added to your SSH agent. This is an authentication agent that manages your private key.
 
-1. Run `ssh-add -l` in your terminal:
+1.  Run `ssh-add -l` in your terminal:
 
-   ```bash
-   ssh-add -l
-   ```
-   You get output similar to the following:
+    ```bash
+    ssh-add -l
+    ```
 
-   ```bash
-   2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/your_username/.ssh/id_rsa (RSA)
-   ```
+    You get output similar to the following:
 
-1. Check that the file exists and that the file name or comment matches your private key file.
-1. If you don't see your private key file, add your private key:
+    ```bash
+    2048 12:b0:13:83:7f:56:18:9b:78:ca:54:90:a7:ff:12:69 /Users/your_username/.ssh/id_rsa (RSA)
+    ```
+
+2.  Check that the file exists and that the file name or comment matches your private key file.
+
+3.  If you don't see your private key file, add your private key:
 
     ```bash
     ssh-add path-to-your-key
@@ -140,8 +142,8 @@ Similarly for bot users and CLI tokens, you may see the message:
 
 In this case, as described, it will be necessary to:
 
-1. Enable MFA on the (bot) user account associated with the token.
-2. Generate a new access token, and then replace its value in your workflow that requires the token (such as updating a GitHub workflow secret variable).
+1.  Enable MFA on the (bot) user account associated with the token.
+2.  Generate a new access token, and then replace its value in your workflow that requires the token (such as updating a GitHub workflow secret variable).
 
 ## Something still wrong?
 

@@ -30,7 +30,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-{{% language-specification type="python" display_name="Python" %}}
+{{% language-specification type="python" display\_name="Python" %}}
 
 ```yaml {configFile="app"}
 type: 'python:<VERSION_NUMBER>'
@@ -57,10 +57,13 @@ You can define any server to handle requests.
 Once you have it configured, add the following configuration to get it running on {{% vendor/name %}}:
 
 1.  Specify one of the [supported versions](#supported-versions):
+
 ```yaml {configFile="app"}
 type: 'python:{{% latest "python" %}}'
 ```
+
 2.  Install the requirements for your app.
+
 ```yaml {configFile="app"}
 dependencies:
     python3:
@@ -71,6 +74,7 @@ hooks:
         set -eu
         pipenv install --system --deploy
 ```
+
 3.  Define the command to start your web server:
 
 ```yaml {configFile="app"}
@@ -90,9 +94,11 @@ You can also use [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) to manage
 Follow these steps to get your server started.
 
 1.  Specify one of the [supported versions](#supported-versions):
+
 ```yaml {configFile="app"}
 type: 'python:{{% latest "python" %}}'
 ```
+
 2.  Define the conditions for your web server:
 
 ```yaml {configFile="app"}
@@ -114,6 +120,7 @@ type: 'python:{{% latest "python" %}}'
                 passthru: true
                 expires: 1h
 ```
+
 3.  Create configuration for uWSGI such as the following:
 
     ```ini {location="config/uwsgi.ini"}
@@ -130,6 +137,7 @@ type: 'python:{{% latest "python" %}}'
     Replace `app.py` with whatever your file is.
 
 4.  Install the requirements for your app.
+
 ```yaml {configFile="app"}
 dependencies:
     python3:
@@ -140,6 +148,7 @@ hooks:
         set -eu
         pipenv install --system --deploy
 ```
+
 5.  Define the entry point in your app:
 
     ```python
@@ -165,6 +174,7 @@ dependencies:
     python3:
         {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
 ```
+
 For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
 
 ```yaml {configFile="app"}
@@ -177,6 +187,7 @@ hooks:
         set -eu
         pipenv install --system --deploy
 ```
+
 ## Connect to services
 
 The following examples show how to access various [services](../../add-services/_index.md) with Python.
@@ -184,84 +195,84 @@ For more information on configuring a given service, see the page for that servi
 
 {{< codetabs v2hide="true" >}}
 
-+++
+\+++
 title=Elasticsearch
 file=static/files/fetch/examples/python/elasticsearch
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Kafka
 file=static/files/fetch/examples/python/kafka
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Memcached
 file=static/files/fetch/examples/python/memcached
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MongoDB
 file=static/files/fetch/examples/python/mongodb
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MySQL
 file=static/files/fetch/examples/python/mysql
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PostgreSQL
 file=static/files/fetch/examples/python/postgresql
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=RabbitMQ
 file=static/files/fetch/examples/python/rabbitmq
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Redis
 file=static/files/fetch/examples/python/redis
 highlight=python
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Solr
 file=static/files/fetch/examples/python/solr
 highlight=python
 markdownify=false
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -280,7 +291,7 @@ see how to [sanitize databases](../../development/sanitize-db/_index.md).
 All major Python web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Django](../../guides/django/_index.md)
+*   [Django](../../guides/django/_index.md)
 
 ## Project templates
 

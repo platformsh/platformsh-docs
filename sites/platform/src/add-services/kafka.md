@@ -36,7 +36,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -66,7 +66,7 @@ To define the service, use the `kafka` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -82,12 +82,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -122,40 +122,42 @@ To use the configured service in your app, add a configuration file similar to t
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/kafka
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/kafka
 highlight=python
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Ruby
 highlight=ruby
-+++
+\+++
 
 ## With the ruby-kafka gem
 
 # Producer
+
 require "kafka"
-kafka = Kafka.new(["kafka.internal:9092"], client_id: "my-application")
-kafka.deliver_message("Hello, World!", topic: "greetings")
+kafka = Kafka.new(\["kafka.internal:9092"], client\_id: "my-application")
+kafka.deliver\_message("Hello, World!", topic: "greetings")
 
 # Consumer
-kafka.each_message(topic: "greetings") do |message|
-  puts message.offset, message.key, message.value
+
+kafka.each\_message(topic: "greetings") do |message|
+puts message.offset, message.key, message.value
 end
 
 {{< /codetabs >}}
 
-The specific way to inject configuration into your application varies. 
+The specific way to inject configuration into your application varies.
 Consult your application or framework's documentation.

@@ -28,7 +28,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-{{% language-specification type="lisp" display_name="Lisp" %}}
+{{% language-specification type="lisp" display\_name="Lisp" %}}
 
 ```yaml {configFile="app"}
 type: 'lisp:<VERSION_NUMBER>'
@@ -44,7 +44,7 @@ type: 'lisp:{{% latest "lisp" %}}'
 
 {{% vendor/name %}} is making assumptions about your application to provide a more streamlined experience. These assumptions are the following:
 
-- Your `.asd` file is named like your system name. For example `example.asd` has `(defsystem example ...)`.
+*   Your `.asd` file is named like your system name. For example `example.asd` has `(defsystem example ...)`.
 
 {{% vendor/name %}} will then run `(asdf:make :example)` on your system to build a binary.
 
@@ -94,7 +94,7 @@ To get the `PORT` environment variable (the port on which your web application i
 
 Assuming `example.lisp` and `example.asd` are present in your repository, the app is automatically built on push.
 You can then start it from the `web.commands.start` directive.
-Note that the start command _must_ run in the foreground. Should the program terminate for any reason it's automatically restarted. In the example below the app sleeps for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program doesn't terminate.
+Note that the start command *must* run in the foreground. Should the program terminate for any reason it's automatically restarted. In the example below the app sleeps for a very, very long time. You could also choose to join the thread of your web server, or use other methods to make sure the program doesn't terminate.
 
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Lisp applications.
 
@@ -194,8 +194,6 @@ The following is a basic example of a Hunchentoot-based web app
 Notice how it gets the `PORT` from the environment and how it sleeps at the end,
 as `(start acceptor)` immediately yields and {{% vendor/name %}} requires apps to run in the foreground.
 
-
 ## Project templates
 
 {{< repolist lang="lisp" displayName="Lisp" >}}
-

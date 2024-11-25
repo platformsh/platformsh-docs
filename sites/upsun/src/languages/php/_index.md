@@ -22,7 +22,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 Note that from PHP versions 7.1 to 8.1, the images support the Zend Thread Safe (ZTS) version of PHP.
 
-{{% language-specification type="php" display_name="PHP" %}}
+{{% language-specification type="php" display\_name="PHP" %}}
 
 ```yaml {configFile="app"}
 applications:
@@ -59,29 +59,30 @@ applications:
     app:
         type: 'php:{{% latest "php" %}}'
 ```
+
 ### 2. Serve your app
 
 To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/app-reference/single-runtime-image.md#locations).
 
 Usually, it contains the two following (optional) keys:
 
-- `root` for the document root,
-  the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
-- `passthru` to [define a front controller](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
-  The value is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+*   `root` for the document root,
+    the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
+*   `passthru` to [define a front controller](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
+    The value is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
-  {{< note >}}
+    {{< note >}}
 
-  For enhanced security, when setting `passthru` to `true`, you might also want to add the following configuration:
+    For enhanced security, when setting `passthru` to `true`, you might also want to add the following configuration:
 
-  1. Set `scripts` to `false`.
-     This prevents PHP scripts from being executed from the specified location.
+    1.  Set `scripts` to `false`.
+        This prevents PHP scripts from being executed from the specified location.
 
-  2. Set `allow` to `false`.
-     By default, when PHP scripts aren't executed, their source code is delivered.
-     Setting `allow` to `false` allows you to keep the source code of your PHP scripts confidential.
+    2.  Set `allow` to `false`.
+        By default, when PHP scripts aren't executed, their source code is delivered.
+        Setting `allow` to `false` allows you to keep the source code of your PHP scripts confidential.
 
-  {{< /note >}}
+    {{< /note >}}
 
 Adjust the `locations` block to fit your needs.
 
@@ -99,6 +100,7 @@ applications:
                     root: 'public'
                     passthru: '/app.php'
 ```
+
 See how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
 To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
 
@@ -117,6 +119,7 @@ applications:
                     root: 'public'
                     passthru: '/app.php'
 ```
+
 ## Dependencies
 
 Up to PHP version 8.1, it's assumed that you're using [Composer](https://getcomposer.org/) 1.x to manage dependencies.
@@ -138,6 +141,7 @@ applications:
             php:
                 composer/composer: '^2'
 ```
+
 Adding a dependency to the [dependencies block](/create-apps/app-reference/single-runtime-image.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
 You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/_index.md#2-specify-any-global-dependencies).
@@ -168,6 +172,7 @@ applications:
                 set -e
                 composer install --no-interaction --no-dev
 ```
+
 That installs production dependencies with Composer but not development dependencies.
 The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md).
 
@@ -181,7 +186,7 @@ So you can install a forked version of a global dependency from a custom reposit
 
 To install from an alternative repository:
 
-1. Set an explicit `require` block:
+1.  Set an explicit `require` block:
 
 ```yaml {configFile="app"}
 applications:
@@ -194,9 +199,10 @@ applications:
                 require:
                     "platformsh/client": "2.x-dev"
 ```
-   This is equivalent to `composer require platform/client 2.x-dev`.
 
-2. Add the repository to use:
+This is equivalent to `composer require platform/client 2.x-dev`.
+
+2.  Add the repository to use:
 
 ```yaml {configFile="app"}
 applications:
@@ -212,6 +218,7 @@ applications:
                     - type: vcs
                       url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
+
 That installs `platformsh/client` from the specified repository URL as a global dependency.
 
 For example, to install Composer 2 and the `platform/client 2.x-dev` library from a custom repository,
@@ -232,82 +239,82 @@ applications:
                     - type: vcs
                       url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
+
 ## Connect to services
 
 {{< codetabs v2hide="true" >}}
 
-+++
+\+++
 title=Elasticsearch
 file=static/files/fetch/examples/php/elasticsearch
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Memcached
 file=static/files/fetch/examples/php/memcached
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MongoDB
 file=static/files/fetch/examples/php/mongodb
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=MySQL
 file=static/files/fetch/examples/php/mysql
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PostgreSQL
 file=static/files/fetch/examples/php/postgresql
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=RabbitMQ
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Redis
 file=static/files/fetch/examples/php/redis
 highlight=php
 markdownify=false
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Solr
 file=static/files/fetch/examples/php/solr
 highlight=php
 markdownify=false
-+++
+\+++
 
 {{< /codetabs >}}
-
 
 {{% access-services version="2" %}}
 
@@ -318,17 +325,17 @@ You can configure your PHP-FPM runtime configuration by specifying the [runtime 
 In addition to changes in runtime, you can also change the PHP settings.
 Some commonly used settings are:
 
-| Name | Default | Description |
-|------|---------|-------------|
-| `max_execution_time` | `300` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits. |
-| `max_file_uploads` | `20` | The maximum number of files that can be uploaded in each request. |
-| `max_input_time` | `60` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits. |
-| `max_input_vars` | `1000` | The maximum number of input variables that are accepted in each request. |
-| `memory_limit` | `128M` | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory. |
-| `post_max_size` | `64M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
-| `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
-| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value. |
-| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
+| Name                          | Default | Description                                                                                                                                                                                           |
+| ----------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `max_execution_time`          | `300`   | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits.                                                                                 |
+| `max_file_uploads`            | `20`    | The maximum number of files that can be uploaded in each request.                                                                                                                                     |
+| `max_input_time`              | `60`    | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits.                                                  |
+| `max_input_vars`              | `1000`  | The maximum number of input variables that are accepted in each request.                                                                                                                              |
+| `memory_limit`                | `128M`  | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory.                                                                     |
+| `post_max_size`               | `64M`   | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value.                                                                                                        |
+| `zend.assertions`             | `-1`    | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
+| `opcache.memory_consumption`  | `64`    | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value.                                                             |
+| `opcache.validate_timestamps` | `On`    | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation).                                                                          |
 
 ### Retrieve the default values
 
@@ -377,9 +384,9 @@ The recommended method is to use variables.
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Using variables
-+++
+\+++
 
 Set variables to override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
 
@@ -396,9 +403,9 @@ For more information, see how to use [PHP-specific variables](../../development/
 
 <--->
 
-+++
+\+++
 title=Using `php.ini`
-+++
+\+++
 
 You can provide a custom `php.ini` file at the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 Using this method isn't recommended since it offers less flexibility and is more error-prone.
@@ -440,30 +447,31 @@ applications:
             php:
                 disable_functions: "pcntl_exec,pcntl_fork"
 ```
+
 Common functions to disable include:
 
-| Name | Description |
-|------|-------------|
-| `create_function` | This function has been replaced by anonymous functions and shouldn't be used anymore. |
-| `exec`, `passthru`, `shell_exec`, `system`, `proc_open`, `popen` | These functions allow a PHP script to run a bash shell command. Rarely used by web apps except for build scripts that might need them. |
-| `pcntl_*` | The `pcntl_*` functions are responsible for process management. Most of them cause a fatal error if used within a web request. Cron tasks or workers may need them. Most are usually safe to disable. |
-| `curl_exec`, `curl_multi_exec` | These functions allow a PHP script to make arbitrary HTTP requests. If you're using HTTP libraries such as Guzzle, don't disable them. |
-| `show_source` | This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development. |
+| Name                                                             | Description                                                                                                                                                                                           |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `create_function`                                                | This function has been replaced by anonymous functions and shouldn't be used anymore.                                                                                                                 |
+| `exec`, `passthru`, `shell_exec`, `system`, `proc_open`, `popen` | These functions allow a PHP script to run a bash shell command. Rarely used by web apps except for build scripts that might need them.                                                                |
+| `pcntl_*`                                                        | The `pcntl_*` functions are responsible for process management. Most of them cause a fatal error if used within a web request. Cron tasks or workers may need them. Most are usually safe to disable. |
+| `curl_exec`, `curl_multi_exec`                                   | These functions allow a PHP script to make arbitrary HTTP requests. If you're using HTTP libraries such as Guzzle, don't disable them.                                                                |
+| `show_source`                                                    | This function shows a syntax highlighted version of a named PHP source file. Rarely useful outside of development.                                                                                    |
 
 ## Execution mode
 
 PHP has two execution modes you can choose from:
 
-- The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
-  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/app-reference/single-runtime-image.md#crons),
-  and usually also for [alternate start commands](#alternate-start-commands).
-  To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
-  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
-- The Common Gateway Interface mode (PHP-CGI) is the mode used for web apps and web requests.
-  This is the default mode when the `start` command isn't explicitly set.
-  To use PHP-CGI, run your script with a symlink: `/usr/bin/start-php-app {{<variable "PATH_TO_SCRIPT" >}}`,
-  where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
-  With PHP-CGI, PHP is run using the FastCGI Process Manager (PHP-FPM).
+*   The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
+    This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/app-reference/single-runtime-image.md#crons),
+    and usually also for [alternate start commands](#alternate-start-commands).
+    To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
+    where {{\<variable "PATH\_TO\_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+*   The Common Gateway Interface mode (PHP-CGI) is the mode used for web apps and web requests.
+    This is the default mode when the `start` command isn't explicitly set.
+    To use PHP-CGI, run your script with a symlink: `/usr/bin/start-php-app {{<variable "PATH_TO_SCRIPT" >}}`,
+    where {{\<variable "PATH\_TO\_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+    With PHP-CGI, PHP is run using the FastCGI Process Manager (PHP-FPM).
 
 ## Alternate start commands
 
@@ -483,12 +491,12 @@ See some generic examples on how to use alternate start commands:
 
 {{< codetabs >}}
 
-+++
+\+++
 title=Run a custom script
-+++
+\+++
 
-1. Add your script in a PHP file.
-2. Specify an alternative `start` command by adapting the following:
+1.  Add your script in a PHP file.
+2.  Specify an alternative `start` command by adapting the following:
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="myapp" >}}
@@ -500,9 +508,9 @@ web:
 
 <--->
 
-+++
+\+++
 title=Run a custom web server
-+++
+\+++
 
 1.  Add your web server's code in a PHP file.
 
@@ -527,10 +535,10 @@ web:
 {{< /snippet >}}
 ```
 
-   When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
-   See more options on how to [configure where requests are sent](/create-apps/app-reference/single-runtime-image.md#upstream).
-   You might have to configure your app to connect via the `$PORT` TCP socket,
-   especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
+When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
+See more options on how to [configure where requests are sent](/create-apps/app-reference/single-runtime-image.md#upstream).
+You might have to configure your app to connect via the `$PORT` TCP socket,
+especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 
 4.  Optional: Override redirects to let the custom web server handle them:
 
@@ -546,9 +554,9 @@ locations:
 
 <--->
 
-+++
+\+++
 title=Run specific tasks
-+++
+\+++
 
 To execute runtime-specific tasks (such as clearing cache) before your app starts, follow these steps:
 
@@ -564,8 +572,8 @@ web:
 {{< /snippet >}}
 ```
 
-   {{<variable "PATH_TO_SCRIPT" >}} is the bash script created in step 1.
-   {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+{{\<variable "PATH\_TO\_SCRIPT" >}} is the bash script created in step 1.
+{{\<variable "PATH\_TO\_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
 {{< /codetabs >}}
 
@@ -626,8 +634,8 @@ applications:
 All major PHP web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Laravel](/get-started/stacks/laravel)
-- [Symfony](/get-started/stacks/symfony/_index.md)
+*   [Laravel](/get-started/stacks/laravel)
+*   [Symfony](/get-started/stacks/symfony/_index.md)
 
 ## Modify your PHP runtime when using the composable image
 
@@ -641,13 +649,13 @@ The following table presents the possible modifications you can make to your PHP
 Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
 See the example below for more details.
 
-| Name                        | Type                                                       | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| Name                        | Type                                                                                                                          | Description                                                                                |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
-| `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
-| `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+| `disabled_extensions`       | List of `string`s                                                                                                             | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
+| `request_terminate_timeout` | `integer`                                                                                                                     | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
+| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
+| `xdebug`                    | An Xdebug definition                                                                                                          | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
 Here is an example configuration:
 

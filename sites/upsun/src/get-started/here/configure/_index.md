@@ -19,15 +19,16 @@ my-app
 ```
 
 To pre-generate these YAML files, run the following command from the root of your project.
+
 ```bash {location="Terminal"}
 {{% vendor/cli %}} project:init
 ```
 
 Follow the prompts. The `{{% vendor/cli %}} project:init` command does the following:
 
-- If possible, automatically detects which framework you’re using. If not detected, you are asked which runtime language your codebase is in.
-- Asks if you want to add any services.
-- Generates the corresponding `{{% vendor/configfile "app" %}}` and `.environment` files.
+*   If possible, automatically detects which framework you’re using. If not detected, you are asked which runtime language your codebase is in.
+*   Asks if you want to add any services.
+*   Generates the corresponding `{{% vendor/configfile "app" %}}` and `.environment` files.
 
 The generated configuration varies slightly based on your answers to these prompts and whether a framework is detected.
 However, the structure of the configuration file remains similar to the following:
@@ -47,6 +48,7 @@ However, the structure of the configuration file remains similar to the followin
     # Configuration for routing to applications
     {{< code-link destination="/define-routes.html" text="'https://{default}/':" title="Configuration for a unique service" >}}
 ```
+
 {{% note %}}
 If you want more information on the structure of this configuration file, see the dedicated [YAML page](/learn/overview/yaml/_index.md).
 {{% /note %}}
@@ -78,9 +80,10 @@ By default, {{% vendor/name %}} uses default resources for each of your services
 If you try to push a source code that is not {{% vendor/name %}} ready, the following error is usually triggered at this point:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using {{% vendor/name %}} CLI
-+++
+\+++
+
 ```bash
 Found 749 commits
 
@@ -89,10 +92,11 @@ E: Error parsing configuration files:
 
 E: Error: Invalid configuration files, aborting build
 ```
+
 <--->
-+++
+\+++
 title=Using Console
-+++
+\+++
 ![Create project options](/images/console/first-fail.png "0.4")
 {{< /codetabs >}}
 
@@ -107,9 +111,9 @@ Have no fear! {{% vendor/name %}} provides a highly customizable configuration s
 
 To start exploring what might still be needed, see the following language-specific configuration pages:
 
-- [JavaScript/Node.js](/get-started/here/configure/nodejs)
-- [PHP](/get-started/here/configure/php)
-- [Python](/get-started/here/configure/python)
+*   [JavaScript/Node.js](/get-started/here/configure/nodejs)
+*   [PHP](/get-started/here/configure/php)
+*   [Python](/get-started/here/configure/python)
 
 ## Next steps
 
@@ -129,4 +133,4 @@ Each time you create a new branch, your new environment inherits its parent envi
 
 If you need more disk for uploaded files, or less memory for rarely used services, you can [adjust resources](/manage-resources/adjust-resources.md) at any time.
 
-{{< guide-buttons previous="Back" next="Resources" nextLink="/get-started/here/set-resources.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Resources" nextLink="/get-started/here/set-resources.md" type="\*" >}}

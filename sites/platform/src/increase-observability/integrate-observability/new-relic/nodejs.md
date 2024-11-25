@@ -95,7 +95,7 @@ You can check that your application is properly connected to New Relic by lookin
 
 Which has an output similar to the following:
 
-``` bash
+```bash
 {"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.890Z","msg":"Connected to collector-001.eu01.nr-data.net:443 with agent run ID xxxxx.","component":"collector_api"}
 {"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.890Z","msg":"Reporting to: https://rpm.eu.newrelic.com/accounts/xxxxx/applications/xxxxx","component":"collector_api"}
 {"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.892Z","msg":"Valid event_harvest_config received. Updating harvest cycles. {\"report_period_ms\":5000,\"harvest_limits\":{\"error_event_data\":8,\"analytic_event_data\":833,\"custom_event_data\":83}}"}

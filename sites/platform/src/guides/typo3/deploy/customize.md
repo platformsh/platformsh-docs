@@ -179,15 +179,15 @@ Finally, you can start using the {{% vendor/name %}} Configuration Reader librar
 to starting reading from the environment from within your application.
 In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the library to:
 
-- Verify the deployment is occurring on a {{% vendor/name %}} project (`if (!$platformConfig->isValidPlatform())`)
-- Verify that it's not running during build,
-  when services aren't yet available (`if ($platformConfig->inBuild())`)
-- Set the `PLATFORM_ROUTES_MAIN` environment variable used in `config/sites/main/config.yaml`)
-- Configure TYPO3's database (`TYPO3_CONF_VARS.DB.Connections.Default`) using credentials from the `database` relationship
-  (`$databaseConfig = $platformConfig->credentials('database')`)
-- Configure TYPO3's `cacheConfigurations` to use Redis via your `rediscache` relationship
-- Configure the HTTP timeout to 3 seconds
-  to avoid the PHP-FPM-related [deadlock described above](#avoiding-deadlock-with-the-local-page-error-handler).
+*   Verify the deployment is occurring on a {{% vendor/name %}} project (`if (!$platformConfig->isValidPlatform())`)
+*   Verify that it's not running during build,
+    when services aren't yet available (`if ($platformConfig->inBuild())`)
+*   Set the `PLATFORM_ROUTES_MAIN` environment variable used in `config/sites/main/config.yaml`)
+*   Configure TYPO3's database (`TYPO3_CONF_VARS.DB.Connections.Default`) using credentials from the `database` relationship
+    (`$databaseConfig = $platformConfig->credentials('database')`)
+*   Configure TYPO3's `cacheConfigurations` to use Redis via your `rediscache` relationship
+*   Configure the HTTP timeout to 3 seconds
+    to avoid the PHP-FPM-related [deadlock described above](#avoiding-deadlock-with-the-local-page-error-handler).
 
 ```php
 <?php

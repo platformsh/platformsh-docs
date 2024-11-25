@@ -14,45 +14,45 @@ These are included in your project, so you can manage them with Git and back the
 
 Add a database service (or choose [another service](../../add-services/_index.md)) by following these steps:
 
-1. Create a services configuration file.
+1.  Create a services configuration file.
 
-   ```bash
-   touch {{< vendor/configfile "services" >}}
-   ```
+    ```bash
+    touch {{< vendor/configfile "services" >}}
+    ```
 
-   This file holds the configuration for all services your app needs.
+    This file holds the configuration for all services your app needs.
 
-2. Add a database in that file.
-   (If you need a different database service, you can choose from the [available services](../../add-services/_index.md#available-services).
-   Then change the `type` to fit your choice.)
+2.  Add a database in that file.
+    (If you need a different database service, you can choose from the [available services](../../add-services/_index.md#available-services).
+    Then change the `type` to fit your choice.)
 
-   ```yaml {configFile="services"}
-   db:
-       type: mariadb:10.5
-       disk: 1024
-   ```
+    ```yaml {configFile="services"}
+    db:
+        type: mariadb:10.5
+        disk: 1024
+    ```
 
-   Note that `db` is the name of the service.
-   You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
+    Note that `db` is the name of the service.
+    You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
-3. Add a relationship between the database and your app in your app configuration:
+3.  Add a relationship between the database and your app in your app configuration:
 
-   ```yaml {configFile="app"}
-   relationships:
-       database: "db:mysql"
-   ```
+    ```yaml {configFile="app"}
+    relationships:
+        database: "db:mysql"
+    ```
 
-   This relationship is where connections are made.
-   The `database` is the name of the relationship, which you can change if you want.
-   The `db` has to be the same as the service name from step 2.
+    This relationship is where connections are made.
+    The `database` is the name of the relationship, which you can change if you want.
+    The `db` has to be the same as the service name from step 2.
 
-4. Commit your changes and push:
+4.  Commit your changes and push:
 
-   ```bash
-   git add .
-   git commit -m "Add database and connect to app"
-   {{% vendor/cli %}} push
-   ```
+    ```bash
+    git add .
+    git commit -m "Add database and connect to app"
+    {{% vendor/cli %}} push
+    ```
 
 Now you have a database you can connect to your app.
 
@@ -86,31 +86,31 @@ At the same time, your testing has no effect on the production data so you don't
 
 To see how the data in child environments is separate, follow these steps:
 
-1. Add a table to your `dev` database:
+1.  Add a table to your `dev` database:
 
-   ```bash
-   {{% vendor/cli %}} sql --environment dev 'CREATE TABLE child_data (a int); INSERT INTO child_data(a) VALUES (1), (2), (3);'
-   ```
+    ```bash
+    {{% vendor/cli %}} sql --environment dev 'CREATE TABLE child_data (a int); INSERT INTO child_data(a) VALUES (1), (2), (3);'
+    ```
 
-2. See the data in the `dev` database:
+2.  See the data in the `dev` database:
 
-   ```bash
-   {{% vendor/cli %}} sql --environment dev 'SELECT * FROM child_data'
-   ```
+    ```bash
+    {{% vendor/cli %}} sql --environment dev 'SELECT * FROM child_data'
+    ```
 
-   You get a table with a single column and 3 numbers.
+    You get a table with a single column and 3 numbers.
 
-3. Merge the environment:
+3.  Merge the environment:
 
-   ```bash
-   {{% vendor/cli %}} merge
-   ```
+    ```bash
+    {{% vendor/cli %}} merge
+    ```
 
-4. Check the data in the production environment:
+4.  Check the data in the production environment:
 
-   ```bash
-   {{% vendor/cli %}} sql --environment main 'SELECT * FROM child_data'
-   ```
+    ```bash
+    {{% vendor/cli %}} sql --environment main 'SELECT * FROM child_data'
+    ```
 
 You get an error message that the table doesn't exist.
 
@@ -118,33 +118,33 @@ You get an error message that the table doesn't exist.
 
 To see how the data in parent environments can be inherited, follow these steps:
 
-1. Add a table to your production database:
+1.  Add a table to your production database:
 
-   ```bash
-   {{% vendor/cli %}} sql --environment main 'CREATE TABLE parent_data (a int); INSERT INTO parent_data(a) VALUES (1), (2), (3);'
-   ```
+    ```bash
+    {{% vendor/cli %}} sql --environment main 'CREATE TABLE parent_data (a int); INSERT INTO parent_data(a) VALUES (1), (2), (3);'
+    ```
 
-2. See the data in the production database:
+2.  See the data in the production database:
 
-   ```bash
-   {{% vendor/cli %}} sql --environment main 'SELECT * FROM parent_data'
-   ```
+    ```bash
+    {{% vendor/cli %}} sql --environment main 'SELECT * FROM parent_data'
+    ```
 
-   You get a table with a single column and 3 numbers.
+    You get a table with a single column and 3 numbers.
 
-3. Sync the data from your `dev` environment (this means copy the data from production):
+3.  Sync the data from your `dev` environment (this means copy the data from production):
 
-   ```bash
-   {{% vendor/cli %}} sync data --environment dev
-   ```
+    ```bash
+    {{% vendor/cli %}} sync data --environment dev
+    ```
 
-4. Check the data in the preview environment
+4.  Check the data in the preview environment
 
-   ```bash
-   {{% vendor/cli %}} sql --environment dev 'SELECT * FROM parent_data'
-   ```
+    ```bash
+    {{% vendor/cli %}} sql --environment dev 'SELECT * FROM parent_data'
+    ```
 
-   You see the same table as in step 2.
+    You see the same table as in step 2.
 
 So you can test your changes with confidence in your preview environments, knowing they work in production.
 But you don't have to worry about your tests affecting your production data.

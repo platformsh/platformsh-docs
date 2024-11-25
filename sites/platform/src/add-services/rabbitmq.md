@@ -14,7 +14,7 @@ and your messages a safe place to live until they're received.
 
 If you use one of the following frameworks, follow its guide:
 
-- [Spring](../guides/spring/rabbitmq.md)
+*   [Spring](../guides/spring/rabbitmq.md)
 
 ## Supported versions
 
@@ -63,12 +63,12 @@ so migrate to one of the [supported versions](#supported-versions).
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -105,7 +105,7 @@ To define the service, use the `rabbitmq` type:
     disk: 512
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -121,12 +121,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -160,37 +160,38 @@ relationships:
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
 <!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
+
 {{< codetabs >}}
 
-+++
+\+++
 title=Go
 file=static/files/fetch/examples/golang/rabbitmq
 highlight=go
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Java
 file=static/files/fetch/examples/java/rabbitmq
 highlight=java
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=PHP
 file=static/files/fetch/examples/php/rabbitmq
 highlight=php
-+++
+\+++
 
 <--->
 
-+++
+\+++
 title=Python
 file=static/files/fetch/examples/python/rabbitmq
 highlight=python
-+++
+\+++
 
 {{< /codetabs >}}
 
@@ -199,8 +200,8 @@ highlight=python
 When debugging, you may want to connect directly to your RabbitMQ service.
 You can connect in multiple ways:
 
-- An [SSH tunnel](#via-ssh)
-- A [web interface](#access-the-management-ui)
+*   An [SSH tunnel](#via-ssh)
+*   A [web interface](#access-the-management-ui)
 
 In each case, you need the login credentials that you can obtain from the [relationship](#relationship-reference).
 
@@ -226,16 +227,15 @@ You can access this UI with an SSH tunnel.
 
 To open a tunnel, follow these steps.
 
-1.
-   a) (On [grid environments](/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
+1.  a) (On [grid environments](/glossary.md#grid)) SSH into your app container with a flag for local port forwarding:
 
     ```bash
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:{{< variable "RELATIONSHIP_NAME" >}}.internal:15672
     ```
 
-    {{< variable "RELATIONSHIP_NAME" >}} is the [name you defined](#2-add-the-relationship).
+    {{< variable "RELATIONSHIP\_NAME" >}} is the [name you defined](#2-add-the-relationship).
 
-   b) (On [dedicated environments](/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
+    b) (On [dedicated environments](/glossary.html#dedicated-gen-2)) SSH into your cluster with a flag for local port forwarding:
 
     ```bash
     ssh $({{% vendor/cli %}} ssh --pipe) -L 15672:localhost:15672
@@ -249,7 +249,7 @@ To open a tunnel, follow these steps.
 You can configure your RabbitMQ service in the [services configuration](#1-configure-the-service) with the following options:
 
 | Name     | Type              | Required | Description                                          |
-|----------|-------------------|----------|------------------------------------------------------|
+| -------- | ----------------- | -------- | ---------------------------------------------------- |
 | `vhosts` | List of `string`s | No       | Virtual hosts used for logically grouping resources. |
 
 You can configure additional [virtual hosts](https://www.rabbitmq.com/vhosts.html),

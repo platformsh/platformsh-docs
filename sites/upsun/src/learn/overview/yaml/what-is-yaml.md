@@ -9,21 +9,21 @@ This means it can be used for structured data, like what you can find in configu
 
 Some basic rules about YAML files:
 
-- YAML files end in `.yaml`.
-  Some other systems use the alternative `.yml` extension.
-- YAML is case-sensitive.
-- YAML is whitespace-sensitive and indentation defines the structure,
-  but it doesn't accept tabs for indentation.
-- Empty lines are ignored.
-- Comments are preceded by an octothorpe `#`.
+*   YAML files end in `.yaml`.
+    Some other systems use the alternative `.yml` extension.
+*   YAML is case-sensitive.
+*   YAML is whitespace-sensitive and indentation defines the structure,
+    but it doesn't accept tabs for indentation.
+*   Empty lines are ignored.
+*   Comments are preceded by an octothorpe `#`.
 
 ## Data types
 
 YAML represents data through three primitive data structures:
 
-- Scalars (strings/numbers/booleans)
-- Mappings (dictionaries/objects)
-- Sequences (arrays/lists)
+*   Scalars (strings/numbers/booleans)
+*   Mappings (dictionaries/objects)
+*   Sequences (arrays/lists)
 
 ### Scalars (strings/numbers/booleans)
 
@@ -43,11 +43,11 @@ applications:
 
 You can spot three key–value pairs:
 
-| Key                 | Value               |
-| ------------------- |-------------------- |
-| `type`              | "golang:1.18"       |
-| `root`              | root: /app          |
-| `build `            | ./build.sh          |
+| Key      | Value         |
+| -------- | ------------- |
+| `type`   | "golang:1.18" |
+| `root`   | root: /app    |
+| `build ` | ./build.sh    |
 
 You can define strings either with or without quotes, which can be single `'` or double `"`.
 Quotes let you escape characters (if double) and make sure the value is parsed as a string when you want it.
@@ -86,8 +86,8 @@ applications:
 This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
 each with their own mappings:
 
-- `web` → `commands` → `start: ./bin/app`
-- `web` → `locations` → `'/'` → `passthru: true` and `allow: false`
+*   `web` → `commands` → `start: ./bin/app`
+*   `web` → `locations` → `'/'` → `passthru: true` and `allow: false`
 
 ### Sequences (arrays/lists)
 
@@ -175,6 +175,6 @@ Note that you need to place an alias with `<<:` at the same level as the other k
 
 ## What's next
 
-- See what {{% vendor/name %}} makes possible with [custom tags](./platform-yaml-tags.md).
-- Read everything that's possible with YAML in the [YAML specification](https://yaml.org/spec/1.2.2/).
-- See a [YAML file that explains YAML syntax](https://learnxinyminutes.com/docs/yaml/).
+*   See what {{% vendor/name %}} makes possible with [custom tags](./platform-yaml-tags.md).
+*   Read everything that's possible with YAML in the [YAML specification](https://yaml.org/spec/1.2.2/).
+*   See a [YAML file that explains YAML syntax](https://learnxinyminutes.com/docs/yaml/).

@@ -46,10 +46,10 @@ Existing non-HA projects cannot be converted to HA projects and vice-versa. HA p
 
 Unlike Grid, you can deploy into [any region](/development/regions.md#regions) of supported IaaS providers with a Dedicated Generation 3 environment. Currently, these providers are listed below:
 
--   Amazon Web Services (AWS)
--   Microsoft Azure (Azure)
--   Google Cloud Platform (GCP)
--   OVHcloud (OVH) 
+*   Amazon Web Services (AWS)
+*   Microsoft Azure (Azure)
+*   Google Cloud Platform (GCP)
+*   OVHcloud (OVH) 
 
 For more details on specific regions, consult the region [documentation](/development/regions.md#regions).
 

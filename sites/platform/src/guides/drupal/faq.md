@@ -21,12 +21,12 @@ The above configuration is included by default if you used the Drupal example re
 
 Normally, this means there is a problem with the MySQL server container and you may need to increase the storage available to MySQL to resolve the issue. Ballooning MySQL storage can be caused by a number of items:
 
-1. A large number of watchdog entries being captured.
-Examine the watchdog logs and resolve the errors reported.
-2. Cron should run at regular intervals to ensure cache tables get cleared out.
-3. You are using database caching.
-That isn't recommended, primarily because it can balloon the size of the database.
-[Redis caching](/guides/drupal/redis.md) is recommended for all Drupal sites.
+1.  A large number of watchdog entries being captured.
+    Examine the watchdog logs and resolve the errors reported.
+2.  Cron should run at regular intervals to ensure cache tables get cleared out.
+3.  You are using database caching.
+    That isn't recommended, primarily because it can balloon the size of the database.
+    [Redis caching](/guides/drupal/redis.md) is recommended for all Drupal sites.
 
 ## Why do I get "MySQL can't connect to the database server"?
 

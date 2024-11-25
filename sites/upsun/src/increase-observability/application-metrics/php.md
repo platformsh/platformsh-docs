@@ -11,10 +11,11 @@ weight: 30
 It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
 The PHP continuous profiling is currently made across 4 dimensions:
-- **CPU Time**:  Time spent running on the CPU
-- **Wall-time**: Elapsed time per function call
-- **Allocated Memory**: Number of bytes allocated in memory
-- **Allocations**: Time spent running on the CPU
+
+*   **CPU Time**:  Time spent running on the CPU
+*   **Wall-time**: Elapsed time per function call
+*   **Allocated Memory**: Number of bytes allocated in memory
+*   **Allocations**: Time spent running on the CPU
 
 The default sampling frequency is 100 Hz. This means the PHP continuous profiler is
 collecting information 100 times per second.
@@ -34,5 +35,5 @@ The PHP continuous profiler is enabled by default without configuration.
 
 Optionally, you can override the following environment variables:
 
-- `DD_PROFILING_ENABLED=true`: forces the PHP continuous profiler activation/deactivation
-- `DD_PROFILING_LOG_LEVEL=off`: controls the PHP continuous profiler log level
+*   `DD_PROFILING_ENABLED=true`: forces the PHP continuous profiler activation/deactivation
+*   `DD_PROFILING_LOG_LEVEL=off`: controls the PHP continuous profiler log level

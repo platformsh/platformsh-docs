@@ -11,11 +11,11 @@ Those metrics can be accessed by clicking the **HTTP metrics** tab on the
 environment page within the console.
 
 The HTTP metrics dashboard can help you:
-- Verify if there were any recent spikes in error responses
-- Check bandwidth consumption to determine if there were any service interruptions
-- Identify specific URLs causing site-wide issues
-- Prioritize performance optimization (see [application metrics](../application-metrics/_index.md))
 
+*   Verify if there were any recent spikes in error responses
+*   Check bandwidth consumption to determine if there were any service interruptions
+*   Identify specific URLs causing site-wide issues
+*   Prioritize performance optimization (see [application metrics](../application-metrics/_index.md))
 
 ## HTTP requests status graph
 
@@ -26,7 +26,6 @@ requests made to the application. It reflects the status responses
 This graph helps identify surge of error responses or periods of elevated
 request activity.
 
-
 ## Bandwidth usage graph
 
 The **Bandwidth** graph displays the data transfer volume. It represents
@@ -35,7 +34,6 @@ usage over time.
 
 This graph helps identify bandwidth bottlenecks, optimize resource allocation,
 and track bandwidth usage.
-
 
 ## Top 10 most impactful URLs
 

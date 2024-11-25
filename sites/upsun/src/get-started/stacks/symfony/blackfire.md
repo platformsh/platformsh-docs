@@ -12,13 +12,13 @@ Blackfire works seamlessly with any app built with Symfony.
 Blackfire PHP SDK provides the following [integrations with
 Symfony](https://blackfire.io/docs/php/integrations/symfony/index):
 
-- [Symfony HTTPClient](https://blackfire.io/docs/php/integrations/symfony/http-client)
-- [Symfony Messenger](https://blackfire.io/docs/php/integrations/symfony/messenger)
-- [Symfony CLI Commands Monitoring](https://blackfire.io/docs/php/integrations/symfony/cli-commands-monitoring)
-- [Symfony Functional Tests Production](https://blackfire.io/docs/php/integrations/symfony/functional-tests)
+*   [Symfony HTTPClient](https://blackfire.io/docs/php/integrations/symfony/http-client)
+*   [Symfony Messenger](https://blackfire.io/docs/php/integrations/symfony/messenger)
+*   [Symfony CLI Commands Monitoring](https://blackfire.io/docs/php/integrations/symfony/cli-commands-monitoring)
+*   [Symfony Functional Tests Production](https://blackfire.io/docs/php/integrations/symfony/functional-tests)
 
 A `.blackfire.yaml` file is provided within the [Symfony Templates](https://github.com/symfonycorp/platformsh-symfony-template/blob/6.2/.blackfire.yaml)
 to help you bootstrap the writing of custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index)
 and automated [builds](https://blackfire.io/docs/builds-cookbooks/index).
 
-{{< guide-buttons previous="Back" next="Handle local development" nextLink="/get-started/stacks/symfony/local.md" type="*" >}}
+{{< guide-buttons previous="Back" next="Handle local development" nextLink="/get-started/stacks/symfony/local.md" type="\*" >}}

@@ -13,10 +13,10 @@ This is particularly useful when your app needs to handle a high number of simul
 By default, {{% vendor/name %}} automatically sets a maximum number of PHP-FPM workers for your app.
 This number is calculated based on three parameters:
 
-- The container memory: the amount of memory you can allot for PHP processing
-  depending on [app size](/create-apps/app-reference/single-runtime-image.md#sizes).
-- The request memory: the amount of memory an average PHP request is expected to require.
-- The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
+*   The container memory: the amount of memory you can allot for PHP processing
+    depending on [app size](/create-apps/app-reference/single-runtime-image.md#sizes).
+*   The request memory: the amount of memory an average PHP request is expected to require.
+*   The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
 
 The number is calculated as follows: ![The sum of container memory minus reserved memory divided by request memory](/images/php/PHP-FPM-Workers-Calculation.png "0.2")
 
@@ -41,8 +41,8 @@ To adjust the maximum number of PHP-FPM workers depending on your app's needs, f
 
 You need:
 
-- An up-and-running web app in PHP, complete with [PHP-FPM](https://www.php.net/manual/en/install.fpm.php)
-- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
+*   An up-and-running web app in PHP, complete with [PHP-FPM](https://www.php.net/manual/en/install.fpm.php)
+*   The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 
 Note that the memory settings mentioned on this page are different from the [`memory_limit` PHP setting](./_index.md).
 The `memory_limit` setting is the maximum amount of memory a single PHP process can use
@@ -74,10 +74,11 @@ For example:
 ```
 
 The output shows that:
-- The majority of requests peaked at 2,048 KB of memory.
-- Most other requests used up to around 10 MB of memory.
-- A few requests used up to around 12 MB of memory.
-- Only 68 requests peaked at around 46 MB of memory.
+
+*   The majority of requests peaked at 2,048 KB of memory.
+*   Most other requests used up to around 10 MB of memory.
+*   A few requests used up to around 12 MB of memory.
+*   Only 68 requests peaked at around 46 MB of memory.
 
 In this situation, you might want to be cautious
 and [set your request memory](#2-adjust-the-maximum-number-of-php-fpm-workers) to 12 MB.
@@ -85,6 +86,7 @@ Setting a lower request memory presents a risk of allowing more concurrent reque
 This can result in memory swapping and latencies.
 
 <!-- @todo: upsun equivalent -->
+
 For further help in estimating the optimal request memory for your app,
 use the [log analyzer tool for {{% vendor/name %}}](https://github.com/pixelant/platformsh-analytics)
 by [Pixelant](https://www.pixelant.net/).
@@ -117,6 +119,7 @@ runtime:
         request_memory: 110
         reserved_memory: 80
 ```
+
 Note that the minimum value for the `request_memory` key is 10 MB
 and the minimum value for the `reserved_memory` key is 70 MB.
 If you set lower values,

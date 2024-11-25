@@ -12,6 +12,7 @@ Some of them are available for {{% vendor/name %}} containers.
 {{< note version="1" theme="warning" title="Warning" >}}
 
 <!-- @todo: was this (extensions link) in the dedicated section removed? -->
+
 The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](/dedicated-environments/dedicated-gen-2/development.md).
 
@@ -29,6 +30,7 @@ runtime:
     disabled_extensions:
         - sqlite3
 ```
+
 You can also [include configuration options](/create-apps/app-reference/single-runtime-image.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).
@@ -40,20 +42,20 @@ and turn off those on by default with the `disabled_extensions` key.
 
 Some built-in modules are always on:
 
-- `date`
-- `filter`
-- `hash`
-- `json` (from 8.0)
-- `libxml`
-- `openssl`
-- `pcntl`
-- `pcre`
-- `Reflection`
-- `session`
-- `SPL`
-- `standard`
-- `Zend OPcache` (from 5.5)
-- `zlib`
+*   `date`
+*   `filter`
+*   `hash`
+*   `json` (from 8.0)
+*   `libxml`
+*   `openssl`
+*   `pcntl`
+*   `pcre`
+*   `Reflection`
+*   `session`
+*   `SPL`
+*   `standard`
+*   `Zend OPcache` (from 5.5)
+*   `zlib`
 
 To see a complete list of the compiled PHP extensions, run the following [CLI command](../../administration/cli/_index.md):
 
@@ -66,13 +68,13 @@ To see a complete list of the compiled PHP extensions, run the following [CLI co
 It's possible to use an extension not listed here,
 but it takes slightly more work:
 
-1. Download the `.so` file for the extension as part of your build hook using `curl` or similar.
-   It can also be added to your Git repository if the file isn't publicly downloadable,
-   but committing large binary blobs to Git is generally not recommended.
+1.  Download the `.so` file for the extension as part of your build hook using `curl` or similar.
+    It can also be added to your Git repository if the file isn't publicly downloadable,
+    but committing large binary blobs to Git is generally not recommended.
 
-2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
-   For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
-   your configuration looks like the following:
+2.  Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
+    For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
+    your configuration looks like the following:
 
 ```yaml {configFile="app"}
 variables:

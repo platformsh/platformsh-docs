@@ -12,10 +12,10 @@ Now that you've learned the basics of {{% vendor/name %}} configuration and depl
 
 At this stage, if you want to make another remote (i.e. `origin`) the primary remote, and {{% vendor/name %}} a deployment mirror, you can override your current configuration by setting up an integration:
 
-- [BitBucket](/integrations/source/bitbucket.md)
-- [GitHub](/integrations/source/github.md)
-- [GitLab](/integrations/source/gitlab.md)
+*   [BitBucket](/integrations/source/bitbucket.md)
+*   [GitHub](/integrations/source/github.md)
+*   [GitLab](/integrations/source/gitlab.md)
 
 Once the integration is added, all commits on the service are mirrored, built, and deployed on {{% vendor/name %}}.
 
-{{< guide-buttons previous="Back" next="Getting support" nextLink="/get-started/here/support" type="*" >}}
+{{< guide-buttons previous="Back" next="Getting support" nextLink="/get-started/here/support" type="\*" >}}

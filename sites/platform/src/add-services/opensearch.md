@@ -19,6 +19,7 @@ To update the versions in this table, use docs/data/registry.json
 -->
 
 <!-- vale on -->
+
 <table>
     <thead>
         <tr>
@@ -68,12 +69,12 @@ or are no longer the recommended way to configure the service on {{% vendor/name
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -110,7 +111,7 @@ To define the service, use the `opensearch` type:
     disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the relationship
@@ -126,12 +127,12 @@ relationships:
     <SERVICE_NAME>: 
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
-(the network address a service is accessible from) that is identical to the _name_ of that service.
+(the network address a service is accessible from) that is identical to the *name* of that service.
 
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
@@ -194,7 +195,7 @@ export OPENSEARCH_PASSWORD=$(echo $RELATIONSHIPS_JSON  | jq -r ".opensearch[0].p
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 
-The above file &mdash; `.environment` in the `myapp` directory &mdash; is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `OPENSEARCH_HOSTS` can be used within the application to connect to the service.
+The above file — `.environment` in the `myapp` directory — is automatically sourced by {{< vendor/name >}} into the runtime environment, so that the variable `OPENSEARCH_HOSTS` can be used within the application to connect to the service.
 
 Note that `OPENSEARCH_HOSTS` and all {{< vendor/name >}}-provided environment variables like `{{% vendor/prefix %}}_RELATIONSHIPS`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
@@ -271,21 +272,21 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 1   | 2 |
-|-------------------------|-------------------------------------------------------------------------------------------|-----|---|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | * |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   | * |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   | * |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | * |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | * |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | * |
-| `analysis-ukrainian`    | Ukrainian language support                                                                | *   | * |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   | * |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | * |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | * |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | * |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | * |
-| `transport-nio`         | Support for NIO transport                                                                 | *   | * |
+| Plugin                  | Description                                                                              | 1  | 2  |
+| ----------------------- | ---------------------------------------------------------------------------------------- | -- | -- |
+| `analysis-icu`          | Support ICU Unicode text analysis                                                        | \* | \* |
+| `analysis-kuromoji`     | Japanese language support                                                                | \* | \* |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                   | \* | \* |
+| `analysis-phonetic`     | Phonetic analysis                                                                        | \* | \* |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                           | \* | \* |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                           | \* | \* |
+| `analysis-ukrainian`    | Ukrainian language support                                                               | \* | \* |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                   | \* | \* |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index | \* | \* |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                 | \* | \* |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                       | \* | \* |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                | \* | \* |
+| `transport-nio`         | Support for NIO transport                                                                | \* | \* |
 
 ### Plugin removal
 

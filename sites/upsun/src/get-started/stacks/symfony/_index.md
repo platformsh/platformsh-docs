@@ -20,27 +20,27 @@ They provide all of the core concepts and common commands you need to know befor
 
 ### Documentation
 
-- [PHP documentation](/languages/php/)
+*   [PHP documentation](/languages/php/)
 
-- [Extensions](/languages/php/extensions)
+*   [Extensions](/languages/php/extensions)
 
-- [Performance tuning](/languages/php/tuning)
+*   [Performance tuning](/languages/php/tuning)
 
-- [PHP-FPM sizing](/languages/php/fpm)
+*   [PHP-FPM sizing](/languages/php/fpm)
 
-- [Swoole on {{% vendor/name %}}](/languages/php/swoole)
+*   [Swoole on {{% vendor/name %}}](/languages/php/swoole)
 
-- [Authenticated Composer](/languages/php/composer-auth)
+*   [Authenticated Composer](/languages/php/composer-auth)
 
 ### Community content
 
-- [Symfony topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=symfony)
+*   [Symfony topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93\&query=symfony)
 
-- [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
+*   [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93\&query=php)
 
 ### Videos
 
-- [Refactoring monolith to multi-app](https://youtu.be/5hApjWiTO1M?feature=shared)
-- [{{% vendor/name %}}: From zero to scaling hero](https://youtu.be/FEFBUomV5aY?feature=shared)
+*   [Refactoring monolith to multi-app](https://youtu.be/5hApjWiTO1M?feature=shared)
+*   [{{% vendor/name %}}: From zero to scaling hero](https://youtu.be/FEFBUomV5aY?feature=shared)
 
-{{< guide-buttons next="Get started" nextLink="/get-started/stacks/symfony/get-started.md" type="*" >}}
+{{< guide-buttons next="Get started" nextLink="/get-started/stacks/symfony/get-started.md" type="\*" >}}

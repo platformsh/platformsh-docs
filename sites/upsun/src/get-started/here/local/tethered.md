@@ -18,9 +18,9 @@ Symfony Server to service containers on an active {{% vendor/name %}} environmen
 
 This methodology has several advantages:
 
-- It avoids installing anything on your local machine but your stack runtime.
-- It ensures that you are using the same versions of all services on your local
-  machine and in production.
+*   It avoids installing anything on your local machine but your stack runtime.
+*   It ensures that you are using the same versions of all services on your local
+    machine and in production.
 
 {{< note theme="warning" title="Warning">}}
 
@@ -28,7 +28,6 @@ Never use this method on the **main** environment as changes made on your local
 machine will impact production data.
 
 {{< /note >}}
-
 
 ## 1. Start your local Server
 
@@ -42,11 +41,12 @@ Use the official path to start your local server locally.
     {{% vendor/cli %}} branch new-feature main
     ```
 
-1.  Open an SSH tunnel to the new environment's services:
+2.  Open an SSH tunnel to the new environment's services:
 
     ```bash
     {{% vendor/cli %}} tunnel:open
-    ````
+    ```
+
     This command returns the addresses for SSH tunnels to all of your services that you can then use within your local source code:
 
     ```bash
@@ -64,7 +64,7 @@ Use the official path to start your local server locally.
         export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
     ```
 
-1. When you've finished your work,
+3.  When you've finished your work,
     close the tunnels to your services by running the following command:
 
     ```bash

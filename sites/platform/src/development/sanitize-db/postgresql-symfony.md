@@ -12,22 +12,23 @@ layout: list
 {{% sanitize-dbs/sanitize-intro database="PostgreSQL" framework="Symfony" %}}
 
 {{< codetabs >}}
-+++
+\+++
 title=Manually
-+++
+\+++
 {{% sanitize-dbs/sanitize-manually database="PostgreSQL" framework="Symfony" %}}
 
 <--->
-+++
+\+++
 title=Using a Symfony Command
-+++
+\+++
 
 Assumptions:
 
-- An Entity User exist and contains all of your PII (Personally Identifiable Information)
-- [fakerphp/faker](https://fakerphp.github.io/) has been installed as a dependency on your Symfony application
+*   An Entity User exist and contains all of your PII (Personally Identifiable Information)
+*   [fakerphp/faker](https://fakerphp.github.io/) has been installed as a dependency on your Symfony application
 
 Set up a script by following these steps:
+
 1.  Create a Symfony command to sanitize data
 
     ```php {location="src/Command/SanitizeDataCommand.php"}
@@ -125,17 +126,16 @@ Set up a script by following these steps:
     Once merged to production, all data from future preview environments are sanitized on environment creation.
 
 <--->
-+++
+\+++
 title=Using a shell script
-+++
+\+++
 This example show you how to sanitize data on multiple projects inside an organization, except for production environments.
 
 Assumptions:
 
-- Symfony Command from previous tab `Using a Symfony Command` has already been pushed to all of your environments.
+*   Symfony Command from previous tab `Using a Symfony Command` has already been pushed to all of your environments.
 
 Set up a script by following these steps:
-
 
 1.  Create an executable sanitizing script by running the following command:
 
@@ -143,7 +143,7 @@ Set up a script by following these steps:
     touch sanitize_fleet.sh && chmod +x sanitize_fleet.sh
     ```
 
-3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
+2.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
     other than `production`.
 
     The following example runs only in preview environments
@@ -264,7 +264,7 @@ Set up a script by following these steps:
     }
     ```
 
-4.  use this shell script
+3.  use this shell script
 
     Depending on the machine you want to run this script on, adapt this to your needs.
 
@@ -278,8 +278,7 @@ Set up a script by following these steps:
 You can find the organization identifier for a specific project, within the {{% vendor/name %}} console, by clicking on your name, and then on “Settings”, in the top right corner.
 {{< /note >}}
 
-
-4.  [Option] Commit your changes by running the following command:
+4.  \[Option] Commit your changes by running the following command:
 
     ```bash
     git add sanitize_fleet.sh && git commit -m "Add sanitization."

@@ -31,65 +31,65 @@ or it installs a second integration with the same code.
 
 To update an existing activity script, follow these steps:
 
-1. Get the activity script's ID by running the following command:
+1.  Get the activity script's ID by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} integrations
-   ```
+    ```bash
+    {{% vendor/cli %}} integrations
+    ```
 
-   This returns something like the following:
+    This returns something like the following:
 
-   ```bash
-   +---------------+--------------+--------------+
-   | ID            | Type         | Summary      |
-   +---------------+--------------+--------------+
-   | nadbowmhd67do | script       | ...          |
-   | rcqf6b69jdcx6 | health.email | From:        |
-   |               |              | To: #admins  |
-   +---------------+--------------+--------------+
-   ```
+    ```bash
+    +---------------+--------------+--------------+
+    | ID            | Type         | Summary      |
+    +---------------+--------------+--------------+
+    | nadbowmhd67do | script       | ...          |
+    | rcqf6b69jdcx6 | health.email | From:        |
+    |               |              | To: #admins  |
+    +---------------+--------------+--------------+
+    ```
 
-2. Update the integration by running the following command:
+2.  Update the integration by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} integration:update --file ./my_script.js {{<variable "SCRIPT_ID" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} integration:update --file ./my_script.js {{<variable "SCRIPT_ID" >}}
+    ```
 
-   This [`integration:update` command](/administration/cli/reference.md#integrationupdate) updates the integration in place, permanently overwriting the previous version.
+    This [`integration:update` command](/administration/cli/reference.md#integrationupdate) updates the integration in place, permanently overwriting the previous version.
 
-3. Test the activity script update by [triggering a redeployment](/administration/cli/reference.md#environmentredeploy) with the following command:
+3.  Test the activity script update by [triggering a redeployment](/administration/cli/reference.md#environmentredeploy) with the following command:
 
-   ```bash
-   {{% vendor/cli %}} redeploy
-   ```
+    ```bash
+    {{% vendor/cli %}} redeploy
+    ```
 
 ## Removing
 
 To disable an activity script, follow these steps:
 
-1. Get the activity script's ID by running the following command:
+1.  Get the activity script's ID by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} integrations
-   ```
+    ```bash
+    {{% vendor/cli %}} integrations
+    ```
 
-   This returns something like the following:
+    This returns something like the following:
 
-   ```bash
-   +---------------+--------------+--------------+
-   | ID            | Type         | Summary      |
-   +---------------+--------------+--------------+
-   | nadbowmhd67do | script       | ...          |
-   | rcqf6b69jdcx6 | health.email | From:        |
-   |               |              | To: #admins  |
-   +---------------+--------------+--------------+
-   ```
+    ```bash
+    +---------------+--------------+--------------+
+    | ID            | Type         | Summary      |
+    +---------------+--------------+--------------+
+    | nadbowmhd67do | script       | ...          |
+    | rcqf6b69jdcx6 | health.email | From:        |
+    |               |              | To: #admins  |
+    +---------------+--------------+--------------+
+    ```
 
-2. [Delete the integration](/administration/cli/reference.md#integrationdelete) by running the following command:
+2.  [Delete the integration](/administration/cli/reference.md#integrationdelete) by running the following command:
 
-   ```bash
-   {{% vendor/cli %}} integration:delete {{<variable "SCRIPT_ID" >}}
-   ```
+    ```bash
+    {{% vendor/cli %}} integration:delete {{<variable "SCRIPT_ID" >}}
+    ```
 
 ## Debugging
 
@@ -184,9 +184,7 @@ You get a payload similar to the following:
 To delete an activity script variable,
 use the following `DELETE` request:
 
-```
-DELETE /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
-```
+    DELETE /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
 
 You can also patch your activity script variable.
 To do so, send the same request using the `PATCH` method instead of the `DELETE` one.
@@ -196,9 +194,7 @@ To do so, send the same request using the `PATCH` method instead of the `DELETE`
 To list all your activity script variables at the integration level,
 use the following `GET` request:
 
-```
-GET /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
-```
+    GET /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEGRATION_ID" >}}/variables
 
 ## Available APIs
 
@@ -351,9 +347,9 @@ h.update("bar");
 h.digest("hex")
 ```
 
-* The available hashing functions are `'sha256'`, `'sha1'` and `'md5'` as hashing functions.
-* The available digest formats are `'base64'`, `'hex'` or `''` (empty).
-An empty digest will yield a byte string.
+*   The available hashing functions are `'sha256'`, `'sha1'` and `'md5'` as hashing functions.
+*   The available digest formats are `'base64'`, `'hex'` or `''` (empty).
+    An empty digest will yield a byte string.
 
 For example, if you wanted to call an AWS API, you would calculate the signature like so:
 

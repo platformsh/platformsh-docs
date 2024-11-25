@@ -20,31 +20,31 @@ first activate it.
 
 ## How backup and restore works
 
-1. As an [admin user](../administration/users.md), you can do a backup of your environment.
-   This backup includes the complete data and code of the environment.
-   All persistent data from all running [services](../add-services/_index.md)
-   and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
-   The backup is stored internally on {{% vendor/name %}}.
-   That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
+1.  As an [admin user](../administration/users.md), you can do a backup of your environment.
+    This backup includes the complete data and code of the environment.
+    All persistent data from all running [services](../add-services/_index.md)
+    and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
+    The backup is stored internally on {{% vendor/name %}}.
+    That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
+    If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
 
-2. You restore your environment using the backup.
-   At this point, the data and code from the backup are restored to ensure a consistent state.
-   The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
+2.  You restore your environment using the backup.
+    At this point, the data and code from the backup are restored to ensure a consistent state.
+    The latest code in your repository may have been modified such that it no longer works correctly with the old, restored data.
 
-   {{< note theme="warning" title="Warning" >}}
+    {{< note theme="warning" title="Warning" >}}
 
-   {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
+    {{% vendor/name %}} does not modify your Git repository. Any further changes you make use the latest code in your repository.
 
-   {{< /note >}}
+    {{< /note >}}
 
-3. Depending on your needs, you can do the following:
+3.  Depending on your needs, you can do the following:
 
-   a) To use the code from the time of the backup as a baseline for future changes,
-      make sure you restore it yourself in your Git repository.
-      To do so, use Git commands such as `revert`.
+    a) To use the code from the time of the backup as a baseline for future changes,
+    make sure you restore it yourself in your Git repository.
+    To do so, use Git commands such as `revert`.
 
-   b) To use your latest code instead, just redeploy your environment or push a new change.
+    b) To use your latest code instead, just redeploy your environment or push a new change.
 
 {{% note %}}
 
@@ -103,20 +103,20 @@ You can setup a different automated backup schedule per environment type (produc
 
 On a given environment type, you can configure:
 
-- The total number of backups (manual and automated)
-- The total number of manual backups specifically
-- Multiple schedules for automated backups
+*   The total number of backups (manual and automated)
+*   The total number of manual backups specifically
+*   Multiple schedules for automated backups
 
 An automated backup schedule is composed of an interval and a count.</br>
 The interval defines the frequency of the backups.
 An interval can be a couple of hours, days, weeks, months, or years.
 To configure an interval, use the following values:
 
-- ``h`` for hour
-- ``d`` for day
-- ``w`` for week
-- ``M`` for month
-- ``y`` for year
+*   `h` for hour
+*   `d` for day
+*   `w` for week
+*   `M` for month
+*   `y` for year
 
 The count defines the number of backups to retain.
 
@@ -165,9 +165,9 @@ using a command similar to the following:
 
 The command results in:
 
-- A backup every day for 7 days
-- A backup every week for 4 weeks
-- A backup every month for 12 months
+*   A backup every day for 7 days
+*   A backup every week for 4 weeks
+*   A backup every month for 12 months
 
 #### Set a limit for backups
 
@@ -198,9 +198,9 @@ when the short amount of downtime is least noticed.
 You can create a manual live backup on a Grid project:
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
-+++
+\+++
 
 Use the `--live` flag:
 
@@ -209,9 +209,9 @@ Use the `--live` flag:
 ```
 
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
 When [creating the backup](#create-a-manual-backup), select **Run live backup** in the last step.
 
@@ -222,20 +222,20 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
 
 {{< codetabs >}}
-+++
+\+++
 title=Using the CLI
 highlight=bash
-+++
+\+++
 {{% vendor/cli %}} backup:create
 <--->
-+++
+\+++
 title=In the Console
-+++
+\+++
 
-1. Navigate to the environment you want to back up.
-2. Click **Backups**.
-3. Click {{< icon backup >}} **Backup**.
-4. Click **Backup**.
+1.  Navigate to the environment you want to back up.
+2.  Click **Backups**.
+3.  Click {{< icon backup >}} **Backup**.
+4.  Click **Backup**.
 
 {{< /codetabs >}}
 

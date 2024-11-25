@@ -39,6 +39,7 @@ applications:
                 # Install PhpRedis v5.3.7:
                 curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-phpredis.sh | { bash /dev/fd/3 5.3.7 ; } 3<&0
 ```
+
 ## Install Relay
 
 Relay is a [Redis](../../add-services/redis.md) client
@@ -65,6 +66,7 @@ applications:
                 # Install Relay v0.6.0:
                 curl -fsS https://raw.githubusercontent.com/platformsh/snippets/main/src/install-relay.sh | { bash /dev/fd/3 v0.6.0 ; } 3<&0
 ```
+
 ## Change extension or version
 
 To change the Redis extension or the version you are using, update the build hook and clear the build cache: `{{% vendor/cli %}} project:clear-build-cache`.
@@ -76,11 +78,11 @@ That's only for pre-built extensions.
 
 ## What these scripts do
 
-1. Download the Relay/PhpRedis source code.
-2. Check out the version specified in the build hook.
-3. Compile the extension.
-4. Copy the resulting `relay.so`/`redis.so` file to [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
-5. Add a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
+1.  Download the Relay/PhpRedis source code.
+2.  Check out the version specified in the build hook.
+3.  Compile the extension.
+4.  Copy the resulting `relay.so`/`redis.so` file to [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+5.  Add a line to the `php.ini` file in your app root to enable the extension, creating the file if necessary.
 
 If the script doesn't find a `$PLATFORM_CACHE_DIR` directory defined, it exits silently.
 So if you run the build hook locally, it has no effect.

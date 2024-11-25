@@ -11,6 +11,7 @@ layout: single
 {{% description %}}
 
 {{% version/specific %}}
+
 ## On a {{% names/dedicated-gen-2 %}} cluster
 
 Open a [support ticket](/learn/overview/get-support) and let us know what your license key is.
@@ -25,9 +26,9 @@ On Grid plans and {{% names/dedicated-gen-3 %}} infrastructure, configure your p
 The configuration for New Relic varies a bit by language.
 See language-specific instructions:
 
-- [Java](./java.md)
-- [Node.js](./nodejs.md)
-- [PHP](./php.md)
+*   [Java](./java.md)
+*   [Node.js](./nodejs.md)
+*   [PHP](./php.md)
 
 For more languages, see the [New Relic Documentation](https://docs.newrelic.com/docs/agents/).
 Install the specific agent in the [build hook](../../../create-apps/hooks/_index.md).
