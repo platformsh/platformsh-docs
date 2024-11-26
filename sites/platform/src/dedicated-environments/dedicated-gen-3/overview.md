@@ -12,7 +12,7 @@ description:  "Designed to cater to the needs of organizations that build demand
 -   **High Availability:** 99.99% SLA (service-level agreement) with [Enterprise or Elite](https://platform.sh/pricing/)
 -   **Dedicated hosts:** Each DG3 cluster is provisioned with 3 dedicated hosts as the typical configuration
 -   **Headless architecture:** Seamless headless architecture with multi-app support
--   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader, disk resizing and adding, upgrading or removing services on their own
+-   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
 -   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently
 -   **Better staging:** Dedicated Gen 3 comes with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
@@ -36,14 +36,14 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **Web server internal config : locations**  | Self-service via YAML config files | Self-service via YAML config files |
 | **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Platform.sh |
 | **Dedicated IP** | Yes | No |
-| **Configuration management** | Split responsibility between Platform.sh and customer | only through YAML files  |
+| **Configuration management** | Self-service via YAML config files | Self-service via YAML config files  |
 | **Usable regions** | Any region needed | Only the publicly available |
 | **Autonomous upsize** | Managed through Platform.sh | Yes |
 | **Upsize or downsize methods** | No downtime - each instance is altered in a rolling fashion | Redeploy - possible downtime depending on the hooks |
-| **Production branch** | Managed by Platform.sh| Self-service |
+| **Production branch** | Self-service | Self-service |
 | **Autoscaling** | Yes | No |
 | **Multi availability zones** | Yes | No |
-| **New Relic** | Not supported | APM Supported only |
+| **New Relic** | APM + New Relic Infrastructure | APM Supported only |
 | **Multi-app support** | Supported natively | Supported natively |
 | **Routes management**  | Self-service via YAML config files | Self-service via YAML config files |
 | **Environment clone** | Yes on all branches | Yes on all branches |
@@ -90,11 +90,11 @@ See the [services documentation](/add-services/_index.md) for service-specific 
 
 #### Local mounts 
 
-Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t shared between the three hosts. If you need a folder to be shared between your hosts, set up a [network storage mount](/add-services/network-storage.md).
+Dedicated Gen 3 provides a redundant infrastructure and local mounts aren’t shared between the three hosts. If you need a folder to be shared between your hosts, such as for common assets, set up a [network storage mount](/add-services/network-storage.md).
 
 ### Dedicated Gen 3 vs Dedicated Gen 2
 
-Just like Dedicated Gen 3, [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
+Just like [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md), Dedicated Gen 3 ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
 
 Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the self-service flexibility and features of Grid projects. As a Dedicated Gen 3 user, you can edit your configuration yourself and see those changes reflected in your environments on every push without opening a ticket. See the table below for more differences and similarities between Dedicated Den 3 and Dedicated Gen 2:
 
@@ -127,7 +127,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Resources allocation** | Resources deployed on the 3 nodes | Resources deployed on the 3 nodes |
 | **MySQL Replication** | Yes: 3 services nodes cluster | Yes: 3 services nodes cluster |
 | **Redis Replication**  | Yes: 3 services nodes cluster | Yes: 3 services nodes cluster |
-| **Split Architecture** | Yes | No |
+| **Split Architecture** | Yes | Yes |
 | **VPN** | AWS PrivateLink | AWS PrivateLink |
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
@@ -159,7 +159,7 @@ In addition to SSH accounts, you can create SFTP accounts with a custom user/pas
 
 {{< note title="Note" theme="info" >}}
 
-On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. SSH public key based authentication is also supported on the SFTP account.
+On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. However, write access is restricted to the mounts declared in your YAML config files. SSH public key based authentication is also supported on the SFTP account.
 
 {{< /note >}}
 
