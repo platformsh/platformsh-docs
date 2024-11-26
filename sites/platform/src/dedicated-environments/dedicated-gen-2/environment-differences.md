@@ -12,7 +12,7 @@ This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environment
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid Environments,
-data [syncs](/glossary.md#sync) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console. However, code [syncs](/glossary.md#sync) and [merges](/glossary.md#merges) are available when the code is different between a parent and child environment.
+data [syncs](/glossary.md#sync) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console. However, code [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) are available when the code is different between a parent and child environment.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
