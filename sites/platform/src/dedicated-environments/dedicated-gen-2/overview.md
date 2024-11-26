@@ -60,7 +60,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **Split Architecture** | Yes | No |
 | **Storage** | Local disks are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
 | **Automated backup** | Yes | Yes |
-| **Custom domains name** | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
+| **Custom domains name** | Available only on Dedicated Environments for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
 | **MongoDB** | Not supported | Standalone service container |
 
 ### Dedicated Gen 2 vs Dedicated Gen 3

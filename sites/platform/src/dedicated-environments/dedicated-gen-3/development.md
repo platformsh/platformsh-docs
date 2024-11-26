@@ -34,13 +34,16 @@ In the diagram, there are only 3 hosts. Host 1 has both the entry point and app 
 
 ## Deployment
 
-On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead.
+On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead. 
+
+While HA environments connected to a DG3 cluster **can** deploy multiple instances of applications and services, they **cannot** dynamically change the number of those instances (eg. from 1 to 3 or 3 to 1).
 
 {{< note title="Note" theme="info" >}}
 
 Existing non-HA projects cannot be converted to HA projects and vice-versa. HA projects must be created as HA.
 
 {{< /note >}}
+
 
 ## Providers and regions
 
