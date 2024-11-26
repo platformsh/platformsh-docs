@@ -82,7 +82,6 @@ Your app can connect to each service by referencing the exact same [environment
 | **PostgreSQL** | 16, 15, 14, 13, 12 |
 | **RabbitMQ** | 3.13, 3.12 |
 | **Redis** | 7.2, 7.0, 6.2 |
-| **Ruby** | 3.3, 3.2, 3.1, 3.0 |
 | **Solr** | 9.6, 9.4, 9.2, 9.1, 8.11 |
 | **Vault KMS** | 1.12 |
 
@@ -132,7 +131,7 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
-| **Custom domains name** | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
+| **Custom domains name** | Available only on Dedicated Environments for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
 | **On-demand backup** | Not supported | Same as grid |
 
 #### Optional features
