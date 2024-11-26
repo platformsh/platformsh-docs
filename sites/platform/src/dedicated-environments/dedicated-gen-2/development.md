@@ -16,13 +16,13 @@ Each instance hosts the entire application stack, allowing this architecture sup
 
 ##### Build process
 
-The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. The flexibility for DG2 and Grid can be made to be the same but only via opening a [support ticket](/learn/overview/get-support.md).
+The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. 
 
 For more information, learn about [default storage settings](#storage) and how your app can [connect to services](dedicated-environments/dedicated-gen-3/overview.md#available-services).
 
 ### Split architecture
 
-Split architecture works under Dedicated Generation 2 and allows to give more resources globally to a project. Services (data services, caching service or search engines) are split from application runtimes. Services will be running on a cluster of core nodes, and the application will be running on a cluster of web nodes.
+Split architecture works under Dedicated Generation 2 and allows you to give more resources globally to a project. Services (data services, caching service or search engines) are split from application runtimes. Services will be running on a cluster of core nodes, and the application will be running on a cluster of web nodes.
 
 This allows us to grant more room for the application or the services regarding resources. Both clusters can differ in size. Split architecture clusters can horizontally scale the application by adding additional nodes. 
 
@@ -36,7 +36,7 @@ Any defined users or environment variables are also propagated to the Dedicated 
 
 {{< note title="Note" theme="info" >}}
 
-There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environment the way there is between branches in the development environment. 
+There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environments like there is between the grid-based development branches. 
 
 {{< /note >}} 
 
@@ -48,7 +48,7 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 
 -   The new application image is built in the exact same fashion as for the Grid.
 -   Any active background tasks on the cluster, including cron tasks, are terminated.
--   The cluster (production or staging) is closed, meaning it doesn’t accept new requests. Incoming requests receive an HTTP 500 error.
+-   The cluster (production or staging) is closed, meaning it doesn’t accept new requests. Incoming requests receive an HTTP 503 response.
 -   The application image on all three servers is replaced with the new image.
 -   The deploy hook is run on one, and only one, of the three servers.
 -   The cluster is opened to allow new requests.

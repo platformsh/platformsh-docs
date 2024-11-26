@@ -18,7 +18,7 @@ On higher tiers with the Observability Suite,
 everything is taken care of automatically.
 When your site starts experiencing pressure,
 it gets the resources needed to handle that pressure.
-On lower tiers, you have to handle that yourself, often after your site has gone down.
+On self-service tiers, you have to handle that yourself, often after your site has gone down.
 
 If you know a spike in traffic is likely coming,
 scale your plan up in advance to handle the event and downscale after it.
@@ -53,8 +53,8 @@ There are two classes of measurement that trigger an autoscaling event:
 {{< premium-features/tiered "Enterprise and Elite" >}}
 
 If your plan includes managed scaling,
-{{% vendor/name %}} proactively monitors your apps to make sure they don't have errors from overuse.
-If the monitoring determines a load is causing issues for your site,
+{{% vendor/name %}} monitors your application to make ensure it doesn't fail due to a lack of resources.
+If the monitoring determines that a lack of resources is causing issues for your site,
 a support ticket is opened.
 The {{% vendor/name %}} team determines whether upscaling is necessary
 or can be avoided by, for example, blocking a malicious bot.
@@ -63,7 +63,9 @@ If upscaling is necessary, it's handled for you and you're kept up to date in th
 When the traffic spike passes, your plan is downgraded again to use only the necessary resources.
 
 On Dedicated environments, the upscaling is handled by cycling through each node in the redundant architecture.
-One at a time, they're removed from the cluster, upsized, and returned.
+One at a time, they're removed from the cluster, upsized, and returned. 
+
+On Split Architecture dedicated environments, additional web servers may be added to provide additional capacity (Horizontal scaling).
 
 ## Manually scale Grid environments
 
