@@ -55,4 +55,4 @@ For more details on specific regions, consult the region [documentation](/develo
 
 ## Storage
 
-Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. You can request more storage at any time.
+Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.  

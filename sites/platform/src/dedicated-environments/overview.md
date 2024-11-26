@@ -41,28 +41,28 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | **Availability** | All support tiers | Just with [Enterprise or Elite](https://platform.sh/pricing/) |
 | **Uptime SLA** | 99.9% with [Enterprise or Elite](https://platform.sh/pricing/)| 99.99% with [Enterprise or Elite](https://platform.sh/pricing/) |
 | **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
-| **Functioning** | A single container is deployed per runtime and per service| at least 3 nodes are running all applications and services are replicated across all of them |
+| **Functioning** | A single container is deployed per runtime and per service| At least 3 nodes are running all applications and services are replicated across all of them |
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
 | **Usable regions** | Any public region can be used to deploy | Any public region of supported IaaS providers can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
 | **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
-| **Sync and merge functionalities** | Yes on all branches | Only on development environments |
-| **Environment clone** | Yes on all branches | Only on development environments |
+| **Sync and merge functionalities** | Yes on all branches | Only on development environments on Dedicated Gen 2 and on all branches on Dedicated Gen3|
+| **Environment clone** | Yes on all branches | Only on development environments on Dedicated Gen 2 and on all branches on Dedicated Gen3|
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
-| **MongoDB** | Standalone service container | No |
+| **MongoDB** | Standalone service container | Yes |
 | **CDN** | A managed Fastly CDN service can be purchased through Platform.sh | Fastly |
 | **PHP version upgrade** | Self-service | Self-service |
 | **NodeJS version upgrade**| Self-service | Self-service |
 | **Routes management** | Self-service | Self-service |
 | **Cron management** | Self-service | Self-service |
 | **Cron tasks interrupted by deploys** | No: a running Cron task will block a deployment until it is complete | Yes: a deploy will terminate a running Cron task |
-| **Mounts management** | Self-service | Managed by Platform.sh (Dedicated Gen 2 only) |
+| **Mounts management** | Self-service | Self-service |
 | **Workers management** | Self-service | Managed by Platform.sh |
 | **Storage increase** | Self-service | Managed by Platform.sh |
-| **Storage allocation between mounts, DB and services** | Self-service | Managed by Platform.sh |
+| **Storage allocation between mounts, DB and services** | Self-service | Managed by Platform.sh on Dedicated Gen 2, Self-service on Dedicated Gen 3|
 
 
 
