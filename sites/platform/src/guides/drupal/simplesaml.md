@@ -33,11 +33,11 @@ It should end up looking approximately like this:
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "app:http"
-    cache:
-        enabled: true
-        cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']
+  type: upstream
+  upstream: "myapp:http"
+  cache:
+    enabled: true
+    cookies: ['/^SS?ESS/', '/^Drupal.visitor/', 'SimpleSAMLSessionID', 'SimpleSAMLAuthToken']
 ```
 
 Commit this change to the Git repository.
@@ -50,13 +50,13 @@ Add the following block to the `web.locations` section of `{{< vendor/configfile
 
 ```yaml {configFile="app"}
  web:
-    locations:
-        '/simplesaml':
-            root: 'vendor/simplesamlphp/simplesamlphp/www'
-            allow: true
-            scripts: true
-            index:
-                - index.php
+  locations:
+    '/simplesaml':
+      root: 'vendor/simplesamlphp/simplesamlphp/www'
+      allow: true
+      scripts: true
+      index:
+        - index.php
 ```
 
 That will map all requests to `example.com/simplesaml/` to the `vendor/simplesamlphp/www` directory, allowing static files there to be served, PHP scripts to execute, and defaulting to index.php.
@@ -79,8 +79,8 @@ The simplest way to set that is to add the following block to your `{{< vendor/c
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
+  env:
+    SIMPLESAMLPHP_CONFIG_DIR: /app/simplesamlphp/config
 ```
 
 Commit the whole `simplesamplphp` directory and `{{< vendor/configfile "app" >}}` to Git.

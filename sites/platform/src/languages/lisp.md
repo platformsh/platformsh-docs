@@ -52,7 +52,7 @@ If you don't want these assumptions, you can disable this behavior by specifying
 
 ```yaml {configFile="app"}
 build:
-    flavor: none
+  flavor: none
 ```
 
 ## Dependencies
@@ -65,20 +65,20 @@ If you wish to change the distributions that QuickLisp is using, you can specify
 
 ```yaml {configFile="app"}
 runtime:
-    quicklisp:
-        {{< variable "DISTRIBUTION_NAME" >}}:
-            url: "..."
-            version: "..."
+  quicklisp:
+    {{< variable "DISTRIBUTION_NAME" >}}:
+      url: "..."
+      version: "..."
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 runtime:
+  quicklisp:
     quicklisp:
-        quicklisp:
-            url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
-            version: '2019-07-11'
+      url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
+      version: '2019-07-11'
 ```
 
 ## Built-in variables
@@ -99,15 +99,15 @@ Note that the start command _must_ run in the foreground. Should the program ter
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Lisp applications.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: lisp:1.5
 web:
-    commands:
-        start: ./example
-    locations:
-        /:
-            allow: false
-            passthru: true
+  commands:
+    start: ./example
+  locations:
+    /:
+      allow: false
+      passthru: true
 disk: 512
 ```
 
@@ -138,7 +138,7 @@ Given a relationship defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
 relationships:
-    postgresql: 
+  postgresql:
 ```
 
 The following would access that relationship, and provide your Lisp program the credentials to connect to a PostgreSQL instance. Add this to your `.asd` file:

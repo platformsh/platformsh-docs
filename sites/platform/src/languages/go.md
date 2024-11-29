@@ -57,29 +57,29 @@ Assuming your `go.mod` and `go.sum` files are present in your repository, your a
 The following basic `{{< vendor/configfile "app" >}}` file is sufficient to run most Go applications.
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 
 type: golang:1.14
 
 hooks:
-    build: |
-        # Modify this line if you want to build differently or use an alternate name for your executable.
-        go build -o bin/app
+  build: |
+    # Modify this line if you want to build differently or use an alternate name for your executable.
+    go build -o bin/app
 
 web:
-    upstream:
-        socket_family: tcp
-        protocol: http
+  upstream:
+    socket_family: tcp
+    protocol: http
 
-    commands:
-        # If you change the build output in the build hook above, update this line as well.
-        start: ./bin/app
+  commands:
+    # If you change the build output in the build hook above, update this line as well.
+    start: ./bin/app
 
-    locations:
-        /:
-            # Route all requests to the Go app, unconditionally.
-            allow: false
-            passthru: true
+  locations:
+    /:
+      # Route all requests to the Go app, unconditionally.
+      allow: false
+      passthru: true
 
 disk: 1024
 ```

@@ -28,8 +28,8 @@ Add a database service (or choose [another service](../../add-services/_index.md
 
    ```yaml {configFile="services"}
    db:
-       type: mariadb:10.5
-       disk: 1024
+     type: mariadb:10.5
+     disk: 1024
    ```
 
    Note that `db` is the name of the service.
@@ -39,7 +39,9 @@ Add a database service (or choose [another service](../../add-services/_index.md
 
    ```yaml {configFile="app"}
    relationships:
-       database: "db:mysql"
+     database:
+       service: "db"
+       endpoint: "mysql"
    ```
 
    This relationship is where connections are made.

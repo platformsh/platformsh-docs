@@ -82,7 +82,7 @@ To configure all the environment variables Flask needs to run smoothly, follow t
 6. Optional: You may also need to set a `SECRET_KEY` environment variable.
    It's used for securely signing the session cookie and can be used for any other security-related needs by extensions or your app.
    It usually is a long random string.
-   
+
    Set the `SECRET_KEY` environment variable to leverage the [`PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables#use-provided-variables) provided by {{% vendor/name %}}:
 
    ```bash {location=".environment"}
@@ -115,14 +115,14 @@ You need to add some writable disk space to hold the static assets that `flask-s
 To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image#mounts).
 In your app configuration, locate the section dedicated to mounts and update it as follows:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        mounts:
-            "<APP_NAME>/static":
-                source: "storage"
-                source_path: "static_assets"
+  myapp:
+    ...
+    mounts:
+      "<APP_NAME>/static":
+        source: "storage"
+        source_path: "static_assets"
 ```
 
 Replace `<APP_NAME>` with the `app_name` you defined when creating your Flask project.
@@ -135,18 +135,18 @@ when building the application container.
 To do so, customize your [build hook](/create-apps/hooks/hooks-comparison.html#build-hook).
 In your app configuration, locate the section dedicated to it and update it as follows:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-        # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
-        hooks:
-            # The build hook is run after any build flavor.
-            # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#build-hook
-            build: |
-                set -eux
-                pip install -r requirements.txt
+  myapp:
+    ...
+    # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
+    hooks:
+      # The build hook is run after any build flavor.
+      # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#build-hook
+      build: |
+        set -eux
+        pip install -r requirements.txt
 ```
 
  The {{% vendor/name %}} CLI automatically added `pip install -r requirements.txt` to your build hook configuration when you
@@ -155,20 +155,20 @@ applications:
  If you want `pip` to be upgraded first to the latest version, add `pip install --upgrade pip` to the above line.
  Then, add `npm install`:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-        # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
-        hooks:
-            # The build hook is run after any build flavor.
-            # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#build-hook
-            build: |
-                set -eux
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                npm install
+  myapp:
+    ...
+    # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
+    hooks:
+      # The build hook is run after any build flavor.
+      # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#build-hook
+      build: |
+        set -eux
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        npm install
 ```
 
 Note that if your project uses a different package manager, {{% vendor/name %}} also supports [several other options](/languages/python/dependencies.md).
@@ -179,36 +179,36 @@ Instruct {{% vendor/name %}} to automatically run `npm run build` when building 
 To do so, customize your [deploy hook](/create-apps/hooks/hooks-comparison.html#deploy-hook).
 In your app configuration, locate the section dedicated to it:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-        # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
-        hooks:
-            ...
-            # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-            # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
-            deploy: |
-                set -eux
-                # echo 'Put your deploy command here'
+  myapp:
+    ...
+    # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
+    hooks:
+      ...
+      # The deploy hook is run after the app container has been started, but before it has started accepting requests.
+      # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
+      deploy: |
+        set -eux
+        # echo 'Put your deploy command here'
 ```
 
 Add `npm run build`:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-        # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
-        hooks:
-            ...
-            # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-            # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
-            deploy: |
-                set -eux
-                npm run build
+  myapp:
+    ...
+    # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
+    hooks:
+      ...
+      # The deploy hook is run after the app container has been started, but before it has started accepting requests.
+      # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
+      deploy: |
+        set -eux
+        npm run build
 ```
 
 ## 5. Configure the web server
@@ -216,33 +216,33 @@ applications:
 [Configure the web server](/create-apps/_index.md#configure-whats-served) running in front of your app to define how your app handles dynamic requests.
 To do so, in your app configuration, locate the section dedicated to the web server:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        # The web key configures the web server running in front of your app.
-        # More information: https://docs.upsun.com/create-apps/app-reference.html#web
-        web:
-            # Commands are run once after deployment to start the application process.
-            # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
+  myapp:
+    ...
+    # The web key configures the web server running in front of your app.
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#web
+    web:
+      # Commands are run once after deployment to start the application process.
+      # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
 ```
 
 To add a basic Flask server, replace the default information added by the {{% vendor/name %}} CLI with `flask run -p $PORT`.
 Also, change the `socket_family` value from `unix` to `tcp`:
 
-```yaml {location=".upsun/config.yaml"}
+```yaml {configFile="app"}
 applications:
-    myapp:
-        ...
-        # The web key configures the web server running in front of your app.
-        # More information: https://docs.upsun.com/create-apps/app-reference.html#web
-        web:
-            # Commands are run once after deployment to start the application process.
-            # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
-            commands:
-                start: "flask run -p $PORT"
-            upstream:
-                socket_family: tcp
+  myapp:
+    ...
+    # The web key configures the web server running in front of your app.
+    # More information: https://docs.upsun.com/create-apps/app-reference.html#web
+    web:
+      # Commands are run once after deployment to start the application process.
+      # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
+      commands:
+        start: "flask run -p $PORT"
+      upstream:
+        socket_family: tcp
 ```
 
 You can now commit all of the above changes and push to {{% vendor/name %}}.
@@ -270,19 +270,19 @@ To do so, follow these steps.
 
 1. Set up a virtual environment where your project can run:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    python3 -m venv env && source venv/bin/activate
    ```
 
 2. Just like in your build hook, update pip and install the requirements:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    pip install --upgrade pip && pip install -r requirements.txt
    ```
 
 3. Set up a way for your local instance of Flask to communicate with your database service:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    {{% vendor/cli %}} tunnel:open -y
    ```
 
@@ -297,7 +297,7 @@ To do so, follow these steps.
 
    Set the following environment variable:
 
-   ```bash {location=".environment"} 
+   ```bash {location=".environment"}
    export PLATFORM_RELATIONSHIPS="$({{% vendor/cli %}} tunnel:info --encode)"
    ```
 
@@ -314,7 +314,7 @@ To do so, follow these steps.
 
 6. Source your `.environment` file to finish setting up all the environmental variables in your current bash:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    source ./.environment
    ```
 
@@ -324,19 +324,19 @@ To do so, follow these steps.
 
 1. Initiate the migrations directory and prepare for the ``migrate`` command:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    flask db init
    ```
 
 2. Generate your migrations:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    flask db migrate
    ```
 
 3. Commit your generated migrations:
 
-   ```bash {location="Terminal"} 
+   ```bash {location="Terminal"}
    git add migrations/* && git commit -m "Adds migrations"
    ```
 
@@ -345,25 +345,25 @@ To do so, follow these steps.
    To do so, re-open your `.upsun/config.yaml` file.
    Locate the `deploy` hook where you added `npm run build` previously and update it as follows:
 
-   ```yaml {location=".upsun/config.yaml"}
+   ```yaml {configFile="app"}
    applications:
-       myapp:
-           ...
-           # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-           # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
-           hooks:
-               ...
-               # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-               # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
-               deploy: |
-                   set -eux
-                   npm run build
-                   flask db upgrade
+     myapp:
+       ...
+       # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+       # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
+       hooks:
+         ...
+         # The deploy hook is run after the app container has been started, but before it has started accepting requests.
+         # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
+         deploy: |
+           set -eux
+           npm run build
+           flask db upgrade
    ```
 
 5. Commit all your changes and push to {{% vendor/name %}}.
-   
-   ```bash {location="Terminal"} 
+
+   ```bash {location="Terminal"}
    git add .
    git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
    git push

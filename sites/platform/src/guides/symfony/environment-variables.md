@@ -27,7 +27,7 @@ about the app and its infrastructure.
 
 The Symfony integration exposes more environment variables:
 
-- `APP_ENV` is set to `prod` by default. 
+- `APP_ENV` is set to `prod` by default.
   You can manually override this value for a preview environment
   by setting the `SYMFONY_ENV` environment variable to `dev`, and remove it when done.
 
@@ -41,7 +41,7 @@ The Symfony integration exposes more environment variables:
 - `MAILFROM` is set to a random value.
   This value is used as a `From` header when using [croncape](./crons#use-croncape).
 
-- `SYMFONY_IS_WORKER` is set to `1` when the container is running in the context of a worker 
+- `SYMFONY_IS_WORKER` is set to `1` when the container is running in the context of a worker
   (instead of the main application container).
 
 - `SYMFONY_CACHE_DIR` (only available during the build hook execution):
@@ -103,9 +103,9 @@ For example, if you have the following [relationships](/create-apps/app-referenc
 
 ```yaml
 relationships:
-    database: 
-        service: securitydb
-        endpoint: postgresql
+  database:
+    service: securitydb
+    endpoint: postgresql
 ```
 
 The environment variables for the database service is prefixed by `DATABASE_`

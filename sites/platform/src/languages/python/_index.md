@@ -63,22 +63,22 @@ type: 'python:{{% latest "python" %}}'
 2.  Install the requirements for your app.
 ```yaml {configFile="app"}
 dependencies:
-    python3:
-        pipenv: "2022.12.19"
+  python3:
+    pipenv: "2022.12.19"
 
 hooks:
-    build: |
-        set -eu
-        pipenv install --system --deploy
+  build: |
+    set -eu
+    pipenv install --system --deploy
 ```
 3.  Define the command to start your web server:
 
 ```yaml {configFile="app"}
-    web:
-        # Start your app with the configuration you define
-        # You can replace the file location with your location
-        commands:
-            start: python server.py
+web:
+  # Start your app with the configuration you define
+  # You can replace the file location with your location
+  commands:
+    start: python server.py
 ```
 
 You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
@@ -96,23 +96,23 @@ type: 'python:{{% latest "python" %}}'
 2.  Define the conditions for your web server:
 
 ```yaml {configFile="app"}
-    web:
-        upstream:
-            # Send requests to the app server through a unix socket
-            # Its location is defined in the SOCKET environment variable
-            socket_family: "unix"
+web:
+  upstream:
+    # Send requests to the app server through a unix socket
+    # Its location is defined in the SOCKET environment variable
+    socket_family: "unix"
 
-        # Start your app with the configuration you define
-        # You can replace the file location with your location
-        commands:
-            start: "uwsgi --ini conf/uwsgi.ini"
+  # Start your app with the configuration you define
+  # You can replace the file location with your location
+  commands:
+    start: "uwsgi --ini conf/uwsgi.ini"
 
-        locations:
-            # The folder from which to serve static assets
-            "/":
-                root: "public"
-                passthru: true
-                expires: 1h
+  locations:
+    # The folder from which to serve static assets
+    "/":
+      root: "public"
+      passthru: true
+      expires: 1h
 ```
 3.  Create configuration for uWSGI such as the following:
 

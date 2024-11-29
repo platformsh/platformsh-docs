@@ -13,7 +13,7 @@ banner:
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 <table>
@@ -52,9 +52,8 @@ The following basic [app configuration](../../create-apps/_index.md) is sufficie
 See the [complete example](#complete-example) below for more details.
 
 ```yaml {configFile="app"}
-
 # The app's name, which must be unique within the project.
-name: 'app'
+name: 'myapp'
 
 # The language and version for your app.
 type: 'rust:1'
@@ -68,14 +67,14 @@ hooks:
 
 web:
   commands:
-      # Customize the start command with your own target.
-      start: './target/debug/hello'
+    # Customize the start command with your own target.
+    start: './target/debug/hello'
 
   locations:
-        /:
-            # Route all requests to the Rust app, unconditionally.
-            allow: false
-            passthru: true
+    /:
+      # Route all requests to the Rust app, unconditionally.
+      allow: false
+      passthru: true
 ```
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
@@ -113,53 +112,52 @@ Follow these steps:
 
 2. Create a repository for your app and add the following `Cargo.toml` file:
 
-   ```toml
-   [package]
-   name = "hello_world"
-   version = "0.1.0"
-   edition = "2021"
+    ```toml
+    [package]
+    name = "hello_world"
+    version = "0.1.0"
+    edition = "2021"
 
-   [[bin]]
-   name = "hello"
-   path = "hello.rs"
+    [[bin]]
+    name = "hello"
+    path = "hello.rs"
 
-   [dependencies]
-   time = "0.1.12"
-   regex = "0.1.41"
-   base64 = "0.21.0"
-   serde = { version = "1.0", features = ["derive"] }
+    [dependencies]
+    time = "0.1.12"
+    regex = "0.1.41"
+    base64 = "0.21.0"
+    serde = { version = "1.0", features = ["derive"] }
 
-   serde_json = "1.0"
-   ```
+    serde_json = "1.0"
+    ```
 
 3. Add the following [app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="app"}
+    ```yaml {configFile="app"}
+    # The app's name, which must be unique within the project.
+    name: 'myapp'
 
-# The app's name, which must be unique within the project.
-name: 'app'
+    # The language and version for your app.
+    type: 'rust:1'
 
-# The language and version for your app.
-type: 'rust:1'
+    # The size of the app's persistent disk (in MB).
+    disk: 2048
 
-# The size of the app's persistent disk (in MB).
-disk: 2048
+    hooks:
+      build:
+        cargo build
 
-hooks:
-  build:
-    cargo build
+    web:
+      commands:
+        # Customize the start command with your own target.
+        start: './target/debug/hello'
 
-web:
-  commands:
-      # Customize the start command with your own target.
-      start: './target/debug/hello'
-
-  locations:
+      locations:
         /:
-            # Route all requests to the Rust app, unconditionally.
-            allow: false
-            passthru: true
-```
+          # Route all requests to the Rust app, unconditionally.
+          allow: false
+          passthru: true
+    ```
 4. To generate a `Cargo.lock` file,
    run the following command:
 

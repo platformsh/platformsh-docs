@@ -116,11 +116,11 @@ applications:
   frontend:
     stack:
       - "php@{{% latest "php" %}}":
-        extensions:
-          - apcu
-          - sodium
-          - xsl
-          - pdo_sqlite
+          extensions:
+            - apcu
+            - sodium
+            - xsl
+            - pdo_sqlite
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 ```
@@ -153,10 +153,10 @@ For more information, see how to [define relationships between your apps](/creat
 
 {{< note title="Availability" theme="info">}}
 
-New syntax (default and explicit endpoints) described below is supported by most, but not all, image types 
+New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
 (`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
-This syntax is currently being rolled out for all images. 
-If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section. 
+This syntax is currently being rolled out for all images.
+If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
 {{< /note >}}
 
@@ -172,10 +172,10 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            {{% variable "SERVICE_NAME" %}}: 
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      {{% variable "SERVICE_NAME" %}}:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
@@ -186,10 +186,10 @@ For example, if you define the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            mariadb: 
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      mariadb:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
@@ -199,24 +199,24 @@ For reference, the equivalent configuration using explicit endpoints would be th
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            mariadb:
-                service: mariadb
-                endpoint: mysql
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      mariadb:
+        service: mariadb
+        endpoint: mysql
 ```
 
 You can define any number of relationships in this way:
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            mariadb:
-            redis:
-            elasticsearch: 
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      mariadb:
+      redis:
+      elasticsearch:
 ```
 
 {{< note title="Tip" theme="info" >}}
@@ -225,17 +225,17 @@ An even quicker way to define many relationships is to use the following single-
 
 ```yaml {configFile="services"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B" >}}, {{< variable "SERVICE_NAME_C" >}}}
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships: {{{< variable "SERVICE_NAME_A" >}}, {{< variable "SERVICE_NAME_B" >}}, {{< variable "SERVICE_NAME_C" >}}}
 
 services:
-    {{< variable "SERVICE_NAME_A" >}}:
-        type: mariadb:{{% latest "mariadb" %}}
-    {{< variable "SERVICE_NAME_B" >}}: 
-        type: redis:{{% latest "redis" %}}
-    {{< variable "SERVICE_NAME_C" >}}:
-        type: elasticsearch:{{% latest "elasticsearch" %}}
+  {{< variable "SERVICE_NAME_A" >}}:
+    type: mariadb:{{% latest "mariadb" %}}
+  {{< variable "SERVICE_NAME_B" >}}:
+    type: redis:{{% latest "redis" %}}
+  {{< variable "SERVICE_NAME_C" >}}:
+    type: elasticsearch:{{% latest "elasticsearch" %}}
 ```
 
 {{< /note >}}
@@ -250,12 +250,12 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            {{% variable "RELATIONSHIP_NAME" %}}:
-                service: {{% variable "SERVICE_NAME" %}} 
-                endpoint: {{% variable "ENDPOINT_NAME" %}}
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      {{% variable "RELATIONSHIP_NAME" %}}:
+        service: {{% variable "SERVICE_NAME" %}}
+        endpoint: {{% variable "ENDPOINT_NAME" %}}
 ```
 
 - `RELATIONSHIP_NAME` is the name you want to give to the relationship.
@@ -267,12 +267,12 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            database: # The name of the relationship. 
-                service: mariadb
-                endpoint: db1
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      database: # The name of the relationship.
+        service: mariadb
+        endpoint: db1
 ```
 
 For more information on how to handle multiple databases, multiple cores,
@@ -290,19 +290,19 @@ see each service's dedicated page:
 
 ```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            database1: 
-                service: mariadb
-                endpoint: admin
-            database2:
-                service: mariadb
-                endpoint: legacy
-            cache:
-                service: redis
-            search:
-                service: elasticsearch
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      database1:
+        service: mariadb
+        endpoint: admin
+      database2:
+        service: mariadb
+        endpoint: legacy
+      cache:
+        service: redis
+      search:
+        service: elasticsearch
 ```
 
 {{< /codetabs >}}
@@ -311,30 +311,30 @@ applications:
 
 The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
 
-```yaml
+```yaml {configFile="app"}
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
 
 services:
-    SERVICE_NAME_A:
-        type: mariadb:{{% latest "mariadb" %}}
+  SERVICE_NAME_A:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 For example:
 
 ```yaml
 applications:
-    {{% variable "APP_NAME" %}}: 
-        # ...
-        relationships:
-            database: "db:mysql"
+  {{% variable "APP_NAME" %}}:
+    # ...
+    relationships:
+      database: "db:mysql"
 
 services:
-    db:
-        type: mariadb:{{% latest "mariadb" %}}
+  db:
+    type: mariadb:{{% latest "mariadb" %}}
 ```
 
 Feel free to use this until the default and explicit endpoint syntax is supported on all images.
@@ -441,9 +441,11 @@ Changing the name of your mount affects the default `source_path`.
 Say you have a `/my/cache/` mount with an undefined `source_path`:
 
 ```yaml {configFile="app"}
-mounts:
-  '/my/cache/':
-    source: tmp
+applications:
+  myapp:
+    mounts:
+      '/my/cache/':
+        source: tmp
 ```
 
 If you rename the mount to `/cache/files/`, it will point to a new, empty `/cache/files/` directory.
@@ -452,10 +454,12 @@ To ensure continuity, you need to explicitly define the `source_path` as the pre
 or trailing slashes:
 
  ```yaml {configFile="app"}
-mounts:
-  '/cache/files/':
-    source: tmp
-    source_path: my/cache
+applications:
+  myapp:
+    mounts:
+      '/cache/files/':
+        source: tmp
+        source_path: my/cache
 ```
 
 The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing
@@ -509,11 +513,11 @@ Follow these steps:
 
    ```yaml {configFile="app"}
    applications:
-      backend:
-          mounts:
-              var/uploads: #The path to your mount within the backend app container.
-                  source: storage
-                  source_path: backend/uploads #The path to the source of the mount within the external network directory.
+     backend:
+       mounts:
+         var/uploads: #The path to your mount within the backend app container.
+           source: storage
+           source_path: backend/uploads #The path to the source of the mount within the external network directory.
    ```
 
    This creates a `storage` mount named `var/uploads` in the `backend` app container.
@@ -523,19 +527,19 @@ Follow these steps:
 
    ```yaml {configFile="app"}
    applications:
-       applications:
-           backend:
-               mounts:
-                   var/uploads:
-                       source: storage
-                       source_path: backend/uploads
+     applications:
+       backend:
+         mounts:
+           var/uploads:
+             source: storage
+             source_path: backend/uploads
 
-           frontend:
-               mounts:
-                   web/uploads: #The path to your mount within the frontend app container.
-                       source: storage
-                       service: backend #The name of the other app, so the mount can point to the same external network directory as that other app's mount.
-                       source_path: backend/uploads #The path to the source of the mount within the shared external network directory.
+       frontend:
+         mounts:
+           web/uploads: #The path to your mount within the frontend app container.
+             source: storage
+             service: backend #The name of the other app, so the mount can point to the same external network directory as that other app's mount.
+             source_path: backend/uploads #The path to the source of the mount within the shared external network directory.
    ```
 
    This creates another `storage` mount named `web/uploads` in the `frontend` app container.
@@ -556,9 +560,9 @@ explicitly [defining a Network Storage service](/add-services/network-storage.md
 The locations of mounts as they are visible to application containers can overlap somewhat.
 For example:
 
-```yaml
+```yaml {configFile="app"}
 applications:
-  my_app:
+  myapp:
     # ...
     mounts:
       'var/cache_a':
@@ -573,13 +577,13 @@ applications:
 ```
 
 In this case, it does not matter that each mount is of a different `source` type.
-Each mount is restricted to a subfolder within `var`, and all is well. 
+Each mount is restricted to a subfolder within `var`, and all is well.
 
 The following, however, is not allowed and will result in a failure:
 
-```yaml
+```yaml {configFile="app"}
 applications:
-  my_app:
+  myapp:
     # ...
     mounts:
       'var/':
@@ -911,8 +915,8 @@ applications:
     firewall:
       outbound:
         - ips: [ "1.2.3.4/32" ]
-        ports: [ 443 ]
-          - ports: [ 80 ]
+          ports: [ 443 ]
+        - ports: [ 80 ]
 ```
 
 ### Outbound traffic to CDNs
@@ -942,11 +946,11 @@ applications:
     firewall:
       outbound:
         - protocol: tcp
-        domains: [ "api.stripe.com", "api.twilio.com" ]
-        ports: [ 80, 443 ]
-          - protocol: tcp
-        ips: [ "1.2.3.4/29","2.3.4.5" ]
-        ports: [ 22 ]
+          domains: [ "api.stripe.com", "api.twilio.com" ]
+          ports: [ 80, 443 ]
+        - protocol: tcp
+          ips: [ "1.2.3.4/29","2.3.4.5" ]
+          ports: [ 22 ]
 ```
 
 #### Determine which domains to allow
@@ -1209,7 +1213,7 @@ crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
     spec: '*/5 * * * *'
-    commands: 
+    commands:
       start: 'php artisan schedule:run'
   {{< /snippet >}}
 ```
@@ -1227,7 +1231,7 @@ crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
     spec: 0 5 * * *
-    commands: 
+    commands:
       start: |
         # Only run for the production environment, aka main branch
         if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
@@ -1254,12 +1258,12 @@ applications:
     crons:
       update:
         spec: '0 0 * * *'
-          commands:
-            start: |
-              if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+        commands:
+          start: |
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
               {{% vendor/cli %}} backup:create --yes --no-wait
               {{% vendor/cli %}} source-operation:run update --no-wait --yes
-              fi
+            fi
 ```
 
 ### Cron job timing
@@ -1373,9 +1377,9 @@ applications:
       extensions:
         - geoip
         - name: blackfire
-        configuration:
-          server_id: foo
-          server_token: bar
+          configuration:
+            server_id: foo
+            server_token: bar
 ```
 
 In this case, the `name` property is required.

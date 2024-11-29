@@ -175,20 +175,20 @@ The following example shows nested structures in an [app configuration](/create-
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        BASIC: "a string"
-        INGREDIENTS:
-            - 'peanut butter'
-            - 'jelly'
-        QUANTITIES:
-            "milk": "1 liter"
-            "cookies": "1 kg"
-    stuff:
-        STEPS: ['one', 'two', 'three']
-        COLORS:
-            red: '#FF0000'
-            green: '#00FF00'
-            blue: '#0000FF'
+  env:
+    BASIC: "a string"
+    INGREDIENTS:
+      - 'peanut butter'
+      - 'jelly'
+    QUANTITIES:
+      "milk": "1 liter"
+      "cookies": "1 kg"
+  stuff:
+    STEPS: ['one', 'two', 'three']
+    COLORS:
+      red: '#FF0000'
+      green: '#00FF00'
+      blue: '#0000FF'
 ```
 
 You can access these nested variables as follows:
@@ -427,9 +427,9 @@ The following example shows the process, though you have to modify it to fit you
 
    ```yaml {configFile="app"}
    mounts:
-       /config:
-           source: local
-           source_path: config
+     /config:
+       source: local
+       source_path: config
    ```
 
 2. Create a symbolic link from the config file the application wants to a location in that mount:
@@ -462,8 +462,8 @@ The following example shows the process, though you have to modify it to fit you
 
    ```yaml {configFile="app"}
    hooks:
-       deploy: |
-           bash export-config.sh
+     deploy: |
+       bash export-config.sh
    ```
 
 Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.

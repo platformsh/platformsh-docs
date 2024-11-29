@@ -35,12 +35,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -78,24 +78,24 @@ To define the service, use the `vault-kms` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: vault-kms:<VERSION>
-    disk: 512
-    configuration:
-        endpoints:
-            <ENDPOINT_ID>:
-                - policy: <POLICY>
-                  key: <KEY_NAME>
-                  type: <ENDPOINT_TYPE>
+  type: vault-kms:<VERSION>
+  disk: 512
+  configuration:
+    endpoints:
+      <ENDPOINT_ID>:
+        - policy: <POLICY>
+          key: <KEY_NAME>
+          type: <ENDPOINT_TYPE>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-- {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
-- {{< variable "VERSION" >}} is a supported version of the service.
-- {{< variable "ENDPOINT_ID" >}} is an identifier you choose for the endpoint.
-- {{< variable "KEY_NAME" >}} is the name of the key to be stored in the Vault KMS.
-- {{< variable "POLICY" >}} is one of the available [policies](#policies) based on what you want to accomplish.
+- ``<SERVICE_NAME>`` is the name you choose to identify the service.
+- ``<VERSION>`` is a supported version of the service.
+- ``<ENDPOINT_ID>`` is an identifier you choose for the endpoint.
+- ``<KEY_NAME>`` is the name of the key to be stored in the Vault KMS.
+- ``<POLICY>`` is one of the available [policies](#policies) based on what you want to accomplish.
 - The `type` is one of:
 
   - `sign`: for signing payloads, with the type `ecdsa-p256`
@@ -107,25 +107,24 @@ You can create multiple endpoints, such as to have key management separate from 
 
 512 MB is the minimum required disk space for the Vault KMS service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
+# The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: <ENDPOINT_ID>
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: <ENDPOINT_ID>
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships. 
+The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships.
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -139,27 +138,31 @@ If you split the service into multiple endpoints, define multiple relationships.
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 vault-kms:
-    type: vault-kms:1.12
-    disk: 512
-    configuration:
-        endpoints:
-            manage_keys:
-                - policy: admin
-                  key: vault-sign
-                  type: sign
-                - policy: sign
-                  key: vault-sign
-                  type: sign
-                - policy: verify
-                  key: vault-sign
-                  type: sign
+  type: vault-kms:1.12
+  disk: 512
+  configuration:
+    endpoints:
+      manage_keys:
+        - policy: admin
+          key: vault-sign
+          type: sign
+        - policy: sign
+          key: vault-sign
+          type: sign
+        - policy: verify
+          key: vault-sign
+          type: sign
 ```
 
 #### [App configuration](/create-apps)
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 relationships:
-    vault_secret: "vault-kms:manage_keys"
+  # Please note: Legacy definition of the relationship is still supported:
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  vault_secret:
+    service: "vault-kms"
+    endpoint: "manage_keys"
 ```
 
 ### Multiple endpoints configuration
@@ -169,33 +172,35 @@ relationships:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 vault-kms:
-    type: vault-kms:1.12
-    disk: 512
-    configuration:
-        endpoints:
-            management:
-                - policy: admin
-                  key: admin-key
-                  type: sign
-            sign_and_verify:
-                - policy: sign
-                  key: signing-key
-                  type: sign
-                - policy: verify
-                  key: signing-key
-                  type: sign
+  type: vault-kms:1.12
+  disk: 512
+  configuration:
+    endpoints:
+      management:
+        - policy: admin
+          key: admin-key
+          type: sign
+      sign_and_verify:
+        - policy: sign
+          key: signing-key
+          type: sign
+        - policy: verify
+          key: signing-key
+          type: sign
 ```
 
 #### [App configuration](/create-apps)
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
 relationships:
-    vault_manage:
-        service: vault-kms
-        endpoint: management
-    vault_sign:
-        service: vault-kms
-        endpoint: sign_and_verify
+  # Please note: Legacy definition of the relationship is still supported.
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  vault_manage:
+    service: vault-kms
+    endpoint: management
+  vault_sign:
+    service: vault-kms
+    endpoint: sign_and_verify
 ```
 
 ## Use Vault KMS
@@ -217,7 +222,7 @@ To make any calls to the Vault KMS, you need your token. Get it from the `{{< ve
 echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].password"
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 The `-r` flag returns the string itself, not wrapped in quotes.
 
@@ -239,7 +244,7 @@ Assign it to a variable as follows:
 VAULT_URL=$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].host"):$(echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 --decode | jq -r ".{{< variable "RELATIONSHIP_NAME" >}}[0].port")
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 ### Manage your keys
 

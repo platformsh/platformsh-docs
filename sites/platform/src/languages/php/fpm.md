@@ -113,9 +113,9 @@ you can use:
 
 ```yaml {configFile="app"}
 runtime:
-    sizing_hints:
-        request_memory: 110
-        reserved_memory: 80
+  sizing_hints:
+    request_memory: 110
+    reserved_memory: 80
 ```
 Note that the minimum value for the `request_memory` key is 10 MB
 and the minimum value for the `reserved_memory` key is 70 MB.

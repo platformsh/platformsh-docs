@@ -32,14 +32,14 @@ To configure the HTTP cache, add a `cache` key to your route. You may like to st
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
-        type: upstream
-        upstream: app:http
-        cache:
-            enabled: true
-            default_ttl: 0
-            cookies: ['*']
-            headers: ['Accept', 'Accept-Language']
+  https://{default}/:
+    type: upstream
+    upstream: myapp:http
+    cache:
+      enabled: true
+      default_ttl: 0
+      cookies: ['*']
+      headers: ['Accept', 'Accept-Language']
 ```
 
 ## Example
@@ -50,14 +50,14 @@ The presence of any cookie in the request disables caching of that response.
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
-        type: upstream
-        upstream: app:http
-        cache:
-            enabled: true
-            headers: ['Accept', 'Accept-Language', 'X-Language-Locale']
-            cookies: ['*']
-            default_ttl: 60
+  https://{default}/:
+    type: upstream
+    upstream: myapp:http
+    cache:
+      enabled: true
+      headers: ['Accept', 'Accept-Language', 'X-Language-Locale']
+      cookies: ['*']
+      default_ttl: 60
 ```
 
 ## How it works
@@ -72,12 +72,12 @@ The default value for these keys are the following:
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
-        # ...
-            cache:
-                enabled: true
-                cookies: ['*']
-                headers: ['Accept', 'Accept-Language']
+  https://{default}/:
+    # ...
+    cache:
+      enabled: true
+      cookies: ['*']
+      headers: ['Accept', 'Accept-Language']
 ```
 
 ### Duration
@@ -122,11 +122,11 @@ For example, if the `headers` key is the following, {{% vendor/name %}} caches a
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
-        # ...
-            cache:
-                enabled: true
-                headers: ["Accept"]
+  https://{default}/:
+    # ...
+    cache:
+        enabled: true
+        headers: ["Accept"]
 ```
 
 {{< note title="none">}}
@@ -168,11 +168,11 @@ Other cookies are ignored.
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
-        # ...
-            cache:
-                enabled: true
-                cookies: ["foo"]
+  https://{default}/:
+    # ...
+    cache:
+      enabled: true
+      cookies: ["foo"]
 ```
 
 #### Example with a regular expression
@@ -183,11 +183,11 @@ For example:
 
 ```yaml {configFile="routes"}
 routes:
-     https://{default}/:
-         # ...
-             cache:
-                 enabled: true
-                 cookies: ['/^SS?ESS/']
+  https://{default}/:
+    # ...
+    cache:
+      enabled: true
+      cookies: ['/^SS?ESS/']
 ```
 
 This configuration causes all cookies beginning with `SESS` or `SSESS` to be part of the cache key, as a single value.
@@ -228,23 +228,23 @@ If you need fine-grained caching, you can set up caching rules for several route
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
-        type: upstream
-        upstream: app:http
-        cache:
-            enabled: true
+  https://{default}/:
+    type: upstream
+    upstream: myapp:http
+    cache:
+      enabled: true
 
-    https://{default}/foo/:
-        type: upstream
-        upstream: app:http
-        cache:
-            enabled: false
+  https://{default}/foo/:
+    type: upstream
+    upstream: myapp:http
+    cache:
+      enabled: false
 
-  https://{default}/foo/bar/:
-      type: upstream
-      upstream: app:http
-      cache:
-          enabled: true
+https://{default}/foo/bar/:
+  type: upstream
+  upstream: myapp:http
+  cache:
+    enabled: true
 ```
 
 With this configuration, the following routes are cached:
@@ -269,11 +269,11 @@ This is a case of allowing only a subset of cookies to invalidate the cache.
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/:
+  https://{default}/:
     # ...
-        cache:
-            enabled: true
-            cookies: ["MYCOOKIE"]
+    cache:
+      enabled: true
+      cookies: ["MYCOOKIE"]
 ```
 
 ### Cache HTTP and HTTPS separately using the `Vary` header

@@ -47,14 +47,14 @@ This example defines two mounts, one named `private` and one `upload`:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        mounts:
-            'private':
-                source: storage
-                source_path: private
-            'uploads':
-                source: storage
-                source_path: uploads
+  myapp:
+    mounts:
+      'private':
+        source: storage
+        source_path: private
+      'uploads':
+        source: storage
+        source_path: uploads
 ```
 
 With only this definition, their behavior is the same.
@@ -62,19 +62,19 @@ To make `uploads` accessible, define a location with different rules as in the f
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        web:
-            locations:
-                '/':
-                    # Handle dynamic requests
-                    root: 'public'
-                    passthru: '/app.php'
-                # Allow uploaded files to be served, but don't run scripts.
-                '/uploads':
-                    root: 'uploads'
-                    expires: 300s
-                    scripts: false
-                    allow: true
+  myapp:
+    web:
+      locations:
+        '/':
+          # Handle dynamic requests
+          root: 'public'
+          passthru: '/app.php'
+        # Allow uploaded files to be served, but don't run scripts.
+        '/uploads':
+          root: 'uploads'
+          expires: 300s
+          scripts: false
+          allow: true
 ```
 ## Mounts starting with a dot ignored
 
@@ -84,12 +84,12 @@ To mount a directory starting with a dot, put a `/` at the start of its definiti
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        web:
-            mounts:
-                '/.myhiddenfolder':
-                    source: storage
-                    source_path: 'myhiddenfolder'
+  myapp:
+    web:
+      mounts:
+        '/.myhiddenfolder':
+          source: storage
+          source_path: 'myhiddenfolder'
 ```
 ## Disk space issues
 

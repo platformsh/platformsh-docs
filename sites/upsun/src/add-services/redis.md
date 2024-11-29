@@ -81,22 +81,22 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
 
 ```json
 {
-    "username": null,
-    "scheme": "redis",
-    "service": "redis",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 6379,
-    "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "redis.internal",
-    "rel": "redis",
-    "path": null,
-    "query": [],
-    "password": null,
-    "type": "redis:{{% latest "redis" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "redis",
+  "service": "redis",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 6379,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "redis.internal",
+  "rel": "redis",
+  "path": null,
+  "query": [],
+  "password": null,
+  "type": "redis:{{% latest "redis" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -152,35 +152,34 @@ To define the service, use the `redis-persistent` endpoint:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: redis-persistent:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the `redis` endpoint :
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
-
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <SERVICE_NAME>:
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -189,79 +188,229 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: redis
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
-
-        runtime:
-            extensions:
-                - redis
-
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <SERVICE_NAME>:
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis-persistent:<VERSION>
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+          - redis
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: redis
+```
+
+{{< /codetabs >}}
 
 ### Configuration example
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    source:
+      root: "myapp"
 
-        # Relationships enable access from this app to a given service.
-        relationships:
-            redis:
+    [...]
 
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
 services:
     # The name of the service container. Must be unique within a project.
     redis:
-        type: redis-persistent:{{% latest "redis" %}}
+      type: redis-persistent:{{% latest "redis" %}}
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    source:
+      root: "myapp"
+
+    [...]
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
+        service: redis
+        endpoint: redis
+services:
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis-persistent:{{% latest "redis" %}}
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    source:
+      root: "myapp"
 
-        # Relationships enable access from this app to a given service.
-        relationships:
-            redis:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
 
+    [...]
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
 services:
-    # The name of the service container. Must be unique within a project.
-    redis:
-        type: redis-persistent:{{% latest "redis" %}}
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis-persistent:{{% latest "redis" %}}
+```
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    source:
+      root: "myapp"
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+    [...]
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
+        service: redis
+        endpoint: redis
+services:
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis-persistent:{{% latest "redis" %}}
 ```
 
+{{< /codetabs >}}
+
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
@@ -310,35 +459,34 @@ To define the service, use the `redis` endpoint:
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: redis:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the `redis` endpoint :
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
-
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <SERVICE_NAME>:
-
-services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -347,79 +495,247 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: redis
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+
+{{< /codetabs >}}
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    source:
+      root: "myapp"
 
-        runtime:
-            extensions:
-                - redis
+    [...]
 
-        # Relationships enable access from this app to a given service.
-        relationships:
-            <SERVICE_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
 
+     # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 services:
-    # The name of the service container. Must be unique within a project.
-    <SERVICE_NAME>:
-        type: redis:<VERSION>
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: redis:<VERSION>
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    source:
+      root: "myapp"
+
+    [...]
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: redis
+services:
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: redis:<VERSION>
+```
+
+{{< /codetabs >}}
 
 ### Configuration example
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    source:
+      root: "myapp"
 
-        # Relationships enable access from this app to a given service.
-        relationships:
-            redis:
+    [...]
 
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+     # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
 services:
-    # The name of the service container. Must be unique within a project.
-    redis:
-        type: redis:{{% latest "redis" %}}
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis:{{% latest "redis" %}}
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    source:
+      root: "myapp"
+
+    [...]
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
+        service: redis
+        endpoint: redis
+services:
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis:{{% latest "redis" %}}
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    <APP_NAME>:
-        source:
-            root: "myapp"
-        
-        [...]
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    source:
+      root: "myapp"
 
-        # Relationships enable access from this app to a given service.
-        relationships:
-            redis:
+    [...]
 
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
 services:
-    # The name of the service container. Must be unique within a project.
-    redis:
-        type: redis:{{% latest "redis" %}}
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis:{{% latest "redis" %}}
+```
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    source:
+      root: "myapp"
+
+    [...]
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redis:
+        service: redis
+        endpoint: redis
+services:
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: redis:{{% latest "redis" %}}
 ```
 
+{{< /codetabs >}}
+
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+`myapp` has access to the `redis` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
@@ -521,11 +837,11 @@ To customize those cache cleanups, set up an eviction policy such as the followi
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    redis:
-        type: "redis:{{% latest "redis" %}}"
-        configuration:
-            maxmemory_policy: allkeys-lfu
+  # The name of the service container. Must be unique within a project.
+  redis:
+    type: "redis:{{% latest "redis" %}}"
+    configuration:
+      maxmemory_policy: allkeys-lfu
 ```
 
 The following table presents the possible values:
@@ -544,10 +860,10 @@ The following table presents the possible values:
 For more information on the different policies,
 see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
 
-## Access your Redis service 
+## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
-you can access it using either the {{% vendor/name %}} CLI 
+you can access it using either the {{% vendor/name %}} CLI
 or through the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 ### {{% vendor/name %}} CLI
@@ -589,31 +905,89 @@ which means Redis stores and retrieves the data saved into sessions.
 
 To set up Redis as your session handler, add a configuration similar to the following:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        source:
-            root: "myapp"
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    source:
+      root: "myapp"
 
-            type: "php:{{% latest "php" %}}"
+    type: "php:{{% latest "php" %}}"
 
-            relationships:
-                redissession:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
 
-            variables:
-                php:
-                    session.save_handler: redis
-                    session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+    relationships:
+      redissession:
 
-            web:
-                locations:
-                    '/':
-                        root: 'web'
-                        passthru: '/index.php'
-                        
+    variables:
+      php:
+        session.save_handler: redis
+        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+
+    web:
+      locations:
+        '/':
+          root: 'web'
+          passthru: '/index.php'
+
 services:
-    # The name of the service container. Must be unique within a project.
-    redissession:
-        type: "redis-persistent:{{% latest "redis" %}}"
+  # The name of the service container. Must be unique within a project.
+  redissession:
+    type: "redis-persistent:{{% latest "redis" %}}"
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    source:
+      root: "myapp"
+
+    type: "php:{{% latest "php" %}}"
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - redis
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      redissession:
+        service: redissession
+        endpoint: redis
+
+    variables:
+      php:
+        session.save_handler: redis
+        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+
+    web:
+      locations:
+        '/':
+          root: 'web'
+          passthru: '/index.php'
+
+services:
+  # The name of the service container. Must be unique within a project.
+  redissession:
+    type: "redis-persistent:{{% latest "redis" %}}"
+```
+
+{{< /codetabs >}}

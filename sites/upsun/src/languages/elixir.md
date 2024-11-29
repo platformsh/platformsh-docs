@@ -20,18 +20,18 @@ When you deploy your app, you always get the latest available patches.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'elixir:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'elixir:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'elixir:{{% latest "elixir" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'elixir:{{% latest "elixir" %}}'
 ```
 
 ## Built-in variables
@@ -58,11 +58,11 @@ If you are using Hex to manage your dependencies, you need to specify the `MIX_E
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'elixir:{{% latest "elixir" %}}'
-        variables:
-            env:
-                MIX_ENV: 'prod'
+  myapp:
+    type: 'elixir:{{% latest "elixir" %}}'
+    variables:
+      env:
+        MIX_ENV: 'prod'
 ```
 The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
 You can change it.
@@ -71,13 +71,13 @@ Include in your build hook the steps to retrieve a local Hex and `rebar`, and th
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'elixir:{{% latest "elixir" %}}'
-        hooks:
-            build: |
-                mix local.hex --force
-                mix local.rebar --force
-                mix do deps.get --only prod, deps.compile, compile
+  myapp:
+    type: 'elixir:{{% latest "elixir" %}}'
+    hooks:
+      build: |
+        mix local.hex --force
+        mix local.rebar --force
+        mix do deps.get --only prod, deps.compile, compile
 ```
 
 {{< note >}}
@@ -94,26 +94,26 @@ The following basic app configuration is sufficient to run most Elixir applicati
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'elixir:{{% latest "elixir" %}}'
+  myapp:
+    type: 'elixir:{{% latest "elixir" %}}'
 
-        variables:
-            env:
-                MIX_ENV: 'prod'
+    variables:
+      env:
+        MIX_ENV: 'prod'
 
-        hooks:
-            build: |
-                mix local.hex --force
-                mix local.rebar --force
-                mix do deps.get --only prod, deps.compile, compile
+    hooks:
+      build: |
+        mix local.hex --force
+        mix local.rebar --force
+        mix do deps.get --only prod, deps.compile, compile
 
-        web:
-            commands:
-                start: mix phx.server
-            locations:
-                /:
-                    allow: false
-                    passthru: true
+    web:
+      commands:
+        start: mix phx.server
+      locations:
+        /:
+          allow: false
+          passthru: true
 ```
 
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Elixir application unconditionally, as in the example above.
@@ -143,17 +143,17 @@ Given a [relationship](/create-apps/app-reference/single-runtime-image#relations
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        type: 'elixir:{{% latest "elixir" %}}'
+  myapp:
+    type: 'elixir:{{% latest "elixir" %}}'
 
-        [...]
+    [...]
 
-        # Relationships enable an app container's access to a service.
-        # The example below shows simplified configuration leveraging a default service 
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
-        relationships:
-            postgresql: 
+    # Relationships enable an app container's access to a service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      postgresql:
 ```
 
 Assuming you have in `mix.exs` the Poison library to parse JSON:
@@ -181,7 +181,10 @@ config :my_app, Repo,
 
 and setup Ecto during the deploy hook:
 
-```yaml
-deploy: |
-    mix do ecto.setup
+```yaml {configFile="app"}
+applications:
+  myapp:
+    hooks:
+      deploy: |
+        mix do ecto.setup
 ```

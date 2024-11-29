@@ -13,7 +13,7 @@ These sections provide Javascript/Node.js-specific configuration details, but yo
 
 ## Build flavors
 
-By default, {{% vendor/name %}} makes assumptions about how you want to build your application. 
+By default, {{% vendor/name %}} makes assumptions about how you want to build your application.
 Namely, that you are managing your dependencies with npm, and that the very first thing you'd like to run is a particular and common production flavor of `npm install`.
 
 This is called a build `flavor`, but its assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
@@ -39,9 +39,9 @@ Below are some examples from common Node.js framework configuration:
 title=Next.js
 +++
 
-```yaml {location="{{% vendor/configfile "apps" %}}"}
+```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -59,7 +59,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -72,9 +72,9 @@ routes:
 title=Express
 +++
 
-```yaml {location="{{% vendor/configfile "apps" %}}"}
+```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
@@ -92,7 +92,7 @@ applications:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -106,14 +106,14 @@ routes:
 title=Strapi
 +++
 
-```yaml {location=".{{% vendor/cli %}}/config.yaml"}
+```yaml {configFile="app"}
 applications:
-  app:
+  myapp:
     source:
       root: "/"
     type: "nodejs:20"
     relationships:
-      postgresql: "postgresql:postgresql"
+      postgresql:
     mounts:
       ...
     web:
@@ -136,7 +136,7 @@ services:
 routes:
   "https://{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "myapp:http"
   # A basic redirect definition
   # More information: {{% vendor/url_doc %}}/define-routes.html#basic-redirect-definition
   "https://www.{default}/":
@@ -158,7 +158,7 @@ The {{% vendor/name %}} documentation includes a wide array of community resourc
 
 While there are virtually no restrictions to you deploying any kind of application on {{% vendor/name %}}, configuration may still be unclear at this point.
 
-Not to worry! The {{% vendor/name %}} community is here to help. 
+Not to worry! The {{% vendor/name %}} community is here to help.
 Come and say hello, share your work, ask for help, and peek in on what others are working on.
 
 Welcome to the {{% vendor/name %}} community!

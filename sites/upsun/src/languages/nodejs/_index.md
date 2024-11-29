@@ -27,18 +27,18 @@ To use Node.js, specify ``nodejs`` as your [app’s type](/create-apps/app-refer
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'nodejs:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'nodejs:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'nodejs:{{% latest "nodejs" %}}'
 ```
 
 To use a specific version in a container with a different language, [use a version manager](node-version.md).
@@ -59,9 +59,9 @@ and add it to your app configuration:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'nodejs:{{% latest "nodejs" %}}'
 ```
 
 ### 2. Specify any global dependencies
@@ -70,12 +70,12 @@ Add the following to your app configuration:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'nodejs:{{% latest "nodejs" %}}'
+    dependencies:
+      nodejs:
+        sharp: "*"
 ```
 
 These are now available as commands, the same as installing with `npm install -g`.
@@ -86,16 +86,16 @@ Include any commands needed to build and setup your app in the `hooks`, as in th
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-        hooks:
-            build: |
-                npm run setup-assets
-                npm run build
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'nodejs:{{% latest "nodejs" %}}'
+    dependencies:
+      nodejs:
+        sharp: "*"
+    hooks:
+      build: |
+        npm run setup-assets
+        npm run build
 ```
 
 ### 4. Start your app
@@ -104,19 +104,19 @@ Specify a command to start serving your app (it must be a process running in the
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-        hooks:
-            build: |
-                npm run setup-assets
-                npm run build
-        web:
-            commands:
-                start: node index.js
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'nodejs:{{% latest "nodejs" %}}'
+    dependencies:
+      nodejs:
+        sharp: "*"
+    hooks:
+      build: |
+        npm run setup-assets
+        npm run build
+    web:
+      commands:
+        start: node index.js
 ```
 
 ### 5. Listen on the right port
@@ -144,19 +144,19 @@ A complete basic app configuration looks like the following:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    'node-app':
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        dependencies:
-            nodejs:
-                sharp: "*"
-        hooks:
-            build: |
-                npm run setup-assets
-                npm run build
-        web:
-            commands:
-                start: "node index.js"
+  # The app's name, which must be unique within the project.
+  'node-app':
+    type: 'nodejs:{{% latest "nodejs" %}}'
+    dependencies:
+      nodejs:
+        sharp: "*"
+    hooks:
+      build: |
+        npm run setup-assets
+        npm run build
+    web:
+      commands:
+        start: "node index.js"
 ```
 
 ## Dependencies
@@ -178,11 +178,11 @@ To switch to Yarn to manage dependencies, follow these steps:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'nodejs:{{% latest "nodejs" %}}'
-        build:
-            flavor: none
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'nodejs:{{% latest "nodejs" %}}'
+    build:
+      flavor: none
 ```
 
 2. Specify the version of Yarn you want:
@@ -208,8 +208,8 @@ title=Yarn 3.x and Node.js 16+
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
-    build: |
-        corepack yarn install
+  build: |
+    corepack yarn install
 {{< /snippet >}}
 ```
 
@@ -225,8 +225,8 @@ title=Yarn 3.x and Node.js 14
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        corepack: "*"
+  nodejs:
+    corepack: "*"
 {{< /snippet >}}
 ```
 
@@ -236,8 +236,8 @@ dependencies:
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
-    build: |
-        corepack yarn install
+  build: |
+    corepack yarn install
 {{< /snippet >}}
 ```
 
@@ -253,8 +253,8 @@ title=Yarn < 3
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 dependencies:
-    nodejs:
-        yarn: "1.22.19"
+  nodejs:
+    yarn: "1.22.19"
 {{< /snippet >}}
 ```
 
@@ -264,8 +264,8 @@ dependencies:
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'nodejs:{{% latest "nodejs" %}}'
 hooks:
-    build: |
-        yarn --frozen-lockfile
+  build: |
+    yarn --frozen-lockfile
 {{< /snippet >}}
 ```
 
@@ -280,16 +280,16 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-    # The name of your app.
-    myapp:
-    # Choose Node.js version 20 or above.
-        type: 'nodejs:20'
-        # Override the default Node.js build flavor.
-        build:
-    	    flavor: none
-        # Use Bun to install the dependencies.
-        hooks:
-    	    build: bun install
+  # The name of your app.
+  myapp:
+  # Choose Node.js version 20 or above.
+    type: 'nodejs:20'
+    # Override the default Node.js build flavor.
+    build:
+      flavor: none
+    # Use Bun to install the dependencies.
+    hooks:
+      build: bun install
 ```
 
 #### Use Bun as a runtime
@@ -298,20 +298,20 @@ You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here
 
 ```yaml {configFile="app"}
 applications:
-    # The name of your app.
-    myapp:
+  # The name of your app.
+  myapp:
     # Choose Node.js version 20 or above.
-        type: 'nodejs:20'
-        # Override the default Node.js build flavor.
-        build:
-    	    flavor: none
-        # Use Bun to install the dependencies.
-        hooks:
-    	    build: bun install
-        # In the start command replace node with Bun.
-        web:
-    	    commands:
-    		    start: 'bun app.js'
+    type: 'nodejs:20'
+    # Override the default Node.js build flavor.
+    build:
+      flavor: none
+    # Use Bun to install the dependencies.
+    hooks:
+      build: bun install
+    # In the start command replace node with Bun.
+    web:
+      commands:
+        start: 'bun app.js'
 ```
 
 ## Connecting to services

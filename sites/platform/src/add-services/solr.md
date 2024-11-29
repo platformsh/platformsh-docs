@@ -63,32 +63,32 @@ so migrate to one of the [supported versions](#supported-versions).
     </tbody>
 </table>
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
-    "username": null,
-    "scheme": "solr",
-    "service": "solr",
-    "fragment": null,
-    "ip": "123.456.78.90",
-    "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 8080,
-    "cluster": "azertyuiopqsdf-main-afdwftq",
-    "host": "solr.internal",
-    "rel": "solr",
-    "path": "solr\/collection1",
-    "query": [],
-    "password": null,
-    "type": "solr:{{% latest "solr" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "solr",
+  "service": "solr",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.solr.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 8080,
+  "cluster": "azertyuiopqsdf-main-afdwftq",
+  "host": "solr.internal",
+  "rel": "solr",
+  "path": "solr\/collection1",
+  "query": [],
+  "password": null,
+  "type": "solr:{{% latest "solr" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -101,27 +101,33 @@ To define the service, use the `solr` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: solr:<VERSION>
-    disk: 256
+  type: solr:<VERSION>
+  disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
-```yaml {configFile="apps"}
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+  <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -131,7 +137,36 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: solr
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
 
@@ -140,20 +175,45 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: solr:{{% latest "solr" %}}
-    disk: 256
+  type: solr:{{% latest "solr" %}}
+  disk: 256
 ```
 
 #### [App configuration](/create-apps/_index.md)
 
-```yaml {configFile="apps"}
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-   solr: 
+  solr:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  solr:
+    service: solr
+    endpoint: solr
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
@@ -210,10 +270,10 @@ You must provide your own Solr configuration via a `core_config` key in your `{{
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: "solr:4.10"
-    disk: 1024
-    configuration:
-        core_config: !archive "{{< variable "DIRECTORY" >}}"
+  type: "solr:4.10"
+  disk: 1024
+  configuration:
+    core_config: !archive "{{< variable "DIRECTORY" >}}"
 ```
 
 {{< variable "DIRECTORY" >}} points to a directory in the Git repository, in or below the `{{< vendor/configdir >}}/` folder. This directory needs to contain everything that Solr needs to start a core. At the minimum, `solrconfig.xml` and `schema.xml`.
@@ -223,10 +283,10 @@ For example, place them in `{{< vendor/configdir >}}/solr/conf/` such that the `
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: "solr:4.10"
-    disk: 1024
-    configuration:
-        core_config: !archive "solr/conf/"
+  type: "solr:4.10"
+  disk: 1024
+  configuration:
+    core_config: !archive "solr/conf/"
 ```
 
 ## Solr 6 and later
@@ -236,19 +296,19 @@ For Solr 6 and later {{% vendor/name %}} supports multiple cores via different e
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: solr:{{% latest "solr" %}}
-    disk: 1024
-    configuration:
-        cores:
-            mainindex:
-                conf_dir: !archive "core1-conf"
-            extraindex:
-                conf_dir: !archive "core2-conf"
-        endpoints:
-            main:
-                core: mainindex
-            extra:
-                core: extraindex
+  type: solr:{{% latest "solr" %}}
+  disk: 1024
+  configuration:
+    cores:
+      mainindex:
+        conf_dir: !archive "core1-conf"
+      extraindex:
+        conf_dir: !archive "core2-conf"
+    endpoints:
+      main:
+        core: mainindex
+      extra:
+        core: extraindex
 ```
 
 The above definition defines a single Solr {{% latest "solr" %}} server. That server has 2 cores defined:
@@ -268,12 +328,8 @@ type: "php:{{% latest "php" %}}"
 [...]
 
 relationships:
-    solrsearch1: 
-        service: solr
-        endpoint: main
-    solrsearch2:
-        service: solr
-        endpoint: extra
+  solrsearch1: "solr:main"
+  solrsearch2: "solr:extra"
 ```
 
 That is, the application's environment would include a `solrsearch1` relationship that connects to the `main` endpoint, which is the `mainindex` core, and a `solrsearch2` relationship that connects to the `extra` endpoint, which is the `extraindex` core.
@@ -282,22 +338,22 @@ The relationships array would then look something like the following:
 
 ```json
 {
-    "solrsearch1": [
-        {
-            "path": "solr/mainindex",
-            "host": "248.0.65.197",
-            "scheme": "solr",
-            "port": 8080
-        }
-    ],
-    "solrsearch2": [
-        {
-            "path": "solr/extraindex",
-            "host": "248.0.65.197",
-            "scheme": "solr",
-            "port": 8080
-        }
-    ]
+  "solrsearch1": [
+    {
+      "path": "solr/mainindex",
+      "host": "248.0.65.197",
+      "scheme": "solr",
+      "port": 8080
+    }
+  ],
+  "solrsearch2": [
+    {
+      "path": "solr/extraindex",
+      "host": "248.0.65.197",
+      "scheme": "solr",
+      "port": 8080
+    }
+  ]
 }
 ```
 
@@ -308,25 +364,25 @@ For even more customizability, it's also possible to define Solr configsets. For
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: solr:8.4
-    disk: 1024
-    configuration:
-        configsets:
-            mainconfig: !archive "configsets/solr8"
-        cores:
-            english_index:
-                core_properties: |
-                    configSet=mainconfig
-                    schema=english/schema.xml
-            arabic_index:
-                core_properties: |
-                    configSet=mainconfig
-                    schema=arabic/schema.xml
-        endpoints:
-            english:
-                core: english_index
-            arabic:
-                core: arabic_index
+  type: solr:8.4
+  disk: 1024
+  configuration:
+    configsets:
+      mainconfig: !archive "configsets/solr8"
+    cores:
+      english_index:
+        core_properties: |
+          configSet=mainconfig
+          schema=english/schema.xml
+      arabic_index:
+        core_properties: |
+          configSet=mainconfig
+          schema=arabic/schema.xml
+    endpoints:
+      english:
+        core: english_index
+      arabic:
+        core: arabic_index
 ```
 
 In this example, `{{< vendor/configdir >}}/configsets/solr8` contains the configuration definition for multiple cores. There are then two cores created:
@@ -347,14 +403,14 @@ If you don't specify any configuration, the following default is used:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: solr:{{% latest "solr" %}}
-    configuration:
-        cores:
-            collection1:
-                conf_dir: !archive "example"
-        endpoints:
-            solr:
-                core: collection1
+  type: solr:{{% latest "solr" %}}
+  configuration:
+    cores:
+      collection1:
+        conf_dir: !archive "example"
+    endpoints:
+      solr:
+        core: collection1
 ```
 
 The example configuration directory is equivalent to the [Solr example configuration set](https://github.com/apache/solr/tree/main/solr/server/solr/configsets/sample_techproducts_configs/conf).
@@ -368,13 +424,13 @@ If you don't specify any configuration, the following default is used:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 solr:
-    type: solr:{{% latest "solr" %}}
-    configuration:
-        cores:
-            collection1: {}
-        endpoints:
-            solr:
-                core: collection1
+  type: solr:{{% latest "solr" %}}
+  configuration:
+    cores:
+      collection1: {}
+    endpoints:
+      solr:
+        core: collection1
 ```
 
 The default configuration is based on an older version of the Drupal 8 Search API Solr module that is no longer in use.

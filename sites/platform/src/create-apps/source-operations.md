@@ -58,21 +58,21 @@ The syntax is similar to the following:
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        {{< variable "SOURCE_OPERATION_NAME" >}}:
-            command: {{< variable "COMMAND" >}}
+  operations:
+    {{< variable "SOURCE_OPERATION_NAME" >}}:
+      command: {{< variable "COMMAND" >}}
 ```
 For example, to update a file from a remote location, you could define an operation like this:
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        update-file:
-            command: |
-                set -e
-                curl -O https://example.com/myfile.txt
-                git add myfile.txt
-                git commit -m "Update remote file"
+  operations:
+    update-file:
+      command: |
+        set -e
+        curl -O https://example.com/myfile.txt
+        git add myfile.txt
+        git commit -m "Update remote file"
 ```
 
 The name of the source operation in this case is `update-file`.
@@ -126,13 +126,13 @@ to pass to a source operation similar to the following:
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        update-file:
-            command: |
-                set -e
-                curl -O https://example.com/$FILE
-                git add $FILE
-                git commit -m "Update remote file"
+  operations:
+    update-file:
+      command: |
+        set -e
+        curl -O https://example.com/$FILE
+        git add $FILE
+        git commit -m "Update remote file"
 ```
 
 Follow these steps to run the source operation:
@@ -236,13 +236,13 @@ Make sure you carefully check your [user access on this project](../administrati
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -e
-        echo "Installing {{% vendor/name %}} CLI"
-        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+  build: |
+    set -e
+    echo "Installing {{% vendor/name %}} CLI"
+    curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{% vendor/name %}} CLI"
-        {{% vendor/cli %}}
+    echo "Testing {{% vendor/name %}} CLI"
+    {{% vendor/cli %}}
 ```
 
 3.  Then, to configure a cron job to automatically run a source operation once a day,
@@ -250,14 +250,14 @@ hooks:
 
 ```yaml {configFile="app"}
 crons:
-    update:
-        # Run the code below every day at midnight.
-        spec: '0 0 * * *'
-        commands:
-            start: |
-                set -e
-                {{% vendor/cli %}} sync -e development code data --no-wait --yes
-                {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
+  update:
+    # Run the code below every day at midnight.
+    spec: '0 0 * * *'
+    commands:
+      start: |
+        set -e
+        {{% vendor/cli %}} sync -e development code data --no-wait --yes
+        {{% vendor/cli %}} source-operation:run update-file --no-wait --yes
 ```
 
 The example above synchronizes the `development` environment with its parent
@@ -287,13 +287,13 @@ The following source operation syncronizes your branch with an upstream Git repo
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        upstream-update:
-            command: |
-                set -e
-                git remote add upstream $UPSTREAM_REMOTE
-                git fetch --all
-                git merge upstream/main
+  operations:
+    upstream-update:
+      command: |
+        set -e
+        git remote add upstream $UPSTREAM_REMOTE
+        git fetch --all
+        git merge upstream/main
 ```
 
 3. Now every time you run the `upstream-update` operation on a given branch,
@@ -312,10 +312,10 @@ and you need to quickly revert to the previous state.
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        revert:
-            command: |
-                git reset --hard HEAD~
+  operations:
+    revert:
+      command: |
+        git reset --hard HEAD~
 ```
 
 Now every time you run the `revert` operation on a given branch,
@@ -327,13 +327,13 @@ The following source operation uses Composer to update Drupal Core:
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        update-drupal-core:
-            command: |
-                set -e
-                composer update drupal/core --with-dependencies
-                git add composer.lock
-                git commit -m "Automated Drupal Core update."
+  operations:
+    update-drupal-core:
+      command: |
+        set -e
+        composer update drupal/core --with-dependencies
+        git add composer.lock
+        git commit -m "Automated Drupal Core update."
 ```
 
 `--with-dependencies` is used to also update Drupal Core dependencies.
@@ -349,13 +349,13 @@ or [overriding it](#use-variables-in-your-source-operations) when running the so
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        download-drupal-extension:
-            command: |
-                set -e
-                composer require $EXTENSION
-                git add composer.json
-                git commit -am "Automated install of: $EXTENSION via Composer."
+  operations:
+    download-drupal-extension:
+      command: |
+        set -e
+        composer require $EXTENSION
+        git add composer.json
+        git commit -am "Automated install of: $EXTENSION via Composer."
 ```
 
 Now every time you run the `download-drupal-extension` operation, it downloads the defined extension.
@@ -370,16 +370,16 @@ The following source operation updates all Git submodules recursively:
 
 ```yaml {configFile="app"}
 source:
-    operations:
-        rebuild:
-            command: |
-                set -e
-                git submodule update --init --recursive
-                git submodule update --remote --checkout
-                SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
-                echo -n "$SHA" > .sha
-                git add uppler .sha
-                git commit -m "Updating submodule to commit '$SHA'"
+  operations:
+    rebuild:
+      command: |
+        set -e
+        git submodule update --init --recursive
+        git submodule update --remote --checkout
+        SHA=$(git submodule | awk -F' ' '{print $1}' | sed -s 's/+//g')
+        echo -n "$SHA" > .sha
+        git add uppler .sha
+        git commit -m "Updating submodule to commit '$SHA'"
 ```
 
 Now every time you run the `rebuild` operation, it updates the Git submodules.

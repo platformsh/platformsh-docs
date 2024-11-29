@@ -38,8 +38,8 @@ To enable Xdebug, add the following to your [app configuration](/create-apps/app
 
 ```yaml {configFile="app"}
 runtime:
-    xdebug:
-        idekey: {{< variable "YOUR_KEY" >}}
+  xdebug:
+    idekey: {{< variable "YOUR_KEY" >}}
 ```
 {{< variable "YOUR_KEY" >}} can be any arbitrary alphanumeric string.
 
@@ -53,10 +53,10 @@ Depending on the cookies already listed, the result should look similar to the f
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    # ...
-    cache:
-        enabled: true
-        cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
+  # ...
+  cache:
+    enabled: true
+    cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 Xdebug has several configuration options available.
 They can be set the same way as any other [PHP setting](./_index.md#php-settings).
@@ -108,7 +108,7 @@ The common steps for setup usually include:
 4. Ensuring path mappings is enabled.
     This lets you define what remote paths on the server correspond to what path on your local machine.
     In the majority of cases you can just define [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory)
-    to map to `app`.
+    to map to `myapp`.
 5. Listening for connections.
 6. Starting debugging. While in listen mode, start the `{{% vendor/cli %}} xdebug` tunnel.
     Use the Xdebug helper plugin for your browser to enable debugging.

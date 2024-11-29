@@ -41,24 +41,24 @@ You can obtain the complete list of available service environment variables in y
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ```bash
-VAULT_SERVICE_USERNAME=
-VAULT_SERVICE_SCHEME=http
-VAULT_SERVICE_SERVICE=vault-kms
-VAULT_SERVICE_FRAGMENT=
-VAULT_SERVICE_IP=123.456.78.90
-VAULT_SERVICE_INSTANCE_IPS=['123.456.78.90']
-VAULT_SERVICE_HOSTNAME=azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-VAULT_SERVICE_PORT=8200
-VAULT_SERVICE_CLUSTER=azertyuiopqsdf-main-afdwftq
-VAULT_SERVICE_HOST=vault_secret.internal
-VAULT_SERVICE_REL=manage_keys
-VAULT_SERVICE_PATH=/
-VAULT_SERVICE_QUERY={'is_master': True}
-VAULT_SERVICE_PASSWORD=ChangeMe
-VAULT_SERVICE_EPOCH=0
-VAULT_SERVICE_TYPE=vault-kms:{{% latest "vault-kms" %}}
-VAULT_SERVICE_PUBLIC=false
-VAULT_SERVICE_HOST_MAPPED=false
+VAULT_USERNAME=
+VAULT_SCHEME=http
+VAULT_SERVICE=vault-kms
+VAULT_FRAGMENT=
+VAULT_IP=123.456.78.90
+VAULT_INSTANCE_IPS=['123.456.78.90']
+VAULT_HOSTNAME=azertyuiopqsdfghjklm.vault-kms.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+VAULT_PORT=8200
+VAULT_CLUSTER=azertyuiopqsdf-main-afdwftq
+VAULT_HOST=vault_secret.internal
+VAULT_REL=manage_keys
+VAULT_PATH=/
+VAULT_QUERY={'is_master': True}
+VAULT_PASSWORD=ChangeMe
+VAULT_EPOCH=0
+VAULT_TYPE=vault-kms:{{% latest "vault-kms" %}}
+VAULT_PUBLIC=false
+VAULT_HOST_MAPPED=false
 ```
 
 <--->
@@ -127,7 +127,7 @@ services:
                       type: <ENDPOINT_TYPE>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 - {{< variable "SERVICE_NAME" >}} is the name you choose to identify the service.
@@ -146,7 +146,7 @@ You can create multiple endpoints, such as to have key management separate from 
 
 512 MB is the minimum required disk space for the Vault KMS service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
@@ -155,9 +155,6 @@ applications:
     # The name of the app container. Must be unique within a project.
     <APP_NAME>:
         # Relationships enable access from this app to a given service.
-        # The example below shows simplified configuration leveraging a default service
-        # (identified from the relationship name) and a default endpoint.
-        # See the Application reference for all options for defining relationships and endpoints.
         relationships:
             <RELATIONSHIP_NAME>:
                 service: <SERVICE_NAME>
@@ -192,60 +189,60 @@ If you split the service into multiple endpoints, define multiple relationships.
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-       relationships:
-            vault_secret: "vault-kms:manage_keys"
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    relationships:
+      vault_secret: "vault-kms:manage_keys"
 
 services:
-    # The name of the service container. Must be unique within a project.
-    vault-kms:
-        type: vault-kms:1.12
-        configuration:
-            endpoints:
-                manage_keys:
-                    - policy: admin
-                      key: vault-sign
-                      type: sign
-                    - policy: sign
-                      key: vault-sign
-                      type: sign
-                    - policy: verify
-                      key: vault-sign
-                      type: sign
+  # The name of the service container. Must be unique within a project.
+  vault-kms:
+    type: vault-kms:1.12
+    configuration:
+      endpoints:
+        manage_keys:
+          - policy: admin
+            key: vault-sign
+            type: sign
+          - policy: sign
+            key: vault-sign
+            type: sign
+          - policy: verify
+            key: vault-sign
+            type: sign
 ```
 
 ## Multiple endpoints example
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-       relationships:
-            vault_manage:
-                service: vault-kms
-                endpoint: management
-            vault_sign:
-                service: vault-kms
-                endpoint: sign_and_verify
+  # The name of the app container. Must be unique within a project.
+  myapp:
+   relationships:
+      vault_manage:
+        service: vault-kms
+        endpoint: management
+      vault_sign:
+        service: vault-kms
+        endpoint: sign_and_verify
 
 services:
-    # The name of the service container. Must be unique within a project.
-    vault-kms:
-        type: vault-kms:1.12
-        configuration:
-            endpoints:
-                management:
-                    - policy: admin
-                      key: admin-key
-                      type: sign
-                sign_and_verify:
-                    - policy: sign
-                      key: signing-key
-                      type: sign
-                    - policy: verify
-                      key: signing-key
-                      type: sign
+  # The name of the service container. Must be unique within a project.
+  vault-kms:
+    type: vault-kms:1.12
+    configuration:
+      endpoints:
+        management:
+          - policy: admin
+            key: admin-key
+            type: sign
+        sign_and_verify:
+          - policy: sign
+            key: signing-key
+            type: sign
+          - policy: verify
+            key: signing-key
+            type: sign
 ```
 
 ## Use Vault KMS
@@ -269,7 +266,7 @@ To make any calls to the Vault KMS, you need your token. Get it from the [servic
 echo ${{{< variable "RELATIONSHIP_NAME" >}}_PASSWORD}"
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the relationship name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the relationship name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 You can also store this as a variable:
 
@@ -289,7 +286,7 @@ Assign it to a variable as follows:
 VAULT_URL=${{{< variable "RELATIONSHIP_NAME" >}}_HOST}:${{{< variable "RELATIONSHIP_NAME" >}}_PORT}
 ```
 
-`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-add-the-relationship).
+`{{< variable "RELATIONSHIP_NAME" >}}` is the name you [defined in your `{{< vendor/configfile "app" >}}` file](#2-define-the-relationship).
 
 ### Manage your keys
 

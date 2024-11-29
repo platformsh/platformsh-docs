@@ -216,7 +216,7 @@ For more information, see how to [define relationships between your apps](/creat
 {{< note title="Availability" theme="info">}}
 
 New syntax (default and explicit endpoints) described below is supported by most, but not all, image types
-(`Relationship 'SERVICE_NAME' of application 'app' ... targets a service without a valid default endpoint configuration.`).
+(`Relationship 'SERVICE_NAME' of application 'myapp' ... targets a service without a valid default endpoint configuration.`).
 This syntax is currently being rolled out for all images.
 If you encounter this error, use the "legacy" {{% vendor/name %}} configuration noted at the bottom of this section.
 
@@ -234,7 +234,7 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "SERVICE_NAME" %}}:
+  {{% variable "SERVICE_NAME" %}}:
 ```
 
 The `SERVICE_NAME` is the name of the service as defined in its [configuration](/add-services/_index.md).
@@ -245,7 +245,7 @@ For example, if you define the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb:
+  mariadb:
 ```
 
 {{% vendor/name %}} looks for a service named `mariadb` in your `{{% vendor/configfile "services" %}}` file,
@@ -255,18 +255,18 @@ For reference, the equivalent configuration using explicit endpoints would be th
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb:
-        service: mariadb
-        endpoint: mysql
+  mariadb:
+    service: mariadb
+    endpoint: mysql
 ```
 
 You can define any number of relationships in this way:
 
 ```yaml {configFile="app"}
 relationships:
-    mariadb:
-    redis:
-    elasticsearch:
+  mariadb:
+  redis:
+  elasticsearch:
 ```
 
 {{< note title="Tip" theme="info" >}}
@@ -281,14 +281,14 @@ where
 
 ```yaml {configFile="services"}
 {{< variable "SERVICE_NAME_A" >}}:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 256
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 256
 {{< variable "SERVICE_NAME_B" >}}:
-    type: redis:{{% latest "redis" %}}
-    disk: 256
+  type: redis:{{% latest "redis" %}}
+  disk: 256
 {{< variable "SERVICE_NAME_C" >}}:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 256
+  type: elasticsearch:{{% latest "elasticsearch" %}}
+  disk: 256
 ```
 
 {{< /note >}}
@@ -303,9 +303,9 @@ Use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}}
-        endpoint: {{% variable "ENDPOINT_NAME" %}}
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}
 ```
 
 - `RELATIONSHIP_NAME` is the name you want to give to the relationship.
@@ -317,9 +317,9 @@ use the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    database: # The name of the relationship.
-        service: mariadb
-        endpoint: db1
+  database: # The name of the relationship.
+    service: mariadb
+    endpoint: db1
 ```
 
 For more information on how to handle multiple databases, multiple cores,
@@ -337,16 +337,16 @@ see each service's dedicated page:
 
 ```yaml {configFile="app"}
 relationships:
-    database1:
-        service: mariadb
-        endpoint: admin
-    database2:
-        service: mariadb
-        endpoint: legacy
-    cache:
-        service: redis
-    search:
-        service: elasticsearch
+  database1:
+    service: mariadb
+    endpoint: admin
+  database2:
+    service: mariadb
+    endpoint: legacy
+  cache:
+    service: redis
+  search:
+    service: elasticsearch
 ```
 
 {{< /codetabs >}}
@@ -355,16 +355,16 @@ relationships:
 
 The following legacy syntax for specifying relationships is still supported by {{% vendor/name %}}:
 
-```yaml
+```yaml {configFile="app"}
 relationships:
-    <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
+  <RELATIONSHIP_NAME>: "<SERVICE_NAME>:<ENDPOINT_NAME>"
 ```
 
 For example:
 
-```yaml
+```yaml {configFile="app"}
 relationships:
-    database: "mariadb:mysql"
+  database: "mariadb:mysql"
 ```
 
 Feel free to use this until the default and explicit endpoint syntax is supported on all images.
@@ -420,9 +420,9 @@ To define a mount, use the following configuration:
 
 ```yaml {configFile="app"}
 mounts:
-    '{{< variable "MOUNT_PATH" >}}':
-        source: {{< variable "MOUNT_TYPE" >}}
-        source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
+  '{{< variable "MOUNT_PATH" >}}':
+    source: {{< variable "MOUNT_TYPE" >}}
+    source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
 {{< variable "MOUNT_PATH" >}} is the path to your mount **within the app container** (relative to the app's root).
@@ -448,21 +448,21 @@ The files still exist on disk until manually removed
 
 ```yaml {configFile="app"}
 mounts:
-    'web/uploads':
-        source: local
-        source_path: uploads
-    '/.tmp_platformsh':
-        source: tmp
-        source_path: files/.tmp_platformsh
-    '/build':
-        source: local
-        source_path: files/build
-    '/.cache':
-        source: tmp
-        source_path: files/.cache
-    '/node_modules/.cache':
-        source: tmp
-        source_path: files/node_modules/.cache
+  'web/uploads':
+    source: local
+    source_path: uploads
+  '/.tmp_platformsh':
+    source: tmp
+    source_path: files/.tmp_platformsh
+  '/build':
+    source: local
+    source_path: files/build
+  '/.cache':
+    source: tmp
+    source_path: files/.cache
+  '/node_modules/.cache':
+    source: tmp
+    source_path: files/node_modules/.cache
 ```
 
 For examples of how to set up a `service` mount, see the dedicated [Network Storage page](/add-services/network-storage.md).
@@ -475,8 +475,8 @@ Say you have a `/my/cache/` mount with an undefined `source_path`:
 
 ```yaml {configFile="app"}
 mounts:
-    '/my/cache/':
-        source: tmp
+  '/my/cache/':
+    source: tmp
 ```
 
 If you rename the mount to `/cache/files/`, it will point to a new, empty `/cache/files/` directory.
@@ -485,9 +485,9 @@ To ensure continuity, you need to explicitly define the `source_path` as the pre
 
  ```yaml {configFile="app"}
 mounts:
-    '/cache/files/':
-        source: tmp
-        source_path: my/cache
+  '/cache/files/':
+    source: tmp
+    source_path: my/cache
 ```
 
 The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing files in that directory.
@@ -497,9 +497,9 @@ The `/cache/files/` mount will point to the original `/my/cache/` directory, mai
 The locations of mounts as they are visible to application containers can overlap somewhat.
 For example:
 
-```yaml
+```yaml {configFile="apps"}
 applications:
-  my_app:
+  myapp:
     # ...
     mounts:
       'var/cache_a':
@@ -519,9 +519,9 @@ Each mount is restricted to a subfolder within `var`, and all is well.
 
 The following, however, is not allowed and will result in a failure:
 
-```yaml
+```yaml {configFile="apps"}
 applications:
-  my_app:
+  myapp:
     # ...
     mounts:
       'var/':
@@ -564,8 +564,8 @@ Example:
 
 ```yaml {configFile="app"}
 web:
-    commands:
-        start: 'uwsgi --ini conf/server.ini'
+  commands:
+    start: 'uwsgi --ini conf/server.ini'
 ```
 
 This command runs every time your app is restarted, regardless of whether or not new code is deployed.
@@ -603,9 +603,9 @@ The following example is the default on non-PHP containers:
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: tcp
-        protocol: http
+  upstream:
+    socket_family: tcp
+    protocol: http
 ```
 #### Where to listen
 
@@ -654,17 +654,17 @@ This is overridden by a rule that explicitly allows common image file formats.
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            # Handle dynamic requests
-            root: 'public'
-            passthru: '/index.php'
-            # Disallow static files
-            allow: false
-            rules:
-                # Allow common image files only.
-                '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
-                    allow: true
+  locations:
+    '/':
+      # Handle dynamic requests
+      root: 'public'
+      passthru: '/index.php'
+      # Disallow static files
+      allow: false
+      rules:
+        # Allow common image files only.
+        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+          allow: true
 ```
 #### Request buffering
 
@@ -680,12 +680,12 @@ The default configuration would look like this:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            passthru: true
-            request_buffering:
-                enabled: true
-                max_request_size: 250m
+  locations:
+    '/':
+      passthru: true
+      request_buffering:
+        enabled: true
+        max_request_size: 250m
 ```
 ## Workers
 
@@ -710,11 +710,11 @@ A worker named `queue` that was small and had a different start command could lo
 
 ```yaml {configFile="app"}
 workers:
-    queue:
-        size: S
-        commands:
-            start: |
-                ./worker.sh
+  queue:
+    size: S
+  commands:
+    start: |
+      ./worker.sh
 ```
 
 For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
@@ -732,7 +732,7 @@ can access the deployed environment via SSH:
 
 ```yaml {configFile="app"}
 access:
-    ssh: admin
+  ssh: admin
 ```
 ## Variables
 
@@ -754,10 +754,10 @@ The following example sets two variables:
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        AUTHOR: 'Juan'
-    d8config:
-        "system.site:name": 'My site rocks'
+  env:
+    AUTHOR: 'Juan'
+  d8config:
+    "system.site:name": 'My site rocks'
 ```
 
 You can also define and access more [complex values](/development/variables/use-variables.md#access-complex-values).
@@ -783,8 +783,8 @@ The default settings would look like this:
 
 ```yaml {configFile="app"}
 firewall:
-    outbound:
-        - ips: ["0.0.0.0/0"]
+  outbound:
+    - ips: ["0.0.0.0/0"]
 ```
 
 ### Support for rules
@@ -802,10 +802,10 @@ and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
 ```yaml {configFile="app"}
 firewall:
-    outbound:
-        - ips: ["1.2.3.4/32"]
-          ports: [443]
-        - ports: [80]
+  outbound:
+    - ips: ["1.2.3.4/32"]
+      ports: [443]
+    - ports: [80]
 ```
 
 ### Outbound traffic to CDNs
@@ -828,13 +828,13 @@ An example rule filtering by domain:
 
 ```yaml {configFile="app"}
 firewall:
-    outbound:
-        - protocol: tcp
-        domains: ["api.stripe.com", "api.twilio.com"]
-        ports: [80, 443]
-        - protocol: tcp
-        ips: ["1.2.3.4/29","2.3.4.5"]
-        ports: [22]
+  outbound:
+    - protocol: tcp
+      domains: ["api.stripe.com", "api.twilio.com"]
+      ports: [80, 443]
+    - protocol: tcp
+      ips: ["1.2.3.4/29","2.3.4.5"]
+      ports: [22]
 ```
 #### Determine which domains to allow
 
@@ -875,7 +875,7 @@ In all languages, you can also specify a flavor of `none` to take no action at a
 
 ```yaml {configFile="app"}
 build:
-    flavor: none
+  flavor: none
 ```
 ## Dependencies
 
@@ -899,18 +899,18 @@ An example of dependencies in multiple languages:
 
 ```yaml {configFile="app"}
 dependencies:
-    php: # Specify one Composer package per line.
-        drush/drush: '8.0.0'
-        composer/composer: '^2'
-    python2: # Specify one Python 2 package per line.
-        behave: '*'
-        requests: '*'
-    python3: # Specify one Python 3 package per line.
-        numpy: '*'
-    ruby: # Specify one Bundler package per line.
-        sass: '3.4.7'
-    nodejs: # Specify one NPM package per line.
-        pm2: '^4.5.0'
+  php: # Specify one Composer package per line.
+    drush/drush: '8.0.0'
+    composer/composer: '^2'
+  python2: # Specify one Python 2 package per line.
+    behave: '*'
+    requests: '*'
+  python3: # Specify one Python 3 package per line.
+    numpy: '*'
+  ruby: # Specify one Bundler package per line.
+    sass: '3.4.7'
+  nodejs: # Specify one NPM package per line.
+    pm2: '^4.5.0'
 ```
 
 ## Hooks
@@ -1020,12 +1020,12 @@ and update your existing cron jobs to ensure continuity.
 
 ```yaml {configFile="app"}
 crons:
-    mycommand:
-        spec: 'H * * * *'
-        commands:
-            start: sleep 60 && echo sleep-60-finished && date
-            stop: killall sleep
-        shutdown_timeout: 18
+  mycommand:
+    spec: 'H * * * *'
+    commands:
+      start: sleep 60 && echo sleep-60-finished && date
+      stop: killall sleep
+    shutdown_timeout: 18
 ```
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
@@ -1045,17 +1045,17 @@ title=Drupal
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'php:{{% latest "php" %}}'
 crons:
-    # Run Drupal's cron tasks every 19 minutes.
-    drupal:
-        spec: '*/19 * * * *'
-        commands:
-            start: 'cd web ; drush core-cron'
-    # But also run pending queue tasks every 7 minutes.
-    # Use an odd number to avoid running at the same time as the `drupal` cron.
-    drush-queue:
-        spec: '*/7 * * * *'
-        commands:
-            start: 'cd web ; drush queue-run aggregator_feeds'
+  # Run Drupal's cron tasks every 19 minutes.
+  drupal:
+    spec: '*/19 * * * *'
+    commands:
+      start: 'cd web ; drush core-cron'
+  # But also run pending queue tasks every 7 minutes.
+  # Use an odd number to avoid running at the same time as the `drupal` cron.
+  drush-queue:
+    spec: '*/7 * * * *'
+    commands:
+      start: 'cd web ; drush queue-run aggregator_feeds'
 {{< /snippet >}}
 ```
 
@@ -1069,11 +1069,11 @@ title=Ruby on Rails
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'ruby:{{% latest "ruby" %}}'
 crons:
-    # Execute a rake script every 19 minutes.
-    ruby:
-        spec: '*/19 * * * *'
-        commands:
-            start: 'bundle exec rake some:task'
+  # Execute a rake script every 19 minutes.
+  ruby:
+    spec: '*/19 * * * *'
+    commands:
+      start: 'bundle exec rake some:task'
 {{< /snippet >}}
 ```
 
@@ -1087,11 +1087,11 @@ title=Laravel
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'php:{{% latest "php" %}}'
 crons:
-    # Run Laravel's scheduler every 5 minutes.
-    scheduler:
-        spec: '*/5 * * * *'
-        commands:
-            start: 'php artisan schedule:run'
+  # Run Laravel's scheduler every 5 minutes.
+  scheduler:
+    spec: '*/5 * * * *'
+    commands:
+      start: 'php artisan schedule:run'
 {{< /snippet >}}
 ```
 
@@ -1105,15 +1105,15 @@ title=Symfony
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'php:{{% latest "php" %}}'
 crons:
-    # Take a backup of the environment every day at 5:00 AM.
-    snapshot:
-        spec: 0 5 * * *
-        commands:
-            start: |
-                # Only run for the production environment, aka main branch
-                if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-                    croncape symfony ...
-                fi
+  # Take a backup of the environment every day at 5:00 AM.
+  snapshot:
+    spec: 0 5 * * *
+    commands:
+      start: |
+        # Only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+            croncape symfony ...
+        fi
 {{< /snippet >}}
 ```
 
@@ -1233,21 +1233,21 @@ You can enable [PHP extensions](/languages/php/extensions.md) just with a list o
 
 ```yaml {configFile="app"}
 runtime:
-    extensions:
-        - geoip
-        - tidy
+  extensions:
+    - geoip
+    - tidy
 ```
 
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 ```yaml {configFile="app"}
 runtime:
-    extensions:
-        - geoip
-        - name: blackfire
-          configuration:
-            server_id: foo
-            server_token: bar
+  extensions:
+    - geoip
+    - name: blackfire
+      configuration:
+        server_id: foo
+        server_token: bar
 ```
 
 In this case, the `name` property is required.

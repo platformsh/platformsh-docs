@@ -68,32 +68,32 @@ or are no longer the recommended way to configure the service on {{% vendor/name
 To ensure your project remains stable in the future,
 switch to [a supported version](#supported-versions).
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
 {
-    "username": null,
-    "scheme": "http",
-    "service": "opensearch",
-    "fragment": null,
-    "ip": "169.254.99.100",
-    "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
-    "port": 9200,
-    "cluster": "azertyuiopqsdf-main-7rqtwti",
-    "host": "opensearch.internal",
-    "rel": "opensearch",
-    "path": null,
-    "query": [],
-    "password": "ChangeMe",
-    "type": "opensearch:{{% latest "opensearch" %}}",
-    "public": false,
-    "host_mapped": false
+  "username": null,
+  "scheme": "http",
+  "service": "opensearch",
+  "fragment": null,
+  "ip": "169.254.99.100",
+  "hostname": "azertyuiopqsdfghjklm.opensearch.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 9200,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "opensearch.internal",
+  "rel": "opensearch",
+  "path": null,
+  "query": [],
+  "password": "ChangeMe",
+  "type": "opensearch:{{% latest "opensearch" %}}",
+  "public": false,
+  "host_mapped": false
 }
 ```
 
@@ -106,27 +106,33 @@ To define the service, use the `opensearch` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: opensearch:<VERSION>
-    disk: 256
+  type: opensearch:<VERSION>
+  disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-### 2. Add the relationship
+### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
-```yaml {configFile="apps"}
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+  <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -136,7 +142,37 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: opensearch
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
 
@@ -145,24 +181,56 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 opensearch:
-    type: opensearch:{{% latest "opensearch" %}}
-    disk: 256
+  type: opensearch:{{% latest "opensearch" %}}
+  disk: 256
 ```
 
 #### [App configuration](/create-apps/_index.md)
 
-```yaml {configFile="apps"}
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-   opensearch: 
+  opensearch:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  opensearch:
+    service: opensearch
+    endpoint: opensearch
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 name: myapp
@@ -170,11 +238,30 @@ name: myapp
 [...]
 
 relationships:
-    opensearch: 
+  opensearch:
 ```
 
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+name: myapp
+
+[...]
+
+relationships:
+  opensearch:
+    service: opensearch
+    endpoint: opensearch
+```
+
+{{< /codetabs >}}
+
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `opensearch` service, via a relationship whose name is [identical to the service name](#2-add-the-relationship)
+`myapp` has access to the `opensearch` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
 (as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
 
 From this, `myapp` can retrieve access credentials to the service through the environment variable `{{< vendor/prefix >}}_RELATIONSHIPS`. That variable is a base64-encoded JSON object, but can be decoded at runtime (using the built-in tool `jq`) to provide more accessible environment variables to use within the application itself:
@@ -219,11 +306,11 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 opensearch:
-    type: opensearch:{{% latest "opensearch" %}}
-    disk: 2048
-    configuration:
-        authentication:
-            enabled: true
+  type: opensearch:{{% latest "opensearch" %}}
+  disk: 2048
+  configuration:
+    authentication:
+      enabled: true
 ```
 
 That enables mandatory HTTP Basic auth on all requests.
@@ -241,11 +328,11 @@ For example:
 
 ```yaml {configFile="routes"}
 "https://www.os.{default}/":
-    type: redirect
-    to: "https://os.{default}/"
+  type: redirect
+  to: "https://os.{default}/"
 "https://os.{default}/":
-    type: upstream
-    upstream: "opensearch:opensearch"
+  type: upstream
+  upstream: "opensearch:opensearch"
 ```
 
 ## Plugins
@@ -256,11 +343,11 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 opensearch:
-    type: "opensearch:{{% latest "opensearch" %}}"
-    disk: 1024
-    configuration:
-        plugins:
-            - analysis-icu
+  type: "opensearch:{{% latest "opensearch" %}}"
+  disk: 1024
+  configuration:
+    plugins:
+      - analysis-icu
 ```
 
 In this example you'd have the ICU analysis plugin and the size mapper plugin.

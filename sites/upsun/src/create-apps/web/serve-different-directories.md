@@ -27,20 +27,20 @@ Use a [`web` configuration](/create-apps/app-reference/single-runtime-image.md#w
 
 ```yaml {configfile="apps"}
 applications:
-    docs:
-        source:
-            root: "/"
-            web:
-                locations:
-                    '/':
-                        passthru: true
-                    '/docs':
-                        root: 'docs-public'
-                        index:
-                            - "index.html"
-                        expires: 24h
-                        scripts: false
-                        allow: true
+  docs:
+    source:
+      root: "/"
+      web:
+        locations:
+          '/':
+            passthru: true
+          '/docs':
+            root: 'docs-public'
+            index:
+              - "index.html"
+            expires: 24h
+            scripts: false
+            allow: true
 ```
 
 This way, your app can safely coexist with static files as if it were a single site hierarchy.

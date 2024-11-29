@@ -25,18 +25,18 @@ To save space and reduce potential vulnerabilities, they don't contain GUI class
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'java:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'java:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'java:{{% latest "java" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'java:{{% latest "java" %}}'
 ```
 
 ## Support build automation
@@ -57,21 +57,21 @@ Add something like the following to your [app configuration](../../create-apps/_
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'java:{{% latest "java" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'java:{{% latest "java" %}}'
 
-        variables:
-            env:
-                MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
+    variables:
+      env:
+        MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
 
-        hooks:
-            build: |
-                curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
-                tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
-                export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
-                mvn --version
-                mvn clean package
+    hooks:
+      build: |
+        curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+        tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+        export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+        mvn --version
+        mvn clean package
 ```
 ## Other JVM languages
 

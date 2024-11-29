@@ -21,18 +21,18 @@ When you deploy your app, you always get the latest available patches.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'dotnet:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'dotnet:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'dotnet:{{% latest "dotnet" %}}'
 ```
 
 ## Building the application
@@ -42,14 +42,14 @@ with the default [framework-dependent deployment](https://docs.microsoft.com/en-
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-        hooks:
-            build: |
-                set -xe
-                dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
-                    -p:UseRazorBuildServer=false \
-                    -p:UseSharedCompilation=false
+  myapp:
+    type: 'dotnet:{{% latest "dotnet" %}}'
+    hooks:
+      build: |
+        set -xe
+        dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
+          -p:UseRazorBuildServer=false \
+          -p:UseSharedCompilation=false
 ```
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
@@ -89,37 +89,37 @@ while routing other traffic to the .NET application.
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-        web:
-            locations:
-                "/":
-                    root: "wwwroot"
-                    allow: true
-                    passthru: true
-                    rules:
-                        # Serve these common asset types with customs cache headers.
-                        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
-                            allow: true
-                            expires: 300s
-            commands:
-                start: "dotnet WebApplication1.dll"
+  myapp:
+    type: 'dotnet:{{% latest "dotnet" %}}'
+    web:
+      locations:
+        "/":
+          root: "wwwroot"
+          allow: true
+          passthru: true
+          rules:
+            # Serve these common asset types with customs cache headers.
+            \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
+              allow: true
+              expires: 300s
+      commands:
+          start: "dotnet WebApplication1.dll"
 ```
 
 You can also route all requests to the application unconditionally:
 
 ```yaml {configFile="app"}
 applications:
-    app:
-        type: 'dotnet:{{% latest "dotnet" %}}'
-        web:
-            locations:
-                "/":
-                    allow: false
-                    passthru: true
+  myapp:
+    type: 'dotnet:{{% latest "dotnet" %}}'
+    web:
+      locations:
+        "/":
+          allow: false
+          passthru: true
 
-            commands:
-                start: "dotnet WebApplication1.dll"
+      commands:
+        start: "dotnet WebApplication1.dll"
 ```
 
 {{< repolist lang="dotnet" displayName=".NET Core" >}}
