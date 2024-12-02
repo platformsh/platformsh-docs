@@ -334,7 +334,7 @@ https://docs.upsun.com/:
       "/anchors/services.html": { "to": "/add-services.html", "code": 301, "prefix": false }
       "/anchors/ssh/keys.html": { "to": "/development/ssh/ssh-keys.html", "code": 301, "prefix": false }
       "/anchors/variables.html": { "to": "/development/variables.html", "code": 301, "prefix": false }
-      "/anchors/variables/availability.html": { "to": "/development/variables.html?#variables-available-during-builds-and-at-runtime", "code": 301, "prefix": false }
+      "/anchors/variables/availability.html": { "to": "/development/variables/use-variables.html#use-provided-variables", "code": 301, "prefix": false }
       "/anchors/configuration/yaml.html": { "to": "/learn/overview/yaml.html", "code": 301, "prefix": false }
       "/anchors/apps/mounts.html": { "to": "/create-apps/app-reference.html#mounts", "code": 301, "prefix": false }
       "/anchors/apps.html": { "to": "/create-apps/app-reference.html", "code": 301, "prefix": false }
@@ -347,8 +347,6 @@ https://docs.upsun.com/:
       # "links.documentation.metrics": "https://docs.platform.sh/increase-observability/metrics.html",
       "/anchors/observability/metrics/grid.html": { "to": "/increase-observability/metrics.html", "code": 301, "prefix": false }
       # Not relevant for Upsun.
-      "/anchors/observability/metrics/dedicated.html": { "to": "https://{default}/increase-observability/metrics/dedicated.html", "code": 301, "prefix": false }
-      "/anchors/observability/metrics/dedicated-gen-3.html": { "to": "https://{default}/increase-observability/metrics/dedicated-generation-3.html", "code": 301, "prefix": false }
       "/anchors/integrations/activities.html": { "to": "/integrations/activity.html", "code": 301, "prefix": false }
       "/anchors/integrations/activity-scripts.html": { "to": "/integrations/activity.html#configuring-scripts", "code": 301, "prefix": false }
       "/anchors/integrations/source.html": { "to": "/integrations/source.html", "code": 301, "prefix": false }
