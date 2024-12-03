@@ -4,6 +4,10 @@ inputs:
   environment-url:
     description: 'Pull Request Environment URL'
     required: true
+  number_retries:
+    description: 'The number of attempts we should make to contact the target environment URL. 1 second delay between attempt.'
+    required: false
+    default: '100'
 
 ####
 #outputs:
