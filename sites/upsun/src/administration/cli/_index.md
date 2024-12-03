@@ -164,9 +164,7 @@ The code is only merged between environments remotely.
 
 ### Customize the CLI
 
-You can customize how the CLI operates and what it returns with a configuration file (`~/{{% vendor/configdir %}}/config.yaml`)
-or environment variables.
-For details, see the [customization instructions on GitHub](https://github.com/platformsh/legacy-cli#user-content-customization).
+You can customize how the CLI operates and what it returns with a configuration file (`~/.upsun-cli/config.yaml`) or environment variables. For details, see the [customization instructions on GitHub](https://github.com/platformsh/legacy-cli#user-content-customization).
 
 #### Automate repetitive tasks
 
