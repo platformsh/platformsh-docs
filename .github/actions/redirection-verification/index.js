@@ -51,25 +51,22 @@ const verifyTargetResponse = async(count = 0) => {
     return axiosResponse;
   } catch (error) {
     if (error || error.status != 200) {
-      console.error(`At attempt ${count}, target url responded with status ${error.status}, retrying...`);
-
+      core.info(`At attempt ${count}, target url responded with status ${error.status}, retrying...`)
       if (count++ < retries) {
         await sleep(1000);
         return verifyTargetResponse(count);
       } else {
-        console.error(`Max number of retries (${retries}) reached. Aborting.`)
-        throw new Error(`Max number of retries (${retries}) reached. Aborting.`);
+        core.setFailed(`Max number of retries (${retries}) reached. Aborting.`)
       };
     } else {
-      throw error;
+      core.setFailed(`Action failed with error ${error}`)
     };
   };
 };
 
 const verify = async () => {
   let targetReady = await verifyTargetResponse();
-  core.notice('Target URL ready. Beginning verification.')
-  console.log('Target URL ready. Beginning verification.');
+  core.info('Target URL ready. Beginning verification.')
   try {
     /**
      * @todo Can we get the full workspace path to this file?
@@ -94,7 +91,7 @@ const verify = async () => {
 
       try {
         const response = await axios.head(path);
-        //core.info(`Response for our check of ${path} is ${response.status}`)
+        core.debug(`Response for our check of ${path} is ${response.status}`)
         return response
       } catch (reqerr) {
         //core.warning(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}`)
