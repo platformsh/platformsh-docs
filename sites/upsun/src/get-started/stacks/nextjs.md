@@ -211,8 +211,8 @@ applications:
           passthru: true
 
 routes:
-  "https://{all}/": { type: upstream, upstream: "myapp:http" }
-  "http://{all}/": { type: redirect, to: "https://{all}/" }
+  "https://{default}/": { type: upstream, upstream: "myapp:http" }
+  "http://{default}/": { type: redirect, to: "https://{default}/" }
 ```
 
 As an example, above is the minimum configuration needed to deploy a Next.js application on {{% vendor/name %}} without any services.
