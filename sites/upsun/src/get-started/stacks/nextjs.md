@@ -193,9 +193,9 @@ applications:
       root: "/"
     type: "nodejs:{{% latest "nodejs" %}}"
     mounts:
-    "/.npm":
-      source: "storage"
-      source_path: "npm"
+      "/.npm":
+        source: "storage"
+        source_path: "npm"
     hooks:
       build: |
         set -eux
