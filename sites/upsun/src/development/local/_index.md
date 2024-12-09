@@ -52,7 +52,7 @@ You can now make changes to your project without pushing to {{% vendor/name %}} 
 Instead, you can locally build your application using the {{% vendor/name %}} CLI.
 
 Note that if your app contains services, you need to open an SSH tunnel to connect to them.
-For more information, see how to [connect services](../../add-services#2-connect-the-service).
+For more information, see how to [connect services](../../add-services#2-define-the-relationship).
 
 ## 2. Connect to services
 

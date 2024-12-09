@@ -25,7 +25,7 @@ To do so, follow these steps:
    +-----------------------+---------+---------+-------------+-----------+-----------+
    | App or service        | Size    | CPU     | Memory (MB) | Disk (MB) | Instances |
    +-----------------------+---------+---------+-------------+-----------+-----------+
-   | app                   | 1       | 1       | 384         | N/A       | 1         |
+   | myapp                   | 1       | 1       | 384         | N/A       | 1         |
    | [<additional-service>]| 0.1     | 0.1     | 128         | N/A       | 1         |
    +-----------------------+---------+---------+-------------+-----------+-----------+
    ```
@@ -33,7 +33,7 @@ To do so, follow these steps:
 2. Select the profile size you want applied to your application image. For instance, `0.1`:
 
    ```bash {location="Terminal"}
-   App: app
+   App: myapp
    Choose a profile size:
       [0.1 ] CPU 0.1, memory 64 MB
       [0.25] CPU 0.25, memory 128 MB

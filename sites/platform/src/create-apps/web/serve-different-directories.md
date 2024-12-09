@@ -11,14 +11,14 @@ For example, in Git you might have a folder for your app and another folder that
 Your entire Git repository might look like the following:
 
 ```text
-{{% vendor/configdir %}}
-    {{< vendor/configfile "routes" "strip" >}}
-    {{< vendor/configfile "services" "strip" >}}
-    {{< vendor/configfile "apps" "strip" >}}
+{{% vendor/configdir %}}/
+  {{< vendor/configfile "routes" "strip" >}}
+  {{< vendor/configfile "services" "strip" >}}
+  {{< vendor/configfile "apps" "strip" >}}
 application/
-    [app-code-files]
+  [app-code-files]
 docs-src/
-    [docs-code-files]
+  [docs-code-files]
 ```
 
 And your build process might build the documentation with an output folder such as `docs-public`.
@@ -27,18 +27,18 @@ If so, you can serve all requests by your app code except for those that start w
 which you serve with your generated docs.
 Use a [`web` configuration](/create-apps/app-reference/single-runtime-image.md#web) similar to the following:
 
-```yaml {configfile="apps"}
+```yaml {configfile="app"}
 web:
-    locations:
-        '/':
-            passthru: true
-        '/docs':
-            root: 'docs-public'
-            index:
-                - "index.html"
-            expires: 24h
-            scripts: false
-            allow: true
+  locations:
+    '/':
+        passthru: true
+    '/docs':
+      root: 'docs-public'
+      index:
+        - "index.html"
+      expires: 24h
+      scripts: false
+      allow: true
 ```
 
 This way, your app can safely coexist with static files as if it were a single site hierarchy.

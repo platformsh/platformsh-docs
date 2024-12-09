@@ -45,13 +45,13 @@ title=Latest version
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
-        # Install dependencies
-        pip install -r requirements.txt
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
+    # Install dependencies
+    pip install -r requirements.txt
 {{< /snippet >}}
 ```
 <--->
@@ -62,16 +62,16 @@ title=Specific version
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
-    env:
-        PIP_VERSION: '22.3.1'
+  env:
+    PIP_VERSION: '22.3.1'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download a specific version of pip
-        python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
-        # Install dependencies
-        pip install -r requirements.txt
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download a specific version of pip
+    python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
+    # Install dependencies
+    pip install -r requirements.txt
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -102,17 +102,17 @@ title=Latest version
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 dependencies:
-    python3:
-        pipenv: '*'
+  python3:
+    pipenv: '*'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
-        # Install dependencies
-        # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
-        pipenv install --deploy
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
+    # Install dependencies
+    # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
+    pipenv install --deploy
 {{< /snippet >}}
 ```
 <--->
@@ -123,20 +123,20 @@ title=Specific version
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 variables:
-    env:
-        PIP_VERSION: '22.3.1'
+  env:
+    PIP_VERSION: '22.3.1'
 dependencies:
-    python3:
-        pipenv: '2022.12.19'
+  python3:
+    pipenv: '2022.12.19'
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download a specific version of pip
-        python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
-        # Install dependencies
-        # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
-        pipenv install --deploy
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download a specific version of pip
+    python{{% latest "python" %}} -m pip install pip==$PIP_VERSION
+    # Install dependencies
+    # Include `--deploy` to fail the build if `Pipfile.lock` isn't up to date
+    pipenv install --deploy
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -161,9 +161,9 @@ To set up Poetry on {{% vendor/name %}}, follow these steps:
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+  env:
+    POETRY_VIRTUALENVS_IN_PROJECT: true
+    POETRY_VIRTUALENVS_CREATE: true
 ```
 
 
@@ -178,20 +178,20 @@ title=Latest version
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 dependencies:
-    python3:
-        poetry: '*'
+  python3:
+    poetry: '*'
 variables:
-    env:
-        POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+  env:
+    POETRY_VIRTUALENVS_IN_PROJECT: true
+    POETRY_VIRTUALENVS_CREATE: true
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
-        # Install dependencies
-        poetry install
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
+    # Install dependencies
+    poetry install
 {{< /snippet >}}
 ```
 <--->
@@ -202,21 +202,21 @@ title=Specific version
 {{< snippet name="myapp" config="app" root="myapp" >}}
 type: 'python:{{% latest "python" %}}'
 dependencies:
-    python3:
-        poetry: '>=1.8'
+  python3:
+    poetry: '>=1.8'
 variables:
-    env:
-        POETRY_VIRTUALENVS_IN_PROJECT: true
-        POETRY_VIRTUALENVS_CREATE: true
+  env:
+    POETRY_VIRTUALENVS_IN_PROJECT: true
+    POETRY_VIRTUALENVS_CREATE: true
 
 hooks:
-    build: |
-        # Fail the build if any errors occur
-        set -eu
-        # Download the latest version of pip
-        python{{% latest "python" %}} -m pip install --upgrade pip
-        # Install dependencies
-        poetry install
+  build: |
+    # Fail the build if any errors occur
+    set -eu
+    # Download the latest version of pip
+    python{{% latest "python" %}} -m pip install --upgrade pip
+    # Install dependencies
+    poetry install
 {{< /snippet >}}
 ```
     {{< /codetabs >}}
