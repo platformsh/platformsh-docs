@@ -18,12 +18,12 @@ Start by defining a header for files in general:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        "/":
-            ...
-            # Apply rules to all static files (dynamic files get rules from your app)
-            headers:
-                X-Frame-Options: SAMEORIGIN
+  locations:
+    "/":
+      ...
+      # Apply rules to all static files (dynamic files get rules from your app)
+      headers:
+        X-Frame-Options: SAMEORIGIN
 ```
 
 This sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.
@@ -33,13 +33,13 @@ Now set up an exception for MP3 files using a [rule](/create-apps/app-reference/
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        "/":
-            ...
-            rules:
-                \.mp3$:
-                    headers:
-                      Content-Type: audio/mpeg
+  locations:
+    "/":
+      ...
+      rules:
+        \.mp3$:
+          headers:
+            Content-Type: audio/mpeg
 ```
 
 This rule sets an explicit content type for files that end in `.mp3`.
@@ -50,14 +50,14 @@ Now set a rule for MP4 files.
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        "/":
-            ...
-            rules:
-                \.mp4$:
-                    headers:
-                        X-Frame-Options: SAMEORIGIN
-                        Content-Type: video/mp4
+  locations:
+    "/":
+      ...
+      rules:
+        \.mp4$:
+          headers:
+            X-Frame-Options: SAMEORIGIN
+            Content-Type: video/mp4
 ```
 
 This rule sets an explicit content type for files that end in `.mp4`.
@@ -77,12 +77,12 @@ You can do so for specific origins or for all origins with a wildcard.
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        "/":
-            ...
-            # Apply rules to all static files (dynamic files get rules from your app)
-            headers:
-                Access-Control-Allow-Origin: "*"
+  locations:
+    "/":
+      ...
+      # Apply rules to all static files (dynamic files get rules from your app)
+      headers:
+        Access-Control-Allow-Origin: "*"
 ```
 
 If you use the wildcard value, the headers are modified for each request in the following ways:

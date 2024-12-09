@@ -85,8 +85,8 @@ To define the service, use the `network-storage` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: network-storage:<VERSION>
-    disk: 256
+  type: network-storage:<VERSION>
+  disk: 256
 ```
 
 `<SERVICE_NAME>` must be [RFC 1123](https://tools.ietf.org/html/rfc1123) compliant, and as such it must:
@@ -98,19 +98,20 @@ To define the service, use the `network-storage` type:
 
 This is due to the fact that `<SERVICE_NAME>` is used as hostname for the network storage.
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 ### 2. Add the mount
 
 To define the mount accessible by your application, use the following configuration:
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
+name: myapp
 mounts:
-    '<TARGET_PATH>':
-        source: service
-        service: <SERVICE_NAME>
-        source_path: <SOURCE_PATH>
+  <TARGET_PATH>:
+    source: service
+    service: <SERVICE_NAME>
+    source_path: <SOURCE_PATH>
 ```
 
 - `<TARGET_PATH>` is the path to your mount within the app container (relative to the app’s root).
@@ -133,12 +134,13 @@ network-storage:
 
 #### [App configuration](/create-apps/_index.md)
 
-```yaml {configFile="apps"}
+```yaml {configFile="app"}
+name: myapp
 mounts:
-    'my/files':
-        source: service
-        service: network-storage
-        source_path: files
+  'my/files':
+    source: service
+    service: network-storage
+    source_path: files
 ```
 
 ## Multi-application usage
@@ -153,52 +155,52 @@ For example:
 ```yaml {configFile="apps"}
 # The name of the app container. Must be unique within a project.
 app1:
-    # The location of the application's code.
-    source:
-        root: "app1"
-    
-    [...]
+  # The location of the application's code.
+  source:
+    root: "app1"
 
-    mounts:
-        # The path to your mount within the app container (relative to the app's root).
-        'web/uploads':
-            # Specifies that the mount points to a network storage service that can be shared between apps.
-            source: service
-            # The name of the network storage service the mount points to.
-            service: network-storage
-            # Specifies where your mount points inside the external directory that is mounted to your app container.
-            source_path: uploads
+  [...]
+
+  mounts:
+    # The path to your mount within the app container (relative to the app's root).
+    'web/uploads':
+      # Specifies that the mount points to a network storage service that can be shared between apps.
+      source: service
+      # The name of the network storage service the mount points to.
+      service: network-storage
+      # Specifies where your mount points inside the external directory that is mounted to your app container.
+      source_path: uploads
 
 # The name of the app container. Must be unique within a project.
 app2:
-    # The location of the application's code.
-    source:
-        root: "app2"
-    
-    [...]
+  # The location of the application's code.
+  source:
+    root: "app2"
 
-    mounts:
-        # The path to your mount within the app container (relative to the app's root).
-        'process':
-            # Specifies that the mount points to a network storage service that can be shared between apps.
-            source: service
-            # The name of the network storage service the mount points to.
-            service: network-storage
-            # Specifies where your mount points inside the external directory that is mounted to your app container.
-            # Since the target is the uploads directory app1's mount already points to,
-            # the network storage service is effectively shared between app1 and app2. 
-            source_path: uploads/incoming
-         
-        # The path to your mount within the app container (relative to the app's root). 
-        'done':
-            # Specifies that the mount points to a network storage service that can be shared between apps.
-            source: service
-            # The name of the network storage service the mount points to.
-            service: network-storage
-            # Specifies where your mount points inside the external directory that is mounted to your app container.
-            # Since the target is the uploads directory app1's mount already points to,
-            # the network storage service is effectively shared between app1 and app2. 
-            source_path: uploads/done
+  [...]
+
+  mounts:
+    # The path to your mount within the app container (relative to the app's root).
+    'process':
+      # Specifies that the mount points to a network storage service that can be shared between apps.
+      source: service
+      # The name of the network storage service the mount points to.
+      service: network-storage
+      # Specifies where your mount points inside the external directory that is mounted to your app container.
+      # Since the target is the uploads directory app1's mount already points to,
+      # the network storage service is effectively shared between app1 and app2.
+      source_path: uploads/incoming
+
+    # The path to your mount within the app container (relative to the app's root).
+    'done':
+      # Specifies that the mount points to a network storage service that can be shared between apps.
+      source: service
+      # The name of the network storage service the mount points to.
+      service: network-storage
+      # Specifies where your mount points inside the external directory that is mounted to your app container.
+      # Since the target is the uploads directory app1's mount already points to,
+      # the network storage service is effectively shared between app1 and app2.
+      source_path: uploads/done
 ```
 
 In this example, `app1` has access to the entire `uploads` directory by writing to `web/uploads`.
@@ -226,40 +228,39 @@ files:
 You can then use this service to  define a `network_dir` network mount and a `local_dir` local mount,
 to be used by a `web` instance and a `queue` worker instance:
 
-```yaml {configFile="app"}
-name: myapp
+```yaml {configFile="apps"}
+myapp:
+  # The type of the application to build.
+  type: "nodejs:20"
 
-# The type of the application to build.
-type: "nodejs:20"
+  # Defines how much space is available to local mounts.
+  disk: 512
 
-# Defines how much space is available to local mounts.
-disk: 512
-
-mounts:
+  mounts:
     # Defines a network storage mount that can be shared by both worker instances.
     'network_dir':
-        source: service
-        service: files
-        source_path: our_stuff
+      source: service
+      service: files
+      source_path: our_stuff
 
     # Defines a local mount that's available to each instance separately.
     'local_dir':
-        source: local
-        source_path: my_stuff
+      source: local
+      source_path: my_stuff
 
-# Defines a web instance.
-web:
+  # Defines a web instance.
+  web:
     locations:
-        "/":
-            root: "public"
-            passthru: true
-            index: ['index.html']
+      "/":
+        root: "public"
+        passthru: true
+        index: ['index.html']
 
-# Define a queue worker instance from the same code but with a different start.
-workers:
+  # Define a queue worker instance from the same code but with a different start.
+  workers:
     queue:
-        commands:
-            start: ./start.sh
+      commands:
+        start: ./start.sh
 ```
 
 Both the web instance and the `queue` worker have two mount points:
@@ -278,61 +279,60 @@ For that case, all that's needed is to set the necessary file mounts as `service
 For example, the following `{{< vendor/configfile "app" >}}` file (fragment) keeps Drupal files directories shared between web and worker instances while keeping the Drush backup directory web-only (as it has no need to be shared).
 (This assumes a Network Storage service named `files` has also been defined in `{{< vendor/configfile "services" >}}`.)
 
-```yaml {configFile="app"}
-name: myapp
+```yaml {configFile="apps"}
+myapp:
+  # The type of the application to build.
+  type: "php:{{% latest "php" %}}"
 
-# The type of the application to build.
-type: "php:{{% latest "php" %}}"
-
-relationships:
+  relationships:
     mariadb:
 
-disk: 1024
+  disk: 1024
 
-mounts:
+  mounts:
     # The public and private files directories are
     # network mounts shared by web and workers.
     'web/sites/default/files':
-        source: service
-        service: files
-        source_path: files
+      source: service
+      service: files
+      source_path: files
     'private':
-        source: service
-        service: files
-        source_path: private
+      source: service
+      service: files
+      source_path: private
     # The backup, temp, and cache directories for
     # Drupal's CLI tools don't need to be shared.
     # It wouldn't hurt anything to make them network
     # shares, however.
     '/.drush':
-        source: local
-        source_path: drush
+      source: local
+      source_path: drush
     'tmp':
-        source: local
-        source_path: tmp
+      source: local
+      source_path: tmp
     'drush-backups':
-        source: local
-        source_path: drush-backups
+      source: local
+      source_path: drush-backups
     '/.console':
-        source: local
-        source_path: console
+      source: local
+      source_path: console
 
-# Crons run on the web container, so they have the
-# same mounts as the web container.
-crons:
+  # Crons run on the web container, so they have the
+  # same mounts as the web container.
+  crons:
     drupal:
-        spec: '*/20 * * * *'
-        commands:
-            start: 'cd web ; drush core-cron'
+      spec: '*/20 * * * *'
+      commands:
+        start: 'cd web ; drush core-cron'
 
-# The worker defined here also has the same 6 mounts;
-# 2 of them are shared with the web container,
-# the other 4 are local to the worker.
-workers:
+  # The worker defined here also has the same 6 mounts;
+  # 2 of them are shared with the web container,
+  # the other 4 are local to the worker.
+  workers:
     queue:
-        commands:
-            start: |
-                cd web && drush queue-run myqueue
+      commands:
+        start: |
+          cd web && drush queue-run myqueue
 ```
 
 ## How can I migrate a local storage to a network storage?
@@ -343,10 +343,11 @@ However, the process is fundamentally "just" moving files around on disk, so it'
 Suppose you have this mount configuration:
 
 ```yaml {configFile="app"}
+name: myapp
 mounts:
-    web/uploads:
-        source: local
-        source_path: uploads
+  web/uploads:
+    source: local
+    source_path: uploads
 ```
 
 And want to move that to a network storage mount.
@@ -367,13 +368,13 @@ The following approximate steps do so with a minimum of service interruption.
 
    ```yaml {configFile="app"}
    mounts:
-       web/uploads:
-           source: local
-           source_path: uploads
-       new-uploads:
-           source: service
-           service: files
-           source_path: uploads
+     web/uploads:
+       source: local
+       source_path: uploads
+     new-uploads:
+       source: service
+       service: files
+       source_path: uploads
    ```
 
 3. Deploy these changes.
@@ -390,13 +391,13 @@ The following approximate steps do so with a minimum of service interruption.
 
    ```yaml {configFile="app"}
    mounts:
-       old-uploads:
-           source: local
-           source_path: uploads
-       web/uploads:
-           source: service
-           service: files
-           source_path: uploads
+     old-uploads:
+       source: local
+       source_path: uploads
+     web/uploads:
+       source: service
+       service: files
+       source_path: uploads
    ```
 
 5. Clean up.

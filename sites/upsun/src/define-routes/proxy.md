@@ -18,9 +18,9 @@ You can define an external proxy on your {{% vendor/name %}} project by defining
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://www.example.com
+  https://{default}/foo:
+    type: proxy
+    to: https://www.example.com
 ```
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/foo/index.html`.
@@ -29,9 +29,9 @@ You can also define a proxy route to an URL composed of an IP address and a port
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://192.0.2.0:8000
+  https://{default}/foo:
+    type: proxy
+    to: https://192.0.2.0:8000
 ```
 
 ## URL paths
@@ -43,9 +43,9 @@ add a trailing slash `/` to the `to` definition.
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://www.example.com/
+  https://{default}/foo:
+    type: proxy
+    to: https://www.example.com/
 ```
 
 The trailing slash makes the proxy route interpret the location as having a different path.
@@ -56,9 +56,9 @@ For example:
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/foo:
-        type: proxy
-        to: https://www.example.com/bar
+  https://{default}/foo:
+    type: proxy
+    to: https://www.example.com/bar
 ```
 
 This route passes requests for `https://{default}/foo/index.html` to `https://www.example.com/bar/index.html`.
@@ -78,17 +78,17 @@ Each app handles a different language.
 
 ```yaml {configFile="routes"}
 routes:
-    https://{default}/en:
-        type: proxy
-        to: https://en.example.com/
+  https://{default}/en:
+    type: proxy
+    to: https://en.example.com/
 
-    https://{default}/jp:
-        type: proxy
-        to: https://jp.example.com/
+  https://{default}/jp:
+    type: proxy
+    to: https://jp.example.com/
 
-    https://{default}/pt:
-        type: proxy
-        to: https://pt.example.com/
+  https://{default}/pt:
+    type: proxy
+    to: https://pt.example.com/
 ```
 
 The apps behind the proxy need to ensure links to assets are shown to the target domain.

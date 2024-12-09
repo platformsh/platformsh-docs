@@ -12,7 +12,7 @@ layout: single
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-Patch versions are applied periodically for bug fixes and the like. 
+Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
 ### OpenJDK versions:
@@ -65,16 +65,16 @@ Add something like the following to your [app configuration](../../create-apps/_
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
+  env:
+    MAVEN_VERSION: {{< variable "DESIRED_VERSION_NUMBER" "3.8.6" >}}
 
 hooks:
-    build: |
-        curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
-        tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
-        export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
-        mvn --version
-        mvn clean package
+  build: |
+    curl -sfLO "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+    tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz
+    export PATH="$PWD/apache-maven-$MAVEN_VERSION/bin:$PATH"
+    mvn --version
+    mvn clean package
 ```
 ## Other JVM languages
 

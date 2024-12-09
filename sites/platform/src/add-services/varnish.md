@@ -38,10 +38,10 @@ The Varnish service sits between the router and all apps in the project.
 
 ``` mermaid
 graph LR
-    A(Request) -->B(Router)
-    B --> C{Varnish}
-    C -->D[App 1]
-    C -->E[App 2]
+  A(Request) -->B(Router)
+  B --> C{Varnish}
+  C -->D[App 1]
+  C -->E[App 2]
 ```
 
 ## Usage example
@@ -53,16 +53,16 @@ To define the service, use the `varnish` type:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: varnish:<VERSION>
-    relationships:
-        <RELATIONSHIP_NAME>: '<APP_NAME>:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
+  type: varnish:<VERSION>
+  relationships:
+    <RELATIONSHIP_NAME>: '<APP_NAME>:http'
+  configuration:
+    vcl: !include
+      type: string
+      path: config.vcl
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
 The `relationships` block defines the connection between Varnish and your app.
@@ -79,13 +79,13 @@ The `path` defines the file relative to the `{{< vendor/configdir >}}` directory
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 varnish:
-    type: varnish:7.3
-    relationships:
-        application: 'myapp:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
+  type: varnish:7.3
+  relationships:
+    application: 'myapp:http'
+  configuration:
+    vcl: !include
+      type: string
+      path: config.vcl
 ```
 
 Notice the `relationship` (`application`) defined for the service `varnish` granting access to the application container `myapp`.
@@ -150,34 +150,30 @@ For example, you might have the following configuration for two apps:
 
 ```yaml {configFile="services"}
 varnish:
-    type: varnish:{{% latest "varnish" %}}
-    relationships:
-        blog:
-            service: blog
-            endpoint: http
-        main:
-            service: app
-            endpoint: http
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
+  type: varnish:{{% latest "varnish" %}}
+  relationships:
+    blog: 'blog:http'
+    main: 'app:http'
+  configuration:
+    vcl: !include
+      type: string
+      path: config.vcl
 ```
 
 ```yaml {configFile="apps"}
 blog:
-    # The location of the application's code.
-    source:
-        root: "backends/blog"
-    # The type of the application to build.
-    type: "php:{{% latest "php" %}}"
+  # The location of the application's code.
+  source:
+    root: "backends/blog"
+  # The type of the application to build.
+  type: "php:{{% latest "php" %}}"
 
 app:
-    # The location of the application's code.
-    source:
-        root: "backends/main"
-    # The type of the application to build.
-    type: "nodejs:{{% latest "nodejs" %}}"
+  # The location of the application's code.
+  source:
+    root: "backends/main"
+  # The type of the application to build.
+  type: "nodejs:{{% latest "nodejs" %}}"
 ```
 
 You could then define that all requests to `/blog/` go to the `blog` app and all other requests to the other app:
@@ -201,10 +197,10 @@ To forward all incoming requests to Varnish rather than your app, you could have
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "varnish:http"
-    cache:
-        enabled: false
+  type: upstream
+  upstream: "varnish:http"
+  cache:
+    enabled: false
 ```
 
 Varnish forwards requests to your app based on the specified VCL template.
@@ -325,40 +321,38 @@ Define [app configuration](/create-apps/app-reference/single-runtime-image.md) s
 ```yaml {configFile="apps"}
 # The name of the app container. Must be unique within a project.
 stats-app:
-    # The location of the application's code.
-    source:
-        root: "stats"
-    # The type of the application to build.
-    type: "python:{{% latest "python" %}}"
-    # Unique relationship _to_ Varnish from 'stats-app', where no relationship
-    #   is defined _from_ Varnish to the same app, to avoid circular relationships.
-    relationships:
-        varnishstats: 
-            service: varnish
-            endpoint: "http+stats"
+  # The location of the application's code.
+  source:
+    root: "stats"
+  # The type of the application to build.
+  type: "python:{{% latest "python" %}}"
+  # Unique relationship _to_ Varnish from 'stats-app', where no relationship
+  #   is defined _from_ Varnish to the same app, to avoid circular relationships.
+  relationships:
+    varnishstats:
+      service: varnish
+      endpoint: "http+stats"
 # The name of the app container. Must be unique within a project.
 main-app:
-    # The location of the application's code.
-    source:
-        root: "backends/main"
-    # The type of the application to build.
-    type: "nodejs:{{% latest "nodejs" %}}"
+  # The location of the application's code.
+  source:
+    root: "backends/main"
+  # The type of the application to build.
+  type: "nodejs:{{% latest "nodejs" %}}"
 ```
 
 ```yaml {configFile="services" v2Hide="true"}
 # The name of the service container. Must be unique within a project.
 varnish:
-    type: varnish:{{% latest "varnish" %}}
-    # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
-    #   is defined _to_ Varnish to the same app, to avoid circular relationships.
-    relationships:
-        main: 
-            service: "main-app"
-            endpoint: http
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl
+  type: varnish:{{% latest "varnish" %}}
+  # Unique relationship _from_ Varnish _to_ 'main-app', where no relationship
+  #   is defined _to_ Varnish to the same app, to avoid circular relationships.
+  relationships:
+    main: "main-app:http"
+  configuration:
+    vcl: !include
+      type: string
+      path: config.vcl
 ```
 
 

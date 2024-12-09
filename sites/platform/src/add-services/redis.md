@@ -78,6 +78,37 @@ while Redis 2.8 only supports a single database.
 Depending on your needs,
 you can set up Redis as [persistent](#persistent-redis) or [ephemeral](#ephemeral-redis).
 
+## Relationship reference
+
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+
+```json
+{
+  "username": null,
+  "scheme": "redis",
+  "service": "redis",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.redis.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 6379,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "redis.internal",
+  "rel": "redis",
+  "path": null,
+  "query": [],
+  "password": null,
+  "type": "redis:{{% latest "redis" %}}",
+  "public": false,
+  "host_mapped": false
+}
+```
+
+The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
+
 ## Persistent Redis
 
 By default, Redis is an ephemeral service that stores data in memory.
@@ -117,15 +148,21 @@ To define the service, use the `redis-persistent` endpoint:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: redis-persistent:<VERSION>
+  type: redis-persistent:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the `redis` endpoint :
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
@@ -133,7 +170,7 @@ To define the relationship, use the `redis` endpoint :
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -142,15 +179,45 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: redis
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
 runtime:
-    extensions:
-        - redis
+  extensions:
+    - redis
 ```
 
 ### Configuration example
@@ -160,16 +227,37 @@ runtime:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 redis:
-    type: redis-persistent:{{% latest "redis" %}}
-    disk: 256
+  type: redis-persistent:{{% latest "redis" %}}
+  disk: 256
 ```
 
 #### [App configuration](/create-apps/_index.md)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 relationships:
-    redis: 
+  redis:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+relationships:
+  redis:
+    service: redis
+    endpoint: redis
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
@@ -233,15 +321,21 @@ To define the service, use the `redis` endpoint:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: redis:<VERSION>
+  type: redis:<VERSION>
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
-To define the relationship, use the `redis` endpoint :
+To define the relationship, use the following configuration:
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
 
 ```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
@@ -249,7 +343,7 @@ To define the relationship, use the `redis` endpoint :
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -258,15 +352,45 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: redis
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
 runtime:
-    extensions:
-        - redis
+  extensions:
+    - redis
 ```
 
 ### Configuration example
@@ -276,16 +400,37 @@ runtime:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 redis:
-    type: redis:{{% latest "redis" %}}
-    disk: 256
+  type: redis:{{% latest "redis" %}}
+  disk: 256
 ```
 
 #### [App configuration](/create-apps/_index.md)
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
 relationships:
-    redis:
+  redis:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+relationships:
+  redis:
+    service: redis
+    endpoint: redis
+```
+
+{{< /codetabs >}}
 
 ### Use in app
 
@@ -408,30 +553,30 @@ This results in the following configuration:
 
 ```yaml {configFile="app"}
 relationships:
-    {{% variable "RELATIONSHIP_NAME" %}}:
-        service: {{% variable "SERVICE_NAME" %}}
-        endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
 ```
 
 For example, if you define a `redis-persistent` database as follows:
 
 ```yaml {configFile="services"}
 postgresql:
-    type: "redis-persistent:16"
-    disk: 2048
-    configuration:
-        databases:
-            - main
-            - legacy
-        endpoints:
-            admin:
-                privileges:
-                    main: admin
-                    legacy: admin
-            reporter:
-                default_database: main
-                privileges:
-                    main: ro
+  type: "redis-persistent:16"
+  disk: 2048
+  configuration:
+    databases:
+      - main
+      - legacy
+    endpoints:
+      admin:
+        privileges:
+          main: admin
+          legacy: admin
+      reporter:
+        default_database: main
+        privileges:
+          main: ro
 ```
 
 To create a replica of the `redis-persistent` database and allow your app to connect to it
@@ -456,12 +601,12 @@ relationships:
     endpoint: reporter-replica
 ```
 
-## Relationship reference 
+## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. 
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
@@ -496,9 +641,9 @@ To customize those cache cleanups, set up an eviction policy such as the followi
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 redis:
-    type: "redis:{{% latest "redis" %}}"
-    configuration:
-        maxmemory_policy: allkeys-lfu
+  type: "redis:{{% latest "redis" %}}"
+  configuration:
+    maxmemory_policy: allkeys-lfu
 ```
 
 The following table presents the possible values:
@@ -517,10 +662,10 @@ The following table presents the possible values:
 For more information on the different policies,
 see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
 
-## Access your Redis service 
+## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
-you can access it using either the {{% vendor/name %}} CLI 
+you can access it using either the {{% vendor/name %}} CLI
 or through the [Redis CLI](https://redis.io/docs/ui/cli/).
 
 ### {{% vendor/name %}} CLI
@@ -569,20 +714,57 @@ redissessions:
     disk: 256
 ```
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
+name: myapp
 type: "php:{{% latest "php" %}}"
 
 relationships:
-    redissessions: 
+  redissessions:
 
 variables:
-    php:
-        session.save_handler: redis
-        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+  php:
+    session.save_handler: redis
+    session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
 
 web:
-    locations:
-        '/':
-            root: 'web'
-            passthru: '/index.php'
+  locations:
+    '/':
+      root: 'web'
+        passthru: '/index.php'
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+name: myapp
+type: "php:{{% latest "php" %}}"
+
+relationships:
+  redissessions:
+    service: "redissessions"
+    endpoint: "redis"
+
+variables:
+  php:
+    session.save_handler: redis
+    session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
+
+web:
+  locations:
+    '/':
+      root: 'web'
+      passthru: '/index.php'
+```
+
+{{< /codetabs >}}
+

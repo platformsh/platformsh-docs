@@ -12,29 +12,29 @@ You can manage redirection rules on your {{% vendor/name %}} projects in two dif
 
 Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](./_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
 
-```yaml
+```yaml {configFile="app"}
 routes:
-    https://{default}/:
-        type: redirect
-        to: https://www.{default}/
+  https://{default}/:
+    type: redirect
+    to: https://www.{default}/
 ```
 
 ## Partial redirects
 
 In the [`{{< vendor/configfile "routes" >}}`](./_index.md) file you can also add partial redirect rules to existing routes:
 
-```yaml
+```yaml {configFile="app"}
 routes:
-    https://{default}/:
-        # ...
-        redirects:
-            expires: 1d
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                '^/foo/(.*)/bar':
-                    to: 'https://example.com/$1'
-                    regexp: true
+  https://{default}/:
+    # ...
+    redirects:
+      expires: 1d
+      paths:
+        '/from':
+          to: 'https://example.com/'
+        '^/foo/(.*)/bar':
+          to: 'https://example.com/$1'
+          regexp: true
 ```
 
 This format is richer and works with any type of route, including routes served directly by the application.
@@ -75,15 +75,15 @@ Consider this `regexp` redirect:
 
 ```yaml
 '^/from(/.*|)$':
-    regexp: true
-    to: https://example.com/to$1
+  regexp: true
+  to: https://example.com/to$1
 ```
 
 It achieves the same result as this basic redirect:
 
 ```yaml
 '/from':
-    to: https://example.com/to 
+  to: https://example.com/to
 ```
 
 <--->
@@ -95,16 +95,16 @@ title= `prefix`
 Consider this redirect using `prefix`:
 ```yaml
 '/from':
-    to: https//example.com/to
-    prefix: false
+  to: https//example.com/to
+  prefix: false
 ```
 
 It achieves the same result as this `regexp` redirect:
 
 ```yaml
 '^/from$':
-    regexp: true
-    to: https://example.com/to
+  regexp: true
+  to: https://example.com/to
 ```
 
 <--->
@@ -117,16 +117,16 @@ Consider this redirect using `append_suffix`:
 
 ```yaml
 '/from':
-    to: https//example.com/to
-    append_suffix: false
+  to: https//example.com/to
+  append_suffix: false
 ```
 
 It achieves the same result as this `regexp` redirect:
 
 ```yaml
 '^/from(/.*|)$':
-    regexp: true
-    to: https://example.com/to
+  regexp: true
+  to: https://example.com/to
 ```
 
 {{< /codetabs >}}
@@ -144,16 +144,16 @@ You can use regular expressions to configure your redirects.
 
 In the following example, a request to `https://example.com/foo/a/b/c/bar` redirects to `https://example.com/a/b/c`:
 
-```yaml
+```yaml {configFile="app"}
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '^/foo/(.*)/bar':
-                    to: 'https://example.com/$1'
-                    regexp: true
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '^/foo/(.*)/bar':
+          to: 'https://example.com/$1'
+          regexp: true
 ```
 
 The following special arguments in the `to` statement are available when `regexp` is set to `true`:
@@ -180,52 +180,52 @@ For example:
 
 {{< version/specific >}}
 <!-- Platform.sh configuration-->
-```yaml
+```yaml {configFile="app"}
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://{default}/to'
-                    prefix: true
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://{default}/to'
+          prefix: true
 ```
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://{default}/to'
-                    append_suffix: true
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://{default}/to'
+          append_suffix: true
 ```
 
 <--->
 <!-- Upsun configuration -->
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://{default}/to'
-                    prefix: true
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://{default}/to'
+          prefix: true
 ```
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://{default}/to'
-                    append_suffix: true
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://{default}/to'
+          append_suffix: true
 ```
 {{< /version/specific >}}
 
@@ -239,14 +239,14 @@ For example, with the following configuration:
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://{default}/to'
-                    prefix: true
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://{default}/to'
+          prefix: true
 ```
 
 A request to `/from/` redirects to `/to/some/path`, but a request to `/from/some/path` does not.
@@ -255,14 +255,14 @@ And with the following configuration:
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://{default}/to'
-                    append_suffix: false
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://{default}/to'
+          append_suffix: false
 ```
 
 A request to `/from/some/path` (and any path after `/from`) redirects to just `/to`.
@@ -273,16 +273,16 @@ To set a specific HTTP status code for your redirect, use the `codes` key:
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                    code: 308
-                '/here':
-                    to: 'https://example.com/there'
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://example.com/'
+          code: 308
+        '/here':
+          to: 'https://example.com/there'
    ```
 
 In this example, redirects from `/from` use a `308` HTTP status code,
@@ -302,16 +302,16 @@ In the following example, all redirects are cached for two weeks:
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            expires: 2w
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                '/here':
-                    to: 'https://example.com/there'
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      expires: 2w
+      paths:
+        '/from':
+          to: 'https://example.com/'
+        '/here':
+          to: 'https://example.com/there'
 ```
 
 If you want to set a different expiration time for a specific redirect,
@@ -326,17 +326,17 @@ In the following example:
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            expires: 2w
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                '/here':
-                    to: 'https://example.com/there'
-                    expires: 3d
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      expires: 2w
+      paths:
+        '/from':
+          to: 'https://example.com/'
+        '/here':
+          to: 'https://example.com/there'
+          expires: 3d
 ```
 
 {{% note %}}
@@ -353,16 +353,16 @@ To disable caching on all your redirects, set the `expires` key to `0` under the
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            expires: 0
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                '/here':
-                    to: 'https://example.com/there'
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      expires: 0
+      paths:
+        '/from':
+          to: 'https://example.com/'
+        '/here':
+          to: 'https://example.com/there'
 ```
 
 To disable caching on a specific redirect only,
@@ -372,16 +372,16 @@ In the following example, caching is disabled on the second redirect only:
 
 ```yaml
 routes:
-    https://{default}/:
-        type: upstream
-        # ...
-        redirects:
-            paths:
-                '/from':
-                    to: 'https://example.com/'
-                '/here':
-                    to: 'https://example.com/there'
-                    expires: 0
+  https://{default}/:
+    type: upstream
+    # ...
+    redirects:
+      paths:
+        '/from':
+          to: 'https://example.com/'
+        '/here':
+          to: 'https://example.com/there'
+          expires: 0
 ```
 
 ## Other redirects
