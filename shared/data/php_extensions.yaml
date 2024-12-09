@@ -1450,3 +1450,98 @@ grid:
       - zendopcache
     with-webp:
       - imagick
+  "8.4":
+    available:
+      - amqp
+      - apcu
+      # - blackfire
+      # - datadog
+      # - enchant
+      # - event
+      # - ffi
+      # - geoip
+      # - gmp
+      # - gnupg
+      # - http
+      - igbinary
+      - imap
+      # - ldap
+      # - mailparse
+      # - memcached
+      - mongodb
+      # - msgpack
+      # - mysql
+      # - newrelic
+      # - oauth
+      # - odbc
+      # - openswoole
+      # - opentelemetry
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
+      # - pdo_sqlsrv
+      - pgsql
+      # - protobuf
+      # - pspell
+      # - raphf
+      # - rdkafka
+      # - readline
+      - redis
+      - shmop
+      # - snmp
+      # - sodium
+      - sourceguardian
+      # - sqlsrv
+      # - ssh2
+      # - swoole
+      # - sybase
+      # - tideways
+      # - tideways-xhprof
+      # - tidy
+      # - uuid
+      # - uv
+      # - xdebug
+      - xmlrpc
+      - xsl
+      # - yaml
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - mbstring
+      - mysqli
+      - mysqlnd
+      # - opcache
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - json
+      - zendopcache
+    # with-webp:
+    #   - imagick

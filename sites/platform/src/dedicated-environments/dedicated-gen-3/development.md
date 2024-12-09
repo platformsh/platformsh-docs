@@ -34,13 +34,16 @@ In the diagram, there are only 3 hosts. Host 1 has both the entry point and app 
 
 ## Deployment
 
-On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead.
+On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead. 
+
+While HA environments connected to a DG3 cluster **can** deploy multiple instances of applications and services, they **cannot** dynamically change the number of those instances (for example, from 1 to 3 or 3 to 1).
 
 {{< note title="Note" theme="info" >}}
 
 Existing non-HA projects cannot be converted to HA projects and vice-versa. HA projects must be created as HA.
 
 {{< /note >}}
+
 
 ## Providers and regions
 
@@ -55,4 +58,4 @@ For more details on specific regions, consult the region [documentation](/develo
 
 ## Storage
 
-Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. You can request more storage at any time.
+Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.  

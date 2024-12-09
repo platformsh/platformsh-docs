@@ -24,13 +24,13 @@ To create your Next.js app, follow these steps.
    To fast track the process, run the following commands:
 
    ```bash {location="Terminal"}
-   npx create-next-app@latest
+   npx create-next-app@latest myapp
    ```
 
 2. To initialize the local Git repository and commit local files, run the following commands:
 
    ```bash {location="Terminal"}
-   cd my-app
+   cd myapp
    git init
    git add .
    git commit -m "Init Next.js application."
@@ -171,7 +171,7 @@ They are located in a `.{{% vendor/cli %}}/` folder at the root of your source c
 and structured in a similar way to this:
 
 ```txt
-my-express-app
+myapp
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
 ├── [.environment]
@@ -184,19 +184,32 @@ To generate these files, run the following command at the root of your project:
 {{% vendor/cli %}} project:init
 ```
 
-Follow the prompts.
+Follow the prompts, and you should result in such a config file.
 
 ```yaml {configFile="apps"}
 applications:
   myapp:
-    type: "nodejs:20"
+    source:
+      root: "/"
+    type: "nodejs:{{% latest "nodejs" %}}"
+    mounts:
+      "/.npm":
+        source: "storage"
+        source_path: "npm"
     hooks:
       build: |
         set -eux
+        npm i
         npm run build
     web:
       commands:
-        start: npm run start -- -p $PORT
+        start: npm run start -p $PORT
+      locations:
+        "/":
+          passthru: true 
+routes:
+  "https://{default}/": { type: upstream, upstream: "myapp:http" }
+  "http://{default}/": { type: redirect, to: "https://{default}/" }
 ```
 
 As an example, above is the minimum configuration needed to deploy a Next.js application on {{% vendor/name %}} without any services.

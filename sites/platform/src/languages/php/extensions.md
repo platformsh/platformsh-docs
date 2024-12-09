@@ -11,9 +11,8 @@ Some of them are available for {{% vendor/name %}} containers.
 
 {{< note version="1" theme="warning" title="Warning" >}}
 
-<!-- @todo: was this (extensions link) in the dedicated section removed? -->
 The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
-See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](/dedicated-environments/dedicated-gen-2/development.md).
+See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](/dedicated-environments/dedicated-gen-2/environment-differences.md#extensions).
 
 {{< /note >}}
 

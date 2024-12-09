@@ -28,19 +28,18 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **PHP version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
 | **Node.js version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
 | **Cron management** | Self-service via YAML config files | Self-service via YAML config files |
-|**Web server internal config : locations** | Self-service via YAML config files | Self-service via YAML config files |
+| **Web server internal config : locations** | Self-service via YAML config files | Self-service via YAML config files |
 | **CDN** | Fastly | A managed Fastly CDN service can be purchased through Platform.sh |
 | **Dedicated IP** | Yes | No |
 | **Configuration management** | Split responsibility between Platform.sh and customer | only YAML files |
-| **Usable regions** | Any region needed | Only the publicly available |
+| **Usable regions** | Any region needed | Only publicly available |
 | **Autonomous upsize** | Managed through Platform.sh| Yes |
 | **Autoscaling** | Yes | No |
 | **Upsize or Downsize methods** | No downtime - each instance is altered in a rolling fashion | Redeploy - possible downtime depending on the hooks |
-| **Production branch** | Managed by Platform.sh | Self-service |
-| **Multi availability zones ** | Yes | No |
+| **Multi availability zones** | Yes | No |
 | **New Relic** | APM + New Relic infrastructure | APM Supported only |
-| **Multi-app support** | Supported through docroots | Supported natively. |
-| **Routes management** | Managed by Platform.sh | Self-service |
+| **Multi-app support** | Supported through docroots | Supported natively |
+| **Routes management** | Self-service | Self-service |
 | **Environment clone** | Only on development environments | Yes on all branches |
 | **Services : Add, remove, upgrade** | Managed by Platform.sh | Self-service |
 | **Relationships : Add, remove, update** | Managed by Platform.sh | Self-service |
@@ -61,7 +60,7 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **Storage** | Local disks are accessed either locally or via glusterfs | 100 GB self service max (can be extended upon request) |
 | **Automated backup** | Yes | Yes |
 | **Custom domains name** | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers | On all branches for [Enterprise or Elite](https://platform.sh/pricing/) customers |
-| **MongoDB** | Not supported | Standalone service container |
+| **MongoDB** | Yes | Standalone service container |
 
 ### Dedicated Gen 2 vs Dedicated Gen 3
 
@@ -83,7 +82,7 @@ For more information, see how to [configure multiple apps in a single project](
 
 A dedicated single-node staging machine is provisioned for your application with an identical software configuration to your production hardware, but reduced hardware specs. This gives the advantages of isolating the staging load from the production hardware as well as having an identical software configuration to perform UAT, but this option doesn’t provide a bed for performance testing as the physical hardware configuration isn’t the same as production.
 
-#### Additional application servers 
+#### Additional application servers (Split Architecture)
 
 For especially high-traffic sites we can also add additional application-only servers. These servers contain just the application code; data storage services (such as SQL, Solr, Redis) are limited to the standard three. The cluster begins to look more like a standard N-Tier architecture at this point, with a horizontal line of web application servers in front of a 3 node (N+1) cluster of Galera database servers.
 
@@ -103,7 +102,7 @@ On Grid projects, incoming requests are held at the edge router temporarily duri
 
 On Dedicated Gen 2 projects, incoming requests aren’t held during deploy and receive a 503 error. As the Dedicated Gen 2 cluster is almost always fronted by a CDN, the CDN continues to serve cached pages during the few seconds of deploy, so for the vast majority of users there is no downtime or even slow down. If a request does pass the CDN during a deploy, it isn’t counted as downtime covered by our Service Level Agreement.
 
-By default, Platform.sh serves generic Platform.sh-branded error pages for errors generated before a request reaches the application. (500 errors, some 400 errors, etc.) Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN. This file may be any static HTML file but is limited to 64 KB in size.
+By default, Platform.sh serves generic Platform.sh-branded error pages for errors generated before a request reaches the application. (5XX errors, some 4XX errors, etc.) Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN. This file may be any static HTML file but is limited to 64 KB in size.
 
 #### Remote logging 
 
