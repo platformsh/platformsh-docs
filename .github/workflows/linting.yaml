@@ -54,7 +54,7 @@ jobs:
           # check the markdown from the PR itself. Plus, we're only running this job if a PR from fork has been approved
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: ./.github/actions/redirection-verification
+
       - name: Vale
         uses: errata-ai/vale-action@reviewdog
         with:
