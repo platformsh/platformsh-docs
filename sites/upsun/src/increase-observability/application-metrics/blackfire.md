@@ -49,7 +49,7 @@ This includes monitoring, profiling, alerting, and build-related features.
 Note that Blackfire monitoring is enabled by default on your production environment.
 On other environment types, you need to [enable it](#blackfire-monitoring).
 User access settings are replicated from the {{< vendor/name >}} Console to Blackfire -- this includes all [access levels](https://blackfire.io/docs/up-and-running/access-management).
- 
+
 You might have Blackfire variables already set on your project.
 In this case, the existing variables override the settings of the automated integration.
 
@@ -126,9 +126,11 @@ To do so, add [a configuration](../../define-routes/cache.md#allowing-only-speci
 similar to the following:
 
 ```yaml {configFile="routes"}
-cache:
-    enabled: true
-    cookies: ["/SESS.*/", "__blackfire"]
+routes:
+  "https://{default}/":
+    cache:
+      enabled: true
+      cookies: ["/SESS.*/", "__blackfire"]
 ```
 
 ## Get support

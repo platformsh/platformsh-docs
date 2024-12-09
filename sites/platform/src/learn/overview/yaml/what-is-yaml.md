@@ -32,7 +32,7 @@ The most straightforward data structure involves defining key–value pairs wher
 So you could have a basic configuration for an app:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "golang:1.18"
 disk: 1024
 ```
@@ -66,17 +66,17 @@ In contrast, when you define mappings, the order doesn't matter.
 So you could expand the configuration from before to add another mapping:
 
 ```yaml {configFile="app"}
-name: app
+name: myapp
 type: "golang:1.18"
 disk: 1024
 
 web:
-    commands:
-        start: ./bin/app
-    locations:
-        '/':
-            passthru: true
-            allow: false
+  commands:
+    start: ./bin/app
+  locations:
+    '/':
+      passthru: true
+      allow: false
 ```
 
 This creates a `web` dictionary that has two dictionaries within it: `commands` and `locations`,
@@ -91,24 +91,24 @@ In addition to maps defining further key–value pairs, you can also use sequenc
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            index:
-                - index.html
-                - index.htm
-            passthru: true
-            allow: false
+  locations:
+    '/':
+      index:
+        - index.html
+        - index.htm
+      passthru: true
+      allow: false
 ```
 
 You can also define sequences using a flow syntax:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        '/':
-            index: [index.html, index.htm]
-            passthru: true
-            allow: false
+  locations:
+    '/':
+      index: [index.html, index.htm]
+      passthru: true
+      allow: false
 ```
 
 In either case, you get a list of values within `index`:
@@ -125,9 +125,9 @@ So you could add a multi-line string to a `build` key in the `hooks` map:
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -e
-        cp a.txt b.txt
+  build: |
+    set -e
+    cp a.txt b.txt
 ```
 
 And the resulting value preserves the line break.
@@ -148,17 +148,17 @@ The following example shows 4 different workers:
 
 ```yaml {configFile="app"}
 workers:
-    queue1: &runner
-        size: S
-        commands:
-            start: python queue-worker.py
-    queue2: *runner
-    queue3: 
-        <<: *runner
-        size: M
-    queue4: 
-        <<: *runner
-        disk: 512
+  queue1: &runner
+    size: S
+    commands:
+      start: python queue-worker.py
+  queue2: *runner
+  queue3:
+    <<: *runner
+    size: M
+  queue4:
+    <<: *runner
+    disk: 512
 ```
 
 - `queue1` and `queue2` are identical with the same `size` and `commands` properties.

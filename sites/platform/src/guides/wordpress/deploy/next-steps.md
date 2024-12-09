@@ -13,10 +13,10 @@ but it's possible to use some non-Composer plugins and themes in your site,
 provided that they don't require write access at runtime.
 In your build hook, include:
 
-```yaml
+```yaml {configFile="app"}
 hooks:
-    build: |
-        rsync -a plugins/* wordpress/wp-content/plugins/
+  build: |
+    rsync -a plugins/* wordpress/wp-content/plugins/
 ```
 
 Here, you can commit plugins to the repository in a `plugins` subdirectory,

@@ -17,29 +17,35 @@ To define the service, use the `elasticsearch`:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
-    type: elasticsearch:<VERSION>
-    disk: 256
+  type: elasticsearch:<VERSION>
+  disk: 256
 ```
 
 If you’re using a [premium version](add-services/elasticsearch.md#supported-versions), use the `elasticsearch-enterprise` type instead.
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. 
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
 Back up your data before changing the service.
 
-#### 2. Add the relationship
+#### 2. Define the relationship
 
 To define the relationship, use the following configuration:
 
-```yaml {configFile="apps"}
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    <SERVICE_NAME>: 
+  <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -49,7 +55,37 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](/add-services/elasticsearch.md#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has [access to the service](/add-services/elasticsearch.md#2-define-the-relationship) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: elasticsearch
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration.
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has [access to the service](#2-define-the-relationship) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
 
 ### Example configuration
 
@@ -58,23 +94,49 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
-    disk: 256
+  type: elasticsearch:{{% latest "elasticsearch" %}}
+  disk: 256
 ```
+
+If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
+use the `elasticsearch-enterprise` type in the service definition.
 
 #### [App configuration](/create-apps)
 
-```yaml {configFile="apps"}
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
 # Relationships enable access from this app to a given service.
 # The example below shows simplified configuration leveraging a default service
 # (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    elasticsearch: 
+  elasticsearch:
 ```
 
-If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
-use the `elasticsearch-enterprise` type in the service definition.
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: elasticsearch
+    endpoint: elasticsearch
+```
+
+{{< /codetabs >}}
 
 ### Add the Drupal modules
 
