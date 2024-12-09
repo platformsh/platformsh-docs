@@ -12,8 +12,8 @@ To set up a cron job, add a configuration similar to the following:
 crons:
   snapshot:
     spec: 0 5 * * *
-    commands: |
-      croncape symfony ...
+    commands:
+      start: croncape symfony ...
 ```
 
 To run a command in a cron hook for specific environment types,
@@ -23,11 +23,12 @@ use the `PLATFORM_ENVIRONMENT_TYPE` environment variable:
 crons:
   snapshot:
     spec: 0 5 * * *
-    commands: |
-      # only run for the production environment, aka main branch
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
-        croncape symfony ...
-      fi
+    commands: 
+      start: |
+        # only run for the production environment, aka main branch
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+          croncape symfony ...
+        fi
 ```
 
 ## Use croncape
