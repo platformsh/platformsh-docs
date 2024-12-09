@@ -100,7 +100,7 @@ const verify = async () => {
           // core.debug(reqerr.toJSON())
           core.info(reqerr.toJSON())
         } else {
-          core.info(reqerr)
+          core.info(JSON.stringify(reqerr))
         }
 
         let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( anchors[path].to, axios.defaults.baseURL) }]
