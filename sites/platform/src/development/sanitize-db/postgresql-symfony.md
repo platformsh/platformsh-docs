@@ -108,11 +108,11 @@ Set up a script by following these steps:
     hooks:
       build: ...
       deploy: |
-      if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ] && [ ! -f MOUNT_PATH/is_sanitized ]; then
-        # The sanitization of the database should happen here (since it's non-production)
-        php bin/console app:sanitize-data
-        touch MOUNT_PATH/is_sanitized
-      fi
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ] && [ ! -f MOUNT_PATH/is_sanitized ]; then
+          # The sanitization of the database should happen here (since it's non-production)
+          php bin/console app:sanitize-data
+          touch MOUNT_PATH/is_sanitized
+        fi
     ```
 
 3.  Commit your changes by running the following command:

@@ -44,8 +44,6 @@ To do so, use the following configuration:
 applications:
   myapp:
     [...]
-  {{< variable "APP_NAME" >}}:
-    [...]
     workers:
       horizon:
         commands:
