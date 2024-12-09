@@ -14,11 +14,11 @@ Start by enabling SSI:
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "app:http"
-        ssi:
-            enabled: true
+  "https://{default}/":
+    type: upstream
+    upstream: "myapp:http"
+    ssi:
+      enabled: true
 ```
 
 Then create a file you want to include elsewhere:
@@ -54,19 +54,19 @@ For example, you can activate SSI on one route with cache disabled and enable ca
 
 ```yaml {configFile="routes"}
 routes:
-    "https://{default}/":
-        type: upstream
-        upstream: "app:http"
-        ssi:
-            enabled: true
-        cache:
-            enabled: false
-            
-    "https://{default}/cache":
-        type: upstream
-        upstream: "app:http"
-        cache:
-            enabled: true
+  "https://{default}/":
+    type: upstream
+    upstream: "myapp:http"
+    ssi:
+      enabled: true
+    cache:
+      enabled: false
+
+  "https://{default}/cache":
+    type: upstream
+    upstream: "myapp:http"
+    cache:
+      enabled: true
 ```
 
 Then create a page that displays the current date and time and is cached for 60 seconds
@@ -78,7 +78,7 @@ header("Cache-Control: max-age=60");
 echo date(DATE_RFC2822);
 ```
 
-Then you could have a page with dynamic content that includes this file: 
+Then you could have a page with dynamic content that includes this file:
 
 ```php {location="index.php"}
 <?php

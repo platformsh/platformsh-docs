@@ -27,15 +27,15 @@ title=Pip (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "gunicorn -w 4 -b localhost:$PORT app.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -46,17 +46,17 @@ title=Pip (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "gunicorn -w 4 -b unix:$SOCKET app.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -67,15 +67,15 @@ title=Pipenv (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "pipenv run gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "pipenv run gunicorn -w 4 -b localhost:$PORT app.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -86,17 +86,17 @@ title=Pipenv (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "pipenv run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "pipenv run gunicorn -w 4 -b unix:$SOCKET app.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -107,15 +107,15 @@ title=Poetry (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "poetry run gunicorn -w 4 -b localhost:$PORT myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "poetry run gunicorn -w 4 -b localhost:$PORT app.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -126,17 +126,17 @@ title=Poetry (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "poetry run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "poetry run gunicorn -w 4 -b unix:$SOCKET app.wsgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -155,14 +155,14 @@ adjust the start command to the following:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-        type: 'python:{{% latest "python" %}}'
-        web:
-            upstream:
-                socket_family: unix
-            commands:
-                start: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b unix:$SOCKET myapp.wsgi:application"
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    web:
+      upstream:
+        socket_family: unix
+      commands:
+        start: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b unix:$SOCKET app.wsgi:application"
 ```
 ## Daphne
 
@@ -179,15 +179,15 @@ title=Pip (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "daphne -p $PORT myapp.asgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "daphne -p $PORT app.asgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -198,17 +198,17 @@ title=Pip (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "daphne -u $SOCKET myapp.asgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "daphne -u $SOCKET app.asgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -219,15 +219,15 @@ title=Pipenv (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "pipenv run daphne -p $PORT myapp.asgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "pipenv run daphne -p $PORT app.asgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -238,17 +238,17 @@ title=Pipenv (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "pipenv run daphne -u $SOCKET myapp.asgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "pipenv run daphne -u $SOCKET app.asgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -259,15 +259,15 @@ title=Poetry (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "poetry run daphne -p $PORT myapp.asgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "poetry run daphne -p $PORT app.asgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -278,17 +278,17 @@ title=Poetry (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "poetry run -u $SOCKET myapp.asgi:application"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "poetry run -u $SOCKET app.asgi:application"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -307,15 +307,15 @@ title=Pip (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "uvicorn myapp.asgi:application --port $PORT --workers 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "uvicorn app.asgi:application --port $PORT --workers 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -326,17 +326,17 @@ title=Pip (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "uvicorn myapp.asgi:application --uds $SOCKET --workers 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "uvicorn app.asgi:application --uds $SOCKET --workers 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -347,15 +347,15 @@ title=Pipenv (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "pipenv run uvicorn myapp.asgi:application --port $PORT --workers 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "pipenv run uvicorn app.asgi:application --port $PORT --workers 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -366,17 +366,17 @@ title=Pipenv (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "pipenv run uvicorn myapp.asgi:application --uds $SOCKET --workers 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "pipenv run uvicorn app.asgi:application --uds $SOCKET --workers 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -387,15 +387,15 @@ title=Poetry (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "poetry run uvicorn myapp.asgi:application --port $PORT --workers 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "poetry run uvicorn app.asgi:application --port $PORT --workers 4"
+  locations:
+      "/":
+        passthru: true
+      "/static":
+        root: "static"
+        expires: 1h
+        allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -406,17 +406,17 @@ title=Poetry (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "poetry run uvicorn myapp.asgi:application --uds $SOCKET --workers 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "poetry run uvicorn app.asgi:application --uds $SOCKET --workers 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -443,15 +443,15 @@ title=Pip (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "hypercorn myapp.asgi:application -b localhost:$PORT -w 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "hypercorn app.asgi:application -b localhost:$PORT -w 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -462,17 +462,17 @@ title=Pip (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "hypercorn myapp.asgi:application -b unix:$SOCKET -w 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "hypercorn app.asgi:application -b unix:$SOCKET -w 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -483,15 +483,15 @@ title=Pipenv (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "pipenv run hypercorn myapp.asgi:application -b localhost:$PORT -w 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "pipenv run hypercorn app.asgi:application -b localhost:$PORT -w 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -502,17 +502,17 @@ title=Pipenv (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "pipenv run hypercorn myapp.asgi:application -b unix:$SOCKET -w 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "pipenv run hypercorn app.asgi:application -b unix:$SOCKET -w 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -523,15 +523,15 @@ title=Poetry (TCP)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    commands:
-        start: "poetry run hypercorn myapp.asgi:application -b localhost:$PORT -w 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  commands:
+    start: "poetry run hypercorn app.asgi:application -b localhost:$PORT -w 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 <--->
@@ -542,17 +542,17 @@ title=Poetry (Unix)
 {{< snippet name="myapp" config="app" root="/" >}}
 type: 'python:{{% latest "python" %}}'
 web:
-    upstream:
-        socket_family: unix
-    commands:
-        start: "poetry run hypercorn myapp.asgi:application -b unix:$SOCKET -w 4"
-    locations:
-        "/":
-            passthru: true
-        "/static":
-            root: "static"
-            expires: 1h
-            allow: true
+  upstream:
+    socket_family: unix
+  commands:
+    start: "poetry run hypercorn app.asgi:application -b unix:$SOCKET -w 4"
+  locations:
+    "/":
+      passthru: true
+    "/static":
+      root: "static"
+      expires: 1h
+      allow: true
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
@@ -570,12 +570,12 @@ adjust the start command to the following:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-        type: 'python:{{% latest "python" %}}'
-        web:
-            upstream:
-                socket_family: unix
-            commands:
-                start: "hypercorn myapp.asgi:application -b unix:$SOCKET -w 4 -k asyncio"
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    web:
+      upstream:
+        socket_family: unix
+      commands:
+        start: "hypercorn app.asgi:application -b unix:$SOCKET -w 4 -k asyncio"
 ```

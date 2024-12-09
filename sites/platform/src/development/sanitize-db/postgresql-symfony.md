@@ -94,24 +94,24 @@ Set up a script by following these steps:
 
     ```yaml {configFile="app"}
     hooks:
-        build: ...
-        deploy: |
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ]; then
-            # The sanitization of the database should happen here (since it's non-production)
-            php bin/console app:sanitize-data
-        fi
+      build: ...
+      deploy: |
+      if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ]; then
+        # The sanitization of the database should happen here (since it's non-production)
+        php bin/console app:sanitize-data
+      fi
     ```
 
     To sanitize only on the initial deploy and not all future deploys, on sanitization create a file on a mount. Then add a check for the file as in the following example:
 
     ```yaml {configFile="app"}
     hooks:
-        build: ...
-        deploy: |
+      build: ...
+      deploy: |
         if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ] && [ ! -f MOUNT_PATH/is_sanitized ]; then
-            # The sanitization of the database should happen here (since it's non-production)
-            php bin/console app:sanitize-data
-            touch MOUNT_PATH/is_sanitized
+          # The sanitization of the database should happen here (since it's non-production)
+          php bin/console app:sanitize-data
+          touch MOUNT_PATH/is_sanitized
         fi
     ```
 

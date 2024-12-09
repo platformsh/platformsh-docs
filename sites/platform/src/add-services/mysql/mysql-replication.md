@@ -20,20 +20,20 @@ For each database that you'd like to replicate, you need to assign a `replicatio
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 1024
-    configuration:
-        schemas:
-            - main
-        endpoints:
-            # Restate the default user to be used by your application.
-            mysql:
-                default_schema: main
-                privileges:
-                    main: admin
-            replicator:
-                privileges:
-                    main: replication
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 1024
+  configuration:
+    schemas:
+      - main
+    endpoints:
+      # Restate the default user to be used by your application.
+      mysql:
+        default_schema: main
+        privileges:
+          main: admin
+      replicator:
+        privileges:
+          main: replication
 ```
 
 This creates a `replicator` user, and grants read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binary log position). If there is at least one `replication` permission defined, the bin-logging is enabled on the primary server, which is essential for the replication.
@@ -50,12 +50,14 @@ name: myapp
 
 # Relationships enable an app container's access to a service.
 relationships:
-    database: 
-        service: mariadb
-        endpoint: mysql
-    replication: 
-        service: mariadb
-        endpoint: replicator
+  # Please note: Legacy definition of the relationship is still supported:
+  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  database:
+    service: "mariadb"
+    endpoint: "mysql"
+  replication:
+    service: "mariadb"
+    endpoint: "replicator"
 ```
 
 ## Getting the Primary's Binary Log Co-ordinates

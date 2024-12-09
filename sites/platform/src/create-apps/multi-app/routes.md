@@ -22,22 +22,22 @@ In this project, you have a CMS app, two frontend apps (one using Symfony and an
 and a Mercure Rocks server app, defined as follows:
 
 ```yaml {configFile="apps"}
-- name: admin
+admin:
   type: nodejs:16
   source:
     root: admin
   ...
-- name: api
+api:
   type: php:8.2
   source:
     root: api
   ...
-- name: gatsby
+gatsby:
   type: nodejs:18
   source:
     root: gatsby
   ...
-- name: mercure
+mercure:
   type: golang:1.18
   source:
     root: mercure/.config
@@ -63,11 +63,11 @@ You could define routes for your apps as follows:
 
 ```yaml {configFile="routes"}
 "https://mercure.{default}/":
-    type: upstream
-    upstream: "mercure:http"
+  type: upstream
+  upstream: "mercure:http"
 "https://{default}/":
-    type: upstream
-    upstream: "api:http"
+  type: upstream
+  upstream: "api:http"
 ```
 
 So if your default domain is `example.com`, that means:
@@ -88,8 +88,8 @@ Alternatively, you could define your routes as follows:
 
 ```yaml {configFile="routes"}
 "https://{default}/":
-    type: upstream
-    upstream: "api:http"
+  type: upstream
+  upstream: "api:http"
 "https://{default}/admin":
     type: upstream
     upstream: "admin:http"
@@ -98,19 +98,19 @@ Alternatively, you could define your routes as follows:
 Then you would need to configure each app's `web.locations` property to match these paths:
 
 ```yaml {configFile="apps"}
--   name: api
-    type: php:8.2
-    source:
-        root: api
-    ...
-    web:
-        locations:
-            "/":
-                passthru: "/index.php"
-                root: "public"
-                index:
-                    - index.php
-- name: admin
+api:
+  type: php:8.2
+  source:
+    root: api
+  ...
+  web:
+    locations:
+      "/":
+        passthru: "/index.php"
+        root: "public"
+        index:
+          - index.php
+admin:
   type: nodejs:16
   source:
     root: admin
