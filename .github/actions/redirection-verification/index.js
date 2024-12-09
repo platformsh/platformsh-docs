@@ -94,11 +94,15 @@ const verify = async () => {
         core.debug(`Response for our check of ${path} is ${response.status}`)
         return response
       } catch (reqerr) {
-        //core.warning(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}`)
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
-        // core.debug(reqerr.toJSON())
         core.info(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
-        core.info(reqerr.toJSON())
+        if(axios.isAxiosError(reqerr)) {
+          // core.debug(reqerr.toJSON())
+          core.info(reqerr.toJSON())
+        } else {
+          core.info(reqerr)
+        }
+
         let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( anchors[path].to, axios.defaults.baseURL) }]
         tableData.push(row)
       }
