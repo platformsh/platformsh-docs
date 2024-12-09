@@ -19,15 +19,6 @@ You need to add a DNS record to make it clear you explicitly allow multiple proj
 
 ## Enable subdomains across multiple projects
 
-{{< note theme="warning" title="Apex domain cannot be re-added" >}}
-
-With the `TXT` record, restrictions apply on the apex domain.
-For example, you can't add the apex domain to another project until you remove the `TXT` record.
-
-You can see an error like `'{{<variable "YOUR_APEX_DOMAIN" >}}' is a root domain`.
-
-{{< /note >}}
-
 To ensure multiple projects can use subdomains of the same apex domain,
 add a specific `TXT` DNS record for your apex domain.
 
@@ -44,6 +35,15 @@ This ensures no other users can possibly add a subdomain of your domain to their
 
 Even if you don’t remove the record, your DNS records should prevent others from using a subdomain
 as long as you don’t use wildcards records pointing at {{% vendor/name %}}.
+
+{{< note theme="info" title="Apex domain cannot be re-added" >}}
+
+If you don't remove the `TXT` record, restrictions apply on the apex domain.
+For example, you can't add the apex domain to another project until you remove the `TXT` record.
+
+You can see an error like `YOUR_APEX_DOMAIN is a root domain`.
+
+{{< /note >}}
 
 ## Bypass locked domains
 
