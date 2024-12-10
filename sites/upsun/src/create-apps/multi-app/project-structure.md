@@ -74,7 +74,9 @@ applications:
     type: php:8.2
 
     relationships:
-      database: "database:postgresql"
+      database:
+        service: "database"
+        endpoint: "postgresql"
 
     mounts:
       "/var/cache": "shared:files/cache"
@@ -305,9 +307,11 @@ For example, to change the source root of the `admin` app
 from the [unified app configuration](#unified-app-configuration) example project,
 you could add the following configuration:
 
-```yaml {configFile="apps"}
-source:
-    root: admin
+```yaml {configFile="app"}
+applications:
+  admin:
+    source:
+      root: admin
 ```
 
 The `source.root` path is relative to the repository root.

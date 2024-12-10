@@ -209,7 +209,6 @@ applications:
       locations:
         "/":
           passthru: true
-
 routes:
   "https://{default}/": { type: upstream, upstream: "myapp:http" }
   "http://{default}/": { type: redirect, to: "https://{default}/" }

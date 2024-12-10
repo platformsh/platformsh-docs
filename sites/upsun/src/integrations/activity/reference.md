@@ -677,7 +677,7 @@ The following example shows the full activity response to a Git push:
     "deploy": 49.954,
     "execute": 51.516
   },
-  "log": "Found 1 new commit\n\nBuilding application 'app' (runtime type: php:8.0, tree: 9851a01)\n  Reusing existing build for this tree ID\n\nProvisioning certificates\n  Certificates\n  - certificate 5093946: expiring on 2023-02-23 11:09:20+00:00, covering {,www}.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}\n\n\nRedeploying environment main\n  Preparing deployment\n  Closing service app\n  Opening application app and its relationships\n  Executing deploy hook for application app\n    hello world\n\n  Opening environment\n  Environment configuration\n    app (type: php:8.0, size: S, disk: 2048)\n\n  Environment routes\n    http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ is served by application `app`\n    https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n",
+  "log": "Found 1 new commit\n\nBuilding application 'myapp' (runtime type: php:8.0, tree: 9851a01)\n  Reusing existing build for this tree ID\n\nProvisioning certificates\n  Certificates\n  - certificate 5093946: expiring on 2023-02-23 11:09:20+00:00, covering {,www}.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}\n\n\nRedeploying environment main\n  Preparing deployment\n  Closing service myapp\n  Opening application myapp and its relationships\n  Executing deploy hook for application myapp\n    hello world\n\n  Opening environment\n  Environment configuration\n    myapp (type: php:8.0, size: S, disk: 2048)\n\n  Environment routes\n    http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ is served by application `myapp`\n    https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n",
   "payload": {
     "user": {
       "id": "c9926428-44dc-4b10-be03-a26dd43b44c1",
@@ -897,7 +897,7 @@ The following example shows the full activity response to a Git push:
           "ssi": {
             "enabled": false
           },
-          "upstream": "app:http",
+          "upstream": "myapp:http",
           "redirects": {
             "expires": "-1s",
             "paths": {}

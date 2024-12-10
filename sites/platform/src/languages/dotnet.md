@@ -46,11 +46,11 @@ with the default [framework-dependent deployment](https://docs.microsoft.com/en-
 
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -xe
-        dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
-            -p:UseRazorBuildServer=false \
-            -p:UseSharedCompilation=false
+  build: |
+    set -xe
+    dotnet publish --output "$PLATFORM_OUTPUT_DIR" \
+      -p:UseRazorBuildServer=false \
+      -p:UseSharedCompilation=false
 ```
 
 where `PLATFORM_OUTPUT_DIR` is the output directory for compiled languages available at build time.
@@ -90,30 +90,30 @@ while routing other traffic to the .NET application.
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        "/":
-            root: "wwwroot"
-            allow: true
-            passthru: true
-            rules:
-                # Serve these common asset types with customs cache headers.
-                \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
-                    allow: true
-                    expires: 300s
-    commands:
-        start: "dotnet WebApplication1.dll"
+  locations:
+    "/":
+      root: "wwwroot"
+      allow: true
+      passthru: true
+      rules:
+        # Serve these common asset types with customs cache headers.
+        \.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$:
+          allow: true
+          expires: 300s
+  commands:
+    start: "dotnet WebApplication1.dll"
 ```
 You can also route all requests to the application unconditionally:
 
 ```yaml {configFile="app"}
 web:
-    locations:
-        "/":
-            allow: false
-            passthru: true
+  locations:
+    "/":
+      allow: false
+      passthru: true
 
-    commands:
-        start: "dotnet WebApplication1.dll"
+  commands:
+    start: "dotnet WebApplication1.dll"
 ```
 
 ## Project templates

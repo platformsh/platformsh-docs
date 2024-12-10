@@ -23,11 +23,11 @@ Set your app configuration to have Sass available globally and use it:
 ```yaml {configFile="app"}
 # Ensure sass is available globally
 dependencies:
-    nodejs:
-        sass: "^1.47.0"
+  nodejs:
+    sass: "^1.47.0"
 
 hooks:
-    # Run the script defined in package.json
-    build: |
-        npm run build-css
+  # Run the script defined in package.json
+  build: |
+    npm run build-css
 ```
