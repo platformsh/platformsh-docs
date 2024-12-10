@@ -100,6 +100,7 @@ const verify = async () => {
           // core.debug(reqerr.toJSON())
           core.info(reqerr.toJSON())
         } else {
+          console.log(reqerr)
           core.info(JSON.stringify(reqerr))
         }
 
