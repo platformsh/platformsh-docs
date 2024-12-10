@@ -112,11 +112,8 @@ const verify = async () => {
 
     Promise.all(validateRedirects).then(() => {
       if(tableData.length > 1) {
-
         core.error('There was an error with one or more redirects.')
-
         core.summary.addTable(tableData)
-
         core.summary.write()
         core.setFailed('There was an error with one or more contracted redirects.')
       } else  {
