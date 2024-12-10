@@ -87,7 +87,7 @@ const verify = async () => {
     })
 
     const validateRedirects = RedirectKeys.map(async (path, index, array) => {
-      //console.log(`I'm going to test ${path} to see if it goes to ${anchors[path].to}`)
+      core.debug(`I'm going to test ${path} to see if it goes to ${anchors[path].to}`)
 
       try {
         const response = await axios.head(path);
@@ -96,15 +96,13 @@ const verify = async () => {
       } catch (reqerr) {
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
         core.info(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
-        console.log(reqerr)
+        core.debug(JSON.stringify(reqerr))
         if(axios.isAxiosError(reqerr)) {
           // core.debug(reqerr.toJSON())
-          core.info('Axios error.')
-          core.info(reqerr.toJSON())
+          core.debug('Axios error.')
         } else {
           console.log(reqerr)
-          core.info('Non-Axios error? ')
-          core.info(JSON.stringify(reqerr))
+          core.debug('Non-Axios error? ')
         }
 
         let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( anchors[path].to, axios.defaults.baseURL) }]
