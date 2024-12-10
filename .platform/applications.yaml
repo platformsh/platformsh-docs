@@ -7,7 +7,7 @@
     # Specify the Hugo version as an env variable.
     variables:
         env:
-            HUGOVERSION: 0.125.0
+            HUGOVERSION: 0.139.4
             SITE_DIR: 'sites/platform'
 
     build:
@@ -73,7 +73,7 @@
     # Specify the Hugo version as an env variable.
     variables:
         env:
-            HUGOVERSION: 0.125.0
+            HUGOVERSION: 0.139.4
             SITE_DIR: 'sites/upsun'
 
     build:
