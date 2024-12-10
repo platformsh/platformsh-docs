@@ -96,11 +96,14 @@ const verify = async () => {
       } catch (reqerr) {
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
         core.info(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
+        console.log(reqerr)
         if(axios.isAxiosError(reqerr)) {
           // core.debug(reqerr.toJSON())
+          core.info('Axios error.')
           core.info(reqerr.toJSON())
         } else {
           console.log(reqerr)
+          core.info('Non-Axios error? ')
           core.info(JSON.stringify(reqerr))
         }
 
