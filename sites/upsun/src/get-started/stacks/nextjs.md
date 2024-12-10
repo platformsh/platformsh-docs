@@ -203,7 +203,7 @@ applications:
         npm run build
     web:
       commands:
-        start: npm run start -p $PORT
+        start: "npx next start -p $PORT"
       upstream:
         socket_family: tcp
       locations:
