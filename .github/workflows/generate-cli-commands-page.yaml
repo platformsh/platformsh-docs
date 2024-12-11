@@ -23,7 +23,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.workflow_dispatch.head.repo.id == 21975579
+    if: github.event.schedule.head.repo.id == 21975579
     steps:
       - uses: actions/checkout@v4
         with:
