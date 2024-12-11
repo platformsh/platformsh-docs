@@ -121,7 +121,7 @@ ensure_environment
 
 # Get Latest version from Upsun $TOOL repo
 VERSION=$(curl --silent -H 'Accept: application/vnd.github.v3.raw' \
-  -L https://api.github.com/repos/jgm/$TOOL/releases | jq -r '.[0].name');
+  -L https://api.github.com/repos/jgm/$TOOL/releases | jq -r '.[0].tag_name');
 
 # FHK override
 #VERSION="3.5"
