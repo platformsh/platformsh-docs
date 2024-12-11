@@ -131,7 +131,22 @@ run "$TOOL" "$VERSION"
 # Treat individual build step errors as fatal for the whole build process.
 set -e
 
-## install Pandoc https://pandoc.org/installing.html#linux
+# replace non-wanted tag/attribute
+sanitize_html() {
+  # replace *=* (except href that contains "/" character
+  sed -r -i -e 's/ ?([a-zA-Z0-9\@:-]){2,}="([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&><↗\ -]{0,})"//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  # replace html comments
+  sed -r -i -e 's/(<!--[][a-zA-Z0-9_\ \/:@()\*\?#,.-]+-->)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  # replace <style> tags
+  sed -r -i -e 's/(<style>([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)#\&><↗\ -]+)<\/style>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  # replace <span></span> tags
+  sed -r -i -e 's/(<span>[ ]{0,}<\/span>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  # replace <pre> and </pre> tags
+  sed -r -i -e 's/(<pre>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  sed -r -i -e 's/(<\/pre>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+}
+
+sanitize_html()
 $PLATFORM_APP_DIR/bin/pandoc $PLATFORM_APP_DIR/sites/upsun/public/llms.txt --from=html -o $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.md -t markdown
 ls -la $PLATFORM_APP_DIR/sites/upsun/public/
 mv $PLATFORM_APP_DIR/sites/upsun/public/llms.txt $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.old
