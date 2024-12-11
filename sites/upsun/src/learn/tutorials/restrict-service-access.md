@@ -5,7 +5,7 @@ description: Learn how to restrict access to a service using a worker and additi
 weight: 2
 ---
 
-{{% vendor/name %}} allows you to restrict access to a service. 
+{{% vendor/name %}} allows you to restrict access to a service.
 
 In this tutorial, learn how to grant your Data team `read-only` access to your production database.
 
@@ -25,19 +25,19 @@ Edit your `{{< vendor/configfile "services" >}}` file and add the following [end
 
 ```yaml {configFile="services"}
 services:
-    maindb:
-        type: mariadb:10.5
-        configuration:
-            schemas:
-                - main
-            endpoints:
-                website:
-                    default_schema: main
-                    privileges:
-                        main: admin
-                reporting:
-                    privileges:
-                        main: ro
+  maindb:
+    type: mariadb:10.5
+    configuration:
+      schemas:
+        - main
+      endpoints:
+        website:
+          default_schema: main
+          privileges:
+            main: admin
+        reporting:
+          privileges:
+            main: ro
 ```
 
 ## 2. Grant your app access to the new endpoints
@@ -46,40 +46,40 @@ Edit your app configuration and add new relationships to your new endpoints:
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        [...]
-        relationships:
-            database: 
-                service: maindb
-                endpoint: website
-            reports:
-                service: maindb
-                endpoint: reporting
+  myapp:
+    # ...
+    relationships:
+      database:
+        service: maindb
+        endpoint: website
+      reports:
+        service: maindb
+        endpoint: reporting
 ```
 
 ## 3. Create a worker with access to the read-only endpoint
 
 Edit your app configuration to add a new worker which:
 
-- Does nothing (`sleep infinity`) 
+- Does nothing (`sleep infinity`)
 - Can access the read-only `reporting` endpoint
 - Allows SSH access to `viewer`
 
 ```yaml {configFile="app"}
 applications:
-    myapp:
-        workers:
-            data_access:
-                mounts: {}
-                commands:
-                    start: |
-                        sleep infinity
-                relationships:
-                    reports:
-                        service: maindb
-                        endpoint: reporting
-                access:
-                    ssh: viewer
+  myapp:
+    workers:
+      data_access:
+        mounts: {}
+        commands:
+          start: |
+            sleep infinity
+        relationships:
+          reports:
+            service: maindb
+            endpoint: reporting
+        access:
+          ssh: viewer
 ```
 
 You're done!

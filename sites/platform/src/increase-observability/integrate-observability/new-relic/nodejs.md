@@ -33,22 +33,22 @@ To allow New Relic to output logs, add a writable directory to put the log file 
 
 At the end of the `build` hook in your `{{< vendor/configfile "app" >}}`, create a `newrelic` directory in your application root:
 
-```yaml
+```yaml {configFile="app"}
 hooks:
-    # ... your hooks
-    build: |
-        # ... your build hook
-        mkdir $PLATFORM_APP_DIR/newrelic
+  # ... your hooks
+  build: |
+    # ... your build hook
+    mkdir $PLATFORM_APP_DIR/newrelic
 ```
 
 Now add this directory to your mounts:
 
-```yaml
+```yaml {configFile="app"}
 mounts:
-    # ... your mounts
-    '/newrelic/':
-        source: local
-        source_path: newrelic
+  # ... your mounts
+  '/newrelic/':
+    source: local
+    source_path: newrelic
 ```
 
 To tell New Relic to use this file, create a new project level variable called `NEW_RELIC_LOG`:

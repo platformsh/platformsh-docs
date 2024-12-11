@@ -12,7 +12,7 @@ Some of them are available for {{% vendor/name %}} containers.
 {{< note version="1" theme="warning" title="Warning" >}}
 
 The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
-See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
+See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](/dedicated-environments/dedicated-gen-2/environment-differences.md#extensions).
 
 {{< /note >}}
 
@@ -20,13 +20,13 @@ You can define the PHP extensions you want to enable or disable:
 
 ```yaml {configFile="app"}
 runtime:
-    extensions:
-        - raphf
-        - http
-        - igbinary
-        - redis
-    disabled_extensions:
-        - sqlite3
+  extensions:
+    - raphf
+    - http
+    - igbinary
+    - redis
+  disabled_extensions:
+    - sqlite3
 ```
 You can also [include configuration options](/create-apps/app-reference/single-runtime-image.md#extensions) for specific extensions.
 
@@ -75,6 +75,6 @@ but it takes slightly more work:
 
 ```yaml {configFile="app"}
 variables:
-    php:
-        extension: /app/spiffy.so
+  php:
+    extension: /app/spiffy.so
 ```

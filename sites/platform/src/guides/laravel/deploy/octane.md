@@ -32,16 +32,16 @@ Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}
 web:
-    upstream:
-        socket_family: tcp
-        protocol: http
-    commands:
-        start: php artisan octane:start --server=swoole --host=0.0.0.0 --port=$PORT
-    locations:
-        "/":
-            passthru: true
-            scripts: false
-            allow: false
+  upstream:
+    socket_family: tcp
+    protocol: http
+  commands:
+    start: php artisan octane:start --server=swoole --host=0.0.0.0 --port=$PORT
+  locations:
+    "/":
+      passthru: true
+      scripts: false
+      allow: false
 ```
 
 {{< guide-buttons previous="Back" next="Deploy" >}}

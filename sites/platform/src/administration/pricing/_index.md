@@ -115,7 +115,7 @@ don't hesitate to [contact support](https://console.platform.sh/-/users/~/ticket
 
 For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
 
-Learn more about [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
+Learn more about [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
 
 To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
 
@@ -192,7 +192,7 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-In instances where a payment has failed, Platform.sh will make three separate attempts to take the outstanding balance from your account. 
+In instances where a payment has failed, {{% vendor/name %}} will make three separate attempts to take the outstanding balance from your account. 
 
 These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected.  
 

@@ -1,5 +1,5 @@
 ---
-title: "Performance tuning"
+title: "PHP performance tuning"
 weight: 3
 ---
 
@@ -54,11 +54,11 @@ To enable preloading, add a variable that specifies a preload script:
 
 ```yaml {configFile="app"}
 applications:
-    app:
-         type: 'php:{{% latest "php" %}}'
-         variables:
-               php:
-                     opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    variables:
+      php:
+        opcache.preload: '{{< variable "PRELOAD_SCRIPT" >}}'
 ```
 `{{< variable "PRELOAD_SCRIPT" >}}` is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 It may be any PHP script that calls `opcache_compile_file()`.
@@ -111,11 +111,11 @@ An example configuration:
 
 ```yaml {configFile="app"}
 applications:
-   app:
-      type: 'php:{{% latest "php" %}}'
-      variables:
-         php:
-            'opcache.max_accelerated_files': 22000
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    variables:
+      php:
+        'opcache.max_accelerated_files': 22000
 ```
 #### Set memory consumption
 
@@ -156,11 +156,11 @@ To determine the total amount of memory to use, follow these steps:
 
 ```yaml {configFile="app"}
 applications:
-   app:
-      type: 'php:{{% latest "php" %}}'
-      variables:
-            php:
-               'opcache.memory_consumption': 96
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    variables:
+      php:
+        'opcache.memory_consumption': 96
 ```
 8. [Restart PHP-FPM](#restart-php-fpm) and make sure that OPcache works as expected by rerunning CacheTool
    with the following command:
@@ -185,11 +185,11 @@ Timestamp validation can be disabled by adding the following variable to your [a
 
 ```yaml {configFile="app"}
 applications:
-   app:
-      type: 'php:{{% latest "php" %}}'
-      variables:
-            php:
-               'opcache.validate_timestamps': 0
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    variables:
+    php:
+      'opcache.validate_timestamps': 0
 ```
 When you have disabled OPcache timestamp validation,
 you need to explicitly clear OPcache on deployment by [restarting PHP-FPM](#restart-php-fpm).

@@ -24,13 +24,13 @@ To create your Next.js app, follow these steps.
    To fast track the process, run the following commands:
 
    ```bash {location="Terminal"}
-   npx create-next-app@latest
+   npx create-next-app@latest myapp
    ```
 
 2. To initialize the local Git repository and commit local files, run the following commands:
 
    ```bash {location="Terminal"}
-   cd my-app
+   cd myapp
    git init
    git add .
    git commit -m "Init Next.js application."
@@ -81,7 +81,7 @@ title=Using the Console
 2. Click **Create from scratch**.
 
 3. Fill in details like the project name and [region](/development/regions.md).
-   
+
    {{% note %}}
 
    You can define resources for your project later on, after your first push.
@@ -171,7 +171,7 @@ They are located in a `.{{% vendor/cli %}}/` folder at the root of your source c
 and structured in a similar way to this:
 
 ```txt
-my-express-app
+myapp
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
 ├── [.environment]
@@ -184,19 +184,32 @@ To generate these files, run the following command at the root of your project:
 {{% vendor/cli %}} project:init
 ```
 
-Follow the prompts.
+Follow the prompts, and you should result in such a config file.
 
 ```yaml {configFile="apps"}
 applications:
-    myapp:
-       type: "nodejs:20"
-       hooks:
-          build: |
-             set -eux
-             npm run build
-       web:
-          commands:
-             start: npm run start -- -p $PORT
+  myapp:
+    source:
+      root: "/"
+    type: "nodejs:{{% latest "nodejs" %}}"
+    mounts:
+      "/.npm":
+        source: "storage"
+        source_path: "npm"
+    hooks:
+      build: |
+        set -eux
+        npm i
+        npm run build
+    web:
+      commands:
+        start: npm run start -p $PORT
+      locations:
+        "/":
+          passthru: true 
+routes:
+  "https://{default}/": { type: upstream, upstream: "myapp:http" }
+  "http://{default}/": { type: redirect, to: "https://{default}/" }
 ```
 
 As an example, above is the minimum configuration needed to deploy a Next.js application on {{% vendor/name %}} without any services.
@@ -305,7 +318,7 @@ To make changes to your project, follow these steps:
    --- a/views/index.jade
    +++ b/views/index.jade
    @@ -2,4 +2,4 @@ extends layout
- 
+
     block content
       h1= title
    -  p Welcome to #{title}
@@ -337,7 +350,7 @@ To make changes to your project, follow these steps:
    {{% vendor/cli %}} environment:delete feat-a
    git fetch --prune
    ```
-   
+
    Note that deploying to production is fast because the image built for the `feat-a` environment is reused.
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.

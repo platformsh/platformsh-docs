@@ -30,8 +30,8 @@ Configure your service in the following pattern:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 SERVICE_NAME:
-    type: {{<variable "SERVICE_TYPE" >}}:{{<variable "VERSION" >}}
-    # Other options...
+  type: <SERVICE_TYPE>:<VERSION>
+  # Other options...
 ```
 
 An example service configuration for two databases might look like this:
@@ -39,16 +39,16 @@ An example service configuration for two databases might look like this:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
 # The name of the service container. Must be unique within a project.
 postgresql:
-    type: postgresql:{{% latest "postgresql" %}}
-    disk: 1024
+  type: postgresql:{{% latest "postgresql" %}}
+  disk: 1024
 ```
 
 This YAML file is a dictionary defining all of the services you want to use.
-The top-level key is a custom service name ({{<variable "SERVICE_NAME" >}}; in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
+The top-level key is a custom service name (``<SERVICE_NAME>``: in the example, `mariadb` and `postgresql`), which you use to identify the service in step 2.
 
 You can give it any name you want with lowercase alphanumeric characters, hyphens, and underscores.
 
@@ -101,17 +101,25 @@ This is done in your [app configuration for relationships](/create-apps/app-refe
 
 The relationship follows this pattern:
 
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
 ```yaml {configFile="app"}
+name: myapp
+
 # Other options...
 
 # Relationships enable an app container's access to a service.
 # The example below shows simplified configuration leveraging a default service (identified from the relationship name) and a default endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 relationships:
-    {{<variable "SERVICE_NAME" >}}:
+  <SERVICE_NAME>:
 ```
 
-You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services 
+You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
@@ -121,24 +129,87 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
+<--->
+
++++
+title=Using explicit endpoints
++++
 
 ```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: <ENDPOINT_NAME>
+```
+
+You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
+and matches in both the application and services configuration. `<ENDPOINT_NAME>` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
+
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+
+Depending on your needs, instead of explicit endpoint configuration,
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< /codetabs >}}
+
+An example relationship to connect to the databases given in the [example in step 1](#1-configure-the-service):
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
+name: myapp
 # Other options...
 
 # Relationships enable an app container's access to a service.
 relationships:
-    mariadb:
-    postgresql:
+  mariadb:
+  postgresql:
 ```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+name: myapp
+# Other options...
+
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with explicitly set service names and endpoints.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  mariadb:
+    service: mariadb
+    endpoint: mysql
+  postgresql:
+    service: postgresql
+    endpoint: mysql
+```
+
+{{< /codetabs >}}
 
 ```yaml {configFile="services"}
 mariadb:
-    type: mariadb:{{% latest "mariadb" %}}
-    disk: 2048
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
 postgresql:
-    type: postgresql:{{% latest "postgresql" %}}
-    disk: 1024
+  type: postgresql:{{% latest "postgresql" %}}
+  disk: 1024
 ```
 
 As with the service name, you can give the relationship any name you want
@@ -200,7 +271,6 @@ Connecting to a service using an SSH tunnel is a two-step process.
 
 ### 1. Obtain service credentials
 
-
 To get the credentials for a given service, run the following command:
 
 ```bash
@@ -211,25 +281,25 @@ You get output like the following:
 
 ```yaml
 mariadb:
-    -
-        username: user
-        scheme: mysql
-        service: mariadb
-        fragment: null
-        ip: 198.51.100.37
-        hostname: abcdefghijklm1234567890123.mariadb.service._.eu.{{< vendor/urlraw "hostname" >}}
-        public: false
-        cluster: abcdefgh1234567-main-abcd123
-        host: mariadb.internal
-        rel: mysql
-        query:
-            is_master: true
-        path: main
-        password: ''
-        type: 'mariadb:10.6'
-        port: 3306
-        host_mapped: false
-        url: 'mysql://user:@mariadb.internal:3306/main'
+  -
+    username: user
+    scheme: mysql
+    service: mariadb
+    fragment: null
+    ip: 198.51.100.37
+    hostname: abcdefghijklm1234567890123.mariadb.service._.eu.{{< vendor/urlraw "hostname" >}}
+    public: false
+    cluster: abcdefgh1234567-main-abcd123
+    host: mariadb.internal
+    rel: mysql
+    query:
+      is_master: true
+    path: main
+    password: ''
+    type: 'mariadb:10.6'
+    port: 3306
+    host_mapped: false
+    url: 'mysql://user:@mariadb.internal:3306/main'
 ```
 
 With this example, you can connect to the `mariadb` relationship
@@ -257,10 +327,10 @@ With the example above, you connect to a URL like the following:
 
 ## Upgrading services
 
-{{% vendor/name %}} provides a large number of [managed service versions](#available-services). 
+{{% vendor/name %}} provides a large number of [managed service versions](#available-services).
 As new versions are made available, you will inevitably upgrade infrastructure to a more recent (or latest version).
 
 When you do so, we would recommend:
 
-1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first. 
-1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability). 
+1. **Use preview environments**. Leverage preview (non-production environments) to perform the upgrade, then merge the upgrade into production (promotion). This will give you an opportunity to test inherited production data in a safe, isolated environment first.
+1. **Upgrade progressively**. For one reason or another, you may be more than a single version behind the upgrade you are trying to perform. To avoid data loss issues caused by large differences in versions, [upgrade one version at a time](https://www.rabbitmq.com/upgrade.html#rabbitmq-version-upgradability).

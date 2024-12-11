@@ -175,20 +175,20 @@ The following example shows nested structures in an [app configuration](/create-
 
 ```yaml {configFile="app"}
 variables:
-    env:
-        BASIC: "a string"
-        INGREDIENTS:
-            - 'peanut butter'
-            - 'jelly'
-        QUANTITIES:
-            "milk": "1 liter"
-            "cookies": "1 kg"
-    stuff:
-        STEPS: ['one', 'two', 'three']
-        COLORS:
-            red: '#FF0000'
-            green: '#00FF00'
-            blue: '#0000FF'
+  env:
+    BASIC: "a string"
+    INGREDIENTS:
+      - 'peanut butter'
+      - 'jelly'
+    QUANTITIES:
+      "milk": "1 liter"
+      "cookies": "1 kg"
+  stuff:
+    STEPS: ['one', 'two', 'three']
+    COLORS:
+      red: '#FF0000'
+      green: '#00FF00'
+      blue: '#0000FF'
 ```
 
 You can access these nested variables as follows:
@@ -354,7 +354,7 @@ and at runtime.
 
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
-[{{% names/dedicated-gen-2 %}} instances](../../dedicated-gen-2/overview/_index.md) also have the following variables available:
+[{{% names/dedicated-gen-2 %}} instances](/dedicated-environments/dedicated-gen-2/overview/_index.md) also have the following variables available:
 
 | Variable name    | Build | Runtime | Description |
 | ---------------- | ----- | ------- | ----------- |
@@ -363,7 +363,7 @@ and at runtime.
 
 {{< note >}}
 
-The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](../../dedicated-gen-3/_index.md).
+The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
 If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
 
 {{< /note >}}
@@ -427,9 +427,9 @@ The following example shows the process, though you have to modify it to fit you
 
    ```yaml {configFile="app"}
    mounts:
-       /config:
-           source: local
-           source_path: config
+     /config:
+       source: local
+       source_path: config
    ```
 
 2. Create a symbolic link from the config file the application wants to a location in that mount:
@@ -462,8 +462,8 @@ The following example shows the process, though you have to modify it to fit you
 
    ```yaml {configFile="app"}
    hooks:
-       deploy: |
-           bash export-config.sh
+     deploy: |
+       bash export-config.sh
    ```
 
 Now, when your app starts and attempts to parse `db.yaml`, the symbolic link redirects it to `config/db.yaml`.

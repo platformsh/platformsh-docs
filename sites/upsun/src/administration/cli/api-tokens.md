@@ -12,7 +12,7 @@ You need to set up an API token to authenticate the {{% vendor/name %}} CLI for 
 
 You might need the [{{% vendor/name %}} CLI](../cli/_index.md) to perform certain tasks.
 For example, you need the CLI to do the following:
-- [Check the validity of an API token](#optional-check-the-validity-of-your-api-token). 
+- [Check the validity of an API token](#optional-check-the-validity-of-your-api-token).
 - [Load the CLI SSH certificate for non-CLI commands](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 
@@ -34,7 +34,7 @@ title=Using the CLI
    ```bash
    {{% vendor/cli %}} user:add  {{< variable "EMAIL_ADDRESS" >}} --role viewer --role development:contributor
    ```
-   This sets your machine user as a viewer on your project and a contributor on development environments, 
+   This sets your machine user as a viewer on your project and a contributor on development environments,
    with no access to other environment types.
    Note that you can further [adjust user roles](../users.md#environment-type-roles) depending on your needs and each environment type.
 
@@ -90,19 +90,19 @@ When an API token is compromised, revoke it immediately.
 After you create your API token, you can use it to do the following:
 
 -  Allow a CI system to run automated tasks using the {{% vendor/name %}} CLI.
--  Run automated tasks on an app container using the {{% vendor/name %}} CLI, 
-   for example in a cron job. 
+-  Run automated tasks on an app container using the {{% vendor/name %}} CLI,
+   for example in a cron job.
 
 Note that when running CLI commands in these cases,
-some operations might take time to complete. 
-To avoid waiting for an operation to complete before moving on to the next one, 
+some operations might take time to complete.
+To avoid waiting for an operation to complete before moving on to the next one,
 use the `--no-wait` flag.
 
 ### Authenticate in a CI system
 
 <!-- @todo: CLI_TOKEN variable for Upsun -->
 You can allow your CI system to run automated tasks using the {{% vendor/name %}} CLI.
-To do so, create an environment variable named `{{% vendor/prefix_cli %}}_CLI_TOKEN` with your API token as its value. 
+To do so, create an environment variable named `{{% vendor/prefix_cli %}}_CLI_TOKEN` with your API token as its value.
 For more information, see your CI system's official documentation.
 
 To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
@@ -162,13 +162,13 @@ Then add a build hook to your app configuration to install the CLI as part of th
 <!-- @todo: CLI installation path for CI -->
 ```yaml {configFile="app"}
 hooks:
-    build: |
-        set -e
-        echo "Installing {{% vendor/name %}} CLI"
-        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+  build: |
+    set -e
+    echo "Installing {{% vendor/name %}} CLI"
+    curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
 
-        echo "Testing {{% vendor/name %}} CLI"
-        {{% vendor/cli %}}
+    echo "Testing {{% vendor/name %}} CLI"
+    {{% vendor/cli %}}
 ```
 
 You can now call the CLI from within the shell on the app container or in a cron job.
@@ -177,25 +177,25 @@ To run SSH-based commands that aren't specific to the {{% vendor/name %}} CLI,
 see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-non-cli-commands).
 
 You can set up a cron job on a specific type of environment.
-For example, to run the `update` source operation on your production environment, 
-use the following cron job: 
+For example, to run the `update` source operation on your production environment,
+use the following cron job:
 
 ```yaml
 crons:
-    update:
-       spec: '0 0 * * *'
-        commands:
-            start: |
-                if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-                   {{% vendor/cli %}} backup:create --yes --no-wait
-                   {{% vendor/cli %}} source-operation:run update --no-wait --yes
-                fi
+  update:
+    spec: '0 0 * * *'
+    commands:
+      start: |
+        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+          {{% vendor/cli %}} backup:create --yes --no-wait
+          {{% vendor/cli %}} source-operation:run update --no-wait --yes
+        fi
 ```
 
 ## Use the CLI SSH certificate for non-CLI commands
 
 When you set a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,
-the CLI authentication isn't complete until your run a CLI command 
+the CLI authentication isn't complete until your run a CLI command
 or load the CLI SSH certificate.
 
 For example, after setting a `{{% vendor/prefix_cli %}}_CLI_TOKEN` environment variable,

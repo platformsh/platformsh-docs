@@ -19,22 +19,22 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 ### Specify the language
 
-To use Node.js, specify ``python`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
+To use Python, specify ``python`` as your [app’s type](/create-apps/app-reference/single-runtime-image.md#types):
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    <APP_NAME>:
-        type: 'python:<VERSION_NUMBER>'
+  # The app's name, which must be unique within the project.
+  <APP_NAME>:
+    type: 'python:<VERSION_NUMBER>'
 ```
 
 For example:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
 ```
 
 {{% deprecated-versions %}}
@@ -55,37 +55,37 @@ Once you have it configured, add the following configuration to get it running o
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
 ```
 2.  Install the requirements for your app.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            python3:
-                pipenv: "2022.12.19"
-        hooks:
-            build: |
-                set -eu
-                pipenv install --system --deploy
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        pipenv: "2022.12.19"
+    hooks:
+      build: |
+        set -eu
+        pipenv install --system --deploy
 ```
 3.  Define the command to start your web server:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        web:
-            # Start your app with the configuration you define
-            # You can replace the file location with your location
-            commands:
-                start: python server.py
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    web:
+      # Start your app with the configuration you define
+      # You can replace the file location with your location
+      commands:
+        start: python server.py
 ```
 You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
 See more about [running Python web servers](./server.md).
@@ -99,34 +99,34 @@ Follow these steps to get your server started.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
 ```
 2.  Define the conditions for your web server:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        web:
-            upstream:
-                # Send requests to the app server through a unix socket
-                # Its location is defined in the SOCKET environment variable
-                socket_family: "unix"
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    web:
+      upstream:
+        # Send requests to the app server through a unix socket
+        # Its location is defined in the SOCKET environment variable
+        socket_family: "unix"
 
-            # Start your app with the configuration you define
-            # You can replace the file location with your location
-            commands:
-                start: "uwsgi --ini conf/uwsgi.ini"
+      # Start your app with the configuration you define
+      # You can replace the file location with your location
+      commands:
+        start: "uwsgi --ini conf/uwsgi.ini"
 
-            locations:
-                # The folder from which to serve static assets
-                "/":
-                    root: "public"
-                    passthru: true
-                    expires: 1h
+      locations:
+        # The folder from which to serve static assets
+        "/":
+          root: "public"
+          passthru: true
+          expires: 1h
 ```
 3.  Create configuration for uWSGI such as the following:
 
@@ -147,16 +147,16 @@ applications:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            python3:
-                pipenv: "2022.12.19"
-        hooks:
-            build: |
-                set -eu
-                pipenv install --system --deploy
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        pipenv: "2022.12.19"
+    hooks:
+      build: |
+        set -eu
+        pipenv install --system --deploy
 ```
 5.  Define the entry point in your app:
 
@@ -180,27 +180,27 @@ add them to the `dependencies` in your [app configuration](/create-apps/app-refe
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            python3:
-                {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        {{< variable "PACKAGE_NAME" >}}: {{< variable "PACKAGE_VERSION" >}}
 ```
 For example, to use `pipenv` to manage requirements and a virtual environment, add the following:
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
-        type: 'python:{{% latest "python" %}}'
-        dependencies:
-            python3:
-                pipenv: "2022.12.19"
-        hooks:
-            build: |
-                set -eu
-                pipenv install --system --deploy
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        pipenv: "2022.12.19"
+    hooks:
+      build: |
+        set -eu
+        pipenv install --system --deploy
 ```
 ## Connect to services
 

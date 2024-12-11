@@ -23,7 +23,7 @@ add the project's public SSH key to your Git repository's deploy keys.
 
 ## 2. Add the key to your repository in your Git provider
 
-* [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys) 
+* [GitHub deploy key](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys)
 * [GitLab deploy key](https://docs.gitlab.com/ee/user/project/deploy_keys/#grant-project-access-to-a-public-deploy-key)
 * [Bitbucket access key](https://support.atlassian.com/bitbucket-cloud/docs/configure-repository-settings/)
 
@@ -37,11 +37,11 @@ For example, you can clone a repository in your [`build` hook](../create-apps/ho
 
 ```yaml {configFile="app"}
 applications:
-    {{< variable "APP_NAME" >}}:
-        hooks:
-            build: |
-                set -e
-                git clone git@bitbucket.org:username/module.git
+  {{< variable "APP_NAME" >}}:
+    hooks:
+      build: |
+        set -e
+        git clone git@bitbucket.org:username/module.git
 ```
 
 You can also use [private repositories as submodules](./submodules.md#use-private-git-repositories).

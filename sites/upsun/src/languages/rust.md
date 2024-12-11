@@ -39,27 +39,28 @@ See the [complete example](#complete-example) below for more details.
 
 ```yaml {configFile="app"}
 applications:
-    # The app's name, which must be unique within the project.
-    app:
+  # The app's name, which must be unique within the project.
+  myapp:
 
-        # The language and version for your app.
-        type: 'rust:1'
+    # The language and version for your app.
+    type: 'rust:1'
 
-        hooks:
-            build:
-                cargo build
+    hooks:
+      build:
+        cargo build
 
-        web:
-            commands:
-                # Customize the start command with your own target.
-                start: './target/debug/hello'
+    web:
+      commands:
+        # Customize the start command with your own target.
+        start: './target/debug/hello'
 
-        locations:
-            /:
-                # Route all requests to the Rust app, unconditionally.
-                allow: false
-                passthru: true
+      locations:
+        /:
+          # Route all requests to the Rust app, unconditionally.
+          allow: false
+          passthru: true
 ```
+
 Note that there is still an Nginx proxy server sitting in front of your application. If desired, certain paths may be served directly by Nginx without hitting your application (for static files, primarily) or you may route all requests to the Rust app unconditionally, as in the example above.
 
 ## Built-in variables
@@ -117,29 +118,29 @@ Follow these steps:
 
 3. Add the following [app configuration](../../create-apps/_index.md):
 
-```yaml {configFile="app"}
-applications:
-    # The app's name, which must be unique within the project.
-    app:
+    ```yaml {configFile="app"}
+    applications:
+      # The app's name, which must be unique within the project.
+      myapp:
 
         # The language and version for your app.
         type: 'rust:1'
 
         hooks:
-            build:
-                cargo build
+          build:
+            cargo build
 
         web:
-            commands:
-                # Customize the start command with your own target.
-                start: './target/debug/hello'
+          commands:
+            # Customize the start command with your own target.
+            start: './target/debug/hello'
 
         locations:
-            /:
-                # Route all requests to the Rust app, unconditionally.
-                allow: false
-                passthru: true
-```
+          /:
+            # Route all requests to the Rust app, unconditionally.
+            allow: false
+            passthru: true
+    ```
 4. To generate a `Cargo.lock` file,
    run the following command:
 

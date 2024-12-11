@@ -17,15 +17,12 @@ npm run build:search
 # 3. Build Hugo site
 hugo
 
-# 4. Minify assets
-npm run build:assets
-
-# 5. Check links in Markdown
+# 4. Check links in Markdown
 curl https://htmltest.wjdp.uk | bash
 bin/htmltest
 
-# 6. Linting (Lint markdown)
+# 5. Linting (Lint markdown)
 npm run lint:markdown
 
-# 7. Linting (Lint prose)
+# 6. Linting (Lint prose)
 vale src
