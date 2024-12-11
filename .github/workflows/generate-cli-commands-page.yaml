@@ -23,7 +23,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.schedule.head.repo.id == 21975579
+    if: ${{ github.repository_owner == 'platformsh' }}
     steps:
       - uses: actions/checkout@v4
         with:
