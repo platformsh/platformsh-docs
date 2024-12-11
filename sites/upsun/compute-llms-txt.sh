@@ -148,9 +148,9 @@ sanitize_html() {
   sed -r -i -e 's/(<\/pre>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
 }
 
-sanitize_html()
+sanitize_html
 
-$PLATFORM_APP_DIR/bin/pandoc $PLATFORM_APP_DIR/sites/upsun/public/llms.txt --from=html -o $PLATFORM_APP_DIR/sites/upsun/public/llms.txt -t markdown
+$PLATFORM_APP_DIR/bin/pandoc +RTS -M600M -RTS $PLATFORM_APP_DIR/sites/upsun/public/llms.txt --from=html -o $PLATFORM_APP_DIR/sites/upsun/public/llms.txt -t markdown --verbose
 echo "pandoc executed"
 ls -la $PLATFORM_APP_DIR/sites/upsun/public/
 #mv $PLATFORM_APP_DIR/sites/upsun/public/llms.txt $PLATFORM_APP_DIR/sites/upsun/public/llms.txt.old
