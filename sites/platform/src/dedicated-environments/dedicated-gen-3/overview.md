@@ -126,8 +126,8 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **Resources allocation** | Resources deployed on the 3 nodes | Resources deployed on the 3 nodes |
 | **MySQL Replication** | Yes: 3 services nodes cluster | Yes: 3 services nodes cluster |
 | **Redis Replication**  | Yes: 3 services nodes cluster | Yes: 3 services nodes cluster |
-| **Split Architecture** | Yes | Yes |
-| **VPN** | AWS PrivateLink | AWS PrivateLink |
+| **Split Architecture** | Yes | No |
+| **VPN** | AWS/Azure PrivateLink | AWS/Azure PrivateLink |
 | **Automated backup** | Yes | Yes  |
 | **Elasticsearch premium**  | Yes | Yes |
 | **SFTP password access** | Yes | Yes |
@@ -161,4 +161,3 @@ In addition to SSH accounts, you can create SFTP accounts with a custom user/pas
 On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. However, write access is restricted to the mounts declared in your YAML config files. SSH public key based authentication is also supported on the SFTP account.
 
 {{< /note >}}
-
