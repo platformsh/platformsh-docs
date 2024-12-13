@@ -7,7 +7,7 @@ description: See the differences between your Production/Staging environments (w
 
 With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your development environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
 
-This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/_index.md) projects.
+This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects.
 
 ## Syncing data between environments
 
