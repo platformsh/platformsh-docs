@@ -16,17 +16,17 @@ and their average for the Production environment.
 Metrics aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment),
 but are available for Grid environments (such as your preview environments).
 
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/dg2-metrics.png "0.45")
+![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/dg2-dashboard.png "0.45")
 
 [{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/_index.md): each of the three hosts and their average.
 These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-metrics.png "0.45")
+![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
 
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
 
-![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-metrics.png "0.45")
+![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-dashboard.png "0.45")
 
 ## Default thresholds
 
@@ -105,7 +105,7 @@ In the primary three views, averages are shown over larger intervals.
 
 To zoom in on smaller intervals, select specific ranges in a graph.
 
-{{< video src="videos/metrics/metrics-zoom.mp4" >}}
+{{< video src="videos/metrics/metrics-video.mp4" >}}
 
 The interval between measurements then changes based on the range you choose.
 
