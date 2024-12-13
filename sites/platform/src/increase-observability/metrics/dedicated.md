@@ -68,7 +68,7 @@ The metrics below are for a single Production environment.
 
 Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-2-environments).
 
-![All of the metrics available for a {{% names/dedicated-gen-2 %}} environment](/images/metrics/all-dedicated.png "0.5")
+![All of the metrics available for a {{% names/dedicated-gen-2 %}} environment](/images/metrics/all-dedicated-metrics.png "0.5")
 
 ### CPU
 
