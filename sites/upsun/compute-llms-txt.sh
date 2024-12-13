@@ -135,17 +135,24 @@ set -e
 
 # replace non-wanted tag/attribute
 sanitize_html() {
-  # replace *=* (except href that contains "/" character
+  # remove HTML attributes *=*
   sed -r -i -e 's/ ?([a-zA-Z0-9\@:-]){2,}="([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&><↗\ -]{0,})"//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
   # replace html comments
   sed -r -i -e 's/(<!--[][a-zA-Z0-9_\ \/:@()\*\?#,.-]+-->)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
   # replace <style> tags
-  sed -r -i -e 's/(<style>([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)#\&><↗\ -]+)<\/style>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
-  # replace <span></span> tags
-  sed -r -i -e 's/(<span>[ ]{0,}<\/span>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
-  # replace <pre> and </pre> tags
-  sed -r -i -e 's/(<pre>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
-  sed -r -i -e 's/(<\/pre>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  sed -r -i -e 's/(<style>[][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)#\&\n\ -]+<\/style>)//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+
+  # replace "<span> \ </span>" in the snippets as all is on the same line now
+  # replace <pre|var> and </pre|var> tags
+  sed -r -i -e 's/<(pre|var|span)>//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  sed -r -i -e 's/<\/(pre|var|span)>//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  # replace useless <div> and </div> tags
+  sed -r -i -e 's/<(\/){0,}div([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&↗\ -]{0,})+>//g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+  # replace " Terminal <code>" by "<code>"
+  sed -r -i -e 's/ Terminal <code>/<code>/g' $PLATFORM_APP_DIR/sites/upsun/public/llms.txt
+
+
+
 }
 
 sanitize_html

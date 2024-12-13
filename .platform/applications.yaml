@@ -95,7 +95,7 @@
             npm install
             npm run build
             ./build_docs.sh
-            ./compute-llms-txt.sh pandoc
+            #./compute-llms-txt.sh pandoc
         deploy: |
             cd $SITE_DIR
             ./deploy.sh
