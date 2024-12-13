@@ -369,7 +369,9 @@ https://docs.upsun.com/:
       "/anchors/resources/flexible.html": { "to": "/manage-resources/adjust-resources.html", "code": 301, "prefix": false }
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
-
+      # the following are fake. @todo remove
+      "/anchors/not/real.html": { "to": "/path/to/nowhere/ohnose.html", "code": 301, "prefix": false }
+      "/anchors/also/not-real.html": { "to": "/path/to/no/where.html", "code": 301, "prefix": false }
 
       # Redirects for moved Upsun GS guides
       "/get-started/express/": { "to": "/get-started/stacks/express.html", "code": 301, "prefix": true, "append_suffix": false }
