@@ -18,7 +18,7 @@
   | replaceRE `<code>(.*)+\n` "```\n$1\n"
   | replaceRE `<\/code>` "\n```"
   | replaceRE `<img\ ?\/?>` ``
-  | replaceRE `<h3\b[^>]*>\n*\ *(.*)\n*\ *<\/h4>` "\n\n### $1\n"
+  | replaceRE `<h3\b[^>]*>\n*\ *(.*)\n*\ *<\/h3>` "\n\n### $1\n"
   | replaceRE `<h4\b[^>]*>\n*\ *(.*)\n*\ *<\/h4>` "\n\n#### $1"
   | replaceRE `<\/br>` " "
   | replaceRE `(\[.*\])?\(\/((.*)?\.md(.*)?)\)` "$1(https://docs.upsun.com/$3.html$4)"
