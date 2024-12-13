@@ -45,7 +45,7 @@ To use another service, replace `postgresql:12` in the example below with the na
 
 {{% /guides/config-service %}}
 
-```yaml
+```yaml {configFile="services"}
 # The services of the project.
 
 # Each service listed is deployed

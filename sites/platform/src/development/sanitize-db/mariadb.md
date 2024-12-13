@@ -27,17 +27,17 @@ for preview environments:
 
 ```yaml {configFile="app"}
 hooks:
-    deploy: |
+  deploy: |
 
-        # ...
+    # ...
 
-        cd /app/public
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-            # Do whatever you want on the production site.
-        else
-            drush -y sql:sanitize
-        fi
-        drush -y updatedb
+    cd /app/public
+    if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+      # Do whatever you want on the production site.
+    else
+      drush -y sql:sanitize
+    fi
+    drush -y updatedb
 ```
 
 More options are available.
@@ -48,17 +48,17 @@ use [Drush state](https://www.drush.org/latest/commands/state_set/) as in the fo
 
 ```yaml {configFile="app"}
 hooks:
-    deploy: |
+  deploy: |
 
-        # ...
+    # ...
 
-        cd /app/public
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] || [ "$(drush state:get --format=string mymodule.sanitized)" != yes ]; then
-            # Do whatever you want on the production site.
-        else
-            drush -y sql:sanitize
-            drush state:set --input-format=string mymodule.sanitized yes
-        fi
+    cd /app/public
+    if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ] || [ "$(drush state:get --format=string mymodule.sanitized)" != yes ]; then
+      # Do whatever you want on the production site.
+    else
+      drush -y sql:sanitize
+      drush state:set --input-format=string mymodule.sanitized yes
+    fi
 ```
 
 {{< /codetabs >}}

@@ -19,65 +19,49 @@ For each database that you'd like to replicate, you need to assign a `replicatio
 
 ```yaml {configFile="services"}
 services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            schemas:
-                - main
-            endpoints:
-                # Restate the default user to be used by your application.
-                mysql:
-                    default_schema: main
-                    privileges:
-                        main: admin
-                replicator:
-                    privileges:
-                        main: replication
+  # The name of the service container. Must be unique within a project.
+  mariadb:
+    type: mariadb:{{% latest "mariadb" %}}
+    configuration:
+      schemas:
+        - main
+      endpoints:
+        # Restate the default user to be used by your application.
+        mysql:
+          default_schema: main
+          privileges:
+            main: admin
+        replicator:
+          privileges:
+            main: replication
 ```
 
 This creates a `replicator` user, and grants read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges) along with global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges) and flushing rights (`Reload_priv` used for flushing before reading the binary log position). If there is at least one `replication` permission defined, the bin-logging is enabled on the primary server, which is essential for the replication.
 
-## Add a relationship for the new endpoint
+## Define a relationship for the new endpoint
 
 Even if you won't be accessing the replication endpoint from your application, you still need to expose it to an application as a relationship so that you can connect to it over SSH.
 Add a new relationship to your application container:
 
 ```yaml {configFile="app"}
 applications:
-    # The name of the app container. Must be unique within a project.
-    myapp:
-        # The location of the application's code.
-        source:
-            root: "myapp"
-        
-        [...]
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # The location of the application's code.
+    source:
+      root: "/"
 
-        # Relationships enable an app container's access to a service.
-        relationships:
-            database: 
-                service: mariadb
-                endpoint: mysql
-            replication: 
-                service: mariadb
-                endpoint: replicator
+    [...]
 
-services:
-    # The name of the service container. Must be unique within a project.
-    mariadb:
-        type: mariadb:{{% latest "mariadb" %}}
-        configuration:
-            schemas:
-                - main
-            endpoints:
-                # Restate the default user to be used by your application.
-                mysql:
-                    default_schema: main
-                    privileges:
-                        main: admin
-                replicator:
-                    privileges:
-                        main: replication
+    # Relationships enable an app container's access to a service.
+    relationships:
+      database:
+        service: mariadb
+        endpoint: mysql
+      replication:
+        service: mariadb
+        endpoint: replicator
+
 ```
 
 ## Getting the Primary's Binary Log Co-ordinates

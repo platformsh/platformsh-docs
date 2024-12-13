@@ -78,7 +78,9 @@ api:
   type: php:8.2
 
   relationships:
-    database: "database:postgresql"
+    database:
+      service: "database"
+      endpoint: "postgresql"
 
   mounts:
     "/var/cache": "shared:files/cache"
@@ -311,7 +313,8 @@ from the [unified app configuration](#unified-app-configuration) example project
 you could add the following configuration:
 
 ```yaml {configFile="apps"}
-source:
+admin:
+  source:
     root: admin
 ```
 

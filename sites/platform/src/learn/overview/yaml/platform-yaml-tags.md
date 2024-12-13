@@ -29,24 +29,24 @@ For example, to include another ``.platform/app1.yaml`` file in the main `{{% ve
 
 ```yaml {location=".platform/app1.yaml"}
 source:
-root: "/"
+  root: "/"
 type: "nodejs:20"
 web:
-    commands:
-      start: "node index.js"
+  commands:
+    start: "node index.js"
 upstream:
-    socket_family: tcp
+  socket_family: tcp
 locations:
-    "/":
-        passthru: true
+  "/":
+    passthru: true
 ```
 
 And including it:
 
 ```yaml {configFile="apps"}
-app: !include
-    type: yaml
-    path: ./app1.yaml
+myapp: !include
+  type: yaml
+  path: ./app1.yaml
 # or as default type is "yaml", it could be:
 #api: !include ./app1.yaml
 ```
@@ -79,13 +79,13 @@ This configuration is valid:
 
 ```yaml {configFile="apps"}
 frontend:
-    source:
-        root: frontend
-    # ...
-    hooks:
-        build: !include
-            type: string
-            path: ../backend/scripts/common_build.sh
+  source:
+    root: frontend
+  # ...
+  hooks:
+    build: !include
+      type: string
+      path: ../backend/scripts/common_build.sh
 ```
 
 {{% note theme="info" %}}
@@ -102,10 +102,10 @@ For example, if you have a build hook like the following:
 
 ```yaml {configFile="apps"}
 frontend:
-    hooks:
-        build: |
-            set -e
-            cp a.txt b.txt
+  hooks:
+    build: |
+      set -e
+      cp a.txt b.txt
 ```
 
 You could create a file for the script:
@@ -119,10 +119,10 @@ And replace the hook with an include tag for an identical result:
 
 ```yaml {configFile="apps"}
 frontend:
-    hooks:
-        build: !include
-            type: string
-            path: build.sh
+  hooks:
+    build: !include
+      type: string
+      path: build.sh
 ```
 
 This helps you break longer configuration like build scripts out into a separate file for easier maintenance.
@@ -137,9 +137,9 @@ Then you can include it as follows:
 
 ```yaml {configFile="apps"}
 properties:
-    favicon: !include
-        type: binary
-        path: favicon.ico
+  favicon: !include
+    type: binary
+    path: favicon.ico
 ```
 
 ### `yaml`
@@ -152,35 +152,35 @@ For example, you could have your configuration for works defined in a `worker.ya
 ```yaml {location="worker.yaml"}
 size: S
 commands:
-    start: python queue-worker.py
+  start: python queue-worker.py
 variables:
-    env:
-        type: worker
+  env:
+    type: worker
 ```
 
 Then the following three configurations are exactly equivalent:
 
 ```yaml {configFile="app"}
 workers:
-    queue1: !include "worker.yaml"
+  queue1: !include "worker.yaml"
 ```
 
 ```yaml {configFile="app"}
 workers:
-    queue1: !include
-        type: yaml
-        path: 'worker.yaml'
+  queue1: !include
+    type: yaml
+    path: 'worker.yaml'
 ```
 
 ```yaml {configFile="app"}
 workers:
-    queue1:
-        size: S
-        commands:
-            start: python queue-worker.py
-        variables:
-            env:
-                type: worker
+  queue1:
+    size: S
+    commands:
+      start: python queue-worker.py
+    variables:
+      env:
+        type: worker
 ```
 
 This can help simplify more complex files.
@@ -194,10 +194,10 @@ You might do so as follows:
 
 ```yaml {configFile="services"}
 mysearch:
-    type: solr:8.0
-    disk: 1024
-    configuration:
-        conf_dir: !archive "solr/conf"
+  type: solr:8.0
+  disk: 1024
+  configuration:
+    conf_dir: !archive "solr/conf"
 ```
 
 The `!archive` tag means that the value for `conf_dir` isn't the string `solr/conf` but the entire `solr/conf` directory.

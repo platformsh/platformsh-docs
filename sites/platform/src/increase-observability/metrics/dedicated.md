@@ -88,7 +88,7 @@ The upper limit in the graph is 3.62&nbsp;GB because 0.38&nbsp;GB of memory are 
 ### Disk
 
 Disk represents the plan space for all services and mounts,
-which for {{% names/dedicated-gen-2 %}} production environments is [50&nbsp;GB](../../dedicated-gen-2/architecture/_index.md).
+which for {{% names/dedicated-gen-2 %}} production environments is [50&nbsp;GB](/dedicated-environments/dedicated-gen-2/overview.md).
 
 This example has the following persistent disk space configured:
 

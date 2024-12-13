@@ -7,7 +7,7 @@
     # Specify the Hugo version as an env variable.
     variables:
         env:
-            HUGOVERSION: 0.125.0
+            HUGOVERSION: 0.139.4
             SITE_DIR: 'sites/platform'
 
     build:
@@ -30,7 +30,6 @@
             npm install
             npm run build
             ./build_docs.sh
-            npm run build:assets
         deploy: |
             cd $SITE_DIR
             ./deploy.sh
@@ -74,7 +73,7 @@
     # Specify the Hugo version as an env variable.
     variables:
         env:
-            HUGOVERSION: 0.125.0
+            HUGOVERSION: 0.139.4
             SITE_DIR: 'sites/upsun'
 
     build:
@@ -96,7 +95,6 @@
             npm install
             npm run build
             ./build_docs.sh
-            npm run build:assets
         deploy: |
             cd $SITE_DIR
             ./deploy.sh

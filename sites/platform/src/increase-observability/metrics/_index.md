@@ -10,15 +10,15 @@ Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
 
-[{{% names/dedicated-gen-2 %}} environments](../../dedicated-gen-2/overview/_index.md):
-each of the three hosts in your [N+1 configuration](../../dedicated-gen-2/architecture/_index.md)
+[{{% names/dedicated-gen-2 %}} environments](/dedicated-environments/dedicated-gen-2/overview/_index.md):
+each of the three hosts in your [N+1 configuration](/dedicated-environments/dedicated-gen-2/overview.md)
 and their average for the Production environment.
 Metrics aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment),
 but are available for Grid environments (such as your preview environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/dg2-dashboard.png "0.45")
 
-[{{% names/dedicated-gen-3 %}} environments](../../dedicated-gen-3/_index.md): each of the three hosts and their average.
+[{{% names/dedicated-gen-3 %}} environments](/dedicated-environments/dedicated-gen-3/_index.md): each of the three hosts and their average.
 These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
