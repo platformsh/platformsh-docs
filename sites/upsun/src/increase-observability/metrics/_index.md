@@ -53,9 +53,7 @@ The interval between measurements then changes based on the range you choose.
 
 ### Longer time intervals
 
-You can access historical data for up to 30 days. These data should help you
-understand trends over time and whether a given measurement is normal, something
-that occurs occasionally, or a true anomaly.
+You can access historical data for up to 30 days. These data should help you understand trends over time and whether a given measurement is normal, something that occurs occasionally, or a true anomaly.
 
 To see data over a given time frame, use the date picker to select the range to display.
 
