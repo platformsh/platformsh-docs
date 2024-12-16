@@ -37,6 +37,7 @@ function linkify(path,url) {
 axios.defaults.baseURL = core.getInput('environment-url')
 //axios.defaults.baseURL = 'https://httpstat.us/random/200,500-504,500-504,500-504'
 const retries = Number(core.getInput('number_retries'))
+const retrySleep = Number(core.getInput('retry_sleep'))
 //const retries = Number('100')
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -44,28 +45,50 @@ function sleep(ms) {
   });
 }
 
-const verifyTargetResponse = async(count = 0) => {
+const retryTargetResponse = async (url='/',count=0) => {
   try {
-    const axiosResponse = await axios.get('/');
-    core.notice('Target URL finally responded with a 200. Proceeding.')
+    const axiosResponse = await axios.head(url);
     return axiosResponse;
   } catch (error) {
-    if (error || error.status != 200) {
-      core.info(`At attempt ${count}, target url responded with status ${error.status}, retrying...`)
+    if(error || error.status != 200) {
+      core.debug(`At attempt ${count}, target url ${url} responded with status ${error.status}, retrying...`)
       if (count++ < retries) {
-        await sleep(1000);
-        return verifyTargetResponse(count);
+        await sleep(retrySleep)
+        return retryTargetResponse(url,count)
       } else {
-        core.setFailed(`Max number of retries (${retries}) reached. Aborting.`)
-      };
+        core.warning(`Max number of retries ${retries} for end point ${url} reached. Aborting.`)
+        throw new Error(error)
+      }
     } else {
-      core.setFailed(`Action failed with error ${error}`)
-    };
-  };
-};
+      core.warning(`Action failed with error ${error}`)
+      throw new Error(error)
+    }
+  }
+}
+
+// const verifyTargetResponse = async(count = 0) => {
+//   try {
+//     const axiosResponse = await axios.get('/');
+//     core.notice('Target URL finally responded with a 200. Proceeding.')
+//     return axiosResponse;
+//   } catch (error) {
+//     if (error || error.status != 200) {
+//       core.info(`At attempt ${count}, target url responded with status ${error.status}, retrying...`)
+//       if (count++ < retries) {
+//         await sleep(1000);
+//         return verifyTargetResponse(count);
+//       } else {
+//         core.setFailed(`Max number of retries (${retries}) reached. Aborting.`)
+//       };
+//     } else {
+//       core.setFailed(`Action failed with error ${error}`)
+//     };
+//   };
+// };
 
 const verify = async () => {
-  let targetReady = await verifyTargetResponse();
+  // let targetReady = await verifyTargetResponse();
+  let targetReady = await retryTargetResponse('/');
   core.info('Target URL ready. Beginning verification.')
   try {
     /**
@@ -90,12 +113,13 @@ const verify = async () => {
       core.debug(`I'm going to test ${path} to see if it goes to ${anchors[path].to}`)
 
       try {
-        const response = await axios.head(path);
+        const response = await retryTargetResponse(path);
+        //const response = await axios.head(path);
         core.debug(`Response for our check of ${path} is ${response.status}`)
         return response
       } catch (reqerr) {
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
-        core.info(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
+        core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
         core.debug(JSON.stringify(reqerr))
         if(axios.isAxiosError(reqerr)) {
           // core.debug(reqerr.toJSON())
