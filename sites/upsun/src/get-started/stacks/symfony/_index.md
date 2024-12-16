@@ -2,6 +2,7 @@
 title: Deploy Symfony on {{% vendor/name %}}
 sidebarTitle: Symfony
 layout: single
+partner: true
 weight: -60
 description: |
   Complete the last required steps to successfully deploy Symfony on {{% vendor/name %}}.
