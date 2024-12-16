@@ -212,7 +212,7 @@ https://{default}/:
     paths:
       '/from':
         to: 'https://{default}/to'
-        prefix: true
+        prefix: false
 ```
 
 A request to `/from/` redirects to `/to/some/path`, but a request to `/from/some/path` does not.
