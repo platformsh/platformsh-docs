@@ -1489,7 +1489,7 @@ grid:
       - redis
       - shmop
       # - snmp
-      # - sodium
+      - sodium
       - sourceguardian
       # - sqlsrv
       # - ssh2
