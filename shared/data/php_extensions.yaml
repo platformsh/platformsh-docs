@@ -1294,6 +1294,7 @@ grid:
       - openswoole
       - opentelemetry
       - pdo_dblib
+      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
@@ -1386,6 +1387,7 @@ grid:
       - openswoole
       - opentelemetry
       - pdo_dblib
+      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
@@ -1477,6 +1479,7 @@ grid:
       # - openswoole
       # - opentelemetry
       - pdo_dblib
+      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       # - pdo_sqlsrv
