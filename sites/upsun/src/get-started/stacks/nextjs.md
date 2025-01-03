@@ -203,10 +203,12 @@ applications:
         npm run build
     web:
       commands:
-        start: npm run start -p $PORT
+        start: "npx next start -p $PORT"
+      upstream:
+        socket_family: tcp
       locations:
         "/":
-          passthru: true 
+          passthru: true
 routes:
   "https://{default}/": { type: upstream, upstream: "myapp:http" }
   "http://{default}/": { type: redirect, to: "https://{default}/" }
