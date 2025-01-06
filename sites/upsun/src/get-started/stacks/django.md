@@ -40,18 +40,13 @@ See the following sections to see how other common settings should be set on {{%
 
 ## 2. Configure `ALLOWED_HOSTS`
 
-Your `settings.py` file may not allow you to use an environment variable like `DJANGO_ALLOWED_HOSTS`.
-If so, to configure allowed hosts, update your `settings.py` file to include `{{< vendor/urlraw "hostname" >}}`:
+By default other than `localhost` Django only allows hosts listed in `settings.ALLOWED_HOSTS` to be accessed. By default Django does not allow for wildcard hosts than span multiple levels so in order to support our dynamic preview environments you will want to dynamically add those to the list.
 
-```py {location="settings.py"}
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.{{< vendor/urlraw "hostname" >}}',
-]
+The simplest method is to add the following line to `.environment` :
+```bash
+export DJANGO_ALLOWED_HOSTS=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key' | sed 's:/*$::' | sed 's|https\?://||')
 ```
-
-Appending `.{{< vendor/urlraw "hostname" >}}` to `ALLOWED_HOSTS` allows for all URLs generated for {{% vendor/name %}} preview environments.
+This will add the primary route of the current application to the `DJANGO_ALLOWED_HOSTS` environment variable. 
 
 ## 3. {{% vendor/name %}}-specific settings
 
