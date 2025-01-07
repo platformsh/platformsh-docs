@@ -1,7 +1,7 @@
 ---
 title: PHP
 weight: 15
-# description: All you need to know about creating a new project with {{% vendor/name %}}
+description: All you need to know about configuring a new PHP project with {{% vendor/name %}}
 ---
 
 When dealing with PHP stacks, the information below may help customize your configuration.

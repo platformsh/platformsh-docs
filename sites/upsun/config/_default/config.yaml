@@ -30,6 +30,7 @@ outputs:
       - RSS
       - devcenter
       - llms
+      - llms-full
     section:
       - HTML
       - RSS
@@ -42,6 +43,11 @@ outputFormats:
   llms:
     mediaType: "text/plain"
     baseName: "llms"
+    isPlainText: true
+    permalinkable: true
+  llms-full:
+    mediaType: "text/plain"
+    baseName: "llms-full"
     isPlainText: true
     permalinkable: true
 
