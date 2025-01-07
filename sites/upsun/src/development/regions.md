@@ -34,7 +34,7 @@ Information on carbon intensity is also available in the {{% vendor/name %}} API
 For example, to get a list of the regions and their carbon intensities, run the following command:
 
 ```bash
-{{% vendor/cli %}} api:curl regions | jq -r '.regions[] | select(.available != false) | .label + ": " + .environmental_impact.carbon_intensity'
+{{% vendor/cli %}} api:curl regions | jq -r '.regions[] | select(.available != false) | "\(.label): \(.environmental_impact.carbon_intensity)"'
 ```
 
 See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
