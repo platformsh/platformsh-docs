@@ -135,6 +135,8 @@
 
   type: "python:3.11"
 
+  disk: 1024
+
   mounts:
     "/database":
       source: "local"
