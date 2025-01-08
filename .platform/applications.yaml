@@ -127,3 +127,51 @@
             source_path: "sites/upsun/config"
 
     size: S
+
+-
+  name: chainlit
+  source:
+    root: "/chainlit"
+
+  type: "python:3.11"
+
+  mounts:
+    "/database":
+      source: "storage"
+      source_path: "database"
+    ".files":
+      source: "storage"
+      source_path: "files"
+    "__pycache__":
+      source: "storage"
+      source_path: "pycache"
+    ".chainlit":
+      source: "storage"
+      source_path: ".chainlit"
+
+  web:
+    commands:
+      start: "chainlit run app.py --port $PORT --host 0.0.0.0"
+    upstream:
+      socket_family: tcp
+    locations:
+      "/":
+        passthru: true
+      "/public":
+        passthru: true
+
+  variables:
+    env:
+      #OPENAI_ASSISTANT_ID: asst_XXX
+      #OPENAI_API_KEY: sk-proj-###
+
+  build:
+    flavor: none
+
+  hooks:
+    build: |
+      set -eux
+      pip install -r requirements.txt
+    deploy: |
+      set -eux
+    # post_deploy: |

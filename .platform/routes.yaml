@@ -381,3 +381,7 @@ https://docs.upsun.com/:
 # "https://docs.deployfriday.net/":
 #     type: redirect
 #     to: "https://docs.upsun.com/"
+
+"https://{default}/chainlit":
+  type: upstream
+  upstream: "chainlit:http"

@@ -11,3 +11,11 @@ sites/bin
 bin
 cypress/e2e/1-getting-started
 cypress/e2e/2-advanced-examples
+
+chainlit/.env
+chainlit/database/**
+chainlit/data/**
+chainlit/storage/**
+chainlit/.chainlit
+chainlit/venv
+chainlit/__pycache__
