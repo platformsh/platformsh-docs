@@ -137,16 +137,16 @@
 
   mounts:
     "/database":
-      source: "storage"
+      source: "local"
       source_path: "database"
     ".files":
-      source: "storage"
+      source: "local"
       source_path: "files"
     "__pycache__":
-      source: "storage"
+      source: "local"
       source_path: "pycache"
     ".chainlit":
-      source: "storage"
+      source: "local"
       source_path: ".chainlit"
 
   web:
@@ -160,8 +160,8 @@
       "/public":
         passthru: true
 
-  variables:
-    env:
+  #variables:
+    #env:
       #OPENAI_ASSISTANT_ID: asst_XXX
       #OPENAI_API_KEY: sk-proj-###
 
