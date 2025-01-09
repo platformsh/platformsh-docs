@@ -40,7 +40,7 @@ See the following sections to see how other common settings should be set on {{%
 
 ## 2. Configure `ALLOWED_HOSTS`
 
-By default other than `localhost` Django only allows hosts listed in `settings.ALLOWED_HOSTS` to be accessed. By default Django does not allow for wildcard hosts than span multiple levels so in order to support our dynamic preview environments you will want to dynamically add those to the list.
+By default, other than `localhost`, Django only allows hosts listed in `settings.ALLOWED_HOSTS` to be accessed. However, Django does not allow for wildcard hosts that span multiple levels by default. This becomes relevant in order to support our dynamic preview environments you will want to dynamically add to the list.
 
 The simplest method is to add the following line to `.environment` :
 ```bash
