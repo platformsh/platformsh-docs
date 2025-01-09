@@ -8,7 +8,7 @@ Persistent data (uploaded files into mounts, database data, etc.) is stored on a
 Data is stored redundantly and mounted into the environments on deployment.
 
 Network is behind a firewall for incoming connections.
-Only a few ports are opened to incoming traffic: ???
+Only a few ports are opened to incoming traffic: ports 22, 80, and 443.
 
 There are no exceptions, so any incoming web service requests,
 [ETL](https://aws.amazon.com/what-is/etl/#:~:text=Extract%2C%20transform%2C%20and%20load%20%28,and%20machine%20learning%20%28ML%29%29.) jobs,
