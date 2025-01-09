@@ -36,10 +36,14 @@ This ensures no other users can possibly add a subdomain of your domain to their
 Even if you don’t remove the record, your DNS records should prevent others from using a subdomain
 as long as you don’t use wildcards records pointing at {{% vendor/name %}}.
 
-{{< note theme="info" title="Apex domain cannot be re-added" >}}
+{{< note theme="warning" title="Apex domain cannot be re-added" >}}
 
 If you don't remove the `TXT` record, restrictions apply on the apex domain.
 For example, you can't add the apex domain to another project until you remove the `TXT` record.
+
+Note that depending on your registrar and the time to live (TTL) you set, it can take 
+anywhere from 15 minutes to 72 hours for DNS changes to be taken into account, *so take this into 
+account if you need to add the apex domain to another project*.
 
 You can see an error like `YOUR_APEX_DOMAIN is a root domain`.
 
