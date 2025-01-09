@@ -4,7 +4,7 @@ Lando can read your {{ .Site.Params.vendor.name }} configuration files for WordP
 and produce an approximately equivalent configuration using Docker
 See a guide on [using Lando with {{ .Site.Params.vendor.name }}](/development/local/lando.html).
 
-Templates come configured for use already with a base [Landofile](https://docs.lando.dev/config/lando.html),
+Templates come configured for use already with a base [Landofile](https://docs.lando.dev/landofile/),
 as in the following example.
 It can be helpful getting started with Lando without the need to have a project on {{ .Site.Params.vendor.name }}.
 This file sets up good defaults for Lando and {{ .Site.Params.vendor.name }}-configured codebases,
