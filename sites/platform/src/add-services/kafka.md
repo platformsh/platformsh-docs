@@ -63,7 +63,7 @@ To define the service, use the `kafka` type:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: kafka:<VERSION>
-  disk: 256
+  disk: 512
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -140,7 +140,7 @@ With the above definition, the application container now has [access to the serv
 # The name of the service container. Must be unique within a project.
 kafka:
   type: kafka:{{% latest "kafka" %}}
-  disk: 256
+  disk: 512
 ```
 
 #### [App configuration](/create-apps/_index.md)
