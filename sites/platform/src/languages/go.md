@@ -46,6 +46,16 @@ type: 'golang:{{% latest "golang" %}}'
 
 {{< image-versions image="golang" status="deprecated" >}}
 
+## Go toolchain auto download
+
+Even though you select a specific version of Go, starting in Go 1.21, the `go` command will automatically download and use a different toolchain version as requested by the `toolchain` directive in `go.mod`, or the `GOTOOLCHAIN` environmental variable (see [Go Toolchains](https://go.dev/doc/toolchain)).
+
+{{< note >}}
+
+Still, it is important to keep your chosen version of Go updated in your yaml configuration file. This will ensure that you are using the most up to date software for your projects.
+
+{{< /note >}}
+
 ## Go modules
 
 The recommended way to handle Go dependencies on {{% vendor/name %}} is using Go module support in Go 1.11 and later. That allows the build process to use `go build` directly without any extra steps, and you can specify an output executable file of your choice. (See the examples below.)
