@@ -34,7 +34,7 @@ Information on carbon intensity is also available in the {{% vendor/name %}} API
 For example, to get a list of the regions and their carbon intensities, run the following command:
 
 ```bash
-{{% vendor/cli %}} api:curl regions | jq -r '.regions[] | select(.available != false) | .label + ": " + .environmental_impact.carbon_intensity'
+{{% vendor/cli %}} api:curl regions | jq -r '.regions[] | select(.available != false) | "\(.label): \(.environmental_impact.carbon_intensity)"'
 ```
 
 See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
@@ -323,13 +323,13 @@ For a given organization {{< variable "ORG_NAME" >}}, run the following command:
 
 Where {{< variable "REGION" >}} is one of the impacted regions:
 
-- `ch-1.{{% vendor/urlraw "host" %}}`
-- `uk-1.{{% vendor/urlraw "host" %}}`
-- `de-2.{{% vendor/urlraw "host" %}}`
-- `us-4.{{% vendor/urlraw "host" %}}`
-- `fr-4.{{% vendor/urlraw "host" %}}`
-- `us-3.{{% vendor/urlraw "host" %}}`
-- `au-2.{{% vendor/urlraw "host" %}}`
+- `ch-1.platform.sh`
+- `uk-1.platform.sh`
+- `de-2.platform.sh`
+- `us-4.platform.sh`
+- `fr-4.platform.sh`
+- `us-3.platform.sh`
+- `au-2.platform.sh`
 
 There is a community-maintained [Region auditing snippet](https://github.com/platformsh/snippets/blob/main/src/region-audit.sh) you can use for this case:
 

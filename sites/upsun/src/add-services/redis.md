@@ -976,7 +976,7 @@ applications:
     variables:
       php:
         session.save_handler: redis
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "$REDISSSESSION_HOSTNAME" >}}:{{< variable "$REDISSSESSION_PORT" >}}"
 
     web:
       locations:
