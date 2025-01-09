@@ -36,7 +36,6 @@ To create your Strapi app, follow these steps.
 
    ```bash {location="Terminal"}
    cd my-strapi-project
-   git init
    echo "\nhttp:" >> .gitignore
    git add .
    git commit -m "Init Strapi application."
