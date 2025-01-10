@@ -5,9 +5,13 @@ inputs:
     description: 'Pull Request Environment URL'
     required: true
   number_retries:
-    description: 'The number of attempts we should make to contact the target environment URL. 1 second delay between attempt.'
+    description: 'The number of attempts we should make to contact the target environment URL.'
     required: false
     default: '100'
+  retry_sleep:
+    description: 'The length of time (in ms) to pause between each attempt at trying the redirect.'
+    required: false
+    default: '1000'
 
 ####
 #outputs:
