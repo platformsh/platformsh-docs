@@ -23,3 +23,9 @@
     font-size: 0.85rem;
     line-height: 1.2rem;
 }
+
+.tab-item {
+  cursor: pointer;
+}
+
+

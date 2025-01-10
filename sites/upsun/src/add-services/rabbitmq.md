@@ -200,7 +200,7 @@ applications:
     # (identified from the relationship name) and a default endpoint.
     # See the Application reference for all options for defining relationships and endpoints.
     relationships:
-      rabbitmq>:
+      rabbitmq:
 services:
   # The name of the service container. Must be unique within a project.
   rabbitmq:

@@ -1,7 +1,7 @@
 ---
 title: JavaScript/Node.js
 weight: 10
-# description: All you need to know about creating a new project with {{% vendor/name %}}
+description: All you need to know about configuring a new Javascript/Node.js project with {{% vendor/name %}}
 ---
 
 When dealing with Javascript/Node.js stacks, the information below may help customize your configuration.

@@ -1,7 +1,7 @@
 ---
 title: Python
 weight: 20
-# description: All you need to know about creating a new project with {{% vendor/name %}}
+description: All you need to know about configuring a new Python project with {{% vendor/name %}}
 ---
 
 When dealing with Python stacks, the information below may help customize your configuration.

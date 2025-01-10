@@ -9,15 +9,6 @@ You can group multiple projects in one organization and manage them together.
 
 To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users).
 
-<!-- {{% version/specific %}} -->
-<!-- To manage users within your organization, see how to [manage organization users](./users.md#manage-organization-users). -->
-<!-- <---> -->
-<!-- To manage users within your organization, you have two options: -->
-<!--  -->
-<!-- 1. [Managing users](./users.md#manage-organization-users) at an organization-wide or per-project basis - that is, individually. -->
-<!-- 1. [Managing users as a part of a team](/administration/teams.md). -->
-<!-- {{% /version/specific %}} -->
-
 ## Manage your organization settings
 
 As an organization owner, you can manage the basic settings for your organization such as its name and URL.
