@@ -123,7 +123,6 @@ services:
   database:
     type: postgresql:16
 
-
 applications:
   app:
     source:
@@ -161,8 +160,6 @@ applications:
     mounts:
       "/var": { source: storage, source_path: var }
 
-
-
     hooks:
       build: |
         set -x -e
@@ -194,7 +191,6 @@ services:
     type: postgresql:16
   queue:
     type: rabbitmq:3.13
-
 
 applications:
   app:
@@ -233,7 +229,6 @@ applications:
 
     mounts:
       "/var": { source: storage, source_path: var }
-
 
     hooks:
       build: |
