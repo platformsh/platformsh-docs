@@ -12,7 +12,7 @@ This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environment
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid Environments,
-data [syncs](/glossary.md#sync) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console. However, code [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) are available when the code is different between a parent and child environment.
+basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
@@ -38,7 +38,6 @@ open a [support ticket](/learn/overview/get-support).
 Most {{% names/dedicated-gen-2 %}} projects allow you to use custom `php.ini` files on your production or staging environments. However, **for a small set of projects**, this isn't supported yet.
 
 {{< /note >}}
-
 
 If your project doesn't support PHP configuration through a `php.ini` file,
 you can still change all PHP options that can be changed at runtime.
@@ -106,6 +105,7 @@ The following settings require a [support ticket](/learn/overview/get-support):
 * Increasing storage
 * Allocating storage among mounts and services
 * [PHP extensions](../../languages/php/extensions.md)
+* Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations))
 
 ## Logs
 
