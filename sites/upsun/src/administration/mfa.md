@@ -1,5 +1,5 @@
 ---
-title: Multi-Factor Authentication (MFA)
+title: Multifactor Authentication (MFA)
 weight: 4
 keywords: 
 - 2fa
@@ -7,10 +7,10 @@ keywords:
 - two factor
 - mfa
 - multifactor authentication
-description: Enhance your organizations' security with Multi-Factor Authentication (MFA).
+description: Enhance your organizations' security with Multifactor Authentication (MFA).
 ---
 
-Multi-Factor Authentication (MFA) enhances security by protecting both your organization and every user account that interacts with it
+Multifactor Authentication (MFA) enhances security by protecting both your organization and every user account that interacts with it
 through SSH or the {{% vendor/name %}} API.
 
 When MFA is enforced within an organization, every project contributor **must** enable MFA on their user account so they can run Git commands,
