@@ -8,4 +8,3 @@ Hugo allows you to define custom output formats besides HTML. We've defined a `j
 - `layouts/partials/meilindex/fields/url.html`: Defines links for all results, where the homepage is a special exception based on the content directory's structure.
 - `layouts/partials/meilindex/page.html`: Combines the partials above to build an index for a single page in the documentation, splitting into multiple documents when necessary so that Meilisearch's 1,000 word/document limit is not exceeded (which would result in un-indexed/un-searchable body text and sections).
 - `layouts/_default/index.json.json`: The main `json` output format template, which uses all of the above to construct the final index for docs.
-- `layouts/_default/home.llms.txt`: The main `txt` output format template, which uses all of the above to construct the final `public/llms.txt` file.
