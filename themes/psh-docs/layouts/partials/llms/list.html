@@ -1,0 +1,38 @@
+{{- $upsunDocUrl := "https://docs.upsun.com" -}}
+{{- $sectionKeys := .sections -}}
+{{- $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize -}}
+{{- $sectionId = replace $sectionId "." "" -}}
+{{- $currentSection := .Context.Section -}}
+{{- if in $sectionKeys $currentSection -}}
+  {{- $pageName := index ( split .Context.RelPermalink "/" ) 2 -}}
+  {{- $currentSection = replace $pageName ".html" "" -}}
+{{- end -}}
+{{- $currentPage := .CurrentPage -}}
+{{- with $currentPage.File -}}
+{{- end -}}
+{{- $getStartedAttribute := "" -}}
+{{- if ne $currentSection "other" -}}
+  {{- .Page -}}
+  {{- $itemTitle := .Context.Title | .Context.Page.RenderString }}
+  {{- if ne $itemTitle "" }}
+- [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .Context.RelPermalink }})
+  {{- range .Context.Pages -}}
+    {{- $itemTitle = .Title | .Page.RenderString -}}
+    {{- $itemId := printf "%s-sidebar-id" ( replace ($itemTitle | urlize) "." "" ) -}}
+    {{- $levelTwoPages := .Pages -}}
+    {{- if not ( .Params.sidebarIgnore ) -}}
+      {{- with .Params.sectionBefore }}
+- {{ . -}}
+      {{- end }}
+- [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .RelPermalink }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" -}}{{- end -}}
+      {{- if eq .Kind "section" -}}
+              {{- range $levelTwoPages -}}
+                {{ if not ( .Params.sidebarIgnore ) }}
+- [{{- if isset .Params "sidebartitle" -}}{{ .Params.sidebarTitle | .RenderString -}}{{- else -}}{{ .Title | .RenderString -}}{{- end -}}]({{ $upsunDocUrl }}{{ .RelPermalink }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" -}}{{- end -}}
+                {{- end -}}
+              {{- end -}}
+          {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- end -}}

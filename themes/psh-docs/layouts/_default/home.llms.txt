@@ -1,0 +1,51 @@
+# Upsun
+
+> Upsun is a PaaS to host all of your web applications.
+
+Things to remember when deploying applications on Upsun:
+- *Ultimate developer flexibility*: Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Upsun PaaS.
+- *Application development your way*, 4 options to get started sync your GitHub repo with Upsun, Deploy an existing local Git repository, Kickstart a new repository, Explore Upsun with our Demo app
+- *Agnostic freedom*: Tight integration with external systems, stacks, and tools you already use. Choice of IaaS platform(by geo or cloud provider) and services. Choose the road you want to travel.
+- *Self-service*: All the control and customization you want to experiment. Flexible resources. Sensible, transparent, usage-based pricing. Choose self-empowerment.
+- *Composable infrastructure*: Dozens of runtimes and backend services to mix and match, Managed routing, with built-in, multiregional edge-caching, automated TLS, and WAF, Full infrastructure preview environments, isolated, but identical to production, Full abstraction from underlying cloud provider; runs precisely the same way on every major cloud
+- *Collaboration-oriented*: The ability to collaborate on the infrastructure just like you collaborate on code, Git-driven infrastructure with support for multiple repositories, Bi-directional Git integrations, activity scripts, and webhooks to plug into any external service, Instantly created preview environments—per branch, per PR, per team, per developer, per anything
+- *Scalable on every dimension*: Vertical scaling of every component, horizontal scaling of applications and workers, Fully managed, multicloud edge-caching, From a single monolith to an automated service mesh, with microservices, workers' message queues, and multiple data backends, Built-in observability tools, with infrastructure metrics, built-in APM, profiling, and tracing
+- *Stability, security, responsibility*: Automated high availability and failover of every infrastructure component, with automated and transparent security-patching, Fine-grained team permissions, with MFA everywhere—even on SSH, Short-lived SSH certificates, with MFA and external identity provider support, PCI DSS, SOC 2, GDPR compliance,
+- *Polyglot? Hyperglot? We glot you*: Upsun supports an array of cool languages and frameworks. Monoliths. Microservices. Multistack. So you can keep your options open. Flexible. And future-proof.
+
+## Docs
+{{- $sections := .Site.Params.navSections -}}
+{{- $isHome := .Page.IsHome -}}
+{{- $sectionKeys := slice -}}
+{{- range $k, $v := $sections -}}
+    {{- if ne $k "home" -}}
+      {{- $sectionKeys = append $k $sectionKeys -}}
+    {{- end -}}
+{{- end -}}
+{{- $currentSection := .Section -}}
+{{- $currentContext := . -}}
+{{- range sort $sections "weight" -}}
+  {{- $inCurrentSection := false -}}
+  {{- if in $sectionKeys .section -}}
+    {{- if eq .section $currentSection -}}
+      {{- $inCurrentSection = true -}}
+    {{- else -}}
+      {{- $inCurrentSection = false -}}
+    {{- end -}}
+  {{- else -}}
+    {{- if not (in $sectionKeys $currentSection)}}
+      {{- $inCurrentSection = true -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $isHome -}}
+    {{- $inCurrentSection = false -}}
+  {{- end }}
+- {{ .title }}
+{{ partial "llms/section" ( dict "context" $currentContext "currentSection" .section "Active" $inCurrentSection "sections" $sectionKeys ) }}
+{{- end }}
+
+## API
+- [API Doc](https://api.upsun.com/docs): documentation of the Upsun API.
+
+## Examples
+
