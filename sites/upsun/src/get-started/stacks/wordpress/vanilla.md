@@ -3,7 +3,7 @@ title: Deploy Vanilla WordPress on {{% vendor/name %}}
 sidebarTitle: Vanilla WordPress
 weight: -65
 description: |
-    Complete the last required steps to successfully deploy WordPress on Upsun.
+    Complete the last required steps to successfully deploy Vanilla WordPress on Upsun.
 ---
 
 {{< note theme="info" >}}
@@ -219,7 +219,7 @@ Now that we've added the required files, you're ready to push your changes and d
 upsun push -y
 ```
 ## Further resources
-
+- [All files (Upsun configuration, .environment, wp-cli.yml, wp-config.php)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)
 ### Documentation
 
 - [PHP documentation](/languages/php/)
