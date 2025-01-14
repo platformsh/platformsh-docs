@@ -15,3 +15,4 @@ They provide all the core concepts and common commands you need to know before u
 
  - [WordPress Vanilla](./vanilla.md)
  - [WordPress Composer](./composer.md)
+ - [WordPress Bedrock](./bedrock.md)
