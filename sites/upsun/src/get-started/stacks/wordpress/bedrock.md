@@ -126,7 +126,7 @@ You can adjust the `composer install` command to meet your specific requirements
 
 ## 5. Launch tasks during the deploy hook
 
-Some tasks need to be performed after the images for our application are built, but before the newly built
+Once the images for our application have been built, there are a few key tasks that must be completed before our newly-built application can receive requests. These tasks include:
 application can receive requests. Such tasks include:
 
 - Flushing the object cache, which might have changed between current production and newly deployed changes
