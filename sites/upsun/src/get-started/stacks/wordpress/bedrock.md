@@ -1,7 +1,7 @@
 ---
 title: Deploy Bedrock-based WordPress on {{% vendor/name %}}
 sidebarTitle: "Bedrock WordPress"
-weight: -65
+weight: 2
 description: |
     Complete the last required steps to successfully deploy Bedrock-based WordPress on Upsun using Bedrock.
 ---

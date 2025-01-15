@@ -1,7 +1,7 @@
 ---
 title: Deploy Vanilla WordPress on {{% vendor/name %}}
 sidebarTitle: Vanilla WordPress
-weight: -65
+weight: 3
 description: |
     Complete the last required steps to successfully deploy Vanilla WordPress on Upsun.
 ---

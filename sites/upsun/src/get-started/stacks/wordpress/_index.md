@@ -1,6 +1,6 @@
 ---
 title: WordPress
-sectionBefore: PHP
+# sectionBefore: PHP
 weight: -62
 layout: single
 ---
@@ -13,6 +13,6 @@ Before you start, check out the [{{% vendor/name %}} demo app](https://console.u
 They provide all the core concepts and common commands you need to know before using the following materials.
 {{< /note >}}
 
- - [WordPress Vanilla](./vanilla.md)
  - [WordPress Composer](./composer.md)
  - [WordPress Bedrock](./bedrock.md)
+ - [WordPress Vanilla](./vanilla.md)

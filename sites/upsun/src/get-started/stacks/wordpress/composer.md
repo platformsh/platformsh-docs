@@ -1,7 +1,7 @@
 ---
 title: Deploy Composer-based WordPress on {{% vendor/name %}}
 sidebarTitle: "Composer WordPress"
-weight: -65
+weight: 1
 description: |
     Complete the last required steps to successfully deploy WordPress on Upsun.
 ---
