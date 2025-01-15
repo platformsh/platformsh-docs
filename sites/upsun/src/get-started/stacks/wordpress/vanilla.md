@@ -94,7 +94,11 @@ tar -xvf wordpress.tar.gz
                   allow: true
                   expires: 1w
     ```
-    **Note**: If you changed the name of the directory at step 1.4 you'll need to update the `root` property to match for
+{{< note theme="info" >}}
+
+If you changed the name of the directory at step 1.4 you'll need to update the `root` property to match for both locations.
+
+{{< /note >}}
     both locations.
 3. Application containers are read-only by default; WordPress needs a writable location to store uploaded media.
    To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts). To do so,

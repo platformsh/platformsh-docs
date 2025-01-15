@@ -210,7 +210,7 @@ export DB_PASSWORD="$MARIADB_PASSWORD"
 export DB_SCHEME="$MARIADB_SCHEME"
 export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_PATH}"
 ```
-To configure the remaining environment variables WordPress needs to run smoothly, follow these steps.
+To configure the remaining environment variables that WordPress needs to run smoothly, follow these steps.
 1. Open the `.environment` file for editing
 2. Add the following at the end of the file:
 
