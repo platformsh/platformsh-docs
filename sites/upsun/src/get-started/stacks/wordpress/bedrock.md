@@ -83,9 +83,6 @@ Application containers are read-only by default; WordPress needs a writable loca
 To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts). To do so,
 locate the `mounts:` section that is commented out, and update it as follows:
 
-1. Create the location.</br>
-   To do so, add a `/wp-content/uploads` location as follows:
-
 ```yaml {configFile="app"}
 applications:
   myapp:
@@ -124,7 +121,7 @@ applications:
 
 You can adjust the `composer install` command to meet your specific requirements.
 
-## 5. Launch tasks during the deploy hook
+## 4. Launch tasks during the deploy hook
 
 Once the images for our application have been built, there are a few key tasks that must be completed before our newly-built application can receive requests. These tasks include:
 application can receive requests. Such tasks include:
@@ -154,7 +151,7 @@ applications:
         wp cron event run --due-now
 ```
 
-## 6. Update App container depdencies
+## 5. Update App container depdencies
 
 Add the wp-cli tool and composer to your application build. Locate the `dependencies:` section that is commented out,
 and update it as follows:
@@ -171,7 +168,7 @@ applications:
        wp-cli/wp-cli-bundle: "^2.4"
  ```
 
-## 7. Configure your default route
+## 6. Configure your default route
 
 Locate the `routes:` section, and beneath it, the `"https://{default}/":` route. Update the route as follows:
 
@@ -197,7 +194,7 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 8. Update `.environment`
+## 7. Update `.environment`
 
 The CLI generated a `.environment` file during the Getting started guide. Notice it has already created some environment
 variables for you to connect to your database service.
@@ -233,7 +230,7 @@ To configure the remaining environment variables WordPress needs to run smoothly
     export NONCE_SALT="${PLATFORM_PROJECT_ENTROPY}NONCE_SALT"
    ```
 
-## 9. Commit, Push, and Deploy!
+## 8. Commit, Push, and Deploy!
 You can now commit all the changes made to `.upsun/config.yaml` and `.environment` and push to {{% vendor/name %}}.
 
    ```bash {location="Terminal"}
