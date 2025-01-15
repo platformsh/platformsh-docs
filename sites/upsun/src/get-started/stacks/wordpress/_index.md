@@ -1,7 +1,7 @@
 ---
 title: WordPress
 sectionBefore: PHP
-weight: -65
+weight: -62
 layout: single
 ---
 
