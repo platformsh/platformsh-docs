@@ -1,7 +1,7 @@
 ---
-title: Deploy WordPress on {{% vendor/name %}}
-sidebarTitle: WordPress
-weight: -55
+title: Deploy Composer-based WordPress on {{% vendor/name %}}
+sidebarTitle: "Composer WordPress"
+weight: 1
 description: |
     Complete the last required steps to successfully deploy WordPress on Upsun.
 ---
@@ -10,7 +10,7 @@ description: |
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)
 and the main [Getting started guide](/get-started/here/_index.md).
-They provide all the core concepts and common commands you need to know before using the following materials.
+These resources provide all the core concepts and common commands you need to know before using the following materials.
 
 {{< /note >}}
 
