@@ -37,32 +37,44 @@ To ensure you have all the required files and directories in your project, follo
 
 1. If you haven't already, you will need to retrieve the [WordPress](https://wordpress.org/) core files. You can either
 download a zip archive from WordPress.org, or use `curl` to download a tarball:
-```shell
-curl https://wordpress.org/latest -o wordpress.tar.gz
-```
+
+   ```shell
+   curl https://wordpress.org/latest -o wordpress.tar.gz
+   ```
+
 2. Extract the contents of the archive. If you used curl in step 1. you can extract the contents using `tar`:
-```shell
-tar -xvf wordpress.tar.gz
-```
+
+   ```shell
+   tar -xvf wordpress.tar.gz
+   ```
+
 3. After extracting the files from the archive, delete the archive as it no longer needed (e.g. `rm wordpress.tar.gz`)
+
 4. Whether you downloaded the zip, or the tarball, after extraction the extracted files should be contained in a
    directory named `wordpress`. This directory will become your public directory later. If you decide to rename this
    directory, make note of it for later steps.
+
 5. Create a `wp-config.php` file inside the directory from step 4 and copy and paste the contents from
    [this example file](https://github.com/upsun/snippets/blob/main/examples/wordpress-vanilla/wordpress/wp-config.php).
+
 6. Optional: if you plan on using [wp-cli](https://wp-cli.org/), add a `wp-cli.yml` file and add the following contents
    to it:
+
    ```yaml
     path: /app/wordpress/
     color: true
    ```
+
    **Note**: If you changed the name of the directory at step 4 you'll need to update the `path` property above to match.
+
 7. Add all the files from the steps above to your repository
    1. `git add .`
    2. `git commit -m "adds wordpress core files"`
 
 ## 2. Update configuration files
+
 1. Open the `.upsun/config.yaml` file created during the [Getting started guide](/get-started/here/_index.md)
+
 2. Locate the `web:locations` section and update the root (`/`) location as follows:
 
     ```yaml {configFile="app"}
@@ -95,12 +107,13 @@ tar -xvf wordpress.tar.gz
                   allow: true
                   expires: 1w
     ```
-{{< note theme="info" >}}
+
+    {{< note theme="info" >}}
 
 If you changed the name of the directory at step 1.4 you'll need to update the `root` property to match for both locations.
 
-{{< /note >}}
-    both locations.
+    {{< /note >}}
+
 3. Application containers are read-only by default; WordPress needs a writable location to store uploaded media.
    To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts). To do so,
    locate the `mounts:` section that is commented out, and update it as follows:
@@ -117,6 +130,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
           source: storage
           source_path: "uploads"
     ```
+
 4. Once the images for our application have been built, there are a few key tasks that must be completed before our
    newly-built application can receive requests. These tasks include:
 
@@ -144,28 +158,31 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
             # Runs all due cron events
             wp cron event run --due-now
     ```
+
 5. Locate the `routes:` section, and beneath it, the `"https://{default}/":` route. Update the route as follows:
 
-  ```yaml {configFile="app"}
-  applications:
-    myapp:
-      source:
-        root: "/"
-      type: 'php:8.3'
-      ...
+    ```yaml {configFile="app"}
+    applications:
+      myapp:
+        source:
+          root: "/"
+        type: 'php:8.3'
+        ...
 
-  routes:
-    "https://{default}/":
-      type: upstream
-      upstream: "myapp:http"
-      cache:
-        enabled: true
-        cookies:
-          - '/^wordpress_*/'
-          - '/^wp-*/'
-  ```
-5. Optional: Add the wp-cli tool to your application build. Locate the `dependencies:` section that is commented out,
+    routes:
+      "https://{default}/":
+        type: upstream
+        upstream: "myapp:http"
+        cache:
+          enabled: true
+          cookies:
+            - '/^wordpress_*/'
+            - '/^wp-*/'
+    ```
+
+6. Optional: Add the wp-cli tool to your application build. Locate the `dependencies:` section that is commented out,
    and update it as follows:
+
    ```yaml {configFile="app"}
    applications:
     myapp:
@@ -178,7 +195,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
           wp-cli/wp-cli-bundle: "^2.4"
     ```
 
-6. Add and commit your changes.
+7. Add and commit your changes.
 
    ```bash {location="Terminal"}
    git add .upsun/config.yaml
