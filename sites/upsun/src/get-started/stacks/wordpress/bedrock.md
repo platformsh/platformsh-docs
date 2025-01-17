@@ -24,7 +24,7 @@ you still need to add some required files and make a few changes to your {{% ven
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
 - You are building a Bedrock-based WordPress site using Roots.io [Bedrock boilerplate](https://roots.io/bedrock/).
-- You have an existing Bedrock-based codebase or created a new composer project using `roots/bedrock` during the Getting
+- You have an existing Bedrock-based codebase or created a new Composer project using `roots/bedrock` during the Getting
   started guide.
 - You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that
   while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all configuration below.

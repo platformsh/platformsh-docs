@@ -223,7 +223,7 @@ Now that we've added the required files, you're ready to push your changes and d
 upsun push -y
 ```
 ## Further resources
-- [All files (Upsun configuration, .environment, wp-cli.yml, wp-config.php)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)
+- [All files (Upsun configuration, `.environment`, `wp-cli.yml`, `wp-config.php`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)
 ### Documentation
 
 - [PHP documentation](/languages/php/)
