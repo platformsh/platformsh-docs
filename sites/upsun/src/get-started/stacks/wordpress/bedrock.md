@@ -241,7 +241,7 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
 
 
 ## Further resources
-- [All example files (.environment, .upsun/config.yaml)](https://github.com/upsun/snippets/tree/main/examples/wordpress-bedrock)
+- [All example files (`.environment`, `.upsun/config.yaml`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-bedrock)
 ### Documentation
 
 - [PHP documentation](/languages/php/)

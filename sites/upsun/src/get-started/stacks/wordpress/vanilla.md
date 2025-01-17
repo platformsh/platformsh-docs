@@ -64,6 +64,7 @@ tar -xvf wordpress.tar.gz
 ## 2. Update configuration files
 1. Open the `.upsun/config.yaml` file created during the [Getting started guide](/get-started/here/_index.md)
 2. Locate the `web:locations` section and update the root (`/`) location as follows:
+
     ```yaml {configFile="app"}
     applications:
       myapp:
@@ -203,6 +204,7 @@ export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${D
 To configure the remaining environment variables WordPress needs to run smoothly, follow these steps.
 1. Open the `.environment` file for editing
 2. Add the following at the end of the file:
+
    ```bash {location=".environment"}
     export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
     export WP_SITEURL="${WP_HOME}wordpress"
