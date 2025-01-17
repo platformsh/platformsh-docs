@@ -116,8 +116,8 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
           source: storage
           source_path: "uploads"
     ```
-4. Some tasks need to be performed after the images for our application are built, but before the newly built
-   application can receive requests. Such tasks include:
+4. Once the images for our application have been built, there are a few key tasks that must be completed before our
+   newly-built application can receive requests. These tasks include:
 
    - Flushing the object cache, which might have changed between current production and newly deployed changes
    - Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
