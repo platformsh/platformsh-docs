@@ -1,20 +1,24 @@
 {
     "username": "main",
-    "scheme": "pgsql",
-    "service": "postgresql12",
     "fragment": null,
     "ip": "169.254.38.66",
-    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.platformsh.site",
-    "port": 5432,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "postgresql.internal",
-    "rel": "postgresql",
     "path": "main",
     "query": {
         "is_master": true
     },
     "password": "main",
+    "port": 5432,
+    "host_mapped": false,
+    "service": "postgresql12",
+    "hostname": "zydalrxgkhif2czr3xqth3qkue.postgresql12.service._.eu-3.platformsh.site",
+    "epoch": 0,
+    "instance_ips": [
+        "247.229.144.9"
+    ],
+    "rel": "postgresql",
+    "scheme": "pgsql",
     "type": "postgresql:12",
-    "public": false,
-    "host_mapped": false
+    "public": false
 }

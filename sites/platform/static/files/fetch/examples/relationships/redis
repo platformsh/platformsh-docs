@@ -1,18 +1,22 @@
 {
     "username": null,
-    "scheme": "redis",
-    "service": "redis6",
     "fragment": null,
     "ip": "169.254.22.75",
-    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.platformsh.site",
-    "port": 6379,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "redis.internal",
-    "rel": "redis",
     "path": null,
     "query": [],
     "password": null,
+    "port": 6379,
+    "host_mapped": false,
+    "service": "redis6",
+    "hostname": "7mnenhdiz7ecraovljrba6pmiy.redis6.service._.eu-3.platformsh.site",
+    "epoch": 0,
+    "instance_ips": [
+        "247.229.144.209"
+    ],
+    "rel": "redis",
+    "scheme": "redis",
     "type": "redis:6.0",
-    "public": false,
-    "host_mapped": false
+    "public": false
 }

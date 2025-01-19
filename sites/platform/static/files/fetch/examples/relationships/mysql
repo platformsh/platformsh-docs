@@ -1,20 +1,24 @@
 {
     "username": "user",
-    "scheme": "mysql",
-    "service": "mariadb104",
     "fragment": null,
     "ip": "169.254.255.221",
-    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.platformsh.site",
-    "port": 3306,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "mysql.internal",
-    "rel": "mysql",
     "path": "main",
     "query": {
         "is_master": true
     },
     "password": "",
+    "port": 3306,
+    "host_mapped": false,
+    "service": "mariadb104",
+    "hostname": "e3wffyxtwnrxujeyg5u3kvqi6y.mariadb104.service._.eu-3.platformsh.site",
+    "epoch": 0,
+    "instance_ips": [
+        "246.85.48.128"
+    ],
+    "rel": "mysql",
+    "scheme": "mysql",
     "type": "mariadb:10.4",
-    "public": false,
-    "host_mapped": false
+    "public": false
 }
