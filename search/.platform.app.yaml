@@ -52,3 +52,7 @@ mounts:
     "dumps":
         source: local
         source_path: "dumps"
+
+resources:
+  base_memory: 1024
+  memory_ratio: 1024

@@ -12,9 +12,9 @@
   {{ $currentSection = replace $pageName ".html" "" }}
 {{ end }}
 {{ $currentPage := .CurrentPage }}
-{{ with $currentPage.File }}
+{{ with $currentPage.Path }}
   <!-- If on home page or in the current section - @todo not clear to me how to make this part dynamic yet.-->
-  {{ if or ( hasPrefix . $currentSection ) ( hasPrefix ( replace . "get-started/" "") $currentSection ) ( hasPrefix ( replace . "guides/" "") $currentSection ) ( hasPrefix ( replace . "learn/" "") $currentSection ) ( hasPrefix ( replace . "start/" "") $currentSection ) }}
+  {{ if or ( hasPrefix . ( printf "/%s" $currentSection ) ) ( hasPrefix ( replace . "get-started/" "") ( printf "/%s" $currentSection ) ) ( hasPrefix ( replace . "guides/" "") ( printf "/%s" $currentSection ) ) ( hasPrefix ( replace . "learn/" "") ( printf "/%s" $currentSection ) ) ( hasPrefix ( replace . "start/" "") ( printf "/%s" $currentSection ) ) }}
     {{ $isCurrentSection = true }}
   {{ end }}
 {{ end }}
@@ -38,7 +38,7 @@
 <!-- Handle all other directories -->
 {{ else }}
 <div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }">
-  {{ .Page }}
+  <!-- {{ .Page }} -->
   {{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
   {{ if .Context.Params.sidebarTitle }}
     {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}

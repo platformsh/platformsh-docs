@@ -6,8 +6,6 @@ description: See all of the live infrastructure metrics available to give you an
 
 {{% vendor/name %}} projects are accompanied by live infrastructure metrics that provide an overview of resource usage for environments.
 
-{{< version/specific >}}
-<!-- Platform.sh, version 1 -->
 Within the Console, metrics can be found for an environment under **Metrics**.
 
 The information under **Metrics** shows usage metrics for:
@@ -18,89 +16,51 @@ and their average for the Production environment.
 Metrics aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment),
 but are available for Grid environments (such as your preview environments).
 
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/all-dedicated.png "0.45")
+![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/dg2-dashboard.png "0.45")
 
 [{{% names/dedicated-gen-3 %}} environments](/dedicated-environments/dedicated-gen-3/_index.md): each of the three hosts and their average.
 These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/all-dedicated-gen3.png "0.45")
+![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
 
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
 
-![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/all-grid.png "0.45")
-
-<--->
-<!-- Version 2 -->
-Within the Console, metrics can be found for an environment under **Resources**.
-
-The information under **Resources** shows usage metrics for:
-
-{{% vendor/name %}} environments: your service, app, and worker containers.
-These metrics are available for all of your environments.
-{{< /version/specific >}}
+![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-dashboard.png "0.45")
 
 ## Default thresholds
 
-All of the graphs show labels for the following thresholds:
+All of the graphs show color-coded lines for the following thresholds:
 
-{{< version/specific >}}
-- Usage that crosses _80%_ results in a **warning** label.
-- Usage that crosses _90%_ results in a **critical** label.
-- On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ results in a **burst** label.
-<--->
-- Usage that crosses _80%_ results in a **warning** label.
-- Usage that crosses _90%_ results in a **critical** label.
-{{< /version/specific >}}
+- Usage up to _100%_ results.
+- Usage that crosses _80%_ results.
+- Usage that crosses _90%_ results.
+- Usage that crosses _50%_ results.
 
-{{< version/specific >}}
-  The burst capability is available for containerized environments
-  and allows a container to get more resources than it's allocated.
-  Burst is considered useful for infrequent activities that cause usage spikes.
+On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ will mean that you have crossed into a **burst** state.
 
-  On the Grid, resources are shared between customers,
-  so these additional resources aren't guaranteed and burst can only be temporary.
-  On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer,
-  but they're shared between services.
-  Therefore, burst is allowed until the dedicated resource usage is exceeded.
-<--->
-{{< /version/specific >}}
+The burst capability is available for containerized environments and allows a container to get more resources than it's allocated. Burst is considered useful for infrequent activities that cause usage spikes.
+
+On the Grid, resources are shared between customers, so these additional resources aren't guaranteed and burst can only be temporary. On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded.
+
 ### Recommendations
 
-The default thresholds aim to give you an idea of when your hosts/containers are close to running out of resources.
-The impact differs based on your specific apps and service.
-The values of the thresholds is purely informational.
+The default thresholds aim to give you an idea of when your hosts/containers are close to running out of resources. The impact differs based on your specific apps and service.
 
-{{% version/specific %}}
 #### {{% names/dedicated-gen-2 %}} environments
 
 For {{% names/dedicated-gen-2 %}} environments, the thresholds are set for each host.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
-<--->
-The thresholds are set for each container. If the resources are high and hovering
-close to the 100% threshold, you might want to consider:
-{{% /version/specific %}}
 
-{{% version/specific %}}
 * [Optimizing your code](../integrate-observability/_index.md) (if possible)
 * [Increasing your plan](../../administration/pricing/_index.md)
-<--->
-* [Optimizing your code](../application-metrics/_index.md) (if possible)
-* [Changing your app size or service size](/manage-resources.md)
-{{% /version/specific %}}
 
-{{% version/specific %}}
 #### {{% names/dedicated-gen-3 %}} environments
 
 For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
-<--->
-{{% /version/specific %}}
 
-{{% version/specific %}}
-If you have one container in a temporary burst state but your host still has plenty of available resources,
-it might not be an issue as long as the site is functioning properly.
-Burst allows your container to use additional resources when they aren't needed elsewhere.
+If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
 
 If you have a container in a prolonged burst state, you might want to consider:
 
@@ -113,10 +73,6 @@ You can reallocate your existing resources if other containers have resources th
 
 If you have multiple containers in a burst state, review your configuration or plan size.
 
-<--->
-{{% /version/specific %}}
-
-{{% version/specific %}}
 #### Grid environments
 
 For Grid environments, the thresholds are set for each container.
@@ -135,13 +91,8 @@ If the burst threshold is triggered for short, infrequent activities,
 it might not be an issue as long as the site is functioning properly.
 Burst allows your container to use additional resources when they aren't required on the container's host.
 
-<--->
-
-{{% /version/specific %}}
-
 ## Time intervals
 
-{{% version/specific %}}
 Measurements are taken for each metric every 1 minute.
 You can select a time frame over which to see these measurements for the entire **Metrics** view.
 In the primary three views, averages are shown over larger intervals.
@@ -154,21 +105,7 @@ In the primary three views, averages are shown over larger intervals.
 
 To zoom in on smaller intervals, select specific ranges in a graph.
 
-{{< video src="videos/metrics/metrics-zoom.mp4" >}}
-
-<--->
-Measurements are taken for each metric every 1 minute.
-You can select a time frame over which to see these measurements for the entire **Resources** view.
-In the primary three views, averages are shown over larger intervals.
-
-| View                                                                  | Time between measurements                     | Example                      |
-| :-------------------------------------------------------------------- | :-------------------------------------------- | :--------------------------- |
-| The last 15 minutes (*15m*)                                           | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last hour (*1hr*)                                                 | 1 minute                                      | 10:00, 10:01, 10:02          |
-| The last 8 hours (*8hr*)                                              | 10 minutes                                    | 10:00, 10:10, 10:20, 11:00   |
-
-To zoom in on smaller intervals, select specific ranges in a graph.
-{{% /version/specific %}}
+{{< video src="videos/metrics/metrics-video.mp4" >}}
 
 The interval between measurements then changes based on the range you choose.
 
@@ -180,17 +117,11 @@ The interval between measurements then changes based on the range you choose.
 
 ### Longer time intervals
 
-{{% version/specific %}}
 {{< partial "observability-suite/body.md" >}}
 
 If you have the Observability Suite, you can access historical data for up to 30 days.
 These data should help you understand trends over time
 and whether a given measurement is normal, something that occurs occasionally, or a true anomaly.
-<--->
-You can access historical data for up to 30 days. These data should help you
-understand trends over time and whether a given measurement is normal, something
-that occurs occasionally, or a true anomaly.
-{{% /version/specific %}}
 
 To see data over a given time frame, use the date picker to select the range to display.
 
@@ -202,5 +133,6 @@ You don't want to confuse a spike caused by a successful deploy with an issue th
 To see how deployment activity influences the infrastructure, turn on **Deployments** on your metrics.
 
 Each deployment activity appears as a line on each graph corresponding to the time the activity finished.
+
 To see information about the deployment activity, hover over the line.
 To see the build log for a specific deployment activity, click the line.

@@ -87,7 +87,7 @@ Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allo
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
 at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-worker-container.png)
+![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-grid-metrics.png)
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
