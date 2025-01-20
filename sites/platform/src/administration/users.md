@@ -36,12 +36,11 @@ An environment type (Production, Staging, and Development) groups one or more en
 
 A user can have one of the following roles on an environment type which grants them permissions on all environments of this type:
 
-| Role        | View environment | Push code | Branch environment | SSH access | Change settings | Execute actions |
-|-------------|------------------|-----------|--------------------|------------|-----------------|-----------------|
-| Admin       | Yes              | Yes       | Yes                | Yes        | Yes             | Yes             |
-| Contributor | Yes              | Yes       | Yes                | Yes        | No              | No              |
-| Viewer      | Yes              | No        | Yes                | No         | No              | No              |
-
+| Role        | View environment | Force push | Push code | Branch environment | SSH access | Change settings | Execute actions |
+|-------------|------------------|------------|-----------|--------------------|------------|-----------------|-----------------|
+| Admin       | Yes              | Yes        | Yes       | Yes                | Yes        | Yes             | Yes             |
+| Contributor | Yes              | No         | Yes       | Yes                | Yes        | No              | No              |
+| Viewer      | Yes              | No         | No        | Yes                | No         | No              | No              |
 To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/app-reference/single-runtime-image.md#access).
 
 ### View a user's permissions across all of the projects in your organization
