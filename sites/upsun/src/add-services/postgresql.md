@@ -483,6 +483,18 @@ Taking a backup or a database export before doing so is strongly recommended.
 To ensure people who review code changes can't access personally identifiable information stored in your database,
 [sanitize your preview environments](../development/sanitize-db/postgresql.md).
 
+## Set locale for database
+
+You can choose your locale when a database is created by setting locale-related variables. There are three ways to set a locale option, as detailed in the table below:
+
+
+| Name   | Type      | Default  | Description  |
+|--------|-----------|----------|--------------|
+| `lc_ctype` | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.|
+| `lc_collate` | `string`|`utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.| 
+| `lc_charset` | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.|
+
+
 ## Multiple databases
 
 If you are using version `10`, `11`, `12`, `13`, or later of this service,
