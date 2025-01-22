@@ -289,6 +289,26 @@ Remember, if you do not want to commit these values to your repository, you can 
 [project variables](https://docs.upsun.com/development/variables/set-variables.html#create-project-variables).
 {{</ note >}}
 
+The remaining values (with one exception) come directly from the `.env_sample` file:
+
+```bash
+export RAILS_MAX_THREADS=5
+export WEB_CONCURRENCY=2
+export RACK_TIMEOUT_WAIT_TIMEOUT=100_000
+export RACK_TIMEOUT_SERVICE_TIMEOUT=100_000
+export SESSION_KEY="_Dev_Community_Session"
+# two weeks in seconds
+export SESSION_EXPIRY_SECONDS=1209600
+export HONEYBADGER_API_KEY="testing"
+export HONEYBADGER_JS_API_KEY="testing"
+export HONEYBADGER_REPORT_DATA=false
+```
+
+The one value that is not originally from `.env_sample` is `HONEYBADGER_REPORT_DATA`. Honeybadger is an application
+monitoring service that Forem uses for reporting application errors. If you do not have a Honeybadger API key, or do not
+want to report data back to Honeybadger, leave it set to `false`. If you decide to use this service, you will need to
+change/remove this value and fill in the remaining `HONEYBADGER_*` sections with your data.
+
 ### Build steps explained
 `set -eux`
 
