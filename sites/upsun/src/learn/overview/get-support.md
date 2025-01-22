@@ -8,12 +8,10 @@ description: |
 
 {{% description %}}
 
+
 ## Create a support ticket
 
-If you're experiencing issues related to
-the proper functioning of the {{% vendor/name %}} infrastructure, application container software, or build processes;
-have found possible bugs; or have general questions,
-open a support ticket:
+If you're experiencing issues related to the proper functioning of the {{% vendor/name %}} infrastructure, application container software, build processes, have found possible bugs, have general questions or wish to submit a feature request, open a support ticket:
 
 1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/)
 2. Click the **Help** dropdown in the upper right-hand corner.
@@ -25,8 +23,13 @@ Or use these shortcuts to [access all support tickets](https://console.{{< vendo
 or [open a new ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
 
 Once you submit a ticket, you see it in a list of all tickets created, for all projects you have access to, within your organization.
+
+{{< note theme="info" >}}
+
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
+
+{{< /note >}}
 
 ## Community
 
