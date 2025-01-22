@@ -15,7 +15,7 @@ You can open a [support ticket](/learn/overview/get-support.html) directly from 
 
 ### For non-account holders or those who prefer a chat
 
-Join us on our Discord server! We have a dedicated [feedback channel](https://discord.com/channels/1121795479785721957/1284195722299834510) where you can share your ideas and discuss them with our community and team members.
+Join us on our Discord server! We have a dedicated [feedback channel](https://discord.com/channels/1121795479785721957/1130486723630088272) where you can share your ideas and discuss them with our community and team members.
 
 {{< note theme="info" >}}
 
