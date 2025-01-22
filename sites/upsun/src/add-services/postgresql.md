@@ -490,9 +490,9 @@ You can choose your locale when a database is created by setting locale-related 
 
 | Name   | Type      | Default  | Description  |
 |--------|-----------|----------|--------------|
-| `lc_ctype` | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.|
-| `lc_collate` | `string`|`utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.| 
-| `lc_charset` | `string`  | `utf8mb4_unicode_ci` after February 2020 and `latin1` before | The default collation. Affects any tables created after it's set.|
+| `default_ctype` | `string`  | `C.UTF-8` | The default character classification. Affects any tables created after it's set.|
+| `default_collation` | `string`|`C.UTF-8`| The default collation rules. Affects any tables created after it's set.| 
+| `default_charset` | `string`  | `UTF8` | The default encoding character set. Affects any tables created after it's set.|
 
 
 ## Multiple databases
