@@ -49,6 +49,7 @@ To define the service, use the `redis-persistent` endpoint:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: redis-persistent:<VERSION>
+  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
