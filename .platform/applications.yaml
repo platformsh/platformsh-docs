@@ -127,3 +127,23 @@
             source_path: "sites/upsun/config"
 
     size: S
+
+
+- # The name of this application, which must be unique within a project.
+    name: 'llms'
+
+    # The type key specifies the language and version for your application.
+    type: 'python:3.12'
+
+    source:
+        root: "/"
+
+    # The hooks that will be triggered when the package is deployed.
+    hooks:
+        # Build hooks can modify the application files on disk but not access any services like databases.
+        build: |
+            python ./llms/llms.py
+
+    disk: 1024
+
+    size: S
