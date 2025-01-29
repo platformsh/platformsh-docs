@@ -30,7 +30,13 @@ for template_name in $template_dirs; do
 
     for config_url in $config_files; do
       echo "Downloading config from: $config_url"
-      config_data=$(curl -s -H "Authorization: token $GH_API_KEY" "$config_url")
+      # Fetch the file content from GitHub API
+      config_response=$(curl -s -H "Authorization: token $GH_API_KEY" "$config_url")
+
+      # Extract and clean Base64 content
+      config_data=$(echo "$config_response" | jq -r '.content' | tr -d '\n')
+
+      echo config_data
 
       echo -e "\n## Example of a ${template_name} config \n" >> "$config_file_path"
       echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
