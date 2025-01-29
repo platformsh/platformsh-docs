@@ -32,7 +32,7 @@ for template_name in $template_dirs; do
       echo "Downloading config from: $config_url"
       # Fetch the file content from GitHub API
       config_data=$(curl -s -H "Authorization: token $GH_API_KEY" -H 'Accept: application/vnd.github.v3.raw' "$config_url")
-      echo config_data
+      echo $config_data
 
       echo -e "\n## Example of a ${template_name} config \n" >> "$config_file_path"
       echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
@@ -42,7 +42,7 @@ for template_name in $template_dirs; do
     done
   else
     echo "No .upsun folder for $template_name"
-    echo "$upsun_response"  # Affiche la réponse brute pour le diagnostic
+    #echo "$upsun_response"  # Affiche la réponse brute pour le diagnostic
     continue
   fi
 
