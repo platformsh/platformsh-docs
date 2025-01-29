@@ -22,16 +22,26 @@ for template_name in $template_dirs; do
 
   upsun_config_path="$templates_path/$template_name/files/.upsun"
 
-  echo upsun_config_path
+  echo $upsun_config_path
   echo "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path"
 
-  upsun_response=$(curl -s -H "Authorization: token $GH_API_KEY" \
+  upsun_response=$(curl -s -H "Authorization: token $GH_API_KEY" -H "Accept: application/vnd.github+json" \
     "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path")
 
+  echo "response: "
+  echo $(echo "$upsun_response" | jq -r 'length')
 
   if [[ $(echo "$upsun_response" | jq -r 'length') -eq 0 ]]; then
     echo "No .upsun folder for $template_name"
     continue
+  fi
+
+  if echo "$upsun_response" | jq -e 'if type=="array" then . else empty end' > /dev/null; then
+    echo "Valid response received."
+  else
+    echo "Error: Unexpected API response"
+    echo "$upsun_response"  # Affiche la réponse brute pour le diagnostic
+    exit 1
   fi
 
   config_files=$(echo "$upsun_response" | jq -r '.[] | select(.type == "file") | .download_url')
