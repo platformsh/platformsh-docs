@@ -21,8 +21,13 @@ for template_name in $template_dirs; do
   echo "Processing template: $template_name"
 
   upsun_config_path="$templates_path/$template_name/files/.upsun"
+
+  echo upsun_config_path
+  echo "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path"
+
   upsun_response=$(curl -s -H "Authorization: token $GH_API_KEY" \
     "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path")
+
 
   if [[ $(echo "$upsun_response" | jq -r 'length') -eq 0 ]]; then
     echo "No .upsun folder for $template_name"
