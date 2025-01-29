@@ -1,0 +1,47 @@
+#!/bin/bash
+
+GH_API_KEY="${GH_API_KEY}"  # Assurez-vous que la variable est exportée dans l'environnement
+data_dir="../sites/upsun/public"
+config_file_path="$data_dir/llms-full.txt"
+repo_owner="Theosakamg-PSH"
+repo_name="template-builder"
+templates_path="templates"
+
+echo "Fetching templates from repository..."
+mkdir -p "$data_dir"
+> "$config_file_path"
+
+# Récupérer la liste des templates
+response=$(curl -s -H "Authorization: token $GH_API_KEY" \
+  "https://api.github.com/repos/$repo_owner/$repo_name/contents/$templates_path")
+
+template_dirs=$(echo "$response" | jq -r '.[] | select(.type == "dir") | .name')
+
+for template_name in $template_dirs; do
+  echo "Processing template: $template_name"
+
+  upsun_config_path="$templates_path/$template_name/files/.upsun"
+  upsun_response=$(curl -s -H "Authorization: token $GH_API_KEY" \
+    "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path")
+
+  if [[ $(echo "$upsun_response" | jq -r 'length') -eq 0 ]]; then
+    echo "No .upsun folder for $template_name"
+    continue
+  fi
+
+  config_files=$(echo "$upsun_response" | jq -r '.[] | select(.type == "file") | .download_url')
+
+  for config_url in $config_files; do
+    echo "Downloading config from: $config_url"
+    config_data=$(curl -s -H "Authorization: token $GH_API_KEY" "$config_url")
+
+    echo -e "\n## Example of a ${template_name^} config \n" >> "$config_file_path"
+    echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
+    echo -e "\n\\`\\`\\`yaml {location=\"config.yaml\"}" >> "$config_file_path"
+    echo "$config_data" >> "$config_file_path"
+    echo -e "\\`\\`\\`\n" >> "$config_file_path"
+  done
+
+done
+
+echo "Processing complete. Output saved to $config_file_path"

@@ -95,7 +95,7 @@
             npm install
             npm run build
             ./build_docs.sh
-            go run ./llms/llms.go
+            ./llms/get-gh-config-examples.sh
         deploy: |
             cd $SITE_DIR
             ./deploy.sh
