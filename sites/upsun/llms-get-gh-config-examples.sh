@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GH_API_KEY="${GH_API_KEY}"  # Assurez-vous que la variable est exportée dans l'environnement
+GH_API_KEY="${GITHUB_API_TOKEN}"  # Assurez-vous que la variable est exportée dans l'environnement
 data_dir="../sites/upsun/public"
 config_file_path="$data_dir/llms-full.txt"
 repo_owner="Theosakamg-PSH"
