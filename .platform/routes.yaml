@@ -256,6 +256,9 @@ https://{default}/:
       # YAML redirect after Learn section was created (September 2023)
       "/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
 
+      #Changelog to Feature requests page
+      "/changelog.html" : { "to": "/request-features.html", "code": 301 }
+
       # Splitting 'other' section into proper top-level items within Reference.
       "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
      
