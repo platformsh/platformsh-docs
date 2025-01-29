@@ -35,7 +35,7 @@ for template_name in $template_dirs; do
       echo -e "\n## Example of a ${template_name} config \n" >> "$config_file_path"
       echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
       echo -e "\n\`\`\`yaml {location=\"config.yaml\"}" >> "$config_file_path"
-      echo "$config_data" >> "$config_file_path"
+      echo "$config_data" | base64 --decode >> "$config_file_path"
       echo -e "\`\`\`\n" >> "$config_file_path"
     done
   else
