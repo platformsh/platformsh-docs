@@ -31,7 +31,7 @@ for template_name in $template_dirs; do
     for config_url in $config_files; do
       echo "Downloading config from: $config_url"
       # Fetch the file content from GitHub API
-      config_data=$(curl -s -H "Authorization: token $GH_API_KEY" "$config_url")
+      config_data=$(curl -s -H "Authorization: token $GH_API_KEY" -H 'Accept: application/vnd.github.v3.raw' "$config_url")
       echo config_data
 
       echo -e "\n## Example of a ${template_name} config \n" >> "$config_file_path"
