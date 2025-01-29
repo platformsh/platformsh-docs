@@ -22,40 +22,27 @@ for template_name in $template_dirs; do
 
   upsun_config_path="$templates_path/$template_name/files/.upsun"
 
-  echo $upsun_config_path
-  echo "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path"
-
   upsun_response=$(curl -s -H "Authorization: token $GH_API_KEY" -H "Accept: application/vnd.github+json" \
     "https://api.github.com/repos/$repo_owner/$repo_name/contents/$upsun_config_path")
 
-  echo "response: "
-  echo $(echo "$upsun_response" | jq -r 'length')
+  if echo "$upsun_response" | jq -e 'if type=="array" then . else empty end' > /dev/null; then
+    config_files=$(echo "$upsun_response" | jq -r '.[] | select(.type == "file") | .download_url')
 
-  if [[ $(echo "$upsun_response" | jq -r 'length') -eq 0 ]]; then
+    for config_url in $config_files; do
+      echo "Downloading config from: $config_url"
+      config_data=$(curl -s -H "Authorization: token $GH_API_KEY" "$config_url")
+
+      echo -e "\n## Example of a ${template_name} config \n" >> "$config_file_path"
+      echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
+      echo -e "\n\`\`\`yaml {location=\"config.yaml\"}" >> "$config_file_path"
+      echo "$config_data" >> "$config_file_path"
+      echo -e "\`\`\`\n" >> "$config_file_path"
+    done
+  else
     echo "No .upsun folder for $template_name"
+    echo "$upsun_response"  # Affiche la réponse brute pour le diagnostic
     continue
   fi
-
-  if echo "$upsun_response" | jq -e 'if type=="array" then . else empty end' > /dev/null; then
-    echo "Valid response received."
-  else
-    echo "Error: Unexpected API response"
-    echo "$upsun_response"  # Affiche la réponse brute pour le diagnostic
-    exit 1
-  fi
-
-  config_files=$(echo "$upsun_response" | jq -r '.[] | select(.type == "file") | .download_url')
-
-  for config_url in $config_files; do
-    echo "Downloading config from: $config_url"
-    config_data=$(curl -s -H "Authorization: token $GH_API_KEY" "$config_url")
-
-    echo -e "\n## Example of a ${template_name^} config \n" >> "$config_file_path"
-    echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
-    echo -e "\n\`\`\`yaml {location=\"config.yaml\"}" >> "$config_file_path"
-    echo "$config_data" >> "$config_file_path"
-    echo -e "\`\`\`\n" >> "$config_file_path"
-  done
 
 done
 
