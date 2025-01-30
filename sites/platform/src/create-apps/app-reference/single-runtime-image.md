@@ -155,37 +155,38 @@ There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``
 
 The following table shows which container profiles {{% vendor/name %}} applies when deploying your project.
 
-| Container               | Profile          |
-|-------------------------|------------------|
-| Chrome Headless         | HIGH_CPU         |
-| .NET                    | HIGH_CPU         |
-| Elasticsearch           | HIGH_MEMORY      |
-| Elasticsearch Premium   | HIGH_MEMORY      |
-| Elixir                  | HIGH_CPU         |
-| Go                      | HIGH_CPU         |
-| InfluxDB                | HIGH_MEMORY      |
-| Java                    | HIGH_MEMORY      |
-| Kafka                   | HIGH_MEMORY      |
-| Lisp                    | HIGH_CPU         |
-| MariaDB                 | HIGH_MEMORY      |
-| Memcached               | BALANCED         |
-| MongoDB                 | HIGH_MEMORY      |
-| MongoDB Premium         | HIGH_MEMORY      |
-| Network Storage         | HIGH_MEMORY      |
-| Node.js                 | HIGH_CPU         |
-| OpenSearch              | HIGH_MEMORY      |
-| Oracle MySQL            | HIGH_MEMORY      |
-| PHP                     | HIGH_CPU         |
-| PostgreSQL              | HIGH_MEMORY      |
-| Python                  | HIGH_CPU         |
-| RabbitMQ                | HIGH_MEMORY      |
-| Redis ephemeral         | BALANCED         |
-| Redis persistent        | BALANCED         |
-| Ruby                    | HIGH_CPU         |
-| Rust                    | HIGH_CPU         |
-| Solr                    | HIGH_MEMORY      |
-| Varnish                 | HIGH_MEMORY      |
-| Vault KMS               | HIGH_MEMORY      |
+| Container             | Profile     |
+|-----------------------|-------------|
+| Chrome Headless       | HIGH_CPU    |
+| .NET                  | HIGH_CPU    |
+| Elasticsearch         | HIGH_MEMORY |
+| Elasticsearch Premium | HIGH_MEMORY |
+| Elixir                | HIGH_CPU    |
+| Go                    | HIGH_CPU    |
+| Gotenberg             | HIGH_MEMORY |
+| InfluxDB              | HIGH_MEMORY |
+| Java                  | HIGH_MEMORY |
+| Kafka                 | HIGH_MEMORY |
+| Lisp                  | HIGH_CPU    |
+| MariaDB               | HIGH_MEMORY |
+| Memcached             | BALANCED    |
+| MongoDB               | HIGH_MEMORY |
+| MongoDB Premium       | HIGH_MEMORY |
+| Network Storage       | HIGH_MEMORY |
+| Node.js               | HIGH_CPU    |
+| OpenSearch            | HIGH_MEMORY |
+| Oracle MySQL          | HIGH_MEMORY |
+| PHP                   | HIGH_CPU    |
+| PostgreSQL            | HIGH_MEMORY |
+| Python                | HIGH_CPU    |
+| RabbitMQ              | HIGH_MEMORY |
+| Redis ephemeral       | BALANCED    |
+| Redis persistent      | BALANCED    |
+| Ruby                  | HIGH_CPU    |
+| Rust                  | HIGH_CPU    |
+| Solr                  | HIGH_MEMORY |
+| Varnish               | HIGH_MEMORY |
+| Vault KMS             | HIGH_MEMORY |
 
 ### Sizes in preview environments
 
