@@ -1,18 +1,22 @@
 {
     "username": null,
-    "scheme": "http",
-    "service": "elasticsearch77",
     "fragment": null,
     "ip": "169.254.169.232",
-    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.platformsh.site",
-    "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "elasticsearch.internal",
-    "rel": "elasticsearch",
     "path": null,
     "query": [],
     "password": null,
+    "port": 9200,
+    "host_mapped": false,
+    "service": "elasticsearch77",
+    "hostname": "jmgjydr275pkj5v7prdj2asgxm.elasticsearch77.service._.eu-3.platformsh.site",
+    "epoch": 0,
+    "instance_ips": [
+        "247.229.144.158"
+    ],
+    "rel": "elasticsearch",
+    "scheme": "http",
     "type": "elasticsearch:7.7",
-    "public": false,
-    "host_mapped": false
+    "public": false
 }
