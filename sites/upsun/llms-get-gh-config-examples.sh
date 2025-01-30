@@ -2,7 +2,7 @@
 
 GH_API_KEY="${GITHUB_API_TOKEN}"  # Assurez-vous que la variable est exportée dans l'environnement
 
-data_dir="../sites/upsun/public"
+data_dir="./public"
 config_file_path="$data_dir/llms-full.txt"
 repo_owner="Theosakamg-PSH"
 repo_name="template-builder"
