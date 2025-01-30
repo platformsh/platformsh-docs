@@ -9,7 +9,7 @@ templates_path="templates"
 
 echo "Fetching templates from repository..."
 mkdir -p "$data_dir"
-> "$config_file_path"
+#> "$config_file_path"
 
 # Récupérer la liste des templates
 response=$(curl -s -H "Authorization: token $GH_API_KEY" \
@@ -32,13 +32,13 @@ for template_name in $template_dirs; do
       echo "Downloading config from: $config_url"
       # Fetch the file content from GitHub API
       config_data=$(curl -s -H "Authorization: token $GH_API_KEY" -H 'Accept: application/vnd.github.v3.raw' "$config_url")
-      echo $config_data
+      printf $config_data
 
-      echo -e "\n## Example of a ${template_name} config \n" >> "$config_file_path"
-      echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." >> "$config_file_path"
-      echo -e "\n\`\`\`yaml {location=\"config.yaml\"}" >> "$config_file_path"
-      echo "$config_data" >> "$config_file_path"
-      echo -e "\`\`\`\n" >> "$config_file_path"
+      echo -e "\n## Example of a ${template_name} config \n" > "$config_file_path"
+      echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." > "$config_file_path"
+      echo -e "\n\`\`\`yaml {location=\"config.yaml\"}" > "$config_file_path"
+      echo "$config_data" > "$config_file_path"
+      echo -e "\`\`\`\n" > "$config_file_path"
     done
   else
     echo "No .upsun folder for $template_name"
