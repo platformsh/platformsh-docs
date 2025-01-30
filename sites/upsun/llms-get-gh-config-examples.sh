@@ -32,13 +32,13 @@ for template_name in $template_dirs; do
       echo "Downloading config from: $config_url"
       # Fetch the file content from GitHub API
       config_data=$(curl -s -H "Authorization: token $GH_API_KEY" -H 'Accept: application/vnd.github.v3.raw' "$config_url")
-      printf $config_data
 
-      echo "\n## Example of a ${template_name} config \n" > "$config_file_path"
-      echo "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." > "$config_file_path"
-      echo "\n\`\`\`yaml {location=\"config.yaml\"}" > "$config_file_path"
-      echo "$config_data" > "$config_file_path"
-      echo "\`\`\`\n" > "$config_file_path"
+
+      printf "\n## Example of a ${template_name} config \n" > "$config_file_path"
+      printf "This is an example of a config.yaml file to host a \`$template_name\` stack on Upsun." > "$config_file_path"
+      printf "\n\`\`\`yaml {location=\"config.yaml\"}" > "$config_file_path"
+      printf "$config_data" > "$config_file_path"
+      printf "\`\`\`\n" > "$config_file_path"
     done
   else
     echo "No .upsun folder for $template_name"
