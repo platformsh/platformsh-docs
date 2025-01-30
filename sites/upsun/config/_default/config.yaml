@@ -34,6 +34,9 @@ outputs:
     section:
       - HTML
       - RSS
+    page:
+      - HTML
+      - Markdown
 
 outputFormats:
   devcenter:
@@ -50,10 +53,17 @@ outputFormats:
     baseName: "llms-full"
     isPlainText: true
     permalinkable: true
+  Markdown:
+    mediaType: "text/markdown"
+    isPlainText: true
+    permalinkable: true
+    baseName: index.html
 
 mediaTypes:
   text/plain:
     suffixes: ["txt"]
+  text/markdown:
+    suffixes: ["md"]
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:
