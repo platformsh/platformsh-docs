@@ -35,7 +35,9 @@
 | replaceRE `<svg>(<title>)?(.*?)(<\/title>)?\n*(.*?)<\/svg>` ""
 | replaceRE `<details>\n` ""
 | replaceRE `<\/details>\n` ""
-| replaceRE `\ *<summary><b>([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&↗\ -]+)<\/b><\/summary>` "**$1**"
+| replaceRE `\ *<summary>(<b>|\*\*)?([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&↗\ -]+)(<\/b>|\*\*)?` "**$1**"
+| replaceRE `<\/summary>` ""
+
 
 | replaceRE `<title>(.*)?<\/title>` "**$1**"
 | replaceRE `<\/?(ol|ul)>` ""
@@ -48,4 +50,8 @@
 | replaceRE `(\[.*\])?\(\/((\/images\/)?(.*)?(.*)?)\)` "$1(https://docs.upsun.com/$4)"
 
 | htmlUnescape
-}}
+-}}
+
+{{- range .Pages -}}
+  {{- partial "llms/list" ( dict "Context" . "sections" .CurrentSection ) -}}
+{{- end -}}

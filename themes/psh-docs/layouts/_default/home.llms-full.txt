@@ -1,7 +1,7 @@
 {{- $pages := .Site.RegularPages -}}
 {{- $upsunUrl := "https://docs.upsun.com" -}}
 {{- range $pages -}}
-{{- if .Params.title }}# {{ .Parent.Params.title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun"  }} [{{ .Params.title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" }}]({{ $upsunUrl }}{{ .RelPermalink }})
+{{- if .Params.title }}# {{ .Parent.Params.title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun"  }} [{{ .Params.title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" }}]({{ $upsunUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }})
 {{ end }}
 {{- .RenderShortcodes
   | replaceRE `<a href=\"([][a-zA-Z0-9\.\_\!\+\#:='\''\;,\/\{\}\(\)\&><↗\ -]+)?\".*\>(.*)?<\/a>` `[$2]($1)`
@@ -21,7 +21,7 @@
   | replaceRE `<h3\b[^>]*>\n*\ *(.*)\n*\ *<\/h3>` "\n\n### $1\n"
   | replaceRE `<h4\b[^>]*>\n*\ *(.*)\n*\ *<\/h4>` "\n\n#### $1"
   | replaceRE `<\/br>` " "
-  | replaceRE `(\[.*\])?\(\/((.*)?\.md(.*)?)\)` "$1(https://docs.upsun.com/$3.html$4)"
+  | replaceRE `(\[.*\])?\(\/((.*)?\.md(.*)?)\)` "$1(https://docs.upsun.com/$3.md$4)"
   | replaceRE `\[(.*)?\]\((#.*)?\)` `$1`
 
   | replaceRE `\ *<thead>(\n|\ )*<tr>(\n|\ )*<th>` "\n| <th>"
@@ -47,6 +47,8 @@
   | replaceRE `(\n\ *)+\n` "\n\n"
 
   | replaceRE `(\[.*\])?\(\/((\/images\/)?(.*)?(.*)?)\)` "$1(https://docs.upsun.com/$4)"
+
+  | replaceRE `(https:\/\/docs.upsun.com.*)?.html` `$1.md`
 
   | htmlUnescape
 -}}

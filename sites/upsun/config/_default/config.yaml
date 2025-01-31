@@ -26,6 +26,7 @@ summaryLength: 3
 outputs:
     home:
       - HTML
+      - markdown
       - JSON
       - RSS
       - devcenter
@@ -33,10 +34,11 @@ outputs:
       - llms-full
     section:
       - HTML
+      - markdown
       - RSS
     page:
       - HTML
-      - Markdown
+      - markdown
 
 outputFormats:
   devcenter:
@@ -53,11 +55,11 @@ outputFormats:
     baseName: "llms-full"
     isPlainText: true
     permalinkable: true
-  Markdown:
-    mediaType: "text/plain"
+  markdown:
+    mediaType: "text/markdown"
     isPlainText: true
     permalinkable: true
-    baseName: index.html
+    baseName: index
 
 mediaTypes:
   text/plain:
