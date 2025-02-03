@@ -7,7 +7,7 @@ layout: single
 As your app goes through the [build and deploy process](/learn/overview/build-deploy.md),
 you might want to run custom commands.
 These might include compiling the app, setting the configuration for services based on variables, and rebuilding search indexes.
-Do these tasks using one of [three hooks](./hooks-comparison.md).
+Do these tasks using one of [three hooks](/create-apps/hooks/hooks-comparison.md).
 
 The following example goes through each of these hooks for a multi-app project
 

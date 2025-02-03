@@ -43,7 +43,7 @@ You need:
 - An up-and-running web app in PHP, complete with [PHP-FPM](https://www.php.net/manual/en/install.fpm.php)
 - The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 
-Note that the memory settings mentioned on this page are different from the [`memory_limit` PHP setting](./_index.md).
+Note that the memory settings mentioned on this page are different from the [`memory_limit` PHP setting](/languages/php/_index.md).
 The `memory_limit` setting is the maximum amount of memory a single PHP process can use
 before it's automatically terminated.
 

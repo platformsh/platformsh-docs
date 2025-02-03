@@ -23,7 +23,7 @@ Variables on the project Example (abcdef123456), environment main:
 
 ## Access variables in a shell
 
-Project and environment variables with the [prefix](./_index.md#top-level-environment-variables) `env:`
+Project and environment variables with the [prefix](/development/variables/_index.md#top-level-environment-variables) `env:`
 are available as Unix environment variables in all caps.
 Access these variables and {{% vendor/name %}}-provided variables directly like this:
 
@@ -337,12 +337,12 @@ and at runtime.
 | `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
 | `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
 | `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | The `{{< vendor/prefix >}}_RELATIONSHIPS` variable is automatically broken down into [service environment variables](./_index.md#service-environment-variables), so your app can seamlessly connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.</br></br>For some advanced use cases, you may need to use the `{{< vendor/prefix >}}_RELATIONSHIPS` variable itself. It is a base64-encoded JSON object of relationships, with keys that indicate the relationship names, and values that are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md).</br>You may need to gather `{{< vendor/prefix >}}_RELATIONSHIPS` information in a ``.environment`` file. See how to [use ``.env`` files](./set-variables.md#use-env-files), and refer to [dedicated service pages](/add-services/_index.md) for examples. |
+| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | The `{{< vendor/prefix >}}_RELATIONSHIPS` variable is automatically broken down into [service environment variables](/development/variables/_index.md#service-environment-variables), so your app can seamlessly connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.</br></br>For some advanced use cases, you may need to use the `{{< vendor/prefix >}}_RELATIONSHIPS` variable itself. It is a base64-encoded JSON object of relationships, with keys that indicate the relationship names, and values that are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md).</br>You may need to gather `{{< vendor/prefix >}}_RELATIONSHIPS` information in a ``.environment`` file. See how to [use ``.env`` files](/development/variables/set-variables.md#use-env-files), and refer to [dedicated service pages](/add-services/_index.md) for examples. |
 | `{{< vendor/prefix >}}_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). Note that this information is also available in your `/run/config.json` file. |
 | `{{< vendor/prefix >}}_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
 | `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
 | `{{< vendor/prefix >}}_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| `{{< vendor/prefix >}}_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
+| `{{< vendor/prefix >}}_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](/development/variables/_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
 | `{{< vendor/prefix >}}_VENDOR`        | Yes  | No    |  Allows you to change the behavior of the build according to the vendor ({{< vendor/name >}} or {{< vendor/psh_ref >}}). |
 | `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is unset or set to `tcp`. |
 | `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is set to `unix`. |
@@ -377,7 +377,7 @@ Some apps require configuration values to be specified in a static, non-executab
 and don't support reading from environment variables.
 
 To populate these files with variables you set yourself,
-make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
+make sure the variables are set to be [visible at build time](/development/variables/set-variables.md#variable-options).
 
 The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS` or [service environment variables](/development/variables/_index.md#service-environment-variables)).
 You also can't write to them in a `deploy` hook as the file system is read only.

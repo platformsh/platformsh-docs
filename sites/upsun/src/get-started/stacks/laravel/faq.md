@@ -80,7 +80,7 @@ They likely contain an error message describing the root cause:
 If the error occurs on a preview environment,
 or on the main environment of a non-production project,
 you can also enable Laravel's dev/debug mode to inspect the cause of the error
-via the `APP_DEBUG` [environment variable](./environment-variables.md) in your
+via the `APP_DEBUG` [environment variable](/get-started/stacks/laravel/environment-variables.md) in your
 `.environment` file or via [{{% vendor/cli %}} console](/development/variables):
 
 ```bash

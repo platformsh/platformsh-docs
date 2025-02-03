@@ -23,7 +23,7 @@ and the estimated average memory size of each process.
 
 You have two ways to increase the number of workers:
 
-- Adjust the [worker sizing hints](./fpm.md) for your project.
+- Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
 - Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
 ## Execution timeout
 
@@ -72,7 +72,7 @@ WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 secon
 
 Either a PHP extension is hitting a segmentation fault or your PHP app code is crashing.
 Review recent changes in your app and try to find the root cause.
-You might want to use a tool such as [Xdebug](./xdebug.md) for quicker troubleshooting.
+You might want to use a tool such as [Xdebug](/languages/php/xdebug.md) for quicker troubleshooting.
 
 ## Troubleshoot a killed PHP process
 
@@ -87,7 +87,7 @@ That means the memory usage of your container exceeds the limit that's been allo
 To solve this issue, try the following approaches:
 <!-- @todo: resources link -->
 - Check if the memory usage of your app is as expected and try to optimize it.
-- Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
+- Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
 - Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command
 
 ## Restart PHP processes stuck during a build or deployment
@@ -117,9 +117,9 @@ To address the issue, you can:
 
 - Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
   This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
-  For more details, consult [PHP-FPM sizing](./fpm.md).
+  For more details, consult [PHP-FPM sizing](/languages/php/fpm.md).
 - Add a [CDN](../../domains/cdn/_index.md).
 - Set up [HTTP caching](/learn/bestpractices/http-caching.md).
-- Follow the global [performance tuning recommendations](./tuning.md).
+- Follow the global [performance tuning recommendations](/languages/php/tuning.md).
 - Remove stale plugins and extensions when using a CMS.
 - Add [additional resources](/manage-resources.md) with the `{{% vendor/cli %}} resources:set` command

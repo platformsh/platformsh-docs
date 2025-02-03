@@ -38,7 +38,7 @@ title=In the Console
 {{< /codetabs >}}
 
 {{% vendor/name %}} can't guarantee that indexers follow the instructions.
-If you're concerned about access, set up [HTTP access control](./http-access-control.md).
+If you're concerned about access, set up [HTTP access control](/environments/http-access-control.md).
 
 ## How it's done
 

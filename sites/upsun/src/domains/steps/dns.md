@@ -9,23 +9,23 @@ Using `CNAME` records helps [prevent downtime](#cname-records) during maintenanc
 But `CNAME` records can't point to apex domains,
 so you need to [set up a workaround](#workarounds-for-apex-domains).
 Available workarounds depend on your DNS provider.
- 
+
 ## `CNAME` records
- 
+
 Each site on {{% vendor/name %}} is made up of a set of containers.
 To map incoming requests to the appropriate container,
 {{% vendor/name %}} runs routers in [each region](../../development/regions.md).
 A router's IP address can change in two cases:
 - During an upgrade or maintenance operation, routers can be taken offline while changes are applied.
 - During a region upscale or downscale, routers can be added or removed.
- 
+
 In such situations, using `A` records can cause downtime.
 `A` records map a domain to an IP address.
 When a router's IP address changes,
 you need to manually update your `A` records.
 Your site remains offline until you do,
 or until the router is back from maintenance.
- 
+
 To prevent downtime, create `CNAME` records through your DNS provider.
 `CNAME` records map a domain to another.
 Set up your `CNAME` records to point at your project's [target URL](../../domains/steps/_index.md#1-get-the-target-for-your-project).
@@ -33,10 +33,10 @@ The DNS record for this target URL automatically resolves to the IP addresses of
 When a router's IP address changes,
 the DNS record is automatically and immediately updated.
 This prevents downtime without intervention from you.
- 
+
 Note that `CNAME` records can't point to [apex domains](/glossary.md#apex-domain).
 Check with your DNS provider if they offer [workarounds](#workarounds-for-apex-domains).
- 
+
 ## Workarounds for apex domains
 
 Although `CNAME` records can't point to apex domains,
@@ -46,14 +46,14 @@ Contact your DNS provider and choose the option that works for you.
 If you use a CDN, you likely already have a workaround in place,
 such as with [Fastly](../cdn/fastly.md#3-handle-apex-domains)
 and [Cloudflare](../cdn/cloudflare.md#3-handle-apex-domains).
- 
+
 ### Custom records
 
 Some DNS providers offer custom records such as `ANAME`, `ALIAS` or `HTTPS` records,
 which you can manage like `CNAME` records.
 But unlike `CNAME` records, these custom records can point to apex domains.
- 
-To use custom records, follow the instructions on [how to set up a custom domain](./_index.md).
+
+To use custom records, follow the instructions on [how to set up a custom domain](/domains/steps/_index.md).
 When you come to configuring your DNS provider, instead of a `CNAME` record,
 add a custom record pointing from your domain to [your project's target URL](https://docs.platform.sh/domains/steps.html#2-get-the-target-for-your-project).
 
@@ -61,15 +61,15 @@ add a custom record pointing from your domain to [your project's target URL](htt
 
 If your DNS provider doesn't support custom records,
 consider using domain forwarding.
- 
+
 If your domain is `example.com`, domain forwarding redirects all requests from `example.com` to `www.example.com`.
- 
+
 To use domain forwarding, follow these steps:
- 
+
 1.  Make the `www.` version of your site the default (canonical) version
     and configure your app and routes to [use the `www` subdomain as `upstream`](../../define-routes/_index.md).
- 
-2.  Follow the instructions on [how to set up a custom domain](./_index.md).
+
+2.  Follow the instructions on [how to set up a custom domain](/domains/steps/_index.md).
     When you come to configuring your DNS provider,
     instead of a `CNAME` record, add a record forwarding requests
     from `{{<variable "YOUR_DOMAIN" >}}` to `www.{{<variable "YOUR_DOMAIN" >}}`.
@@ -86,7 +86,7 @@ To use a redirection service, follow these steps:
 1.  Make the `www.` version of your site the default (canonical) version
     and configure your app and routes to [use the `www` subdomain as `upstream`](../../define-routes/_index.md).
 
-2.  Follow the instructions on [how to set up a custom domain](./_index.md).
+2.  Follow the instructions on [how to set up a custom domain](/domains/steps/_index.md).
     When you come to configuring your DNS provider, instead of a `CNAME` record,
     add an `A` record pointing from your domain to the redirection service.
 
@@ -101,8 +101,8 @@ Until you do, your site can appear offline because requests are lost.
 To use `A` records, follow these steps:
 
 1.  [Get the IP addresses](/development/regions.md#public-ip-addresses) of your project's production environment.
-     
-2.  Follow the instructions on [how to set up a custom domain](./_index.md).
+
+2.  Follow the instructions on [how to set up a custom domain](/domains/steps/_index.md).
     When you come to configuring your DNS provider, instead of a `CNAME` record,
     add `A` records pointing from your domain to each of the IP addresses from step 1.
     When a request comes in, one of those IP addresses is used at random.

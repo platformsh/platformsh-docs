@@ -7,7 +7,7 @@ weight: 30
 
 {{< partial "continuous-profiling-sellable/body.md" >}}
 
-{{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
+{{< vendor/name >}} [Continuous Profiler](/increase-observability/application-metrics/cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly from the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
 The PHP continuous profiling is currently made across 4 dimensions:

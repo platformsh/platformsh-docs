@@ -50,7 +50,7 @@ These are called [inactive environments](#environment-status).
 
 Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
 Your project must have a default environment,
-but you can [name it as you want](./default-environment.md).
+but you can [name it as you want](/environments/default-environment.md).
 
 If you subscribed to a production plan, this environment is your **live site**.
 You might want to give it a [custom domain name](../domains/steps/_index.md).
@@ -87,7 +87,7 @@ To check the status of all your environments, from your project directory run th
 
 {{< /codetabs >}}
 
-You can [change an environment's status](./deactivate-environment.md) at any time.
+You can [change an environment's status](/environments/deactivate-environment.md) at any time.
 
 ## Organize your environments
 
@@ -99,11 +99,11 @@ In {{% vendor/name %}}, your environments are organized in a hierarchy featuring
 
 When you [branch](/glossary.md#branch) an environment,
 the parent of the new environment is the environment it was created from.
-You can [change the environment's parent](./change-parent.md) after it's been created.
+You can [change the environment's parent](/environments/change-parent.md) after it's been created.
 
 When you push a branch through Git or a [source integration](../integrations/source/_index.md),
 the parent environment of the new environment is your [default environment](#default-environment).
-Alternatively, you can [change the environment's parent](./change-parent.md) after it's been created.
+Alternatively, you can [change the environment's parent](/environments/change-parent.md) after it's been created.
 
 Each child environment can [sync](/glossary.md#sync) code and/or data down from its parent
 and [merge](/glossary.md#merge) code up to its parent.

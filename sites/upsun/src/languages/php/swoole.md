@@ -33,7 +33,7 @@ You need:
 
 ## Use
 
-Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
+Override the default web server with a [custom start command](/languages/php/_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}

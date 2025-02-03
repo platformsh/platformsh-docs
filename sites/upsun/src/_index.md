@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Upsun Docs
 showTitle: false
 editPage: false
 feedback: false
@@ -21,7 +21,7 @@ If you're still unfamiliar with {{% vendor/name %}} and how it works, _but_ you'
 
 Learn the basics of how {{% vendor/name %}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments.
 
-Ready to get started? [Let's go!](/get-started/here)
+Ready to get started? [Let's go!](/get-started/here/_index.md)
 
 ### Learn
 
@@ -74,8 +74,7 @@ Have an experiment you'd like to share?
 Looking for a way to contribute?
 
 <div style="margin-top: 3rem; text-align: center;">
-    <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
-    href="https://discord.gg/PkMc2pVCDV" rel="noopener">Join us on Discord</a>
+<a href="https://discord.gg/PkMc2pVCDV" class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark" rel="noopener">Join us on Discord</a>
 </div>
 
 ### Contribute
