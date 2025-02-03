@@ -4,7 +4,7 @@ weight: -5
 description: "A description of the YAML file for {{% vendor/name %}}."
 ---
 
-In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML structure is important.
+In addition to the [basic functions you should be familiar with](/learn/overview/yaml/what-is-yaml.md), YAML structure is important.
 {{% vendor/name %}} accepts a specific structure for YAML configuration files.
 
 ## YAML file location
@@ -40,7 +40,7 @@ This looks like:
     upstream: "myapp:http"
 ```
 
-Below these three top-level key sections, you can use any of the [available YAML tags](./platform-yaml-tags.md) you need.
+Below these three top-level key sections, you can use any of the [available YAML tags](/learn/overview/yaml/platform-yaml-tags.md) you need.
 
 {{% note %}}
 Any YAML files located at the first level of your ``.upsun`` folder, at the root of your project source code, are taken in account. See [Rules on YAML files](#rules-on-yaml-files).
