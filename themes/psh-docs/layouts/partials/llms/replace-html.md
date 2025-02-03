@@ -3,10 +3,28 @@
 {{- .content
 | replaceRE `<a href=\"([][a-zA-Z0-9\.\_\!\+\#:='\''\;,\/\{\}\(\)\&><↗\ -]+)?\".*\>(.*)?<\/a>` `[$2]($1)`
 | replaceRE ` ([a-zA-Z0-9\@:-]){2,}="([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&><↗\ -]{0,})"` ``
-| replaceRE `(<!--[][a-zA-Z0-9_\ \/:@()\*\?#,.-]+-->)` ``
+
+| replaceRE `\[(.*)?\]\((../../)+?(.*)?\) ` `[$1](https://docs.upsun.com/$3) `
+| replaceRE `\[(.*)?\]\((../../)+?(.*)?\)\n` "[$1](https://docs.upsun.com/$3)\n"
+| replaceRE `\[(.*)?\]\((../../)+?(.*)?\)\.` `[$1](https://docs.upsun.com/$3).`
+| replaceRE `\[(.*)?\]\((../../)+?(.*)?\),` `[$1](https://docs.upsun.com/$3),`
+| replaceRE `\[(.*)?\]\((../../)+?(.*)?\)\*` `[$1](https://docs.upsun.com/$3)*`
+| replaceRE `(\[.*\])?\((../)+?(.*)?\) ` `$1(https://docs.upsun.com/$3) `
+| replaceRE `(\[.*\])?\((../)+?(.*)?\)\n` "$1(https://docs.upsun.com/$3)\n"
+| replaceRE `(\[.*\])?\((../)+?(.*)?\)\.` `$1(https://docs.upsun.com/$3).`
+| replaceRE `(\[.*\])?\((../)+?(.*)?\),` `$1(https://docs.upsun.com/$3),`
+| replaceRE `(\[.*\])?\((../)+?(.*)?\)\*` `$1(https://docs.upsun.com/$3)*`
+| replaceRE `(\[.*\]\(.*/(.*))?(/_index.md)+?(.*)?\) ` `$1.md$4) `
+| replaceRE `(\[.*\]\(.*/(.*))?(/_index.md)+?(.*)?\)\n` "$1.md$4)\n"
+| replaceRE `(\[.*\]\(.*/(.*))?(/_index.md)+?(.*)?\)\.` `$1.md$4).`
+| replaceRE `(\[.*\]\(.*/(.*))?(/_index.md)+?(.*)?\),` `$1.md$4),`
+| replaceRE `(\[.*\]\(.*/(.*))?(/_index.md)+?(.*)?\)\*` `$1.md$4)*`
+
+| replaceRE `(<!--[][a-zA-Z0-9_\ \/:@()\*\n\?#,.-]+-->)` ``
 | replaceRE `(<style>[][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)#\&\n\ -]+<\/style>)` ``
 | replaceRE `<div>Terminal<\/div>\n` ``
 | replaceRE `<div>\.upsun\/config\.yaml<\/div>\n` ``
+| replaceRE `<div>\.environment<\/div>\n` ``
 | replaceRE `<div>export\-config\.sh<\/div>\n` ``
 | replaceRE `<div\nx\-data(.*\n)+>` ""
 | replaceRE `<(pre|var|span|p|div|a).*?>` ``
@@ -18,7 +36,6 @@
 | replaceRE `<h3\b[^>]*>\n*\ *(.*)\n*\ *<\/h3>` "\n\n### $1\n"
 | replaceRE `<h4\b[^>]*>\n*\ *(.*)\n*\ *<\/h4>` "\n\n#### $1"
 | replaceRE `<\/br>` " "
-| replaceRE `(\[.*\])?\(\/((.*)?\.md(.*)?)\)` "$1(https://docs.upsun.com/$3.md$4)"
 | replaceRE `\[(.*)?\]\((#.*)?\)` `$1`
 
 | replaceRE `\ *(<thead>)?(\n|\ )*<tr>(\n|\ )*<th>` "\n| <th>"
@@ -28,6 +45,8 @@
 | replaceRE `\n\ *<\/?(tbody|thead|table)>` ``
 | replaceRE `\ *<\/?(tr)>` ``
 
+| replaceRE `<strong>` "**"
+| replaceRE `<\/strong>` "**"
 | replaceRE `\n*<path\b[^>]*>(.*?)<\/path>\n*` ""
 | replaceRE `\n*\ *<\/?(g|path)>` ""
 | replaceRE `<svg>(<title>)?(.*?)(<\/title>)?\n*(.*?)<\/svg>` ""
@@ -40,8 +59,6 @@
 | replaceRE `<\/?(ol|ul)>` ""
 | replaceRE `<li>\n?` ` - `
 
-| replaceRE `<strong>` "**"
-| replaceRE `<\/strong>` "**"
 | replaceRE `(\n\ *)+\n` "\n\n"
 
 | replaceRE `(\[.*\])?\(\/((\/images\/)?(.*)?(.*)?)\)` "$1(https://docs.upsun.com/$4)"
