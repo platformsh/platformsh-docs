@@ -29,7 +29,7 @@ but they're at their end of life and are no longer receiving security updates fr
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).
 
-Alternatively, you can switch to one of the latest, free versions of [OpenSearch](./opensearch.md).
+Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
 To do so, follow the same procedure as for [upgrading](#upgrading).
 
 ## Relationship reference

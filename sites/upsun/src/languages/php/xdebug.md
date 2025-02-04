@@ -14,7 +14,7 @@ As configured on {{% vendor/name %}}, it avoids any runtime overhead for non-deb
 Note that Xdebug runs only on your app containers.
 So you can't use it for [worker containers](../../create-apps/workers.md).
 
-Also, note that if you use a [custom start command](./_index.md#alternate-start-commands),
+Also, note that if you use a [custom start command](/languages/php/_index.md#alternate-start-commands),
 Xdebug is automatically disabled.
 
 ## Before you begin
@@ -69,7 +69,7 @@ routes:
       cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 Xdebug has several configuration options available.
-They can be set the same way as any other [PHP setting](./_index.md#php-settings).
+They can be set the same way as any other [PHP setting](/languages/php/_index.md#php-settings).
 For a full list of available options, consult the [Xdebug documentation](https://xdebug.org/docs/).
 
 ## 2. Use Xdebug

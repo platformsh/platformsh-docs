@@ -102,7 +102,7 @@ You can specify the port for the connection using the `--port` flag.
 ### Use an app tunnel
 
 Many database applications (such as MySQL Workbench) support establishing their own SSH tunnel.
-You need to use [SSH keys](./ssh-keys.md) for authentication.
+You need to use [SSH keys](/development/ssh/ssh-keys.md) for authentication.
 Consult the documentation for your application for how to enter SSH credentials.
 
 #### Get SSH connection details
@@ -155,7 +155,7 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
   * Supports multifactor authentication.
   * Automatically generates new certificates to keep your connection safe.
   * Necessary when using the CLI and when your organization has multifactor authentication set up.
-* [Using SSH keys](./ssh-keys.md)
+* [Using SSH keys](/development/ssh/ssh-keys.md)
   * Requires more setup on your part.
   * Represents only a single authentication method.
   * Requires you to regularly change the keys to maintain security.
