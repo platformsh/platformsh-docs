@@ -22,7 +22,7 @@ applications:
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
-integration](./integration) in your {{% vendor/name %}} app configuration.
+integration](/get-started/stacks/symfony/integration) in your {{% vendor/name %}} app configuration.
 
 On {{% vendor/name %}}, worker containers run the exact same code as the web container.
 The container image is built only once and deployed multiple times in its own container alongside the web container.

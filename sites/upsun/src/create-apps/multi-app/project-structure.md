@@ -61,7 +61,7 @@ This allows you to control all your apps in one place and even build multiple ap
 
 {{< /note >}}
 
-To allow your apps to communicate with each other, define [relationships](./relationships.md).
+To allow your apps to communicate with each other, define [relationships](/create-apps/multi-app/relationships.md).
 
 Note that with this setup, when you amend the code of one of your apps,
 the build image for your other apps can still be reused.
