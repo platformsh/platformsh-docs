@@ -26,6 +26,7 @@
   {{ partial "head/opengraph" . }}
   {{ partial "head/css" . }}
   {{ partial "scripts/global" . }}
+  {{ partial "head/llms" . }}
 
   {{ if .Param "math" }}
     {{ partialCached "head/math.html" . }}
