@@ -73,7 +73,7 @@ No persistent disk has been configured for Redis.
 Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/workers-metrics.png)
+![All of the metrics for the App-Horizon worker container](/images/metrics/workers-metrics.png) 
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
 
