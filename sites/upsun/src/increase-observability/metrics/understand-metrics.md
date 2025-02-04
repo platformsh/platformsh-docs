@@ -48,7 +48,7 @@ To select metrics for specific instances, click **Filter**.
 Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the app container](/images/metrics/app-container.png)
+![All of the metrics for the app container](/images/metrics/application-metrics.png)
 
 ### Service containers
 
@@ -59,23 +59,24 @@ Metrics graphs for the service containers show CPU, RAM, and disk allocation and
 Metrics graphs for the MySQL service container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the MySQL container](/images/observability/metrics/mysql-container.png)
+![All of the metrics for the MySQL container](/images/observability/metrics/mysql-metrics-1.png)
 
 #### Redis
 
 Metrics graphs for the Redis service container show CPU, RAM, disk allocation and usage.
 No persistent disk has been configured for Redis.
 
-![All of the metrics for the Redis container](/images/observability/metrics/redis-container.png)
+![All of the metrics for the Redis container](/images/observability/metrics/redis-metrics.png)
 
 ### Worker containers
 
 Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-worker-container.png)
+![All of the metrics for the App-Horizon worker container](/images/metrics/workers-metrics-1.png) 
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
+
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/schedule-worker-container.png)
+![All of the metrics for the App-Horizon worker container](/images/metrics/php-metrics.png)

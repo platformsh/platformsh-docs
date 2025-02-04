@@ -26,7 +26,7 @@ These metrics are available for all of your {{% names/dedicated-gen-3 %}} enviro
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
 
-![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-dashboard.png "0.45")
+![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-metrics-RAM.png "0.45")
 
 ## Default thresholds
 
