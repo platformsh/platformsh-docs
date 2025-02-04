@@ -13,6 +13,6 @@ Before you start, check out the [{{% vendor/name %}} demo app](https://console.u
 They provide all the core concepts and common commands you need to know before using the following materials.
 {{< /note >}}
 
- - [WordPress Composer](./composer.md)
- - [WordPress Bedrock](./bedrock.md)
- - [WordPress Vanilla](./vanilla.md)
+ - [WordPress Composer](/get-started/stacks/wordpress/composer.md)
+ - [WordPress Bedrock](/get-started/stacks/wordpress/bedrock.md)
+ - [WordPress Vanilla](/get-started/stacks/wordpress/vanilla.md)

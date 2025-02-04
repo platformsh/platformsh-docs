@@ -201,7 +201,7 @@ GET /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEG
 ## Available APIs
 
 Activity scripts can be written in ES2021 and don't support installing additional packages.
-There are a series of [utility functions you can reuse](./utility.md)
+There are a series of [utility functions you can reuse](/integrations/activity/utility.md)
 as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`

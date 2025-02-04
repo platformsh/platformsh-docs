@@ -228,8 +228,8 @@ All services have their system timezone set to UTC by default.
 For some services, you can change the timezone for the running service
 (this doesn't affect the container itself and so logs are still in UTC).
 
-* [MySQL](./mysql/_index.md#service-timezone)
-* [PostgreSQL](./postgresql.md#service-timezone)
+* [MySQL](/add-services/mysql/_index.md#service-timezone)
+* [PostgreSQL](/add-services/postgresql.md#service-timezone)
 
 ## Connect to a service
 
