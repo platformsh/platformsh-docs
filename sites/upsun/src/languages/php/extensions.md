@@ -79,7 +79,7 @@ but it takes slightly more work:
    It can also be added to your Git repository if the file isn't publicly downloadable,
    but committing large binary blobs to Git is generally not recommended.
 
-2. Load the extension using an absolute path by [customizing the PHP settings](./_index.md#customize-php-settings)
+2. Load the extension using an absolute path by [customizing the PHP settings](/languages/php/_index.md#customize-php-settings)
    For example, if the extension is named `spiffy.so` and is in your [app root](/create-apps/app-reference/single-runtime-image.md#root-directory),
    your configuration looks like the following:
 

@@ -14,7 +14,7 @@ This article describes how to configure major package management tools.
 
 This package management is different from global dependencies (packages available as commands),
 which you can add in your [app configuration](../../create-apps/_index.md).
-See more about [managing global dependencies](./_index.md#package-management).
+See more about [managing global dependencies](/languages/python/_index.md#package-management).
 
 ## Pip
 
@@ -219,7 +219,7 @@ applications:
          env:
            POETRY_VIRTUALENVS_IN_PROJECT: true
            POETRY_VIRTUALENVS_CREATE: true
-        
+
         hooks:
           build: |
             # Fail the build if any errors occur
@@ -227,7 +227,7 @@ applications:
             # Download the latest version of pip
             python{{% latest "python" %}} -m pip install --upgrade pip
             # Install dependencies
-            poetry install   
+            poetry install
 ```
     {{< /codetabs >}}
 

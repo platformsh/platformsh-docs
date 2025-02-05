@@ -16,7 +16,7 @@ and so can improve user engagement and retention.
 
 Fastly is the recommended CDN for {{% vendor/name %}} projects.
 Self-service projects don't include a CDN by default, but you can set up one at any time,
-such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
+such as [Fastly](/domains/cdn/fastly.md) or [Cloudflare](/domains/cdn/cloudflare.md).
 
 ## DNS records
 
@@ -24,8 +24,8 @@ To start routing client traffic through your CDN, [set up a custom domain](../st
 
 If you use `CNAME` records for your custom domain, these records [can't point to apex domains](../steps/dns.md).
 But most CDN providers offer workarounds.
-For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
-and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
+For example, Fastly offers [Anycast options](/domains/cdn/fastly.md#3-handle-apex-domains)
+and Cloudflare offers [`CNAME` flattening](/domains/cdn/cloudflare.md#3-handle-apex-domains).
 
 ## Host header forwarding
 
