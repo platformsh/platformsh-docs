@@ -579,7 +579,7 @@ Possible permissions:
 | Read-only   | `ro`          | Can select, create temporary tables, and see views. |
 | Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
 | Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
 
 ## Multiple databases
 
@@ -863,9 +863,9 @@ To ensure people who review code changes can't access personally identifiable in
 There is no on-site primary/replica support in your environments.
 
 In rare cases (such as for certain backup purposes),
-you can also enable [remote replication](./mysql-replication.md) to your own replica data.
+you can also enable [remote replication](/add-services/mysql/mysql-replication.md) to your own replica data.
 The replica isn't available to your application.
 
 ## Troubleshoot
 
-If you run into issues, [troubleshoot MySQL](./troubleshoot.md).
+If you run into issues, [troubleshoot MySQL](/add-services/mysql/troubleshoot.md).

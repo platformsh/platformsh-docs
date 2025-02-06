@@ -26,6 +26,7 @@ summaryLength: 3
 outputs:
     home:
       - HTML
+      - markdown
       - JSON
       - RSS
       - devcenter
@@ -33,7 +34,11 @@ outputs:
       - llms-full
     section:
       - HTML
+      - markdown
       - RSS
+    page:
+      - HTML
+      - markdown
 
 outputFormats:
   devcenter:
@@ -50,10 +55,17 @@ outputFormats:
     baseName: "llms-full"
     isPlainText: true
     permalinkable: true
+  markdown:
+    mediaType: "text/markdown"
+    isPlainText: true
+    permalinkable: true
+    baseName: index
 
 mediaTypes:
   text/plain:
     suffixes: ["txt"]
+  text/markdown:
+    suffixes: ["md"]
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:

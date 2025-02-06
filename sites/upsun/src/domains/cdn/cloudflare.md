@@ -5,7 +5,7 @@ sidebarTitle: "Cloudflare setup"
 description: Learn how to configure your Cloudflare CDN.
 ---
 
-You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
+You can [use a CDN](/domains/cdn/_index.md) to deliver your site's content to users more quickly.
 
 ## Before you begin
 
@@ -27,7 +27,7 @@ have your CDN point to your [project's target URL](../../domains/steps/_index.md
 ## 3. Handle apex domains
 
 To start routing client traffic through Cloudflare,
-you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md) 
+you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md)
 through your DNS provider.
 
 But `CNAME` records can't point to apex domains.
@@ -57,7 +57,7 @@ If you can't use mTLS, you can still take the following measures to protect your
 
 1. [Enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).</br>
    Any communication between a client and Cloudflare or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
-   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary.md#transport-layer-security-tls) 
+   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary.md#transport-layer-security-tls)
    was issued by a trusted certificate authority.
    This confirms the client is truly communicating with your {{% vendor/name %}} server.
 

@@ -80,7 +80,7 @@ Your app can connect to each service by referencing the exact same [environment
 | **Network Storage** | 2 |
 | **OpenSearch** | 2 |
 | **PostgreSQL** | 16, 15, 14, 13, 12 |
-| **RabbitMQ** | 3.13, 3.12 |
+| **RabbitMQ** | 3.13, 3.12, 4.0 |
 | **Redis** | 7.2, 7.0, 6.2 |
 | **Solr** | 9.6, 9.4, 9.2, 9.1, 8.11 |
 | **Vault KMS** | 1.12 |
