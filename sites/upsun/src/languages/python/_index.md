@@ -88,7 +88,7 @@ applications:
         start: python server.py
 ```
 You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
-See more about [running Python web servers](./server.md).
+See more about [running Python web servers](/languages/python/server.md).
 
 ### Use uWSGI
 
@@ -173,7 +173,7 @@ applications:
 
 Your app container comes with pip pre-installed.
 For more about managing packages with pip, Pipenv, and Poetry,
-see how to [manage dependencies](./dependencies.md).
+see how to [manage dependencies](/languages/python/dependencies.md).
 
 To add global dependencies (packages available as commands),
 add them to the `dependencies` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#dependencies):

@@ -21,7 +21,7 @@ This is typically caused by one of the following:
   while code path 2 first locks record B and then locks record A.
 * There is a long running background process executed by your application that holds the lock until it ends.
 
-If you're using [MariaDB 10+](./_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
+If you're using [MariaDB 10+](/add-services/mysql/_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
 
 ```sql
@@ -71,7 +71,7 @@ to learn about low disk space before it becomes an issue.
 `MySQL server has gone away` errors may be caused by the size of the database packets.
 If so, the logs may show warnings like `Error while sending QUERY packet` before the error.
 
-One way to resolve the issue is to use the [`max_allowed_packet` parameter](./_index.md#configure-the-database).
+One way to resolve the issue is to use the [`max_allowed_packet` parameter](/add-services/mysql/_index.md#configure-the-database).
 
 ### Worker timeout
 

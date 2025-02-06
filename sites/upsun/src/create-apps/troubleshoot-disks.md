@@ -11,7 +11,7 @@ you may receive a notification of low disk space.
 
 To solve this issue:
 
-* [Check mount usage](./troubleshoot-mounts.md#disk-space-issues)
+* [Check mount usage](/create-apps/troubleshoot-mounts.md#disk-space-issues)
 * [Check your database disk space](#check-your-database-disk-space) (if applicable)
 * [Increase the available disk space](#increase-available-disk-space) (if necessary)
 

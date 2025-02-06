@@ -5,7 +5,7 @@ description: Configure and use the Ruby continuous profiler.
 weight: 30
 ---
 
-{{< vendor/name >}} [Continuous Profiler](./cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
+{{< vendor/name >}} [Continuous Profiler](/increase-observability/application-metrics/cont-prof.md) is powered by [Blackfire](../../../increase-observability/application-metrics/blackfire.md).
 It is available directly the [Console](/administration/web/_index.md), under the **Profiling** tab of your environments.
 
 The Ruby continuous profiling is currently made across 3 dimensions:
