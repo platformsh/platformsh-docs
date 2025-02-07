@@ -326,7 +326,7 @@ though there may be a temporary wait.
 The response is often usually long, so the following examples are shortened using ellipses.
 Remember that the response differs depending on the activity and not all fields are always available.
 
-To test responses, [set up a webhook](./webhooks.md#setup).
+To test responses, [set up a webhook](/integrations/activity/webhooks.md#setup).
 
 ### Cron
 

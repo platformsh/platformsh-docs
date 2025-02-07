@@ -28,7 +28,7 @@ If more simultaneous requests are received than the number of workers,
 then some requests wait until worker processes are available.
 
 The default worker count is set to a conservative default value.
-To determine and set the optimal value for your app, see [PHP-FPM sizing](./fpm.md).
+To determine and set the optimal value for your app, see [PHP-FPM sizing](/languages/php/fpm.md).
 
 ## OPcache preloading
 
@@ -80,7 +80,7 @@ foreach ($regex as $key => $file) {
 
 ### Configure OPcache
 
-OPcache needs to be tuned before production usage and can be configured the [same way as PHP](./_index.md#customize-php-settings).
+OPcache needs to be tuned before production usage and can be configured the [same way as PHP](/languages/php/_index.md#customize-php-settings).
 
 Let the app run for a while before tuning OPcache
 since the preload script may change some of the configuration.

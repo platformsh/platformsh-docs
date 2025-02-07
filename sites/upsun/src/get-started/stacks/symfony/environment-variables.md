@@ -7,7 +7,7 @@ description: |
 ---
 
 By default, {{% vendor/name %}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
-If you're using the [Symfony integration](./integration),
+If you're using the [Symfony integration](/get-started/stacks/symfony/integration),
 more [infrastructure environment variables](#symfony-environment-variables) related to Symfony are defined.
 
 As Symfony relies heavily on environment variables to configure application services (such as the database or the mailer DSN),
@@ -40,7 +40,7 @@ The Symfony integration exposes more environment variables:
   It overrides the value configured in the `.env` file of your app.
 
 - `MAILFROM` is set to a random value.
-  This value is used as a `From` header when using [croncape](./crons#use-croncape).
+  This value is used as a `From` header when using [croncape](/get-started/stacks/symfony/crons#use-croncape).
 
 - `SYMFONY_IS_WORKER` is set to `1` when the container is running in the context of a worker
   (instead of the main application container).
@@ -54,7 +54,7 @@ The Symfony integration exposes more environment variables:
   {{< note title="Tip">}}
 
   This directory is shared by **all** builds on **all** branches.
-  Make sure your [build hook](./integration.md#hooks) accounts for that.
+  Make sure your [build hook](/get-started/stacks/symfony/integration.md#hooks) accounts for that.
 
   {{< /note >}}
 
@@ -90,7 +90,7 @@ The Symfony integration exposes more environment variables:
 
 ## Service environment variables
 
-When using the [Symfony integration](./integration), information about services
+When using the [Symfony integration](/get-started/stacks/symfony/integration), information about services
 are exposed via environment variables.
 
 To list all of the exposed environment variables, run the following command:
