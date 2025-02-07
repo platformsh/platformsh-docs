@@ -402,7 +402,6 @@ runtime:
 # The name of the service container. Must be unique within a project.
 redis:
   type: redis:{{% latest "redis" %}}
-  disk: 256
 ```
 
 #### [App configuration](/create-apps/_index.md)
