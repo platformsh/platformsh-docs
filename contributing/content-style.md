@@ -3,9 +3,7 @@
 Thank you for your interest in contributing to the Platform.sh docs!
 It's nice to share the goal of having clear and up-to-date documentation.
 
-This content style guide should help make sure the Platform.sh docs are clear and consistent.
-It's intended for use by all contributors,
-from Platform.sh engineers to people from the community.
+This content style guide should help make sure the Platform.sh docs are clear and consistent. It's intended for use by all contributors,from Platform.sh engineers to people from the community.
 
 <!-- vale Platform.condescending = NO -->
 ## Table of contents
@@ -41,10 +39,10 @@ from Platform.sh engineers to people from the community.
 
 The goal of Platform.sh's documentation is to help tech-savvy users self-educate
 on how to use and get the most out of Platform.sh.
-Readers are generally familiar with common web development tools and practices
-(such as Git, branching, web servers, and databases),
-but not necessarily with server administration.
-Make sure to provide enough context, potentially by linking to existing resources elsewhere.
+
+Readers are generally familiar with common web development tools and practices, but it's best not to assume an in-depth knowledge of processes related to Upsun or Platform.sh. Remember, our audience may be comprised of more than developers, so try to explain concepts as simply as possible.
+
+Make sure to provide enough context, potentially by linking to existing resources elsewhere. Try to include as many examples as you sit fit to demonstrate the process you're taking the user through.
 
 ## Style defaults
 
@@ -56,17 +54,15 @@ For a quick summary of that guide, see the [Google style guide highlights](https
 Platform.sh docs should be in standard U.S. spelling,
 with reference to the [Merriam-Webster dictionary](https://www.merriam-webster.com/).
 
-The name of the company is always written as "Platform.sh", not only "Platform".
-It shouldn't be used as a link.
+The name of the company is always written as "Platform.sh" or "Upsun", not only "Platform".
 
 ## Address the reader directly
 
-In keeping with the Platform.sh value that to "tell it like it is",
+In keeping with the Platform.sh value that is to "tell it like it is",
 focus texts on readers and talk to them directly.
 
 This means using the second person ("you") and telling them what to do.
-Unless you have a very good reason (such as an action that has to be done by Platform.sh manually),
-avoid the first person ("we", "us", and "our").
+Unless you have a very good reason (such as an action that has to be done by Platform.sh manually), avoid the first person ("we", "us", and "our").
 
 Use                                              | Avoid 
 -------------------------------------------------|-------
@@ -78,7 +74,7 @@ Part of this directness is also avoiding using `please`.
 Only use `please` if you're asking for something that benefits Platform.sh
 or inconveniences the reader.
 
-So it's OK in phrases like `If you get an error, please open a support ticket.`
+So it's okay in phrases like `If you get an error, please open a support ticket.`
 
 ## Aim for neutral text
 
@@ -119,7 +115,6 @@ To make your content as accessible as possible, the purpose of a link should be 
 Avoid links with text like `click here`
 and instead try to include meaning inside the link itself.
 
-Remember to use the [proper format for links](./markup-format.md#links)
 
 The supporting documentation for the Web Content Accessibility Guidelines
 explains [why link purpose in the text alone is good](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only).
@@ -128,10 +123,19 @@ Use                                                        | Avoid
 -----------------------------------------------------------|-------
 Read more information [about images](https://example.com)  | For more info on images, [click here](https://example.com)
 
+### Use root format for links
+
+Always define links from the root of the `sites/upsun/src` folder.
+
+Use                                                        | Avoid 
+-----------------------------------------------------------|-------
+'/development/variables/set-variables.md#set-variables-via-script'  | './set-variables.md#set-variables-in-your-app'
+
+Formatting our links this way allows for our content to easily be converted to markdown. It also allows our content to be easily interpreted by any large language models that might be used. This is a way of ensuring our content remains AI-friendly.
+
 ### Link at the end of sentences in sentence case
 
-Readers often scan through text looking for links and other important information.
-Having links in the middle of sentences can make them harder to parse.
+Readers often scan through text looking for links and other important information. Having links in the middle of sentences can make them harder to parse.
 
 Put links at the end of sentences and keep them in sentence case.
 
