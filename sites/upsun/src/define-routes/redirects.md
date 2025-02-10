@@ -10,7 +10,7 @@ You can manage redirection rules on your {{% vendor/name %}} projects in two dif
 
 ## Whole-route redirects
 
-Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](./_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
+Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
 
 ```yaml {configFile="app"}
 routes:
@@ -21,7 +21,7 @@ routes:
 
 ## Partial redirects
 
-In the [`{{< vendor/configfile "routes" >}}`](./_index.md) file you can also add partial redirect rules to existing routes:
+In the [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file you can also add partial redirect rules to existing routes:
 
 ```yaml {configFile="app"}
 routes:

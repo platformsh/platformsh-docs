@@ -41,16 +41,16 @@ The **configurator** enables the following integration:
 - It adds some [extra tools](#tools)
 
 - It defines [additional infrastructure environment
-variables](./environment-variables#symfony-environment-variables) and
+variables](/get-started/stacks/symfony/environment-variables#symfony-environment-variables) and
 [environment variables for all
-services](./environment-variables#service-environment-variables)
+services](/get-started/stacks/symfony/environment-variables#service-environment-variables)
 
 ## Tools
 
 The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator | bash`) is a script specially crafted for {{% vendor/name %}}.
 It ensures that projects are always using the latest version of the following tools:
 
-- [croncape](./crons#use-croncape) for cron feedback
+- [croncape](/get-started/stacks/symfony/crons#use-croncape) for cron feedback
 - [Symfony CLI](https://symfony.com/download)
 - [Composer](https://getcomposer.org/download/)
 

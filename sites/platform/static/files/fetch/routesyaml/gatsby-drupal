@@ -1,0 +1,19 @@
+https://api.{default}/:
+  type: upstream
+  upstream: "drupal:http"
+  id: "api"
+  cache:
+    enabled: true
+    cookies: ['/^SS?ESS/', '/^Drupal.visitor/']
+https://www.api.{default}/:
+  type: redirect
+  to: "https://api.{default}/"
+
+"https://www.{default}/":
+    type: upstream
+    upstream: "gatsby:http"
+    primary: true
+
+"https://{default}/":
+    type: redirect
+    to: "https://www.{default}/"

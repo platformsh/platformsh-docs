@@ -5,7 +5,7 @@ sidebarTitle: "Cloudflare setup"
 description: Learn how to configure your Cloudflare CDN.
 ---
 
-You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
+You can [use a CDN](/domains/cdn/_index.md) to deliver your site's content to users more quickly.
 
 ## Before you begin
 

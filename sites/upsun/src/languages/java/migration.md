@@ -27,7 +27,7 @@ To run a Java application at {{% vendor/name %}} you need:
 
 {{< note >}}
 A container application can't be bigger than **8 GB** of memory.
-For more details, see [tuning](./tuning.md).
+For more details, see [tuning](/languages/java/tuning.md).
 {{< /note >}}
 
 ## Monolith/Single Application

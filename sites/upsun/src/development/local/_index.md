@@ -15,10 +15,10 @@ This ensures the changes you make locally appear as they would on your {{% vendo
 It also means you don't have to worry about configuring your machine with
 the various dependencies, certificates, and connections your app needs to run.
 
-The **recommended tool** for local development with {{% vendor/name %}} is **[DDEV](./ddev.md)**.
+The **recommended tool** for local development with {{% vendor/name %}} is **[DDEV](/development/local/ddev.md)**.
 The integration with DDEV is maintained by {{% vendor/name %}} to ensure it works smoothly.
 
-If you choose to use DDEV, follow the steps [on its page](./ddev.md). Otherwise, follow these steps to run your app on your computer.
+If you choose to use DDEV, follow the steps [on its page](/development/local/ddev.md). Otherwise, follow these steps to run your app on your computer.
 
 ## Before you begin
 
@@ -58,9 +58,9 @@ For more information, see how to [connect services](../../add-services#2-define-
 
 If your app requires services to run, you have two options for developing locally:
 
-- [Tethered local development](./tethered.md) involves running your app on a local web server
+- [Tethered local development](/development/local/tethered.md) involves running your app on a local web server
   but keeping all other services on {{% vendor/name %}} and connecting to them over an SSH tunnel.
-- [Untethered local development](./untethered.md) involves running your entire site locally,
+- [Untethered local development](/development/local/untethered.md) involves running your entire site locally,
   including all services.
 
 Choose the option that works for you and get your services running.
