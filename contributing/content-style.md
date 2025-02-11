@@ -37,8 +37,7 @@ This content style guide should help make sure the Platform.sh docs are clear an
 
 ## About the audience
 
-The goal of Platform.sh's documentation is to help tech-savvy users self-educate
-on how to use and get the most out of Platform.sh.
+The goal of Platform.sh and Upsun's documentation is to help tech-savvy users self-educate on how to use and get the most out of Platform.sh.
 
 Readers are generally familiar with common web development tools and practices, but it's best not to assume an in-depth knowledge of processes related to Upsun or Platform.sh. Remember, our audience may be comprised of more than developers, so try to explain concepts as simply as possible.
 
@@ -76,6 +75,13 @@ or inconveniences the reader.
 
 So it's okay in phrases like `If you get an error, please open a support ticket.`
 
+{{< note theme="info" title="Using first person in articles" >}}
+ It should be noted that the first person plural ("we", "us", and "our") can be used in articles on DevCenter. The style of this content is more conversational in tone, and suits the use of the collective first person when guiding the user through a process.
+ For example, the sentences below are acceptable for articles:
+ - 'Our content will be loaded directly in the assistant on OpenAI.'
+ - 'Now that our Chainlit application is deployed and available, it would be great to add some form of authentication to make sure only you and your folks can access it.'
+   {{< /note >}}
+
 ## Aim for neutral text
 
 In general, aim to present facts without inserting too much opinion.
@@ -86,6 +92,12 @@ Use                                             | Avoid
 ------------------------------------------------|-------
 Be careful not to break anything                | Of course, you naturally have to avoid breaking anything
 Making this small change can have large effects | Surprisingly, making this tiny change can have huge effects
+
+   {{< note theme="info" title="Using neutral text in articles" >}}
+
+ It should be noted that the technical articles on DevCenter are allowed less neutrality than the documentation, as this content is naturally more conversational in tone. 
+
+   {{< /note >}}
 
 ## Use inclusive language
 
@@ -209,7 +221,7 @@ By avoiding overly wordy phrases, you help make it clearer what needs to be done
 
 For example, try to avoid using sentences starting with `There is/are` or `It is` too often.
 While there are times when this makes sense, often you can rephrase the sentence to be more direct.
-Such phrases work well for rhythm and emphasis, but that is usually less important in technical writing.
+Such phrases work well for rhythm and emphasis, but that is usually less important in technical writing for both documentation and technical blogs or articles.
 
 Similar arguments apply to passive sentences.
 Sometimes, they work well, such as when the subject would be `the system`
