@@ -145,8 +145,7 @@ routes:
 This configuration is similar to the deployment process for [Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html). 
 ## Variables
 
-Next, the `project:init` command created a `.environment` file for us, containing environment variables for our two
-services (MariaDB and Redis). Append the following Drush configuration to the bottom of that file:
+The `project:init` command created a `.environment` file containing environment variables for the two services (MariaDB and Redis). Now append the following Drush configuration to the bottom of that file:
 
 ```bash {location=".environment"}
 # Allow executable app dependencies from Composer to be run from the path.
@@ -322,8 +321,8 @@ Fill out the `drush/upsun_deploy_drupal.sh` with the following:
 ```bash {location="drush/upsun_deploy_drupal.sh"}
 #!/usr/bin/env bash
 #
-# We don't want to run drush commands if drupal isn't installed.
-# Similarly, we don't want to attempt to run config-import if there aren't any config files to import
+# Don't run drush commands if drupal isn't installed.
+# Don't run config-import if there aren't any config files to import
 
 if [ -n "$(drush status --field=bootstrap)" ]; then
   drush -y cache-rebuild
