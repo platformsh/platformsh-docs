@@ -11,20 +11,27 @@ description: |
 {{< note title="Note" theme="info" >}}
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all of the core concepts and common commands you need to know before using the materials below.
+
+It should also be noted that this guide works for the following variations of Drupal:
+
+- [v10.x](https://www.drupal.org/project/drupal/releases/10.3.12)
+
+- [v11.x](https://www.drupal.org/project/drupal/releases/11.1.2)
+
+- [CMS](https://new.drupal.org/docs/drupal-cms/get-started/install-drupal-cms)
+
 {{< /note >}}
 
-In general this guide should work for most variations of Drupal (
-[v10.x](https://www.drupal.org/project/drupal/releases/10.3.12),
-[v11.x](https://www.drupal.org/project/drupal/releases/11.1.2),
-[CMS](https://new.drupal.org/docs/drupal-cms/get-started/install-drupal-cms)). With that mind, it assumes you already
-have the Drupal files in a repository, have a local copy of that repository, and selected both `Redis` and `MariaDB`
-during the [Configure your project](/get-started/here/configure) portion of the
-[Getting Started](/get-started/here) guide.
 
 For Drupal to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here)**,
 you still need to make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="Drupal" %}}
+In addition to the above, you should also have: 
+
+- The Drupal files in a repository
+
+-  A local copy of that repository where you have selected both `Redis` and `MariaDB` during the [Configure your project](/get-started/here/configure) portion of the[Getting Started](/get-started/here) guide
 
 ## Configure
 
@@ -135,10 +142,7 @@ routes:
         to: "https://{default}/"
 ```
 
-This configuration is identical to what we've recommended for deploying
-[Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), just
-[updating for the few differences seen in Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html).
-
+This configuration is similar to the deployment process for [Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html). 
 ## Variables
 
 Next, the `project:init` command created a `.environment` file for us, containing environment variables for our two
@@ -164,7 +168,7 @@ if (getenv('PLATFORM_APPLICATION') && file_exists(__DIR__ . '/settings.upsun.php
 
 ## Upsun-specific settings
 Then create a new Upsun-specific settings file `web/sites/default/settings.upsun.php` that leverages the variables
-defined in `.environment` that contains the following:
+defined in `.environment`. This file should contain the following:
 
 ```php {location="web/sites/default/settings.upsun.php"}
 <?php
@@ -292,7 +296,7 @@ $settings['trusted_host_patterns'] = ['.*'];
 ```
 
 ## `config/sync`
-Create the `config/sync` empty directory referenced in this settings file:
+Create the `config/sync` empty directory referenced in the settings file:
 
 ```bash {location="Terminal"}
 mkdir -p config/sync && touch config/sync/.gitkeep
@@ -300,15 +304,14 @@ mkdir -p config/sync && touch config/sync/.gitkeep
 
 ## Configuration reader
 
-Install the helpful [Config Reader library](https://github.com/platformsh/config-reader-php), which is required, and
-will help us to pull routing details for each environment into our settings (highlighted in the snippet in the next step).
+Install the required [Config Reader library](https://github.com/platformsh/config-reader-php).
+This will help us to pull routing details for each environment into our settings (highlighted in the snippet in the next step).
 
 ```bash
 composer require platformsh/config-reader
 ```
 ## Drush
-Lastly, we need to create some files referenced in `.upsun/config.yaml` to configure Drush so it can be used within the
-Upsun container.
+To configure Drush, use the following command to create the files that will be referenced in the configuration process. This process will allow Drush to be used within the Upsun container.
 
 ```bash {location="Terminal"}
 mkdir drush && touch drush/upsun_deploy_drupal.sh && touch drush/upsun_generate_drush_yml.php
@@ -429,7 +432,7 @@ if (!chmod($filename, 0600)) {
 echo "Created Drush configuration file: $filename\n";
 ```
 
-You can now commit all of the above changes and push to {{% vendor/name %}}.
+Now commit all of the above changes and push to {{% vendor/name %}}.
 
 ```bash {location="Terminal"}
 git add .
