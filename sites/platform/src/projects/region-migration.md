@@ -145,6 +145,12 @@ Once the new project is running and the DNS has fully propagated, delete the old
 
 ## Alternative process
 
+You can leverage the tool we opened to our users to clone your project from region to another.
+This project is not directly supported by Platform.sh support team, but you can open issues on the repository directly.
+The project can be found in our github organization: [ClonSun](https://github.com/upsun/clonsun).
+You will be able to migrate most of your project from one region to another, the remaining step being to update move your domain from 
+one region to the other and update your DNS records.
+
 Although not directly supported by {{% vendor/name %}},
 an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.
 This script automates most common configurations.
