@@ -81,7 +81,7 @@ jobs:
           artifact="false"
           sizeOfMessage=$(cat broken_links.md | wc -c)
           # the size of a comment in an issue is 65536
-          if [ "${sizeOfMessage}" -gt 650000 ]; then
+          if [ "${sizeOfMessage}" -gt 65000 ]; then
             # we'll need to store the broken_links.md file as an aritifact
             artifact="true"
           fi
