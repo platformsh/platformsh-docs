@@ -40,9 +40,9 @@ Using the CLI, run the following commands to set the configuration on your produ
 (Note that they inherit to all other environments by default unless overridden.)
 
 ```bash
-{{% vendor/cli %}} variable:create -e main --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
-{{% vendor/cli %}} variable:create -e main --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
-{{% vendor/cli %}} variable:create -e main --level environment env:FASTLY_KEY --value 'YOUR_TOKEN_HERE'
+ibexa_cloud variable:create -e main --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
+ibexa_cloud variable:create -e main --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
+ibexa_cloud variable:create -e main --level environment env:FASTLY_KEY --value 'YOUR_TOKEN_HERE'
 ```
 
 Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly.
@@ -50,9 +50,9 @@ Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly
 Note: On a {{% names/dedicated-gen-2 %}} cluster, set those values on the `production` branch:
 
 ```bash
-{{% vendor/cli %}} variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
-{{% vendor/cli %}} variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
-{{% vendor/cli %}} variable:set -e production env:FASTLY_KEY YOUR_TOKEN_HERE
+ibexa_cloud variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
+ibexa_cloud variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
+ibexa_cloud variable:set -e production env:FASTLY_KEY YOUR_TOKEN_HERE
 ```
 
 ## Setup the correct VCL files
