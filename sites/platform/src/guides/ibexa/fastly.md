@@ -13,9 +13,9 @@ description: |
 In Ibexa DXP, Varnish is enabled by default when deploying on {{% vendor/name %}}
 To use Fastly, Varnish must be disabled:
 
-- Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`{{< vendor/configfile "app" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
-- Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
-- In [`{{< vendor/configfile "routes" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
+- Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`{{< vendor/configfile "app" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/ibexa-commerce/4.6/.platform.app.yaml#L66)
+- Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/common/4.6/.platform/services.yaml#L80-L87)
+- In [`{{< vendor/configfile "routes" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/common/4.6/.platform/routes.yaml#L3),
    change routes to use `myapp` instead of the `varnish` service you removed in previous step:
 
 ```diff
