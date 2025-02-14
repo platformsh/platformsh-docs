@@ -1,7 +1,11 @@
 <!-- Edit page button link -->
-<div class="mb-6">
+<div class="hidden md:block mb-6 mr-2 text-right">
   {{ $editLocation := printf "%sedit/main/%s/src/%s" site.Params.repo site.Params.folder .File.Path }}
-  <a href="{{ $editLocation }}" rel="noopener" class="print:hidden text-sm {{ partial "pink-button-styles" }}">
-    Edit page <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+  <a href="{{ $editLocation }}" rel="noopener" class="print:hidden font-semibold bg-gray-400 text-white hover:bg-ebony focus:bg-ebony pl-4 pr-3 py-2 font-['Space_Grotesk'] text-xs rounded-full inline-flex items-center gap-2">
+    
+    Edit page<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline">
+      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+      <path d="m15 5 4 4"/>
+    </svg>
   </a>
 </div>
