@@ -30,7 +30,7 @@
     {{ if gt $prefixLen 0 }}
         {{ $fullFile = delimit ( slice $prefixdir (index $configFiles .) ) "/" }}
     {{ end }}
-<div class="bg-stone px-4 pt-2 rounded-tr-lg inline-block text-base relative">
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative">
     <span class="relative z-10">{{ $fullFile }}</span>
     <div class="absolute bottom-[-0.5rem] left-0 w-full h-4 bg-stone"></div>
 </div>
