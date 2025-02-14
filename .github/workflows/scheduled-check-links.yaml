@@ -74,15 +74,48 @@ jobs:
         run: |
           echo "::notice::No broken links were detected"
 
-      - name: Create issue from Markdown file
+      - name: check message size
+        id: check-msg-size
+        if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        run: |
+          artifact="false"
+          sizeOfMessage=$(cat broken_links.md | wc -c)
+          # the size of a comment in an issue is 65536
+          if [ "${sizeOfMessage}" -gt 650000 ]; then
+            # we'll need to store the broken_links.md file as an aritifact
+            artifact="true"
+          fi
+
+          echo "artifact=${artifact}" >> $GITHUB_ENV
+
+      - name: Upload artifact if applicable
+        id: upload-artifact
+        if: ${{ steps.run-link-checker.outcome == 'failure' && env.artifact == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: broken-links
+          path: |
+            ${{ github.action_path }}/broken_links.md
+
+      - name: Create issue
         id: create-issue
         if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        env:
+          ARTIFACT: ${{ env.artifact }}
         uses: actions/github-script@v6
         with:
           script: |
+            const { ARTIFACT } = process.env
             var fs = require('fs');
-            var bodyMsg = fs.readFileSync('broken_links.md','utf8');
+            //
             failMsg = ':bug: Broken links detected'
+
+            if ('true' == ARTIFACT) {
+              address = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}#artifacts`
+              var bodyMsg = `Visual Regression Testing failed. Please view the report artifact at ${address}`
+            } else {
+              var bodyMsg = fs.readFileSync('broken_links.md','utf8');
+            }
 
             github.rest.issues.create({
               owner: context.repo.owner,
