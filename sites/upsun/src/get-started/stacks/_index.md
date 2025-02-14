@@ -1,5 +1,5 @@
 ---
-title: Frameworks
+title: How to deploy
 weight: -80
 layout: single
 # aliases:
