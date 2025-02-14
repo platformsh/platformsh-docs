@@ -131,9 +131,9 @@ const Search = ({ fullPage }) => {
           <input
             id={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}
             value={query}
-            placeholder="What are you looking for?"
+            placeholder="Can we help you find something?"
             onChange={handleInputChange}
-            className={`bg-no-repeat bg-[length:15px_15px] bg-left-4 h-16 w-full pl-12 text-slate border-none focus-visible:outline-none ${fullPage ? 'bg-grey' : ''}`}
+            className={`bg-no-repeat bg-[length:15px_15px] bg-left-4 h-16 w-full pl-12 text-slate rounded border-none focus-visible:outline-none ${fullPage ? 'bg-grey' : ''}`}
             style={{ 'background-image': 'url(/images/svg/search-solid.svg)' }}
             autoComplete="off"
           />
