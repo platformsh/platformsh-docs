@@ -32,7 +32,7 @@
   <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:h-[calc(100vh-6rem)] md:overflow-y-auto border-t border-stone">
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4 [&_nav_ul>li]:mb-2 [&_nav_ul_ul>li]:mt-2">
 
         {{ if not .context.Page.IsHome }}
         <h3 class="pt-4 pb-2 font-light text-base text-slate"><a href="/">Back to home</a></h3>
