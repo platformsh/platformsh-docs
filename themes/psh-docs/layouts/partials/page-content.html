@@ -18,9 +18,24 @@
 <!-- If the feature is in beta -->
 {{ partial "beta-flag/banner.html" .context }}
 
-{{ if ne .context.Params.editPage false }}
-  {{ partial "editpagebutton.html" .context }}
-{{ end }}
+<div class="flex justify-end mr-4">
+  <!-- Add a Button to open the Markdown version of this page (Upsun only) -->
+  {{ if and ( eq .context.Site.Params.vendor.config.version 2 ) ( ne .context.Page.RelPermalink "/" ) }}
+  <div class="hidden md:block mb-6 mr-2 text-right">
+    <a href="{{ if eq .context.Page.RelPermalink "/" }}/index.md{{ else }}{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}{{ end }}"
+        class="print:hidden font-semibold bg-skye text-white hover:bg-skye-dark focus:bg-skye-dark px-4 py-2 font-['Space_Grotesk'] text-xs rounded-full inline-flex items-center gap-2"
+        title="Open this page in a markdown format. This format is easier for AI and other tools to read."
+        target="_blank">
+      View in markdown
+    </a>
+  </div>
+  {{ end }}
+
+  <!-- Edit page button link -->
+  {{ if ne .context.Params.editPage false }}
+    {{ partial "editpagebutton.html" .context }}
+  {{ end }}
+</div>
 
 <!-- Page title -->
 {{ if ne .context.Params.showTitle false }}
@@ -102,17 +117,6 @@
     </div>
     {{ end }}
 
-    <!-- Add a Button to open the Markdown version of this page (Upsun only) -->
-    {{ if ( eq .context.Site.Params.vendor.config.version 2 ) }}
-      <div class="justify-start border border-stone border-t-0 px-4 pt-10 pb-4 mb-12 md:mb-0 bottom-0 text-sm [&_a]:text- hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
-        <a href="{{ if eq .context.Page.RelPermalink "/" }}/index.md{{ else }}{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}{{ end }}"
-           class="px-6 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-3xl text-white text-center text-sm font-semibold"
-           title="View this page in a Markdown format"
-           target="_blank">
-          View Markdown version
-        </a>
-      </div>
-    {{ end }}
   </div>
 
   <div class="prose xl:prose-lg max-w-[96vw] md:max-w-full w-full prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
