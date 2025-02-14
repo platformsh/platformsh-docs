@@ -148,7 +148,7 @@ Once the new project is running and the DNS has fully propagated, delete the old
 **These tools are not directly supported by {{% vendor/name %}} support team, but you can open issues in their respective repositories directly.**
 
 You can leverage the tool we opened to our users to clone your project from region to another.
-This tool can be found in our github organization: [ClonSun](https://github.com/upsun/clonsun).
+This tool can be found in our Github organization: [ClonSun](https://github.com/upsun/clonsun).
 You will be able to migrate most of your project from one region to another, the remaining step being to move your domain from 
 one region to the other (or at the CDN level) and update your DNS records.
 
