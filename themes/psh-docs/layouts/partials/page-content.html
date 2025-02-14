@@ -20,7 +20,7 @@
 
 <div class="flex justify-end mr-4">
   <!-- Add a Button to open the Markdown version of this page (Upsun only) -->
-  {{ if ( eq .context.Site.Params.vendor.config.version 2 ) }}
+  {{ if and ( eq .context.Site.Params.vendor.config.version 2 ) ( ne .context.Page.RelPermalink "/" ) }}
   <div class="hidden md:block mb-6 mr-2 text-right">
     <a href="{{ if eq .context.Page.RelPermalink "/" }}/index.md{{ else }}{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}{{ end }}"
         class="print:hidden font-semibold bg-skye text-white hover:bg-skye-dark focus:bg-skye-dark px-4 py-2 font-['Space_Grotesk'] text-xs rounded-full inline-flex items-center gap-2"
