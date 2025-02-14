@@ -1,19 +1,4 @@
-<!-- Page banners -->
-{{ if ( eq (string .context.Site.Params.vendor.config.version) "1" )}}
-{{ partial "banners/banner.html" .context }}
-{{ else if and ( ne (string .context.Page.Params.banner.type) "tiered-feature" ) ( ne (string .context.Page.Params.banner.type) "observability-suite" )}}
-{{ partial "banners/banner.html" .context }}
-{{ end }}
 
-<!-- Tier-gated features -->
-{{ if eq (string .Site.Params.vendor.config.version) "1"}}
-{{ partial "tiered-features/banner.html" .context }}
-{{ end }}
-
-<!-- If the feature is part of the Observability Suite -->
-{{ if eq (string .Site.Params.vendor.config.version) "1"}}
-{{ partial "observability-suite/banner.html" .context }}
-{{ end }}
 
 <!-- If the feature is in beta -->
 {{ partial "beta-flag/banner.html" .context }}
@@ -125,6 +110,23 @@
       {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
         {{ partial "get-started/stack-picker" }}
       {{ end }}
+    {{ end }}
+
+    <!-- Page banners -->
+    {{ if ( eq (string .context.Site.Params.vendor.config.version) "1" )}}
+    {{ partial "banners/banner.html" .context }}
+    {{ else if and ( ne (string .context.Page.Params.banner.type) "tiered-feature" ) ( ne (string .context.Page.Params.banner.type) "observability-suite" )}}
+    {{ partial "banners/banner.html" .context }}
+    {{ end }}
+
+    <!-- Tier-gated features -->
+    {{ if eq (string .Site.Params.vendor.config.version) "1"}}
+    {{ partial "tiered-features/banner.html" .context }}
+    {{ end }}
+
+    <!-- If the feature is part of the Observability Suite -->
+    {{ if eq (string .Site.Params.vendor.config.version) "1"}}
+    {{ partial "observability-suite/banner.html" .context }}
     {{ end }}
 
     <!-- Page content, anchorized -->
