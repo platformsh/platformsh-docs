@@ -26,10 +26,17 @@ jobs:
           pip3 install linkchecker
 
       - name: checkout xml to markdown
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: platformsh/linkchecker-xml2md
 
+      - name: checkout linkchecker config
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            linkcheckerrc
+          sparse-checkout-cone-mode: false
+          path: linkchecker
       - name: install-parser
         run: |
           pip3 install -r requirements.txt
@@ -57,7 +64,7 @@ jobs:
         run: |
           echo "::notice::Scanning ${{ inputs.url }} for broken links."
           # if linkchecker exits with a non-zero then it means broken links were found.
-          scan=$(linkchecker ${{ env.scanURL }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="support.blackfire.io/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
+          scan=$(linkchecker ${{ env.scanURL }} -f ./linkchecker/linkcheckerrc -F xml/utf_8/brokenlinks.xml )
           result=$?
           if [[ $result -ne 0 ]]; then
             echo "::notice::Broken links detected."
@@ -80,6 +87,7 @@ jobs:
         run: |
           artifact="false"
           sizeOfMessage=$(cat broken_links.md | wc -c)
+          echo "::notice::Size of report: ${sizeOfMessage}"
           # the size of a comment in an issue is 65536
           if [ "${sizeOfMessage}" -gt 65000 ]; then
             # we'll need to store the broken_links.md file as an aritifact
@@ -95,7 +103,7 @@ jobs:
         with:
           name: broken-links
           path: |
-            ${{ github.action_path }}/broken_links.md
+            ./broken_links.md
 
       - name: Create issue
         id: create-issue
@@ -112,7 +120,7 @@ jobs:
 
             if ('true' == ARTIFACT) {
               address = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}#artifacts`
-              var bodyMsg = `Visual Regression Testing failed. Please view the report artifact at ${address}`
+              var bodyMsg = `Broken links found. Please view the report artifact at ${address}`
             } else {
               var bodyMsg = fs.readFileSync('broken_links.md','utf8');
             }

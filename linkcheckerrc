@@ -1,0 +1,21 @@
+[checking]
+threads=5
+useragent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+maxrequestspersecond=5
+
+[output]
+warnings=0
+
+[filtering]
+checkextern=1
+ignore=
+    ^https://github.com/platformsh*
+    console.platform.sh/projects/*
+    support.blackfire.io/*
+    cloud.orange-business.com/*
+    developers.cloudflare.com/*
+    discord.com/*
+    pptr.dev/*
+    mvnrepository.com/*
+    https://dev.mysql.com/doc/refman/en/
+    https://www.microsoft.com/en-us/trust-center/privacy/data-management
