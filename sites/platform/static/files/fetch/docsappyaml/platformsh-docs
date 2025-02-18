@@ -28,7 +28,7 @@ hooks:
 # The configuration of the application when it is exposed to the web.
 web:
     commands:
-      # Run (404) error handler 
+      # Run (404) error handler
       start: node 404.js
     locations:
         '/':
@@ -44,10 +44,5 @@ web:
                     expires: 4w
 
 disk: 1024
-
-mounts:
-  "public/scripts/xss/dist/config":
-      source: local
-      source_path: "config"
 
 size: S

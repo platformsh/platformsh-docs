@@ -32,7 +32,6 @@
             ./build_docs.sh
         deploy: |
             cd $SITE_DIR
-            ./deploy.sh
             bash ./marker.sh "deployed" "${SITE_DIR}"
         post_deploy:
           cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
@@ -56,11 +55,6 @@
                         expires: 4w
 
     disk: 1024
-
-    mounts:
-        "sites/platform/public/scripts/xss/dist/config":
-            source: local
-            source_path: "sites/platform/config"
 
     size: S
 
@@ -97,7 +91,6 @@
             ./build_docs.sh
         deploy: |
             cd $SITE_DIR
-            ./deploy.sh
             bash ./marker.sh "deployed" "${SITE_DIR}"
         post_deploy:
           cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
@@ -122,10 +115,5 @@
                       headers:
                         Content-Type: text/markdown
     disk: 1024
-
-    mounts:
-        "sites/upsun/public/scripts/xss/dist/config":
-            source: local
-            source_path: "sites/upsun/config"
 
     size: S
