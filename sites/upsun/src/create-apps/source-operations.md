@@ -17,7 +17,7 @@ related:
 ---
 
 On {{% vendor/name %}}, you can run automated code updates through a feature called **source operations**.
-Defined in your [app configuration](./_index.md), source operations let you specify commands
+Defined in your [app configuration](/create-apps/_index.md), source operations let you specify commands
 that can commit changes to your project's repository when called.
 
 For example, you can set up a source operation to [automatically update your application dependencies](/learn/tutorials/dependency-updates.md),

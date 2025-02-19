@@ -92,6 +92,6 @@ export QUEUE_CONNECTION="redis"
 ```
 
 For more information, see the [Laravel Queues documentation](https://laravel.com/docs/master/queues)
-and {{% vendor/name %}}'s [Horizon configuration page](./laravel-horizon).
+and {{% vendor/name %}}'s [Horizon configuration page](/get-started/stacks/laravel/laravel-horizon).
 
 {{< guide-buttons previous="Back" next="Handle queues with Horizon" nextLink="/get-started/stacks/laravel/laravel-horizon.md" type="*" >}}

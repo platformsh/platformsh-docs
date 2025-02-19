@@ -1,0 +1,14 @@
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going
+# to be processed by Platform.sh.
+# More information: https://docs.platform.sh/define-routes.html
+"https://{default}/":
+  type: upstream
+  upstream: "app:http"
+
+# A basic redirect definition
+# More information: https://docs.platform.sh/define-routes.html#basic-redirect-definition
+"https://www.{default}/":
+  type: redirect
+  to: "https://{default}/"

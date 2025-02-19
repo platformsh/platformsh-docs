@@ -115,8 +115,6 @@ https://{default}/:
       "/overview/environments(.*)":  { "to": "/environments$1", "code": 301, "regexp": true }
       "/overview/projects(.*)":  { "to": "/projects$1", "code": 301, "regexp": true }
 
-      # Changelog removal in June 2022 (link updated in August)
-      "/other/changelog.html": { "to": "https://next.platform.sh/", "code": 301 }
 
       # Move CLI from Development to Administration in August 2022
       "/development/cli(.*)":  { "to": "/administration/cli$1", "code": 301, "regexp": true }
@@ -258,9 +256,12 @@ https://{default}/:
       # YAML redirect after Learn section was created (September 2023)
       "/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
 
+      #Changelog to Feature requests page
+      "/changelog.html" : { "to": "/request-features.html", "code": 301 }
+
       # Splitting 'other' section into proper top-level items within Reference.
       "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
-      "/changelog.html" : { "to": "https://next.platform.sh/", "code": 301 }
+     
 
       # Change of URL for the custom domains on preview environments page
       "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }

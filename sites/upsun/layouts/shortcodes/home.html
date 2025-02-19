@@ -8,10 +8,8 @@
     <p>Resources to help you customize, experiment, and optimize all from one platform.</p>
 
     <div style="margin-top: 3rem;">
-        <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
-        href="/get-started/here.html" rel="noopener">Get started</a>
-        <a class="info-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
-        href="/learn/overview.html" rel="noopener">What is {{ .Site.Params.vendor.name }}?</a>
+        <a href="/get-started/here.html" class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark" rel="noopener">Get started</a>
+        <a href="/learn/overview.html" class="info-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark" rel="noopener">What is {{ .Site.Params.vendor.name }}?</a>
     </div>
 
 
@@ -37,22 +35,17 @@
 
     .start-cta {
         color: white !important;
-        /* color: #191C1E !important; */
         text-decoration: none !important;
         font-size: 16px !important;
         font-weight: 700 !important;
         letter-spacing: 0.48px !important;
         background: #6046FF !important;
-        /* background: #FFBDBB!important; */
         padding: 10px 16px !important;
-        margin-right: 1rem;
-        border-radius: 0px !important;
         border-radius: 80px !important;
+        display: inline-block !important;
     }
     .start-cta:hover {
         background: #4D38CC !important;
-        /* background: #FF9F9F !important; */
-        /* color: #191C1E !important; */
         color: white !important;
     }
 
@@ -64,10 +57,12 @@
         letter-spacing: 0.48px !important;
         background: white !important;
         padding: 10px 16px !important;
+        margin: 0.5rem !important;
         border-radius: 80px !important;
-        /* border-radius: 0px !important; */
         border: 2px solid #191C1E;
         border-color: #191C1E !important;
+        display: inline-block !important;
+        white-space: nowrap !important;
     }
     .info-cta:hover {
         background: #191C1E !important;

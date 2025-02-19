@@ -5,7 +5,7 @@ description: See how to restore an environment from a previous state.
 weight: -10
 ---
 
-Once you have [backups of your environment](./backup.md), you can restore data from a previous point.
+Once you have [backups of your environment](/environments/backup.md), you can restore data from a previous point.
 
 To restore an environment, you need an [Admin role for that environment type](../administration/users.md).
 
@@ -61,7 +61,7 @@ title=Using the CLI
 +++
 
 1. Run the following command:
-   
+
    ```bash
    {{% vendor/cli %}} backup:restore {{< variable "BACKUP_ID" >}}
    ```
@@ -102,15 +102,15 @@ Also, see [how resource allocation works](/manage-resources/resource-init.html#b
 You can restore backups to a different environment than they were created on using the CLI:
 
 1. Switch to the branch where the backup was created.
-2. To restore your backup to an existing environment, run the following command: 
+2. To restore your backup to an existing environment, run the following command:
 
    ```bash
    {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_ENVIRONMENT_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
-   
+
    If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary.md#branch).
    The new target environment will be an exact copy of the existing (parent) environment.
-   
+
    To do so, use the `--branch-from` option to specify the parent of your new target environment:
 
    ```bash
