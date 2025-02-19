@@ -16,11 +16,12 @@ ignore=
     mvnrepository.com/*
     https://dev.mysql.com/doc/refman/en/
     https://www.microsoft.com/en-us/trust-center/privacy/data-management
+    http://localhost:1337/*
 
 [output]
 warnings=0
 ignoreerrors=
-    ^https://www\.drupal\.org/.*$ ^403 Forbidden
+    ^https://(www|new)\.drupal\.org/.*$ ^403 Forbidden
     ^https://support\.platform\.sh/hc/en-us/.*$ ^403 Forbidden
     ^https://www\.ipaddressguide\.com/.*$ ^403 Forbidden
     ^https://www\.abuseipdb\.com/.*$ ^403 Forbidden
