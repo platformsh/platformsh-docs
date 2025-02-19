@@ -22,3 +22,8 @@ warnings=0
 ignoreerrors=
     ^https://www\.drupal\.org/.*$ ^403 Forbidden
     ^https://support\.platform\.sh/hc/en-us/.*$ ^403 Forbidden
+    ^https://www\.ipaddressguide\.com/.*$ ^403 Forbidden
+    ^https://www\.abuseipdb\.com/.*$ ^403 Forbidden
+    ^https://www\.cloudflare\.com/.*$ ^403 Forbidden
+    ^https://mkyong.com/java/java-how-to-send-email/$ ^403 Forbidden
+    ^https://www.baeldung.com/maven-wrapper$ ^403 Forbidden
