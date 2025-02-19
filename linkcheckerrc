@@ -3,9 +3,6 @@ threads=5
 useragent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36
 maxrequestspersecond=5
 
-[output]
-warnings=0
-
 [filtering]
 checkextern=1
 ignore=
@@ -19,3 +16,9 @@ ignore=
     mvnrepository.com/*
     https://dev.mysql.com/doc/refman/en/
     https://www.microsoft.com/en-us/trust-center/privacy/data-management
+
+[output]
+warnings=0
+ignoreerrors=
+    ^https://www\.drupal\.org/.*$ ^403 Forbidden
+    ^https://support\.platform\.sh/hc/en-us/.*$ ^403 Forbidden
