@@ -29,9 +29,9 @@
   {{ if $isHome }}
     {{ $inCurrentSection = false }}
   {{ end }}
-  <div x-data="{ expanded: {{ $inCurrentSection }} }">
+  <div x-data="{ expanded: {{ or $inCurrentSection (eq .section "home") }} }">
     <h3 class="font-semibold">
-      <button class="bg-no-repeat bg-right-2 w-[95%] py-4 pl-2 pr-6 my-2 text-left bg-grey" :style="expanded ? 'background-image: url(/images/icons/minus.svg);' : 'background-image: url(/images/icons/add.svg);'" @click="expanded = ! expanded" aria-controls="section-{{ .section }}" aria-expanded="{{ $inCurrentSection }}" aria-label="Toggle section">
+      <button class="bg-no-repeat bg-right-2 w-[95%] py-4 pl-2 pr-6 my-2 text-left bg-grey" :style="expanded ? 'background-image: url(/images/icons/minus.svg);' : 'background-image: url(/images/icons/add.svg);'" @click="expanded = ! expanded" aria-controls="section-{{ .section }}" aria-expanded="{{ $inCurrentSection }}">
         {{ .title }}
       </button>
     </h3>
@@ -47,7 +47,7 @@
 
       <div x-data="{ expanded: false }">
         <h3 class="font-semibold">
-          <button class="bg-no-repeat bg-right-2 w-[95%] py-4 pl-2 pr-6 my-2 text-left bg-grey" :style="expanded ? 'background-image: url(/images/icons/minus.svg);' : 'background-image: url(/images/icons/external_link.svg);'" @click="location.href = '{{ .link }}'" aria-expanded="false" aria-label="Toggle section">
+          <button class="bg-no-repeat bg-right-2 w-[95%] py-4 pl-2 pr-6 my-2 text-left bg-grey" :style="expanded ? 'background-image: url(/images/icons/minus.svg);' : 'background-image: url(/images/icons/external_link.svg);'" @click="location.href = '{{ .link }}'" aria-expanded="false">
             {{ .title }}
           </button>
         </h3>

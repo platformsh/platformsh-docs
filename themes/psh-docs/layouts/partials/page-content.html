@@ -1,38 +1,38 @@
-<!-- Page banners -->
-{{ if ( eq (string .context.Site.Params.vendor.config.version) "1" )}}
-{{ partial "banners/banner.html" .context }}
-{{ else if and ( ne (string .context.Page.Params.banner.type) "tiered-feature" ) ( ne (string .context.Page.Params.banner.type) "observability-suite" )}}
-{{ partial "banners/banner.html" .context }}
-{{ end }}
 
-<!-- Tier-gated features -->
-{{ if eq (string .Site.Params.vendor.config.version) "1"}}
-{{ partial "tiered-features/banner.html" .context }}
-{{ end }}
-
-<!-- If the feature is part of the Observability Suite -->
-{{ if eq (string .Site.Params.vendor.config.version) "1"}}
-{{ partial "observability-suite/banner.html" .context }}
-{{ end }}
 
 <!-- If the feature is in beta -->
 {{ partial "beta-flag/banner.html" .context }}
 
-{{ if ne .context.Params.editPage false }}
-  {{ partial "editpagebutton.html" .context }}
-{{ end }}
+<div class="flex justify-end mr-4">
+  <!-- Add a Button to open the Markdown version of this page (Upsun only) -->
+  {{ if and ( eq .context.Site.Params.vendor.config.version 2 ) ( ne .context.Page.RelPermalink "/" ) }}
+  <div class="hidden md:block mb-6 mr-2 text-right">
+    <a href="{{ if eq .context.Page.RelPermalink "/" }}/index.md{{ else }}{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}{{ end }}"
+        class="print:hidden font-semibold bg-skye text-white hover:bg-skye-dark focus:bg-skye-dark px-4 py-2 font-['Space_Grotesk'] text-xs rounded-full inline-flex items-center gap-2"
+        title="Open this page in a markdown format. This format is easier for AI and other tools to read."
+        target="_blank">
+      View in markdown
+    </a>
+  </div>
+  {{ end }}
+
+  <!-- Edit page button link -->
+  {{ if ne .context.Params.editPage false }}
+    {{ partial "editpagebutton.html" .context }}
+  {{ end }}
+</div>
 
 <!-- Page title -->
 {{ if ne .context.Params.showTitle false }}
 <h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
 {{ end }}
 
-<div class="grid md:grid-cols-80-20 md:gap-4 print:block">
+<div class="grid md:grid-cols-[minmax(0,1fr),270px] md:gap-4 md:pr-4 print:block">
 
-  <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:max-h-fullv md:overflow-y-auto border-t border-stone">
+  <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:h-[calc(100vh-6rem)] md:overflow-y-auto border-t border-stone">
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4">
+      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4 [&_nav_ul>li]:mb-2 [&_nav_ul_ul>li]:mt-2">
 
         {{ if not .context.Page.IsHome }}
         <h3 class="pt-4 pb-2 font-light text-base text-slate"><a href="/">Back to home</a></h3>
@@ -57,7 +57,7 @@
       {{ end }}
 
     <div
-      class="bg-gradient-to-b from-[#FF4A11] from-0% via-[#ED49F0] via-45% to-[#DDF933] to-100% rounded-2xl p-[1px] my-1">
+      class="bg-gradient-to-b from-[#FF4A11] from-0% via-[#ED49F0] via-45% to-[#DDF933] to-100% rounded-2xl p-[1px] mt-1 mb-4">
       <div class="rounded-2xl p-5 bg-[#f9f9f9] flex-col justify-start items-start gap-4 inline-flex">
         {{ $recruitment := .context.Site.Params.vendor.recruit }}
         {{ $vendorName := .context.Site.Params.vendor.name }}
@@ -89,21 +89,22 @@
             <div class="cta-body">
               {{ index $recruitment "description"}}
             </div>
-            <div class="cta-terms">
-              {{ index $recruitment "fine" }}
-            </div>
+            
           </div>
         </div>
         <a href="{{ index $recruitment "link" }}" class="px-6 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-3xl text-white text-center text-sm font-semibold">
           {{ index $recruitment "cta" }}
         </a>
+        <div class="cta-terms">
+          {{ index $recruitment "fine" }}
+        </div>
       </div>
     </div>
     {{ end }}
 
   </div>
 
-  <div class="prose xl:prose-lg max-w-[96vw] md:max-w-none prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
+  <div class="prose xl:prose-lg max-w-[96vw] md:max-w-full w-full prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
     <!-- Add the stack picker for Get started section -->
     {{ if and ( eq .context.Section "get-started" ) ( ne .context.Title "Introduction" ) }}
       {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
@@ -111,17 +112,40 @@
       {{ end }}
     {{ end }}
 
+    <!-- Page banners -->
+    {{ if ( eq (string .context.Site.Params.vendor.config.version) "1" )}}
+    {{ partial "banners/banner.html" .context }}
+    {{ else if and ( ne (string .context.Page.Params.banner.type) "tiered-feature" ) ( ne (string .context.Page.Params.banner.type) "observability-suite" )}}
+    {{ partial "banners/banner.html" .context }}
+    {{ end }}
+
+    <!-- Tier-gated features -->
+    {{ if eq (string .Site.Params.vendor.config.version) "1"}}
+    {{ partial "tiered-features/banner.html" .context }}
+    {{ end }}
+
+    <!-- If the feature is part of the Observability Suite -->
+    {{ if eq (string .Site.Params.vendor.config.version) "1"}}
+    {{ partial "observability-suite/banner.html" .context }}
+    {{ end }}
+
     <!-- Page content, anchorized -->
     {{ partial "headline-hash.html" .context.Content }}
 
     <!-- If the page is a list page, add section cards -->
     {{ if .isList }}
-      {{ range .context.Pages }}
-        <button onclick="location.href = '{{ .RelPermalink }}';" class="block text-left mb-7 p-8 text-primary-darker border-l-4 border-skye-dark hover:no-underline bg-stone hover:bg-skye-dark hover:text-white focus:bg-skye-dark focus:text-white hover:cursor-pointer [&:hover_a]:text-snow [&:focus_a]:text-snow [&:hover_a]:font-extrabold [&:focus_a]:font-extrabold">
-          <span class="block font-bold mb-4">{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}</span>
-          <span class="block">{{ .Params.description | .RenderString }}</span>
-        </button>
-      {{ end }}
+      <div class="space-y-4 not-prose">
+        {{ range .context.Pages }}
+          <a href="{{ .RelPermalink }}" class="block p-[2px] bg-stone hover:bg-skye-dark rounded-xl transition-all">
+            <div class="p-8 bg-white rounded-xl h-full hover:shadow-lg">
+              <h3 class="text-xl font-medium mb-2 text-gray-900">
+                {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
+              </h3>
+              <p class="text-gray-600 m-0">{{ .Params.description | .RenderString }}</p>
+            </div>
+          </a>
+        {{ end }}
+      </div>
     {{ end }}
 
     {{ if .context.Params.related }}
