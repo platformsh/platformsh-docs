@@ -8,13 +8,6 @@ premium: true
 
 {{< description >}}
 
-## Supported versions
-
-You can select the major and minor version.
-
-Patch versions are applied periodically for bug fixes and the like.
-When you deploy your app, you always get the latest available patches.
-
 {{% note title="No supported versions" theme="info" %}}
 MongoDB Enterprise isn't available on {{< vendor/name >}} yet. Deprecated versions are free to use.
 {{% /note %}}

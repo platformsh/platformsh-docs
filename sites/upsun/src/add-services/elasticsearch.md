@@ -11,12 +11,6 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-## Supported versions
-
-You can select the major and minor version.
-
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
-
 {{% note title="No supported versions" theme="info" %}}
 Elasticsearch premium versions (>=7.17) aren't available on {{< vendor/name >}} yet. Deprecated versions are free to use or use [OpenSearch](/add-services/opensearch.md).
 {{% /note %}}
