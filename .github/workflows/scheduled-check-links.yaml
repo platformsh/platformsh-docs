@@ -7,14 +7,37 @@ on:
     inputs:
       url:
         description: 'Site to check for broken links'
-        required: true
         type: string
-        default: 'https://docs.platform.sh/'
+        default: ''
 
 jobs:
+  determine-urls:
+    name: determine which urls to use
+    runs-on: ubuntu-latest
+    outputs:
+      urls: ${{ steps.determine-url.outputs.urls }}
+    steps:
+      - id: determine-url
+        run: |
+          # default URLs we want to check
+          # todo: replace this with a vars.VAL ?
+          urls="[\"https://docs.platform.sh\",\"https://docs.upsun.com\"]"
+          if [ "workflow_dispatch" = "${{ github.event_name }}" ]; then
+            # make sure there's no extra spaces in what we were given
+            inputURL=$(echo "${{ inputs.url }}" | xargs)
+            if [ -n "${inputURL}" ]; then
+              urls="[\"${inputURL}\"]"
+            fi
+          fi
+          echo "urls=${urls}" >> $GITHUB_OUTPUT
   check-links:
     name: Check links
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: ${{ fromJSON(needs.determine-links.outputs.urls) }}
+    needs:
+      - determine-urls
     steps:
       - uses: actions/setup-python@v4
         with:
@@ -41,30 +64,14 @@ jobs:
         run: |
           pip3 install -r requirements.txt
 
-      - name: Set URL to scan
-        id: set-url
-        shell: bash
-        run: |
-          # If this is a workflow dispatch, then use what was entered.
-          # If not, then use the repository variable SCAN_URL if it is set
-          # if not, fall back to the hard-coded default
-          scanURL="https://docs.platform.sh/"
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            scanURL="${{ inputs.url }}"
-          elif [[ -n "${{ vars.SCAN_URL }}" ]]; then
-            scanURL="${{ vars.SCAN_URL }}"
-          fi
-
-          echo "scanURL=${scanURL}" >> "$GITHUB_ENV"
-
       - name: Run linkchecker
         id: run-link-checker
         continue-on-error: true
         shell: bash
         run: |
-          echo "::notice::Scanning ${{ inputs.url }} for broken links."
+          echo "::notice::Scanning ${{ matrix.url }} for broken links."
           # if linkchecker exits with a non-zero then it means broken links were found.
-          scan=$(linkchecker ${{ env.scanURL }} -f ./linkchecker/linkcheckerrc -F xml/utf_8/brokenlinks.xml )
+          scan=$(linkchecker ${{ matrix.url }} -f ./linkchecker/linkcheckerrc -F xml/utf_8/brokenlinks.xml )
           result=$?
           if [[ $result -ne 0 ]]; then
             echo "::notice::Broken links detected."
@@ -81,6 +88,12 @@ jobs:
         run: |
           echo "::notice::No broken links were detected"
 
+      - name: get domain name
+        if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        id: get-domain-name
+        run: |
+          domainName=$(basename ${{ matrix.url }})
+          echo "domain=${domainName}" >> $GITHUB_OUTPUT
       - name: check message size
         id: check-msg-size
         if: ${{ steps.run-link-checker.outcome == 'failure' }}
@@ -101,7 +114,7 @@ jobs:
         if: ${{ steps.run-link-checker.outcome == 'failure' && env.artifact == 'true' }}
         uses: actions/upload-artifact@v4
         with:
-          name: broken-links
+          name: broken-links-${{ steps.get-domain-name.outputs.domain }}
           path: |
             ./broken_links.md
 
@@ -110,13 +123,14 @@ jobs:
         if: ${{ steps.run-link-checker.outcome == 'failure' }}
         env:
           ARTIFACT: ${{ env.artifact }}
+          DOMAIN: ${{ steps.get-domain-name.outputs.domain }}
         uses: actions/github-script@v6
         with:
           script: |
-            const { ARTIFACT } = process.env
+            const { ARTIFACT, DOMAIN } = process.env
             var fs = require('fs');
             //
-            failMsg = ':bug: Broken links detected'
+            failMsg = ':bug: Broken links detected on ' + DOMAIN
 
             if ('true' == ARTIFACT) {
               address = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}#artifacts`
