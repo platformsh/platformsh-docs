@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        url: ${{ fromJSON(needs.determine-links.outputs.urls) }}
+        url: ${{ fromJSON(needs.determine-urls.outputs.urls) }}
     needs:
       - determine-urls
     steps:
