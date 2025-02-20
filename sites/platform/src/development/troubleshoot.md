@@ -130,7 +130,7 @@ Typical causes and potential solutions include:
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
-  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  - You may want to [check if bots are overwhelming your site](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
   - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.

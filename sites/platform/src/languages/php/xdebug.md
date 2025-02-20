@@ -117,4 +117,4 @@ The common steps for setup usually include:
 
 ## What's next
 
-Learn more about how to [set up Xdebug on Dedicated server clusters](https://community.platform.sh/t/set-up-xdebug-on-dedicated-pro-server-clusters/403).
+Learn more about how to [set up Xdebug on Dedicated server clusters](https://support.platform.sh/hc/en-us/community/posts/16439588829330).

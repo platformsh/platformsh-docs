@@ -263,5 +263,5 @@ Puppeteer allows your application to [create screenshots](https://pptr.dev/#?pro
 
 You can find some useful examples of using headless Chrome and Puppeteer on {{< vendor/name >}} on the Community Portal:
 
-* [How to take screenshots using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-take-screenshots-using-puppeteer-and-headless-chrome/305)
-* [How to generate PDFs using Puppeteer and Headless Chrome](https://community.platform.sh/t/how-to-generate-pdfs-using-puppeteer-and-headless-chrome/306)
+* [How to take screenshots using Puppeteer and Headless Chrome](https://support.platform.sh/hc/en-us/community/posts/16439566011538)
+* [How to generate PDFs using Puppeteer and Headless Chrome](https://support.platform.sh/hc/en-us/community/posts/16439696206482)

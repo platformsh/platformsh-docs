@@ -16,4 +16,4 @@ Each of these examples:
 - Commits aspects of that local development method to the project so collaborators can replicate configuration to contribute.
 
 If you're already using Docker Compose,
-consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}](https://community.platform.sh/t/using-docker-compose-with-django/1205).
+consult the Community guide on [using Docker Compose with Django and {{% vendor/name %}}](https://support.platform.sh/hc/en-us/community/posts/16439578981138).

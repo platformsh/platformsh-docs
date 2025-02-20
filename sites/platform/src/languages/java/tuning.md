@@ -98,5 +98,5 @@ java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+UseG1GC -XX:+UseS
 
 ## References
 
-* [How to Migrate my Java application to {{% vendor/name %}}](https://community.platform.sh/t/how-to-migrate-my-java-application-to-platfrom-sh/529)
+* [How to Migrate my Java application to {{% vendor/name %}}](https://support.platform.sh/hc/en-us/community/posts/16439684444946)
 * [Introduction to Garbage Collection Tuning](https://docs.oracle.com/en/java/javase/14/gctuning/introduction-garbage-collection-tuning.html#GUID-326EB4CF-8C8C-4267-8355-21AB04F0D304)

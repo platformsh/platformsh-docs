@@ -6,7 +6,7 @@ keywords:
 ---
 
 When developing your site, you might want to hide your preview environments from outside viewers.
-Or you may find you have performance issues from [excessive bot access](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+Or you may find you have performance issues from [excessive bot access](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
 You can control access with a username and password **or** by allowing/denying specific IP addresses or networks.
 This setting applies to the entire environment.
 

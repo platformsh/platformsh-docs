@@ -240,5 +240,5 @@ hooks:
 Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python.
 The following Community resources can help get you started with them:
 
-- [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
-- [Running R Shiny using Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
+- [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://support.platform.sh/hc/en-us/community/posts/16439726140946)
+- [Running R Shiny using Miniconda on {{% vendor/name %}}](https://support.platform.sh/hc/en-us/community/posts/16439711774994)
