@@ -8,6 +8,7 @@ premium: true
 
 {{< description >}}
 
+
 {{% note title="No supported versions" theme="info" %}}
 MongoDB Enterprise isn't available on {{< vendor/name >}} yet. Deprecated versions are free to use.
 {{% /note %}}

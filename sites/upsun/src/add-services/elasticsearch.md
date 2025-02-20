@@ -12,7 +12,7 @@ premium : true
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
 {{% note title="No supported versions" theme="info" %}}
-Elasticsearch premium versions (>=7.17) aren't available on {{< vendor/name >}} yet. Deprecated versions are free to use or use [OpenSearch](/add-services/opensearch.md).
+Elasticsearch premium versions (>=7.17) aren't available on {{< vendor/name >}} yet. Deprecated versions are free to use. Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
 {{% /note %}}
 
 ## Deprecated versions
