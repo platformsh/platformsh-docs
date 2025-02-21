@@ -3,7 +3,7 @@ title: Troubleshoot MySQL
 sidebarTitle: Troubleshoot
 ---
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## Lock wait timeout
 
@@ -122,7 +122,7 @@ To **increase** `max_connections`, you can **either**:
 
 Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from values that you _can_ change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database)
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql/_index.md#configure-the-database)
    in your `.platform/services.yaml` file with an integer value.
    The default value of `16` is shown below to illustrate:
 
@@ -151,9 +151,9 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
           max_allowed_packet: 16
     ```
 
-    The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
+    The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image.md#container-profiles-cpu-and-memory).
 
-    For example, [MariaDB](/create-apps/app-reference/single-runtime-image#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image#high_memory-container-profile).
+    For example, [MariaDB](/create-apps/app-reference/single-runtime-image.md#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image.md#high_memory-container-profile).
     For `size: L`, it means 0.40 CPU and 1280 MB of memory.
 
 If we assume the configuration above, where:

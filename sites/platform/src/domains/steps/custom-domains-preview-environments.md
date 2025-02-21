@@ -3,18 +3,18 @@ title: Set up a custom domain on a preview environment
 sidebarTitle: Preview environments
 weight: 3
 description: Learn how to set up custom domains on your preview environments
-banner: 
+banner:
     type: tiered-feature
 ---
 
-[Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
+[Preview environments](/glossary/_index.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
 By default and for each preview environment,
 {{% vendor/name %}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
 you can add a custom domain to each of your preview environments
-(`staging` or `development` [environment types](/glossary.md#environment-type)).
+(`staging` or `development` [environment types](/glossary/_index.md#environment-type)).
 
 To do so, no need to modify your [routes configuration](../../define-routes/_index.md).
 When you add a new custom domain for a preview environment,
@@ -29,7 +29,7 @@ You've added the `example.com` custom domain to your production environment.
 
 You want to add the `staging.example.com` custom domain to your staging environment.
 To do so, you need to attach the new `staging.example.com` custom domain
-to its corresponding custom production domain `example.com`. 
+to its corresponding custom production domain `example.com`.
 
 You can then access your staging environment through `staging.example.com`,
 and still access your production environment through `example.com`.
@@ -49,7 +49,7 @@ based on the following elements:
 
 You need:
 
-- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
+- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR>
 
   {{< note theme="warning" >}}
 

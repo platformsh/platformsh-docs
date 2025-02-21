@@ -6,7 +6,7 @@ description: Learn how to troubleshoot common issues in PHP.
 
 {{% composable/disclaimer %}}
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## Server reached `max_children`
 
@@ -35,7 +35,7 @@ WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /in
 ```
 
 This means your PHP process is running longer than allowed.
-You can adjust the `max_execution_time` value in `php.ini`. See also `request_terminate_timeout` in the [App reference](/create-apps/app-reference/single-runtime-image.md#runtime). 
+You can adjust the `max_execution_time` value in `php.ini`. See also `request_terminate_timeout` in the [App reference](/create-apps/app-reference/single-runtime-image.md#runtime).
 
 The most common causes of a timeout are an infinite loop (which is a bug that you should fix)
 or the work itself requires a long time to complete.

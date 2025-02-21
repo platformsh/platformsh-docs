@@ -3,7 +3,7 @@ title: "Single Sign-On (SSO)"
 weight: 4
 description: |
   {{% vendor/name %}} allows you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
-banner: 
+banner:
     type: tiered-feature
 ---
 
@@ -23,7 +23,7 @@ A deactivated user can no longer use SSH, Git, or other {{% vendor/name %}} APIs
 
 If you have a service user with an email address under your SSO domain, such as `machine-user@example.com`, you can exclude that user from the SSO enforcement rule so they aren't required to authenticate through your identity provider.
 
-Please open a [support ticket](/learn/overview/get-support) if you need to exclude a service user.
+Please open a [support ticket](/learn/overview/get-support.md) if you need to exclude a service user.
 
 ## SSO providers
 
@@ -31,11 +31,11 @@ Please open a [support ticket](/learn/overview/get-support) if you need to exclu
 
 {{< premium-features/tiered "Enterprise" >}}
 
-Enforce your users to authenticate with Google. Please open a [support ticket](/learn/overview/get-support) to enable Google SSO.
+Enforce your users to authenticate with Google. Please open a [support ticket](/learn/overview/get-support.md) to enable Google SSO.
 
 #### Issue with re-authenticating every 15 minutes
 
-If your organization has Google SSO enabled on {{% vendor/name %}}, you may be required to re-authenticate with Google every 15 minutes. This happens when {{% vendor/name %}} doesn't possess a valid refresh token from your Google account. 
+If your organization has Google SSO enabled on {{% vendor/name %}}, you may be required to re-authenticate with Google every 15 minutes. This happens when {{% vendor/name %}} doesn't possess a valid refresh token from your Google account.
 
 To resolve that, you need to:
 
@@ -47,6 +47,6 @@ To resolve that, you need to:
 {{< premium-features/tiered "Elite" >}}
 
 Enforce your users to authenticate with your OpenID Connect provider,
-such as Okta, Azure Active Directory or Ping Identity. 
+such as Okta, Azure Active Directory or Ping Identity.
 To enable SSO with your OpenID Connect provider,
-[contact Support](https://console.platform.sh/-/users/~/tickets). 
+[contact Support](https://console.platform.sh/-/users/~/tickets).

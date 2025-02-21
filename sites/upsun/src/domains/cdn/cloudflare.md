@@ -48,7 +48,7 @@ Instead, requests must transit through Cloudflare first.
 mTLS is only compatible with environments where you have attached domains you own, meaning:
 
 - Your production environment
-- Each preview environment where you have [attached a custom domain](/domains/steps/custom-domains-preview-environments)
+- Each preview environment where you have [attached a custom domain](/domains/steps/custom-domains-preview-environments.md)
 
 Therefore, mTLS is **not** compatible with preview environments created by a [source code integration](/integrations/source/_index.md).
 {{< /note >}}

@@ -27,9 +27,9 @@ You can filter activities by type (such as merge, sync, or redeploy).
 
 Each environment offers ways to keep environments up to date with one another:
 
-* [{{< icon branch >}} **Branch**](/glossary.md#branch) to create a new child environment.
-* [{{< icon merge >}} **Merge**](/glossary.md#merge) to copy the current environment into its parent.
-* [{{< icon sync >}} **Sync**](/glossary.md#sync)
+* [{{< icon branch >}} **Branch**](/glossary/_index.md#branch) to create a new child environment.
+* [{{< icon merge >}} **Merge**](/glossary/_index.md#merge) to copy the current environment into its parent.
+* [{{< icon sync >}} **Sync**](/glossary/_index.md#sync)
   to copy changes from its parent environment into the current environment.
 
 There are also additional options:
@@ -78,7 +78,7 @@ Under **Environment name**, you can edit the name and type of your environment a
 
 ### Status
 
-Under **Status**, you can check whether or not your environment is [active](/glossary.md#active-environment).
+Under **Status**, you can check whether or not your environment is [active](/glossary/_index.md#active-environment).
 
 ![Environment status](/images/management-console/env-status.png "0.5")
 

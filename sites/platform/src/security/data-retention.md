@@ -10,7 +10,7 @@ description: |
 
 Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{% vendor/name %}}.
 
-Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support).
+Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support.md).
 
 ## System logs
 

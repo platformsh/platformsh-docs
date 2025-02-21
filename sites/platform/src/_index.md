@@ -21,7 +21,7 @@ If you're still unfamiliar with {{% vendor/name %}} and how it works, _but_ you'
 
 Learn the basics of how {{% vendor/name %}} leverages Git to produce reusable build images, identical-to-production environments in staging and development (including production data), as well as the basics of monitoring and troubleshooting your environments.
 
-Ready to get started? [Let's go!](/get-started/)
+Ready to get started? [Let's go!](/get-started/_index.md)
 
 ### Learn
 
@@ -104,4 +104,4 @@ Feel free to open an issue or pull request for any of the repositories below, or
 
 ### Get support
 
-If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).
+If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support.md).

@@ -15,7 +15,7 @@ or each time you increase the storage space of your services.
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
 You can only create backups and restore active environments.
-To work with an [inactive environment](/glossary.md#inactive-environment), first activate it.
+To work with an [inactive environment](/glossary/_index.md#inactive-environment), first activate it.
 
 ## How backup and restore works
 
@@ -116,7 +116,7 @@ Automated backups are always [live](#live-backups).
 Automated backups are only available for production environments.
 
 If you're on a [development plan](/administration/pricing/_index.md#development-plans),
-all your environments are [development environments](/glossary.md#environment-type).
+all your environments are [development environments](/glossary/_index.md#environment-type).
 This includes your future production environment.
 If you want to enable automated backups for it, [upgrade to a non-development plan](https://platform.sh/pricing/).
 

@@ -3,7 +3,7 @@ title: Troubleshoot MySQL
 sidebarTitle: Troubleshoot
 ---
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## Lock wait timeout
 
@@ -127,7 +127,7 @@ To **increase** `max_connections`, you can **either**:
 
 Behind the scenes, `max_connections` is calculated from values that you _can_ change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database) in your `.upsun/config.yaml` file with an integer value.
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql.html#configure-the-database) in your `.upsun/config.yaml` file with an integer value.
 The default value of `16` is shown below to illustrate:
 
     ```yaml {configFile="services"}
@@ -146,9 +146,9 @@ The default value of `16` is shown below to illustrate:
     {{% vendor/cli %}} resources:set --size mariadb:1
     ```
 
-    The memory for a given container from its `size` depends on its [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
+    The memory for a given container from its `size` depends on its [container profile](/manage-resources/adjust-resources.html#advanced-container-profiles).
 
-    For example, [MariaDB](/manage-resources/adjust-resources#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources#advanced-container-profiles).
+    For example, [MariaDB](/manage-resources/adjust-resources.html#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources.html#advanced-container-profiles).
     For `--size mariadb:1`, it means 1 CPU and 2432 MB of memory.
 
 
@@ -156,7 +156,7 @@ If we assume the configuration above, where:
 
 - `--size  mariadb:1`, which we know is `2432` MB, referred to below as `application_size`
 - `mariadb.configuration.properties.max_allowed_packet: 16`
-- You are using the default `HIGH_MEMORY` profile assigned to MariaDB containers. [Changing the container profile](/manage-resources/adjust-resources#adjust-a-container-profile) changes the behavior below.
+- You are using the default `HIGH_MEMORY` profile assigned to MariaDB containers. [Changing the container profile](/manage-resources/adjust-resources.html#adjust-a-container-profile) changes the behavior below.
 
 `max_allowed_packet` is `332`, which is determined by {{% vendor/name %}} according to:
 

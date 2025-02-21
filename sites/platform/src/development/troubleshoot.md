@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 {{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
-You can use the CLI, along with the [environment type distinction](/glossary#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+You can use the CLI, along with the [environment type distinction](/glossary/_index.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
 
 To do so, run the following command:
 
@@ -150,7 +150,7 @@ If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](/glossary.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary/_index.md#drush)),
 you might encounter an error like the following:
 
 ```bash
@@ -230,7 +230,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
-If none of these suggestions work, open a [support ticket](/learn/overview/get-support).
+If none of these suggestions work, open a [support ticket](/learn/overview/get-support.md).
 
 ## Stuck build or deployment
 

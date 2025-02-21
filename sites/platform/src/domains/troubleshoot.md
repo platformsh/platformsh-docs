@@ -58,11 +58,11 @@ you get output similar to the following:
 ```bash
 Provisioning certificates
   Validating 2 new domains
-  
+
   E: Error validating domains: urn:ietf:params:acme:error:rejectedIdentifier :: The server will not issue certificates for the identifier :: NewOrder request did not include a SAN short enough to fit in CN
   Unable to validate domains domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site, www.domain a-new-and-really-awesome-feature-abc1234-defghijk56789.eu3.platformsh.site, will retry in the background.
   (Next refresh will be at 2023-04-28 02:22:50.639301+00:00.)
-  
+
   E: Error: TLS Certificate provisioning failed
  ```
 
@@ -93,7 +93,7 @@ The generated URLs consist of:
 
 This leaves you with 21 to 23 characters for your branch name (`{{<variable "BRANCH_NAME" >}}`) without exceeding the 64-character limit,
 depending on the region.
-To ensure your renewals succeed, 
+To ensure your renewals succeed,
 keep your branch names under 20 characters.
 
 ### Ownership verification
@@ -151,7 +151,7 @@ A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/
 
 {{< /codetabs >}}
 
-Make sure that the [apex domain](/glossary.md#apex-domain) and its `www` subdomain are both pointing where needed.
+Make sure that the [apex domain](/glossary/_index.md#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.
 For more information, see how to [set up a custom domain](../domains/steps/_index.md).
 
@@ -205,6 +205,6 @@ Use a tool such as the [conversion tool provided by Verisign](https://www.verisi
 
 ## Something still wrong?
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 If your website is still not working as expected, [contact support](/learn/overview/get-support.md).

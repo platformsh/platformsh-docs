@@ -14,7 +14,7 @@ using a system that takes into account traffic patterns and abuse scores.
 
 {{% note %}}
 The {{% vendor/name %}} WAF is not configurable.
-If you are looking for more advanced, configurable options that can be added to the {{% vendor/name %}} WAF, see [the Fastly Next-Gen WAF](/security/web-application-firewall/fastly-waf).
+If you are looking for more advanced, configurable options that can be added to the {{% vendor/name %}} WAF, see [the Fastly Next-Gen WAF](/security/web-application-firewall/fastly-waf.md).
 {{% /note %}}
 
 ## CRLF injection prevention

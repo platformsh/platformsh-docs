@@ -360,7 +360,7 @@ To see the settings used on your environment:
 
 ### Customize PHP settings
 
-For {{% names/dedicated-gen-2 %}}, see the [configuration options](/dedicated-environments/dedicated-gen-2/development).
+For {{% names/dedicated-gen-2 %}}, see the [configuration options](/dedicated-environments/dedicated-gen-2/development.md).
 
 You can customize PHP values for your app in two ways.
 The recommended method is to use variables.
@@ -617,13 +617,13 @@ The following table presents the possible modifications you can make to your PHP
 Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
 See the example below for more details.
 
-| Name                        | Type                                                       | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
-| `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
-| `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+| Name                        | Type                                                                                                                             | Description                                                                                |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
+| `disabled_extensions`       | List of `string`s                                                                                                                | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
+| `request_terminate_timeout` | `integer`                                                                                                                        | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
+| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
+| `xdebug`                    | An Xdebug definition                                                                                                             | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
 Here is an example configuration:
 

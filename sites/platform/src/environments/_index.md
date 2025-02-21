@@ -31,7 +31,7 @@ You can create new environments in one of two ways:
 
 -   Push a local branch through Git or a [source integration](../integrations/source/_index.md).
 
--   [Branch](/glossary.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
+-   [Branch](/glossary/_index.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
     or the [Console](../administration/web/_index.md).
 
 When you branch an environment, you might want to create exact replicas of it.
@@ -47,30 +47,30 @@ You can also have branches that aren't tied to a running instance of your applic
 These are called [inactive environments](#environment-status).
 
 {{% note theme="info" %}}
-Application containers on created preview environments [default to a size of Standard](/administration/pricing#preview-environments). 
-This behavior can be modified by those with manage plans permission to [increase Environments application size](/administration/pricing#preview-environments).
+Application containers on created preview environments [default to a size of Standard](/administration/pricing/_index.md#preview-environments).
+This behavior can be modified by those with manage plans permission to [increase Environments application size](/administration/pricing/_index.md#preview-environments).
 {{% /note %}}
 
 ## Default environment
 
-Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
+Your default environment comes from your default branch and is a [production environment](/administration/users.md#environment-type-roles).
 Your project must have a default environment,
-but you can [name it as you want](./default-environment.md).
+but you can [name it as you want](/environments/default-environment.md).
 
 If you subscribed to a production plan, this environment is your **live site**.
-You might want to give it a [custom domain name](../domains/steps/_index.md).
+You might want to give it a [custom domain name](/domains/steps/_index.md).
 
 ## Environment status
 
 Your environments can have one of two statuses:
 
--   [Active](/glossary.md#active-environment):
+-   [Active](/glossary/_index.md#active-environment):
     A deployed environment with services and data.
 
--   [Inactive](/glossary.md#inactive-environment):
+-   [Inactive](/glossary/_index.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
 
-You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
+You can see the status of your environments in the [Console](/administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
 
 {{< codetabs >}}
 +++
@@ -92,7 +92,7 @@ To check the status of all your environments, from your project directory run th
 
 {{< /codetabs >}}
 
-You can [change an environment's status](./deactivate-environment.md) at any time.
+You can [change an environment's status](/environments/deactivate-environment.md) at any time.
 
 ## Organize your environments
 
@@ -102,16 +102,16 @@ You can [change an environment's status](./deactivate-environment.md) at any tim
 
 In {{% vendor/name %}}, your environments are organized in a hierarchy featuring parent and child environments.
 
-When you [branch](/glossary.md#branch) an environment,
+When you [branch](/glossary/_index.md#branch) an environment,
 the parent of the new environment is the environment it was created from.
-You can [change the environment's parent](./change-parent.md) after it's been created.
+You can [change the environment's parent](/environments/change-parent.md) after it's been created.
 
-When you push a branch through Git or a [source integration](../integrations/source/_index.md),
+When you push a branch through Git or a [source integration](/integrations/source/_index.md),
 the parent environment of the new environment is your [default environment](#default-environment).
-Alternatively, you can [change the environment's parent](./change-parent.md) after it's been created.
+Alternatively, you can [change the environment's parent](/environments/change-parent.md) after it's been created.
 
-Each child environment can [sync](/glossary.md#sync) code and/or data down from its parent
-and [merge](/glossary.md#merge) code up to its parent.
+Each child environment can [sync](/glossary/_index.md#sync) code and/or data down from its parent
+and [merge](/glossary/_index.md#merge) code up to its parent.
 You can use child environments for development, staging, and testing.
 
 ### Workflows
@@ -137,7 +137,7 @@ You may want to take one of the following approaches when creating your workflow
 
 Example Agile workflow:
 
-1.  An admin [branches](/glossary.md#branch) the Live (default) environment to create a Sprint environment.
+1.  An admin [branches](/glossary/_index.md#branch) the Live (default) environment to create a Sprint environment.
 
 2.  The admin gives each developer permission to branch the Sprint environment to create new feature environments.
 
@@ -145,11 +145,11 @@ Example Agile workflow:
 
 3.  Feature 1 is developed and work is reviewed by accessing the deployed Feature 1 environment.
 
-4.  When the review is done, Feature 1 is [merged](/glossary.md#merge) into the Sprint environment.
+4.  When the review is done, Feature 1 is [merged](/glossary/_index.md#merge) into the Sprint environment.
 
     ![Feature 1 is merged into the Sprint 1 environment](/images/workflow/merge-feature.svg "0.25")
 
-5.  The remaining features [sync](/glossary.md#sync) with the Sprint environment.
+5.  The remaining features [sync](/glossary/_index.md#sync) with the Sprint environment.
     This ensures their working environment is up-to-date with the latest code.
 
     ![Features from the Sprint 1 environment are synced with the Feature 2 environment](/images/workflow/sync.svg "0.25")
@@ -199,9 +199,9 @@ Staging
 
 ## Paused environments
 
-[Preview environments](/glossary.md#preview-environment) are often used for a limited time and then abandoned.
+[Preview environments](/glossary/_index.md#preview-environment) are often used for a limited time and then abandoned.
 To prevent unnecessary consumption of resources,
-{{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
+{{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary/_index.md#environment-type)) that haven't been redeployed in 14 days.
 
 {{< note >}}
 

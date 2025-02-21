@@ -383,6 +383,6 @@ highlight=js
 All major Javascript/Node.js web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Express](/get-started/stacks/express)
+- [Express](/get-started/stacks/express/_index.md)
 - [Next.js](/get-started/stacks/nextjs.md)
-- [Strapi](/get-started/stacks/strapi)
+- [Strapi](/get-started/stacks/strapi/_index.md)
