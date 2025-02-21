@@ -4,8 +4,11 @@
     "service": "mongodb36",
     "ip": "169.254.150.147",
     "hostname": "blbczy5frqpkt2sfkj2w3zk72q.mongodb36.service._.eu-3.platformsh.site",
-    "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "mongodb.internal",
+    "cluster": "rjify4yjcwxaa-master-7rqtwti",
+    "instance_ips": [
+        "246.207.64.200"
+    ],
     "rel": "mongodb",
     "query": {
         "is_master": true
