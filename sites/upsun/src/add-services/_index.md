@@ -81,7 +81,7 @@ When checking available space, note whether it's reported in MB or MiB.
 You can decrease the size of an existing disk for a service.
 If you do so, be aware that:
 
-- You need to [create new backups](/environments/backup) that the downsized disk can accommodate.
+- You need to [create new backups](/environments/backup.md) that the downsized disk can accommodate.
   Backups from before the downsize cannot be restored unless you increase the disk size again.
 - The downsize fails if there's more data on the disk than the desired size.
 
@@ -111,12 +111,12 @@ applications:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 <--->
 

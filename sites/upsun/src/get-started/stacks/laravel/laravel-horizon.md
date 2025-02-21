@@ -13,7 +13,7 @@ such as job throughput, runtime, and job failures.
 ## 1. Add Laravel Horizon
 
 {{% note theme="warning" %}}
-This procedure assumes you have followed the steps on [how to configure Redis and queues](/get-started/stacks/laravel/setup-redis#5-use-redis-for-laravel-queues).
+This procedure assumes you have followed the steps on [how to configure Redis and queues](/get-started/stacks/laravel/setup-redis.md#5-use-redis-for-laravel-queues).
 {{% /note %}}
 
 1. To add Laravel Horizon, run the following command:
@@ -37,7 +37,7 @@ This procedure assumes you have followed the steps on [how to configure Redis an
 
 ## 2. Create a worker to run Horizon
 
-To run Horizon on your project, you need to add a separate [worker](/create-apps/app-reference/single-runtime-image#workers).
+To run Horizon on your project, you need to add a separate [worker](/create-apps/app-reference/single-runtime-image.md#workers).
 To do so, use the following configuration:
 
 ```yaml {configFile="app"}
@@ -82,7 +82,7 @@ Web and worker containers don't share mount targets.
 You can't share files between those containers using the filesystem.
 To share data between containers, use [services](/add-services/_index.md).
 
-See more information on [workers](/create-apps/app-reference/single-runtime-image#workers).
+See more information on [workers](/create-apps/app-reference/single-runtime-image.md#workers).
 
 {{< /note >}}
 

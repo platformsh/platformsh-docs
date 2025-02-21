@@ -101,7 +101,7 @@ In both the CLI and Console, you can choose from the following options:
 | `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
 | `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
 
-To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+To [keep your repository clean](/learn/bestpractices/clean-repository.md) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="GitLab" %}}
 1. In your GitLab repository, click **Settings** > **Webhooks**.

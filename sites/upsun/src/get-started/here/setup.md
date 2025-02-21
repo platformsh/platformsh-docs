@@ -42,7 +42,7 @@ While the guide has been written to accommodate the following stacks, it is not 
 
 {{% note theme="info" title="Trials" %}}
 When you create your first organization on {{% vendor/name %}}, you are also activating your trial for that organization.
-Get [more information on trials](/glossary#trial).
+Get [more information on trials](/glossary.md#trial).
 {{% /note %}}
 
 ## Initialize your Git repository

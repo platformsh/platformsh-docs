@@ -14,7 +14,7 @@ description:  "Designed to cater to the needs of organizations that build demand
 -   **Headless architecture:** Seamless headless architecture with multi-app support
 -   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
--   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently
+-   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary/_index.md#control-plane) from the service versions, so the OS and services can be upgraded independently
 -   **Better staging:** Dedicated Gen 3 comes with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
 
 {{< note title="Note" theme="info" >}}

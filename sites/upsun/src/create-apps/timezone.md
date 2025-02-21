@@ -20,7 +20,7 @@ The different timezones on {{% vendor/name %}} are the following:
 
 {{< note >}}
 
-Each {{% vendor/name %}} project also has a **project timezone** that only affects [automated backups](/environments/backup#automated-backups).
+Each {{% vendor/name %}} project also has a **project timezone** that only affects [automated backups](/environments/backup.md#automated-backups).
 By default, the project timezone is based on the [region](../development/regions.md) where your project is hosted.
 You can [change it from the Console](../projects/change-project-timezone.md) at any time.
 
@@ -79,4 +79,4 @@ title=Java
 ## Set a cron timezone
 
 You can set a specific timezone for your crons so they don't run in your app runtime timezone (or container timezone if no app runtime timezone is set on your project).
-To do so, [set the `timezone` top-level property](/create-apps/app-reference/single-runtime-image#primary-application-properties) in your app configuration.
+To do so, [set the `timezone` top-level property](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) in your app configuration.

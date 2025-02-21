@@ -5,14 +5,14 @@ sidebarTitle: "Environment differences"
 description: See the differences between your Production/Staging environments (which are Dedicated Gen 2) and your development environments (which are Grid environments).
 ---
 
-With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your development environments run on the [Grid](/glossary.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
+With {{% names/dedicated-gen-2 %}} plans, your Production and Staging environments are on dedicated virtual machines, while your development environments run on the [Grid](/glossary/_index.md#grid), meaning shared redundant infrastructure. This difference means a few configuration options and tools function differently in the different environments.
 
 This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects.
 
 ## Syncing data between environments
 
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid Environments,
-basic [syncs](/glossary.md#sync) and [merges](/glossary.md#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
+basic [syncs](/glossary/_index.md#sync) and [merges](/glossary/_index.md#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
 
 To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
@@ -27,7 +27,7 @@ For other environments, trigger a [manual backup](../../environments/backup.md).
 
 The following table shows all of the extensions that are enabled by default in each PHP version.
 To add any other extension with a pre-existing package in the Debian Apt repository,
-open a [support ticket](/learn/overview/get-support).
+open a [support ticket](/learn/overview/get-support.md).
 
 {{< php-extensions/dedicated>}}
 
@@ -61,7 +61,7 @@ So you can keep Xdebug always on and not worry about performance issues as it's 
 
 **To obtain the Xdebug key:**
 
-1. Open a [support ticket](/learn/overview/get-support).
+1. Open a [support ticket](/learn/overview/get-support.md).
 
 {{< note >}}
 
@@ -92,11 +92,11 @@ So it's best to ensure your cron tasks can receive a `SIGTERM` message and termi
 ## Configuration & change management
 
 You can't manage some configuration settings via YAML configuration files on {{% names/dedicated-gen-2 %}} Environments.
-In these cases, you need to open a [support ticket](/learn/overview/get-support).
+In these cases, you need to open a [support ticket](/learn/overview/get-support.md).
 You can have some settings different between staging and production environments.
 It's assumed you want the settings the same, unless you state otherwise in the ticket.
 
-The following settings require a [support ticket](/learn/overview/get-support):
+The following settings require a [support ticket](/learn/overview/get-support.md):
 
 * [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
 * [Service configuration](../../add-services/_index.md)

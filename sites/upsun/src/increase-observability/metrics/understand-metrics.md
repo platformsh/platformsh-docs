@@ -8,7 +8,7 @@ description: Understand how to read metrics for {{< vendor/name >}} environments
 
 * App containers: one or more [app containers](/create-apps/_index.md)
 * Service containers: zero or more [service containers](../../add-services/_index.md)
-* Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image#workers).
+* Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app, service, and worker containers.
 These metrics are available for all of your environments.
@@ -73,7 +73,7 @@ No persistent disk has been configured for Redis.
 Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [project resources](/manage-resources.md).
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/workers-metrics-1.png) 
+![All of the metrics for the App-Horizon worker container](/images/metrics/workers-metrics-1.png)
 
 Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
 

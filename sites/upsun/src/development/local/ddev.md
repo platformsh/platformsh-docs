@@ -5,14 +5,14 @@ description: Use DDEV to set up local development environments.
 weight: 1
 sectionBefore: Integrated environments
 keywords:
-    - ddev 
+    - ddev
 ---
 
 {{% ddev/definition %}}
 
 This guide assumes you have a project already running with {{< vendor/name >}} and you have the code on your computer.
 
-If you're starting from scratch, first [create a project](/get-started/).
+If you're starting from scratch, first [create a project](/get-started.md).
 
 ## Before you begin
 

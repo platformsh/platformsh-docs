@@ -84,5 +84,5 @@ Feel free to open an issue or pull request for any of the repositories below, or
 
 ### Get support
 
-If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support).
+If you're experiencing issues with your projects, don't hesitate to open a [support ticket](/learn/overview/get-support.md).
 

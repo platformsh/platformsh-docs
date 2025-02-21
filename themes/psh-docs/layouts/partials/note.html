@@ -13,7 +13,7 @@
     {{- $bg = "skye-light" -}}
   {{- end -}}
 {{- end -}}
-<div class="bg-{{ $bg }} p-4 mb-4 [&>p:last-child]:mb-0 [&>h3]:mt-0 rounded-lg" role="alert" {{if eq .theme "info-sticky"}}style="position: sticky; top: 6rem;"{{ end }}>
+<div class="bg-{{ $bg }} p-4 mb-4 [&>p:last-child]:mb-0 [&>h3]:mt-0 rounded-lg" role="alert" {{ if eq .theme "info-sticky"}}style="position: sticky; top: 6rem;"{{ end }}>
   {{- if ne $title "none" -}}
   <h3 class="font-bold text-base">{{ $title }}</h3>
   {{- end -}}

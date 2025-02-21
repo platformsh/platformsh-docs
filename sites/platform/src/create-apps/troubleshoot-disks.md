@@ -3,7 +3,7 @@ title: "Troubleshoot disks"
 weight: 10
 ---
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## Exceeding plan storage limit
 
@@ -82,4 +82,4 @@ This can cause the build cache to grow over time beyond the maximum.
 Try [clearing the build cache](../development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](../development/troubleshoot.md#force-a-redeploy).
 
 If for some reason your application absolutely requires more than 8&nbsp;GB during build,
-you can open a [support ticket](/learn/overview/get-support) to have this limit increased.
+you can open a [support ticket](/learn/overview/get-support.md) to have this limit increased.

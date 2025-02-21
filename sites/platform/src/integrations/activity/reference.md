@@ -22,7 +22,7 @@ The response differs depending on the activity and doesn't always include all fi
 
 ### Example response
 
-The following is a shortened example of a response for an [environment sync activity](/glossary.md#sync).
+The following is a shortened example of a response for an [environment sync activity](/glossary/_index.md#sync).
 You can also see [complete examples of responses](#examples).
 
 ``` json
@@ -118,19 +118,19 @@ The following table presents the possible activity types:
 
 | Name                                 | Description                                                                                                                                                                                                                      |
 |--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `environment.activate`               | The environment has been made [active](/glossary.md#active-environment).                                                                                                                                                         |
+| `environment.activate`               | The environment has been made [active](/glossary/_index.md#active-environment).                                                                                                                                                         |
 | `environment.backup`                 | A user triggered a [backup](/environments/backup.md).                                                                                                                                                                            |
 | `environment.backup.delete`          | A user deleted a [backup](/environments/backup.md).                                                                                                                                                                              |
 | `environment.branch`                 | A [new branch](/environments.md#create-environments) has been created via the CLI, Console, or API. A branch created via Git shows up as `environment.push`.                                                                     |
 | `environment.certificate.renewal`    | An environment's SSL certificate has been [renewed](/define-routes/https.md#certificate-renewals).                                                                                                                               |
 | `environment.cron`                   | A [cron job](/create-apps/app-reference/single-runtime-image.md#crons) has completed.                                                                                                                                                                 |
-| `environment.deactivate`             | An environment has been made [inactive](/glossary.md#inactive-environment).                                                                                                                                                      |
+| `environment.deactivate`             | An environment has been made [inactive](/glossary/_index.md#inactive-environment).                                                                                                                                                      |
 | `environment.delete`                 | An environment's code was deleted through Git.                                                                                                                                                                                   |
 | `environment.domain.create`          | A new [domain](administration/web/configure-project.md#domains) has been associated with the environment.                                                                                                                        |
 | `environment.domain.delete`          | A [domain](administration/web/configure-project.md#domains) associated with the environment has been removed.                                                                                                                    |
 | `environment.domain.update`          | A [domain](administration/web/configure-project.md#domains) associated with the environment has been updated, such as having its SSL certificate modified.                                                                       |
 | `environment.initialize`             | The [default branch](/environments.md#default-environment) of the project has just been initialized with its first commit.                                                                                                       |
-| `environment.merge`                  | An environment was [merged](/glossary.md#merge) through the CLI, Console, or API. A basic Git merge doesn't trigger this activity.                                                                                               |
+| `environment.merge`                  | An environment was [merged](/glossary/_index.md#merge) through the CLI, Console, or API. A basic Git merge doesn't trigger this activity.                                                                                               |
 | `environment.merge-pr`               | A Pull Request/Merge Request was merged through the CLI, Console, or API. A basic Git merge doesn't trigger this activity.                                                                                                       |
 | `environment.operation`              | A [source operation](/create-apps/runtime-operations.md) has been triggered                                                                                                                                                      |
 | `environment.pause`                  | An environment has been [paused](/environments.md#pause-an-environment).                                                                                                                                                         |

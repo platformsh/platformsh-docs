@@ -43,7 +43,7 @@ To override any part of a property, you have to provide the entire property.
 | `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                                                                               |
 | `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                        |
 | `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                        |
-| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                |
+| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                |
 | `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                       |
 | `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                             |
 | `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                            |
@@ -568,7 +568,7 @@ So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
-You configure the disk size in [MB](/glossary#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
+You configure the disk size in [MB](/glossary/_index.md#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
 ### Downsize a disk
 
@@ -1285,14 +1285,14 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](/environments/backup) are running.
+Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
 ### Paused crons
 
-[Preview environments](/glossary.md#preview-environment) are often used for a limited time and then abandoned.
+[Preview environments](/glossary/_index.md#preview-environment) are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,

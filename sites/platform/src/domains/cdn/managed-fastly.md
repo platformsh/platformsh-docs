@@ -15,7 +15,7 @@ For example, Dedicated projects include a managed Fastly CDN by default.
 These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 
 To modify any settings for a managed Fastly CDN,
-open a [support ticket](/learn/overview/get-support).
+open a [support ticket](/learn/overview/get-support.md).
 To add a managed Fastly CDN to your project,
 [contact sales](https://platform.sh/contact/).
 
@@ -28,7 +28,7 @@ see how to [configure your DNS provider](../steps/_index.md#2-configure-your-dns
 
 ### Transport Layer Security (TLS) certificates
 
-By default, Enterprise and Elite plans include two [TLS certificates](/glossary.md#transport-layer-security-tls),
+By default, Enterprise and Elite plans include two [TLS certificates](/glossary/_index.md#transport-layer-security-tls),
 an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app.
 
@@ -41,11 +41,11 @@ Use an environment with access limited to {{% vendor/name %}} support and truste
 [Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key,
 and the intermediate certificate to the mount.
 To notify {{% vendor/name %}} that a certificate is to be added to your CDN configuration,
-open a [support ticket](/learn/overview/get-support).
+open a [support ticket](/learn/overview/get-support.md).
 
 If you need an Extended Validation TLS certificate,
 you can get it from any TLS provider.
-To add it to your CDN configuration, open a [support ticket](/learn/overview/get-support).
+To add it to your CDN configuration, open a [support ticket](/learn/overview/get-support.md).
 
 Note that when you add your own third-party TLS certificates,
 you are responsible for renewing them in due time.

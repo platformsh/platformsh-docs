@@ -20,9 +20,9 @@ This YAML file is located in your ``.{{% vendor/cli %}}`` directory, at the root
 ```
 ## Mandatory top-level keys
 In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
-- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image)
-- ``routes``: this section of the file contains all of your [route definitions](/define-routes) (for each of your apps)
-- ``services``: this section of the file contains all of your [service definitions](/add-services) (for each of your apps)
+- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image.md)
+- ``routes``: this section of the file contains all of your [route definitions](/define-routes/_index.md) (for each of your apps)
+- ``services``: this section of the file contains all of your [service definitions](/add-services/_index.md) (for each of your apps)
 
 This looks like:
 ```yaml {location="apps"}

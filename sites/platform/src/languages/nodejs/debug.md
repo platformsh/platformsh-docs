@@ -13,7 +13,7 @@ You can choose to debug in an environment deployed to {{% vendor/name %}}
 or with your app running locally but connected to deployed services.
 In either case, make sure to debug in a preview environment.
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## 1. Create a new environment
 

@@ -245,13 +245,13 @@ upsun push -y
 - [All files (Upsun configuration, `.environment`, `wp-cli.yml`, `wp-config.php`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)
 ### Documentation
 
-- [PHP documentation](/languages/php/)
+- [PHP documentation](/languages/php/_index.md)
 
-- [Extensions](/languages/php/extensions)
+- [Extensions](/languages/php/extensions.md)
 
-- [Performance tuning](/languages/php/tuning)
+- [Performance tuning](/languages/php/tuning.md)
 
-- [PHP-FPM sizing](/languages/php/fpm)
+- [PHP-FPM sizing](/languages/php/fpm.md)
 
 ### Community content
 

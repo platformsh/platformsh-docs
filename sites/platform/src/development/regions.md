@@ -327,7 +327,7 @@ title=In the Console
 +++
 
 1. Navigate to the organization ({{< variable "ORG_NAME" >}}) you'd like to audit at `https://console.upsun.com/ORG_NAME`.
-    This view shows all of your projects within the organization {{< variable "ORG_NAME" >}} (assuming you have at least [`projects:list`](/administration/users#organization-permissions) permissions on the organization).
+    This view shows all of your projects within the organization {{< variable "ORG_NAME" >}} (assuming you have at least [`projects:list`](/administration/users.md#organization-permissions) permissions on the organization).
 2. On the left hand side, under the **Filter** heading, expand the **Region** option.
 3. Under Region, select the following region filters:
     - Germany (de-2)

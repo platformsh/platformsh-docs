@@ -276,7 +276,7 @@ If you're pushing a new Git branch, a new environment is created.
 {{% vendor/name %}} then reads your configuration files,
 and deploys your project using [default container resources](/manage-resources/resource-init.md).
 If you don't want to use those default resources,
-define your own [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy),
+define your own [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy),
 or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
 Et voilà, your Next.js application is live!
@@ -362,8 +362,8 @@ To make changes to your project, follow these steps:
 
 ### Documentation
 
-- [JavaScript/Node.js documentation](/languages/nodejs/)
-- [Managing dependencies](/languages/nodejs#dependencies)
+- [JavaScript/Node.js documentation](/languages/nodejs/_index.md)
+- [Managing dependencies](/languages/nodejs/_index.md#dependencies)
 
 ### Community content
 

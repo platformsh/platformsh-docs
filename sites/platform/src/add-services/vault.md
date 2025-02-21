@@ -124,7 +124,7 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships.
+The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships) for relationships.
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -154,7 +154,7 @@ vault-kms:
           type: sign
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="app"}
 relationships:
@@ -189,7 +189,7 @@ vault-kms:
           type: sign
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="app"}
 relationships:

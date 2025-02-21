@@ -80,7 +80,7 @@ Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
 
 To have DKIM enabled for your domain:
 
-1. Open a [support ticket](/learn/overview/get-support) with the domain where you want DKIM.
+1. Open a [support ticket](/learn/overview/get-support.md) with the domain where you want DKIM.
 2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
 
 Checks for the expected DNS records run every 15 minutes before validation.

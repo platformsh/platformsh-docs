@@ -46,7 +46,7 @@ To do so, follow these steps:
       [10  ] CPU 10, memory 2688 MB
      > 0.1
    ```
-3. Define how many [instances](/manage-resources/adjust-resources#horizontal-scaling) of your application container you want to deploy. For instance, `1`:
+3. Define how many [instances](/manage-resources/adjust-resources.md#horizontal-scaling) of your application container you want to deploy. For instance, `1`:
 
    ```bash {location="Terminal"}
    Enter the number of instances (default: 1): 1

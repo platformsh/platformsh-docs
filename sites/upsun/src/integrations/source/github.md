@@ -122,7 +122,7 @@ In both the CLI and Console, you can choose from the following options:
 | `build-pull-requests-post-merge`| `false` | Whether to build what would be the result of merging each pull request. Turning it on forces rebuilds any time something is merged to the target branch. |
 | `resources-init` | `false` | To [specify a resource initialization strategy](/manage-resources/resource-init.md#first-deployment) for new containers. Once set, the strategy applies to **all** the deployments you launch through your source integration. See more information on [available resource initialization strategies](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy). |
 
-To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+To [keep your repository clean](/learn/bestpractices/clean-repository.md) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="GitHub" %}}
 1. In your GitHub repository, click **Settings** > **Webhooks** > **Add webhook**.

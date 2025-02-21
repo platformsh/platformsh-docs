@@ -244,15 +244,15 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
 - [All example files (`.environment`, `.upsun/config.yaml`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-bedrock)
 ### Documentation
 
-- [PHP documentation](/languages/php/)
+- [PHP documentation](/languages/php/_index.md)
 
-- [Extensions](/languages/php/extensions)
+- [Extensions](/languages/php/extensions.md)
 
-- [Performance tuning](/languages/php/tuning)
+- [Performance tuning](/languages/php/tuning.md)
 
-- [PHP-FPM sizing](/languages/php/fpm)
+- [PHP-FPM sizing](/languages/php/fpm.md)
 
-- [Authenticated Composer](/languages/php/composer-auth)
+- [Authenticated Composer](/languages/php/composer-auth.md)
 
 ### Community content
 

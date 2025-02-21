@@ -11,7 +11,7 @@ You can control access with a username and password **or** by allowing/denying s
 This setting applies to the entire environment.
 
 The settings for a specific environment are inherited by all of its children.
-So if you have a `staging` environment and you [branch environments from it](/glossary.md#branch),
+So if you have a `staging` environment and you [branch environments from it](/glossary/_index.md#branch),
 all of the environments branched from it inherit the same authentication information.
 
 Changing access control triggers a new deploy of the current environment.

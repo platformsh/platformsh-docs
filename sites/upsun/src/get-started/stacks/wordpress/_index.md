@@ -9,7 +9,7 @@ layout: single
 Because of this, you can deploy WordPress on {{% vendor/name %}} in multiple ways, depending on your needs and requirements.
 
 {{< note theme="info" >}}
-Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here).
+Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all the core concepts and common commands you need to know before using the following materials.
 {{< /note >}}
 

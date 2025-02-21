@@ -16,7 +16,7 @@ To change which environment is the default, see how to [rename the default branc
 
 Deactivating the project results in the following:
 
-* The environment becomes [inactive](/glossary.md#inactive-environment).
+* The environment becomes [inactive](/glossary/_index.md#inactive-environment).
   Unless it's reactivated, it's no longer deployed and isn't accessible from the web or via SSH.
 * All services running on this environment are deleted.
 * All data specific to the environment is deleted.
@@ -65,7 +65,7 @@ git push origin --delete {{< variable "BRANCH_NAME" >}}
 
 ## Reactivate an environment
 
-Reactivating an environment [syncs](/glossary.md#sync) data from its parent environment.
+Reactivating an environment [syncs](/glossary/_index.md#sync) data from its parent environment.
 
 To reactivate an inactive environment, follow these steps:
 
