@@ -136,7 +136,7 @@
         "8.5",
         "7.17"
       ],
-      "deprecated" : [
+      "deprecated": [
         "7.10",
         "7.9",
         "7.7",
@@ -192,7 +192,6 @@
           "mix do deps.get --only prod, deps.compile, compile"
         ]
       }
-
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -569,7 +568,9 @@
       ]
     },
     "versions-dedicated-gen-2": {
-      "supported": ["1.4*"]
+      "supported": [
+        "1.4*"
+      ]
     }
   },
   "mongodb": {
@@ -686,6 +687,7 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "16",
         "14",
         "12",
         "10",
@@ -698,15 +700,13 @@
       "supported": [
         "22",
         "20",
-        "18",
-        "16"
+        "18"
       ]
     },
     "versions-dedicated-gen-2": {
-      "supported": [
-
-      ],
+      "supported": [],
       "deprecated": [
+        "16",
         "14",
         "12",
         "10",
@@ -885,8 +885,7 @@
         "9.4",
         "9.3"
       ],
-      "supported": [
-      ]
+      "supported": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [
@@ -1217,7 +1216,7 @@
       "supported": [
         "8.11"
       ],
-      "deprecated":[
+      "deprecated": [
         "8.6",
         "8.0",
         "7.7",
@@ -1234,8 +1233,7 @@
         "9.1",
         "8.11"
       ],
-      "deprecated": [
-      ]
+      "deprecated": []
     }
   },
   "varnish": {

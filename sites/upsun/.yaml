@@ -554,6 +554,7 @@ nodejs:
   type: nodejs
   versions:
     deprecated:
+      - '16'
       - '14'
       - '12'
       - '10'
@@ -566,10 +567,10 @@ nodejs:
       - '22'
       - '20'
       - '18'
-      - '16'
   versions-dedicated-gen-2:
     supported: []
     deprecated:
+      - '16'
       - '14'
       - '12'
       - '10'
