@@ -10,12 +10,12 @@
     {{ partial "header/header" . }}
 
     <!--If in the Get started section, define context and methods. -->
-    <div class="grid md:grid-cols-10 divide-x-4 mt-24 print:mt-4 print:block print:mx-2"
+    <div class="grid md:grid-cols-10 divide-x-4 print:mt-4 print:block print:mx-2"
     {{ if eq .Section "get-started" }}
       {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
-      x-data="{ 
+      x-data="{
         stack: new URLSearchParams(location.search).get('stack') || 'php',
-        switchStack(targetStack) { 
+        switchStack(targetStack) {
           this.stack = targetStack
           const url = new URL(window.location.href);
 
@@ -28,7 +28,7 @@
           history.pushState(null, document.title, url.toString());
         },
         frametech: 'default',
-        switchFrametech(targetFrametech) { 
+        switchFrametech(targetFrametech) {
           this.frametech = targetFrametech;
         }
       }"
@@ -40,14 +40,11 @@
 
       <!-- Main content block -->
       <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4 md:pr-0 md:pl-8 pt-4 pb-12 print:border-none print:max-w-full xl:print:max-w-full print:text-sm xl:print:text-sm">
-                
+
         {{- block "main" . }}{{- end }}
       </main>
 
     </div>
-
-    <!-- XSS bundle -->
-    <script src="{{printf "/scripts/xss/dist/bundle.js?version=%s" .Site.Params.version | relURL}}"></script>
 
     {{ if .Page.Store.Get "hasMermaid" }}
     <!-- MermaidJS support -->
