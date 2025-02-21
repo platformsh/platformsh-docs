@@ -13,8 +13,10 @@ premium: true
 MongoDB Enterprise isn't available on {{< vendor/name >}} yet. Deprecated versions are free to use.
 {{% /note %}}
 
+### Deprecated versions
 
-{{% deprecated-versions %}}
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
 
 {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}
 
