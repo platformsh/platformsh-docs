@@ -6,7 +6,7 @@ layout: single
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits."
 ---
 
-{{< note theme="warning" title="Limited access phase">}}
+{{< note theme="note" title="Limited access phase">}}
 
 Dedicated Generation 3 (DG3) is currently in a limited access phase. During this period, we are not limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
 
