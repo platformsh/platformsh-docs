@@ -1,0 +1,22 @@
+{{- $currentSection := .currentSection -}}
+{{- $sectionKeys := .sections -}}
+{{- $currentPage := .Page -}}
+{{- $rootSections := .Site.Sections -}}
+{{- $vendor := .vendor -}}
+{{- $home := .Site.Home -}}
+{{- with .context -}}
+  {{- $currentPage = .Page -}}
+  {{- $rootSections = .Site.Sections -}}
+{{- end -}}
+{{- range $rootSections -}}
+  {{- if ( in $sectionKeys $currentSection) -}}
+    {{- if eq $currentSection .Section -}}
+      {{- range .Pages -}}
+        {{- partial "llms/list-full" ( dict "Context" . "CurrentPage" $currentPage "sections" $sectionKeys "vendor" $vendor ) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if and (eq $currentSection "home" ) (in $sectionKeys .Section) -}}
+  {{- else -}}
+    {{- partial "llms/list-full" ( dict "Context" . "CurrentPage" $currentPage "sections" $sectionKeys "vendor" $vendor ) -}}
+  {{- end -}}
+{{- end -}}

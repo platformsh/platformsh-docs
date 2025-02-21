@@ -1,0 +1,33 @@
+{{- $upsunDocUrl := "https://docs.upsun.com" -}}
+{{- $sectionKeys := .sections -}}
+{{- $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize -}}
+{{- $sectionId = replace $sectionId "." "" -}}
+{{- $currentSection := .Context.Section -}}
+{{- $vendor := .vendor -}}
+{{- if in $sectionKeys $currentSection -}}
+  {{- $pageName := index ( split .Context.RelPermalink "/" ) 2 -}}
+  {{- $currentSection = replace $pageName ".html" "" -}}
+{{- end -}}
+{{- $currentPage := .CurrentPage -}}
+{{- $getStartedAttribute := "" -}}
+{{- if ne $currentSection "other" -}}
+  {{- .Page -}}
+  {{- $itemTitle := .Context.Title | .Context.Page.RenderString }}
+  {{- if ne $itemTitle "" }}
+{{- partial "llms/replace-html.md" ( dict "Context" .Context "content" .RenderShortcodes "title" .Params.title "version" .Site.Params.vendor.config.version "level" 2 "full" 1 "vendor" $vendor ) -}}
+ {{- range .Context.Pages -}}
+    {{- $itemTitle = .Title | .Page.RenderString -}}
+    {{- $levelTwoPages := .Pages -}}
+    {{- if not ( .Params.sidebarIgnore ) -}}
+{{- partial "llms/replace-html.md" ( dict "Context" . "content" .RenderShortcodes "title" .Params.title "version" .Site.Params.vendor.config.version "level" 3 "full" 1 "vendor" $vendor ) -}}
+      {{- if eq .Kind "section" -}}
+              {{- range $levelTwoPages -}}
+                {{ if not ( .Params.sidebarIgnore ) }}
+{{- partial "llms/replace-html.md" ( dict "Context" . "content" .RenderShortcodes "title" .Params.title "version" .Site.Params.vendor.config.version "level" 4 "full" 1 "vendor" $vendor) -}}
+                {{- end -}}
+              {{- end -}}
+          {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- end -}}
