@@ -18,7 +18,7 @@ Before attempting to deploy Magento on Upsun, you must **complete the [Getting s
 {{% guides/requirements name="Drupal" %}}
 
 {{< note title="Authentication" theme="info" >}}
-You will not need Adobe Commerce authentication keys for this process but if you would like to learn how to set them up, visit the [Adobe Commerce Authentication page](https://experienceleague.adobe.com/en/docs/commerce-on-cloud/user-guide/develop/authentication-keys).
+You will not need Adobe Commerce authentication keys for this process but if you would like to learn how to set them up if you want to adjust the composer repo to https://repo.magento.com/, visit [Adobe Commerce Authentication](https://experienceleague.adobe.com/en/docs/commerce-on-cloud/user-guide/develop/authentication-keys).
 
 {{</ note >}}
 
@@ -1961,9 +1961,12 @@ Now that your Magento project has been successfully created, you will see the st
 - [PHP documentation](/languages/php/)
 - [Authenticated Composer repositories](/languages/php/composer-auth)
 
+### Authentication
+- [Composer Authentication and Post Installation Setup](https://github.com/platformsh-templates/magentoCE24/blob/main/README.md#composer-authentication-and-post-installation-setup)
+- [Magento Repository authentication keys](https://devdocs.magento.com/guides/v2.4/install-gde/prereq/connect-auth.html)
+
+
 ### Community content
 
 - [PHP topics](https://support.platform.sh/hc/en-us/search?utf8=%E2%9C%93&query=php)
-
-
 
