@@ -1,9 +1,9 @@
 ---
 title: Deploy Drupal on {{% vendor/name %}}
 sidebarTitle: Drupal
-sectionBefore: PHP
+# sectionBefore: PHP
 #layout: single
-weight: -67
+weight: -57 
 description: |
     Complete the last required steps to successfully deploy Drupal on {{% vendor/name %}}.
 ---
@@ -31,7 +31,7 @@ In addition to the above, you should also have:
 
 - The Drupal files in a repository
 
--  A local copy of that repository where you have selected both `Redis` and `MariaDB` during the [Configure your project](/get-started/here/configure) portion of the[Getting Started](/get-started/here) guide
+-  A local copy of that repository where you have selected both `Redis` and `MariaDB` during the [Configure your project](/get-started/here/configure) portion of the [Getting Started](/get-started/here) guide
 
 ## Configure
 

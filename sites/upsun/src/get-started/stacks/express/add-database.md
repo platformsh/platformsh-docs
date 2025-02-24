@@ -1,5 +1,5 @@
 ---
-title: "Add a database"
+title: "Add a database to Express"
 weight: -130
 description: |
   Once your Express app has been deployed on {{% vendor/name %}}, you might want to add a service to it.
