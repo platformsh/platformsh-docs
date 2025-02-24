@@ -8,7 +8,7 @@ description:  "Learn about the cluster infrastructure of Dedicated Generation 3,
 
 {{< note theme="note" title="Limited access phase">}}
 
-Dedicated Generation 3 (DG3) is currently in a limited access phase. During this period, we are not limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
+Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
 
 If you need more information or have any questions, please contact our team.
 
