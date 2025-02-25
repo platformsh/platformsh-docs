@@ -27,7 +27,7 @@ have your CDN point to your [project's target URL](../../domains/steps/_index.md
 ## 3. Handle apex domains
 
 To start routing client traffic through Cloudflare,
-you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md) 
+you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md)
 through your DNS provider.
 
 But `CNAME` records can't point to apex domains.
@@ -37,7 +37,7 @@ As a workaround, Cloudflare offers [`HTTPS` records](https://developers.cloudfla
 
 Like all networks exposed to the internet, your origin server may become the target of security attacks.
 The best way to protect your site from threats like on-path attacks, spoofing attacks, or credential stuffing,
-is to [configure mutual TLS (mTLS)](https://community.platform.sh/t/configure-mutual-tls-with-cloudflare-and-platform-sh/761).
+is to [configure mutual TLS (mTLS)](https://support.platform.sh/hc/en-us/community/posts/16439502516242).
 
 [mTLS](https://www.cloudflare.com/en-gb/learning/access-management/what-is-mutual-tls/) not only has both parties in a connection authenticate each other
 through the TLS protocol.
@@ -57,7 +57,7 @@ If you can't use mTLS, you can still take the following measures to protect your
 
 1. [Enable full strict SSL/TLS encryption](https://developers.cloudflare.com/ssl/origin-configuration/ssl-modes/full-strict/).</br>
    Any communication between a client and Cloudflare or between Cloudflare and your {{% vendor/name %}} server is then encrypted through HTTPS.
-   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary.md#transport-layer-security-tls) 
+   In addition, Cloudflare checks that your {{% vendor/name %}} server's [TLS certificate](/glossary.md#transport-layer-security-tls)
    was issued by a trusted certificate authority.
    This confirms the client is truly communicating with your {{% vendor/name %}} server.
 
