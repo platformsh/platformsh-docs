@@ -62,7 +62,7 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
 If your app container uses a language other than Node.js, upgrade the Node.js version before using Puppeteer.
-See how to [manage your Node.js version](../languages/nodejs/node-version.md).
+See how to [manage your Node.js version](/languages/nodejs/node-version.md).
 
 ## Usage example
 
@@ -230,7 +230,7 @@ yarn add puppeteer
 
 {{< /codetabs >}}
 
-Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
+Using the [Node.js Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
 ```js
 const platformsh = require('platformsh-config');

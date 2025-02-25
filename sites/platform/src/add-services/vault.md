@@ -10,7 +10,7 @@ to sign, verify, encrypt, decrypt, and rewrap information.
 
 Vault doesn't store the data sent to the transit secrets engine,
 so it can be viewed as encryption as a service.
-To store secrets such as API keys, create sensitive [environment variables](../development/variables/_index.md).
+To store secrets such as API keys, create sensitive [environment variables](/development/variables/_index.md).
 
 ## Supported versions
 

@@ -17,8 +17,8 @@ You need:
 
 - A project that's ready to go live
 - A domain with access to its settings with the registrar
-- A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](/glossary/_index.md#apex-domain)
-- Optional: The [CLI](../../administration/cli/_index.md) installed locally
+- A registrar that allows `CNAME` records or [one of the alternatives](/domains/steps/dns.md) on [apex domains](/glossary/_index.md#apex-domain)
+- Optional: The [CLI](/administration/cli/_index.md) installed locally
 - If you are on a development plan, you need to [upgrade your tier to a production plan](#optional-change-your-plan-to-a-production-plan).
 
 If you are planning to use several subdomains of the same domain on different projects,
@@ -29,7 +29,7 @@ see how to [manage multiple subdomains](/domains/steps/subdomains.md) *before* y
 If you are on a Development plan, you can't add a domain.
 You need to upgrade your subscription to a [production plan](/glossary/_index.md#production-plan).
 
-To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](../../administration/users.md#organization-permissions).
+To upgrade your plan tier, you must be an organization owner or have the [manage plans permission](/administration/users.md#organization-permissions).
 
 To upgrade your plan tier:
 
@@ -39,7 +39,7 @@ To upgrade your plan tier:
 title=Using the CLI
 +++
 
-Run the following [CLI command](../../administration/cli/_index.md):
+Run the following [CLI command](/administration/cli/_index.md):
 
 ```bash
 {{% vendor/cli %}} subscription:info plan standard
@@ -74,7 +74,7 @@ For Dedicated plans, get the target for your project from your {{% vendor/name %
 title=Using the CLI
 +++
 
-Get the target by running the following [CLI command](../../administration/cli/_index.md):
+Get the target by running the following [CLI command](/administration/cli/_index.md):
 
 ```bash
 {{% vendor/cli %}} environment:info edge_hostname
@@ -115,9 +115,9 @@ To configure your domain name to point to your project:
 3. Set the TTL on your domain to the lowest possible value to minimize transition time.
 4. Add a `CNAME` record pointing from your domain to the [target](#1-get-the-target-for-your-project).
    Not all registrars allow these kinds of records.
-   If yours doesn't, see the [alternatives](./dns.md#workarounds-for-apex-domains).
+   If yours doesn't, see the [alternatives](/domains/steps/dns.md#workarounds-for-apex-domains).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
-   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
+   That includes the `www` subdomain if you are using it in your [routes configuration](/define-routes/_index.md).
 6. Set the TTL value back to its previous value.
 
 If your domain is `example.com` and you are using the `www` subdomain, you have records like the following:
@@ -126,7 +126,7 @@ If your domain is `example.com` and you are using the `www` subdomain, you have 
 * `www.example.com` is a `CNAME` record pointing to `main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}}`.
 
 Both `example.com` and `www.example.com` point to the same target.
-Redirects are handled by the [router you configure](../../define-routes/_index.md).
+Redirects are handled by the [router you configure](/define-routes/_index.md).
 
 <--->
 
@@ -142,16 +142,16 @@ To configure your CDN and your domain name to point to your project:
 4. Open your registrar's domain management system and configure your DNS zone settings to point at your CDN.
    The address or `CNAME` record to use varies by CDN provider.
    Refer to the official documentation of your DNS provider and CDN provider.
-5. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](../troubleshoot.md#ownership-verification).
-6. [Disable the router cache](../cdn/_index.md#disable-the-router-cache).
+5. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](/domains/troubleshoot.md#ownership-verification).
+6. [Disable the router cache](/domains/cdn/_index.md#disable-the-router-cache).
 7. Optional: For increased security and to prevent the CDN from being bypassed,
-   you can force all traffic to [go through the CDN](../cdn/_index.md#prevent-direct-access-to-your-server).
+   you can force all traffic to [go through the CDN](/domains/cdn/_index.md#prevent-direct-access-to-your-server).
 8. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
-   That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
+   That includes the `www` subdomain if you are using it in your [routes configuration](/define-routes/_index.md).
 
-Adding a custom domain sets your site as [visible to search engines](../../environments/search-engine-visibility.md#how-its-done).
+Adding a custom domain sets your site as [visible to search engines](/environments/search-engine-visibility.md#how-its-done).
 
-See how you can further [configure your CDN](../cdn/_index.md).
+See how you can further [configure your CDN](/domains/cdn/_index.md).
 
 {{< /codetabs >}}
 
@@ -187,6 +187,6 @@ title=In the Console
 
 ## What's next
 
-* [Use a content delivery network](../cdn/_index.md)
-* [Use subdomains across multiple projects](./subdomains.md)
-* [Use a custom TLS certificate](./tls.md)
+* [Use a content delivery network](/domains/cdn/_index.md)
+* [Use subdomains across multiple projects](/domains/steps/subdomains.md)
+* [Use a custom TLS certificate](/domains/steps/tls.md)

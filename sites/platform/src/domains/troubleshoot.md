@@ -38,7 +38,7 @@ If it isn't, try the following steps:
 To find out where your domain is pointing to,
 you can use [the certificate checker tool](https://certcheck.pltfrm.sh/).
 This tool provides guidance on certificates,
-including when you use a [CDN](./cdn/_index.md).
+including when you use a [CDN](/domains/cdn/_index.md).
 Check both the apex and the `www` domains to ensure they both point to your project.
 
 For further investigations, run the following command in a shell:
@@ -76,7 +76,7 @@ Generated URLs for environments have the following pattern:
 {{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
 ```
 
-If you have a [default domain](../define-routes/_index.md#default) set up, the generated URL has the following pattern:
+If you have a [default domain](/define-routes/_index.md#default) set up, the generated URL has the following pattern:
 
 ```bash
 {{<variable "YOUR_DOMAIN" >}}.{{<variable "ENVIRONMENT" >}}-{{<variable "PROJECT_ID" >}}.{{<variable "REGION" >}}.platformsh.site
@@ -102,7 +102,7 @@ To provide a valid TLS-certificate,
 the certificate issuer checks that the requester is entitled to receive the requested certificate.
 This check is known as the _Challenge_ step.
 
-The certificate request is generated based on your [routes definition](../define-routes/_index.md).
+The certificate request is generated based on your [routes definition](/define-routes/_index.md).
 If you want your site to be available with `example.com` and its `www.example.com` subdomain, make sure both are defined in your routes.
 
 To pass this verification, there are requirements you need to meet.
@@ -145,7 +145,7 @@ If you don't follow those requirements, you get an error message similar to:
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
 ```
 
-For more information, see how to [setup your CDN](../domains/cdn/_index.md).
+For more information, see how to [setup your CDN](/domains/cdn/_index.md).
 For more details regarding the challenge step, consult your certificate issuer's documentation.
 A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/).
 
@@ -153,10 +153,10 @@ A common issuer is [Let's Encrypt](https://letsencrypt.org/docs/challenge-types/
 
 Make sure that the [apex domain](/glossary/_index.md#apex-domain) and its `www` subdomain are both pointing where needed.
 Note that it can take up to 72 hours for DNS changes to be effective.
-For more information, see how to [set up a custom domain](../domains/steps/_index.md).
+For more information, see how to [set up a custom domain](/domains/steps/_index.md).
 
 If the changes take longer than expected,
-[redeploy](../development/troubleshoot.md#force-a-redeploy) the impacted environment.
+[redeploy](/development/troubleshoot.md#force-a-redeploy) the impacted environment.
 
 Also make sure that no conflicting DNS records exist for your domain.
 For example, a conflicting AAAA (IPv6) DNS record can result in a `[HTTP01: The client lacks sufficient authorization]` error.
@@ -168,7 +168,7 @@ If not, [contact Support](/learn/overview/get-support.md).
 
 ### Check your routes configuration
 
-Certificates are generated based on your [routes configuration](../define-routes/_index.md).
+Certificates are generated based on your [routes configuration](/define-routes/_index.md).
 When a certificate is renewed, the renewal bot checks that all of the defined routes can be accessed.
 If at least one of the routes defined in your `{{< vendor/configfile "routes" >}}` file can't be accessed,
 the renewal fails and the following error is displayed:
@@ -187,7 +187,7 @@ E: Error: TLS Certificate provisioning failed
 ```
 
 For example, if you add `example.com` and `www.example.com` to your routes configuration
-but the `www` subdomain doesn't point to your project through [a `CNAME` record](./steps/dns.md#cname-records),
+but the `www` subdomain doesn't point to your project through [a `CNAME` record](/domains/steps/dns.md#cname-records),
 the certificate renewal fails.
 For the renewal to succeed, add the missing `CNAME` record to your DNS
 or remove `www.example.com` (and any other `www` route) from your `{{< vendor/configfile "routes" >}}` file.

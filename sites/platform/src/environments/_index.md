@@ -9,13 +9,13 @@ keywords:
   - git push options
 ---
 
-A {{% vendor/name %}} environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
+A {{% vendor/name %}} environment contains one instance of an app (or [group of apps](/create-apps/multi-app/_index.md))
 with all the services needed for it to run.
 
 Each project can include multiple environments,
-often divided into [environment types](../administration/users.md#environment-type-roles).
+often divided into [environment types](/administration/users.md#environment-type-roles).
 If you have a live site, you have at least a production environment.
-You may also have additional environments of the Staging or Development [environment type](../administration/users.md#environment-type-roles), but there will only ever be one production environment.
+You may also have additional environments of the Staging or Development [environment type](/administration/users.md#environment-type-roles), but there will only ever be one production environment.
 
 You can think of other environments as copies of your live site
 where you can run tests without worrying about damaging anything in production.
@@ -29,10 +29,10 @@ To organize your environments, you can create [hierarchical relationships](#hier
 
 You can create new environments in one of two ways:
 
--   Push a local branch through Git or a [source integration](../integrations/source/_index.md).
+-   Push a local branch through Git or a [source integration](/integrations/source/_index.md).
 
 -   [Branch](/glossary/_index.md#branch) existing environments using the [CLI](/administration/cli/_index.md)
-    or the [Console](../administration/web/_index.md).
+    or the [Console](/administration/web/_index.md).
 
 When you branch an environment, you might want to create exact replicas of it.
 In this case, each new environment inherits all of the data and services from its parent environment.

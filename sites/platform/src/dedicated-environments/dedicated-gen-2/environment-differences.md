@@ -14,12 +14,12 @@ This is not the case with [{{% names/dedicated-gen-3 %}}](/dedicated-environment
 Because of the differences between {{% names/dedicated-gen-2 %}} and Grid Environments,
 basic [syncs](/glossary/_index.md#sync) and [merges](/glossary/_index.md#merge) aren't available between development environments and production or staging environments. So you don't see working buttons with those options in the Console.
 
-To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](../../development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
+To transfer data between environments, backup your Production/Staging data and then synchronize Development data. See how to [back up and transfer data](/development/transfer-dedicated.md#synchronize-files-from-development-to-stagingproduction).
 
 ## Backups
 
 Production environments are [backed up automatically](/environments/backup.md#backup-schedule).
-For other environments, trigger a [manual backup](../../environments/backup.md).
+For other environments, trigger a [manual backup](/environments/backup.md).
 
 ## PHP
 
@@ -55,7 +55,7 @@ For other PHP options, such as the following, [open a support ticket](/learn/ove
 
 ### Xdebug
 
-All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](../../languages/php/xdebug.md) enabled have a second PHP-FPM process. This second process is used only when requests include the correct Xdebug key in a header.
+All {{% names/dedicated-gen-2 %}} clusters that have [Xdebug](/languages/php/xdebug.md) enabled have a second PHP-FPM process. This second process is used only when requests include the correct Xdebug key in a header.
 
 So you can keep Xdebug always on and not worry about performance issues as it's ignored on most requests.
 
@@ -73,7 +73,7 @@ Staging and Production environments have separate keys.
 
 ## Solr
 
-On Grid environments, [Solr](../../add-services/solr.md) runs as a standalone instance.
+On Grid environments, [Solr](/add-services/solr.md) runs as a standalone instance.
 On {{% names/dedicated-gen-2 %}} Environments, it runs as [SolrCloud](https://solr.apache.org/guide/6_6/solrcloud.html): a cluster of Solr servers to ensure high availability. This shouldn't affect you most of the time, but may influence certain advanced use cases.
 
 ## Cron tasks interrupted by deploys
@@ -99,14 +99,14 @@ It's assumed you want the settings the same, unless you state otherwise in the t
 The following settings require a [support ticket](/learn/overview/get-support.md):
 
 * [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
-* [Service configuration](../../add-services/_index.md)
+* [Service configuration](/add-services/_index.md)
 * Relationships among services and apps
 * Plan upsizing
 * Increasing storage
 * Allocating storage among mounts and services
-* [PHP extensions](../../languages/php/extensions.md)
+* [PHP extensions](/languages/php/extensions.md)
 * Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations))
 
 ## Logs
 
-{{% names/dedicated-gen-2 %}} Environments have a slightly different location for [container logs](../../increase-observability/logs/access-logs.md). The difference shouldn't be noticeable if you use the CLI.
+{{% names/dedicated-gen-2 %}} Environments have a slightly different location for [container logs](/increase-observability/logs/access-logs.md). The difference shouldn't be noticeable if you use the CLI.

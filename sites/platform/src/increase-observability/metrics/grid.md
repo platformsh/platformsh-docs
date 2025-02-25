@@ -6,8 +6,8 @@ description: Understand how to read metrics for Grid environments.
 
 Grid environments consist of:
 
-* App containers: one or more [app containers](../../create-apps/_index.md)
-* Service containers: zero or more [service containers](../../add-services/_index.md)
+* App containers: one or more [app containers](/create-apps/_index.md)
+* Service containers: zero or more [service containers](/add-services/_index.md)
 * Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app and worker containers
@@ -44,7 +44,7 @@ The appropriate resources have been [allocated automatically](/create-apps/app-r
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#grid-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#grid-environments).
 
 ### App container
 
@@ -67,7 +67,7 @@ So you don't see all of your project's allocated RAM in the graphs.
 #### MySQL
 
 Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
-The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
+The persistent disk has been configured in the [services configuration](/add-services/_index.md)
 as 0.95&nbsp;GB,
 while the temporary disk is 3.99&nbsp;GB by default.
 

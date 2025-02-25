@@ -157,7 +157,7 @@ Then, paste the following code snippet into your `settings.platformsh.php` file.
 
 {{< note >}}
 
-If you do not already have the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you do not already have the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php

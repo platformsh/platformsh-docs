@@ -13,5 +13,5 @@ You can use it as a starting point for your own project.
 If you already have a Next.js project ready to deploy,
 see the template's [example app configuration](https://github.com/platformsh-templates/nextjs/blob/master/.platform.app.yaml)
 and other [example {{% vendor/name %}} files](https://github.com/platformsh-templates/nextjs/tree/master/.platform).
-These files let you [configure your app](../../create-apps/_index.md),
-[add services](../../add-services/_index.md), and [define routes](../../define-routes/_index.md).
+These files let you [configure your app](/create-apps/_index.md),
+[add services](/add-services/_index.md), and [define routes](/define-routes/_index.md).

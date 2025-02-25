@@ -177,7 +177,7 @@ The example below is intended as a "most common case" and has been tested with v
 
 {{< note >}}
 
-If you don't already have the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file,
+If you don't already have the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file,
 you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php

@@ -9,7 +9,7 @@ including when you deploy your app,
 when you [push code](#push), and when a [cron job is run](#cron).
 
 To automate your workflows, you can parse and react to the activity's JSON object
-through [activity scripts](../activity/_index.md).
+through [activity scripts](/integrations/activity/_index.md).
 
 ## Activity schema
 
@@ -107,7 +107,7 @@ The following table presents the possible activity types:
 | `project.metrics.update`    | A metric from the [continuous profiling](/increase-observability.md) has been updated.                                                                                                                                             |
 | `project.metrics.disable`   | A metric from the [continuous profiling](/increase-observability.md) has been disabled.                                                                                                                                            |
 | `project.modify.title`      | The project title has changed.                                                                                                                                                                                                     |
-| `project.variable.create`   | A new [project variable](/administration/web/configure-project.md#variables) has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
+| `project.variable.create`   | A new [project variable](/administration/web/configure-project.md#variables) has been created. The value is visible only if the variable is not [set as sensitive](/development/variables/set-variables.md#variable-options). |
 | `project.variable.delete`   | A [project variable](/administration/web/configure-project.md#variables) has been deleted.                                                                                                                                         |
 | `project.variable.update`   | A [project variable](/administration/web/configure-project.md#variables) has been modified.                                                                                                                                        |
 
@@ -145,9 +145,9 @@ The following table presents the possible activity types:
 | `environment.subscription.update`    | The production environment has been resized because the plan has changed. The content of the environment hasn't changed.                                                                                                         |
 | `environment.synchronize`            | An environment has had its data and/or code replaced with the data and/or code from its parent environment.                                                                                                                      |
 | `environment.update.http_access`     | [HTTP access rules](/administration/web/configure-environment.md#http-access-control) for an environment have been modified.                                                                                                     |
-| `environment.update.restrict_robots` | The option to [hide from search engines](../../environments/search-engine-visibility.md) has been enabled or disabled for an environment.                                                                                        |
+| `environment.update.restrict_robots` | The option to [hide from search engines](/environments/search-engine-visibility.md) has been enabled or disabled for an environment.                                                                                        |
 | `environment.update.smtp`            | Email sending has been enabled or disabled for an environment.                                                                                                                                                                   |
-| `environment.variable.create`        | A [new variable](/development/variables/set-variables.md#variable-options) has been created. The value is visible only if the variable is not [set as sensitive](../../development/variables/set-variables.md#variable-options). |
+| `environment.variable.create`        | A [new variable](/development/variables/set-variables.md#variable-options) has been created. The value is visible only if the variable is not [set as sensitive](/development/variables/set-variables.md#variable-options). |
 | `environment.variable.delete`        | A [variable](/development/variables/set-variables.md#variable-options) has been deleted.                                                                                                                                         |
 | `environment.variable.update`        | A [variable](/development/variables/set-variables.md#variable-options) has been modified.                                                                                                                                        |
 | `environment_type.access.create`     | A [new access](/administration/users.md#manage-project-access) has been added to the environment                                                                                                                                 |
@@ -167,10 +167,10 @@ The following table presents the possible activity types:
 | `integration.bitbucket_server.register_hooks` | An integration hook has been registered with [Bitbucket Server](/integrations/source/bitbucket.md#bitbucket-server).  |
 | `integration.github.fetch`                    | A fetch has been triggered on your [GitHub](/integrations/source/github.md) repository.                               |
 | `integration.gitlab.fetch`                    | A fetch has been triggered on your [GitLab](/integrations/source/gitlab.md) repository.                               |
-| `integration.health.email`                    | A [health notification](../notifications.md) was sent by email.                                                       |
-| `integration.health.pagerduty`                | A [health notification](../notifications.md) was sent to PagerDuty.                                                   |
-| `integration.health.slack`                    | A [health notification](../notifications.md) was sent to Slack.                                                       |
-| `integration.health.webhook`                  | A [health notification](../notifications.md) was sent to a webhook.                                                   |
+| `integration.health.email`                    | A [health notification](/integrations/notifications.md) was sent by email.                                            |
+| `integration.health.pagerduty`                | A [health notification](/integrations/notifications.md) was sent to PagerDuty.                                        |
+| `integration.health.slack`                    | A [health notification](/integrations/notifications.md) was sent to Slack.                                            |
+| `integration.health.webhook`                  | A [health notification](/integrations/notifications.md) was sent to a webhook.                                        |
 | `integration.script`                          | An [activity script](/integrations/activity/_index.md) has been triggered.                                            |
 | `integration.webhook`                         | A [webhook](/integrations/activity/webhooks.md) was triggered.                                                        |
 
@@ -264,9 +264,9 @@ The following table presents the most notable properties of the environment:
 | Name                                | Description                                                                                 |
 |-------------------------------------|---------------------------------------------------------------------------------------------|
 | `payload.environment.name`          | The environment name.                                                                       |
-| `payload.environment.type`          | The [environment type](../../administration/users.md#environment-type-roles).               |
+| `payload.environment.type`          | The [environment type](/administration/users.md#environment-type-roles).               |
 | `payload.environment.head_commit`   | The ID of the environment's latest Git commit.                                              |
-| `payload.environment.edge_hostname` | The URL you should target when setting up a [custom domain](../../domains/steps/_index.md). |
+| `payload.environment.edge_hostname` | The URL you should target when setting up a [custom domain](/domains/steps/_index.md). |
 
 Different from [`environment` activities](#type).
 
@@ -276,12 +276,12 @@ Contains information about the project associated with the activity,
 including plan details, timezone, and region.
 The following table presents the most notable properties of the project:
 
-| Name                           | Description                                                                             |
-|--------------------------------|-----------------------------------------------------------------------------------------|
-| `payload.project.timezone`     | Your project's [timezone](../../projects/change-project-timezone.md).                   |
-| `payload.project.region`       | Your project's [region](../../development/regions.md#regions).                          |
-| `payload.project.title`        | Your project's name.                                                                    |
-| `payload.project.subscription` | All of the details about your project's [plan](../../administration/pricing/_index.md). |
+| Name                           | Description                                                                        |
+|--------------------------------|------------------------------------------------------------------------------------|
+| `payload.project.timezone`     | Your project's [timezone](/projects/change-project-timezone.md).                   |
+| `payload.project.region`       | Your project's [region](/development/regions.md#regions).                          |
+| `payload.project.title`        | Your project's name.                                                               |
+| `payload.project.subscription` | All of the details about your project's [plan](/administration/pricing/_index.md). |
 
 Different from [`project` activities](#type).
 
@@ -294,13 +294,13 @@ The following table presents the most notable properties of the deployment:
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | `payload.deployment.routes`    | All the URLs connected to the environment. The list includes redirects. To exclude redirects, find objects whose `type` is `upstream`. |
 | `payload.deployment.services`  | All the services on your environment.                                                                                                  |
-| `payload.deployment.variables` | All the [variables for the environment](../../development/variables/_index.md).                                                        |
+| `payload.deployment.variables` | All the [variables for the environment](/development/variables/_index.md).                                                        |
 
 The `payload.deployment` property includes the configuration extracted from the following sources:
 
-- Your [app configuration](../../create-apps/_index.md)
-- Your [routes](../../define-routes/_index.md)
-- Your [services](../../add-services/_index.md)
+- Your [app configuration](/create-apps/_index.md)
+- Your [routes](/define-routes/_index.md)
+- Your [services](/add-services/_index.md)
 
 ## Maximum activities and parallelism
 
@@ -326,7 +326,7 @@ though there may be a temporary wait.
 The response is often usually long, so the following examples are shortened using ellipses.
 Remember that the response differs depending on the activity and not all fields are always available.
 
-To test responses, [set up a webhook](./webhooks.md#setup).
+To test responses, [set up a webhook](/integrations/activity/webhooks.md#setup).
 
 ### Cron
 

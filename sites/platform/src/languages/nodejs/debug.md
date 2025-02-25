@@ -31,7 +31,7 @@ Start by creating a new environment completely isolated from production but with
 title=Remote
 +++
 
-Access your app container via [SSH](../../development/ssh/_index.md):
+Access your app container via [SSH](/development/ssh/_index.md):
 
 ```bash
 {{% vendor/cli %}} ssh
@@ -89,7 +89,7 @@ node --inspect <START_FILE>
 {{< /codetabs >}}
 
 
-Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
+Replace `<START_FILE>` with the file defined for [your app's `start` command](/languages/nodejs/_index.md#4-start-your-app).
 
 You get output something like this:
 
@@ -179,4 +179,4 @@ If you're using the [`pm2` process manager](https://github.com/unitech/pm2) to s
 you might find it daemonizes itself and blocks other processes (such as backups) by constantly respawning.
 This may happen even if you use the `--no-daemon` flag.
 
-Instead of using a script, call `pm2 start` directly in your [`start` command](./_index.md#4-start-your-app).
+Instead of using a script, call `pm2 start` directly in your [`start` command](/languages/nodejs/_index.md#4-start-your-app).

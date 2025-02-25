@@ -14,7 +14,7 @@ and your messages a safe place to live until they're received.
 
 If you use one of the following frameworks, follow its guide:
 
-- [Spring](../guides/spring/rabbitmq.md)
+- [Spring](/guides/spring/rabbitmq.md)
 
 ## Supported versions
 
@@ -269,7 +269,7 @@ In each case, you need the login credentials that you can obtain from the [relat
 ### Via SSH
 
 To connect directly to your RabbitMQ service in an environment,
-open an SSH tunnel with the [{{% vendor/name %}} CLI](../administration/cli/_index.md).
+open an SSH tunnel with the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 
 To open an SSH tunnel to your service with port forwarding,
 run the following command:

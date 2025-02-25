@@ -7,7 +7,7 @@ You might have certain commands you want to run only in certain environments.
 For example enabling detailed logging in preview environments
 or purging your CDN cache for production environments.
 
-The `deploy` and `post_deploy` hooks can access all [runtime environment variables](../../development/variables/use-variables.md#use-provided-variables).
+The `deploy` and `post_deploy` hooks can access all [runtime environment variables](/development/variables/use-variables.md#use-provided-variables).
 Use this to vary those hooks based on the environment.
 
 Check the `PLATFORM_ENVIRONMENT_TYPE` variable to see if it's in a production environment:

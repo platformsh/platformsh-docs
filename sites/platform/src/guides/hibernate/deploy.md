@@ -13,7 +13,7 @@ Note that the Java configuration reader library is used in the following example
 
 ### MySQL
 
-[MySQL](../../add-services/mysql/_index.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MySQL](/add-services/mysql/_index.md) is an open-source relational database technology. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -46,7 +46,7 @@ You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 ### MariaDB
 
-[MariaDB](../../add-services/mysql/_index.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[MariaDB](/add-services/mysql/_index.md) is an open-source relational database technology. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;
@@ -75,7 +75,7 @@ public class HibernateApp {
 
 ### PostgreSQL
 
-[PostgreSQL](../../add-services/postgresql.md) is an open-source relational database technology. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the SessionFactory client programmatically:
+[PostgreSQL](/add-services/postgresql.md) is an open-source relational database technology. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql), and the Java dependencies. Then determine the SessionFactory client programmatically:
 
 ```java
 import org.hibernate.Session;

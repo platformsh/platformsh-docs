@@ -5,9 +5,9 @@ description: See how to restore an environment from a previous state.
 weight: -10
 ---
 
-Once you have [backups of your environment](./backup.md), you can restore data from a previous point.
+Once you have [backups of your environment](/environments/backup.md), you can restore data from a previous point.
 
-To restore an environment, you need an [Admin role for that environment type](../administration/users.md).
+To restore an environment, you need an [Admin role for that environment type](/administration/users.md).
 
 ## 1. List available backups
 
@@ -90,7 +90,7 @@ So any future (re)deployments use the current Git repository to build the enviro
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-See [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
+See [how backup and restore works on {{% vendor/name %}}](/environments/backup.md#how-backup-and-restore-works).
 
 {{< /note >}}
 

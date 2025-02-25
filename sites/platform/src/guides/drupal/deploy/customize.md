@@ -220,8 +220,8 @@ This modifies the `$PATH` to include the `vendor/bin` directory,
 where command line tools like Drush are stored.
 
 You need the file or one like it if you plan to run `drush` as a command,
-such as in a cron task like the one in the [app configuration from the previous step](./configure.md#configure-apps-in-platformappyaml).
-If you don't include the file, you get a [command not found error](../../../development/troubleshoot.md#command-not-found).
+such as in a cron task like the one in the [app configuration from the previous step](/guides/drupal/deploy/configure.md#configure-apps-in-platformappyaml).
+If you don't include the file, you get a [command not found error](/development/troubleshoot.md#command-not-found).
 
 ```text {location=".environment"}
 # Allow executable app dependencies from Composer to be run from the path.

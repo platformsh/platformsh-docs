@@ -23,7 +23,7 @@ and the estimated average memory size of each process.
 
 You have two ways to increase the number of workers:
 
-- Adjust the [worker sizing hints](./fpm.md) for your project.
+- Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
 ## Execution timeout
 
@@ -49,13 +49,13 @@ grep $(date +%Y-%m-%dT%H --date='-1 hours') /var/log/php.access.log | sort -k 4 
 ```
 
 If you see that the processing time of certain requests is slow (such as taking longer than 1000&nbsp;ms),
-you should consider a continuous observability solution like [Blackfire](../../increase-observability/integrate-observability/blackfire.md)
+you should consider a continuous observability solution like [Blackfire](/increase-observability/integrate-observability/blackfire.md)
 to monitor your app and help you improve the performance issue.
 
 Otherwise, you may check if the following options are applicable:
 
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
-  Refer to [how caching works](../../define-routes/cache.md).
+  Refer to [how caching works](/define-routes/cache.md).
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
 ## Troubleshoot a crashed PHP process
 
@@ -68,7 +68,7 @@ WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 secon
 
 Either a PHP extension is hitting a segmentation fault or your PHP app code is crashing.
 Review recent changes in your app and try to find the root cause.
-You might want to use a tool such as [Xdebug](./xdebug.md) for quicker troubleshooting.
+You might want to use a tool such as [Xdebug](/languages/php/xdebug.md) for quicker troubleshooting.
 
 ## Troubleshoot a killed PHP process
 
@@ -83,12 +83,12 @@ That means the memory usage of your container exceeds the limit allowed on your 
 To solve this issue, try the following approaches:
 
 - Check if the memory usage of your app is as expected and try to optimize it.
-- Use [sizing hints](./fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
+- Use [sizing hints](/languages/php/fpm.md) to reduce the amount of PHP workers, which reduces the memory footprint.
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
 
 ## Restart PHP processes stuck during a build or deployment
 
-If your [build or deployment is running longer than expected](../../development/troubleshoot.md#stuck-build-or-deployment),
+If your [build or deployment is running longer than expected](/development/troubleshoot.md#stuck-build-or-deployment),
 it might be because of a PHP process getting stuck.
 
 To restart your PHP processes, run the following command in your app container:
@@ -113,9 +113,9 @@ To address the issue, you can:
 
 - Lower the memory consumption of each request so that the amount of PHP workers gets automatically raised.
   This can be customized with the `runtime.sizing_hints.request_memory` key in your `{{< vendor/configfile "app" >}}` file.
-  For more details, consult [PHP-FPM sizing](./fpm.md).
-- Add a [CDN](../../domains/cdn/_index.md).
+  For more details, consult [PHP-FPM sizing](/languages/php/fpm.md).
+- Add a [CDN](/domains/cdn/_index.md).
 - Set up [HTTP caching](/learn/bestpractices/http-caching.md).
-- Follow the global [performance tuning recommendations](./tuning.md).
+- Follow the global [performance tuning recommendations](/languages/php/tuning.md).
 - Remove stale plugins and extensions when using a CMS.
 - Upgrade the container size to get more resources.

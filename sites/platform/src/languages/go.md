@@ -100,7 +100,7 @@ or you may route all requests to the Go application unconditionally, as in the e
 
 ## Accessing services
 
-To access various [services](../add-services/_index.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
+To access various [services](/add-services/_index.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
 
 {{< codetabs v2hide="true" >}}
 

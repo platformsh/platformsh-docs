@@ -93,7 +93,7 @@ v=spf1 include:u17504801.wl.sendgrid.net -all
 
 ## 4. Test the email service
 
-To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `{{% vendor/cli %}} ssh`.
+To test the email service, use the [CLI](/administration/cli/_index.md) to connect to your app by running `{{% vendor/cli %}} ssh`.
 Run the following command:
 
 ```bash

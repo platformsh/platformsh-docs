@@ -22,7 +22,7 @@ title=With Drupal and Drush
 +++
 
 To sanitize your database and get rid of sensitive, live information, use the `drush sql:sanitize` command.
-Add your script to sanitize the database to [a `deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook)
+Add your script to sanitize the database to [a `deploy` hook](/create-apps/hooks/hooks-comparison.md#deploy-hook)
 for preview environments:
 
 ```yaml {configFile="app"}

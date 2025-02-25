@@ -5,7 +5,7 @@ keywords:
   - .environment
 ---
 
-To set variables, determine which [type of variable](./_index.md#variable-types) to use.
+To set variables, determine which [type of variable](/development/variables/_index.md#variable-types) to use.
 Remember to take into account the order of precedence.
 All of the variables can also be [overridden via script](#set-variables-via-script).
 
@@ -16,14 +16,14 @@ These values are the same across all environments and present in the Git reposit
 which makes them a poor fit for API keys and other such secrets.
 
 They're better fits for uses such as configuration for consistent builds across every environment,
-including setting [PHP configuration values](./_index.md#php-specific-variables).
+including setting [PHP configuration values](/development/variables/_index.md#php-specific-variables).
 
 Application variables are available at both build time and runtime.
 
 ## Create project variables
 
 Add secrets for all environments in project variables
-using [the Console](../../administration/web/configure-project.md#variables) or the [CLI](../../administration/cli/_index.md).
+using [the Console](/administration/web/configure-project.md#variables) or the [CLI](/administration/cli/_index.md).
 
 For example, you may need to vary API credentials between production and other environments.
 To do so, set the non-production credentials as a project variable
@@ -60,9 +60,9 @@ To add a project variable, follow these steps:
 
 {{< /codetabs >}}
 
-When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
+When naming variables, be sure to take [variable prefixes](/development/variables/_index.md#variable-prefixes) into account.
 In particular, to expose a variable as its own environment variable,
-[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
+[use the prefix `env:`](/development/variables/_index.md#top-level-environment-variables).
 
 ### Variable options
 
@@ -90,13 +90,13 @@ For example, to make the `foo` variable visible at runtime and hidden during the
 ```
 
 Note that for changes to project variables to have effect,
-you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
+you need to [redeploy](/development/troubleshoot.md#force-a-redeploy) your environments.
 
 ## Create environment-specific variables
 
-Set variables for specific environments using [the Console](../../administration/web/configure-environment.md#variables) or the CLI.
+Set variables for specific environments using [the Console](/administration/web/configure-environment.md#variables) or the CLI.
 Variables can be inherited or overridden from parent environments and project variables.
-See [more on overriding values](./_index.md#overrides).
+See [more on overriding values](/development/variables/_index.md#overrides).
 
 {{< codetabs>}}
 +++
@@ -131,9 +131,9 @@ To add a project variable, follow these steps:
 
 {{< /codetabs >}}
 
-When naming variables, be sure to take [variable prefixes](./_index.md#variable-prefixes) into account.
+When naming variables, be sure to take [variable prefixes](/development/variables/_index.md#variable-prefixes) into account.
 In particular, to expose a variable as its own environment variable,
-[use the prefix `env:`](../../development/variables/_index.md#top-level-environment-variables).
+[use the prefix `env:`](/development/variables/_index.md#top-level-environment-variables).
 
 ### Environment variable options
 
@@ -156,7 +156,7 @@ Other environments don't inherit it and get either a project variable of the sam
 
 Note that changing an environment variable causes that environment to be redeployed so the new value is available.
 But child environments are *not* redeployed.
-To make the new value accessible to those environments, [trigger a redeploy](../troubleshoot.md#force-a-redeploy).
+To make the new value accessible to those environments, [trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ### Example environment variable
 
@@ -192,7 +192,7 @@ export PATH=/app/vendor/bin:$PATH
 ```
 
 You can also dynamically define environment variables based on the current environment.
-For example, you might want to get the [defined route](../../define-routes/_index.md) with the id `api` for the current environment.
+For example, you might want to get the [defined route](/define-routes/_index.md) with the id `api` for the current environment.
 To define it as the `URL` environment variable, you might add something like:
 
 ```bash {location=".environment"}
@@ -245,7 +245,7 @@ To solve the issue, remove the printed output from your `.environment` file.
 
 If your app needs different names for environment variable than those set by {{< vendor/name >}}, which is common for database connections,
 map the {{< vendor/name >}}'s variable names to those required by the application.
-Do this in the app with the help of the [Config Reader library](./use-variables.md#access-variables-in-your-app) or via a shell script.
+Do this in the app with the help of the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app) or via a shell script.
 
 For example, the following [`.environment` script](#set-variables-via-script) exports variables that are visible to the application.
 It uses the `jq` library, which is included in all app containers for this purpose.

@@ -6,7 +6,7 @@ description: Configure a Spring application with Solr.
 ---
 
 You can use [Spring Data Solr](https://spring.io/projects/spring-data-solr)
-for [Solr](../../add-services/solr.md) with your app.
+for [Solr](/add-services/solr.md) with your app.
 First, determine the Solr client using the [Java configuration reader library](https://github.com/platformsh/config-reader-java).
 
 ```java

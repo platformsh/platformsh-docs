@@ -5,7 +5,7 @@ weight: -90
 description: Set up a continuous observability strategy for your Symfony app with Blackfire.
 ---
 
-[Blackfire.io](../../../increase-observability/integrate-observability/blackfire.md) is the recommended solution
+[Blackfire.io](/increase-observability/integrate-observability/blackfire.md) is the recommended solution
 for monitoring and profiling web sites and apps.
 Blackfire works seamlessly with any app built with Symfony.
 

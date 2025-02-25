@@ -27,7 +27,7 @@ Then make sure to clear the cache on all relevant {{% vendor/name %}} environmen
 php artisan optimize:clear
 ```
 
-Override the default web server with a [custom start command](../../../languages/php/_index.md#alternate-start-commands).
+Override the default web server with a [custom start command](/languages/php/_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}

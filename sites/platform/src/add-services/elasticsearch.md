@@ -15,11 +15,11 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 If you use one of the following frameworks, follow its guide:
 
-- [Drupal](../guides/drupal/elasticsearch.md)
-- [Jakarta EE](../guides/jakarta/deploy.md#elasticsearch)
-- [Micronaut](../guides/micronaut/elasticsearch.md)
-- [Quarkus](../guides/quarkus/elasticsearch.md)
-- [Spring](../guides/spring/elasticsearch.md)
+- [Drupal](/guides/drupal/elasticsearch.md)
+- [Jakarta EE](/guides/jakarta/deploy.md#elasticsearch)
+- [Micronaut](/guides/micronaut/elasticsearch.md)
+- [Quarkus](/guides/quarkus/elasticsearch.md)
+- [Spring](/guides/spring/elasticsearch.md)
 
 ## Supported versions
 
@@ -80,7 +80,7 @@ but they're at their end of life and are no longer receiving security updates fr
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).
 
-Alternatively, you can switch to one of the latest, free versions of [OpenSearch](./opensearch.md).
+Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
 To do so, follow the same procedure as for [upgrading](#upgrading).
 
 ## Relationship reference

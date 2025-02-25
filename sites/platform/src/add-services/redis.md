@@ -15,13 +15,13 @@ for high-performance data retrieval and key-value storage.
 
 If you use one of the following frameworks, follow its guide:
 
-- [Drupal](../guides/drupal/redis.md)
-- [Ibexa DXP](../guides/ibexa/deploy.md#redis)
-- [Jakarta EE](../guides/jakarta/deploy.md#redis)
-- [Micronaut](../guides/micronaut/redis.md)
-- [Quarkus](../guides/quarkus/redis.md)
-- [Spring](../guides/spring/redis.md)
-- [WordPress](../guides/wordpress/redis.md)
+- [Drupal](/guides/drupal/redis.md)
+- [Ibexa DXP](/guides/ibexa/deploy.md#redis)
+- [Jakarta EE](/guides/jakarta/deploy.md#redis)
+- [Micronaut](/guides/micronaut/redis.md)
+- [Quarkus](/guides/quarkus/redis.md)
+- [Spring](/guides/spring/redis.md)
+- [WordPress](/guides/wordpress/redis.md)
 
 ## Supported versions
 
@@ -681,10 +681,10 @@ Access your Redis service by running the command:
 ### Redis CLI
 
 Retrieve the hostname and port you can connect to
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 To do so, run the `{{< vendor/cli >}} relationships` command.
 
-After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
+After you've retrieved the hostname and port, [open an SSH session](/development/ssh/_index.md).
 To access your Redis service, run the following command:
 
 ```bash

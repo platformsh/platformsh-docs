@@ -15,7 +15,7 @@ So if you have a `staging` environment and you [branch environments from it](/gl
 all of the environments branched from it inherit the same authentication information.
 
 Changing access control triggers a new deploy of the current environment.
-The changes don't propagate to child environments until they're [redeployed manually](../development/troubleshoot.md#force-a-redeploy).
+The changes don't propagate to child environments until they're [redeployed manually](/development/troubleshoot.md#force-a-redeploy).
 
 ## Use a username and password
 

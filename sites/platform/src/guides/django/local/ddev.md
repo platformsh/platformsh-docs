@@ -26,7 +26,7 @@ sectionBefore: Integrated environments
     {{% vendor/cli %}} branch new-feature main
     ```
 
-    If you're using a [source integration](../../../integrations/source/_index.md),
+    If you're using a [source integration](/integrations/source/_index.md),
     open a merge/pull request.
 
 2.  Add DDEV configuration to the project.

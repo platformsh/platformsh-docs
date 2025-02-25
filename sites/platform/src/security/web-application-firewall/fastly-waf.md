@@ -1,12 +1,12 @@
 ---
 title: Fastly Next-Gen WAF
-description: "Find out about the offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through {{% vendor/name %}}." 
+description: "Find out about the offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through {{% vendor/name %}}."
 weight: 2
-banner: 
+banner:
     type: tiered-feature
 ---
 
-On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](./waf.md) included in Enterprise and Elite plans,
+On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](/security/web-application-firewall/waf.md) included in Enterprise and Elite plans,
 you can subscribe to the Fastly Next-Gen WAF to further protect your app from security threats.
 
 ## Available offers

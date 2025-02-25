@@ -10,7 +10,7 @@ To deactivate an environment, you need to be an admin for the project or the giv
 
 Your default environment is protected.
 It can't be deactivated through the Console or the CLI.
-To change which environment is the default, see how to [rename the default branch](./default-environment.md).
+To change which environment is the default, see how to [rename the default branch](/environments/default-environment.md).
 
 {{< /note >}}
 

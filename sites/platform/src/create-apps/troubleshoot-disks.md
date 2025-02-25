@@ -7,7 +7,7 @@ For more general information, see how to [troubleshoot development](/development
 
 ## Exceeding plan storage limit
 
-Professional plans come with a default amount of storage that you can [change with your plan](../administration/pricing/_index.md).
+Professional plans come with a default amount of storage that you can [change with your plan](/administration/pricing/_index.md).
 The storage is allocated among your services and applications using the `disk` parameter in their configuration files.
 
 You might accidentally set the sum of all `disk` parameters in the files to exceed your plans storage limit.
@@ -25,16 +25,16 @@ To fix the error, do one of the following:
 * Lower the `disk` parameters to a value within your plan's storage limits.
   Note the [limits to downsizing disks](/create-apps/app-reference/single-runtime-image.md#downsize-a-disk).
 * Increase your plan's storage limits.
-  This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
+  This can only be done by people with the [manage plans permission](/administration/users.md#organization-permissions).
 
 ## Low disk space
 
-If you have set up [health notifications](../integrations/notifications.md),
+If you have set up [health notifications](/integrations/notifications.md),
 you may receive a notification of low disk space.
 
 To solve this issue:
 
-* [Check mount usage](./troubleshoot-mounts.md#disk-space-issues)
+* [Check mount usage](/create-apps/troubleshoot-mounts.md#disk-space-issues)
 * [Check your database disk space](#check-your-database-disk-space) (if applicable)
 * [Increase the available disk space](#increase-available-disk-space) (if necessary)
 
@@ -64,7 +64,7 @@ use the `disk` keys in your `{{< vendor/configfile "app" >}}` and `{{< vendor/co
 The sum of all `disk` keys can't exceed the available storage in your plan.
 
 If you need more storage to fit the sum of all `disk` keys, increase your plan's storage limits.
-This can only be done by people with the [manage plans permission](../administration/users.md#organization-permissions).
+This can only be done by people with the [manage plans permission](/administration/users.md#organization-permissions).
 
 ## No space left on device
 
@@ -79,7 +79,7 @@ Application images are restricted to 8&nbsp;GB during build, no matter how much 
 
 Some build tools (yarn/npm) store cache for different versions of their modules.
 This can cause the build cache to grow over time beyond the maximum.
-Try [clearing the build cache](../development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](../development/troubleshoot.md#force-a-redeploy).
+Try [clearing the build cache](/development/troubleshoot.md#clear-the-build-cache) and [triggering a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 If for some reason your application absolutely requires more than 8&nbsp;GB during build,
 you can open a [support ticket](/learn/overview/get-support.md) to have this limit increased.

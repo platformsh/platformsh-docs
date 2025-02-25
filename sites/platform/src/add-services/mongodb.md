@@ -14,10 +14,10 @@ For more information on using MongoDB, see [MongoDB's own documentation](https:/
 
 If you use one of the following frameworks, follow its guide:
 
-- [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
-- [Micronaut](../guides/micronaut/mongodb.md)
-- [Quarkus](../guides/quarkus/mongodb.md)
-- [Spring](../guides/spring/mongodb.md)
+- [Jakarta EE](/guides/jakarta/deploy.md#mongodb)
+- [Micronaut](/guides/micronaut/mongodb.md)
+- [Quarkus](/guides/quarkus/mongodb.md)
+- [Spring](/guides/spring/mongodb.md)
 
 ## Supported versions
 
@@ -449,7 +449,7 @@ highlight=python
 
 ## Access the service directly
 
-You can access MongoDB from you app container via [SSH](../development/ssh/_index.md).
+You can access MongoDB from you app container via [SSH](/development/ssh/_index.md).
 Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 

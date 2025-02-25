@@ -9,7 +9,7 @@ Workers (or consumers) are a great way to off-load processing in the background
 to make an app as fast as possible.
 You can implement workers in Symfony smoothly thanks to the [Messenger component](https://symfony.com/doc/current/components/messenger.html).
 
-To deploy a worker, add an entry under the ``workers`` section [in your app configuration](../../create-apps/_index.md):
+To deploy a worker, add an entry under the ``workers`` section [in your app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 workers:
@@ -19,7 +19,7 @@ workers:
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
-integration](./integration) in your {{% vendor/name %}} app configuration.
+integration](/guides/symfony/integration.md) in your {{% vendor/name %}} app configuration.
 
 On {{% vendor/name %}}, worker containers run the exact same code as the web container.
 The container image is built only once and deployed multiple times in its own container alongside the web container.
@@ -44,7 +44,7 @@ For more information, see [Workers](/create-apps/app-reference/single-runtime-im
 
 Web and worker containers don't share mounts targets.
 So you can't share files between those containers using the filesystem.
-To share data between containers, use [services](../../add-services/_index.md).
+To share data between containers, use [services](/add-services/_index.md).
 
 {{< /note >}}
 

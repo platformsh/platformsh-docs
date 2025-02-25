@@ -12,9 +12,9 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 If you use one of the following frameworks, follow its guide:
 
-- [Hibernate](../guides/hibernate/deploy.md#postgresql)
-- [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
-- [Spring](../guides/spring/postgresql.md)
+- [Hibernate](/guides/hibernate/deploy.md#postgresql)
+- [Jakarta EE](/guides/jakarta/deploy.md#postgresql)
+- [Spring](/guides/spring/postgresql.md)
 
 ## Supported versions
 
@@ -284,7 +284,7 @@ highlight=python
 
 Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
-You can also access it from your app container via [SSH](../development/ssh/_index.md).
+You can also access it from your app container via [SSH](/development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
 Then run the following command:
 
@@ -363,7 +363,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your preview environments](../development/sanitize-db/postgresql.md).
+[sanitize your preview environments](/development/sanitize-db/postgresql.md).
 
 ## Multiple databases
 
@@ -496,9 +496,9 @@ you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
 
-After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
 within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.

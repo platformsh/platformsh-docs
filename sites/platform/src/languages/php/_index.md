@@ -71,7 +71,7 @@ Configure your app to use PHP on {{% vendor/name %}}.
 ### 1. Specify the version
 
 Choose a [supported version](#supported-versions)
-and add it to your [app configuration](../../create-apps/_index.md):
+and add it to your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 type: 'php:{{% latest "php" %}}'
@@ -84,7 +84,7 @@ Usually, it contains the two following (optional) keys:
 
 - `root` for the document root,
   the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
-- `passthru` to [define a front controller](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
+- `passthru` to [define a front controller](/create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
   The value is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
 
   {{< note >}}
@@ -112,8 +112,8 @@ web:
       root: 'public'
       passthru: '/app.php'
 ```
-See how to [create a basic PHP app with a front controller](../../create-apps/web/php-basic.md).
-To have more control, you can define rules to specify which files you want to allow [from which location](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
+See how to [create a basic PHP app with a front controller](/create-apps/web/php-basic.md).
+To have more control, you can define rules to specify which files you want to allow [from which location](/create-apps/web/php-basic.md#set-different-rules-for-specific-locations).
 
 ### Complete example
 
@@ -150,10 +150,10 @@ dependencies:
 ```
 Adding a dependency to the [dependencies block](/create-apps/app-reference/single-runtime-image.md#dependencies) makes it available globally.
 So you can then use included dependencies as commands within your app container.
-You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/_index.md#2-specify-any-global-dependencies).
+You can add multiple global dependencies to the dependencies block, such as [Node.js](/languages/nodejs/_index.md#2-specify-any-global-dependencies).
 
 If you want to have more control over Composer or if you don't want to use Composer at all, adapt the [build flavor](#change-the-build-flavor).
-You can also use a [private, authenticated third-party Composer repository](./composer-auth.md).
+You can also use a [private, authenticated third-party Composer repository](/languages/php/composer-auth.md).
 
 ### Change the build flavor
 
@@ -174,7 +174,7 @@ hooks:
         composer install --no-interaction --no-dev
 ```
 That installs production dependencies with Composer but not development dependencies.
-The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](../../development/variables/set-variables.md).
+The same can be achieved by using the default build flavor and [adding the `COMPOSER_NO_DEV` variable](/development/variables/set-variables.md).
 
 See more on [build flavors](/create-apps/app-reference/single-runtime-image.md#build).
 
@@ -220,7 +220,7 @@ dependencies:
 ```
 ## Connect to services
 
-The following examples show how to use PHP to access various [services](../../add-services/_index.md).
+The following examples show how to use PHP to access various [services](/add-services/_index.md).
 The individual service pages have more information on configuring each service.
 
 {{< codetabs v2hide="true" >}}
@@ -306,21 +306,21 @@ You can configure your PHP-FPM runtime configuration by specifying the [runtime 
 In addition to changes in runtime, you can also change the PHP settings.
 Some commonly used settings are:
 
-| Name | Default | Description |
-|------|---------|-------------|
-| `max_execution_time` | `300` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits. |
-| `max_file_uploads` | `20` | The maximum number of files that can be uploaded in each request. |
-| `max_input_time` | `60` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits. |
-| `max_input_vars` | `1000` | The maximum number of input variables that are accepted in each request. |
-| `memory_limit` | `128M` | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory. |
-| `post_max_size` | `64M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
+| Name | Default | Description                                                                                                                                                                                          |
+|------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `max_execution_time` | `300` | The maximum execution time, in seconds, for your PHP scripts and apps. A value of `0` means there are no time limits.                                                                                |
+| `max_file_uploads` | `20` | The maximum number of files that can be uploaded in each request.                                                                                                                                    |
+| `max_input_time` | `60` | The maximum time in seconds that your script is allowed to receive input (such as for file uploads). A value of `-1` means there are no time limits.                                                 |
+| `max_input_vars` | `1000` | The maximum number of input variables that are accepted in each request.                                                                                                                             |
+| `memory_limit` | `128M` | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory.                                                                    |
+| `post_max_size` | `64M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value.                                                                                                       |
 | `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
-| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value. |
-| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
+| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](/languages/php/tuning.md#opcache-preloading). For large apps with many files, increase this value.                                               |
+| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](/languages/php/tuning.md#disable-opcache-timestamp-validation).                                                                          |
 
 ### Retrieve the default values
 
-To retrieve the default PHP values, run the following [CLI command](../../administration/cli/_index.md):
+To retrieve the default PHP values, run the following [CLI command](/administration/cli/_index.md):
 
 ```bash
 {{% vendor/cli %}} ssh "php --info"
@@ -337,7 +337,7 @@ For example, to get the value for `opcache.memory_consumption`, run the followin
 
 To see the settings used on your environment:
 
-1.  Find the PHP configuration files with the following [CLI command](../../administration/cli/_index.md):
+1.  Find the PHP configuration files with the following [CLI command](/administration/cli/_index.md):
 
     ```bash
     {{% vendor/cli %}} ssh "php --ini"
@@ -371,7 +371,7 @@ The recommended method is to use variables.
 title=Using variables
 +++
 
-Set variables to override PHP settings for a given environment using the [CLI](../../administration/cli/_index.md).
+Set variables to override PHP settings for a given environment using the [CLI](/administration/cli/_index.md).
 
 For example, to set the PHP memory limit to 256 MB on a specific environment, run the following CLI command:
 
@@ -382,7 +382,7 @@ For example, to set the PHP memory limit to 256 MB on a specific environment, ru
     --no-interaction
 ```
 
-For more information, see how to use [PHP-specific variables](../../development/variables/_index.md#php-specific-variables).
+For more information, see how to use [PHP-specific variables](/development/variables/_index.md#php-specific-variables).
 
 <--->
 
@@ -419,7 +419,7 @@ By default, {{% vendor/name %}} doesn't disable any functions.
 
 If you're sure a function isn't needed in your app, you can disable it.
 
-For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](../../create-apps/_index.md):
+For example, to disable `pcntl_exec` and `pcntl_fork`, add the following to your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 variables:
@@ -459,7 +459,7 @@ For more information about the start command, see the [web commands reference](/
 By default, start commands use PHP-CLI.
 Find out how and when to use each [execution mode](#execution-mode).
 
-Note that the `start` command must run in the foreground and is executed before the [deploy hook](../../create-apps/hooks/hooks-comparison.md).
+Note that the `start` command must run in the foreground and is executed before the [deploy hook](/create-apps/hooks/hooks-comparison.md).
 That means that PHP-FPM can't run simultaneously with another persistent process
 such as [ReactPHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
 or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
@@ -564,14 +564,14 @@ Note: FFIs are only intended for advanced use cases.
 Use with caution.
 
 If you are using C code, you need `.so` library files.
-Either place these files directly in your repository or compile them in a makefile using `gcc` in your [build hook](../../create-apps/hooks/hooks-comparison.md#build-hook).
+Either place these files directly in your repository or compile them in a makefile using `gcc` in your [build hook](/create-apps/hooks/hooks-comparison.md#build-hook).
 Note: The `.so` library files shouldn't be located in a publicly accessible directory.
 
 If you are compiling Rust code, use the build hook to [install Rust](https://doc.rust-lang.org/stable/book/ch01-01-installation.html).
 
 To leverage FFIs, follow these steps:
 
-1.  [Enable and configure OPcache preloading](./tuning.md#enable-opcache-preloading).
+1.  [Enable and configure OPcache preloading](/languages/php/tuning.md#enable-opcache-preloading).
 
 2.  Enable the FFI extension:
 
@@ -581,7 +581,7 @@ runtime:
         - ffi
 ```
 
-3.  Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
+3.  Make sure that your [preload script](/languages/php/tuning.md#opcache-preloading) calls the `FFI::load()` function.
     Using this function in preload is considerably faster than loading the linked library on each request or script run.
 
 4.  If you are running FFIs from the command line,

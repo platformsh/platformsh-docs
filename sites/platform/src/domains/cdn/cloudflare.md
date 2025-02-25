@@ -5,7 +5,7 @@ sidebarTitle: "Cloudflare setup"
 description: Learn how to configure your Cloudflare CDN.
 ---
 
-You can [use a CDN](./_index.md) to deliver your site's content to users more quickly.
+You can [use a CDN](/domains/cdn/_index.md) to deliver your site's content to users more quickly.
 
 ## Before you begin
 
@@ -20,14 +20,14 @@ You need:
 
 To properly configure your Cloudflare CDN,
 see the Cloudflare official documentation on [how to get started](https://developers.cloudflare.com/cache/get-started/).
-Then set up a [custom domain](../steps/_index.md).
-To get the [DNS challenge to succeed](../troubleshoot.md#ownership-verification),
-have your CDN point to your [project's target URL](../../domains/steps/_index.md#1-get-the-target-for-your-project).
+Then set up a [custom domain](/domains/steps/_index.md).
+To get the [DNS challenge to succeed](/domains/troubleshoot.md#ownership-verification),
+have your CDN point to your [project's target URL](/domains/steps/_index.md#1-get-the-target-for-your-project).
 
 ## 3. Handle apex domains
 
 To start routing client traffic through Cloudflare,
-you need to [create `CNAME` records for your domain names](../../domains/steps/dns.md)
+you need to [create `CNAME` records for your domain names](/domains/steps/dns.md)
 through your DNS provider.
 
 But `CNAME` records can't point to apex domains.

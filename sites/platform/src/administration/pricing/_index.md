@@ -28,17 +28,17 @@ it comes with a [production environment](#production-environments).
 A Development plan provides all the tools you need to build your website
 before it's ready to go live.
 
-With a Development plan, you can't use [custom domain names](../../domains/steps/_index.md).
+With a Development plan, you can't use [custom domain names](/domains/steps/_index.md).
 You also can't use a Development plan for production
 since it doesn’t allow for full production-level resources.
 
 After your project is complete and ready for production,
-choose [another plan](../pricing/_index.md) to go live.
+choose [another plan](/administration/pricing/_index.md) to go live.
 
 ### Production environments
 
 Production environments are the live environments available to your users.
-Each Production plan has one Production environment that can be mapped to a [custom domain name](../../domains/steps/_index.md).
+Each Production plan has one Production environment that can be mapped to a [custom domain name](/domains/steps/_index.md).
 
 The production environment has more resources than the project's preview environments.
 See the main [pricing page](https://platform.sh/pricing) for the resources available per plan for Production environments.
@@ -46,12 +46,12 @@ See the main [pricing page](https://platform.sh/pricing) for the resources avail
 ### Preview environments
 
 Preview environments can't use the same custom domain as a production environment.
-Instead, you can set up specific [custom domains for each of your preview environments](../../domains/steps/custom-domains-preview-environments.md).
+Instead, you can set up specific [custom domains for each of your preview environments](/domains/steps/custom-domains-preview-environments.md).
 
 Preview environments use resources that are separate from production environments.
 
 App containers on preview environments default to a size of {{< partial "plans/default-dev-env-size" >}}.
-If you have the [manage plans permission](../users.md#organization-permissions),
+If you have the [manage plans permission](/administration/users.md#organization-permissions),
 you can increase the size to match your production environment.
 To do so, follow these steps:
 
