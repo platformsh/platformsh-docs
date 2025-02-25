@@ -1,7 +1,7 @@
 ---
 title: Deploy Drupal on {{% vendor/name %}}
 sidebarTitle: Drupal
-sectionBefore: PHP
+#sectionBefore: PHP
 #layout: single
 weight: -67
 description: |
