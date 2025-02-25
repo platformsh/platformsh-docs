@@ -32,7 +32,11 @@ We will be using the [Upsun Magento template](https://github.com/platformsh-temp
 - Automatic TLS certificates
 - Composer-based build
 
-The template also features an Upsun [config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file, as detailed below:
+
+
+<details open>
+
+<summary> The template also features an <a href="https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml">Upsun config.yaml</a> file. </summary><br></br>
 
 ```yaml {filename=".upsun/config.yaml"}
 applications:
@@ -246,6 +250,9 @@ routes:
 
 ```
 
+</details>
+
+
 ## Create project
 
 Copy the following command into command line:
@@ -291,7 +298,9 @@ Now that your resources have been configured, you can view a log of how Upsun cr
 
 ![Navigate to the log to see your Magento project being created](/images/guides/magento/log-console-1.png) 
 
-Below is a log example for a Magento project:
+<details>
+
+<summary> <b>Expand to view a log example for a Magento project</b> </summary><br></br>
 
 ```
  Configuring resources
@@ -1947,6 +1956,7 @@ Below is a log example for a Magento project:
  
 
 ```
+</details>
 
 ## Preview your Magento project
 
