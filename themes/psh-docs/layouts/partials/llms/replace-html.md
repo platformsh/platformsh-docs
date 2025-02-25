@@ -91,5 +91,4 @@
   | replaceRE `(\n\ *)+\n` "\n\n"
 -}}
 
-{{- $content = $content | safeHTML -}}
 {{- $content  -}}
