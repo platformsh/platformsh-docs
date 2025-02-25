@@ -10,7 +10,7 @@ description:  "Learn about the cluster infrastructure of Dedicated Generation 3,
 
 Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
 
-If you need more information or have any questions, please contact our team.
+If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://platform.sh/contact/) our team.
 
 {{< /note >}}
 
