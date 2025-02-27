@@ -73,7 +73,7 @@ The persistent disk has been configured in the [services configuration](../../ad
 as 2.81GB,
 while the temporary disk is 7.99&nbsp;GB.
 
-![All of the metrics for the Postgresql container](/images/metrics/grid-postgresql-full.png)
+![All of the metrics for the PostgreSQL container](/images/metrics/grid-postgresql-full.png)
 
 
 ### Worker containers
