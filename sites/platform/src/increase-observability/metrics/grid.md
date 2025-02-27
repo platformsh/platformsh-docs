@@ -68,7 +68,7 @@ The temporary disk is 7.99&nbsp;GB.
 
 #### PostgreSQL
 
-Metrics graphs for the Postgresql service container show CPU, RAM, disk allocation and usage.
+Metrics graphs for the PostgreSQL service container show CPU, RAM, disk allocation and usage.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
 as 2.81GB,
 while the temporary disk is 7.99&nbsp;GB.
