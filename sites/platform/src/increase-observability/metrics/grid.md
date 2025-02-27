@@ -66,7 +66,7 @@ The temporary disk is 7.99&nbsp;GB.
 
 ![All of the metrics for the Redis container](/images/metrics/grid-services.png)
 
-#### Postgresql
+#### PostgreSQL
 
 Metrics graphs for the Postgresql service container show CPU, RAM, disk allocation and usage.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
