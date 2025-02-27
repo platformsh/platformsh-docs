@@ -43,13 +43,6 @@
       </div>
     {{ end }}
 
-    <!-- Feedback form for wide screens -->
-    {{ if ne .context.Params.feedback false }}
-    <div class="print:hidden hidden md:block">
-      {{ partial "feedback/form" }}
-    </div>
-    {{ end }}
-
     <!-- Sign up -->
     {{ if .context.Site.Params.vendor.recruit.active }}
       {{ if .context.Page.IsHome }}
@@ -89,7 +82,7 @@
             <div class="cta-body">
               {{ index $recruitment "description"}}
             </div>
-            
+
           </div>
         </div>
         <a href="{{ index $recruitment "link" }}" class="px-6 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-3xl text-white text-center text-sm font-semibold">
@@ -161,9 +154,4 @@
 
   </div>
 
-</div>
-
-<!-- Feedback form for narrow screens -->
-<div class="print:hidden block md:hidden">
-  {{ partial "feedback/form" }}
 </div>
