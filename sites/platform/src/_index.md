@@ -2,7 +2,6 @@
 title: Introduction
 showTitle: false
 editPage: false
-feedback: false
 ---
 
 {{< home >}}

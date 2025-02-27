@@ -1,4 +1,0 @@
-db:
-  type: mariadb:10.5
-  disk: 256
-  size: S

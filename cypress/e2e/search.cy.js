@@ -86,7 +86,7 @@ describe("Searches",()=>{
 
     it("Searches for something that should ONLY match on platformsh, but not on Upsun", () => {
       const searchDetails = {
-        search: '24.55',
+        search: 'DG3',
         header: 'No results',
         body: 'No documentation matched'
       }
