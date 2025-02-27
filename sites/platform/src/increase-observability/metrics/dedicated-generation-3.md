@@ -44,7 +44,7 @@ Metrics graphs for the service containers show CPU, RAM, and disk allocation and
 
 #### PostgreSQL
 
-Metrics graphs for the Postgresql service container show CPU, RAM, and disk allocation and usage across all hosts.
+Metrics graphs for the PostgreSQL service container show CPU, RAM, and disk allocation and usage across all hosts.
 The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
 as 2.81&nbsp;GB, while the temporary disk is 49.04&nbsp;GB.
 
