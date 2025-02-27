@@ -6,7 +6,6 @@ on:
     paths:
       - '**/*.png'
       - '**/*.jpg'
-      - '**/*.jpeg'
 
 jobs:
   optimize-images:
@@ -33,20 +32,27 @@ jobs:
           files: |
             sites/**/*.png
             sites/**/*.jpg
-            sites/**/*.jpeg
 
       - name: Run image optimization
         if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_IMGS: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          find sites -iname '*.png' -exec optipng {} \;
-          find sites -iname '*.jpg' -exec jpegoptim {} \;
-          find sites -iname '*.jpeg' -exec jpegoptim {} \;
+          for file in ${ALL_CHANGED_IMGS}; do
+            if [[ "$file" == *.png ]]; then
+              optipng "$file"
+            elif [[ "$file" == *.jpg || "$file" == *.jpeg ]]; then
+              jpegoptim "$file"
+            fi
+          done
 
       - name: Commit optimized images
         if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_IMGS: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add sites/**/*.png sites/**/*.jpg sites/**/*.jpeg
+          git add ${ALL_CHANGED_IMGS}
           git diff --quiet && git diff --staged --quiet || git commit -m "Optimize images" -m "Automatically optimized images using optipng and jpegoptim via GitHub Actions"
           git push 
