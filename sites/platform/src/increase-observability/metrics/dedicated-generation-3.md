@@ -26,7 +26,7 @@ This example should give you an idea of how the metrics appear.
 {{% names/dedicated-gen-3 %}} environments metrics show resource usage for each app, service, and worker container
 across all hosts.
 
-This reference project has a single app, two services (Postgresql and Redis), and one worker.
+This reference project has a single app, two services (PostgreSQL and Redis), and one worker.
 
 Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-3-environments).
 
