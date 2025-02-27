@@ -33,7 +33,7 @@ We will be using the [Upsun Magento template](https://github.com/platformsh-temp
 - Composer-based build
 
 
-The template also features an <a href="https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml">Upsun config.yaml</a> file. 
+The template also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. 
 
 ```yaml {filename=".upsun/config.yaml"}
 applications:
@@ -66,74 +66,8 @@ applications:
                 MAGENTO_INDEXER_BATCH_SIZE__INVENTORY__CONFIGURABLE: 616
             php:
                 memory_limit: "512M"
- ```
-<details>
-<summary>
- <b>Expand to see the rest of the config.yaml.</b>
-</summary>
-
-```yaml 
-services:
-    db:
-        type: mariadb:10.6
-        configuration:
-          properties:
-            optimizer_switch: "rowid_filter=off"
-            optimizer_use_condition_selectivity: 1
-          schemas:
-            - main
-          endpoints:
-            write:
-              default_schema: main
-              privileges:
-                main: admin
-            read:
-              default_schema: main
-              privileges:
-                main: ro
-    
-    cache:
-        type: redis:7.2
-        configuration:
-            maxmemory_policy: allkeys-lru
-    
-    session:
-        type: redis-persistent:7.2
-        configuration:
-            maxmemory_policy: allkeys-lru
-    
-    indexer:
-        type: opensearch:2
-        configuration:
-            plugins:
-                - analysis-phonetic
-                - analysis-icu
-    queue:
-        type: rabbitmq:3.13
-routes:
-    https://{default}/:
-        type: upstream
-        upstream: app:http
-    https://{default}/static/:
-        type: upstream
-        upstream: app:http
-        cache:
-            enabled: true
-            cookies: []
-    https://{all}/:
-        type: upstream
-        upstream: app:http
-    https://{all}/static/:
-        type: upstream
-        upstream: app:http
-        cache:
-            enabled: true
-            cookies: []
-
+              ...
 ```
-
-</details>
-
 
 ## Create project
 
