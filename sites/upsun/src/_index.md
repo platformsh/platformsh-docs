@@ -40,28 +40,28 @@ conceptual guides to help you understand the ins and outs of {{% vendor/name
 
 - [**What is {{% vendor/name %}}?**](/learn/overview/_index.md)
 
-    With this guide, find out which problem {{% vendor/name %}} is trying to
-    solve. Learn how {{% vendor/name %}}'s configuration, build and deploy
-    pipelines, and the structure of environments play into the broader
-    philosophy behind reliably deploying applications.
+  With this guide, find out which problem {{% vendor/name %}} is trying to
+  solve. Learn how {{% vendor/name %}}'s configuration, build and deploy
+  pipelines, and the structure of environments play into the broader
+  philosophy behind reliably deploying applications.
 
 - [**Tutorials**](/learn/tutorials/_index.md)
 
-    Once you're familiar with {{% vendor/name %}}, its basic rules and
-    philosophy, you may be curious about how you can replicate common workflows
-    in other tools on our platform. From scheduling dependency updates and
-    backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md)
-    provide all the information you need.
+  Once you're familiar with {{% vendor/name %}}, its basic rules and
+  philosophy, you may be curious about how you can replicate common workflows
+  in other tools on our platform. From scheduling dependency updates and
+  backups to exporting data, the [**Tutorials**](/learn/tutorials/_index.md)
+  provide all the information you need.
 
 - [**Best practices**](/learn/bestpractices/_index.md)
 
-    {{% vendor/name %}} makes deploying and managing infrastructure no
-    different than working with Git. As your work becomes more experimental,
-    however, you may be interested in optimizing your workflows, and addressing
-    common constraints of the platform. The [**Best
-    practices**](/learn/bestpractices/_index.md) documentation contains
-    articles that address advanced use cases for caching, microservices, and
-    more.
+  {{% vendor/name %}} makes deploying and managing infrastructure no
+  different than working with Git. As your work becomes more experimental,
+  however, you may be interested in optimizing your workflows, and addressing
+  common constraints of the platform. The [**Best
+  practices**](/learn/bestpractices/_index.md) documentation contains
+  articles that address advanced use cases for caching, microservices, and
+  more.
 
 ### Frameworks
 
