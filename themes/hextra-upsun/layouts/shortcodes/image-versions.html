@@ -1,0 +1,34 @@
+{{ $image := .Get "image" }}
+{{ $status := .Get "status" }}
+{{ $envParam := .Get "environment" }}
+
+{{ $environment := "" }}
+{{ if or (eq $envParam "grid") (eq $envParam "") }}
+  {{ $environment = "versions" }}
+{{ else if eq $envParam "dedicated-gen-2" }}
+  {{ $environment = "versions-dedicated-gen-2" }}
+{{ else if eq $envParam "dedicated-gen-3" }}
+  {{ $environment = "versions-dedicated-gen-3" }}
+{{ else }}
+  {{ errorf "Incorrect environment param: %q. Possible values are grid, dedicated-gen-2, and dedicated-gen-3. Empty defaults to \"grid\". Image: %s" $envParam $image }}
+{{ end }}
+
+{{ if (index .Site.Data.registry $image $environment) }}
+  {{ if isset (index .Site.Data.registry $image $environment) $status }}
+    {{ if gt ( len ( index .Site.Data.registry $image $environment $status ) ) 0 }}
+<ul>
+{{ range index .Site.Data.registry $image $environment $status }}
+  <li>{{ . }}</li>
+{{ end }}
+</ul>
+    {{ else if ne $status "deprecated" }}
+    None available
+    {{ end }}
+  {{ end }}
+{{ else }}
+  {{ if and (eq $envParam "dedicated") (eq $status "supported") }}
+  None available
+  {{ else }}
+  None available
+  {{ end }}
+{{ end }}

@@ -1,0 +1,55 @@
+{{ define "main" }}
+  <div class='hx-mx-auto hx-flex {{ partial "utils/page-width" . }}'>
+    {{ partial "sidebar.html" (dict "context" .) }}
+    {{ partial "toc.html" . }}
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        <div class="content">
+          <h1>{{ .Title }}</h1>
+          {{ .Content }}
+        
+        {{ $pages := where .Site.RegularPages ".Path" "like" `/community/engage/events` }}
+        {{ $pastEvents := where $pages ".Date.Unix" "lt" time.Now.Unix }}
+        {{ $upcomingEvents := where $pages ".Date.Unix" "ge" time.Now.Unix }}
+
+        <h2>Upcoming events</h2>
+        {{ range $upcomingEvents.ByDate }}
+        <div class="hx-py-2">
+          {{ if isset .Params "end" }}  
+            {{ $s := time.AsTime .Params.start }}
+            {{ $e := time.AsTime .Params.end }}
+          <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $s.Format "02 Jan" }} - {{ $e.Format "02 Jan 2006" }}</span>
+          {{ else }}
+            {{ $t := time.AsTime .Params.start }}
+            <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan" }}</span>
+          {{ end }}
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </div>
+        {{ end }}
+
+          <h2>Past events</h2>
+
+          {{ range $pastEvents }}
+          <div class="hx-py-2">
+            {{ if isset .Params "end" }}  
+              {{ $s := time.AsTime .Params.start }}
+              {{ $e := time.AsTime .Params.end }}
+            <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $s.Format "02 Jan" }} - {{ $e.Format "02 Jan 2006" }}</span>
+            {{ else }}
+              {{ $t := time.AsTime .Params.start }}
+              <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan" }}</span>
+            {{ end }}
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </div>
+          {{ end }}
+
+
+        </div>
+
+        <div class="hx-mt-16"></div>
+        {{ partial "components/last-updated.html" . }}
+        {{ partial "components/comments.html" . }}
+      </main>
+    </article>
+  </div>
+{{ end }}

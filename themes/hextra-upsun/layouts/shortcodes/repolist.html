@@ -1,0 +1,71 @@
+{{ $lang := .Get "lang" }}
+{{ if eq .Site.Params.vendor.config.version 1 }}
+
+{{ if not ( .Get "noIntro" ) }}
+  <p>The following list shows templates available for {{ .Get "displayName" }} apps.
+  {{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}</p>
+{{ end }}
+
+{{ if isset .Site.Data.templates $lang }}
+
+  {{ $templates := index .Site.Data.templates $lang }}
+
+<div x-data="{
+  expanded: '',
+  handleClick(name) {
+    if (name === this.expanded) {
+      this.expanded = ''
+    }
+    else {
+      this.expanded = name
+    }
+  }
+}">
+
+  {{ range sort $templates "name" }}
+
+<div class="border border-stone">
+<button class="w-full h-full text-left px-8" type="button" @click="handleClick('{{ .shortname }}')" aria-expanded="false" aria-controls="card-{{ .shortname }}" id="control-{{ .shortname }}">
+<img class="inline chevron-template js-rotate-if-collapsed" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+  {{ .name }}
+</button>
+
+  <div x-transition x-show="expanded === '{{ .shortname }}'" aria-hidden="expanded !== '{{ .shortname }}'" id="card-{{ .shortname }}" aria-labelledby="control-{{ .shortname }}" class="p-6 border-t border-stone">
+    <img {{ printf "src=%q" .image | safeHTMLAttr }} style="min-width:100px;max-height: 150px;" alt="{{ .name }}">
+    <h2>{{ .name }}</h2>
+    {{ .description | safeHTML }}
+
+    {{ $content:= split .content "<br/>" }}
+
+<h3>Features:</h3>
+<ul>
+  {{ range $content}}
+    {{ $content2 := split . "<br />" }}
+    {{ range $content2}}
+      {{ if gt ( len . ) 1 }}
+<li>{{ . }}</li>
+      {{ end}}
+    {{ end }}
+  {{ end }}
+</ul>
+    <p>View the <a href="{{ .repo }}" rel="noopener">repository on GitHub</a>.</p>
+    <div>
+      <a href="{{ .deploy }}&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic" rel="noopener">
+        <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on {{ .Site.Params.vendor.name }} " height="50px" class="h-[3rem] mx-auto hover:brightness-90"/>
+      </a>
+    </div>
+  </div>
+</div>
+
+  {{ end }}
+  </div>
+
+  <br />
+
+  {{ else }}
+
+  <em>Templates in development.</em>
+
+{{ end }}
+
+{{ end }}

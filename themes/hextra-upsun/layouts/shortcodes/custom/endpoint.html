@@ -1,0 +1,4 @@
+{{- $method := .Get "method" -}}
+{{- $path := .Get "path" -}}
+<span class="endpoint endpoint-{{ $method }}">{{ upper $method }}</span><code class="endpoint-path">{{ $path }}</code>
+

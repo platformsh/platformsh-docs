@@ -1,0 +1,6 @@
+{{ $searchSuggestions := .Site.Params.search.suggestions }}
+{{ $randomIndex := math.Rand | mul ( len $searchSuggestions ) | math.Floor | int }}
+<div id="search-suggestions" class="search-suggestions hx-text-center hx-text-gray-900 contrast-more:hx-text-gray-800 dark:hx-text-gray-300 contrast-more:dark:hx-text-gray-300">
+  Unsure where to start? Try searching for 
+  {{ index $searchSuggestions $randomIndex | markdownify }}.
+</div>
