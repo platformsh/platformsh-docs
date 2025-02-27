@@ -2,7 +2,6 @@
 title: Upsun Docs
 showTitle: false
 editPage: false
-feedback: false
 ---
 
 {{< home >}}
