@@ -3,7 +3,7 @@ title: Deploy Drupal on {{% vendor/name %}}
 sidebarTitle: Drupal
 sectionBefore: PHP
 #layout: single
-weight: -66
+weight: -67
 description: |
     Complete the last required steps to successfully deploy Drupal on {{% vendor/name %}}.
 ---
