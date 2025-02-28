@@ -234,7 +234,7 @@ A request to `/from/some/path` (and any path after `/from`) redirects to just `/
 
 ### Specify a HTTP status code
 
-To set a specific HTTP status code for your redirect, use the `codes` key:
+To set a specific HTTP status code for your redirect, use the `code` key:
 
 ```yaml {configFile="routes"}
 https://{default}/:
