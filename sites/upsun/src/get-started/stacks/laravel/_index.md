@@ -1,7 +1,6 @@
 ---
 title: Deploy Laravel on {{% vendor/name %}}
 sidebarTitle: Laravel
-sectionBefore: PHP
 layout: single
 weight: -65
 description: |

@@ -1,9 +1,9 @@
 ---
 title: Deploy Drupal on {{% vendor/name %}}
 sidebarTitle: Drupal
-#sectionBefore: PHP
+sectionBefore: PHP
 #layout: single
-weight: -67
+weight: -66
 description: |
     Complete the last required steps to successfully deploy Drupal on {{% vendor/name %}}.
 ---
@@ -27,7 +27,7 @@ For Drupal to successfully deploy and operate, **after completing the [Getting s
 you still need to make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="Drupal" %}}
-In addition to the above, you should also have: 
+In addition to the above, you should also have:
 
 - The Drupal files in a repository
 
@@ -142,7 +142,7 @@ routes:
         to: "https://{default}/"
 ```
 
-This configuration is similar to the deployment process for [Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html). 
+This configuration is similar to the deployment process for [Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html).
 ## Variables
 
 The `project:init` command created a `.environment` file containing environment variables for the two services (MariaDB and Redis). Now append the following Drush configuration to the bottom of that file:
