@@ -18,6 +18,7 @@ routes:
     type: redirect
     to: https://www.{default}/
 ```
+The default HTTP status code for Whole-route redirects is `301`. See [Specify a HTTP status code](#specify-a-http-status-code) to change the status code that is used.
 
 ## Partial redirects
 
@@ -37,7 +38,7 @@ routes:
           regexp: true
 ```
 
-This format is richer and works with any type of route, including routes served directly by the application.
+This format is richer and works with any type of route, including routes served directly by the application. The default HTTP status code for partial redirects is `302`. See [Specify a HTTP status code](#specify-a-http-status-code) to change the status code that is used.
 
 Two keys are available under `redirects`:
 
@@ -52,13 +53,13 @@ Each rule under `paths` is defined by a key describing:
 
 The value object is defined with the following keys:
 
-| Key                | Required | Default |Description |
-| ------------------ | -------- | ----------- | ------------- |
-| `to`               | Yes      | n/a     | A relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`. |
-| `regexp`           | No       | `false` | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions).|
-| `prefix`           | No       | `true`, but not supported if `regexp` is `true` | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).|
-| `append_suffix`    | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`  | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).|
-| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#specify-a-http-status-code). |
+| Key                | Required | Default | Description                                                                                                                                                                                                                                      |
+| ------------------ | -------- | ----------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `to`               | Yes      | n/a     | A relative URL - `'/destination'`, or absolute URL - `'https://example.com/'`.                                                                                                                                                                   |
+| `regexp`           | No       | `false` | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions).             |
+| `prefix`           | No       | `true`, but not supported if `regexp` is `true` | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).                                                                                |
+| `append_suffix`    | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`  | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).                                                                                                                       |
+| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302` for [Partial redirects](#partial-redirects), and `301` for [Whole-route redirects](#whole-route-redirects). [More information](#specify-a-http-status-code). |
 | `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. To [disable caching on a specific redirect](#disable-caching-on-your-redirects), set `expires` to `0`. | The duration the redirect is cached for. [More information](#manage-caching).
 
 To set up partial redirects, you can use regular expressions (`regexp`).</br>
