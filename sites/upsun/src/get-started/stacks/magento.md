@@ -152,8 +152,6 @@ Now that your resources have been configured, you can view a log of how Upsun cr
      https://main-bvxea6i-g7baduaayq63y.eu-5.platformsh.site/ is served by application `app`
      https://main-bvxea6i-g7baduaayq63y.eu-5.platformsh.site/static/ is served by application `app`
  
- Blackfire post-deploy event sent
- 
 ```
 
 ## Preview your Magento project
