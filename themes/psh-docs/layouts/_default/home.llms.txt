@@ -1,9 +1,9 @@
 # Upsun
 
-> Upsun is a PaaS to host all of your web applications.
+> Upsun is a Cloud Application Platform to host all of your web applications.
 
 Things to remember when deploying applications on Upsun:
-- *Ultimate developer flexibility*: Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Upsun PaaS.
+- *Ultimate developer flexibility*: Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the Upsun Cloud Application Platform.
 - *Application development your way*, 4 options to get started sync your GitHub repo with Upsun, Deploy an existing local Git repository, Kickstart a new repository, Explore Upsun with our Demo app
 - *Agnostic freedom*: Tight integration with external systems, stacks, and tools you already use. Choice of IaaS platform(by geo or cloud provider) and services. Choose the road you want to travel.
 - *Self-service*: All the control and customization you want to experiment. Flexible resources. Sensible, transparent, usage-based pricing. Choose self-empowerment.

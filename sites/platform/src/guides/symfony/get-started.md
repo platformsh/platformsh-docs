@@ -7,7 +7,7 @@ description: |
 ---
 
 [Symfony](https://symfony.com/) is a PHP framework that you can use to create web applications.
-{{% vendor/name %}} is the official Symfony PaaS.
+{{% vendor/name %}} is the official Symfony Cloud Application Platform.
 
 This guide provides instructions for deploying, and working with, Symfony on {{% vendor/name %}}.
 
