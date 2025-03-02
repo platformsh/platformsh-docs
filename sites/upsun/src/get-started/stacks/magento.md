@@ -8,12 +8,9 @@ description: |
     Complete these steps to successfully deploy Magento on {{% vendor/name %}}.
 ---
 
-{{< note title="Note" theme="info" >}}
-Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md). They provide all of the core concepts and common commands you need to know before using the materials below.
+Before attempting to deploy Magento on Upsun, you **must complete the [Getting started guide](/get-started/here)**. 
 
-{{< /note >}}
-
-Before attempting to deploy Magento on Upsun, you must **complete the [Getting started guide](/get-started/here)**. Once that is done, make the following changes to your {{% vendor/name %}} configuration so Magento can successfully deploy and operate. 
+You can also **check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)**. These two resources provide all of the core concepts and common commands you need to easily follow this Magento guide. 
 
 {{% guides/requirements name="Drupal" %}}
 
@@ -92,21 +89,27 @@ Note that this project will not have an estimated monthly cost.
 
 When your project is created, you will be provided with the following details to access it:
 
-- Region
-- Project ID
-- Project title
-- Project URL
-- Git URL 
+- `Region`
+- `Project ID`
+- `Project title`
+- `Project URL`
+- `Git URL` 
 
 ## Configure resources
 
 Copy the Project URL into your browser. You should see your newly created project in the Upsun console. For example, if you had named your Magento project `Mage`, you would see something similar to the screenshot below:
 
-![Your magento project in the Upsun console](/images/guides/magento/console-mage.png) 
+![Your magento project in the Upsun console](/images/guides/magento/mage-console-1.png) 
 
-You will be prompted to configure your resources. At this stage you can select the CPU, RAM, disk size and instances for your Magento project. 
+You will be prompted to configure your resources. At this stage you can select the CPU, RAM, instances and disk size for your Magento project. 
 
-![Configure the resources for your Magento project in the Upsun console](/images/guides/magento/resources-mage-1.png) 
+![Configure the resources for your Magento project in the Upsun console](/images/guides/magento/configure-mage-resources.png) 
+
+{{< note title="Note" theme="info" >}}
+
+Please note that the deployment after configuring resources may take up to 25 minutes.
+
+{{< /note >}}
 
 ## View your log 
 
@@ -158,6 +161,20 @@ Now that your resources have been configured, you can view a log of how Upsun cr
 Now that your Magento project has been successfully created, you will see the standard Magento layout when you navigate to your preview link:
 
 ![Your magento project in preview mode](/images/guides/magento/preview-mage.png) 
+
+## Fetch your Magento project locally 
+
+First, get your project ID by clicking the three dots in the upper right hand of your console, next to the settings cog wheel. Your project ID will appear in a drop down menu.
+
+![Your project ID in console](/images/guides/magento/project-id-mage-1.png) 
+
+Copy the following command into your command line. 
+
+```upsun get <projectid>```
+
+Make sure to replace `<projectid>` with the Project ID you just copied from console. Once you run the command in command line, you will be asked if you want to set the remote project for any existing repositories to your project. You will also need to specify a directory for your project to be stored in when downloaded. 
+
+Once your project has sucessfully downloaded, you will be able to access it locally by navigating to the directory you chose.
 
 ## Further resources
 
