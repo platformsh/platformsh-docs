@@ -82,11 +82,6 @@ In command line, you will be prompted to do the following:
 
 Once you have made your selections, the Upsun bot will activate your project.
 
-{{< note title="Note" theme="info" >}}
-Note that this project will not have an estimated monthly cost.
-
-{{< /note >}}
-
 When your project is created, you will be provided with the following details to access it:
 
 - `Region`
@@ -105,6 +100,19 @@ You will be prompted to configure your resources. At this stage you can select t
 
 ![Configure the resources for your Magento project in the Upsun console](/images/guides/magento/configure-mage-resources.png) 
 
+### Recommended configurations
+
+You will see that the app container is using the `BALANCED` profile by default. The standard recommendation is a minimum of `0.5 CPU` to be configured particularly for your app container. Please see the table below for all **recommended minimum settings for your app container specifically**:
+
+| CPU       | RAM       | Instances  | Disk/storage |
+| --------- | --------- | ---------- | ------------ |
+| `0.5 CPU` | `0.218GB` | No minimum | `256MB`      |
+
+All other services will be using their [default container profiles](/manage-resources/adjust-resources.html#advanced-container-profiles) and therefore can be set to `0.1 CPU`, so the above values only apply as recommended minimums for your app container.
+
+Once your project is deployed, you may need to [adjust your resources](/manage-resources/adjust-resources.html) and [adjust the container profiles](/manage-resources/adjust-resources.html#adjust-a-container-profile) of your other services. 
+
+
 {{< note title="Note" theme="info" >}}
 
 Please note that the deployment after configuring resources may take up to 25 minutes.
@@ -119,8 +127,8 @@ Now that your resources have been configured, you can view a log of how Upsun cr
 
 ```
  Configuring resources
-   Setting 'app' resources to 0.1 CPU, 64MB RAM.
-   Setting 'app' disk to 1024MB.
+   Setting 'app' resources to 0.5 CPU, 0.218MB RAM.
+   Setting 'app' disk to 256MB.
    Setting 'db' resources to 0.1 CPU, 448MB RAM.
    Setting 'db' disk to 256MB.
    Setting 'cache' resources to 0.1 CPU, 352MB RAM.
