@@ -10,7 +10,7 @@ description: |
 
 Before attempting to deploy Magento on Upsun, you **must complete the [Getting started guide](/get-started/here)**. 
 
-You can also **check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)**. These two resources provide all of the core concepts and common commands you need to easily follow this Magento guide. 
+You can also **check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project)** and [Resource configuration guide](https://docs.upsun.com/manage-resources/adjust-resources.html). These provide all of the core concepts and common commands you need to easily follow this Magento guide. 
 
 {{% guides/requirements name="Drupal" %}}
 
@@ -102,11 +102,11 @@ You will be prompted to configure your resources. At this stage you can select t
 
 ### Recommended configurations
 
-You will see that the app container is using the `BALANCED` profile by default. The standard recommendation is a minimum of `0.5 CPU` to be configured particularly for your app container. Please see the table below for all **recommended minimum settings for your app container specifically**:
+You will see that the `container_profile` for the app container is using the `BALANCED` profile by default. The standard CPU & RAM recommendation for your app container is a minimum of `0.5 CPU, 1088MB RAM`. Please see the table below for all **recommended minimum settings for your app container**:
 
-| CPU       | RAM       | Instances  | Disk/storage |
-| --------- | --------- | ---------- | ------------ |
-| `0.5 CPU` | `0.218GB` | No minimum | `256MB`      |
+| CPU & RAM            | Instances  | Disk/storage |
+| ---------------------| ---------- | ------------ | 
+| `0.5 CPU, 1088MB RAM`| No minimum | `256MB`      |
 
 All other services will be using their [default container profiles](/manage-resources/adjust-resources.html#advanced-container-profiles) and therefore can be set to `0.1 CPU`, so the above values only apply as recommended minimums for your app container.
 
@@ -127,7 +127,7 @@ Now that your resources have been configured, you can view a log of how Upsun cr
 
 ```
  Configuring resources
-   Setting 'app' resources to 0.5 CPU, 0.218MB RAM.
+   Setting 'app' resources to 0.5 CPU, 1088MB RAM.
    Setting 'app' disk to 256MB.
    Setting 'db' resources to 0.1 CPU, 448MB RAM.
    Setting 'db' disk to 256MB.
@@ -188,6 +188,7 @@ Once your project has sucessfully downloaded, you will be able to access it loca
 
 - [PHP documentation](/languages/php/)
 - [Authenticated Composer repositories](/languages/php/composer-auth)
+- [Resource configuration guide](https://docs.upsun.com/manage-resources/adjust-resources.html)
 
 ### Authentication
 - [Composer Authentication and Post Installation Setup](https://github.com/platformsh-templates/magentoCE24/blob/main/README.md#composer-authentication-and-post-installation-setup)
