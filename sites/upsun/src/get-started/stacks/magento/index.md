@@ -3,7 +3,7 @@ title: Deploy Magento on {{% vendor/name %}}
 sidebarTitle: Magento
 # sectionBefore: PHP
 #layout: single
-weight: -58 
+weight: -62 
 description: |
     Complete these steps to successfully deploy Magento on {{% vendor/name %}}.
 ---
