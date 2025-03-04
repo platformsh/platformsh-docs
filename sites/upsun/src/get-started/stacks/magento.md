@@ -182,7 +182,7 @@ Copy the following command into your command line.
 
 Make sure to replace `<projectid>` with the Project ID you just copied from console. Once you run the command in command line, you will be asked if you want to set the remote project for any existing repositories to your project. You will also need to specify a directory for your project to be stored in when downloaded. 
 
-Once your project has sucessfully downloaded, you will be able to access it locally by navigating to the directory you chose.
+Once your project has successfully downloaded, you will be able to access it locally by navigating to the directory you chose.
 
 ## Further resources
 
