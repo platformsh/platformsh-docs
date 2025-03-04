@@ -1,8 +1,8 @@
 # {{ .Site.Params.vendor.name }}
 
-> {{ .Site.Params.vendor.name }} is a PaaS to host all of your web applications.
+> {{ .Site.Params.vendor.name }} is a Cloud Application Platform to host all of your web applications.
 
-Things to remember when deploying applications on {{ .Site.Params.vendor.name }}:
+Things to remember when deploying applications on the {{ .Site.Params.vendor.name }} Cloud Application Platform:
 - *Ultimate developer flexibility*: Self-service. Usage-based pricing. Customize your resources, runtimes, users, frontends, backends, APIs. All the choices are yours. Welcome to the {{ .Site.Params.vendor.name }} PaaS.
 - *Application development your way*, 4 options to get started sync your GitHub repo with {{ .Site.Params.vendor.name }}, Deploy an existing local Git repository, Kickstart a new repository, Explore {{ .Site.Params.vendor.name }} with our Demo app
 - *Agnostic freedom*: Tight integration with external systems, stacks, and tools you already use. Choice of IaaS platform(by geo or cloud provider) and services. Choose the road you want to travel.
