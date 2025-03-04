@@ -4,7 +4,7 @@ weight: 0
 description: "A description of custom YAML tags available for {{% vendor/name %}} files."
 ---
 
-In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML allows for special tags.
+In addition to the [basic functions you should be familiar with](/learn/overview/yaml/what-is-yaml.md), YAML allows for special tags.
 {{% vendor/name %}} accepts certain custom tags to facilitate working with configuration files.
 
 These tags work with {{% vendor/name %}} configuration files, but may not elsewhere.

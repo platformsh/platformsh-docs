@@ -6,7 +6,7 @@ multipleTabs: true
 
 You can set the name of your default/production environment when creating a project.
 To change it after project creation, follow the steps below.
-For consistency, the steps are all given using the [CLI](../administration/cli/_index.md).
+For consistency, the steps are all given using the [CLI](/administration/cli/_index.md).
 
 The examples below are based off of changing the default environment from `old` to `main`.
 Replace these names with what suits your situation.
@@ -16,7 +16,7 @@ remember that deactivating an environment is a destructive operation that can re
 To minimize potential issues, take the following steps:
 
 - Switch the default environment during non-peak hours.
-- Keep your data by taking a [backup of the `old` environment](../environments/backup.md)
+- Keep your data by taking a [backup of the `old` environment](/environments/backup.md)
 - Reduce your DNS time-to-live (TTL) to a minimum.
 
 ## Requirements
@@ -24,11 +24,11 @@ To minimize potential issues, take the following steps:
 If you have a domain set for your default environment, remove it before changing the default branch.
 Otherwise you get an error that `default domain must be a valid project domain`.
 
-To change the default branch, you need to be an [admin for the project](../administration/users.md)
+To change the default branch, you need to be an [admin for the project](/administration/users.md)
 
 ## Note on source integrations
 
-The following steps depend of whether your project has a [source integration](../integrations/source/_index.md).
+The following steps depend of whether your project has a [source integration](/integrations/source/_index.md).
 
 If it doesn't, {{% vendor/name %}} is your primary remote repository for the project.
 If it does, GitHub, GitLab, or BitBucket hosts your primary remote repository for the project.
@@ -80,7 +80,7 @@ For example, you may have variables for your production environment set to not b
 (such as if you set them with `--inheritable=false` through the CLI).
 These variables aren't added automatically to child environments and so you need to add them to the `main` environment manually.
 
-If you want the `main` environment to send emails, [turn on outgoing email](../development/email.md).
+If you want the `main` environment to send emails, [turn on outgoing email](/development/email.md).
 
 ## 3. Make `main` a top-level branch
 
@@ -162,7 +162,7 @@ Follow the instructions to change the default branch to `main` for your provider
 ## 7. Update DNS records
 
 Whether or not you're using a CDN,
-if your site is live you have probably added a {{% vendor/name %}} address somewhere when configuring a [custom domain](../domains/steps/_index.md).
+if your site is live you have probably added a {{% vendor/name %}} address somewhere when configuring a [custom domain](/domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
 If you don't have a CDN, it's probably a `CNAME` record.
 

@@ -7,7 +7,7 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-2 %}} e
 For {{% names/dedicated-gen-2 %}} environments, infrastructure metrics report CPU, RAM, and disk space per host and mount point.
 The graphs differ when the environment has multiple clusters.
 
-Metrics are available for Production environments and [Grid environments](./grid.md) (such as your preview environments).
+Metrics are available for Production environments and [Grid environments](/increase-observability/metrics/grid.md) (such as your preview environments).
 They aren't available for other {{% names/dedicated-gen-2 %}} environments (such as a staging environment).
 
 By default, the graphs include all hosts and an average over the hosts.
@@ -39,7 +39,7 @@ You get output similar to the following:
 
  This is environment production-qwerty8 of project abcde3clusterID.
 
-abcde3clusterID@i-04d1ac8319f6ab9a6:~$ 
+abcde3clusterID@i-04d1ac8319f6ab9a6:~$
 ```
 
 The relevant string for the host ID is shown after the `@` and before the 7-character string at the end (`f6ab9a6`).
@@ -64,7 +64,7 @@ This reference project has a single PHP application and three services: MySQL, R
 
 The metrics below are for a single Production environment.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-2-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#dedicated-gen-2-environments).
 
 ![All of the metrics available for a {{% names/dedicated-gen-2 %}} environment](/images/metrics/DG2-how-to-read-metrics.png)
 

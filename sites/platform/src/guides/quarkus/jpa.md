@@ -15,7 +15,7 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add a SQL database service
 
-In your [service configuration](../../add-services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](../../add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
+In your [service configuration](/add-services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](/add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
 {{< readFile file="registry/images/examples/full/postgresql.services.yaml" highlight="yaml" configFile="services" >}}
 

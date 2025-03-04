@@ -114,5 +114,5 @@ problem we can help with:
 ### Get support
 
 If you're experiencing issues with your projects, don't hesitate to open a
-[support ticket](/learn/overview/get-support).
+[support ticket](/learn/overview/get-support.md).
 

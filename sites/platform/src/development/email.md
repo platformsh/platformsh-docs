@@ -80,7 +80,7 @@ Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
 
 To have DKIM enabled for your domain:
 
-1. Open a [support ticket](/learn/overview/get-support) with the domain where you want DKIM.
+1. Open a [support ticket](/learn/overview/get-support.md) with the domain where you want DKIM.
 2. Update your DNS configuration with the `CNAME` and `TXT` records that you get in the ticket.
 
 Checks for the expected DNS records run every 15 minutes before validation.
@@ -93,7 +93,7 @@ v=spf1 include:u17504801.wl.sendgrid.net -all
 
 ## 4. Test the email service
 
-To test the email service, use the [CLI](../administration/cli/_index.md) to connect to your app by running `{{% vendor/cli %}} ssh`.
+To test the email service, use the [CLI](/administration/cli/_index.md) to connect to your app by running `{{% vendor/cli %}} ssh`.
 Run the following command:
 
 ```bash

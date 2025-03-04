@@ -28,14 +28,14 @@ You need:
   {{< /note >}}
 
 
-Check the documentation related to [Laravel Octane on {{% vendor/name %}}](../../guides/laravel/deploy/octane.md).
+Check the documentation related to [Laravel Octane on {{% vendor/name %}}](/guides/laravel/deploy/octane.md).
 <!-- @todo: To be added once Laravel guide for Upsun is live -->
 
 {{% swoole %}}
 
 ## Use
 
-Override the default web server with a [custom start command](./_index.md#alternate-start-commands).
+Override the default web server with a [custom start command](/languages/php/_index.md#alternate-start-commands).
 Octane should listen on a TCP socket.
 
 ```yaml {configFile="app"}

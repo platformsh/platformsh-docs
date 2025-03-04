@@ -11,7 +11,7 @@ When a user is added to a project, they are automatically added to your organiza
 ## Manage project access
 
 If you have set up an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
-see how to [troubleshoot source integrations](../integrations/source/troubleshoot.md).
+see how to [troubleshoot source integrations](/integrations/source/troubleshoot.md).
 
 ### Project roles
 
@@ -127,7 +127,7 @@ The user has to create an account before they can access the project.
 Once you add a user to a project, they receive an invitation email with instructions.
 
 To apply SSH access changes after you add a user to a project,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+[trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ### Manage project users
 
@@ -170,7 +170,7 @@ title=In the Console
 {{< /codetabs >}}
 
 To apply SSH access changes after you add a remove a user from a project or environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+[trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ### Remove a user from a project
 
@@ -206,7 +206,7 @@ title=In the Console
 {{< /codetabs >}}
 
 To apply SSH access changes after changing a user's permissions for an environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+[trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ## Manage organization access
 
@@ -254,7 +254,7 @@ They can't access or manage the rest of the organization.
 Organization owners have all permissions within their organization.
 Their permission level can't be edited.
 Organization owners can't be removed from their organization,
-except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
+except through an [ownership transfer](/administration/organizations.md#transfer-project-ownership).
 
 ### Add a user to an organization
 

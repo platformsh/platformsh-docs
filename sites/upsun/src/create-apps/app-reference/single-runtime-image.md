@@ -9,7 +9,7 @@ description: See all of the options for controlling your apps and how they're bu
 Configuration is all done in a `{{< vendor/configfile "app" >}}` file,
 located at the root of your Git repository.
 
-See a [comprehensive example](../_index.md#comprehensive-example) of a configuration in
+See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in
 a `{{< vendor/configfile "app" >}}` file.
 
 ## Primary application properties
@@ -81,7 +81,7 @@ use the [`source.root` property](#source).
 {{% note theme="info" %}}
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
-See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image#supported-nix-packages) for more information.
+See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image.md#supported-nix-packages) for more information.
 {{% /note %}}
 
 The `type` defines the base container image used to run the application.
@@ -352,7 +352,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 You can decrease the size of an existing disk for an app. If you do so, be aware that:
 
-- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup.md).
 - The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
@@ -1276,7 +1276,7 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](/environments/backup) are running.
+Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
@@ -1348,7 +1348,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 {{% note theme="info" %}}
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
-See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#primary-application-properties).
+See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image.md#primary-application-properties).
 {{% /note %}}
 
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
@@ -1412,10 +1412,10 @@ expected to need.
 Each container profile gives you access to a specific list of CPU and RAM combinations.
 Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
-- [Container profile types and resources](/manage-resources/adjust-resources#advanced-container-profiles)
-- [Default container profiles](/manage-resources/adjust-resources#default-container-profiles) for runtime and service
+- [Container profile types and resources](/manage-resources/adjust-resources.md#advanced-container-profiles)
+- [Default container profiles](/manage-resources/adjust-resources.md#default-container-profiles) for runtime and service
   containers
-- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources#adjust-a-container-profile)
+- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources.md#adjust-a-container-profile)
 
 ## Additional hosts
 

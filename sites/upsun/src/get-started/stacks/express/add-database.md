@@ -69,7 +69,7 @@ git commit -am "adding MariaDb database service"
 
 {{% vendor/name %}} now reads your configuration files and deploys your project using [default container resources](/manage-resources/resource-init.md).
 If you don't want to use those default resources,
-define your own [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy),
+define your own [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy),
 or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
 ## 3. Connect to the service
