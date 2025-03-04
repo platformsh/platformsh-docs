@@ -1,9 +1,9 @@
 ---
 title: Deploy Laravel on {{% vendor/name %}}
 sidebarTitle: Laravel
-sectionBefore: PHP
+sectionBefore: 
 layout: single
-weight: -65
+weight: -63
 description: |
   Complete the last required steps to successfully deploy Laravel on {{% vendor/name %}}.
 ---
