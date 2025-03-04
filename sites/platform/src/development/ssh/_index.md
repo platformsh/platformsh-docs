@@ -64,7 +64,7 @@ except for any [mounts you've defined]/create-apps/app-reference/single-runtime-
 
 ## Connect to services
 
-To connect to a service, you need the [service credentials](../../add-services/_index.md#connect-to-a-service).
+To connect to a service, you need the [service credentials](/add-services/_index.md#connect-to-a-service).
 Then you can connect either with a [direct tunnel](#use-a-direct-tunnel) or a [tunnel in your app](#use-an-app-tunnel).
 
 ### Use a direct tunnel
@@ -91,9 +91,9 @@ Save encoded tunnel details to the PLATFORM_RELATIONSHIPS variable using:
 ```
 
 Use the returned host (in this case `http://127.0.0.1:30000`) for your connection
-and fill in the details with the rest of your [service credentials](../../add-services/_index.md#connect-to-a-service).
+and fill in the details with the rest of your [service credentials](/add-services/_index.md#connect-to-a-service).
 
-The `tunnel:open` command connects all relationships defined in your [app configuration](../../create-apps/_index.md).
+The `tunnel:open` command connects all relationships defined in your [app configuration](/create-apps/_index.md).
 
 To open only one connection when you have multiple relationships defined, run `tunnel:single`.
 By default, this opens a tunnel at `http://127.0.0.1:30000`.
@@ -102,7 +102,7 @@ You can specify the port for the connection using the `--port` flag.
 ### Use an app tunnel
 
 Many database applications (such as MySQL Workbench) support establishing their own SSH tunnel.
-You need to use [SSH keys](./ssh-keys.md) for authentication.
+You need to use [SSH keys](/development/ssh/ssh-keys.md) for authentication.
 Consult the documentation for your application for how to enter SSH credentials.
 
 #### Get SSH connection details
@@ -144,7 +144,7 @@ The host is everything after the `@` and the username is what's before it.
 In this case, the host is `ssh.us.{{< vendor/urlraw "host" >}}` and the username is `jyu7waly36ncj-main-7rqtwti--app`.
 The host is the same for the entire project, while the username varies by environment.
 
-To connect to a service, fill in the details with the rest of your [service credentials](../../add-services/_index.md#connect-to-a-service).
+To connect to a service, fill in the details with the rest of your [service credentials](/add-services/_index.md#connect-to-a-service).
 
 ## Alternative authentication methods
 
@@ -155,12 +155,12 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
   * Supports multifactor authentication.
   * Automatically generates new certificates to keep your connection safe.
   * Necessary when using the CLI and when your organization has multifactor authentication set up.
-* [Using SSH keys](./ssh-keys.md)
+* [Using SSH keys](/development/ssh/ssh-keys.md)
   * Requires more setup on your part.
   * Represents only a single authentication method.
   * Requires you to regularly change the keys to maintain security.
   * Useful for checking out code as part of an automated process.
-* [Using API tokens](../../administration/cli/api-tokens.md)
+* [Using API tokens](/administration/cli/api-tokens.md)
   * Good for letting automation tools use the CLI.
   * Requires you to regularly change the tokens to maintain security.
 

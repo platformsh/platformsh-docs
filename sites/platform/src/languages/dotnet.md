@@ -83,7 +83,7 @@ and also has marginal performance benefits.
 
 Note that HTTPS is also terminated at the Nginx proxy,
 so the `app.UseHttpsRedirection();` line in `Startup.cs` should be removed.
-To force HTTPS-only, refer to the [routes documentation](../define-routes/https.md#enable-https).
+To force HTTPS-only, refer to the [routes documentation](/define-routes/https.md#enable-https).
 
 The following example configures an environment to serve the static content folders commonly found in [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) templates using Nginx,
 while routing other traffic to the .NET application.

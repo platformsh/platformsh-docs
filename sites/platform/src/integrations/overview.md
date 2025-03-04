@@ -13,7 +13,7 @@ description: |
 You can continue to use those tools for your development workflow, and have {{% vendor/name %}} environments created automatically for your pull requests and branches.
 
 You can also add native integrations with performance monitoring tools.
-{{% vendor/name %}} recommends [Blackfire](../increase-observability/integrate-observability//blackfire.md),
+{{% vendor/name %}} recommends [Blackfire](/increase-observability/integrate-observability//blackfire.md),
 which is part of the standard {{% vendor/name %}} Observability Suite.
 Note that only a project administrator (someone with `admin` level access to the project) can add or remove integrations.
 
@@ -74,7 +74,7 @@ There are a handful of CLI commands available, all under the `integrations` sect
 
 ### List all activities
 
-To list all the updates triggered by [activities](../integrations/activity/reference.md) on a given project and integration,
+To list all the updates triggered by [activities](/integrations/activity/reference.md) on a given project and integration,
 follow these steps:
 
 1. Run the `{{% vendor/cli %}} integration:activities` command.

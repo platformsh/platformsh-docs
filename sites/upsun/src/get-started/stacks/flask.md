@@ -83,7 +83,7 @@ To configure all the environment variables Flask needs to run smoothly, follow t
    It's used for securely signing the session cookie and can be used for any other security-related needs by extensions or your app.
    It usually is a long random string.
 
-   Set the `SECRET_KEY` environment variable to leverage the [`PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables#use-provided-variables) provided by {{% vendor/name %}}:
+   Set the `SECRET_KEY` environment variable to leverage the [`PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables.md#use-provided-variables) provided by {{% vendor/name %}}:
 
    ```bash {location=".environment"}
    export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
@@ -112,7 +112,7 @@ To configure all the environment variables Flask needs to run smoothly, follow t
 
 You need to add some writable disk space to hold the static assets that `flask-static-digest` generates and `npm` builds.
 
-To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image#mounts).
+To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).
 In your app configuration, locate the section dedicated to mounts and update it as follows:
 
 ```yaml {configFile="app"}
@@ -373,9 +373,9 @@ To do so, follow these steps.
 
 ### Documentation
 
-- [Python documentation](/languages/python/)
-- [Managing dependencies](/languages/python/dependencies)
-- [Configuring web servers](/languages/python/server)
+- [Python documentation](/languages/python/_index.md)
+- [Managing dependencies](/languages/python/dependencies.md)
+- [Configuring web servers](/languages/python/server.md)
 
 ### Community content
 

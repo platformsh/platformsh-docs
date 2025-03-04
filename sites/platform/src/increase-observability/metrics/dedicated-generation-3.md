@@ -6,8 +6,8 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} e
 
 {{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated hosts:
 
-* App containers: one or more [app containers](../../create-apps/_index.md)
-* Service containers: zero or more [service containers](../../add-services/_index.md)
+* App containers: one or more [app containers](/create-apps/_index.md)
+* Service containers: zero or more [service containers](/add-services/_index.md)
 * Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for all containers.
@@ -28,7 +28,7 @@ across all hosts.
 
 This reference project has a single app, two services (PostgreSQL and Redis), and one worker.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#dedicated-gen-3-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#dedicated-gen-3-environments).
 
 ### App container
 
@@ -45,7 +45,7 @@ Metrics graphs for the service containers show CPU, RAM, and disk allocation and
 #### PostgreSQL
 
 Metrics graphs for the PostgreSQL service container show CPU, RAM, and disk allocation and usage across all hosts.
-The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
+The persistent disk has been configured in the [services configuration](/add-services/_index.md)
 as 2.81&nbsp;GB, while the temporary disk is 49.04&nbsp;GB.
 
 ![All of the metrics for the MySQL container](/images/metrics/DG3-postgresql.png)

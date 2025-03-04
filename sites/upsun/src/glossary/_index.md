@@ -234,7 +234,7 @@ This trial grants you a certain amount of time and resources to try out the {{% 
 1. A trial lasts for **15 days**, which starts automatically from creating your first organization.
 1. A trial allows for **one (1)** active [project](#project) at a time.
 1. For a trial project, the trial allows for **two (2)** [active environments](#active-environment).
-1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources):
+1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources/_index.md):
 
     - 4.5 CPU
     - 12 GB RAM
@@ -245,4 +245,4 @@ If your trial ends before adding payment details, there are additional things to
 - When a trial expires, both the organization and the project are suspended.
 - Projects where no code has been pushed are deleted **1 day** after a trial expires.
 - Projects where code _has_ been pushed are deleted **5 days** after the trial expires.
-- Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support#delete-your-account).
+- Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support.md#delete-your-account).

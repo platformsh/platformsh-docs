@@ -13,7 +13,7 @@ This helps with serving external data to a frontend at build time.
 Supported by Strapi's plugin ecosystem, data from Strapi (or headless) CMS can be served into a frontend application,
 with that frontend typically located on a server elsewhere.
 
-{{% vendor/name %}} provides a platform for this architectural pattern through a [multi-app configuration](../../../create-apps/multi-app/_index.md).
+{{% vendor/name %}} provides a platform for this architectural pattern through a [multi-app configuration](/create-apps/multi-app/_index.md).
 
 Consider the following project structure:
 
@@ -63,7 +63,7 @@ This is especially important with multi-application projects, so for more detail
 
 ## Plan size
 
-There are a few important points to keep in mind when deploying this pattern if you've already [deployed Gatsby by itself](../../gatsby/deploy/_index.md) on {{% vendor/name %}}, which are relevant to each backend example.
+There are a few important points to keep in mind when deploying this pattern if you've already [deployed Gatsby by itself](/guides/gatsby/deploy/_index.md) on {{% vendor/name %}}, which are relevant to each backend example.
 After following the steps below,
 you may find that Gatsby fails to bundle assets during its build if your plan size is Development.
 This is a factor of both the size and number of Gatsby's dependencies on the frontend,

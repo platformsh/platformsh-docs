@@ -6,8 +6,8 @@ description: Understand how to read metrics for Grid environments.
 
 Grid environments consist of:
 
-* App containers: one or more [app containers](../../create-apps/_index.md)
-* Service containers: zero or more [service containers](../../add-services/_index.md)
+* App containers: one or more [app containers](/create-apps/_index.md)
+* Service containers: zero or more [service containers](/add-services/_index.md)
 * Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app and worker containers
@@ -44,7 +44,7 @@ The appropriate resources have been [allocated automatically](/create-apps/app-r
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#grid-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#grid-environments).
 
 ### App container
 
@@ -69,7 +69,7 @@ The temporary disk is 7.99&nbsp;GB.
 #### PostgreSQL
 
 Metrics graphs for the PostgreSQL service container show CPU, RAM, disk allocation and usage.
-The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
+The persistent disk has been configured in the [services configuration](/add-services/_index.md)
 as 2.81GB,
 while the temporary disk is 7.99&nbsp;GB.
 
@@ -80,7 +80,7 @@ while the temporary disk is 7.99&nbsp;GB.
 
 Metrics graphs for the worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 9.51&nbsp;GB, while the temporary disk is 7.99&nbsp;GB. 
+at 9.51&nbsp;GB, while the temporary disk is 7.99&nbsp;GB.
 
 ![All of the metrics for the worker container](/images/metrics/grid-workers.png)
 

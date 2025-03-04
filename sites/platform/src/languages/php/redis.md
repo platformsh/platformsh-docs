@@ -6,7 +6,7 @@ weight: 7
 
 {{% composable/disclaimer %}}
 
-[Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{% vendor/name %}}.
+[Redis](/add-services/redis.md) is a popular structured key-value service, supported by {{% vendor/name %}}.
 It's frequently used for caching.
 
 ## Install PhpRedis
@@ -38,7 +38,7 @@ hooks:
 ```
 ## Install Relay
 
-Relay is a [Redis](../../add-services/redis.md) client
+Relay is a [Redis](/add-services/redis.md) client
 similar to [PhpRedis](https://github.com/phpredis/phpredis) and
 [Predis](https://github.com/predis/predis).
 It's intended to be a drop-in replacement for those libraries.

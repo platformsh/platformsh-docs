@@ -17,9 +17,9 @@ The command ensures all installed extensions are enabled.
 
 {{% guides/config-service name="TYPO3" %}}
 
-We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for TYPO3,
-although you can also use Oracle MySQL or [PostgreSQL](../../../add-services/postgresql.md) if you prefer.
-We also strongly recommend using [Redis](../../../add-services/redis.md) for TYPO3 caching.
+We recommend the latest [MariaDB](/add-services/mysql/_index.md) version for TYPO3,
+although you can also use Oracle MySQL or [PostgreSQL](/add-services/postgresql.md) if you prefer.
+We also strongly recommend using [Redis](/add-services/redis.md) for TYPO3 caching.
 Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platformsh-templates/typo3#user-content-customizations) for caching.
 
 {{% /guides/config-service %}}

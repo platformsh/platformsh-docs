@@ -19,7 +19,7 @@ To do so, you need to configure mounts or use an SSH client.
 
 [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts) let you set up directories that remain writable after the build is complete.
 You can then transfer files directly to and from mounts inside your app
-with a single command via the [{{% vendor/name %}} CLI](../administration/cli/_index.md).
+with a single command via the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 
 Alternatively, you can transfer files to and from your built app using an SSH client
 such as `scp` or `rsync`.

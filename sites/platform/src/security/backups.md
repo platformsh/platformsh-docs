@@ -3,14 +3,14 @@ title: "Backup and restore"
 description: See backup policies and the recovery point objective (RPO) and recovery time objective (RTO) for various schedules.
 ---
 
-The frequency of backups varies based on the [backup schedule](../environments/backup.md#backup-schedule).
-Retention is governed by the [data retention policy](./data-retention.md).
+The frequency of backups varies based on the [backup schedule](/environments/backup.md#backup-schedule).
+Retention is governed by the [data retention policy](/security/data-retention.md).
 This section details the recovery point objective (RPO) and recovery time objective (RTO) for each option.
 
 ## Preview environments
 
 For preview environments, users can manage their own manual backup and restore functions.
-See how to [back up](../environments/backup.md#create-a-manual-backup) and [restore](../environments/restore.md).
+See how to [back up](/environments/backup.md#create-a-manual-backup) and [restore](/environments/restore.md).
 
 **RPO**: User defined.
 The RPO is configured by plan owners.

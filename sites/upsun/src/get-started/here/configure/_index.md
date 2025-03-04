@@ -70,7 +70,7 @@ Push up to your {{% vendor/name %}} project:
 {{% vendor/name %}} now reads your configuration files, begins building your application image and allocates resources to your various containers.
 
 {{< note >}}
-By default, {{% vendor/name %}} uses default resources for each of your services/apps. You can [adjust these resources](/get-started/here/set-resources).
+By default, {{% vendor/name %}} uses default resources for each of your services/apps. You can [adjust these resources](/get-started/here/set-resources.md).
 {{< /note >}}
 
 ## Errors on first push
@@ -107,9 +107,9 @@ Have no fear! {{% vendor/name %}} provides a highly customizable configuration s
 
 To start exploring what might still be needed, see the following language-specific configuration pages:
 
-- [JavaScript/Node.js](/get-started/here/configure/nodejs)
-- [PHP](/get-started/here/configure/php)
-- [Python](/get-started/here/configure/python)
+- [JavaScript/Node.js](/get-started/here/configure/nodejs.md)
+- [PHP](/get-started/here/configure/php.md)
+- [Python](/get-started/here/configure/python.md)
 
 ## Next steps
 
