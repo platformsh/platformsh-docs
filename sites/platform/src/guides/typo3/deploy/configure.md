@@ -11,8 +11,7 @@ description: |
 {{% guides/config-app template="typo3" %}}
 
 Note that the command `php vendor/bin/typo3cms install:generatepackagestate` is run during the build hook.
-The command ensures all installed extensions are enabled
-and that they can be omitted if you commit your own [`PackageStates.php` file](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/HowTo/ExtensionManagement.html#installing-extensions).
+The command ensures all installed extensions are enabled.
 
 {{< /guides/config-app >}}
 
@@ -34,16 +33,16 @@ Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platfo
 # MariaDB/MySQL 10.4 service with 2048MB of allocated disk.
 # The service name `db` is used in defining the `database` relationship in the
 # `.platform.app.yaml` file.
-# 
+#
 # See https://docs.platform.sh/configuration/services/mysql.html.
 db:
     type: mysql:10.4
     disk: 2048
 
-# Redis 5.0 service definition. 
+# Redis 5.0 service definition.
 # The service name `cache` is used in defining the `rediscache` relationship in the
 # `.platform.app.yaml` file.
-# 
+#
 # See https://docs.platform.sh/configuration/services/redis.html.
 cache:
     type: redis:5.0
