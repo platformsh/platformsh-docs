@@ -12,14 +12,14 @@ keywords:
 ---
 
 On {{% vendor/name %}}, you can run automated code updates through a feature called **source operations**.
-Defined in your [app configuration](./_index.md), source operations let you specify commands
+Defined in your [app configuration](/create-apps/_index.md), source operations let you specify commands
 that can commit changes to your project's repository when called.
 
 For example, you can set up a source operation to [automatically update your application dependencies](/learn/tutorials/dependency-updates.md),
 [update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
 or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
-To run your source operations, you can use the [{{% vendor/name %}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
+To run your source operations, you can use the [{{% vendor/name %}} CLI](/administration/cli/_index.md) or the [Console](https://console.platform.sh).
 If you want to run your source operations and update your code automatically,
 you can also define [cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
 
@@ -111,11 +111,11 @@ Replace {{< variable "SOURCE_OPERATION_NAME" >}} with the name of your operation
 After running a source operation,
 to apply the changes to your local development environment run the `git pull` command.
 
-Note that you can [cancel pending or running source operations](../environments/cancel-activity.md).
+Note that you can [cancel pending or running source operations](/environments/cancel-activity.md).
 
 ## Use variables in your source operations
 
-You can add [variables](../development/variables/_index.md) to the environment of the source operation.
+You can add [variables](/development/variables/_index.md) to the environment of the source operation.
 
 Use the `env:` prefix to expose each of those variables as a Unix environment variable.
 In this way, they're referenced by the source operation
@@ -169,7 +169,7 @@ title=Using the CLI
 
 ## Source integrations
 
-If your project is using a [source integration](../integrations/source/_index.md),
+If your project is using a [source integration](/integrations/source/_index.md),
 any new commits resulting from a source operation are first pushed to your external Git repository.
 Then the source integration pushes those commits to {{% vendor/name %}} and redeploys the environment.
 
@@ -190,8 +190,8 @@ You can use a cron to automatically run your source operations.
 Note that it’s best not to run source operations on your production environment,
 but rather on a dedicated environment where you can test changes.
 
-Make sure you have the [{{% vendor/name %}} CLI](../administration/cli/_index.md) installed
-and [an API token](../administration/cli/api-tokens.md#2-create-an-api-token)
+Make sure you have the [{{% vendor/name %}} CLI](/administration/cli/_index.md) installed
+and [an API token](/administration/cli/api-tokens.md#2-create-an-api-token)
 so you can run a cron job in your app container.
 
 1.  Set your API token as a top-level environment variable:
@@ -227,8 +227,8 @@ title=From the Console
 {{< note theme="warning" >}}
 
 Once you add the API token as an environment variable,
-anyone with [SSH access](../development/ssh/_index.md) can read its value.
-Make sure you carefully check your [user access on this project](../administration/users.md#manage-project-users).
+anyone with [SSH access](/development/ssh/_index.md) can read its value.
+Make sure you carefully check your [user access on this project](/administration/users.md#manage-project-users).
 
 {{< /note >}}
 
@@ -275,7 +275,7 @@ You can set up a source operation and a cron job to [automate your dependency up
 
 The following source operation syncronizes your branch with an upstream Git repository.
 
-1. [Add a project-level variable](../development/variables/set-variables.md#create-project-variables)
+1. [Add a project-level variable](/development/variables/set-variables.md#create-project-variables)
    named `env:UPSTREAM_REMOTE` with the Git URL of the upstream repository.
    That makes that repository available as a Unix environment variable in all environments,
    including in the source operation's environment.

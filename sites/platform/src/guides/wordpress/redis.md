@@ -15,7 +15,7 @@ both of which require a minimal amount of configuration.
 
 ### 1. Add a Redis service
 
-To create a Redis service, add the following to your [services configuration](../../add-services/_index.md):
+To create a Redis service, add the following to your [services configuration](/add-services/_index.md):
 
 ```yaml {configFile="services"}
 rediscache:
@@ -27,7 +27,7 @@ That creates a service named `rediscache` with the type `redis`, specifically ve
 ### 2. Expose the Redis service to your application
 
 Next open a connection to the new Redis service.
-In the `relationships` section of your [app configuration](../../create-apps/_index.md),
+In the `relationships` section of your [app configuration](/create-apps/_index.md),
 add the following:
 
 ```yaml {configFile="app"}
@@ -35,7 +35,7 @@ relationships:
   redis: "rediscache:redis"
 ```
 
-The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](../../development/variables/use-variables.md#use-provided-variables).
+The key (left side) is the name that's exposed to the application in the [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables).
 The value (right side) is the name of the service you specified in step 1 (`rediscache`) and the endpoint (`redis`).
 If you named the service something different in step 1, change `rediscache` to that.
 
@@ -44,7 +44,7 @@ If you named the service something different in step 1, change `rediscache` to t
 Add the Redis extension for PHP in one of two ways:
 
 * In your [app configuration](/create-apps/app-reference/single-runtime-image.md#extensions) (for extension versions tied to the PHP version)
-* Using a [builder script](../../languages/php/redis.md) (if you need more control over the extension version)
+* Using a [builder script](/languages/php/redis.md) (if you need more control over the extension version)
 
 ### 4. Add the Redis library
 
@@ -133,7 +133,7 @@ somewhere before the final `require_once(ABSPATH . 'wp-settings.php');` line.
 
 {{< note >}}
 
-The following examples assume you are using the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app).
+The following examples assume you are using the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app).
 
 {{</ note >}}
 

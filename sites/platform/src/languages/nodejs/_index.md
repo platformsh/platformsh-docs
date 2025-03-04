@@ -11,7 +11,7 @@ keywords:
 
 Node.js is a popular asynchronous JavaScript runtime.
 Deploy scalable Node.js apps of all sizes on {{% vendor/name %}}.
-You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](../../create-apps/multi-app/_index.md).
+You can also develop a microservice architecture mixing JavaScript and other apps with [multi-app projects](/create-apps/multi-app/_index.md).
 
 ## Supported versions
 
@@ -68,7 +68,7 @@ To use a specific version in a container with a different language, [use a versi
 
 ## Usage example
 
-To use JavaScript with Node.js on {{% vendor/name %}}, configure your [app configuration](../../create-apps/_index.md)
+To use JavaScript with Node.js on {{% vendor/name %}}, configure your [app configuration](/create-apps/_index.md)
 (a complete example is included at the end).
 
 ### 1. Specify the version
@@ -323,7 +323,7 @@ web:
 
 ## Connecting to services
 
-The following examples show how to use Node.js to access various [services](../../add-services/_index.md).
+The following examples show how to use Node.js to access various [services](/add-services/_index.md).
 To configure a given service, see the page dedicated to that service.
 
 {{< codetabs v2hide="true" >}}

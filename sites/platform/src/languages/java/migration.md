@@ -27,14 +27,14 @@ To run a Java application at {{% vendor/name %}} you need:
 
 {{< note >}}
 A container application can't be bigger than **8 GB** of memory.
-For more details, see [tuning](./tuning.md).
+For more details, see [tuning](/languages/java/tuning.md).
 {{< /note >}}
 
 ## Monolith/Single Application
 
 To start a Java application, you need to understand the [{{% vendor/name %}} structure](/learn/overview/structure.md).
-You will need to configure your [application](../../create-apps/_index.md), [routes](../../define-routes/_index.md),
-and [services](../../add-services/_index.md).
+You will need to configure your [application](/create-apps/_index.md), [routes](/define-routes/_index.md),
+and [services](/add-services/_index.md).
 
 ### Application
 
@@ -49,7 +49,7 @@ web:
     start: [3]
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
-2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
+2. [Hooks define what happens when building the application](/create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
 3. [The commands key defines the command to launch the application](/create-apps/app-reference/single-runtime-image.md#web-commands). E.g.:  `java -jar file.jar`
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
 
@@ -85,7 +85,7 @@ You have the option to use several languages in microservices. If you're using J
 * [Gradle Multi-project](https://guides.gradle.org/creating-multi-project-builds/)
 * [Git submodules](/development/submodules.md)
 
-[{{% vendor/name %}} supports multiple applications](../../create-apps/multi-app/_index.md) and there are two options:
+[{{% vendor/name %}} supports multiple applications](/create-apps/multi-app/_index.md) and there are two options:
 
 * One application YAML file to each application
 * Aggregate all applications in a single file with an `{{< vendor/configfile "apps" >}}` file
@@ -118,7 +118,7 @@ The most common mechanisms are listed below.
 If you are using a framework that follows the [Twelve-Factor App](https://12factor.net/) methodology, particularly the [third point](https://12factor.net/config), you can configure the application directly from environment variables.
 Examples of such frameworks include Spring, Eclipse MicroProfile Config, Quarkus, and Micronauts.
 
-Service credentials are available within the [**PLATFORM_RELATIONSHIPS** environment variable](../../development/variables/use-variables.md#use-provided-variables).
+Service credentials are available within the [**PLATFORM_RELATIONSHIPS** environment variable](/development/variables/use-variables.md#use-provided-variables).
 This variable is a base64-encoded JSON object with keys of the relationship name and values of arrays of relationship endpoint definitions.
 
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
@@ -135,7 +135,7 @@ export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgre
 | [Payara JPA](https://support.platform.sh/hc/en-us/community/posts/16439658290194) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
 To reduce the number of lines in the application file and to make it cleaner,
-you have the option to move the variable environment to another file: a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
+you have the option to move the variable environment to another file: a [`.environment` file](/development/variables/set-variables.md#set-variables-via-script).
 
 E.g.:
 
@@ -165,7 +165,7 @@ web:
 ```
 ### Using Java Config Reader
 
-If your framework doesn't support configuration via environment variables, use the [Config Reader](../../development/variables/use-variables.md#access-variables-in-your-app).
+If your framework doesn't support configuration via environment variables, use the [Config Reader](/development/variables/use-variables.md#access-variables-in-your-app).
 This library provides a streamlined way to interact with a {{% vendor/name %}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
 
 ```java

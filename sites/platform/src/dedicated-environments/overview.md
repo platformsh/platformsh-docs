@@ -8,25 +8,25 @@ description:  "Our Dedicated Environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Platform.sh, you can choose to deploy it using one of three types of architecture offerings: Professional (known as [Grid](/glossary.md#grid)), [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3/_index.md) (DG3). 
+When you create a project on Platform.sh, you can choose to deploy it using one of three types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)), [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3/_index.md) (DG3). 
 
 ## What is Dedicated?
 
 DG2 and DG3 are classified as Dedicated Environments (Dedicated). This is because your production environment is replicated across at least three virtual servers that are dedicated solely to your project.
 
-In the diagram below, we can see that the Dedicated architecture provides three virtual servers that act as isolated hosts for a site in a failover configuration. Within each server, all the data of your site is synced. 
+In the diagram below, we can see that the Dedicated architecture provides three virtual servers that act as isolated hosts for a site in a failover configuration. Within each server, all the data of your site is synced.
 
 ![The dedicated architecture](/images/dedicated/dedicated-architecture.svg "0.50")
 
 Having three isolated hosts means that when one becomes unavailable, the others take over, so your site will always remain up and running. This differs from the Grid architecture, where a single host runs multiple projects from various customers simultaneously. 
 
-From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. There is only one host that can be relied on in a failover configuration, and this host also holds the resources of various other sites. There is also a [Ceph](/glossary.md#ceph) storage dependency.
+From the Grid architecture diagram below, we can see that projects hosted in Grid share resources. The CPU, memory, and networking with other projects are all running on the same host. There is only one host that can be relied on in a failover configuration, and this host also holds the resources of various other sites. There is also a [Ceph](/glossary/_index.md#ceph) storage dependency.
 
 ![The grid architecture](/images/dedicated/grid-architecture.svg "0.50")
 
 ## Deployment
 
-With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/). 
+With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/).
 
 For a full list of public regions and IP addresses, visit the [Regions page](/development/regions.md#regions).
 

@@ -8,7 +8,7 @@ weight: 13
 As your app goes through the [build and deploy process](/learn/overview/build-deploy.md),
 you might want to run custom commands.
 These might include compiling the app, setting the configuration for services based on variables, and rebuilding search indexes.
-Do these tasks using one of [three hooks](./hooks-comparison.md).
+Do these tasks using one of [three hooks](/create-apps/hooks/hooks-comparison.md).
 
 The following example goes through each of these hooks for the [Next.js Drupal template](https://github.com/platformsh-templates/nextjs-drupal).
 This template uses [Drupal](https://www.drupal.org/) as the headless CMS backend
@@ -17,7 +17,7 @@ It's largely based on the [Next.js for Drupal project](https://next-drupal.org/)
 
 The example commands are somewhat simplified, but you can find them all in the [GitHub repository](https://github.com/platformsh-templates/nextjs-drupal).
 
-In this case, you have [two apps](../multi-app/_index.md) and so two [`{{< vendor/configfile "app" >}}` configuration files](../_index.md).
+In this case, you have [two apps](/create-apps/multi-app/_index.md) and so two [`{{< vendor/configfile "app" >}}` configuration files](/create-apps/_index.md).
 Each file is in the folder for that app: `api` for Drupal and `client` for Next.js.
 You run one hook for Drupal and two hooks for Next.js.
 
@@ -100,7 +100,7 @@ The example uses [Drush](https://www.drush.org/latest/) to handle routine tasks.
 For its configuration, Drush needs the URL of the site.
 That means the configuration can't be done in the `build` hook.
 During the `build` hook, the site isn't yet deployed and so there is no URL to use in the configuration.
-(The [`PLATFORM_ROUTES` variable](../../development/variables/use-variables.md#use-provided-variables) isn't available.)
+(The [`PLATFORM_ROUTES` variable](/development/variables/use-variables.md#use-provided-variables) isn't available.)
 
 Add the configuration during the `deploy` hook.
 This way you can access the URL before the site accepts requests (unlike in the `post_deploy` hook).

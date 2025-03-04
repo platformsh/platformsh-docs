@@ -3,7 +3,7 @@ title: Troubleshoot MySQL
 sidebarTitle: Troubleshoot
 ---
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## Lock wait timeout
 
@@ -21,7 +21,7 @@ This is typically caused by one of the following:
   while code path 2 first locks record B and then locks record A.
 * There is a long running background process executed by your application that holds the lock until it ends.
 
-If you're using [MariaDB 10+](./_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
+If you're using [MariaDB 10+](/add-services/mysql/_index.md), use the SQL query `SHOW FULL PROCESSLIST \G` to list DB queries waiting for locks.
 To determine where to debug, find output like the following:
 
 ```sql
@@ -57,11 +57,11 @@ Errors such as `PDO Exception 'MySQL server has gone away'` are usually the resu
 Get an estimate of current disk usage using the CLI command `{{% vendor/cli %}} db:size`.
 Just keep in mind it's an estimate and not exact.
 
-Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](../_index.md).
+Allocate more space to the service in [`{{< vendor/configfile "services" >}}`](/add-services/_index.md).
 As table space can grow rapidly,
 it's usually advisable to make your database mount size twice the size reported by the `db:size` command.
 
-You may want to add a [low-disk warning](../../integrations/notifications.md#low-disk-warning)
+You may want to add a [low-disk warning](/integrations/notifications.md#low-disk-warning)
 to learn about low disk space before it becomes an issue.
 
 ### Packet size limitations
@@ -69,7 +69,7 @@ to learn about low disk space before it becomes an issue.
 `MySQL server has gone away` errors may be caused by the size of the database packets.
 If so, the logs may show warnings like `Error while sending QUERY packet` before the error.
 
-One way to resolve the issue is to use the [`max_allowed_packet` parameter](./_index.md#configure-the-database).
+One way to resolve the issue is to use the [`max_allowed_packet` parameter](/add-services/mysql/_index.md#configure-the-database).
 
 ### Worker timeout
 
@@ -122,7 +122,7 @@ To **increase** `max_connections`, you can **either**:
 
 Behind the scenes, `max_connections` (for Professional and DG3 projects) is calculated from values that you _can_ change:
 
-1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql#configure-the-database)
+1. **`max_allowed_packet`**: `max_allowed_packet` is [directly configurable](/add-services/mysql/_index.md#configure-the-database)
    in your `.platform/services.yaml` file with an integer value.
    The default value of `16` is shown below to illustrate:
 
@@ -151,9 +151,9 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
           max_allowed_packet: 16
     ```
 
-    The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image#container-profiles-cpu-and-memory).
+    The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image.md#container-profiles-cpu-and-memory).
 
-    For example, [MariaDB](/create-apps/app-reference/single-runtime-image#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image#high_memory-container-profile).
+    For example, [MariaDB](/create-apps/app-reference/single-runtime-image.md#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image.md#high_memory-container-profile).
     For `size: L`, it means 0.40 CPU and 1280 MB of memory.
 
 If we assume the configuration above, where:

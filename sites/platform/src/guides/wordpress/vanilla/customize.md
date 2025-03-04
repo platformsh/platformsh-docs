@@ -17,7 +17,7 @@ If starting from scratch, you can skip to the section covering [`wp-config.php`]
 
 Keeping WordPress core up-to-date is made much easier when it resides in a subdirectory of your repository
 and it makes the recommended transition to using Composer simpler.
-It also makes defining WordPress as a submodule possible if you choose to do so. 
+It also makes defining WordPress as a submodule possible if you choose to do so.
 
 Place all code for WordPress core into a subdirectory called `wordpress`, including your `wp-config.php` file.
 
@@ -34,7 +34,7 @@ so visit the [Git submodules](/development/submodules.md) documentation for more
 
 ## `.environment`
 
-{{% vendor/name %}} provides multiple *environments* for your projects, that can be customized (with different values for staging and development), but that inherit features from the production environment. One clear case where this can be useful is environment variables. Each environment on {{% vendor/name %}} comes with a set of [pre-defined variables](../../../development/variables/use-variables.md#use-provided-variables) that provide information about the branch you are working on, the application's configuration, and the credentials to connect to each service defined in `{{< vendor/configfile "services" >}}`. 
+{{% vendor/name %}} provides multiple *environments* for your projects, that can be customized (with different values for staging and development), but that inherit features from the production environment. One clear case where this can be useful is environment variables. Each environment on {{% vendor/name %}} comes with a set of [pre-defined variables](/development/variables/use-variables.md#use-provided-variables) that provide information about the branch you are working on, the application's configuration, and the credentials to connect to each service defined in `{{< vendor/configfile "services" >}}`.
 
 Service credentials reside in a base64 encoded JSON object variable called `PLATFORM_RELATIONSHIPS`,
 which you can use to define your database connection to the MariaDB container.
@@ -59,13 +59,13 @@ else
     export WP_ENV='production'
 fi
 ```
- 
+
 As you can see above, you can define a number of environment-specific or project-wide variable settings in this file
-that are applied when deployed on {{% vendor/name %}} but not locally. 
+that are applied when deployed on {{% vendor/name %}} but not locally.
 
 ## `wp-config.php`
 
-Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on a {{% vendor/name %}} environment. 
+Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on a {{% vendor/name %}} environment.
 
 Below is the `wp-config.php` file from the [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) using the variables defined in the previous section. Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 

@@ -58,7 +58,7 @@ To do so, follow these steps:
 
 {{% vendor/name %}} manages the entire infrastructure of your project,
 from code to services (such as databases, queues, or search engines),
-all the way to email sending, [cron jobs](./crons), and [workers](./workers).
+all the way to email sending, [cron jobs](/guides/symfony/crons.md), and [workers](/guides/symfony/workers.md).
 This infrastructure is described through configuration files stored alongside your code.
 
 ## Create the project
@@ -109,7 +109,7 @@ or run the following command:
 symfony cloud:domain:add {{< variable "YOUR_DOMAIN" >}}
 ```
 
-## Make changes to your project 
+## Make changes to your project
 
 Now that your project is deployed, you can start making changes to it.
 For example, you might want to fix a bug or add a new feature.
@@ -156,7 +156,7 @@ To make changes to your project, follow these steps:
    ```bash
    symfony cloud:deploy
    ```
-   
+
    Note that each environment has its own domain name.
    To view the domain name of your new environment, run the following command:
 
@@ -201,18 +201,18 @@ Add an integration to your existing third-party repository:
 
 ### Symfony integration
 
-Learn more about the [Symfony integration](./integration), 
+Learn more about the [Symfony integration](/guides/symfony/integration.md),
 a set of tools and auto-configurations that makes it easier to use {{% vendor/name %}} for Symfony projects.
 
 ### Environment variables
 
 When you use the Symfony integration,
-more [environment variables](./environment-variables) related to Symfony are defined.
+more [environment variables](/guides/symfony/environment-variables.md) related to Symfony are defined.
 
 ### Local development
 
 Once Symfony has been deployed on {{% vendor/name %}},
-you might want to [set up a local development environment](./local).
+you might want to [set up a local development environment](/guides/symfony/local.md).
 
 ### Symfony CLI tips
 
