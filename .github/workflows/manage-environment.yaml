@@ -24,7 +24,7 @@ jobs:
       github.event.pull_request.head.repo.id == 21975579
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
@@ -60,7 +60,7 @@ jobs:
       github.event.pull_request.head.repo.id == 21975579
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
@@ -79,7 +79,7 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check if Git branch exists
         id: branch_exists

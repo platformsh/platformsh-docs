@@ -130,7 +130,7 @@ applications:
 ```
 
 You can also use this place to start small programs,
-such as a [script to handle 404 errors](https://community.platform.sh/t/custom-404-page-for-a-static-website/637).
+such as a [script to handle 404 errors](https://support.platform.sh/hc/en-us/community/posts/16439636723474).
 
 ## Complete example configuration
 

@@ -174,3 +174,16 @@ routes:
           ### Several lines of different characters here ###
           -----END CERTIFICATE-----
 ```
+
+If you want to request a client certificate without _requiring_ the client to send one, you can set this by using `request` as a value for `client_authentication`:
+
+```yaml {configFile="routes"}
+routes:
+  "https://{default}/":
+    # ...
+    tls:
+      client_authentication: "request"
+    # ...
+```
+
+Requests on routes with mTLS configured that are passed through to your app will contain additional headers such as `X-Client-Verify` (with values like `Success` or `None` depending on whether a client certificate was presented and validated or not) and `X-Client-Cert` (with information about the client certificate that was used) that your application can use as required.
