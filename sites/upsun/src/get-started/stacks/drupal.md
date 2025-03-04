@@ -9,7 +9,7 @@ description: |
 ---
 
 {{< note title="Note" theme="info" >}}
-Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
+Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here).
 They provide all of the core concepts and common commands you need to know before using the materials below.
 
 It should also be noted that this guide works for the following variations of Drupal:
