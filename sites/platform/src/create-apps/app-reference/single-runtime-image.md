@@ -13,7 +13,7 @@ For single-app projects, the configuration is all done in a `{{< vendor/configfi
 usually located at the root of your app folder in your Git repository.
 [Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
 
-See a [comprehensive example](/create-apps/app-reference/_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
+See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
 
 For reference, see a [log of changes to app configuration](/create-apps/upgrading.md).
 

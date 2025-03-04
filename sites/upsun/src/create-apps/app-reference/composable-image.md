@@ -25,7 +25,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
+If you're pressed for time, jump to this comprehensive [configuration example](/create-apps/_index.md#comprehensive-example).
 
 ## Primary application properties
 

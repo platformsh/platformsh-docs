@@ -108,7 +108,7 @@ memcached:
   type: memcached:{{% latest "memcached" %}}
 ```
 
-#### [App configuration](/create-apps/_index.md)
+#### App configuration
 
 {{< codetabs >}}
 
