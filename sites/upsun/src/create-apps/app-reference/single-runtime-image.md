@@ -9,7 +9,7 @@ description: See all of the options for controlling your apps and how they're bu
 Configuration is all done in a `{{< vendor/configfile "app" >}}` file,
 located at the root of your Git repository.
 
-See a [comprehensive example](../_index.md#comprehensive-example) of a configuration in
+See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in
 a `{{< vendor/configfile "app" >}}` file.
 
 ## Primary application properties
