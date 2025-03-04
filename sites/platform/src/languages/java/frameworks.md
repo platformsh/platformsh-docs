@@ -56,7 +56,6 @@ sidebarTitle: "Frameworks"
 
 | Article                                                      |                                                        Links |
 | ------------------------------------------------------------ | -----------------------------------------------------------: |
-| [PostgreSQL with JPA](https://dzone.com/articles/quarkus-supersonic-subatomic-java-deploy-faster-in) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/jpa) |
 | [Hello World](https://dzone.com/articles/quarkus-supersonic-subatomic-java-goes-faster-in-t) |    [Source](https://github.com/platformsh-templates/quarkus) |
 
 ## Spring
