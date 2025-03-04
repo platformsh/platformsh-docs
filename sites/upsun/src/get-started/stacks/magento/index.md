@@ -24,13 +24,13 @@ We will be using the [Upsun Magento example project](https://github.com/platform
 - PHP 8.3
 - MariaDB 10.6
 - Redis 7.2
-- Opensearch 2
+- OpenSearch 2
 - RabbitMQ 3.13
 - Automatic TLS certificates
 - Composer-based build
 
 
-The example also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. 
+The example also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. Below is a **shortened example** of the config.yaml file: 
 
 ```yaml {filename=".upsun/config.yaml"}
 applications:
@@ -68,11 +68,11 @@ applications:
 
 ## Create project
 
-Copy the following command into command line:
+Copy and run the following command in command line:
 
 `upsun project:create --init-repo https://github.com/platformsh-templates/magentoCE24/`
 
-In command line, you will be prompted to do the following:
+You will then have to make the following selections:
 
 - Select an organization to create the project under
 - Select a title for your project 
