@@ -125,6 +125,8 @@ Now that your resources have been configured, you can view a log of how Upsun cr
 
 ![Navigate to the log to see your Magento project being created](/images/guides/magento/log-console-1.png) 
 
+Below is a **shortened example** of what your log would look like:
+
 ```
  Configuring resources
    Setting 'app' resources to 0.5 CPU, 1088MB RAM.
