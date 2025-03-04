@@ -52,14 +52,6 @@ sidebarTitle: "Frameworks"
 
 * [Quarkus](https://github.com/platformsh-templates/quarkus)
 
-### References
-
-| Article                                                      |                                                        Links |
-| ------------------------------------------------------------ | -----------------------------------------------------------: |
-| [Hibernate Search With Elasticsearch](https://dzone.com/articles/deploy-quarkus-faster-in-the-cloud-with-platformsh-1) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/elasticsearch) |
-| [PostgreSQL with JPA](https://dzone.com/articles/quarkus-supersonic-subatomic-java-deploy-faster-in) | [Source](https://github.com/platformsh-examples/quarkus/tree/master/jpa) |
-| [Hello World](https://dzone.com/articles/quarkus-supersonic-subatomic-java-goes-faster-in-t) |    [Source](https://github.com/platformsh-templates/quarkus) |
-
 ## Spring
 
 The [Spring Framework](https://spring.io/projects/spring-framework) provides a comprehensive programming and configuration model for modern Java-based enterprise applications - on any kind of deployment platform. {{% vendor/name %}} is flexible, and allows you to use Spring Framework in several flavors such as [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) and [Spring Boot](https://spring.io/projects/spring-boot).

@@ -11,8 +11,7 @@ description: |
 {{% guides/config-app template="typo3" %}}
 
 Note that the command `php vendor/bin/typo3cms install:generatepackagestate` is run during the build hook.
-The command ensures all installed extensions are enabled
-and that they can be omitted if you commit your own [`PackageStates.php` file](https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ExtensionArchitecture/HowTo/ExtensionManagement.html#installing-extensions).
+The command ensures all installed extensions are enabled.
 
 {{< /guides/config-app >}}
 

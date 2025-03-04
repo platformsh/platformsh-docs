@@ -17,7 +17,7 @@ Symfony](https://blackfire.io/docs/php/integrations/symfony/index):
 - [Symfony CLI Commands Monitoring](https://blackfire.io/docs/php/integrations/symfony/cli-commands-monitoring)
 - [Symfony Functional Tests Production](https://blackfire.io/docs/php/integrations/symfony/functional-tests)
 
-A `.blackfire.yaml` file is provided within the [Symfony Templates](https://github.com/symfonycorp/platformsh-symfony-template/blob/6.2/.blackfire.yaml)
+A `.blackfire.yaml` file is provided within the [Symfony Templates](https://github.com/symfonycorp/platformsh-symfony-template/blob/7.2/.blackfire.yaml)
 to help you bootstrap the writing of custom [performance tests](https://blackfire.io/docs/testing-cookbooks/index)
 and automated [builds](https://blackfire.io/docs/builds-cookbooks/index).
 
