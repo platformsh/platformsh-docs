@@ -6,7 +6,7 @@ description: How to develop a Strapi v3 app locally.
 
 You can run your Strapi v3 app locally with all of its services.
 
-First install the [config reader](../../../development/variables/use-variables.md#access-variables-in-your-app) by running the following command:
+First install the [config reader](/development/variables/use-variables.md#access-variables-in-your-app) by running the following command:
 
 ```bash
 npm install platformsh-config OR yarn add platformsh-config
@@ -86,4 +86,4 @@ module.exports = {
 ```
 
 If it's similar to the above and you’re running a Strapi v3 application,
-follow the [instructions for general local development](../../../development/local/_index.md).
+follow the [instructions for general local development](/development/local/_index.md).

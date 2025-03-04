@@ -6,7 +6,7 @@ description: |
     Add some helpful dependencies, and modify your WordPress site to read from a {{% vendor/name %}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it’s time to make your WordPress site itself ready to run on a {{% vendor/name %}} environment. 
+Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it’s time to make your WordPress site itself ready to run on a {{% vendor/name %}} environment.
 
 ## Install the Config Reader
 
@@ -16,9 +16,9 @@ Now that your code contains all of the configuration to deploy on {{% vendor/nam
 
 With the Configuration Reader library installed, add or update a `wp-config.php` file in the root of your repository to match the code below. In this file, the library's `Config` object is used to:
 
-- Retrieve connection credentials for MariaDB through the `database` relationship to configure the WordPress database. This will set up the database automatically and avoid you having to set the connection yourself during the installer. 
-- Use the project's [routes](../../../define-routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings. 
-- Set all of WordPress's security and authentication keys to the {{% vendor/name %}}-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments. 
+- Retrieve connection credentials for MariaDB through the `database` relationship to configure the WordPress database. This will set up the database automatically and avoid you having to set the connection yourself during the installer.
+- Use the project's [routes](/define-routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings.
+- Set all of WordPress's security and authentication keys to the {{% vendor/name %}}-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments.
 
 Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 
@@ -209,7 +209,7 @@ With these packages included, the WordPress CLI is available when you SSH into t
 composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
 ```
 
-If you've installed the WordPress CLI as a dependency as in the [previous step](./configure.md#configure-apps-in-platformappyaml),
+If you've installed the WordPress CLI as a dependency as in the [previous step](/guides/wordpress/deploy/configure.md#configure-apps-in-platformappyaml),
 you can use it directly.
 (As long as you have only `wp-cli/wp-cli-bundle` as a dependency and not `wp-cli/wp-cli`.)
 

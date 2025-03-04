@@ -13,7 +13,7 @@ A common pattern for Gatsby sites is to decouple services from the main site, pu
 
 The location of an external CMS is usually hard coded into Gatsby's configuration, so when you're developing your site every branch points to the same backend resource. Should the location of that resource change, you would need to commit the new URL to update the configuration.
 
-The decoupled pattern can work differently on {{% vendor/name %}} due to support for [multi-app configuration](../../../create-apps/multi-app/_index.md) on your projects. Consider the following project structure:
+The decoupled pattern can work differently on {{% vendor/name %}} due to support for [multi-app configuration](/create-apps/multi-app/_index.md) on your projects. Consider the following project structure:
 
 ```bash
 .

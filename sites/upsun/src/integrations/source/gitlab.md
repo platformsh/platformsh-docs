@@ -102,7 +102,7 @@ In both the CLI and Console, you can choose from the following options:
 | `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
 | `resources-init` | `false` | To [specify a resource initialization strategy](/manage-resources/resource-init.md#first-deployment) for new containers. Once set, the strategy applies to **all** the deployments you launch through your source integration. See more information on [available resource initialization strategies](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
 
-To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+To [keep your repository clean](/learn/bestpractices/clean-repository.md) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="GitLab" %}}
 1. In your GitLab repository, click **Settings** > **Webhooks**.

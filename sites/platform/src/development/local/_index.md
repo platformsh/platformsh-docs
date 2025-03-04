@@ -15,10 +15,10 @@ This ensures the changes you make locally appear as they would on your {{% vendo
 It also means you don't have to worry about configuring your machine with
 the various dependencies, certificates, and connections your app needs to run.
 
-The **recommended tool** for local development with {{% vendor/name %}} is **[DDEV](./ddev.md)**.
+The **recommended tool** for local development with {{% vendor/name %}} is **[DDEV](/development/local/ddev.md)**.
 The integration with DDEV is maintained by {{% vendor/name %}} to ensure it works smoothly.
 
-Other Docker-based tools are also supported, such as [Docksal](./docksal.md) and [Lando](./lando.md).
+Other Docker-based tools are also supported, such as [Docksal](/development/local/docksal.md) and [Lando](/development/local/lando.md).
 If you choose to use a Docker-based tool, follow the steps on its page. Otherwise, follow these steps to run
 your app on your computer.
 
@@ -30,7 +30,7 @@ You need to have:
   new users can sign up for a [free trial account](https://auth.api.platform.sh/register)
 - A working project
 - [Git](https://git-scm.com/downloads)
-- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
+- The [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
 ## 1. Get your code
 
@@ -44,7 +44,7 @@ If you don't have your app code on your computer, download a copy.
     {{% vendor/cli %}} get {{< variable "PROJECT_ID" >}} {{< variable "TARGET_DIRECTORY_NAME" >}}
     ```
 
-    Or pull from your [integrated Git repository](../../integrations/source/_index.md).
+    Or pull from your [integrated Git repository](/integrations/source/_index.md).
 
 You can now access your code from the project directory on your computer.
 The CLI created a `{{< vendor/configfile "apps" >}}/local` directory that's excluded from Git.
@@ -54,15 +54,15 @@ You can now make changes to your project without pushing to {{% vendor/name %}} 
 Instead, you can locally build your application using the {{% vendor/name %}} CLI.
 
 Note that if your app contains services, you need to open an SSH tunnel to connect to them.
-For more information, see how to [connect services](../../add-services#2-connect-the-service).
+For more information, see how to [connect services](/add-services#2-connect-the-service).
 
 ## 2. Connect to services
 
 If your app requires services to run, you have two options for developing locally:
 
-- [Tethered local development](./tethered.md) involves running your app on a local web server
+- [Tethered local development](/development/local/tethered.md) involves running your app on a local web server
   but keeping all other services on {{% vendor/name %}} and connecting to them over an SSH tunnel.
-- [Untethered local development](./untethered.md) involves running your entire site locally,
+- [Untethered local development](/development/local/untethered.md) involves running your entire site locally,
   including all services.
 
 Choose the option that works for you and get your services running.

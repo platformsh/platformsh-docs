@@ -5,7 +5,7 @@ weight: -110
 description: Configure a Spring application with MariaDB/MySQL.
 ---
 
-[MariaDB/MySQL](../../add-services/mysql/_index.md) is an open-source relational database technology.
+[MariaDB/MySQL](/add-services/mysql/_index.md) is an open-source relational database technology.
 Spring has a robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project.

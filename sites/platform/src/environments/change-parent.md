@@ -6,9 +6,9 @@ toc: false
 ---
 
 All environments default to having another environment as their parent.
-If you [branched](/glossary.md#branch) the environment from another,
+If you [branched](/glossary/_index.md#branch) the environment from another,
 its parent starts as the environment it was created from.
-If you pushed a branch through Git or a [source integration](../integrations/source/_index.md),
+If you pushed a branch through Git or a [source integration](/integrations/source/_index.md),
 the parent defaults to the default environment.
 
 To change the environment's parent, follow these steps:

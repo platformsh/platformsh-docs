@@ -12,12 +12,12 @@ Hibernate ORM is a JPA implementation and offers you the full breadth of an Obje
 To activate Hibernate Panache and then have it accessed by the Quarkus application already in {{% vendor/name %}}, it is necessary to modify two files.
 
 {{< note >}}
-This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](./deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
+This guide only covers the *addition* of a service configuration to an existing Quarkus project already configured to deploy on {{% vendor/name %}}. Please see the [deployment guide](/guides/quarkus/deploy/_index.md) for more detailed instructions for setting up app containers and initial projects.
 {{< /note >}}
 
 ## 1. Add a SQL database service
 
-In your [service configuration](../../add-services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](../../add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
+In your [service configuration](/add-services/_index.md), include a SQL database service. Make sure to visit the documentation for [that service](/add-services/_index.md) to find a valid version. For PostgreSQL that would look like:
 
 {{< readFile file="registry/images/examples/full/postgresql.services.yaml" highlight="yaml" configFile="services" >}}
 

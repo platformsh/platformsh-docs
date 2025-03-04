@@ -22,7 +22,7 @@ If you are migrating WordPress or starting from scratch, you should copy this li
 
 {{% guides/config-service WordPress=true framework=WordPress %}}
 
-We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for WordPress.
+We recommend the latest [MariaDB](/add-services/mysql/_index.md) version for WordPress.
 
 {{% /guides/config-service %}}
 

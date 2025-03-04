@@ -19,8 +19,8 @@ When caching is on...
 * cookies bypass the cache;
 * responses with the `Cache-Control` header set to `Private`, `No-Cache`, or `No-Store` aren't cached.
 
-You should _not_ use the {{% vendor/name %}} HTTP cache if you're using [Varnish](../add-services/varnish.md) or an external CDN
-such as [Fastly](../domains/cdn/fastly.md) or [Cloudflare](../domains/cdn/cloudflare.md).
+You should _not_ use the {{% vendor/name %}} HTTP cache if you're using [Varnish](/add-services/varnish.md) or an external CDN
+such as [Fastly](/domains/cdn/fastly.md) or [Cloudflare](/domains/cdn/cloudflare.md).
 Mixing cache services together most likely results in caches that are stale and can't be cleared.
 For more details, see [best practices on HTTP caching](/learn/bestpractices/http-caching.md).
 

@@ -67,14 +67,14 @@ The following table presents the keys you can define for each service:
 | Name            | Type       | Required          | Description |
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
-| `disk`          | `integer`  | For some services | The size in [MB](/glossary.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
-| `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](../increase-observability/logs/access-logs.md#activity-logs). |
+| `disk`          | `integer`  | For some services | The size in [MB](/glossary/_index.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
+| `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](/increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
 | `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships). The `endpoint_name` for apps is always `http`. |
 
 ##### Disk
 
-You configure the disk size in [MB](/glossary.md#mb).
+You configure the disk size in [MB](/glossary/_index.md#mb).
 Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal.
 When checking available space, note whether it's reported in MB or MiB.
 
@@ -86,7 +86,7 @@ If you do so, be aware that:
 
 ##### Size
 
-Resources are distributed across all containers in a project from the total available from your [plan size](../administration/pricing/_index.md).
+Resources are distributed across all containers in a project from the total available from your [plan size](/administration/pricing/_index.md).
 
 By default, {{% vendor/name %}} allocates CPU and memory resources to each container automatically.
 Some services are optimized for high CPU load, some for high memory load.
@@ -122,12 +122,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 <--->
 
@@ -150,10 +150,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration. `<ENDPOINT_NAME>` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -242,8 +242,8 @@ All services have their system timezone set to UTC by default.
 For some services, you can change the timezone for the running service
 (this doesn't affect the container itself and so logs are still in UTC).
 
-* [MySQL](./mysql/_index.md#service-timezone)
-* [PostgreSQL](./postgresql.md#service-timezone)
+* [MySQL](/add-services/mysql/_index.md#service-timezone)
+* [PostgreSQL](/add-services/postgresql.md#service-timezone)
 
 ## Connect to a service
 
@@ -310,7 +310,7 @@ Note that the information about the relationship can change when an app is redep
 
 ### 2. Open an SSH tunnel
 
-Open a single [SSH tunnel](../development/ssh/_index.md#connect-to-services) by running the following CLI command:
+Open a single [SSH tunnel](/development/ssh/_index.md#connect-to-services) by running the following CLI command:
 
 ```bash
 {{% vendor/cli %}} tunnel:single --relationship {{< variable "RELATIONSHIP_NAME" >}}

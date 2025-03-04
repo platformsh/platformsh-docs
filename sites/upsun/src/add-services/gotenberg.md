@@ -147,7 +147,7 @@ and matches in both the application and services configuration.
 {{< /codetabs >}}
 
 With the above definition, {{% vendor/name %}} uses the `http` endpoint,
-providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the _name_ of that service.
+providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 The `http` endpoint uses port `3000` by default.
 

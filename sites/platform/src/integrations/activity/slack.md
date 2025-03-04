@@ -12,7 +12,7 @@ To use it, follow these steps:
    You get a URL starting with `https://hooks.slack.com/`.
 2. Replace `SLACK_URL` in the following script with your webhook URL.
 3. Paste the code into a `.js` file.
-4. Add it as a new [script integration](./_index.md#installing).
+4. Add it as a new [script integration](/integrations/activity/_index.md#installing).
 
    Specify which events should trigger it using the `--events` flag.
    Optionally specify environments with the `--environments` flag.
@@ -73,4 +73,4 @@ Common properties you may want to send to Slack (in the last line of the script)
 - `activity.text`: A brief, one-line statement of what happened.
 - `activity.log`: The complete build and deploy log output, as it would be seen in the Console log screen.
 
-For more properties, see the [activity reference](./reference.md).
+For more properties, see the [activity reference](/integrations/activity/reference.md).

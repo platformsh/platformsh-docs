@@ -15,8 +15,8 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Redis service
 
-In your [service configuration](../../add-services/_index.md),
-include persistent Redis with a [valid supported version](../../add-services/redis.md#persistent-redis):
+In your [service configuration](/add-services/_index.md),
+include persistent Redis with a [valid supported version](/add-services/redis.md#persistent-redis):
 
 {{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
 

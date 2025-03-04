@@ -4,7 +4,7 @@ sidebarIgnore: true
 ---
 
 Sometimes you have apps that are more memory-intensive.
-In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](./_index.md).
+In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](/create-apps/_index.md).
 All memory must stay within the limits set by your plan.
 
 {{< note >}}

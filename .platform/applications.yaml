@@ -18,7 +18,6 @@
 
     relationships:
         search: "search:http"
-        database: "db:mysql"
 
     # The hooks that will be triggered when the package is deployed.
     hooks:
@@ -40,7 +39,7 @@
     # The configuration of the application when it is exposed to the web.
     web:
         commands:
-        # Run (404) error and feedback handler
+        # Run (404) error
             start: cd $SITE_DIR && node index.js
         locations:
             '/':
@@ -54,7 +53,9 @@
                 rules:
                     \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
                         expires: 4w
-
+                    \.md$:
+                      headers:
+                        Content-Type: text/markdown
     disk: 1024
 
     mounts:
@@ -84,7 +85,6 @@
 
     relationships:
         search: "search:http"
-        database: "db:mysql"
 
     # The hooks that will be triggered when the package is deployed.
     hooks:
@@ -104,7 +104,7 @@
     # The configuration of the application when it is exposed to the web.
     web:
         commands:
-        # Run (404) error and feedback handler
+        # Run (404) error
             start: cd $SITE_DIR && node index.js
         locations:
             '/':

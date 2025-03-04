@@ -360,7 +360,7 @@ You can configure each route separately with the following properties:
 | Name         | Type      | Required                | Description |
 | ------------ | --------- | ----------------------- | ----------- |
 | `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](/define-routes/proxy.md).</li></ul> |
-| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../create-apps/_index.md)) followed by `:http`. Example: `app:http` |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](/create-apps/_index.md)) followed by `:http`. Example: `app:http` |
 | `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
 | `ssi`        | `boolean` | No                      | Whether [server side includes](/define-routes/ssi.md) are enabled. |
 | `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](/define-routes/redirects.md). |
