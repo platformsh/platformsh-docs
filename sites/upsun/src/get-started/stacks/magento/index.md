@@ -19,7 +19,7 @@ You will not need Adobe Commerce authentication keys for this process but if you
 
 {{</ note >}}
 
-We will be using the [Upsun Magento template](https://github.com/platformsh-templates/magentoCE24/blob/main/README.md) for this deployment process. The templates specifically features:
+We will be using the [Upsun Magento example project](https://github.com/platformsh-templates/magentoCE24/blob/main/README.md) for this deployment process. The example specifically features:
 
 - PHP 8.3
 - MariaDB 10.6
@@ -30,7 +30,7 @@ We will be using the [Upsun Magento template](https://github.com/platformsh-temp
 - Composer-based build
 
 
-The template also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. 
+The example also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. 
 
 ```yaml {filename=".upsun/config.yaml"}
 applications:
