@@ -87,6 +87,9 @@
 | replaceRE ` \{configFile=\"env\"` (printf ` {location="%s"` $envConfigFile)
 | replaceRE ` \{configFile=\"routes\"` (printf ` {location="%s"` $routesConfigFile)
 | replaceRE ` \{configFile=\"services\"` (printf ` {location="%s"` $servicesConfigFile)
+| replaceRE `\{location="([^"]+)"(?: dir="([^"]*)")?\}` ` {location="${2}/${1}"}`
+| replaceRE ` {location="/([^"]+)"}` ` {location="${1}"}`
+
 -}}
 
 {{- if .full -}}
