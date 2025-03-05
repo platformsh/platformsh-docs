@@ -15,8 +15,8 @@ This YAML file is located in your ``.{{% vendor/cli %}}`` directory, at the root
 ```bash
 .
 ├── {{< vendor/configdir >}}
-|   └── {{< vendor/configfile "apps" "strip" >}}
-└── <source code>
+|   └── {{< vendor/configfile "apps" "strip" >}}
+└── <SOURCE_CODE>
 ```
 ## Mandatory top-level keys
 In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:

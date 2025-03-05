@@ -1,6 +1,11 @@
 {{- $full := .full | default (0) -}}
 {{- $level := .level | default (1) -}}
 {{- $baseURL := .vendor.urls.docs -}}
+{{- $appsConfigFile := .vendor.config.files.apps -}}
+{{- $appConfigFile := .vendor.config.files.app -}}
+{{- $envConfigFile := .vendor.config.files.env | default "" -}}
+{{- $servicesConfigFile := .vendor.config.files.services -}}
+{{- $routesConfigFile := .vendor.config.files.routes -}}
 {{- if .title -}}
   {{- if eq .version "2" }}
 {{ range $num := (seq $level) }}#{{ end }} {{ .title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" }}
@@ -75,7 +80,17 @@
 
 | replaceRE `<title>(.*)?<\/title>` "**$1**"
 | replaceRE `<\/?(ol|ul)>` ""
-| replaceRE `<li>\n?` ` - ` -}}
+| replaceRE `<li>\n?` ` - `
+| replaceRE `\:first-child\]\:mt\-0 \[\&\>:last-child\]:mb-0">` ""
+| replaceRE ` \{configFile=\"apps\"` (printf ` {location="%s"` $appsConfigFile)
+| replaceRE ` \{configFile=\"app\"` (printf ` {location="%s"` $appConfigFile)
+| replaceRE ` \{configFile=\"env\"` (printf ` {location="%s"` $envConfigFile)
+| replaceRE ` \{configFile=\"routes\"` (printf ` {location="%s"` $routesConfigFile)
+| replaceRE ` \{configFile=\"services\"` (printf ` {location="%s"` $servicesConfigFile)
+| replaceRE `\{location="([^"]+)"(?: dir="([^"]*)")?\}` ` {location="${2}/${1}"}`
+| replaceRE ` {location="/([^"]+)"}` ` {location="${1}"}`
+
+-}}
 
 {{- if .full -}}
 {{- $content = $content | replaceRE "(?m)^(#{2,6})(\\s|$)" (printf "${1}%s " $hashes) -}}
@@ -83,7 +98,7 @@
 
 {{- $content = $content
   | replaceRE ` ([a-zA-Z0-9\@:-]){2,}="([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&><↗\ -]{0,})"` ``
-  | replaceRE "(`[^`]*?)( )?(<)([^>]+)(>)([^`^ ]*?`)" "${1}${2}##PLACEHOLDER_START##${4}##PLACEHOLDER_END##${6}"
+  | replaceRE `<([A-Z0-9_]+)>` "##PLACEHOLDER_START##${1}##PLACEHOLDER_END##"
   | replaceRE `<[^>]+>` ""
   | replaceRE "##PLACEHOLDER_START##(.*?)##PLACEHOLDER_END##" "<${1}>"
   | replaceRE `\[Back\]\([^)]+\)[\n|\ ]*\[[^\]]+\]\([^)]+\)` "\n"
