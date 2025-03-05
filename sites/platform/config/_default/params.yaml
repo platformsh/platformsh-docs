@@ -37,7 +37,7 @@ vendor:
             routes: routes
     urls:
         main: https://platform.sh/
-        docs: https://docs.platform.sh/
+        docs: https://docs.platform.sh
         support: https://support.platform.sh/
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
