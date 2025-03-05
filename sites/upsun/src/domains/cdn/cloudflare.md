@@ -37,7 +37,7 @@ As a workaround, Cloudflare offers [`HTTPS` records](https://developers.cloudfla
 
 Like all networks exposed to the internet, your origin server may become the target of security attacks.
 The best way to protect your site from threats like on-path attacks, spoofing attacks, or credential stuffing,
-is to [configure mutual TLS (mTLS)](https://support.platform.sh/hc/en-us/community/posts/16439502516242).
+is to configure mutual TLS (mTLS).
 
 [mTLS](https://www.cloudflare.com/en-gb/learning/access-management/what-is-mutual-tls/) not only has both parties in a connection authenticate each other
 through the TLS protocol.
@@ -48,7 +48,7 @@ Instead, requests must transit through Cloudflare first.
 mTLS is only compatible with environments where you have attached domains you own, meaning:
 
 - Your production environment
-- Each preview environment where you have [attached a custom domain](/domains/steps/custom-domains-preview-environments)
+- Each preview environment where you have [attached a custom domain](/domains/steps/custom-domains-preview-environments.md)
 
 Therefore, mTLS is **not** compatible with preview environments created by a [source code integration](/integrations/source/_index.md).
 {{< /note >}}

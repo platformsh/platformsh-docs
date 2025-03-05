@@ -7,12 +7,12 @@ description: |
 
 {{% description %}}
 
-To add or modify an integration for a project, you need to be a [project admin](../administration/users.md#project-roles).
+To add or modify an integration for a project, you need to be a [project admin](/administration/users.md#project-roles).
 
 ## Default low-disk email notifications
 
 When you create a new project,
-{{% vendor/name %}} creates a default [low-disk email notification](#low-disk-warning) for all [project admins](../administration/users.md#project-roles).
+{{% vendor/name %}} creates a default [low-disk email notification](#low-disk-warning) for all [project admins](/administration/users.md#project-roles).
 
 ## Available notifications
 
@@ -105,7 +105,7 @@ If you are already have a Slack app, you can jump to [enabling notifications](#2
    {{% note %}}
    If you are _not_ an admin of the workspace, you need to provide a link to install the app into the workspace and onto a channel.
 
-   Once the app is approved and installed, a **User OAuth Token** is provided in your app settings. 
+   Once the app is approved and installed, a **User OAuth Token** is provided in your app settings.
    Copy the token, and use it in the next step.
    {{% /note %}}
 
@@ -120,13 +120,13 @@ If you are already have a Slack app, you can jump to [enabling notifications](#2
     ```bash
     {{% vendor/cli %}} integration:add --type health.slack ... --channel '#project-notifications' ...
     ```
-6. When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel. 
+6. When the integration is successfully configured, {{% vendor/name %}} then sends an initial message to the channel.
 
 {{< note theme="info" title="Bot users v. Slack apps">}}
 Previously, {{% vendor/name %}} allowed for the configuration of health notifications sent to Slack via _bot users_ and their associated API tokens.
 As of June 2024, Slack has deprecated bot users, and integrations must be configured using Slack apps as described above.
 
-If you already have defined an integration using a bot user API token, it will continue to work properly, though you should consider upgrading your processes to the above settings to avoid any future retirement. 
+If you already have defined an integration using a bot user API token, it will continue to work properly, though you should consider upgrading your processes to the above settings to avoid any future retirement.
 {{< /note >}}
 
 ### PagerDuty notifications

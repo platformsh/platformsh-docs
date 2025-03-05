@@ -9,26 +9,26 @@ keywords:
   - mTLS
 ---
 
-Instead of starting your own Fastly subscription and [managing your CDN yourself](./fastly.md),
+Instead of starting your own Fastly subscription and [managing your CDN yourself](/domains/cdn/fastly.md),
 you can take advantage of a Fastly CDN provided by {{% vendor/name %}}.
 For example, Dedicated projects include a managed Fastly CDN by default.
 These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 
 To modify any settings for a managed Fastly CDN,
-open a [support ticket](/learn/overview/get-support).
+open a [support ticket](/learn/overview/get-support.md).
 To add a managed Fastly CDN to your project,
 [contact sales](https://platform.sh/contact/).
 
 ### Domain control validation
 
 When you request for a new domain to be added to your Fastly service,
-{{% vendor/name %}} support provides you with a [`CNAME` record](../../domains/steps/dns.md) for [domain control validation](../troubleshoot.md#ownership-verification).
+{{% vendor/name %}} support provides you with a [`CNAME` record](/domains/steps/dns.md) for [domain control validation](/domains/troubleshoot.md#ownership-verification).
 To add this `CNAME` record to your domain settings,
-see how to [configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
+see how to [configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).
 
 ### Transport Layer Security (TLS) certificates
 
-By default, Enterprise and Elite plans include two [TLS certificates](/glossary.md#transport-layer-security-tls),
+By default, Enterprise and Elite plans include two [TLS certificates](/glossary/_index.md#transport-layer-security-tls),
 an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app.
 
@@ -38,14 +38,14 @@ you can provide your own third-party TLS certificates for an additional fee.
 To do so, if you don't have one,
 set up a [mount](/create-apps/app-reference/single-runtime-image.md#mounts) that isn't accessible to the web.
 Use an environment with access limited to {{% vendor/name %}} support and trusted users.
-[Transfer](../../development/file-transfer.md) each certificate, its unencrypted private key,
+[Transfer](/development/file-transfer.md) each certificate, its unencrypted private key,
 and the intermediate certificate to the mount.
 To notify {{% vendor/name %}} that a certificate is to be added to your CDN configuration,
-open a [support ticket](/learn/overview/get-support).
+open a [support ticket](/learn/overview/get-support.md).
 
 If you need an Extended Validation TLS certificate,
 you can get it from any TLS provider.
-To add it to your CDN configuration, open a [support ticket](/learn/overview/get-support).
+To add it to your CDN configuration, open a [support ticket](/learn/overview/get-support.md).
 
 Note that when you add your own third-party TLS certificates,
 you are responsible for renewing them in due time.

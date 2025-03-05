@@ -28,7 +28,7 @@ To list and manage your projects, authenticate by running the following command:
 ```
 
 This process opens a browser tab for you to log in.
-It also creates certificates on your computer for [SSH](../../development/ssh/_index.md).
+It also creates certificates on your computer for [SSH](/development/ssh/_index.md).
 
 Once you are logged in, a list of your projects appears, along with some tips for getting started.
 If you experience authentication issues or want to force a login, run the command `{{% vendor/cli %}} login`.
@@ -124,7 +124,7 @@ You can always specify the project and environment in two ways:
   {{% vendor/cli %}} environment:info
   ```
 
-In [multi-app](../../create-apps/multi-app/_index.md) projects, this applies also to selecting the right app
+In [multi-app](/create-apps/multi-app/_index.md) projects, this applies also to selecting the right app
 (the environment variable would be `PLATFORM_APPLICATION_NAME`).
 
 #### RootNotFoundException

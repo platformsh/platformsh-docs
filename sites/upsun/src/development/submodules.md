@@ -147,7 +147,7 @@ source:
 
    If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
    Don't define routes so your app isn't exposed to the web.
-   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
+   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference.md):
 
 ```yaml {configFile="app"}
 {{< snippet name="update-submodule" config="app" root="false" >}}

@@ -5,7 +5,7 @@ description: |
   Find the URLs you can use to access your site via a web browser.
 ---
 
-Once you have an environment running, you can view it in a web browser. 
+Once you have an environment running, you can view it in a web browser.
 To find which URLs you can use to access your site, follow these steps:
 
 {{< codetabs >}}
@@ -36,7 +36,7 @@ title=Using the CLI
 
 {{< /codetabs >}}
 
-For more information about URLs in your project and how you can control access to your web applications, 
-see how to [define routes](../define-routes/).
+For more information about URLs in your project and how you can control access to your web applications,
+see how to [define routes](/define-routes/).
 
 

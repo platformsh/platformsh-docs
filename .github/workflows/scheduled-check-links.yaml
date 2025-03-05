@@ -124,7 +124,7 @@ jobs:
         env:
           ARTIFACT: ${{ env.artifact }}
           DOMAIN: ${{ steps.get-domain-name.outputs.domain }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const { ARTIFACT, DOMAIN } = process.env

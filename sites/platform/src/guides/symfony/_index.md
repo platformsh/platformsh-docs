@@ -3,7 +3,7 @@ title: "Symfony"
 weight: -150
 partner: true
 description: |
-    Everything you need to get started with [Symfony](https://www.symfony.com/), a [PHP](../../development/templates.md#php) framework for web development, on {{% vendor/name %}}.
+    Everything you need to get started with [Symfony](https://www.symfony.com/), a [PHP](/development/templates.md#php) framework for web development, on {{% vendor/name %}}.
 ---
 {{% description %}}
 

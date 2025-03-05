@@ -28,7 +28,7 @@ If more simultaneous requests are received than the number of workers,
 then some requests wait until worker processes are available.
 
 The default worker count is set to a conservative default value.
-To determine and set the optimal value for your app, see [PHP-FPM sizing](./fpm.md).
+To determine and set the optimal value for your app, see [PHP-FPM sizing](/languages/php/fpm.md).
 
 ## OPcache preloading
 
@@ -77,7 +77,7 @@ foreach ($regex as $key => $file) {
 
 ### Configure OPcache
 
-OPcache needs to be tuned before production usage and can be configured the [same way as PHP](./_index.md#customize-php-settings).
+OPcache needs to be tuned before production usage and can be configured the [same way as PHP](/languages/php/_index.md#customize-php-settings).
 
 Let the app run for a while before tuning OPcache
 since the preload script may change some of the configuration.
@@ -90,7 +90,7 @@ the cache becomes less effective because it starts [thrashing](https://en.wikipe
 
 To determine the maximum number of files to cache, follow these steps:
 
-1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
+1. Connect to the container via SSH using the [CLI](/development/ssh/_index.md)
    by running `{{% vendor/cli %}} ssh`.
 2. Determine roughly how many `.php` files your app has by running this command from [your app root](/create-apps/app-reference/single-runtime-image.md#root-directory):
 
@@ -121,7 +121,7 @@ Determining the optimal limit to memory consumption requires executing code via 
 
 To determine the total amount of memory to use, follow these steps:
 
-1. Connect to the container via SSH using the [CLI](../../development/ssh/_index.md)
+1. Connect to the container via SSH using the [CLI](/development/ssh/_index.md)
    by running `{{% vendor/cli %}} ssh`.
 2. Change to the `/tmp` directory (or any other non-web-accessible writable directory) with `cd /tmp`.
 3. Download CacheTool with `curl -sLO https://github.com/gordalina/cachetool/releases/latest/download/cachetool.phar`.
@@ -172,7 +172,7 @@ This allows to support apps that generate compiled PHP code from user configurat
 If you know your code isn't going to change outside a new deployment,
 you can disable that check and get a small performance improvement.
 
-Timestamp validation can be disabled by adding the following variable to your [app configuration](../../create-apps/_index.md):
+Timestamp validation can be disabled by adding the following variable to your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 variables:
@@ -189,12 +189,12 @@ Doing so would prevent updates to the generated code from being loaded.
 
 To force a restart of PHP-FPM:
 
-1. Connect to your app container via SSH using the [CLI](../../development/ssh/_index.md) by running `{{% vendor/cli %}} ssh`.
+1. Connect to your app container via SSH using the [CLI](/development/ssh/_index.md) by running `{{% vendor/cli %}} ssh`.
 2. Run `pkill -f -u "$(whoami)" php-fpm`.
 
 ## Optimize your code
 
-To optimize your app, consider using a [profiler](../../increase-observability/integrate-observability/_index.md).
+To optimize your app, consider using a [profiler](/increase-observability/integrate-observability/_index.md).
 A profiler helps determine what slow spots can be found and addressed and helps improve performance.
 
 <!-- @todo: awesome-platformsh -->

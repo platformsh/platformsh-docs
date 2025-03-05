@@ -423,7 +423,7 @@ These examples define four worker processes with `-w 4`.
 For more recommendations on this and other settings, see the [Uvicorn documentation](https://www.uvicorn.org/settings/#timeouts).
 
 Instead of the `-w` flag, you can also use the `WEB_CONCURRENCY` variable.
-See how to [set variables](../../development/variables/set-variables.md).
+See how to [set variables](/development/variables/set-variables.md).
 
 ## Hypercorn
 

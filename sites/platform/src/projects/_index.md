@@ -6,4 +6,4 @@ toc: false
 ---
 
 See how to manage projects within {{% vendor/name %}}.
-To create a project, see how to [get started](../get-started/_index.md).
+To create a project, see how to [get started](/get-started/_index.md).

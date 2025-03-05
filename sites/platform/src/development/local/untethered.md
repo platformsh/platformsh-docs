@@ -11,6 +11,6 @@ These can be set up however you prefer, although {{% vendor/name %}} recommends 
 
 If you already have a development workflow in place that works for you, you can keep using it with virtually no changes.
 
-To synchronize data from an environment on {{% vendor/name %}}, consult the documentation for each [service](../../add-services/_index.md).
+To synchronize data from an environment on {{% vendor/name %}}, consult the documentation for each [service](/add-services/_index.md).
 Each service type has its own native data import/export process and {{% vendor/name %}} doesn't get in the way of that.
 It's also straightforward to [download user files](/learn/tutorials/exporting.md) from your application using rsync.

@@ -34,7 +34,7 @@ Make sure your public key has been uploaded to your user account. Check it in th
 
 A given SSH key pair can only be linked to a single user account.
 If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
-[Generate a new pair of SSH keys](/development/ssh/ssh-keys#add-ssh-keys) for the second user account you want to add.
+[Generate a new pair of SSH keys](/development/ssh/ssh-keys.md#add-ssh-keys) for the second user account you want to add.
 
 ## Check your SSH agent
 
@@ -132,9 +132,9 @@ Follow the instructions so you can effectively access its contents.
 Similarly for bot users and CLI tokens, you may see the message:
 
 ```bash
-  [RequestException]                                           
-  Multi-factor authentication (MFA) is required.               
-  The API token may need to be re-created after enabling MFA.  
+  [RequestException]
+  Multi-factor authentication (MFA) is required.
+  The API token may need to be re-created after enabling MFA.
 ```
 
 In this case, as described, it will be necessary to:
@@ -144,6 +144,6 @@ In this case, as described, it will be necessary to:
 
 ## Something still wrong?
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
-If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.
+If you're still stuck, open a [support ticket](/learn/overview/get-support.md) and provide the full SSH debug information.

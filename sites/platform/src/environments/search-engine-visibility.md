@@ -8,7 +8,7 @@ When you have preview environments,
 you don't want search engines indexing them and diluting the SEO of your production site.
 
 Search engine indexers are told to ignore all preview environments.
-When you're ready to go live, give your production environment a [custom domain](../domains/steps/_index.md)
+When you're ready to go live, give your production environment a [custom domain](/domains/steps/_index.md)
 and then set it to be visible to search engines.
 
 To change your production environment's visibility to search engines, follow these steps:
@@ -38,7 +38,7 @@ title=In the Console
 {{< /codetabs >}}
 
 {{% vendor/name %}} can't guarantee that indexers follow the instructions.
-If you're concerned about access, set up [HTTP access control](./http-access-control.md).
+If you're concerned about access, set up [HTTP access control](/environments/http-access-control.md).
 
 ## How it's done
 
