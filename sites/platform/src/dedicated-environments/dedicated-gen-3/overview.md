@@ -5,6 +5,14 @@ sidebarTitle: "DG3 overview"
 description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
 ---
 
+{{< note theme="note" title="Limited access phase">}}
+
+Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
+
+If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://platform.sh/contact/) our team.
+
+{{< /note >}}
+
 {{% description %}}
 
 ### Key features

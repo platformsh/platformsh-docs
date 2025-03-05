@@ -6,6 +6,14 @@ layout: single
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits."
 ---
 
+{{< note theme="note" title="Limited access phase">}}
+
+Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
+
+If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://platform.sh/contact/) our team.
+
+{{< /note >}}
+
 Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 3, and discover key details about [deployment](#deployment), which [regions](#providers-and-regions) are supported and [storage limits](#storage).
 
 ## Cluster infrastructure 
