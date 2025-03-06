@@ -56,7 +56,7 @@
                     \.md$:
                       headers:
                         Content-Type: text/markdown
-                    llms*.txt$:
+                    \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
     disk: 1024
@@ -124,7 +124,7 @@
                     \.md$:
                       headers:
                         Content-Type: text/markdown
-                    llms*.txt$:
+                    \.txt$:
                       headers:
                         Content-Type: "text/markdown; charset=UTF-8"
 
