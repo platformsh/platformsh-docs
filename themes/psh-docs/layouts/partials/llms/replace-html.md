@@ -104,6 +104,8 @@
   | replaceRE `\[Back\]\([^)]+\)[\n|\ ]*\[[^\]]+\]\([^)]+\)` "\n"
 
   | replaceRE `(\n\ *)+\n` "\n\n"
+  | replaceRE "â€“" "–"
+  | replaceRE "â€™" "’"
 -}}
 
 {{- $content | htmlUnescape | safeHTML -}}

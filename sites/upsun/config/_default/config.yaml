@@ -56,7 +56,7 @@ outputFormats:
     isPlainText: true
     permalinkable: true
   markdown:
-    mediaType: "text/markdown; charset=UTF-8"
+    mediaType: "text/markdown"
     isPlainText: true
     permalinkable: true
     baseName: index
