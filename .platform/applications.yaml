@@ -56,6 +56,9 @@
                     \.md$:
                       headers:
                         Content-Type: text/markdown
+                    \llms-full.txt$:
+                      headers:
+                        Charset: 'UTF-8'
     disk: 1024
 
     mounts:
