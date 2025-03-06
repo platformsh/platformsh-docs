@@ -58,7 +58,7 @@
                         Content-Type: text/markdown
                     llms*.txt$:
                       headers:
-                        Content-Type: "text/markdown; charset=UTF-8"
+                        Content-Type: "text/plain; charset=UTF-8"
     disk: 1024
 
     mounts:
