@@ -53,7 +53,7 @@ To override any part of a property, you have to provide the entire property.
 | `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
 | `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
 | `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
-| `runtime`          | A [runtime dictionary](#runtime)                    |          | No               | Customizations to your PHP or Lisp runtime.                                                                                                                                                                                                                      |
+| `runtime`          | A [runtime dictionary](#runtime)                    |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                              |
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
 
 ## Root directory
@@ -1330,7 +1330,7 @@ Run the following command:
 
 ## Runtime
 
-The following table presents the various possible modifications to your PHP or Lisp runtime:
+The following table presents the various possible modifications to your PHP runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                |
 |-----------------------------|------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------|
@@ -1339,7 +1339,6 @@ The following table presents the various possible modifications to your PHP or L
 | `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
 | `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
-| `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](/languages/lisp.md#quicklisp-options) to use.                |
 
 You can also set your [app's runtime timezone](/create-apps/timezone.md).
 
