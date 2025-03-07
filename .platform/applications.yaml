@@ -56,6 +56,9 @@
                     \.md$:
                       headers:
                         Content-Type: text/markdown
+                    \.txt$:
+                      headers:
+                        Content-Type: "text/plain; charset=UTF-8"
     disk: 1024
 
     mounts:
@@ -121,6 +124,10 @@
                     \.md$:
                       headers:
                         Content-Type: text/markdown
+                    \.txt$:
+                      headers:
+                        Content-Type: "text/plain; charset=UTF-8"
+
     disk: 1024
 
     mounts:
