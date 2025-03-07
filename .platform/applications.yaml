@@ -55,7 +55,7 @@
                         expires: 4w
                     \.md$:
                       headers:
-                        Content-Type: text/markdown
+                        Content-Type: "text/markdown; charset=UTF-8"
                     \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
@@ -123,7 +123,7 @@
                         expires: 4w
                     \.md$:
                       headers:
-                        Content-Type: text/markdown
+                        Content-Type: "text/markdown; charset=UTF-8"
                     \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
