@@ -51,7 +51,7 @@ heading configuration, Markdown files don't get the `X-Frame-Options` header set
 By default, [HTTP charset parameters](https://www.w3.org/International/articles/http-charset/index.en) are not sent to the response.
 If not set, modern browsers will detect ISO-8859-1 and likely default to Windows-1252 as this has 32 more international characters.
 
-To set it to the desired charset you can add ``; charset=UTF-8`` in the `Content-Type` parameters.
+To set the HTTP charset parameters to your desired charset, you can add ``; charset=UTF-8`` in the `Content-Type` parameters.
 
 {{< /note >}}
 
