@@ -1,0 +1,19 @@
+<!-- Markdown processes 2 versions, rendering only if key matches current version -->
+<!-- Key 1: Version 1; the first Inner prior to the dividing character -->
+<!-- Key 2: Version 2; the second Inner after the dividing character -->
+<!-- For example, -->
+<!-- vendor/specific -->
+<!-- platform variable:get  -->
+<!-- (divider: see $splitVersionChar below)  -->
+<!-- upsun variable:get -->
+<!-- /vendor/specific -->
+{{- $page := .Page -}}
+{{- $version := .Site.Params.vendor.config.version -}}
+{{- $splitVersionChar := "<--->" -}}
+{{- range $k, $v := split .Inner $splitVersionChar -}}
+    {{- $current := add $k 1 -}}
+    {{- if eq $current $version -}}
+{{- $v | $page.RenderString -}}
+    {{- end -}}
+{{- end -}}
+  
