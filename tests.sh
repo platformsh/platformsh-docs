@@ -12,7 +12,7 @@ pwd
 npm ci
 
 # 2. Build search script
-npm run build:search
+# npm run build:search
 
 # 3. Build Hugo site
 hugo

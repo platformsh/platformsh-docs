@@ -7,8 +7,8 @@ pwd
 cd docs
 npm install
 npm run dev
-npm run build:search
-hugo 
+# npm run build:search
+hugo
 
 # Export master key again in this process.
 export MEILI_MASTER_KEY=test
