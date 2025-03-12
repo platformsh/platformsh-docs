@@ -12,7 +12,7 @@ Next, add a service to your preview environment.
 {{% vendor/name %}} includes many services such as databases, cache, and search engines.
 These are included in your project, so you can manage them with Git and back them up with your project.
 
-Add a database service (or choose [another service](../../add-services/_index.md)) by following these steps:
+Add a database service (or choose [another service](/add-services/_index.md)) by following these steps:
 
 1. Create a services configuration file.
 
@@ -23,7 +23,7 @@ Add a database service (or choose [another service](../../add-services/_index.md
    This file holds the configuration for all services your app needs.
 
 2. Add a database in that file.
-   (If you need a different database service, you can choose from the [available services](../../add-services/_index.md#available-services).
+   (If you need a different database service, you can choose from the [available services](/add-services/_index.md#available-services).
    Then change the `type` to fit your choice.)
 
    ```yaml {configFile="services"}

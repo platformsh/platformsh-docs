@@ -15,7 +15,7 @@ Note that the Java configuration reader library is used in the following example
 
 ### MongoDB
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [MongoDB](../../add-services/mongodb.md) with your application by first determining the MongoDB client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [MongoDB](/add-services/mongodb.md) with your application by first determining the MongoDB client programmatically.
 
 ```java
 import com.mongodb.MongoClient;
@@ -59,7 +59,7 @@ class DocumentManagerProducer {
 
 ### Apache Solr
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Solr](../../add-services/solr.md) with your application by first determining the Solr client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Solr](/add-services/solr.md) with your application by first determining the Solr client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
@@ -102,7 +102,7 @@ class DocumentManagerProducer {
 
 ### Elasticsearch
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Elasticsearch](../../add-services/elasticsearch.md) with your application by first determining the Elasticsearch client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Elasticsearch](/add-services/elasticsearch.md) with your application by first determining the Elasticsearch client programmatically.
 
 ```java
 import jakarta.nosql.document.DocumentCollectionManager;
@@ -144,7 +144,7 @@ class DocumentManagerProducer {
 
 ### Redis
 
-You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Redis](../../add-services/redis.md) with your application by first determining the Redis client programmatically.
+You can use [Jakarta NoSQL](https://projects.eclipse.org/projects/ee4j.nosql)/[JNoSQL](https://projects.eclipse.org/projects/technology.jnosql) to use [Redis](/add-services/redis.md) with your application by first determining the Redis client programmatically.
 
 ```java
 import jakarta.nosql.keyvalue.BucketManager;
@@ -189,7 +189,7 @@ class BucketManagerProducer {
 
 ### MySQL
 
-[MySQL](../../add-services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
+[MySQL](/add-services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MySQL](https://mvnrepository.com/artifact/mysql/mysql-connector-java) and the Java dependencies. Then determine the DataSource client programmatically:
 
@@ -249,7 +249,7 @@ You can use the same MySQL driver for MariaDB as well if you wish to do so.
 
 ### MariaDB
 
-[MariaDB](../../add-services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
+[MariaDB](/add-services/mysql/_index.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [MariaDB](https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client) and the Java dependencies. Then determine the DataSource client programmatically:
 
@@ -305,7 +305,7 @@ class EntityManagerConfiguration {
 
 ### PostgreSQL
 
-[PostgreSQL](../../add-services/postgresql.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
+[PostgreSQL](/add-services/postgresql.md) is an open-source relational database technology, and Jakarta EE supports a robust integration with it: [JPA](https://projects.eclipse.org/projects/ee4j.jpa).
 
 The first step is to choose the database that you would like to use in your project. Define the driver for [PostgreSQL](https://mvnrepository.com/artifact/postgresql/postgresql) and the Java dependencies. Then determine the DataSource client programmatically:
 

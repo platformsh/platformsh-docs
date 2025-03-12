@@ -16,9 +16,9 @@ to service containers on an active {{% vendor/name %}} environment.
 
 {{% guides/django/local-assumptions %}}
 
-If you followed the [Django deployment guide](../deploy/_index.md),
-you should have a Django configuration file with settings for [decoding variables](../deploy/customize.md#decoding-variables)
-and also [overrides for {{% vendor/name %}}](../deploy/customize.md#decoding-variables).
+If you followed the [Django deployment guide](/guides/django/deploy/_index.md),
+you should have a Django configuration file with settings for [decoding variables](/guides/django/deploy/customize.md#decoding-variables)
+and also [overrides for {{% vendor/name %}}](/guides/django/deploy/customize.md#decoding-variables).
 
 You can use these settings to set up a tethered connection to services running on a {{% vendor/name %}} environment.
 The settings are used to mock the conditions of the environment locally.
@@ -103,7 +103,7 @@ title=Poetry
 highlight=bash
 markdownify=false
 +++
-poetry run python manage.py collectstatic 
+poetry run python manage.py collectstatic
     {{< /codetabs >}}
 
 

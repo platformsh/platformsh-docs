@@ -15,18 +15,18 @@ Bringing content closer to users helps enhance your site's perceived performance
 and so can improve user engagement and retention.
 
 Fastly is the recommended CDN for {{% vendor/name %}} projects.
-By default, Dedicated projects include a [Fastly CDN managed by {{% vendor/name %}}](./managed-fastly.md).
+By default, Dedicated projects include a [Fastly CDN managed by {{% vendor/name %}}](/domains/cdn/managed-fastly.md).
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
-such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
+such as [Fastly](/domains/cdn/fastly.md) or [Cloudflare](/domains/cdn/cloudflare.md).
 
 ## DNS records
 
-To start routing client traffic through your CDN, [set up a custom domain](../steps/_index.md).
+To start routing client traffic through your CDN, [set up a custom domain](/domains/steps/_index.md).
 
-If you use `CNAME` records for your custom domain, these records [can't point to apex domains](../steps/dns.md).
+If you use `CNAME` records for your custom domain, these records [can't point to apex domains](/domains/steps/dns.md).
 But most CDN providers offer workarounds.
-For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
-and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
+For example, Fastly offers [Anycast options](/domains/cdn/fastly.md#3-handle-apex-domains)
+and Cloudflare offers [`CNAME` flattening](/domains/cdn/cloudflare.md#3-handle-apex-domains).
 
 ## Host header forwarding
 
@@ -52,7 +52,7 @@ see your CDN provider's official documentation.
 
 ## Disable the router cache
 
-When you use a CDN, the {{% vendor/name %}} router [HTTP caching](../../define-routes/cache.md) becomes redundant.
+When you use a CDN, the {{% vendor/name %}} router [HTTP caching](/define-routes/cache.md) becomes redundant.
 To disable it, change your cache configuration for the routes behind a CDN to the following:
 
 ```yaml {configFile="routes"}
@@ -92,7 +92,7 @@ Both methods are highly insecure, and we highly recommend against them.
 ### Enable mTLS
 
 If your CDN provider supports it,
-you can secure your site through [mTLS](../../define-routes/https.md#enable-mtls).
+you can secure your site through [mTLS](/define-routes/https.md#enable-mtls).
 
 To enable mTLS, follow these steps:
 
@@ -122,4 +122,4 @@ Note that mTLS is a mutual authentication process.
 It allows your CDN to check that it's communicating with your {{% vendor/name %}} server
 and vice versa.
 So in addition to the CA certificate supplied by your CDN provider,
-you need to [create your own TLS certificate](../../define-routes/https.md).
+you need to [create your own TLS certificate](/define-routes/https.md).

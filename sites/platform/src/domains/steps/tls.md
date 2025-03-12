@@ -8,8 +8,8 @@ keywords:
 
 {{% vendor/name %}} automatically provides standard Transport Layer Security (TLS) certificates for all sites and environments.
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
-To use them, you need to [specify HTTPS routes](../../define-routes/https.md#enable-https). 
-Note that some [limitations](../../define-routes/https.md#lets-encrypt-limitations) apply.
+To use them, you need to [specify HTTPS routes](/define-routes/https.md#enable-https).
+Note that some [limitations](/define-routes/https.md#lets-encrypt-limitations) apply.
 
 {{% vendor/name %}} allows you to use third-party TLS certificates free of charge.
 
@@ -28,7 +28,7 @@ Wildcard certificates that cover all `*.platform.sh` domains, including preview 
 
 ### Add a custom certificate
 
-You can add a custom certificate using the [CLI](../../administration/cli/_index.md) or in the [Console](../../administration/web/_index.md).
+You can add a custom certificate using the [CLI](/administration/cli/_index.md) or in the [Console](/administration/web/_index.md).
 
 Your certificate has to be in PKCS #1 format and start with `-----BEGIN RSA PRIVATE KEY-----`.
 If it doesn't start that way, [change the format](#change-the-private-key-format).

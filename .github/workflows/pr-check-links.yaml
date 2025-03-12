@@ -15,10 +15,10 @@ jobs:
     # Run only for PRs from default repo and approved PRs from forks
     if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: npm
@@ -29,10 +29,10 @@ jobs:
           cd sites/${{ matrix.site }}
           npm ci
 
-      - name: Build search script
-        run: |
-          cd sites/${{ matrix.site }}
-          npm run build:search
+#      - name: Build search script
+#        run: |
+#          cd sites/${{ matrix.site }}
+#          npm run build:search
 
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2

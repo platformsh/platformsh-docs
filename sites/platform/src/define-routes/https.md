@@ -19,13 +19,13 @@ To enable HTTPS on your site, you need [Transport Layer Security (TLS) certifica
 These certificates are issued at no charge by [Let's Encrypt](https://letsencrypt.org/) and cover most needs.
 They're valid for 90 days and automatically renewed 28 days before expiration.
 
-To use them, you only need to [specify HTTPS routes](../define-routes/https.md#enable-https).
-Note that [limitations](../define-routes/https.md#lets-encrypt-limitations) apply.
+To use them, you only need to [specify HTTPS routes](/define-routes/https.md#enable-https).
+Note that [limitations](/define-routes/https.md#lets-encrypt-limitations) apply.
 If you encounter issues with the TLS certificates provided by {{% vendor/name %}},
-check that [TLS encryption is up-and-running](../domains/troubleshoot.md#verify-ssltls-encryption).
+check that [TLS encryption is up-and-running](/domains/troubleshoot.md#verify-ssltls-encryption).
 
 If you don't want to use the TLS certificates provided by {{% vendor/name %}},
-configure your own [third-party TLS certificates](../domains/steps/tls.md).
+configure your own [third-party TLS certificates](/domains/steps/tls.md).
 
 ### Let's Encrypt limitations
 
@@ -35,7 +35,7 @@ the following limitations apply.
 {{% lets_encrypt_limitations %}}
 
 If you need more hostnames, you can obtain additional certificates
-or a wildcard certificate from a [third-party issuer](../domains/steps/tls.md).
+or a wildcard certificate from a [third-party issuer](/domains/steps/tls.md).
 Alternatively, consider splitting your project up into multiple {{% vendor/name %}} projects.
 
 Please note that when using multiple domains, the Common Name (CN) to which the certificate is issued to
@@ -64,10 +64,10 @@ To enable HTTPS, add a routing configuration similar to the following:
 ```
 
 All traffic to your domain is then sent to your app.
-The `www` subdomain redirects to the [default domain](../define-routes/_index.md#default).
+The `www` subdomain redirects to the [default domain](/define-routes/_index.md#default).
 This also includes redirecting requests from HTTP to HTTPS.
 
-For more information, see how to [define routes](../define-routes/_index.md).
+For more information, see how to [define routes](/define-routes/_index.md).
 
 ## Optional: Configure TLS connections
 
@@ -158,3 +158,16 @@ tls:
       ### Several lines of different characters here ###
       -----END CERTIFICATE-----
 ```
+
+If you want to request a client certificate without _requiring_ the client to send one, you can set this by using `request` as a value for `client_authentication`:
+
+```yaml {configFile="routes"}
+routes:
+  "https://{default}/":
+    # ...
+    tls:
+      client_authentication: "request"
+    # ...
+```
+
+Requests on routes with mTLS configured that are passed through to your app will contain additional headers such as `X-Client-Verify` (with values like `Success` or `None` depending on whether a client certificate was presented and validated or not) and `X-Client-Cert` (with information about the client certificate that was used) that your application can use as required.

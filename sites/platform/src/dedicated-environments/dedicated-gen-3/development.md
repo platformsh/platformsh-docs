@@ -6,11 +6,19 @@ layout: single
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits."
 ---
 
+{{< note theme="note" title="Limited access phase">}}
+
+Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
+
+If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://platform.sh/contact/) our team.
+
+{{< /note >}}
+
 Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated Generation 3, and discover key details about [deployment](#deployment), which [regions](#providers-and-regions) are supported and [storage limits](#storage).
 
 ## Cluster infrastructure 
 
-Clusters in a DG3 environment can be imagined as a mini-Grid region that has no [Ceph](/glossary.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
+Clusters in a DG3 environment can be imagined as a mini-Grid region that has no [Ceph](/glossary/_index.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
 
 For more information about the Dedicated clusters, visit [Dedicated Gen 2 Development](/dedicated-environments/dedicated-gen-2/development.md#cluster-infrastructure).
 
@@ -34,7 +42,7 @@ In the diagram, there are only 3 hosts. Host 1 has both the entry point and app 
 
 ## Deployment
 
-On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead. 
+On Grid, all project branches are deployed into that same Grid region. On DG3, this behaves the same but the projects deployed are Highly Available (HA), and branches set as default and (optionally) labelled staging are deployed into their own dedicated clusters instead.
 
 While HA environments connected to a DG3 cluster **can** deploy multiple instances of applications and services, they **cannot** dynamically change the number of those instances (for example, from 1 to 3 or 3 to 1).
 
@@ -58,4 +66,4 @@ For more details on specific regions, consult the region [documentation](/develo
 
 ## Storage
 
-Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.  
+Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.

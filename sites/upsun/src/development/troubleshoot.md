@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 {{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
-You can use the CLI, along with the [environment type distinction](/glossary#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+You can use the CLI, along with the [environment type distinction](/glossary.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
 
 To do so, run the following command:
 
@@ -130,7 +130,7 @@ Typical causes and potential solutions include:
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
-  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  - You may want to [check if bots are overwhelming your site](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.
   - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
@@ -229,7 +229,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
-If none of these suggestions work, open a [support ticket](/learn/overview/get-support).
+If none of these suggestions work, open a [support ticket](/learn/overview/get-support.md).
 
 ## Stuck build or deployment
 

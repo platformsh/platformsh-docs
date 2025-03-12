@@ -149,12 +149,12 @@ applications:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -180,16 +180,16 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
 {{< codetabs >}}
 
@@ -370,7 +370,7 @@ services:
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `postgresql` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
@@ -482,6 +482,18 @@ Taking a backup or a database export before doing so is strongly recommended.
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
 [sanitize your preview environments](../development/sanitize-db/postgresql.md).
+
+## Set locale for database
+
+You can choose your locale when a database is created by setting locale-related variables. There are three ways to set a locale option, as detailed in the table below:
+
+
+| Name   | Type      | Default  | Description  |
+|--------|-----------|----------|--------------|
+| `default_ctype` | `string`  | `C.UTF-8` | The default character classification. Affects any tables created after it's set.|
+| `default_collation` | `string`|`C.UTF-8`| The default collation rules. Affects any tables created after it's set.| 
+| `default_charset` | `string`  | `UTF8` | The default encoding character set. Affects any tables created after it's set.|
+
 
 ## Multiple databases
 

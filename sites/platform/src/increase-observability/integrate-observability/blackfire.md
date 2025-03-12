@@ -52,9 +52,9 @@ To do so, follow these steps:
 5. Retrieve your Blackfire server ID and server token.
 6. Follow [the instructions from the Blackfire documentation](https://blackfire.io/docs/integrations/paas/platformsh).
 
-If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
+If you're using the [Managed Fastly CDN](/domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire.
-If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md),
+If you're using a different [Content Delivery Network (CDN)](/domains/cdn/_index.md),
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
 
@@ -72,9 +72,9 @@ To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 5. Retrieve your Blackfire server ID and server token.
 6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
 
-If you're using the [Managed Fastly CDN](../../domains/cdn/managed-fastly.md),
+If you're using the [Managed Fastly CDN](/domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire.
-If you're using a different [Content Delivery Network (CDN)](../../domains/cdn/_index.md),
+If you're using a different [Content Delivery Network (CDN)](/domains/cdn/_index.md),
 make sure you [configure it](https://blackfire.io/docs/integrations/proxies/index)
 to let Blackfire profile the code running on your servers.
 
@@ -115,7 +115,7 @@ If you want to monitor a PHP or Python app, Blackfire Monitoring is available by
 You only need to [specify which environments](#2-enable-blackfire-monitoring-on-your-environments) you want to monitor.
 
 You can override the default behavior and deactivate Blackfire Monitoring by setting a `env:BLACKFIRE_APM_ENABLED`
-[environment variable](../../development/variables/set-variables.md#create-environment-specific-variables) with a value of `0`.
+[environment variable](/development/variables/set-variables.md#create-environment-specific-variables) with a value of `0`.
 
 To do so, create the following :
 
@@ -174,7 +174,7 @@ Follow these steps:
 ### Bypass your reverse proxy, load balancer or CDN
 
 To use [Blackfire profiling](#blackfire-profiling),
-you need to bypass any reverse proxy, load balancer or [CDN](../../domains/cdn/_index.md) that sits in front of your app.
+you need to bypass any reverse proxy, load balancer or [CDN](/domains/cdn/_index.md) that sits in front of your app.
 See [how to configure a bypass](https://blackfire.io/docs/reference-guide/reverse-proxies#documentation).
 
 ### Configure your HTTP cache
@@ -182,7 +182,7 @@ See [how to configure a bypass](https://blackfire.io/docs/reference-guide/revers
 To take advantage of Blackfire features while using the HTTP cache with cookies,
 allow the `__blackfire` cookie to go through the cache.
 
-To do so, add [a configuration](../../define-routes/cache.md#allowing-only-specific-cookies) similar to the following:
+To do so, add [a configuration](/define-routes/cache.md#allowing-only-specific-cookies) similar to the following:
 
 ```yaml {configFile="routes"}
 cache:
@@ -210,7 +210,7 @@ To retrieve startup errors, run the following command:
 
 To retrieve your Blackfire logs, follow these steps:
 
-1.  On the environment where you're facing issues, create the following [variable](../../development/variables/set-variables.md):
+1.  On the environment where you're facing issues, create the following [variable](/development/variables/set-variables.md):
 
     ```bash
     {{% vendor/cli %}} variable:create php:blackfire.log_file --value /tmp/blackfire.log

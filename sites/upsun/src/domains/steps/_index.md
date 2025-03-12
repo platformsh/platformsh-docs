@@ -8,7 +8,7 @@ layout: single
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
-You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
+You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments.html).
 
 ## Before you begin
 

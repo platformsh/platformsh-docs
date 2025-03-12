@@ -4,7 +4,7 @@ weight: -5
 description: "A description of the YAML file for {{% vendor/name %}}."
 ---
 
-In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML structure is important.
+In addition to the [basic functions you should be familiar with](/learn/overview/yaml/what-is-yaml.md), YAML structure is important.
 {{% vendor/name %}} accepts a certain structure for YAML configuration files.
 
 
@@ -23,7 +23,7 @@ These YAML files are a good starting point before customization.
 These three YAML files configure the following:
 - ``{{< vendor/configfile "routes" "strip" >}}``: this file contains all of your [routes definition](/define-routes.md)
 - ``{{< vendor/configfile "services" "strip" >}}``: this file contains the list of your [services definition](/add-services.md)
-- ``{{< vendor/configfile "app" >}}``: this file contains your [application definition](/create-apps/app-reference/single-runtime-image)
+- ``{{< vendor/configfile "app" >}}``: this file contains your [application definition](/create-apps/app-reference/single-runtime-image.md)
 
 ## Examples
 
@@ -73,7 +73,7 @@ mariadb:
   to: "https://{default}/"
 ```
 
-In these files, you can use any of the [available YAML tags](./platform-yaml-tags.md) you need.
+In these files, you can use any of the [available YAML tags](/learn/overview/yaml/platform-yaml-tags.md) you need.
 
 ## Multi-app
 In a [multiple application](/create-apps/multi-app/_index.md) context, you can also group all of your app configurations in a global ``.platform/applications.yaml`` file.

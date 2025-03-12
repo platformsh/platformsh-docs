@@ -4,7 +4,7 @@
 set -e
 
 # Build Interface app for search/autocomplete
-npm run build:search
+# npm run build:search
 
 # Copy templates index so it will be served for search to grab
 mkdir static/files/indexes && cp ../../shared/data/templates.yaml static/files/indexes/templates.yaml

@@ -4,10 +4,10 @@
 {{ partial "beta-flag/banner.html" .context }}
 
 <div class="flex justify-end mr-4">
-  <!-- Add a Button to open the Markdown version of this page (Upsun only) -->
-  {{ if and ( eq .context.Site.Params.vendor.config.version 2 ) ( ne .context.Page.RelPermalink "/" ) }}
+  <!-- Add a Button to open the Markdown version of this page (except for homepage) -->
+  {{ if ( ne .context.Page.RelPermalink "/" ) }}
   <div class="hidden md:block mb-6 mr-2 text-right">
-    <a href="{{ if eq .context.Page.RelPermalink "/" }}/index.md{{ else }}{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}{{ end }}"
+    <a href="{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}"
         class="print:hidden font-semibold bg-skye text-white hover:bg-skye-dark focus:bg-skye-dark px-4 py-2 font-['Space_Grotesk'] text-xs rounded-full inline-flex items-center gap-2"
         title="Open this page in a markdown format. This format is easier for AI and other tools to read."
         target="_blank">
@@ -41,13 +41,6 @@
         <h3 class="pt-4 pb-2 font-light text-base text-slate">On this page</h3>
         {{ .context.TableOfContents }}
       </div>
-    {{ end }}
-
-    <!-- Feedback form for wide screens -->
-    {{ if ne .context.Params.feedback false }}
-    <div class="print:hidden hidden md:block">
-      {{ partial "feedback/form" }}
-    </div>
     {{ end }}
 
     <!-- Sign up -->
@@ -89,7 +82,7 @@
             <div class="cta-body">
               {{ index $recruitment "description"}}
             </div>
-            
+
           </div>
         </div>
         <a href="{{ index $recruitment "link" }}" class="px-6 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-3xl text-white text-center text-sm font-semibold">
@@ -161,9 +154,4 @@
 
   </div>
 
-</div>
-
-<!-- Feedback form for narrow screens -->
-<div class="print:hidden block md:hidden">
-  {{ partial "feedback/form" }}
 </div>

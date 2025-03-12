@@ -88,7 +88,7 @@ title=Using the Console
 2. Click **Create from scratch**.
 
 3. Fill in details like the project name and [region](/development/regions.md).
-   
+
    {{% note %}}
 
    You can define resources for your project later on, after your first push.
@@ -247,7 +247,7 @@ If you're pushing a new Git branch, a new environment is created.
 {{% vendor/name %}} then reads your configuration files,
 and deploys your project using [default container resources](/manage-resources/resource-init.md).
 If you don't want to use those default resources,
-define your own [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy),
+define your own [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy),
 or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
 Et voilà, your Strapi application is live!
@@ -321,7 +321,7 @@ To make changes to your project, follow these steps:
 
    Verify that the new `Article` collection has been created.
    To do so, run the local server (`yarn develop`) again,
-   and visit 
+   and visit
    <a href="http://localhost:1337/admin/content-manager" data-proofer-ignore>http://localhost:1337/admin/content-manager</a>.
 
    <!-- Ignoring content for wjdp/htmltest: https://github.com/wjdp/htmltest?tab=readme-ov-file#see_no_evil-ignoring-content -->
@@ -379,7 +379,7 @@ To make changes to your project, follow these steps:
    {{% vendor/cli %}} environment:delete feat-a
    git fetch --prune
    ```
-   
+
    Note that deploying to production is fast because the image built for the `feat-a` environment is reused.
 
    For a long running branch, to keep the code up-to-date with the main branch, use `git merge main` or `git rebase main`.
@@ -389,9 +389,9 @@ To make changes to your project, follow these steps:
 
 ### Documentation
 
-- [JavaScript/Node.js documentation](/languages/nodejs/)
-- [Managing dependencies](/languages/nodejs#dependencies)
-- [Add a database to Strapi](/get-started/stacks/strapi/add-database)
+- [JavaScript/Node.js documentation](/languages/nodejs/_index.md)
+- [Managing dependencies](/languages/nodejs/_index.md#dependencies)
+- [Add a database to Strapi](/get-started/stacks/strapi/add-database.md)
 
 ### Community content
 

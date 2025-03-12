@@ -102,7 +102,7 @@ Get activity logs by running the following command:
 Every time your activity script runs it generates a new log entry, including the output from the script.
 Any output produced by `console.log` is available in the activity log, which is the recommended way to debug scripts.
 
-See the [activity log](../overview.md#debug-integrations) documentation for further details.
+See the [activity log](/integrations/overview.md#debug-integrations) documentation for further details.
 
 To get a more readable output of a variable you're trying to debug, you can make `JSON.stringify` use human-friendly formatting.
 
@@ -203,7 +203,7 @@ GET /api/projects/{{< variable "PROJECT_ID" >}}/integrations/{{< variable "INTEG
 ## Available APIs
 
 Activity scripts can be written in ES2021 and don't support installing additional packages.
-There are a series of [utility functions you can reuse](./utility.md)
+There are a series of [utility functions you can reuse](/integrations/activity/utility.md)
 as well as the following libraries, APIs, and global variables to facilitate building out custom functionality.
 
 ### `underscore.js`

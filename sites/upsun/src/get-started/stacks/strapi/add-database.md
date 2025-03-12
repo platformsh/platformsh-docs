@@ -1,5 +1,5 @@
 ---
-title: "Add a database"
+title: "Add a database to Strapi"
 weight: -130
 description: |
   Once Your Strapi application has been deployed on {{% vendor/name %}}, you might want to add and configure a service to your application.

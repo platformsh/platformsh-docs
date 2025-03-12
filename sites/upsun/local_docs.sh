@@ -7,7 +7,7 @@ pwd
 cd docs
 npm install
 npm run dev
-npm run build:search
+# npm run build:search
 hugo
 
 # 2. Update the Meilisearch server.

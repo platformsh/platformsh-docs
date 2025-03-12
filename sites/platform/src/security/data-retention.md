@@ -10,7 +10,7 @@ description: |
 
 Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{% vendor/name %}}.
 
-Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support).
+Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support.md).
 
 ## System logs
 
@@ -22,14 +22,14 @@ These logs are retained for at least 6 months and at most 2 years depending upon
 
 Application logs on each customer environment are retained with the environment.
 Individual log files are truncated at 100 MB, regardless of their age.
-See how to [access logs](../increase-observability/logs/access-logs.md).
+See how to [access logs](/increase-observability/logs/access-logs.md).
 
 When an environment is deleted, its application logs are deleted as well.
 
 ## Grid Backups
 
-[Automated backups](../environments/backup.md#use-automated-backups) are retained for a specific amount of time
-depending on their type and your [backup schedule](../environments/backup.md#backup-schedule).
+[Automated backups](/environments/backup.md#use-automated-backups) are retained for a specific amount of time
+depending on their type and your [backup schedule](/environments/backup.md#backup-schedule).
 
 | Type     | Basic  | Advanced | Premium |
 | -------- | ------ | -------- | ------- |
@@ -38,7 +38,7 @@ depending on their type and your [backup schedule](../environments/backup.md#bac
 | Weekly   | –      | 4 weeks  | –       |
 | Monthly  | –      | 1 year   | 1 year  |
 
-[Manual backups](../environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+[Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
 For example, if you currently have 10 manual backups and are on the Advanced schedule,
 you keep all 10 manual backups until there are 15 automated backups.

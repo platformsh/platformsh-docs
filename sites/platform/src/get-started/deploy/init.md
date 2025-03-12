@@ -20,7 +20,7 @@ First, create a {{% vendor/name %}} project by running the following command:
 Then go through each of the steps to create the project:
 
 1. Give it a title.
-2. Choose a [region](../../development/regions.md).
+2. Choose a [region](/development/regions.md).
    The CLI lists each region's location, cloud provider, and average carbon intensity.
 3. Choose a plan.
    A Development plan is enough before you deploy anything.
@@ -30,7 +30,7 @@ Then go through each of the steps to create the project:
 5. Select enough storage.
    This defaults to 5 GiB, which is included in any production-level plan, but you can add more.
 6. Choose a default branch.
-   This defaults to `main`, but you can always [change it later](../../environments/default-environment.md).
+   This defaults to `main`, but you can always [change it later](/environments/default-environment.md).
 
 A Git repository is automatically initialized and {{% vendor/name %}} is set as a remote.
 

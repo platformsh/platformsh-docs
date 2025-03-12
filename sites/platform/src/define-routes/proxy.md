@@ -7,7 +7,7 @@ description: Pass requests to a location outside your {{% vendor/name %}} projec
 
 Only use this feature to address edge cases where you need to proxy to another, outside project.</br>
 **Do not use this for internal routing.**</br>
-To expose your app to the outside world, see [how to define routes](../define-routes/_index.md).
+To expose your app to the outside world, see [how to define routes](/define-routes/_index.md).
 
 {{< /note >}}
 
@@ -125,4 +125,4 @@ This architecture makes the router of a single project into the central element 
 This setup may make scaling more difficult as the router scales with the size of that project.
 The router can become a bottleneck for all external sites and acts as a single point of failure.
 
-For larger projects, you should handle multiple websites with the same base URL via a [CDN](../domains/cdn/_index.md).
+For larger projects, you should handle multiple websites with the same base URL via a [CDN](/domains/cdn/_index.md).

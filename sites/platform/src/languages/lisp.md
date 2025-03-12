@@ -83,7 +83,7 @@ runtime:
 
 ## Built-in variables
 
-{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](/development/variables/_index.md).
 To get the `PORT` environment variable (the port on which your web application is supposed to listen):
 
 ```lisp
