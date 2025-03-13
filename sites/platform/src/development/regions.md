@@ -10,16 +10,6 @@ description: See information about {{% vendor/name %}} regions, including their 
 {{% vendor/name %}} offers several regions for hosting project data.
 You can choose a region based on criteria such as its closeness to your users and its environmental impact.
 
-{{< note title="Upcoming changes!" theme="info" >}}
-
-On **17 March 2025**, outbound IPs on **all GCP and Azure regions** will change.
-These upcoming changes will affect **outbound IPs** for all GCP and Azure regions, and will require your intervention
-if your are using public IP addresses explicitly.
-
-Please see [the documentation](#upcoming-changes) below for details and relevant deadlines.
-
-{{< /note >}}
-
 ## Environmental impact
 
 At {{% vendor/name %}}, we are committed to reducing our environmental impact. Whenever you create a project with us, we provide information about the electricity grid provider for that region. You can view the average carbon intensity of the energy grid in grams of CO2 equivalent per kilowatt-hour.
