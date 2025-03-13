@@ -40,7 +40,7 @@ Open the `.upsun/config.yaml` file that's been generated and replace with the fo
 ```yaml {filename=".upsun/config.yaml"}
 applications:
     drupal:
-        type: "php:8.3"
+        type: "{{% latest "php" %}}"
         relationships:
             mariadb: 'db:mysql'
             redis: 'cache:redis'

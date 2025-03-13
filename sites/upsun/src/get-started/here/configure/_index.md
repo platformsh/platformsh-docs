@@ -118,7 +118,7 @@ With your deployment finished, you may have noticed that the resources allocated
 ```bash
   Opening environment
   Environment configuration
-    app (type: php:8.2, cpu: 0.5, memory: 224, disk: 512)
+    app (type: {{% latest "php" %}}, cpu: 0.5, memory: 224, disk: 512)
     db (type: mariadb:12.4, cpu: 0.5, memory: 1408, disk: 512)
     memcached (type: memcached:1.6, cpu: 0.5, memory: 1088)
 ```

@@ -85,7 +85,7 @@ If you changed the name of the directory at step 4 you'll need to update the `pa
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: '{{% latest "php" %}}'
         web:
           locations:
             "/":
@@ -126,7 +126,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
     myapp:
       source:
         root: "/"
-      type: 'php:8.3'
+      type: '{{% latest "php" %}}'
       <snip>
       mounts:
         "wordpress/wp-content/uploads":
@@ -155,7 +155,7 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: '{{% latest "php" %}}'
         <snip>
         hooks:
           deploy: |
@@ -197,7 +197,7 @@ applications:
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: '{{% latest "php" %}}'
         ...
 
     routes:
@@ -215,17 +215,16 @@ applications:
    we need to make sure the [wp-cli](https://wp-cli.org/) utility is a dependency of the application container. While still
    in the `.upsun/config.yaml` file, locate the `dependencies.php` section, and add the following:
 
-    ```yaml {configFile="app"}
-    applications:
-      myapp:
-        source:
-          root: "/"
-        type: 'php:8.3'
-        <snip>
-        dependencies:
-          php:
-            composer/composer: "^2"
-            wp-cli/wp-cli-bundle: "^2.4"
+   ```yaml {configFile="app"}
+   applications:
+    myapp:
+      source:
+        root: "/"
+      type: '{{% latest "php" %}}'
+      <snip>
+      dependencies:
+        php:
+          wp-cli/wp-cli-bundle: "^2.4"
     ```
 
     {{< note theme="info" >}}

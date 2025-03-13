@@ -40,7 +40,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     <snip>
     web:
       locations:
@@ -88,7 +88,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     <snip>
     mounts:
       "web/app/wp-content/cache":
@@ -111,7 +111,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     ...
     hooks:
       build: |
@@ -138,7 +138,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     ...
     hooks:
       deploy: |
@@ -160,7 +160,7 @@ applications:
  myapp:
    source:
      root: "/"
-   type: 'php:8.3'
+   type: '{{% latest "php" %}}'
    <snip>
    dependencies:
      php:
@@ -177,7 +177,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     ...
 
 routes:
