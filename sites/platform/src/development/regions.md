@@ -49,7 +49,6 @@ The returned list contains, for each available region, its name, provider, geogr
 
 The public IP addresses for regions are stable, but not guaranteed to never change.
 Before any change, you are notified well in advance regarding affected projects.
-Planned and upcoming changes to IPs will be documented in the [**Upcoming changes**](#upcoming-changes) section below.
 
 They're useful for cases such as when you have a corporate firewall that blocks outgoing SSH connections.
 In such cases, add the inbound IP addresses for your region to your allow list.
