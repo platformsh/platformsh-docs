@@ -83,7 +83,7 @@ applications:
       quicklisp:
         quicklisp:
           url: 'http://beta.quicklisp.org/dist/quicklisp.txt'
-          version: '2019-07-11'
+          version: '2024-10-12'
 ```
 
 ## Built-in variables

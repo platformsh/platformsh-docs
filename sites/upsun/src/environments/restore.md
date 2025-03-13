@@ -31,9 +31,9 @@ Backups on the project My Project (1234567abcdef), environment main (type: produ
 +---------------------------+----------------------------+------------+
 | Created                   | Backup ID                  | Restorable |
 +---------------------------+----------------------------+------------+
-| 2022-08-15T09:48:58+01:00 | 5ouvtgo4v75axijww7sqnftste | true       |
-| 2022-07-09T14:17:17+01:00 | 7jks7dru5xpx5p5id5wtypur2y | true       |
-| 2022-06-22T18:33:29+01:00 | f3jbyxlhtmalco67fmfoxs7n4m | true       |
+| 2024-08-15T09:48:58+01:00 | 5ouvtgo4v75axijww7sqnftste | true       |
+| 2024-07-09T14:17:17+01:00 | 7jks7dru5xpx5p5id5wtypur2y | true       |
+| 2024-06-22T18:33:29+01:00 | f3jbyxlhtmalco67fmfoxs7n4m | true       |
 +---------------------------+----------------------------+------------+
 ```
 
