@@ -27,97 +27,64 @@ my_service_name:
 - [Persistent](#persistent-valkey): to set up fast persistent storage for your application
 - [Ephemeral](#ephemeral-valkey): to set up a non-persistent cache for your application
 
+## Use with Drupal
+
+If you are using the Drupal framework, you can follow its guide for Valkey:
+
+- [Drupal](/guides/drupal/valkey.md)
+
 ## Supported versions
 
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-- 8.0
+| Grid            | Dedicated Gen 3 | Dedicated Gen 2 | 
+| --------------- | --------------- | --------------- | 
+| None available  | **Available**       | None available  |
+
+### Deprecated versions
+
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work. They'll be removed in the future, so migrate to one of the [supported versions](#supported-versions).
+
+| Grid            | Dedicated Gen 3 | Dedicated Gen 2 | 
+| --------------- | --------------- | --------------- | 
+| None available  | None available  | None available  |
 
 ## Service types
 
-Depending on your needs, you can set up Valkey as [persistent](#persistent-valkey) or [ephemeral](#ephemeral-valkey).
+Depending on your needs,
+you can set up Valkey as [persistent](#persistent-valkey) or [ephemeral](#ephemeral-valkey).
 
 ## Relationship reference
 
-For each service [defined via a relationship](#usage-example) to your application,
-{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
 
-Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
-
-{{< codetabs >}}
-+++
-title= Service environment variables
-+++
-
-You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
-
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
-
-```bash
-VALKEY_USERNAME=
-VALKEY_SCHEME=valkey
-VALKEY_SERVICE=valkey
-VALKEY_FRAGMENT=
-VALKEY_IP=123.456.78.90
-VALKEY_EPOCH=0
-VALKEY_HOSTNAME=azertyuiopqsdfghjklm.valkey.service._.eu-1.{{< vendor/urlraw "hostname" >}}
-VALKEY_PORT=6379
-VALKEY_CLUSTER=azertyuiopqsdf-main-afdwftq
-VALKEY_HOST=valkey.internal
-VALKEY_REL=valkey
-VALKEY_PATH=
-VALKEY_QUERY={}
-VALKEY_PASSWORD=
-VALKEY_TYPE=valkey:8.0
-VALKEY_PUBLIC=false
-VALKEY_HOST_MAPPED=false
-```
-
-<--->
-
-+++
-title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
-
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
-The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
+So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
 ```json
-    {
-      "username": null,
-      "fragment": null,
-      "ip": "169.254.135.174",
-      "cluster": "ptnmwvw4dhgbi-main-bvxea6i",
-      "path": null,
-      "query": {},
-      "password": null,
-      "port": 6379,
-      "host_mapped": false,
-      "service": "cache",
-      "hostname": "azertyuiopqsdfghjklm.valkey.service._.eu-1.platformsh.site",
-      "epoch": 0,
-      "rel": "valkey",
-      "scheme": "valkey",
-      "type": "valkey:8.0",
-      "public": false
-    }
+{
+  "username": null,
+  "scheme": "valkey",
+  "service": "valkey",
+  "fragment": null,
+  "ip": "123.456.78.90",
+  "hostname": "azertyuiopqsdfghjklm.valkey.service._.eu-1.{{< vendor/urlraw "hostname" >}}",
+  "port": 6379,
+  "cluster": "azertyuiopqsdf-main-7rqtwti",
+  "host": "valkey.internal",
+  "rel": "valkey",
+  "path": null,
+  "query": [],
+  "password": null,
+  "type": "valkey:8.0",
+  "public": false,
+  "host_mapped": false
+}
 ```
-
-Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
-
-```bash {location=".environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
-
-# Set environment variables for individual credentials.
-export APP_VALKEY_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.valkey[0].host')"
-```
-
-{{< /codetabs >}}
 
 The format of the relationship is identical whether your Valkey service is [ephemeral](#ephemeral-valkey) or [persistent](#persistent-valkey).
 
@@ -130,12 +97,15 @@ It should be noted that when you set up a relationship connection, access to all
 ## Persistent Valkey
 
 By default, Valkey is an ephemeral service that stores data in memory.
-This allows for fast data retrieval,but also means data can be lost when a container is moved or shut down.
+This allows for fast data retrieval,
+but also means data can be lost when a container is moved or shut down.
 
 To solve this issue, configure your Valkey service as persistent.
-Persistent Valkey stores data on a disk,restoring it if the container restarts.
+Persistent Valkey stores data on a disk,
+restoring it if the container restarts.
 
-To switch from persistent to ephemeral Valkey, set up a new service with a different name.
+To switch from persistent to ephemeral Valkey,
+set up a new service with a different name.
 
 {{% note theme="warning" title="Warning" %}}
 
@@ -278,6 +248,17 @@ applications:
 
 ### Configuration example
 
+#### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+valkey:
+  type: valkey-persistent:8.0
+  disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
 {{< codetabs >}}
 
 +++
@@ -285,29 +266,8 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkey:
-services:
-    # The name of the service container. Must be unique within a project.
-    valkey:
-      valkey: valkey-persistent: 8.0
+relationships:
+  valkey:
 ```
 
 <--->
@@ -317,30 +277,10 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkey:
-        service: valkey
-        endpoint: valkey
-services:
-  # The name of the service container. Must be unique within a project.
+relationships:
   valkey:
-    type: valkey-persistent: 8.0
+    service: valkey
+    endpoint: valkey
 ```
 
 {{< /codetabs >}}
@@ -365,17 +305,17 @@ Persistent Valkey provides a cache with persistent storage.
 To define the service, use the `valkey` endpoint:
 
 ```yaml {configFile="services"}
-services:
-  # The name of the service container. Must be unique within a project.
-  <SERVICE_NAME>:
-    type: valkey:<VERSION>
+# The name of the service container. Must be unique within a project.
+<SERVICE_NAME>:
+  type: valkey:8.0
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
+Back up your data before changing the service.
 
 #### 2. Define the relationship
 
-To define the relationship, use the `valkey` endpoint :
+To define the relationship, use the following configuration:
 
 {{< codetabs >}}
 
@@ -384,15 +324,12 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <SERVICE_NAME>:
+# Relationships enable access from this app to a given service.
+# The example below shows simplified configuration leveraging a default service
+# (identified from the relationship name) and a default endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+relationships:
+  <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
@@ -401,7 +338,7 @@ The example above leverages [default endpoint](/create-apps/app-reference/single
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
 
 <--->
 
@@ -409,17 +346,16 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="services"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: valkey
+```yaml {configFile="app"}
+# Relationships enable access from this app to a given service.
+# The example below shows configuration with an explicitly set service name and endpoint.
+# See the Application reference for all options for defining relationships and endpoints.
+# Note that legacy definition of the relationship is still supported.
+# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+relationships:
+  <RELATIONSHIP_NAME>:
+    service: <SERVICE_NAME>
+    endpoint: valkey
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -430,81 +366,32 @@ The example above leverages [explicit endpoint](/create-apps/app-reference/singl
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
 For PHP, enable the [extension](/languages/php/extensions) for the service:
 
-{{< codetabs >}}
-
-+++
-title=Using default endpoints
-+++
-
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-
-     # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <SERVICE_NAME>:
-services:
-  # The name of the service container. Must be unique within a project.
-  <SERVICE_NAME>:
-    type: valkey:<VERSION>
+# PHP extensions.
+runtime:
+  extensions:
+    - valkey
 ```
-
-<--->
-
-+++
-title=Using explicit endpoints
-+++
-
-```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  <APP_NAME>:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      <RELATIONSHIP_NAME>:
-        service: <SERVICE_NAME>
-        endpoint: valkey
-services:
-  # The name of the service container. Must be unique within a project.
-  <SERVICE_NAME>:
-    type: valkey:<VERSION>
-```
-
-{{< /codetabs >}}
 
 ### Configuration example
 
+#### [Service definition](/add-services/_index.md)
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+valkey:
+  type: valkey:8.0
+  disk: 256
+```
+
+#### [App configuration](/create-apps/_index.md)
+
 {{< codetabs >}}
 
 +++
@@ -512,29 +399,8 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-
-     # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkey:
-services:
-  # The name of the service container. Must be unique within a project.
+relationships:
   valkey:
-    type: valkey: 8.0
 ```
 
 <--->
@@ -544,132 +410,85 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkey:
-        service: valkey
-        endpoint: valkey
-services:
-  # The name of the service container. Must be unique within a project.
+relationships:
   valkey:
-    type: valkey: 8.0
+    service: valkey
+    endpoint: valkey
 ```
 
 {{< /codetabs >}}
 
-### Use in app
 
-To use the configured service in your app, add a configuration file similar to the following to your project.
+## Restrict access to database replicas only
 
-{{< codetabs >}}
+{{% note theme="info" title="Feature availability" %}}
 
-+++
-title=Using default endpoints
-+++
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
 
-```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    source:
-      root: "myapp"
+{{% /note %}}
 
-    [...]
+For security reasons, you can grant your app access to replicas instead of your actual database.
+To do so, when defining the relationship between your app and database,
+make sure you do the following:
 
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-    # Relationships enable access from this app to a given service.
-    # The example below shows simplified configuration leveraging a default service
-    # (identified from the relationship name) and a default endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkey:
-services:
-  # The name of the service container. Must be unique within a project.
-  valkey:
-    type: valkey: 8.0
-<--->
+1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+2. Add the `-replica` suffix to the name of the endpoint you want to use.
 
-+++
-title=Using explicit endpoints
-+++
+This results in the following configuration:
 
 ```yaml {configFile="app"}
-applications:
-  # The name of the app container. Must be unique within a project.
-  myapp:
-    source:
-      root: "myapp"
-
-    [...]
-
-    # PHP extensions.
-    runtime:
-      extensions:
-        - valkey
-    # Relationships enable access from this app to a given service.
-    # The example below shows configuration with an explicitly set service name and endpoint.
-    # See the Application reference for all options for defining relationships and endpoints.
-    relationships:
-      valkey:
-        service: valkey
-        endpoint: valkey
-services:
-  # The name of the service container. Must be unique within a project.
-  valkey:
-    type: valkey: 8.0
+relationships:
+  {{% variable "RELATIONSHIP_NAME" %}}:
+    service: {{% variable "SERVICE_NAME" %}}
+    endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
 ```
 
-{{< /codetabs >}}
+For example, if you define a `valkey-persistent` database as follows:
 
-This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
-`myapp` has access to the `valkey` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
-
-From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
-
-```bash {location="myapp/.environment"}
-# Set environment variables for individual credentials.
-# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export CACHE_HOST="${VALKEY_HOST}"
-export CACHE_PORT="${VALKEY_PORT}"
-export CACHE_PASSWORD="${VALKEY_PASSWORD}"
-export CACHE_SCHEME="${VALKEY_SCHEME}"
-
-# Surface a Valkey connection string for use in app.
-export CACHE_URL="${CACHE_SCHEME}://${CACHE_PASSWORD}@${CACHE_HOST}:${CACHE_PORT}"
+```yaml {configFile="services"}
+postgresql:
+  type: "valkey-persistent:8.0"
+  disk: 2048
+  configuration:
+    databases:
+      - main
+      - legacy
+    endpoints:
+      admin:
+        privileges:
+          main: admin
+          legacy: admin
+      reporter:
+        default_database: main
+        privileges:
+          main: ro
 ```
 
-The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``CACHE_URL`` can be used within the application to connect to the service.
+To create a replica of the `valkey-persistent` database and allow your app to connect to it
+through the `admin` endpoint with admin permissions,
+use the following configuration:
 
-Note that ``CACHE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``VALKEY_HOST``,
-are environment-dependent.
-Unlike the build produced for a given commit,
-they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+```yaml {configFile="app"}
+relationships:
+  valkey-persistent:
+    service: valkey-persistent
+    endpoint: admin-replica
+```
 
-A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
+To create a replica of the `valkey-persistent` database and allow your app to connect to it
+through the `reporter` endpoint with read-only permissions instead,
+use the following configuration:
+
+```yaml {configFile="app"}
+relationships:
+  valkey-persistent:
+    service: valkey-persistent
+    endpoint: reporter-replica
+```
 
 ## Eviction policy
 
-When Valkey reaches its memory limit,
-it triggers a cache cleanup.
+When Valkey reaches its memory limit, it triggers a cache cleanup.
 To customize those cache cleanups, set up an eviction policy such as the following:
 
 ```yaml {configFile="services"}
@@ -726,6 +545,7 @@ To access your Valkey service, run the following command:
 valkey-cli -h {{< variable "HOSTNAME" >}} -p {{< variable "PORT" >}}
 ```
 
+If you have a Grid project, note that the `CONFIG GET` and `CONFIG SET` admin commands are restricted.
 To get the current configuration, run the following command:
 
 ```bash
@@ -833,3 +653,6 @@ services:
 ### Documentation
 
 - [Valkey documentation](https://valkey.io/topics/)
+- [Using Valkey with Drupal](/guides/drupal/valkey)
+
+

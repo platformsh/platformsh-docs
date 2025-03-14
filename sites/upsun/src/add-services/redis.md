@@ -4,6 +4,14 @@ weight: 20
 sidebarTitle: "Redis"
 ---
 
+{{% note theme="warning" title="New versions of Redis no longer supported" %}}
+
+Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to licensing changes. Valkey is available on all our products as a viable alternative open source datastore. 
+
+**Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
+
+{{% /note %}}
+
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
 for high-performance data retrieval and key-value storage.
 {{% vendor/name %}} supports two different Redis configurations:
