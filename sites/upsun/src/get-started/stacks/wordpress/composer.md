@@ -64,7 +64,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     web:
       locations:
         "/":
@@ -102,7 +102,7 @@ To set one up, follow these steps:
      myapp:
        source:
          root: "/"
-       type: 'php:8.3'
+       type: '{{% latest "php" %}}'
        web:
          locations:
            "/":
@@ -135,7 +135,7 @@ To set one up, follow these steps:
      myapp:
        source:
          root: "/"
-       type: 'php:8.3'
+       type: '{{% latest "php" %}}'
        ...
        mounts:
          "wordpress/wp-content/uploads":
@@ -159,7 +159,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     ...
     hooks:
       build: |
@@ -193,7 +193,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     ...
     hooks:
       deploy: |
@@ -218,7 +218,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     ...
 
 routes:
@@ -246,7 +246,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: '{{% latest "php" %}}'
     # ...
     relationships:
       database: "mariadb:mysql"
