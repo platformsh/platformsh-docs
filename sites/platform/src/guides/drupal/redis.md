@@ -12,9 +12,7 @@ Please note that newer versions after Redis 7.2 will no longer be supported by {
 
 {{% /note %}}
 
-Redis is a fast open-source in-memory database and cache,useful for application-level caching.
-For more information on this service, see the [dedicated Redis page](/add-services/redis.md)
-or the [official Redis documentation](https://redis.io/docs/).
+Redis is a fast open-source in-memory database and cache,useful for application-level caching. For more information on this service, see the [dedicated Redis page](/add-services/redis.md) or the [official Redis documentation](https://redis.io/docs/).
 
 Follow the instructions on this page to do one of the following:
 
