@@ -4,11 +4,11 @@ weight: 2
 toc: false
 sectionBefore: Third-party observability tools
 description: |
-  {{% vendor/name %}} supports [New Relic application performance monitoring](https://newrelic.com/products/application-monitoring).
+  {{% vendor/name %}} supports New Relic application performance monitoring.
 layout: single
 ---
 
-{{% description %}}
+{{% vendor/name %}} supports [New Relic application performance monitoring](https://newrelic.com/products/application-monitoring).
 
 {{% version/specific %}}
 ## On a {{% names/dedicated-gen-2 %}} cluster
