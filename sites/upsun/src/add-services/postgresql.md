@@ -757,6 +757,13 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{< /note >}}
 
+{{< note >}}
+
+You can't upgrade to PostgreSQL 17 with the `adminpack` extension enabled.
+
+{{< /note >}}
+
+
 ## Notes
 
 ### Could not find driver
