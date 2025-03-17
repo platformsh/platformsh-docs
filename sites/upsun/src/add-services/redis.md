@@ -6,7 +6,7 @@ sidebarTitle: "Redis"
 
 {{% note theme="warning" title="New versions of Redis no longer supported" %}}
 
-Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to licensing changes. Valkey is available on all our products as a viable alternative open source datastore. 
+Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore. 
 
 **Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
 

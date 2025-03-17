@@ -4,23 +4,7 @@ weight: 20
 sidebarTitle: "Valkey"
 ---
 
-[Valkey](https://valkey.io/) is an open source datastore that can be used high-performance data retrieval and key-value storage. While Valkey supports workloads like caching and message queues, it is mainly used as a primary database. 
-
-{{% note theme="warning" title="New versions of Redis no longer supported" %}}
-
-Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to licensing changes. Valkey is available on all our products as a viable alternative open source datastore.
-
-{{% /note %}}
-
-## Migrate from Redis to Valkey
-It is possible for a user to switch from `redis-persistent` to `valkey-persistent` without losing data. To make this switch, change the name of the service and keep the same name. For example:
-
-```json
-my_service_name:
-  type: redis-persistent:7.2
-  disk: 256
-
-```
+[Valkey](https://valkey.io/) is an open source datastore that can be used high-performance data retrieval and key-value storage. 
 
 {{% vendor/name %}} supports two different Valkey configurations:
 
@@ -827,6 +811,16 @@ services:
 ```
 
 {{< /codetabs >}}
+
+## Migrate from Redis to Valkey
+It is possible for a user to switch from `redis-persistent` to `valkey-persistent` without losing data. To make this switch, change the name of the service and keep the same name. For example:
+
+```json
+my_service_name:
+  type: redis-persistent:7.2
+  disk: 256
+
+```
 
 ## Further resources
 

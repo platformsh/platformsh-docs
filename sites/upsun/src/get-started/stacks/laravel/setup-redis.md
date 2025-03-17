@@ -7,6 +7,14 @@ description: |
 
 With Laravel, you can use Redis to handle session storage, cache storage, and queues.
 
+{{% note theme="warning" title="New versions of Redis no longer supported" %}}
+
+Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore. 
+
+**Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
+
+{{% /note %}}
+
 ## 1. Add the Redis service
 
 1. [Add the service](/add-services.md#add-a-service) to your app configuration using the `services` top-level key:
