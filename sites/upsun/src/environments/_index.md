@@ -50,7 +50,7 @@ These are called [inactive environments](#environment-status).
 
 Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
 Your project must have a default environment,
-but you can [name it as you want](./default-environment.md).
+but you can [name it as you want](/environments/default-environment.md).
 
 If you subscribed to a production plan, this environment is your **live site**.
 You might want to give it a [custom domain name](../domains/steps/_index.md).
@@ -87,7 +87,7 @@ To check the status of all your environments, from your project directory run th
 
 {{< /codetabs >}}
 
-You can [change an environment's status](./deactivate-environment.md) at any time.
+You can [change an environment's status](/environments/deactivate-environment.md) at any time.
 
 ## Organize your environments
 
@@ -99,11 +99,11 @@ In {{% vendor/name %}}, your environments are organized in a hierarchy featuring
 
 When you [branch](/glossary.md#branch) an environment,
 the parent of the new environment is the environment it was created from.
-You can [change the environment's parent](./change-parent.md) after it's been created.
+You can [change the environment's parent](/environments/change-parent.md) after it's been created.
 
 When you push a branch through Git or a [source integration](../integrations/source/_index.md),
 the parent environment of the new environment is your [default environment](#default-environment).
-Alternatively, you can [change the environment's parent](./change-parent.md) after it's been created.
+Alternatively, you can [change the environment's parent](/environments/change-parent.md) after it's been created.
 
 Each child environment can [sync](/glossary.md#sync) code and/or data down from its parent
 and [merge](/glossary.md#merge) code up to its parent.
@@ -264,15 +264,15 @@ Git provides push options to pass a string to the server (see [the official Git 
 {{% vendor/name %}} supports some of these push options,
 which allows you to push changes to your environment and trigger the following actions at the same time:
 
-| Action                                     | Command                                                                                                                 |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Activate the environment                   | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
-| Set a title for the environment            | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
-| Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |
-| Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
-| Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
-| Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
-| Define a [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy) (`default`, `manual`, `minimum`, or `parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
+| Action                                                                                                                                                                   | Command                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------- |
+| Activate the environment                                                                                                                                                 | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
+| Set a title for the environment                                                                                                                                          | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
+| Set the parent environment                                                                                                                                               | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |
+| Clone the data from the parent environment                                                                                                                               | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
+| Disable the cloning of the data from the parent environment                                                                                                              | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
+| Set the environment type (`development`, `staging`, or `production`)                                                                                                     | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
+| Define a [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy) (`default`, `manual`, `minimum`, or `parent`) | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
 
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.

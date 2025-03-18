@@ -1,0 +1,66 @@
+# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+
+# A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
+# with the app.
+name: 'app'
+
+# The runtime the application uses.
+# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+type: 'nodejs:18'
+
+# The size of the persistent disk of the application (in MB). Minimum value is 128.
+disk: 5120
+
+# The web key configures the web server running in front of your app.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+web:
+  # Each key in locations is a path on your site with a leading /.
+  # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
+  locations:
+    '/':
+      # The directory to serve static assets for this location relative to the app’s root directory. Must be an
+      # actual directory inside the root directory.
+      root: 'public'
+      # Files to consider when serving a request for a directory.
+      index: [ 'index.html' ]
+      # Whether to allow serving files which don’t match a rule.
+      allow: true
+
+# Specifies a default set of build tasks to run. Flavors are language-specific.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#build
+build:
+  flavor: none
+
+# Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and
+# are available in the PATH during the build process and in the runtime environment. They’re installed before
+# the build hook runs using a package manager for the language.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#dependencies
+dependencies:
+  nodejs:
+    yarn: "1.22.5"
+
+# Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+hooks:
+  # The build hook is run after any build flavor.
+  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  build: |
+    yarn
+    yarn build
+
+# Information on the app's source code and operations that can be run on it.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#source
+source:
+  ######################################################################################################################
+  ##                                                                                                                  ##
+  ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+  ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+  ## https://github.com/platformsh/source-operations                                                                  ##
+  ##                                                                                                                  ##
+  ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
+  ##                                                                                                                  ##
+  ######################################################################################################################
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0

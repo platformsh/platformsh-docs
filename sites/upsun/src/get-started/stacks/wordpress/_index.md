@@ -1,7 +1,7 @@
 ---
 title: WordPress
 # sectionBefore: PHP
-weight: -62
+weight: -60
 layout: single
 ---
 
@@ -9,10 +9,10 @@ layout: single
 Because of this, you can deploy WordPress on {{% vendor/name %}} in multiple ways, depending on your needs and requirements.
 
 {{< note theme="info" >}}
-Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here).
+Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all the core concepts and common commands you need to know before using the following materials.
 {{< /note >}}
 
- - [WordPress Composer](./composer.md)
- - [WordPress Bedrock](./bedrock.md)
- - [WordPress Vanilla](./vanilla.md)
+ - [WordPress Composer](/get-started/stacks/wordpress/composer.md)
+ - [WordPress Bedrock](/get-started/stacks/wordpress/bedrock.md)
+ - [WordPress Vanilla](/get-started/stacks/wordpress/vanilla.md)

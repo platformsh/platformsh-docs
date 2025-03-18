@@ -10,6 +10,7 @@
 {{ $configFiles := .Page.Site.Params.vendor.config.files }}
 {{ $configDir := .Page.Site.Params.vendor.config.dir }}
 
+<div class="relative">
 {{ with $location }}
     {{ $fullFile := . }}
     {{ $prefixLen := len $prefixdir }}
@@ -18,7 +19,10 @@
     {{ else if gt $prefixLen 0 }}
         {{ $fullFile = delimit ( slice $prefixdir . ) "/" }}
     {{ end }}
-<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ $fullFile }}</div>
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative">
+    <span class="relative z-10">{{ $fullFile }}</span>
+    <div class="absolute bottom-[-0.5rem] left-0 w-full h-4 bg-stone"></div>
+</div>
 {{ end }}
 {{ with $configFile }}
     {{ $fullFile := index $configFiles . }}
@@ -26,7 +30,10 @@
     {{ if gt $prefixLen 0 }}
         {{ $fullFile = delimit ( slice $prefixdir (index $configFiles .) ) "/" }}
     {{ end }}
-<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base pb-1">{{ $fullFile }}</div>
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative">
+    <span class="relative z-10">{{ $fullFile }}</span>
+    <div class="absolute bottom-[-0.5rem] left-0 w-full h-4 bg-stone"></div>
+</div>
 {{ end }}
 {{ if transform.CanHighlight $lang }}
 {{ $content := .Inner | safeHTML }}
@@ -45,5 +52,6 @@
 {{ else }}
 <pre><code>{{ .Inner }}</code></pre>
 {{ end }}
+</div>
 
 {{ end }}

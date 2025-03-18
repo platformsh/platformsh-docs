@@ -9,7 +9,7 @@ description: See all of the options for controlling your apps and how they're bu
 Configuration is all done in a `{{< vendor/configfile "app" >}}` file,
 located at the root of your Git repository.
 
-See a [comprehensive example](../_index.md#comprehensive-example) of a configuration in
+See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in
 a `{{< vendor/configfile "app" >}}` file.
 
 ## Primary application properties
@@ -81,7 +81,7 @@ use the [`source.root` property](#source).
 {{% note theme="info" %}}
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
-See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image#supported-nix-packages) for more information.
+See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image.md#supported-nix-packages) for more information.
 {{% /note %}}
 
 The `type` defines the base container image used to run the application.
@@ -352,7 +352,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 You can decrease the size of an existing disk for an app. If you do so, be aware that:
 
-- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup.md).
 - The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
@@ -703,10 +703,10 @@ The following table presents possible properties for each location:
 | `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the [app's root directory](#root-directory). Must be an actual directory inside the root directory.                                                                                                                                                                                                                                                                                                                                                          |
 | `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. <BR> <BR> If your app is in PHP, when setting `passthru` to `true`, you might want to set `scripts` to `false` for enhanced security. This prevents PHP scripts from being executed from the specified location. You might also want to set `allow` to `false` so that not only PHP scripts can't be executed, but their source code also can't be delivered. |
 | `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys.                                                                                                                                                                                                                                                                                                                                                                                           |
-| `expires`           | `string`                                             | `-1`       | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d. If a `Cache-Control` appears on the `headers` configuration, `expires`, if set, will be ignored. Thus, make sure to set the `Cache-Control`'s `max-age` value when specifying a the header.                                                                                                                                                                                                                           |
+| `expires`           | `string`                                             | `-1`       | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d. If a `Cache-Control` appears on the `headers` configuration, `expires`, if set, will be ignored. Thus, make sure to set the `Cache-Control`'s `max-age` value when specifying a the header.                                |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values. Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.html)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                |
 | `request_buffering` | A [request buffering dictionary](#request-buffering) | See below | Handling for chunked requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `rules`             | A [rules dictionary](#rules)                         |           | Specific overrides for specific locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
@@ -1276,7 +1276,7 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](/environments/backup) are running.
+Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
@@ -1348,7 +1348,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 {{% note theme="info" %}}
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
-See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image#primary-application-properties).
+See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image.md#primary-application-properties).
 {{% /note %}}
 
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
@@ -1412,10 +1412,10 @@ expected to need.
 Each container profile gives you access to a specific list of CPU and RAM combinations.
 Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
-- [Container profile types and resources](/manage-resources/adjust-resources#advanced-container-profiles)
-- [Default container profiles](/manage-resources/adjust-resources#default-container-profiles) for runtime and service
+- [Container profile types and resources](/manage-resources/adjust-resources.md#advanced-container-profiles)
+- [Default container profiles](/manage-resources/adjust-resources.md#default-container-profiles) for runtime and service
   containers
-- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources#adjust-a-container-profile)
+- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources.md#adjust-a-container-profile)
 
 ## Additional hosts
 

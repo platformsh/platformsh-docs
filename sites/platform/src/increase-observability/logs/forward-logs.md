@@ -23,7 +23,7 @@ For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsysl
 Logs to `stdout` and `stderr` are forwarded.
 Logs in files can't be forwarded.
 
-To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
+To enable log forwarding in a project, you need to be a [project admin](/administration/users.md).
 You also need your project to have the capability for log forwarding.
 To get a price quote, [contact Sales](https://platform.sh/contact/).
 
@@ -44,7 +44,7 @@ Integrations exist for the following third-party services to enable log forwardi
 
 #### Using the CLI
 
-To enable log forwarding for a specific project using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md),
+To enable log forwarding for a specific project using the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
 follow the steps for your selected service.
 
 {{< codetabs >}}
@@ -101,7 +101,7 @@ View your logs in the **Log Search** tab.
 
 {{< /codetabs >}}
 
-To start forwarding logs, [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+To start forwarding logs, [trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 #### In the Console
 
@@ -152,14 +152,14 @@ The following table shows the other available properties:
 To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
-To start forwarding logs, once you've added the service [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+To start forwarding logs, once you've added the service [trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 <--->
 +++
 title=In the Console
 +++
 
-To enable log forwarding to a syslog endpoint for a specific project using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md),
+To enable log forwarding to a syslog endpoint for a specific project using the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
 follow these steps:
 
 1. Navigate to your project.
@@ -177,7 +177,7 @@ follow these steps:
 
 ## Forward to an HTTP endpoint
 
-Some third-party services, such as [Elasticsearch](../../add-services/elasticsearch.md) and [OpenSearch](../../add-services/opensearch.md),
+Some third-party services, such as [Elasticsearch](/add-services/elasticsearch.md) and [OpenSearch](/add-services/opensearch.md),
 support ingesting log messages through an HTTP endpoint.
 You can use HTTP forwarding to forward {{% vendor/name %}} and Blackfire logs to such third-party services.
 
@@ -198,8 +198,8 @@ Note that if your endpoint URL includes a `PORT`, that can also be included in t
 {{% vendor/cli %}} integration:add --type httplog --url "https://{{< variable "ELASTICSEARCH_URL" >}}:{{< variable "PORT" >}}/{{< variable "INDEX_NAME" >}}/_doc" --header "Authorization: Basic <basic_auth_token>" --header "Content-Type: application/json"
 ```
 
-Once you've [added the service](../../add-services/_index.md),
-to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
+Once you've [added the service](/add-services/_index.md),
+to start forwarding logs [trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ## Log levels
 

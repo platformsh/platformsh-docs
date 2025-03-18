@@ -347,7 +347,7 @@ As a general rule, you should keep to your defined routes under 100.
 If your `{{< vendor/configfile "routes" >}}` file is rejected for being too big, do one of the following:
 
 * Move redirect routes to the application.
-* Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
+* Collapse the route definitions into a [regular expression-based redirect](/define-routes/redirects.md#partial-redirects).
 
 {{% lets_encrypt_limitations %}}
 
@@ -359,15 +359,15 @@ You can configure each route separately with the following properties:
 
 | Name         | Type      | Required                | Description |
 | ------------ | --------- | ----------------------- | ----------- |
-| `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](./proxy.md).</li></ul> |
-| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../create-apps/_index.md)) followed by `:http`. Example: `app:http` |
+| `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](/define-routes/proxy.md).</li></ul> |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](/create-apps/_index.md)) followed by `:http`. Example: `app:http` |
 | `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
-| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled. |
-| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md). |
-| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
+| `ssi`        | `boolean` | No                      | Whether [server side includes](/define-routes/ssi.md) are enabled. |
+| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](/define-routes/redirects.md). |
+| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](/define-routes/cache.md). |
 | `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
 | `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections). |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](/define-routes/https.md#optional-configure-tls-connections). |
 | `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
 ## CLI access

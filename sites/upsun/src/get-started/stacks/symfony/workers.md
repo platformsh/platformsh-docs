@@ -22,7 +22,7 @@ applications:
 ```
 
 Note that the `symfony` binary is available when you use the [Symfony
-integration](./integration) in your {{% vendor/name %}} app configuration.
+integration](/get-started/stacks/symfony/integration.md) in your {{% vendor/name %}} app configuration.
 
 On {{% vendor/name %}}, worker containers run the exact same code as the web container.
 The container image is built only once and deployed multiple times in its own container alongside the web container.
@@ -41,7 +41,7 @@ The `commands.start` key is required.
 It specifies the command you can use to launch the application worker.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-For more information, see [Workers](/create-apps/app-reference/single-runtime-image#workers).
+For more information, see [Workers](/create-apps/app-reference/single-runtime-image.md#workers).
 
 {{< note title="Warning">}}
 

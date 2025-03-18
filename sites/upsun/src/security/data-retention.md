@@ -10,7 +10,7 @@ description: |
 
 Information relating to customer accounts (login information, billing information, etc.) is retained for as long as the account is active with {{% vendor/name %}}.
 
-Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support).
+Customers may request that their account be deleted and all related data be purged by opening a [support ticket](/learn/overview/get-support.md).
 
 ## System logs
 
@@ -45,4 +45,4 @@ We have configured our Google Analytics account to store data for 14 months from
 ## Trials
 
 User data - which includes pushed code and data contained within services - is retained for a shorter period during trials.
-See [Trial details](/glossary#trial).
+See [Trial details](/glossary.md#trial).

@@ -8,7 +8,7 @@ layout: single
 Once your project is ready for production, replace the automatically generated domain with your own custom domain.
 Note that adding a domain disables the automatically generated URL for your Production environment only.
 
-You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments).
+You can also [customize the URLs for your preview environments](/domains/steps/custom-domains-preview-environments.html).
 
 ## Before you begin
 
@@ -16,7 +16,7 @@ You need:
 
 - A project that's ready to go live
 - A domain with access to its settings with the registrar
-- A registrar that allows `CNAME` records or [one of the alternatives](./dns.md) on [apex domains](/glossary.md#apex-domain)
+- A registrar that allows `CNAME` records or [one of the alternatives](/domains/steps/dns.md) on [apex domains](/glossary.md#apex-domain)
 - Optional: The [CLI](../../administration/cli/_index.md) installed locally
 
 If you are planning to use several subdomains of the same domain on different projects,
@@ -74,7 +74,7 @@ To configure your domain name to point to your project:
 3. Set the TTL on your domain to the lowest possible value to minimize transition time.
 4. Add a `CNAME` record pointing from your domain to the [target](#1-get-the-target-for-your-project).
    Not all registrars allow these kinds of records.
-   If yours doesn't, see the [alternatives](./dns.md#workarounds-for-apex-domains).
+   If yours doesn't, see the [alternatives](/domains/steps/dns.md#workarounds-for-apex-domains).
 5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 6. Set the TTL value back to its previous value.
@@ -147,5 +147,5 @@ title=In the Console
 ## What's next
 
 * [Use a content delivery network](../cdn/_index.md)
-* [Use subdomains across multiple projects](./subdomains.md)
-* [Use a custom TLS certificate](./tls.md)
+* [Use subdomains across multiple projects](/domains/steps/subdomains.md)
+* [Use a custom TLS certificate](/domains/steps/tls.md)

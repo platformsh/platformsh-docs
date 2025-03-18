@@ -326,7 +326,7 @@ though there may be a temporary wait.
 The response is often usually long, so the following examples are shortened using ellipses.
 Remember that the response differs depending on the activity and not all fields are always available.
 
-To test responses, [set up a webhook](./webhooks.md#setup).
+To test responses, [set up a webhook](/integrations/activity/webhooks.md#setup).
 
 ### Cron
 
@@ -568,7 +568,7 @@ The `environment` property contains the settings for the environment that was pu
 
 The `deployment` property contains the settings for the deployment,
 including the [image type](/create-apps/app-reference/single-runtime-image.md#types) and
-[resource allocation](/manage-resources/adjust-resources).
+[resource allocation](/manage-resources/adjust-resources.md).
 
 The following example shows a shortened excerpt of the `deployment` property:
 

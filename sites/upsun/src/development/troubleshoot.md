@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 {{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
-You can use the CLI, along with the [environment type distinction](/glossary#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+You can use the CLI, along with the [environment type distinction](/glossary.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
 
 To do so, run the following command:
 
@@ -74,7 +74,7 @@ To increase performance and keep applications the same across environments,
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
 To force a rebuild without changing the code,
-use an [environment variable](./variables/set-variables.md#create-environment-specific-variables).
+use an [environment variable](/development/variables/set-variables.md#create-environment-specific-variables).
 
 Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
@@ -125,12 +125,12 @@ Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
   - Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
-  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
+  - If your app listening at a port, make sure it's using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables).
 - Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
-  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+  - You may want to [check if bots are overwhelming your site](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.
   - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
@@ -157,7 +157,7 @@ you might encounter an error like the following:
 ```
 
 If you see this, add the command you want to run to your path
-with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+with a [`.environment` file script](/development/variables/set-variables.md#set-variables-via-script).
 
 As a Linux or Unix-like operating system user (MacOS included),
 to be able to run your scripts directly and quickly get past this error
@@ -200,8 +200,8 @@ For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql
 ### Permission error creating a database
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
-The database is created for you and can be found in the `"SERVICE_NAME"_"PATH"` [service environment variable](./variables/_index.md#service-environment-variables),
-or in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-provided-variables).
+The database is created for you and can be found in the `"SERVICE_NAME"_"PATH"` [service environment variable](/development/variables/_index.md#service-environment-variables),
+or in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 ## Storage
 
@@ -229,7 +229,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
-If none of these suggestions work, open a [support ticket](/learn/overview/get-support).
+If none of these suggestions work, open a [support ticket](/learn/overview/get-support.md).
 
 ## Stuck build or deployment
 
@@ -249,7 +249,7 @@ In most regions, stuck builds terminate after one hour.
 
 When a deployment is blocked, you should try the following:
 
-1. Connect to your environment using [SSH](./ssh/_index.md).
+1. Connect to your environment using [SSH](/development/ssh/_index.md).
 2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
 3. Kill any long-running processes with `kill {{< variable "PID" >}}`.
   Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
@@ -278,7 +278,7 @@ If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
 `deploy` hooks can be tested either locally
-or by logging into the application over [SSH](./ssh/_index.md) and running them there.
+or by logging into the application over [SSH](/development/ssh/_index.md) and running them there.
 Be careful not to test the scripts on production environments.
 
 You can also test your hooks with these Linux commands to help debug issues:

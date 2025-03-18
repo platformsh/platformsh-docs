@@ -17,10 +17,10 @@ or anywhere else a link can go to make launching your code base as straightforwa
 
 To have a deployable template, you need to first prepare the repository.
 The Deploy on {{% vendor/name %}} button works with any Git repository that's deployable on {{% vendor/name %}}.
-It needs [app configuration](../create-apps/_index.md)
-and [`{{< vendor/configfile "routes" >}}` file](../define-routes/_index.md).
-If you are using any [services](../add-services/_index.md),
-you also need a [`{{< vendor/configfile "services" >}}` file](../add-services/_index.md),
+It needs [app configuration](/create-apps/_index.md)
+and [`{{< vendor/configfile "routes" >}}` file](/define-routes/_index.md).
+If you are using any [services](/add-services/_index.md),
+you also need a [`{{< vendor/configfile "services" >}}` file](/add-services/_index.md),
 
 The repository must be available at a publicly accessible Git URL.
 That may be hosted with GitHub, GitLab, Bitbucket, your own custom Git hosting,

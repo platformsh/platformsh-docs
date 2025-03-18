@@ -70,7 +70,7 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](./hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
+Note that [`deploy` and `post_deploy` hooks](/create-apps/hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
 run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
 
 ## Inheritance
@@ -241,8 +241,8 @@ The `mail` instance is a worker that isn't web-accessible.
 
 {{< note >}}
 
-{{% vendor/name %}} automatically allocates [default resources](/manage-resources/resource-init) to each instance,
-unless you [define a different resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy).
+{{% vendor/name %}} automatically allocates [default resources](/manage-resources/resource-init.md) to each instance,
+unless you [define a different resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
 You can also [adjust resources](/manage-resources/adjust-resources.md) after your project has been deployed.
 
 {{< /note >}}

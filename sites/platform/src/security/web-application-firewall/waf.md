@@ -14,7 +14,7 @@ using a system that takes into account traffic patterns and abuse scores.
 
 {{% note %}}
 The {{% vendor/name %}} WAF is not configurable.
-If you are looking for more advanced, configurable options that can be added to the {{% vendor/name %}} WAF, see [the Fastly Next-Gen WAF](/security/web-application-firewall/fastly-waf).
+If you are looking for more advanced, configurable options that can be added to the {{% vendor/name %}} WAF, see [the Fastly Next-Gen WAF](/security/web-application-firewall/fastly-waf.md).
 {{% /note %}}
 
 ## CRLF injection prevention
@@ -94,13 +94,13 @@ enforcing the valid format in transit.
 The WAF enforces a file upload limit.
 By default, this limit is set at 250&nbsp;MB.
 
-You can customize the file upload limit by amending your [app configuration](../../create-apps/_index.md).
+You can customize the file upload limit by amending your [app configuration](/create-apps/_index.md).
 In the [`web.locations` dictionary](/create-apps/app-reference/single-runtime-image.md#locations),
 add your desired value for the `max_request_size` property.
 
 ### File extension restriction
 
-The WAF enforces any file extension restriction you may have defined in your [app configuration](../../create-apps/_index.md).
+The WAF enforces any file extension restriction you may have defined in your [app configuration](/create-apps/_index.md).
 
 To set up a file extension restriction,
 adjust the [`web.locations` dictionary](/create-apps/app-reference/single-runtime-image.md#locations).
@@ -133,7 +133,7 @@ only on the internal {{% vendor/name %}} network.
 
 #### Missing or empty `host` headers
 
-As [routes are mapped](../../define-routes/_index.md) based on host names,
+As [routes are mapped](/define-routes/_index.md) based on host names,
 the {{% vendor/name %}} WAF blocks requests with an empty or absent `host` header.
 
 #### Other restricted HTTP headers

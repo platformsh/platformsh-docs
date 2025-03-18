@@ -5,8 +5,8 @@ description: |
     Learn about the environment variables added by the Symfony integration.
 ---
 
-By default, {{% vendor/name %}} exposes some [environment variables](/development/variables/use-variables#use-provided-variables).
-If you're using the [Symfony integration](./integration),
+By default, {{% vendor/name %}} exposes some [environment variables](/development/variables/use-variables.md#use-provided-variables).
+If you're using the [Symfony integration](/guides/symfony/integration.md),
 more [infrastructure environment variables](#symfony-environment-variables) related to Symfony are defined.
 
 As Symfony relies heavily on environment variables to configure application services (such as the database or the mailer DSN),
@@ -22,7 +22,7 @@ and [service](https://github.com/symfony-cli/symfony-cli/blob/main/envs/envs.go#
 
 ## Symfony environment variables
 
-{{% vendor/name %}} exposes [environment variables](/development/variables/use-variables#use-provided-variables)
+{{% vendor/name %}} exposes [environment variables](/development/variables/use-variables.md#use-provided-variables)
 about the app and its infrastructure.
 
 The Symfony integration exposes more environment variables:
@@ -39,7 +39,7 @@ The Symfony integration exposes more environment variables:
   It overrides the value configured in the `.env` file of your app.
 
 - `MAILFROM` is set to a random value.
-  This value is used as a `From` header when using [croncape](./crons#use-croncape).
+  This value is used as a `From` header when using [croncape](/guides/symfony/crons.md#use-croncape).
 
 - `SYMFONY_IS_WORKER` is set to `1` when the container is running in the context of a worker
   (instead of the main application container).
@@ -53,7 +53,7 @@ The Symfony integration exposes more environment variables:
   {{< note title="Tip">}}
 
   This directory is shared by **all** builds on **all** branches.
-  Make sure your [build hook](./integration.md#hooks) accounts for that.
+  Make sure your [build hook](/guides/symfony/integration.md#hooks) accounts for that.
 
   {{< /note >}}
 
@@ -89,7 +89,7 @@ The Symfony integration exposes more environment variables:
 
 ## Service environment variables
 
-When using the [Symfony integration](./integration), information about services
+When using the [Symfony integration](/guides/symfony/integration.md), information about services
 are exposed via environment variables.
 
 To list all of the exposed environment variables, run the following command:
@@ -99,7 +99,7 @@ symfony ssh -- symfony var:export --multiline
 ```
 
 Each exposed environment variable is prefixed by the relationship name.
-For example, if you have the following [relationships](/create-apps/app-reference/single-runtime-image#relationships) in your configuration:
+For example, if you have the following [relationships](/create-apps/app-reference/single-runtime-image.md#relationships) in your configuration:
 
 ```yaml
 relationships:
@@ -151,7 +151,7 @@ the configuration is exposed via the following environment variables
 
 ### MySQL/MariaDB
 
-The [MySQL/MariaDB](/add-services/mysql) configuration is exposed via the following environment variables
+The [MySQL/MariaDB](/add-services/mysql/_index.md) configuration is exposed via the following environment variables
 (where `DATABASE` is the upper-cased version of the key defined in the relationship above):
 
 - `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
@@ -174,7 +174,7 @@ To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment 
 
 ### PostgreSQL
 
-The [PostgreSQL](/add-services/postgresql) configuration is exposed via the following environment variables
+The [PostgreSQL](/add-services/postgresql.md) configuration is exposed via the following environment variables
 (where `DATABASE` is the upper-cased version of the key defined in the relationship):
 
 - `DATABASE_URL`: The database URL (in PHP or Go format depending on your app)
@@ -197,7 +197,7 @@ To override them, use the `DATABASE_VERSION` and `DATABASE_CHARSET` environment 
 
 ### Redis
 
-The [Redis](/add-services/redis) configuration is exposed via the following environment variables
+The [Redis](/add-services/redis.md) configuration is exposed via the following environment variables
 (where `REDIS` is the upper-cased version of the key defined in the relationship):
 
 - `REDIS_URL`: The Redis URL
@@ -207,7 +207,7 @@ The [Redis](/add-services/redis) configuration is exposed via the following envi
 
 ### Memcached
 
-The [Memcached](/add-services/memcached) configuration is exposed via the following environment variables
+The [Memcached](/add-services/memcached.md) configuration is exposed via the following environment variables
 (where `CACHE` is the upper-cased version of the key defined in the relationship):
 
 - `CACHE_HOST`
@@ -216,7 +216,7 @@ The [Memcached](/add-services/memcached) configuration is exposed via the follow
 
 ### Elasticsearch
 
-The [Elasticsearch](/add-services/elasticsearch) configuration is exposed via the following environment variables
+The [Elasticsearch](/add-services/elasticsearch.md) configuration is exposed via the following environment variables
 (where `ELASTICSEARCH` is the upper-cased version of the key defined in the relationship):
 
 - `ELASTICSEARCH_URL`: The full URL of the Elasticsearch service
@@ -226,7 +226,7 @@ The [Elasticsearch](/add-services/elasticsearch) configuration is exposed via th
 
 ### Solr
 
-The [Apache Solr](/add-services/solr) configuration is exposed via the following environment variables
+The [Apache Solr](/add-services/solr.md) configuration is exposed via the following environment variables
 (where `SOLR` is the upper-cased version of the key defined in the relationship):
 
 - `SOLR_HOST`: The Solr host
@@ -236,7 +236,7 @@ The [Apache Solr](/add-services/solr) configuration is exposed via the following
 
 ### RabbitMQ
 
-The [RabbitMQ](/add-services/rabbitmq) configuration is exposed via the following environment variables
+The [RabbitMQ](/add-services/rabbitmq.md) configuration is exposed via the following environment variables
 (where `RABBITMQ` is the upper-cased version of the key defined in the relationship):
 
 - `RABBITMQ_URL`: The RabbitMQ standardized URL
@@ -250,7 +250,7 @@ The [RabbitMQ](/add-services/rabbitmq) configuration is exposed via the followin
 
 ### MongoDB
 
-The [MongoDB](/add-services/mongodb) configuration is exposed via the following environment variables
+The [MongoDB](/add-services/mongodb.md) configuration is exposed via the following environment variables
 (where `MONGODB` is the upper-cased version of the key defined in the relationship):
 
 - `MONGODB_SERVER`
@@ -265,7 +265,7 @@ The [MongoDB](/add-services/mongodb) configuration is exposed via the following 
 
 ### InfluxDB
 
-The [InfluxDB](/add-services/influxdb) configuration is exposed via the following environment variables
+The [InfluxDB](/add-services/influxdb.md) configuration is exposed via the following environment variables
 (where `TIMEDB` is the upper-cased version of the key defined in the relationship):
 
 - `TIMEDB_SCHEME`
@@ -275,7 +275,7 @@ The [InfluxDB](/add-services/influxdb) configuration is exposed via the followin
 
 ### Kafka
 
-The [Apache Kafka](/add-services/kafka) configuration is exposed via the following environment variables
+The [Apache Kafka](/add-services/kafka.md) configuration is exposed via the following environment variables
 (where `KAFKA` is the upper-cased version of the key defined in the relationship):
 
 - `KAFKA_URL`

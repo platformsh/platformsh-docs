@@ -5,6 +5,14 @@ sidebarTitle: "DG3 overview"
 description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
 ---
 
+{{< note theme="note" title="Limited access phase">}}
+
+Dedicated Gen 3 is currently in a limited access phase. During this period, we are limiting new customers to ensure the platform meets our rigorous standards for performance and reliability.
+
+If you need more information, have any questions, or you think you have the perfect use case for Dedicated Gen 3, please [contact](https://platform.sh/contact/) our team.
+
+{{< /note >}}
+
 {{% description %}}
 
 ### Key features
@@ -14,7 +22,7 @@ description:  "Designed to cater to the needs of organizations that build demand
 -   **Headless architecture:** Seamless headless architecture with multi-app support
 -   **Self-service:** Customers may edit their application and service YAML files and push changes. Customers can also take advantage of MariaDB Galera multi-leader and adding, upgrading or removing services on their own
 -   **Data sync from Dedicated to Grid:** Customers can initiate data syncs themselves via Console (restore a Grid HA backup on DG3 and restore a DG3 backup on a Grid HA environment)
--   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary.md#control-plane) from the service versions, so the OS and services can be upgraded independently
+-   **Better containerization:** DG3 is containerized and decouples the base operating system (OS) version and [control plane](/glossary/_index.md#control-plane) from the service versions, so the OS and services can be upgraded independently
 -   **Better staging:** Dedicated Gen 3 comes with HA staging as default. This allows the data sync between Dedicated and Grid to be simpler, consistent and seamless
 
 {{< note title="Note" theme="info" >}}

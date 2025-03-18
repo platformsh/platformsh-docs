@@ -1,0 +1,85 @@
+# The name of this app. Must be unique within a project.
+name: gatsby
+
+type: 'nodejs:14'
+
+variables:
+    env:
+        NODE_OPTIONS: --max-old-space-size=1536
+        GENERATED_VARS: 'deploy/platformsh.environment'
+
+size: L
+
+resources:
+    base_memory: 1024
+    memory_ratio: 1024
+
+dependencies:
+    nodejs:
+        # yarn: "1.22.17"
+        pm2: "5.2.0"
+
+hooks:
+    post_deploy: |
+        # Verify the connection to the backend can be made with those variables.
+        if [ -f "$GENERATED_VARS" ]; then
+            # Source environment variables, build the frontend, and start the server.
+            . $GENERATED_VARS
+        else 
+              printf "In %s, %s is not available, therefore I could not source" "web:commands:start" "${GENERATED_VARS}"
+        fi
+        # Gatsby clean on a RO-filesystem
+        rm -rf .cache/* && rm -rf public/*
+        npm run build -- --no-color
+
+web:
+    commands:
+        start: |
+            # npm run serve -- -p $PORT --no-color
+
+            if [ -f "$GENERATED_VARS" ]; then
+                # Source environment variables, build the frontend, and start the server.
+                . $GENERATED_VARS            
+            else 
+              printf "In %s, %s is not available, therefore I could not source" "web:commands:start" "${GENERATED_VARS}"
+            fi
+            APP=$(cat package.json | jq -r '.name')
+            pm2 start npm --no-daemon --watch --name $APP -- run serve -- -p $PORT --no-color
+            #pm2 start npm --no-daemon --watch --name $APP -- run develop -- -p $PORT --no-color
+
+
+
+            # Maybe since we're foregoing the first deploy, yarn start is good enough.
+            # if [ -f "$GENERATED_VARS" ]; then
+            #     # Source environment variables, build the frontend, and start the server.
+            #     # . $GENERATED_VARS
+            #     npm run clean
+            #     npm run build
+            #     npm run serve
+            #     # APP=$(cat package.json | jq -r '.name')
+            #     # pm2 start npm --no-daemon --watch --name $APP -- preview -- -p $PORT
+            # else
+            #     # On the first deploy, display next steps page.
+            #     node first_deploy.js
+            # fi
+
+
+disk: 512
+
+mounts:
+    /.cache:
+        source: local
+        source_path: 'cache'
+    /.config:
+        source: local
+        source_path: 'config'
+    /.pm2:
+        source: local
+        source_path: 'pm2'
+    public:
+        source: local
+        source_path: 'public'
+    deploy:
+        source: service
+        service: files
+        source_path: deploy

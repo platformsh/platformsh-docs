@@ -46,7 +46,7 @@ And your final rendered page includes the other file:
 
 ## Caching and dynamic content
 
-You can use SSI to have [caching](./cache.md) and dynamic content in one.
+You can use SSI to have [caching](/define-routes/cache.md) and dynamic content in one.
 So one file is cached, while another updates dynamically.
 
 For example, you can activate SSI on one route with cache disabled and enable cache on another route:

@@ -1,8 +1,7 @@
-appyaml
 config-examples
 config-examples-platform
-gatsby
+gatsby/*
 lando
-multiappyaml
-routesyaml
-servicesyaml
+# multiappyaml
+# routesyaml
+# servicesyaml

@@ -13,7 +13,7 @@ You can choose to debug in an environment deployed to {{% vendor/name %}}
 or with your app running locally but connected to deployed services.
 In either case, make sure to debug in a preview environment.
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## 1. Create a new environment
 
@@ -89,7 +89,7 @@ node --inspect <START_FILE>
 {{< /codetabs >}}
 
 
-Replace `<START_FILE>` with the file defined for [your app's `start` command](./_index.md#4-start-your-app).
+Replace `<START_FILE>` with the file defined for [your app's `start` command](/languages/nodejs/_index.md#4-start-your-app).
 
 You get output something like this:
 
@@ -179,4 +179,4 @@ If you're using the [`pm2` process manager](https://github.com/unitech/pm2) to s
 you might find it daemonizes itself and blocks other processes (such as backups) by constantly respawning.
 This may happen even if you use the `--no-daemon` flag.
 
-Instead of using a script, call `pm2 start` directly in your [`start` command](./_index.md#4-start-your-app).
+Instead of using a script, call `pm2 start` directly in your [`start` command](/languages/nodejs/_index.md#4-start-your-app).

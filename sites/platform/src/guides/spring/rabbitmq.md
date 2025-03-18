@@ -6,7 +6,7 @@ description: Configure a Spring application with RabbitMQ.
 ---
 
 You can use [Spring JMS](https://spring.io/guides/gs/messaging-jms/)
-to use [RabbitMQ](../../add-services/rabbitmq.md) with your app.
+to use [RabbitMQ](/add-services/rabbitmq.md) with your app.
 First, determine the MongoDB client using the [Java configuration reader library](https://github.com/platformsh/config-reader-java).
 
 ```java

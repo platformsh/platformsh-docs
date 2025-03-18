@@ -5,13 +5,14 @@
 name: Comment on PR
 on:
   workflow_run:
-    workflows: ["Get PR URL, dependent jobs"]
+    workflows: ["Get PR URL, start dependent jobs"]
     types:
       - completed
 
 jobs:
   comment:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
 

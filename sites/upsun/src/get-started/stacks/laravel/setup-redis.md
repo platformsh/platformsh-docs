@@ -43,7 +43,7 @@ Please note that newer versions after Redis 7.2 will no longer be supported by {
 
 ## 2. Configure your Redis service
 
-The [Redis](/add-services/redis) configuration is exposed via the following environment variables
+The [Redis](/add-services/redis.md) configuration is exposed via the following environment variables
 (where `REDIS` is the upper-cased version of the key defined in the relationship):
 
 - `REDIS_URL`: The Redis URL
@@ -100,6 +100,6 @@ export QUEUE_CONNECTION="redis"
 ```
 
 For more information, see the [Laravel Queues documentation](https://laravel.com/docs/master/queues)
-and {{% vendor/name %}}'s [Horizon configuration page](./laravel-horizon).
+and {{% vendor/name %}}'s [Horizon configuration page](/get-started/stacks/laravel/laravel-horizon.md).
 
 {{< guide-buttons previous="Back" next="Handle queues with Horizon" nextLink="/get-started/stacks/laravel/laravel-horizon.md" type="*" >}}

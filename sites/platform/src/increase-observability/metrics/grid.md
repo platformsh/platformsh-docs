@@ -6,8 +6,8 @@ description: Understand how to read metrics for Grid environments.
 
 Grid environments consist of:
 
-* App containers: one or more [app containers](../../create-apps/_index.md)
-* Service containers: zero or more [service containers](../../add-services/_index.md)
+* App containers: one or more [app containers](/create-apps/_index.md)
+* Service containers: zero or more [service containers](/add-services/_index.md)
 * Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 Infrastructure metrics report CPU, RAM, and disk space for app and worker containers
@@ -21,7 +21,7 @@ Service containers follow next with the same pattern and worker containers are s
 You can collapse the graphs by clicking **Hide metrics**.
 The graphs switch to an overview of the average resource utilization for the selected container.
 
-![How service container metrics look when minimized](/images/metrics/service-container-minimized.png "0.65")
+![How service container metrics look when minimized](/images/metrics/grid-postgresql-hidden.png "0.65")
 
 ## Start metrics collection
 
@@ -38,21 +38,21 @@ Grid environment metrics show resource usage for each app, service, and worker c
 Note that resources are spread across all containers within the project.
 So the resources you see for a given container don't equal the total resources for the project.
 
-This reference project has a single app, two services (MySQL and Redis), and two workers.
+This reference project has a single app, two services (PostgreSQL and Redis), and two workers.
 The plan size for this project is [Medium](https://platform.sh/pricing/).
 The appropriate resources have been [allocated automatically](/create-apps/app-reference/single-runtime-image.md#sizes) for each container
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.
 
-Once you've read the metrics, see [recommendations for action](./_index.md#grid-environments).
+Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#grid-environments).
 
 ### App container
 
 Metrics graphs for the app container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 9.57&nbsp;GB, while the temporary disk is 7.99&nbsp;GB.
 
-![All of the metrics for the app container](/images/metrics/app-container.png)
+![All of the metrics for the app container](/images/metrics/grid-appcontainer.png)
 
 By default, the graphs include all instances and an average over the instances.
 To select metrics for specific instances, click **Filter**.
@@ -61,36 +61,26 @@ To select metrics for specific instances, click **Filter**.
 
 ### Service containers
 
-Unlike [app containers](#app-container), metrics graphs service containers don't show RAM allocation and usage.
-So you don't see all of your project's allocated RAM in the graphs.
+Metrics graphs for the cache service container show CPU, RAM and disk allocation and usage.
+The temporary disk is 7.99&nbsp;GB.
 
-#### MySQL
+![All of the metrics for the Redis container](/images/metrics/grid-services.png)
 
-Metrics graphs for the MySQL service container show CPU and disk allocation and usage.
-The persistent disk has been configured in the [services configuration](../../add-services/_index.md)
-as 0.95&nbsp;GB,
-while the temporary disk is 3.99&nbsp;GB by default.
+#### PostgreSQL
 
-![All of the metrics for the MySQL container](/images/metrics/mysql-container.png)
+Metrics graphs for the PostgreSQL service container show CPU, RAM, disk allocation and usage.
+The persistent disk has been configured in the [services configuration](/add-services/_index.md)
+as 2.81GB,
+while the temporary disk is 7.99&nbsp;GB.
 
-#### Redis
+![All of the metrics for the PostgreSQL container](/images/metrics/grid-postgresql-full.png)
 
-Metrics graphs for the Redis service container show CPU and disk allocation and usage.
-No persistent disk has been configured for Redis,
-while the temporary disk is 3.99&nbsp;GB by default.
-
-![All of the metrics for the Redis container](/images/metrics/redis-container.png)
 
 ### Worker containers
 
-Metrics graphs for the App-Horizon worker container show CPU, RAM, and disk allocation and usage.
+Metrics graphs for the worker container show CPU, RAM, and disk allocation and usage.
 The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
+at 9.51&nbsp;GB, while the temporary disk is 7.99&nbsp;GB.
 
-![All of the metrics for the App-Horizon worker container](/images/metrics/horizon-grid-metrics.png)
+![All of the metrics for the worker container](/images/metrics/grid-workers.png)
 
-Metrics graphs for the App-Schedule worker container show CPU, RAM, and disk allocation and usage.
-The persistent disk has been configured in the [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties)
-at 1.91&nbsp;GB, while the temporary disk is 3.99&nbsp;GB by default.
-
-![All of the metrics for the App-Horizon worker container](/images/metrics/schedule-worker-container.png)

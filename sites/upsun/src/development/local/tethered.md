@@ -7,7 +7,7 @@ weight: 2
 
 To test changes locally, you can connect your locally running web server
 to service containers on an active {{% vendor/name %}} environment.
-This method requires less configuration than tools such as [DDEV](./ddev.md),
+This method requires less configuration than tools such as [DDEV](/development/local/ddev.md),
 but may not perform well enough for everyday use.
 Because it replies on a local web server, it's also less consistent across your team.
 

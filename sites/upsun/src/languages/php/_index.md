@@ -143,7 +143,7 @@ So you can then use included dependencies as commands within your app container.
 You can add multiple global dependencies to the dependencies block, such as [Node.js](../nodejs/_index.md#2-specify-any-global-dependencies).
 
 If you want to have more control over Composer or if you don't want to use Composer at all, adapt the [build flavor](#change-the-build-flavor).
-You can also use a [private, authenticated third-party Composer repository](./composer-auth.md).
+You can also use a [private, authenticated third-party Composer repository](/languages/php/composer-auth.md).
 
 ### Change the build flavor
 
@@ -327,8 +327,8 @@ Some commonly used settings are:
 | `memory_limit` | `128M` | The memory limit, in megabytes, for PHP. Ensure that the PHP memory limit is set to a lower value than your environment's memory. |
 | `post_max_size` | `64M` | The maximum size, in megabytes, per uploaded file. To upload larger files, increase the value. |
 | `zend.assertions` | `-1` | Assertions are optimized and have no impact at runtime. Set assertions to `1` for your local development system. [See more on assertions](https://www.php.net/manual/en/regexp.reference.assertions). |
-| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](./tuning.md#opcache-preloading). For large apps with many files, increase this value. |
-| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](./tuning.md#disable-opcache-timestamp-validation). |
+| `opcache.memory_consumption` | `64` | The number of megabytes available for [the OPcache](/languages/php/tuning.md#opcache-preloading). For large apps with many files, increase this value. |
+| `opcache.validate_timestamps` | `On` | If your app doesn't generate compiled PHP, you can [disable this setting](/languages/php/tuning.md#disable-opcache-timestamp-validation). |
 
 ### Retrieve the default values
 
@@ -586,7 +586,7 @@ If you are compiling Rust code, use the build hook to [install Rust](https://doc
 
 To leverage FFIs, follow these steps:
 
-1.  [Enable and configure OPcache preloading](./tuning.md#enable-opcache-preloading).
+1.  [Enable and configure OPcache preloading](/languages/php/tuning.md#enable-opcache-preloading).
 
 2.  Enable the FFI extension:
 
@@ -599,7 +599,7 @@ applications:
         - ffi
 ```
 
-3.  Make sure that your [preload script](./tuning.md#opcache-preloading) calls the `FFI::load()` function.
+3.  Make sure that your [preload script](/languages/php/tuning.md#opcache-preloading) calls the `FFI::load()` function.
     Using this function in preload is considerably faster than loading the linked library on each request or script run.
 
 4.  If you are running FFIs from the command line,
@@ -627,7 +627,7 @@ applications:
 All major PHP web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Laravel](/get-started/stacks/laravel)
+- [Laravel](/get-started/stacks/laravel/_index.md)
 - [Symfony](/get-started/stacks/symfony/_index.md)
 
 ## Modify your PHP runtime when using the composable image
@@ -642,13 +642,13 @@ The following table presents the possible modifications you can make to your PHP
 Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
 See the example below for more details.
 
-| Name                        | Type                                                       | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| Name                        | Type                                                                                                                          | Description                                                                                |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
 | `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
-| `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
-| `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+| `disabled_extensions`       | List of `string`s                                                                                                             | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
+| `request_terminate_timeout` | `integer`                                                                                                                     | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
+| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                      | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
+| `xdebug`                    | An Xdebug definition                                                                                                          | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
 
 Here is an example configuration:
 

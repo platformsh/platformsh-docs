@@ -79,7 +79,7 @@ That filesystem is the final build artifact.
 
 ### How your app is deployed
 
-Before starting the [deployment](./build-deploy.md#deploy-steps) of your app,
+Before starting the [deployment](/learn/overview/build-deploy.md#deploy-steps) of your app,
 {{% vendor/name %}} pauses all incoming requests and holds them to avoid downtime.
 
 Then, the current containers are stopped and the new ones are started.
@@ -105,7 +105,7 @@ During a redeploy, the `post-deploy` hook is the only hook that is run.
 ## Get support
 
 If you're facing an issue with {{% vendor/name %}},
-open a [support ticket](/learn/overview/get-support).
+open a [support ticket](/learn/overview/get-support.md).
 
 ## What's next?
 

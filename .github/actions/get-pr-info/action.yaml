@@ -70,6 +70,19 @@ runs:
           STATUS_TRY=$((++STATUS_TRY))
         done
 
+        # status is complete, check result
+        RESULT=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "result" --limit 1 --environment "${BRANCH}" || true)
+
+        if [ "failure" = "${RESULT}" ]; then
+          FAILEDID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment "${BRANCH}")
+          LOGLINES=$(platform activity:log "${FAILEDID}" --environment "${BRANCH}" --quiet | tail -n 20)
+          echo "::error title=Build failed::Build of environment ${BRANCH} failed!"
+          echo "::group::Last 20 lines from deploy log"
+          echo "${LOGLINES}"
+          echo "::endgroup::"
+          exit 1
+        fi
+
         # Get the URL of the environment
         ENV_URL=$(platform url --primary --pipe --environment "${BRANCH}")
 

@@ -3,20 +3,20 @@ title: Set up a custom domain on a preview environment
 sidebarTitle: Preview environments
 weight: 3
 description: Learn how to set up custom domains on your preview environments
-banner: 
+banner:
     type: tiered-feature
 ---
 
-[Preview environments](/glossary.md#preview-environment) in your project can't use the custom domain [set up on your production environment](../steps/_index.md).<br/>
+[Preview environments](/glossary/_index.md#preview-environment) in your project can't use the custom domain [set up on your production environment](/domains/steps/_index.md).<br/>
 By default and for each preview environment,
 {{% vendor/name %}} automatically replaces the custom production domain
 with an automatically generated URL.
 
 If you don't want to use these default URLs,
 you can add a custom domain to each of your preview environments
-(`staging` or `development` [environment types](/glossary.md#environment-type)).
+(`staging` or `development` [environment types](/glossary/_index.md#environment-type)).
 
-To do so, no need to modify your [routes configuration](../../define-routes/_index.md).
+To do so, no need to modify your [routes configuration](/define-routes/_index.md).
 When you add a new custom domain for a preview environment,
 just attach it to the custom production domain it replaces.
 If you have multiple custom production domains,
@@ -29,7 +29,7 @@ You've added the `example.com` custom domain to your production environment.
 
 You want to add the `staging.example.com` custom domain to your staging environment.
 To do so, you need to attach the new `staging.example.com` custom domain
-to its corresponding custom production domain `example.com`. 
+to its corresponding custom production domain `example.com`.
 
 You can then access your staging environment through `staging.example.com`,
 and still access your production environment through `example.com`.
@@ -38,18 +38,18 @@ and still access your production environment through `example.com`.
 
 If you have multiple custom domains on your production environment,
 when you set up a custom domain on a preview environment,
-you don't need to update your [routes configuration](../../define-routes/_index.md) either.
+you don't need to update your [routes configuration](/define-routes/_index.md) either.
 {{% vendor/name %}} automatically figures out the routing of your preview environment
 based on the following elements:
 
-- The custom production domains in your existing [routes configuration](../../define-routes/_index.md)
+- The custom production domains in your existing [routes configuration](/define-routes/_index.md)
 - The custom domains for preview environments attached to each of those custom production domains
 
 ## Before you start
 
 You need:
 
-- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR> 
+- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR>
 
   {{< note theme="warning" >}}
 
@@ -59,12 +59,12 @@ You need:
 
   {{< /note >}}
 
-  If you use a [Managed Fastly](../cdn/managed-fastly.md) CDN,
+  If you use a [Managed Fastly](/domains/cdn/managed-fastly.md) CDN,
   it needs to be configured to operate with custom domains for preview environments.
   For more information, [contact Support](https://console.platform.sh/-/users/~/tickets/open).
 - A production environment with at least one custom domain already set up
 - At least one preview (staging or development) environment
-- Optional: The [{{% vendor/name %}} CLI](../../administration/cli/_index.md) (v4.8.0+)
+- Optional: The [{{% vendor/name %}} CLI](/administration/cli/_index.md) (v4.8.0+)
 
 To prevent abuse, by default you can add custom domains to up to 5 preview environments per project only.
 This limit doesn't include the production environment,
@@ -99,7 +99,7 @@ title=Using the CLI
    {{% vendor/cli %}} environment:info edge_hostname --environment {{< variable "ENVIRONMENT_NAME" >}}
    ```
 
-2. [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).
+2. [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).
    In particular, make sure your DNS record points to the target of your preview environment.
 
    {{< note >}}
@@ -136,7 +136,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to the target of your preview environment.
 
 {{< note >}}
@@ -194,7 +194,7 @@ title=In the Console
 
 6.  Click **Okay**.
 
-7.  [Configure your DNS provider](../steps/_index.md#2-configure-your-dns-provider).</br>
+7.  [Configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).</br>
     In particular, make sure your DNS record points to `Dev`'s target.
 
 {{< /codetabs >}}

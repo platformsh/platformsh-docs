@@ -6,7 +6,7 @@ weight: -70
 ---
 {{% note theme="warning" title="New versions of Redis no longer supported" %}}
 
-Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore. 
+Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore.
 
 **Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
 
@@ -17,18 +17,18 @@ Redis is a fast open-source in-memory database and cache,useful for application-
 Follow the instructions on this page to do one of the following:
 
 - Add and configure Redis for Drupal if you have deployed Drupal manually.
-- Fine-tune your existing configuration if you have deployed Drupal using a [{{% vendor/name %}} template](../../development/templates.md).
+- Fine-tune your existing configuration if you have deployed Drupal using a [{{% vendor/name %}} template](/development/templates.md).
 
 ## Before you begin
 
 You need:
 
-- A [Drupal version deployed on {{% vendor/name %}}](../drupal/deploy/_index.md)
-- The [{{% vendor/name %}} CLI](../../administration/cli/)
+- A [Drupal version deployed on {{% vendor/name %}}](/guides/drupal/deploy/_index.md)
+- The [{{% vendor/name %}} CLI](/administration/cli/)
 - [Composer](https://getcomposer.org/)
-- The [Config Reader library](../../guides/drupal/deploy/customize.md#install-the-config-reader)
+- The [Config Reader library](/guides/drupal/deploy/customize.md#install-the-config-reader)
 
-You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](../drupal/deploy/customize.md#settingsphp).
+You also need a `settings.platformsh.php` file from which you can [manage the configuration of the Redis service](/guides/drupal/deploy/customize.md#settingsphp).
 If you installed Drupal with a template, this file is already present in your project.
 
 {{< note >}}
@@ -38,8 +38,8 @@ This means that the Redis storage isn't persistent
 and that data can be lost when a container is moved, shut down
 or when the service hits its memory limit.
 
-To solve this, {{% vendor/name %}} recommends that you change the [service type](../../add-services/redis.md#service-types)
-to [persistent Redis](../../add-services/redis.md#persistent-redis) (`redis-persistent`).
+To solve this, {{% vendor/name %}} recommends that you change the [service type](/add-services/redis.md#service-types)
+to [persistent Redis](/add-services/redis.md#persistent-redis) (`redis-persistent`).
 
 {{< /note >}}
 
@@ -53,6 +53,7 @@ To define the service, use the `redis-persistent` endpoint:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: redis-persistent:<VERSION>
+  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -79,11 +80,11 @@ relationships:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 <--->
 
@@ -106,16 +107,16 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#2-define-the-relationship) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.

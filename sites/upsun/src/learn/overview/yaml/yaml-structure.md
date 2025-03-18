@@ -4,7 +4,7 @@ weight: -5
 description: "A description of the YAML file for {{% vendor/name %}}."
 ---
 
-In addition to the [basic functions you should be familiar with](./what-is-yaml.md), YAML structure is important.
+In addition to the [basic functions you should be familiar with](/learn/overview/yaml/what-is-yaml.md), YAML structure is important.
 {{% vendor/name %}} accepts a specific structure for YAML configuration files.
 
 ## YAML file location
@@ -15,14 +15,14 @@ This YAML file is located in your ``.{{% vendor/cli %}}`` directory, at the root
 ```bash
 .
 ├── {{< vendor/configdir >}}
-|   └── {{< vendor/configfile "apps" "strip" >}}
-└── <source code>
+|   └── {{< vendor/configfile "apps" "strip" >}}
+└── <SOURCE_CODE>
 ```
 ## Mandatory top-level keys
 In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
-- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image)
-- ``routes``: this section of the file contains all of your [route definitions](/define-routes) (for each of your apps)
-- ``services``: this section of the file contains all of your [service definitions](/add-services) (for each of your apps)
+- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image.md)
+- ``routes``: this section of the file contains all of your [route definitions](/define-routes/_index.md) (for each of your apps)
+- ``services``: this section of the file contains all of your [service definitions](/add-services/_index.md) (for each of your apps)
 
 This looks like:
 ```yaml {location="apps"}
@@ -40,7 +40,7 @@ This looks like:
     upstream: "myapp:http"
 ```
 
-Below these three top-level key sections, you can use any of the [available YAML tags](./platform-yaml-tags.md) you need.
+Below these three top-level key sections, you can use any of the [available YAML tags](/learn/overview/yaml/platform-yaml-tags.md) you need.
 
 {{% note %}}
 Any YAML files located at the first level of your ``.upsun`` folder, at the root of your project source code, are taken in account. See [Rules on YAML files](#rules-on-yaml-files).

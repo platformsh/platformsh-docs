@@ -1,0 +1,104 @@
+# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+
+# A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
+# with the app.
+name: app
+
+# The runtime the application uses.
+# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+type: nodejs:18
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+relationships:
+  postgresdatabase: "dbpostgres:postgresql"
+
+# The size of the persistent disk of the application (in MB). Minimum value is 128.
+disk: 1024
+
+# Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+mounts:
+  # Strapi's cache directory.
+  "/.cache":
+    source: local
+    source_path: cache
+
+  # Mount .tmp file in the app folder for strapi
+  ".tmp":
+    source: local
+    source_path: app
+
+  # Mount database folder for strapi
+  "database":
+    source: local
+    source_path: database
+
+  # Give write access for extension configuration JSONs.
+  "extensions":
+    source: local
+    source_path: extensions
+
+  # Allow for media uploads at runtime.
+  "public/uploads":
+    source: local
+    source_path: uploads
+
+# The web key configures the web server running in front of your app.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+web:
+  # Commands are run once after deployment to start the application process.
+  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+  commands:
+    # The command to launch your app. If it terminates, it’s restarted immediately.
+    start: |
+      yarn start
+
+# Variables to control the environment. More information: https://docs.platform.sh/create-apps/app-reference.html#variables
+variables:
+  env:
+    NODE_ENV: 'production'
+
+# Specifies a default set of build tasks to run. Flavors are language-specific.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#build
+build:
+  # Use Yarn instead of npm.
+  flavor: none
+
+# Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and
+# are available in the PATH during the build process and in the runtime environment. They’re installed before
+# the build hook runs using a package manager for the language.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#dependencies
+dependencies:
+  nodejs:
+    yarn: "1.22.5"
+
+# Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
+# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+hooks:
+  # The build hook is run after any build flavor.
+  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  build: |
+    # Download dependencies and build Strapi.
+    yarn --frozen-lockfile
+    yarn build
+
+# Information on the app's source code and operations that can be run on it.
+# More information: https://docs.platform.sh/create-apps/app-reference.html#source
+source:
+  ######################################################################################################################
+  ##                                                                                                                  ##
+  ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+  ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+  ## https://github.com/platformsh/source-operations                                                                  ##
+  ##                                                                                                                  ##
+  ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##
+  ##                                                                                                                  ##
+  ######################################################################################################################
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0

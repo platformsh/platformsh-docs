@@ -26,7 +26,7 @@ These metrics are available for all of your {{% names/dedicated-gen-3 %}} enviro
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
 
-![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-dashboard.png "0.45")
+![A screenshot of what the metrics dashboard displays for Grid environments](/images/metrics/grid-metrics-RAM.png "0.45")
 
 ## Default thresholds
 
@@ -53,8 +53,8 @@ For {{% names/dedicated-gen-2 %}} environments, the thresholds are set for each 
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* [Increasing your plan](../../administration/pricing/_index.md)
+* [Optimizing your code](/increase-observability/_index.md) (if possible)
+* [Increasing your plan](/administration/pricing/_index.md)
 
 #### {{% names/dedicated-gen-3 %}} environments
 
@@ -64,10 +64,10 @@ If you have one container in a temporary burst state but your host still has ple
 
 If you have a container in a prolonged burst state, you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md)
+* [Optimizing your code](/increase-observability/_index.md)
 * Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../administration/pricing/_index.md)
+  or [service size](/add-services/_index.md#size)
+* [Increasing your plan](/administration/pricing/_index.md)
 
 You can reallocate your existing resources if other containers have resources they aren't using.
 
@@ -79,10 +79,10 @@ For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+* [Optimizing your code](/increase-observability/_index.md) (if possible)
 * Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../administration/pricing/_index.md)
+  or [service size](/add-services/_index.md#size)
+* [Increasing your plan](/administration/pricing/_index.md)
 
 Review your configuration or plan size if your containers are in a prolonged burst
 state, because burst isn't guaranteed for long periods.
