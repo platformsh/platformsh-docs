@@ -261,7 +261,7 @@ https://{default}/:
 
       # Splitting 'other' section into proper top-level items within Reference.
       "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
-     
+
 
       # Change of URL for the custom domains on preview environments page
       "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
@@ -378,6 +378,10 @@ https://docs.upsun.com/:
       "/get-started/laravel/": { "to": "/get-started/stacks/laravel.html", "code": 301, "prefix": true, "append_suffix": false }
       "/get-started/nextjs/": { "to": "/get-started/stacks/nextjs.html", "code": 301, "prefix": true, "append_suffix": false }
       "/get-started/strapi/": { "to": "/get-started/stacks/strapi.html", "code": 301, "prefix": true, "append_suffix": false }
+
+      #Changelog to Feature requests page
+      "/changelog.html": { "to": "/request-features.html", "code": 301 }
+
 
 # "https://docs.deployfriday.net/":
 #     type: redirect
