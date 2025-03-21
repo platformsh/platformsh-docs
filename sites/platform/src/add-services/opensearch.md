@@ -390,7 +390,7 @@ opensearch:
 
 {{< note title="Different names used" theme="warning" >}}
 
-It should be noted that **these names may differ to what they are commonly known as** in the [opensearch docs](https://opensearch.org/docs/latest/). To help your understanding of what each plugin does, please click each plugin name for a link to the corresponding Github repository. 
+It should be noted that **these names may differ to what they are commonly known as** in the [OpenSearch docs](https://opensearch.org/docs/latest/). To help your understanding of what each plugin does, please click each plugin name for a link to the corresponding Github repository. 
 
 {{< /note >}}
 
