@@ -462,7 +462,7 @@ It should be noted that **these names may differ to what they are commonly known
 |[`opensearch-index-management`](https://github.com/opensearch-project/index-management)|A suite of features to monitor and manage indexes                               | N/A   | * |
 |[`opensearch-job-scheduler`](https://github.com/opensearch-project/job-scheduler)|Schedule periodical jobs running within OpenSearch nodes                                     | N/A   | * |
 |[`opensearch-knn`](https://github.com/opensearch-project/k-NN)|Easily run the nearest neighbor search on billions of documents                                                        | N/A   | * |
-|[`opensearch-ml-plugin`](https://github.com/opensearch-project/ml-commons/)|Leverage existing opensource machine learning algorithms                                          | N/A   | * |
+|[`opensearch-ml-plugin`](https://github.com/opensearch-project/ml-commons/)|Leverage existing Open source machine learning algorithms                                          | N/A   | * |
 |[`opensearch-skills`](https://github.com/opensearch-project/skills)|Provides tools for ml-common's agent framework `OpenSearch ml-commons`                                                   | N/A   | * |
 |[`neural-search`](https://github.com/opensearch-project/neural-search)|Index documents and conduct a neural search on indexed documents                                                | N/A   | * |
 |[`opensearch-observability`](https://github.com/opensearch-project/observability)|Collection of plugins and applications to visualize data-driven events                                     | N/A   | * |
