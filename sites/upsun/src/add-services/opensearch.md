@@ -431,7 +431,7 @@ This is the complete list of plugins that can be enabled:
 
 ### Alternative plugins
 
-**These plugins are currently available for `opensearch 2.0` only.** The names below show exactly how they should be added to your configuration. For example, to use the `alerting` plugin, specify it in your `services.yaml` as so:
+**These plugins are currently available for `OpenSearch 2.0` only.** The names below show exactly how they should be added to your configuration. For example, to use the `alerting` plugin, specify it in your `services.yaml` as so:
 
 ```yaml {configFile="services"}
 services:
