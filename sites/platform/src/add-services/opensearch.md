@@ -400,7 +400,7 @@ It should be noted that **these names may differ to what they are commonly known
 | [`alerting`](https://github.com/opensearch-project)| Monitor data and send alert notifications automatically                           | N/A   | * |
 |[`opensearch-anomaly-detection`](https://github.com/opensearch-project/anomaly-detection)| Detect anomalies as your log data and monitor data in near real time                             | N/A   | * |
 |[`asynchronous-search`](https://github.com/opensearch-project/asynchronous-search)|Run search queries in the background and retrieve results as they become available                                    | N/A   | * |
-|[`opensearch-cross-cluster-replication`](https://github.com/opensearch-project/cross-cluster-replication)|Replicate data across two opensearch clusters             | N/A   | * |
+|[`opensearch-cross-cluster-replication`](https://github.com/opensearch-project/cross-cluster-replication)|Replicate data across two OpenSearch clusters             | N/A   | * |
 |[`opensearch-custom-codecs`](https://github.com/opensearch-project/custom-codecs)| Provide custom Lucene codecs for loading through Apache Lucene's `NamedSPILoader`                                     | N/A   | * |
 |[`opensearch-flow-framework`](https://github.com/opensearch-project/flow-frame)| Innovate AI applications on OpenSearch                     | N/A   | * |
 |[`notifications`](https://github.com/opensearch-project/notifications)| A central location for all of your notifications from OpenSearch plugins                         | N/A   | * |
