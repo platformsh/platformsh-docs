@@ -74,7 +74,6 @@ To define the service, use the `chrome-headless` type:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: chrome-headless:<VERSION>
-  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
