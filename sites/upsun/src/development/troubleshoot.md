@@ -169,7 +169,7 @@ For more troubleshooting tips specifically for PHP, please head to the [PHP trou
 #### 8. Domain added to edge hostname but not the project
 If you add a domain and point it to an edge hostname but haven’t added the domain to the project, it may cause a 502 error. Note that DNS services may catch this issue and provide their own 502 page.
 
-**Solution**: If you have added a domain, ensure that you have added the domain to the projectand also make sure that it is pointing to the correct edge hostname.
+**Solution**: If you have added a domain, ensure that you have added the domain to the project and also make sure that it is pointing to the correct edge hostname.
 
 #### 9. Mistyped edge hostname 
 If there’s a typo in the edge hostname or if you attempt to request a site while it’s still coming up, you may encounter a 502 error like the one detailed in the example below. It will specify that there is no route known for the url you have provided.
