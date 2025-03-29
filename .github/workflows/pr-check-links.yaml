@@ -29,10 +29,10 @@ jobs:
           cd sites/${{ matrix.site }}
           npm ci
 
-      - name: Build search script
-        run: |
-          cd sites/${{ matrix.site }}
-          npm run build:search
+#      - name: Build search script
+#        run: |
+#          cd sites/${{ matrix.site }}
+#          npm run build:search
 
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2

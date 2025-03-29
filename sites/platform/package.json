@@ -53,7 +53,6 @@
     "tailwindcss": "^3.2.6"
   },
   "workspaces": [
-    "static/scripts/xss",
     "../themes/psh-docs"
   ],
   "remarkConfig": {
