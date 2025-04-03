@@ -19,6 +19,7 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 ## Supported versions
 
+- 25.3
 - 24.3
 - 23.8
 
