@@ -19,6 +19,7 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 
 ## Supported versions
 
+- 25.3
 - 24.3
 - 23.8
 
@@ -58,7 +59,7 @@ CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/ur
 CLICKHOUSE_EPOCH=0
 CLICKHOUSE_REL=clickhouse
 CLICKHOUSE_SCHEME=https/http
-CLICKHOUSE_TYPE=clickhouse:24.3
+CLICKHOUSE_TYPE=clickhouse:25.3
 CLICKHOUSE_PUBLIC=false
 ```
 
@@ -90,7 +91,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
   "epoch": 0,
   "rel": "clickhouse",
   "scheme": "https",
-  "type": "clickhouse:24.3",
+  "type": "clickhouse:25.3",
   "public": false
 }
 ```
@@ -227,7 +228,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:24
+    type: clickhouse:25
 ```
 
 <--->
@@ -253,7 +254,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:24.3
+    type: clickhouse:25.3
 ```
 
 <--->
@@ -279,7 +280,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:24.3
+    type: clickhouse:25.3
 ```
 
 If you want to change the ``clickhouse`` endpoint to ``clickhouse-http``, you need to use explicit endpoint definition as it defaults to ``clickhouse`` endpoint when using default endpoint (aka. {{% variable "SERVICE_NAME" %}} as relationship definition).
@@ -310,7 +311,7 @@ applications:
         endpoint: importer
 services:
   clickhouse:
-    type: clickhouse:24.3
+    type: clickhouse:25.3
     configuration:
       databases:
         - main
