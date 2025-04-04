@@ -90,7 +90,7 @@ set up a new service with a different name.
 - Disk size
 - The amount of memory allocated to the service container
 
-For instance, if your Valkey container has 3072 MB of disk space and 1024 MB of memory,only 512 MB of RAM are actually available to the service (3072/6 = 512).
+For instance, if your Valkey container has 3072 MB of disk space and 1024 MB of memory, only 512 MB of RAM are actually available to the service (3072/6 = 512).
 
 But if your Valkey container has 3072 MB of disk space and 256 MB of memory,only 256 MB of Valkey are actually available to the service (as per the container limit).
 
