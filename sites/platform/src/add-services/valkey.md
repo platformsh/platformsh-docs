@@ -628,7 +628,6 @@ services:
 It is possible for a user to switch from `redis-persistent` to `valkey-persistent` without losing data. To make this switch, change the type of the service from `redis-persistent` to `valkey-persistent` (also note the version change), while keeping the same service name. For example, replace this:
 
 ```json
-my_service_name:
 
 
 ## Further resources
