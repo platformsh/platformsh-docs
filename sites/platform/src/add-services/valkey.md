@@ -268,7 +268,7 @@ Ephemeral Valkey stores data only in memory and requires no disk space.
 When the service reaches its memory limit, it triggers a cache cleanup.
 To customize those cache cleanups, set up an [eviction policy](#eviction-policy).
 
-Make sure your app doesn't rely on ephemeral Vedis for persistent storage as it can cause issues. For example, if a container is moved during region maintenance,the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
+Make sure your app doesn't rely on ephemeral Valkey for persistent storage as it can cause issues. For example, if a container is moved during region maintenance,the `deploy` and `post_deploy` hooks don't run and an app that treats the cache as permanent shows errors.
 
 To prevent data from getting lost when a container is moved or shut down,
 you can use the [persistent Valkey](#persistent-valkey) configuration.
