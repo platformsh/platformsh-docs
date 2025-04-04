@@ -629,7 +629,6 @@ It is possible for a user to switch from `redis-persistent` to `valkey-persisten
 
 ```json
 my_service_name:
-  type: redis-persistent:7.2
 
 
 ## Further resources
