@@ -228,7 +228,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:25
+    type: clickhouse:25.3
 ```
 
 <--->
