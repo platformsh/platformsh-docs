@@ -5,7 +5,6 @@ module.exports = {
     "./content/**/*.{html,md}",
     "../../themes/**/layouts/**/*.html",
     "../../themes/**/content/**/*.{html,md}",
-    "./static/scripts/xss/**/*.js"
   ],
   safelist: ['-rotate-90','bg-pink-light'],
   theme: {

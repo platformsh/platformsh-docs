@@ -168,7 +168,7 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   npm install
   # Generate necessary files
   npm run dev
-  npm run build:search
+#  npm run build:search
   # Build HTML pages to check
   hugo
   # Run the check
