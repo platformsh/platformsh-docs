@@ -54,7 +54,7 @@ vendor:
 
 # Images (kept in static/)
 logo: "images/logo.svg"
-logolinksto: "https://docs.upsun.com"
+logolinksto: "/"
 logoAlt: "Upsun"
 favicon: "images/favicon.ico"
 
