@@ -4,11 +4,15 @@ sidebarTitle: "Redis"
 description: Add Redis caching to your existing Drupal site.
 weight: -70
 ---
+{{% note theme="warning" title="New versions of Redis no longer supported" %}}
 
-Redis is a fast open-source in-memory database and cache,
-useful for application-level caching.
-For more information on this service, see the [dedicated Redis page](/add-services/redis.md)
-or the [official Redis documentation](https://redis.io/docs/).
+Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore.
+
+**Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
+
+{{% /note %}}
+
+Redis is a fast open-source in-memory database and cache, useful for application-level caching. For more information on this service, see the [dedicated Redis page](/add-services/redis.md) or the [official Redis documentation](https://redis.io/docs/).
 
 Follow the instructions on this page to do one of the following:
 
