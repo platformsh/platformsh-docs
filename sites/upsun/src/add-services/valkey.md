@@ -813,13 +813,22 @@ services:
 {{< /codetabs >}}
 
 ## Migrate from Redis to Valkey
-It is possible for a user to switch from `redis-persistent` to `valkey-persistent` without losing data. To make this switch, change the name of the service and keep the same name. For example:
+It is possible for a user to switch from `redis-persistent` to `valkey-persistent` without losing data. To make this switch, change the type of the service from `redis-persistent` to `valkey-persistent` (also note the version change), while keeping the same service name. For example, replace this:
 
 ```json
 my_service_name:
   type: redis-persistent:7.2
   disk: 256
 
+```
+
+with the following:
+
+```
+json
+my_service_name:
+  type: valkey-persistent:8.0
+  disk: 256
 ```
 
 ## Further resources
