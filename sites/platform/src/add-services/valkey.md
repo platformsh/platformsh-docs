@@ -25,7 +25,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 | Grid            | Dedicated Gen 3 | Dedicated Gen 2 | 
 | --------------- | --------------- | --------------- | 
-| None available  | **Available**       | None available  |
+| **Available**  | **Available**       | **Available**  |
 
 
 ## Service types
