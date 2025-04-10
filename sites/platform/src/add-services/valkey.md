@@ -23,9 +23,12 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
+All products support the 8.0 version of Valkey. 
+
+
 | Grid            | Dedicated Gen 3 | Dedicated Gen 2 | 
 | --------------- | --------------- | --------------- | 
-| **Available**  | **Available**       | **Available**  |
+| **8.0**         | **8.0**         | **8.0**         |
 
 
 ## Service types
