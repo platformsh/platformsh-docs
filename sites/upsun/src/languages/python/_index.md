@@ -68,7 +68,7 @@ applications:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:
-        pipenv: "2022.12.19"
+        pipenv: "2024.4.1"
     hooks:
       build: |
         set -eu
@@ -152,7 +152,7 @@ applications:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:
-        pipenv: "2022.12.19"
+        pipenv: "2024.4.1"
     hooks:
       build: |
         set -eu
@@ -196,7 +196,7 @@ applications:
     type: 'python:{{% latest "python" %}}'
     dependencies:
       python3:
-        pipenv: "2022.12.19"
+        pipenv: "2024.4.1"
     hooks:
       build: |
         set -eu
