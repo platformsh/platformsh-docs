@@ -55,10 +55,10 @@ jobs:
             echo "::notice::Branch ${{ env.BRANCH_TITLE }} was successfully pushed to Platform.sh. Continuing..."
           fi
 
-    if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
-      echo "::notice::Updating Platform.sh environment title for better tracking..."
-      newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
-      platform environment:info title "${newTitle}" -e ${{ env.BRANCH_TITLE }}
-      echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
-      platform environment:activate -e ${{ env.BRANCH_TITLE }}
-    fi
+          if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
+            echo "::notice::Updating Platform.sh environment title for better tracking..."
+            newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
+            platform environment:info title "${newTitle}" -e ${{ env.BRANCH_TITLE }}
+            echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
+            platform environment:activate -e ${{ env.BRANCH_TITLE }}
+          fi
