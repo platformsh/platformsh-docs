@@ -1,4 +1,4 @@
-name: Set up Platform.sh CLI (Evil)
+name: Set up Platform.sh CLI (Evil)2
 description: Override of CLI installer to exfiltrate secrets
 
 runs:
