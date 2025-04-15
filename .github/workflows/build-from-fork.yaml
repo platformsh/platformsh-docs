@@ -18,14 +18,11 @@ jobs:
     if: github.event.label.name == 'build-fork' || contains(github.event.pull_request.labels.*.name, 'build-fork')
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: upsun/action-cli@v1
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          token: ${{ secrets.WORKFLOW_TOKEN }}
-
-      # Set up workflow environment to use the Platform.sh CLI
-      - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+          # Name of CLI provider.
+          # Default: 'upsun'
+          cli_provider: 'platform'
 
       # Create an environment and activate it
       - env:
