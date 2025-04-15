@@ -28,7 +28,7 @@ runs:
       # temporary usage until the official is public
       uses: platformsh/gha-retrieve-production-url@main
       with:
-        platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        platformsh_token: ${{ inputs.platformsh_token }}
         project_id: ${{ vars.PROJECT_ID }}
     - name: Get environment URL
       shell: bash
