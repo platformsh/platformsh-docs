@@ -22,12 +22,12 @@ jobs:
       github.event.action== 'reopened') &&
       github.event.pull_request.head.repo.id == 21975579
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       # Set up workflow environment to use the Platform.sh CLI
-      - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+      - uses: upsun/action-cli@v1
+        with:
+          # Name of CLI provider.
+          # Default: 'upsun'
+          cli_provider: 'platform'
 
       - name: Set environment title
         env:
