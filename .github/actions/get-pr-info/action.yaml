@@ -7,6 +7,9 @@ inputs:
   branch:
     description: 'Branch name we should watch for deployment'
     required: true
+  project:
+    description: 'project id'
+    required: true
 
 ####
 outputs:
@@ -28,8 +31,8 @@ runs:
       # temporary usage until the official is public
       uses: platformsh/gha-retrieve-production-url@main
       with:
-        platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-        project_id: ${{ vars.PROJECT_ID }}
+        platformsh_token: ${{ inputs.platformsh_token }}
+        project_id: ${{ inputs.project }}
     - name: Get environment URL
       shell: bash
       env:
