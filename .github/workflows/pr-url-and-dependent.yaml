@@ -44,6 +44,7 @@ jobs:
         with:
           platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
           branch: ${{ steps.branch_name.outputs.branch_name }}
+          project: ${{ vars.PROJECT_ID }}
 
       #      - uses: actions/checkout@v4
       #        with:
