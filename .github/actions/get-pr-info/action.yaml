@@ -25,9 +25,11 @@ runs:
   using: composite
   steps:
     - name: Set up Platform.sh CLI
-      env:
-        PLATFORMSH_CLI_TOKEN: ${{ inputs.platformsh_token }}
-      uses: ./.github/actions/set-up-cli
+      # temporary usage until the official is public
+      uses: platformsh/gha-retrieve-production-url@main
+      with:
+        platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        project_id: ${{ vars.PROJECT_ID }}
     - name: Get environment URL
       shell: bash
       env:
