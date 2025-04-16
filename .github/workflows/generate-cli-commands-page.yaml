@@ -32,11 +32,15 @@ jobs:
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       # Set up workflow environment to use the Upsun CLI
       - name: Set up Upsun CLI
-        uses: ./.github/actions/set-up-upsun-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       - name: Make changes to pull request
         run: |
