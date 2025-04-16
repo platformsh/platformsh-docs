@@ -23,11 +23,9 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ secrets.WORKFLOW_TOKEN }}
 
-      - uses: platformsh/gha-retrieve-production-url@main
+      - uses: upsun/action-cli@v1
         with:
-          # temporary usage until the official is public
-          platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          project_id: ${{ vars.PROJECT_ID }}
+          cli_provider: 'platform'
 
       # Create an environment and activate it
       - env:

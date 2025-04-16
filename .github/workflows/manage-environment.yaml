@@ -23,12 +23,9 @@ jobs:
       github.event.pull_request.head.repo.id == 21975579
     steps:
       # Set up workflow environment to use the Platform.sh CLI
-      - uses: platformsh/gha-retrieve-production-url@main
+      - uses: upsun/action-cli@v1
         with:
-          # temporary usage until the official is public
-          platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          project_id: ${{ vars.PROJECT_ID }}
-
+          cli_provider: 'platform'
       - name: Set environment title
         env:
           # Github does not escape PR titles before swapping the token with the value. This means that in a shell context
@@ -66,11 +63,9 @@ jobs:
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
-        uses: platformsh/gha-retrieve-production-url@main
+        uses: upsun/action-cli@v1
         with:
-          # temporary usage until the official is public
-          platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          project_id: ${{ vars.PROJECT_ID }}
+          cli_provider: 'platform'
 
       - name: Close environment
         env:
@@ -112,11 +107,9 @@ jobs:
       - name: Set up Platform.sh CLI
         # If the Git branch was deleted, skip checks for the environment
         if: steps.branch_exists.outputs.branch_exists != 'true'
-        uses: platformsh/gha-retrieve-production-url@main
+        uses: upsun/action-cli@v1
         with:
-          # temporary usage until the official is public
-          platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          project_id: ${{ vars.PROJECT_ID }}
+          cli_provider: 'platform'
 
       - name: Check if environment exists
         id: environment_exists
