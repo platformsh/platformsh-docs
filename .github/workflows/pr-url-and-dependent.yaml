@@ -1,8 +1,13 @@
 name: Get PR URL, start dependent jobs
+#on:
+#  pull_request_target:
+#    branches: [main]
+#    types: [labeled,opened,reopened,synchronize]
 on:
-  pull_request_target:
-    branches: [main]
-    types: [labeled,opened,reopened,synchronize]
+  workflow_run:
+    workflows: ["Build from fork"]
+    types:
+      - completed
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
