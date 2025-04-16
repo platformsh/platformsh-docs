@@ -29,10 +29,9 @@ runs:
   steps:
     - name: Set up Platform.sh CLI
       # temporary usage until the official is public
-      uses: platformsh/gha-retrieve-production-url@main
+      uses: upsun/action-cli@v1
       with:
-        platformsh_token: ${{ inputs.platformsh_token }}
-        project_id: ${{ inputs.project }}
+          cli_provider: 'platform'
     - name: Get environment URL
       shell: bash
       env:
