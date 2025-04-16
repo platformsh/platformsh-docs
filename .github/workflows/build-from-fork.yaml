@@ -3,7 +3,7 @@ name: Build from fork
 on:
   pull_request_target:
     branches: [main]
-    types: [labeled,unlabeled,synchronize]
+    types: [labeled,opened,reopened,synchronize]
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
@@ -27,12 +27,28 @@ jobs:
         with:
           cli_provider: 'platform'
 
+      - name: 'checks if branch already exists'
+        id: buildthebranch
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: |
+          buildbranch='true'
+          branchExists=$(platform project:curl /environments | jq --arg branch "${{ env.BRANCH_TITLE }}" -r '.[] | select(.name | contains($branch))');
+          if [ -n "${branchExists}" ]; then
+            # branch already exists
+            buildBranch='false'
+          fi
+
+          echo "buildBranch=${buildbranch}" >> $GITHUB_OUTPUT
       # Create an environment and activate it
-      - env:
+      - name: 'Build a branch from the fork'
+        if: ${{ 'true'  == steps.buildthebranch.outputs.buildBranch }}
+        env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
+          echo "::notice::Building branch from forked PR"
           # Get most recent changes
           git checkout ${{ github.event.pull_request.head.sha }}
 
@@ -70,3 +86,5 @@ jobs:
             echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
             platform environment:activate -e ${{ env.BRANCH_TITLE }}
           fi
+
+
