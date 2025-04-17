@@ -5,7 +5,7 @@ name: Get PR URL, start dependent jobs
 #    types: [labeled,opened,reopened,synchronize]
 on:
   workflow_run:
-    workflows: ["Build from fork"]
+    workflows: ["Record information on PR and (maybe) Build from fork"]
     types:
       - completed
 
@@ -13,8 +13,8 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
   UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
+
 jobs:
   get_info_on_pr:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
       headsha: ${{ steps.set_pr_head_sha.outputs.headsha }}
       basesha: ${{ steps.set_pr_base_sha.outputs.basesha }}
       prbranch: ${{ steps.set_pr_branch.outputs.branch }}
-      continuetests: ${{ steps.set_contintue_tests.outputs.continue }}
+      continuetests: ${{ steps.set_continue_tests.outputs.continue }}
       reposource: ${{ steps.set_repo_source.outputs.reposource }}
     steps:
       - name: Download info on PR
@@ -49,7 +49,7 @@ jobs:
         run: |
           BRANCH=$(cat branch.txt)
           echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
-      - id: set_contintue_tests
+      - id: set_continue_tests
         run: |
           CONTINUE=$(cat continuetests.txt)
           echo "continue=${CONTINUE}" >> $GITHUB_OUTPUT
@@ -57,7 +57,9 @@ jobs:
         run: |
           SOURCE=$(cat forkorsource.txt)
           echo "reposource=${SOURCE}" >> $GITHUB_OUTPUT
+
   get_pr_info:
+    name: "get PR URL, list of changed files"
     needs:
       - get_info_on_pr
     runs-on: ubuntu-latest
@@ -68,9 +70,9 @@ jobs:
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
       PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
       REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
-    name: Get info on build from PR
+
     # Run only for PRs from default repo and approved PRs from forks
-    if: env.CONTINUE == 'true'
+    if: needs.get_info_on_pr.outputs.continuetests == 'true'
     outputs:
       pr_url: ${{ steps.get_env_url.outputs.pr_url }}
       pr_url_upsun: ${{ steps.get_env_url.outputs.pr_url_upsun }}
@@ -219,30 +221,31 @@ jobs:
           echo "Log for the failed activity, ID ${failedID}"
           platform activity:log ${failedID} --environment ${{ env.BRANCH }}
           exit 1
+
+
   dont_run_nonlabeled_forks:
+    name: Warn about non-labeled PRs from forks
     needs:
       - get_info_on_pr
-    name: Warn about non-labeled PRs from forks
-    env:
-      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
-    if: ${{ 'false' == env.CONTINUE }}
     runs-on: ubuntu-latest
+    if: needs.get_info_on_pr.outputs.continuetests == 'false'
     steps:
       - name: Warn the environment will not be built
         run: |
           echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
 
+
   run-redirection-tests:
-    runs-on: ubuntu-latest
     name: Verify contracted redirections
     needs:
       - get_info_on_pr
       - get_pr_info
+    runs-on: ubuntu-latest
     env:
       CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
-    if: 'true' == env.CONTINUE
+    if: needs.get_info_on_pr.outputs.continuetests == 'true'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -266,7 +269,7 @@ jobs:
       REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
-    if: 'true' == env.CONTINUE
+    if: needs.get_info_on_pr.outputs.continuetests == 'true'
     strategy:
       matrix:
         include:
@@ -276,7 +279,7 @@ jobs:
             url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
-        if: 'source' == env.REPOSOURCE
+        if: env.REPOSOURCE == 'source'
         with:
           # If this is the base repo, then we want to check out the PR branch so we can potentially run new tests/changes
           # that are included in the PR.
@@ -284,7 +287,7 @@ jobs:
           ref: ${{ env.HEADSHA }}
       - uses: actions/checkout@v4
         # if it isn't the base repo and we're in a fork then we'll checkout the base repo
-        if: 'fork' == env.REPOSOURCE
+        if: env.REPOSOURCE == 'fork'
       - uses: cypress-io/github-action@v6
         with:
           wait-on: ${{ matrix.url }}
