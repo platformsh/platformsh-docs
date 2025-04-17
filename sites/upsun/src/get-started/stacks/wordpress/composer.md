@@ -240,7 +240,7 @@ If these strings aren't the same, the WordPress deployment will not succeed.
 
 Under your application configuration you can now add a cron.
 
-```
+```yaml {configFile="app"}
 applications:
   myapp:
     source:
@@ -253,8 +253,6 @@ applications:
         commands:
           start: wp cron event run --due-now
         shutdown_timeout: 600
-
-
 ```
 
 ## 8. Update your MariaDB service relationship
