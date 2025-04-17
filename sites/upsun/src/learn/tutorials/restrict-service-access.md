@@ -26,7 +26,7 @@ Edit your `{{< vendor/configfile "services" >}}` file and add the following [end
 ```yaml {configFile="services"}
 services:
   maindb:
-    type: mariadb:10.5
+    type: mariadb:{{< latest "mariadb" >}}
     configuration:
       schemas:
         - main

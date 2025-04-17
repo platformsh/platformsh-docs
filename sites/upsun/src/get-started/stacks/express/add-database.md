@@ -227,7 +227,7 @@ You can get your project's relationship information using the following command:
         is_master: true
       path: main
       password: ''
-      type: 'mariadb:10.6'
+      type: 'mariadb:{{< latest "mariadb" >}}'
       port: 3306
       host_mapped: false
       url: 'mysql://user:@mariadb.internal:3306/main'
