@@ -241,6 +241,12 @@ If these strings aren't the same, the WordPress deployment will not succeed.
 Under your application configuration you can now add a cron.
 
 ```
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
     crons:
       wp-cron:
         spec: '*/10 * * * *'
