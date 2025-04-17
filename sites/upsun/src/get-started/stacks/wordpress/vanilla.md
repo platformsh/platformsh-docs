@@ -139,7 +139,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
    - Running any due cron jobs
 
     To perform these tasks, we'll utilize  the [deploy hook](/learn/overview/build-deploy.md#deploy-steps). Locate the
-    `deploy:` section (below the `build:` section). Update the `deploy:` section as follows:
+    `deploy:` section (below the `build:` section). Update the `deploy:` and `post_deploy:` section as follows:
 
     ```yaml {configFile="app"}
     applications:
@@ -155,11 +155,31 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
             wp cache flush
             # Runs the WordPress database update procedure
             wp core update-db
+          post_deploy: |
             # Runs all due cron events
             wp cron event run --due-now
     ```
+    
+5. Add your crons
 
-5. Locate the `routes:` section, and beneath it, the `"https://{default}/":` route. Update the route as follows:
+Under your application configuration you can now add a cron.
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    crons:
+      wp-cron:
+        spec: '*/10 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+
+6. Locate the `routes:` section, and beneath it, the `"https://{default}/":` route. Update the route as follows:
 
     ```yaml {configFile="app"}
     applications:
@@ -180,7 +200,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
             - '/^wp-*/'
     ```
 
-6. Optional: Add the wp-cli tool to your application build. Locate the `dependencies:` section that is commented out,
+7. Optional: Add the wp-cli tool to your application build. Locate the `dependencies:` section that is commented out,
    and update it as follows:
 
    ```yaml {configFile="app"}
@@ -195,7 +215,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
           wp-cli/wp-cli-bundle: "^2.4"
     ```
 
-7. Add and commit your changes.
+8. Add and commit your changes.
 
    ```bash {location="Terminal"}
    git add .upsun/config.yaml
@@ -223,8 +243,8 @@ To configure the remaining environment variables WordPress needs to run smoothly
 2. Add the following at the end of the file:
 
    ```bash {location=".environment"}
-    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
-    export WP_SITEURL="${WP_HOME}wordpress"
+    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | if (.key[-1:] == "/") then (.key[0:-1]) else .key end')
+    export WP_SITEURL="${WP_HOME}/wordpress"
     export WP_DEBUG_LOG=/var/log/app.log
     if [ "$PLATFORM_ENVIRONMENT_TYPE" != "production" ] ; then
       export WP_ENV='development'
