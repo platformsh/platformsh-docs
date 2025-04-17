@@ -195,7 +195,7 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 6. Add your crons
+## 7. Add your crons
 
 Under your application configuration you can now add a cron.
 
@@ -231,7 +231,7 @@ To configure the remaining environment variables that WordPress needs to run smo
 2. Add the following at the end of the file:
 
    ```bash {location=".environment"}
-    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
+    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | if (.key[-1:] == "/") then (.key[0:-1]) else .key end')
     export WP_SITEURL="${WP_HOME}/wp"
     export WP_DEBUG_LOG=/var/log/app.log
     # Uncomment this line if you would like development versions of WordPress on non-production environments.
