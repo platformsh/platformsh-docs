@@ -89,9 +89,11 @@ Therefore, {{% vendor/name %}} recommends that you only commit your source code 
 To upload any other files to your app, [create mounts](https://docs.platform.sh/create-apps/app-reference.html#mounts)
 and [transfer your files directly to them](https://docs.platform.sh/development/file-transfer.html#transfer-a-file-to-a-mount).
 
-{{< note >}}
+{{< note theme="warning" >}}
 
-{{% vendor/name %}} does not currently support [Git Large File Storage](https://git-lfs.com/).
+{{% vendor/name %}} does not currently support [Git Large File Storage](https://git-lfs.com/). 
+
+There is a **100MB default file size limit** for direct Git pushes to {{% vendor/name %}}. Pushing files larger than the limit will result in rejecting the push, so please keep this in mind. If you'd like to request a custom limit, please [contact Support](/learn/overview/get-support).
 
 {{< /note >}}
 
