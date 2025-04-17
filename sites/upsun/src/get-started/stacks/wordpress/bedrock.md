@@ -147,8 +147,9 @@ applications:
         wp cache flush
         # Runs the WordPress database update procedure
         wp core update-db
-        # Runs all due cron events
+      post_deploy: |
         wp cron event run --due-now
+
 ```
 
 ## 5. Update App container depdencies
@@ -194,7 +195,22 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 7. Update `.environment`
+## 6. Add your crons
+
+Under your application configuration you can now add a cron.
+
+```
+    crons:
+      wp-cron:
+        spec: '*/10 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+
+
+```
+
+## 8. Update `.environment`
 
 The CLI generated a `.environment` file during the Getting started guide. Notice it has already created some environment
 variables for you to connect to your database service.
@@ -230,7 +246,7 @@ To configure the remaining environment variables that WordPress needs to run smo
     export NONCE_SALT="${PLATFORM_PROJECT_ENTROPY}NONCE_SALT"
    ```
 
-## 8. Commit, Push, and Deploy!
+## 9. Commit, Push, and Deploy!
 You can now commit all the changes made to `.upsun/config.yaml` and `.environment` and push to {{% vendor/name %}}.
 
    ```bash {location="Terminal"}
