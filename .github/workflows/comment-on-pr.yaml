@@ -21,7 +21,7 @@ jobs:
         with:
           workflow: pr-url-and-dependent.yaml
           workflow_conclusion: completed
-          name: pr-info
+          name: pr-comment-info
 
       - name: Get PR number
         id: pr_number
