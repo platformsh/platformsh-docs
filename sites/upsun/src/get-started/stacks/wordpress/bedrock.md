@@ -199,15 +199,19 @@ If these strings aren't the same, the WordPress deployment will not succeed.
 
 Under your application configuration you can now add a cron.
 
-```
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
     crons:
       wp-cron:
         spec: '*/10 * * * *'
         commands:
           start: wp cron event run --due-now
         shutdown_timeout: 600
-
-
 ```
 
 ## 8. Update `.environment`
