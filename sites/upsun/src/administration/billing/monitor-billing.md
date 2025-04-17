@@ -101,6 +101,14 @@ All items used for the calculation are displayed in the [**Overview** tab](#acce
 
 {{< /codetabs >}}
 
+{{< note theme="note" title="Monitor usage metrics">}}
+
+You can access a clear summary of your monthly usage metrics at the Project level inside [Console](https://console.upsun.com). This will help you control costs and understand usage patterns more effectively. 
+
+These metrics are updated daily and will reflect your usage throughout the billing period. 
+
+{{< /note >}}
+
 ### Next month estimate
 
 From the [**Overview** tab](#access-your-organization-billing-information), you can also access an estimate for next month.
