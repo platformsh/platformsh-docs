@@ -77,7 +77,7 @@ The currency used for payments is based on your country:
 
 Customers who have contracted a monthly commitment are eligible to **pay via invoice**. 
 
-If you're interested in making invoice payments,[contact the Sales team](https://upsun.com/contact-us/) to discuss your options.
+If you're interested in making invoice payments, [contact the Sales team](https://upsun.com/contact-us/) to discuss your options.
 
 ## What are your Fraud Protection Methods?
 

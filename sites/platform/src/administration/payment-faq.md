@@ -78,7 +78,7 @@ The currency used for payments is based on your country:
 
 Enterprise and Elite tier customers have the option to **pay via invoice**.
 
-If you're interested in making invoice payments,[contact the Sales team](https://platform.sh/contact/) to discuss your options.
+If you're interested in making invoice payments, [contact the Sales team](https://platform.sh/contact/) to discuss your options.
 
 ## What are your Fraud Protection Methods?
 
