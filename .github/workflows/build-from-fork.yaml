@@ -1,4 +1,4 @@
-name: Build from fork
+name: Record information on PR and (maybe) Build from fork
 
 on:
   pull_request_target:
@@ -98,7 +98,7 @@ jobs:
       - name: "Save PR info for downstream workflows"
         if: ${{ always }}
         run: |
-          touch pr_number.txt pr_head_sha.txt pr_base_sha.txt branch.txt continuetests.txt
+          touch pr_number.txt pr_head_sha.txt pr_base_sha.txt branch.txt continuetests.txt forkorsource.txt
           # set default
           echo "false" > continuetests.txt
           echo "${{ github.event.number }}" > pr_number.txt
@@ -124,14 +124,26 @@ jobs:
         run: |
           echo "true" > continuetests.txt
 
+      - name: "We are building from the source"
+        if: github.event.pull_request.head.repo.id == vars.REPO_ID
+        run:
+          echo "source" > forkorsource.txt
+
+      - name: "We are building from a fork"
+        if: github.event.pull_request.head.repo.id != vars.REPO_ID && contains(github.event.pull_request.labels.*.name, 'build-fork')
+        run: |
+          echo "fork" > forkorsource.txt
+
       - name: "Save PR info"
         uses: actions/upload-artifact@v4
         with:
           name: pr-info
+          # @todo is there a better way to do this?
           path: |
             pr_number.txt
             pr_head_sha.txt
             pr_base_sha.txt
             branch.txt
             continuetests.txt
+            forkorsource.txt
           retention-days: 1
