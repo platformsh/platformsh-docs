@@ -131,7 +131,7 @@ application can receive requests. Such tasks include:
 - Running any due cron jobs
 
 To perform these tasks, we'll utilize  the [deploy hook](/learn/overview/build-deploy.md#deploy-steps). Locate the
-`deploy:` section (below the `build:` section). Update the `deploy:` section as follows:
+`deploy:` section (below the `build:` section). Update the `deploy:` and `post_deploy:` section as follows:
 
 ```yaml {configFile="app"}
 applications:
