@@ -388,6 +388,41 @@ db:
   disk: 1024
 ```
 
-{{% guides/config-routes template="django4" name="Django" %}}
+## Define routes
+
+All HTTP requests sent to your app are controlled through the routing and caching you define in a `.platform/routes.yaml` file.
+
+The two most important options are the main route and its caching rules.
+A route can have a placeholder of `{default}`,
+which is replaced by your domain name in production and environment-specific names for your preview environments.
+The main route has an `upstream`, which is the name of the app container to forward requests to.
+
+You can enable [HTTP cache](/define-routes/cache.md).
+The router includes a basic HTTP cache.
+By default, HTTP caches includes all cookies in the cache key.
+So any cookies that you have bust the cache.
+The `cookies` key allows you to select which cookies should matter for the cache.
+
+You can also set up routes as [HTTP redirects](define-routes/redirects.md).
+In the following example, all requests to `www.{default}` are redirected to the equivalent URL without `www`.
+HTTP requests are automatically redirected to HTTPS.
+
+If you don't include a `.platform/routes.yaml` file, a single default route is used. This is equivalent to the following:
+
+```yaml {configFile="routes"}
+https://{default}/:
+  type: upstream
+  upstream: <APP_NAME>:http
+```
+
+Where `<APP_NAME>` is the `name` you've defined in your [app configuration](#configure-apps-in-platformappyaml).
+
+The following example presents a complete definition of a main route for a Django app:
+
+```yaml {configFile="routes"}
+"https://www.{default}/":
+  type: redirect
+  to: "https://{default}/"
+```
 
 {{< guide-buttons previous="Back" next="Customize Django" >}}
