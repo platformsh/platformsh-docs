@@ -186,7 +186,7 @@ Such tasks include:
 
 To launch these tasks during the deploy hook,
 locate the `deploy:` section (below the `build:` section).</br>
-Update the `deploy:` section as follows:
+Update the `deploy:` and `post_deploy:` section as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -202,6 +202,7 @@ applications:
         wp cache flush
         # Runs the WordPress database update procedure
         wp core update-db
+      post_deploy: |
         # Runs all due cron events
         wp cron event run --due-now
 ```
@@ -235,7 +236,22 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 7. Update your MariaDB service relationship
+## 7. Add your crons
+
+Under your application configuration you can now add a cron.
+
+```
+    crons:
+      wp-cron:
+        spec: '*/10 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+
+
+```
+
+## 8. Update your MariaDB service relationship
 
 You need to update the name used to represent the [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) between your app and your MariaDB service.
 To do so, locate the `relationships:` top-level property.
