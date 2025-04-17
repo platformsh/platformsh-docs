@@ -109,7 +109,7 @@ jobs:
       - name: Get changed files
         if: steps.get_env_url.outputs.env_status == 'success'
         id: changed-files
-        uses: tj-actions/changed-files@v41
+        uses: tj-actions/changed-files@v46
         with:
           sha: ${{ env.HEADSHA }}
           base_sha: ${{ env.BASESHA }}
