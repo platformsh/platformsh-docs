@@ -57,6 +57,12 @@ Accepted direct debit payment types vary by region:
 
 You can update your billing details in the **Billing** tab of your account.
 
+{{< note theme="info" >}}
+
+Please note that only an organization owner or an organization user with the Manage billing permission can edit billing information. Visit the [Organizations page](/administration/organizations) for more information.
+
+{{< /note >}}
+
 ## What currency can I pay in?
 
 The currency used for payments is based on your country:
@@ -69,7 +75,9 @@ The currency used for payments is based on your country:
 
 ## Can I pay by invoice?
 
-Enterprise and Elite tier customers have the option to **pay via invoice**.
+Customers who have contracted a monthly commitment are eligible to **pay via invoice**. 
+
+If you're interested in making invoice payments,[contact the Sales team](https://upsun.com/contact-us/) to discuss your options.
 
 ## What are your Fraud Protection Methods?
 
