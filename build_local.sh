@@ -34,7 +34,7 @@ clean_dir resources
 cp ../../themes/psh-docs/postcss.config.js .
 npm install
 npm run build
-npm run build:search
+# npm run build:search
 hugo
 
 clear
