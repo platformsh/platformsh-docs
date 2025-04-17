@@ -93,7 +93,7 @@ and [transfer your files directly to them](https://docs.platform.sh/development/
 
 {{% vendor/name %}} does not currently support [Git Large File Storage](https://git-lfs.com/). 
 
-There is a **100MB default file size limit** for direct Git pushes to {{% vendor/name %}}, so please do not upload files larger than this. If you'd like to request a custom limit, please [contact Support](/learn/overview/get-support).
+There is a **100MB default file size limit** for direct Git pushes to {{% vendor/name %}}. Pushing files larger than the limit will result in rejecting the push, so please keep this in mind. If you'd like to request a custom limit, please [contact Support](/learn/overview/get-support).
 
 {{< /note >}}
 
