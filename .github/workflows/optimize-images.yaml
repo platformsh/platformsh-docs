@@ -27,7 +27,7 @@ jobs:
 
       - name: Find changed image files
         id: changed-files
-        uses: tj-actions/changed-files@v41
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             sites/**/*.png
