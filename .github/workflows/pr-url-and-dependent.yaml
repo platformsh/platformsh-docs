@@ -326,8 +326,8 @@ jobs:
                 title: 'Report E2E tests status',
                 summary: 'Results: ${{ needs.run-e2e-test.result }}'
               },
-              owner: ${{ github.repository_owner }},
-              repo: ${{ github.repository }}
+              owner: '${{ github.repository_owner }}',
+              repo: '${{ github.repository }}'
             })
 
       - name: Report Redirection checks
@@ -344,6 +344,6 @@ jobs:
                title: 'Verify contracted redirections',
                summary: 'Results: ${{ needs.run-redirection-tests.result }}'
              },
-              owner: ${{ github.repository_owner }},
-              repo: ${{ github.repository }}
+              owner: '${{ github.repository_owner }}',
+              repo: '${{ github.repository }}'
            })
