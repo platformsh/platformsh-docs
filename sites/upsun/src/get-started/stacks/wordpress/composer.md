@@ -21,7 +21,7 @@ you still need to add some required files and make a few changes to your {{% ven
 
 {{< note theme="info" title="Assumptions" >}}
 
-There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
+There are many ways you can set up a WordPress site or {{% vendor/name %}} project. So. MANY.
 The instructions on this page were designed based on the following assumptions:
 
 - You are building a composer-based WordPress site using John P Bloch's [WordPress Composer Fork](https://github.com/johnpbloch/wordpress).
