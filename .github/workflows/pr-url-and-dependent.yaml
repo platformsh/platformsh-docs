@@ -317,7 +317,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.checks.create({
+            github.rest.checks.create({
               name: 'Report E2E tests status',
               head_sha: '${{ env.HEADSHA }}',
               status: 'completed',
@@ -326,8 +326,8 @@ jobs:
                 title: 'Report E2E tests status',
                 summary: 'Results: ${{ needs.run-e2e-test.result }}'
               },
-              owner: github.repository_owner,
-              repo: github.repository
+              owner: ${{ github.repository_owner }},
+              repo: ${{ github.repository }}
             })
 
       - name: Report Redirection checks
@@ -335,7 +335,7 @@ jobs:
         with:
          github-token: ${{ secrets.GITHUB_TOKEN }}
          script: |
-           github.checks.create({
+           github.rest.checks.create({
              name: 'Verify contracted redirections',
              head_sha: '${{ env.HEADSHA }}',
              status: 'completed',
@@ -344,6 +344,6 @@ jobs:
                title: 'Verify contracted redirections',
                summary: 'Results: ${{ needs.run-redirection-tests.result }}'
              },
-             owner: github.repository_owner,
-             repo: github.repository
+              owner: ${{ github.repository_owner }},
+              repo: ${{ github.repository }}
            })
