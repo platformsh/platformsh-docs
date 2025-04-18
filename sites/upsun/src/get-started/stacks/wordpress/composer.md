@@ -20,7 +20,7 @@ you still need to add some required files and make a few changes to your {{% ven
 {{% guides/requirements name="WordPress" %}}
 
 {{< note theme="info" title="Assumptions" >}}
-
+boooooooyah!
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
 
