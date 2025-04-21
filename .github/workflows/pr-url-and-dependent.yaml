@@ -14,6 +14,7 @@ env:
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
   UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
+  PRURLJOBNAME: 'Get PR URL'
 
 jobs:
   get_info_on_pr:
@@ -58,8 +59,8 @@ jobs:
           SOURCE=$(cat forkorsource.txt)
           echo "reposource=${SOURCE}" >> $GITHUB_OUTPUT
 
-  get_pr_info:
-    name: "get PR URL, list of changed files"
+  get_pr_url:
+    name: "Get PR URL"
     needs:
       - get_info_on_pr
     runs-on: ubuntu-latest
@@ -76,6 +77,7 @@ jobs:
     outputs:
       pr_url: ${{ steps.get_env_url.outputs.pr_url }}
       pr_url_upsun: ${{ steps.get_env_url.outputs.pr_url_upsun }}
+      pr_url_status: ${{ steps.get_env_url.outputs.env_status }}
 
     steps:
       # at this point we want to checkout the repository but at the latest commit of the default branch
@@ -91,37 +93,112 @@ jobs:
           branch: ${{ env.BRANCH }}
           project: ${{ vars.PROJECT_ID }}
 
-      #      - uses: actions/checkout@v4
-      #        with:
-      #          fetch-depth: 0
-      #          ref: ${{ github.event.pull_request.head.sha }}
+  dont_run_nonlabeled_forks:
+    name: Warn about non-labeled PRs from forks
+    needs:
+      - get_info_on_pr
+    runs-on: ubuntu-latest
+    if: needs.get_info_on_pr.outputs.continuetests == 'false'
+    steps:
+      - name: Warn the environment will not be built
+        run: |
+          echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/report-status
+        with:
+          job_name: '${{ env.PRURLJOBNAME }}'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: 'Pull Requests from forks will not have an environment built until they are given the appropriate label.'
 
+  report_pr_url_status:
+    name: 'report PR URL status'
+    needs:
+      - get_info_on_pr
+      - get_pr_url
+    runs-on: ubuntu-latest
+
+    env:
+      BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
+      PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
+    steps:
+      - name: 'Set status message'
+        id: set-status-message
+        run: |
+          if [ 'success' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
+            status_message="PR environment successfully deployed."
+            status_state="{{ needs.get_pr_url.outputs.pr_url_status }}"
+          else
+            status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+            # the status reported by our action most likely wont align with what the gh api is expecting, so if the
+            # status reported by our action isn't `success` we'll manually set it to `failure`
+            status_state="failure"
+          fi
+
+          echo "status_message=${status_message}" >> $GITHUB_OUTPUT
+          echo "status_state=${status_state}" >> $GITHUB_OUTPUT
+
+      - name: 'Warn and provide log'
+        if: needs.get_pr_url.outputs.pr_url_status != 'success'
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: |
+          echo "::error::The environment for pull request ${{ env.PRNUM }} failed to deploy. Please rerun this workflow."
+          echo "::warning::Check the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+          echo "The last status we received was ${{ needs.get_pr_url.outputs.pr_url_status }}"
+          echo "List of activities that we ask for, but not limited to the last one:"
+          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ env.BRANCH }}
+          echo "Now a list of the (up to) last 20 activities for branch ${{ env.BRANCH }}:"
+          platform activities --environment ${{ env.BRANCH }} --limit 20
+          # Get the ID of failed activity and output its log:
+          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ env.BRANCH }} --result=failure)
+          echo "Log for the failed activity, ID ${failedID}"
+          platform activity:log ${failedID} --environment ${{ env.BRANCH }}
+
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/report-status
+        with:
+          job_name: '${{ env.PRURLJOBNAME }}'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: '${{ steps.set-status-message.outputs.status_message }}'
+          state: '${{ steps.set-status-message.outputs.status_state }}'
+
+  report_changed_files:
+    name: Collect a list of changed files
+    needs:
+      - get_info_on_pr
+      - get_pr_url
+    runs-on: ubuntu-latest
+    if: needs.get_pr_url.outputs.pr_url_status == 'success'
+    env:
+      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
+      BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
+      BASESHA: ${{ needs.get_info_on_pr.outputs.basesha }}
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
+      PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
+      REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
+      ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
+      UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
+    steps:
       - name: Make artifact files
         run: |
           # these are used in comment-on-pr
           touch pr_number.txt pr_comment.txt
           echo "${{ env.PRNUM }}" > pr_number.txt
-
-      # If no environment URL, create a report of that
-      - name: Create failure report
-        if: steps.get_env_url.outputs.env_status == 'failure'
-        run: |
-          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}" > pr_comment.txt
-
       - name: Get changed files
-        if: steps.get_env_url.outputs.env_status == 'success'
         id: changed-files
         uses: tj-actions/changed-files@v41
         with:
           sha: ${{ env.HEADSHA }}
           base_sha: ${{ env.BASESHA }}
-
       # Create a list of relevant changed pages
       - name: Get list of changed files
-        if: steps.get_env_url.outputs.env_status == 'success'
         id: get-files
-        env:
-          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
         run: |
           files_platform=()
           files_upsun=()
@@ -152,9 +229,6 @@ jobs:
 
               # Shift index pages up a level
               page=${page/"/_index.html"/".html"}
-
-              # Adjust URL for Upsun docs.
-              UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
 
               files_upsun+=("$UPSUN_ENV_URL$page")
             fi
@@ -191,11 +265,11 @@ jobs:
       # If there are no changed pages, create a comment
       # with a link to general URL
       - name: Comment without links
-        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == '' && steps.get_env_url.outputs.env_status == 'success'
+        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == ''
         env:
-          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
+          ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
+          UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
         run: |
-          UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
           echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
 
       - uses: actions/upload-artifact@v4
@@ -206,42 +280,11 @@ jobs:
             pr_number.txt
           retention-days: 1
 
-      # If environment failed to create, fail the workflow
-      - name: Fail workflow
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-        if: steps.get_env_url.outputs.env_status != 'success'
-        run: |
-          echo "::error::The environment for pull request ${{ env.PRNUM }} failed to deploy. Please rerun this workflow."
-          echo "The last status we received was ${{ steps.get_env_url.outputs.env_status }}"
-          echo "List of activities that we ask for, but not limited to the last one:"
-          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ env.BRANCH }}
-          echo "Now a list of the (up to) last 20 activities for branch ${{ env.BRANCH }}:"
-          platform activities --environment ${{ env.BRANCH }} --limit 20
-          # Get the ID of failed activity and output its log:
-          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ env.BRANCH }} --result=failure)
-          echo "Log for the failed activity, ID ${failedID}"
-          platform activity:log ${failedID} --environment ${{ env.BRANCH }}
-          exit 1
-
-
-  dont_run_nonlabeled_forks:
-    name: Warn about non-labeled PRs from forks
-    needs:
-      - get_info_on_pr
-    runs-on: ubuntu-latest
-    if: needs.get_info_on_pr.outputs.continuetests == 'false'
-    steps:
-      - name: Warn the environment will not be built
-        run: |
-          echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
-
-
   run-redirection-tests:
     name: Verify contracted redirections
     needs:
       - get_info_on_pr
-      - get_pr_info
+      - get_pr_url
     runs-on: ubuntu-latest
     env:
       CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
@@ -256,16 +299,42 @@ jobs:
           # switch to using a redirection service. Actions DO NOT have access to secrets.
           fetch-depth: 0
           ref: ${{ env.HEADSHA }}
-      - uses: ./.github/actions/redirection-verification
+      - id: redirection-tests
+        uses: ./.github/actions/redirection-verification
         with:
-          environment-url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
+          environment-url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
+        continue-on-error: true
+
+      - id: set-message-status
+        if: always()
+        run: |
+          if [ 'success' = '${{ steps.redirection-tests.outcome }}' ]; then
+            state="success"
+            message="Redirection verifications passed."
+          else
+            state="failure"
+            message="Redirection verifications failed. Please see run summary."
+          fi
+
+          echo "message=${message}" >> $GITHUB_OUTPUT
+          echo "state=${state}" >> $GITHUB_OUTPUT
+      - uses: ./.github/actions/report-status
+        if: always()
+        with:
+          job_name: 'Verify contracted redirections'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: '${{ steps.set-message-status.outputs.message }}'
+          state: '${{ steps.set-message-status.outputs.state }}'
 
   run-e2e-test:
     runs-on: ubuntu-latest
     name: E2E tests
     needs:
       - get_info_on_pr
-      - get_pr_info
+      - get_pr_url
     env:
       CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
       REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
@@ -306,44 +375,30 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - run-e2e-test
-      - run-redirection-tests
       - get_info_on_pr
+      - get_pr_url
     env:
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     if: ${{ always() }}
     steps:
-      - name: Report matrix status
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.checks.create({
-              name: 'Report E2E tests status',
-              head_sha: '${{ env.HEADSHA }}',
-              status: 'completed',
-              conclusion: '${{ needs.run-e2e-test.result }}',
-              output: {
-                title: 'Report E2E tests status',
-                summary: 'Results: ${{ needs.run-e2e-test.result }}'
-              },
-              owner: '${{ github.repository_owner }}',
-              repo: '${{ github.repository }}'
-            })
+      - name: 'Set status and messages'
+        id: set-status-and-messages
+        run: |
+          if [ 'success' = '${{ needs.run-e2e-test.result }}' ]; then
+            message="All E2E tests passed."
+          else
+            message="One or more E2E tests failed. See run summary."
+          fi
 
-      - name: Report Redirection checks
-        uses: actions/github-script@v7
+          echo "message=${message}" >> $GITHUB_OUTPUT
+      - name: Report matrix status
+        uses: ./.github/actions/report-status
+        if: always()
         with:
-         github-token: ${{ secrets.GITHUB_TOKEN }}
-         script: |
-           github.rest.checks.create({
-             name: 'Verify contracted redirections',
-             head_sha: '${{ env.HEADSHA }}',
-             status: 'completed',
-             conclusion: '${{ needs.run-redirection-tests.result }}',
-             output: {
-               title: 'Verify contracted redirections',
-               summary: 'Results: ${{ needs.run-redirection-tests.result }}'
-             },
-              owner: '${{ github.repository_owner }}',
-              repo: '${{ github.repository }}'
-           })
+          job_name: 'Report all E2E tests status'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: '${{ steps.set-status-and-messages.outputs.message }}'
+          state: '${{ needs.run-e2e-test.result }}'
