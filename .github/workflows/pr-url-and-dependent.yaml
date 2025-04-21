@@ -381,6 +381,7 @@ jobs:
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     if: ${{ always() }}
     steps:
+      - uses: actions/checkout@v4
       - name: 'Set status and messages'
         id: set-status-and-messages
         run: |
