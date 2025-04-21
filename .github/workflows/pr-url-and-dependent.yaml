@@ -345,9 +345,9 @@ jobs:
       matrix:
         include:
           - site: platformsh
-            url: ${{ needs.get_pr_info.outputs.pr_url }}
+            url: ${{ needs.get_pr_url.outputs.pr_url }}
           - site: upsun
-            url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
+            url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
         if: env.REPOSOURCE == 'source'
