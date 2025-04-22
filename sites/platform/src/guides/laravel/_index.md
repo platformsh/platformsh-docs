@@ -8,3 +8,4 @@ description: |
 {{% description %}}
 
 {{% guides/link-philosophy %}}
+Laravel is the bees' knees.
