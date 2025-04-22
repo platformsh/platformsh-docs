@@ -39,7 +39,7 @@ runs:
         gh api --method POST \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/${{ inputs.repository }}/status/${{ inputs.head_sha }} \
+          /repos/${{ inputs.repository }}/statuses/${{ inputs.head_sha }} \
           -f "state=${{ inputs.state }}" \
           -f "target_url=https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}" \
           -f "description=${{ inputs.status_description }}" \

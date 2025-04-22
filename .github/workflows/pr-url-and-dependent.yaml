@@ -129,7 +129,7 @@ jobs:
         run: |
           if [ 'success' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
             status_message="PR environment successfully deployed."
-            status_state="{{ needs.get_pr_url.outputs.pr_url_status }}"
+            status_state="${{ needs.get_pr_url.outputs.pr_url_status }}"
           else
             status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
             # the status reported by our action most likely wont align with what the gh api is expecting, so if the
@@ -176,15 +176,16 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.get_pr_url.outputs.pr_url_status == 'success'
     env:
-      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
       BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
       BASESHA: ${{ needs.get_info_on_pr.outputs.basesha }}
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
       PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
-      REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
       ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
       UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Make artifact files
         run: |
           # these are used in comment-on-pr
@@ -385,6 +386,7 @@ jobs:
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     if: ${{ always() }}
     steps:
+      - uses: actions/checkout@v4
       - name: 'Set status and messages'
         id: set-status-and-messages
         run: |
