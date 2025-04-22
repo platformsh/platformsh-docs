@@ -370,7 +370,7 @@ https://docs.upsun.com/:
       "/anchors/resources/flexible.html": { "to": "/manage-resources/adjust-resources.html", "code": 301, "prefix": false }
       "/anchors/environments/cancel-activity.html": { "to": "/environments/cancel-activity.html", "code": 301, "prefix": false }
       "/anchors/admin/servers.html": { "to": "/administration/servers.html", "code": 301, "prefix": false }
-
+      "/anchors/laravel/foo.html": { "to": "/a/path/to/nowhere/servers.html", "code": 301, "prefix": false }
 
       # Redirects for moved Upsun GS guides
       "/get-started/express/": { "to": "/get-started/stacks/express.html", "code": 301, "prefix": true, "append_suffix": false }
