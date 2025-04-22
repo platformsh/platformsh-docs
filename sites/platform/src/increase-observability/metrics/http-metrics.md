@@ -15,7 +15,7 @@ It should be noted that the data being fed to the HTTP metrics dashboard **does 
 
 ## Grid support
 
-HTTP Metrics is **only supported on Grid environments.** There is no support for Dedicated environments.
+HTTP Metrics is only supported on Grid environments. **There is no support for Dedicated environments.**
 
 ## Accessing the dashboard
 
