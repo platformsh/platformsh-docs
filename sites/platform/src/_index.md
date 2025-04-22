@@ -7,7 +7,7 @@ editPage: false
 {{< home >}}
 
 ## How the docs are organized
-
+Lovingly
 There are different [kinds](https://documentation.divio.com/) of documentation.
 Some docs are useful when you're just starting out, while others go into detail
 that's relevant only after you've deployed many projects on {{% vendor/name
