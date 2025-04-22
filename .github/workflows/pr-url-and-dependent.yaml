@@ -318,6 +318,10 @@ jobs:
 
           echo "message=${message}" >> $GITHUB_OUTPUT
           echo "state=${state}" >> $GITHUB_OUTPUT
+      - name: 'Checkout base'
+        if: always()
+        run:
+          git checkout ${{ github.event.repository.default_branch }}
       - uses: ./.github/actions/report-status
         if: always()
         with:
@@ -352,8 +356,8 @@ jobs:
       - uses: actions/checkout@v4
         if: env.REPOSOURCE == 'source'
         with:
-          # If this is the base repo, then we want to check out the PR branch so we can potentially run new tests/changes
-          # that are included in the PR.
+          # If this is the base repo, then we want to check out the PR branch so we can potentially run new E2E
+          # tests/changes that are included in the PR.
           fetch-depth: 0
           ref: ${{ env.HEADSHA }}
       - uses: actions/checkout@v4
