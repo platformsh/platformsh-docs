@@ -34,6 +34,7 @@ jobs:
           workflow: build-from-fork.yaml
           workflow_conclusion: completed
           name: pr-info
+          run_id: ${{ github.event.workflow_run.id }}
       - id: set_pr_number
         run: |
           PR_NUM=$(cat pr_number.txt)
