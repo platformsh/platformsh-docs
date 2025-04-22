@@ -5,7 +5,7 @@ name: Get PR URL, start dependent jobs
 #    types: [labeled,opened,reopened,synchronize]
 on:
   workflow_run:
-    workflows: ["Record information on PR and (maybe) Build from fork"]
+    workflows: [Record information on PR and (maybe) Build from fork]
     types:
       - completed
 
