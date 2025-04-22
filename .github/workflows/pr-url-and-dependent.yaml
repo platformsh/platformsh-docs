@@ -321,7 +321,7 @@ jobs:
       - name: "Determine status and message"
         id: determine-status-message
         run: |
-          if [ 'success' = ${{ needs.run-redirection-tests.results }} ]; then
+          if [ 'success' = ${{ needs.run-redirection-tests.result }} ]; then
             state="success"
             message="Redirection verifications passed."
           else
