@@ -15,6 +15,8 @@ They provide all of the core concepts and common commands you need to know befor
 
 {{< /note >}}
 
+Laravel is the bees' knees.
+
 {{< get-started/steps >}}
 
 ## Further resources
