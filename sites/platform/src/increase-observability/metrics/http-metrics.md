@@ -9,7 +9,7 @@ applications.
 
 {{< note theme="info" title="No CDN data">}}
 
-It should be noted that the data being fed to the HTTP metrics dashboard is at the Origin only and does not include CDN.
+It should be noted that the data being fed to the HTTP metrics dashboard **does not include CDN**.
 
 {{< /note >}}
 
