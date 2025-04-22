@@ -176,15 +176,16 @@ jobs:
     runs-on: ubuntu-latest
     if: needs.get_pr_url.outputs.pr_url_status == 'success'
     env:
-      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
       BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
       BASESHA: ${{ needs.get_info_on_pr.outputs.basesha }}
       HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
       PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
-      REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
       ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
       UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Make artifact files
         run: |
           # these are used in comment-on-pr
