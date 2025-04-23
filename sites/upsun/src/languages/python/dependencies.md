@@ -183,22 +183,22 @@ applications:
     # The location of the application's code.
     source:
       root: "myapp"
-      type: 'python:{{% latest "python" %}}'
-      dependencies:
-        python3:
-          poetry: '*'
-      variables:
-        env:
-          POETRY_VIRTUALENVS_IN_PROJECT: true
-          POETRY_VIRTUALENVS_CREATE: true
-      hooks:
-        build: |
-          # Fail the build if any errors occur
-          set -eu
-          # Download the latest version of pip
-          python{{% latest "python" %}} -m pip install --upgrade pip
-          # Install dependencies
-          poetry install
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        poetry: '*'
+    variables:
+      env:
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+        POETRY_VIRTUALENVS_CREATE: true
+    hooks:
+      build: |
+        # Fail the build if any errors occur
+        set -eu
+        # Download the latest version of pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
+        # Install dependencies
+        poetry install
 ```
 <--->
 +++
