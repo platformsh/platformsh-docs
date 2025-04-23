@@ -141,6 +141,21 @@ hooks:
 ```
 {{< /codetabs >}}
 
+## UV
+
+[uv](https://docs.astral.sh/uv/) is an extremely fast Python package and project
+manager, written in Rust.
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        uv: "*"
+```
+
 ## Poetry
 
 [Poetry](https://python-poetry.org/docs/) is a tool for dependency management and packaging in Python.
