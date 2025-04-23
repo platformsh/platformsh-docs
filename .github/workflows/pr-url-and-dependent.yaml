@@ -329,9 +329,12 @@ jobs:
             # if it isn't `success` then no matter what it was it's a failure
             state="failure"
             message="Redirection verifications failed. Please see run summary."
-            # @todo do we really need a second error annotation here?
-            echo "::error::Redirection verification failed. Please see run log."
+            if [ 'skipped' = ${{ needs.run-redirection-tests.result }} ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
+              message="Redirection tests can not run on forks until approved."
+            fi
           fi
+
+          echo "::warning::${message}"
 
           echo "message=${message}" >> $GITHUB_OUTPUT
           echo "state=${state}" >> $GITHUB_OUTPUT
@@ -405,11 +408,18 @@ jobs:
         run: |
           if [ 'success' = '${{ needs.run-e2e-test.result }}' ]; then
             message="All E2E tests passed."
+            state="success"
           else
+            state="failure"
             message="One or more E2E tests failed. See run summary."
+            if [ 'skipped' = '${{ needs.run-e2e-test.result }}' ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
+              message="E2E tests can not be run on forks until approved."
+            fi
           fi
 
+          echo "::warning::${message}"
           echo "message=${message}" >> $GITHUB_OUTPUT
+          echo "state=${state}" >> $GITHUB_OUTPUT
       - name: Report matrix status
         uses: ./.github/actions/report-status
         if: always()
@@ -420,5 +430,5 @@ jobs:
           run_id: '${{ github.run_id }}'
           head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
           status_description: '${{ steps.set-status-and-messages.outputs.message }}'
-          state: '${{ needs.run-e2e-test.result }}'
+          state: '${{ steps.set-status-and-messages.outputs.state }}'
 
