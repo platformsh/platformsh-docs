@@ -1,9 +1,0 @@
-name: Set up Platform.sh CLI
-description: Installs the Platform.sh CLI.
-
-runs:
-  using: "composite"
-  steps:
-    - name: Install CLI
-      run: curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
-      shell: bash

@@ -22,13 +22,10 @@ jobs:
       github.event.action== 'reopened') &&
       github.event.pull_request.head.repo.id == 21975579
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       # Set up workflow environment to use the Platform.sh CLI
-      - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
-
+      - uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
       - name: Set environment title
         env:
           # Github does not escape PR titles before swapping the token with the value. This means that in a shell context
@@ -47,6 +44,8 @@ jobs:
             platform environment:info -e ${{ github.event.pull_request.head.ref }} title "${newTitle}"
           fi
       - name: Activate environment
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: platform environment:activate --no-wait ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
@@ -64,7 +63,9 @@ jobs:
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       - name: Close environment
         env:
@@ -106,7 +107,9 @@ jobs:
       - name: Set up Platform.sh CLI
         # If the Git branch was deleted, skip checks for the environment
         if: steps.branch_exists.outputs.branch_exists != 'true'
-        uses: ./.github/actions/set-up-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       - name: Check if environment exists
         id: environment_exists
