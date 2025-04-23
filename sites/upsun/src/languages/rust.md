@@ -7,8 +7,6 @@ banner:
         To share your feedback so we can improve it, add a comment to the [Rust feature card](https://next.platform.sh/c/221-rust).
 ---
 
-{{% composable/disclaimer %}}
-
 {{% vendor/name %}} supports building and deploying applications written in Rust.
 
 ## Supported versions

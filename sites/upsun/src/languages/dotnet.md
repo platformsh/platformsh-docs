@@ -4,8 +4,6 @@ description: |
   {{% vendor/name %}} supports deploying .NET applications by allowing developers to define a build process and pass its variables to the .NET Core build environment.
 ---
 
-{{% composable/disclaimer %}}
-
 {{% description %}}
 
 ## Supported versions

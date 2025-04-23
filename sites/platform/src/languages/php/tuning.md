@@ -3,8 +3,6 @@ title: "Performance tuning"
 weight: 3
 ---
 
-{{% composable/disclaimer %}}
-
 Once your app is up and running it still needs to be kept fast.
 {{% vendor/name %}} offers a wide degree of flexibility in how PHP behaves,
 but that does mean you may need to take a few steps to ensure your site is running optimally.

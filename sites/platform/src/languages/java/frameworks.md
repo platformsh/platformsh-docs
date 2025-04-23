@@ -4,8 +4,6 @@ weight: 1
 sidebarTitle: "Frameworks"
 ---
 
-{{% composable/disclaimer %}}
-
 ## Hibernate
 
 [Hibernate ORM](https://hibernate.org/) is an object-relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database. Hibernate handles object-relational impedance mismatch problems by replacing direct, persistent database accesses with high-level object handling functions.

@@ -4,8 +4,6 @@ weight: 2
 sidebarTitle: "Moving to {{% vendor/name %}}"
 ---
 
-{{% composable/disclaimer %}}
-
 It is common to have a Java application that you want to migrate to {{% vendor/name %}}.
 {{% vendor/name %}} supports several styles of Java application, such as monolith, microservices, stateful, and stateless.
 

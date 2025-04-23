@@ -4,8 +4,6 @@ weight: 2
 sidebarTitle: "Tuning"
 ---
 
-{{% composable/disclaimer %}}
-
 There are a number of settings that can be adjusted for each application to optimize its performance on {{% vendor/name %}}.
 
 ## Memory limits

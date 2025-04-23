@@ -4,8 +4,6 @@ sidebarTitle: Custom Redis
 weight: 7
 ---
 
-{{% composable/disclaimer %}}
-
 [Redis](../../add-services/redis.md) is a popular structured key-value service, supported by {{% vendor/name %}}.
 It's frequently used for caching.
 

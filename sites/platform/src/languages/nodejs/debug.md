@@ -3,8 +3,6 @@ title: "Debugging"
 weight: 1
 ---
 
-{{% composable/disclaimer %}}
-
 Effectively debugging web apps takes effort,
 especially when an HTTP request goes through multiple layers before reaching your web app.
 Follow the steps below to debug a specific app.

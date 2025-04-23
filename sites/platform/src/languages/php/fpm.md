@@ -4,8 +4,6 @@ description: "Learn how to adjust the maximum number of PHP-FPM workers for your
 weight: 5
 ---
 
-{{% composable/disclaimer %}}
-
 PHP-FPM helps improve your app's performance
 by maintaining pools of workers that can process PHP requests.
 This is particularly useful when your app needs to handle a high number of simultaneous requests.

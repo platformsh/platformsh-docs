@@ -4,8 +4,6 @@ weight: 1
 description: See what PHP extensions are available with each PHP version on {{% vendor/name %}}.
 ---
 
-{{% composable/disclaimer %}}
-
 PHP has a number of [extensions](https://pecl.php.net/) developed by members of the community.
 Some of them are available for {{% vendor/name %}} containers.
 

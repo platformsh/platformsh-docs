@@ -5,8 +5,6 @@ sidebarTitle: Manage dependencies
 description: See how to manage Python dependencies with different package managers.
 ---
 
-{{% composable/disclaimer %}}
-
 You can manage Python packages in different ways.
 Python images come with pip installed,
 but they're flexible enough so you can choose what package manager you want.

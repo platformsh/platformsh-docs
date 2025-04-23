@@ -4,8 +4,6 @@ sidebarTitle: Troubleshoot
 description: Learn how to troubleshoot common issues in PHP.
 ---
 
-{{% composable/disclaimer %}}
-
 For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
 ## Server reached `max_children`

@@ -5,8 +5,6 @@ weight: 0
 description: See how to manage different Python versions in your {{% vendor/name %}} containers.
 ---
 
-{{% composable/disclaimer %}}
-
 You may need to use a specific version of Python that isn't available in an app container for a different language.
 For example, a container might have a long-term support version, while you want the latest version.
 
