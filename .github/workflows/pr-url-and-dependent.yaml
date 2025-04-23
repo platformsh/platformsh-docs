@@ -170,7 +170,7 @@ jobs:
           state: '${{ steps.set-status-message.outputs.status_state }}'
 
   report_changed_files:
-    name: Collect a list of changed files
+    name: Collects a list of changed files, reports their URL as a comment
     needs:
       - get_info_on_pr
       - get_pr_url
@@ -187,11 +187,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Make artifact files
+      - name: Make pr_comment.txt file
         run: |
-          # these are used in comment-on-pr
-          touch pr_number.txt pr_comment.txt
-          echo "${{ env.PRNUM }}" > pr_number.txt
+          # we need this for the later action
+          touch pr_comment.txt
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v41
@@ -274,13 +273,11 @@ jobs:
         run: |
           echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
 
-      - uses: actions/upload-artifact@v4
+      - name: Post PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          name: pr-comment-info
-          path: |
-            pr_comment.txt
-            pr_number.txt
-          retention-days: 1
+          number: ${{ env.PRNUM }}
+          path: pr_comment.txt
 
   run-redirection-tests:
     name: Verify contracted redirections
