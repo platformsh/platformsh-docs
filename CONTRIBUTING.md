@@ -175,8 +175,10 @@ To ensure the docs work smoothly, a few checks run on each pull request:
   ./bin/htmltest
   ```
 
-- Custom workflows [check all changed files](./.github/workflows/pr-url-and-dependent.yaml) within `docs/src`
-  and [comment with links](./.github/workflows/comment-on-pr.yaml) to the deployed pages for review.
+- Custom workflows check all changed files within `docs/src`
+  and comment with links to the deployed pages for review.
+- Checks redirection links that start with `/anchor`
+- Runs a series of end-to-end tests to ensure search is working properly
 
 Outside of pull requests, twice a week [Muffet](https://github.com/raviqqe/muffet)
 checks if all links on the site are valid.
