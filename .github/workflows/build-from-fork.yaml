@@ -1,9 +1,9 @@
-name: Build from fork
+name: Record information on PR and (maybe) Build from fork
 
 on:
   pull_request_target:
     branches: [main]
-    types: [labeled,unlabeled,synchronize]
+    types: [labeled,opened,reopened,synchronize]
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
@@ -23,16 +23,32 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           token: ${{ secrets.WORKFLOW_TOKEN }}
 
-      # Set up workflow environment to use the Platform.sh CLI
-      - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+      - uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
+      - name: 'checks if branch already exists'
+        id: buildthebranch
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: |
+          buildbranch='true'
+          branchExists=$(platform project:curl /environments | jq --arg branch "${{ env.BRANCH_TITLE }}" -r '.[] | select(.name | contains($branch))');
+          if [ -n "${branchExists}" ]; then
+            # branch already exists
+            buildBranch='false'
+          fi
+
+          echo "buildBranch=${buildbranch}" >> $GITHUB_OUTPUT
       # Create an environment and activate it
-      - env:
+      - name: 'Build a branch from the fork'
+        if: ${{ 'true'  == steps.buildthebranch.outputs.buildBranch }}
+        env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
+          echo "::notice::Building branch from forked PR"
           # Get most recent changes
           git checkout ${{ github.event.pull_request.head.sha }}
 
@@ -70,3 +86,67 @@ jobs:
             echo "::notice::Activating environment ${{ env.BRANCH_TITLE }}"
             platform environment:activate -e ${{ env.BRANCH_TITLE }}
           fi
+
+
+  # records all the info needed about the PR for the downstream workflows
+  record-pr-info:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    if: ${{ always() }}
+    steps:
+      - name: "Save PR info for downstream workflows"
+        if: ${{ always() }}
+        run: |
+          touch pr_number.txt pr_head_sha.txt pr_base_sha.txt branch.txt continuetests.txt forkorsource.txt
+          # set default
+          echo "false" > continuetests.txt
+          echo "${{ github.event.number }}" > pr_number.txt
+          echo "${{ github.event.pull_request.head.sha }}" > pr_head_sha.txt
+          echo "${{ github.event.pull_request.base.sha }}" > pr_base_sha.txt
+
+      - name: "Get branch name"
+        id: branch_name
+        env:
+          # since this is user supplied, force the runner to make it an env so it escapes characters
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+        run: |
+          # For PRs from non-forked repos
+          if [ ${{ github.event.pull_request.head.repo.id }} == ${{ vars.REPO_ID }} ]; then
+            branch_name="${{ env.BRANCH_NAME }}"
+
+          # For PRs from forks
+          else
+            branch_name="${{ env.BRANCH_TITLE }}"
+          fi
+          echo "::notice::Setting branch name to ${branch_name}."
+          echo "${branch_name}" > branch.txt
+
+      - name: "PR is from source repo or from fork but properly labeled"
+        if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+        run: |
+          echo "true" > continuetests.txt
+
+      - name: "We are building from the source"
+        if: github.event.pull_request.head.repo.id == vars.REPO_ID
+        run:
+          echo "source" > forkorsource.txt
+
+      - name: "We are building from a fork"
+        if: github.event.pull_request.head.repo.id != vars.REPO_ID && contains(github.event.pull_request.labels.*.name, 'build-fork')
+        run: |
+          echo "fork" > forkorsource.txt
+
+      - name: "Save PR info"
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-info
+          # @todo is there a better way to do this?
+          path: |
+            pr_number.txt
+            pr_head_sha.txt
+            pr_base_sha.txt
+            branch.txt
+            continuetests.txt
+            forkorsource.txt
+          retention-days: 1

@@ -72,7 +72,7 @@ So if your default domain is `example.com`, that means:
 
 {{< note >}}
 
-Using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
+Using a subdomain might [double your network traffic](https://www.nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
 {{< /note >}}

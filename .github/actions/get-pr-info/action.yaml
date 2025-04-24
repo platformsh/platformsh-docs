@@ -7,6 +7,9 @@ inputs:
   branch:
     description: 'Branch name we should watch for deployment'
     required: true
+  project:
+    description: 'project id'
+    required: true
 
 ####
 outputs:
@@ -25,9 +28,10 @@ runs:
   using: composite
   steps:
     - name: Set up Platform.sh CLI
-      env:
-        PLATFORMSH_CLI_TOKEN: ${{ inputs.platformsh_token }}
-      uses: ./.github/actions/set-up-cli
+      # temporary usage until the official is public
+      uses: upsun/action-cli@v1
+      with:
+          cli_provider: 'platform'
     - name: Get environment URL
       shell: bash
       env:
@@ -53,9 +57,9 @@ runs:
         # Wait until state is complete or 20 minutes has passed
         until [ "${STATE}" = "complete" ] || [ ${STATUS_TRY} = ${NUM_ATTEMPTS} ]; do
           sleep ${SLEEP_TIME}
-          echo "::notice::Environment is not deployed. Attempting to retrieve deployed status. Attempt ${STATUS_TRY} of ${NUM_ATTEMPTS}."
+          echo "Environment is not deployed. Attempting to retrieve deployed status. Attempt ${STATUS_TRY} of ${NUM_ATTEMPTS}."
           STATE=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "state" --limit 1 --environment "${BRANCH}" || true)
-          echo "::notice::Status retrieved: ${STATE}"
+          echo "Status retrieved: ${STATE}"
 
           if [ "${STATE}" = "complete" ]; then
             echo "::notice::Activity is complete."
