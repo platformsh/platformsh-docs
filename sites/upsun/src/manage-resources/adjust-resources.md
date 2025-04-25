@@ -258,7 +258,6 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
-| Lisp                    | HIGH_CPU         |
 | MariaDB                 | HIGH_MEMORY      |
 | Memcached               | BALANCED         |
 | MongoDB                 | HIGH_MEMORY      |
