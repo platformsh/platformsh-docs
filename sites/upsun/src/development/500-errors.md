@@ -1,6 +1,6 @@
 ---
-title: 500 Error Resolution Guide
-sidebarTitle: 500 Error Resolutions
+title: 500 error resolution guide
+sidebarTitle: 500 error resolutions
 weight: 16
 description: Diagnose and resolve common 500 errors that may prevent your {{% vendor/name %}} app from starting or running correctly. 
 ---
