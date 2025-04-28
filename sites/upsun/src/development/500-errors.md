@@ -59,7 +59,7 @@ To explore what's available, use the following command in terminal:
 upsun log
 ```
 
-### Step 3: Review Recent Activity
+### Step 3: Review recent activity
 
 Use the Console or [CLI](/administration/cli/index) to inspect recent deploys and other operations:
 
