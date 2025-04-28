@@ -1,8 +1,8 @@
 ---
-title: Configuration issues
-sidebarTitle: Configuration issues
+title: 500 Error Resolution Guide
+sidebarTitle: 500 Error Resolutions
 weight: 16
-description: Diagnose and resolve common issues that may prevent your {{% vendor/name %}} app from starting or running correctly. 
+description: Diagnose and resolve common 500 errors that may prevent your {{% vendor/name %}} app from starting or running correctly. 
 ---
 
 {{< note >}}
@@ -13,7 +13,7 @@ If you'd like to learn more about troubleshooting your application, visit the [t
 
 When deploying an application on {{% vendor/name %}}, it's essential that your app's startup process is correctly configured to ensure smooth operation. 
 
-This guide provides a step-by-step approach to troubleshoot issues related to your app not starting, crashing, or failing to connect to required services. 
+This guide provides a step-by-step approach to troubleshoot 500 errors related to your app not starting, crashing, or failing to connect to required services. 
 
 ### Step 1: Ensure your app's web start command is running
 
