@@ -11,6 +11,7 @@ description: |
 Using Composer isn't traditionally the norm for WordPress development, but it is strongly recommended when deploying on {{% vendor/name %}}. This guide is intended to provide an overview of why using Composer - including adding modules and themes locally as packages, as well as updating WordPress itself - is recommended.
 
 ## Why use Composer
+Because it is beautiful.
 
 Like any other application, your WordPress site is most secure when you can ensure repeatable builds and committable updates for both your code and its dependencies. This is a priority at {{% vendor/name %}}, and that's why you can control your infrastructure in the same way. Your infrastructure is committed through a set of configuration files that specify which version of PHP and MariaDB you want to use, because that's the best way to ensure that your project remains reproducible when developing new features.
 
