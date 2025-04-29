@@ -374,6 +374,51 @@ much like you would plug a hard drive into your computer to transfer data.
 
 {{% /note %}}
 
+### Mount types
+
+Each mount type has its specific use case, whether for shared storage across instances, local storage for individual instances, or temporary storage for ephemeral data. Understand how to use each type effectively to optimize your application's performance.
+
+#### `storage` mount
+
+The `storage` mount is a **shared network storage** service that is automatically added by the platform. It is designed for **sharing files between multiple instances** of an application when scaling horizontally—such as images, uploaded assets, or other shared resources. Users can configure the size of this mount directly through the {{% vendor/name %}} UI, providing flexibility based on the project’s specific storage needs. This mount type ensures consistency and accessibility of files across all instances of a scaled application.
+
+**Pros:**
+- Shared across all instances – great for horizontal scaling.
+- Size is configurable via the UI.
+- Persistent – data survives restarts and redeployments.
+
+**Cons:**
+- Network latency may be slightly higher than local storage.
+- Less suitable for high-throughput temporary file operations.
+
+
+#### `instance` mount (`local`)
+
+The `instance` mount, also known as `local`, provides a **dedicated disk per application instance**. It is backed by a Ceph-mounted volume and is **specific to a single instance**, meaning the data stored here is not shared between scaled instances. By default, each `instance` mount has a size of **8GB**, and users currently **cannot adjust this size** through self-service. This mount is ideal for storing files that should remain local to an individual instance, such as **application logs** or instance-specific temporary data.
+
+**Pros:**
+- Persistent and instance-specific – ideal for keeping logs or local-only data.
+- Lower latency compared to network storage.
+
+**Cons:**
+- Not shared across instances.
+- Fixed size (8GB), not user-configurable.
+- Data is tied to a single instance – not ideal for horizontally scaled apps.
+
+
+#### `tmp` mount
+
+The `tmp` mount provides access to the **ephemeral local disk** of an instance. Like the `instance` mount, it is limited to **8GB** and is **not user-configurable**. However, unlike `instance`, the contents of the `tmp` mount are **not persistent**—they may be removed during infrastructure maintenance or instance redeployments. As such, it is intended for **temporary files** that can be safely discarded, such as **application cache**, intermediate processing files, or other data that can be easily regenerated.
+
+**Pros:**
+- Fast local storage – perfect for caching and temporary operations.
+- Doesn’t persist across instances or restarts – ideal for disposable data.
+
+**Cons:**
+- Not persistent – data can be lost at any time.
+- Fixed size (8GB), not user-configurable.
+- Not shared between instances.
+
 ### Define a mount
 
 To define a mount, use the following configuration:
@@ -396,7 +441,7 @@ See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-fold
 
 | Name          | Type                 | Required | Description |
 | ------------- | -------------------- | -------- | ----------- |
-| `source`      | `storage`, `instance`, `tmp` (also called `temporary`), or `service` | Yes | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` (or `temporary`) mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount).|
+| `source`      | `storage`, `instance`, `tmp`, or `service` | Yes | Specifies the type of the mount:<br/><br/>- `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount).|
 | `source_path` | `string`             | No      | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files. |
 | `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
 
