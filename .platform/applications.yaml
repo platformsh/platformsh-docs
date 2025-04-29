@@ -159,6 +159,7 @@
         passthru: true
   relationships:
     app: "upsun:http"
+  disk: 256
   mounts:
     # rules will be saved locally in this folder
     'rules':
