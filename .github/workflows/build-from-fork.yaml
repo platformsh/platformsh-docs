@@ -19,7 +19,7 @@ jobs:
     if: >-
       (
         github.event.label.name == 'build-fork' ||
-        contains(github.event.pull_request.labels.*.name, 'build-fork'
+        contains(github.event.pull_request.labels.*.name, 'build-fork')
       ) &&
       github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
