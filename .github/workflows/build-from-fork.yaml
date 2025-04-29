@@ -70,8 +70,11 @@ jobs:
             echo "::notice::Branch ${{ env.BRANCH_TITLE }} was successfully pushed to Platform.sh. Continuing..."
           fi
 
+          # if this is an existing PR then we've already changed the title to be more descriptive, so we need id as well
+          # to match the original branch name. In addition, if it is an existing PR, then the environment will be in the
+          # process of being built and therefore will have a status of 'In progress'
           # If environment not active, activate it
-          if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
+          if ! $(platform environments --format plain --columns id,title,status | grep '${{ env.BRANCH_TITLE }}' | grep -Eq '(In progress|Active)'); then
             echo "::notice::Updating Platform.sh environment title for better tracking..."
             # in this case we DO want to statically include `pr-##` since we're referring to a pull request number
             newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
