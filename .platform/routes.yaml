@@ -278,7 +278,7 @@ https://{default}/:
 
 https://docs.upsun.com/:
   type: upstream
-  upstream: upsun:http
+  upstream: 'redirectionio-upsun:http'
   id: upsun
   cache:
     enabled: true
