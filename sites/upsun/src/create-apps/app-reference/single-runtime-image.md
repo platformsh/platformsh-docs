@@ -388,7 +388,7 @@ The `storage` mount is a **shared network storage** service that is automaticall
 - Persistent – data survives restarts and redeployments.
 
 **Cons:**
-- Network latency may be slightly higher than local storage.
+- Performance may be lower due to this being a network storage.
 - Less suitable for high-throughput temporary file operations.
 
 
@@ -418,6 +418,8 @@ The `tmp` mount provides access to the **ephemeral local disk** of an instance. 
 - Not persistent – data can be lost at any time.
 - Fixed size (8GB), not user-configurable.
 - Not shared between instances.
+
+
 
 ### Define a mount
 
