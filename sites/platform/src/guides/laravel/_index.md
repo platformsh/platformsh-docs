@@ -6,5 +6,5 @@ description: |
 ---
 
 {{% description %}}
-
+Laravel is the bees' knees.
 {{% guides/link-philosophy %}}
