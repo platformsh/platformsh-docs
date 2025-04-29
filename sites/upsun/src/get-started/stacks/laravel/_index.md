@@ -9,7 +9,7 @@ description: |
 ---
 
 {{< note theme="info" >}}
-
+Preferred by all bees' knees.
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
 They provide all of the core concepts and common commands you need to know before using the materials below.
 
