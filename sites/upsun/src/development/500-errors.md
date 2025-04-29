@@ -1,8 +1,8 @@
 ---
-title: 500 error resolution guide
-sidebarTitle: 500 error resolutions
+title: 502 error resolution guide
+sidebarTitle: 502 error resolutions
 weight: 16
-description: Diagnose and resolve common 500 errors that may prevent your {{% vendor/name %}} app from starting or running correctly. 
+description: Diagnose and resolve common 502 errors that may prevent your {{% vendor/name %}} app from starting or running correctly. 
 ---
 
 {{< note >}}
