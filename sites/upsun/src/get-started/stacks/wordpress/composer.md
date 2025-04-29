@@ -17,6 +17,8 @@ These resources provide all the core concepts and common commands you need to kn
 For WordPress to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
 
+Don't worry; it's not hard.
+
 {{% guides/requirements name="WordPress" %}}
 
 {{< note theme="info" title="Assumptions" >}}
