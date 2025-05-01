@@ -13,9 +13,9 @@
     <div class="grid md:grid-cols-10 divide-x-4 mt-24 print:mt-4 print:block print:mx-2"
     {{ if eq .Section "get-started" }}
       {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
-      x-data="{ 
+      x-data="{
         stack: new URLSearchParams(location.search).get('stack') || 'php',
-        switchStack(targetStack) { 
+        switchStack(targetStack) {
           this.stack = targetStack
           const url = new URL(window.location.href);
 
@@ -28,7 +28,7 @@
           history.pushState(null, document.title, url.toString());
         },
         frametech: 'default',
-        switchFrametech(targetFrametech) { 
+        switchFrametech(targetFrametech) {
           this.frametech = targetFrametech;
         }
       }"
@@ -40,7 +40,7 @@
 
       <!-- Main content block -->
       <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4 md:pr-0 md:pl-8 pt-4 pb-12 print:border-none print:max-w-full xl:print:max-w-full print:text-sm xl:print:text-sm">
-                
+
         {{- block "main" . }}{{- end }}
       </main>
 
@@ -54,6 +54,20 @@
     <script async src="{{ printf "/mermaid/mermaid.min.js?version=%s" $.Site.Params.version }}"></script>
     <script>
       mermaid.initialize({ startOnLoad: true });
+    </script>
+    {{ end }}
+
+    {{- $pendoid := os.Getenv "PENDO_ID" -}}
+    {{ with $pendoid }}
+    <script>
+      (function(apiKey){
+        (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
+          v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
+            o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+          y=e.createElement(n);y.async=!0;y.src='https://cdn.eu.pendo.io/agent/static/'+apiKey+'/pendo.js';
+          z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+        pendo.initialize({});
+      })('{{ $pendoid }}');
     </script>
     {{ end }}
 
