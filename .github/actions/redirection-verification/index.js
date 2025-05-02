@@ -38,7 +38,7 @@ axios.defaults.baseURL = core.getInput('environment_url')
 //axios.defaults.baseURL = 'https://httpstat.us/random/200,500-504,500-504,500-504'
 const retries = Number(core.getInput('number_retries'))
 const retrySleep = Number(core.getInput('retry_sleep'))
-// const defaultRoute = core.getInput('base_environment_url')
+const defaultRoute = core.getInput('base_environment_url')
 //const retries = Number('100')
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -68,31 +68,15 @@ const retryTargetResponse = async (url='/',count=0) => {
   }
 }
 
-// const verifyTargetResponse = async(count = 0) => {
-//   try {
-//     const axiosResponse = await axios.get('/');
-//     core.notice('Target URL finally responded with a 200. Proceeding.')
-//     return axiosResponse;
-//   } catch (error) {
-//     if (error || error.status != 200) {
-//       core.info(`At attempt ${count}, target url responded with status ${error.status}, retrying...`)
-//       if (count++ < retries) {
-//         await sleep(1000);
-//         return verifyTargetResponse(count);
-//       } else {
-//         core.setFailed(`Max number of retries (${retries}) reached. Aborting.`)
-//       };
-//     } else {
-//       core.setFailed(`Action failed with error ${error}`)
-//     };
-//   };
-// };
-
 const verify = async () => {
   // let targetReady = await verifyTargetResponse();
   let targetReady = await retryTargetResponse('/');
   core.info('Target URL ready. Beginning verification.')
   try {
+
+    //we need the domain from the default PR URL
+    const defaultRouteObject = new URL(defaultRoute)
+    const defaultRouteDomain = defaultRouteObject.hostname
     const redirectionApiToken = core.getInput('redirection_token')
     const redirectionProjectID = core.getInput('redirection_project_id')
     // @todo move this to an Environment Variable?
@@ -123,15 +107,28 @@ const verify = async () => {
     const validateRedirects =anchors.map(async (object, index, array) => {
       let path = object.trigger.source
       let location = object.actions.find((element) => element.type == 'redirection').location
-      if (location.includes("docs.platform.sh")) {
 
-      }
       core.debug(`I'm going to test ${path} to see if it goes to ${location}`)
 
       try {
         const response = await retryTargetResponse(path);
         //const response = await axios.head(path);
         core.debug(`Response for our check of ${path} is ${response.status}`)
+        if (location.includes("docs.platform.sh")) {
+          const verificationLocation = location.replace('docs.platform.sh',defaultRouteDomain)
+          core.debug(`The location ${location} goes to docs.platform.sh so we need to see if the location also exists on the PR environment...` )
+          core.debug(`Now checking ${verificationLocation} to make sure it exists in the PR environment...`)
+
+          try {
+            const verify = await retryTargetResponse(verificationLocation)
+            return verify
+          } catch (verifyError) {
+            core.debug(`Error when verifying ${verificationLocation} exists on PR environment!`)
+            let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( verificationLocation, axios.defaults.baseURL) }]
+            tableData.push(row)
+          }
+
+        }
         return response
       } catch (reqerr) {
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)

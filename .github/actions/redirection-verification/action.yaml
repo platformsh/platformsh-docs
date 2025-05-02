@@ -4,9 +4,9 @@ inputs:
   environment_url:
     description: 'Pull Request Environment URL'
     required: true
-#  base_environment_url:
-#    description: 'aka value of {default}'
-#    required: true
+  base_environment_url:
+    description: 'aka value of {default}'
+    required: true
   redirection_token:
     description: 'Redirectionio API token'
     required: true
