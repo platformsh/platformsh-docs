@@ -34,10 +34,11 @@ function linkify(path,url) {
  * @todo should we verify that the URL is valid before we set it?
  * @type {string}
  */
-axios.defaults.baseURL = core.getInput('environment-url')
+axios.defaults.baseURL = core.getInput('environment_url')
 //axios.defaults.baseURL = 'https://httpstat.us/random/200,500-504,500-504,500-504'
 const retries = Number(core.getInput('number_retries'))
 const retrySleep = Number(core.getInput('retry_sleep'))
+// const defaultRoute = core.getInput('base_environment_url')
 //const retries = Number('100')
 function sleep(ms) {
   return new Promise((resolve) => {
@@ -91,26 +92,37 @@ const verify = async () => {
   let targetReady = await retryTargetResponse('/');
   core.info('Target URL ready. Beginning verification.')
   try {
-    /**
-     * @todo Can we get the full workspace path to this file?
-     * @type {*}
-     */
-    const yamlData = yaml.load(fs.readFileSync('./.platform/routes.yaml', 'utf8'));
-    /**
-     * @todo the key (docs.upsun.com) here should be a variable that is set somewhere else
-     * @type {Record<string, string[]> | _.LodashAt | ((request: string) => (string[] | null)) | string[]}
-     */
-    const anchors = yamlData['https://docs.upsun.com/'].redirects.paths
+    const redirectionApiToken = core.getInput('redirection_token')
+    const redirectionProjectID = core.getInput('redirection_project_id')
+    // @todo move this to an Environment Variable?
+    const redirectionApiURL = 'https://api.redirection.io'
+    const redirectionInstance = axios.create({
+      baseURL: redirectionApiURL,
+      timeout: 1000,
+      headers: {'Authorization': `Bearer ${redirectionApiToken}`}
+    });
 
-    const RedirectKeys = Object.keys(anchors).filter((path)=>{
-      /**
-       * @todo the piece we're using to identify our contracts (/anchors/) should be a variable
-       */
-      return path.startsWith('/anchors/')
+    const redirectionrules = async ()=>{
+      try {
+        return await redirectionInstance.get(`/rules?projectId=${redirectionProjectID}`  )
+          .then(response => {
+            //core.debug(response.data)
+            return response.data
+          })
+      } catch (error) {
+        core.setFailed(`Action failed calling redirection Api with error ${error}`)
+      }
+    }
+
+    const rules = await redirectionrules();
+    const anchors = rules.filter((object)=>{
+      return object.trigger.source.startsWith('/anchors/')
     })
 
-    const validateRedirects = RedirectKeys.map(async (path, index, array) => {
-      core.debug(`I'm going to test ${path} to see if it goes to ${anchors[path].to}`)
+    const validateRedirects =anchors.map(async (object, index, array) => {
+      let path = object.trigger.source
+      let location = object.actions.find((element) => element.type == 'redirection').location
+      core.debug(`I'm going to test ${path} to see if it goes to ${location}`)
 
       try {
         const response = await retryTargetResponse(path);
@@ -129,7 +141,7 @@ const verify = async () => {
           core.debug('Non-Axios error? ')
         }
 
-        let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( anchors[path].to, axios.defaults.baseURL) }]
+        let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( location, axios.defaults.baseURL) }]
         tableData.push(row)
       }
     });
