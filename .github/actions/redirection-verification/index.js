@@ -58,7 +58,8 @@ const retryTargetResponse = async (url='/',count=0) => {
         return retryTargetResponse(url,count)
       } else {
         core.warning(`Max number of retries ${retries} for end point ${url} reached. Aborting.`)
-        throw new Error(error)
+        //throw new Error(error)
+        throw error
       }
     } else {
       core.warning(`Action failed with error ${error}`)
@@ -122,6 +123,9 @@ const verify = async () => {
     const validateRedirects =anchors.map(async (object, index, array) => {
       let path = object.trigger.source
       let location = object.actions.find((element) => element.type == 'redirection').location
+      if (location.includes("docs.platform.sh")) {
+
+      }
       core.debug(`I'm going to test ${path} to see if it goes to ${location}`)
 
       try {
