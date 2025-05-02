@@ -292,13 +292,6 @@ jobs:
     if: needs.get_info_on_pr.outputs.continuetests == 'true'
     steps:
       - uses: actions/checkout@v4
-        # @todo remove the with and parameters as we no longer will need them after migration to redirection.io
-        with:
-          # we need to checkout the PR repo/branch even if it's a fork because the action in the next step needs to
-          # retrieve the contracted redirections from .platform/routes.yaml. This may change in the future if we
-          # switch to using a redirection service. Actions DO NOT have access to secrets.
-          fetch-depth: 0
-          ref: ${{ env.HEADSHA }}
       - id: redirection-tests
         uses: ./.github/actions/redirection-verification
         with:
