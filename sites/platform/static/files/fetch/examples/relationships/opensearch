@@ -1,18 +1,22 @@
 {
     "username": null,
-    "scheme": "http",
-    "service": "opensearch12",
     "fragment": null,
     "ip": "169.254.99.100",
-    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
-    "port": 9200,
     "cluster": "rjify4yjcwxaa-master-7rqtwti",
     "host": "opensearch.internal",
-    "rel": "opensearch",
     "path": null,
     "query": [],
     "password": null,
+    "port": 9200,
+    "host_mapped": false,
+    "service": "opensearch12",
+    "hostname": "2e36wpnescmc5ffcddczsnhnai.opensearch12.service._.eu-3.platformsh.site",
+    "epoch": 0,
+    "instance_ips": [
+        "246.207.64.37"
+    ],
+    "rel": "opensearch",
+    "scheme": "http",
     "type": "opensearch:1.2",
-    "public": false,
-    "host_mapped": false
+    "public": false
 }
