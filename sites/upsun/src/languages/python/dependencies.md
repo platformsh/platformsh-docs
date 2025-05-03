@@ -127,7 +127,7 @@ variables:
     PIP_VERSION: '22.3.1'
 dependencies:
   python3:
-    pipenv: '2022.12.19'
+    pipenv: '2024.4.1'
 hooks:
   build: |
     # Fail the build if any errors occur

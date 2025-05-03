@@ -88,16 +88,16 @@ follow these steps:
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
    | ID            | Created                   | Description                                                 | State    | Result  |
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
-   | 6456zmdtoykxa | 2020-04-14T16:38:09-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | wcwp34yjvydgk | 2020-04-14T16:35:22-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | w2bp3oa5xbfoe | 2020-04-14T16:33:13-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | uqqvdyxmcdmsa | 2020-04-14T16:31:45-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | 7x3wefhh4fwqc | 2020-04-14T16:30:36-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | a46aah3ga65gc | 2020-04-14T16:29:46-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | r7erid2jlixgi | 2020-04-14T16:24:50-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | ieufk3vvde5oc | 2020-04-14T16:24:49-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | bc7ghg36ty4ea | 2020-04-14T15:30:17-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
-   | 4qojtv7a6rk2w | 2020-04-14T15:27:26-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | 6456zmdtoykxa | 2024-04-14T16:38:09-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | wcwp34yjvydgk | 2024-04-14T16:35:22-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | w2bp3oa5xbfoe | 2024-04-14T16:33:13-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | uqqvdyxmcdmsa | 2024-04-14T16:31:45-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | 7x3wefhh4fwqc | 2024-04-14T16:30:36-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | a46aah3ga65gc | 2024-04-14T16:29:46-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | r7erid2jlixgi | 2024-04-14T16:24:50-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | ieufk3vvde5oc | 2024-04-14T16:24:49-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | bc7ghg36ty4ea | 2024-04-14T15:30:17-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
+   | 4qojtv7a6rk2w | 2024-04-14T15:27:26-05:00 | Fetching from https://github.com/platformsh/platformsh-docs | complete | success |
    +---------------+---------------------------+-------------------------------------------------------------+----------+---------+
    ```
 
@@ -127,18 +127,18 @@ Integration ID: ceopz5tgj3yfc
 Activity ID: 6456zmdtoykxa
 Type: integration.github.fetch
 Description: Fetching from https://github.com/platformsh/platformsh-docs
-Created: 2020-04-15T08:44:07-05:00
+Created: 2024-04-15T08:44:07-05:00
 State: complete
 Log:
-[2020-04-15T13:44:17-05:00] Waiting for other activities to complete
-[2020-04-15T13:46:07-05:00] Fetching from GitHub repository platformsh/platformsh-docs
-[2020-04-15T13:46:09-05:00]   No changes since last fetch
-[2020-04-15T13:46:09-05:00]
-[2020-04-15T13:46:09-05:00] Synchronizing branches
-[2020-04-15T13:46:09-05:00]
-[2020-04-15T13:46:09-05:00] Synchronizing pull requests
-[2020-04-15T13:46:59-05:00]
-[2020-04-15T13:46:59-05:00] W: No changes found, scheduling a retry..
+[2024-04-15T13:44:17-05:00] Waiting for other activities to complete
+[2024-04-15T13:46:07-05:00] Fetching from GitHub repository platformsh/platformsh-docs
+[2024-04-15T13:46:09-05:00]   No changes since last fetch
+[2024-04-15T13:46:09-05:00]
+[2024-04-15T13:46:09-05:00] Synchronizing branches
+[2024-04-15T13:46:09-05:00]
+[2024-04-15T13:46:09-05:00] Synchronizing pull requests
+[2024-04-15T13:46:59-05:00]
+[2024-04-15T13:46:59-05:00] W: No changes found, scheduling a retry..
 ```
 
 That shows the full output of the activity, including timestamps.

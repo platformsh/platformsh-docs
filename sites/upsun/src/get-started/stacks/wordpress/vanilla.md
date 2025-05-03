@@ -82,7 +82,7 @@ download a zip archive from WordPress.org, or use `curl` to download a tarball:
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: '{{% latest "php" %}}'
         web:
           locations:
             "/":
@@ -123,7 +123,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
     myapp:
       source:
         root: "/"
-      type: 'php:8.3'
+      type: '{{% latest "php" %}}'
       <snip>
       mounts:
         "wordpress/wp-content/uploads":
@@ -146,7 +146,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: '{{% latest "php" %}}'
         <snip>
         hooks:
           deploy: |
@@ -166,7 +166,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: '{{% latest "php" %}}'
         ...
 
     routes:
@@ -188,7 +188,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
     myapp:
       source:
         root: "/"
-      type: 'php:8.3'
+      type: '{{% latest "php" %}}'
       <snip>
       dependencies:
         php:
