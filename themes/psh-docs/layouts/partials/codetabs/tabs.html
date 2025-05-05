@@ -46,7 +46,7 @@
 >
 
   <!-- Buttons to control tab visibility-->
-    <ul class="{{ partial "codetabs/tab-control-list-styles" }}" role="tablist">
+    <ul class="{{ partial "codetabs/tab-control-list-styles" }}" role="tablist" data-engagement-id="codetabs-section">
 
       {{- range $tabKeys -}}
 
@@ -62,7 +62,7 @@
             {{- $codetabCodename = "default" -}}
           {{- end -}}
 
-          <li class="tab-item {{ partial "codetabs/tab-control-tab-styles" }}">
+          <li class="tab-item {{ partial "codetabs/tab-control-tab-styles" }}" data-engagement-id="codetab-tab-toggle">
             <a class="{{ partial "codetabs/tab-control-link-styles" }}" :class="{ '{{ partial "codetabs/tab-control-link-active-styles" }}': codetab === '{{ $codetabCodename -}}' }" role="tab" :aria-selected="codetab === '{{ $codetabCodename }}'" @click="switchCodetab('{{ $codetabCodename }}')">
               {{- $title | markdownify -}}
             </a>
