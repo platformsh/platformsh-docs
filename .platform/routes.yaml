@@ -1,6 +1,6 @@
 https://{default}/:
   type: upstream
-  upstream: docs:http
+  upstream: redirectionio-psh:http
   id: platformsh
   primary: true
   cache:
