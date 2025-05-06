@@ -10,5 +10,5 @@ proxies:
   -
     listen: "0.0.0.0:${PORT}" # Listen endpoint
     forward: "http://app.internal" # Remote endpoint
-    project_key: "${REDIRECTIONIO_KEY_UPSUN}" # Project key to use
+    project_key: "${REDIRECTIONIO_KEY_PSH}" # Project key to use
     preserve_host: true # Preserve host header, defaults to false
