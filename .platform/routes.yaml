@@ -196,70 +196,70 @@ https://{default}/:
 #      "/images/integrations/bitbucket_server.png" : { "to": "/integrations/source/bitbucket.html", "code": 301 }
 #      "/images/xdebug/xdebug-servers.png" : { "to": "/languages/php/xdebug.html", "code": 301 }
 #      "/images/xdebug/xdebug-settings.png" : { "to": "/languages/php/xdebug.html", "code": 301 }
-      "/integration/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
-      "/integrations/observability/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
-      "/integrations/source/bitbuckethtml" : { "to": "/integrations/source/bitbucket.html", "code": 301 }
-      "/labels/beginner" : { "to": "/get-started/introduction.html", "code": 301 }
-      "/labels/bug" : { "to": "/development/troubleshoot.html", "code": 301 }
-      "/labels/documentation" : { "to": "/get-started/introduction.html", "code": 301 }
-      "/labels/enhancement" : { "to": "https://next.platform.sh/", "code": 301 }
-      "/labels/help-wanted" : { "to": "/overview/get-support.html", "code": 301 }
-      "/overview/cli.html" : { "to": "/administration/cli.html", "code": 301 }
-      # this would never have worked. did not import
-      "/overview/cli.html#how-do-i-get-it" : { "to": "/administration/cli.html#1-install", "code": 301 }
-      "/overview/how-it-looks.html" : { "to": "/administration/web.html", "code": 301 }
-      "/reference/configuration-files" : { "to": "/create-apps.html", "code": 301 }
-      "/toolstacks/symfony/symfony-getting-started" : { "to": "/guides/symfony/deploy.html", "code": 301 }
-      "/user_guide/overview/cli/index.html" : { "to": "/administration/cli.html", "code": 301 }
-      "/user_guide/overview/technical-requirements.html" : { "to": "/get-started/introduction.html", "code": 301 }
-      "/user_guide/overview/web-ui/configure-environment.html" : { "to": "/administration/web/configure-environment.html", "code": 301 }
-      "/user_guide/reference/configuration-files.html" : { "to": "/create-apps.html", "code": 301 }
-      # this would never have worked. did not import
-      "/user_guide/reference/configuration-files.html#/configure-your-application" : { "to": "/create-apps.html", "code": 301 }
-      "/user_guide/reference/platform-app-yaml.html" : { "to": "/create-apps.html", "code": 301 }
-      # this would never have worked. did not import
-      "/user_guide/reference/platform-app-yaml.html#default-configuration-file" : { "to": "/create-apps.html", "code": 301 }
-      # this would never have worked. did not import
-      "/user_guide/reference/platform-app-yaml.html#hooks" : { "to": "/create-apps/app-reference.html#hooks", "code": 301 }
-      # this would never have worked. did not import
-      "/user_guide/reference/platform-app-yaml.html#relationships" : { "to": "/create-apps/app-reference.html#relationships", "code": 301 }
-      # this would never have worked. did not import
-      "/user_guide/reference/platform-app-yaml.html#web" : { "to": "/create-apps/app-reference.html#web", "code": 301 }
-      "/user_guide/reference/routes-yaml.html" : { "to": "/define-routes.html", "code": 301 }
-      "/user_guide/reference/services-yaml.html" : { "to": "/add-services.html", "code": 301 }
-      "/user_guide/reference/services/solr.html" : { "to": "/add-services/solr.html", "code": 301 }
-      "/user_guide/reference/toolstacks/nodejs/index.html" : { "to": "/languages/nodejs.html", "code": 301 }
-      "/user_guide/reference/toolstacks/php/configure-php.html" : { "to": "/languages/php.html", "code": 301 }
-      "/user_guide/reference/toolstacks/php/drupal/customizing-settings-php.html" : { "to": "/languages/php.html#customize-php-settings", "code": 301 }
-      "/user_guide/reference/toolstacks/php/drupal7/redis.html" : { "to": "/guides/drupal/redis.html", "code": 301 }
-      "/user_guide/reference/upgrade/index.html" : { "to": "/get-started/introduction.html", "code": 301 }
-      "/user_guide/using/backup-and-restore.html" : { "to": "/security/backups.html", "code": 301 }
-      "/user_guide/using/going-live.html" : { "to": "/domains/steps.html", "code": 301 }
-      "/user_guide/using/integrations/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
-      "/user_guide/using/use-SSH.html" : { "to": "/development/ssh.html", "code": 301 }
-      "/using-platform/003-migrating-an-existing-site.html" : { "to": "/tutorials/migrating.html", "code": 301 }
-      "/golive/steps/tls.html" : { "to": "/domains/steps/tls.html", "code": 301 }
+#      "/integration/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
+#      "/integrations/observability/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
+#      "/integrations/source/bitbuckethtml" : { "to": "/integrations/source/bitbucket.html", "code": 301 }
+#      "/labels/beginner" : { "to": "/get-started/introduction.html", "code": 301 }
+#      "/labels/bug" : { "to": "/development/troubleshoot.html", "code": 301 }
+#      "/labels/documentation" : { "to": "/get-started/introduction.html", "code": 301 }
+#      "/labels/enhancement" : { "to": "https://next.platform.sh/", "code": 301 }
+#      "/labels/help-wanted" : { "to": "/overview/get-support.html", "code": 301 }
+#      "/overview/cli.html" : { "to": "/administration/cli.html", "code": 301 }
+#      # this would never have worked. did not import
+#      "/overview/cli.html#how-do-i-get-it" : { "to": "/administration/cli.html#1-install", "code": 301 }
+#      "/overview/how-it-looks.html" : { "to": "/administration/web.html", "code": 301 }
+#      "/reference/configuration-files" : { "to": "/create-apps.html", "code": 301 }
+#      "/toolstacks/symfony/symfony-getting-started" : { "to": "/guides/symfony/deploy.html", "code": 301 }
+#      "/user_guide/overview/cli/index.html" : { "to": "/administration/cli.html", "code": 301 }
+#      "/user_guide/overview/technical-requirements.html" : { "to": "/get-started/introduction.html", "code": 301 }
+#      "/user_guide/overview/web-ui/configure-environment.html" : { "to": "/administration/web/configure-environment.html", "code": 301 }
+#      "/user_guide/reference/configuration-files.html" : { "to": "/create-apps.html", "code": 301 }
+#      # this would never have worked. did not import
+#      "/user_guide/reference/configuration-files.html#/configure-your-application" : { "to": "/create-apps.html", "code": 301 }
+#      "/user_guide/reference/platform-app-yaml.html" : { "to": "/create-apps.html", "code": 301 }
+#      # this would never have worked. did not import
+#      "/user_guide/reference/platform-app-yaml.html#default-configuration-file" : { "to": "/create-apps.html", "code": 301 }
+#      # this would never have worked. did not import
+#      "/user_guide/reference/platform-app-yaml.html#hooks" : { "to": "/create-apps/app-reference.html#hooks", "code": 301 }
+#      # this would never have worked. did not import
+#      "/user_guide/reference/platform-app-yaml.html#relationships" : { "to": "/create-apps/app-reference.html#relationships", "code": 301 }
+#      # this would never have worked. did not import
+#      "/user_guide/reference/platform-app-yaml.html#web" : { "to": "/create-apps/app-reference.html#web", "code": 301 }
+#      "/user_guide/reference/routes-yaml.html" : { "to": "/define-routes.html", "code": 301 }
+#      "/user_guide/reference/services-yaml.html" : { "to": "/add-services.html", "code": 301 }
+#      "/user_guide/reference/services/solr.html" : { "to": "/add-services/solr.html", "code": 301 }
+#      "/user_guide/reference/toolstacks/nodejs/index.html" : { "to": "/languages/nodejs.html", "code": 301 }
+#      "/user_guide/reference/toolstacks/php/configure-php.html" : { "to": "/languages/php.html", "code": 301 }
+#      "/user_guide/reference/toolstacks/php/drupal/customizing-settings-php.html" : { "to": "/languages/php.html#customize-php-settings", "code": 301 }
+#      "/user_guide/reference/toolstacks/php/drupal7/redis.html" : { "to": "/guides/drupal/redis.html", "code": 301 }
+#      "/user_guide/reference/upgrade/index.html" : { "to": "/get-started/introduction.html", "code": 301 }
+#      "/user_guide/using/backup-and-restore.html" : { "to": "/security/backups.html", "code": 301 }
+#      "/user_guide/using/going-live.html" : { "to": "/domains/steps.html", "code": 301 }
+#      "/user_guide/using/integrations/blackfire.html" : { "to": "/increase-observability/integrate-observability/blackfire.html", "code": 301 }
+#      "/user_guide/using/use-SSH.html" : { "to": "/development/ssh.html", "code": 301 }
+#      "/using-platform/003-migrating-an-existing-site.html" : { "to": "/tutorials/migrating.html", "code": 301 }
+#      "/golive/steps/tls.html" : { "to": "/domains/steps/tls.html", "code": 301 }
 
       # Redirects for Trust Center migration
-      "/security/hipaa.html" : { "to": "https://platform.sh/trust-center/privacy/hippa/", "code": 301 }
-      "/security/sca.html" : { "to": "https://platform.sh/trust-center/security/sca/", "code": 301 }
-      "/security/data-access.html" : { "to": "https://platform.sh/trust-center/security/data-access/", "code": 301 }
-      "/security/data-breach-notifications.html" : { "to": "https://platform.sh/trust-center/security/data-breach-notifications/", "code": 301 }
-      "/security/data-collection.html" : { "to": "https://platform.sh/trust-center/security/data-collection/", "code": 301 }
-      "/security/data-deletion.html" : { "to": "https://platform.sh/trust-center/security/data-deletion/", "code": 301 }
-      "/security/encryption.html" : { "to": "https://platform.sh/trust-center/security/encryption/", "code": 301 }
-      "/security/compliance-guidance.html" : { "to": "https://platform.sh/trust-center/security/compliance-guidance/", "code": 301 }
-      "/security/updates.html" : { "to": "https://platform.sh/trust-center/security/updates/", "code": 301 }
-      "/security/pci.html" : { "to": "https://platform.sh/trust-center/security/pci/", "code": 301 }
-      "/security/wcag.html" : { "to": "https://platform.sh/trust-center/legal/wcag/", "code": 301 }
-      "/security/transparency.html" : { "to": "https://platform.sh/trust-center/legal/transparency/", "code": 301 }
-      "/security/gdpr.html" : { "to": "https://platform.sh/trust-center/privacy/gdpr/", "code": 301 }
-      "/security/data-location.html" : { "to": "https://platform.sh/trust-center/security/data-location/", "code": 301 }
-      "/security/iaas_resources.html" : { "to": "https://platform.sh/trust-center/security/iaas-resources/", "code": 301 }
-      "/security/pen-test.html" : { "to": "https://platform.sh/trust-center/security/penetration-testing/", "code": 301 }
+#      "/security/hipaa.html" : { "to": "https://platform.sh/trust-center/privacy/hippa/", "code": 301 }
+#      "/security/sca.html" : { "to": "https://platform.sh/trust-center/security/sca/", "code": 301 }
+#      "/security/data-access.html" : { "to": "https://platform.sh/trust-center/security/data-access/", "code": 301 }
+#      "/security/data-breach-notifications.html" : { "to": "https://platform.sh/trust-center/security/data-breach-notifications/", "code": 301 }
+#      "/security/data-collection.html" : { "to": "https://platform.sh/trust-center/security/data-collection/", "code": 301 }
+#      "/security/data-deletion.html" : { "to": "https://platform.sh/trust-center/security/data-deletion/", "code": 301 }
+#      "/security/encryption.html" : { "to": "https://platform.sh/trust-center/security/encryption/", "code": 301 }
+#      "/security/compliance-guidance.html" : { "to": "https://platform.sh/trust-center/security/compliance-guidance/", "code": 301 }
+#      "/security/updates.html" : { "to": "https://platform.sh/trust-center/security/updates/", "code": 301 }
+#      "/security/pci.html" : { "to": "https://platform.sh/trust-center/security/pci/", "code": 301 }
+#      "/security/wcag.html" : { "to": "https://platform.sh/trust-center/legal/wcag/", "code": 301 }
+#      "/security/transparency.html" : { "to": "https://platform.sh/trust-center/legal/transparency/", "code": 301 }
+#      "/security/gdpr.html" : { "to": "https://platform.sh/trust-center/privacy/gdpr/", "code": 301 }
+#      "/security/data-location.html" : { "to": "https://platform.sh/trust-center/security/data-location/", "code": 301 }
+#      "/security/iaas_resources.html" : { "to": "https://platform.sh/trust-center/security/iaas-resources/", "code": 301 }
+#      "/security/pen-test.html" : { "to": "https://platform.sh/trust-center/security/penetration-testing/", "code": 301 }
 
       # Sponsored sites application
-      "/administration/pricing/sponsored.html": { "to": "/administration/pricing#sponsored-sites", "code": 301 }
+      #"/administration/pricing/sponsored.html": { "to": "/administration/pricing#sponsored-sites", "code": 301 }
 
       # Overview, tutorials, and best-practices redirects (Aug 2023)
       #"^/bestpractices/(.*)":  { "to": "/learn/bestpractices/$1", "code": 301, "regexp": true }
@@ -267,17 +267,17 @@ https://{default}/:
       #"^/overview/(.*)":  { "to": "/learn/overview/$1", "code": 301, "regexp": true }
 
       # YAML redirect after Learn section was created (September 2023)
-      "/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
+      #"/overview/yaml/what-is-yaml.html" : { "to": "/learn/overview/yaml/what-is-yaml.html", "code": 301 }
 
       #Changelog to Feature requests page
-      "/changelog.html" : { "to": "/request-features.html", "code": 301 }
+      #"/changelog.html" : { "to": "/request-features.html", "code": 301 }
 
       # Splitting 'other' section into proper top-level items within Reference.
-      "/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
+      #"/other/glossary.html" : { "to": "/glossary.html", "code": 301 }
 
 
       # Change of URL for the custom domains on preview environments page
-      "/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
+      #"/domains/steps/custom-non-production-domains.html" : { "to": "/domains/steps/custom-domains-preview-environments.html", "code": 301 }
 
 "https://search.{default}/":
     type: upstream
