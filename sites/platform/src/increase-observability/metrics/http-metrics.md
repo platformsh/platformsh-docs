@@ -5,7 +5,7 @@ description: Understand HTTP metrics
 
 The HTTP metrics dashboard provides {{< vendor/name >}} users with network-related metrics.
 Those insights are designed to help them better understand the state of their
-applications. 
+applications.
 
 {{< note theme="info" title="No CDN data">}}
 
@@ -56,10 +56,17 @@ time of the top-10 most impactful URLs during a given time frame.
 This graph helps identify potential trouble spots, understand user behavior, and
 prioritize areas for optimization.
 
+{{< note >}}
+For security and privacy reasons, all URLs undergo the following sanitization measures:
+- All query parameters (`?param=value`) are sanitized to prevent leakage of sensitive information.
+- URLs exceeding 2048 characters are truncated to adhere to security best practices.
+- Specific sensitive URL paths are proactively scrubbed and anonymized.
+{{< /note >}}
+
 ## Limits
 Note that the following data retention limits apply when using the HTTP metrics dashboard:
 
 - **8-hour retention** for standard customers (without Observability Suite).
 - **24-hour retention** for Observability Suite customers (Enterprise and Elite tiers).
 
-For more information about the different tiers for standard and Observability Suite customers, visit the [Pricing page](https://platform.sh/pricing/). 
+For more information about the different tiers for standard and Observability Suite customers, visit the [Pricing page](https://platform.sh/pricing/).

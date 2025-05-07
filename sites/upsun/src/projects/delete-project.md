@@ -14,7 +14,7 @@ title=In the Console
 +++
 
 - On the tile of the project you want to delete, click **{{< icon more >}} More**.
-- Click **Edit plan**.
+- Click **Project settings**.
 - Click **Delete project**.
 - To confirm your choice, enter the project's name.
 - Click **Yes, Delete Project**.

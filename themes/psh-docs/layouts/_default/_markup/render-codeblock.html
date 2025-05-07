@@ -10,7 +10,7 @@
 {{ $configFiles := .Page.Site.Params.vendor.config.files }}
 {{ $configDir := .Page.Site.Params.vendor.config.dir }}
 
-<div class="relative">
+<div class="relative" data-engagement-id="content-codeblock">
 {{ with $location }}
     {{ $fullFile := . }}
     {{ $prefixLen := len $prefixdir }}
@@ -19,7 +19,7 @@
     {{ else if gt $prefixLen 0 }}
         {{ $fullFile = delimit ( slice $prefixdir . ) "/" }}
     {{ end }}
-<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative">
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative" data-engagement-id="content-codeblock-title">
     <span class="relative z-10">{{ $fullFile }}</span>
     <div class="absolute bottom-[-0.5rem] left-0 w-full h-4 bg-stone"></div>
 </div>
@@ -30,7 +30,7 @@
     {{ if gt $prefixLen 0 }}
         {{ $fullFile = delimit ( slice $prefixdir (index $configFiles .) ) "/" }}
     {{ end }}
-<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative">
+<div class="bg-stone px-4 pt-2 rounded-t-lg inline-block text-base relative" data-engagement-id="content-codeblock-title">
     <span class="relative z-10">{{ $fullFile }}</span>
     <div class="absolute bottom-[-0.5rem] left-0 w-full h-4 bg-stone"></div>
 </div>

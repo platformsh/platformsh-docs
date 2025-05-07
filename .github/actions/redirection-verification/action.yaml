@@ -1,8 +1,17 @@
 name: redirections contract verification
 description: Verifies that the redirections for our contract with console are still valid
 inputs:
-  environment-url:
+  environment_url:
     description: 'Pull Request Environment URL'
+    required: true
+  base_environment_url:
+    description: 'aka value of {default}'
+    required: true
+  redirection_token:
+    description: 'Redirectionio API token'
+    required: true
+  redirection_project_id:
+    description: 'The organization id that manages the redirection rules'
     required: true
   number_retries:
     description: 'The number of attempts we should make to contact the target environment URL.'

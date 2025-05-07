@@ -15,7 +15,13 @@ env:
 
 jobs:
   build:
-    if: github.event.label.name == 'build-fork' || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    # we only want to run this job if the pull request is from a fork AND it has been given the proper label
+    if: >-
+      (
+        github.event.label.name == 'build-fork' ||
+        contains(github.event.pull_request.labels.*.name, 'build-fork')
+      ) &&
+      github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,34 +33,21 @@ jobs:
         with:
           cli_provider: 'platform'
 
-      - name: 'checks if branch already exists'
-        id: buildthebranch
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-        run: |
-          buildbranch='true'
-          branchExists=$(platform project:curl /environments | jq --arg branch "${{ env.BRANCH_TITLE }}" -r '.[] | select(.name | contains($branch))');
-          if [ -n "${branchExists}" ]; then
-            # branch already exists
-            buildBranch='false'
-          fi
-
-          echo "buildBranch=${buildbranch}" >> $GITHUB_OUTPUT
       # Create an environment and activate it
       - name: 'Build a branch from the fork'
-        if: ${{ 'true'  == steps.buildthebranch.outputs.buildBranch }}
         env:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
           # @see activate_environment:Set environment title:env in manage-environment.yaml
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: |
-          echo "::notice::Building branch from forked PR"
+          echo "Adding changes from forked PR to local branch"
           # Get most recent changes
           git checkout ${{ github.event.pull_request.head.sha }}
 
           # Put most recent changes on the branch
           echo "Switching to branch ${{ env.BRANCH_TITLE }}"
-          git switch -C ${{ env.BRANCH_TITLE }}
+          # try to switch to the branch, and if it doesn't exist, create a new branch
+          git switch ${{ env.BRANCH_TITLE }} 2>/dev/null || git switch -C ${{ env.BRANCH_TITLE }}
 
           echo "Pushing most recent changes"
           git push --force origin ${{ env.BRANCH_TITLE }}
@@ -77,8 +70,11 @@ jobs:
             echo "::notice::Branch ${{ env.BRANCH_TITLE }} was successfully pushed to Platform.sh. Continuing..."
           fi
 
+          # if this is an existing PR then we've already changed the title to be more descriptive, so we need id as well
+          # to match the original branch name. In addition, if it is an existing PR, then the environment will be in the
+          # process of being built and therefore will have a status of 'In progress'
           # If environment not active, activate it
-          if ! $(platform environments --format plain --columns title,status | grep '${{ env.BRANCH_TITLE }}' | grep -q Active); then
+          if ! $(platform environments --format plain --columns id,title,status | grep '${{ env.BRANCH_TITLE }}' | grep -Eq '(In progress|Active)'); then
             echo "::notice::Updating Platform.sh environment title for better tracking..."
             # in this case we DO want to statically include `pr-##` since we're referring to a pull request number
             newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
