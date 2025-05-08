@@ -244,8 +244,8 @@ As an organization owner or an organization user with the **Manage users** permi
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
-Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission.
-That is, they are able to see all organization projects once given billing rights.
+Users with the **Manage billing** (`billing`) or **Manage Plans** (`plans`) permission automatically are granted **List projects** (`projects:list`) permission.
+That is, they are able to see all organization projects once given billing or plans rights.
 
 {{< /note >}}
 
