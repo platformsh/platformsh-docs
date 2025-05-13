@@ -33,6 +33,14 @@ upsun ssh 'echo $PORT'
 
 If your app is hardcoded to listen on a specific port like 3000 or 8000, it won't work --- it needs to use the dynamic port assigned by {{% vendor/name %}}.
 
+{{< note >}}
+
+Please note that if the [$PORT](/development/variables/use-variables.html#use-provided-variables) is empty, you will need to check if `web.upstream.socket_family`is set to `tcp`. 
+
+You may see a 502 error if your application isn’t [listening at the same place](/create-apps/app-reference/single-runtime-image.html#where-to-listen) that the runtime is sending requests.  
+
+{{< /note >}}
+
 To debug your start command, check the app log:
 
 ```bash
@@ -101,7 +109,7 @@ If your app uses [databases or other services](/add-services/index), make sure i
 ping database.internal
 psql $DATABASE_URL
 ```
-Make sure the services are defined in `.platform/services.yaml` and linked correctly in your app configuration.
+Make sure the services are defined in `.upsun/config.yaml`,`services`, the top level key and linked correctly in your app configuration.
 
 ## Further resources
 
