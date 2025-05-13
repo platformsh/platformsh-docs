@@ -31,7 +31,7 @@ To confirm which port your app should bind to, run:
 upsun ssh 'echo $PORT'
 ```
 
-If your app is hardcoded to listen on a specific port like 3000 or 8000, it won't work --- it needs to use the dynamic port assigned by {{% vendor/name %}}.
+If your app is hardcoded to listen on a specific port like 3000 or 8000, it won't work --- it needs to use the dynamic port assigned by {{% vendor/name %}}. It should also be noted that **this command can only be run in a local session**, not in the app container (in a terminal session).
 
 {{< note >}}
 
