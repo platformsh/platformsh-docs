@@ -119,3 +119,5 @@ security:
   http:
     methods:
     - GET
+
+enableRobotsTXT: true
