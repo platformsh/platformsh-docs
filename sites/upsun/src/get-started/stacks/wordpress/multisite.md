@@ -35,10 +35,6 @@ configuration below.
 guide for that scenario)
 - You know if you are creating a
 [subdirectory-based multisite or a sub/multi-domain based multisite](https://developer.wordpress.org/advanced-administration/multisite/prepare-network/#types-of-multisite-network).
-
-map_values(select(.primary == true and .type == "upstream" and .upstream == "app" )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end
-to_entries[] | select(.value.primary == true and .value.type == "upstream" and .value.upstream == "app") | if (.key[-1:] == "/") then (.key[0:-1]) else .key end
-
 {{< /note >}}
 
 ## 1. Add rewrite rules to your root location
@@ -124,98 +120,119 @@ applications:
 
 ## 3. Environment variables
 
-In order to process the domains, we need to be able to determine the default production domain. Upsun provides information
-about all routes
+In order to process the domains, we need to be able to determine the default "parent" domain for the multisite. Upsun
+provides information about all routes in the environment variable [`PLATFORM_ROUTES`](/development/variables/use-variables.html#use-provided-variables)
+and we can use this information to determine the needed domain. In your `.environment` file, add the following:
 
-DOMAIN_CURRENT_SITE
-MULTISITE_INSTALLED
-
-Some tasks need to be performed after the images for our application are built,
-but before the newly built application can receive requests.
-Therefore, the best time to launch them is during the [deploy hook](/learn/overview/build-deploy.md#deploy-steps).
-
-Such tasks include:
-
-- Flushing the object cache, which might have changed between current production and newly deployed changes
-- Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
-- Running any due cron jobs
-
-To launch these tasks during the deploy hook,
-locate the `deploy:` section (below the `build:` section).</br>
-Update the `deploy:` section as follows:
-
-```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    type: 'php:8.3'
-    ...
-    hooks:
-      deploy: |
-        set -eux
-        # Flushes the object cache
-        wp cache flush
-        # Runs the WordPress database update procedure
-        wp core update-db
-        # Runs all due cron events
-        wp cron event run --due-now
+```bash {location=".environment"}
+export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
+export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
 ```
 
-## 6. Configure your default route
 
-Next, instruct the [router](learn/overview/structure.md#router) how to handle requests to your WordPress app.
-To do so, locate the `routes:` section, and beneath it, the `"https://{default}/":` route.
+## 4. wp-config.php
 
-Update the route as follows:
+Once our multisite has been set up, we need to expose additional pieces of information inside our `wp-config.php` file.
+In your wp-config.php file, right above the section:
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    type: 'php:8.3'
-    ...
-
-routes:
-  "https://{default}/":
-    type: upstream
-    upstream: "myapp:http"
-    cache:
-      enabled: true
-      cookies:
-        - '/^wordpress_*/'
-        - '/^wp-*/'
+```php {location="wp-config.php"}
+/** Absolute path to the WordPress directory. */
+if ( ! defined( 'ABSPATH' ) ) {
+  define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+}
 ```
 
-Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
-If these strings aren't the same, the WordPress deployment will not succeed.
+add the following:
 
-## 7. Update your MariaDB service relationship
+```php {location="wp-config.php"}
+/**
+ * Multisite support
+ */
+define('WP_ALLOW_MULTISITE', true); //enables the Network setup panel in Tools
+define('MULTISITE', false); //instructs WordPress to run in multisite mode
 
-You need to update the name used to represent the [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) between your app and your MariaDB service.
-To do so, locate the `relationships:` top-level property.
-Update the relationship for the database service as follows:
+if( MULTISITE && WP_ALLOW_MULTISITE) {
+	define('SUBDOMAIN_INSTALL', false); // does the instance contain subdirectory sites (false) or subdomain/multiple domain sites (true)
+	define('DOMAIN_CURRENT_SITE', filter_var(getenv('DOMAIN_CURRENT_SITE'),FILTER_VALIDATE_URL));
+	define('PATH_CURRENT_SITE', '/'); //path to the WordPress site if it isn't the root of the site (e.g. https://foo.com/blog/)
+	define('SITE_ID_CURRENT_SITE', 1); //main/primary site ID
+	define('BLOG_ID_CURRENT_SITE', 1); //main/primary/parent blog ID
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    type: 'php:8.3'
-    # ...
-    relationships:
-      database: "mariadb:mysql"
+	/**
+	 * we have a sub/multidomain multisite, and the site currently being requested is not the default domain, so we'll
+	 * need to set COOKIE_DOMAIN to the domain being requested
+	 */
+	if (SUBDOMAIN_INSTALL && $site_host !== DOMAIN_CURRENT_SITE) {
+		define('COOKIE_DOMAIN',$site_host);
+	}
+}
 ```
+where `SUBDOMAIN_INSTALL` is set to `true` if your multisite is a sub/multi-domain site, or `false` if you will be
+setting up a subdirectory-based multisite. Note that `MULTISITE` is currently set to `false`; we will update his once
+the database has finished being set up for the multisite.
 
-You can now commit all the changes made to `.upsun/config.yaml` and push to {{% vendor/name %}}.
+{{< note theme="info" title="Variable placement" >}}
+For the values `SUBDOMAIN_INSTALL`, `MULTISITE`, and `WP_ALLOW_MULTISITE`, including them in the wp-config.php file is
+perfectly acceptable. However, if you will be creating multiple multisites, and starting from a canonical repository,
+I would suggest defining these values as environment variables, and updating these sections in wp-config.php to
+retrieve the information from these environment variables
+(e.g. `define('SUBDOMAIN_INSTALL', filter_var(getenv('SUBDOMAIN_INSTALL'),FILTER_VALIDATE_BOOLEAN));`). This allows you
+to change the behavior of a specific instance of the codebase by changing these variables instead of having to make
+changes directly to wp-config.php.
+{{< /note >}}
+
+## 5. Commit and push
+You can now commit all the changes made above `.upsun/config.yaml` and push to {{% vendor/name %}}.
 
    ```bash {location="Terminal"}
-   git add .
-   git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
-   git push
+   git add wp-config.php .environment .upsun/config.yaml
+   git commit -m "Add changes to begin setup of my {{% vendor/name %}} WordPress multisite"
+   {{% vendor/cli %}} push -y
    ```
 
+<!--
+map_values(select(.primary == true and .type == "upstream" and .upstream == "app" )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end
+to_entries[] | select(.value.primary == true and .value.type == "upstream" and .value.upstream == "app") | if (.key[-1:] == "/") then (.key[0:-1]) else .key end
+-->
+
+## 6. Network (Multisite) Setup
+Adding `define('WP_ALLOW_MULTISITE', true);` will enable the **Network Setup** item in your **Tools menu**. Use that
+menu item to go to the **Create a Network of WordPress Sites** screen. Follow the instructions on this screen and click
+the **Install** button. You can ignore the instructions on the resulting screen.
+
+{{< note >}}
+Alternatively, you can access a terminal session in the app container (`{{% vendor/cli %}} ssh`), and use
+`wp core multisite-convert` to install the multisite.
+{{< /note >}}
+
+## 7. Final change to wp-config.php
+Return to your wp-config.php file and change
+
+```php {location="wp-config.php"}
+define('MULTISITE', false);
+```
+to
+```php {location="wp-config.php"}
+define('MULTISITE', true);
+```
+
+Add and commit the changes, and push to {{% vendor/name %}}:
+
+```shell {location="Terminal"}
+git add wp-config.php
+git commit -m "set WordPress to run in multisite mode."
+{{% vendor/cli %}} push -y
+```
+
+Once the site has finished deploying, you can return the Network Admin --> Sites area of wp-admin and begin adding your
+sites.
+
+## FOR WEDNESDAY:
+
+1. Show the wp-cli package updating the database for a preview environment?
+2. Discuss multi domain mapping?
+3. Create a separate collection of files where you use env vars instead of doing it directly in wp-config.php?
+4. Discuss changes needed if you install wordpress in its own directory?
 
 ## Further resources
 
