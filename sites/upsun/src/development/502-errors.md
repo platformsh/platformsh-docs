@@ -15,7 +15,36 @@ When deploying an application on {{% vendor/name %}}, it's essential that your a
 
 This guide provides a step-by-step approach to troubleshoot 500 errors related to your app not starting, crashing, or failing to connect to required services. 
 
-### Step 1: Ensure your app's web start command is running
+### Step 1: Check logs for troubleshooting insights
+
+You can start your troubleshooting process by looking into some of the logs listed below:
+
+-   **Deploy logs**
+
+These show what happened during build and deploy. You can view them by using the following command in terminal:
+
+```bash
+upsun log deploy
+```
+Deploy logs are especially helpful if you're running migrations or provisioning services - issues with database credentials, missing tables, or failed connections often appear here.
+
+- **App logs**
+
+The app log can be particularly useful for debugging your start command. To gain insight into what might be going wrong with your app in particular, use the following command in terminal:
+
+```bash
+upsun log app
+```
+This log often reveals stack traces, syntax errors, or missing dependencies that may be preventing the app from starting.
+
+-   **All available logs**
+
+To explore what other logs are available to help with troubleshooting, use the following command in terminal:
+
+```bash
+upsun log
+```
+### Step 2: Ensure your app's web start command is running
 
 If you've configured a `web.command.start` in your `./upsun/config.yaml`, make sure:
 
@@ -30,7 +59,6 @@ To confirm which port your app should bind to, run:
 ```bash
 upsun ssh 'echo $PORT'
 ```
-
 If your app is hardcoded to listen on a specific port like 3000 or 8000, it won't work --- it needs to use the dynamic port assigned by {{% vendor/name %}}. It should also be noted that **this command can only be run in a local session**, not in the app container (in a terminal session).
 
 {{< note >}}
@@ -40,32 +68,6 @@ Please note that if the [$PORT](/development/variables/use-variables.html#use-pr
 You may see a 502 error if your application isn’t [listening at the same place](/create-apps/app-reference/single-runtime-image.html#where-to-listen) that the runtime is sending requests.  
 
 {{< /note >}}
-
-To debug your start command, check the app log:
-
-```bash
-upsun log app
-```
-This often reveals stack traces, syntax errors, or missing dependencies that may be preventing the app from starting.
-
-### Step 2: Check logs for troubleshooting insights
-
-Beyond `app.log`, these additional logs are often helpful:
-
--   **Deploy logs**
-These show what happened during build and deploy. You can view them by using the following command in terminal:
-
-```bash
-upsun log deploy
-```
-Deploy logs are especially helpful if you're running migrations or provisioning services - issues with database credentials, missing tables, or failed connections often appear here.
-
--   **All available logs**
-To explore what's available, use the following command in terminal:
-
-```bash
-upsun log
-```
 
 ### Step 3: Review recent activity
 
@@ -93,6 +95,14 @@ This is especially useful for:
 -   Viewing log files created by your app that aren't exposed via the `{{% vendor/name %}} log`
 -   Checking if writable directories are correctly mounted
 -   Testing internal service connections and inspecting the filesystem
+
+{{< note title="Bonus step" theme="info" >}}
+
+You can also manually run your `start` command to debug why your app might be failing. This is because some output about issues in `stdout` don't always appear in the logs. 
+
+output to stdout that isn't included in the logs that might give insight into what is happening
+
+{{< /note >}}
 
 To confirm mount points are correctly defined and available, run:
 
