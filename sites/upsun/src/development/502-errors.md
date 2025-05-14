@@ -121,8 +121,6 @@ Make sure the services are defined in `.upsun/config.yaml`,`services`, the top l
 
 ## Further resources
 
-### Documentation
-
 - [Troubleshooting](/development/troubleshoot/)
 - [Use variables](/development/variables/use-variables.md#use-provided-variables)
 - [Add services](/add-services/index)
