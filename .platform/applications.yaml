@@ -136,3 +136,70 @@
             source_path: "sites/upsun/config"
 
     size: S
+-
+  name: redirectionio-upsun
+  source:
+    root: upsun-redirectionio
+  type: golang:1.15
+  hooks:
+    build: |
+      set -ex
+      curl -s -J -L "https://packages.redirection.io/dist/stable/2/any/redirectionio-agent-latest_any_amd64.tar.gz" | tar -C /app/ -xzpf -
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
+    commands:
+      start: |
+        set -ex
+        /app/redirection-agent/redirectionio-agent -config-file ./agent.yaml
+    locations:
+      /:
+        allow: false
+        passthru: true
+  relationships:
+    app: "upsun:http"
+  disk: 256
+  mounts:
+    # rules will be saved locally in this folder
+    'rules':
+      source: local
+      source_path: rules
+    # redirection.io log folder
+    'log':
+      source: local
+      source_path: log
+
+-
+  name: redirectionio-psh
+  source:
+    root: psh-redirectionio
+  type: golang:1.15
+  hooks:
+    build: |
+      set -ex
+      curl -s -J -L "https://packages.redirection.io/dist/stable/2/any/redirectionio-agent-latest_any_amd64.tar.gz" | tar -C /app/ -xzpf -
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
+    commands:
+      start: |
+        set -ex
+        /app/redirection-agent/redirectionio-agent -config-file ./agent.yaml
+    locations:
+      /:
+        allow: false
+        passthru: true
+  relationships:
+    app: "docs:http"
+  disk: 256
+  mounts:
+    # rules will be saved locally in this folder
+    'rules':
+      source: local
+      source_path: rules
+    # redirection.io log folder
+    'log':
+      source: local
+      source_path: log

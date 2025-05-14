@@ -1,94 +1,205 @@
 name: Get PR URL, start dependent jobs
+#on:
+#  pull_request_target:
+#    branches: [main]
+#    types: [labeled,opened,reopened,synchronize]
 on:
-  pull_request_target:
-    branches: [main]
-    types: [labeled,opened,reopened,synchronize]
+  workflow_run:
+    workflows: [Record information on PR and (maybe) Build from fork]
+    types:
+      - completed
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-  BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
   UPSUN_DOCS_PREFIX: "https://docs.upsun.com"
+  PRURLJOBNAME: 'Get PR URL'
+
 jobs:
-  get_pr_info:
+  get_info_on_pr:
     runs-on: ubuntu-latest
-    name: Get info on build from PR
+    name: "Retrieves information on the PR"
+    outputs:
+      prnum: ${{ steps.set_pr_number.outputs.prnum }}
+      headsha: ${{ steps.set_pr_head_sha.outputs.headsha }}
+      basesha: ${{ steps.set_pr_base_sha.outputs.basesha }}
+      prbranch: ${{ steps.set_pr_branch.outputs.branch }}
+      continuetests: ${{ steps.set_continue_tests.outputs.continue }}
+      reposource: ${{ steps.set_repo_source.outputs.reposource }}
+    steps:
+      - name: Download info on PR
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: build-from-fork.yaml
+          workflow_conclusion: completed
+          name: pr-info
+          run_id: ${{ github.event.workflow_run.id }}
+      - id: set_pr_number
+        run: |
+          PR_NUM=$(cat pr_number.txt)
+          echo "prnum=${PR_NUM}" >> $GITHUB_OUTPUT
+      - id: set_pr_head_sha
+        run: |
+          HEAD_SHA=$(cat pr_head_sha.txt)
+          echo "headsha=${HEAD_SHA}" >> $GITHUB_OUTPUT
+      - id: set_pr_base_sha
+        run: |
+          BASE_SHA=$(cat pr_base_sha.txt)
+          echo "basesha=${BASE_SHA}" >> $GITHUB_OUTPUT
+      - id: set_pr_branch
+        run: |
+          BRANCH=$(cat branch.txt)
+          echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
+      - id: set_continue_tests
+        run: |
+          CONTINUE=$(cat continuetests.txt)
+          echo "continue=${CONTINUE}" >> $GITHUB_OUTPUT
+      - id: set_repo_source
+        run: |
+          SOURCE=$(cat forkorsource.txt)
+          echo "reposource=${SOURCE}" >> $GITHUB_OUTPUT
+
+  get_pr_url:
+    name: "Get PR URL"
+    needs:
+      - get_info_on_pr
+    runs-on: ubuntu-latest
+    env:
+      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
+      BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
+      BASESHA: ${{ needs.get_info_on_pr.outputs.basesha }}
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
+      PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
+      REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
+
     # Run only for PRs from default repo and approved PRs from forks
-    if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    if: needs.get_info_on_pr.outputs.continuetests == 'true'
     outputs:
       pr_url: ${{ steps.get_env_url.outputs.pr_url }}
       pr_url_upsun: ${{ steps.get_env_url.outputs.pr_url_upsun }}
+      pr_url_status: ${{ steps.get_env_url.outputs.env_status }}
 
     steps:
       # at this point we want to checkout the repository but at the latest commit of the default branch
       - uses: actions/checkout@v4
-
-      - name: Set branch name
-        id: branch_name
-        run: |
-          # For PRs from non-forked repos
-          if [ ${{ github.event.pull_request.head.repo.id }} == ${{ vars.REPO_ID }} ]; then
-            branch_name="${{ github.event.pull_request.head.ref }}"
-
-          # For PRs from forks
-          else
-            branch_name="${{ env.BRANCH_TITLE }}"
-          fi
-          echo "::notice::Setting branch name to ${branch_name}."
-          echo "branch_name=${branch_name}" >> $GITHUB_OUTPUT
+        with:
+          fetch-depth: 0
 
       - name: retrieve PR url
         id: get_env_url
         uses: ./.github/actions/get-pr-info
         with:
           platformsh_token: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-          branch: ${{ steps.branch_name.outputs.branch_name }}
+          branch: ${{ env.BRANCH }}
+          project: ${{ vars.PROJECT_ID }}
 
-      #      - uses: actions/checkout@v4
-      #        with:
-      #          fetch-depth: 0
-      #          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Make artifact files
+  dont_run_nonlabeled_forks:
+    name: Warn about non-labeled PRs from forks
+    needs:
+      - get_info_on_pr
+    runs-on: ubuntu-latest
+    if: needs.get_info_on_pr.outputs.continuetests == 'false'
+    steps:
+      - name: Warn the environment will not be built
         run: |
-          touch environment_url.txt
+          echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/report-status
+        with:
+          job_name: '${{ env.PRURLJOBNAME }}'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: 'Pull Requests from forks will not have an environment built until they are given the appropriate label.'
+
+  report_pr_url_status:
+    name: 'report PR URL status'
+    needs:
+      - get_info_on_pr
+      - get_pr_url
+    runs-on: ubuntu-latest
+
+    env:
+      BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
+      PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
+    steps:
+      - name: 'Set status message'
+        id: set-status-message
+        run: |
+          if [ 'success' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
+            status_message="PR environment successfully deployed."
+            status_state="${{ needs.get_pr_url.outputs.pr_url_status }}"
+          else
+            status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+            # the status reported by our action most likely wont align with what the gh api is expecting, so if the
+            # status reported by our action isn't `success` we'll manually set it to `failure`
+            status_state="failure"
+          fi
+
+          echo "status_message=${status_message}" >> $GITHUB_OUTPUT
+          echo "status_state=${status_state}" >> $GITHUB_OUTPUT
+
+      - name: 'Warn and provide log'
+        if: needs.get_pr_url.outputs.pr_url_status != 'success'
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+        run: |
+          echo "::error::The environment for pull request ${{ env.PRNUM }} failed to deploy. Please rerun this workflow."
+          echo "::warning::Check the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+          echo "The last status we received was ${{ needs.get_pr_url.outputs.pr_url_status }}"
+          echo "List of activities that we ask for, but not limited to the last one:"
+          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ env.BRANCH }}
+          echo "Now a list of the (up to) last 20 activities for branch ${{ env.BRANCH }}:"
+          platform activities --environment ${{ env.BRANCH }} --limit 20
+          # Get the ID of failed activity and output its log:
+          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ env.BRANCH }} --result=failure)
+          echo "Log for the failed activity, ID ${failedID}"
+          platform activity:log ${failedID} --environment ${{ env.BRANCH }}
+
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/report-status
+        with:
+          job_name: '${{ env.PRURLJOBNAME }}'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: '${{ steps.set-status-message.outputs.status_message }}'
+          state: '${{ steps.set-status-message.outputs.status_state }}'
+
+  report_changed_files:
+    name: Collects a list of changed files, reports their URL as a comment
+    needs:
+      - get_info_on_pr
+      - get_pr_url
+    runs-on: ubuntu-latest
+    if: needs.get_pr_url.outputs.pr_url_status == 'success'
+    env:
+      BRANCH: ${{ needs.get_info_on_pr.outputs.prbranch }}
+      BASESHA: ${{ needs.get_info_on_pr.outputs.basesha }}
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
+      PRNUM: ${{ needs.get_info_on_pr.outputs.prnum }}
+      ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
+      UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Make pr_comment.txt file
+        run: |
+          # we need this for the later action
           touch pr_comment.txt
-
-      - name: Save PR number
-        if: ${{ always() }}
-        run: echo ${{ github.event.number }} > pr_number.txt
-
-      - name: Save PR SHA
-        if: ${{ always() }}
-        run: echo "${{ github.event.pull_request.head.sha }}" > pr_sha.txt
-
-      # If no environment URL, create a report of that
-      - name: Create failure report
-        if: steps.get_env_url.outputs.env_status == 'failure'
-        run: |
-          echo -e "The environment on Platform.sh failed to deploy. :slightly_frowning_face:\n\nCheck the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ steps.branch_name.outputs.branch_name }}" > pr_comment.txt
-
-      # Create a list of relevant changed pages
-      - name: Report environment URL
-        if: steps.get_env_url.outputs.env_status == 'success'
-        run: |
-          echo ${{ steps.get_env_url.outputs.pr_url }} > environment_url.txt
-
       - name: Get changed files
-        if: steps.get_env_url.outputs.env_status == 'success'
         id: changed-files
         uses: tj-actions/changed-files@v41
         with:
-          sha: ${{ github.event.pull_request.head.sha }}
-          base_sha: ${{ github.event.pull_request.base.sha }}
-
+          sha: ${{ env.HEADSHA }}
+          base_sha: ${{ env.BASESHA }}
       # Create a list of relevant changed pages
       - name: Get list of changed files
-        if: steps.get_env_url.outputs.env_status == 'success'
         id: get-files
-        env:
-          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
         run: |
           files_platform=()
           files_upsun=()
@@ -119,9 +230,6 @@ jobs:
 
               # Shift index pages up a level
               page=${page/"/_index.html"/".html"}
-
-              # Adjust URL for Upsun docs.
-              UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
 
               files_upsun+=("$UPSUN_ENV_URL$page")
             fi
@@ -158,93 +266,114 @@ jobs:
       # If there are no changed pages, create a comment
       # with a link to general URL
       - name: Comment without links
-        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == '' && steps.get_env_url.outputs.env_status == 'success'
+        if: steps.get-files.outputs.changed_files_platform == '' && steps.get-files.outputs.changed_files_upsun == ''
         env:
-          ENV_URL: ${{ steps.get_env_url.outputs.pr_url }}
+          ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
+          UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
         run: |
-          UPSUN_ENV_URL=${{ env.UPSUN_DOCS_PREFIX }}.${ENV_URL:8}
           echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
 
-      - uses: actions/upload-artifact@v4
+      - name: Post PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          name: pr-info
-          path: |
-            environment_url.txt
-            pr_comment.txt
-            pr_number.txt
-            pr_sha.txt
-          retention-days: 1
-
-      # If environment failed to create, fail the workflow
-      - name: Fail workflow
-        env:
-          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
-        if: steps.get_env_url.outputs.env_status != 'success'
-        run: |
-          echo "::error::The environment for pull request ${{ github.event.number }} failed to deploy. Please rerun this workflow."
-          echo "The last status we received was ${{ steps.get_env_url.outputs.env_status }}"
-          echo "List of activities that we ask for, but not limited to the last one:"
-          platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ steps.branch_name.outputs.branch_name }}
-          echo "Now a list of the (up to) last 20 activities for branch ${{ steps.branch_name.outputs.branch_name }}:"
-          platform activities --environment ${{ steps.branch_name.outputs.branch_name }} --limit 20
-          # Get the ID of failed activity and output its log:
-          failedID=$(platform activities --format plain --type "environment.push environment.activate environment.redeploy environment.branch" --no-header --columns "ID" --limit 1 --environment ${{ steps.branch_name.outputs.branch_name }} --result=failure)
-          echo "Log for the failed activity, ID ${failedID}"
-          platform activity:log ${failedID} --environment ${{ steps.branch_name.outputs.branch_name }}
-          exit 1
-  dont_run_nonlabeled_forks:
-    name: Warn about non-labeled PRs from forks
-    if: github.event.pull_request.head.repo.id != vars.REPO_ID && !contains(github.event.pull_request.labels.*.name, 'build-fork')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Warn the environment will not be built
-        run: |
-          echo "::warning::Pull Requests from forks will not have an environment built until they are given the appropriate label."
+          number: ${{ env.PRNUM }}
+          path: pr_comment.txt
 
   run-redirection-tests:
-    runs-on: ubuntu-latest
     name: Verify contracted redirections
     needs:
-      - get_pr_info
+      - get_info_on_pr
+      - get_pr_url
+    runs-on: ubuntu-latest
+    env:
+      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
-    if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    if: needs.get_info_on_pr.outputs.continuetests == 'true'
     steps:
       - uses: actions/checkout@v4
+      - id: redirection-tests
+        uses: ./.github/actions/redirection-verification
         with:
-          # we need to checkout the PR repo/branch even if it's a fork because the action in the next step needs to
-          # retrieve the contracted redirections from .platform/routes.yaml. This may change in the future if we
-          # switch to using a redirection service. Actions DO NOT have access to secrets.
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: ./.github/actions/redirection-verification
+          environment_url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
+          base_environment_url: ${{ needs.get_pr_url.outputs.pr_url }}
+          redirection_project_id: ${{ secrets.REDIRECTIONIO_PROJECT_ID }}
+          redirection_token: ${{ secrets.REDIRECTIONIO_API_KEY }}
+
+  report_redirection_test:
+    name: "Report redirection test results"
+    needs:
+      - get_info_on_pr
+      - get_pr_url
+      - run-redirection-tests
+    runs-on: ubuntu-latest
+    env:
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
+    if: ${{ always() }}
+    steps:
+      # we want the default branch
+      - uses: actions/checkout@v4
+      - name: "Determine status and message"
+        id: determine-status-message
+        run: |
+          if [ 'success' = ${{ needs.run-redirection-tests.result }} ]; then
+            state="success"
+            message="Redirection verifications passed."
+          else
+            # if it isn't `success` then no matter what it was it's a failure
+            state="failure"
+            message="Redirection verifications failed. Please see run summary."
+            if [ 'skipped' = ${{ needs.run-redirection-tests.result }} ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
+              message="Redirection tests can not run on forks until approved."
+            fi
+          fi
+
+          echo "::warning::${message}"
+
+          echo "message=${message}" >> $GITHUB_OUTPUT
+          echo "state=${state}" >> $GITHUB_OUTPUT
+
+      - uses: ./.github/actions/report-status
         with:
-          environment-url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
+          # @todo i wish there was a way to go get this info instead of hard-coding it
+          job_name: 'Verify contracted redirections'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ env.HEADSHA }}'
+          status_description: '${{ steps.determine-status-message.outputs.message }}'
+          state: '${{ steps.determine-status-message.outputs.state }}'
 
   run-e2e-test:
     runs-on: ubuntu-latest
     name: E2E tests
     needs:
-      - get_pr_info
+      - get_info_on_pr
+      - get_pr_url
+    env:
+      CONTINUE: ${{ needs.get_info_on_pr.outputs.continuetests }}
+      REPOSOURCE: ${{ needs.get_info_on_pr.outputs.reposource }}
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     # this isn't REALLY needed since we're depending on get_pr_info and it only completes successfully
-    if: github.event.pull_request.head.repo.id == vars.REPO_ID || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    if: needs.get_info_on_pr.outputs.continuetests == 'true'
     strategy:
       matrix:
         include:
           - site: platformsh
-            url: ${{ needs.get_pr_info.outputs.pr_url }}
+            url: ${{ needs.get_pr_url.outputs.pr_url }}
           - site: upsun
-            url: ${{ needs.get_pr_info.outputs.pr_url_upsun }}
+            url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
     steps:
       - uses: actions/checkout@v4
-        if: github.event.pull_request.head.repo.id == vars.REPO_ID
+        if: env.REPOSOURCE == 'source'
         with:
-          # If this is the base repo, then we want to check out the PR branch so we can potentially run new tests/changes
-          # that are included in the PR.
+          # If this is the base repo, then we want to check out the PR branch so we can potentially run new E2E
+          # tests/changes that are included in the PR.
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ env.HEADSHA }}
       - uses: actions/checkout@v4
         # if it isn't the base repo and we're in a fork then we'll checkout the base repo
-        if: github.event.pull_request.head.repo.id != vars.REPO_ID && contains(github.event.pull_request.labels.*.name, 'build-fork')
+        if: env.REPOSOURCE == 'fork'
       - uses: cypress-io/github-action@v6
         with:
           wait-on: ${{ matrix.url }}
@@ -256,17 +385,44 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  run_all_tests:
+  report_e2e_tests:
     name: Report all E2E tests status
     runs-on: ubuntu-latest
-    needs: run-e2e-test
+    needs:
+      - run-e2e-test
+      - get_info_on_pr
+      - get_pr_url
+    env:
+      HEADSHA: ${{ needs.get_info_on_pr.outputs.headsha }}
     if: ${{ always() }}
     steps:
-      - name: Report matrix status
+      - uses: actions/checkout@v4
+      - name: 'Set status and messages'
+        id: set-status-and-messages
         run: |
-          result="${{ needs.run-e2e-test.result }}"
-          if [[ $result == "success" || $result == "skipped" ]]; then
-            exit 0
+          if [ 'success' = '${{ needs.run-e2e-test.result }}' ]; then
+            message="All E2E tests passed."
+            state="success"
           else
-            exit 1
+            state="failure"
+            message="One or more E2E tests failed. See run summary."
+            if [ 'skipped' = '${{ needs.run-e2e-test.result }}' ] && [ 'false' = '${{ needs.get_info_on_pr.outputs.continuetests }}' ]; then
+              message="E2E tests can not be run on forks until approved."
+            fi
           fi
+
+          echo "::warning::${message}"
+          echo "message=${message}" >> $GITHUB_OUTPUT
+          echo "state=${state}" >> $GITHUB_OUTPUT
+      - name: Report matrix status
+        uses: ./.github/actions/report-status
+        if: always()
+        with:
+          job_name: 'Report all E2E tests status'
+          workflow_name: '${{ github.workflow }}'
+          gh_token: '${{ github.token }}'
+          run_id: '${{ github.run_id }}'
+          head_sha: '${{ needs.get_info_on_pr.outputs.headsha }}'
+          status_description: '${{ steps.set-status-and-messages.outputs.message }}'
+          state: '${{ steps.set-status-and-messages.outputs.state }}'
+

@@ -34,6 +34,7 @@ CPUs?
 [Cc]ron
 coroutine
 Datadog
+datastore
 DDEV
 denylist
 deprovision
@@ -202,6 +203,7 @@ Uvloop
 [Uu]ntrusted
 upscal(?:e|ing)
 upsiz(?:e|ing)
+Valkey
 Verisign
 Webflux
 webpack

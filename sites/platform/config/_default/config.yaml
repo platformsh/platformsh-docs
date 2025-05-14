@@ -115,6 +115,9 @@ security:
     getenv:
     - ^GITHUB_
     - ^HUGO_HEAP_ID
+    - ^PENDO_ID
   http:
     methods:
     - GET
+
+enableRobotsTXT: true

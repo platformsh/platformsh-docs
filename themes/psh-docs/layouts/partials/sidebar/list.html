@@ -37,12 +37,12 @@
 
 <!-- Handle all other directories -->
 {{ else }}
-<div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }">
-  <!-- {{ .Page }} -->
-  {{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
-  {{ if .Context.Params.sidebarTitle }}
-    {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
-  {{ end }}
+<!-- {{ .Page }} -->
+{{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
+{{ if .Context.Params.sidebarTitle }}
+  {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
+{{ end }}
+<div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }" data-engagement-id="sidebar-subsection-{{ $itemTitle | htmlEscape }}">
   <!-- Allow for top-level sectionBefore titles -->
   {{ with .Context.Params.sectionBefore }}
     <h5 class="text-xs px-5 pt-2 pb-2 uppercase">{{ . }}</h5>
@@ -54,8 +54,8 @@
         {{ if .Context.Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
         {{ if .Context.Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
         {{ if .Context.Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
-      </a> 
-      
+      </a>
+
     </h4>
 
     <!-- Add button for expanding if has children-->
@@ -88,7 +88,7 @@
       {{ with .Params.sectionBefore }}
         <h5 class="text-xs pt-2 pb-2 uppercase">{{ . }}</h5>
       {{ end }}
-      <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
+      <li x-data="{ secondExpanded: {{ $isCurrentSection }} }" data-engagement-id="sidebar-subsection-nested-{{ $itemTitle | htmlEscape }}">
         <div class="flex items-center pl-4 justify-between{{ if ne .Kind "section" }} py-2 pl-4 {{ end }}">
           <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
               {{ $itemTitle }}
