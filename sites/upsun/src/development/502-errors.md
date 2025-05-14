@@ -98,9 +98,7 @@ This is especially useful for:
 
 {{< note title="Bonus step" theme="info" >}}
 
-You can also manually run your `start` command to debug why your app might be failing. This is because some output about issues in `stdout` don't always appear in the logs. 
-
-output to stdout that isn't included in the logs that might give insight into what is happening
+You can also manually run your `start` command to debug why your app might be failing. This is because some output about issues in standard output (`stdout`) don't always appear in the logs. 
 
 {{< /note >}}
 
