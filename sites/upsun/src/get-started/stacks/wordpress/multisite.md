@@ -122,7 +122,8 @@ applications:
 
 In order to process the domains, we need to be able to determine the default "parent" domain for the multisite. Upsun
 provides information about all routes in the environment variable [`PLATFORM_ROUTES`](/development/variables/use-variables.html#use-provided-variables)
-and we can use this information to determine the needed domain. In your `.environment` file, add the following:
+and we can use this information to determine the needed domain. These values will are used in later in the
+`wp-config.php` file.  In your `.environment` file, add the following:
 
 ```bash {location=".environment"}
 export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
