@@ -15,14 +15,15 @@ These resources provide all the core concepts and common commands you need to kn
 {{< /note >}}
 
 For WordPress Multisite to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
-you still need to add some required files and make a few changes to your {{% vendor/name %}} configuration.
+and have a working WordPress site based on one of the other WordPress guides see **Assumptions**, you still need to make
+a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="WordPress" %}}
 
 {{< note theme="info" title="Assumptions" >}}
 
-There are many ways you can set up a [WordPress Multisite](https://developer.wordpress.org/advanced-administration/multisite/) or {{% vendor/name %}} project.
-The instructions on this page were designed based on the following assumptions:
+There are many ways you can set up a [WordPress Multisite](https://developer.wordpress.org/advanced-administration/multisite/)
+or {{% vendor/name %}} project. The instructions on this page were designed based on the following assumptions:
 
 - You selected **PHP** as your runtime, and **MariaDB** as a service during the Getting Started guide. It's also assumed that
 while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all
@@ -92,6 +93,7 @@ applications:
     hooks:
       build: |
         set -eux
+        composer install --prefer-dist --optimize-autoloader --apcu-autoloader --no-progress --no-ansi --no-interaction
         wp package install upsun/wp-ms-dbu
         wp package update upsun/wp-ms-dbu
 ```
@@ -105,8 +107,8 @@ applications:
     hooks:
       deploy: |
         set -eux
-
-        PRODURL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r '[.[] | select(.primary == true)] | first | .production_url')
+        # we need the main production url
+        PRODURL=$($PLATFORM_ROUTES | base64 --decode | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" '[.[] | select(.primary == true and .type == "upstream" and .upstream == $app )] | first | .production_url')
         if [ 'production' != "${PLATFORM_ENVIRONMENT_TYPE}" ] &&  wp site list --format=count --url="${PRODURL}" >/dev/null 2>&1; then
           echo "Updating the database...";
           wp ms-dbu update --url="${PRODURL}"
@@ -118,20 +120,7 @@ applications:
 ```
 
 
-## 3. Environment variables
-
-In order to process the domains, we need to be able to determine the default "parent" domain for the multisite. Upsun
-provides information about all routes in the environment variable [`PLATFORM_ROUTES`](/development/variables/use-variables.html#use-provided-variables)
-and we can use this information to determine the needed domain. These values will are used in later in the
-`wp-config.php` file.  In your `.environment` file, add the following:
-
-```bash {location=".environment"}
-export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
-export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
-```
-
-
-## 4. wp-config.php
+## 3. wp-config.php
 
 Once our multisite has been set up, we need to expose additional pieces of information inside our `wp-config.php` file.
 In your wp-config.php file, right above the section:
@@ -172,17 +161,7 @@ where `SUBDOMAIN_INSTALL` is set to `true` if your multisite is a sub/multi-doma
 setting up a subdirectory-based multisite. Note that `MULTISITE` is currently set to `false`; we will update his once
 the database has finished being set up for the multisite.
 
-{{< note theme="info" title="Variable placement" >}}
-For the values `SUBDOMAIN_INSTALL`, `MULTISITE`, and `WP_ALLOW_MULTISITE`, including them in the wp-config.php file is
-perfectly acceptable. However, if you will be creating multiple multisites, and starting from a canonical repository,
-I would suggest defining these values as environment variables, and updating these sections in wp-config.php to
-retrieve the information from these environment variables
-(e.g. `define('SUBDOMAIN_INSTALL', filter_var(getenv('SUBDOMAIN_INSTALL'),FILTER_VALIDATE_BOOLEAN));`). This allows you
-to change the behavior of a specific instance of the codebase by changing these variables instead of having to make
-changes directly to wp-config.php.
-{{< /note >}}
-
-## 5. Commit and push
+## 4. Commit and push
 You can now commit all the changes made above `.upsun/config.yaml` and push to {{% vendor/name %}}.
 
    ```bash {location="Terminal"}
@@ -196,7 +175,7 @@ map_values(select(.primary == true and .type == "upstream" and .upstream == "app
 to_entries[] | select(.value.primary == true and .value.type == "upstream" and .value.upstream == "app") | if (.key[-1:] == "/") then (.key[0:-1]) else .key end
 -->
 
-## 6. Network (Multisite) Setup
+## 5. Network (Multisite) Setup
 Adding `define('WP_ALLOW_MULTISITE', true);` will enable the **Network Setup** item in your **Tools menu**. Use that
 menu item to go to the **Create a Network of WordPress Sites** screen. Follow the instructions on this screen and click
 the **Install** button. You can ignore the instructions on the resulting screen.
@@ -206,7 +185,7 @@ Alternatively, you can access a terminal session in the app container (`{{% vend
 `wp core multisite-convert` to install the multisite.
 {{< /note >}}
 
-## 7. Final change to wp-config.php
+## 6. Final change to wp-config.php
 Return to your wp-config.php file and change
 
 ```php {location="wp-config.php"}
@@ -228,12 +207,24 @@ git commit -m "set WordPress to run in multisite mode."
 Once the site has finished deploying, you can return the Network Admin --> Sites area of wp-admin and begin adding your
 sites.
 
-## FOR WEDNESDAY:
+<!--
+## FOR Monday:
 
 1. Show the wp-cli package updating the database for a preview environment?
 2. Discuss multi domain mapping?
-3. Create a separate collection of files where you use env vars instead of doing it directly in wp-config.php?
-4. Discuss changes needed if you install wordpress in its own directory?
+3. Discuss changes needed if you install wordpress in its own directory? <-- do this in a blog post
+
+@todo put this in a blog post as well
+------
+For the values `SUBDOMAIN_INSTALL`, `MULTISITE`, and `WP_ALLOW_MULTISITE`, including them in the wp-config.php file is
+perfectly acceptable. However, if you will be creating multiple multisites, and starting from a canonical repository,
+I would suggest defining these values as environment variables, and updating these sections in wp-config.php to
+retrieve the information from these environment variables
+(e.g. `define('SUBDOMAIN_INSTALL', filter_var(getenv('SUBDOMAIN_INSTALL'),FILTER_VALIDATE_BOOLEAN));`). This allows you
+to change the behavior of a specific instance of the codebase by changing these variables instead of having to make
+changes directly to wp-config.php.
+-------
+-->
 
 ## Further resources
 

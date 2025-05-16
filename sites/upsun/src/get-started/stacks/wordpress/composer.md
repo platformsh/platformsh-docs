@@ -148,6 +148,9 @@ To set one up, follow these steps:
    mount location accordingly.
    {{< /note >}}
 
+## 3. Install the WP-CLI
+@todo for Monday, add composer and wp-cli bundle at step 3.
+
 ## 4. Install dependencies during the build hook
 
 To ensure your Composer dependencies are installed during the [build stage](/learn/overview/build-deploy.md#the-build),
@@ -235,30 +238,46 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 7. Update your MariaDB service relationship
+## 7. Update the `.environment` file
 
-You need to update the name used to represent the [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) between your app and your MariaDB service.
-To do so, locate the `relationships:` top-level property.
-Update the relationship for the database service as follows:
+We need to add a few environment variables that will be used inside the `wp-config.php` file we added previously.
+Open the `.environment` file. Just after the other database-related variables, add:
 
-```yaml {configFile="app"}
-applications:
-  myapp:
-    source:
-      root: "/"
-    type: 'php:8.3'
-    # ...
-    relationships:
-      database: "mariadb:mysql"
+```bash {location=".environment"}
+export DB_NAME="$DB_PATH"
 ```
 
-You can now commit all the changes made to `.upsun/config.yaml` and push to {{% vendor/name %}}.
+Add a blank line or two and add the following:
 
-   ```bash {location="Terminal"}
-   git add .
-   git commit -m "Add changes to complete my {{% vendor/name %}} configuration"
-   git push
-   ```
+```bash {location=".environment"}
+# Routes, URLS, and primary domain
+export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
+export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
+export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+```
+<!-- @todo figure out the full expression for 1.5
+{{< note >}}
+If you decide to change the version of PHP to 8.1, the PHP 8.1 image ships with `jq` version 1.5. The jq function
+`map_values()` was not added until version 1.6. For version 1.5, you can simulate the function by using the [array
+unpack operator](https://jqlang.org/manual/v1.5/#.[]), feeding the results to your select function, and wrapping all of
+it as an array. For example, the `jq` expression for `UPSTREAM_URLS` for v1.5 of `jq` can be written as
+
+```bash {location=".environment"}
+export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" '[.[] | select(.type == "upstream" and .upstream == $app )] | keys')
+```
+{{< /note >}}
+
+-->
+
+## 9. Commit and push
+
+You can now commit all the changes made to `.upsun/config.yaml` and `.environment` and push to {{% vendor/name %}}.
+
+ ```bash {location="Terminal"}
+ git add .
+ git commit -m "Add changes to complete my upsun configuration"
+ git push
+ ```
 
 
 ## Further resources
