@@ -4,8 +4,6 @@ weight: 8
 sidebarTitle: "Swoole"
 ---
 
-{{% composable/disclaimer %}}
-
 Swoole is a PHP extension that extends PHP core with a coroutine based asynchronous network application framework designed for building large scale concurrent systems.
 
 Unlike PHP-FPM’s stateless operating, Swoole relies on establishing persistent connections with every user, sending and receiving data in real-time.

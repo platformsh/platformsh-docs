@@ -4,8 +4,6 @@ description: Get started creating Python apps on {{% vendor/name %}}.
 layout: single
 ---
 
-{{% composable/disclaimer %}}
-
 Python is a general purpose scripting language often used in web development.
 You can deploy Python apps on {{% vendor/name %}} using a server or a project such as [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
