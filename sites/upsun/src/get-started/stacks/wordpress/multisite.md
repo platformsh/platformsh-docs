@@ -108,7 +108,7 @@ applications:
       deploy: |
         set -eux
         # we need the main production url
-        PRODURL=$($PLATFORM_ROUTES | base64 --decode | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" '[.[] | select(.primary == true and .type == "upstream" and .upstream == $app )] | first | .production_url')
+        PRODURL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" '[.[] | select(.primary == true and .type == "upstream" and .upstream == $app )] | first | .production_url')
         if [ 'production' != "${PLATFORM_ENVIRONMENT_TYPE}" ] &&  wp site list --format=count --url="${PRODURL}" >/dev/null 2>&1; then
           echo "Updating the database...";
           wp ms-dbu update --url="${PRODURL}"
@@ -143,7 +143,7 @@ define('MULTISITE', false); //instructs WordPress to run in multisite mode
 
 if( MULTISITE && WP_ALLOW_MULTISITE) {
 	define('SUBDOMAIN_INSTALL', false); // does the instance contain subdirectory sites (false) or subdomain/multiple domain sites (true)
-	define('DOMAIN_CURRENT_SITE', filter_var(getenv('DOMAIN_CURRENT_SITE'),FILTER_VALIDATE_URL));
+	define('DOMAIN_CURRENT_SITE', parse_url(filter_var(getenv('DOMAIN_CURRENT_SITE'),FILTER_VALIDATE_URL),PHP_URL_HOST));
 	define('PATH_CURRENT_SITE', '/'); //path to the WordPress site if it isn't the root of the site (e.g. https://foo.com/blog/)
 	define('SITE_ID_CURRENT_SITE', 1); //main/primary site ID
 	define('BLOG_ID_CURRENT_SITE', 1); //main/primary/parent blog ID
@@ -212,6 +212,7 @@ sites.
 
 1. Show the wp-cli package updating the database for a preview environment?
 2. Discuss multi domain mapping?
+3. Update step #2 and change the deploy hook to use map_values()
 3. Discuss changes needed if you install wordpress in its own directory? <-- do this in a blog post
 
 @todo put this in a blog post as well
