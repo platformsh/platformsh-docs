@@ -14,7 +14,9 @@ These resources provide all the core concepts and common commands you need to kn
 
 {{< /note >}}
 
-For WordPress Multisite to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
+You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully deploy and operate. 
+
+Please note that these changes must only be made **after completing the [Getting started guide](/get-started/here/_index.md)**. Once the changes are made, you will have a working WordPress site (see **Assumptions** to read the WordPress guides and understand what your working WordPress site will be based on).
 and have a working WordPress site based on one of the other WordPress guides see **Assumptions**, you still need to make
 a few changes to your {{% vendor/name %}} configuration.
 
