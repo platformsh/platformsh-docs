@@ -97,6 +97,12 @@ applications:
         wp package install upsun/wp-ms-dbu
         wp package update upsun/wp-ms-dbu
 ```
+
+{{< note theme="info">}}
+If you created your site based on the WordPress Vanilla guide, only add the lines above that start with `wp package`
+(i.e. skip the `composer install` line).
+{{< /note >}}
+
 To instruct the package to update your database with the relevant domains for the preview environment, locate the
 `deploy` section and update it as follows:
 
