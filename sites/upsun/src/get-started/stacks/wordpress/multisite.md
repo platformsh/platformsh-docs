@@ -14,7 +14,7 @@ These resources provide all the core concepts and common commands you need to kn
 
 {{< /note >}}
 
-You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully deploy and operate. 
+You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully deploy and operate.
 
 Please note that these changes must only be made **after completing the [Getting started guide](/get-started/here/_index.md)**. Once the changes are made, you will have a working WordPress site (see **Assumptions** to read the WordPress guides and understand what your working WordPress site will be based on).
 
@@ -158,7 +158,7 @@ if( MULTISITE && WP_ALLOW_MULTISITE) {
 }
 ```
 where `SUBDOMAIN_INSTALL` is set to `true` if your multisite is a sub/multi-domain site, or `false` if you will be
-setting up a subdirectory-based multisite. Note that `MULTISITE` is currently set to `false`; we will update his once
+setting up a subdirectory-based multisite. Note that `MULTISITE` is currently set to `false`; we will update this once
 the database has finished being set up for the multisite.
 
 ## 4. Commit and push
