@@ -24,7 +24,7 @@ and have a working WordPress site based on one of the other WordPress guides see
 {{< note theme="info" title="Assumptions" >}}
 
 There are many ways you can set up a [WordPress Multisite](https://developer.wordpress.org/advanced-administration/multisite/)
-or {{% vendor/name %}} project. The instructions on this page were designed based on the following assumptions:
+or {{% vendor/name %}} project. The instructions on this page are based on the following assumptions:
 
 - You selected **PHP** as your runtime, and **MariaDB** as a service during the Getting Started guide. It's also assumed that
 while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all
