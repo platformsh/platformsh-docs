@@ -34,12 +34,14 @@ The instructions on this page were designed based on the following assumptions:
 
 To ensure you have all the required files and directories in your project, follow these steps:
 
-1. Copy the following files from the [WordPress Composer template](https://github.com/platformsh-templates/wordpress-composer/)
+1. Copy the following files from the [WordPress Composer Example Snippets](https://github.com/upsun/snippets/tree/main/examples/wordpress-composer)
    and add them to the root of your project:
 
-   - The [composer.json](https://raw.githubusercontent.com/platformsh-templates/wordpress-composer/61da65da21039b280b588642cd329a2eb253e472/composer.json) file declares project dependencies and specifies project settings and metadata for [Composer](https://getcomposer.org/) to use
-   - The [wp-cli.yml](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-cli.yml) file contains the configuration values, related to your site, for the [WordPress CLI](https://wp-cli.org/) to use
-   - The [wp-config.php](https://github.com/platformsh-templates/wordpress-composer/blob/61da65da21039b280b588642cd329a2eb253e472/wp-config.php) file contains your site's base configuration details, such as database connection information
+   - The [composer.json](https://raw.githubusercontent.com/upsun/snippets/refs/heads/main/examples/wordpress-composer/composer.json) file declares project dependencies and specifies project settings and metadata for [Composer](https://getcomposer.org/) to use
+   - The [wp-cli.yml](https://raw.githubusercontent.com/upsun/snippets/refs/heads/main/examples/wordpress-composer/wp-cli.yml) file contains the configuration values, related to your site, for the [WordPress CLI](https://wp-cli.org/) to use
+   - The [.environment](https://raw.githubusercontent.com/upsun/snippets/refs/heads/main/examples/wordpress-composer/.environment) file maps and creates environment variables to be used in `wp-config.php`
+   - The [wp-config.php](https://raw.githubusercontent.com/upsun/snippets/refs/heads/main/examples/wordpress-composer/wp-config.php) file contains your site's base configuration details, such as database connection information
+
 
 2. Optional: To support non-public plugins, add a `plugins` directory to your project.
 To ensure Git tracks empty folders, add a `plugins/.gitkeep` file as well.
@@ -48,16 +50,13 @@ To ensure Git tracks empty folders, add a `plugins/.gitkeep` file as well.
 
    ```bash {location="Terminal"}
    git add .
-   git commit -m "Add files and directory"
-   git push
+   git commit -m "Adds initial WordPress and Upsun configuration files"
    ```
 
-Now that you have pushed all the necessary files and directories to Upsun,
-make the following changes to your `./.upsun/config.yaml` file.
-
 ## 2. Configure your root location
-
-Locate the `web:locations` section and update the root (`/`) location as follows:
+Now that we have added the initial set of files to our repository, we need to make some additional modifications to the
+Upsun configuration, so Upsun knows how to handle certain requests. Locate the `web:locations` section in the
+`.upsun/config.yaml` file and update the root (`/`) location as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -136,7 +135,7 @@ To set one up, follow these steps:
        source:
          root: "/"
        type: 'php:8.3'
-       ...
+       <snip>
        mounts:
          "wordpress/wp-content/uploads":
            source: storage
@@ -148,10 +147,30 @@ To set one up, follow these steps:
    mount location accordingly.
    {{< /note >}}
 
-## 3. Install the WP-CLI
-@todo for Monday, add composer and wp-cli bundle at step 3.
+## 4. Install the WP-CLI
+To ensure we are able to perform tasks later in the deployment stage (e.g. updating the database, flushing cache, etc.)
+we need to make sure the [wp-cli](https://wp-cli.org/) utility is a dependency of the application container. While still
+in the `.upsun/config.yaml` file, locate the `dependencies.php` section, and add the following:
 
-## 4. Install dependencies during the build hook
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    <snip>
+    dependencies:
+      php:
+        composer/composer: "^2"
+        wp-cli/wp-cli-bundle: "^2.4"
+```
+
+{{< note >}}
+It is possible the `dependencies` section is commented out. When uncommenting, pay attention to the indentation and that
+the `dependencies` key aligns with other sibling keys (e.g. `build`, `hooks`, etc.)
+{{< /note >}}
+
+## 5. Install dependencies during the build hook
 
 To ensure your Composer dependencies are installed during the [build stage](/learn/overview/build-deploy.md#the-build),
 locate the `build:` section (below the `hooks:` section).</br>
@@ -241,13 +260,8 @@ If these strings aren't the same, the WordPress deployment will not succeed.
 ## 7. Update the `.environment` file
 
 We need to add a few environment variables that will be used inside the `wp-config.php` file we added previously.
-Open the `.environment` file. Just after the other database-related variables, add:
-
-```bash {location=".environment"}
-export DB_NAME="$DB_PATH"
-```
-
-Add a blank line or two and add the following:
+Open the `.environment` file. Just after the other database-related variables, add a blank line or two and add the
+following:
 
 ```bash {location=".environment"}
 # Routes, URLS, and primary domain
@@ -276,9 +290,12 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
  ```bash {location="Terminal"}
  git add .
  git commit -m "Add changes to complete my upsun configuration"
- git push
+ {{% vendor/cli %}} push
  ```
+## 10. Install WordPress
 
+Once {{% vendor/name %}} has completed building and deploying your project, it will provide the list of routes assigned
+to your project. You can now visit your site and complete the WordPress installation as you normally would.
 
 ## Further resources
 
