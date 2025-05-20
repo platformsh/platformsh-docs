@@ -40,14 +40,21 @@ guide for that scenario)
 
 ## 1. Add rewrite rules to your root location
 
-If you are setting up a subdirectory-based multisite, the following rewrite rules are **required**. If you are unsure,
-or if you think you might convert to a subdirectory-based multisite later, you can add these rules to a sub/multi-domain
-multisite without any negative effects.
+If you are setting up a subdirectory-based multisite, or you followed the Bedrock guide, the following rewrite rules are
+**required**. If you followed the Composer based or Vanilla guides and are unsure, or if you think you might convert to
+a subdirectory-based multisite later, you can add these rules to a sub/multi-domain multisite without any negative
+effects.
 
 Locate the `web:locations` section in your `.upsun/config.yaml` file and update the rules section for your root (`/`)
 location as follows:
 
-```yaml {configFile="app"}
+{{< codetabs >}}
+
++++
+title=Vanilla, Composer
+highlight=yaml
++++
+
 applications:
   myapp:
     <snip>
@@ -74,7 +81,47 @@ applications:
               scripts: false
               passthru: '/wp-content/$content'
               expires: 1w
-```
+
+<--->
+
++++
+title=Bedrock
+highlight=yaml
++++
+
+applications:
+  myapp:
+    <snip>
+    web:
+      locations:
+        "/":
+          <snip>
+          rules:
+            ^/license\.text$:
+              allow: false
+            ^/readme\.html$:
+              allow: false
+            '^/(?!wp/)([_0-9a-zA-Z-]+/)?wp-(?<wproot>[a-z\-]+).php$':
+              allow: true
+              scripts: true
+              passthru: '/wp/wp-$wproot.php'
+            # Allows directory-based multisites to still access the wp-admin and wp-include locations
+            '^/(?!wp/)([_0-9a-zA-Z-]+/)?(?<adminrewrite>wp-(admin|includes).*)':
+              allow: true
+              scripts: true
+              passthru: '/wp/$adminrewrite'
+            '^/([_0-9a-zA-Z-]+)/wp-content/(?<content>.*)':
+              allow: true
+              scripts: false
+              passthru: '/wp-content/$content'
+              expires: 1w
+
+{{< /codetabs >}}
+
+{{< note theme="info" >}}
+If you followed the Bedrock guide and decided to change the default name of the directory where WordPress is installed
+(`wp`), then you will need to update both the rules and `passthru` keys accordingly.
+{{< /note >}}
 
 ## 2. Update the database during the deploy hook
 
@@ -112,7 +159,7 @@ applications:
     <snip>
     hooks:
       deploy: |
-        set -eux
+        set -eu
         # we need the main production url
         PRODURL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" '[.[] | select(.primary == true and .type == "upstream" and .upstream == $app )] | first | .production_url')
         if [ 'production' != "${PLATFORM_ENVIRONMENT_TYPE}" ] &&  wp site list --format=count --url="${PRODURL}" >/dev/null 2>&1; then
@@ -121,26 +168,50 @@ applications:
         else
           echo "Database appears to already be updated. Skipping.";
         fi
+        # Flushes the object cache
         wp cache flush
+        # Runs the WordPress database update procedure
         wp core update-db
 ```
 
 
-## 3. wp-config.php
+## 3. `wp-config.php` / `config/application.php`
 
-Once our multisite has been set up, we need to expose additional pieces of information inside our `wp-config.php` file.
-In your wp-config.php file, right above the section outlined below:
+Once our multisite has been set up, we need to expose additional pieces of information inside our `wp-config.php` (or
+`./config/application.php` for Bedrock) file. In your wp-config.php/application.php file, right above the section
+outlined below:
 
-```php {location="wp-config.php"}
+{{< codetabs >}}
+
++++
+title=wp-config.php (Vanilla, Composer)
+highlight=php
++++
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
   define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 }
-```
+<--->
++++
+title=config/application.php (Bedrock)
+highlight=php
++++
+/**
+* Bootstrap WordPress
+  */
+  if (!defined('ABSPATH')) {
+  define('ABSPATH', $webroot_dir . '/wp/');
+  }
+{{< /codetabs >}}
+
 
 add the following:
 
-```php {location="wp-config.php"}
+{{< codetabs >}}
++++
+title=wp-config.php (Vanilla, Composer)
+highlight=php
++++
 /**
  * Multisite support
  */
@@ -162,7 +233,28 @@ if( MULTISITE && WP_ALLOW_MULTISITE) {
 		define('COOKIE_DOMAIN',$site_host);
 	}
 }
-```
+
+<--->
++++
+title=config/application.php (Bedrock)
+highlight=php
++++
+/**
+* Multisite support
+*/
+define('WP_ALLOW_MULTISITE', true); //enables the Network setup panel in Tools
+define('MULTISITE', false); //instructs WordPress to run in multisite mode
+
+if( MULTISITE && WP_ALLOW_MULTISITE) {
+  define('SUBDOMAIN_INSTALL', false); // does the instance contain subdirectory sites (false) or subdomain/multiple domain sites (true)
+  define('DOMAIN_CURRENT_SITE', parse_url(filter_var(getenv('DOMAIN_CURRENT_SITE'),FILTER_VALIDATE_URL),PHP_URL_HOST));
+  define('PATH_CURRENT_SITE', '/'); //path to the WordPress site if it isn't the root of the site (e.g. https://foo.com/blog/)
+  define('SITE_ID_CURRENT_SITE', 1); //main/primary site ID
+  define('BLOG_ID_CURRENT_SITE', 1); //main/primary/parent blog ID
+
+}
+{{< /codetabs >}}
+
 where `SUBDOMAIN_INSTALL` is set to `true` if your multisite is a sub/multi-domain site, or `false` if you will be
 setting up a subdirectory-based multisite. Note that `MULTISITE` is currently set to `false`; we will update this once
 the database has finished being set up for the multisite.
@@ -191,14 +283,14 @@ Alternatively, you can access a terminal session in the app container (`{{% vend
 `wp core multisite-convert` to install the multisite.
 {{< /note >}}
 
-## 6. Final change to wp-config.php
+## 6. Final change to `wp-config.php` / application.php
 Return to your wp-config.php file and change
 
-```php {location="wp-config.php"}
+```php
 define('MULTISITE', false);
 ```
 to
-```php {location="wp-config.php"}
+```php
 define('MULTISITE', true);
 ```
 
@@ -214,24 +306,13 @@ Once the site has finished deploying, you can return to the Network Admin --> Si
 sites.
 
 <!--
-## FOR Tuesday:
+## FOR Wednesday:
 
 1. Show the wp-cli package updating the database for a preview environment?
 2. Discuss multi domain mapping?
+  2a. We're probably going to need to make more changes for Bedrock in order to support true multidomain
 3. Update step #2 and change the deploy hook to use map_values()
-3. Discuss changes needed if you install wordpress in its own directory? <-- do this in a blog post
 
-@todo put this in a blog post as well
-------
-For the values `SUBDOMAIN_INSTALL`, `MULTISITE`, and `WP_ALLOW_MULTISITE`, including them in the wp-config.php file is
-perfectly acceptable. However, if you will be creating multiple multisites, and starting from a canonical repository,
-I would suggest defining these values as environment variables, and updating these sections in wp-config.php to
-retrieve the information from these environment variables
-(e.g. `define('SUBDOMAIN_INSTALL', filter_var(getenv('SUBDOMAIN_INSTALL'),FILTER_VALIDATE_BOOLEAN));`). This allows you
-to change the behavior of a specific instance of the codebase by changing these variables instead of having to make
-changes directly to wp-config.php.
--------
--->
 
 ## Further resources
 
