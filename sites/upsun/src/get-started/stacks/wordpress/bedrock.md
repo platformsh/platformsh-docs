@@ -131,7 +131,7 @@ application can receive requests. Such tasks include:
 - Running any due cron jobs
 
 To perform these tasks, we'll utilize  the [deploy hook](/learn/overview/build-deploy.md#deploy-steps). Locate the
-`deploy:` section (below the `build:` section). Update the `deploy:` section as follows:
+`deploy:` section (below the `build:` section). Update the `deploy:` and `post_deploy` sections as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -147,6 +147,7 @@ applications:
         wp cache flush
         # Runs the WordPress database update procedure
         wp core update-db
+      post_deploy:
         # Runs all due cron events
         wp cron event run --due-now
 ```
@@ -215,7 +216,12 @@ To configure the remaining environment variables that WordPress needs to run smo
 2. Add the following at the end of the file:
 
    ```bash {location=".environment"}
-    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
+    # Routes, URLS, and primary domain
+    export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
+    export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
+    export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+
+    export WP_HOME="${DOMAIN_CURRENT_SITE}"
     export WP_SITEURL="${WP_HOME}/wp"
     export WP_DEBUG_LOG=/var/log/app.log
     # Uncomment this line if you would like development versions of WordPress on non-production environments.
