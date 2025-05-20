@@ -16,7 +16,7 @@ These resources provide all the core concepts and common commands you need to kn
 
 You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully deploy and operate.
 
-Please note that these changes must only be made **after completing the [Getting started guide](/get-started/here/_index.md)**. Once the changes are made, you will have a working WordPress site (see **Assumptions** to read the WordPress guides and understand what your working WordPress site will be based on).
+Please note that these changes must only be made **after completing the [Getting started guide](/get-started/here/_index.md)**. You should also already have a working WordPress site (see **Assumptions** for the WordPress guides your WordPress site should be based on).
 
 {{% guides/requirements name="WordPress" %}}
 
@@ -80,7 +80,7 @@ applications:
 
 The domain(s) of your multisite are stored in the database itself. This creates a challenge in a system like Upsun where
 you often create [preview environments](/glossary.html#preview-environment) dynamically during development. To ensure
-the database for your preview environments are updated with the correct domains, we have created a
+the database for your preview environments is updated with the correct domains, we have created a
 [wp-cli package](https://github.com/upsun/wp-ms-dbu) to automate the process of updating the database with the preview
 environment's unique domain name.
 
@@ -129,7 +129,7 @@ applications:
 ## 3. wp-config.php
 
 Once our multisite has been set up, we need to expose additional pieces of information inside our `wp-config.php` file.
-In your wp-config.php file, right above the section:
+In your wp-config.php file, right above the section outlined below:
 
 ```php {location="wp-config.php"}
 /** Absolute path to the WordPress directory. */
@@ -202,7 +202,7 @@ to
 define('MULTISITE', true);
 ```
 
-Add and commit the changes, and push to {{% vendor/name %}}:
+Add and commit the changes, then push to {{% vendor/name %}}:
 
 ```shell {location="Terminal"}
 git add wp-config.php
@@ -210,7 +210,7 @@ git commit -m "set WordPress to run in multisite mode."
 {{% vendor/cli %}} push -y
 ```
 
-Once the site has finished deploying, you can return the Network Admin --> Sites area of wp-admin and begin adding your
+Once the site has finished deploying, you can return to the Network Admin --> Sites area of wp-admin and begin adding your
 sites.
 
 <!--
