@@ -147,8 +147,9 @@ the `dependencies` key aligns with other sibling keys (e.g. `relationships`, `we
    - Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
    - Running any due cron jobs
 
-    To perform these tasks, we'll utilize  the [deploy hook](/learn/overview/build-deploy.md#deploy-steps). Locate the
-    `deploy:` section (below the `build:` section). Update the `deploy:` section as follows:
+    To perform these tasks, we'll utilize  the [`deploy`](/learn/overview/build-deploy.md#deploy-steps) and
+    [`post_deploy`](/create-apps/hooks/hooks-comparison.html#post-deploy-hook) hooks. Locate the `deploy:` section
+    (below the `build:` section). Update the `deploy:` section as follows:
 
     ```yaml {configFile="app"}
     applications:
@@ -159,11 +160,13 @@ the `dependencies` key aligns with other sibling keys (e.g. `relationships`, `we
         <snip>
         hooks:
           deploy: |
-            set -eux
+            set -eu
             # Flushes the object cache
             wp cache flush
             # Runs the WordPress database update procedure
             wp core update-db
+          post_deploy: |
+            set -eu
             # Runs all due cron events
             wp cron event run --due-now
     ```

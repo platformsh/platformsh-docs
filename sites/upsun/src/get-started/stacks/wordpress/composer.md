@@ -208,7 +208,7 @@ Such tasks include:
 
 To launch these tasks during the deploy hook,
 locate the `deploy:` section (below the `build:` section).</br>
-Update the `deploy:` section as follows:
+Update the `deploy:` and `post_deploy` sections as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -224,6 +224,8 @@ applications:
         wp cache flush
         # Runs the WordPress database update procedure
         wp core update-db
+      post_deploy: |
+        set -eu
         # Runs all due cron events
         wp cron event run --due-now
 ```
