@@ -163,7 +163,7 @@ if( MULTISITE && WP_ALLOW_MULTISITE) {
 	}
 }
 ```
-where `SUBDOMAIN_INSTALL` is set to `true` if your multisite is a sub/multi-domain site, or `false` if you will be
+`SUBDOMAIN_INSTALL` should be set to `true` if your multisite is a sub/multi-domain site, or `false` if you will be
 setting up a subdirectory-based multisite. Note that `MULTISITE` is currently set to `false`; we will update this once
 the database has finished being set up for the multisite.
 
