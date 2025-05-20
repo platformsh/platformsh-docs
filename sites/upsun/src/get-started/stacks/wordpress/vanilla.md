@@ -262,6 +262,10 @@ Now that we've added the required files, you're ready to push your changes and d
 ```
 
 ## 5. Optional:
+@TODO - For Tuesday
+1. Finish this section
+2. Remove all `-x` in build/deploy sections for guides
+3.
 
    ```bash {location=".environment"}
     export WP_DEBUG_LOG=/var/log/app.log

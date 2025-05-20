@@ -214,7 +214,7 @@ Once the site has finished deploying, you can return the Network Admin --> Sites
 sites.
 
 <!--
-## FOR Monday:
+## FOR Tuesday:
 
 1. Show the wp-cli package updating the database for a preview environment?
 2. Discuss multi domain mapping?
