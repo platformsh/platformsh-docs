@@ -264,20 +264,6 @@ Now that we've added the required files, you're ready to push your changes and d
 
 ```
 
-## 5. Optional:
-@TODO - For Tuesday
-1. Finish this section
-2. Remove all `-x` in build/deploy sections for guides
-3.
-
-   ```bash {location=".environment"}
-    export WP_DEBUG_LOG=/var/log/app.log
-    if [ "$PLATFORM_ENVIRONMENT_TYPE" != "production" ] ; then
-      export WP_ENV='development'
-    else
-      export WP_ENV='production'
-    fi
-   ```
 ## Further resources
 - [All files (Upsun configuration, `.environment`, `wp-cli.yml`, `wp-config.php`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)
 ### Documentation
