@@ -135,8 +135,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
     ```
 
     {{< note theme="info">}}
-It is possible the `mounts` section is commented out. When uncommenting, pay attention to the indentation and that
-the `dependencies` key aligns with other sibling keys (e.g. `relationships`, `web`, etc.)
+When uncommenting, pay attention to the indentation and that the `mounts` key aligns with other sibling keys (e.g. `relationships`, `web`, etc.)
     {{< /note >}}
 
 
@@ -263,6 +262,34 @@ Now that we've added the required files, you're ready to push your changes and d
 {{% vendor/cli %}} push -y
 
 ```
+
+## 5. Routinely run WP Cron (optional)
+If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
+in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
+a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
+as follows:
+
+```yaml {configFile="app"}
+ applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    <snip>
+    crons:
+      wp-cron:
+        spec: '*/15 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
+on your individual requirements.
+
+  {{< note theme="info">}}
+When uncommenting, pay attention to the indentation and that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
+  {{< /note >}}
 
 ## Further resources
 - [All files (Upsun configuration, `.environment`, `wp-cli.yml`, `wp-config.php`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)

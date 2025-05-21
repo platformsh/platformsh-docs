@@ -299,6 +299,34 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
 Once {{% vendor/name %}} has completed building and deploying your project, it will provide the list of routes assigned
 to your project. You can now visit your site and complete the WordPress installation as you normally would.
 
+## 11. Routinely run WP Cron (optional)
+If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
+in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
+a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
+as follows:
+
+```yaml {configFile="app"}
+ applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    <snip>
+    crons:
+      wp-cron:
+        spec: '*/15 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
+on your individual requirements.
+
+{{< note theme="info">}}
+When uncommenting, pay attention to the indentation and that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
+{{< /note >}}
+
 ## Further resources
 
 ### Documentation
