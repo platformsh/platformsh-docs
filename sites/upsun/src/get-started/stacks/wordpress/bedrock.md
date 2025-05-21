@@ -47,7 +47,7 @@ applications:
         "/":
           root: "web"
           # The front-controller script to send non-static requests to.
-          passthru: "/index.php"
+          passthru: "/wp/index.php"
           # Wordpress has multiple roots (wp-admin) so the following is required
           index:
             - "index.php"
