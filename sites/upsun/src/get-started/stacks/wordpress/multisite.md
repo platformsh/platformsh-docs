@@ -252,6 +252,31 @@ if( MULTISITE && WP_ALLOW_MULTISITE) {
   define('SITE_ID_CURRENT_SITE', 1); //main/primary site ID
   define('BLOG_ID_CURRENT_SITE', 1); //main/primary/parent blog ID
 
+  if (SUBDOMAIN_INSTALL && getenv('PLATFORM_RELATIONSHIPS')) {
+      $site_host = $_SERVER['HTTP_HOST']) ??  "";
+      //we're not running locally so we need to make sure $site_host is set to something appropriate
+      try {
+          $validURLs = json_decode(getenv('UPSTREAM_URLS'), true, 512, JSON_THROW_ON_ERROR);
+      } catch (\JsonException $exception) {
+          $validURLs = [];
+          error_log($exception->getMessage());
+      }
+
+      //if site_host isnt a valid domain we're expecting, then set it to the default domain
+      if(!in_array($site_host, array_map(static function (string $url) {
+          return parse_url($url, PHP_URL_HOST);
+      }, $validURLs), true)) {
+          $site_host = parse_url(filter_var(getenv('DOMAIN_CURRENT_SITE'),FILTER_VALIDATE_URL),PHP_URL_HOST);
+      }
+      /**
+       * we have a sub/multidomain multisite, and the site currently being requested is not the default domain, so we'll
+       * need to set COOKIE_DOMAIN to the domain being requested
+       */
+      if ($site_host !== DOMAIN_CURRENT_SITE) {
+          define('COOKIE_DOMAIN',$site_host);
+      }
+  }
+
 }
 {{< /codetabs >}}
 
@@ -306,11 +331,10 @@ Once the site has finished deploying, you can return to the Network Admin --> Si
 sites.
 
 <!--
-## FOR Wednesday:
+## FOR Friday:
 
 1. Show the wp-cli package updating the database for a preview environment?
 2. Discuss multi domain mapping?
-  2a. We're probably going to need to make more changes for Bedrock in order to support true multidomain
 3. Update step #2 and change the deploy hook to use map_values()
 
 
