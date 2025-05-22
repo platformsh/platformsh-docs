@@ -14,26 +14,30 @@ These resources provide all the core concepts and common commands you need to kn
 
 {{< /note >}}
 
-You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully deploy and operate.
+You will need to make a few changes to your {{% vendor/name %}} configuration for WordPress Multisite to successfully
+deploy and operate.
 
-Please note that these changes must only be made **after completing the [Getting started guide](/get-started/here/_index.md)**. You should also already have a working WordPress site (see **Assumptions** for the WordPress guides your WordPress site should be based on).
+Please note that these changes must only be made **after completing the
+[Getting started guide](/get-started/here/_index.md)**. You should also already have a working WordPress site (see
+**Assumptions** for the WordPress guides your WordPress site should be based on).
 
 {{% guides/requirements name="WordPress" %}}
 
 {{< note theme="info" title="Assumptions" >}}
 
-There are many ways you can set up a [WordPress Multisite](https://developer.wordpress.org/advanced-administration/multisite/)
+There are many ways you can set up a
+[WordPress Multisite](https://developer.wordpress.org/advanced-administration/multisite/)
 or {{% vendor/name %}} project. The instructions on this page are based on the following assumptions:
 
-- You selected **PHP** as your runtime, and **MariaDB** as a service during the Getting Started guide. It's also assumed that
-while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all
-configuration below.
+- You selected **PHP** as your runtime, and **MariaDB** as a service during the Getting Started guide. It's also assumed
+that while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in
+all configuration below.
 - Your database relationship name is `mariadb` (the default)
 - You have a working WordPress site based on either the [WordPress Composer](/get-started/stacks/wordpress/composer.html),
 [Bedrock](https://docs.upsun.com/get-started/stacks/wordpress/bedrock.html), or
 [WordPress Vanilla](/get-started/stacks/wordpress/vanilla.html) guides.
-- WordPress is installed in the web/public root of the site and not in a subdirectory of its own (see notes at the end of this
-guide for that scenario)
+- WordPress is installed in the web/public root of the site and not in a subdirectory of its own (or in the default of
+`wp` if you set up a Bedrock-based site)
 - You know if you are creating a
 [subdirectory-based multisite or a sub/multi-domain based multisite](https://developer.wordpress.org/advanced-administration/multisite/prepare-network/#types-of-multisite-network).
 {{< /note >}}
@@ -309,7 +313,7 @@ Alternatively, you can access a terminal session in the app container (`{{% vend
 {{< /note >}}
 
 ## 6. Final change to `wp-config.php` / application.php
-Return to your wp-config.php file and change
+Return to your wp-config.php / application.php file and change
 
 ```php
 define('MULTISITE', false);
