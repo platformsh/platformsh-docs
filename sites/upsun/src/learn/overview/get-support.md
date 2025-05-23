@@ -24,10 +24,18 @@ or [open a new ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/ti
 
 Once you submit a ticket, you see it in a list of all tickets created, for all projects you have access to, within your organization.
 
-{{< note theme="info" >}}
+{{< note theme="tip" >}}
 
 Note that once you submit the ticket, you can't modify or delete the submission.
 If you have any additional information, you can select the submitted ticket and write a message.
+
+{{< /note >}}
+
+{{< note theme="info" title="Upgrade to the Organization Support add-on" >}}
+
+The {{% vendor/name %}} Organization Support add-on provides tiered support options tailored to organizational needs. All organizations are automatically enrolled in the Standard support tier. 
+
+To upgrade to either the Premium or Advanced support tier, visit the [add-on subscriptions page](/administration/billing/add-on-subscription#organization-support-add-on).  
 
 {{< /note >}}
 
