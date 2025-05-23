@@ -103,6 +103,11 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
+### Supported Nix channels
+
+- `24.05`
+- `25.05`
+
 ### Supported Nix packages
 
 {{% note %}}
