@@ -127,6 +127,10 @@
                     \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
+                    '^/favicon.ico$':
+                        allow: true
+                        passthru: '/images/favicon.ico'
+
 
     disk: 1024
 
