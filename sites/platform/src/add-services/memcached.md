@@ -75,11 +75,7 @@ To define the service, use the `memcached` type:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: memcached:<VERSION>
-  disk: 256
 ```
-
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
 
 ### 2. Define the relationship
 

@@ -54,8 +54,9 @@
 {{ $baseUrlExpanation = print `- <code>` $base_url_variable `</code> is the base URL for your ` $baseUrlServer ` server if you self-host.
   If you use the public <code>` $baseUrlSource `</code>, omit the <code>--base-url</code> flag when running the command.` }}
 {{ else if ( eq $source "Bitbucket server" )}}
-  {{ $baseUrlExpanation = print `- <code>` $base_url_variable `</code> is the base URL for your Bitbucket server.` }}
-  {{ $baseUrlExample = "--base-url https://example.com " }}
+  {{ $baseUrlExpanation = print `- <code>` $base_url_variable `</code> is the URL for your Bitbucket server.` }}
+  {{ $baseUrlExample = "--bitbucket-url https://example.com " }}
+  {{ $baseUrlVariable = print `--bitbucket-url {{< variable ` $base_url_variable ` >}} `}}
 {{ else if ( eq $source "Bitbucket" ) }}
   {{ $baseUrlVariable = "" }}
   {{ $exampleUrl = "bitbucket.org" }}
@@ -74,7 +75,9 @@
 {{ $accessFlagsExample := "--token abc123" }}
 {{ if ( eq $source "Bitbucket server" ) }}
   {{ $accessFlagsVariable = print `--username {{< variable BITBUCKET_USERNAME >}} \` "\n  " $accessFlagsVariable }}
-  {{ $accessFlagsExample = print `--username user@example.com \` "\n  " $accessFlagsExample}}
+  {{ $accessFlagsExample = print `--username user@example.com \` "\n  " $accessFlagsExample }}
+  {{ $accessFlagsExample = print $accessFlagsExample "\n  " }}
+  {{ $accessFlagsExample = print $accessFlagsExample $baseUrlExample}}
 {{ end }}
 {{ if ( eq $source "Bitbucket" ) }}
   {{ $accessFlagsVariable = print `--key {{< variable CONSUMER_KEY >}} \` "\n  " "--secret {{< variable CONSUMER_SECRET >}}" }}
