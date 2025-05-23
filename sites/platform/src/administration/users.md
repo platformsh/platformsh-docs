@@ -68,12 +68,10 @@ using the email address of the user whose permissions you want to view:
 title=In the Console
 +++
 
-1. Navigate to your organization.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user whose user permissions you want to view,
-   click **{{< icon more >}} More**.
-5. Click **Edit user**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. For the user whose user permissions you want to view, click **{{< icon more >}} More**.
+4. Click **Edit user**.
 
 {{< /codetabs >}}
 
@@ -195,10 +193,10 @@ Run the following command:
 title=In the Console
 +++
 
-1. Navigate to your organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user you want to remove, click **{{< icon more >}} More**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. For the user you want to remove, click **{{< icon more >}} More**.
+4. Click on the **Projects** tab.
 5. For the project you want to remove them from, click **{{< icon more >}} More**.
 6. Click **Remove from project**.
 7. Click **Yes**.
@@ -282,13 +280,12 @@ with the **Manage billing** and **Create projects** permissions, run the followi
 title=Using the Console
 +++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Click **+ Invite users**.
-5. Enter the users' email addresses separated by commas.
-6. Select which organization-wide permissions they should have.
-7. Click **Invite**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. Click **+ Invite users**.
+4. Enter the users' email addresses separated by commas.
+5. Select which organization-wide permissions they should have.
+6. Click **Invite**.
 
 {{< /codetabs >}}
 
