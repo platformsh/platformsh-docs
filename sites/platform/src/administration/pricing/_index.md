@@ -137,19 +137,19 @@ Plans with a Fastly CDN service or the extra Fastly Service include the followin
 
 *Plans without the Fastly Service are instead charged at the following origin prices.*
 
-{{< note theme="note" title="Monitor monthly traffic usage">}}
+### Monitor monthly traffic usage
 
-You can access a clear summary of your monthly traffic metrics under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). This will help you monitor traffic, control costs, and understand usage patterns more effectively. In this summary, you will find specific details about:
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). This will help you monitor your monthly bandwidth and requests consumption. 
 
-- **Origin Bandwidth:** Data transferred from origin servers.
+In this summary, you will find specific details about:
 
-- **Origin Requests:** Requests served by origin servers.
+- **Origin Bandwidth:** Data transferred from origin servers (in TB).
+
+- **Origin Requests:** Requests served by origin servers. (This will be a million requests.)
 
 - **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
 
-These metrics are updated daily and will reflect your traffic usage throughout the billing period. 
-
-{{< /note >}}
+This data is updated daily and will reflect your traffic usage throughout the billing period. 
 
 ### Overage prices
 
