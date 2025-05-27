@@ -19,6 +19,23 @@ open a [support ticket](/learn/overview/get-support.md).
 To add a managed Fastly CDN to your project,
 [contact sales](https://platform.sh/contact/).
 
+{{< note theme="note" title="Monitor CDN metrics">}}
+
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). This will help you monitor your monthly bandwidth and requests consumption. 
+
+In this summary, you will find specific details about:
+
+- **Origin Bandwidth:** Data transferred from origin servers (in TB).
+
+- **Origin Requests:** Requests served by origin servers. (This will be a million requests.)
+
+- **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
+
+This data is updated daily and will reflect your traffic usage throughout the billing period. 
+
+
+{{< /note >}}
+
 ### Domain control validation
 
 When you request for a new domain to be added to your Fastly service,
