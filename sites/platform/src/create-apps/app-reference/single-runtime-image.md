@@ -545,11 +545,11 @@ These allowances are not compatible, and will result in an error if pushed.
 Use the `web` key to configure the web server running in front of your app.
 Defaults may vary with a different [image `type`](#types).
 
-| Name        | Type                                         | Required                      | Description |
-| ----------- | -------------------------------------------- | ----------------------------- | ----------- |
-| `commands`  | A [web commands dictionary](#web-commands)   | See [note](#required-command) | The command to launch your app. |
-| `upstream`  | An [upstream dictionary](#upstream)          |                               | How the front server connects to your app. |
-| `locations` | A [locations dictionary](#locations)         |                               | How the app container responds to incoming requests. |
+| Name        | Type                                       | Required                      | Description                                          |
+|-------------|--------------------------------------------|-------------------------------|------------------------------------------------------|
+| `commands`  | A [web commands dictionary](#web-commands) | See [note](#required-command) | The command to launch your app.                      |
+| `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
+| `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 
 See some [examples of how to configure what's served](/create-apps/web/_index.md).
 
