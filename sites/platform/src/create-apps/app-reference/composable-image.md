@@ -69,13 +69,13 @@ Use the ``stack`` key to define which runtimes and binaries you want to install 
 Define them as a YAML array as follows:
 
 ```yaml {configFile="apps"}
-myapp:
+<MY_APP>:
   stack: [ "<nixpackage>@<version>" ]
   # OR
   stack:
     - "<nixpackage>@<version>"
 ```
-
+<code>{{< variable "APP_NAME" >}}</code> should match your app's `name` in the [app configuration](#top-level-properties).
 To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
 To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
 
@@ -137,7 +137,7 @@ You want to add PHP version {{% latest php %}} and ``facedetect`` to your applic
 To do so, use the following configuration:
 
 ```yaml {configFile="apps"}
-myapp:
+<APP_NAME>:
   stack: [ "php@{{% latest php %}}", "facedetect" ]
   # OR
   stack:
@@ -169,7 +169,7 @@ specify a list of `disabled_extensions` below the language definition.</br>
 For instance:
 
 ```yaml {configFile="apps"}
-myapp:
+<APP_NAME>:
   source:
     root: "/"
   stack:
@@ -205,7 +205,7 @@ For instance, to install [``python312Packages.yq``](https://search.nixos.org/pac
 use the following configuration:
 
 ```yaml {configFile="apps"}
-myapp:
+<APP_NAME>:
   stack:
     - "python@3.12"
     - "python312Packages.yq" # python package specific
@@ -683,7 +683,7 @@ For example:
 
 ```yaml {configFile="apps"}
 applications:
-  myapp:
+  <APP_NAME>:
     # ...
     mounts:
       'var/cache_a':
@@ -705,7 +705,7 @@ The following, however, is not allowed and will result in a failure:
 
 ```yaml {configFile="apps"}
 applications:
-  myapp:
+  <APP_NAME>:
     # ...
     mounts:
       'var/':
