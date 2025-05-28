@@ -118,7 +118,15 @@ If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/tr
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error while accessing your application, it typically indicates that your application is either crashing or unavailable. Below are the typical causes and potential solutions:
+{{< note theme="tip" title="502 errors" version="1" >}}
+
+For troubleshooting tips specifically for 502 errors, please head to the [502 errors resolution guide](/development/502-errors).
+
+{{< /note >}}
+
+If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error while accessing your application, it typically indicates that your application is either crashing or unavailable. 
+
+Below are the typical causes and potential solutions:
 
 #### 1. Your app is listening at the wrong place
 - **Solution**: Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
@@ -128,6 +136,7 @@ If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error whil
 - **Solution**: Review your `.upsun/config.yaml` configuration.
 - Look for any errors that might prevent a process from starting or cause issues with requests being forwarded properly.
 - Check the `web.commands.start` entry or your `passthru` configuration for any misconfigurations.
+- Check your logs to get a clearer picture of what is going on with your application.
 
 #### 3. Excessive traffic to your application
 - **Solution**: Check if the amount of traffic coming to your site exceeds your application's processing power.
