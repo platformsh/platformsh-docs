@@ -554,6 +554,61 @@ much like you would plug a hard drive into your computer to transfer data.
 
 {{% /note %}}
 
+### Mount types
+
+Each mount type has a specific use case and understanding how to use each type effectively will help optimize your application.
+
+#### `storage` mount
+
+The `storage` mount is a shared network storage that is automatically added by the platform. It is required for applications that need to share files across multiple instances—such as user-uploaded media or shared assets. You can configure the size of this mount via the {{% vendor/name %}} UI.
+
+Pros:
+- Shared across all app and worker instances.
+- Configurable size via the UI.
+- Persistent across restarts and redeployments.
+
+Cons:
+- Lower performance due to network-based access.
+- Not suitable for high-throughput temporary operations.
+
+#### `tmp` mount
+
+The `tmp` mount uses the ephemeral disk of an instance and is intended for non-persistent, high-speed temporary storage. Data here may be lost during redeployments or infrastructure updates. Like `instance`, it is limited to 8GB and not configurable.
+
+Pros:
+- Fastest available storage—ideal for caches or intermediate data.
+- Great for temporary files that can be regenerated.
+
+Cons:
+- Non-persistent data can be cleared at any time.
+- Not shared across instances or with workers.
+- Fixed size (8GB).
+
+#### `service` mount
+
+A `service` mount allows you to explicitly define and use a Network Storage service that can be shared between different apps or workers. Unlike the default `storage` mount, which is automatically provisioned per app, a service-based mount gives you greater flexibility and control over how shared storage is configured and accessed across your project.
+
+This is useful when multiple apps or services need access to the same set of files or data—for example, a frontend app and a background worker both reading from a shared media directory.
+
+Pros:
+- Enables cross-app and cross-worker shared storage.
+- Centralized configuration via a defined service.
+- More control over lifecycle and visibility of the storage.
+
+Cons:
+- Requires explicit setup and service configuration.
+- Slightly more complex than default `storage` mounts.
+
+For setup instructions and more information, see the [Network Storage service documentation](/add-services/network-storage).
+
+#### Scaling
+
+When horizontally scaling your app (multiple instances of the same app), using the appropriate mount type is critical. For shared data, a `storage` or `service` mount is recommended. For local-only data, use `instance` or `tmp` mounts.
+
+#### Sharing mounts
+
+If you need to share a mount between different apps, consider using a `service` mount. This must be added explicitly and is distinct from the default `storage` mount. Mounts can be shared with workers as well, provided the configuration includes them.
+
 ### Define a mount
 
 To define a mount, use the following configuration:
