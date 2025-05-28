@@ -3,9 +3,16 @@ title: "Redis (Object cache)"
 weight: 20
 sidebarTitle: "Redis"
 ---
+{{% note theme="warning" title="New versions of Redis no longer supported" %}}
 
-[Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
-for high-performance data retrieval and key-value storage.
+Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore. 
+
+**Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
+
+{{% /note %}}
+
+[Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory for high-performance data retrieval and key-value storage.
+
 {{% vendor/name %}} supports two different Redis configurations:
 
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
@@ -540,7 +547,11 @@ const value = await client.get('x');     // returns 42
 
 ## Restrict access to database replicas only
 
-{{< partial "banners/replicas/body.md" >}}
+{{% note theme="info" title="Feature availability" %}}
+
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+
+{{% /note %}}
 
 For security reasons, you can grant your app access to replicas instead of your actual database.
 To do so, when defining the relationship between your app and database,

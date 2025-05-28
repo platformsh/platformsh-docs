@@ -1,0 +1,49 @@
+name: Report check status from workflow_run
+description: Reports status of each required job from our workflow_run file
+inputs:
+  run_id:
+    description: 'the run id to report'
+    required: true
+  head_sha:
+    description: 'the head sha we need to report against'
+    required: true
+  state:
+    description: 'state to report'
+    required: false
+    default: 'failure'
+  workflow_name:
+    description: 'the name of the workflow being run'
+    required: true
+  job_name:
+    description: 'The name of the job that is returning its status'
+    required: true
+  status_description:
+    description: 'Message to include'
+    required: true
+  repository:
+    description: 'The owner/repository we are reporting to'
+    required: false
+    default: 'platformsh/platformsh-docs'
+  gh_token:
+    description: 'The GitHub token to use'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Report status
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.gh_token }}
+      run: |
+        gh api --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/${{ inputs.repository }}/statuses/${{ inputs.head_sha }} \
+          -f "state=${{ inputs.state }}" \
+          -f "target_url=https://github.com/${{ inputs.repository }}/actions/runs/${{ inputs.run_id }}" \
+          -f "description=${{ inputs.status_description }}" \
+          -f "context=${{ inputs.workflow_name }} / ${{ inputs.job_name }}"
+
+
+

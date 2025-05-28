@@ -70,3 +70,13 @@ In such cases, add the inbound IP addresses for your region to your allow list.
 ### Australia
 
 {{< regions region="australia" >}}
+
+{{% note theme="info" title="Historic changes" %}}
+
+On March 17, 2025, the outbound IP addresses for regions running on Google Cloud Platform and Microsoft Azure services were changed. This change was made to separate the inbound and outbound IP addresses for these regions.
+
+If you have external services relying on outbound IP whitelisting from your {{% vendor/name %}} project, you should update your external whitelists to reflect this change.
+
+Please see the relevant region information above for the new regional outbound IP addresses.
+
+{{% /note %}}

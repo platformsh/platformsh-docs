@@ -7,15 +7,26 @@ The HTTP metrics dashboard provides {{< vendor/name >}} users with network-relat
 Those insights are designed to help them better understand the state of their
 applications.
 
-Those metrics can be accessed by clicking the **HTTP metrics** tab on the
-environment page within the console.
+{{< note theme="info" title="No CDN data">}}
+
+It should be noted that the data being fed to the HTTP metrics dashboard **does not include CDN**.
+
+{{< /note >}}
+
+## Grid support
+
+HTTP Metrics is only supported on Grid environments. **There is no support for Dedicated environments.**
+
+## Accessing the dashboard
+
+Those metrics can be accessed by clicking the **HTTP metrics** tab on the environment page within the console.
 
 The HTTP metrics dashboard can help you:
+
 - Verify if there were any recent spikes in error responses
 - Check bandwidth consumption to determine if there were any service interruptions
 - Identify specific URLs causing site-wide issues
-- Prioritize performance optimization (see [application metrics](../application-metrics/_index.md))
-
+- Prioritize performance optimization (see [integrate observability](/increase-observability/integrate-observability.md))
 
 ## HTTP requests status graph
 
@@ -25,7 +36,6 @@ requests made to the application. It reflects the status responses
 
 This graph helps identify surge of error responses or periods of elevated
 request activity.
-
 
 ## Bandwidth usage graph
 
@@ -52,3 +62,11 @@ For security and privacy reasons, all URLs undergo the following sanitization me
 - URLs exceeding 2048 characters are truncated to adhere to security best practices.
 - Specific sensitive URL paths are proactively scrubbed and anonymized.
 {{< /note >}}
+
+## Limits
+Note that the following data retention limits apply when using the HTTP metrics dashboard:
+
+- **8-hour retention** for standard customers (without Observability Suite).
+- **24-hour retention** for Observability Suite customers (Enterprise and Elite tiers).
+
+For more information about the different tiers for standard and Observability Suite customers, visit the [Pricing page](https://platform.sh/pricing/).
