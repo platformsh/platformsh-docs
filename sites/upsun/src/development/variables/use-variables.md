@@ -60,7 +60,7 @@ To access environment variables in your app, use a built-in method for the given
 * PHP: The [`getenv()` function](https://www.php.net/manual/en/function.getenv.php)
 * Python: The [`os.environ` object](https://docs.python.org/3/library/os.html#os.environ)
 * Node.js: The [`process.env` object](https://nodejs.org/api/process.html#process_process_env)
-* Ruby: The [`ENV` accessor](https://ruby-doc.org/current/ENV.html)
+* Ruby: The [`ENV` accessor](https://docs.ruby-lang.org/en/master/ENV.html)
 * Java: The [`System.getenv()` method](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getenv-java.lang.String-)
 
 {{< codetabs >}}

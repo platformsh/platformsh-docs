@@ -155,7 +155,7 @@ URLs in [preview environments](../glossary/_index.md#preview-environment) (devel
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.
 
-In any case, you get the same URL for a `feature` environment:
+In any case, you get the same URL for an environment named `feature`:
 
 ```txt
 https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
@@ -217,7 +217,7 @@ If you have configured `example.com` as your default domain,
 HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
 
 It also works on preview environments.
-If you have a `feature` branch, it's `{default}` domain looks something like:
+If you have a branch named `feature`, it's `{default}` domain looks something like:
 `feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` (depending on the project's region).
 So requests to `blog.feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` and `us.feature-def123-vmwklxcpbi6zq.eu.{{< vendor/urlraw "host" >}}`
 are both routed to the same endpoint.
@@ -255,10 +255,10 @@ routes:
     upstream: 'app2:http'
 ```
 
-To see the generated routes on your `feature` environment, run:
+To see the generated routes on your environment named `feature`, run:
 
 ```bash
-{{% vendor/cli %}} ssh -e feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
+{{% vendor/cli %}} ssh --environment feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
 ```
 
 The result is something like this:

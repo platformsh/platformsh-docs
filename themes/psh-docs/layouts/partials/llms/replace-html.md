@@ -99,7 +99,7 @@
 {{- $content = $content
   | replaceRE ` ([a-zA-Z0-9\@:-]){2,}="([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&><↗\ -]{0,})"` ``
   | replaceRE `<([A-Z0-9_]+)>` "##PLACEHOLDER_START##${1}##PLACEHOLDER_END##"
-  | replaceRE `<[^>]+>` ""
+  | replaceRE `<[^>\n]+>` ""
   | replaceRE "##PLACEHOLDER_START##(.*?)##PLACEHOLDER_END##" "<${1}>"
   | replaceRE `\[Back\]\([^)]+\)[\n|\ ]*\[[^\]]+\]\([^)]+\)` "\n"
 
