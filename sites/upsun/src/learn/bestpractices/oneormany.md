@@ -97,7 +97,8 @@ Leveraging the multi-site capabilities of an app are appropriate only in the fol
 
 - There is only a single team working on all of the "sites" involved
 - All "sites" should be updated simultaneously as a single unit
-- Each individual site is relatively low traffic, such that the aggregate traffic is appropriate for your plan size
+- Each individual site is relatively low traffic, such that the aggregate traffic is appropriate for the site's
+  [allocated resources](/manage-resources.md)
 - All sites really do use the same codebase with no variation, just different data
 
 Otherwise, [separate projects](#separate-projects) are a better long-term plan.
