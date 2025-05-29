@@ -211,8 +211,8 @@ use the following:
 ```yaml {configFile="app"}
 dependencies:
   php:
-    composer/composer: '^2'
     require:
+      composer/composer: '^2'
       "platformsh/client": "2.x-dev"
     repositories:
       - type: vcs

@@ -133,7 +133,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     dependencies:
       php:
         composer/composer: '^2'
@@ -159,7 +159,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     build:
       flavor: none
 
@@ -188,7 +188,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     dependencies:
       php:
         require:
@@ -203,7 +203,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     dependencies:
       php:
         require:
@@ -225,8 +225,8 @@ applications:
     [...]
     dependencies:
       php:
-        composer/composer: '^2'
         require:
+          composer/composer: '^2'
           "platformsh/client": "2.x-dev"
         repositories:
           - type: vcs
