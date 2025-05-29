@@ -50,7 +50,7 @@ title=Using the CLI
 +++
 
 1. To enable the `prune-branches` option, you must first enable the `fetch-branches` option.
-   To do so, run the following command: 
+   To do so, run the following command:
 
    ```bash
    {{% vendor/cli %}} integration:update --project {{< variable "PROJECT_ID" >}} {{< variable "SOURCE_INTEGRATION_ID" >}} --fetch-branches true
@@ -86,12 +86,12 @@ title=In the Console
 Keeping too many files, especially large binary files, in your Git repository can cause performance and stability issues.
 Therefore, {{% vendor/name %}} recommends that you only commit your source code in Git.
 
-To upload any other files to your app, [create mounts](https://docs.platform.sh/create-apps/app-reference.html#mounts)
-and [transfer your files directly to them](https://docs.platform.sh/development/file-transfer.html#transfer-a-file-to-a-mount).
+To upload any other files to your app, [create mounts](/create-apps/app-reference/single-runtime-image.md#mounts)
+and [transfer your files directly to them](/development/file-transfer.md#transfer-a-file-to-a-mount).
 
 {{< note theme="warning" >}}
 
-{{% vendor/name %}} does not currently support [Git Large File Storage](https://git-lfs.com/). 
+{{% vendor/name %}} does not currently support [Git Large File Storage](https://git-lfs.com/).
 
 There is a **100MB default file size limit** for direct Git pushes to {{% vendor/name %}}. Pushing files larger than the limit will result in rejecting the push, so please keep this in mind. If you'd like to request a custom limit, please [contact Support](/learn/overview/get-support).
 
@@ -100,7 +100,7 @@ There is a **100MB default file size limit** for direct Git pushes to {{% vendor
 ## Troubleshoot a sizeable Git repository
 
 If you're experiencing latencies or can't access your Console anymore,
-your Git repository may have become too large and may need to be cleaned up. 
+your Git repository may have become too large and may need to be cleaned up.
 To do so, follow these instructions:
 
 1. Remove old, unwanted files from your repository (especially large files).
