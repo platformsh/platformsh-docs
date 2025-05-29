@@ -809,7 +809,7 @@ See some [examples of how to configure what's served](../web/_index.md).
 |--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
 | `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
 | `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
-| `post_start` | `string` |                               |                                                                                                     |
+| `post_start` | `string` |                               | Command runs after the `start` command but before adding the container to the router.               |
 
 Example:
 
