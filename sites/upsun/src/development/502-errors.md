@@ -25,7 +25,13 @@ These show what happened during build and deploy. You can view them by using the
 
 ```bash
 upsun log deploy
-```
+``` 
+{{< note >}}
+
+Note that the Deploy logs will only populate if the deploy hook runs as part of your deployment.
+
+{{< /note >}}
+
 Deploy logs are especially helpful if you're running migrations or provisioning services - issues with database credentials, missing tables, or failed connections often appear here.
 
 - **App logs**

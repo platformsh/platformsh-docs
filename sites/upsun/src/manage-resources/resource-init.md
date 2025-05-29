@@ -165,13 +165,13 @@ Once a resource initialization strategy is specified for your source integration
 it applies to **all** the deployments you launch through that source integration.
 
 {{< /note >}}
-
+#### **When creating a new source integration**
 To specify a resource initialization strategy when [creating your source integration](/integrations/source/_index.md),
 include the `--resources-init` flag in your source integration options.</br>
 For example, if you [set up a GitHub integration](/integrations/source/github.md), use the following options:
 
 ```bash {location="Terminal"}
-platform integration:add \
+{{% vendor/cli %}} integration:add \
   --project {{< variable "PROJECT_ID" >}} \
   --type github \
   --repository {{< variable "OWNER/REPOSITORY" >}} \
@@ -179,7 +179,7 @@ platform integration:add \
   --base-url {{< variable "GITHUB_URL" >}}
   --resources-init {{< variable "INITIALIZATION_STRATEGY" >}}
 ```
-
+#### **Update an existing source integration**
 To specify a resource initialization strategy for an existing source integration,
 run the following command:
 
