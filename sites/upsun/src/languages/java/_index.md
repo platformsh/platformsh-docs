@@ -4,8 +4,6 @@ description: Java is a general-purpose programming language, and one of the most
 layout: single
 ---
 
-{{% composable/disclaimer %}}
-
 {{% description %}}
 
 ## Supported versions

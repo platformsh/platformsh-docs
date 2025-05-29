@@ -4,8 +4,6 @@ weight: 1
 description: See how to manage different Node.js versions in your {{% vendor/name %}} containers."
 ---
 
-{{% composable/disclaimer %}}
-
 Each {{% vendor/name %}} container image includes a specific language in a specific version.
 A set of dependencies is also provided based on that language version.
 This ensures that your application container is as small and efficient as possible.

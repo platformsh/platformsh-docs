@@ -4,8 +4,6 @@ sidebarTitle: "Authenticated Composer"
 description: Allow Composer to authenticate against a private third-party Composer repository and download PHP packages from it.
 ---
 
-{{% composable/disclaimer %}}
-
 [Packagist](https://packagist.org/) is the primary Composer repository for public PHP packages.
 But you can also have Composer download PHP packages from a private, third-party Composer repository.
 To make sure Composer has the necessary credentials to do so,
