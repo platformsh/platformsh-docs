@@ -11,13 +11,9 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-## Supported versions
-
-You can select the major and minor version.
-
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
-
-{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+{{% note title="No supported versions" theme="info" %}}
+Elasticsearch premium versions (>=7.17) aren't available on {{< vendor/name >}} yet. Deprecated versions are free to use. Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
+{{% /note %}}
 
 ## Deprecated versions
 
@@ -25,9 +21,6 @@ The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
 {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
-
-To ensure your project remains stable in the future,
-switch to [a premium version](#supported-versions).
 
 Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
 To do so, follow the same procedure as for [upgrading](#upgrading).
@@ -111,9 +104,6 @@ export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsear
 
 {{< /codetabs >}}
 
-For [premium versions](#supported-versions),
-the service type is `elasticsearch-enterprise`.
-
 ## Usage example
 
 ### 1. Configure the service
@@ -126,8 +116,6 @@ services:
   <SERVICE_NAME>:
     type: elasticsearch:<VERSION>
 ```
-
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
@@ -220,8 +208,6 @@ services:
         type: elasticsearch:{{% latest "elasticsearch" %}}
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
-
 <--->
 
 +++
@@ -245,15 +231,11 @@ services:
     type: elasticsearch:{{% latest "elasticsearch" %}}
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
-
 {{< /codetabs >}}
 
 ### Use in app
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
-
-Note that configuration for [premium versions](#supported-versions) may differ slightly.
 
 {{< codetabs >}}
 
@@ -359,8 +341,6 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 {{% /snippet %}}
 ```
 
-If you're using a [premium version](#supported-versions),
-use the `elasticsearch-enterprise` type.
 
 That enables mandatory HTTP Basic auth on all requests.
 The credentials are available in any relationships that point at that service,
@@ -400,9 +380,6 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
       - analysis-icu
 {{% /snippet %}}
 ```
-
-If you're using a [premium version](#supported-versions),
-use the `elasticsearch-enterprise` type.
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
 
