@@ -1579,41 +1579,34 @@ grid:
       # - xdebug
       # - yaml
     default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - mbstring
-      - mysqli
-      - mysqlnd
+      #- bcmath
+     # - bz2
+      #- calendar
+      #- ctype
+     # - curl
+      #- dba
+     # - dom
+     # - exif
+     # - fileinfo
+     # - ftp
+      #- gd
+     # - gettext
+      #- iconv
+     # - intl
+     # - mbstring
+     # - mysqli
+     # - mysqlnd
       # - opcache
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
+    #  - pdo
+    #  - pdo_mysql
+     # - pdo_sqlite
+     # - phar
+     # - posix
+     # - simplexml
+      #- soap
+     # - sysvmsg
+      # - sysvsem
+      # - sysvshm
     built-in:
       - json
       - zendopcache
