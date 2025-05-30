@@ -211,13 +211,54 @@ use the following:
 ```yaml {configFile="app"}
 dependencies:
   php:
-    composer/composer: '^2'
     require:
+      composer/composer: '^2'
       "platformsh/client": "2.x-dev"
     repositories:
       - type: vcs
         url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
+
+### Additional Composer schema properties
+In addition to [alternate repositories](#alternative-repositories), other
+[Composer schema properties](https://getcomposer.org/doc/04-schema.md) can be added to the global dependencies. For
+example, one of your dependencies may be a plugin where you need to explicitly whitelist it as an
+[allowed-plugin](https://getcomposer.org/doc/06-config.md#allow-plugins).
+
+To add additional composer schema properties:
+
+1. Set an explicit `require` block:
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        require:
+          "third-party/required-plugin"": "^3.0"
+```
+
+2. Add each additional property as a block at the same indentation as the `require` block:
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        require:
+          symfony/runtime: '*'
+        config:
+          "allow-plugins":
+            symfony/runtime: true
+```
+
+
 ## Connect to services
 
 The following examples show how to use PHP to access various [services](/add-services/_index.md).
