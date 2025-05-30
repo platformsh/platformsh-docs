@@ -1406,6 +1406,7 @@ grid:
       - swoole
       - sybase
       - tidy
+      - tideways
       - uuid
       - uv
       - xdebug
@@ -1455,9 +1456,92 @@ grid:
       - imagick
   "8.4":
     available:
-      - amqp
-      - apcu
-      # - blackfire
+      - amqp  
+      - apcu  
+      - bcmath  
+      - blackfire  
+      - bz2  
+      - calendar  
+      - ctype  
+      - curl  
+      - datadog-profiling  
+      - dba  
+      - dom  
+      - enchant  
+      - event  
+      - exif  
+      - ffi  
+      - fileinfo  
+      - ftp  
+      - gd  
+      - geoip  
+      - gettext  
+      - gnupg  
+      - gmp  
+      - http  
+      - iconv  
+      - igbinary 
+      - imagick 
+      - intl  
+      - ioncube  
+      - ldap  
+      - mailparse  
+      - mbstring  
+      - memcached  
+      - mongodb  
+      - msgpack  
+      - mysqli  
+      - mysqlnd  
+      - newrelic  
+      - oauth  
+      - odbc  
+      - opcache  
+      - openswoole  
+      - opentelemetry  
+      - pdo  
+      - pdo_dblib  
+      - pdo_firebird  
+      - pdo_mysql  
+      - pdo_odbc  
+      - pdo_pgsql  
+      - pdo_sqlite  
+      - pdo_sqlsrv  
+      - pgsql  
+      - phar  
+      - posix  
+      - protobuf  
+      - raphf  
+      - rdkafka  
+      - readline  
+      - redis  
+      - shmop
+      - simplexml  
+      - snmp  
+      - soap  
+      - sockets  
+      - sodium  
+      - sourceguardian  
+      - sqlite3  
+      - ssh2  
+      - swoole  
+      - sybase  
+      - sysvmsg  
+      - sysvsem  
+      - sysvshm  
+      - tidy  
+      - tideways  
+      - tokenizer  
+      - uuid  
+      - uv  
+      - xdebug  
+      - xml  
+      - xmlreader  
+      - xmlrpc  
+      - xmlwriter  
+      - xsl  
+      - yaml  
+      - zip 
+
       # - datadog
       # - enchant
       # - event
@@ -1466,12 +1550,9 @@ grid:
       # - gmp
       # - gnupg
       # - http
-      - igbinary
-      - imap
       # - ldap
       # - mailparse
       # - memcached
-      - mongodb
       # - msgpack
       # - mysql
       # - newrelic
@@ -1479,22 +1560,13 @@ grid:
       # - odbc
       # - openswoole
       # - opentelemetry
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
       # - pdo_sqlsrv
-      - pgsql
       # - protobuf
       # - pspell
       # - raphf
       # - rdkafka
       # - readline
-      - redis
-      - shmop
       # - snmp
-      - sodium
-      - sourceguardian
       # - sqlsrv
       # - ssh2
       # - swoole
@@ -1505,8 +1577,6 @@ grid:
       # - uuid
       # - uv
       # - xdebug
-      - xmlrpc
-      - xsl
       # - yaml
     default:
       - bcmath
