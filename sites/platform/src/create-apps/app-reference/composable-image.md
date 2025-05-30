@@ -646,7 +646,7 @@ For setup instructions and more information, see the [Network Storage service do
 
 #### Scaling
 
-When horizontally scaling your app (multiple instances of the same app), using the appropriate mount type is critical. For shared data, a `storage` or `service` mount is recommended. For local-only data, use `instance` or `tmp` mounts.
+When horizontally scaling your app (multiple instances of the same app), using the appropriate mount type is critical. For shared data, a `storage` or `service` mount is recommended. For local-only data, use `tmp` mounts.
 
 #### Sharing mounts
 
