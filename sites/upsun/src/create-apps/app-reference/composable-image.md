@@ -563,7 +563,7 @@ Each mount type has a specific use case and understanding how to use each type e
 The `storage` mount is a shared network storage that is automatically added by the platform. It is required for applications that need to share files across multiple instances—such as user-uploaded media or shared assets. You can configure the size of this mount via the {{% vendor/name %}} UI.
 
 Pros:
-- Shared across all app and worker instances.
+- Shared across all app instances.
 - Configurable size via the UI.
 - Persistent across restarts and redeployments.
 
