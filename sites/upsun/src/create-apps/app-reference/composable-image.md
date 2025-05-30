@@ -568,7 +568,6 @@ Pros:
 - Persistent across restarts and redeployments.
 
 Cons:
-- Lower performance due to network-based access.
 - Not suitable for high-throughput temporary operations.
 
 #### `tmp` mount
