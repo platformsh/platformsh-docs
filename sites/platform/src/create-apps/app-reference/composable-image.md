@@ -743,6 +743,12 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 | `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                        |
 | `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
 
+{{< note theme="info" >}}
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< /note >}}
+
+
 Example:
 
 ```yaml {configFile="app"}
