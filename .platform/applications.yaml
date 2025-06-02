@@ -29,9 +29,6 @@
           npm install
           npm run build
           ./build_docs.sh
-          # temporary generation of json version of public regions + ip addresses
-          # if this is still here after 20250621 ping @gilzow and ask why
-          cat "${PLATFORM_APP_DIR}/shared/data/regions.yaml" | python3 -c 'import sys,yaml,json; print(json.dumps(yaml.safe_load(str(sys.stdin.read()))))' > "${PLATFORM_APP_DIR}/${SITE_DIR}/public/regions.json"
 
         deploy: |
             cd $SITE_DIR
