@@ -89,10 +89,12 @@ The Advanced and Premium tiers require a 12 month minimum time commitment (MTC).
 
 To upgrade to either the Advanced or Premium tier, follow these steps:
 
-1. Go to the **Organization Add-ons** section in Console.
+1. Visit the **Organization Billing Overview** page in Console.
+2. Navigate to the **Organization Add-ons** section.
 2. Select your desired support tier.
 3. Acknowledge and accept the 12 month MTC.
 4. Confirm the upgrade. The new support level will be applied, and billing will be adjusted accordingly.
+
 
 ### Spend calculation
 
