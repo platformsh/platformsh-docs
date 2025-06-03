@@ -121,7 +121,7 @@ After you have finished all your testing, sync all your data (code, files, datab
 
 Now that you know the new project works, switch public traffic to that site:
 
-1. Make sure your new project has the right plan size.
+1. Make sure your new project has the [necessary resources](/manage-resources/adjust-resources.md).
 2. If possible, put your site into read-only mode or maintenance mode.
 3. Add your domain names to your new project and remove them from the old project.
 4. (Optional) Add any custom SSL certificates you have.
