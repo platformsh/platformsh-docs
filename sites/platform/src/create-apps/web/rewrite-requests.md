@@ -39,7 +39,7 @@ Now a request to `/img/image.png` returns the file found at `/png/image.png`.
 
 ## Query parameters
 
-Query parameters in the request are unaffected and are passed in the request to the app.
-So if you have the category and product rule from previously, a request to `/shoes/great-shoe/?product=terrible-shoe`
+Query parameters in the request are untouched by rules and will be passed to the app.
+For example, if you have the category and product rule from previously, a request to `/shoes/great-shoe/?product=terrible-shoe`
 is rewritten to `?category=shoes&product=great-shoe&product=terrible-shoe`.
-In that case, the `product` query parameter returns as `terrible-shoe`.
+In that case, the `product` query parameter sent to the app will contain the value `terrible-shoe`.

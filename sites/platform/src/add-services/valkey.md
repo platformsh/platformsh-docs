@@ -4,7 +4,7 @@ weight: 20
 sidebarTitle: "Valkey"
 ---
 
-[Valkey](https://valkey.io/) is an open source datastore that can be used high-performance data retrieval and key-value storage. 
+[Valkey](https://valkey.io/) is an open source datastore that can be used high-performance data retrieval and key-value storage.
 
 {{% vendor/name %}} supports two different Valkey configurations:
 
@@ -23,11 +23,11 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-All products support the 8.0 version of Valkey. 
+All products support the 8.0 version of Valkey.
 
 
-| Grid            | Dedicated Gen 3 | Dedicated Gen 2 | 
-| --------------- | --------------- | --------------- | 
+| Grid            | Dedicated Gen 3 | Dedicated Gen 2 |
+| --------------- | --------------- | --------------- |
 | **8.0**         | **8.0**         | **8.0**         |
 
 
@@ -191,7 +191,7 @@ applications:
     # PHP extensions.
     runtime:
       extensions:
-        - valkey 8.0
+        - redis
     # Relationships enable access from this app to a given service.
     # The example below shows simplified configuration leveraging a default service
     # (identified from the relationship name) and a default endpoint.
@@ -213,7 +213,7 @@ applications:
     # PHP extensions.
     runtime:
       extensions:
-          - valkey 8.0
+          - redis
     # Relationships enable access from this app to a given service.
     # The example below shows configuration with an explicitly set service name and endpoint.
     # See the Application reference for all options for defining relationships and endpoints.
@@ -355,7 +355,7 @@ For PHP, enable the [extension](/languages/php/extensions) for the service:
 # PHP extensions.
 runtime:
   extensions:
-    - valkey
+    - redis
 ```
 
 ### Configuration example
@@ -558,7 +558,7 @@ applications:
     # PHP extensions.
     runtime:
       extensions:
-        - valkey
+        - redis
 
     relationships:
       valkeysession:
@@ -598,7 +598,7 @@ applications:
     # PHP extensions.
     runtime:
       extensions:
-        - valkey
+        - redis
 
     # Relationships enable access from this app to a given service.
     # The example below shows configuration with an explicitly set service name and endpoint.

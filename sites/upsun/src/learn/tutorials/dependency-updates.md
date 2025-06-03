@@ -233,6 +233,12 @@ applications:
 The example above synchronizes the `development` environment with its parent
 and then runs the `update` source operation defined [previously](#1-define-a-source-operation-to-update-your-dependencies).
 
+{{< note theme="warning">}}
+If you have enabled a [source integration](/integrations/source.html), and have enabled `--fetch-branches` on that
+integration, merging on {{% vendor/name %}} is not possible. Therefore, the `sync` command in the example above would
+fail.
+{{< /note >}}
+
 ## 3. Configure notifications about dependency updates
 
 To get notified every time a source operation is triggered and therefore every time a dependency is updated,

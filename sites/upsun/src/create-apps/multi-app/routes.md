@@ -3,10 +3,6 @@ title: Define routes for your multiple apps
 sidebarTitle: Define routes
 weight: 20
 description: Learn about the many ways you can define routes between your apps.
-banner:
-   title: Feature availability
-   type: tiered-feature
-   body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
 ---
 
 When you set up a project containing multiple applications,

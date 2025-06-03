@@ -48,12 +48,10 @@ These are called [inactive environments](#environment-status).
 
 ## Default environment
 
-Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
-Your project must have a default environment,
-but you can [name it as you want](/environments/default-environment.md).
-
-If you subscribed to a production plan, this environment is your **live site**.
-You might want to give it a [custom domain name](../domains/steps/_index.md).
+Your default environment comes from your default branch and is a
+[production environment](../administration/users.md#environment-type-roles). Your project must have a default
+environment, but you can [name it as you want](/environments/default-environment.md). This environment is your
+**live site**. You might want to give it a [custom domain name](../domains/steps/_index.md).
 
 ## Environment status
 

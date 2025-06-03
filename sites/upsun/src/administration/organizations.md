@@ -141,8 +141,8 @@ To delete the organization `acme`, run:
 
 ## Transfer project ownership
 
-You can transfer your plan ownership to a different organization at anytime.
-You have to be an organization owner or have the [manage plan permission](/administration/users.md#organization-permissions).
+You can transfer your project ownership to a different organization at anytime.
+To do this, you must be an organization owner or have the [manage billing permission](/administration/users.md#organization-permissions).
 
 1. Make the new organization owner a [project admin](/administration/users.md#)
    for the project you want to transfer.
