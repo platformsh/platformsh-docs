@@ -19,6 +19,12 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 {{< cli-installation >}}
 
+{{< note theme="info" >}}
+
+If you are using Scoop, you **must** have the [Extras bucket](https://github.com/ScoopInstaller/Extras) already installed before installing the {{% vendor/name %}} CLI.
+
+{{< /note >}}
+
 ## 2. Authenticate
 
 To list and manage your projects, authenticate by running the following command:
