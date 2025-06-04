@@ -130,12 +130,10 @@ you are charged the overage rate for additional bandwidth consumption.
 
 If you experience repeated overages, please reach out to your Customer Success Manager to review your existing contract.
 
-Plans with a Fastly CDN service or the extra Fastly Service include the following:
+Plans with a Fastly CDN service include the following:
 
-- 1&nbsp;TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
+- 1 TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
 - 50 million ingress (incoming) requests on the CDN per month
-
-*Plans without the Fastly Service are instead charged at the following origin prices.*
 
 ### Overage prices
 
