@@ -152,6 +152,7 @@ type: 'python:{{% latest "python" %}}'
 dependencies:
   python3:
     uv: "*"
+{{< /snippet >}}
 ```
 
 ## Poetry
