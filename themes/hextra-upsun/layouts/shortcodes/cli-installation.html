@@ -1,0 +1,55 @@
+<p>To install the CLI, use a <a href="https://github.com/platformsh/cli#user-content-bash-installer">Bash installation script</a>.
+You can also install with <a href="https://brew.sh/">Homebrew</a> (on Linux, macOS, or the Windows Subsystem for Linux)
+or <a href="https://scoop.sh/">Scoop</a> (on Windows).</p>
+
+{{ $Inner := "" }}
+{{ if eq .Site.Params.vendor.config.version 1 }}
+{{ $Inner = `
++++
+title=Installation script
+highlight=bash
++++
+curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+<--->
++++
+title=Homebrew
+highlight=bash
++++
+brew install platformsh/tap/platformsh-cli
+<--->
++++
+title=Scoop
+highlight=bash
++++
+scoop bucket add platformsh https://github.com/platformsh/homebrew-tap.git
+scoop install platform
+`}}
+<!-- @todo: upsun prod cli instructions -->
+{{ else if eq .Site.Params.vendor.config.version 2 }}
+{{ $Inner = `
++++
+title=Installation script
+highlight=bash
++++
+curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | VENDOR=upsun bash
+<--->
++++
+title=Homebrew
+highlight=bash
++++
+brew install platformsh/tap/upsun-cli
+<--->
++++
+title=Scoop
+highlight=bash
++++
+scoop bucket add platformsh https://github.com/platformsh/homebrew-tap.git
+scoop install upsun
+`}}
+{{ end }}
+
+{{ partial "codetabs/tabs" ( dict "Inner" $Inner "Page" .Page ) }}
+
+{{ if eq .Site.Params.vendor.config.version 1 }}
+<p>If you have issues with installation on a Mac, such as missing libraries, see how to <a href="https://community.platform.sh/t/troubleshoot-cli-installation-on-m1-macs/1202">troubleshoot CLI installation on M1 Macs</a>.</p>
+{{ end }}
