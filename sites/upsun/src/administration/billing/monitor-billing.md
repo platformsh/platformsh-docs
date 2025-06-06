@@ -82,9 +82,9 @@ The following formula is used to estimate how much accumulated resource usage ma
 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
 
-{{< note theme="note" title="Monitor CDN metrics">}}
+{{< note theme="note" title="Monitor monthly traffic usage">}}
 
-You can also access a summary of your monthly resource usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). 
+You can also access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). 
 
 {{< /note >}}
 
@@ -107,13 +107,6 @@ All items used for the calculation are displayed in the [**Overview** tab](#acce
 
 {{< /codetabs >}}
 
-{{< note theme="note" title="Monitor usage">}}
-
-You can access a summary of your monthly usage at the Project level inside [Console](https://console.upsun.com). This will help you monitor your monthly bandwidth and requests consumption. 
-
-The data is updated daily and will reflect your usage throughout the billing period. 
-
-{{< /note >}}
 
 ### Next month estimate
 

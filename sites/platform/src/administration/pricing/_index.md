@@ -137,20 +137,6 @@ Plans with a Fastly CDN service or the extra Fastly Service include the followin
 
 *Plans without the Fastly Service are instead charged at the following origin prices.*
 
-### Monitor monthly traffic usage
-
-You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). This will help you monitor your monthly bandwidth and requests consumption. 
-
-In this summary, you will find specific details about:
-
-- **Origin Bandwidth:** Data transferred from origin servers (in TB).
-
-- **Origin Requests:** Requests served by origin servers. (This will be a million requests.)
-
-- **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
-
-This data is updated daily and will reflect your traffic usage throughout the billing period. 
-
 ### Overage prices
 
 | SKU             | Description                                                                             | USD  | EUR  | AUD    | CAD    | GBP  |
@@ -159,6 +145,20 @@ This data is updated daily and will reflect your traffic usage throughout the bi
 | `EDGE-BDW-OVERAGE-1TB`    | Edge Egress Bandwidth: 1TB               | $88  | €65  | AU$128 | CA$119 | £68  |
 | `EDGE-REQ-OVERAGE-50M`    | Ingress Requests: 50M               | $66  | €49  | AU$96 | CA$90 | £51  |
 
+
+### Monitor monthly traffic usage
+
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). This will help you monitor your monthly bandwidth and requests consumption. 
+
+In this summary, you will find specific details about:
+
+- **Origin Bandwidth:** Data transferred from origin servers (in TB).
+
+- **Origin Requests:** Requests served by origin servers (in millions of requests).
+
+- **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
+
+This data is updated daily and will reflect your traffic usage throughout the billing period. 
 
 ### DDoS surge protection
 

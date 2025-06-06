@@ -27,7 +27,7 @@ In this summary, you will find specific details about:
 
 - **Origin Bandwidth:** Data transferred from origin servers (in TB).
 
-- **Origin Requests:** Requests served by origin servers. (This will be a million requests.)
+- **Origin Requests:** Requests served by origin servers (in millions of requests).
 
 - **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
 
