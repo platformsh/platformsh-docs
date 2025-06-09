@@ -37,13 +37,35 @@ When adding a new project, you only see regions allowed by your organization.
 
 ## Region location
 
-To find out where a given region is hosted, use the following command:
+| Name                 | Provider | Geographic Zone  | Timezone              |
+|----------------------|----------|------------------|-----------------------|
+| au-2.platform.sh     | Azure    | Australia        | Australia/Sydney      |
+| au.platform.sh       | AWS      | Australia        | Australia/Sydney      |
+| ca-1.platform.sh     | AWS      | North America    | America/Vancouver     |
+| ch-1.platform.sh     | Google   | Europe           | Europe/Zurich         |
+| de-2.platform.sh     | Google   | Europe           | Europe/Berlin         |
+| eu-5.platform.sh     | AWS      | Europe           | Europe/Stockholm      |
+| eu.platform.sh       | AWS      | Europe           | Europe/Dublin         |
+| fr-3.platform.sh     | OVH      | Europe           | Europe/Paris          |
+| fr-4.platform.sh     | Azure    | Europe           | Europe/Paris          |
+| uk-1.platform.sh     | Google   | Europe           | Europe/London         |
+| us-2.platform.sh     | AWS      | North America    | America/Los_Angeles   |
+| us-3.platform.sh     | Azure    | North America    | America/Denver        |
+| us-4.platform.sh     | Google   | North America    | America/New_York      |
+| us.platform.sh       | AWS      | North America    | America/New_York      |
+
+{{% note theme="info" %}}
+
+As an alternative, you can also use the following comand with the {{% vendor/name %}} CLI to find out where a given region is hosted:
 
 ``` bash
 {{% vendor/cli %}} api:curl regions | jq '.regions[] | select(.available)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
 ```
 
-The returned list contains, for each available region, its name, provider, geographic zone and its timezone.
+The returned list contains, for each available region, its name, provider, geographic zone and its timezone - as shown above.
+
+{{% /note %}}
+
 
 ## Public IP addresses
 

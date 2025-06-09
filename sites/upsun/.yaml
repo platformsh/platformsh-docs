@@ -696,6 +696,7 @@ postgresql:
   type: postgresql
   versions:
     deprecated:
+      - '12'
       - '11'
       - '10'
       - '9.6'
@@ -708,7 +709,6 @@ postgresql:
       - '15'
       - '14'
       - '13'
-      - '12'
   versions-dedicated-gen-2:
     deprecated:
       - 11*
@@ -719,6 +719,7 @@ postgresql:
     supported: []
   versions-dedicated-gen-3:
     deprecated:
+      - '12'
       - '11'
       - '10'
     supported:
@@ -727,7 +728,6 @@ postgresql:
       - '15'
       - '14'
       - '13'
-      - '12'
 python:
   description: ''
   repo_name: python
