@@ -36,7 +36,7 @@ Included features may present limitations compared to those advertised by Fastly
 | [Default dashboards](https://docs.fastly.com/signalsciences/using-signal-sciences/web-interface/about-the-site-overview-page/)                      | No              | During quarterly business reviews |
 | [Custom response codes](https://docs.fastly.com/signalsciences/using-signal-sciences/custom-response-codes/)                                        | No              | No                                |
 | [Custom signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/working-with-custom-signals/)                                 | No              | No                                |
-| [Standard API & ATO signals](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/)                      | No              | No                                |
+| [Standard API & ATO signals](https://www.fastly.com/documentation/guides/next-gen-waf/using-ngwaf/rules/working-with-templated-rules/)              | No              | No                                |
 
 To subscribe to a Fastly Next-Gen WAF offer through {{% vendor/name %}},
 [contact Sales](https://platform.sh/contact/).
