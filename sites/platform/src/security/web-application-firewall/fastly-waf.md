@@ -27,16 +27,16 @@ Included features may present limitations compared to those advertised by Fastly
 
 {{< /note >}}
 
-| Capability                                                                                                                                               | Basic offer     | Basic configurable offer          |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------|
-| Available modes                                                                                                                                          | Block mode only | Block, not blocking, off modes    |
-| [Default attack signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#attacks)                             | Yes             | Yes                               |
-| [Default anomaly signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#anomalies)                          | Yes             | Yes                               |
-| [Virtual patching](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/#working-with-virtual-patching-rules) | No              | Yes, in block mode only           |
-| [Default dashboards](https://docs.fastly.com/signalsciences/using-signal-sciences/web-interface/about-the-site-overview-page/)                           | No              | During quarterly business reviews |
-| [Custom response codes](https://docs.fastly.com/signalsciences/using-signal-sciences/custom-response-codes/)                                             | No              | No                                |
-| [Custom signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/working-with-custom-signals/)                                      | No              | No                                |
-| [Standard API & ATO signals](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/)                           | No              | No                                |
+| Capability                                                                                                                                          | Basic offer     | Basic configurable offer          |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------|
+| Available modes                                                                                                                                     | Block mode only | Block, not blocking, off modes    |
+| [Default attack signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#attacks)                        | Yes             | Yes                               |
+| [Default anomaly signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/using-system-signals/#anomalies)                     | Yes             | Yes                               |
+| [Virtual patching](https://www.fastly.com/documentation/guides/next-gen-waf/using-ngwaf/rules/working-with-templated-rules/#virtual-patching-rules) | No              | Yes, in block mode only           |
+| [Default dashboards](https://docs.fastly.com/signalsciences/using-signal-sciences/web-interface/about-the-site-overview-page/)                      | No              | During quarterly business reviews |
+| [Custom response codes](https://docs.fastly.com/signalsciences/using-signal-sciences/custom-response-codes/)                                        | No              | No                                |
+| [Custom signals](https://docs.fastly.com/signalsciences/using-signal-sciences/signals/working-with-custom-signals/)                                 | No              | No                                |
+| [Standard API & ATO signals](https://docs.fastly.com/signalsciences/using-signal-sciences/rules/working-with-templated-rules/)                      | No              | No                                |
 
 To subscribe to a Fastly Next-Gen WAF offer through {{% vendor/name %}},
 [contact Sales](https://platform.sh/contact/).

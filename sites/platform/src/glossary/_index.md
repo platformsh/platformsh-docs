@@ -128,6 +128,10 @@ The {{% vendor/name %}} CLI configures Drush aliases for you on your local envir
 (via `{{% vendor/cli %}} get` or `{{% vendor/cli %}} drush-aliases`).
 You can also configure them manually.
 
+## Endpoint
+
+An endpoint is a named set of credentials to give access to other apps and services in your project.
+
 ## Environment
 
 An [environment](/environments/_index.md) is a standalone copy of your site,
