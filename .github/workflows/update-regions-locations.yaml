@@ -33,7 +33,10 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}
+          delete-branch: true
           branch: update-regions-locations
           title: Automated update of regions
           body: |
             Region locations have updated.
+          add-paths: |
+            shared/data/regions_location.json
