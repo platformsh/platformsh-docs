@@ -16,55 +16,27 @@ jobs:
     env:
       PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
     steps:
-      - name: Checkout default branch
-        uses: actions/checkout@v4
-
-      - name: Set up timestamp for branch name
-        id: timestamp
-        run: echo "ts=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
-
       - name: Setup Platformsh CLI
         uses: upsun/action-cli@v1
         with:
           cli_provider: 'platform'
 
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+
       - name: Download latest regions_location.json
         run: |
           # TODO: Replace the following line with your actual curl command
-          platform api:curl regions | jq '[ .regions[] | select(.available) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' > regions_location.json
-
-      - name: Compare with existing file
-        id: diff
-        run: |
-          if diff regions_location.json ./shared/data/regions_location.json > /dev/null; then
-            echo "nochange=true" >> $GITHUB_OUTPUT
-          else
-            echo "nochange=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Exit if no changes
-        if: steps.diff.outputs.nochange == 'true'
-        run: |
-          echo "::notice::No changes detected. Exiting."
-          exit 0
-
-      - name: Create new branch and update file
-        if: steps.diff.outputs.nochange == 'false'
-        run: |
-          BRANCH="auto-update-regions-${{ steps.timestamp.outputs.ts }}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git switch -C "$BRANCH"
-          mv regions_location.json ./shared/data/regions_location.json
-          git add ./shared/data/regions_location.json
-          git commit -m "auto updating of regions"
-          git push --set-upstream origin "$BRANCH"
+          platform api:curl regions | jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' > ./shared/data/regions_location.json
 
       - name: Create Pull Request
-        if: steps.diff.outputs.nochange == 'false'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}
-          branch: auto-update-regions-${{ steps.timestamp.outputs.ts }}
+          delete-branch: true
+          branch: update-regions-locations
           title: Automated update of regions
-          body: Automated update of regions
+          body: |
+            Region locations have updated.
+          add-paths: |
+            shared/data/regions_location.json
