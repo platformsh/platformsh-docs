@@ -63,6 +63,18 @@ They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
 
+## Types
+
+The `type` defines the base container image used to run the application.
+The version is the major (`X`) and sometimes minor (`X.Y`) version numbers,
+depending on the service, as in the following table.
+Security and other patches are taken care of for you automatically.
+
+Available languages and their supported versions:
+
+{{< readFile file="registry/images/tables/runtimes_supported.md" markdownify="true">}}
+
+
 ## Stack
 
 Use the ``stack`` key to define which runtimes and binaries you want to install in your application container.
@@ -88,17 +100,6 @@ Everything you install using the `stack` key is readily available to you as the 
 For instance, to [start a secondary runtime](#primary-runtime),
 just issue the command (e.g. in the [`start` command](/create-apps/app-reference/composable-image.md#web-commands)) instead of the `nix run` command.
 {{% /note %}}
-
-## Types
-
-The `type` defines the base container image used to run the application.
-The version is the major (`X`) and sometimes minor (`X.Y`) version numbers,
-depending on the service, as in the following table.
-Security and other patches are taken care of for you automatically.
-
-Available languages and their supported versions:
-
-{{< readFile file="registry/images/tables/runtimes_supported.md" markdownify="true">}}
 
 #### Primary runtime
 
