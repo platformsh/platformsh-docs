@@ -593,13 +593,13 @@ Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
-mongo {{< variable "MONGODB_HOST" >}}
+mongosh {{< variable "MONGODB_HOST" >}}
 ```
 
 With the example value, that would be the following:
 
 ```bash
-mongo mongodb.internal
+mongosh mongodb.internal
 ```
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
