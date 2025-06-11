@@ -63,8 +63,6 @@ title=Using the Console
 
 ## Create a new organization
 
-When you create a new project, if you don't already have an organization, one is created for you automatically.
-
 You can create new organizations with different payment methods and billing addresses
 and organize your projects as you want.
 
