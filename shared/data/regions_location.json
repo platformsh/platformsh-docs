@@ -30,12 +30,6 @@
     "timezone": "Europe/Berlin"
   },
   {
-    "name": "eu-3.platform.sh",
-    "provider": "AWS",
-    "zone": "Europe",
-    "timezone": "Europe/Dublin"
-  },
-  {
     "name": "eu-5.platform.sh",
     "provider": "AWS",
     "zone": "Europe",
@@ -46,12 +40,6 @@
     "provider": "AWS",
     "zone": "Europe",
     "timezone": "Europe/Dublin"
-  },
-  {
-    "name": "fr-1.platform.sh",
-    "provider": "Orange",
-    "zone": "Europe",
-    "timezone": "Europe/Paris"
   },
   {
     "name": "fr-3.platform.sh",
