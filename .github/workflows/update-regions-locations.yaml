@@ -1,0 +1,42 @@
+name: Auto Update Regions
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *' # Every 3 days at midnight UTC
+  workflow_dispatch:
+
+env:
+  PLATFORMSH_CLI_NO_INTERACTION: 1
+  PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
+
+jobs:
+  update-regions:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'platformsh' }}
+    env:
+      PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
+    steps:
+      - name: Setup Platformsh CLI
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
+
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+
+      - name: Download latest regions_location.json
+        run: |
+          # TODO: Replace the following line with your actual curl command
+          platform api:curl regions | jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' > ./shared/data/regions_location.json
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          delete-branch: true
+          branch: update-regions-locations
+          title: Automated update of regions
+          body: |
+            Region locations have updated.
+          add-paths: |
+            shared/data/regions_location.json
