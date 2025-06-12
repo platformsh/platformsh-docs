@@ -54,13 +54,19 @@ When adding a new project, you only see regions allowed by your organization.
 
 ## Region location
 
-To find out where a given region is hosted, use the following command:
+{{% region-location %}}
+
+{{% note theme="info" %}}
+
+As an alternative, you can also use the following command with the {{% vendor/name %}} CLI to find out where a given region is hosted:
 
 ``` bash
-{{% vendor/cli %}} api:curl regions | jq '.regions[] | select(.available != false)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
+{{% vendor/cli %}} api:curl regions | jq '.regions[] | select(.available)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
 ```
 
-The returned list contains, for each available region, its name, provider, geographic zone and its timezone.
+The returned list contains, for each available region, its name, provider, geographic zone and its timezone - as shown above.
+
+{{% /note %}}
 
 ## Public IP addresses
 
