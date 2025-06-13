@@ -29,6 +29,12 @@ For example, to get a list of the regions and their carbon intensities, run the 
 
 See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
 
+### Carbon Emissions dashboard
+
+The Carbon Emissions dashboard provides an overview of the carbon footprint associated with your cloud resource usage. Accessible via the Emissions tab within the Billing section in Console, this dashboard calculates emissions using a Carbon Price List (CPL) methodology, inspired by the Cloud Carbon Footprint model. 
+
+Users can view total emissions over time and track project specific emissions for the current year, broken down by kilograms of CO2 equivalent (kg CO2e). The dashboard also includes context on how emissions are calculated and what factors - such as server location and usage - can influence your totals.
+
 ## Region availability
 
 The regions listed here may be different from those available to you when you create a new project.
