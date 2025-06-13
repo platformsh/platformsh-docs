@@ -270,7 +270,7 @@ The above example will trigger the wp-cli every 15th minute to run WP Cron tasks
 on your individual requirements.
 
 {{< note theme="info">}}
-When uncommenting, pay attention to the indentation and that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
+When uncommenting, pay attention to the indentation and make sure that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
 {{< /note >}}
 
 ## Further resources
