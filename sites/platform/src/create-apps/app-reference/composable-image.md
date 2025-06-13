@@ -128,7 +128,7 @@ For example, to use the Nix channel `25.05`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
 
-type: "composable: 25.05"
+type: "composable:25.05"
 
 ```
 
