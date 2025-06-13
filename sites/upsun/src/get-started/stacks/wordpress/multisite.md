@@ -121,6 +121,7 @@ applications:
               expires: 1w
 
 {{< /codetabs >}}
+<!-- vale on -->
 
 {{< note theme="info" >}}
 If you followed the Bedrock guide and decided to change the default name of the directory where WordPress is installed
