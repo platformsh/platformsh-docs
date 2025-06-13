@@ -51,7 +51,7 @@ effects.
 
 Locate the `web:locations` section in your `.upsun/config.yaml` file and update the rules section for your root (`/`)
 location as follows:
-
+<!-- vale off -->
 {{< codetabs >}}
 
 +++
