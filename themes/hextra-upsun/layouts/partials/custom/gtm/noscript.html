@@ -1,0 +1,6 @@
+{{ $gtmID := site.Params.services.gtm.ID }}
+
+{{- if hugo.IsProduction -}}
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ $gtmID }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+{{- end -}}
