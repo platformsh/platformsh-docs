@@ -31,9 +31,40 @@ See all available information in the [API documentation](https://api.platform.sh
 
 ### Carbon Emissions dashboard
 
-The Carbon Emissions dashboard provides an overview of the carbon footprint associated with your cloud resource usage. Accessible via the Emissions tab within the Billing section in Console, this dashboard calculates emissions using a Carbon Price List (CPL) methodology, inspired by the Cloud Carbon Footprint model. 
+The Carbon Emissions dashboard provides an overview of the carbon footprint associated with your cloud resource usage. This dashboard calculates emissions using a Carbon Price List (CPL) methodology, inspired by the Cloud Carbon Footprint model. 
 
-Users can view total emissions over time and track project specific emissions for the current year, broken down by kilograms of CO2 equivalent (kg CO2e). The dashboard also includes context on how emissions are calculated and what factors - such as server location and usage - can influence your totals.
+Users can view total emissions over time and track project specific emissions for the current year, broken down by kilograms of CO2 equivalent (kg CO2e). The dashboard also includes information about how emissions are calculated and what factors (server location, usage etc.) can influence those totals.
+
+#### Access the dashboard
+
+This dashboard is accessible via the Emissions tab within the Billing section in Console.
+
+#### How is this calculated?
+
+We collect detailed billing data from our cloud service providers (including associated costs and quantities) and this information is represented as line items. 
+
+Our carbon management partner, Greenly, calculates the energy use and embodied emissions for each line item. This is done through data gathering and modeling that estimates energy consumption, power usage effectiveness (PUE), and carbon intensity for the cloud providers. Using cost allocation models, your project’s share of emissions is then estimated.
+
+We have been working closely with Greenly to build upon the model, tailoring it to better reflect our specific data and technical requirements to ensure your emissions data is credible, compliant and supports your progress toward real, measurable sustainability targets.
+
+{{% note theme="warning" %}}
+
+[OVH](/development/regions.html#france-fr-3-fr-3) and [Orange](/development/regions.html#france-fr-1-fr-1) region data is not available in this dashboard. 
+
+{{% /note %}}
+
+#### What affects emissions?
+
+- **Where you run:** Data center regions vary greatly in grid-carbon intensity. Selecting a cleaner region is the most impactful way to reduce footprint.
+
+- **What you provision:** Emissions rise in proportion to the resources you allocate.
+
+{{% note theme="tip" %}}
+
+Optimizing code or app performance reduces emissions only if it leads to lower resource allocation.
+
+{{% /note %}}
+
 
 ## Region availability
 
