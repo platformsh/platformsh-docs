@@ -606,8 +606,7 @@ In this case, you have `pg_trgm` installed, providing functions to determine the
 
 ### Available extensions
 
-The following is the extensive list of supported extensions. Note that you can't currently add custom
-extensions not listed here.
+The following is the extensive list of supported extensions. Note that you can't currently add custom extensions not listed here.
 
 * `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
 * `address_standardizer_data_us` - For standardizing addresses based on US dataset example
@@ -666,8 +665,14 @@ extensions not listed here.
 
 {{< note >}}
 
-You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
+You can't upgrade to PostgreSQL 12 with the `postgis` extensions enabled.
 For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
+
+{{< /note >}}
+
+{{< note >}}
+
+You can't upgrade to PostgreSQL 17 with the `adminpack` extension enabled.
 
 {{< /note >}}
 
