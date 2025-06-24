@@ -111,15 +111,16 @@ elasticsearch:
       - '7.17'
   versions-dedicated-gen-2:
     supported:
-      - '8.5'
-      - '7.17'
-    deprecated:
-      - '7.10'
-      - '7.9'
-      - '7.7'
-      - '7.6'
-      - '7.5'
       - '7.2'
+      - '7.5'
+      - '7.6'
+      - '7.7'
+      - '7.9'
+      - '7.10'
+      - '7.17'
+      - '8.5'
+      - '8.8'
+    deprecated:
       - '6.8'
       - '6.5'
       - '5.6'
@@ -218,6 +219,7 @@ golang:
       - '1.9'
       - '1.8'
     supported:
+      - '1.24'
       - '1.23'
       - '1.22'
       - '1.21'
@@ -375,17 +377,17 @@ mariadb:
       - '10.4'
   versions-dedicated-gen-2:
     supported:
+      - 11.4 Galera
       - 10.11 Galera
-      - 10.8 Galera
-      - 10.7 Galera
       - 10.6 Galera
       - 10.5 Galera
       - 10.4 Galera
-      - 10.3 Galera
     deprecated:
+      - 11.2 Galera
       - 10.2 Galera
       - 10.1 Galera
       - 10.0 Galera
+      - 10.3 Galera
   versions-dedicated-gen-3:
     supported:
       - 10.11 Galera
@@ -424,10 +426,15 @@ mysql:
       - '10.3'
   versions-dedicated-gen-2:
     supported:
+      - 11.4 Galera
+      - 10.11 Galera
+      - 10.6 Galera
+      - 10.5 Galera
       - 10.5 Galera
       - 10.4 Galera
-      - 10.3 Galera
     deprecated:
+      - 11.2 Galera
+      - 10.3 Galera
       - 10.2 Galera
       - 10.1 Galera
       - 10.0 Galera
@@ -462,7 +469,8 @@ memcached:
       - '1.4'
   versions-dedicated-gen-2:
     supported:
-      - 1.4*
+      - '1.5'
+      - '1.4'
 mongodb:
   description: Experimental MongoDB support on Platform.sh
   repo_name: mongodb
@@ -509,6 +517,7 @@ mongodb-enterprise:
       - '4.0'
   versions-dedicated-gen-2:
     supported:
+      - '7.0'
       - '6.0'
       - '5.0'
       - '4.4'
@@ -569,7 +578,10 @@ nodejs:
       - '20'
       - '18'
   versions-dedicated-gen-2:
-    supported: []
+    supported:
+      - '20'
+      - '19'
+      - '18'
     deprecated:
       - '16'
       - '14'
@@ -601,8 +613,14 @@ opensearch:
   versions-dedicated-gen-2:
     deprecated: []
     supported:
-      - '2.5'
       - '1.2'
+      - '1.99'
+      - '2.12'
+      - '2.14'
+      - '2.5'
+      - '2.18'
+      - '2.19'
+      - '2.99'
   versions-dedicated-gen-3:
     deprecated: []
     supported:
@@ -656,6 +674,8 @@ php:
   type: php
   versions-dedicated-gen-2:
     supported:
+      - '8.4'
+      - '8.3'
       - '8.2'
       - '8.1'
       - '8.0'
@@ -798,6 +818,8 @@ rabbitmq:
       - '3.5'
   versions-dedicated-gen-2:
     supported:
+      - '4.1'
+      - '4.0'
       - '3.13'
       - '3.12'
     deprecated:
@@ -844,6 +866,8 @@ redis:
       - '6.0'
   versions-dedicated-gen-2:
     supported:
+      - '8.0'
+      - '7.4'
       - '7.2'
     deprecated:
       - '7.0'
@@ -984,6 +1008,12 @@ solr:
       - '8.11'
   versions-dedicated-gen-2:
     supported:
+      - '9.7'
+      - '9.6'
+      - '9.4'
+      - '9.2'
+      - '9.1'
+      - '9.0'
       - '8.11'
     deprecated:
       - '8.6'
@@ -1098,6 +1128,8 @@ redis-persistent:
       - '6.0'
   versions-dedicated-gen-2:
     supported:
+      - '8.0'
+      - '7.4'
       - '7.2'
     deprecated:
       - '7.0'
