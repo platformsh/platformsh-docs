@@ -1,0 +1,66 @@
+name: Check API Docs Update
+
+on:
+  schedule:
+    - cron: '* 3 * * *'
+  workflow_dispatch:
+    #branches: [ * ]
+permissions:
+  contents: write
+env:
+  DEFAULT_BRANCH: "main"
+jobs:
+  check-and-update:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'platformsh' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Download redoc_static.html from GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          PROJECT_PATH="devrel/docs/api-site"
+          REF="main"
+
+          # URL-encode path to the project (replace `/` by `%2F`)
+          PROJECT_ENCODED=$(echo "$PROJECT_PATH" | sed 's/\//%2F/g')
+
+          # Download into P.sh using the GitLab API
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output sites/platform/src/api.html \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html'))")/raw?ref=${REF}"
+
+          # Download into Upsun using the GitLab API
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output sites/upsun/src/api.html \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html'))")/raw?ref=${REF}"
+
+      - name: Create Pull Request if changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+          commit-message: "Update API Docs"
+          body: "This PR updates the API Docs."
+
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          draft: false
+          delete-branch: true
+          branch: update-api-doc
+          title: "[API-BOT] Update API Docs"
+
+          base: main
+          labels: |
+            report
+            automated pr
+          add-paths: |
+            sites/upsun/src/api.html
+            sites/platform/src/api.html
