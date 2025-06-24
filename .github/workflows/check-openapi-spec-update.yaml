@@ -1,10 +1,10 @@
-name: Check OpenAPI Spec Update
+name: Check API Docs Update
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # Toutes les 5 minutes
+    - cron: '* 3 * * *'
   workflow_dispatch:
-    branches: [ main ]
+    branches: [ * ]
 permissions:
   contents: write
 env:
@@ -28,7 +28,6 @@ jobs:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
         run: |
           PROJECT_PATH="devrel/docs/api-site"
-          FILE_PATH="web/redoc_static.html"
           REF="main"
 
           # URL-encode path to the project (replace `/` by `%2F`)
@@ -37,12 +36,12 @@ jobs:
           # Download into P.sh using the GitLab API
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output sites/platform/src/api.html \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc_static.html'))")/raw?ref=${REF}"
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html'))")/raw?ref=${REF}"
 
           # Download into Upsun using the GitLab API
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output sites/upsun/src/api.html \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc_static.html'))")/raw?ref=${REF}"
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html'))")/raw?ref=${REF}"
 
       - name: Create Pull Request if changes
         uses: peter-evans/create-pull-request@v6
