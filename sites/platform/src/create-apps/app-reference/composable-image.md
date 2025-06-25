@@ -40,6 +40,7 @@ To override any part of a property, you have to provide the entire property.
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
 |--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
 | `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                      |
 | `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
 | `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
@@ -58,10 +59,11 @@ To override any part of a property, you have to provide the entire property.
 | `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
 
 {{% note %}}
-The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
+
 
 ## Stack
 
@@ -102,6 +104,23 @@ and visit the documentation page dedicated to your runtime.
 {{% note %}}
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
+
+### Supported Nix channels
+
+- `24.05`
+- `25.05`
+
+### Configure Nix channels
+
+The Nix channel can be configured with the [top-level property `type`](#top-level-properties). 
+
+For example, to use the Nix channel `25.05`, you would use the following syntax:
+
+```yaml {configFile="apps"}
+
+type: "composable:25.05"
+
+```
 
 ### Supported Nix packages
 
