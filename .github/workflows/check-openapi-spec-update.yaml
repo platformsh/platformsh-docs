@@ -31,17 +31,18 @@ jobs:
           REF="main"
 
           # URL-encode path to the project (replace `/` by `%2F`)
+          # @todo switch this to using the python method so we're consistent?
           PROJECT_ENCODED=$(echo "$PROJECT_PATH" | sed 's/\//%2F/g')
 
           # Download into P.sh using the GitLab API
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output sites/platform/src/api.html \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html'))")/raw?ref=${REF}"
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
 
           # Download into Upsun using the GitLab API
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output sites/upsun/src/api.html \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html'))")/raw?ref=${REF}"
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
 
       - name: Create Pull Request if changes
         uses: peter-evans/create-pull-request@v6
