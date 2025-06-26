@@ -161,7 +161,7 @@
                         allow: true
                         passthru: '/images/favicon.ico'
             '/api':
-              root: 'sites/platform/public/api'
+              root: 'sites/upsun/public/api'
               index: [ 'index.html' ]
               expires: 24h
 
