@@ -34,14 +34,10 @@ jobs:
           # @todo switch this to using the python method so we're consistent?
           PROJECT_ENCODED=$(echo "$PROJECT_PATH" | sed 's/\//%2F/g')
 
-          # Download into P.sh using the GitLab API
+          # Download into shared data using the GitLab API
+          # @todo should we also copy over the stylesheet? or should the version in docs be canonical?
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-            --output sites/platform/src/api.html \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
-
-          # Download into Upsun using the GitLab API
-          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-            --output sites/upsun/src/api.html \
+            --output shared/pages/api.html \
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
 
       - name: Create Pull Request if changes
