@@ -26,7 +26,7 @@
           set -e
           #copy API docs into correct location
           # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
-          mkdir -p ${PLATFORM_APP_DIR}/${SITE_DIR}/public/api"
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
             cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
@@ -112,7 +112,7 @@
         build: |
           #copy API docs into correct location
           # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
-          mkdir -p ${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
             cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
