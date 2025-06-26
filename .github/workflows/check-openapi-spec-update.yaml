@@ -59,5 +59,4 @@ jobs:
             report
             automated pr
           add-paths: |
-            sites/upsun/src/api.html
-            sites/platform/src/api.html
+            shared/pages
