@@ -3,7 +3,7 @@ title: "Dedicated backup and restores"
 weight: 1
 sidebarTitle: "Dedicated backups"
 layout: single
-description:  "Backups are retained for different periods depending on various factors and whether you’re using a Dedicated Gen 2 or Dedicated Gen 3 Environment. These processes can be either manual or automated."
+description:  "Backups are retained for different periods depending on various factors. These processes can be either manual or automated."
 ---
 
 {{% description %}}
@@ -47,19 +47,3 @@ MySQL is provided as a MySQL dump file on the server. You may restore these to y
 Platform.sh does not proactively overwrite your production site with a backup. You are responsible for determining a “safe” time to restore the backup, or for selectively restoring individual files if desired.
 
 {{< /note >}} 
-
-## Dedicated Generation 3 
-
-For Dedicated Generation 3 Environments, [automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
-
-|Type            |Basic                |Advanced         |Premium    |
-|----------------|---------------------|-----------------|-----------|
-| 6-hourly       | -                   | -               |1 day      |                
-| Daily          | 2 days              | 1 week          |1 month    |
-| Weekly         | -                   | 4 weeks         |-          |
-| Monthly        | -                   | 1 year          |1 year     | 
-
-
-## Dedication Generation 3 restores
-
-Dedicated Generation 3 Environments allow for backups and restores the same way as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
