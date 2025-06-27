@@ -3,7 +3,8 @@ title: "Dedicated Gen 3 Development"
 weight: 1
 sidebarTitle: "DG3 development"
 layout: single
-description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported and storage limits."
+hidden: true
+description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported, storage limits, backups, restores and supported languages and frameworks."
 ---
 
 {{< note theme="note" title="Limited access phase">}}
@@ -67,3 +68,71 @@ For more details on specific regions, consult the region [documentation](/develo
 ## Storage
 
 Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.
+
+## Backups
+
+For Dedicated Generation 3 Environments, [automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+
+|Type            |Basic                |Advanced         |Premium    |
+|----------------|---------------------|-----------------|-----------|
+| 6-hourly       | -                   | -               |1 day      |                
+| Daily          | 2 days              | 1 week          |1 month    |
+| Weekly         | -                   | 4 weeks         |-          |
+| Monthly        | -                   | 1 year          |1 year     | 
+
+
+## Restores
+
+Dedicated Generation 3 Environments allow for backups and restores the same way as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
+
+## Supported Languages and Frameworks
+
+Dedicated Generation 3 supports a wide range of languages and frameworks to power your applications. 
+
+### Supported Languages
+
+DG3 supports the following programming languages:
+
+- **.NET Core** – Versions 6.0, 7.0, and 8.0 are supported.
+- **Elixir** – Supported via custom build hooks. Uses Erlang 22.0.7.
+- **Go** – Supported with Go modules and custom build process.
+- **Java** – OpenJDK 8, 11, 17, 18, 19, and 21 with Gradle, Maven, or Ant builds.
+- **JavaScript (Node.js)** – Full support for Node.js and its ecosystem.
+- **PHP** – Full support with major frameworks.
+- **Python** – Supports pip, build hooks, and web servers like Gunicorn.
+- **Ruby** – Compatible with Ruby web frameworks including Rails and Sinatra.
+- **Rust** – Supported via custom build hooks.
+
+### Supported Frameworks
+
+#### Python
+
+- **Django** – Versions 3 and 4 supported.
+- **FastAPI**
+- **Flask**
+- **Pyramid**
+- **Wagtail**
+
+#### PHP
+
+- **Drupal**
+- **Symfony**
+- **Laravel**
+- **TYPO3**
+- **WordPress**
+- **Pimcore**
+- **Shopware**
+
+#### JavaScript / Node.js
+
+- **Gatsby**
+- **Next.js**
+- **Strapi**
+
+#### Java
+
+- **Hibernate**
+- **Jakarta EE**
+- **Micronaut**
+- **Quarkus**
+- **Spring**
