@@ -18,7 +18,7 @@ Each instance hosts the entire application stack, allowing this architecture sup
 
 The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team.
 
-For more information, learn about [default storage settings](#storage) and how your app can [connect to services](dedicated-environments/dedicated-gen-3/overview.md#available-services).
+For more information, learn about [default storage settings](#storage) and how your app can connect to services.
 
 ### Split architecture
 
@@ -61,7 +61,7 @@ For more information about deployment, see the [overview of the build and deplo
 
 ### Storage
 
-The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/).
+The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/).
 
 The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each development environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your development environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 
