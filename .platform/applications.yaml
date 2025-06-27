@@ -24,11 +24,23 @@
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
           set -e
+          #copy API docs into correct location
+          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+            cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
+          else
+            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+          fi
+
           cd $SITE_DIR
           cp ../../themes/psh-docs/postcss.config.js .
           npm install
           npm run build
           ./build_docs.sh
+
+
 
         deploy: |
             cd $SITE_DIR
@@ -60,6 +72,10 @@
                     \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
+            '/api':
+              root: 'sites/platform/public/api'
+              index: [ 'index.html' ]
+              expires: 24h
     disk: 1024
 
     mounts:
@@ -94,6 +110,15 @@
     hooks:
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
+          #copy API docs into correct location
+          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+            cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
+          else
+            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+          fi
           cd $SITE_DIR
           cp ../../themes/psh-docs/postcss.config.js .
           npm install
@@ -135,7 +160,10 @@
                     '^/favicon.ico$':
                         allow: true
                         passthru: '/images/favicon.ico'
-
+            '/api':
+              root: 'sites/upsun/public/api'
+              index: [ 'index.html' ]
+              expires: 24h
 
     disk: 1024
 
