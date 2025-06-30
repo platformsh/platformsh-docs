@@ -55,7 +55,7 @@ environment, but you can [name it as you want](/environments/default-environment
 
 ## Environment status
 
-Your environments can have one of two statuses:
+Your environments can have one of three statuses:
 
 -   [Active](/glossary.md#active-environment):
     A deployed environment with services and data.
