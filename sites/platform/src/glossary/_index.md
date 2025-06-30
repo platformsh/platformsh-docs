@@ -203,11 +203,14 @@ that includes workflow tools, APIs, and other functionality above and beyond bas
 The best example is {{% vendor/name %}}(although we're a little biased).
 
 ## Preview environment
+*Related terms: [Environment type](#environment-type)*
 
 A preview environment is a non-production environment you can use to develop and/or test changes without affecting production.</br>
 A preview environment can either be a development environment or a staging environment.
-Staging environments have an identical software configuration to your production hardware but reduced hardware specs.
+Preview environments have an identical software configuration to your production hardware but reduced hardware specs.
 They are useful to perform user acceptance testing.
+
+To learn more, see [Branch](#branch) also in this glossary.
 
 ## Production plan
 
