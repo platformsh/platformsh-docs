@@ -62,13 +62,16 @@ You might want to give it a [custom domain name](/domains/steps/_index.md).
 
 ## Environment status
 
-Your environments can have one of two statuses:
+Your environments can have one of three statuses:
 
 -   [Active](/glossary/_index.md#active-environment):
     A deployed environment with services and data.
 
 -   [Inactive](/glossary/_index.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
+
+-   [Paused](#paused-environments):
+    An environment that hasn't been redeployed in 14 days or longer.
 
 You can see the status of your environments in the [Console](/administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
 
@@ -213,7 +216,7 @@ To prevent your production environment from being paused automatically,
 
 {{< /note >}}
 
-You can also pause an environment manually at any time.
+You can pause (and resume) an environment manually at any time.
 
 ### Pause an environment
 
