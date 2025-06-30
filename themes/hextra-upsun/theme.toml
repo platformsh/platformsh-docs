@@ -1,0 +1,11 @@
+name = "Hextra for the Upsun Dev Center"
+license = "MIT"
+licenselink = "https://github.com/upsun/devcenter"
+description = "Design and additional updates for the Upsun Developer Center"
+homepage = "https://github.com/upsun/devcenter"
+demosite = "https://devcenter.upsun.com"
+min_version = "0.124.0"
+
+[author]
+  name = "Chad Carlson"
+  homepage = "https://github.com/chadwcarlson"
