@@ -29,3 +29,4 @@ ignoreerrors=
     ^https://mkyong.com/java/java-how-to-send-email/$ ^403 Forbidden
     ^https://www.baeldung.com/maven-wrapper$ ^403 Forbidden
     ^https://dzone\.com/.*$ ^403 Forbidden
+    ^https://docs\.pimcore\.com/.*$ ^403 Forbidden
