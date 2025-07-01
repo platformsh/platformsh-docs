@@ -85,54 +85,14 @@ For Dedicated Generation 3 Environments, [automated backups](environments/backup
 
 Dedicated Generation 3 Environments allow for backups and restores the same way as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
 
-## Supported Languages and Frameworks
+## Supported languages 
 
-Dedicated Generation 3 supports a wide range of languages and frameworks to power your applications. 
-
-### Supported Languages
-
-DG3 supports the following programming languages:
+Dedicated Generation 3 supports a wide range of languages to power your applications:
 
 - **.NET Core** – Versions 6.0, 7.0, and 8.0 are supported.
-- **Elixir** – Supported via custom build hooks. Uses Erlang 22.0.7.
-- **Go** – Supported with Go modules and custom build process.
-- **Java** – OpenJDK 8, 11, 17, 18, 19, and 21 with Gradle, Maven, or Ant builds.
-- **JavaScript (Node.js)** – Full support for Node.js and its ecosystem.
-- **PHP** – Full support with major frameworks.
-- **Python** – Supports pip, build hooks, and web servers like Gunicorn.
-- **Ruby** – Compatible with Ruby web frameworks including Rails and Sinatra.
-- **Rust** – Supported via custom build hooks.
-
-### Supported Frameworks
-
-#### Python
-
-- **Django** 
-- **FastAPI**
-- **Flask**
-- **Pyramid**
-- **Wagtail**
-
-#### PHP
-
-- **Drupal**
-- **Symfony**
-- **Laravel**
-- **TYPO3**
-- **WordPress**
-- **Pimcore**
-- **Shopware**
-
-#### JavaScript / Node.js
-
-- **Gatsby**
-- **Next.js**
-- **Strapi**
-
-#### Java
-
-- **Hibernate**
-- **Jakarta EE**
-- **Micronaut**
-- **Quarkus**
-- **Spring**
+- **Elixir**  – Versions 1.18, 1.15 and 1.14 are supported.
+- **Java** – Versions 21, 19, 18, 17, 11 and 8 are supported.
+- **JavaScript (Node.js)** – Versions 22, 20 and 18 are supported.
+- **PHP** – Versions 8.4, 8.3, 8.2 and 8.1 are supported.
+- **Python** – Versions 3.13, 3.12, 3.11, 3.10, 3.9 and 3.8 are supported.
+- **Ruby** – Versions 3.3, 3.2, 3.1 and 3.0 are supported.
