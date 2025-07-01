@@ -190,11 +190,11 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-In instances where a payment has failed, your organization will be immediately restricted. Upsun will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. If your payment fails after the third attempt on the 11th, your organization will be suspended the following day.
+In instances where a payment has failed, your organization will be immediately restricted. {{% vendor/name %}} will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. 
 
 If you are a new customer and your first payment has failed, your projects will be deleted on the 13th - two days after the final payment attempt.
 
-For all other customers, projects will be deleted 30 days after your organization is suspended on the 11th. You will be notified 10 days before this deletion occurs and a payment will be attempted for the last time. If unsuccessful, all projects on the billing subscription will be deleted.
+For all other customers, you will be notified 10 days before project deletion occurs and a payment will be attempted for the last time. If unsuccessful, all projects on the billing subscription will be deleted.
 
 
 <div align="center">
