@@ -55,13 +55,16 @@ environment, but you can [name it as you want](/environments/default-environment
 
 ## Environment status
 
-Your environments can have one of two statuses:
+Your environments can have one of three statuses:
 
 -   [Active](/glossary.md#active-environment):
     A deployed environment with services and data.
 
 -   [Inactive](/glossary.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
+
+-   [Paused](#paused-environments):
+    An environment that hasn't been redeployed in 14 days or longer.
 
 You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
 
@@ -196,7 +199,7 @@ Staging
 To prevent unnecessary consumption of resources,
 {{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
-You can also pause an environment manually at any time.
+You can pause (and resume) an environment manually at any time.
 
 ### Pause an environment
 
