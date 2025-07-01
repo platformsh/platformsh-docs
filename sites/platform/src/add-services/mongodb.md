@@ -37,14 +37,12 @@ To add MongoDB Enterprise, [contact Sales](https://platform.sh/contact/).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
