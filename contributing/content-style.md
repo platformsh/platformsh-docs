@@ -156,6 +156,26 @@ Use                                                                     | Avoid
 To learn how to set it up, read about [services](https://example.com).  | Reading about [Services](https://example.com) shows you how to set it up.
 For more information, see how to [configure apps](https://example.com). | For more information, see [Configure apps](https://example.com).
 
+### Use verbs (imperatives) for headings and section titles
+
+To maintain a clear and authoritative tone, use imperative verbs (the base form of the verb) rather than gerunds (*-ing*) in headings and section titles.
+
+This approach helps guide the reader with direct instructions, making it immediately clear what action they should take.
+
+Do this:
+* Set up your environment  
+* Deploy your project  
+* Configure environment variables  
+* Troubleshoot common errors
+
+Not this:
+* Setting up your environment  
+* Deploying your project  
+* Configuring environment variables  
+* Troubleshooting common errors
+
+Using verbs keeps the content focused, concise, and easier to scan, while reinforcing the instructional nature of our documentation.
+
 ### Minimize distractions
 
 Adding links can often provide helpful context.
