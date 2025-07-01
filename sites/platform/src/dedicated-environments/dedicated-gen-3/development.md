@@ -107,7 +107,7 @@ DG3 supports the following programming languages:
 
 #### Python
 
-- **Django** – Versions 3 and 4 supported.
+- **Django** 
 - **FastAPI**
 - **Flask**
 - **Pyramid**
