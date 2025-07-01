@@ -163,16 +163,16 @@ To maintain a clear, authoritative, and action-oriented tone, use imperative ver
 This approach helps guide the reader with direct instructions, making it immediately clear what action they should take.
 
 **Do this:**
-- Set up your environment  
-- Deploy your project  
-- Configure environment variables  
-- Troubleshoot common errors
+* Set up your environment  
+* Deploy your project  
+* Configure environment variables  
+* Troubleshoot common errors
 
 **Not this:**
-- Setting up your environment  
-- Deploying your project  
-- Configuring environment variables  
-- Troubleshooting common errors
+* Setting up your environment  
+* Deploying your project  
+* Configuring environment variables  
+* Troubleshooting common errors
 
 Using verbs keeps the content focused, concise, and easier to scan, while reinforcing the step-by-step, instructional nature of our documentation.
 
