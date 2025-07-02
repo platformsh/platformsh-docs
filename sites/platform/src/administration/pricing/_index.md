@@ -190,12 +190,22 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-In instances where a payment has failed, your organization will be immediately restricted. {{% vendor/name %}} will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. 
+If a payment fails, your organization will be immediately restricted. When an organization is restricted, the following applies:
 
-If you are a new customer and your first payment has failed, your projects will be deleted on the 13th - two days after the final payment attempt.
+- Access to `/projects/{project_id}/user-access` and `/users/{user_id}/project-access` will be denied.  
+- Access to `/projects/{project_id}/team-access` and `/teams/{user_id}/project-access` will be denied.  
+- Access to `/projects/{project_id}/access` and its subresources will be denied.  
+- Projects cannot be transferred to a restricted organization.  
+- Editing or deleting the organization is not allowed.  
+- Creating or deleting members is forbidden.  
+- Editing member permissions is allowed only to add the billing permission - no permissions can be removed.  
+- Access to all account proxy endpoints requiring `plans` or `project:create` permissions is denied, so creating or editing subscriptions at the organization level is forbidden.
 
-For all other customers, you will be notified 10 days before project deletion occurs and a payment will be attempted for the last time. If unsuccessful, all projects on the billing subscription will be deleted.
+{{% vendor/name %}} will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
 
+If you are a new customer and your initial payment fails, your projects will be deleted on the 13th of the month - two days after the final payment attempt.  
+
+For all other customers, you will receive a notification 10 days before your projects are scheduled for deletion. A final payment attempt will be made at that time. If unsuccessful, all projects on the billing subscription will be deleted.
 
 <div align="center">
 
