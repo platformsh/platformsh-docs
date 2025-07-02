@@ -4,7 +4,7 @@ weight: 1
 description: Understand how {{% vendor/name %}} pricing works.
 ---
 
-{{% vendor/name %}} offers flexible, usage-based [pricing](https://upsun.com/pricing/) for organizations and projects.
+{{% vendor/name %}} offers flexible, predictable [pricing](https://upsun.com/pricing/) for organizations and projects.
 
 {{< note theme="info" >}}
 
