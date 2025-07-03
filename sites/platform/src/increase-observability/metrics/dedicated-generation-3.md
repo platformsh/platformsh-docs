@@ -5,7 +5,6 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} e
 headless: true
 ---
 
-
 {{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated hosts:
 
 * App containers: one or more [app containers](/create-apps/_index.md)
@@ -19,11 +18,10 @@ To select metrics for specific hosts, click **Filter**.
 
 ![Clicking Filter reveals a list of hosts you can filter](/images/metrics/DG3-filter-metrics.png "0.4")
 
-
 The ID numbers for the hosts in the list for filtering match the numbers for interacting with a host,
 such as for accessing the environment using SSH.
 
-[{{% names/dedicated-gen-3 %}} environments](/dedicated-environments/dedicated-gen-3/_index.md): each of the three hosts and their average.
+{{% names/dedicated-gen-3 %}} environments: each of the three hosts and their average.
 These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
@@ -35,8 +33,6 @@ This example should give you an idea of how the metrics appear.
 across all hosts.
 
 This reference project has a single app, two services (PostgreSQL and Redis), and one worker.
-
-Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#dedicated-gen-3-environments).
 
 ### App container
 
@@ -76,8 +72,6 @@ at 9.51&nbsp;GB, while the temporary disk is 49.04&nbsp;GB.
 
 ### Thresholds 
 
-For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
-
 If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
 
 If you have a container in a prolonged burst state, you might want to consider:
@@ -93,8 +87,6 @@ If you have multiple containers in a burst state, review your configuration or p
 
 {{< note theme="warning" title="Burst state">}}
 
-All of the graphs show color-coded lines for the following thresholds. On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded.
-
-On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ will mean that you have crossed into a **burst** state.
+Resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded. Usage that crosses _100%_ will mean that you have crossed into a **burst** state.
 
 {{< /note >}}
