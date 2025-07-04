@@ -190,8 +190,6 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-## Dunning process
-
 If your initial payment fails, Platform.sh will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
 
 If you are a new customer and your initial payment fails, your projects will be deleted on the 13th of the month - two days after the final payment attempt.  
