@@ -19,7 +19,7 @@ Learn about the [cluster infrastructure](#cluster-infrastructure) of Dedicated G
 
 ## Cluster infrastructure 
 
-Clusters in a DG3 environment can be imagined as a mini-Grid region that has no [Ceph](/glossary/_index.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
+Clusters can be imagined as a mini-Grid region that has no [Ceph](/glossary/_index.md#ceph) dependency, so it can run anywhere. The cluster nodes function as entrypoint, coordinator, storage and host all in one. These clusters usually only contain a single branch while the remainder of the project remains on a Grid host. 
 
 For more information about the Dedicated clusters, visit [Dedicated Gen 2 Development](/dedicated-environments/dedicated-gen-2/development.md#cluster-infrastructure).
 
@@ -67,11 +67,11 @@ For more details on specific regions, consult the region [documentation](/develo
 
 ## Storage
 
-Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.
+Each cluster comes with 50GB of storage per environment by default. This storage is intended for your data (databases, search indexes, user uploaded files, etc.) and you can subdivide it as you want. Additional storage can be purchased and added to your cluster at any time.
 
 ## Backups
 
-For Dedicated Generation 3 Environments, [automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+[Automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
 |Type            |Basic                |Advanced         |Premium    |
 |----------------|---------------------|-----------------|-----------|
@@ -79,7 +79,6 @@ For Dedicated Generation 3 Environments, [automated backups](environments/backup
 | Daily          | 2 days              | 1 week          |1 month    |
 | Weekly         | -                   | 4 weeks         |-          |
 | Monthly        | -                   | 1 year          |1 year     | 
-
 
 ## Restores
 
