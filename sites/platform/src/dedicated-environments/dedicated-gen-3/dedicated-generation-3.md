@@ -5,7 +5,7 @@ description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} e
 headless: true
 ---
 
-{{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated hosts:
+These environments consist of various containers running across dedicated hosts:
 
 * App containers: one or more [app containers](/create-apps/_index.md)
 * Service containers: zero or more [service containers](/add-services/_index.md)
@@ -21,10 +21,9 @@ To select metrics for specific hosts, click **Filter**.
 The ID numbers for the hosts in the list for filtering match the numbers for interacting with a host,
 such as for accessing the environment using SSH.
 
-{{% names/dedicated-gen-3 %}} environments: each of the three hosts and their average.
-These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
+Each of the three hosts and their average. These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
 
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
+![A screenshot of what the metrics dashboard displays](/images/metrics/dg3-dashboard.png "0.45")
 
 ## Example of how to read metrics
 

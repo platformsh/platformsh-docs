@@ -174,9 +174,7 @@ On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directo
 
 ## Metrics
 
-For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
-
-If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
+Thresholds are set for each container. If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
 
 If you have a container in a prolonged burst state, you might want to consider:
 
