@@ -71,7 +71,7 @@ Each Dedicated Gen 3 cluster comes with 50GB of storage per environment by defau
 
 ## Backups
 
-For Dedicated Generation 3 Environments, [automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
+[Automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
 |Type            |Basic                |Advanced         |Premium    |
 |----------------|---------------------|-----------------|-----------|
