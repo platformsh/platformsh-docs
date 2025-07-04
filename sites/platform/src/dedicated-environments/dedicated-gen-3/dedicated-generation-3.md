@@ -1,5 +1,5 @@
 ---
-title: "Monitor {{% names/dedicated-gen-3 %}} metrics"
+title: "Monitor metrics"
 sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
 description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
 headless: true
