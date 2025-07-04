@@ -82,7 +82,7 @@ Each cluster comes with 50GB of storage per environment by default. This storage
 
 ## Restores
 
-Dedicated Generation 3 Environments allow for backups and restores the same way as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
+Backups and restores are the same as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
 
 ## Supported languages 
 
