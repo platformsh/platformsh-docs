@@ -109,17 +109,6 @@ with a MySQL service and a Redis service.
 If you aren't sure whether a specific setup would fit into a plan,
 don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
 
-{{< version/only "1" >}}
-
-## {{% names/dedicated-gen-3 %}}
-
-For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
-
-Learn more about [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
-
-To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
-
-{{< /version/only >}}
 
 ## Enterprise overages
 

@@ -1,8 +1,10 @@
 ---
 title: "Dedicated Gen 3 Overview"
 weight: -10
+headless: true
 sidebarTitle: "DG3 overview"
 description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
+
 ---
 
 {{< note theme="note" title="Limited access phase">}}
@@ -169,3 +171,18 @@ In addition to SSH accounts, you can create SFTP accounts with a custom user/pas
 On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. However, write access is restricted to the mounts declared in your YAML config files. SSH public key based authentication is also supported on the SFTP account.
 
 {{< /note >}}
+
+## Metrics
+
+Thresholds are set for each container. If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
+
+If you have a container in a prolonged burst state, you might want to consider:
+
+* [Optimizing your code](/increase-observability/_index.md)
+* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
+  or [service size](/add-services/_index.md#size)
+* [Increasing your plan](/administration/pricing/_index.md)
+
+You can reallocate your existing resources if other containers have resources they aren't using.
+
+If you have multiple containers in a burst state, review your configuration or plan size.

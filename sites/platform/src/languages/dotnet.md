@@ -15,7 +15,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>

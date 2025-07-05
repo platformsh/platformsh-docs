@@ -46,13 +46,11 @@ Supported versions are the following:
     <thead>
         <tr>
             <th>{{% names/dedicated-gen-2 %}}</th>
-            <th>{{% names/dedicated-gen-3 %}}</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}}</td>
-            <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}}</thd>
         </tr>
     </tbody>
 </table>

@@ -20,14 +20,12 @@ When you deploy your app, you always get the latest available patches.
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="rust" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>

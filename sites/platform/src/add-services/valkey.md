@@ -26,9 +26,9 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 All products support the 8.0 version of Valkey.
 
 
-| Grid            | Dedicated Gen 3 | Dedicated Gen 2 |
-| --------------- | --------------- | --------------- |
-| **8.0**         | **8.0**         | **8.0**         |
+| Grid            | Dedicated Gen 2 |
+| --------------- | --------------- | 
+| **8.0**         | **8.0**         |
 
 
 ## Service types
