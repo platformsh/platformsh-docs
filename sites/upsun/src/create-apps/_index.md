@@ -116,6 +116,7 @@ Unlike other runtimes, most PHP applications do not have a start command. There 
 
 The following example shows a setup for a PHP app with comments to explain the settings. Please note that Composable image is currently available as a Beta feature.
 
+
 {{< codetabs >}}
 
 +++
