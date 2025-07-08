@@ -78,8 +78,8 @@ Each cluster comes with 50GB of storage per environment by default. This storage
 
 [Automated backups](environments/backup.md#use-automated-backups) are retained for a specific amount of time depending on their type and your [backup schedule](/environments/backup.md#backup-schedule). [Manual backups](/environments/backup.md#create-a-manual-backup) are retained until you delete them or replace them with another backup.
 
-|Type            |Basic                |Advanced         |Premium    |
-|----------------|---------------------|-----------------|-----------|
+| Type           | Basic               | Advanced        | Premium    |
+|----------------|---------------------|-----------------|------------|
 | 6-hourly       | -                   | -               | 1 day      |                
 | Daily          | 2 days              | 1 week          | 1 month    |
 | Weekly         | -                   | 4 weeks         | -          |
