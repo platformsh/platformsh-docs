@@ -148,7 +148,7 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
 
     To perform these tasks, we'll utilize  the [`deploy`](/learn/overview/build-deploy.md#deploy-steps) and
     [`post_deploy`](/create-apps/hooks/hooks-comparison.html#post-deploy-hook) hooks. Locate the `deploy:` section
-    (below the `build:` section). Update the `deploy:` section as follows:
+    (below the `build:` section). Update the `deploy:` and `post_deploy:` section as follows:
 
     ```yaml {configFile="app"}
     applications:
@@ -166,11 +166,31 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
             wp core update-db
           post_deploy: |
             set -eu
+
             # Runs all due cron events
             wp cron event run --due-now
     ```
+    
+5. Add your crons
 
-5. Locate the `routes:` section, and beneath it, the `"https://{default}/":` route. Update the route as follows:
+Under your application configuration you can now add a cron.
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    crons:
+      wp-cron:
+        spec: '*/10 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+
+6. Locate the `routes:` section, and beneath it, the `"https://{default}/":` route. Update the route as follows:
 
     ```yaml {configFile="app"}
     applications:
@@ -191,7 +211,7 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
             - '/^wp-*/'
     ```
 
-6. To ensure we are able to perform tasks later in the deployment stage (e.g. updating the database, flushing cache, etc.)
+7. To ensure we are able to perform tasks later in the deployment stage (e.g. updating the database, flushing cache, etc.)
    we need to make sure the [wp-cli](https://wp-cli.org/) utility is a dependency of the application container. While still
    in the `.upsun/config.yaml` file, locate the `dependencies.php` section, and add the following:
 
@@ -216,7 +236,7 @@ the `dependencies` key aligns with other sibling keys (e.g. `build`, `hooks`, et
     {{< /note >}}
 
 
-7. Add and commit your changes.
+8. Add and commit your changes.
 
    ```bash {location="Terminal"}
    git add .upsun/config.yaml
@@ -239,6 +259,7 @@ export DB_PASSWORD="$MARIADB_PASSWORD"
 export DB_SCHEME="$MARIADB_SCHEME"
 export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_PATH}"
 ```
+
 To configure the remaining environment variables WordPress needs to run smoothly, open the `.environment` file. Just
 after the other database-related variables, add a blank line or two and add the following:
 
