@@ -53,6 +53,11 @@ Existing non-HA projects cannot be converted to HA projects and vice-versa. HA p
 
 {{< /note >}}
 
+{{< note >}}
+
+The `PLATFORM_CLUSTER` environment variable isn't yet available on {{% names/dedicated-gen-3 %}}. If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
+
+{{< /note >}}
 
 ## Providers and regions
 

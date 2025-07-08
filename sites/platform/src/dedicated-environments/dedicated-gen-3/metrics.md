@@ -2,7 +2,7 @@
 title: "Monitor metrics"
 sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
 description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
-headless: true
+headless: true 
 ---
 
 These environments consist of various containers running across dedicated hosts:
@@ -28,7 +28,7 @@ Each of the three hosts and their average. These metrics are available for all o
 ## Example of how to read metrics
 
 This example should give you an idea of how the metrics appear.
-{{% names/dedicated-gen-3 %}} environments metrics show resource usage for each app, service, and worker container
+The metrics show resource usage for each app, service, and worker container
 across all hosts.
 
 This reference project has a single app, two services (PostgreSQL and Redis), and one worker.
