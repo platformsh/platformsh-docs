@@ -29,7 +29,7 @@ You can also see [complete examples of responses](#examples).
 {
   "id": "abcdefg123456",
   ...
-  "created_at": "2022-12-16T14:28:17.890467+00:00",
+  "created_at": "{{ now.Year }}-12-16T14:28:17.890467+00:00",
   "updated_at": null,
   "type": "environment.synchronize",
   "parameters": {
@@ -41,8 +41,8 @@ You can also see [complete examples of responses](#examples).
   ],
   "state": "complete",
   "result": "success",
-  "started_at": "2022-12-16T14:28:18.188888+00:00",
-  "completed_at": "2022-12-16T14:31:48.809068+00:00",
+  "started_at": "{{ now.Year }}-12-16T14:28:18.188888+00:00",
+  "completed_at": "{{ now.Year }}-12-16T14:31:48.809068+00:00",
   "completion_percent": 100,
   "cancelled_at": null,
   "timings": {
@@ -51,13 +51,13 @@ You can also see [complete examples of responses](#examples).
     "deploy": 209.986,
     "execute": 210.508
   },
-  "log": "Building application 'app' (runtime type: php:8.2, tree: 9851a01)\n  Reusing existing build for this tree ID\n\n...\nRedeploying environment test, as a clone of main\n  ...\n  Closing all services\n  Opening application app and its relationships\n  Executing deploy hook for application app\n ... Environment configuration\n    app (type: php:8.0, size: S, disk: 2048)\n\n  ...",
+  "log": "Building application 'app' (runtime type: php:{{% latest "php" %}}, tree: 9851a01)\n  Reusing existing build for this tree ID\n\n...\nRedeploying environment test, as a clone of main\n  ...\n  Closing all services\n  Opening application app and its relationships\n  Executing deploy hook for application app\n ... Environment configuration\n    app (type: php:{{% latest "php" %}}, size: S, disk: 2048)\n\n  ...",
   "payload": {
     ...
   },
   "description": "<user data-id=\"abcdefghijk123456789\">Cloé Weber</user> synchronized <environment data-id=\"test\">test</environment>'s <strong>data</strong> from <environment data-id=\"main\">Main</environment>",
   "text": "Cloé Weber synchronized test's **data** from Main",
-  "expires_at": "2023-12-16T14:28:17.890467+00:00"
+  "expires_at": "{{ now.Year }}-12-16T14:28:17.890467+00:00"
 }
 ```
 
@@ -370,7 +370,7 @@ The following example shows the full activity response to a cron job:
       "href": "/api/projects/abcdefgh1234567/activities/ypalrypnezbye/log"
     }
   },
-  "created_at": "2022-12-13T16:06:08.081312+00:00",
+  "created_at": "{{ now.Year }}-12-13T16:06:08.081312+00:00",
   "updated_at": null,
   "type": "environment.cron",
   "parameters": {
@@ -395,26 +395,26 @@ The following example shows the full activity response to a cron job:
   ],
   "state": "complete",
   "result": "success",
-  "started_at": "2022-12-13T16:06:08.258090+00:00",
-  "completed_at": "2022-12-13T16:07:09.658339+00:00",
+  "started_at": "{{ now.Year }}-12-13T16:06:08.258090+00:00",
+  "completed_at": "{{ now.Year }}-12-13T16:07:09.658339+00:00",
   "completion_percent": 100,
   "cancelled_at": null,
   "timings": {
     "wait": 0,
     "execute": 61.244
   },
-  "log": "hello world\nTue Dec 13 16:07:09 UTC 2022",
+  "log": "hello world\nTue Dec 13 16:07:09 UTC 2024",
   "payload": {
     "user": {
       "id": "admin",
-      "created_at": "2022-12-13T16:06:08.066085+00:00",
+      "created_at": "{{ now.Year }}-12-13T16:06:08.066085+00:00",
       "updated_at": null,
       "display_name": "{{% vendor/name %}} Bot"
     },
     "project": {
       "id": "abcdefgh1234567",
-      "created_at": "2022-03-22T15:47:28.739099+00:00",
-      "updated_at": "2022-12-01T09:42:19.860188+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:47:28.739099+00:00",
+      "updated_at": "{{ now.Year }}-12-01T09:42:19.860188+00:00",
       "attributes": {},
       "title": "php-test",
       "description": "",
@@ -447,8 +447,8 @@ The following example shows the full activity response to a cron job:
     },
     "environment": {
       "id": "main",
-      "created_at": "2022-03-22T15:47:43.750880+00:00",
-      "updated_at": "2022-11-29T16:16:37.085719+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:47:43.750880+00:00",
+      "updated_at": "{{ now.Year }}-11-29T16:16:37.085719+00:00",
       "name": "main",
       "machine_name": "main-abcd123",
       "title": "Main",
@@ -465,14 +465,14 @@ The following example shows the full activity response to a cron job:
       "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}",
       "deployment_state": {
         "last_deployment_successful": true,
-        "last_deployment_at": "2022-11-29T16:16:37.085609+00:00",
+        "last_deployment_at": "{{ now.Year }}-11-29T16:16:37.085609+00:00",
         "crons": {
           "enabled": true,
           "status": "running"
         }
       },
       "resources_overrides": {},
-      "last_active_at": "2022-12-13T15:07:10.862854+00:00",
+      "last_active_at": "{{ now.Year }}-12-13T15:07:10.862854+00:00",
       "last_backup_at": null,
       "project": "abcdefgh1234567",
       "is_main": true,
@@ -490,7 +490,7 @@ The following example shows the full activity response to a cron job:
   },
   "description": "<user data-id=\"admin\">{{% vendor/name %}} Bot</user> ran cron <strong>saybye</strong>",
   "text": "{{% vendor/name %}} Bot ran cron **saybye**",
-  "expires_at": "2023-01-12T16:06:08.081293+00:00"
+  "expires_at": "{{ now.Year }}-01-12T16:06:08.081293+00:00"
 }
 ```
 
@@ -524,8 +524,8 @@ The `environment` property contains the settings for the environment that was pu
 ...
     "environment": {
       "id": "main",
-      "created_at": "2022-03-22T15:47:43.750880+00:00",
-      "updated_at": "2022-11-29T16:16:37.085719+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:47:43.750880+00:00",
+      "updated_at": "{{ now.Year }}-11-29T16:16:37.085719+00:00",
       "name": "main",
       "machine_name": "main-abcd123",
       "title": "Main",
@@ -542,14 +542,14 @@ The `environment` property contains the settings for the environment that was pu
       "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}",
       "deployment_state": {
         "last_deployment_successful": true,
-        "last_deployment_at": "2022-11-29T16:16:37.085609+00:00",
+        "last_deployment_at": "{{ now.Year }}-11-29T16:16:37.085609+00:00",
         "crons": {
           "enabled": true,
           "status": "sleeping"
         }
       },
       "resources_overrides": {},
-      "last_active_at": "2022-12-13T16:07:09.788910+00:00",
+      "last_active_at": "{{ now.Year }}-12-13T16:07:09.788910+00:00",
       "last_backup_at": null,
       "project": "abcdefgh1234567",
       "is_main": true,
@@ -576,14 +576,14 @@ The following example shows a shortened excerpt of the `deployment` property:
 ...
  "deployment": {
       "id": "current",
-      "created_at": "2022-03-22T15:48:05.396979+00:00",
-      "updated_at": "2022-12-14T15:41:57.264813+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:48:05.396979+00:00",
+      "updated_at": "{{ now.Year }}-12-14T15:41:57.264813+00:00",
       "cluster_name": "abcdefgh1234567-main-abcd123",
       "project_info": {
           "deployment": {
       "id": "current",
-      "created_at": "2022-03-22T15:48:05.396979+00:00",
-      "updated_at": "2022-12-14T15:41:57.264813+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:48:05.396979+00:00",
+      "updated_at": "{{ now.Year }}-12-14T15:41:57.264813+00:00",
       "cluster_name": "abcdefgh1234567-main-abcd123",
       "project_info": {
         "name": "abcdefgh1234567",
@@ -648,7 +648,7 @@ The following example shows the full activity response to a Git push:
       "href": "/api/projects/abcdefgh1234567/activities/a1kz6ffxui7em/log"
     }
   },
-  "created_at": "2022-12-14T15:41:05.821145+00:00",
+  "created_at": "{{ now.Year }}-12-14T15:41:05.821145+00:00",
   "updated_at": null,
   "type": "environment.push",
   "parameters": {
@@ -663,8 +663,8 @@ The following example shows the full activity response to a Git push:
   ],
   "state": "complete",
   "result": "success",
-  "started_at": "2022-12-14T15:41:05.969872+00:00",
-  "completed_at": "2022-12-14T15:41:57.635442+00:00",
+  "started_at": "{{ now.Year }}-12-14T15:41:05.969872+00:00",
+  "completed_at": "{{ now.Year }}-12-14T15:41:57.635442+00:00",
   "completion_percent": 100,
   "cancelled_at": null,
   "timings": {
@@ -674,18 +674,18 @@ The following example shows the full activity response to a Git push:
     "deploy": 49.954,
     "execute": 51.516
   },
-  "log": "Found 1 new commit\n\nBuilding application 'myapp' (runtime type: php:8.0, tree: 9851a01)\n  Reusing existing build for this tree ID\n\nProvisioning certificates\n  Certificates\n  - certificate 5093946: expiring on 2023-02-23 11:09:20+00:00, covering {,www}.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}\n\n\nRedeploying environment main\n  Preparing deployment\n  Closing service myapp\n  Opening application myapp and its relationships\n  Executing deploy hook for application myapp\n    hello world\n\n  Opening environment\n  Environment configuration\n    myapp (type: php:8.0, size: S, disk: 2048)\n\n  Environment routes\n    http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ is served by application `myapp`\n    https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n",
+  "log": "Found 1 new commit\n\nBuilding application 'myapp' (runtime type: php:{{% latest "php" %}}, tree: 9851a01)\n  Reusing existing build for this tree ID\n\nProvisioning certificates\n  Certificates\n  - certificate 5093946: expiring on {{ now.Year }}-02-23 11:09:20+00:00, covering {,www}.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}\n\n\nRedeploying environment main\n  Preparing deployment\n  Closing service myapp\n  Opening application myapp and its relationships\n  Executing deploy hook for application myapp\n    hello world\n\n  Opening environment\n  Environment configuration\n    myapp (type: php:{{% latest "php" %}}, size: S, disk: 2048)\n\n  Environment routes\n    http://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    http://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n    https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ is served by application `myapp`\n    https://www.main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/ redirects to https://main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}/\n",
   "payload": {
     "user": {
       "id": "c9926428-44dc-4b10-be03-a26dd43b44c1",
-      "created_at": "2022-12-14T15:40:16.891889+00:00",
+      "created_at": "{{ now.Year }}-12-14T15:40:16.891889+00:00",
       "updated_at": null,
       "display_name": "Cloé Weber"
     },
     "environment": {
       "id": "main",
-      "created_at": "2022-03-22T15:47:43.750880+00:00",
-      "updated_at": "2022-11-29T16:16:37.085719+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:47:43.750880+00:00",
+      "updated_at": "{{ now.Year }}-11-29T16:16:37.085719+00:00",
       "name": "main",
       "machine_name": "main-abcd123",
       "title": "Main",
@@ -702,14 +702,14 @@ The following example shows the full activity response to a Git push:
       "edge_hostname": "main-abcd123-abcdefgh1234567.eu-3.{{< vendor/urlraw "hostname" >}}",
       "deployment_state": {
         "last_deployment_successful": true,
-        "last_deployment_at": "2022-11-29T16:16:37.085609+00:00",
+        "last_deployment_at": "{{ now.Year }}-11-29T16:16:37.085609+00:00",
         "crons": {
           "enabled": true,
           "status": "sleeping"
         }
       },
       "resources_overrides": {},
-      "last_active_at": "2022-12-13T16:07:09.788910+00:00",
+      "last_active_at": "{{ now.Year }}-12-13T16:07:09.788910+00:00",
       "last_backup_at": null,
       "project": "abcdefgh1234567",
       "is_main": true,
@@ -740,8 +740,8 @@ The following example shows the full activity response to a Git push:
     "commits_count": 1,
     "deployment": {
       "id": "current",
-      "created_at": "2022-03-22T15:48:05.396979+00:00",
-      "updated_at": "2022-12-14T15:41:57.264813+00:00",
+      "created_at": "{{ now.Year }}-03-22T15:48:05.396979+00:00",
+      "updated_at": "{{ now.Year }}-12-14T15:41:57.264813+00:00",
       "cluster_name": "abcdefgh1234567-main-abcd123",
       "project_info": {
         "name": "abcdefgh1234567",
@@ -1000,7 +1000,7 @@ The following example shows the full activity response to a Git push:
           "container_profile": null,
           "instance_count": null,
           "name": "app",
-          "type": "php:8.0",
+          "type": "php:{{% latest "php" %}}",
           "runtime": {},
           "preflight": {
             "enabled": true,
@@ -1047,6 +1047,6 @@ The following example shows the full activity response to a Git push:
   },
   "description": "<user data-id=\"c9926428-44dc-4b10-be03-a26dd43b44c1\">Cloé Weber</user> pushed to <environment data-id=\"main\">Main</environment>",
   "text": "Cloé Weber pushed to Main",
-  "expires_at": "2023-12-14T15:41:05.821145+00:00"
+  "expires_at": "{{ now.Year }}-12-14T15:41:05.821145+00:00"
 }
 ```

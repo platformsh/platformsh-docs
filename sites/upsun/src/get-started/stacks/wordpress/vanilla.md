@@ -85,7 +85,7 @@ If you changed the name of the directory at step 4 you'll need to update the `pa
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: 'php:{{% latest "php" %}}'
         web:
           locations:
             "/":
@@ -126,7 +126,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
     myapp:
       source:
         root: "/"
-      type: 'php:8.3'
+      type: 'php:{{% latest "php" %}}'
       <snip>
       mounts:
         "wordpress/wp-content/uploads":
@@ -155,7 +155,7 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: 'php:{{% latest "php" %}}'
         <snip>
         hooks:
           deploy: |
@@ -197,7 +197,7 @@ applications:
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: 'php:{{% latest "php" %}}'
         ...
 
     routes:
@@ -220,7 +220,7 @@ applications:
       myapp:
         source:
           root: "/"
-        type: 'php:8.3'
+        type: 'php:{{% latest "php" %}}'
         <snip>
         dependencies:
           php:
