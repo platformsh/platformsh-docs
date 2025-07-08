@@ -665,7 +665,7 @@ The following is the extensive list of supported extensions. Note that you can't
 
 {{< note >}}
 
-You can't upgrade to PostgreSQL 12 with the `postgis` extensions enabled.
+You can't upgrade to PostgreSQL 12 with the `postgis` extension enabled.
 For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-to-postgresql-12-with-the-postgis-extension).
 
 {{< /note >}}
