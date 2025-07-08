@@ -36,15 +36,24 @@ Now set up an exception for Markdown (`*.md`) files using a [rule](/create-apps/
 web:
   locations:
     "/":
-      ...
+      #...
       rules:
         \.md$:
           headers:
-            Content-Type: text/markdown
+            Content-Type: "text/markdown; charset=UTF-8"
 ```
 
 This rule sets an explicit content type for files that end in `.md`.  Because specific rules override the general
 heading configuration, Markdown files don't get the `X-Frame-Options` header set before.
+
+{{< note theme="info" title="Setting charset" >}}
+
+By default, [HTTP charset parameters](https://www.w3.org/International/articles/http-charset/index.en) are not sent to the response.
+If not set, modern browsers will detect `ISO-8859-1` and likely default to `windows-1252` as this has 32 more international characters.
+
+To set the HTTP charset parameters to your desired charset, you can add ``; charset=UTF-8`` in the `Content-Type` parameters.
+
+{{< /note >}}
 
 Now set a rule for AAC files.
 
@@ -96,7 +105,7 @@ They would otherwise fail CORS checks if the wildcard value is used.
 
 The `Strict_Transport_Security` header returns a value of `max-age=0`
 unless you enable [HTTP Strict Transport Security (HSTS)](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)
-in your [routes configuration](../../define-routes/_index.md).
+in your [routes configuration](/define-routes/_index.md).
 
 Note that once HSTS is enabled, configuration capabilities depend
 on the [HSTS properties](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)

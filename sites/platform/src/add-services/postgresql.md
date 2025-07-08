@@ -12,9 +12,9 @@ See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.htm
 
 If you use one of the following frameworks, follow its guide:
 
-- [Hibernate](../guides/hibernate/deploy.md#postgresql)
-- [Jakarta EE](../guides/jakarta/deploy.md#postgresql)
-- [Spring](../guides/spring/postgresql.md)
+- [Hibernate](/guides/hibernate/deploy.md#postgresql)
+- [Jakarta EE](/guides/jakarta/deploy.md#postgresql)
+- [Spring](/guides/spring/postgresql.md)
 
 ## Supported versions
 
@@ -22,14 +22,12 @@ If you use one of the following frameworks, follow its guide:
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="postgresql" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -55,14 +53,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -137,12 +133,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -167,16 +163,16 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
@@ -284,7 +280,7 @@ highlight=python
 
 Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
-You can also access it from your app container via [SSH](../development/ssh/_index.md).
+You can also access it from your app container via [SSH](/development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
 Then run the following command:
 
@@ -363,7 +359,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your preview environments](../development/sanitize-db/postgresql.md).
+[sanitize your preview environments](/development/sanitize-db/postgresql.md).
 
 ## Set locale for database
 
@@ -373,7 +369,7 @@ You can choose your locale when a database is created by setting locale-related 
 | Name   | Type      | Default  | Description  |
 |--------|-----------|----------|--------------|
 | `default_ctype` | `string`  | `C.UTF-8` | The default character classification. Affects any tables created after it's set.|
-| `default_collation` | `string`|`C.UTF-8`| The default collation rules. Affects any tables created after it's set.| 
+| `default_collation` | `string`|`C.UTF-8`| The default collation rules. Affects any tables created after it's set.|
 | `default_charset` | `string`  | `UTF8` | The default encoding character set. Affects any tables created after it's set.|
 
 
@@ -508,9 +504,9 @@ you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
 
-After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
 within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
@@ -611,7 +607,7 @@ extensions not listed here.
 
 * `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
 * `address_standardizer_data_us` - For standardizing addresses based on US dataset example
-* `adminpack` - administrative functions for PostgreSQL
+* `adminpack` - administrative functions for PostgreSQL (only available in versions less than 17)
 * `autoinc` - functions for auto-incrementing fields
 * `bloom` - bloom access method - signature file based index (requires 9.6 or higher)
 * `btree_gin` - support for indexing common data types in GIN

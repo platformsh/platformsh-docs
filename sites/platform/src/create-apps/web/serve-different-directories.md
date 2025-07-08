@@ -27,7 +27,7 @@ If so, you can serve all requests by your app code except for those that start w
 which you serve with your generated docs.
 Use a [`web` configuration](/create-apps/app-reference/single-runtime-image.md#web) similar to the following:
 
-```yaml {configfile="app"}
+```yaml {configFile="app"}
 web:
   locations:
     '/':

@@ -20,7 +20,7 @@ When you deploy your app, you always get the latest available patches.
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -61,7 +61,7 @@ Java containers come with a version of Maven already installed.
 You may need to use a specific different version to manage your project.
 If the version you need differs from the version on your container, you can install the specific version that you need.
 
-Add something like the following to your [app configuration](../../create-apps/_index.md):
+Add something like the following to your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 variables:
@@ -88,7 +88,7 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 ## Accessing services
 
 
-To access various [services](../../add-services/_index.md) with Java, see the following examples. The individual service pages have more information on configuring each service.
+To access various [services](/add-services/_index.md) with Java, see the following examples. The individual service pages have more information on configuring each service.
 
 {{< codetabs v2hide="true" >}}
 

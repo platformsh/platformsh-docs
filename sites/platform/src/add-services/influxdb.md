@@ -21,14 +21,12 @@ When you deploy your app, you always get the latest available patches.
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="influxdb" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="influxdb" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="influxdb" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -43,14 +41,12 @@ but they're at their end of life and are no longer receiving security updates fr
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="influxdb" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="influxdb" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="influxdb" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -135,12 +131,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -166,10 +162,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -186,7 +182,7 @@ influxdb:
   disk: 256
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 {{< codetabs >}}
 
@@ -277,7 +273,7 @@ influxdb:
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
 From this, `myapp` can retrieve access credentials to the service through the environment variable `{{< vendor/prefix >}}_RELATIONSHIPS`. That variable is a base64-encoded JSON object, but can be decoded at runtime (using the built-in tool `jq`) to provide more accessible environment variables to use within the application itself:
 
@@ -297,14 +293,14 @@ The above file &mdash; `.environment` in the `myapp` directory &mdash; is automa
 
 Note that `INFLUX_HOST` and all {{< vendor/name >}}-provided environment variables like `{{% vendor/prefix %}}_RELATIONSHIPS`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
+A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Export data
 
 To export your data from InfluxDB, follow these steps:
 
 1. Install and set up the [`influx` CLI](https://docs.influxdata.com/influxdb/cloud/tools/influx-cli/).
-2. Connect to your InfluxDB service with the [{{% vendor/name %}} CLI](../administration/cli/_index.md):
+2. Connect to your InfluxDB service with the [{{% vendor/name %}} CLI](/administration/cli/_index.md):
 
    ```bash
    {{% vendor/cli %}} tunnel:single
@@ -335,14 +331,14 @@ To export your data from InfluxDB, follow these steps:
 From version 2.3 onward, the structure of relationships changes.
 
 If you're using a prior 2.x version, your app might currently rely on pulling the `bucket`, `org`, `api_token`,
-or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables).
+or `user` values available in the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 If so, to ensure your upgrade is successful, make the following changes to your connection logic:
 
 - Rename the `user` key to `username`.
 - Move the `org`, `bucket` and `api_token` keys so they're contained in a dictionary under the `query` key.
 
-If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
+If you're relying on any other attributes connecting to InfluxDB, they remain accessible as top-level keys from the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables), aside from those addressed above:
 
 ```json
 {
@@ -383,6 +379,6 @@ During an upgrade from a 1.x version to a 2.3 version or later,
 a new admin password and a new admin API token are automatically generated.
 Previous credentials can't be retained.
 
-You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](../development/variables/use-variables.md#use-provided-variables) or by running `{{< vendor/cli >}} relationships`.
+You can retrieve your new credentials through the [`{{< vendor/prefix >}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) or by running `{{< vendor/cli >}} relationships`.
 
 {{< /note >}}

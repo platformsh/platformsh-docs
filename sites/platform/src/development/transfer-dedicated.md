@@ -4,7 +4,7 @@ weight: 13
 sidebarTitle: "Sync to {{% names/dedicated-gen-2 %}}"
 ---
 
-Transferring data to and from [a {{% names/dedicated-gen-2 %}} cluster](/glossary.md#dedicated-gen-2) slightly differs from the process on the Grid.
+Transferring data to and from [a {{% names/dedicated-gen-2 %}} cluster](/glossary/_index.md#dedicated-gen-2) slightly differs from the process on the Grid.
 
 ## Back up your files
 
@@ -26,10 +26,10 @@ Before running the command, make sure that you don't overwrite local data (or do
 To back up your database, adapt and run the following command on your local computer:
 
 ```bash
-{{% vendor/cli %}} db:dump --gzip 
+{{% vendor/cli %}} db:dump --gzip
 ```
 
-For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
+For more backup options and examples, see how to [export data from an SQL database](/add-services/mysql/_index.md#exporting-data).
 
 ## Synchronize files from Development to Staging/Production
 
@@ -75,7 +75,7 @@ To synchronize your database:
    {{% vendor/cli %}} db:dump --environment {{< variable "DEVELOPMENT_ENVIRONMENT" >}} --file=dump.sql
    ```
 
-   For more backup options and examples, see how to [export data from an SQL database](../add-services/mysql/_index.md#exporting-data).
+   For more backup options and examples, see how to [export data from an SQL database](/add-services/mysql/_index.md#exporting-data).
 
 2. Import the Development database dump file into the remote Staging/Production database:
 
@@ -86,4 +86,4 @@ To synchronize your database:
 
 ## What's next?
 
-For more granular connection options, see [SSH connection details](../development/ssh/_index.md#get-ssh-connection-details).
+For more granular connection options, see [SSH connection details](/development/ssh/_index.md#get-ssh-connection-details).

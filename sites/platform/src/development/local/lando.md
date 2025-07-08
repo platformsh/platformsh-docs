@@ -36,7 +36,7 @@ Follow the [Lando installation instructions](https://docs.lando.dev/getting-star
 
 ## 2. Create an access token
 
-To authorize Lando to communicate with {{% vendor/name %}}, create an [API token](../../administration/cli/api-tokens.md#2-create-an-api-token).
+To authorize Lando to communicate with {{% vendor/name %}}, create an [API token](/administration/cli/api-tokens.md#2-create-an-api-token).
 Copy the value.
 
 ## 3. Initialize Lando
@@ -49,8 +49,8 @@ title=On an existing {{% vendor/name %}} project
 
 If your code isn't present locally, retrieve your codebase with one of these methods:
 
-- Using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>
-- Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
+- Using the [{{% vendor/name %}} CLI](/administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>
+- Using [Git](/administration/web/configure-environment.md#actions-on-environments)
 
 Otherwise, access the directory with your project.
 
@@ -59,7 +59,7 @@ Run <code>lando init --recipe platformsh --source cwd --platformsh-auth {{% vari
 {{< note >}}
 
 If for some reason you get an error using the {{% vendor/name %}} recipe,
-be sure to 
+be sure to
 [install the latest version of the {{% vendor/name %}} plugin](https://docs.lando.dev/platformsh/getting-started.html#custom-installation)
 and run the command again.
 
@@ -77,8 +77,8 @@ It also includes the required {{% vendor/name %}} configuration files out of the
 
 1. [Create a new project based on the PHP template]({{% create-project-link template="php" %}}).
 2. Clone that project locally in one of these ways:
-    - Using the [{{% vendor/name %}} CLI](../../administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>.
-    - Using [Git](../../administration/web/configure-environment.md#actions-on-environments)
+    - Using the [{{% vendor/name %}} CLI](/administration/cli/_index.md) by running <code>platform get {{< variable "PROJECT_ID" >}}</code>.
+    - Using [Git](/administration/web/configure-environment.md#actions-on-environments)
 3. In the project's folder, run <code>lando init --recipe platformsh --source platformsh --platformsh-auth {{% variable "API_TOKEN" %}}</code>.
 4. Follow the instructions provided by the interactive prompt.
    On the `Which project?` step, select the project created in the first step.
@@ -86,7 +86,7 @@ It also includes the required {{% vendor/name %}} configuration files out of the
 {{< /codetabs >}}
 
 The `init` command generates the `.lando.yml` file required to start Lando.
-It also adds to your account a [public SSH key](../ssh/ssh-keys.md).
+It also adds to your account a [public SSH key](/development/ssh/ssh-keys.md).
 
 ## 4. Start Lando
 

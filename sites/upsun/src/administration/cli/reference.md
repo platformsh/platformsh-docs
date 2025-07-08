@@ -15,7 +15,7 @@ showTitle: false
 
 # Upsun CLI 5.0.15
 
-- [Installation](/administration/cli#1-install)
+- [Installation](/administration/cli.md#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
 
 ## All commands
@@ -775,7 +775,7 @@ upsun activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMI
 
 * List recent activities for the current environment:
 ```
-upsun activity:list 
+upsun activity:list
 ```
 
 * List all recent activities for the current project:
@@ -963,7 +963,7 @@ upsun app:config-validate
 
 * Validate the project configuration files in your current directory:
 ```
-upsun app:config-validate 
+upsun app:config-validate
 ```
 
 ## `app:list`
@@ -1291,7 +1291,7 @@ upsun backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|
 
 * Make a backup of the current environment:
 ```
-upsun backup:create 
+upsun backup:create
 ```
 
 * Request a backup (and exit quickly):
@@ -1506,7 +1506,7 @@ upsun backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--no-code] [
 
 * Restore the most recent backup:
 ```
-upsun backup:restore 
+upsun backup:restore
 ```
 
 * Restore a specific backup:
@@ -1767,7 +1767,7 @@ upsun commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--environme
 
 * Display the current commit on the environment:
 ```
-upsun commit:get 
+upsun commit:get
 ```
 
 * Display the previous commit:
@@ -1844,7 +1844,7 @@ upsun commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRONME
 
 * Display commits on an environment:
 ```
-upsun commit:list 
+upsun commit:list
 ```
 
 * Display commits starting from two before the current one:
@@ -1925,7 +1925,7 @@ upsun db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [-z|
 
 * Create an SQL dump file:
 ```
-upsun db:dump 
+upsun db:dump
 ```
 
 * Create a gzipped SQL dump file named "dump.sql.gz":
@@ -1989,7 +1989,7 @@ upsun sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment ENV
 
 * Open an SQL console on the remote database:
 ```
-upsun db:sql 
+upsun db:sql
 ```
 
 * View tables on the remote database:
@@ -2537,7 +2537,7 @@ This command allows you to delete environments as well as their Git branches.
 
 * Delete the currently checked out environment:
 ```
-upsun environment:delete 
+upsun environment:delete
 ```
 
 * Delete the environments "test" and "example-1":
@@ -2758,7 +2758,7 @@ upsun environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|-
 
 * Read all environment properties:
 ```
-upsun environment:info 
+upsun environment:info
 ```
 
 * Show the environment's status:
@@ -2959,7 +2959,7 @@ upsun log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment ENVI
 
 * Display a choice of logs that can be read:
 ```
-upsun environment:logs 
+upsun environment:logs
 ```
 
 * Read the deploy log:
@@ -3155,7 +3155,7 @@ upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstrea
 
 * Push code to the current environment:
 ```
-upsun environment:push 
+upsun environment:push
 ```
 
 * Push code, without waiting for deployment:
@@ -3262,7 +3262,7 @@ upsun relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT] 
 
 * View all the current environment's relationships:
 ```
-upsun environment:relationships 
+upsun environment:relationships
 ```
 
 * View the 'main' environment's relationships:
@@ -3450,7 +3450,7 @@ upsun ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--env
 
 * Open a shell over SSH:
 ```
-upsun environment:ssh 
+upsun environment:ssh
 ```
 
 * Pass an extra option to SSH:
@@ -3599,7 +3599,7 @@ upsun url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e
 
 * Give a choice of URLs to open (or print all URLs if there is no browser):
 ```
-upsun environment:url 
+upsun environment:url
 ```
 
 * Print all URLs:
@@ -3668,7 +3668,7 @@ upsun xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 
 * Connect to Xdebug on the environment, listening locally on port 9000.:
 ```
-upsun environment:xdebug 
+upsun environment:xdebug
 ```
 
 ## `integration:activity:get`
@@ -4490,7 +4490,7 @@ upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
 
 * Show metrics for the last 10m:
 ```
-upsun metrics:all 
+upsun metrics:all
 ```
 
 * Show metrics in five-minute intervals over the last hour:
@@ -5862,7 +5862,7 @@ upsun project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--col
 
 * Read all project properties:
 ```
-upsun project:info 
+upsun project:info
 ```
 
 * Show the project's Git URL:
@@ -5908,7 +5908,7 @@ upsun project:init
 
 * Create the starter YAML files for your project:
 ```
-upsun project:init 
+upsun project:init
 ```
 
 ## `project:list`
@@ -6774,7 +6774,7 @@ Aliases: `mongo`
 ### Usage
 
 ```
-upsun mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+upsun mongosh [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -6866,7 +6866,7 @@ upsun redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--enviro
 
 * Open the redis-cli shell:
 ```
-upsun service:redis-cli 
+upsun service:redis-cli
 ```
 
 * Ping the Redis server:
@@ -7235,7 +7235,7 @@ upsun subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] [-c
 
 * View all subscription properties:
 ```
-upsun subscription:info 
+upsun subscription:info
 ```
 
 * View the subscription status:

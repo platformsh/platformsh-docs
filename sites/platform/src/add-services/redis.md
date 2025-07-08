@@ -4,8 +4,8 @@ weight: 20
 sidebarTitle: "Redis"
 ---
 
-[Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
-for high-performance data retrieval and key-value storage.
+[Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory for high-performance data retrieval and key-value storage.
+
 {{% vendor/name %}} supports two different Redis configurations:
 
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
@@ -15,13 +15,13 @@ for high-performance data retrieval and key-value storage.
 
 If you use one of the following frameworks, follow its guide:
 
-- [Drupal](../guides/drupal/redis.md)
-- [Ibexa DXP](../guides/ibexa/deploy.md#redis)
-- [Jakarta EE](../guides/jakarta/deploy.md#redis)
-- [Micronaut](../guides/micronaut/redis.md)
-- [Quarkus](../guides/quarkus/redis.md)
-- [Spring](../guides/spring/redis.md)
-- [WordPress](../guides/wordpress/redis.md)
+- [Drupal](/guides/drupal/redis.md)
+- [Ibexa DXP](/guides/ibexa/deploy.md#redis)
+- [Jakarta EE](/guides/jakarta/deploy.md#redis)
+- [Micronaut](/guides/micronaut/redis.md)
+- [Quarkus](/guides/quarkus/redis.md)
+- [Spring](/guides/spring/redis.md)
+- [WordPress](/guides/wordpress/redis.md)
 
 ## Supported versions
 
@@ -33,14 +33,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="redis" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -57,14 +55,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="redis" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -176,11 +172,11 @@ relationships:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 <--->
 
@@ -203,16 +199,16 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
@@ -349,11 +345,11 @@ relationships:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 <--->
 
@@ -376,16 +372,16 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
 ```yaml {configFile="app"}
 # PHP extensions.
@@ -540,7 +536,11 @@ const value = await client.get('x');     // returns 42
 
 ## Restrict access to database replicas only
 
-{{< partial "banners/replicas/body.md" >}}
+{{% note theme="info" title="Feature availability" %}}
+
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+
+{{% /note %}}
 
 For security reasons, you can grant your app access to replicas instead of your actual database.
 To do so, when defining the relationship between your app and database,
@@ -681,10 +681,10 @@ Access your Redis service by running the command:
 ### Redis CLI
 
 Retrieve the hostname and port you can connect to
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables).
+through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 To do so, run the `{{< vendor/cli >}} relationships` command.
 
-After you've retrieved the hostname and port, [open an SSH session](../development/ssh/_index.md).
+After you've retrieved the hostname and port, [open an SSH session](/development/ssh/_index.md).
 To access your Redis service, run the following command:
 
 ```bash

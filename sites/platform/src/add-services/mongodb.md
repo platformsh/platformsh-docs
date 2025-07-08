@@ -1,23 +1,23 @@
 ---
 title: "MongoDB (Database service)"
 weight: -40
-description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://docs.mongodb.com/manual/\">MongoDB's own documentation</a>."
+description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://www.mongodb.com/docs/manual/\">MongoDB's own documentation</a>."
 sidebarTitle: "MongoDB"
 premium: true
 ---
 
 MongoDB is a cross-platform, document-oriented database.
 
-For more information on using MongoDB, see [MongoDB's own documentation](https://docs.mongodb.com/manual/).
+For more information on using MongoDB, see [MongoDB's own documentation](https://www.mongodb.com/docs/manual/).
 
 ## Use a framework
 
 If you use one of the following frameworks, follow its guide:
 
-- [Jakarta EE](../guides/jakarta/deploy.md#mongodb)
-- [Micronaut](../guides/micronaut/mongodb.md)
-- [Quarkus](../guides/quarkus/mongodb.md)
-- [Spring](../guides/spring/mongodb.md)
+- [Jakarta EE](/guides/jakarta/deploy.md#mongodb)
+- [Micronaut](/guides/micronaut/mongodb.md)
+- [Quarkus](/guides/quarkus/mongodb.md)
+- [Spring](/guides/spring/mongodb.md)
 
 ## Supported versions
 
@@ -37,14 +37,12 @@ To add MongoDB Enterprise, [contact Sales](https://platform.sh/contact/).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -166,12 +164,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -197,16 +195,16 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
 ```yaml {configFile="app"}
 name: myapp
@@ -305,12 +303,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -336,16 +334,16 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has access to the service via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions) for the service:
+For PHP, enable the [extension](/languages/php/extensions.md) for the service:
 
 ```yaml {configFile="app"}
 name: myapp
@@ -357,7 +355,7 @@ runtime:
 
 #### Example configuration
 
-##### [Service definition](/add-services)
+##### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -366,7 +364,7 @@ mongodb:
     disk: 512
 ```
 
-##### [App configuration](/create-apps)
+##### [App configuration](/create-apps/_index.md)
 
 {{< codetabs >}}
 
@@ -449,18 +447,18 @@ highlight=python
 
 ## Access the service directly
 
-You can access MongoDB from you app container via [SSH](../development/ssh/_index.md).
+You can access MongoDB from you app container via [SSH](/development/ssh/_index.md).
 Get the `host` from your [relationship](#relationship-reference).
 Then run the following command:
 
 ```bash
-mongo {{< variable "MONGODB_HOST" >}}
+mongosh {{< variable "MONGODB_HOST" >}}
 ```
 
 With the example value, that would be the following:
 
 ```bash
-mongo mongodb.internal
+mongosh mongodb.internal
 ```
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
@@ -495,7 +493,7 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
-For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/database-tools/mongodump/).
+For further references, see the [official `mongodump` documentation](https://www.mongodb.com/docs/database-tools/mongodump/).
 
 ## Upgrading
 
@@ -503,7 +501,7 @@ To upgrade to 6.0 from a version earlier than 5.0, you must successively upgrade
 For example, if you are running a 4.2 image, you must upgrade first to 4.4 and then upgrade to 5.0 before you can upgrade to 6.0.
 
 For more details on upgrading and how to handle potential application backward compatibility issues,
-see the [MongoDB release notes](https://docs.mongodb.com/manual/release-notes).
+see the [MongoDB release notes](https://www.mongodb.com/docs/manual/release-notes/).
 
 {{< note theme="warning" >}}
 

@@ -45,3 +45,10 @@ time of the top-10 most impactful URLs during a given time frame.
 
 This graph helps identify potential trouble spots, understand user behavior, and
 prioritize areas for optimization.
+
+{{< note >}}
+For security and privacy reasons, all URLs undergo the following sanitization measures:
+- All query parameters (`?param=value`) are sanitized to prevent leakage of sensitive information.
+- URLs exceeding 2048 characters are truncated to adhere to security best practices.
+- Specific sensitive URL paths are proactively scrubbed and anonymized.
+{{< /note >}}

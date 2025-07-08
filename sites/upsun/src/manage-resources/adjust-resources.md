@@ -15,9 +15,9 @@ keywords:
 
 When you first deploy your project, or add a new app or service to it,
 {{% vendor/name %}} allocates [default resources](/manage-resources/resource-init.md#default-resources) to each of your containers.
-If you don't want to use those default resources, define a different [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy).
+If you don't want to use those default resources, define a different [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy).
 
-After the initial deployment, or if you opt for the `Manual` [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy),
+After the initial deployment, or if you opt for the `Manual` [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy),
 you can adjust container resources manually.
 To do so, follow the instructions on this page.
 
@@ -266,7 +266,6 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
-| Lisp                    | HIGH_CPU         |
 | MariaDB                 | HIGH_MEMORY      |
 | Memcached               | BALANCED         |
 | MongoDB                 | HIGH_MEMORY      |

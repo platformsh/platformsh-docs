@@ -11,7 +11,7 @@ You want to ensure that the process of local development is as close as possible
 
 You can achieve this through the following approaches:
 
-- [Tethered local development](/get-started/here/local/tethered)
+- [Tethered local development](/get-started/here/local/tethered.md)
 - DDEV (coming soon!)
 
 Each of these approaches:

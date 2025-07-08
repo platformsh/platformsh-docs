@@ -15,14 +15,19 @@ This YAML file is located in your ``.{{% vendor/cli %}}`` directory, at the root
 ```bash
 .
 ├── {{< vendor/configdir >}}
-|   └── {{< vendor/configfile "apps" "strip" >}}
-└── <source code>
+|   └── {{< vendor/configfile "apps" "strip" >}}
+└── <SOURCE_CODE>
 ```
-## Mandatory top-level keys
-In the ``config.yaml`` file, there are only three mandatory top-level YAML keys:
-- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image)
-- ``routes``: this section of the file contains all of your [route definitions](/define-routes) (for each of your apps)
-- ``services``: this section of the file contains all of your [service definitions](/add-services) (for each of your apps)
+## Top-level keys
+In the ``config.yaml`` file, there are three top-level YAML keys:
+- ``applications``: this section of the file contains all of your [app definitions](/create-apps/app-reference/single-runtime-image.md)
+
+{{% note %}}
+Note that ``applications`` is a **mandatory** top-level key to include in your ``config.yaml`` file.  
+{{% /note %}}
+
+- ``routes``: this section of the file contains all of your [route definitions](/define-routes/_index.md) (for each of your apps)
+- ``services``: this section of the file contains all of your [service definitions](/add-services/_index.md) (for each of your apps)
 
 This looks like:
 ```yaml {location="apps"}
@@ -50,7 +55,7 @@ Any YAML files located at the first level of your ``.upsun`` folder, at the root
 The following rules apply to YAML files contained in the ``.upsun`` folder:
 
 - All the existing YAML files located at the first level of the ``.upsun`` folder are taken into account.
-- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#mandatory-top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference/single-runtime-image.md).
+- All the existing YAML files located at the first level of the ``.upsun`` folder must feature the [mandatory top-level keys](#top-level-keys), and must contain a [valid YAML configuration](/create-apps/app-reference/single-runtime-image.md).
 - All the YAML files in subdirectories of the ``.upsun`` folder need to be [manually imported](/learn/overview/yaml/platform-yaml-tags.md#include) and contain a [valid YAML configuration](/create-apps/app-reference/single-runtime-image.md).
 
 {{% note title="Warning" theme="warning"%}}

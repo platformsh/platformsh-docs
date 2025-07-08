@@ -102,11 +102,11 @@ That's a great start to working with {{% vendor/name %}}.
 
 Now that you've mastered the basics, you can choose more advanced tasks to complete:
 
-- Manage [multiple apps in a single project](../../create-apps/multi-app/_index.md).
-- See how to set up for [local development](../../development/local/_index.md).
-- Go live at a [custom domain](../../domains/steps/_index.md).
-- Increase observability by [integrating Blackfire](../../increase-observability/integrate-observability/blackfire.md)
-- To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](../../integrations/source/_index.md).
-- Read more on [health notifications](../../integrations/notifications.md).
-- See a reference on [all options available for activity notifications](../../integrations/activity/reference.md) or
-  use an [activity script](../../integrations/activity/_index.md) to manage activity responses in {{% vendor/name %}}.
+- Manage [multiple apps in a single project](/create-apps/multi-app/_index.md).
+- See how to set up for [local development](/development/local/_index.md).
+- Go live at a [custom domain](/domains/steps/_index.md).
+- Increase observability by [integrating Blackfire](/increase-observability/integrate-observability/blackfire.md)
+- To maintain code in a third-party repository, integrate with [Bitbucket, GitHub, or GitLab](/integrations/source/_index.md).
+- Read more on [health notifications](/integrations/notifications.md).
+- See a reference on [all options available for activity notifications](/integrations/activity/reference.md) or
+  use an [activity script](/integrations/activity/_index.md) to manage activity responses in {{% vendor/name %}}.

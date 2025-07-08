@@ -16,7 +16,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -44,9 +44,9 @@ myapp:
 
 ## Built-in variables
 
-{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](/development/variables/_index.md).
 Most notably, it allows a program to determine at runtime what HTTP port it should listen on
-and what the credentials are to access [other services](../add-services/_index.md).
+and what the credentials are to access [other services](/add-services/_index.md).
 
 To get the `PORT` environment variable (the port on which your web application is supposed to listen) you would:
 
@@ -69,7 +69,7 @@ variables:
   env:
     MIX_ENV: 'prod'
 ```
-The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](../development/variables/use-variables.md#use-provided-variables).
+The `SECRET_KEY_BASE` variable is generated automatically based on the [`PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables.md#use-provided-variables).
 You can change it.
 
 Include in your build hook the steps to retrieve a local Hex and `rebar`, and then run `mix do deps.get, deps.compile, compile` on your application to build a binary.
@@ -146,14 +146,14 @@ to
 Platformsh.Config.ecto_dsn_formatter("database")
 ```
 
-See [Config Reader Documentation](../development/variables/use-variables.md#access-variables-in-your-app) for the full API.
+See [Config Reader Documentation](/development/variables/use-variables.md#access-variables-in-your-app) for the full API.
 
 
 ### Accessing Services Manually
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a [relationship](/create-apps/app-reference/single-runtime-image#relationships) defined in `{{< vendor/configfile "app" >}}`:
+Given a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
 # Relationships enable an app container's access to a service.

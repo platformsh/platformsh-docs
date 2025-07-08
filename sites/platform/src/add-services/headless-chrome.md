@@ -22,14 +22,12 @@ When you deploy your app, you always get the latest available patches.
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="chrome-headless" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -62,7 +60,7 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 Puppeteer requires at least Node.js version 6.4.0, while using the async and await examples below requires Node 7.6.0 or greater.
 
 If your app container uses a language other than Node.js, upgrade the Node.js version before using Puppeteer.
-See how to [manage your Node.js version](../languages/nodejs/node-version.md).
+See how to [manage your Node.js version](/languages/nodejs/node-version.md).
 
 ## Usage example
 
@@ -74,7 +72,6 @@ To define the service, use the `chrome-headless` type:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: chrome-headless:<VERSION>
-  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
@@ -103,12 +100,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -134,10 +131,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -153,7 +150,7 @@ chrome-headless:
     type: chrome-headless:{{% latest "chrome-headless" %}}
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 {{< codetabs >}}
 
@@ -230,7 +227,7 @@ yarn add puppeteer
 
 {{< /codetabs >}}
 
-Using the [Node.js Config Reader library](../development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
+Using the [Node.js Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app), you can retrieve formatted credentials for connecting to headless Chrome with Puppeteer:
 
 ```js
 const platformsh = require('platformsh-config');

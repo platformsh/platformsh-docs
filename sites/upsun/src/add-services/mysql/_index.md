@@ -295,10 +295,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -468,7 +468,7 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export DB_CONNECTION==${MARIADB_SCHEME}
+export DB_CONNECTION=${MARIADB_SCHEME}
 export DB_USERNAME=${MARIADB_USERNAME}
 export DB_PASSWORD=${MARIADB_PASSWORD}
 export DB_HOST=${MARIADB_HOST}
@@ -729,7 +729,7 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 {{% note theme="info" %}}
 MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
 They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
-See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details.
+See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
 
 ## Password generation

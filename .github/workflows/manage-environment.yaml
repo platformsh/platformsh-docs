@@ -11,7 +11,6 @@ env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
   PLATFORM_PROJECT: ${{ vars.PROJECT_ID }}
   PLATFORMSH_CLI_DEFAULT_TIMEOUT: 60 # Increase timeout for CLI commands
-  PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
   BRANCH_TITLE: ${{ vars.BFF_PREFIX }}-${{ github.event.number }}
 
 jobs:
@@ -23,13 +22,10 @@ jobs:
       github.event.action== 'reopened') &&
       github.event.pull_request.head.repo.id == 21975579
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       # Set up workflow environment to use the Platform.sh CLI
-      - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
-
+      - uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
       - name: Set environment title
         env:
           # Github does not escape PR titles before swapping the token with the value. This means that in a shell context
@@ -38,6 +34,7 @@ jobs:
           # assign it as an environmental variable for the step which will force GitHub to escape it properly for the
           # shell, and *then* you can use it
           PR_TITLE: ${{ github.event.pull_request.title }}
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
           # @todo - this is the same as the last step in build-from-fork:jobs:build. See if we can combine the two
           newTitle="(pr-${{ github.event.number }}) ${PR_TITLE}"
@@ -47,6 +44,8 @@ jobs:
             platform environment:info -e ${{ github.event.pull_request.head.ref }} title "${newTitle}"
           fi
       - name: Activate environment
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: platform environment:activate --no-wait ${{ github.event.pull_request.head.ref }}
 
   deactivate_environment:
@@ -60,13 +59,17 @@ jobs:
       github.event.pull_request.head.repo.id == 21975579
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       - name: Close environment
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: platform environment:deactivate --no-delete-branch ${{ github.event.pull_request.head.ref }}
 
   deactivate_forked_environment:
@@ -79,7 +82,7 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'build-fork')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check if Git branch exists
         id: branch_exists
@@ -104,12 +107,16 @@ jobs:
       - name: Set up Platform.sh CLI
         # If the Git branch was deleted, skip checks for the environment
         if: steps.branch_exists.outputs.branch_exists != 'true'
-        uses: ./.github/actions/set-up-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       - name: Check if environment exists
         id: environment_exists
         if: steps.branch_exists.outputs.branch_exists != 'true'
         # Check if the built environment exists
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
           BRANCH=$(platform environments --pipe --columns title | grep ${{ env.BRANCH_TITLE }})
 
@@ -120,5 +127,7 @@ jobs:
         # If the branch or environment exists, delete it from Platform.sh
       - name: Delete environment
         if: steps.branch_exists.outputs.branch_exists != 'true' && steps.environment_exists.outputs.environment_exists == 'true'
+        env:
+          PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
           platform environment:delete --delete-branch --no-wait ${{ env.BRANCH_TITLE }}

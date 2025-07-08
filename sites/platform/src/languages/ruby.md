@@ -20,14 +20,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="ruby" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="ruby" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="ruby" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -80,7 +78,7 @@ A complete example is included at the end of this section.
 
    The `SECRET_KEY_BASE` variable is generated automatically based on the
    [`PLATFORM_PROJECT_ENTROPY`
-   variable](../development/variables/use-variables.md#use-provided-variables) but you can change it.
+   variable](/development/variables/use-variables.md#use-provided-variables) but you can change it.
 
    Based on TARGET_RUBY_VERSION, we recommand to set on your Gemfile so next
    PATCH release of ruby doesn't fail the build:
@@ -290,7 +288,7 @@ web:
 ## Configuring services
 
 This example assumes there is a MySQL instance.
-To configure it, [create a service](../add-services/_index.md) such as the following:
+To configure it, [create a service](/add-services/_index.md) such as the following:
 
 ```yaml {configFile="services"}
 mysql:
@@ -299,7 +297,7 @@ mysql:
 ```
 ## Connecting to services
 
-Once you have a service, link to it in your [app configuration](../create-apps/_index.md):
+Once you have a service, link to it in your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 relationships:

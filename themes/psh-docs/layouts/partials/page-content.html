@@ -4,10 +4,11 @@
 {{ partial "beta-flag/banner.html" .context }}
 
 <div class="flex justify-end mr-4">
-  <!-- Add a Button to open the Markdown version of this page (Upsun only) -->
-  {{ if and ( eq .context.Site.Params.vendor.config.version 2 ) ( ne .context.Page.RelPermalink "/" ) }}
+  <!-- Add a Button to open the Markdown version of this page (except for homepage) -->
+  {{ if ( ne .context.Page.RelPermalink "/" ) }}
   <div class="hidden md:block mb-6 mr-2 text-right">
-    <a href="{{ if eq .context.Page.RelPermalink "/" }}/index.md{{ else }}{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}{{ end }}"
+    <a href="{{ .context.Page.RelPermalink | replaceRE ".html" ".md" }}"
+        data-engagement-id="view-in-markdown"
         class="print:hidden font-semibold bg-skye text-white hover:bg-skye-dark focus:bg-skye-dark px-4 py-2 font-['Space_Grotesk'] text-xs rounded-full inline-flex items-center gap-2"
         title="Open this page in a markdown format. This format is easier for AI and other tools to read."
         target="_blank">
@@ -29,10 +30,10 @@
 
 <div class="grid md:grid-cols-[minmax(0,1fr),270px] md:gap-4 md:pr-4 print:block">
 
-  <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:h-[calc(100vh-6rem)] md:overflow-y-auto border-t border-stone">
+  <div class="print:hidden max-w-[92vw] md:max-w-none md:order-2 md:top-24 md:sticky md:h-[calc(100vh-6rem)] md:overflow-y-auto border-t border-stone" data-engagement-id="main-content-right-sidebar">
     <!-- Table of contents -->
     {{ if and (ne .context.Params.toc false) (ne .context.TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
-      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4 [&_nav_ul>li]:mb-2 [&_nav_ul_ul>li]:mt-2">
+      <div class="border border-stone border-t-0 px-6 pt-1 pb-4 mb-8 md:mb-0 text-sm [&_a]:text-skye-dark hover:[&_a]:underline focus:[&_a]:underline [&_ul_ul]:pl-4 [&_nav_ul>li]:mb-2 [&_nav_ul_ul>li]:mt-2" data-engagement-id="content-navigation">
 
         {{ if not .context.Page.IsHome }}
         <h3 class="pt-4 pb-2 font-light text-base text-slate"><a href="/">Back to home</a></h3>
@@ -43,13 +44,6 @@
       </div>
     {{ end }}
 
-    <!-- Feedback form for wide screens -->
-    {{ if ne .context.Params.feedback false }}
-    <div class="print:hidden hidden md:block">
-      {{ partial "feedback/form" }}
-    </div>
-    {{ end }}
-
     <!-- Sign up -->
     {{ if .context.Site.Params.vendor.recruit.active }}
       {{ if .context.Page.IsHome }}
@@ -57,7 +51,7 @@
       {{ end }}
 
     <div
-      class="bg-gradient-to-b from-[#FF4A11] from-0% via-[#ED49F0] via-45% to-[#DDF933] to-100% rounded-2xl p-[1px] mt-1 mb-4">
+      class="bg-gradient-to-b from-[#FF4A11] from-0% via-[#ED49F0] via-45% to-[#DDF933] to-100% rounded-2xl p-[1px] mt-1 mb-4" data-engagement-id="trial-promotion-section">
       <div class="rounded-2xl p-5 bg-[#f9f9f9] flex-col justify-start items-start gap-4 inline-flex">
         {{ $recruitment := .context.Site.Params.vendor.recruit }}
         {{ $vendorName := .context.Site.Params.vendor.name }}
@@ -89,10 +83,10 @@
             <div class="cta-body">
               {{ index $recruitment "description"}}
             </div>
-            
+
           </div>
         </div>
-        <a href="{{ index $recruitment "link" }}" class="px-6 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-3xl text-white text-center text-sm font-semibold">
+        <a href="{{ index $recruitment "link" }}" class="px-6 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-3xl text-white text-center text-sm font-semibold" data-engagement-id="trial-activation-button">
           {{ index $recruitment "cta" }}
         </a>
         <div class="cta-terms">
@@ -136,7 +130,9 @@
     {{ if .isList }}
       <div class="space-y-4 not-prose">
         {{ range .context.Pages }}
-          <a href="{{ .RelPermalink }}" class="block p-[2px] bg-stone hover:bg-skye-dark rounded-xl transition-all">
+          <a href="{{ .RelPermalink }}"
+             class="block p-[2px] bg-stone hover:bg-skye-dark rounded-xl transition-all"
+             data-engagement-id="content-card-{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString | htmlEscape }}{{ else }}{{ .Title | .RenderString | htmlEscape}}{{ end }}">
             <div class="p-8 bg-white rounded-xl h-full hover:shadow-lg">
               <h3 class="text-xl font-medium mb-2 text-gray-900">
                 {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
@@ -161,9 +157,4 @@
 
   </div>
 
-</div>
-
-<!-- Feedback form for narrow screens -->
-<div class="print:hidden block md:hidden">
-  {{ partial "feedback/form" }}
 </div>

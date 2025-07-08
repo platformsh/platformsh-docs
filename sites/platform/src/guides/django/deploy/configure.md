@@ -98,7 +98,7 @@ hooks:
     pip install -r requirements.txt
 
     # Collect static assets
-    python manage.py collectstatic    
+    python manage.py collectstatic
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
   # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
@@ -201,7 +201,7 @@ hooks:
     pipenv install --deploy
 
     # Collect static assets
-    pipenv run python manage.py collectstatic    
+    pipenv run python manage.py collectstatic
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
   # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
@@ -308,7 +308,7 @@ hooks:
     poetry install
 
     # Collect static assets
-    poetry run python manage.py collectstatic    
+    poetry run python manage.py collectstatic
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
   # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
@@ -368,13 +368,13 @@ To use this server, update the command to replace the WSGI application Gunicorn 
 The example uses a `myapp/wsgi.py` file with a callable `application`.
 
 To use a different web server, change this start command.
-For examples of how to do so, see more about [Python web servers](../../../languages/python/server.md).
+For examples of how to do so, see more about [Python web servers](/languages/python/server.md).
 
 {{% guides/config-service name="Django" %}}
 
 {{% /guides/config-service %}}
 
-Below is an example configuration to make [PostgreSQL](../../../add-services/postgresql.md) available for your Django application.
+Below is an example configuration to make [PostgreSQL](/add-services/postgresql.md) available for your Django application.
 
 ```yaml {configFile="services"}
 # The services of the project.

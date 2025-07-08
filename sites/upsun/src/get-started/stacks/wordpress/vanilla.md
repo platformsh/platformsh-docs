@@ -24,7 +24,7 @@ you still need to add some required files and make a few changes to your {{% ven
 There are many ways you can set up a WordPress site or {{% vendor/name %}} project.
 The instructions on this page were designed based on the following assumptions:
 
-- You selected PHP as your runtime, and MariaDB as a service during the Getting Started guide. It's also assumed that
+- You selected **PHP** as your runtime, and **MariaDB** as a service during the Getting Started guide. It's also assumed that
 while using the Getting Started guide you named the project `myapp`, which you will notice is the top-level key in all
 configuration below.
 - You are currently in the same directory where you created your project during the Getting Started guide.
@@ -57,19 +57,22 @@ download a zip archive from WordPress.org, or use `curl` to download a tarball:
 5. Create a `wp-config.php` file inside the directory from step 4 and copy and paste the contents from
    [this example file](https://github.com/upsun/snippets/blob/main/examples/wordpress-vanilla/wordpress/wp-config.php).
 
-6. Optional: if you plan on using [wp-cli](https://wp-cli.org/), add a `wp-cli.yml` file and add the following contents
+6. To make using [wp-cli](https://wp-cli.org/) easier, add a `wp-cli.yml` file and add the following contents
    to it:
 
    ```yaml
     path: /app/wordpress/
     color: true
    ```
-
-   **Note**: If you changed the name of the directory at step 4 you'll need to update the `path` property above to match.
+    {{< note theme="info" >}}
+If you changed the name of the directory at step 4 you'll need to update the `path` property above to match.
+    {{< /note >}}
 
 7. Add all the files from the steps above to your repository
-   1. `git add .`
-   2. `git commit -m "adds wordpress core files"`
+   ```bash location="Terminal"
+    git add .
+    git commit -m "adds wordpress core files"
+   ```
 
 ## 2. Update configuration files
 
@@ -131,6 +134,11 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
           source_path: "uploads"
     ```
 
+    {{< note theme="info">}}
+When uncommenting, pay attention to the indentation and that the `mounts` key aligns with other sibling keys (e.g. `relationships`, `web`, etc.)
+    {{< /note >}}
+
+
 4. Once the images for our application have been built, there are a few key tasks that must be completed before our
    newly-built application can receive requests. These tasks include:
 
@@ -138,8 +146,9 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
    - Running the WordPress database update procedure, in case core is being updated with the newly deployed changes
    - Running any due cron jobs
 
-    To perform these tasks, we'll utilize  the [deploy hook](/learn/overview/build-deploy.md#deploy-steps). Locate the
-    `deploy:` section (below the `build:` section). Update the `deploy:` section as follows:
+    To perform these tasks, we'll utilize  the [`deploy`](/learn/overview/build-deploy.md#deploy-steps) and
+    [`post_deploy`](/create-apps/hooks/hooks-comparison.html#post-deploy-hook) hooks. Locate the `deploy:` section
+    (below the `build:` section). Update the `deploy:` section as follows:
 
     ```yaml {configFile="app"}
     applications:
@@ -150,11 +159,13 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
         <snip>
         hooks:
           deploy: |
-            set -eux
+            set -eu
             # Flushes the object cache
             wp cache flush
             # Runs the WordPress database update procedure
             wp core update-db
+          post_deploy: |
+            set -eu
             # Runs all due cron events
             wp cron event run --due-now
     ```
@@ -180,26 +191,36 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
             - '/^wp-*/'
     ```
 
-6. Optional: Add the wp-cli tool to your application build. Locate the `dependencies:` section that is commented out,
-   and update it as follows:
+6. To ensure we are able to perform tasks later in the deployment stage (e.g. updating the database, flushing cache, etc.)
+   we need to make sure the [wp-cli](https://wp-cli.org/) utility is a dependency of the application container. While still
+   in the `.upsun/config.yaml` file, locate the `dependencies.php` section, and add the following:
 
-   ```yaml {configFile="app"}
-   applications:
-    myapp:
-      source:
-        root: "/"
-      type: 'php:8.3'
-      <snip>
-      dependencies:
-        php:
-          wp-cli/wp-cli-bundle: "^2.4"
+    ```yaml {configFile="app"}
+    applications:
+      myapp:
+        source:
+          root: "/"
+        type: 'php:8.3'
+        <snip>
+        dependencies:
+          php:
+            composer/composer: "^2"
+            wp-cli/wp-cli-bundle: "^2.4"
     ```
+
+    {{< note theme="info" >}}
+
+It is possible the `dependencies` section is commented out. When uncommenting, pay attention to the indentation and that
+the `dependencies` key aligns with other sibling keys (e.g. `build`, `hooks`, etc.)
+
+    {{< /note >}}
+
 
 7. Add and commit your changes.
 
    ```bash {location="Terminal"}
    git add .upsun/config.yaml
-   git commit -m "Updates configuration file"
+   git commit -m "Updates {{% vendor/name %}} configuration file"
    ```
 
 ## 3. Update `.environment`
@@ -218,40 +239,69 @@ export DB_PASSWORD="$MARIADB_PASSWORD"
 export DB_SCHEME="$MARIADB_SCHEME"
 export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_PATH}"
 ```
-To configure the remaining environment variables WordPress needs to run smoothly, follow these steps.
-1. Open the `.environment` file for editing
-2. Add the following at the end of the file:
+To configure the remaining environment variables WordPress needs to run smoothly, open the `.environment` file. Just
+after the other database-related variables, add a blank line or two and add the following:
 
-   ```bash {location=".environment"}
-    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
-    export WP_SITEURL="${WP_HOME}wordpress"
-    export WP_DEBUG_LOG=/var/log/app.log
-    if [ "$PLATFORM_ENVIRONMENT_TYPE" != "production" ] ; then
-      export WP_ENV='development'
-    else
-      export WP_ENV='production'
-    fi
-   ```
-3. Add and commit your changes:
-   1. `git add .environment`
-   2. `git commit -m "adds remaining environment variables to .environment"`
+```bash {location=".environment"}
+# Routes, URLS, and primary domain
+export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
+export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
+export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+```
+
+Save, add, and commit those changes:
+```bash {location="Terminal"}
+git add .environment
+git commit -m "adds remaining environment variables to .environment"
+```
 
 ## 4. Push and deploy
 Now that we've added the required files, you're ready to push your changes and deploy your WordPress site:
-```bash
-upsun push -y
+```bash {location="Terminal"}
+
+{{% vendor/cli %}} push -y
+
 ```
+
+## 5. Routinely run WP Cron (optional)
+If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
+in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
+a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
+as follows:
+
+```yaml {configFile="app"}
+ applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    <snip>
+    crons:
+      wp-cron:
+        spec: '*/15 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
+on your individual requirements.
+
+  {{< note theme="info">}}
+When uncommenting, pay attention to the indentation and that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
+  {{< /note >}}
+
 ## Further resources
 - [All files (Upsun configuration, `.environment`, `wp-cli.yml`, `wp-config.php`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-vanilla)
 ### Documentation
 
-- [PHP documentation](/languages/php/)
+- [PHP documentation](/languages/php/_index.md)
 
-- [Extensions](/languages/php/extensions)
+- [Extensions](/languages/php/extensions.md)
 
-- [Performance tuning](/languages/php/tuning)
+- [Performance tuning](/languages/php/tuning.md)
 
-- [PHP-FPM sizing](/languages/php/fpm)
+- [PHP-FPM sizing](/languages/php/fpm.md)
 
 ### Community content
 

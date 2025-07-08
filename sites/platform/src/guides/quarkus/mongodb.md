@@ -17,7 +17,7 @@ This guide only covers the *addition* of a MongoDB service configuration to an e
 
 ## 1. Add the MongoDB service
 
-In your [service configuration](../../add-services/_index.md), include MongoDB with a [valid supported version](../../add-services/mongodb.md):
+In your [service configuration](/add-services/_index.md), include MongoDB with a [valid supported version](/add-services/mongodb.md):
 
 ```yaml {configFile="services"}
 dbmongo:

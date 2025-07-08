@@ -11,7 +11,7 @@ When a user is added to a project, they are automatically added to your organiza
 ## Manage project access
 
 If you have set up an external integration to GitHub, GitLab, or Bitbucket and your users can't clone the project locally,
-see how to [troubleshoot source integrations](../integrations/source/troubleshoot.md).
+see how to [troubleshoot source integrations](/integrations/source/troubleshoot.md).
 
 ### Project roles
 
@@ -68,12 +68,10 @@ using the email address of the user whose permissions you want to view:
 title=In the Console
 +++
 
-1. Navigate to your organization.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user whose user permissions you want to view,
-   click **{{< icon more >}} More**.
-5. Click **Edit user**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. For the user whose user permissions you want to view, click **{{< icon more >}} More**.
+4. Click **Edit user**.
 
 {{< /codetabs >}}
 
@@ -127,7 +125,7 @@ The user has to create an account before they can access the project.
 Once you add a user to a project, they receive an invitation email with instructions.
 
 To apply SSH access changes after you add a user to a project,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+[trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ### Manage project users
 
@@ -170,7 +168,7 @@ title=In the Console
 {{< /codetabs >}}
 
 To apply SSH access changes after you add a remove a user from a project or environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+[trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ### Remove a user from a project
 
@@ -195,10 +193,10 @@ Run the following command:
 title=In the Console
 +++
 
-1. Navigate to your organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user you want to remove, click **{{< icon more >}} More**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. For the user you want to remove, click **{{< icon more >}} More**.
+4. Click on the **Projects** tab.
 5. For the project you want to remove them from, click **{{< icon more >}} More**.
 6. Click **Remove from project**.
 7. Click **Yes**.
@@ -206,7 +204,7 @@ title=In the Console
 {{< /codetabs >}}
 
 To apply SSH access changes after changing a user's permissions for an environment type,
-[trigger a redeploy](../development/troubleshoot.md#force-a-redeploy).
+[trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 ## Manage organization access
 
@@ -221,9 +219,10 @@ For more information on project access control, see how to [manage project users
 
 ### Organization permissions
 
-As an organization owner or an organization user with the **Manage users** permission,
-you can invite other users to your organization and grant them the following permissions:
+As an organization owner or an organization user with the **Manage users** permission, you can invite other users to your organization and grant them the following permissions:
 
+- **Admin** (`owner`):
+  Manage the organization and access all organization permissions, including all listed below.
 - **Manage billing** (`billing`):
   Add, remove, and edit billing information.
   Access invoices and vouchers.
@@ -243,8 +242,8 @@ you can invite other users to your organization and grant them the following per
 
 Users with the **Manage users** (`members`) permission can add, edit, or remove _any_ user's permissions except their own.
 
-Users with the **Manage billing** (`billing`) permission automatically are granted **List projects** (`projects:list`) permission.
-That is, they are able to see all organization projects once given billing rights.
+Users with the **Manage billing** (`billing`) or **Manage Plans** (`plans`) permission automatically are granted **List projects** (`projects:list`) permission.
+That is, they are able to see all organization projects once given billing or plans rights.
 
 {{< /note >}}
 
@@ -254,7 +253,7 @@ They can't access or manage the rest of the organization.
 Organization owners have all permissions within their organization.
 Their permission level can't be edited.
 Organization owners can't be removed from their organization,
-except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
+except through an [ownership transfer](/administration/organizations.md#transfer-project-ownership).
 
 ### Add a user to an organization
 
@@ -281,13 +280,12 @@ with the **Manage billing** and **Create projects** permissions, run the followi
 title=Using the Console
 +++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Click **+ Invite users**.
-5. Enter the users' email addresses separated by commas.
-6. Select which organization-wide permissions they should have.
-7. Click **Invite**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. Click **+ Invite users**.
+4. Enter the users' email addresses separated by commas.
+5. Select which organization-wide permissions they should have.
+6. Click **Invite**.
 
 {{< /codetabs >}}
 

@@ -1,0 +1,58 @@
+name: Optimize Images in PR
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+    paths:
+      - '**/*.png'
+      - '**/*.jpg'
+
+jobs:
+  optimize-images:
+    name: Optimize Images
+    runs-on: ubuntu-latest
+    # Run only for PRs from default repo and approved PRs from forks
+    if: github.event.pull_request.head.repo.id == 21975579 || contains(github.event.pull_request.labels.*.name, 'build-fork')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set up environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y optipng jpegoptim
+
+      - name: Find changed image files
+        id: changed-files
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            sites/**/*.png
+            sites/**/*.jpg
+
+      - name: Run image optimization
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_IMGS: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_IMGS}; do
+            if [[ "$file" == *.png ]]; then
+              optipng "$file"
+            elif [[ "$file" == *.jpg || "$file" == *.jpeg ]]; then
+              jpegoptim "$file"
+            fi
+          done
+
+      - name: Commit optimized images
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_IMGS: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ${ALL_CHANGED_IMGS}
+          git diff --quiet && git diff --staged --quiet || git commit -m "Optimize images" -m "Automatically optimized images using optipng and jpegoptim via GitHub Actions"
+          git push 

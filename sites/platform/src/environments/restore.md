@@ -5,9 +5,9 @@ description: See how to restore an environment from a previous state.
 weight: -10
 ---
 
-Once you have [backups of your environment](./backup.md), you can restore data from a previous point.
+Once you have [backups of your environment](/environments/backup.md), you can restore data from a previous point.
 
-To restore an environment, you need an [Admin role for that environment type](../administration/users.md).
+To restore an environment, you need an [Admin role for that environment type](/administration/users.md).
 
 ## 1. List available backups
 
@@ -61,7 +61,7 @@ title=Using the CLI
 +++
 
 1. Run the following command:
-   
+
    ```bash
    {{% vendor/cli %}} backup:restore {{< variable "BACKUP_ID" >}}
    ```
@@ -90,7 +90,7 @@ So any future (re)deployments use the current Git repository to build the enviro
 To restore your code to its previous state when the backup was taken,
 use Git commands such as [revert](https://git-scm.com/docs/git-revert).
 
-See [how backup and restore works on {{% vendor/name %}}](../environments/backup.md#how-backup-and-restore-works).
+See [how backup and restore works on {{% vendor/name %}}](/environments/backup.md#how-backup-and-restore-works).
 
 {{< /note >}}
 
@@ -99,15 +99,15 @@ See [how backup and restore works on {{% vendor/name %}}](../environments/backup
 You can restore backups to a different environment than they were created on using the CLI:
 
 1. Switch to the branch where the backup was created.
-2. To restore your backup to an existing environment, run the following command: 
+2. To restore your backup to an existing environment, run the following command:
 
    ```bash
    {{% vendor/cli %}} backup:restore --target={{% variable "TARGET_ENVIRONMENT_NAME" %}} {{% variable "BACKUP_ID" %}}
    ```
-   
-   If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary.md#branch).
+
+   If your target environment doesn't exist yet, you can create it by [branching an existing environment](/glossary/_index.md#branch).
    The new target environment will be an exact copy of the existing (parent) environment.
-   
+
    To do so, use the `--branch-from` option to specify the parent of your new target environment:
 
    ```bash

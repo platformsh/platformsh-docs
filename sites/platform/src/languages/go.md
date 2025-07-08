@@ -17,14 +17,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="golang" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="golang" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -100,7 +98,7 @@ or you may route all requests to the Go application unconditionally, as in the e
 
 ## Accessing services
 
-To access various [services](../add-services/_index.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
+To access various [services](/add-services/_index.md) with Go, see the following examples. The individual service pages have more information on configuring each service.
 
 {{< codetabs v2hide="true" >}}
 
