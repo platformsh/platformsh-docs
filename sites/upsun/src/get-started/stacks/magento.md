@@ -21,14 +21,13 @@ You will not need Adobe Commerce authentication keys for this process but if you
 
 We will be using the [Upsun Magento example project](https://github.com/platformsh-templates/magentoCE24/blob/main/README.md) for this deployment process. The example specifically features:
 
-- PHP 8.3
-- MariaDB 10.6
-- Redis 7.2
-- OpenSearch 2
-- RabbitMQ 3.13
+- PHP {{% latest "php" %}}
+- MariaDB {{% latest "mariadb" %}}
+- Redis {{% latest "redis" %}}
+- OpenSearch {{% latest "opensearch" %}}
+- RabbitMQ {{% latest "rabbitmq" %}}
 - Automatic TLS certificates
 - Composer-based build
-
 
 The example also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. Below is a **shortened example** of the config.yaml file: 
 
