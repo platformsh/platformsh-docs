@@ -139,7 +139,6 @@ Security and other patches are applied automatically.
 | **Language**                                 | **Nix package** | **Supported version(s)**             |
 |----------------------------------------------|---------------|----------------------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
 | [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
 | [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
 | [Java](/languages/java.html)                 | `java`        | 21                                     |
