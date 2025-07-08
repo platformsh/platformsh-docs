@@ -215,16 +215,16 @@ applications:
    we need to make sure the [wp-cli](https://wp-cli.org/) utility is a dependency of the application container. While still
    in the `.upsun/config.yaml` file, locate the `dependencies.php` section, and add the following:
 
-   ```yaml {configFile="app"}
-   applications:
-    myapp:
-      source:
-        root: "/"
-      type: '{{% latest "php" %}}'
-      <snip>
-      dependencies:
-        php:
-          wp-cli/wp-cli-bundle: "^2.4"
+    ```yaml {configFile="app"}
+    applications:
+     myapp:
+       source:
+         root: "/"
+       type: '{{% latest "php" %}}'
+       <snip>
+       dependencies:
+         php:
+           wp-cli/wp-cli-bundle: "^2.4"
     ```
 
     {{< note theme="info" >}}
