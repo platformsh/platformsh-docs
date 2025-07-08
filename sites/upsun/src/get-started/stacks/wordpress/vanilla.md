@@ -217,14 +217,14 @@ applications:
 
     ```yaml {configFile="app"}
     applications:
-     myapp:
-       source:
-         root: "/"
-       type: '{{% latest "php" %}}'
-       <snip>
-       dependencies:
-         php:
-           wp-cli/wp-cli-bundle: "^2.4"
+      myapp:
+        source:
+          root: "/"
+        type: '{{% latest "php" %}}'
+        <snip>
+        dependencies:
+          php:
+            wp-cli/wp-cli-bundle: "^2.4"
     ```
 
     {{< note theme="info" >}}
