@@ -3,7 +3,7 @@ title: Use variables
 description: See how to use variables that have already been set so you can take control over your app's environment.
 ---
 
-Get a list of all variables defined on a given environment in [the Console](../../administration/web/configure-environment.md#variables)
+Get a list of all variables defined on a given environment in [the Console](/administration/web/configure-environment.md#variables)
 or use the CLI:
 
 ```bash
@@ -23,7 +23,7 @@ Variables on the project Example (abcdef123456), environment main:
 
 ## Access variables in a shell
 
-Project and environment variables with the [prefix](./_index.md#top-level-environment-variables) `env:`
+Project and environment variables with the [prefix](/development/variables/_index.md#top-level-environment-variables) `env:`
 are available as Unix environment variables in all caps.
 Access these variables and {{% vendor/name %}}-provided variables directly like this:
 
@@ -326,31 +326,34 @@ The most important of these variables is the relationship information in `PLATFO
 which tells the app how to connect to databases and other services defined in `{{< vendor/configfile "services" >}}`.
 
 The following table presents all available variables
-and whether they're available at build time (during [build hooks](../../administration/../create-apps/hooks/hooks-comparison.md#build-hook))
+and whether they're available at build time (during [build hooks](/create-apps/hooks/hooks-comparison.md#build-hook))
 and at runtime.
 
-| Variable name               | Build | Runtime | Description |
-| --------------------------- | ----- | ------- | ----------- |
-| `{{< vendor/prefix >}}_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory. |
-| `{{< vendor/prefix >}}_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](../../create-apps/_index.md), some with more structure. See [notes](#platform_application). |
-| `{{< vendor/prefix >}}_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](../../create-apps/_index.md). |
-| `{{< vendor/prefix >}}_BRANCH`           | No    | Yes     | The name of the Git branch. |
-| `{{< vendor/prefix >}}_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments. |
-| `{{< vendor/prefix >}}_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable. |
-| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the {{% vendor/name %}} environment. |
-| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the {{% vendor/name %}} environment (`development`, `staging`, or `production`). |
-| `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases. |
-| `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID. |
-| `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values. |
-| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](../../add-services/_index.md). |
-| `{{< vendor/prefix >}}_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](../../define-routes/_index.md). Note that this information is also available in your `/run/config.json` file. |
-| `{{< vendor/prefix >}}_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment. |
-| `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](../../create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation. |
-| `{{< vendor/prefix >}}_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build. |
-| `{{< vendor/prefix >}}_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](./_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
-| `{{< vendor/prefix >}}_VENDOR`        | Yes  | No    | Allows you to change the behavior of the build according to the vendor ({{< vendor/name >}} or Upsun). |
-| `PORT`                      | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is unset or set to `tcp`. |
-| `SOCKET`                    | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is set to `unix`. |
+| Variable name                            | Build | Runtime | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+|------------------------------------------|-------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `{{< vendor/prefix >}}_APP_COMMAND`      | No    | Yes     | The contents of the [web start command](/create-apps/app-reference/single-runtime-image.md#web-commands).                                                                                                                                                                                                                                                                                                |
+| `{{< vendor/prefix >}}_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory.                                                                                                                                                                                                                                                                                                                                                                  |
+| `{{< vendor/prefix >}}_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](/create-apps/_index.md), some with more structure. See [notes](#platform_application).                                                                                                                                                                                                     |
+| `{{< vendor/prefix >}}_APPLICATION_NAME` | Yes   | Yes     | The app name as set in your [app configuration](/create-apps/_index.md).                                                                                                                                                                                                                                                                                                                                 |
+| `{{< vendor/prefix >}}_BRANCH`           | No    | Yes     | The name of the Git branch.                                                                                                                                                                                                                                                                                                                                                                              |
+| `{{< vendor/prefix >}}_CACHE_DIR`        | Yes   | No      | The directory where files are cached from one build to the next. The directory is shared among all branches, so the same cache is used for all environments.                                                                                                                                                                                                                                             |
+| `{{< vendor/prefix >}}_DOCUMENT_ROOT`    | No    | Yes     | The absolute path to the web document root, if applicable.                                                                                                                                                                                                                                                                                                                                               |
+| `{{< vendor/prefix >}}_ENVIRONMENT`      | No    | Yes     | The name of the {{% vendor/name %}} environment.                                                                                                                                                                                                                                                                                                                                                         |
+| `{{< vendor/prefix >}}_ENVIRONMENT_TYPE` | No    | Yes     | The environment type of the {{% vendor/name %}} environment (`development`, `staging`, or `production`).                                                                                                                                                                                                                                                                                                 |
+| `{{< vendor/prefix >}}_OUTPUT_DIR`       | Yes   | No      | The output directory for compiled languages at build time. Equivalent to `PLATFORM_APP_DIR` in most cases.                                                                                                                                                                                                                                                                                               |
+| `{{< vendor/prefix >}}_POST_APP_COMMAND` | No    | Yes     | The contents of the [web post_start command](/create-apps/app-reference/single-runtime-image.md#web-commands).                                                                                                                                                                                                                                                                                           |
+| `{{< vendor/prefix >}}_PRE_APP_COMMAND`  | No    | Yes     | The contents of the [web pre_start command](/create-apps/app-reference/single-runtime-image.md#web-commands).                                                                                                                                                                                                                                                                                            |
+| `{{< vendor/prefix >}}_PROJECT`          | Yes   | Yes     | The project ID.                                                                                                                                                                                                                                                                                                                                                                                          |
+| `{{< vendor/prefix >}}_PROJECT_ENTROPY`  | Yes   | Yes     | A random, 56-character value created at project creation and then stable throughout the project's life. Can be used for Drupal hash salts, Symfony secrets, and other similar values.                                                                                                                                                                                                                    |
+| `{{< vendor/prefix >}}_RELATIONSHIPS`    | No    | Yes     | A base64-encoded JSON object of relationships. The keys are the relationship name and the values are arrays of relationship endpoint definitions. The exact format is defined differently for each [service](/add-services/_index.md).                                                                                                                                                                   |
+| `{{< vendor/prefix >}}_ROUTES`           | No    | Yes     | A base64-encoded JSON object that describes the routes for the environment. It maps the content of your [routes configuration](/define-routes/_index.md). Note that this information is also available in your `/run/config.json` file.                                                                                                                                                                  |
+| `{{< vendor/prefix >}}_SMTP_HOST`        | No    | Yes     | The SMTP host to send email messages through. Is empty when mail is disabled for the current environment.                                                                                                                                                                                                                                                                                                |
+| `{{< vendor/prefix >}}_SOURCE_DIR`       | Yes   | No      | The path to the root directory of your code repository in the context of a running [source operation](/create-apps/source-operations.md). The directory contains a writable copy of your repository that you can commit to during the operation.                                                                                                                                                         |
+| `{{< vendor/prefix >}}_TREE_ID`          | Yes   | Yes     | The ID of the tree the application was built from, essentially the SHA hash of the tree in Git. Use when you need a unique ID for each build.                                                                                                                                                                                                                                                            |
+| `{{< vendor/prefix >}}_VARIABLES`        | Some  | Some    | A base64-encoded JSON object with all user-defined project and environment variables that don't use a [prefix](/development/variables/_index.md#variable-prefixes). The keys are the variable names and the values are the variable values. Availability during builds and at runtime depends on the settings for each variable. See how to [access individual variables](#access-variables-in-a-shell). |
+| `{{< vendor/prefix >}}_VENDOR`           | Yes   | No      | Allows you to change the behavior of the build according to the vendor ({{< vendor/name >}} or Upsun).                                                                                                                                                                                                                                                                                                   |
+| `PORT`                                   | No    | Yes     | A `string` representing the port to which requests are sent if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is unset or set to `tcp`.                                                                                                                                                                                                        |
+| `SOCKET`                                 | No    | Yes     | A `string` representing the path to the Unix socket file to use if the [`web.upstream.socket_family` property](/create-apps/app-reference/single-runtime-image.md#upstream) is set to `unix`.                                                                                                                                                                                                            |
 
 ### Variables on {{% names/dedicated-gen-2 %}} environments
 
@@ -360,13 +363,6 @@ and at runtime.
 | ---------------- | ----- | ------- | ----------- |
 | `PLATFORM_CLUSTER` | No    | Yes     | The cluster ID. In older {{% names/dedicated-gen-2 %}} instances, this is used to get the project ID. When several projects are linked, this provides the main project/cluster they're linked to, while `PLATFORM_PROJECT` offers the specific project ID. |
 | `PLATFORM_MODE`    | No    | Yes     | `enterprise` in all {{% names/dedicated-gen-2 %}} production and staging environments. Note that an Enterprise support plan doesn't always imply a {{% names/dedicated-gen-2 %}} environment, but a {{% names/dedicated-gen-2 %}} environment always implies an Enterprise support plan. |
-
-{{< note >}}
-
-The `PLATFORM_CLUSTER` environment variable isn't yet available on [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
-If your application depends on whether it's running on a {{% names/dedicated-gen-3 %}} host, use `PLATFORM_MODE`.
-
-{{< /note >}}
 
 #### Distinguish {{% names/dedicated-gen-2 %}} environment types
 
@@ -391,7 +387,7 @@ The `PLATFORM_APPLICATION` variable is available both at build time and in the r
 But the specific attributes it contains differ in each case.
 
 Each environment's build is associated with a configuration ID that identifies it uniquely so builds can be reused.
-The ID is a product of your app code and some of its [configuration for {{% vendor/name %}}](../../create-apps/_index.md).
+The ID is a product of your app code and some of its [configuration for {{% vendor/name %}}](/create-apps/_index.md).
 Not every attribute your app configuration is relevant to the build.
 Only those attributes that are relevant to builds are accessible at build time from `PLATFORM_APPLICATION`.
 
@@ -406,7 +402,7 @@ Attributes that are **not** available in `PLATFORM_APPLICATION` during builds:
 - Everything under `workers`, except `workers.mounts`
 
 These attributes aren't visible during build because they aren't included as a part of the configuration component of the build slug.
-So modifying these values in your [app configuration](../../create-apps/_index.md) doesn't trigger an app rebuild, only a redeploy.
+So modifying these values in your [app configuration](/create-apps/_index.md) doesn't trigger an app rebuild, only a redeploy.
 For more information, read about [how builds work](/learn/overview/build-deploy.md#the-build).
 
 ## Use variables in static files
@@ -415,15 +411,15 @@ Some apps require configuration values to be specified in a static, non-executab
 and don't support reading from environment variables.
 
 To populate these files with variables you set yourself,
-make sure the variables are set to be [visible at build time](./set-variables.md#variable-options).
+make sure the variables are set to be [visible at build time](/development/variables/set-variables.md#variable-options).
 
 The files can't be populated with {{% vendor/name %}}-provided variables not available at build time (such as `PLATFORM_RELATIONSHIPS`).
 You also can't write to them in a `deploy` hook as the file system is read only.
 
-One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook).
+One workaround is to create a symbolic link to a writable location and then write to it in a [`deploy` hook](/create-apps/hooks/hooks-comparison.md#deploy-hook).
 The following example shows the process, though you have to modify it to fit your needs.
 
-1. Create a mount that isn't accessible to the web in your [app configuration](../../create-apps/_index.md):
+1. Create a mount that isn't accessible to the web in your [app configuration](/create-apps/_index.md):
 
    ```yaml {configFile="app"}
    mounts:
@@ -458,7 +454,7 @@ The following example shows the process, though you have to modify it to fit you
    printf "user: %s\n" $(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username") >> config/db.yaml
    ```
 
-5. Call the script from the `deploy` hook your [app configuration](../../create-apps/_index.md):
+5. Call the script from the `deploy` hook your [app configuration](/create-apps/_index.md):
 
    ```yaml {configFile="app"}
    hooks:

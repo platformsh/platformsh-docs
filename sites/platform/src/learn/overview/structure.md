@@ -7,8 +7,6 @@ description: "Learn about how your {{% vendor/name %}} environments are structur
 {{< note >}}
 
 This page describes how things work on Grid projects.
-[{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md) projects are similar,
-but they run on dedicated hosts and each container is replicated three times.
 
 For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](/dedicated-environments/dedicated-gen-2/overview.md).
 

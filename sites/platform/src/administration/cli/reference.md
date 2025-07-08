@@ -15,7 +15,7 @@ showTitle: false
 
 # Platform.sh CLI 5.0.15
 
-- [Installation](/administration/cli#1-install)
+- [Installation](/administration/cli/_index.md#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
 
 ## All commands
@@ -773,7 +773,7 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
 
 * List recent activities for the current environment:
 ```
-platform activity:list 
+platform activity:list
 ```
 
 * List all recent activities for the current project:
@@ -961,7 +961,7 @@ platform app:config-validate
 
 * Validate the project configuration files in your current directory:
 ```
-platform app:config-validate 
+platform app:config-validate
 ```
 
 ## `app:list`
@@ -1289,7 +1289,7 @@ platform backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [
 
 * Make a backup of the current environment:
 ```
-platform backup:create 
+platform backup:create
 ```
 
 * Request a backup (and exit quickly):
@@ -1501,7 +1501,7 @@ platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--no-code
 
 * Restore the most recent backup:
 ```
-platform backup:restore 
+platform backup:restore
 ```
 
 * Restore a specific backup:
@@ -1762,7 +1762,7 @@ platform commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
 
 * Display the current commit on the environment:
 ```
-platform commit:get 
+platform commit:get
 ```
 
 * Display the previous commit:
@@ -1839,7 +1839,7 @@ platform commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRO
 
 * Display commits on an environment:
 ```
-platform commit:list 
+platform commit:list
 ```
 
 * Display commits starting from two before the current one:
@@ -1920,7 +1920,7 @@ platform db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [
 
 * Create an SQL dump file:
 ```
-platform db:dump 
+platform db:dump
 ```
 
 * Create a gzipped SQL dump file named "dump.sql.gz":
@@ -1984,7 +1984,7 @@ platform sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment 
 
 * Open an SQL console on the remote database:
 ```
-platform db:sql 
+platform db:sql
 ```
 
 * View tables on the remote database:
@@ -2526,7 +2526,7 @@ This command allows you to delete environments as well as their Git branches.
 
 * Delete the currently checked out environment:
 ```
-platform environment:delete 
+platform environment:delete
 ```
 
 * Delete the environments "test" and "example-1":
@@ -2747,7 +2747,7 @@ platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-
 
 * Read all environment properties:
 ```
-platform environment:info 
+platform environment:info
 ```
 
 * Show the environment's status:
@@ -2955,7 +2955,7 @@ platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment E
 
 * Display a choice of logs that can be read:
 ```
-platform environment:logs 
+platform environment:logs
 ```
 
 * Read the deploy log:
@@ -3145,7 +3145,7 @@ platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upst
 
 * Push code to the current environment:
 ```
-platform environment:push 
+platform environment:push
 ```
 
 * Push code, without waiting for deployment:
@@ -3252,7 +3252,7 @@ platform relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJEC
 
 * View all the current environment's relationships:
 ```
-platform environment:relationships 
+platform environment:relationships
 ```
 
 * View the 'main' environment's relationships:
@@ -3440,7 +3440,7 @@ platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--
 
 * Open a shell over SSH:
 ```
-platform environment:ssh 
+platform environment:ssh
 ```
 
 * Pass an extra option to SSH:
@@ -3581,7 +3581,7 @@ platform url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] 
 
 * Give a choice of URLs to open (or print all URLs if there is no browser):
 ```
-platform environment:url 
+platform environment:url
 ```
 
 * Print all URLs:
@@ -3650,7 +3650,7 @@ platform xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONME
 
 * Connect to Xdebug on the environment, listening locally on port 9000.:
 ```
-platform environment:xdebug 
+platform environment:xdebug
 ```
 
 ## `integration:activity:get`
@@ -4449,7 +4449,7 @@ platform build [-a|--abslinks] [-s|--source SOURCE] [-d|--destination DESTINATIO
 
 * Build the current project:
 ```
-platform local:build 
+platform local:build
 ```
 
 * Build the app "example" without symlinking the source files:
@@ -4613,7 +4613,7 @@ platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to 
 
 * Show metrics for the last 10m:
 ```
-platform metrics:all 
+platform metrics:all
 ```
 
 * Show metrics in five-minute intervals over the last hour:
@@ -5988,7 +5988,7 @@ platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--
 
 * Read all project properties:
 ```
-platform project:info 
+platform project:info
 ```
 
 * Show the project's Git URL:
@@ -6034,7 +6034,7 @@ platform project:init
 
 * Create the starter YAML files for your project:
 ```
-platform project:init 
+platform project:init
 ```
 
 ## `project:list`
@@ -6667,7 +6667,7 @@ Aliases: `mongo`
 ### Usage
 
 ```
-platform mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
+platform mongosh [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP]
 ```
 
 #### Options
@@ -6759,7 +6759,7 @@ platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--env
 
 * Open the redis-cli shell:
 ```
-platform service:redis-cli 
+platform service:redis-cli
 ```
 
 * Ping the Redis server:
@@ -7128,7 +7128,7 @@ platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] 
 
 * View all subscription properties:
 ```
-platform subscription:info 
+platform subscription:info
 ```
 
 * View the subscription status:

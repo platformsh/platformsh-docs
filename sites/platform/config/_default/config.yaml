@@ -28,18 +28,46 @@ summaryLength: 3
 outputs:
     home:
       - HTML
+      - markdown
       - JSON
       - RSS
       - devcenter
+      - llms
+      - llms-full
     section:
       - HTML
+      - markdown
       - RSS
+    page:
+      - HTML
+      - markdown
 
 outputFormats:
   devcenter:
     mediaType: "application/json"
     baseName: "json/devcenter"
     isPlainText: true
+  llms:
+    mediaType: "text/plain"
+    baseName: "llms"
+    isPlainText: true
+    permalinkable: true
+  llms-full:
+    mediaType: "text/plain"
+    baseName: "llms-full"
+    isPlainText: true
+    permalinkable: true
+  markdown:
+    mediaType: "text/markdown"
+    isPlainText: true
+    permalinkable: true
+    baseName: index
+
+mediaTypes:
+  text/plain:
+    suffixes: ["txt"]
+  text/markdown:
+    suffixes: ["md"]
 
 # Math typesetting as per 0.125.0 - https://gohugo.io/content-management/mathematics/
 markup:
@@ -87,6 +115,9 @@ security:
     getenv:
     - ^GITHUB_
     - ^HUGO_HEAP_ID
+    - ^PENDO_ID
   http:
     methods:
     - GET
+
+enableRobotsTXT: true

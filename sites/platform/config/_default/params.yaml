@@ -37,7 +37,7 @@ vendor:
             routes: routes
     urls:
         main: https://platform.sh/
-        docs: https://docs.platform.sh/
+        docs: https://docs.platform.sh
         support: https://support.platform.sh/
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
@@ -107,14 +107,14 @@ nonDocsSections:
 # Metadata
 meta:
   sitename: "Platform.sh User Documentation"
-  description: Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  description: Platform.sh is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
   image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
   url: "https://docs.platform.sh"
   twittercard:
     card: "summary_large_image"
     site: "@platformsh"
     title: "Platform.sh User Documentation"
-    description: "Platform.sh is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    description: "Platform.sh is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
     creator: "@platformsh"
     image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
   keywords:
@@ -133,7 +133,6 @@ meta:
     - Wordpress
     - Symfony
     - Maven
-    - Lisp
     - Hibernate
     - Jakarta
     - Spring

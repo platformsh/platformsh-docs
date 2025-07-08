@@ -4,7 +4,7 @@ sidebarTitle: Change regions
 description: See how to change the region your project is in and why you might want to do so.
 ---
 
-To host your project data, {{% vendor/name %}} offers several [regions](../development/regions.md).
+To host your project data, {{% vendor/name %}} offers several [regions](/development/regions.md).
 You specify a region when you create a project.
 
 You can also change the project's region after it's created.
@@ -13,7 +13,7 @@ You can also change the project's region after it's created.
 
 - Different data centers are located in different geographic areas.
   You may want your site close to your users for improved performance.
-- You may want to move to a region with a lower [environmental impact](../development/regions.md#environmental-impact).
+- You may want to move to a region with a lower [environmental impact](/development/regions.md#environmental-impact).
 
 ## 1. Plan the migration
 
@@ -67,7 +67,7 @@ title=Without a source integration
 title=With a source integration
 +++
 
-For a [source integration](../integrations/source/_index.md) with GitHub, BitBucket, or GitLab,
+For a [source integration](/integrations/source/_index.md) with GitHub, BitBucket, or GitLab,
 add the integration to your new project.
 Your new project then mirrors the configured repository automatically.
 
@@ -105,10 +105,10 @@ Just rebuild the data in the new project.
 To download data from persistent services such as databases,
 see how to export and then import data for each service:
 
-- [InfluxDB](../add-services/influxdb.md#export-data)
-- [MongoDB](../add-services/mongodb.md#exporting-data)
-- [MariaDB/MySQL](../add-services/mysql/_index.md#exporting-data)
-- [PostgreSQL](../add-services/postgresql.md#exporting-data)
+- [InfluxDB](/add-services/influxdb.md#export-data)
+- [MongoDB](/add-services/mongodb.md#exporting-data)
+- [MariaDB/MySQL](/add-services/mysql/_index.md#exporting-data)
+- [PostgreSQL](/add-services/postgresql.md#exporting-data)
 
 ## 6. Migrate variables and project settings
 
@@ -117,7 +117,7 @@ Make sure anything else connected to your old project is moved to your new proje
 - If you have project or environment variables defined on your old project, add them to your new project.
   Get a list of all variables set outside of code by running `{{% vendor/cli %}} variables`.
 - Add any users to your new project that you want to continue to have access.
-- Add any existing [integrations](../integrations/_index.md).
+- Add any existing [integrations](/integrations/_index.md).
 
 ## 7. Test the site
 
@@ -133,7 +133,7 @@ Now that you know the new project works, switch public traffic to that site:
 2. If possible, put your site into read-only mode or maintenance mode.
 3. Add your domain names to your new project and remove them from the old project.
 4. (Optional) Add any custom SSL certificates you have.
-5. Update your DNS provider's records to point to the new site. See more on [setting custom domains](../domains/steps/_index.md).
+5. Update your DNS provider's records to point to the new site. See more on [setting custom domains](/domains/steps/_index.md).
 
 It may take some time for the DNS change and SSL change to propagate.
 Until it does, some browsers may not see the new site or may get an SSL mismatch error.

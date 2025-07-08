@@ -26,9 +26,9 @@ The composable image is built on [Nix](https://nix.dev), which offers the follow
 
 This page introduces all the settings available to configure your composable image from your `{{< vendor/configfile "app" >}}` file
 (usually located at the root of your Git repository).</br>
-Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
+Note that multi-app projects can be [set in various ways](/create-apps/multi-app/_index.md).
 
-If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
+If you're pressed for time, jump to this comprehensive [configuration example](/create-apps/_index.md#comprehensive-example).
 
 ## Top-level properties
 
@@ -37,29 +37,33 @@ The following table presents all the properties you can use at the top level of 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                    |
-|--------------------|-----------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                 |
-| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                                                                               |
-| `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                        |
-| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                        |
-| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                |
-| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                       |
-| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                             |
-| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                            |
-| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md) |
-| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                           |
-| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                          |
-| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                   |
-| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                         |
-| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                   |
-| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                     |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                             |
+| Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
+|--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
+| `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                      |
+| `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
+| `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
+| `disk`             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space).                                                                     |
+| `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
+| `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
+| `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
+| `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md). |
+| `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
+| `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
+| `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
+| `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
+| `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
+| `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
+| `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
+| `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
+
 {{% note %}}
-The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
+
 
 ## Stack
 
@@ -101,6 +105,23 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
+### Supported Nix channels
+
+- `24.05`
+- `25.05`
+
+### Configure Nix channels
+
+The Nix channel can be configured with the [top-level property `type`](#top-level-properties). 
+
+For example, to use the Nix channel `25.05`, you would use the following syntax:
+
+```yaml {configFile="apps"}
+
+type: "composable:25.05"
+
+```
+
 ### Supported Nix packages
 
 {{% note %}}
@@ -118,7 +139,6 @@ Security and other patches are applied automatically.
 | **Language**                                 | **Nix package** | **Supported version(s)**             |
 |----------------------------------------------|---------------|----------------------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
 | [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
 | [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
 | [Java](/languages/java.html)                 | `java`        | 21                                     |
@@ -295,7 +315,7 @@ By default, {{% vendor/name %}} allocates a container profile to each app and se
   Ideally you want to give databases the biggest part of your memory, and apps the biggest part of your CPU.
 
 The container profile and the [size of the container](#sizes) determine
-how much CPU and memory (in [MB] (/glossary.md#mb)) the container gets.
+how much CPU and memory (in [MB](/glossary/_index.md#mb)) the container gets.
 
 There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``HIGH_MEMORY``.
 
@@ -568,7 +588,7 @@ So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in 
 If you exceed the total space available, you receive an error on pushing your code.
 You need to either increase your plan's storage or decrease the `disk` values you've assigned.
 
-You configure the disk size in [MB](/glossary#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
+You configure the disk size in [MB](/glossary/_index.md#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
 ### Downsize a disk
 
@@ -609,7 +629,7 @@ mounts:
 
 {{< variable "MOUNT_PATH" >}} is the path to your mount **within the app container** (relative to the app's root).
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
-See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-folders).
+See how to [troubleshoot the warning](/create-apps/troubleshoot-mounts.md#overlapping-folders).
 
 | Name          | Type                          | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------- |-------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -731,14 +751,21 @@ Use the `web` key to configure the web server running in front of your app.
 | `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
 | `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 
-See some [examples of how to configure what's served](../web/_index.md).
+See some [examples of how to configure what's served](/create-apps/web/_index.md).
 
 ### Web commands
 
-| Name        | Type     | Required                      | Description                                                                                         |
-|-------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
-| `pre_start` | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start`     | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| Name         | Type     | Required                      | Description                                                                                          |
+|--------------|----------|-------------------------------|------------------------------------------------------------------------------------------------------|
+| `pre_start`  | `string` |                               | Command runs just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
+| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                        |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+
+{{< note theme="info" >}}
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< /note >}}
+
 
 Example:
 
@@ -827,8 +854,8 @@ The key of each item is a regular expression to match paths exactly.
 If an incoming request matches the rule, it's handled by the properties under the rule,
 overriding any conflicting rules from the rest of the `locations` dictionary.
 
-Under `rules`, you can set all of the other possible [`locations` properties](#locations)
-except `root`, `index` and `request_buffering`.
+Under `rules`, you can set all the other possible [`locations` properties](#locations)
+except `root`, `index`, `rules` and `request_buffering`.
 
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
@@ -1285,14 +1312,14 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](/environments/backup) are running.
+Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#top-level-properties).
 
 ### Paused crons
 
-[Preview environments](/glossary.md#preview-environment) are often used for a limited time and then abandoned.
+[Preview environments](/glossary/_index.md#preview-environment) are often used for a limited time and then abandoned.
 While it's useful for environments under active development to have scheduled tasks,
 unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
@@ -1354,10 +1381,10 @@ See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
 
 The following table shows the properties that can be set in `source`:
 
-| Name         | Type                     | Required | Description                                                                                                                       |
-|--------------|--------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|
-| `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](../source-operations.md)                               |
-| `root`       | `string`                 |          | The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](../multi-app/_index.md). |
+| Name         | Type                     | Required | Description                                                                                                                     |
+|--------------|--------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------|
+| `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](/create-apps/source-operations.md)                             |
+| `root`       | `string`                 |          | The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](/create-apps/multi-app/_index.md). |
 
 ## Additional hosts
 

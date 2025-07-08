@@ -21,9 +21,9 @@ The different timezones on {{% vendor/name %}} are the following:
 
 {{< note >}}
 
-Each {{% vendor/name %}} project also has a **project timezone** that only affects [automated backups](../environments/backup.md#use-automated-backups).
-By default, the project timezone is based on the [region](../development/regions.md) where your project is hosted.
-You can [change it from the Console](../projects/change-project-timezone.md) at any time.
+Each {{% vendor/name %}} project also has a **project timezone** that only affects [automated backups](/environments/backup.md#use-automated-backups).
+By default, the project timezone is based on the [region](/development/regions.md) where your project is hosted.
+You can [change it from the Console](/projects/change-project-timezone.md) at any time.
 
 {{< /note >}}
 

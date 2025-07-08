@@ -1,0 +1,32 @@
+[checking]
+threads=5
+useragent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36
+maxrequestspersecond=5
+
+[filtering]
+checkextern=1
+ignore=
+    ^https://github.com/platformsh*
+    console.platform.sh/projects/*
+    support.blackfire.io/*
+    cloud.orange-business.com/*
+    developers.cloudflare.com/*
+    discord.com/*
+    pptr.dev/*
+    mvnrepository.com/*
+    https://dev.mysql.com/doc/refman/en/
+    https://www.microsoft.com/en-us/trust-center/privacy/data-management
+    http://localhost:1337/*
+
+[output]
+warnings=0
+ignoreerrors=
+    ^https://(www|new)\.drupal\.org/.*$ ^403 Forbidden
+    ^https://support\.platform\.sh/hc/en-us/.*$ ^403 Forbidden
+    ^https://www\.ipaddressguide\.com/.*$ ^403 Forbidden
+    ^https://www\.abuseipdb\.com/.*$ ^403 Forbidden
+    ^https://www\.cloudflare\.com/.*$ ^403 Forbidden
+    ^https://mkyong.com/java/java-how-to-send-email/$ ^403 Forbidden
+    ^https://www.baeldung.com/maven-wrapper$ ^403 Forbidden
+    ^https://dzone\.com/.*$ ^403 Forbidden
+    ^https://docs\.pimcore\.com/.*$ ^403 Forbidden

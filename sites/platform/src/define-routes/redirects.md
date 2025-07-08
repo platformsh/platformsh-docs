@@ -8,19 +8,26 @@ description: |
 
 You can manage redirection rules on your {{% vendor/name %}} projects in two different ways, which we describe here. If neither of these options satisfy your redirection needs, you can still implement redirects directly from within your application, which if implemented with the appropriate caching headers would be almost as efficient as using the configuration options provided by {{% vendor/name %}}.
 
+{{% note theme="info" title="Route limits" %}}
+
+Please note that the maximum size of the routes document is 128 KB, which should fit around 300 different routes. [Read more about route limits here.](/define-routes.html#route-limits) 
+
+{{% /note %}}
+
 ## Whole-route redirects
 
-Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](./_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
+Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:
 
 ```yaml {configFile="routes"}
 https://{default}/:
   type: redirect
   to: https://www.{default}/
 ```
+The default HTTP status code for Whole-route redirects is `301`. See [Specify a HTTP status code](#specify-a-http-status-code) to change the status code that is used.
 
 ## Partial redirects
 
-In the [`{{< vendor/configfile "routes" >}}`](./_index.md) file you can also add partial redirect rules to existing routes:
+In the [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file you can also add partial redirect rules to existing routes:
 
 ```yaml {configFile="routes"}
 https://{default}/:
@@ -35,7 +42,7 @@ https://{default}/:
         regexp: true
 ```
 
-This format is richer and works with any type of route, including routes served directly by the application.
+This format is richer and works with any type of route, including routes served directly by the application. The default HTTP status code for partial redirects is `302`. See [Specify a HTTP status code](#specify-a-http-status-code) to change the status code that is used.
 
 Two keys are available under `redirects`:
 
@@ -56,7 +63,7 @@ The value object is defined with the following keys:
 | `regexp`           | No       | `false` | Specifies whether the path key should be interpreted as a PCRE regular expression. If you use a capturing group, the replace field (`$1`) has to come after a slash (`/`). [More information](#redirects-using-regular-expressions).|
 | `prefix`           | No       | `true`, but not supported if `regexp` is `true` | Specifies whether both the path and all its children or just the path itself should be redirected. [More information](#redirects-using-prefix-and-append_suffix).|
 | `append_suffix`    | No       | `true`, but not supported if `regexp` is `true` or if `prefix` is `false`  | Determines if the suffix is carried over with the redirect. [More information](#redirects-using-prefix-and-append_suffix).|
-| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302`. [More information](#specify-a-http-status-code). |
+| `code`             | No       | n/a     | HTTP status code. Valid status codes are `301`, `302`, `307`, and `308`. Defaults to `302` for [Partial redirects](#partial-redirects), and `301` for [Whole-route redirects](#whole-route-redirects). [More information](#specify-a-http-status-code). |
 | `expires`          | No       | Defaults to the `expires` value defined directly under the `redirects` key, but can be fine-tuned. To [disable caching on a specific redirect](#disable-caching-on-your-redirects), set `expires` to `0`. | The duration the redirect is cached for. [More information](#manage-caching).
 
 To set up partial redirects, you can use regular expressions (`regexp`).</br>
@@ -234,7 +241,7 @@ A request to `/from/some/path` (and any path after `/from`) redirects to just `/
 
 ### Specify a HTTP status code
 
-To set a specific HTTP status code for your redirect, use the `codes` key:
+To set a specific HTTP status code for your redirect, use the `code` key:
 
 ```yaml {configFile="routes"}
 https://{default}/:

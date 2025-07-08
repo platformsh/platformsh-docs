@@ -147,7 +147,7 @@ source:
 
    If you use [Git submodules for each of your apps](/create-apps/multi-app/project-structure.md#split-your-code-source-into-multiple-git-submodule-repositories), define a new app at the top level of your project repository.
    Don't define routes so your app isn't exposed to the web.
-   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference):
+   To define a source operation, add the following configuration to your [app configuration](/create-apps/app-reference.md):
 
 ```yaml {configFile="app"}
 {{< snippet name="update-submodule" config="app" root="false" >}}
@@ -243,8 +243,9 @@ To fix this, follow these steps:
         branch = submodule/branch
     ```
 
-2. Add the [project's public key to your remote Git repository](/development/private-repository.md).
-   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
+2. Add the [project's public key to your remote Git repository](/development/private-repository.md). If there are nested
+   submodules in your submodule, then add the public key to those repositories as well. This allows your
+   {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 

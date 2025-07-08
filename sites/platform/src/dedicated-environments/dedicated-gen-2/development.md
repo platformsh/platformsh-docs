@@ -16,9 +16,9 @@ Each instance hosts the entire application stack, allowing this architecture sup
 
 ##### Build process
 
-The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team. 
+The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team.
 
-For more information, learn about [default storage settings](#storage) and how your app can [connect to services](dedicated-environments/dedicated-gen-3/overview.md#available-services).
+For more information, learn about [default storage settings](#storage) and how your app can connect to services.
 
 ### Split architecture
 
@@ -36,7 +36,7 @@ Any defined users or environment variables are also propagated to the Dedicated 
 
 {{< note title="Note" theme="info" >}}
 
-There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environments like there is between the grid-based development branches. 
+There is no automatic cloning of data from the Dedicated Gen 2 cluster to the development environments like there is between the grid-based development branches.
 
 {{< /note >}} 
 
@@ -61,7 +61,7 @@ For more information about deployment, see the [overview of the build and deplo
 
 ### Storage
 
-The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/). 
+The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/).
 
 The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each development environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your development environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 
@@ -69,7 +69,7 @@ A project may have up to six users associated with it at no additional charge. A
 
 {{< note title="Note" theme="info" >}}
 
-While your DG2 production and staging Environments are on dedicated virtual machines, your development environments run on the [Grid](/glossary.md#grid). This means that, by default, all containers in development environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
+While your DG2 production and staging Environments are on dedicated virtual machines, your development environments run on the [Grid](/glossary/_index.md#grid). This means that, by default, all containers in development environments are standard sized, as they have limited traffic needs. For more resource-intensive applications this size can be increased for an additional fee.
 
 {{< /note >}}
 

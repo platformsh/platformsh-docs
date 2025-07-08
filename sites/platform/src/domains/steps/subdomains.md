@@ -6,7 +6,7 @@ description: How to handle multiple subdomains in different projects.
 ---
 
 You can host multiple subdomains, such as `foo.example.com` and `bar.example.com`,
-within a single project using [routes](../../define-routes/_index.md).
+within a single project using [routes](/define-routes/_index.md).
 
 If you try to use a subdomain that's used in another project,
 you get an error like the following:
@@ -41,8 +41,8 @@ as long as you don’t use wildcards records pointing at {{% vendor/name %}}.
 If you don't remove the `TXT` record, restrictions apply on the apex domain.
 For example, you can't add the apex domain to another project until you remove the `TXT` record.
 
-Note that depending on your registrar and the time to live (TTL) you set, it can take 
-anywhere from 15 minutes to 72 hours for DNS changes to be taken into account, *so take this into 
+Note that depending on your registrar and the time to live (TTL) you set, it can take
+anywhere from 15 minutes to 72 hours for DNS changes to be taken into account, *so take this into
 account if you need to add the apex domain to another project*.
 
 You can see an error like `YOUR_APEX_DOMAIN is a root domain`.

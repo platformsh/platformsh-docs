@@ -48,22 +48,23 @@ These are called [inactive environments](#environment-status).
 
 ## Default environment
 
-Your default environment comes from your default branch and is a [production environment](../administration/users.md#environment-type-roles).
-Your project must have a default environment,
-but you can [name it as you want](/environments/default-environment.md).
-
-If you subscribed to a production plan, this environment is your **live site**.
-You might want to give it a [custom domain name](../domains/steps/_index.md).
+Your default environment comes from your default branch and is a
+[production environment](../administration/users.md#environment-type-roles). Your project must have a default
+environment, but you can [name it as you want](/environments/default-environment.md). This environment is your
+**live site**. You might want to give it a [custom domain name](../domains/steps/_index.md).
 
 ## Environment status
 
-Your environments can have one of two statuses:
+Your environments can have one of three statuses:
 
 -   [Active](/glossary.md#active-environment):
     A deployed environment with services and data.
 
 -   [Inactive](/glossary.md#inactive-environment):
     An environment that isn't deployed and has no services or data, only code.
+
+-   [Paused](#paused-environments):
+    An environment that hasn't been redeployed in 14 days or longer.
 
 You can see the status of your environments in the [Console](../administration/web/_index.md) or the [CLI](/administration/cli/_index.md).
 
@@ -198,7 +199,7 @@ Staging
 To prevent unnecessary consumption of resources,
 {{% vendor/name %}} automatically pauses preview environments ([of both development and staging types](/glossary.md#environment-type)) that haven't been redeployed in 14 days.
 
-You can also pause an environment manually at any time.
+You can pause (and resume) an environment manually at any time.
 
 ### Pause an environment
 
@@ -264,15 +265,15 @@ Git provides push options to pass a string to the server (see [the official Git 
 {{% vendor/name %}} supports some of these push options,
 which allows you to push changes to your environment and trigger the following actions at the same time:
 
-| Action                                     | Command                                                                                                                 |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Activate the environment                   | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
-| Set a title for the environment            | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
-| Set the parent environment                 | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |
-| Clone the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
-| Disable the cloning of the data from the parent environment | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
-| Set the environment type (`development`, `staging`, or `production`)                  | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
-| Define a [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy) (`default`, `manual`, `minimum`, or `parent`)  | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
+| Action                                                                                                                                                                   | Command                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------- |
+| Activate the environment                                                                                                                                                 | `git push {{% vendor/cli %}} -o "environment.status=active"`                                    |
+| Set a title for the environment                                                                                                                                          | `git push {{% vendor/cli %}} -o "environment.title=<ENVIRONMENT_TITLE>"`       |
+| Set the parent environment                                                                                                                                               | `git push {{% vendor/cli %}} -o "environment.parent=<PARENT_ENVIRONMENT_NAME>"` |
+| Clone the data from the parent environment                                                                                                                               | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=True"` |
+| Disable the cloning of the data from the parent environment                                                                                                              | `git push {{% vendor/cli %}} -o "environment.clone_parent_on_create=False"` |
+| Set the environment type (`development`, `staging`, or `production`)                                                                                                     | `git push {{% vendor/cli %}} -o "environment.type=<ENVIRONMENT_TYPE>"` |
+| Define a [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy) (`default`, `manual`, `minimum`, or `parent`) | `git push {{% vendor/cli %}} -o "resources.init=<RESOURCE_INITIALIZATION_STRATEGY>"` |
 
 If your remote location isn't named `{{% vendor/cli %}}`,
 make sure you adjust the commands accordingly.

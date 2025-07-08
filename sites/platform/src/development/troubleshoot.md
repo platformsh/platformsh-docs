@@ -47,7 +47,7 @@ The redeploy takes place after any scheduled activities (either *Running* or *Pe
 Despite the name, redeployment doesn't rerun the `deploy` hook, only the `post_deploy` hook.
 Both your `build` and `deploy` hooks are tied to individual commits in code.
 They're reused until another commit is pushed to the environment.
-See [more about hooks](../create-apps/hooks/_index.md) and their reuse.
+See [more about hooks](/create-apps/hooks/_index.md) and their reuse.
 
 To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-trigger-builds).
 
@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 {{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
-You can use the CLI, along with the [environment type distinction](/glossary#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+You can use the CLI, along with the [environment type distinction](/glossary/_index.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
 
 To do so, run the following command:
 
@@ -74,7 +74,7 @@ To increase performance and keep applications the same across environments,
 There may be times where you want to force your application to be built again without changing its code,
 for example to test an issue in a build hook or when external dependencies change.
 To force a rebuild without changing the code,
-use an [environment variable](./variables/set-variables.md#create-environment-specific-variables).
+use an [environment variable](/development/variables/set-variables.md#create-environment-specific-variables).
 
 Assuming you want to do this for your `main` environment,
 first create a `REBUILD_DATE` environment variable:
@@ -110,11 +110,11 @@ The next build for each environment is likely to take longer as the cache rebuil
 ## Access denied or permission denied
 
 In most cases, issues accessing a project are caused by missing permissions for a given user.
-For more information see how to [manage user permissions](../administration/users.md).
+For more information see how to [manage user permissions](/administration/users.md).
 
-If you are using the CLI, make sure that [you are authenticated](../administration/cli/_index.md#2-authenticate).
+If you are using the CLI, make sure that [you are authenticated](/administration/cli/_index.md#2-authenticate).
 
-If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/troubleshoot-ssh.md).
+If you are using SSH, see how to [troubleshoot SSH access](/development/ssh/troubleshoot-ssh.md).
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
@@ -124,21 +124,21 @@ it indicates your application is crashing or unavailable.
 Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
-  - Check your app's [upstream properties](../create-apps/app-reference/single-runtime-image.md#upstream).
-  - If your app listening at a port, make sure it's using the [`PORT` environment variable](./variables/use-variables.md#use-provided-variables).
+  - Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
+  - If your app listening at a port, make sure it's using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables).
 - Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
   - Check your `web.commands.start` entry or your `passthru` configuration.
 - The amount of traffic coming to your site exceeds the processing power of your application.
-  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-  - Alternatively, you may need to [increase your plan size](../administration/pricing/_index.md).
+  - You may want to [check if bots are overwhelming your site](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
+  - Alternatively, you may need to [increase your plan size](/administration/pricing/_index.md).
 - Certain code paths in your application are too slow and timing out.
   - Check your code is running smoothly.
-  - Consider adding an [observability solution](../increase-observability/integrate-observability/_index.md) to get a better view of your application.
+  - Consider adding an [observability solution](/increase-observability/integrate-observability/_index.md) to get a better view of your application.
 - A PHP process is crashing because of a segmentation fault.
-  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
+  - See [how to deal with crashed processes](/languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
 - A PHP process is killed by the kernel out-of-memory killer.
-  - See [how to deal with killed processes](../languages/php/troubleshoot.md#troubleshoot-a-killed-php-process).
+  - See [how to deal with killed processes](/languages/php/troubleshoot.md#troubleshoot-a-killed-php-process).
 
 ## Site outage
 
@@ -150,7 +150,7 @@ If the status is operational, [contact support](/learn/overview/get-support.md).
 
 ## Command not found
 
-When you've added a command line tool (such as [Drush](/glossary.md#drush)),
+When you've added a command line tool (such as [Drush](/glossary/_index.md#drush)),
 you might encounter an error like the following:
 
 ```bash
@@ -158,7 +158,7 @@ you might encounter an error like the following:
 ```
 
 If you see this, add the command you want to run to your path
-with a [`.environment` file script](./variables/set-variables.md#set-variables-via-script).
+with a [`.environment` file script](/development/variables/set-variables.md#set-variables-via-script).
 
 As a Linux or Unix-like operating system user (MacOS included),
 to be able to run your scripts directly and quickly get past this error
@@ -196,17 +196,17 @@ curl -XPOST 'https://example.com/graphql' --header 'Content-Type: multipart/form
 
 ## Databases
 
-For MySQL specific errors, see how to [troubleshoot MySQL](../add-services/mysql/troubleshoot.md).
+For MySQL specific errors, see how to [troubleshoot MySQL](/add-services/mysql/troubleshoot.md).
 
 ### Permission error creating a database
 
 If you try to use a user to create a database, you get an error saying `permission denied to create database`.
 The database is created for you
-and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](./variables/use-variables.md#use-provided-variables).
+and can be found in the `path` key of the `PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 ## Storage
 
-If you're having trouble with storage, see how to [troubleshoot mounts](../create-apps/troubleshoot-mounts.md) and [disks](../create-apps/troubleshoot-disks.md).
+If you're having trouble with storage, see how to [troubleshoot mounts](/create-apps/troubleshoot-mounts.md) and [disks](/create-apps/troubleshoot-disks.md).
 
 ### Can't write to file system
 
@@ -230,7 +230,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
-If none of these suggestions work, open a [support ticket](/learn/overview/get-support).
+If none of these suggestions work, open a [support ticket](/learn/overview/get-support.md).
 
 ## Stuck build or deployment
 
@@ -241,7 +241,7 @@ If you see a build or deployment running longer than expected, it may be one of 
 - The deployment is blocked by a long-running cron job in the environment.
 - The deployment is blocked by a long-running cron job in the parent environment.
 
-To determine if your environment is being stuck in the build or the deployment, check your [activity log](../increase-observability/logs/access-logs.md#activity-logs).
+To determine if your environment is being stuck in the build or the deployment, check your [activity log](/increase-observability/logs/access-logs.md#activity-logs).
 
 If the activity has the result `success`, the build has completed successfully and the system is trying to deploy.
 If the result is still `running`, the build is stuck.
@@ -250,7 +250,7 @@ In most regions, stuck builds terminate after one hour.
 
 When a deployment is blocked, you should try the following:
 
-1. Connect to your environment using [SSH](./ssh/_index.md).
+1. Connect to your environment using [SSH](/development/ssh/_index.md).
 2. Find any long-running cron jobs or deploy hooks on the environment by running `ps afx`.
 3. Kill any long-running processes with `kill {{< variable "PID" >}}`.
   Replace `{{< variable "PID" >}}` with the process ID shown by `ps afx`.
@@ -258,7 +258,7 @@ When a deployment is blocked, you should try the following:
 If a `sync` of `activate` process is stuck, try the above on the parent environment.
 
 Note that, for PHP apps,
-you can [restart processes that get stuck during a build or deployment](../languages/php/troubleshoot.md#restart-php-processes-stuck-during-a-build-or-deployment)
+you can [restart processes that get stuck during a build or deployment](/languages/php/troubleshoot.md#restart-php-processes-stuck-during-a-build-or-deployment)
 from your app container.
 
 ## Slow or failing build or deployment
@@ -270,16 +270,16 @@ Here are a few tips that can help you find the exact cause.
 ### Check for errors in the logs
 
 Invisible errors during the build and deploy phase can cause increased wait times, failed builds, and other problems.
-Investigate [each log](../increase-observability/logs/access-logs.md#container-logs) and fix any errors you find.
+Investigate [each log](/increase-observability/logs/access-logs.md#container-logs) and fix any errors you find.
 
 ### Build and deploy hooks
 
-[`build` and `deploy` hooks](../create-apps/hooks/_index.md) can cause long build times.
+[`build` and `deploy` hooks](/create-apps/hooks/_index.md) can cause long build times.
 If they run into issues, they can cause the build to fail or hang indefinitely.
 
 `build` hooks can be tested in your local environment.
 `deploy` hooks can be tested either locally
-or by logging into the application over [SSH](./ssh/_index.md) and running them there.
+or by logging into the application over [SSH](/development/ssh/_index.md) and running them there.
 Be careful not to test the scripts on production environments.
 
 You can also test your hooks with these Linux commands to help debug issues:
@@ -305,8 +305,8 @@ The most common issue isn't allowing the right cookies as part of the router cac
 Some cookies, such as session cookies, need to be allowed.
 Others, such as marketing and analytics cookies, usually shouldn't be part of the cache key.
 
-See more about [router cache](../define-routes/cache.md)
-and [cookie entry](../define-routes/cache.md#cookies).
+See more about [router cache](/define-routes/cache.md)
+and [cookie entry](/define-routes/cache.md#cookies).
 
 Because the router cache follows cache headers from your app,
 your app needs to send the correct `cache-control` header.
@@ -317,5 +317,5 @@ For static assets, set cache headers using the `expires` key in your [app config
 
 For language-specific troubleshooting for your apps:
 
-- [PHP](../languages/php/troubleshoot.md)
-- [Node JS](../languages/nodejs/debug.md)
+- [PHP](/languages/php/troubleshoot.md)
+- [Node JS](/languages/nodejs/debug.md)

@@ -19,7 +19,7 @@ To do so, you need to configure mounts or use an SSH client.
 
 [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts) let you set up directories that remain writable after the build is complete.
 You can then transfer files directly to and from mounts inside your app
-with a single command via the [{{% vendor/name %}} CLI](../administration/cli/_index.md).
+with a single command via the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 
 Alternatively, you can transfer files to and from your built app using an SSH client
 such as `scp` or `rsync`.
@@ -170,8 +170,7 @@ You can use `sftp` to copy files to and from a remote environment.
   Instead, access is given to **the whole application directory** and its mounts.
 
 `sftp` is also supported on Dedicated projects with different limitations and requirements.
-For more information, see the [{{% names/dedicated-gen-2 %}}](https://docs.platform.sh/dedicated-gen-2/architecture/options.html#sftp)
-and [{{% names/dedicated-gen-3 %}}](https://docs.platform.sh/dedicated-gen-3/options.html#sftp) sections.
+For more information, see the [{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/overview.html#sftp) section.
 {{% /note %}}
 
 #### Open an `sftp` connection

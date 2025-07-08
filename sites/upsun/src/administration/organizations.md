@@ -63,8 +63,6 @@ title=Using the Console
 
 ## Create a new organization
 
-When you create a new project, if you don't already have an organization, one is created for you automatically.
-
 You can create new organizations with different payment methods and billing addresses
 and organize your projects as you want.
 
@@ -141,12 +139,12 @@ To delete the organization `acme`, run:
 
 ## Transfer project ownership
 
-You can transfer your plan ownership to a different organization at anytime.
-You have to be an organization owner or have the [manage plan permission](/administration/users.md#organization-permissions).
+You can transfer your project ownership to a different organization at anytime.
+To do this, you must be an organization owner or have the [manage billing permission](/administration/users.md#organization-permissions).
 
 1. Make the new organization owner a [project admin](/administration/users.md#)
    for the project you want to transfer.
-2. To ask for the transfer, from your organization account open a [support ticket](/learn/overview/get-support).
+2. To ask for the transfer, from your organization account open a [support ticket](/learn/overview/get-support.md).
 
 Once the transfer is completed, the new organization can administer all project settings and billing and receives future invoices.
 Ownership transfer automatically transfers subscription charges to the new organization.
@@ -155,4 +153,4 @@ Ownership transfer automatically transfers subscription charges to the new organ
 
 To transfer an organization to a different owner, first make sure that user is part of the organization.
 If they aren't yet, [add them](/administration/users.md#add-a-user-to-an-organization).
-Then open a [support ticket](/learn/overview/get-support) from the current organization to ask for the transfer.
+Then open a [support ticket](/learn/overview/get-support.md) from the current organization to ask for the transfer.

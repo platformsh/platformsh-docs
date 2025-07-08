@@ -18,22 +18,20 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="varnish" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-3" >}}</td>
-            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="varnish" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
 
 ## How it works
 
-All incoming requests go through the [standard router](../define-routes/_index.md).
+All incoming requests go through the [standard router](/define-routes/_index.md).
 The Varnish service sits between the router and all apps in the project.
 
 ``` mermaid
@@ -190,7 +188,7 @@ sub vcl_recv {
 
 ### 3. Route incoming requests to Varnish
 
-Edit your [route definitions](../define-routes/_index.md) to point to the Varnish service you just created.
+Edit your [route definitions](/define-routes/_index.md) to point to the Varnish service you just created.
 Also disable the router cache as Varnish now provides caching.
 
 To forward all incoming requests to Varnish rather than your app, you could have the following:
@@ -276,7 +274,7 @@ The following example shows how to set up purging.
 
    This list ensures that only requests from the listed IPs are accepted.
    Choose which IPs to allow.
-   If you are sending requests from an app, checkout the [outbound IPs for the region](../development/regions.md#public-ip-addresses).
+   If you are sending requests from an app, checkout the [outbound IPs for the region](/development/regions.md#public-ip-addresses).
 
    Alternatively, you could code in a token that must be sent with the request.
 
@@ -367,7 +365,7 @@ The following paths are available:
 
 To access the Varnish stats endpoint from the command line:
 
-1. Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
+1. Connect to your stats app [using SSH](/development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
    (replace `stats-app` with the name you gave the app).
 2. Display the [relationships array](/create-apps/app-reference/single-runtime-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

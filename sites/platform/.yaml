@@ -171,6 +171,7 @@ elixir:
       - '1.10'
       - '1.9'
     supported:
+      - '1.18'
       - '1.15'
       - '1.14'
     legacy:
@@ -317,33 +318,6 @@ kafka:
       - '2.3'
       - '2.2'
       - '2.1'
-lisp:
-  description: ''
-  id: 1102
-  repo_name: lisp
-  disk: false
-  docs:
-    relationship_name: null
-    service_name: null
-    url: /languages/lisp.html
-    web:
-      commands:
-        start: ./example
-      locations:
-        /:
-          allow: false
-          passthru: true
-  endpoint: null
-  min_disk_size: null
-  name: Lisp
-  runtime: true
-  type: lisp
-  versions:
-    deprecated: []
-    supported:
-      - '2.1'
-      - '2.0'
-      - '1.5'
 mariadb:
   description: A manufacture-based container for MariaDB
   repo_name: mariadb
@@ -554,6 +528,7 @@ nodejs:
   type: nodejs
   versions:
     deprecated:
+      - '16'
       - '14'
       - '12'
       - '10'
@@ -566,10 +541,10 @@ nodejs:
       - '22'
       - '20'
       - '18'
-      - '16'
   versions-dedicated-gen-2:
     supported: []
     deprecated:
+      - '16'
       - '14'
       - '12'
       - '10'
@@ -701,6 +676,7 @@ postgresql:
       - '9.4'
       - '9.3'
     supported:
+      - '17'
       - '16'
       - '15'
       - '14'
@@ -719,6 +695,7 @@ postgresql:
       - '11'
       - '10'
     supported:
+      - '17'
       - '16'
       - '15'
       - '14'

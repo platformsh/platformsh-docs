@@ -58,13 +58,19 @@ This lets you carry out various actions from a terminal.
 
 {{< cli-installation >}}
 
+{{< note theme="info" >}}
+
+If you are using Scoop, you **must** have the [Extras bucket](https://github.com/ScoopInstaller/Extras) already installed before installing the {{% vendor/name %}} CLI.
+
+{{< /note >}}
+
 ### Code
 
 To start a project, you should have code on your computer that you'd like to deploy.
 It can be a basic "Hello World" site, such as you can find in the [{{% vendor/name %}} demos](https://github.com/orgs/platformsh/repositories?type=all&q=topic%3Ademo).
 Just something that you know runs.
 
-An alternative is one of the [{{% vendor/name %}} templates](../development/templates.md).
+An alternative is one of the [{{% vendor/name %}} templates](/development/templates.md).
 These are example apps that come with everything needed to run on {{% vendor/name %}}.
 
 ## Choose your stack

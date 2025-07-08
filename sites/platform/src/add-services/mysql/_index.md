@@ -15,9 +15,9 @@ or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more informat
 
 If you use one of the following frameworks, follow its guide:
 
-- [Hibernate](../../guides/hibernate/deploy.md#mysql)
-- [Jakarta EE](../../guides/jakarta/deploy.md#mysql)
-- [Spring](../../guides/spring/mysql.md)
+- [Hibernate](/guides/hibernate/deploy.md#mysql)
+- [Jakarta EE](/guides/jakarta/deploy.md#mysql)
+- [Spring](/guides/spring/mysql.md)
 
 ## Supported versions
 
@@ -46,13 +46,11 @@ Supported versions are the following:
     <thead>
         <tr>
             <th>{{% names/dedicated-gen-2 %}}</th>
-            <th>{{% names/dedicated-gen-3 %}}</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-2" >}}</td>
-            <td>{{< image-versions image="mariadb" status="supported" environment="dedicated-gen-3" >}}</thd>
         </tr>
     </tbody>
 </table>
@@ -78,7 +76,7 @@ When upgrading your service, skipping versions may result in data loss.
 Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
 and check that each upgrade commit translates into an actual deployment.
 
-To upgrade, update the service version in your [service configuration](../_index.md).
+To upgrade, update the service version in your [service configuration](/add-services/_index.md).
 
 ### Change the service type
 
@@ -89,7 +87,7 @@ To change the service type:
    Changing the service type, especially when done repeatedly, may result in data loss.
    Backing up your data is therefore crucial.
    {{% /note %}}
-2. Remove the old service from your [service configuration](../_index.md).
+2. Remove the old service from your [service configuration](/add-services/_index.md).
 3. Specify a new service type.
 4. [Import your data](#importing-data) into the new service.
 
@@ -99,7 +97,7 @@ You can't downgrade to a previous version and retain your data.
 To downgrade your database, follow these steps:
 
 1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
+1. Remove the old service from your [service configuration](/add-services/_index.md).
 1. Add a new service with a different name and your desired version.
 1. [Import your data](#importing-data) into the new service.
 
@@ -143,12 +141,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -173,10 +171,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -232,7 +230,7 @@ relationships:
 
 ### OracleMySQL example
 
-#### [Service definition](/add-services)
+#### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -241,7 +239,7 @@ oraclemysql:
   disk: 256
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 {{< codetabs >}}
 
@@ -340,11 +338,11 @@ Use the `url` property as your connection.
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
 So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
 
-You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
+You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://support.platform.sh/hc/en-us/community/posts/16439596373010).
 
 ## Configuration options
 
-You can configure your MySQL service in the [services configuration](../_index.md) with the following options:
+You can configure your MySQL service in the [services configuration](/add-services/_index.md) with the following options:
 
 | Name         | Type                    | Version                            | Description |
 | ------------ | ----------------------- | ---------------------------------- | ----------- |
@@ -432,7 +430,7 @@ Note that the information about the relationship can change when an app is redep
 
 You can access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
-You can also access it from you app container via [SSH](../../development/ssh/_index.md).
+You can also access it from you app container via [SSH](/development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `host`, `port`, `user`, `path`.
 Then run the following command:
 
@@ -466,12 +464,12 @@ For each endpoint you add, you can define the following properties:
 
 Possible permissions:
 
-| Name        | Type          | Description                                         |
-| ----------- | ------------- | --------------------------------------------------- |
-| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
+| Name        | Type          | Description                                                                                                                                                                                |
+| ----------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Read-only   | `ro`          | Can select, create temporary tables, and see views.                                                                                                                                        |
 | Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication | `replication` | For [replicating databases](./mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                               |
+| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                         |
 
 ### Restrict access to database replicas only
 
@@ -668,7 +666,7 @@ mariadb:
           legacy: rw
 ```
 
-Expose these endpoints to your app as relationships in your [app configuration](../../create-apps/_index.md):
+Expose these endpoints to your app as relationships in your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 name: myapp
@@ -746,7 +744,7 @@ For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/c
 {{% note theme="info" %}}
 MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
 They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
-See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details.
+See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
 
 ## Password generation
@@ -762,9 +760,9 @@ you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
 
-After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
  within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
@@ -866,7 +864,7 @@ If not, make a backup or do a database export before importing.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your preview environments](../../development/sanitize-db/_index.md).
+[sanitize your preview environments](/development/sanitize-db/_index.md).
 
 ## Replication
 
@@ -874,9 +872,9 @@ In non-Dedicated environments, there is no on-site primary/replica supports.
 In Dedicated environments, it's provided automatically as part of the default configuration.
 
 In rare cases (such as for certain backup purposes),
-you can also enable [remote replication](./mysql-replication.md) to your own replica data.
+you can also enable [remote replication](/add-services/mysql/mysql-replication.md) to your own replica data.
 The replica isn't available to your application.
 
 ## Troubleshoot
 
-If you run into issues, [troubleshoot MySQL](./troubleshoot.md).
+If you run into issues, [troubleshoot MySQL](/add-services/mysql/troubleshoot.md).

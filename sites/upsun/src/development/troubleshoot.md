@@ -56,7 +56,7 @@ To rerun the `build` and `deploy` hooks, [manually trigger a build](#manually-tr
 {{< note theme="info" title="Is there a way to redeploy the production environment without knowing its name?" >}}
 
 It's often desirable that the production environment, like many other values, is not hardcoded into your external workflows and management scripts.
-You can use the CLI, along with the [environment type distinction](/glossary#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
+You can use the CLI, along with the [environment type distinction](/glossary.md#environment-type) to identify a production environment (assuming there is only one) and redeploy it in a single line.
 
 To do so, run the following command:
 
@@ -118,26 +118,84 @@ If you are using SSH, see how to [troubleshoot SSH access](../development/ssh/tr
 
 ## HTTP responses 502 Bad Gateway or 503 Service Unavailable
 
-If you see these errors when accessing your application,
-it indicates your application is crashing or unavailable.
+{{< note theme="tip" title="502 errors" version="1" >}}
 
-Typical causes and potential solutions include:
+For troubleshooting tips specifically for 502 errors, please head to the [502 errors resolution guide](/development/502-errors).
 
-- Your app is listening at the wrong place.
-  - Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
-  - If your app listening at a port, make sure it's using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables).
-- Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
-  or requests can't be forwarded to it correctly.
-  - Check your `web.commands.start` entry or your `passthru` configuration.
-- The amount of traffic coming to your site exceeds the processing power of your application.
-  - You may want to [check if bots are overwhelming your site](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
-- Certain code paths in your application are too slow and timing out.
-  - Check your code is running smoothly.
-  - Consider using the [observability solution](../increase-observability/application-metrics/_index.md) included in your project to get a better view of your application.
-- A PHP process is crashing because of a segmentation fault.
-  - See [how to deal with crashed processes](../languages/php/troubleshoot.md#troubleshoot-a-crashed-php-process).
-- A PHP process is killed by the kernel out-of-memory killer.
-  - See [how to deal with killed processes](../languages/php/troubleshoot.md#troubleshoot-a-killed-php-process).
+{{< /note >}}
+
+If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error while accessing your application, it typically indicates that your application is either crashing or unavailable. 
+
+Below are the typical causes and potential solutions:
+
+#### 1. Your app is listening at the wrong place
+- **Solution**: Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
+- If your app is listening at a specific port, verify that it’s using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables) and ensure that it is listening at the correct port. 
+
+#### 2. Configuration issues in `.upsun/config.yaml`
+- **Solution**: Review your `.upsun/config.yaml` configuration.
+- Look for any errors that might prevent a process from starting or cause issues with requests being forwarded properly.
+- Check the `web.commands.start` entry or your `passthru` configuration for any misconfigurations.
+- Check your logs to get a clearer picture of what is going on with your application.
+
+#### 3. Excessive traffic to your application
+- **Solution**: Check if the amount of traffic coming to your site exceeds your application's processing power.
+- Consider whether [bots or automated traffic might be overwhelming your site](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
+
+#### 4. Slow code paths causing timeouts
+- **Solution**: Check your application's code to ensure it is running efficiently.
+- Use [observability tools](/increase-observability/application-metrics/_index.md) provided in your project for better insight into performance issues and potential bottlenecks.
+
+#### 5. PHP process crashing due to segmentation fault
+If your PHP process crashes due to a segmentation fault, you may encounter a message like the warning error detailed below. This indicates that either a PHP extension is causing the segmentation fault or there’s an issue in your PHP app code. 
+
+```text {location="/var/log/app.log"}
+WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
+```
+- **Solution**: Review recent changes made to your app to identify potential causes.
+- Consider using a debugging tool such as [Xdebug](/languages/php/xdebug.md) to help with quicker troubleshooting and identify the root cause of the crash.
+
+#### 6. PHP process killed by kernel out-of-memory killer
+If your PHP process is killed by the kernel, you may encounter a message like the warning error detailed below. This indicates that the memory usage of your container exceeded the allocated limit, causing the kernel to kill the offending process.
+
+```text {location="/var/log/app.log"}
+WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
+```
+- **Solution**: Check if the memory usage of your app is as expected and try to optimize it.
+- Use [sizing hints](/languages/php/fpm.md) to reduce the number of PHP workers, which will help lower the memory footprint.
+- Add [additional resources](/manage-resources.md) using the `upsun resources:set` command to allocate more memory.
+
+{{< note >}}
+
+For more troubleshooting tips specifically for PHP, please head to the [PHP troubleshoot page](/languages/php/troubleshoot.md).
+
+{{< /note >}}
+
+#### 7. Project created but not pushed 
+- **Solution**: If a project is created but hasn’t been pushed, it can result in a 502 error. 
+- Ensure that the project is properly pushed to the environment.
+
+#### 8. Domain added to edge hostname but not the project
+If you add a domain and point it to an edge hostname but haven’t added the domain to the project, it may cause a 502 error. Note that DNS services may catch this issue and provide their own 502 page.
+
+**Solution**: If you have added a domain, ensure that you have added the domain to the project and also make sure that it is pointing to the correct edge hostname.
+
+#### 9. Mistyped edge hostname 
+If there’s a typo in the edge hostname or if you attempt to request a site while it’s still coming up, you may encounter a 502 error like the one detailed in the example below. It will specify that there is no route known for the url you have provided.
+
+  - Example:
+    ```bash
+    url=https://pr-662-mendzpy-4wqljznn6rjno.ca-1.platformsh.site/
+    response=$(curl -s -o /dev/null -I -X GET -w "%{http_code}" ${ALLOW_INSECURE:+--insecure} "${url//http:/https:}")
+    Error: Response from environment was something other than 200. Response returned was 502
+    ```
+
+- **Solution**: Review your edge hostname to ensure that it has been typed correctly. Also, ensure that your site has fully loaded up before requesting it. 
+
+#### 10. `command.start` is failing 
+If the `command.start` entry is failing, it can result in a 502 error.
+
+- **Solution**: Comment out the `command:` and `start` lines in your `config.yaml`, then deploy. After deployment, SSH into the environment and copy-paste the command into the terminal to retrieve logs for further debugging.
 
 ## Site outage
 
@@ -229,7 +287,7 @@ Make sure that the paths for files like media files, dependencies, and databases
 If large files are already in the repository, the open-source tool [bfg-repo-cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
 can help in cleaning up the repository by purging older commits, removing unnecessary files, and more.
 
-If none of these suggestions work, open a [support ticket](/learn/overview/get-support).
+If none of these suggestions work, open a [support ticket](/learn/overview/get-support.md).
 
 ## Stuck build or deployment
 
