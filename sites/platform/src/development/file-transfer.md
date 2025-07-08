@@ -206,4 +206,4 @@ To do so, run the following command:
 sftp> put diagram.png web/uploads
 ```
 
-For other options, see the [`sftp` documentation](https://man7.org/linux/man-pages/man1/sftp.1.html). 
+For other options, see the [`sftp` documentation](https://man7.org/linux/man-pages/man1/sftp.1.html).

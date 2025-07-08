@@ -40,7 +40,7 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | --- | --- | --- |
 | **Availability** | All support tiers | Just with [Enterprise or Elite](https://platform.sh/pricing/) |
 | **Uptime SLA** | 99.9% with [Enterprise or Elite](https://platform.sh/pricing/)| 99.99% with [Enterprise or Elite](https://platform.sh/pricing/) |
-| **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| 3 node clusters|
+| **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
 | **Functioning** | A single container is deployed per runtime and per service| At least 3 nodes are running all applications and services are replicated across all of them |
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
 | **Usable regions** | Any public region can be used to deploy | Any public region of supported IaaS providers can be used to deploy |
