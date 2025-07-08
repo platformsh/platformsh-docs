@@ -227,7 +227,7 @@ An example of this object is below:
 ```json
 {
   "attributes": {},
-  "created_at": "2024-03-15T19:50:09.514267+00:00",
+  "created_at": "{{ now.Year }}-03-15T19:50:09.514267+00:00",
   "default_domain": null,
   "description": "",
   "id": "azertyuiopqsdfghjklm",
@@ -254,7 +254,7 @@ An example of this object is below:
   },
   "timezone": "Europe/Dublin",
   "title": "Activity script examples",
-  "updated_at": "2024-04-21T17:15:35.526498+00:00"
+  "updated_at": "{{ now.Year }}-04-21T17:15:35.526498+00:00"
 }
 ```
 
