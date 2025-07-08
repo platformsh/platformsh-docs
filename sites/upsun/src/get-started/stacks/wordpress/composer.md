@@ -208,7 +208,7 @@ Such tasks include:
 
 To launch these tasks during the deploy hook,
 locate the `deploy:` section (below the `build:` section).</br>
-Update the `deploy:` and `post_deploy` sections as follows:
+Update the `deploy:` and `post_deploy:` sections as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -226,6 +226,7 @@ applications:
         wp core update-db
       post_deploy: |
         set -eu
+
         # Runs all due cron events
         wp cron event run --due-now
 ```
@@ -259,7 +260,26 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 7. Update the `.environment` file
+## 7. Add your crons
+
+Under your application configuration you can now add a cron.
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    crons:
+      wp-cron:
+        spec: '*/10 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+
+## 8. Update the `.environment` file
 
 We need to add a few environment variables that will be used inside the `wp-config.php` file we added previously.
 Open the `.environment` file. Just after the other database-related variables, add a blank line or two and add the
