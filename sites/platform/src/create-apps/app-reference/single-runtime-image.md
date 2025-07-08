@@ -43,7 +43,7 @@ To override any part of a property, you have to provide the entire property.
 | `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
 | `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
 | `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
-| `runtime`          | A [runtime dictionary](#runtime)                                         |          | No               | Customizations to your PHP or Lisp runtime.                                                                                                                                                                                                                                |
+| `runtime`          | A [runtime dictionary](#runtime)                                         |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                                |
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
 | `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
 
@@ -167,7 +167,6 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | InfluxDB              | HIGH_MEMORY |
 | Java                  | HIGH_MEMORY |
 | Kafka                 | HIGH_MEMORY |
-| Lisp                  | HIGH_CPU    |
 | MariaDB               | HIGH_MEMORY |
 | Memcached             | BALANCED    |
 | MongoDB               | HIGH_MEMORY |
@@ -545,21 +544,28 @@ These allowances are not compatible, and will result in an error if pushed.
 Use the `web` key to configure the web server running in front of your app.
 Defaults may vary with a different [image `type`](#types).
 
-| Name        | Type                                         | Required                      | Description |
-| ----------- | -------------------------------------------- | ----------------------------- | ----------- |
-| `commands`  | A [web commands dictionary](#web-commands)   | See [note](#required-command) | The command to launch your app. |
-| `upstream`  | An [upstream dictionary](#upstream)          |                               | How the front server connects to your app. |
-| `locations` | A [locations dictionary](#locations)         |                               | How the app container responds to incoming requests. |
+| Name        | Type                                       | Required                      | Description                                          |
+|-------------|--------------------------------------------|-------------------------------|------------------------------------------------------|
+| `commands`  | A [web commands dictionary](#web-commands) | See [note](#required-command) | The command to launch your app.                      |
+| `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
+| `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 
 See some [examples of how to configure what's served](/create-apps/web/_index.md).
 
 ### Web commands
 
 
-| Name    | Type     | Required                      | Description |
-| ------- | -------- | ----------------------------- | ----------- |
-| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
+| Name         | Type     | Required                      | Description                                                                                         |
+|--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
+| `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
+| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+
+{{< note theme="info" >}}
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< /note >}}
+
 
 Example:
 
@@ -1209,7 +1215,7 @@ Run the following command:
 
 ## Runtime
 
-The following table presents the various possible modifications to your PHP or Lisp runtime:
+The following table presents the various possible modifications to your PHP runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                             |
 |-----------------------------|------------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
@@ -1218,7 +1224,6 @@ The following table presents the various possible modifications to your PHP or L
 | `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
 | `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
-| `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](/languages/lisp.md#quicklisp-options) to use.                             |
 
 You can also set your [app's runtime timezone](/create-apps/timezone.md).
 

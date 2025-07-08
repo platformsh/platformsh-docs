@@ -18,7 +18,7 @@ Each instance hosts the entire application stack, allowing this architecture sup
 
 The build process for your application is identical for both the Grid Environment and the Dedicated Gen 2 cluster. However, because the hosts are provisioned by Platform.sh, not as a container, service configuration must be done by Platform.sh’s Customer Success team.
 
-For more information, learn about [default storage settings](#storage) and how your app can [connect to services](dedicated-environments/dedicated-gen-3/overview.md#available-services).
+For more information, learn about [default storage settings](#storage) and how your app can connect to services.
 
 ### Split architecture
 

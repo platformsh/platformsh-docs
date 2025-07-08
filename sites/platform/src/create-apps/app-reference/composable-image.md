@@ -40,14 +40,15 @@ To override any part of a property, you have to provide the entire property.
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
 |--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
 | `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                      |
 | `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
 | `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
-| `disk`             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                     |
+| `disk`             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space).                                                                     |
 | `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
 | `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
 | `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
-| `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md) |
+| `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md). |
 | `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
 | `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
 | `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
@@ -58,10 +59,11 @@ To override any part of a property, you have to provide the entire property.
 | `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
 
 {{% note %}}
-The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
+
 
 ## Stack
 
@@ -103,6 +105,23 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
+### Supported Nix channels
+
+- `24.05`
+- `25.05`
+
+### Configure Nix channels
+
+The Nix channel can be configured with the [top-level property `type`](#top-level-properties). 
+
+For example, to use the Nix channel `25.05`, you would use the following syntax:
+
+```yaml {configFile="apps"}
+
+type: "composable:25.05"
+
+```
+
 ### Supported Nix packages
 
 {{% note %}}
@@ -120,7 +139,6 @@ Security and other patches are applied automatically.
 | **Language**                                 | **Nix package** | **Supported version(s)**             |
 |----------------------------------------------|---------------|----------------------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
 | [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
 | [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
 | [Java](/languages/java.html)                 | `java`        | 21                                     |
@@ -297,7 +315,7 @@ By default, {{% vendor/name %}} allocates a container profile to each app and se
   Ideally you want to give databases the biggest part of your memory, and apps the biggest part of your CPU.
 
 The container profile and the [size of the container](#sizes) determine
-how much CPU and memory (in [MB] (/glossary.md#mb)) the container gets.
+how much CPU and memory (in [MB](/glossary/_index.md#mb)) the container gets.
 
 There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``HIGH_MEMORY``.
 
@@ -737,10 +755,17 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 
 ### Web commands
 
-| Name        | Type     | Required                      | Description                                                                                         |
-|-------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
-| `pre_start` | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start`     | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| Name         | Type     | Required                      | Description                                                                                          |
+|--------------|----------|-------------------------------|------------------------------------------------------------------------------------------------------|
+| `pre_start`  | `string` |                               | Command runs just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
+| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                        |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+
+{{< note theme="info" >}}
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< /note >}}
+
 
 Example:
 
