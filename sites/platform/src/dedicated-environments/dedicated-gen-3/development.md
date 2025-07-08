@@ -75,10 +75,10 @@ Each cluster comes with 50GB of storage per environment by default. This storage
 
 |Type            |Basic                |Advanced         |Premium    |
 |----------------|---------------------|-----------------|-----------|
-| 6-hourly       | -                   | -               |1 day      |                
-| Daily          | 2 days              | 1 week          |1 month    |
-| Weekly         | -                   | 4 weeks         |-          |
-| Monthly        | -                   | 1 year          |1 year     | 
+| 6-hourly       | -                   | -               | 1 day      |                
+| Daily          | 2 days              | 1 week          | 1 month    |
+| Weekly         | -                   | 4 weeks         | -          |
+| Monthly        | -                   | 1 year          | 1 year     | 
 
 ## Restores
 
