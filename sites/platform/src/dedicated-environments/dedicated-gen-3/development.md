@@ -3,7 +3,9 @@ title: "Dedicated Gen 3 Development"
 weight: 1
 sidebarTitle: "DG3 development"
 layout: single
-headless: true
+build:
+  list: never
+  render: always
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported, storage limits, backups, restores and supported languages and frameworks."
 ---
 
