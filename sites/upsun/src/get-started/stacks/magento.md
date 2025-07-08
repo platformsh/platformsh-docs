@@ -150,7 +150,7 @@ Below is a **shortened example** of what your log would look like:
 
    Environment configuration
      app (type: php:{{% latest "php" %}}, cpu: 0.1, memory: 64, disk: 1024)
-     db (type: mariadb:{{% latest "mariadb %}}, cpu: 0.1, memory: 448, disk: 256)
+     db (type: mariadb:{{% latest "mariadb" %}}, cpu: 0.1, memory: 448, disk: 256)
      cache (type: redis:{{% latest "redis" %}}, cpu: 0.1, memory: 352)
      session (type: redis-persistent:{{% latest "redis-persistent" %}}, cpu: 0.1, memory: 352, disk: 256)
      indexer (type: opensearch:{{% latest "opensearch" %}}, cpu: 0.1, memory: 448, disk: 256)
