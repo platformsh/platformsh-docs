@@ -224,6 +224,7 @@ applications:
         <snip>
         dependencies:
           php:
+            composer/composer: "^2"
             wp-cli/wp-cli-bundle: "^2.4"
     ```
 
