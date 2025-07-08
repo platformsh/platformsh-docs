@@ -5,10 +5,7 @@ description: Add Redis caching to your existing Drupal site.
 weight: -70
 ---
 
-Redis is a fast open-source in-memory database and cache,
-useful for application-level caching.
-For more information on this service, see the [dedicated Redis page](/add-services/redis.md)
-or the [official Redis documentation](https://redis.io/docs/).
+Redis is a fast open-source in-memory database and cache, useful for application-level caching. For more information on this service, see the [dedicated Redis page](/add-services/redis.md) or the [official Redis documentation](https://redis.io/docs/).
 
 Follow the instructions on this page to do one of the following:
 

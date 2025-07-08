@@ -22,14 +22,12 @@ When you deploy your app, you always get the latest available patches.
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="chrome-headless" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="chrome-headless" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -74,7 +72,6 @@ To define the service, use the `chrome-headless` type:
 # The name of the service container. Must be unique within a project.
 <SERVICE_NAME>:
   type: chrome-headless:<VERSION>
-  disk: 256
 ```
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost.

@@ -1,10 +1,10 @@
 ---
 title: "Tideways"
 description: |
-  {{% vendor/name %}} supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
+  {{% vendor/name %}} supports Tideways APM for PHP. This functionality is only available on PHP 7.0 and later.
 ---
 
-{{% description %}}
+{{% vendor/name %}} supports [Tideways APM](https://tideways.com/) for PHP. This functionality is only available on PHP 7.0 and later.
 
 {{< note >}}
 The Tideways upstream is available as a plugin on {{% vendor/name %}}:

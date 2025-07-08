@@ -54,7 +54,7 @@ vendor:
 
 # Images (kept in static/)
 logo: "images/logo.svg"
-logolinksto: "https://upsun.com"
+logolinksto: "/"
 logoAlt: "Upsun"
 favicon: "images/favicon.ico"
 
@@ -130,7 +130,6 @@ meta:
     - Wordpress
     - Symfony
     - Maven
-    - Lisp
     - Hibernate
     - Jakarta
     - Spring

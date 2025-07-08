@@ -4,8 +4,8 @@ weight: 20
 sidebarTitle: "Redis"
 ---
 
-[Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory
-for high-performance data retrieval and key-value storage.
+[Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory for high-performance data retrieval and key-value storage.
+
 {{% vendor/name %}} supports two different Redis configurations:
 
 - [Persistent](#persistent-redis): to set up fast persistent storage for your application
@@ -33,14 +33,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="redis" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -57,14 +55,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="redis" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -540,7 +536,11 @@ const value = await client.get('x');     // returns 42
 
 ## Restrict access to database replicas only
 
-{{< partial "banners/replicas/body.md" >}}
+{{% note theme="info" title="Feature availability" %}}
+
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+
+{{% /note %}}
 
 For security reasons, you can grant your app access to replicas instead of your actual database.
 To do so, when defining the relationship between your app and database,

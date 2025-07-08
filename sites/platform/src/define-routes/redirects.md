@@ -8,6 +8,12 @@ description: |
 
 You can manage redirection rules on your {{% vendor/name %}} projects in two different ways, which we describe here. If neither of these options satisfy your redirection needs, you can still implement redirects directly from within your application, which if implemented with the appropriate caching headers would be almost as efficient as using the configuration options provided by {{% vendor/name %}}.
 
+{{% note theme="info" title="Route limits" %}}
+
+Please note that the maximum size of the routes document is 128 KB, which should fit around 300 different routes. [Read more about route limits here.](/define-routes.html#route-limits) 
+
+{{% /note %}}
+
 ## Whole-route redirects
 
 Using whole-route redirects, you can define very basic routes in your [`{{< vendor/configfile "routes" >}}`](/define-routes/_index.md) file whose sole purpose is to redirect. A typical use case for this type of route is adding or removing a `www.` prefix to your domain, as the following example shows:

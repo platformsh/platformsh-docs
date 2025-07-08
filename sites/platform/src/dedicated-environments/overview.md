@@ -8,11 +8,11 @@ description:  "Our Dedicated Environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Platform.sh, you can choose to deploy it using one of three types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)), [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2) or [Dedicated Generation 3](/dedicated-environments/dedicated-gen-3/_index.md) (DG3). 
+When you create a project on Platform.sh, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
 
 ## What is Dedicated?
 
-DG2 and DG3 are classified as Dedicated Environments (Dedicated). This is because your production environment is replicated across at least three virtual servers that are dedicated solely to your project.
+DG2 is classified as a Dedicated Environment (Dedicated). This is because your production environment is replicated across at least three virtual servers that are dedicated solely to your project.
 
 In the diagram below, we can see that the Dedicated architecture provides three virtual servers that act as isolated hosts for a site in a failover configuration. Within each server, all the data of your site is synced.
 
@@ -46,10 +46,10 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | **Usable regions** | Any public region can be used to deploy | Any public region of supported IaaS providers can be used to deploy |
 | **Autonomous upsize** | Yes | Managed through Platform.sh |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
-| **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 and supported natively on Dedicated Gen 3 |
+| **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 |
 | **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
-| **Sync and merge functionalities** | Yes on all branches | Only on development environments on Dedicated Gen 2 and on all branches on Dedicated Gen3|
-| **Environment clone** | Yes on all branches | Only on development environments on Dedicated Gen 2 and on all branches on Dedicated Gen3|
+| **Sync and merge functionalities** | Yes on all branches | Only on development environments on Dedicated Gen 2 |
+| **Environment clone** | Yes on all branches | Only on development environments on Dedicated Gen 2 |
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
 | **MongoDB** | Standalone service container | Yes |
@@ -62,8 +62,8 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | **Mounts management** | Self-service | Self-service |
 | **Workers management** | Self-service | Managed by Platform.sh |
 | **Storage increase** | Self-service | Managed by Platform.sh |
-| **Storage allocation between mounts, DB and services** | Self-service | Managed by Platform.sh on Dedicated Gen 2, Self-service on Dedicated Gen 3|
+| **Storage allocation between mounts, DB and services** | Self-service | Managed by Platform.sh on Dedicated Gen 2 |
 
 
 
-For more information about our Dedicated offerings, explore our [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) and [Dedicated Gen 3](/dedicated-environments/dedicated-gen-3/_index.md) pages.
+For more information about our Dedicated offering, explore our [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/_index.md) page.

@@ -131,7 +131,7 @@ crons:
       start: "php bin/magento cron:run"
 
 ###
-# Customizations to your PHP or Lisp runtime. More information: https://docs.platform.sh/create-apps/app-reference.html#runtime
+# Customizations to your PHP runtime. More information: https://docs.platform.sh/create-apps/app-reference.html#runtime
 # Specify additional PHP extensions that should be loaded.
 # To determine what you need to enable
 #   1. run locally: composer check-platform-reqs | grep "ext-\|php"
