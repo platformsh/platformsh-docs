@@ -2,7 +2,9 @@
 title: "Monitor metrics"
 sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
 description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
-headless: true 
+build:
+  list: never
+  render: always 
 ---
 
 These environments consist of various containers running across dedicated hosts:
