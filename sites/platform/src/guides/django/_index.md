@@ -3,10 +3,10 @@ title: "Django"
 weight: -200
 sectionBefore: Python
 description: |
-  Everything you need to get started with [Django](https://www.djangoproject.com/), a Python framework for web development, on {{% vendor/name %}}.
+  Everything you need to get started with Django, a Python framework for web development, on {{% vendor/name %}}.
 ---
 
-{{% description %}}
+Everything you need to get started with [Django](https://www.djangoproject.com/), a Python framework for web development, on {{% vendor/name %}}.
 
 Anything included in these guides applies to not only to Django, but also [Wagtail](https://wagtail.org/), the content management system built with Django.
 

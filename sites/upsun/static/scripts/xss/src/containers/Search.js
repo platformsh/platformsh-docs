@@ -44,6 +44,15 @@ const Search = ({ fullPage }) => {
   const getInfo = (infoConfig, infoQuery) => {
     axios.get(`${infoConfig.url}indexes/${infoConfig.index}/search?attributesToCrop=text&cropLength=200&attributesToHighlight=text,keywords&q=${infoQuery}&limit=${limit}&attributesToRetrieve=title,keywords,text,url,site,section`, { params: {}, headers: { Authorization: `Bearer ${infoConfig.public_api_key}` } })
       .then(({ data }) => {
+        if (window?.pendo) {
+          window.pendo?.track('docs_searched', {
+            search: infoQuery,
+            limit,
+            result_count: data.hits.length,
+            result_titles: data.hits.map((hit) => hit?.title),
+            result_urls: data.hits.map((hit) => hit?.url)
+          })
+        }
         setHits({
           docs: data.hits.filter((hit) => hit.site === 'docs'),
           templates: data.hits.filter((hit) => hit.site === 'templates'),
@@ -130,6 +139,7 @@ const Search = ({ fullPage }) => {
         <div className="flex items-center">
           <input
             id={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}
+            data-engagement-id="search"
             value={query}
             placeholder="Can we help you find something?"
             onChange={handleInputChange}

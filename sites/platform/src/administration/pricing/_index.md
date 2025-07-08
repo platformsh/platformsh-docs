@@ -130,12 +130,10 @@ you are charged the overage rate for additional bandwidth consumption.
 
 If you experience repeated overages, please reach out to your Customer Success Manager to review your existing contract.
 
-Plans with a Fastly CDN service or the extra Fastly Service include the following:
+Plans with a Fastly CDN service include the following:
 
-- 1&nbsp;TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
+- 1 TB of egress (outgoing) bandwidth on the CDN (Fastly) per month
 - 50 million ingress (incoming) requests on the CDN per month
-
-*Plans without the Fastly Service are instead charged at the following origin prices.*
 
 ### Overage prices
 
@@ -192,9 +190,11 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-In instances where a payment has failed, {{% vendor/name %}} will make three separate attempts to take the outstanding balance from your account.
+If your initial payment fails, Platform.sh will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
 
-These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected.
+If you are a new customer and your initial payment fails, your projects will be deleted on the 13th of the month - two days after the final payment attempt.  
+
+For all other customers, you will receive a notification 10 days before your projects are scheduled for deletion. A final payment attempt will be made at that time. If unsuccessful, all projects on the billing subscription will be deleted.
 
 <div align="center">
 

@@ -193,7 +193,7 @@ jobs:
           touch pr_comment.txt
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v41
+        uses: tj-actions/changed-files@v46
         with:
           sha: ${{ env.HEADSHA }}
           base_sha: ${{ env.BASESHA }}
@@ -292,16 +292,13 @@ jobs:
     if: needs.get_info_on_pr.outputs.continuetests == 'true'
     steps:
       - uses: actions/checkout@v4
-        with:
-          # we need to checkout the PR repo/branch even if it's a fork because the action in the next step needs to
-          # retrieve the contracted redirections from .platform/routes.yaml. This may change in the future if we
-          # switch to using a redirection service. Actions DO NOT have access to secrets.
-          fetch-depth: 0
-          ref: ${{ env.HEADSHA }}
       - id: redirection-tests
         uses: ./.github/actions/redirection-verification
         with:
-          environment-url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
+          environment_url: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
+          base_environment_url: ${{ needs.get_pr_url.outputs.pr_url }}
+          redirection_project_id: ${{ secrets.REDIRECTIONIO_PROJECT_ID }}
+          redirection_token: ${{ secrets.REDIRECTIONIO_API_KEY }}
 
   report_redirection_test:
     name: "Report redirection test results"

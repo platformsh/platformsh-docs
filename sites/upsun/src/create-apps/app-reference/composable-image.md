@@ -58,27 +58,32 @@ above).
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
-|--------------------|-----------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                                          |
-| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
-| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
-| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
-| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
-| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md) |
-| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                             |
-| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
-| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
-| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
-| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
-| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
+|----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
+| `stack`              | An array of [Nix packages](#stack)                                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                            |
+| `container_profile`  | A [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles) |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
+| `relationships`      | A dictionary of [relationships](#relationships)                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
+| `mounts`             | A dictionary of [mounts](#mounts)                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
+| `web`                | A [web instance](#web)                                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
+| `workers`            | A [worker instance](#workers)                                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
+| `timezone`           | `string`                                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md). |
+| `access`             | An [access dictionary](#access)                                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                             |
+| `variables`          | A [variables dictionary](#variables)                                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
+| `firewall`           | A [firewall dictionary](#firewall)                                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
+| `hooks`              | A [hooks dictionary](#hooks)                                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
+| `crons`              | A [cron dictionary](#crons)                                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
+| `source`             | A [source dictionary](#source)                                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
+| `additional_hosts`   | An [additional hosts dictionary](#additional-hosts)                                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| `operations`         | A [dictionary of Runtime operations](/create-apps/runtime-operations.md)                 |          | No               | Runtime operations for the application.                                                                                                                                                                                                                          |
+
 
 {{% note %}}
-The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
+
 
 ## Stack
 
@@ -120,6 +125,23 @@ and visit the documentation page dedicated to your runtime.
 {{% note %}}
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
+
+### Supported Nix channels
+
+- `24.05`
+- `25.05`
+
+### Configure Nix channels
+
+The Nix channel can be configured with the [top-level property `type`](#primary-application-properties). 
+
+For example, to use the Nix channel `25.05`, you would use the following syntax:
+
+```yaml {configFile="apps"}
+
+type: "composable:25.05"
+
+```
 
 ### Supported Nix packages
 
@@ -803,10 +825,17 @@ See some [examples of how to configure what's served](../web/_index.md).
 
 ### Web commands
 
-| Name        | Type     | Required                      | Description                                                                                         |
-|-------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
-| `pre_start` | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start`     | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| Name         | Type     | Required                      | Description                                                                                         |
+|--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
+| `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
+| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+
+{{< note theme="info" >}}
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< /note >}}
+
 
 Example:
 
@@ -905,8 +934,8 @@ The key of each item is a regular expression to match paths exactly.
 If an incoming request matches the rule, it's handled by the properties under the rule,
 overriding any conflicting rules from the rest of the `locations` dictionary.
 
-Under `rules`, you can set all of the other possible [`locations` properties](#locations)
-except `root`, `index` and `request_buffering`.
+Under `rules`, you can set all the other possible [`locations` properties](#locations)
+except `root`, `index`, `rules` and `request_buffering`.
 
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.

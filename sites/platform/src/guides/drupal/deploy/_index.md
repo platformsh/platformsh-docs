@@ -11,7 +11,7 @@ Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal on
 
 This guide assumes you are using the well-supported Composer flavor of Drupal.
 
-{{% guides/starting-point name="Drupal" templateRepo="drupal10" composerLink="https://github.com/drupal/recommended-project/" initExample=true %}}
+{{% guides/starting-point name="Drupal" templateRepo="drupal11" composerLink="https://github.com/drupal/recommended-project/" initExample=true %}}
 
 {{% guides/requirements %}}
 
