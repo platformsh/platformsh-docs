@@ -67,7 +67,7 @@ Once your repository is organized, you can use a configuration similar to the fo
 ```yaml {configFile="apps"}
 applications:
   api:
-    type: {{% latest "php" %}}
+    type: 'php:{{% latest "php" %}}'
 
     relationships:
       database:
