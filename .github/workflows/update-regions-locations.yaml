@@ -27,7 +27,7 @@ jobs:
       - name: Download latest regions_location.json
         run: |
           # TODO: Replace the following line with your actual curl command
-          platform api:curl regions | jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"timezone": .timezone} ] | sort_by(.name)' > ./shared/data/regions_location.json
+          platform api:curl regions | jq '[ .regions[] | select(.available and .private == false) |  {"name": .id, "provider": .provider.name, "zone": .zone,"location": .datacenter.location,"timezone": .timezone} ] | sort_by(.name)' > ./shared/data/regions_location.json
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
