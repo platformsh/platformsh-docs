@@ -182,7 +182,7 @@ services:
 <--->
 
 +++
-title=Composable image (Beta)
+title=Composable image
 +++
 
 ```yaml {configFile="app"}
