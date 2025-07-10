@@ -403,7 +403,7 @@ If possible, it should be no more than about 160 characters.
 
 ## Use shortcodes for versions and dates
 
-When referencing service or runtime versions in documentation, always use the shortcode {{% latest "xxx" %}} instead of hardcoding version numbers. 
+When referencing service or runtime versions in documentation, always use the shortcode `{{% latest "xxx" %}}` instead of hardcoding version numbers. 
 
 This ensures content stays up to date automatically as new versions are released. Similarly, use {{ now.Year }} instead of writing fixed years to keep time references current. This reduces the need for frequent manual updates and helps maintain accuracy across our documentation.
 
