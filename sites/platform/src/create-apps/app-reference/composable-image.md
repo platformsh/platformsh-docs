@@ -5,7 +5,7 @@ description: Use {{% vendor/name %}}'s composable image to build and deploy your
 keywords:
   - sleepy crons
   - sleepy_crons
-  beta: true
+beta: true
 banner:
   title: Beta Feature
   body: The {{% vendor/name %}} composable image is currently available in Beta.
