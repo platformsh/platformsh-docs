@@ -17,6 +17,7 @@ This content style guide should help make sure the Platform.sh docs are clear an
   - [Use inclusive language](#use-inclusive-language)
     - [Resources for inclusive language](#resources-for-inclusive-language)
     - [Use meaningful link text](#use-meaningful-link-text)
+    - [Use imperative verbs](#use-verbs-imperatives-for-headings-and-section-titles)
     - [Link at the end of sentences in sentence case](#link-at-the-end-of-sentences-in-sentence-case)
     - [Minimize distractions](#minimize-distractions)
     - [Include alt text](#include-alt-text)
@@ -32,6 +33,7 @@ This content style guide should help make sure the Platform.sh docs are clear an
     - [Make commands work across shells](#make-commands-work-across-shells)
   - [Use notes appropriately](#use-notes-appropriately)
   - [Add short descriptions](#add-short-descriptions)
+  - [Use shortcodes for latest versions and dates](#use-shortcodes-for-versions-and-dates)
   - [Guidance enforcement](#guidance-enforcement)
 <!-- vale Platform.condescending = YES -->
 
@@ -398,6 +400,31 @@ something that makes sense out of the context of the rest of the page.
 
 Remember to keep it short.
 If possible, it should be no more than about 160 characters.
+
+## Use shortcodes for versions and dates
+
+When referencing service or runtime versions in documentation, always use the shortcode `{{% latest "xxx" %}}` instead of hardcoding version numbers. Replace `xxx` with the name of the service or runtime exactly as it appears in the `.json` or `.yaml` file you’re referring to.
+
+For example, if you’re editing a code snippet like this:
+
+```yaml {configFile="services"}
+mariadb:
+  type: mariadb:11.4
+  disk: 2048
+```
+You should replace the hardcoded version with the shortcode:
+
+```yaml {configFile="services"}
+mariadb:
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
+```
+
+In this case, `{{% latest "mariadb" %}}` automatically pulls in the most recent version of MariaDB (e.g. `11.4`) and will update automatically as new versions become available. The value inside the shortcode that follows `latest` (in this case, it is `"mariadb"`) must match how the service name is presented in the `.yaml` file. For instance, `{{% latest "mariadb" %}}` is correct, but `{{% latest "Maria DB" %}}` is wrong.
+
+Similarly, use `{{ now.Year }}` instead of hardcoding a specific year. This ensures the current year is always displayed and helps keep time references up to date.
+
+Using these shortcodes improves accuracy and reduces the need for manual updates across the documentation.
 
 ## Guidance enforcement
 
