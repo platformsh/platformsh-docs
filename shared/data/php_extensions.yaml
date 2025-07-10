@@ -1482,6 +1482,7 @@ grid:
       - iconv  
       - igbinary 
       - imagick 
+      - imap
       - intl  
       - ioncube  
       - ldap  
