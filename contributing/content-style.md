@@ -17,6 +17,7 @@ This content style guide should help make sure the Platform.sh docs are clear an
   - [Use inclusive language](#use-inclusive-language)
     - [Resources for inclusive language](#resources-for-inclusive-language)
     - [Use meaningful link text](#use-meaningful-link-text)
+    - [Use imperative verbs](#use-verbs-imperatives-for-headings-and-section-titles)
     - [Link at the end of sentences in sentence case](#link-at-the-end-of-sentences-in-sentence-case)
     - [Minimize distractions](#minimize-distractions)
     - [Include alt text](#include-alt-text)
@@ -32,6 +33,7 @@ This content style guide should help make sure the Platform.sh docs are clear an
     - [Make commands work across shells](#make-commands-work-across-shells)
   - [Use notes appropriately](#use-notes-appropriately)
   - [Add short descriptions](#add-short-descriptions)
+  - [Use shortcodes for latest versions and dates](#use-shortcodes-for-versions-and-dates)
   - [Guidance enforcement](#guidance-enforcement)
 <!-- vale Platform.condescending = YES -->
 
@@ -398,6 +400,12 @@ something that makes sense out of the context of the rest of the page.
 
 Remember to keep it short.
 If possible, it should be no more than about 160 characters.
+
+## Use shortcodes for versions and dates
+
+When referencing service or runtime versions in documentation, always use the shortcode {{% latest "xxx" %}} instead of hardcoding version numbers. 
+
+This ensures content stays up to date automatically as new versions are released. Similarly, use {{ now.Year }} instead of writing fixed years to keep time references current. This reduces the need for frequent manual updates and helps maintain accuracy across our documentation.
 
 ## Guidance enforcement
 
