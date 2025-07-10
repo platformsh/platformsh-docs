@@ -2,6 +2,11 @@
 title: "Composable image"
 weight: 5
 description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
+beta: true
+banner:
+  title: Beta Feature
+  body: The {{% vendor/name %}} composable image is currently available in Beta.
+        This feature as well as its documentation is subject to change.
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
