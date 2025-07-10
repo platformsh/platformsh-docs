@@ -2,7 +2,7 @@
 title: "Dedicated Gen 3 Overview"
 weight: -10
 build:
-  list: never
+  list: local
   render: always
 sidebarTitle: "DG3 overview"
 description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
