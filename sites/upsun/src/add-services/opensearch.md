@@ -412,33 +412,34 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 1   | 2 |
-|-------------------------|-------------------------------------------------------------------------------------------|-----|---|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | * |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   | * |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   | * |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | * |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | * |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | * |
-| `analysis-ukrainian`    | Ukrainian language support                                                                | *   | * |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   | * |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | * |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | * |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | * |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | * |
-| `transport-nio`         | Support for NIO transport                                                                 | *   | * |
+| Plugin                  | Description                                                                               | 1   | 2 | 3   |
+|-------------------------|-------------------------------------------------------------------------------------------|-----|----|-----|
+| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *  | *   |
+| `analysis-kuromoji`     | Japanese language support                                                                 | *   | *  | *   |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   | *  | *   |
+| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | *  | *   |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | *  | *   |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | *  | *   |
+| `analysis-ukrainian`    | Ukrainian language support                                                                | *   | *  | *   |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   | *  | *   |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | *  | *   |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *  | *   |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *  | *   |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | *  | *   |
 
 
 ### Alternative plugins
 
-**These plugins are currently available for `OpenSearch 2.0` only.** The names below show exactly how they should be added to your configuration. For example, to use the `alerting` plugin, specify it in your `services.yaml` as so:
+These plugins are currently available for `OpenSearch 2.0` and `3.0`. The names below show exactly how they should be added to your configuration. For example, to use the `alerting` plugin, specify it in your `services.yaml` as so:
 
 ```yaml {configFile="services"}
-services:
-  opensearch:
-    configuration:
-      plugins:
-        - alerting
+# The name of the service container. Must be unique within a project.
+opensearch:
+  type: "opensearch:{{% latest "opensearch" %}}"
+  disk: 1024
+  configuration:
+    plugins:
+      - alerting
 ```
 
 {{< note title="Different names used" theme="warning" >}}
@@ -448,26 +449,27 @@ It should be noted that **these names may differ to what they are commonly known
 {{< /note >}}
 
 
-| Plugin                                                                                                    | Description                                                                                             | 1     | 2 |
------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------|---|
-| [`alerting`](https://github.com/opensearch-project)                                                       | Monitor data and send alert notifications automatically                                                 | N/A   | * |
-| [`opensearch-anomaly-detection`](https://github.com/opensearch-project/anomaly-detection)                 | Detect anomalies as you log and monitor data in near real time                                          | N/A   | * |
-| [`asynchronous-search`](https://github.com/opensearch-project/asynchronous-search)                        | Run search queries in the background and retrieve results as they become available                      | N/A   | * |
-| [`opensearch-cross-cluster-replication`](https://github.com/opensearch-project/cross-cluster-replication) | Replicate data across two OpenSearch clusters                                                           | N/A   | * |
-| [`opensearch-custom-codecs`](https://github.com/opensearch-project/custom-codecs)                         | Provide custom Lucene codecs for loading through Apache Lucene's `NamedSPILoader`                       | N/A   | * |
-| [`opensearch-flow-framework`](https://github.com/opensearch-project/flow-framework)                       | Innovate AI applications on OpenSearch                                                                  | N/A   | * |
-| [`notifications`](https://github.com/opensearch-project/notifications)                                    | A central location for all of your notifications from OpenSearch plugins                                | N/A   | * |
-| [`opensearch-reports-scheduler`](https://github.com/opensearch-project/reporting)                         | Export and share reports from OpenSearch Dashboards dashboards, saved search, alerts and visualizations | N/A   | * |
-| [`geospatial`](https://github.com/opensearch-project/geospatial)                                          | An OpenSearch plugin that contains geospatial specific features                                         | N/A   | * |
-| [`opensearch-index-management`](https://github.com/opensearch-project/index-management)                   | A suite of features to monitor and manage indexes                                                       | N/A   | * |
-| [`opensearch-job-scheduler`](https://github.com/opensearch-project/job-scheduler)                         | Schedule periodical jobs running within OpenSearch nodes                                                | N/A   | * |
-| [`opensearch-knn`](https://github.com/opensearch-project/k-NN)                                            | Run the nearest neighbor search on billions of documents                                                | N/A   | * |
-| [`opensearch-ml-plugin`](https://github.com/opensearch-project/ml-commons/)                               | Leverage existing Open source machine learning algorithms                                               | N/A   | * |
-| [`opensearch-skills`](https://github.com/opensearch-project/skills)                                       | Provides tools for ml-common's agent framework `OpenSearch ml-commons`                                  | N/A   | * |
-| [`neural-search`](https://github.com/opensearch-project/neural-search)                                    | Index documents and conduct a neural search on indexed documents                                        | N/A   | * |
-| [`opensearch-observability`](https://github.com/opensearch-project/observability)                         | Collection of plugins and applications to visualize data-driven events                                  | N/A   | * |
-| [`performance-analyzer`](https://github.com/opensearch-project/performance-analyzer)                      | A REST API to query numerous performance metrics                                                        | N/A   | * |
-| [`opensearch-sql-plugin`](https://github.com/opensearch-project/sql)                                      | Extract insights out of OpenSearch using SQL or Piped Processing Language (PPL)                         | N/A   | * |
+| Plugin                                                                                                    | Description                                                                                         | 1     | 2   | 3   |
+|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-------|-----|-----|
+| [`alerting`](https://github.com/opensearch-project)                                                       | Monitor data and send alert notifications automatically                                             | N/A   | *   | *   |
+| [`opensearch-anomaly-detection`](https://github.com/opensearch-project/anomaly-detection)                 | Detect anomalies as your log data and monitor data in near real time                                | N/A   | *   | *   |
+| [`asynchronous-search`](https://github.com/opensearch-project/asynchronous-search)                        | Run search queries in the background and retrieve results as they become available                  | N/A   | *   | *   |
+| [`opensearch-cross-cluster-replication`](https://github.com/opensearch-project/cross-cluster-replication) | Replicate data across two OpenSearch clusters                                                       | N/A   | *   | *   |
+| [`opensearch-custom-codecs`](https://github.com/opensearch-project/custom-codecs)                         | Provide custom Lucene codecs for loading through Apache Lucene's `NamedSPILoader`                  | N/A   | *   | *   |
+| [`opensearch-flow-framework`](https://github.com/opensearch-project/flow-framework)                       | Innovate AI applications on OpenSearch                                                              | N/A   | *   | *   |
+| [`notifications`](https://github.com/opensearch-project/notifications)                                    | A central location for all of your notifications from OpenSearch plugins                            | N/A   | *   | *   |
+| [`opensearch-reports-scheduler`](https://github.com/opensearch-project/reporting)                         | Export and share reports from OpenSearch Dashboards dashboards, saved search, alerts and visualizations | N/A   | *   | *   |
+| [`geospatial`](https://github.com/opensearch-project/geospatial)                                          | An OpenSearch plugin that contains geospatial specific features                                     | N/A   | *   | *   |
+| [`opensearch-index-management`](https://github.com/opensearch-project/index-management)                   | A suite of features to monitor and manage indexes                                                   | N/A   | *   | *   |
+| [`opensearch-job-scheduler`](https://github.com/opensearch-project/job-scheduler)                         | Schedule periodical jobs running within OpenSearch nodes                                            | N/A   | *   | *   |
+| [`opensearch-knn`](https://github.com/opensearch-project/k-NN)                                            | Easily run the nearest neighbor search on billions of documents                                     | N/A   | *   | *   |
+| [`opensearch-ml-plugin`](https://github.com/opensearch-project/ml-commons/)                               | Leverage existing open source machine learning algorithms                                           | N/A   | *   | *   |
+| [`opensearch-skills`](https://github.com/opensearch-project/skills)                                       | Provides tools for ml-common's agent framework OpenSearch ml-commons                                | N/A   | *   | *   |
+| [`neural-search`](https://github.com/opensearch-project/neural-search)                                    | Index documents and conduct a neural search on indexed documents                                    | N/A   | *   | *   |
+| [`opensearch-observability`](https://github.com/opensearch-project/observability)                         | Collection of plugins and applications that let you visualize data-driven events                    | N/A   | *   | *   |
+| [`performance-analyzer`](https://github.com/opensearch-project/performance-analyzer)                      | A REST API that allows you to query numerous performance metrics                                    | N/A   | *   | *   |
+| [`opensearch-sql-plugin`](https://github.com/opensearch-project/sql)                                      | Extract insights out of OpenSearch using the familiar SQL or Piped Processing Language (PPL) query syntax | N/A   | *   | *   |
+
 
 ### Plugin removal
 
