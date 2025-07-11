@@ -33,13 +33,6 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-{{% note theme="warning" %}}
- 
-`MariaDB 10.4` has reached end-of-life (EOL), and version `10.5` will reach EOL after July 16 2025. Additionally, `MariaDB 11.2` is already EOL. 
-
-Select an actively supported version to avoid security and stability risks. See [endoflife.date/mariadb](https://endoflife.date/mariadb) for the latest lifecycle information.
-
-{{</note >}}
 
 ### Upgrade
 
