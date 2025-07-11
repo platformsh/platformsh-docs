@@ -473,6 +473,8 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
+        "11.2",
+        "10.4",
         "10.2",
         "10.1",
         "10.0",
@@ -493,11 +495,11 @@
         "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
-        "10.5 Galera",
-        "10.4 Galera"
+        "10.5 Galera"
       ],
       "deprecated": [
         "11.2 Galera",
+        "10.4 Galera",
         "10.3 Galera",
         "10.2 Galera",
         "10.1 Galera",
