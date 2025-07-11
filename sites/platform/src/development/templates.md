@@ -29,12 +29,6 @@ View the [Java documentation](/languages/java/_index.md).
 
 {{< repolist noIntro=true lang="java" >}}
 
-## Lisp
-
-View the [Lisp documentation](/languages/lisp.md).
-
-{{< repolist noIntro=true lang="lisp" >}}
-
 ## Node.js
 
 View the [Node.js documentation](/languages/nodejs/_index.md).

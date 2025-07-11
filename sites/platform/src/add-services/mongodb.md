@@ -1,14 +1,14 @@
 ---
 title: "MongoDB (Database service)"
 weight: -40
-description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://docs.mongodb.com/manual/\">MongoDB's own documentation</a>."
+description: "MongoDB is a cross-platform, document-oriented database.<br><br>For more information on using MongoDB, see <a href=\"https://www.mongodb.com/docs/manual/\">MongoDB's own documentation</a>."
 sidebarTitle: "MongoDB"
 premium: true
 ---
 
 MongoDB is a cross-platform, document-oriented database.
 
-For more information on using MongoDB, see [MongoDB's own documentation](https://docs.mongodb.com/manual/).
+For more information on using MongoDB, see [MongoDB's own documentation](https://www.mongodb.com/docs/manual/).
 
 ## Use a framework
 
@@ -37,14 +37,12 @@ To add MongoDB Enterprise, [contact Sales](https://platform.sh/contact/).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="mongodb-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -495,7 +493,7 @@ mongodump --port 30000 -u main -p main --authenticationDatabase main --db main
 
 As with any other shell command it can be piped to another command to compress the output or redirect it to a specific file.
 
-For further references, see the [official `mongodump` documentation](https://docs.mongodb.com/database-tools/mongodump/).
+For further references, see the [official `mongodump` documentation](https://www.mongodb.com/docs/database-tools/mongodump/).
 
 ## Upgrading
 
@@ -503,7 +501,7 @@ To upgrade to 6.0 from a version earlier than 5.0, you must successively upgrade
 For example, if you are running a 4.2 image, you must upgrade first to 4.4 and then upgrade to 5.0 before you can upgrade to 6.0.
 
 For more details on upgrading and how to handle potential application backward compatibility issues,
-see the [MongoDB release notes](https://docs.mongodb.com/manual/release-notes).
+see the [MongoDB release notes](https://www.mongodb.com/docs/manual/release-notes/).
 
 {{< note theme="warning" >}}
 

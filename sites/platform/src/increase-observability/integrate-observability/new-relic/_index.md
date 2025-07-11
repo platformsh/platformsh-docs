@@ -29,5 +29,5 @@ See language-specific instructions:
 - [Node.js](/increase-observability/integrate-observability/new-relic/nodejs.md)
 - [PHP](/increase-observability/integrate-observability/new-relic/php.md)
 
-For more languages, see the [New Relic Documentation](https://docs.newrelic.com/docs/agents/).
+For more languages, see the [New Relic Documentation](https://newrelic.com/instant-observability?search=agents&category=application-monitoring).
 Install the specific agent in the [build hook](/create-apps/hooks/_index.md).

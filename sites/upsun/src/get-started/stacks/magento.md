@@ -21,14 +21,13 @@ You will not need Adobe Commerce authentication keys for this process but if you
 
 We will be using the [Upsun Magento example project](https://github.com/platformsh-templates/magentoCE24/blob/main/README.md) for this deployment process. The example specifically features:
 
-- PHP 8.3
-- MariaDB 10.6
-- Redis 7.2
-- OpenSearch 2
-- RabbitMQ 3.13
+- PHP {{% latest "php" %}}
+- MariaDB {{% latest "mariadb" %}}
+- Redis {{% latest "redis" %}}
+- OpenSearch {{% latest "opensearch" %}}
+- RabbitMQ {{% latest "rabbitmq" %}}
 - Automatic TLS certificates
 - Composer-based build
-
 
 The example also features an [Upsun config.yaml](https://github.com/platformsh-templates/magentoCE24/blob/main/.upsun/config.yaml) file. Below is a **shortened example** of the config.yaml file: 
 
@@ -36,7 +35,7 @@ The example also features an [Upsun config.yaml](https://github.com/platformsh-t
 applications:
     app:
         # The runtime the application uses.
-        type: php:8.3
+        type: php:{{% latest "php" %}}
         # Specify additional PHP extensions that should be loaded.
         runtime:
             extensions:
@@ -141,7 +140,7 @@ Below is a **shortened example** of what your log would look like:
    Setting 'queue' resources to 0.1 CPU, 448MB RAM.
    Setting 'queue' disk to 256MB.
  
- Building application 'app' (runtime type: php:8.3, tree: 392d8f3)
+ Building application 'app' (runtime type: php:{{% latest "php" %}}, tree: 392d8f3)
    Generating runtime configuration.
    
    Installing build dependencies...
@@ -149,12 +148,12 @@ Below is a **shortened example** of what your log would look like:
     ...
 
    Environment configuration
-     app (type: php:8.3, cpu: 0.1, memory: 64, disk: 1024)
-     db (type: mariadb:10.6, cpu: 0.1, memory: 448, disk: 256)
-     cache (type: redis:7.2, cpu: 0.1, memory: 352)
-     session (type: redis-persistent:7.2, cpu: 0.1, memory: 352, disk: 256)
-     indexer (type: opensearch:2, cpu: 0.1, memory: 448, disk: 256)
-     queue (type: rabbitmq:3.13, cpu: 0.1, memory: 448, disk: 256)
+     app (type: php:{{% latest "php" %}}, cpu: 0.1, memory: 64, disk: 1024)
+     db (type: mariadb:{{% latest "mariadb" %}}, cpu: 0.1, memory: 448, disk: 256)
+     cache (type: redis:{{% latest "redis" %}}, cpu: 0.1, memory: 352)
+     session (type: redis-persistent:{{% latest "redis-persistent" %}}, cpu: 0.1, memory: 352, disk: 256)
+     indexer (type: opensearch:{{% latest "opensearch" %}}, cpu: 0.1, memory: 448, disk: 256)
+     queue (type: rabbitmq:{{% latest "rabbitmq" %}}, cpu: 0.1, memory: 448, disk: 256)
  
    Environment routes
      http://main-bvxea6i-g7baduaayq63y.eu-5.platformsh.site/ redirects to https://main-bvxea6i-g7baduaayq63y.eu-5.platformsh.site/

@@ -4,7 +4,7 @@ weight: 1
 description: Understand how {{% vendor/name %}} pricing works.
 ---
 
-{{% vendor/name %}} offers flexible, usage-based [pricing](https://upsun.com/pricing/) for organizations and projects.
+{{% vendor/name %}} offers flexible, predictable [pricing](https://upsun.com/pricing/) for organizations and projects.
 
 {{< note theme="info" >}}
 
@@ -31,7 +31,18 @@ You can also [set billing alerts](/administration/billing/monitor-billing.html#m
 
 ## Dunning process
 
-In instances where a payment has failed, your organization will be immediately restricted. Upsun will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. If your payment fails after the third attempt on the 11th, your organization will be suspended the following day.
+If a payment fails, your organization will be immediately restricted. Upsun will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. If your payment fails after the third attempt on the 11th, your organization will be suspended the following day.
+
+When an organization is restricted or suspended, the following applies:
+
+- Access to `/projects/{project_id}/user-access` and `/users/{user_id}/project-access` will be denied.  
+- Access to `/projects/{project_id}/team-access` and `/teams/{user_id}/project-access` will be denied.  
+- Access to `/projects/{project_id}/access` and its subresources will be denied.  
+- Projects cannot be transferred to a restricted organization.  
+- Editing or deleting the organization is not allowed.  
+- Creating or deleting members is forbidden.  
+- Editing member permissions is allowed only to add the billing permission - no permissions can be removed.  
+- Access to all account proxy endpoints requiring `plans` or `project:create` permissions is denied, so creating or editing subscriptions at the organization level is forbidden.
 
 If you are a new Upsun customer and your first payment has failed, your projects will be deleted on the 13th - two days after the final payment attempt.
 

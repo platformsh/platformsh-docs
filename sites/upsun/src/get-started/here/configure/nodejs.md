@@ -55,7 +55,7 @@ applications:
         sharp: "*"
 #services:
 #  db:
-#    type: postgresql:15
+#    type: postgresql:{{% latest "postgresql" %}}
 routes:
   "https://{default}/":
     type: upstream
@@ -88,7 +88,7 @@ applications:
         sharp: "*"
 #services:
 #  db:
-#    type: postgresql:14
+#    type: postgresql:{{% latest "postgresql" %}}
 routes:
   "https://{default}/":
     type: upstream
@@ -131,7 +131,7 @@ applications:
         yarn build
 services:
   postgresql:
-    type: postgresql:15
+    type: postgresql:{{% latest "postgresql" %}}
 
 routes:
   "https://{default}/":

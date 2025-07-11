@@ -23,14 +23,12 @@ To update the versions in this table, use docs/data/registry.json
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="opensearch" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -52,14 +50,12 @@ or are no longer the recommended way to configure the service on {{% vendor/name
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
