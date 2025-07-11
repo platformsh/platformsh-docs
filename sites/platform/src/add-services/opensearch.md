@@ -37,7 +37,7 @@ To update the versions in this table, use docs/data/registry.json
 
 On Grid, from version 2, you only specify the major version. The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream (starting with opensearch 1.3).
 
-You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://docs.opensearch.org/lines/2x.html) and [`1.x`](https://docs.opensearch.org/lines/1x.html) release lines.
+You can see the latest versions of OpenSearch available [here](https://github.com/opensearch-project/OpenSearch/releases).
 
 ## Deprecated versions
 
