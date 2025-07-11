@@ -33,7 +33,6 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |----------------------------------|---------------|-------------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-
 ### Upgrade
 
 When upgrading your service, skipping versions may result in data loss.
