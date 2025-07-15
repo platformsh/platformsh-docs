@@ -46,7 +46,6 @@ To override any part of a property, you have to provide the entire property.
 | `runtime`          | A [runtime dictionary](#runtime)                                         |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                                |
 | `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
 | `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
-
 ## Root directory
 
 Some of the properties you can define are relative to your app's root directory.
@@ -57,7 +56,7 @@ That is, if a custom value for `source.root` is not provided in your configurati
 To specify another directory, for example for a [multi-app project](/create-apps/multi-app/_index.md),
 use the [`source.root` property](#source).
 
-## Types
+## `type` {#types}
 
 {{% note theme="info" %}}
 You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
