@@ -9,7 +9,7 @@ layout: single
 {{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
 See the [MariaDB documentation](https://mariadb.org/documentation/)
-or Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
+or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 ## Use a framework
 
@@ -62,10 +62,7 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 
 ### Deprecated versions
 
-The following versions are [deprecated](/glossary.html#deprecated-versions).
-They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
-They'll be removed in the future,
-so migrate to one of the [supported versions](#supported-versions).
+{{% deprecated-versions %}}
 
 | **`mariadb` / `mysql`** | **`oracle-mysql`** |
 |-------------------------|--------------------|
