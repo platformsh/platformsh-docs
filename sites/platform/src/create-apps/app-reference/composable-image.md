@@ -107,8 +107,7 @@ If you use PHP, note that PHP-FPM is only started automatically if PHP is define
 
 ### Supported Nix channels
 
-- `24.05`
-- `25.05`
+{{< image-versions image="composable" status="supported" environment="grid" >}}
 
 ### Configure Nix channels
 
