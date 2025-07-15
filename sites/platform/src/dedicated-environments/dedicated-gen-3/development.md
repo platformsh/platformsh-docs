@@ -3,7 +3,9 @@ title: "Dedicated Gen 3 Development"
 weight: 1
 sidebarTitle: "DG3 development"
 layout: single
-headless: true
+build:
+  list: local
+  render: always
 description:  "Learn about the cluster infrastructure of Dedicated Generation 3, and discover key details about deployment, which regions are supported, storage limits, backups, restores and supported languages and frameworks."
 ---
 
@@ -80,16 +82,16 @@ Each cluster comes with 50GB of storage per environment by default. This storage
 
 | Type           | Basic               | Advanced        | Premium    |
 |----------------|---------------------|-----------------|------------|
-| 6-hourly       | -                   | -               | 1 day      |                
+| 6-hourly       | -                   | -               | 1 day      |
 | Daily          | 2 days              | 1 week          | 1 month    |
 | Weekly         | -                   | 4 weeks         | -          |
-| Monthly        | -                   | 1 year          | 1 year     | 
+| Monthly        | -                   | 1 year          | 1 year     |
 
 ## Restores
 
 Backups and restores are the same as Grid, so you can use them with the management console and the [Platform.sh CLI](/administration/cli/_index.md).
 
-## Supported languages 
+## Supported languages
 
 Dedicated Generation 3 supports a wide range of languages to power your applications:
 

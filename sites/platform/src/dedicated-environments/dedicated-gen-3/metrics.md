@@ -2,7 +2,9 @@
 title: "Monitor metrics"
 sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
 description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
-headless: true 
+build:
+  list: local
+  render: always
 ---
 
 These environments consist of various containers running across dedicated hosts:
@@ -69,7 +71,7 @@ at 9.51&nbsp;GB, while the temporary disk is 49.04&nbsp;GB.
 
 ![All of the metrics for the Scheduler worker container](/images/metrics/DG3-worker-container.png)
 
-### Thresholds 
+### Thresholds
 
 If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
 

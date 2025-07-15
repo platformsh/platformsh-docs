@@ -34,10 +34,10 @@ MySQL and MariaDB have the same behavior and the rest of this page applies to bo
 |---------------|-------------|--------------------|
 |  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
+
 ### Supported versions on Dedicated environments
 
-`oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
-It also isn't available for {{% names/dedicated-gen-2 %}} environments.
+`oracle-mysql` is not yet available for {{% names/dedicated-gen-2 %}} environments.
 
 On Dedicated environments, MariaDB is available with Galera for replication.
 Supported versions are the following:

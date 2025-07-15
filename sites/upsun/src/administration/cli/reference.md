@@ -795,7 +795,7 @@ upsun activity:list --exclude-type '*.cron,*.backup*'
 
 * List pushes made before 15 March:
 ```
-upsun activity:list --type push --start 2015-03-15
+upsun activity:list --type push --start {{ now.Year }}-03-15
 ```
 
 * List up to 25 incomplete activities:
