@@ -333,9 +333,6 @@ mariadb:
   type: mariadb
   versions:
     deprecated:
-      - '11.2'
-      - '10.5'
-      - '10.4'
       - '10.2'
       - '10.1'
       - '10.3'
@@ -343,9 +340,12 @@ mariadb:
       - '5.5'
     supported:
       - '11.4'
+      - '11.2'
       - '11.0'
       - '10.11'
       - '10.6'
+      - '10.5'
+      - '10.4'
   versions-dedicated-gen-2:
     supported:
       - 10.11 Galera
