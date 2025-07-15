@@ -60,8 +60,6 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
-### Deprecated versions
-
 {{% deprecated-versions %}}
 
 | **`mariadb` / `mysql`** | **`oracle-mysql`** |
