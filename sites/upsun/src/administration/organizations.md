@@ -154,3 +154,39 @@ Ownership transfer automatically transfers subscription charges to the new organ
 To transfer an organization to a different owner, first make sure that user is part of the organization.
 If they aren't yet, [add them](/administration/users.md#add-a-user-to-an-organization).
 Then open a [support ticket](/learn/overview/get-support.md) from the current organization to ask for the transfer.
+
+## Fixed and Flex organizations
+
+### What is a fixed organization?
+Ideal for workloads that have consistent resource requirements with stable and predictable usage.
+Users can select a plan with predefined CPU and Memory resources. You can not adjust these resources, nor scale them automatically. To increase capacity, you’ll need to upgrade to a higher plan.
+
+### What is a flex organization?
+Ideal for workloads that evolve over time or have dynamic resource requirements. 
+Flex will suit most use cases.
+Users will be able to allocate the exact CPU and Memory resources that your applications and services need. You can adjust these resources at any time, or configure them to adapt automatically. You are charged based on the resources you allocate.
+
+### What can you do?
+When creating a new organization, users will be able to select the organization type from a drop-down option based on their preference. Once the organization is created, users can manage their organizations like they do today.
+
+## FAQs
+### Will customers who have organizations in both fixed and flex still switch between two different consoles?
+Correct, they will be able to select their organization (fixed or flex) from a drop-down.
+
+### How will fixed vs flex be identifiable in the console? 
+Organizations will have tags next to the names in the console.
+
+### Will customers with fixed projects be able to access them via the upsun cli tool?
+Correct.
+
+### Will customers with fixed projects still use the same configuration files and configuration file structures (ie .platform.app.yaml, .platform/services.yaml, .platform/routes.yaml, etc?
+Correct.
+
+### Will mount differences still exist between fixed and flex after Sept?
+Yes, waiting for the git fixes for this.
+
+### Beyond the name “platform.sh” going away in console, are there other visual changes in the fixed console that will be different than it is today?
+Org creation flow is being updated, free trial for only flex orgs, @Ndifreke @Miguel is there anything else?
+
+### Assuming a unified CLI, will there be a new field when viewing a project list to identify fixed vs flex?
+Users have a list of all the organizations and right now there is no field for flex/fixed in the cli.
