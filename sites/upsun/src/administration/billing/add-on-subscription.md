@@ -2,7 +2,7 @@
 title: Subscribe to an add-on
 description: Subscribe to add-ons to enhance your user experience.
 keywords:
-  - Standard User Management
+  - Advanced User Management
   - Add-on
   - Sellable
   - Continuous profiling
@@ -11,26 +11,26 @@ keywords:
 Depending on your needs, you may want to upgrade to the following {{% vendor/name %}} add-ons.
 You can do so directly from the Console.
 
-## Standard User Management add-on
+## Advanced User Management add-on
 
 ### Included features
 
-The Standard User Management add-on gives you access to the following features:
+The Advanced User Management add-on gives you access to the following features:
 
 - [Free viewers](../users.md)
 - [Organization permissions](../users.md#organization-permissions)
 - [Teams](/administration/teams.md)
 - [MFA enforcement](/administration/mfa.md)
 
-### Upgrade to the Standard User Management add-on
+### Upgrade to the Advanced User Management add-on
 
-To upgrade to the Standard User Management add-on, follow these steps:
+To upgrade to the Advanced User Management add-on, follow these steps:
 
 1. In the Console, navigate to your organization.
 2. Open the user menu (your name or profile picture), then select **Billing**.
 3. In the **Organization add-ons** section of the **Overview** tab,
    locate the **User management** panel and click **Upgrade**.
-4. In the pop-up window, select **Standard user management** and check the 30-day commitment box.
+4. In the pop-up window, select **Advanced user management** and check the 30-day commitment box.
 5. Click **Upgrade**.
 
 After the add-on is added to your organization,

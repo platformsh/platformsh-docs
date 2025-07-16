@@ -10,9 +10,9 @@ When a user is added to a project, they are automatically added to your organiza
 
 {{< note title="Available add-on" >}}
 
-The Standard User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
+The Advanced User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
 [teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/mfa.md).
-See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
+See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 
 {{< /note >}}
 
