@@ -21,6 +21,12 @@ The Advanced User Management add-on gives you access to the following features:
 - [MFA enforcement](/administration/mfa.md)
 - [Single sign-on (Google)](#single-sign-on-google)
 
+{{% note theme="info" %}}
+
+Note that the minimum commitment for this add-on is **30 days** before any changes can be made.
+
+{{% /note %}}
+
 ### Upgrade to the Advanced User Management add-on
 
 To upgrade to the Advanced User Management add-on, follow these steps:
