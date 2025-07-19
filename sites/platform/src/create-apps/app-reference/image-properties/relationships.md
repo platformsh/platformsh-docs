@@ -1,20 +1,17 @@
 ---
 title: "`relationships`"
+sidebarTitle: "relationships"
 weight: 4
 description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
-keywords:
-  - sleepy crons
-  - sleepy_crons
 ---
 
-{{% description %}}
+The following information applies to configuring either single runtime images or composable  in {{% vendor/name %}}.  
 
-## Define relationships
+## Relationships
 
 To allow containers in your project to communicate with one another,
 you need to define relationships between them.
 You can define a relationship between an app and a service, or [between two apps](/create-apps/multi-app/relationships.md).
-<!-- Are relationships 1:1? Can an app have a relationship to many services? they can't be circular? Does "circular" really mean bi-directional? -->
 
 The quickest way to define a relationship between your app and a service
 is to use the service's default endpoint.</br>
@@ -186,5 +183,6 @@ relationships:
 Feel free to use this until the default and explicit endpoint syntax is supported on all images.
 
 {{< /note >}}
+
 
 
