@@ -41,8 +41,8 @@ To override any part of a property, you have to provide the entire property.
 |---------------------|--------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `type`              | A [type](#types)                                                                           | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`.                                                                                                                                                                                   |
 | `container_profile` | A [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles)   |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
-| `relationships`     | A dictionary of [relationships](#relationships)                                            |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
-| `mounts`            | A dictionary of [mounts](#mounts)                                                          |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
+| `relationships`     | A dictionary of [relationships](/create-apps/app-reference/relationships.md)                                            |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
+| `mounts`            | A dictionary of [mounts](/create-apps/app-reference/mounts.md)                                                           |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
 | `web`               | A [web instance](#web)                                                                     |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
 | `workers`           | A [worker instance](#workers)                                                              |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
 | `timezone`          | `string`                                                                                   |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md) |
@@ -55,7 +55,7 @@ To override any part of a property, you have to provide the entire property.
 | `crons`             | A [cron dictionary](#crons)                                                                |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
 | `source`            | A [source dictionary](#source)                                                             |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
 | `runtime`           | A [runtime dictionary](#runtime)                                                           |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                      |
-| `additional_hosts`  | An [additional hosts dictionary](#additional-hosts)                                        |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| `additional_hosts`  | An [additional hosts dictionary](/create-apps/app-reference/additional_hosts.md)                                        |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
 | `operations`        | A [dictionary of Runtime operations](/create-apps/runtime-operations.md)                   |          | No               | Runtime operations for the application.                                                                                                                                                                                                                          |
 
 ## Root directory
@@ -126,14 +126,15 @@ applications:
       - "python@3.12"
       - "python312Packages.yq" # python package specific
 ```
-
+<!-- moved to resources.md -->
 ## Resources
 
 Resources for application containers are not committed to YAML files, but instead managed over the API using either the
 Console or the `{{% vendor/cli %}} resources:set` command.
 
 For more information, see how to [manage resources](/manage-resources.md).
-
+<!-- /moved to resources.md -->
+<!-- moved to relationships.md -->
 ## Relationships
 
 To allow containers in your project to communicate with one another,
@@ -342,7 +343,8 @@ services:
 Feel free to use this until the default and explicit endpoint syntax is supported on all images.
 
 {{< /note >}}
-
+<!-- /moved to relationships.md -->
+<!-- moved to disk.md -->
 ## Available disk space
 
 Disk for application containers are not committed to YAML files, but instead managed over the API using either the
@@ -356,7 +358,8 @@ You can decrease the size of an existing disk for an app. If you do so, be aware
 
 - Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup.md).
 - The downsize fails if there’s more data on the disk than the desired size.
-
+<!-- /moved to disk.md -->
+<!-- moved to mounts -->
 ## Mounts
 
 After your app is built, its file system is read-only.
@@ -601,7 +604,8 @@ applications:
 
 The `storage` mount type specifically exists to share data between instances of the same application, whereas `tmp` and `instance` are meant to restrict data to build time and runtime of a single application instance, respectively.
 These allowances are not compatible, and will result in an error if pushed.
-
+<!-- /moved to mounts -->
+<!-- moved to web.md -->
 ## Web
 
 Use the `web` key to configure the web server running in front of your app.
@@ -777,7 +781,8 @@ applications:
             enabled: true
             max_request_size: 250m
 ```
-
+<!-- /end web-->
+<!-- moved to workers.md -->
 ## Workers
 
 Workers are exact copies of the code and compilation output as a `web` instance after a [`build` hook](#hooks).
@@ -814,7 +819,8 @@ applications:
 
 Workers require resource definition using `{{% vendor/cli %}} resources:set`, same as application containers.
 For more information, see how to [manage resources](/manage-resources.md).
-
+<!-- /moved to workers.md -->
+<!-- moved to access.md -->
 ## Access
 
 The `access` dictionary has one allowed key:
@@ -836,7 +842,8 @@ applications:
     access:
       ssh: admin
 ```
-
+<!-- /moved to access.md -->
+<!-- moved to variables -->
 ## Variables
 
 {{% vendor/name %}} provides a number of ways to set [variables](/development/variables/_index.md).
@@ -870,7 +877,8 @@ applications:
 ```
 
 You can also define and access more [complex values](/development/variables/use-variables.md#access-complex-values).
-
+<!-- /moved to variables.md -->
+<!-- moved to firewall.md -->
 ## Firewall
 
 {{< premium-features/tiered "Elite and Enterprise" >}}
@@ -984,7 +992,7 @@ upsun.com
 www.google.com
 www.upsun.com
 ```
-
+<!-- /end moved to firewall.md -->
 ## Build
 
 The only property of the `build` dictionary is `flavor`, which specifies a default set of build tasks to run.
@@ -1048,7 +1056,7 @@ applications:
       nodejs: # Specify one NPM package per line.
         pm2: '^4.5.0'
 ```
-
+<!-- moved to hooks.md -->
 ## Hooks
 
 There are three different hooks that run as part of the process of building and deploying your app.
@@ -1118,7 +1126,8 @@ Note that there are other downsides:
 - Your environment isn’t available externally during the deploy hook.
   Unit and integration testing might work without the environment being available,
   but you can’t typically perform end-to-end testing until after the environment is up and available.
-
+<!-- /moved to hooks.md -->
+<!-- moved to crons.md -->
 ## Crons
 
 The keys of the `crons` definition are the names of the cron jobs.
@@ -1335,7 +1344,7 @@ Run the following command:
 ```
 
 {{< /codetabs >}}
-
+<!-- moved to crons.md -->
 ## Runtime
 
 The following table presents the various possible modifications to your PHP runtime:
@@ -1401,7 +1410,7 @@ The following table shows the properties that can be set in `sizing_hints`:
 | `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
 
 See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
-
+<!-- moved to source.md -->
 ## Source
 
 The following table shows the properties that can be set in `source`:
@@ -1410,7 +1419,8 @@ The following table shows the properties that can be set in `source`:
 |--------------|--------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------|
 | `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](../source-operations.md)                               |
 | `root`       | `string`                 |          | The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](../multi-app/_index.md). |
-
+<!-- /moved to source.md -->
+<!-- moved to container_profile.md  -->
 ## Container profile
 
 By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it’s
@@ -1423,7 +1433,8 @@ Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM co
 - [Default container profiles](/manage-resources/adjust-resources.md#default-container-profiles) for runtime and service
   containers
 - [Customize resources using the `container_profile` key](/manage-resources/adjust-resources.md#adjust-a-container-profile)
-
+<!-- /moved to container_profile --> 
+<!-- moved to additional_hosts.md -->
 ## Additional hosts
 
 If you're using a private network with specific IP addresses you need to connect to,
@@ -1445,3 +1456,4 @@ applications:
 ```
 
 This is equivalent to adding the mapping to the `/etc/hosts` file for the container.
+<!-- /moved to additional_hosts.md --> 
