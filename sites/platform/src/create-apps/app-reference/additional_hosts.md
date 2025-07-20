@@ -1,5 +1,5 @@
 ---
-title: "`additional-hosts`"
+title: "`additional_hosts`"
 weight: 4
 description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
 ---
