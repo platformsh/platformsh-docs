@@ -12,17 +12,39 @@ These are places where you can run custom scripts.
 They are: the `build` hook, the `deploy` hook, and the `post_deploy` hook.
 Only the `build` hook is run for [worker instances](/create-apps/app-reference/workers.md), while [web instances](/create-apps/app-reference/web.md) run all three.
 
-For, the process is ordered as:
+The process is ordered as:
+
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
 
 1. Variables accessible at build time become available.
-1. **Single-runtime image only**: [Build flavor](/create-apps/app-reference/single-runtime-image.md#build) runs if applicable.
-1. **Single-runtime image only**: Any [dependencies](/create-apps/app-reference/single-runtime-image.md##dependencies) are installed.
+1. [Build flavor](/create-apps/app-reference/single-runtime-image.md#build) runs if applicable.
+1. Any [dependencies](/create-apps/app-reference/single-runtime-image.md##dependencies) are installed.
 1. The `build` hook is run.
 1. The file system is changed to read only, except for any [mounts](/create-apps/app-reference/mounts.md). 
 1. The app container starts. Variables accessible at runtime and services become available.
 1. The `deploy` hook is run.
 1. The app container begins accepting requests.
 1. The `post_deploy` hook is run.
+
+<--->
+
++++
+title=Composable image
++++
+
+1. Variables accessible at build time become available.
+1. The `build` hook is run.
+1. The file system is changed to read only, except for any [mounts](/create-apps/app-reference/mounts.md). 
+1. The app container starts. Variables accessible at runtime and services become available.
+1. The `deploy` hook is run.
+1. The app container begins accepting requests.
+1. The `post_deploy` hook is run.
+
+{{< /codetabs >}}
 
 Note that if an environment changes by no code changes, only the last step is run.
 If you want the entire process to run, see how
