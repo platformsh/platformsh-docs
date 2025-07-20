@@ -5,7 +5,7 @@ description: See all of the options for controlling your apps and how they're bu
 ---
 
 Optional. Use the `web` key to configure the web server running in front of your app.
-Defaults may vary with a different [image `type`](#types).
+In single-runtime images, defaults may vary with a different [image `type`](/create-apps/app-reference/single-runtime-image.md#types).
 
 | Name        | Type                                       | Required                      | Description                                          |
 |-------------|--------------------------------------------|-------------------------------|------------------------------------------------------|
