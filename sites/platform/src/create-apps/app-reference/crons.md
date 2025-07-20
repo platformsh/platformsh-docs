@@ -46,7 +46,7 @@ crons:
       stop: killall sleep
     shutdown_timeout: 18
 ```
-In this example configuration, the [cron specification](#crons) uses the `H` syntax.
+In this example configuration, the crons [`spec`](#crons) uses the `H` syntax.
 
 Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
