@@ -262,7 +262,7 @@ The offset is a random number of seconds up to 20 minutes or the cron frequency,
 Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
-To run cron jobs in a timezone other than UTC, set the `timezone` property ([single-runtime image](/create-apps/app-reference/single-runtime-image.md#top-level-properties), 
+To run cron jobs in a timezone other than UTC, set the `timezone` property as described for the image type ([single-runtime image](/create-apps/app-reference/single-runtime-image.md#top-level-properties) or 
 [composable image](/create-apps/app-reference/composable-image.md#top-level-properties)).
 
 ### Paused crons
