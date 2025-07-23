@@ -243,8 +243,9 @@ To fix this, follow these steps:
         branch = submodule/branch
     ```
 
-2. Add the [project's public key to your remote Git repository](/development/private-repository.md).
-   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
+2. Add the [project's public key to your remote Git repository](/development/private-repository.md). If there are nested
+   submodules in your submodule, then add the public key to those repositories as well. This allows your
+   {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 

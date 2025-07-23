@@ -39,7 +39,7 @@
       {{ partial "sidebar/sidebar" . }}
 
       <!-- Main content block -->
-      <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4 md:pr-0 md:pl-8 pt-4 pb-12 print:border-none print:max-w-full xl:print:max-w-full print:text-sm xl:print:text-sm">
+      <main class="md:col-span-8 xl:max-w-[120ch] xl:text-lg px-4 md:pr-0 md:pl-8 pt-4 pb-12 print:border-none print:max-w-full xl:print:max-w-full print:text-sm xl:print:text-sm" data-engagement-id="main-content-section">
 
         {{- block "main" . }}{{- end }}
       </main>
@@ -60,14 +60,40 @@
     {{- $pendoid := os.Getenv "PENDO_ID" -}}
     {{ with $pendoid }}
     <script>
-      (function(apiKey){
-        (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
-          v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
-            o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-          y=e.createElement(n);y.async=!0;y.src='https://cdn.eu.pendo.io/agent/static/'+apiKey+'/pendo.js';
-          z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-        pendo.initialize({});
-      })('{{ $pendoid }}');
+      /* Cross-browser compatible cookie fetcher */
+      var getCookie = function(name) {
+        var match = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
+        return match ? match[1] : null;
+      };
+
+      var raw = getCookie('pendo_shared_session');
+      var visitorId = null;
+
+      if(raw){
+        try {
+          var data = JSON.parse(decodeURIComponent(raw));
+          if (data && data.visitor) {
+            visitorId = data.visitor.id;
+          }
+        } catch (e) {
+          // Do nothing if the data isn't there.
+        }
+      }
+
+      if(visitorId) {
+        (function(apiKey){
+          (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
+            v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
+              o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+            y=e.createElement(n);y.async=!0;y.src='https://cdn.eu.pendo.io/agent/static/'+apiKey+'/pendo.js';
+            z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+          pendo.initialize({
+            visitor: {
+              id: visitorId
+            }
+          });
+        })('{{ $pendoid }}');
+      }
     </script>
     {{ end }}
 

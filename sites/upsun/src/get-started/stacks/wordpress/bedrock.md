@@ -40,14 +40,14 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: 'php:{{% latest "php" %}}'
     <snip>
     web:
       locations:
         "/":
           root: "web"
           # The front-controller script to send non-static requests to.
-          passthru: "/index.php"
+          passthru: "/wp/index.php"
           # Wordpress has multiple roots (wp-admin) so the following is required
           index:
             - "index.php"
@@ -88,7 +88,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: 'php:{{% latest "php" %}}'
     <snip>
     mounts:
       "web/app/wp-content/cache":
@@ -111,7 +111,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: 'php:{{% latest "php" %}}'
     ...
     hooks:
       build: |
@@ -131,14 +131,14 @@ application can receive requests. Such tasks include:
 - Running any due cron jobs
 
 To perform these tasks, we'll utilize  the [deploy hook](/learn/overview/build-deploy.md#deploy-steps). Locate the
-`deploy:` section (below the `build:` section). Update the `deploy:` section as follows:
+`deploy:` section (below the `build:` section). Update the `deploy:` and `post_deploy:` sections as follows:
 
 ```yaml {configFile="app"}
 applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: 'php:{{% latest "php" %}}'
     ...
     hooks:
       deploy: |
@@ -147,7 +147,7 @@ applications:
         wp cache flush
         # Runs the WordPress database update procedure
         wp core update-db
-        # Runs all due cron events
+      post_deploy: |
         wp cron event run --due-now
 ```
 
@@ -160,7 +160,7 @@ applications:
  myapp:
    source:
      root: "/"
-   type: 'php:8.3'
+   type: 'php:{{% latest "php" %}}'
    <snip>
    dependencies:
      php:
@@ -177,7 +177,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'php:8.3'
+    type: 'php:{{% latest "php" %}}'
     ...
 
 routes:
@@ -194,7 +194,26 @@ routes:
 Matching the application name `myapp` with the `upstream` definition `myapp:http` is the most important setting to ensure at this stage.
 If these strings aren't the same, the WordPress deployment will not succeed.
 
-## 7. Update `.environment`
+## 7. Add your crons
+
+Under your application configuration you can now add a cron.
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    ...
+    crons:
+      wp-cron:
+        spec: '*/10 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+
+## 8. Update `.environment`
 
 The CLI generated a `.environment` file during the Getting started guide. Notice it has already created some environment
 variables for you to connect to your database service.
@@ -215,7 +234,12 @@ To configure the remaining environment variables that WordPress needs to run smo
 2. Add the following at the end of the file:
 
    ```bash {location=".environment"}
-    export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
+    # Routes, URLS, and primary domain
+    export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
+    export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
+    export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+
+    export WP_HOME="${DOMAIN_CURRENT_SITE}"
     export WP_SITEURL="${WP_HOME}/wp"
     export WP_DEBUG_LOG=/var/log/app.log
     # Uncomment this line if you would like development versions of WordPress on non-production environments.
@@ -230,7 +254,7 @@ To configure the remaining environment variables that WordPress needs to run smo
     export NONCE_SALT="${PLATFORM_PROJECT_ENTROPY}NONCE_SALT"
    ```
 
-## 8. Commit, Push, and Deploy!
+## 9. Commit, Push, and Deploy!
 You can now commit all the changes made to `.upsun/config.yaml` and `.environment` and push to {{% vendor/name %}}.
 
    ```bash {location="Terminal"}
@@ -239,6 +263,33 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
    upsun push -y
    ```
 
+## 9. Routinely run WP Cron (optional)
+If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
+in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
+a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
+as follows:
+
+```yaml {configFile="app"}
+ applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:8.3'
+    <snip>
+    crons:
+      wp-cron:
+        spec: '*/15 * * * *'
+        commands:
+          start: wp cron event run --due-now
+        shutdown_timeout: 600
+```
+The above example will trigger the wp-cli every 15th minute to run WP Cron tasks that are due. Feel free to adjust based
+on your individual requirements.
+
+{{< note theme="info">}}
+When uncommenting, pay attention to the indentation and make sure that the `crons` key aligns with other sibling keys (e.g. `hooks`, `dependencies`, etc.)
+{{< /note >}}
 
 ## Further resources
 - [All example files (`.environment`, `.upsun/config.yaml`)](https://github.com/upsun/snippets/tree/main/examples/wordpress-bedrock)

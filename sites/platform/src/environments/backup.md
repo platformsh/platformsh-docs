@@ -25,7 +25,7 @@ To work with an [inactive environment](/glossary/_index.md#inactive-environment)
    and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
    The backup is stored internally on {{% vendor/name %}}.
    That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
+   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md).
 
 2. You restore your environment using the backup.
    At this point, the data and code from the backup are restored to ensure a consistent state.
@@ -132,8 +132,7 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md)
-and [{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/overview/_index.md) environments.
+Automated backups are always live, including those taken on [{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
 

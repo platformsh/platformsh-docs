@@ -213,6 +213,14 @@ title= From the Console
 
 {{< /codetabs >}}
 
+- **Alternative auto-scaling: :**
+
+**This is not an official product that will be supported by {{% vendor/name %}} staff, but you can escalate issues directly on the repository in Github.**
+
+This auto-scaling mechanism is based on the {{% vendor/cli %}} CLI.
+Go to the {{% vendor/name %}} github organization to download [ScalSun](https://github.com/upsun/scalsun) on your project to be able to configure CPU, RAM thresholds above or under which
+an API call will be automatically triggered to horizontally scale your application or worker, based on what you will have specified.
+
 
 ## Advanced: Container profiles
 
@@ -258,7 +266,6 @@ The following table shows the default container profiles {{% vendor/name %}} app
 | InfluxDB                | HIGH_MEMORY      |
 | Java                    | HIGH_MEMORY      |
 | Kafka                   | HIGH_MEMORY      |
-| Lisp                    | HIGH_CPU         |
 | MariaDB                 | HIGH_MEMORY      |
 | Memcached               | BALANCED         |
 | MongoDB                 | HIGH_MEMORY      |

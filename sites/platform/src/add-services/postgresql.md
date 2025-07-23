@@ -22,14 +22,12 @@ If you use one of the following frameworks, follow its guide:
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="postgresql" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -55,14 +53,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -373,7 +369,7 @@ You can choose your locale when a database is created by setting locale-related 
 | Name   | Type      | Default  | Description  |
 |--------|-----------|----------|--------------|
 | `default_ctype` | `string`  | `C.UTF-8` | The default character classification. Affects any tables created after it's set.|
-| `default_collation` | `string`|`C.UTF-8`| The default collation rules. Affects any tables created after it's set.| 
+| `default_collation` | `string`|`C.UTF-8`| The default collation rules. Affects any tables created after it's set.|
 | `default_charset` | `string`  | `UTF8` | The default encoding character set. Affects any tables created after it's set.|
 
 
@@ -611,7 +607,7 @@ extensions not listed here.
 
 * `address_standardizer` - Used to parse an address into constituent elements. Generally used to support geocoding address normalization step.
 * `address_standardizer_data_us` - For standardizing addresses based on US dataset example
-* `adminpack` - administrative functions for PostgreSQL
+* `adminpack` - administrative functions for PostgreSQL (only available in versions less than 17)
 * `autoinc` - functions for auto-incrementing fields
 * `bloom` - bloom access method - signature file based index (requires 9.6 or higher)
 * `btree_gin` - support for indexing common data types in GIN

@@ -23,12 +23,25 @@
     hooks:
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
-            set -e
-            cd $SITE_DIR
-            cp ../../themes/psh-docs/postcss.config.js .
-            npm install
-            npm run build
-            ./build_docs.sh
+          set -e
+          #copy API docs into correct location
+          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+            cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
+          else
+            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+          fi
+
+          cd $SITE_DIR
+          cp ../../themes/psh-docs/postcss.config.js .
+          npm install
+          npm run build
+          ./build_docs.sh
+
+
+
         deploy: |
             cd $SITE_DIR
             ./deploy.sh
@@ -59,6 +72,10 @@
                     \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
+            '/api':
+              root: 'sites/platform/public/api'
+              index: [ 'index.html' ]
+              expires: 24h
     disk: 1024
 
     mounts:
@@ -93,11 +110,24 @@
     hooks:
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
-            cd $SITE_DIR
-            cp ../../themes/psh-docs/postcss.config.js .
-            npm install
-            npm run build
-            ./build_docs.sh
+          #copy API docs into correct location
+          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+            cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
+          else
+            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+          fi
+          cd $SITE_DIR
+          cp ../../themes/psh-docs/postcss.config.js .
+          npm install
+          npm run build
+          ./build_docs.sh
+          # temporary generation of json version of public regions + ip addresses
+          # if this is still here after 20250621 ping @gilzow and ask why
+          cat "${PLATFORM_APP_DIR}/shared/data/regions.yaml" | python3 -c 'import sys,yaml,json; print(json.dumps(yaml.safe_load(str(sys.stdin.read()))))' | jq '[.. | objects | .outbound_ips? // empty] | add' > "${PLATFORM_APP_DIR}/${SITE_DIR}/public/outbound_ips.json"
+
         deploy: |
             cd $SITE_DIR
             ./deploy.sh
@@ -127,6 +157,13 @@
                     \.txt$:
                       headers:
                         Content-Type: "text/plain; charset=UTF-8"
+                    '^/favicon.ico$':
+                        allow: true
+                        passthru: '/images/favicon.ico'
+            '/api':
+              root: 'sites/upsun/public/api'
+              index: [ 'index.html' ]
+              expires: 24h
 
     disk: 1024
 
@@ -136,3 +173,70 @@
             source_path: "sites/upsun/config"
 
     size: S
+-
+  name: redirectionio-upsun
+  source:
+    root: upsun-redirectionio
+  type: golang:1.15
+  hooks:
+    build: |
+      set -ex
+      curl -s -J -L "https://packages.redirection.io/dist/stable/2/any/redirectionio-agent-latest_any_amd64.tar.gz" | tar -C /app/ -xzpf -
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
+    commands:
+      start: |
+        set -ex
+        /app/redirection-agent/redirectionio-agent -config-file ./agent.yaml
+    locations:
+      /:
+        allow: false
+        passthru: true
+  relationships:
+    app: "upsun:http"
+  disk: 256
+  mounts:
+    # rules will be saved locally in this folder
+    'rules':
+      source: local
+      source_path: rules
+    # redirection.io log folder
+    'log':
+      source: local
+      source_path: log
+
+-
+  name: redirectionio-psh
+  source:
+    root: psh-redirectionio
+  type: golang:1.15
+  hooks:
+    build: |
+      set -ex
+      curl -s -J -L "https://packages.redirection.io/dist/stable/2/any/redirectionio-agent-latest_any_amd64.tar.gz" | tar -C /app/ -xzpf -
+  web:
+    upstream:
+      socket_family: tcp
+      protocol: http
+    commands:
+      start: |
+        set -ex
+        /app/redirection-agent/redirectionio-agent -config-file ./agent.yaml
+    locations:
+      /:
+        allow: false
+        passthru: true
+  relationships:
+    app: "docs:http"
+  disk: 256
+  mounts:
+    # rules will be saved locally in this folder
+    'rules':
+      source: local
+      source_path: rules
+    # redirection.io log folder
+    'log':
+      source: local
+      source_path: log

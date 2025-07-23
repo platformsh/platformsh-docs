@@ -18,11 +18,6 @@ but are available for Grid environments (such as your preview environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/dg2-dashboard.png "0.45")
 
-[{{% names/dedicated-gen-3 %}} environments](/dedicated-environments/dedicated-gen-3/_index.md): each of the three hosts and their average.
-These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
-
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
-
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
 
@@ -37,11 +32,11 @@ All of the graphs show color-coded lines for the following thresholds:
 - Usage that crosses _90%_ results.
 - Usage that crosses _50%_ results.
 
-On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ will mean that you have crossed into a **burst** state.
+On Grid environments, usage that crosses _100%_ will mean that you have crossed into a **burst** state.
 
 The burst capability is available for containerized environments and allows a container to get more resources than it's allocated. Burst is considered useful for infrequent activities that cause usage spikes.
 
-On the Grid, resources are shared between customers, so these additional resources aren't guaranteed and burst can only be temporary. On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded.
+On the Grid, resources are shared between customers, so these additional resources aren't guaranteed and burst can only be temporary. 
 
 ### Recommendations
 
@@ -56,22 +51,6 @@ you might want to consider:
 * [Optimizing your code](/increase-observability/_index.md) (if possible)
 * [Increasing your plan](/administration/pricing/_index.md)
 
-#### {{% names/dedicated-gen-3 %}} environments
-
-For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
-
-If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
-
-If you have a container in a prolonged burst state, you might want to consider:
-
-* [Optimizing your code](/increase-observability/_index.md)
-* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](/add-services/_index.md#size)
-* [Increasing your plan](/administration/pricing/_index.md)
-
-You can reallocate your existing resources if other containers have resources they aren't using.
-
-If you have multiple containers in a burst state, review your configuration or plan size.
 
 #### Grid environments
 
