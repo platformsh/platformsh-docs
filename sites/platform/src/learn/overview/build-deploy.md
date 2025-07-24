@@ -85,19 +85,19 @@ but the file system is read-only.
 
 After the deploy process is over, any commands in your `post_deploy` hook are run.
 
-## Deployment modes
+## Deployment types
 
-{{% vendor/name %}} supports two deployment modes - automatic and manual. These modes help to provide control over when changes are applied to staging and production environments.
+{{% vendor/name %}} supports two deployment types - automatic and manual. These types help to provide control over when changes are applied to staging and production environments.
 
 ### Automatic deployment (default)
 
-This is the current and default behavior for all environments. With automatic deployment, changes like code pushes and variable updates are deployed immediately. This mode of deployment is best suited for rapid iteration during development.
+This is the default behavior for all environments. With automatic deployment, changes like code pushes and variable updates are deployed immediately. This type of deployment is best suited for rapid iteration during development.
 
 ### Manual deployment
 
-When enabled, this mode lets you control when deployments happen. This means that changes will be staged but not deployed until explicitly triggered by the user. This mode of deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
+When enabled, manual deployment lets you control when deployments happen. This means that changes will be staged but not deployed until explicitly triggered by the user. This type of deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
 
-When an environment is in manual mode, the following actions are queued until deployment is triggered:
+When manual deployment is enabled in an environment, the following actions are queued until deployment is triggered:
 
 | Category             | Staged Activities |
 |----------------------|------------------|
@@ -117,19 +117,19 @@ Note that development environments **always** use automatic deployment, while ma
 
 ### Enable or disable manual deployment
 
-You can adjust deployment behavior in your environment (staging or production only).  To switch to manual mode, navigate to the environment settings in the Console and un-check “Enable automatic deployments”. 
+You can adjust deployment behavior in your environment (staging or production only).  To switch to manual, navigate to the environment settings in the Console and click “Enable manual deployments”. 
 
-To revert to automatic deployments, re-check the same setting.
+To revert to automatic deployments, click "Enable manual deployments".
 
 {{< note theme="tip" >}}
 
-If manual deployment is disabled, all currently staged changes will be deployed immediately and the environment will resume automatic deployment (default) behavior.
+If manual deployment is enabled, all currently staged changes will be deployed immediately and the environment will resume automatic deployment (default) behavior.
 
 {{< /note >}}
 
 ### Trigger deployment manually
 
-Once manual mode is active, eligible changes are staged. You can deploy them in the following ways:
+Once manual deployment is enabled, eligible changes are staged. You can deploy them in the following ways:
 
 {{< codetabs >}}
 
@@ -140,7 +140,7 @@ title=Using the CLI
 List environments with the following command:
 
 ```bash
-platform list
+platform environment:list
 
 ```
 Then deploy the staged changes to a specific environment:
