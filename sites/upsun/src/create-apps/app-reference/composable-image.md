@@ -16,7 +16,7 @@ in a **"one image to rule them all"** approach.
 The composable image is built on [Nix](https://nix.dev), which offers the following benefits:
 
 - You can add as many packages to your application container as you need,
-  choosing from over 80,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
+  choosing from over 120,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
 - The packages you add are built in total isolation, so you can install different versions of the same package.
 - With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
   What works on your local machine is guaranteed to work on any other machine.
@@ -67,7 +67,7 @@ To override any part of a property, you have to provide the entire property.
 | `mounts`             | A dictionary of [mounts](#mounts)                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
 | `web`                | A [web instance](#web)                                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
 | `workers`            | A [worker instance](#workers)                                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
-| `timezone`           | `string`                                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md) |
+| `timezone`           | `string`                                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md). |
 | `access`             | An [access dictionary](#access)                                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                             |
 | `variables`          | A [variables dictionary](#variables)                                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
 | `firewall`           | A [firewall dictionary](#firewall)                                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
@@ -160,7 +160,6 @@ Security and other patches are applied automatically.
 | **Language**                                 | **Nix package** | **Supported version(s)**             |
 |----------------------------------------------|---------------|----------------------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
 | [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
 | [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
 | [Java](/languages/java.html)                 | `java`        | 21                                     |

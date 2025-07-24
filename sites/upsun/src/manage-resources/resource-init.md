@@ -71,7 +71,6 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | InfluxDB                | 0.1  | 448 MB | 256 MB  |
 | Java                    | 0.1  | 448 MB | 0 MB    |
 | Kafka                   | 0.1  | 448 MB | 512 MB  |
-| Lisp                    | 0.1  | 64 MB  | 0 MB    |
 | MariaDB                 | 0.1  | 448 MB | 256 MB  |
 | Memcached               | 0.1  | 352 MB | None    |
 | MongoDB                 | 0.1  | 448 MB | 256 MB  |

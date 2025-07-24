@@ -63,15 +63,10 @@ Much of the tooling used on Grid is used for DG2, but there are still some diffe
 | **MongoDB**                                            | Yes                                                                               | Standalone service container                                                      |
 | **web.commands.post_start**                            | No                                                                                | Self-service via YAML config files                                                |
 
-### Dedicated Gen 2 vs Dedicated Gen 3
-
-Just like Dedicated Gen 3, [Dedicated Gen 2](/dedicated-environments/dedicated-gen-2/overview.html) ensures increased uptime and availability for your apps and services. But as a Dedicated Gen 2 user, you have to go through the Platform.sh Customer Success team to make configuration or application topology changes.
-
-To understand the differences and similarities between Dedicated Generation 2 and Dedicated Generation 3, please head to [Dedicated Gen 3 vs Dedicated Gen 2](/dedicated-environments/dedicated-gen-3/overview.md#dedicated-gen-3-vs-dedicated-gen-2).
 
 ### Optional features
 
-You can enable the following features on your Dedicated Gen 2 projects, as well as [multiple availability zones](/dedicated-environments/dedicated-gen-3/overview.md#multiple-availability-zones). To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
+You can enable the following features on your Dedicated Gen 2 projects. To enable an optional feature or get more information on potential fees, [contact Sales](https://platform.sh/contact/).
 
 #### Multiple applications
 

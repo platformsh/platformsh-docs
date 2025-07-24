@@ -103,8 +103,6 @@ The control plane is Platform.sh’s orchestration, control, and management envi
 Their dedicated architecture makes them differ from [Grid environments](#grid).
 See a [list of differences](/dedicated-environments/dedicated-gen-2/environment-differences.md).
 
-These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](/dedicated-environments/dedicated-gen-3/_index.md).
-
 ## Deprecated versions
 
 Older versions of languages and services eventually reach the end of their lives.
