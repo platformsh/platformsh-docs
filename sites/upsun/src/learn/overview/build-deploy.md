@@ -115,11 +115,9 @@ Note that development environments **always** use automatic deployment, while ma
 {{< /note >}}
 
 
-### Enable or disable manual deployment
+### Change deployment type
 
-You can adjust deployment behavior in your environment (staging or production only).  To switch to manual, navigate to the environment settings in the Console and click “Enable manual deployments”. 
-
-To revert to automatic deployments, click "Enable manual deployments".
+You can adjust deployment behavior in your environment (staging or production only). To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. To revert to automatic deployments, select the automatic deployments option.
 
 {{< note theme="tip" >}}
 
