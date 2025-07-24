@@ -1,10 +1,13 @@
 ---
-title: "Monitor {{% names/dedicated-gen-3 %}} metrics"
+title: "Monitor metrics"
 sidebarTitle: "{{% names/dedicated-gen-3 %}} metrics"
 description: "Understand how to read metrics for {{% names/dedicated-gen-3 %}} environments."
+build:
+  list: local
+  render: always
 ---
 
-{{% names/dedicated-gen-3 %}} environments consist of various containers running across dedicated hosts:
+These environments consist of various containers running across dedicated hosts:
 
 * App containers: one or more [app containers](/create-apps/_index.md)
 * Service containers: zero or more [service containers](/add-services/_index.md)
@@ -20,15 +23,17 @@ To select metrics for specific hosts, click **Filter**.
 The ID numbers for the hosts in the list for filtering match the numbers for interacting with a host,
 such as for accessing the environment using SSH.
 
+Each of the three hosts and their average. These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
+
+![A screenshot of what the metrics dashboard displays](/images/metrics/dg3-dashboard.png "0.45")
+
 ## Example of how to read metrics
 
 This example should give you an idea of how the metrics appear.
-{{% names/dedicated-gen-3 %}} environments metrics show resource usage for each app, service, and worker container
+The metrics show resource usage for each app, service, and worker container
 across all hosts.
 
 This reference project has a single app, two services (PostgreSQL and Redis), and one worker.
-
-Once you've read the metrics, see [recommendations for action](/increase-observability/metrics/_index.md#dedicated-gen-3-environments).
 
 ### App container
 
@@ -65,3 +70,24 @@ The persistent disk has been configured in the [app configuration](/create-apps/
 at 9.51&nbsp;GB, while the temporary disk is 49.04&nbsp;GB.
 
 ![All of the metrics for the Scheduler worker container](/images/metrics/DG3-worker-container.png)
+
+### Thresholds
+
+If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
+
+If you have a container in a prolonged burst state, you might want to consider:
+
+* [Optimizing your code](/increase-observability/_index.md)
+* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
+  or [service size](/add-services/_index.md#size)
+* [Increasing your plan](/administration/pricing/_index.md)
+
+You can reallocate your existing resources if other containers have resources they aren't using.
+
+If you have multiple containers in a burst state, review your configuration or plan size.
+
+{{< note theme="warning" title="Burst state">}}
+
+Resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded. Usage that crosses _100%_ will mean that you have crossed into a **burst** state.
+
+{{< /note >}}

@@ -395,41 +395,6 @@
       ]
     }
   },
-  "lisp": {
-    "description": "",
-    "id": 1102,
-    "repo_name": "lisp",
-    "disk": false,
-    "docs": {
-      "relationship_name": null,
-      "service_name": null,
-      "url": "/languages/lisp.html",
-      "web": {
-        "commands": {
-          "start": "./example"
-        },
-        "locations": {
-          "/": {
-            "allow": false,
-            "passthru": true
-          }
-        }
-      }
-    },
-    "endpoint": null,
-    "min_disk_size": null,
-    "name": "Lisp",
-    "runtime": true,
-    "type": "lisp",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "2.1",
-        "2.0",
-        "1.5"
-      ]
-    }
-  },
   "mariadb": {
     "description": "A manufacture-based container for MariaDB",
     "repo_name": "mariadb",
@@ -446,20 +411,20 @@
     "type": "mariadb",
     "versions": {
       "deprecated": [
+        "11.2",
+        "10.5",
+        "10.4",
+        "10.3",
         "10.2",
         "10.1",
-        "10.3",
         "10.0",
         "5.5"
       ],
       "supported": [
         "11.4",
-        "11.2",
         "11.0",
         "10.11",
-        "10.6",
-        "10.5",
-        "10.4"
+        "10.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -508,6 +473,8 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
+        "11.2",
+        "10.4",
         "10.2",
         "10.1",
         "10.0",
@@ -528,11 +495,11 @@
         "10.11 Galera",
         "10.6 Galera",
         "10.5 Galera",
-        "10.5 Galera",
-        "10.4 Galera"
+        "10.5 Galera"
       ],
       "deprecated": [
         "11.2 Galera",
+        "10.4 Galera",
         "10.3 Galera",
         "10.2 Galera",
         "10.1 Galera",
@@ -748,6 +715,7 @@
         "1.1"
       ],
       "supported": [
+        "3",
         "2",
         "1"
       ],

@@ -109,17 +109,6 @@ with a MySQL service and a Redis service.
 If you aren't sure whether a specific setup would fit into a plan,
 don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
 
-{{< version/only "1" >}}
-
-## {{% names/dedicated-gen-3 %}}
-
-For more resources along with triple redundancy on every element of the stack, use a {{% names/dedicated-gen-3 %}} plan.
-
-Learn more about [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md).
-
-To discuss how {{% names/dedicated-gen-3 %}} could work for you, [contact Sales](https://platform.sh/contact/).
-
-{{< /version/only >}}
 
 ## Enterprise overages
 
@@ -190,9 +179,11 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-In instances where a payment has failed, {{% vendor/name %}} will make three separate attempts to take the outstanding balance from your account.
+If your initial payment fails, Platform.sh will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
 
-These attempts will be made on the 4th, 11th and 15th of the month. If your payment fails after the third attempt, your projects will be suspended the following day. All projects on the billing subscription will be affected.
+If you are a new customer and your initial payment fails, your projects will be deleted on the 13th of the month - two days after the final payment attempt.  
+
+For all other customers, you will receive a notification 10 days before your projects are scheduled for deletion. A final payment attempt will be made at that time. If unsuccessful, all projects on the billing subscription will be deleted.
 
 <div align="center">
 
