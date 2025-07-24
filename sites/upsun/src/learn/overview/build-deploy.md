@@ -163,7 +163,7 @@ Deploying staged changes:
 
 <--->
 +++
-title=Usingthe Console
+title=Using the Console
 +++
 
 In the Console, a **Deploy** button will appear in the environment whenever changes are staged. You can review a summary of the pending changes before confirming the deployment.
