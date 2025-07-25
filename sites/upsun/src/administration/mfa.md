@@ -37,7 +37,7 @@ To enable MFA on your user account, follow these steps:
 
 {{< note theme="info" title="Feature availability and permissions">}}
 
-This feature is available as part of the Standard User Management add-on.
+This feature is available as part of the Advanced User Management add-on.
 To add it to your organization, [administer your organization's billing](/administration/billing/billing-admin.md).
 
 Only **organization owners** and **admin users** can enable MFA within an organization.
