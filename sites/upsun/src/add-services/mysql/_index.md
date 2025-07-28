@@ -37,7 +37,7 @@ When you deploy your app, you always get the latest available patches.
 ### Upgrade
 
 When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
 and check that each upgrade commit translates into an actual deployment.
 
 To upgrade, update the service version in your [service configuration](../_index.md).
