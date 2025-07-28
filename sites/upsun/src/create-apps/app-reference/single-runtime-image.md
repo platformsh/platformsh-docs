@@ -1030,7 +1030,6 @@ They're installed before the `build` hook runs using a package manager for the l
 | Python 3 | `python3`             | [Pip 3](https://packaging.python.org/tutorials/installing-packages/)                                               |
 | Ruby     | `ruby`                | [Bundler](https://bundler.io/)                                                                                     |
 | Node.js  | `nodejs`              | [npm](https://www.npmjs.com/) (see [how to use yarn](/languages/nodejs/_index.md#use-yarn-as-a-package-manager))   |
-| Java     | `java`                | [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/) |
 
 The format for package names and version constraints are defined by the specific package manager.
 
