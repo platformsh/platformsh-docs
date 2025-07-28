@@ -5,6 +5,11 @@ description: Use {{% vendor/name %}}'s composable image to build and deploy your
 keywords:
   - sleepy crons
   - sleepy_crons
+beta: true
+banner:
+  title: Beta Feature
+  body: The {{% vendor/name %}} composable image is currently available in Beta.
+        This feature as well as its documentation is subject to change.
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
@@ -14,7 +19,7 @@ in a **"one image to rule them all"** approach.
 The composable image is built on [Nix](https://nix.dev), which offers the following benefits:
 
 - You can add as many packages to your application container as you need,
-  choosing from over 80,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
+  choosing from over 120,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
 - The packages you add are built in total isolation, so you can install different versions of the same package.
 - With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
   What works on your local machine is guaranteed to work on any other machine.

@@ -8,8 +8,8 @@ layout: single
 
 {{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
-See the [MariaDB documentation](https://mariadb.org/learn/)
-or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
+See the [MariaDB documentation](https://mariadb.org/documentation/)
+or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 ## Use a framework
 
@@ -25,19 +25,20 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-The service types `mariadb` and `mysql` both refer to MariaDB.
-The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-Other than the value for their `type`,
-MySQL and MariaDB have the same behavior and the rest of this page applies to both of them.
+{{< note theme="info" title="" >}}
+- The service types `mariadb` and `mysql` both refer to MariaDB.\
+  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
+{{< /note >}}
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|---------------|-------------|--------------------|
-|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+
 
 ### Supported versions on Dedicated environments
 
-`oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
-It also isn't available for {{% names/dedicated-gen-2 %}} environments.
+`oracle-mysql` is not yet available for {{% names/dedicated-gen-2 %}} environments.
 
 On Dedicated environments, MariaDB is available with Galera for replication.
 Supported versions are the following:
@@ -59,16 +60,11 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
-### Deprecated versions
+{{% deprecated-versions %}}
 
-The following versions are [deprecated](/glossary.html#deprecated-versions).
-They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
-They'll be removed in the future,
-so migrate to one of the [supported versions](#supported-versions).
-
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 ### Upgrade
 
