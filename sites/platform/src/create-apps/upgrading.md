@@ -26,7 +26,7 @@ weight: 12
   ```
 
   The new syntax offers greater flexibility and configuration.
-  For more details, see the [full specification for cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
+  For more details, see the [full specification for cron jobs](/create-apps/image-properties/crons.md).
 
 ## Changes in version 2019.05
 
