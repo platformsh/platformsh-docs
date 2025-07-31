@@ -61,7 +61,7 @@ Composable images can be used for applications only, not for services. This imag
 When using a composable image, you can define a stack (or group of packages) for your application container to use. 
 -->
 
-There are over 80,000 packages available from the [Nix Packages collection](https://search.nixos.org/) that you can add to your stack.
+There are over 120,000 packages available from the [Nix Packages collection](https://search.nixos.org/) that you can add to your stack.
 You can add as many packages to your application container as you need.
 
 {{% note %}}
