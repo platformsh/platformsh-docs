@@ -13,7 +13,7 @@ In single-runtime images, defaults may vary with a different [image `type`](/cre
 
 | Name        | Type                                       | Required                      | Description                                          |
 |-------------|--------------------------------------------|-------------------------------|------------------------------------------------------|
-| `commands`  | A [web commands dictionary](#web-commands) | See [note](#required-command) | The command to launch your app.                      |
+| `commands`  | A [web commands dictionary](/create-apps/image-properties/web.md#web-commands) | See [note](#required-command) | The command to launch your app.                      |
 | `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
 | `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 

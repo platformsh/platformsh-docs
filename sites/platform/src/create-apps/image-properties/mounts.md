@@ -47,7 +47,7 @@ See how to [troubleshoot the warning](/create-apps/troubleshoot-mounts.md#overla
 | `service`     | `string`                      |       | Only for `service` mounts: the name of the [Network Storage service](/add-services/network-storage.md).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 
-The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
+The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](/create-apps/image-properties/web.md).
 Files can be all public, all private, or with different rules for different paths and file types.
 
 Note that when you remove a `local` mount from your `{{< vendor/configfile "app" >}}` file,
