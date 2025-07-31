@@ -1,10 +1,12 @@
 ---
 title: "`workers`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: Defines the list of work names that are alternate copies of the application to run as background processes.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
+
+Defines the list of worker names that are alternate copies of the application to run as background processes.
 
 Workers are exact copies of the code and compilation output as a `web` instance after a [`build` hook](/create-apps/image-properties/hooks.md).
 They use the same container image.

@@ -1,10 +1,12 @@
 ---
 title: "`variables`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: A variables dictionary that defines variables to control the environment.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
+
+A variables dictionary that defines variables to control the environment.
 
 {{% vendor/name %}} provides a number of ways to set [variables](/development/variables/_index.md).
 Variables set in your app configuration have the lowest precedence,

@@ -1,12 +1,14 @@
 ---
 title: "`size`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: Defines the amount of resources to dedicate to the app. 
 keywords:
   - resource sizing
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
+
+Defines the amount of resources to dedicate to the app. Defaults to `AUTO` in production environments.
 
 Resources are distributed across all containers in an environment from the total available from your [plan size](/administration/pricing/_index.md).
 So if you have more than just a single app, it doesn't get all of the resources available.

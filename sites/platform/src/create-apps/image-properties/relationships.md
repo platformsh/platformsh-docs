@@ -1,12 +1,12 @@
 ---
 title: "`relationships`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: A dictionary of relationships that defines the connections to other services and apps.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images in {{% vendor/name %}}.
 
-## Relationships 
+A dictionary of relationships that defines the connections to other services and apps.
 
 To allow containers in your project to communicate with one another,
 you need to define relationships between them.

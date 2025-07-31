@@ -1,14 +1,16 @@
 ---
 title: "`firewall`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: A firewall dictionary that defines the outbound firewall rules for the application.
 ---
 
 {{< premium-features/tiered "Elite and Enterprise" >}}
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
 
-Sets limits in outbound traffic from your app with no impact on inbound requests.
+A firewall dictionary that defines the outbound firewall rules for the application.
+
+This value sets limits in outbound traffic from your app with no impact on inbound requests.
 
 The `outbound` key is required and contains one or more rules.
 The rules define what traffic is allowed; anything unspecified is blocked.

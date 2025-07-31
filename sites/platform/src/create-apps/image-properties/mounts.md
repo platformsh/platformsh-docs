@@ -1,12 +1,14 @@
 ---
 title: "`mounts`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: Defines the directories that are writable even after the app is built.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
- After your app is built, its file system is read-only.
+Defines the directories that are writable even after the app is built. If set as a local source, disk is required.
+
+After your app is built, its file system is read-only.
 To make changes to your app's code, you need to use Git.
 
 For enhanced flexibility, {{% vendor/name %}} allows you to define and use writable directories called "mounts".

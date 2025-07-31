@@ -1,12 +1,12 @@
 ---
 title: "`disk`"
 weight: 4
-description: Defines the disk space allocated to an app.
+description: An `integer` (or `null`) that defines the disk space allocated (in MB) to an app.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
 
-Defines the disk space allocated to an individual app.
+An `integer` (or `null`) that defines the disk space allocated (in MB) to an app.
 
 The maximum total space available to all apps and services is set by the storage in your plan settings.
 When deploying your project, the sum of all `disk` keys defined in app and service configurations

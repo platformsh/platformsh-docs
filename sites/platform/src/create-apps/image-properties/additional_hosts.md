@@ -1,10 +1,12 @@
 ---
 title: "`additional_hosts`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: An additional hosts dictionary that maps hostnames to IP addresses.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
+
+An additional hosts dictionary that maps hostnames to IP addresses.
 
 If you're using a private network with specific IP addresses you need to connect to,
 you might want to map those addresses to hostnames to better remember and organize them.

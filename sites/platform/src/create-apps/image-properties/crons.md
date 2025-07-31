@@ -1,10 +1,12 @@
 ---
 title: "`crons`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: A cron dictionary that defines scheduled tasks for the app.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
+
+A cron dictionary that defines scheduled tasks for the app.
 
 The keys of the `crons` definition are the names of the cron jobs.
 The names must be unique.

@@ -1,13 +1,15 @@
 ---
 title: "`hooks`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: A hooks dictionary that defines which commands run at different stages in the build and deploy process.
 keywords:
   - hooks
   - hooks
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
+
+A hooks dictionary that defines which commands run at different stages in the build and deploy process.
 
 There are three different hooks that run as part of the process of building and deploying your app.
 These are places where you can run custom scripts.

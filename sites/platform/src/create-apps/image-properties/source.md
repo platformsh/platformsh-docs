@@ -1,10 +1,12 @@
 ---
 title: "`source`"
 weight: 4
-description: See all of the options for controlling your apps and how they're built and deployed on {{% vendor/name %}}.
+description: Contains information about the app’s source code and operations that can be run on it.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
+
+Contains information about the app’s source code and operations that can be run on it.
 
 The following table shows the properties that can be set in `source`:
 
