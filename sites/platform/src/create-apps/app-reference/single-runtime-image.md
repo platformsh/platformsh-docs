@@ -24,6 +24,10 @@ The following table presents all properties available at the top level of the YA
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
+<!-- need to improve this - explain to user they're taken away from this page (do we need to explain?) 
+- Note: In the table below, links to details about properties that are available in both single-runtime and composable images (for example, `size`, `relationships`, `mounts`, and so on) lead you to topics under **Image properties**. Properties that are unique to this image type are described in this topic. 
+-->
+
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
 |--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
