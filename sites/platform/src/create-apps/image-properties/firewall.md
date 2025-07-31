@@ -10,7 +10,7 @@ Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#
 
 {{% description %}}
 
-This value sets limits in outbound traffic from your app with no impact on inbound requests.
+This property enables you to set limits in outbound traffic from your app with no impact on inbound requests.
 
 The `outbound` key is required and contains one or more rules.
 The rules define what traffic is allowed; anything unspecified is blocked.

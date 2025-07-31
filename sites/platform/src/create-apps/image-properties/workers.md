@@ -1,7 +1,7 @@
 ---
 title: "`workers`"
 weight: 4
-description: Defines the list of work names that are alternate copies of the application to run as background processes.
+description: Defines the list of worker names, which are alternate copies of the application to run as background processes.
 ---
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
