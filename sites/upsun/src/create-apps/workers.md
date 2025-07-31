@@ -70,13 +70,13 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](/create-apps/hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
+Note that [`deploy` and `post_deploy` hooks](/create-apps/hooks/_index.md) as well as [`cron` commands](/create-apps/image-properties/crons.md)
 run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`relationships`](/create-apps/app-reference/single-runtime-image.md#relationships),
-[`access`](/create-apps/app-reference/single-runtime-image.md#access), [`mount`](/create-apps/app-reference/single-runtime-image.md#mounts), and [`variables`](/create-apps/app-reference/single-runtime-image.md#variables)
+Any top-level definitions for [`relationships`](/create-apps/image-properties/relationships.md),
+[`access`](/create-apps/image-properties/access.md), [`mounts`](/create-apps/image-properties/mounts.md), and [`variables`](/create-apps/image-properties/variables.md)
 are inherited by every worker, unless overridden explicitly.
 
 Likewise [resources defined for the application container](/manage-resources/_index.md) are inherited by every worker, unless overridden explicitly.

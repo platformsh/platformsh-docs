@@ -120,7 +120,7 @@ title=Using SSH directly
 {{< /codetabs >}}
 
 All log files are trimmed to 100 MB automatically.
-If you need larger logs, set up a [cron job](/create-apps/app-reference/single-runtime-image.md#crons) to upload them to third-party storage.
+If you need larger logs, set up a [cron job](/create-apps/image-properties/crons.md) to upload them to third-party storage.
 See an example of [uploading logs to Amazon S3](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) from Contextual Code.
 
 ### Types of container logs

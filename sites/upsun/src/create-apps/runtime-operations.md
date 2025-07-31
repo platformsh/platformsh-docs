@@ -5,7 +5,7 @@ weight: 6
 ---
 
 Runtime operations allow you to trigger one-off commands or scripts on your project.
-Similar to [crons](/create-apps/app-reference/single-runtime-image.md#crons), they run in the app container but not on a specific schedule.
+Similar to [crons](/create-apps/image-properties/crons.md), they run in the app container but not on a specific schedule.
 You can [define runtime operations](#define-a-runtime-operation) in your [app configuration](/create-apps/app-reference/single-runtime-image.md)
 and [trigger them](#run-a-runtime-operation) at any time through the {{% vendor/name %}} CLI.
 

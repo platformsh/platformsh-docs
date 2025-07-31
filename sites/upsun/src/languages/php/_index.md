@@ -495,7 +495,7 @@ Common functions to disable include:
 PHP has two execution modes you can choose from:
 
 - The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
-  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/app-reference/single-runtime-image.md#crons),
+  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/image-properties/crons.md),
   and usually also for [alternate start commands](#alternate-start-commands).
   To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
   where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
