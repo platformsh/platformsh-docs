@@ -58,6 +58,12 @@ This lets you carry out various actions from a terminal.
 
 {{< cli-installation >}}
 
+{{< note theme="info" >}}
+
+If you are using Scoop, you **must** have the [Extras bucket](https://github.com/ScoopInstaller/Extras) already installed before installing the {{% vendor/name %}} CLI.
+
+{{< /note >}}
+
 ### Code
 
 To start a project, you should have code on your computer that you'd like to deploy.

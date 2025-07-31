@@ -2,7 +2,7 @@
 title: Subscribe to an add-on
 description: Subscribe to add-ons to enhance your user experience.
 keywords:
-  - Standard User Management
+  - Advanced User Management
   - Add-on
   - Sellable
   - Continuous profiling
@@ -11,26 +11,31 @@ keywords:
 Depending on your needs, you may want to upgrade to the following {{% vendor/name %}} add-ons.
 You can do so directly from the Console.
 
-## Standard User Management add-on
+## Advanced User Management add-on
 
 ### Included features
 
-The Standard User Management add-on gives you access to the following features:
+The Advanced User Management add-on gives you access to the following features:
 
-- [Free viewers](../users.md)
-- [Organization permissions](../users.md#organization-permissions)
 - [Teams](/administration/teams.md)
 - [MFA enforcement](/administration/mfa.md)
+- [Single sign-on (Google)](#single-sign-on-google)
 
-### Upgrade to the Standard User Management add-on
+{{% note theme="info" %}}
 
-To upgrade to the Standard User Management add-on, follow these steps:
+Note that the minimum commitment for this add-on is **30 days** before any changes can be made.
+
+{{% /note %}}
+
+### Upgrade to the Advanced User Management add-on
+
+To upgrade to the Advanced User Management add-on, follow these steps:
 
 1. In the Console, navigate to your organization.
 2. Open the user menu (your name or profile picture), then select **Billing**.
 3. In the **Organization add-ons** section of the **Overview** tab,
    locate the **User management** panel and click **Upgrade**.
-4. In the pop-up window, select **Standard user management** and check the 30-day commitment box.
+4. In the pop-up window, select **Advanced user management** and check the 30-day commitment box.
 5. Click **Upgrade**.
 
 After the add-on is added to your organization,
@@ -60,3 +65,69 @@ To upgrade to this add-on, follow these steps:
 3. In the **Project add-ons** section,
    locate the **Continuous profiling** panel and click **Enable**.
 5. To confirm, click **Enable**.
+
+## Organization Support add-on
+
+The {{% vendor/name %}} Organization Support add-on provides tiered support options tailored to organizational needs. These tiers vary between Standard, Advanced and Premium. 
+
+{{% note theme="tip" %}}
+
+All organizations are automatically enrolled in the **Standard** support tier. This tier is the default and cannot be removed.  
+
+{{% /note %}}
+
+### Available tiers
+
+| Tier       | Cost (% of Org Spend) | Urgent SLA   | High SLA     | Normal SLA   | Low SLA     |
+|------------|------------------------|--------------|--------------|--------------|-------------|
+| **Standard** (Default) | 10%                   | 4h (24/7)     | 24h (24/7)    | 48h (24/7)   | 72h (24/7)  |
+| **Advanced**           | 15%                   | 1h (24/7)     | 6h (24/7)     | 12h (24/7)   | 24h (24/7)  |
+| **Premium**            | 19%                   | 30m (24/7)    | 3h (24/7)     | 8h (24/7)    | 24h (24/7)  |
+
+{{% note theme="info" title="Minimum requirements" %}}
+
+The Advanced and Premium tiers require a 12 month minimum time commitment (MTC). 
+
+{{% /note %}}
+
+### Upgrade to the Organization Support add-on
+
+To upgrade to either the Advanced or Premium tier, follow these steps:
+
+1. Visit the **Organization Billing Overview** page in Console.
+2. Navigate to the **Organization Add-ons** section.
+2. Select your desired support tier.
+3. Acknowledge and accept the 12 month MTC.
+4. Confirm the upgrade. The new support level will be applied, and billing will be adjusted accordingly.
+
+
+### Spend calculation
+
+The Organization Support add-on fee is calculated as a percentage of your Organization's total recurring spend, including:
+
+- Projects
+- Sellables
+- User licenses
+
+For more information on incurred costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
+
+{{% note theme="warning" title="Exclusions" %}}
+
+One-time charges, taxes, discounts, and the support add-on itself are **not** included in the spend calculation.
+
+{{% /note %}}
+
+### Downgrading tiers
+
+Downgrades are permitted only after the 365 day MTC has been completed. Organizations may:
+
+- Downgrade from Premium to Advanced
+- Downgrade from Advanced or Premium to Standard
+
+Downgrades are performed through the Console and take effect based on the Organization's billing cycle.
+
+## Single sign-on (Google)
+
+{{% vendor/name %}} allows you to set up Single sign-on (SSO) with Google. To learn more about this feature, contact our [sales team](https://upsun.com/contact-us/) or visit [the pricing page](https://upsun.com/pricing/).
+
+

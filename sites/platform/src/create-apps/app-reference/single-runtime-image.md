@@ -24,28 +24,28 @@ The following table presents all properties available at the top level of the YA
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-
-| Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
-| ------------------ | --------------------------------------------------- | -------- | ---------------- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                            | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
-| `type`             | A [type](#types)                                    | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`.                                                                                                                                                                                             |
-| `size`             | A [size](#sizes)                                    |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
-| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
-| `disk`             | `integer` or `null`                                 |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                     |
-| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
-| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
-| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
-| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md) |
-| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
-| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
-| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
-| `build`            | A [build dictionary](#build)                        |          | No               | What happens when the app is built.                                                                                                                                                                                                                                        |
-| `dependencies`     | A [dependencies dictionary](#dependencies)          |          | No               | What global dependencies to install before the `build` hook is run.                                                                                                                                                                                                        |
-| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
-| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
-| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
-| `runtime`          | A [runtime dictionary](#runtime)                    |          | No               | Customizations to your PHP or Lisp runtime.                                                                                                                                                                                                                                |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
+| Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
+|--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
+| `type`             | A [type](#types)                                                         | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`.                                                                                                                                                                                             |
+| `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
+| `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
+| `disk`             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space)                                                                     |
+| `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
+| `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
+| `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
+| `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md) |
+| `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
+| `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
+| `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
+| `build`            | A [build dictionary](#build)                                             |          | No               | What happens when the app is built.                                                                                                                                                                                                                                        |
+| `dependencies`     | A [dependencies dictionary](#dependencies)                               |          | No               | What global dependencies to install before the `build` hook is run.                                                                                                                                                                                                        |
+| `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
+| `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
+| `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
+| `runtime`          | A [runtime dictionary](#runtime)                                         |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                                |
+| `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
+| `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
 
 ## Root directory
 
@@ -167,7 +167,6 @@ The following table shows which container profiles {{% vendor/name %}} applies w
 | InfluxDB              | HIGH_MEMORY |
 | Java                  | HIGH_MEMORY |
 | Kafka                 | HIGH_MEMORY |
-| Lisp                  | HIGH_CPU    |
 | MariaDB               | HIGH_MEMORY |
 | Memcached             | BALANCED    |
 | MongoDB               | HIGH_MEMORY |
@@ -545,21 +544,28 @@ These allowances are not compatible, and will result in an error if pushed.
 Use the `web` key to configure the web server running in front of your app.
 Defaults may vary with a different [image `type`](#types).
 
-| Name        | Type                                         | Required                      | Description |
-| ----------- | -------------------------------------------- | ----------------------------- | ----------- |
-| `commands`  | A [web commands dictionary](#web-commands)   | See [note](#required-command) | The command to launch your app. |
-| `upstream`  | An [upstream dictionary](#upstream)          |                               | How the front server connects to your app. |
-| `locations` | A [locations dictionary](#locations)         |                               | How the app container responds to incoming requests. |
+| Name        | Type                                       | Required                      | Description                                          |
+|-------------|--------------------------------------------|-------------------------------|------------------------------------------------------|
+| `commands`  | A [web commands dictionary](#web-commands) | See [note](#required-command) | The command to launch your app.                      |
+| `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
+| `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 
 See some [examples of how to configure what's served](/create-apps/web/_index.md).
 
 ### Web commands
 
 
-| Name    | Type     | Required                      | Description |
-| ------- | -------- | ----------------------------- | ----------- |
-| `pre_start` | `string` |   | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start` | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately. |
+| Name         | Type     | Required                      | Description                                                                                         |
+|--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
+| `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
+| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+
+{{< note theme="info" >}}
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< /note >}}
+
 
 Example:
 
@@ -647,8 +653,8 @@ The key of each item is a regular expression to match paths exactly.
 If an incoming request matches the rule, it's handled by the properties under the rule,
 overriding any conflicting rules from the rest of the `locations` dictionary.
 
-Under `rules`, you can set all of the other possible [`locations` properties](#locations)
-except `root`, `index` and `request_buffering`.
+Under `rules`, you can set all the other possible [`locations` properties](#locations)
+except `root`, `index`, `rules` and `request_buffering`.
 
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
@@ -892,7 +898,6 @@ They're installed before the `build` hook runs using a package manager for the l
 | Python 3 | `python3`             | [Pip 3](https://packaging.python.org/tutorials/installing-packages/)                                               |
 | Ruby     | `ruby`                | [Bundler](https://bundler.io/)                                                                                     |
 | Node.js  | `nodejs`              | [npm](https://www.npmjs.com/) (see [how to use yarn](/languages/nodejs/_index.md#use-yarn-as-a-package-manager))   |
-| Java     | `java`                | [Apache Maven](https://maven.apache.org/), [Gradle](https://gradle.org/), or [Apache Ant](https://ant.apache.org/) |
 
 The format for package names and version constraints are defined by the specific package manager.
 
@@ -1209,16 +1214,15 @@ Run the following command:
 
 ## Runtime
 
-The following table presents the various possible modifications to your PHP or Lisp runtime:
+The following table presents the various possible modifications to your PHP runtime:
 
-| Name                        | Type                                                       | Language | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
-| `disabled_extensions`       | List of `string`s                                          | PHP      | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
-| `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
-| `quicklisp`                 | Distribution definitions                                   | Lisp     | [Distributions for QuickLisp](/languages/lisp.md#quicklisp-options) to use.                |
+| Name                        | Type                                                       | Language | Description                                                                                             |
+|-----------------------------|------------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
+| `extensions`                | List of `string`s OR [extensions definitions](#extensions) | PHP      | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
+| `disabled_extensions`       | List of `string`s                                          | PHP      | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
+| `request_terminate_timeout` | `integer`                                                  | PHP      | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
+| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                 | PHP      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
+| `xdebug`                    | An Xdebug definition                                       | PHP      | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
 
 You can also set your [app's runtime timezone](/create-apps/timezone.md).
 

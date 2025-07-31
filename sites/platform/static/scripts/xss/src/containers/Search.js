@@ -136,6 +136,7 @@ const Search = ({ fullPage }) => {
         <div className="flex items-center">
           <input
             id={`searchwicon-${fullPage ? 'fullpage' : 'header'}`}
+            data-engagement-id="search"
             value={query}
             placeholder="What are you looking for?"
             onChange={handleInputChange}

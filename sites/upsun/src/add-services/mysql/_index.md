@@ -8,8 +8,8 @@ layout: single
 
 {{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
-See the [MariaDB documentation](https://mariadb.org/learn/)
-or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
+See the [MariaDB documentation](https://mariadb.org/documentation/)
+or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 ## Supported versions
 
@@ -18,25 +18,26 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-The service types `mariadb` and `mysql` both refer to MariaDB.
-The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-Other than the value for their `type`,
-MySQL and MariaDB have the same behavior and the rest of this page applies to both of them.
+{{< note theme="info" title="" >}}
+- The service types `mariadb` and `mysql` both refer to MariaDB.\
+  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
+{{< /note >}}
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|---------------|-------------|--------------------|
-|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
 {{% deprecated-versions %}}
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 ### Upgrade
 
 When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
 and check that each upgrade commit translates into an actual deployment.
 
 To upgrade, update the service version in your [service configuration](../_index.md).

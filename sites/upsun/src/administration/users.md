@@ -10,9 +10,7 @@ When a user is added to a project, they are automatically added to your organiza
 
 {{< note title="Available add-on" >}}
 
-The Standard User Management add-on offers free viewer permissions, custom [organization permissions](#organization-permissions),
-[teams](/administration/teams.md), and [MFA enforcement within an organization](/administration/mfa.md).
-See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#standard-user-management-add-on).
+The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/mfa.md) and [Single sign-on (Google)](/administration/billing/add-on-subscription.md#single-sign-on-google). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 
 {{< /note >}}
 
@@ -76,12 +74,10 @@ using the email address of the user whose permissions you want to view:
 title=In the Console
 +++
 
-1. Navigate to your organization.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user whose user permissions you want to view,
-   click **{{< icon more >}} More**.
-5. Click **Edit user**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. For the user whose user permissions you want to view, click **{{< icon more >}} More**.
+4. Click **Edit user**.
 
 {{< /codetabs >}}
 
@@ -203,10 +199,10 @@ Run the following command:
 title=In the Console
 +++
 
-1. Navigate to your organization or a project in it.
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. For the user you want to remove, click **{{< icon more >}} More**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. For the user you want to remove, click **{{< icon more >}} More**.
+4. Click on the **Projects** tab
 5. For the project you want to remove them from, click **{{< icon more >}} More**.
 6. Click **Remove from project**.
 7. Click **Yes**.
@@ -234,12 +230,12 @@ For more information on project access control, see how to [manage project users
 As an organization owner or an organization user with the **Manage users** permission,
 you can invite other users to your organization and grant them the following permissions:
 
+- **Admin** (`owner`):
+  Manage the organization and access all organization permissions, including all listed below.
 - **Manage billing** (`billing`):
   Add, remove, and edit billing information.
   Access invoices and vouchers.
   Users with this permission receive monthly invoices by email.
-- **Manage plans** (`plans`):
-  Access to update settings of existing projects in an organization.
 - **Manage users** (`members`):
   Add, remove, and edit organization-level users and permissions, except their own.
   Users with this permission can't grant other users permissions that they themselves don't have.
@@ -290,13 +286,12 @@ with the **Manage billing** and **Create projects** permissions, run the followi
 title=Using the Console
 +++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Click **+ Invite users**.
-5. Enter the users' email addresses separated by commas.
-6. Select which organization-wide permissions they should have.
-7. Click **Invite**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. Click **+ Invite users**.
+4. Enter the users' email addresses separated by commas.
+5. Select which organization-wide permissions they should have.
+6. Click **Invite**.
 
 {{< /codetabs >}}
 
@@ -327,11 +322,10 @@ so that she has only the **Manage billing** permission, run the following comman
 title=Using the Console
 +++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Next to the user you want to manage, click **{{< icon "more" >}} More**.
-5. Click **Edit user**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. Next to the user you want to manage, click **{{< icon "more" >}} More**.
+4. Click **Edit user**.
 
 You see all the projects the user is a part of and their permissions in those projects.
 You also see their permissions across the organization.
@@ -368,11 +362,10 @@ For example, to remove `alice@example.com` from your `acme` organization, run th
 title=Using the Console
 +++
 
-1. Navigate to the organization you want to manage (or a project in it).
-2. Open the user menu (your name or profile picture).
-3. Click **Users**.
-4. Next to the user you want to remove, click **{{< icon "more" >}} More**.
-5. Click **Remove from organization**.
+1. Open the organization menu (your organization name in the upper-left).
+2. Click **Users**.
+3. Next to the user you want to remove, click **{{< icon "more" >}} More**.
+4. Click **Remove from organization**.
 
 To delete users in bulk, select the users to remove and click **Remove users from organization**.
 

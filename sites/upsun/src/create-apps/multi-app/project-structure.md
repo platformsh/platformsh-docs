@@ -2,10 +2,6 @@
 title: Choose a project structure
 weight: 10
 description: Explore possible code structures you can apply to your multiple application projects.
-banner:
-   title: Feature availability
-   type: tiered-feature
-   body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
 ---
 
 How you structure a project with multiple apps depends on how your code is organized
@@ -71,7 +67,7 @@ Once your repository is organized, you can use a configuration similar to the fo
 ```yaml {configFile="apps"}
 applications:
   api:
-    type: php:8.2
+    type: 'php:{{% latest "php" %}}'
 
     relationships:
       database:

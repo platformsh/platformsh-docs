@@ -114,22 +114,23 @@ For PHP, enable the [extension](/languages/php/extensions) for the service:
 # PHP extensions.
 runtime:
   extensions:
-    - valkey
+    - redis
 ```
 
 ### 3. Add the Drupal module
 
-To add the Valkey module to your project, run the following command:
+[Drupal supports Valkey through the existing redis module](https://www.drupal.org/project/redis/issues/3443819). To add
+the Redis module to your project, run the following command:
 
 ```bash
-composer require drupal/valkey
+composer require drupal/redis
 ```
 
 Then commit the resulting changes to your `composer.json`
 and `composer.lock` files. Afterwards, you can enable the module with:
 
 ```bash
-platform drush enable valkey
+platform drush enable redis
 ```
 
 ## Configure your Valkey service

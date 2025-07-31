@@ -1,8 +1,12 @@
 ---
 title: "Dedicated Gen 3 Overview"
 weight: -10
+build:
+  list: local
+  render: always
 sidebarTitle: "DG3 overview"
 description:  "Designed to cater to the needs of organizations that build demanding apps, Dedicated Generation 3 (DG3) offers increased resources and High Availability (HA) for all your services, along with stricter isolation requirements and additional compliance frameworks."
+
 ---
 
 {{< note theme="note" title="Limited access phase">}}
@@ -169,3 +173,4 @@ In addition to SSH accounts, you can create SFTP accounts with a custom user/pas
 On Dedicated Gen 3 projects, SFTP access cannot be limited to a specific directory. Instead, access is given to the whole application directory and its mounts. However, write access is restricted to the mounts declared in your YAML config files. SSH public key based authentication is also supported on the SFTP account.
 
 {{< /note >}}
+

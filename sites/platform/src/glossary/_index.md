@@ -103,8 +103,6 @@ The control plane is Platform.sh’s orchestration, control, and management envi
 Their dedicated architecture makes them differ from [Grid environments](#grid).
 See a [list of differences](/dedicated-environments/dedicated-gen-2/environment-differences.md).
 
-These differences aren't present with [{{% names/dedicated-gen-3 %}} projects](/dedicated-environments/dedicated-gen-3/_index.md).
-
 ## Deprecated versions
 
 Older versions of languages and services eventually reach the end of their lives.
@@ -127,6 +125,10 @@ that let you run Drush commands on specific local or remote Drupal installations
 The {{% vendor/name %}} CLI configures Drush aliases for you on your local environment
 (via `{{% vendor/cli %}} get` or `{{% vendor/cli %}} drush-aliases`).
 You can also configure them manually.
+
+## Endpoint
+
+An endpoint is a named set of credentials to give access to other apps and services in your project.
 
 ## Environment
 
@@ -199,11 +201,14 @@ that includes workflow tools, APIs, and other functionality above and beyond bas
 The best example is {{% vendor/name %}}(although we're a little biased).
 
 ## Preview environment
+*Related terms: [Environment type](#environment-type)*
 
 A preview environment is a non-production environment you can use to develop and/or test changes without affecting production.</br>
 A preview environment can either be a development environment or a staging environment.
-Staging environments have an identical software configuration to your production hardware but reduced hardware specs.
+Preview environments have an identical software configuration to your production hardware but reduced hardware specs.
 They are useful to perform user acceptance testing.
+
+To learn more, see [Branch](#branch) also in this glossary.
 
 ## Production plan
 

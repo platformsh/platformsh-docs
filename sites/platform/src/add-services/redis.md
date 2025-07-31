@@ -3,13 +3,6 @@ title: "Redis (Object cache)"
 weight: 20
 sidebarTitle: "Redis"
 ---
-{{% note theme="warning" title="New versions of Redis no longer supported" %}}
-
-Please note that newer versions after Redis 7.2 will no longer be supported by {{% vendor/name %}} due to [licensing changes](https://redis.com/blog/redis-adopts-dual-source-available-licensing/). Valkey is available on all our products as a viable alternative open source datastore. 
-
-**Please read the {{% vendor/name %}} [Valkey documentation](/add-services/valkey) for more information.**
-
-{{% /note %}}
 
 [Redis](https://redis.io/documentation) is a multi-model database that allows you to store data in memory for high-performance data retrieval and key-value storage.
 
@@ -40,14 +33,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="redis" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="redis" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -64,14 +55,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="redis" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="redis" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>

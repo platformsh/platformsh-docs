@@ -127,7 +127,7 @@ variables:
     PIP_VERSION: '22.3.1'
 dependencies:
   python3:
-    pipenv: '2022.12.19'
+    pipenv: '2024.4.1'
 hooks:
   build: |
     # Fail the build if any errors occur
@@ -140,6 +140,21 @@ hooks:
 {{< /snippet >}}
 ```
 {{< /codetabs >}}
+
+## UV
+
+[uv](https://docs.astral.sh/uv/) is an extremely fast Python package and project
+manager, written in Rust.
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        uv: "*"
+```
 
 ## Poetry
 
@@ -183,22 +198,22 @@ applications:
     # The location of the application's code.
     source:
       root: "myapp"
-      type: 'python:{{% latest "python" %}}'
-      dependencies:
-        python3:
-          poetry: '*'
-      variables:
-        env:
-          POETRY_VIRTUALENVS_IN_PROJECT: true
-          POETRY_VIRTUALENVS_CREATE: true
-      hooks:
-        build: |
-          # Fail the build if any errors occur
-          set -eu
-          # Download the latest version of pip
-          python{{% latest "python" %}} -m pip install --upgrade pip
-          # Install dependencies
-          poetry install
+    type: 'python:{{% latest "python" %}}'
+    dependencies:
+      python3:
+        poetry: '*'
+    variables:
+      env:
+        POETRY_VIRTUALENVS_IN_PROJECT: true
+        POETRY_VIRTUALENVS_CREATE: true
+    hooks:
+      build: |
+        # Fail the build if any errors occur
+        set -eu
+        # Download the latest version of pip
+        python{{% latest "python" %}} -m pip install --upgrade pip
+        # Install dependencies
+        poetry install
 ```
 <--->
 +++

@@ -33,7 +33,10 @@ In this summary, you will find specific details about:
 
 This data is updated daily and will reflect your traffic usage throughout the billing period. 
 
+{{< /note >}}
 
+{{< note theme="Info" >}}
+{{% vendor/name %}} does not write nor debug any custom VCL on Managed Fastly CDN services.
 {{< /note >}}
 
 ### Domain control validation
@@ -70,7 +73,7 @@ Failure to do so may result in outages and compromised security for your site.
 
 ### Retrieve your Fastly API token
 
-The API token for your managed Fastly CDN is stored in the `FASTLY_API_TOKEN` environment variable.
+The API token for your managed Fastly CDN is stored in the `FASTLY_API_TOKEN` or the `FASTLY_KEY` environment variables.
 
 This variable is usually set in the `/master/settings/variables` folder of your project,
 and you can access it [from a shell](/development/variables/use-variables.md#access-variables-in-a-shell)
@@ -78,7 +81,7 @@ or directly [in your app](/development/variables/use-variables.md#access-variabl
 
 {{% note %}}
 
-Older projects may not have the `FASTLY_API_TOKEN` environment variable set.</br>
+Dedicated (gen2) projects may not have the `FASTLY_*` environment variable(s) set.</br>
 In this case, the Fastly API token is stored in a text file called `fastly_tokens.txt` on the server,
 typically located at `/mnt/shared/fastly_tokens.txt`.
 

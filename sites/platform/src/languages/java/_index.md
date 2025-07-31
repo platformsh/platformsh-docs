@@ -20,7 +20,7 @@ When you deploy your app, you always get the latest available patches.
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
