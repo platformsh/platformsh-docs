@@ -6,7 +6,7 @@ description: Defines the list of work names that are alternate copies of the app
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
 
-Defines the list of worker names that are alternate copies of the application to run as background processes.
+{{% description %}}
 
 Workers are exact copies of the code and compilation output as a `web` instance after a [`build` hook](/create-apps/image-properties/hooks.md).
 They use the same container image.

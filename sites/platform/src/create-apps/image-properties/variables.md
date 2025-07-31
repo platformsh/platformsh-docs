@@ -6,7 +6,7 @@ description: A variables dictionary that defines variables to control the enviro
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
-A variables dictionary that defines variables to control the environment.
+{{% description %}}
 
 {{% vendor/name %}} provides a number of ways to set [variables](/development/variables/_index.md).
 Variables set in your app configuration have the lowest precedence,

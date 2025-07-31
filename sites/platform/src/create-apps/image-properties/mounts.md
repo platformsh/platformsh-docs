@@ -6,7 +6,7 @@ description: Defines the directories that are writable even after the app is bui
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
-Defines the directories that are writable even after the app is built. If set as a local source, disk is required.
+{{% description %}} If set as a local source, disk is required.
 
 After your app is built, its file system is read-only.
 To make changes to your app's code, you need to use Git.

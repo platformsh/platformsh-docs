@@ -6,7 +6,7 @@ description: A dictionary of relationships that defines the connections to other
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images in {{% vendor/name %}}.
 
-A dictionary of relationships that defines the connections to other services and apps.
+{{% description %}}
 
 To allow containers in your project to communicate with one another,
 you need to define relationships between them.

@@ -8,7 +8,7 @@ description: A firewall dictionary that defines the outbound firewall rules for 
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
 
-A firewall dictionary that defines the outbound firewall rules for the application.
+{{% description %}}
 
 This value sets limits in outbound traffic from your app with no impact on inbound requests.
 

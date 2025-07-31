@@ -6,7 +6,7 @@ description: Contains information about the app’s source code and operations t
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
-Contains information about the app’s source code and operations that can be run on it.
+{{% description %}}
 
 The following table shows the properties that can be set in `source`:
 
