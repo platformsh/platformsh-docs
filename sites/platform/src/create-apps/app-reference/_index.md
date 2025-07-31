@@ -16,16 +16,18 @@ The point of this topic is to help the user to decide which type to choose
 
 An _image_ represents the configuration for the container that contains the application (or service) that you want to deploy. 
 
-When 
+<!-- JUL20205 kept the original content below for now -->
+To define your app, you can either use one of {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
+or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
 
-Single-runtime image type: 
+The single-runtime image type has the following characteristics: 
 - Can contain only a single runtime
 - Requires more manual configuration the composable images, but are more flexible
 - Initial build takes
 - `type` defines your image version (for example, `php:8.4`)
 - You can move to a composable image later, if your application needs change
 
-Composable image type has these characteristics: 
+The composable image type has the following characteristics: 
 - Can contain multiple runtimes
 - Requires less manual configuration than single-runtime images and offers more flexibility in other ways
 - Initial build and rebuilds and can take a long time,<!-- a few minutes? --> but caching increases the speed <!-- clarify this -->
@@ -41,10 +43,6 @@ Composable image type has these characteristics:
 |                  |                      |                  | 
 
 -->
-
-<!-- JUL20205 kept the original content below for now -->
-To define your app, you can either use one of {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
-or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
 
 ## Single-runtime image
 
