@@ -39,7 +39,7 @@ jobs:
       - name: Set up Upsun CLI
         uses: upsun/action-cli@v1
         with:
-          cli_provider: 'platform'
+          cli_provider: 'upsun'
 
       - name: Make changes to pull request
         run: |
