@@ -310,14 +310,7 @@ Create the `config/sync` empty directory referenced in the settings file:
 mkdir -p config/sync && touch config/sync/.gitkeep
 ```
 
-## Configuration reader
-
-Install the required [Config Reader library](https://github.com/platformsh/config-reader-php).
-This will help us to pull routing details for each environment into our settings (highlighted in the snippet in the next step).
-
-```bash
-composer require platformsh/config-reader
-```
+## Deploy changes
 
 Now commit all of the above changes and push to {{% vendor/name %}}.
 
