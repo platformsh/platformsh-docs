@@ -97,18 +97,22 @@ applications:
                     rules:
                         '^/sites/default/files/(css|js)':
                             expires: 2w
-        dependencies:
-            php:
-                composer/composer: "^2.7"
         hooks:
             build: |
                 set -e
-            # fast.
             deploy: |
                 set -e
-                php ./drush/upsun_generate_drush_yml.php
-                cd web
-                bash $PLATFORM_APP_DIR/drush/upsun_deploy_drupal.sh
+                if [ -n "$(drush status --field=bootstrap)" ]; then
+                    drush -y cache-rebuild
+                    drush -y updatedb
+                    if [ -n "$(ls $(drush php:eval "echo realpath(Drupal\Core\Site\Settings::get('config_sync_directory'));")/*.yml 2>/dev/null)" ]; then
+                        drush -y config-import
+                    else
+                        echo "No config to import. Skipping."
+                    fi
+                else
+                    echo "Drupal not installed. Skipping standard Drupal deploy steps"
+                fi
         crons:
             # Run Drupal's cron tasks every 19 minutes.
             drupal:
@@ -122,6 +126,7 @@ applications:
                 - sodium
                 - apcu
                 - blackfire
+                - gd
         source:
             root: /
 services:
@@ -153,6 +158,10 @@ if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
   bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
   export PATH="${PLATFORM_APP_DIR}/${bin:-vendor/bin}:${PATH}"
 fi
+
+# Set the URI for Drush commands.
+export PRIMARY_URL="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key | rtrimstr("/")')"
+export DRUSH_OPTIONS_URI="$PRIMARY_URL"
 ```
 
 ## `settings.php`
@@ -166,8 +175,8 @@ if (getenv('PLATFORM_APPLICATION') && file_exists(__DIR__ . '/settings.upsun.php
 ```
 
 ## Upsun-specific settings
-Then create a new Upsun-specific settings file `web/sites/default/settings.upsun.php` that leverages the variables
-defined in `.environment`. This file should contain the following:
+Then create a new Upsun-specific settings file `web/sites/default/settings.upsun.php`
+which should contain the following:
 
 ```php {location="web/sites/default/settings.upsun.php"}
 <?php
@@ -308,127 +317,6 @@ This will help us to pull routing details for each environment into our settings
 
 ```bash
 composer require platformsh/config-reader
-```
-## Drush
-To configure Drush, use the following command to create the files that will be referenced in the configuration process. This process will allow Drush to be used within the Upsun container.
-
-```bash {location="Terminal"}
-mkdir drush && touch drush/upsun_deploy_drupal.sh && touch drush/upsun_generate_drush_yml.php
-```
-
-Fill out the `drush/upsun_deploy_drupal.sh` with the following:
-
-```bash {location="drush/upsun_deploy_drupal.sh"}
-#!/usr/bin/env bash
-#
-# Don't run drush commands if drupal isn't installed.
-# Don't run config-import if there aren't any config files to import
-
-if [ -n "$(drush status --field=bootstrap)" ]; then
-  drush -y cache-rebuild
-  drush -y updatedb
-  if [ -n "$(ls $(drush php:eval "echo realpath(Drupal\Core\Site\Settings::get('config_sync_directory'));")/*.yml 2>/dev/null)" ]; then
-    drush -y config-import
-  else
-    echo "No config to import. Skipping."
-  fi
-else
-  echo "Drupal not installed. Skipping standard Drupal deploy steps"
-fi
-```
-
-This file runs Drush commands (`cache-rebuild` and `updatedb`) only when Drupal is installed. It also will only run
-`config-import` if configuration YAMLs are present in the `config_sync_directory` -- `config/sync`.
-
-Change its permissions to run at deploy time:
-
-```bash {location="Terminal"}
-chmod +x drush/upsun_deploy_drupal.sh
-```
-
-Then finally, fill out the Drush generator PHP file:
-
-```php {location="drush/upsun_generate_drupal_yml.php"}
-<?php
-/**
- * @file
- * A script that creates the .drush/drush.yml file.
- */
-
-// This file should only be executed as a PHP-CLI script.
-if (PHP_SAPI !== 'cli') {
-  exit;
-}
-
-require_once(__DIR__ . '/../vendor/autoload.php');
-
-/**
- * Returns a site URL to use with Drush, if possible.
- *
- * @return string|NULL
- */
-function _platformsh_drush_site_url() {
-  $platformsh = new \Platformsh\ConfigReader\Config();
-
-  if (!$platformsh->inRuntime()) {
-    return;
-  }
-
-  $routes = $platformsh->getUpstreamRoutes($platformsh->applicationName);
-
-  // Sort URLs, with the primary route first, then by HTTPS before HTTP, then by length.
-  usort($routes, function (array $a, array $b) {
-    // false sorts before true, normally, so negate the comparison.
-    return
-      [!$a['primary'], strpos($a['url'], 'https://') !== 0, strlen($a['url'])]
-      <=>
-      [!$b['primary'], strpos($b['url'], 'https://') !== 0, strlen($b['url'])];
-  });
-
-  // Return the url of the first one.
-  return reset($routes)['url'] ?: NULL;
-}
-
-$appRoot = dirname(__DIR__);
-$filename = $appRoot . '/.drush/drush.yml';
-
-$siteUrl = _platformsh_drush_site_url();
-
-if (empty($siteUrl)) {
-  echo "Failed to find a site URL\n";
-
-  if (file_exists($filename)) {
-    echo "The file exists but may be invalid: $filename\n";
-  }
-
-  exit(1);
-}
-
-$siteUrlYamlEscaped = json_encode($siteUrl, JSON_UNESCAPED_SLASHES);
-$scriptPath = __FILE__;
-
-$success = file_put_contents($filename, <<<EOF
-# Drush configuration file.
-# This was automatically generated by the script:
-# $scriptPath
-
-options:
-  # Set the default site URL.
-  uri: $siteUrlYamlEscaped
-
-EOF
-);
-if (!$success) {
-  echo "Failed to write file: $filename\n";
-  exit(1);
-}
-
-if (!chmod($filename, 0600)) {
-  echo "Failed to modify file permissions: $filename\n";
-  exit(1);
-}
-
-echo "Created Drush configuration file: $filename\n";
 ```
 
 Now commit all of the above changes and push to {{% vendor/name %}}.
