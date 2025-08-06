@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Run at 00:15 every day
-    - cron: '15 */19 * * *'
+    - cron: '15 0 * * *'
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
