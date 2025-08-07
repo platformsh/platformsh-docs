@@ -154,12 +154,47 @@ Deploying staged changes:
 | fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
-You can also use the following command to manipulate the type from CLI. With this command, you can specify whether you'd like your deplyoment type of be manual or automatic:
+You can also use the following command to manipulate the type from CLI:
 
 ```bash
 platform environment:deploy:type
 ```
+The output should look similar to the example below:
 
+```bash
+Selected project: [my-project (ID)]
+Selected environment: main (type: production)
+Deployment type: manual
+```
+
+For more information about how this command works, use:
+
+```bash
+--help
+``` 
+
+Where you will find context similar to the information shown below:
+
+```bash
+Description: Show or set the environment deployment type
+
+Usage:
+ platform environment:deploy:type [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<type>]
+
+Arguments:
+  type                           The environment deployment type: automatic or manual.
+
+Options:
+  ....
+
+Help:
+ Choose automatic (the default) if you want your changes to be deployed immediately as they are made.
+ Choose manual to have changes staged until you trigger a deployment (including changes to code, variables, domains and settings).
+
+Examples:
+ Set the deployment type to "manual" (disable automatic deployments):
+   platform environment:deploy:type manual
+```
 <--->
 +++
 title=Using the Console
