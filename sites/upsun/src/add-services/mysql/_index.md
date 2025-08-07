@@ -37,7 +37,7 @@ When you deploy your app, you always get the latest available patches.
 ### Upgrade
 
 When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
 and check that each upgrade commit translates into an actual deployment.
 
 To upgrade, update the service version in your [service configuration](../_index.md).
@@ -728,7 +728,7 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 {{% note theme="info" %}}
-MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
+MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/server-management/variables-and-modes/server-system-variables#max_connections) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
 They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
