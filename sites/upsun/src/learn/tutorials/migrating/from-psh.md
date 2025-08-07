@@ -1,21 +1,71 @@
 ---
-title: From Platform.sh
-description: See how to migrate your app to {{% vendor/name %}} so it's ready to be deployed.
+title: Converting a project
+description: See how to configure your app to {{% vendor/name %}} so it's ready to be deployed.
 keywords:
   - "set remote"
 ---
 
-If you already have an app running somewhere else, you want to migrate it to {{% vendor/name %}} and deploy it.
-To do so, follow these steps.
+There are two ways to change the configuration files of your projects to make them {{% vendor/name %}} compatible. 
+
+1. [Convert projects with the CLI](#convert-with-the-cli)
+2. [Convert projects manually](#convert-manually)
 
 ## Before you begin
 
 You need:
 
-- An app that works and is ready to be built
-- Code in Git
+- A Platform.sh application that works and is ready to be built
+- The code in Git
 - A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
+
+## Convert with the CLI
+
+To assist with converting applications from Platform.sh to {{% vendor/name %}}, the convsun tool is available as part of the {{% vendor/name %}} CLI. This feature automates the conversion of Platform.sh config files into a format required by {{% vendor/name %}}, significantly reducing manual effort.
+
+### Key functions
+The convsun tool performs the following transformations:
+
+1. Generation of Upsun `config.yaml`
+- Creates a new `config.yaml` file - the primary configuration file for {{% vendor/name %}} projects.
+- Extracts relevant information from `.platform.app.yaml`, `services.yaml`, and `routes.yaml`.
+
+2. Refactoring of obsolete or incompatible fields
+Removes resource-related fields that are not applicable in {{% vendor/name %}}. This includes:
+
+- Disk values
+- Size settings (e.g., S, M, L)
+- Legacy resources blocks
+- Any deprecated or unsupported container options in the source configuration
+
+3. Mount and storage adjustments
+- Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency.
+- Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
+
+4. Reorganization of custom service configuration
+- Moves custom configuration for services such as `Solr` into the `.upsun/ directory`, which is used to hold project-specific overrides and custom assets.
+
+5. Support for cron jobs
+- Identifies cron jobs defined in Platform.sh and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
+- Flags any cron schedules requiring special support and prepares the `config.yaml` accordingly.
+
+### Example usage
+
+```bash
+# Placeholder command – to be updated with final syntax
+
+```
+You will be prompted to enter the path to the Platform.sh project you would like to convert. 
+
+The Convsun feature then performs the conversion within the {{% vendor/name %}} CLI and outputs the updated `config.yaml` file to the specified destination directory.
+
+## Convert manually
+
+If you prefer not to use the CLI tool, or if your project has custom requirements that require a more hands-on approach, you can manually update your Platform.sh configuration to be compatible with {{% vendor/name %}}.
+
+Manual conversion gives you full control over the transition process and can be useful for projects with non-standard setups or advanced customizations.
+
+Follow the steps below to begin a manual migration.
 
 ## 1. Export from previous system
 
