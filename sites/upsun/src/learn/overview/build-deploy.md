@@ -117,7 +117,7 @@ Note that development environments **always** use automatic deployment, while ma
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment (staging or production only). To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. To revert to automatic deployments, select the automatic deployments option.
+You can adjust deployment behavior in your environment (staging or production only). To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
 
 {{< note theme="tip" >}}
 
@@ -135,13 +135,7 @@ Once manual deployment is enabled, eligible changes are staged. You can deploy t
 title=Using the CLI
 +++
 
-List environments with the following command:
-
-```bash
-upsun environment:list
-
-```
-Then deploy the staged changes to a specific environment:
+Deploy staged changes to your chosen environment:
 
 ```bash
 upsun environment:deploy
@@ -161,12 +155,18 @@ Deploying staged changes:
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
 
+You can also use the following command to manipulate the type from CLI. With this command, you can specify whether you'd like your deplyoment type of be manual or automatic:
+
+```bash
+upsun environment:deploy:type
+```
+
 <--->
 +++
 title=Using the Console
 +++
 
-In the Console, a **Deploy** button will appear in the environment whenever changes are staged. You can review a summary of the pending changes before confirming the deployment.
+In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes. 
 
 <--->
 +++
