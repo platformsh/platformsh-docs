@@ -33,6 +33,16 @@ When you deploy your app, you always get the latest available patches.
     </tbody>
 </table>
 
+## Deprecated versions
+
+The following versions are still available in your projects,
+but they're at their end of life and are no longer receiving security updates from upstream.
+
+{{< image-versions image="chrome-headless" status="deprecated" environment="grid" >}}
+
+To ensure your project remains stable in the future,
+switch to a [supported version](#supported-versions).
+
 ## Relationship reference
 
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
