@@ -154,7 +154,7 @@ Deploying staged changes:
 | fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
-You can also use the following command to manipulate the type from CLI:
+You can also use the following command to manipulate the type from the CLI:
 
 ```bash
 platform environment:deploy:type

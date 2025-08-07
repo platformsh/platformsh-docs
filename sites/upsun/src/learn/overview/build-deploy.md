@@ -155,7 +155,7 @@ Deploying staged changes:
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
 
-You can also use the following command to manipulate the type from CLI:
+You can also use the following command to manipulate the type from the CLI:
 
 ```bash
 upsun environment:deploy:type
