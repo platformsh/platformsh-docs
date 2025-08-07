@@ -2,10 +2,9 @@ name: Generate CLI commands doc page
 
 on:
   workflow_dispatch:
-    branches: [ main ]
   schedule:
     # Run at 00:15 every day
-    - cron: '15 */19 * * *'
+    - cron: '15 0 * * *'
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
@@ -40,7 +39,7 @@ jobs:
       - name: Set up Upsun CLI
         uses: upsun/action-cli@v1
         with:
-          cli_provider: 'platform'
+          cli_provider: 'upsun'
 
       - name: Make changes to pull request
         run: |
