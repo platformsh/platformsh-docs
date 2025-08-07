@@ -210,9 +210,7 @@ title=Using the API
 Trigger the deployment of staged changes with the following:
 
 ```bash
-
 POST /projects/{projectId}/environments/{environmentId}/deploy
-
 ```
 
 {{< /codetabs >}}
