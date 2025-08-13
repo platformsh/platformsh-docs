@@ -15,20 +15,21 @@
   {{- .Page -}}
   {{- $itemTitle := .Context.Title | .Context.Page.RenderString }}
   {{- if ne $itemTitle "" }}
-- [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .Context.RelPermalink | replaceRE `.html` `.md` }})
+
+#### [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .Context.RelPermalink | replaceRE `.html` `.md` }})
   {{- range .Context.Pages -}}
     {{- $itemTitle = .Title | .Page.RenderString -}}
     {{- $itemId := printf "%s-sidebar-id" ( replace ($itemTitle | urlize) "." "" ) -}}
     {{- $levelTwoPages := .Pages -}}
     {{- if not ( .Params.sidebarIgnore ) -}}
       {{- with .Params.sectionBefore }}
-- {{ . -}}
+### {{ . -}}
       {{- end }}
-- [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" -}}{{- end -}}
+- [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" -}}{{- end -}}
       {{- if eq .Kind "section" -}}
               {{- range $levelTwoPages -}}
-                {{ if not ( .Params.sidebarIgnore ) }}
-- [{{- if isset .Params "sidebartitle" -}}{{ .Params.sidebarTitle | .RenderString -}}{{- else -}}{{ .Title | .RenderString -}}{{- end -}}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" -}}{{- end -}}
+                {{- if not ( .Params.sidebarIgnore ) }}
+- [{{- if isset .Params "sidebartitle" -}}{{ .Params.sidebarTitle | .RenderString -}}{{- else -}}{{ .Title | .RenderString -}}{{- end -}}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" -}}{{- end -}}
                 {{- end -}}
               {{- end -}}
           {{- end -}}
