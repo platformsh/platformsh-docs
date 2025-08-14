@@ -39,7 +39,7 @@ and any other HTTP-based API service
 and custom implementations
 - **Integration**: REST APIs, WebSockets, and event-driven architectures
 
-{{< note theme="info" title="API Flexibility" >}}
+{{< note theme="info" title="API flexibility" >}}
 Upsun supports integration with **any** LLM service that provides an HTTP API.
 The services listed above are just popular examples. You can integrate with
 self-hosted models, specialized AI services, or any custom API endpoint that
