@@ -28,7 +28,8 @@
           # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
           mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
-            cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
+            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
           else
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
@@ -115,7 +116,8 @@
           # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
           mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
-            cp "${PLATFORM_APP_DIR}/shared/pages/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
+            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
           else
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
