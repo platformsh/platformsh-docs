@@ -53,7 +53,7 @@ MCP operates on a client–server model:
 To connect to multiple external services, a single host needs to manage multiple
 MCP clients, each connecting to a different MCP server.
 
-## Additional Resources
+## Additional resources
 
 - **[Deep Dive into MCP's Interaction Model](https://devcenter.upsun.com/posts/mcp-interaction-types-article/?utm_source=chatgpt.com)**  
   Explore MCP's three core interaction types—*prompts* (user-driven),
