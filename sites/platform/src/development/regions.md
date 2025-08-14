@@ -31,7 +31,7 @@ See all available information in the [API documentation](https://api.platform.sh
 
 ### Carbon Emissions dashboard
 
-The Carbon Emissions dashboard provides an overview of the carbon footprint associated with your cloud resource usage. This dashboard calculates emissions using a Carbon Price List (CPL) methodology, inspired by the Cloud Carbon Footprint model. 
+The Carbon Emissions dashboard provides an overview of the carbon footprint associated with your cloud resource usage. This dashboard calculates emissions using a Carbon Price List (CPL) methodology, inspired by the Cloud Carbon Footprint model.
 
 Users can view total emissions over time and project specific emissions for the current year, broken down by kilograms of CO2 equivalent (kg CO2e). The dashboard also includes information about how emissions are calculated and what factors (server location, usage etc.) can influence those totals.
 
