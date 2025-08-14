@@ -8,7 +8,7 @@ programming language and integrate with various LLM APIs. Upsun provides
 container-based deployments that give you control over your application
 architecture and dependencies.
 
-## Runtime and Language Support
+## Runtime and language support
 
 Upsun supports multiple runtimes through container-based deployments including
 Python, Node.js, PHP, Ruby, Go, Java, and more. For the complete list of
