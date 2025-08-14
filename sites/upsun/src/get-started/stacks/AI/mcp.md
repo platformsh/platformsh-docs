@@ -12,7 +12,7 @@ For comprehensive information about the Model Context Protocol, including
 specifications, examples, and implementation details, we recomend you visit the
 [official MCP documentation](https://modelcontextprotocol.io/) maintained by Anthropic.
 
-## Get Started with MCP on Upsun
+## Get started with MCP on Upsun
 
 - **[Build and deploy AI-native applications with MCP servers on Upsun](https://devcenter.upsun.com/posts/tutorials/?utm_source=chatgpt.com)**  
   Learn how to build and deploy AI-native applications by leveraging MCP servers
