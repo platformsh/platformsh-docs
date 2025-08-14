@@ -23,13 +23,13 @@
     {{- $levelTwoPages := .Pages -}}
     {{- if not ( .Params.sidebarIgnore ) -}}
       {{- with .Params.sectionBefore }}
-### {{ . -}}
-      {{- end }}
-- [{{ $itemTitle }}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" -}}{{- end -}}
+##### {{ . }}
+      {{ end }}
+- [{{ $itemTitle | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" | replaceRE "&rsquo;" "'" | replaceRE "&#39;" "'" | replaceRE "&gt;" ">" | replaceRE "&amp;" "&" | replaceRE "&lt;" "<" | replaceRE "\n" " " | safeHTML }}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" | replaceRE "&rsquo;" "'" | replaceRE "&#39;" "'" | replaceRE "&gt;" ">" | replaceRE "&amp;" "&" | replaceRE "&lt;" "<" | replaceRE "\n" " " | safeHTML -}}{{- end -}}
       {{- if eq .Kind "section" -}}
               {{- range $levelTwoPages -}}
                 {{- if not ( .Params.sidebarIgnore ) }}
-- [{{- if isset .Params "sidebartitle" -}}{{ .Params.sidebarTitle | .RenderString -}}{{- else -}}{{ .Title | .RenderString -}}{{- end -}}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" -}}{{- end -}}
+- [{{- if isset .Params "sidebartitle" -}}{{ .Params.sidebarTitle | .RenderString | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" | replaceRE "&rsquo;" "'" | replaceRE "&#39;" "'" | replaceRE "&gt;" ">" | replaceRE "&amp;" "&" | replaceRE "&lt;" "<" | replaceRE "\n" " " | safeHTML -}}{{- else -}}{{ .Title | .RenderString | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" | replaceRE "&rsquo;" "'" | replaceRE "&#39;" "'" | replaceRE "&gt;" ">" | replaceRE "&amp;" "&" | replaceRE "&lt;" "<" | replaceRE "\n" " " | safeHTML -}}{{- end -}}]({{ $upsunDocUrl }}{{ .RelPermalink | replaceRE `.html` `.md` }}){{- if ne .Description "" }}: {{ .Description | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" | replaceRE `\{\{[%\|\<]?\ *vendor\/psh_ref\ *[\%|\>]?\}\}` "Platform.sh" | replaceRE "&rsquo;" "'" | replaceRE "&#39;" "'" | replaceRE "&gt;" ">" | replaceRE "&amp;" "&" | replaceRE "&lt;" "<" | replaceRE "\n" " " | safeHTML -}}{{- end -}}
                 {{- end -}}
               {{- end -}}
           {{- end -}}

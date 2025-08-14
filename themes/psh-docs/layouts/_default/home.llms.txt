@@ -42,10 +42,14 @@ llms-txt-version: 1.0
   {{- if $isHome -}}
     {{- $inCurrentSection = false -}}
   {{- end }}
-### {{ .title }}
+### {{ .title | replaceRE "&rsquo;" "'" | replaceRE "&#39;" "'" | replaceRE "&gt;" ">" | replaceRE "&amp;" "&" | replaceRE "&lt;" "<" }}
 {{ partial "llms/section" ( dict "context" $currentContext "currentSection" .section "Active" $inCurrentSection "sections" $sectionKeys ) }}
 {{- end }}
 
 ## API
+
 - [API Doc]({{ .Site.Params.vendor.urls.api }}): documentation of the {{ .Site.Params.vendor.name }} API.
-- [Devcenter](https://devcenter.upsun.com): Central hub for developers using Upsun, Platform.sh, and Blackfire, with documentation, guides, demos, videos, and best practice articles.
+
+## [Devcenter resources](https://devcenter.upsun.com)
+{{ $content := readFile "static/files/fetch/all_devcenter_posts.md" }}
+{{ $content | safeHTML }}

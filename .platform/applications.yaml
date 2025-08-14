@@ -35,6 +35,7 @@
           fi
 
           cd $SITE_DIR
+          curl -s https://devcenter.upsun.com/posts/all/index.md -o static/files/fetch/all_devcenter_posts.md
           cp ../../themes/psh-docs/postcss.config.js .
           npm install
           npm run build
@@ -120,6 +121,7 @@
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
           fi
           cd $SITE_DIR
+          curl -s https://devcenter.upsun.com/posts/all/index.md -o static/files/fetch/all_devcenter_posts.md
           cp ../../themes/psh-docs/postcss.config.js .
           npm install
           npm run build
