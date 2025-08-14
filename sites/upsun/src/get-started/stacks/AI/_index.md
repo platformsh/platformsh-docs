@@ -16,7 +16,7 @@ They provide all the core concepts and common commands you need to know before
 using the following materials.
 {{< /note >}}
 
-## AI Applications and Services
+## AI applications and services
 
 - [**AI Agents**](aiagent.md) - Host conversational AI agents
 and chatbots using any
