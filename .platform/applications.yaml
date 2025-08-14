@@ -29,7 +29,7 @@
           mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
             cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
-            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/_index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
           else
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
@@ -116,7 +116,7 @@
           mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
             cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
-            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/_index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
           else
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
