@@ -121,7 +121,7 @@ options, see [deploy your project](/learn/overview/build-deploy.md).
 
 ---
 
-## Key Benefits
+## Key benefits
 
 - **Runtime flexibility**: Choose the programming language and version that fits
 your needs
