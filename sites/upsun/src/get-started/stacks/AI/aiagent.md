@@ -15,8 +15,8 @@ Python, Node.js, PHP, Ruby, Go, Java, and more. For the complete list of
 supported runtimes and their versions, see the [runtime types reference]
 (/create-apps/app-reference/single-runtime-image.md#types).
 
-You configure your runtime in the [`.upsun/config.yaml` file]
-(/learn/overview/yaml/yaml-structure.md).
+You configure your runtime in the [`.upsun/config.yaml`](/learn/overview/yaml/yaml-structure.md)
+ file.
 The platform builds your application in a container with the specified runtime
 and dependencies.
 
@@ -24,18 +24,15 @@ and dependencies.
 
 You can integrate your AI agent with any LLM API that your chosen runtime supports:
 
-- **OpenAI API**: Use the [official OpenAI client libraries]
-(<https://platform.openai.com/docs/libraries>) for Python, Node.js, and other languages
-- **Anthropic Claude API**: Use the [Anthropic client libraries]
-(<https://docs.anthropic.com/en/docs/getting-started-with-the-api>) for Python,
+- **OpenAI API**: Use the [official OpenAI client libraries](https://platform.openai.com/docs/libraries) 
+for Python, Node.js, and other languages
+- **Anthropic Claude API**: Use the [Anthropic client libraries](https://docs.anthropic.com/en/docs/getting-started-with-the-api) for Python,
 Node.js, and other languages
 - **Google Gemini**: Use the [Google AI client libraries](https://ai.google.dev/docs)
 for Python, Node.js, and other languages
-- **Azure OpenAI**: Use the [Azure OpenAI client libraries]
-(<https://learn.microsoft.com/en-us/azure/ai-services/openai/>) for Python,
+- **Azure OpenAI**: Use the [Azure OpenAI client libraries](https://learn.microsoft.com/en-us/azure/ai-services/openai/) for Python,
 Node.js, and other languages
-- **AWS Bedrock**: Use the [AWS Bedrock client libraries]
-(<https://docs.aws.amazon.com/bedrock/>) for Python, Node.js, and other languages
+- **AWS Bedrock**: Use the [AWS Bedrock client libraries](https://docs.aws.amazon.com/bedrock/) for Python, Node.js, and other languages
 - **Other providers**: Integrate with any API that provides HTTP endpoints
 
 Your application code handles the API calls and response processing. Upsun doesn't
@@ -55,8 +52,7 @@ Upsun provides isolated environments for development, testing, and production:
 
 - **Deploy a RAG-Based Conversational Agent with Chainlit**: Build a Retrieval-Augmented
 Generation agent using Chainlit, llama_index, and OpenAI, then deploy it on Upsun.
-See the [Chainlit deployment tutorial]
-(<https://devcenter.upsun.com/posts/deploying-chainlit-with-rag/>).
+See the [Chainlit deployment tutorial](https://devcenter.upsun.com/posts/deploying-chainlit-with-rag/).
 
 - **Access Documentation Contextually via Context7 + MCP**: Use the Model Context
 Protocol to let AI assistants fetch your Upsun documentation in real-time. See the

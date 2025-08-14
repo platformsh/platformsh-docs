@@ -55,7 +55,6 @@ best fits your AI application needs
 1. **Deploy and scale**: Push your code and let Upsun handle the infrastructure
 
 For detailed examples and tutorials, see the
-[AI and Machine Learning tutorials on DevCenter]
-(<https://devcenter.upsun.com/posts/?utm_source=docs&utm_medium=ai-section&utm_campaign=tutorials>).
+[AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/?utm_source=docs&utm_medium=ai-section&utm_campaign=tutorials).
 
 Find out more about the many [languages {{% vendor/name %}} supports](/languages/_index.md).
