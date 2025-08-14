@@ -62,7 +62,7 @@ Protocol to let AI assistants fetch your Upsun documentation in real-time. See t
 management, and configuration through the Upsun API. See the
 [API usage guide](https://devcenter.upsun.com/posts/using-the-upsun-api/).
 
-## Configuration Example
+## Configuration example
 
 Here's a basic configuration for a Python AI agent. For more configuration
 options, see the [complete application reference](/create-apps/app-reference/single-runtime-image.md):
