@@ -24,7 +24,7 @@ supported runtime
 - [**MCP Servers**](mcp.md) - Deploy Model Context Protocol servers for
 AI tool integration
 
-## Supported Technologies
+## Supported technologies
 
 - **Runtimes**: Python, Node.js, PHP, Ruby, Go, Java, and
 [supported runtime types](/create-apps/app-reference/single-runtime-image.md#types)
