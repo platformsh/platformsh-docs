@@ -27,3 +27,20 @@ Projects on Upsun run on shared hosts, which means the processing power allocate
  It should be noted that projects are always kept **strictly isolated** from each other. 
 
 {{< /note >}}
+
+## Types of resources 
+
+All {{% vendor/name %}} containers use vCPUs (virtual CPUs). Although configuration files and dashboards use the term `CPU`, this always refers to vCPUs, not dedicated physical cores.
+
+vCPU performance can sometimes vary depending on factors such as:
+
+- Cloud provider and region
+- System load from other virtual machines or services (in shared mode)
+
+ ### Types of CPU
+
+There are two different types of CPU {{% vendor/name %}} offers: 
+
+ - Shared: Your container is running on our Grid hosts.
+ - Guaranteed: Your container is running on its own dedicated host.
+
