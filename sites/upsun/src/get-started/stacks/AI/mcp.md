@@ -60,7 +60,7 @@ MCP clients, each connecting to a different MCP server.
   *resources* (application-driven), and *tools* (model-driven)—to design more
   powerful and flexible AI workflows.
 
-## Summary Table
+## Summary table
 
 | Concept | Upsun Article (Link) |
 |---------|----------------------|
