@@ -18,7 +18,7 @@ specifications, examples, and implementation details, we recomend you visit the
   Learn how to build and deploy AI-native applications by leveraging MCP servers
   hosted on Upsun.
 
-## Why Connect LLMs to External Systems?
+## Why connect LLMs to external systems?
 
 LLMs typically lack direct access to real-time or system-specific data. To
 provide current, relevant responses—such as live configuration settings or API
