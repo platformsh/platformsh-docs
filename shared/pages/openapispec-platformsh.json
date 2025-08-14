@@ -9217,1122 +9217,6 @@
         }
       }
     },
-    "/teams/{team_id}/project-access": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/TeamID"
-        }
-      ],
-      "get": {
-        "summary": "List project access for a team",
-        "description": "Returns a list of items representing the team's project access.",
-        "operationId": "list-team-project-access",
-        "tags": [
-          "Team Access"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `project_title`, `granted_at`, `updated_at`.\n",
-            "schema": {
-              "type": "string",
-              "example": "-updated_at"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/TeamProjectAccess"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Grant project access to a team",
-        "description": "Adds the team to one or more specified projects.",
-        "operationId": "grant-team-project-access",
-        "tags": [
-          "Team Access"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "project_id": {
-                      "type": "string",
-                      "description": "ID of the project."
-                    }
-                  },
-                  "required": [
-                    "project_id"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/teams/{team_id}/project-access/{project_id}": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/TeamID"
-        },
-        {
-          "$ref": "#/components/parameters/ProjectID"
-        }
-      ],
-      "get": {
-        "summary": "Get project access for a team",
-        "description": "Retrieves the team's permissions for the current project.",
-        "operationId": "get-team-project-access",
-        "tags": [
-          "Team Access"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamProjectAccess"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Remove project access for a team",
-        "description": "Removes the team from the current project.",
-        "operationId": "remove-team-project-access",
-        "tags": [
-          "Team Access"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/team-access": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ProjectID"
-        }
-      ],
-      "get": {
-        "summary": "List team access for a project",
-        "description": "Returns a list of items representing the project access.",
-        "operationId": "list-project-team-access",
-        "tags": [
-          "Team Access"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `granted_at`, `updated_at`.\n",
-            "schema": {
-              "type": "string",
-              "example": "-updated_at"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/TeamProjectAccess"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Grant team access to a project",
-        "description": "Grants one or more team access to a specific project.",
-        "operationId": "grant-project-team-access",
-        "tags": [
-          "Team Access"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "team_id": {
-                      "type": "string",
-                      "description": "ID of the team."
-                    }
-                  },
-                  "required": [
-                    "team_id"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/team-access/{team_id}": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ProjectID"
-        },
-        {
-          "$ref": "#/components/parameters/TeamID"
-        }
-      ],
-      "get": {
-        "summary": "Get team access for a project",
-        "description": "Retrieves the team's permissions for the current project.",
-        "operationId": "get-project-team-access",
-        "tags": [
-          "Team Access"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TeamProjectAccess"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Remove team access for a project",
-        "description": "Removes the team from the current project.",
-        "operationId": "remove-project-team-access",
-        "tags": [
-          "Team Access"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/user-access": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ProjectID"
-        }
-      ],
-      "get": {
-        "summary": "List user access for a project",
-        "description": "Returns a list of items representing the project access.",
-        "operationId": "list-project-user-access",
-        "tags": [
-          "User Access"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `granted_at`, `updated_at`.\n",
-            "schema": {
-              "type": "string",
-              "example": "-updated_at"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserProjectAccess"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Grant user access to a project",
-        "description": "Grants one or more users access to a specific project.",
-        "operationId": "grant-project-user-access",
-        "tags": [
-          "User Access"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "user_id": {
-                      "type": "string",
-                      "description": "ID of the user."
-                    },
-                    "permissions": {
-                      "$ref": "#/components/schemas/ProjectPermissions"
-                    },
-                    "auto_add_member": {
-                      "type": "boolean",
-                      "description": "If the specified user is not a member of the project's organization, add it automatically."
-                    }
-                  },
-                  "required": [
-                    "user_id",
-                    "permissions"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/projects/{project_id}/user-access/{user_id}": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/ProjectID"
-        },
-        {
-          "$ref": "#/components/parameters/UserID"
-        }
-      ],
-      "get": {
-        "summary": "Get user access for a project",
-        "description": "Retrieves the user's permissions for the current project.",
-        "operationId": "get-project-user-access",
-        "tags": [
-          "User Access"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserProjectAccess"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update user access for a project",
-        "description": "Updates the user's permissions for the current project.",
-        "operationId": "update-project-user-access",
-        "tags": [
-          "User Access"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "permissions"
-                ],
-                "properties": {
-                  "permissions": {
-                    "$ref": "#/components/schemas/ProjectPermissions"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Remove user access for a project",
-        "description": "Removes the user from the current project.",
-        "operationId": "remove-project-user-access",
-        "tags": [
-          "User Access"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/{user_id}/project-access": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/UserID"
-        }
-      ],
-      "get": {
-        "summary": "List project access for a user",
-        "description": "Returns a list of items representing the user's project access.",
-        "operationId": "list-user-project-access",
-        "tags": [
-          "User Access"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "filter[organization_id]",
-            "description": "Allows filtering by `organization_id`.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `project_title`, `granted_at`, `updated_at`.\n",
-            "schema": {
-              "type": "string",
-              "example": "-updated_at"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserProjectAccess"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/ListLinks"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Grant project access to a user",
-        "description": "Adds the user to one or more specified projects.",
-        "operationId": "grant-user-project-access",
-        "tags": [
-          "User Access"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "project_id": {
-                      "type": "string",
-                      "description": "ID of the project."
-                    },
-                    "permissions": {
-                      "$ref": "#/components/schemas/ProjectPermissions"
-                    }
-                  },
-                  "required": [
-                    "project_id",
-                    "permissions"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/{user_id}/project-access/{project_id}": {
-      "parameters": [
-        {
-          "$ref": "#/components/parameters/UserID"
-        },
-        {
-          "$ref": "#/components/parameters/ProjectID"
-        }
-      ],
-      "get": {
-        "summary": "Get project access for a user",
-        "description": "Retrieves the user's permissions for the current project.",
-        "operationId": "get-user-project-access",
-        "tags": [
-          "User Access"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserProjectAccess"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update project access for a user",
-        "description": "Updates the user's permissions for the current project.",
-        "operationId": "update-user-project-access",
-        "tags": [
-          "User Access"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "permissions"
-                ],
-                "properties": {
-                  "permissions": {
-                    "$ref": "#/components/schemas/ProjectPermissions"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Remove project access for a user",
-        "description": "Removes the user from the current project.",
-        "operationId": "remove-user-project-access",
-        "tags": [
-          "User Access"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/organizations/{organization_id}/address": {
       "get": {
         "summary": "Get address",
@@ -12147,6 +11031,138 @@
         }
       }
     },
+    "/organizations/{organization_id}/metrics/carbon": {
+      "get": {
+        "summary": "Query project carbon emissions metrics for an entire organization",
+        "description": "Queries the carbon emission data for all projects owned by the specified organiation.",
+        "operationId": "query-organiation-carbon",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationCarbon"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/metrics/carbon": {
+      "get": {
+        "summary": "Query project carbon emissions metrics",
+        "description": "Queries the carbon emission data for the specified project using the supplied parameters.",
+        "operationId": "query-project-carbon",
+        "tags": [
+          "Organization Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectCarbon"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/subscriptions": {
       "get": {
         "summary": "List subscriptions",
@@ -12834,6 +11850,1122 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/team-access": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        }
+      ],
+      "get": {
+        "summary": "List team access for a project",
+        "description": "Returns a list of items representing the project access.",
+        "operationId": "list-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `granted_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TeamProjectAccess"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Grant team access to a project",
+        "description": "Grants one or more team access to a specific project.",
+        "operationId": "grant-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "team_id": {
+                      "type": "string",
+                      "description": "ID of the team."
+                    }
+                  },
+                  "required": [
+                    "team_id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/team-access/{team_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        },
+        {
+          "$ref": "#/components/parameters/TeamID"
+        }
+      ],
+      "get": {
+        "summary": "Get team access for a project",
+        "description": "Retrieves the team's permissions for the current project.",
+        "operationId": "get-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamProjectAccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove team access for a project",
+        "description": "Removes the team from the current project.",
+        "operationId": "remove-project-team-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/user-access": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        }
+      ],
+      "get": {
+        "summary": "List user access for a project",
+        "description": "Returns a list of items representing the project access.",
+        "operationId": "list-project-user-access",
+        "tags": [
+          "User Access"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `granted_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserProjectAccess"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Grant user access to a project",
+        "description": "Grants one or more users access to a specific project.",
+        "operationId": "grant-project-user-access",
+        "tags": [
+          "User Access"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "user_id": {
+                      "type": "string",
+                      "description": "ID of the user."
+                    },
+                    "permissions": {
+                      "$ref": "#/components/schemas/ProjectPermissions"
+                    },
+                    "auto_add_member": {
+                      "type": "boolean",
+                      "description": "If the specified user is not a member of the project's organization, add it automatically."
+                    }
+                  },
+                  "required": [
+                    "user_id",
+                    "permissions"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/user-access/{user_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        },
+        {
+          "$ref": "#/components/parameters/UserID"
+        }
+      ],
+      "get": {
+        "summary": "Get user access for a project",
+        "description": "Retrieves the user's permissions for the current project.",
+        "operationId": "get-project-user-access",
+        "tags": [
+          "User Access"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProjectAccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update user access for a project",
+        "description": "Updates the user's permissions for the current project.",
+        "operationId": "update-project-user-access",
+        "tags": [
+          "User Access"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "permissions"
+                ],
+                "properties": {
+                  "permissions": {
+                    "$ref": "#/components/schemas/ProjectPermissions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove user access for a project",
+        "description": "Removes the user from the current project.",
+        "operationId": "remove-project-user-access",
+        "tags": [
+          "User Access"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/project-access": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/UserID"
+        }
+      ],
+      "get": {
+        "summary": "List project access for a user",
+        "description": "Returns a list of items representing the user's project access.",
+        "operationId": "list-user-project-access",
+        "tags": [
+          "User Access"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter[organization_id]",
+            "description": "Allows filtering by `organization_id`.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `project_title`, `granted_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserProjectAccess"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Grant project access to a user",
+        "description": "Adds the user to one or more specified projects.",
+        "operationId": "grant-user-project-access",
+        "tags": [
+          "User Access"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "project_id": {
+                      "type": "string",
+                      "description": "ID of the project."
+                    },
+                    "permissions": {
+                      "$ref": "#/components/schemas/ProjectPermissions"
+                    }
+                  },
+                  "required": [
+                    "project_id",
+                    "permissions"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/project-access/{project_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/UserID"
+        },
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        }
+      ],
+      "get": {
+        "summary": "Get project access for a user",
+        "description": "Retrieves the user's permissions for the current project.",
+        "operationId": "get-user-project-access",
+        "tags": [
+          "User Access"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProjectAccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update project access for a user",
+        "description": "Updates the user's permissions for the current project.",
+        "operationId": "update-user-project-access",
+        "tags": [
+          "User Access"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "permissions"
+                ],
+                "properties": {
+                  "permissions": {
+                    "$ref": "#/components/schemas/ProjectPermissions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove project access for a user",
+        "description": "Removes the user from the current project.",
+        "operationId": "remove-user-project-access",
+        "tags": [
+          "User Access"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/project-access": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/TeamID"
+        }
+      ],
+      "get": {
+        "summary": "List project access for a team",
+        "description": "Returns a list of items representing the team's project access.",
+        "operationId": "list-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page[size]",
+            "description": "Determines the number of items to show.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": null
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[before]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page[after]",
+            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `project_title`, `granted_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TeamProjectAccess"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/ListLinks"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Grant project access to a team",
+        "description": "Adds the team to one or more specified projects.",
+        "operationId": "grant-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "project_id": {
+                      "type": "string",
+                      "description": "ID of the project."
+                    }
+                  },
+                  "required": [
+                    "project_id"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{team_id}/project-access/{project_id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/TeamID"
+        },
+        {
+          "$ref": "#/components/parameters/ProjectID"
+        }
+      ],
+      "get": {
+        "summary": "Get project access for a team",
+        "description": "Retrieves the team's permissions for the current project.",
+        "operationId": "get-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamProjectAccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove project access for a team",
+        "description": "Removes the team from the current project.",
+        "operationId": "remove-team-project-access",
+        "tags": [
+          "Team Access"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request",
@@ -15375,33 +15507,6 @@
             "format": "date-time",
             "nullable": true,
             "title": "The date at which the activity will expire."
-          },
-          "commands": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "app": {
-                  "type": "string",
-                  "title": "Application"
-                },
-                "type": {
-                  "type": "string",
-                  "title": "Type"
-                },
-                "exit_code": {
-                  "type": "integer",
-                  "title": "Exit status code"
-                }
-              },
-              "required": [
-                "app",
-                "type",
-                "exit_code"
-              ],
-              "additionalProperties": false
-            },
-            "title": "Commands"
           }
         },
         "required": [
@@ -15421,8 +15526,7 @@
           "payload",
           "description",
           "text",
-          "expires_at",
-          "commands"
+          "expires_at"
         ],
         "additionalProperties": false
       },
@@ -19250,7 +19354,7 @@
               "basic_auth"
             ],
             "additionalProperties": false,
-            "title": "HTTP access permissions"
+            "title": "Http access permissions"
           },
           "enable_smtp": {
             "type": "boolean",
@@ -19956,7 +20060,7 @@
               }
             },
             "additionalProperties": false,
-            "title": "HTTP access permissions"
+            "title": "Http access permissions"
           },
           "enable_smtp": {
             "type": "boolean",
@@ -21216,13 +21320,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21232,8 +21329,7 @@
           "extra",
           "url",
           "headers",
-          "tls_verify",
-          "excluded_services"
+          "tls_verify"
         ],
         "additionalProperties": false
       },
@@ -21265,13 +21361,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21308,13 +21397,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21360,9 +21442,6 @@
           },
           {
             "$ref": "#/components/schemas/NewRelicIntegration"
-          },
-          {
-            "$ref": "#/components/schemas/HttpLogIntegration"
           },
           {
             "$ref": "#/components/schemas/ScriptIntegration"
@@ -21426,9 +21505,6 @@
             "$ref": "#/components/schemas/NewRelicIntegrationCreateInput"
           },
           {
-            "$ref": "#/components/schemas/HttpLogIntegrationCreateInput"
-          },
-          {
             "$ref": "#/components/schemas/ScriptIntegrationCreateInput"
           },
           {
@@ -21484,9 +21560,6 @@
             "$ref": "#/components/schemas/NewRelicIntegrationPatch"
           },
           {
-            "$ref": "#/components/schemas/HttpLogIntegrationPatch"
-          },
-          {
             "$ref": "#/components/schemas/ScriptIntegrationPatch"
           },
           {
@@ -21536,13 +21609,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21551,8 +21617,7 @@
           "type",
           "extra",
           "url",
-          "tls_verify",
-          "excluded_services"
+          "tls_verify"
         ],
         "additionalProperties": false
       },
@@ -21581,13 +21646,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21622,13 +21680,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -22545,21 +22596,6 @@
                     },
                     "additionalProperties": false,
                     "title": "Blackfire integration configurations"
-                  },
-                  "otlp": {
-                    "type": "object",
-                    "properties": {
-                      "enabled": {
-                        "type": "boolean",
-                        "title": "The integration is enabled."
-                      },
-                      "role": {
-                        "type": "string",
-                        "title": "Minimum required role for creating the integration."
-                      }
-                    },
-                    "additionalProperties": false,
-                    "title": "OpenTelemetry log-forwarding integration configurations"
                   }
                 },
                 "additionalProperties": false,
@@ -24633,13 +24669,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24650,8 +24679,7 @@
           "url",
           "index",
           "sourcetype",
-          "tls_verify",
-          "excluded_services"
+          "tls_verify"
         ],
         "additionalProperties": false
       },
@@ -24688,13 +24716,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24738,13 +24759,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24792,13 +24806,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24808,8 +24815,7 @@
           "extra",
           "url",
           "category",
-          "tls_verify",
-          "excluded_services"
+          "tls_verify"
         ],
         "additionalProperties": false
       },
@@ -24838,13 +24844,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24878,13 +24877,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24951,13 +24943,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24970,8 +24955,7 @@
           "protocol",
           "facility",
           "message_format",
-          "tls_verify",
-          "excluded_services"
+          "tls_verify"
         ],
         "additionalProperties": false
       },
@@ -25033,13 +25017,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -25105,13 +25082,6 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
-          },
-          "excluded_services": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -26178,27 +26148,6 @@
         "title": "AutoscalerAlertPartial",
         "type": "object"
       },
-      "AutoscalerCPUPressureTrigger": {
-        "description": "CPU pressure trigger settings.\n\nWhen CPU pressure goes below lower bound, service will be scaled down.\nWhen CPU pressure goes above upper bound, service will be scaled up.",
-        "properties": {
-          "enabled": {
-            "type": "boolean",
-            "nullable": true,
-            "title": "Enabled",
-            "description": "Whether the trigger is enabled"
-          },
-          "down": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Lower bound on resource usage"
-          },
-          "up": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Upper bound on resource usage"
-          }
-        },
-        "title": "AutoscalerCPUPressureTrigger",
-        "type": "object"
-      },
       "AutoscalerCPUResources": {
         "description": "CPU scaling settings",
         "properties": {
@@ -26299,27 +26248,6 @@
           }
         },
         "title": "AutoscalerInstances",
-        "type": "object"
-      },
-      "AutoscalerMemoryPressureTrigger": {
-        "description": "Memory pressure trigger settings.\n\nWhen memory pressure goes below lower bound, service will be scaled down.\nWhen memory pressure goes above upper bound, service will be scaled up.",
-        "properties": {
-          "enabled": {
-            "type": "boolean",
-            "nullable": true,
-            "title": "Enabled",
-            "description": "Whether the trigger is enabled"
-          },
-          "down": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Lower bound on resource usage"
-          },
-          "up": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Upper bound on resource usage"
-          }
-        },
-        "title": "AutoscalerMemoryPressureTrigger",
         "type": "object"
       },
       "AutoscalerMemoryResources": {
@@ -26503,22 +26431,6 @@
             },
             "nullable": true,
             "description": "Settings for scaling based on Memory usage"
-          },
-          "cpu_pressure": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AutoscalerCPUPressureTrigger"
-            },
-            "nullable": true,
-            "description": "Settings for scaling based on CPU pressure"
-          },
-          "memory_pressure": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AutoscalerMemoryPressureTrigger"
-            },
-            "nullable": true,
-            "description": "Settings for scaling based on Memory pressure"
           }
         },
         "title": "AutoscalerTriggers",
@@ -26990,238 +26902,6 @@
           }
         }
       },
-      "OrganizationProject": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the project."
-          },
-          "organization_id": {
-            "type": "string",
-            "format": "ulid",
-            "description": "The ID of the organization."
-          },
-          "subscription_id": {
-            "type": "string",
-            "description": "The ID of the subscription."
-          },
-          "region": {
-            "type": "string",
-            "description": "The machine name of the region where the project is located."
-          },
-          "title": {
-            "type": "string",
-            "description": "The title of the project."
-          },
-          "type": {
-            "$ref": "#/components/schemas/OrganizationProjectType"
-          },
-          "plan": {
-            "$ref": "#/components/schemas/OrganizationProjectPlan"
-          },
-          "access_migration_status": {
-            "type": "string",
-            "description": "The access migration status of the project.",
-            "enum": [
-              "pending",
-              "in_progress",
-              "completed"
-            ]
-          },
-          "status": {
-            "$ref": "#/components/schemas/OrganizationProjectStatus"
-          },
-          "vendor": {
-            "type": "string",
-            "description": "The vendor."
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the project was created."
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the project was last updated."
-          },
-          "_links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "object",
-                "description": "Link to the current project.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  }
-                }
-              },
-              "update": {
-                "type": "object",
-                "description": "Link for updating the current project.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              },
-              "delete": {
-                "type": "object",
-                "description": "Link for deleting the current project.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              },
-              "subscription": {
-                "type": "object",
-                "description": "Link to the project's subscription.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  }
-                }
-              },
-              "api": {
-                "type": "object",
-                "description": "Link to the project's regional API endpoint.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "OrganizationProjectStatus": {
-        "type": "string",
-        "description": "The status of the project.",
-        "enum": [
-          "provisioning",
-          "active",
-          "suspended"
-        ]
-      },
-      "OrganizationProjectType": {
-        "type": "string",
-        "description": "The type of the project.",
-        "enum": [
-          "grid",
-          "dedicated"
-        ]
-      },
-      "OrganizationProjectPlan": {
-        "type": "string",
-        "description": "The ID of the plan.",
-        "enum": [
-          "development",
-          "small",
-          "essential",
-          "standard",
-          "standard-high-memory",
-          "medium",
-          "medium-high-memory",
-          "large",
-          "large-high-memory",
-          "xlarge",
-          "xlarge-high-memory",
-          "2xlarge",
-          "2xlarge-high-memory",
-          "4xlarge",
-          "flexible",
-          "grid/xlarge",
-          "grid/2xlarge",
-          "grid/4xlarge",
-          "grid/8xlarge",
-          "trial/development",
-          "trial/standard",
-          "trial/medium",
-          "trial/large",
-          "trial/2xlarge",
-          "trial/upsun-flexible",
-          "upsun/flexible",
-          "pimcore/small",
-          "pimcore/medium",
-          "pimcore/large"
-        ]
-      },
-      "ProjectReference": {
-        "description": "The referenced project, or null if it no longer exists.",
-        "type": "object",
-        "nullable": true,
-        "required": [
-          "id",
-          "organization_id",
-          "subscription_id",
-          "region",
-          "title",
-          "status",
-          "plan",
-          "type",
-          "created_at",
-          "updated_at"
-        ],
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The ID of the project."
-          },
-          "organization_id": {
-            "type": "string",
-            "format": "ulid",
-            "description": "The ID of the organization."
-          },
-          "subscription_id": {
-            "type": "string",
-            "description": "The ID of the subscription."
-          },
-          "region": {
-            "type": "string",
-            "description": "The machine name of the region where the project is located."
-          },
-          "title": {
-            "type": "string",
-            "description": "The title of the project."
-          },
-          "type": {
-            "$ref": "#/components/schemas/OrganizationProjectType"
-          },
-          "plan": {
-            "$ref": "#/components/schemas/OrganizationProjectPlan"
-          },
-          "status": {
-            "$ref": "#/components/schemas/OrganizationProjectStatus"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the project was created."
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the project was last updated."
-          }
-        }
-      },
       "Vouchers": {
         "type": "object",
         "properties": {
@@ -27364,181 +27044,6 @@
             "type": "object",
             "description": "The unit prices of the options."
           }
-        }
-      },
-      "TeamProjectAccess": {
-        "type": "object",
-        "properties": {
-          "team_id": {
-            "type": "string",
-            "format": "ulid",
-            "description": "The ID of the team."
-          },
-          "organization_id": {
-            "type": "string",
-            "format": "ulid",
-            "description": "The ID of the organization."
-          },
-          "project_id": {
-            "type": "string",
-            "description": "The ID of the project."
-          },
-          "project_title": {
-            "type": "string",
-            "description": "The title of the project."
-          },
-          "granted_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was granted."
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was last updated."
-          },
-          "_links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "object",
-                "description": "Link to the current access item.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  }
-                }
-              },
-              "update": {
-                "type": "object",
-                "description": "Link for updating the current access item.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              },
-              "delete": {
-                "type": "object",
-                "description": "Link for deleting the current access item.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "UserProjectAccess": {
-        "type": "object",
-        "properties": {
-          "user_id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "The ID of the user."
-          },
-          "organization_id": {
-            "type": "string",
-            "format": "ulid",
-            "description": "The ID of the organization."
-          },
-          "project_id": {
-            "type": "string",
-            "description": "The ID of the project."
-          },
-          "project_title": {
-            "type": "string",
-            "description": "The title of the project."
-          },
-          "permissions": {
-            "$ref": "#/components/schemas/ProjectPermissions"
-          },
-          "granted_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was granted."
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was last updated."
-          },
-          "_links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "object",
-                "description": "Link to the current access item.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  }
-                }
-              },
-              "update": {
-                "type": "object",
-                "description": "Link for updating the current access item.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              },
-              "delete": {
-                "type": "object",
-                "description": "Link for deleting the current access item.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "ProjectPermissions": {
-        "type": "array",
-        "description": "An array of project permissions.",
-        "items": {
-          "type": "string",
-          "enum": [
-            "admin",
-            "viewer",
-            "development:admin",
-            "development:contributor",
-            "development:viewer",
-            "staging:admin",
-            "staging:contributor",
-            "staging:viewer",
-            "production:admin",
-            "production:contributor",
-            "production:viewer"
-          ]
         }
       },
       "OrganizationEstimationObject": {
@@ -28047,9 +27552,240 @@
           }
         }
       },
+      "OrganizationProject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "organization_id": {
+            "$ref": "#/components/schemas/OrganizationID"
+          },
+          "subscription_id": {
+            "$ref": "#/components/schemas/SubscriptionID"
+          },
+          "vendor": {
+            "type": "string",
+            "description": "Vendor of the project."
+          },
+          "region": {
+            "$ref": "#/components/schemas/RegionID"
+          },
+          "title": {
+            "$ref": "#/components/schemas/ProjectTitle"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProjectType"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/ProjectPlan"
+          },
+          "timezone": {
+            "$ref": "#/components/schemas/ProjectTimeZone"
+          },
+          "default_branch": {
+            "$ref": "#/components/schemas/ProjectDefaultBranch"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectStatus"
+          },
+          "trial_plan": {
+            "$ref": "#/components/schemas/ProjectTrialPlan"
+          },
+          "project_ui": {
+            "$ref": "#/components/schemas/ProjectUI"
+          },
+          "locked": {
+            "$ref": "#/components/schemas/ProjectLocked"
+          },
+          "cse_notes": {
+            "$ref": "#/components/schemas/ProjectCSENotes"
+          },
+          "dedicated_tag": {
+            "$ref": "#/components/schemas/ProjectDedicatedTag"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/CreatedAt"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current project.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current project.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current project.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "activities": {
+                "type": "object",
+                "description": "Link to the project's activities.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "addons": {
+                "type": "object",
+                "description": "Link to the project's add-ons.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "OrganizationCarbon": {
+        "type": "object",
+        "properties": {
+          "organization_id": {
+            "$ref": "#/components/schemas/OrganizationID"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetricsMetadata"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationProjectCarbon"
+            }
+          },
+          "total": {
+            "$ref": "#/components/schemas/CarbonTotal"
+          }
+        }
+      },
+      "ProjectCarbon": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "project_title": {
+            "$ref": "#/components/schemas/ProjectTitle"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetricsMetadata"
+          },
+          "values": {
+            "$ref": "#/components/schemas/MetricsValues"
+          },
+          "total": {
+            "$ref": "#/components/schemas/CarbonTotal"
+          }
+        }
+      },
+      "OrganizationProjectCarbon": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "project_title": {
+            "$ref": "#/components/schemas/ProjectTitle"
+          },
+          "values": {
+            "$ref": "#/components/schemas/MetricsValues"
+          },
+          "total": {
+            "$ref": "#/components/schemas/CarbonTotal"
+          }
+        }
+      },
       "ProjectPlan": {
         "type": "string",
         "description": "The project plan."
+      },
+      "ProjectReference": {
+        "description": "The referenced project, or null if it no longer exists.",
+        "type": "object",
+        "nullable": true,
+        "required": [
+          "id",
+          "organization_id",
+          "subscription_id",
+          "region",
+          "title",
+          "type",
+          "plan",
+          "status",
+          "agency_site",
+          "support_tier",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "organization_id": {
+            "$ref": "#/components/schemas/OrganizationID"
+          },
+          "subscription_id": {
+            "$ref": "#/components/schemas/SubscriptionID"
+          },
+          "region": {
+            "$ref": "#/components/schemas/RegionID"
+          },
+          "title": {
+            "$ref": "#/components/schemas/ProjectTitle"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProjectType"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/ProjectPlan"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ProjectStatus"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/CreatedAt"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/UpdatedAt"
+          }
+        }
       },
       "RegionReference": {
         "description": "The referenced region, or null if it no longer exists.",
@@ -28121,6 +27857,18 @@
           }
         }
       },
+      "ProjectID": {
+        "type": "string",
+        "description": "The ID of the project."
+      },
+      "OrganizationID": {
+        "type": "string",
+        "description": "The ID of the organization."
+      },
+      "SubscriptionID": {
+        "type": "string",
+        "description": "The ID of the subscription."
+      },
       "RegionID": {
         "type": "string",
         "description": "The machine name of the region where the project is located."
@@ -28129,9 +27877,52 @@
         "type": "string",
         "description": "The title of the project."
       },
+      "ProjectType": {
+        "type": "string",
+        "description": "The type of projects.",
+        "enum": [
+          "grid",
+          "dedicated"
+        ]
+      },
       "ProjectTimeZone": {
         "type": "string",
         "description": "Timezone of the project."
+      },
+      "ProjectDefaultBranch": {
+        "type": "string",
+        "description": "Default branch."
+      },
+      "ProjectLocked": {
+        "type": "boolean",
+        "description": "Locked"
+      },
+      "ProjectCSENotes": {
+        "type": "string",
+        "description": "CSE notes."
+      },
+      "ProjectStatus": {
+        "type": "string",
+        "description": "The status of the project.",
+        "enum": [
+          "requested",
+          "active",
+          "failed",
+          "suspended",
+          "deleted"
+        ]
+      },
+      "ProjectDedicatedTag": {
+        "type": "string",
+        "description": "Dedicated tag."
+      },
+      "ProjectUI": {
+        "description": "The URL for the project's user interface.",
+        "type": "string"
+      },
+      "ProjectTrialPlan": {
+        "description": "Whether the project is currently on a trial plan.",
+        "type": "boolean"
       },
       "RegionLabel": {
         "type": "string",
@@ -28185,6 +27976,44 @@
         "type": "object",
         "description": "Information about the region's compliance."
       },
+      "MetricsMetadata": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "description": "The value used to calculate the lower bound of the temporal query. Inclusive."
+          },
+          "to": {
+            "description": "The truncated value used to calculate the upper bound of the temporal query. Exclusive."
+          },
+          "interval": {
+            "description": "The interval used to group the metric values."
+          },
+          "units": {
+            "description": "The units associated with the provided values."
+          }
+        }
+      },
+      "MetricsValues": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MetricsValue"
+        }
+      },
+      "MetricsValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The measured value of the metric for the given time interval."
+          },
+          "start_time": {
+            "description": "The timestamp at which the time interval began."
+          }
+        }
+      },
+      "CarbonTotal": {
+        "type": "number",
+        "description": "The calculated total of the metric for the given interval."
+      },
       "CreatedAt": {
         "type": "string",
         "format": "date-time",
@@ -28194,6 +28023,181 @@
         "type": "string",
         "format": "date-time",
         "description": "The date and time when the resource was last updated."
+      },
+      "TeamProjectAccess": {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the team."
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the organization."
+          },
+          "project_id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "project_title": {
+            "type": "string",
+            "description": "The title of the project."
+          },
+          "granted_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the access was granted."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the access was last updated."
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "UserProjectAccess": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The ID of the user."
+          },
+          "organization_id": {
+            "type": "string",
+            "format": "ulid",
+            "description": "The ID of the organization."
+          },
+          "project_id": {
+            "type": "string",
+            "description": "The ID of the project."
+          },
+          "project_title": {
+            "type": "string",
+            "description": "The title of the project."
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/ProjectPermissions"
+          },
+          "granted_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the access was granted."
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time when the access was last updated."
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current access item.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProjectPermissions": {
+        "type": "array",
+        "description": "An array of project permissions.",
+        "items": {
+          "type": "string",
+          "enum": [
+            "admin",
+            "viewer",
+            "development:admin",
+            "development:contributor",
+            "development:viewer",
+            "staging:admin",
+            "staging:contributor",
+            "staging:viewer",
+            "production:admin",
+            "production:contributor",
+            "production:viewer"
+          ]
+        }
       },
       "InvoicePDF": {
         "description": "Invoice PDF document details.",
@@ -28963,6 +28967,35 @@
         "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
         "schema": {
           "type": "string"
+        }
+      },
+      "from": {
+        "in": "query",
+        "name": "from",
+        "description": "The start of the time frame for the query. Inclusive.",
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "to": {
+        "in": "query",
+        "name": "to",
+        "description": "The end of the time frame for the query. Exclusive.",
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "interval": {
+        "in": "query",
+        "name": "interval",
+        "description": "The interval by which the query groups the results. of the time frame for the query. Exclusive.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "day",
+            "month",
+            "year"
+          ]
         }
       }
     },
