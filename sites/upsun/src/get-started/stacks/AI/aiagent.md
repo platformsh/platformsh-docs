@@ -20,7 +20,7 @@ Configure your runtime in the [`.upsun/config.yaml`](/learn/overview/yaml/yaml-s
 The platform builds your application in a container with the specified runtime
 and dependencies.
 
-## LLM API Integration
+## LLM API integration
 
 You can integrate your AI agent with any LLM API that your chosen runtime supports:
 
