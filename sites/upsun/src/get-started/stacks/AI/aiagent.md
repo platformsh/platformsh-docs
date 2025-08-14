@@ -38,7 +38,7 @@ Node.js, and other languages
 Your application code handles the API calls and response processing. Upsun doesn't
 restrict which services you can use.
 
-## Environment Management
+## Environment management
 
 Upsun provides isolated environments for development, testing, and production:
 
