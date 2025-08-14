@@ -90,7 +90,7 @@ applications:
 For examples of how to implement AI agents with different frameworks and APIs,
 see the [AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/?utm_source=docs&utm_medium=ai-agent&utm_campaign=tutorials).
 
-## Deploy Your Agent
+## Deploy your Agent
 
 1. Add your code to Git:
 
