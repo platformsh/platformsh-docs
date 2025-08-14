@@ -15,7 +15,7 @@ Python, Node.js, PHP, Ruby, Go, Java, and more. For the complete list of
 supported runtimes and their versions, see the [runtime types reference]
 (/create-apps/app-reference/single-runtime-image.md#types).
 
-You configure your runtime in the [`.upsun/config.yaml`](/learn/overview/yaml/yaml-structure.md)
+Configure your runtime in the [`.upsun/config.yaml`](/learn/overview/yaml/yaml-structure.md)
  file.
 The platform builds your application in a container with the specified runtime
 and dependencies.
