@@ -46,7 +46,7 @@ self-hosted models, specialized AI services, or any custom API endpoint that
 follows standard HTTP protocols.
 {{< /note >}}
 
-## Getting Started
+## Get started
 
 1. **Choose your runtime**: Select the programming language that
 best fits your AI application needs
