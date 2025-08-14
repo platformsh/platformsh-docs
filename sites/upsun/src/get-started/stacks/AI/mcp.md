@@ -28,7 +28,7 @@ Every service offers a different API, schema, and authentication. Without a
 standard, managing multiple integrations becomes complex, brittle, and
 error-prone.
 
-## Standardizing LLM Interactions with MCP
+## Standardizing LLM interactions with MCP
 
 MCP standardizes how LLMs interact with external services. Developers create a
 single MCP integration point that can interface with any MCP-compatible provider.
