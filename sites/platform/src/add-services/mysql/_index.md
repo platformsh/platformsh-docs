@@ -760,7 +760,7 @@ Note that you can't customize these automatically generated passwords.
 {{% note theme="warning" %}}
 By default, the generated password will rotate on a regular
 basis. Your applications MUST use the passwords from the
-relationships, as the password _is_ going to change. Please set
+relationships, as the password _is_ going to change. Set
 `rotate_passwords` to `false` if you wish to change this default
 behavior.
 {{% /note %}}
