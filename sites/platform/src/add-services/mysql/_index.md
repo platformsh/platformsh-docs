@@ -8,8 +8,8 @@ layout: single
 
 {{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
-See the [MariaDB documentation](https://mariadb.org/learn/)
-or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
+See the [MariaDB documentation](https://mariadb.org/documentation/)
+or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 ## Use a framework
 
@@ -25,19 +25,20 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-The service types `mariadb` and `mysql` both refer to MariaDB.
-The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-Other than the value for their `type`,
-MySQL and MariaDB have the same behavior and the rest of this page applies to both of them.
+{{< note theme="info" title="" >}}
+- The service types `mariadb` and `mysql` both refer to MariaDB.\
+  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
+{{< /note >}}
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|---------------|-------------|--------------------|
-|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+
 
 ### Supported versions on Dedicated environments
 
-`oracle-mysql` is not yet available for {{% names/dedicated-gen-3 %}} environments.
-It also isn't available for {{% names/dedicated-gen-2 %}} environments.
+`oracle-mysql` is not yet available for {{% names/dedicated-gen-2 %}} environments.
 
 On Dedicated environments, MariaDB is available with Galera for replication.
 Supported versions are the following:
@@ -59,21 +60,16 @@ Dedicated environments only support the InnoDB storage engine.
 Tables created on Dedicated environments using the MyISAM storage engine don't replicate between all hosts in the cluster.
 See how to [convert tables to the InnoDB engine](#storage-engine).
 
-### Deprecated versions
+{{% deprecated-versions %}}
 
-The following versions are [deprecated](/glossary.html#deprecated-versions).
-They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
-They'll be removed in the future,
-so migrate to one of the [supported versions](#supported-versions).
-
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 ### Upgrade
 
 When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
 and check that each upgrade commit translates into an actual deployment.
 
 To upgrade, update the service version in your [service configuration](/add-services/_index.md).
@@ -344,11 +340,12 @@ You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONS
 
 You can configure your MySQL service in the [services configuration](/add-services/_index.md) with the following options:
 
-| Name         | Type                    | Version                            | Description |
-| ------------ | ----------------------- | ---------------------------------- | ----------- |
-| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
-| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
-| `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| Name               | Type                       | Version                            | Description |
+| ------------------ | -------------------------- | ---------------------------------- | ----------- |
+| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
 
 Example configuration:
 
@@ -742,7 +739,7 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 {{% note theme="info" %}}
-MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
+MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/server-management/variables-and-modes/server-system-variables#max_connections) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
 They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
@@ -759,6 +756,14 @@ For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
+
+{{% note theme="warning" %}}
+By default, the generated password will rotate on a regular
+basis. Your applications MUST use the passwords from the
+relationships, as the password _is_ going to change. Set
+`rotate_passwords` to `false` if you wish to change this default
+behavior.
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
 you can retrieve the password for each endpoint
