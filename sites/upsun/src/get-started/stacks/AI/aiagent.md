@@ -54,7 +54,7 @@ Upsun provides isolated environments for development, testing, and production:
 Generation agent using Chainlit, llama_index, and OpenAI, then deploy it on Upsun.
 See the [Chainlit deployment tutorial](https://devcenter.upsun.com/posts/deploying-chainlit-with-rag/).
 
-- **Access Documentation Contextually via Context7 + MCP**: Use the Model Context
+- **Access Documentation contextually via Context7 + MCP**: Use the Model Context
 Protocol to let AI assistants fetch your Upsun documentation in real-time. See the
 [Context7 MCP article](https://devcenter.upsun.com/posts/context7-mcp/).
 
