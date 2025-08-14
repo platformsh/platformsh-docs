@@ -58,7 +58,7 @@ See the [Chainlit deployment tutorial](https://devcenter.upsun.com/posts/deployi
 Protocol to let AI assistants fetch your Upsun documentation in real-time. See the
 [Context7 MCP article](https://devcenter.upsun.com/posts/context7-mcp/).
 
-- **Use the Upsun API to Automate Agent Deployment**: Automate deployments, environment
+- **Use the Upsun API to automate Agent deployment**: Automate deployments, environment
 management, and configuration through the Upsun API. See the
 [API usage guide](https://devcenter.upsun.com/posts/using-the-upsun-api/).
 
