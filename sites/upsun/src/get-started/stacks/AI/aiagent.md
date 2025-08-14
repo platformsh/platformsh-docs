@@ -50,7 +50,7 @@ Upsun provides isolated environments for development, testing, and production:
 
 ## Tutorials
 
-- **Deploy a RAG-Based Conversational Agent with Chainlit**: Build a Retrieval-Augmented
+- **Deploy a RAG-based conversational agent with Chainlit**: Build a Retrieval-Augmented
 Generation agent using Chainlit, llama_index, and OpenAI, then deploy it on Upsun.
 See the [Chainlit deployment tutorial](https://devcenter.upsun.com/posts/deploying-chainlit-with-rag/).
 
