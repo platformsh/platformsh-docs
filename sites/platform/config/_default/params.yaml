@@ -41,7 +41,7 @@ vendor:
         support: https://support.platform.sh/
         sales: https://platform.sh/contact
         console: https://console.platform.sh/
-        api: https://api.platform.sh/
+        api: https://docs.platform.sh/api/
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.api.platform.sh/register
@@ -97,7 +97,7 @@ navSections:
 nonDocsSections:
   apidocs:
     title: API Documentation
-    link: https://api.platform.sh/docs
+    link: https://docs.platform.sh/api/
     weight: -80
   # community:
   #   title: Community Forum
