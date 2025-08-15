@@ -129,6 +129,7 @@ const verify = async () => {
       let location = object.actions.find((element) => element.type == 'redirection').location
 
       if (path.includes("@") && object.markers.length > 0) {
+        core.notice(`${path} contains a marker. We will need to switch to an example path for testing.`)
         // make sure we have some examples
         if (object.examples && Array.isArray(object.examples)) {
           // we have a marker path. let's use an example path to test
