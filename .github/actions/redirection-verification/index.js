@@ -89,11 +89,31 @@ const verify = async () => {
 
     const redirectionrules = async ()=>{
       try {
-        return await redirectionInstance.get(`/rules?projectId=${redirectionProjectID}`  )
-          .then(response => {
-            //core.debug(response.data)
-            return response.data
-          })
+        let allRules = []
+        let searchAfter = null
+        let hasMoreResults = true
+
+        while (hasMoreResults) {
+          let url = `/rules?projectId=${redirectionProjectID}`
+          if (searchAfter) {
+            url += `&searchAfterId=${searchAfter}`
+          }
+
+          const response = await redirectionInstance.get(url)
+          const rules = response.data
+
+          if (rules && rules.length > 0 ) {
+            allRules = allRules.concat(rules)
+            // get the last rule id for the next page of results
+            searchAfter = rules[rules.length - 1].id
+          } else {
+            // no more results
+            hasMoreResults = false
+          }
+        }
+        core.debug(`Total rules retrieved: ${allRules.length} rules`)
+        return allRules
+
       } catch (error) {
         core.setFailed(`Action failed calling redirection Api with error ${error}`)
       }
