@@ -128,6 +128,17 @@ const verify = async () => {
       let path = object.trigger.source
       let location = object.actions.find((element) => element.type == 'redirection').location
 
+      if (path.includes("@") && object.markers.length > 0) {
+        // we have a marker path. let's use an example path to test
+        let examplePaths = object.examples.filter( example => example.url.startsWith('/') )
+        if (examplePaths.length > 0 && examplePaths[0]) {
+          path = examplePaths[0].url
+        } else {
+          core.error(`path ${path} appears to contain a marker, but I was unable to find a valid example to use.`)
+          path = "/"
+        }
+      }
+
       core.debug(`I'm going to test ${path} to see if it goes to ${location}`)
 
       try {
