@@ -175,7 +175,7 @@ const verify = async () => {
         core.summary.write()
         core.setFailed('There was an error with one or more contracted redirects.')
       } else  {
-        core.notice('All contracted redirections are valid.')
+        core.notice(`All contracted redirections are valid. ${anchors.length} rules evaluated.`)
       }
     });
 
