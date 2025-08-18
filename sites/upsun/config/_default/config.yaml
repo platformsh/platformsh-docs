@@ -8,7 +8,7 @@ description: Upsun User Documentation
 theme: psh-docs
 themesdir: '../../themes'
 
-uglyURLs: true
+uglyURLs: false
 pygmentsUseClasses: true
 
 # Language settings
