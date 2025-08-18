@@ -24,7 +24,7 @@ and dependencies.
 
 You can integrate your AI agent with any LLM API that your chosen runtime supports:
 
-- **OpenAI API**: Use the [official OpenAI client libraries](https://platform.openai.com/docs/libraries) 
+- **OpenAI API**: Use the [official OpenAI client libraries](https://platform.openai.com/docs/libraries)
 for Python, Node.js, and other languages
 - **Anthropic Claude API**: Use the [Anthropic client libraries](https://docs.anthropic.com/en/docs/getting-started-with-the-api) for Python,
 Node.js, and other languages
@@ -88,7 +88,7 @@ applications:
 ## Application Code
 
 For examples of how to implement AI agents with different frameworks and APIs,
-see the [AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/?utm_source=docs&utm_medium=ai-agent&utm_campaign=tutorials).
+see the [AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/ai?utm_source=docs&utm_medium=ai-agent&utm_campaign=tutorials).
 
 ## Deploy your Agent
 
