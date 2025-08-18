@@ -481,16 +481,16 @@ services:
 
 The following table presents the possible values:
 
-| Value             | Policy description                                                                                          |
-|-------------------|-------------------------------------------------------------------------------------------------------------|
-| `allkeys-lru`     | Removes the oldest cache items first. This is the default policy when `maxmemory_policy` isn't set.         |
-| `noeviction`      | New items aren’t saved when the memory limit is reached.                                                    |
-| `allkeys-lfu`     | Removes least frequently used cache items first.                                                            |
-| `volatile-lru`    | Removes least recently used cache items with the `expire` field set to `true`.                              |
-| `volatile-lfu`    | Removes least frequently used cache items with the `expire` field set to `true`.                            |
-| `allkeys-random`  | Randomly removes cache items to make room for new data.                                                     |
-| `volatile-random` | Randomly removes cache items with the `expire` field set to `true`.                                         |
-| `volatile-ttl`    | Removes cache items with the `expire` field set to `true` and the shortest remaining `time-to -live` value. |
+| Value             | Policy description                                                                                                                   |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| `allkeys-lru`     | Keeps most recently used keys; removes least recently used (LRU) keys. This is the default policy when `maxmemory_policy` isn't set. |
+| `noeviction`      | New values aren't saved when memory limit is reached.                                                                                |
+| `allkeys-lfu`     | Keeps frequently used keys; removes least frequently used (LFU) keys                                                                 |
+| `volatile-lru`    | Removes least recently used keys with a time-to-live (TTL) set.                                                                      |
+| `volatile-lfu`    | Removes least frequently used keys with a TTL set.                                                                                   |
+| `allkeys-random`  | Randomly removes keys to make space for the new data added.                                                                          |
+| `volatile-random` | Randomly removes keys with a TTL set.                                                                                                |
+| `volatile-ttl`    | Removes keys with a TTL set, the keys with the shortest remaining time-to-live value first.                                          |
 
 For more information on the different policies,
 see the official [Valkey documentation](https://valkey.io/topics/lru-cache/).
