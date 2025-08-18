@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+
+  {{- partial "head.html" . -}}
+  {{- $currentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) -}}
+  <body dir="{{ .Site.Language.LanguageDirection | default `ltr` }}"
+    onload="dataLayer.push({'event': 'datalayer_ready', 'page_category1': '{{ .Section }}', 'page_category2': '{{ .Title | .Page.RenderString }}', 'link_url': '{{ $currentPage }}'});"
+  >
+
+    {{- partial "custom/gtm/noscript.html" . -}}
+    {{- partial "navbar.html" . -}}
+    {{- block "main" . }}{{ end -}}
+    {{- if or (eq .Site.Params.footer.enable nil) (.Site.Params.footer.enable) }}
+      {{ partial "footer.html" . }}
+    {{ end }}
+    {{ partial "scripts.html" . }}
+  </body>
+</html>
