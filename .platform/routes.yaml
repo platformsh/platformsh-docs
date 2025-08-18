@@ -1,6 +1,6 @@
 https://{default}/:
   type: upstream
-  upstream: platform:http
+  upstream: docs:http
   id: platformsh
   primary: true
   cache:
