@@ -340,11 +340,12 @@ You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONS
 
 You can configure your MySQL service in the [services configuration](/add-services/_index.md) with the following options:
 
-| Name         | Type                    | Version                            | Description |
-| ------------ | ----------------------- | ---------------------------------- | ----------- |
-| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
-| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
-| `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| Name               | Type                       | Version                            | Description |
+| ------------------ | -------------------------- | ---------------------------------- | ----------- |
+| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
 
 Example configuration:
 
@@ -755,6 +756,14 @@ For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
+
+{{% note theme="warning" %}}
+By default, the generated password will rotate on a regular
+basis. Your applications MUST use the passwords from the
+relationships, as the password _is_ going to change. Set
+`rotate_passwords` to `false` if you wish to change this default
+behavior.
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
 you can retrieve the password for each endpoint
