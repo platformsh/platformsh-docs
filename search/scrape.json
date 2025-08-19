@@ -43,7 +43,7 @@
         "api.platform.sh"
       ],
       "start_urls": [
-        "https://api.platform.sh/docs/"
+        "https://docs.platform.sh/api/"
       ]
     }
   }

@@ -1,181 +1,182 @@
 - # The name of this application, which must be unique within a project.
-    name: 'docs'
+  name: 'docs'
 
-    # The type key specifies the language and version for your application.
-    type: 'nodejs:20'
+  # The type key specifies the language and version for your application.
+  type: 'nodejs:20'
 
-    # Specify the Hugo version as an env variable.
-    variables:
-        env:
-            HUGOVERSION: 0.139.4
-            SITE_DIR: 'sites/platform'
+  # Specify the Hugo version as an env variable.
+  variables:
+    env:
+      HUGOVERSION: 0.139.4
+      SITE_DIR: 'sites/platform'
 
-    build:
-        flavor: none
+  build:
+    flavor: none
 
-    source:
-        root: "/"
+  source:
+    root: "/"
 
-    relationships:
-        search: "search:http"
+  relationships:
+    search: "search:http"
 
-    # The hooks that will be triggered when the package is deployed.
-    hooks:
-        # Build hooks can modify the application files on disk but not access any services like databases.
-        build: |
-          set -e
-          #copy API docs into correct location
-          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
-          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
-          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
-            cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
-            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
-            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
-          else
-            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
-          fi
+  # The hooks that will be triggered when the package is deployed.
+  hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+      set -e
+      #copy API docs into correct location
+      # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+      mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+      if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+        cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
+        mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+        cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
+      else
+        echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+      fi
 
-          cd $SITE_DIR
-          cp ../../themes/psh-docs/postcss.config.js .
-          npm install
-          npm run build
-          ./build_docs.sh
+      cd $SITE_DIR
+      cp ../../themes/psh-docs/postcss.config.js .
+      npm install
+      npm run build
+      ./build_docs.sh
 
 
 
-        deploy: |
-            cd $SITE_DIR
-            ./deploy.sh
-            bash ./marker.sh "deployed" "${SITE_DIR}"
-        post_deploy:
-          cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
+    deploy: |
+      cd $SITE_DIR
+      ./deploy.sh
+      bash ./marker.sh "deployed" "${SITE_DIR}"
+    post_deploy:
+      cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
 
-    # The configuration of the application when it is exposed to the web.
-    web:
-        commands:
-        # Run (404) error
-            start: cd $SITE_DIR && node index.js
-        locations:
-            '/':
-                # The public directory of the application relative to its root.
-                root: 'sites/platform/public'
-                passthru: true
-                index: ['index.html']
-                scripts: false
-                allow: true
-                expires: 24h
-                rules:
-                    \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
-                        expires: 4w
-                    \.md$:
-                      headers:
-                        Content-Type: "text/markdown; charset=UTF-8"
-                    \.txt$:
-                      headers:
-                        Content-Type: "text/plain; charset=UTF-8"
-            '/api':
-              root: 'sites/platform/public/api'
-              index: [ 'index.html' ]
-              expires: 24h
-    disk: 1024
+  # The configuration of the application when it is exposed to the web.
+  web:
+    commands:
+      # Run (404) error
+      start: cd $SITE_DIR && node index.js
+    locations:
+      '/':
+        # The public directory of the application relative to its root.
+        root: 'sites/platform/public'
+        passthru: true
+        index: [ 'index.html' ]
+        scripts: false
+        allow: true
+        expires: 24h
+        rules:
+          \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
+            expires: 4w
+          \.md$:
+            headers:
+              Content-Type: "text/markdown; charset=UTF-8"
+          \.txt$:
+            headers:
+              Content-Type: "text/plain; charset=UTF-8"
+      '/api':
+        root: 'sites/platform/public/api'
+        index: [ 'index.html' ]
+        expires: 24h
+  disk: 1024
 
-    mounts:
-        "sites/platform/public/scripts/xss/dist/config":
-            source: local
-            source_path: "sites/platform/config"
+  mounts:
+    "sites/platform/public/scripts/xss/dist/config":
+      source: local
+      source_path: "sites/platform/config"
 
-    size: S
+  size: S
 
 - # The name of this application, which must be unique within a project.
-    name: 'upsun'
+  name: 'upsun'
 
-    # The type key specifies the language and version for your application.
-    type: 'nodejs:20'
+  # The type key specifies the language and version for your application.
+  type: 'nodejs:20'
 
-    # Specify the Hugo version as an env variable.
-    variables:
-        env:
-            HUGOVERSION: 0.139.4
-            SITE_DIR: 'sites/upsun'
+  # Specify the Hugo version as an env variable.
+  variables:
+    env:
+      HUGOVERSION: 0.139.4
+      SITE_DIR: 'sites/upsun'
 
-    build:
-        flavor: none
+  build:
+    flavor: none
 
-    source:
-        root: "/"
+  source:
+    root: "/"
 
-    relationships:
-        search: "search:http"
+  relationships:
+    search: "search:http"
 
-    # The hooks that will be triggered when the package is deployed.
-    hooks:
-        # Build hooks can modify the application files on disk but not access any services like databases.
-        build: |
-          #copy API docs into correct location
-          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
-          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
-          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
-            cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
-            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
-            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
-          else
-            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
-          fi
-          cd $SITE_DIR
-          cp ../../themes/psh-docs/postcss.config.js .
-          npm install
-          npm run build
-          ./build_docs.sh
-          # temporary generation of json version of public regions + ip addresses
-          # if this is still here after 20250621 ping @gilzow and ask why
-          cat "${PLATFORM_APP_DIR}/shared/data/regions.yaml" | python3 -c 'import sys,yaml,json; print(json.dumps(yaml.safe_load(str(sys.stdin.read()))))' | jq '[.. | objects | .outbound_ips? // empty] | add' > "${PLATFORM_APP_DIR}/${SITE_DIR}/public/outbound_ips.json"
+  # The hooks that will be triggered when the package is deployed.
+  hooks:
+    # Build hooks can modify the application files on disk but not access any services like databases.
+    build: |
+      set -e
+      #copy API docs into correct location
+      # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+      mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
+      if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+        cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
+        mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+        cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
+      else
+        echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+      fi
+      cd $SITE_DIR
+      cp ../../themes/psh-docs/postcss.config.js .
+      npm install
+      npm run build
+      ./build_docs.sh
+      # temporary generation of json version of public regions + ip addresses
+      # if this is still here after 20250621 ping @gilzow and ask why
+      cat "${PLATFORM_APP_DIR}/shared/data/regions.yaml" | python3 -c 'import sys,yaml,json; print(json.dumps(yaml.safe_load(str(sys.stdin.read()))))' | jq '[.. | objects | .outbound_ips? // empty] | add' > "${PLATFORM_APP_DIR}/${SITE_DIR}/public/outbound_ips.json"
 
-        deploy: |
-            cd $SITE_DIR
-            ./deploy.sh
-            bash ./marker.sh "deployed" "${SITE_DIR}"
-        post_deploy:
-          cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
-    # The configuration of the application when it is exposed to the web.
-    web:
-        commands:
-        # Run (404) error
-            start: cd $SITE_DIR && node index.js
-        locations:
-            '/':
-                # The public directory of the application relative to its root.
-                root: 'sites/upsun/public'
-                passthru: true
-                index: ['index.html']
-                scripts: false
-                allow: true
-                expires: 24h
-                rules:
-                    \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
-                        expires: 4w
-                    \.md$:
-                      headers:
-                        Content-Type: "text/markdown; charset=UTF-8"
-                    \.txt$:
-                      headers:
-                        Content-Type: "text/plain; charset=UTF-8"
-                    '^/favicon.ico$':
-                        allow: true
-                        passthru: '/images/favicon.ico'
-            '/api':
-              root: 'sites/upsun/public/api'
-              index: [ 'index.html' ]
-              expires: 24h
+    deploy: |
+      cd $SITE_DIR
+      ./deploy.sh
+      bash ./marker.sh "deployed" "${SITE_DIR}"
+    post_deploy:
+      cd $SITE_DIR && bash ./marker.sh "post_deploy" "${SITE_DIR}"
+  # The configuration of the application when it is exposed to the web.
+  web:
+    commands:
+      # Run (404) error
+      start: cd $SITE_DIR && node index.js
+    locations:
+      '/':
+        # The public directory of the application relative to its root.
+        root: 'sites/upsun/public'
+        passthru: true
+        index: [ 'index.html' ]
+        scripts: false
+        allow: true
+        expires: 24h
+        rules:
+          \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|cast|mp4|json|yaml|ico|svg?|cast|mp4|json|yaml|svg?|ttf)$:
+            expires: 4w
+          \.md$:
+            headers:
+              Content-Type: "text/markdown; charset=UTF-8"
+          \.txt$:
+            headers:
+              Content-Type: "text/plain; charset=UTF-8"
+          '^/favicon.ico$':
+            allow: true
+            passthru: '/images/favicon.ico'
+      '/api':
+        root: 'sites/upsun/public/api'
+        index: [ 'index.html' ]
+        expires: 24h
 
-    disk: 1024
+  disk: 1024
 
-    mounts:
-        "sites/upsun/public/scripts/xss/dist/config":
-            source: local
-            source_path: "sites/upsun/config"
+  mounts:
+    "sites/upsun/public/scripts/xss/dist/config":
+      source: local
+      source_path: "sites/upsun/config"
 
-    size: S
--
+  size: S
+- # The name of this application, which must be unique within a project.
   name: redirectionio-upsun
   source:
     root: upsun-redirectionio
@@ -209,7 +210,7 @@
       source: local
       source_path: log
 
--
+- # The name of this application, which must be unique within a project.
   name: redirectionio-psh
   source:
     root: psh-redirectionio
