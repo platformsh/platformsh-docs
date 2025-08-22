@@ -52,9 +52,7 @@ Removes resource-related fields that are not applicable in {{% vendor/name %}}. 
 ### Example usage
 
 ```bash
-
 uspun project:convert
-
 ```
 You will be prompted to enter the path to the Platform.sh project you would like to convert. 
 
