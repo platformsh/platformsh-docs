@@ -183,3 +183,74 @@ Org creation flow is being updated, free trial for only flex orgs, @Ndifreke @Mi
 ### Assuming a unified CLI, will there be a new field when viewing a project list to identify fixed vs flex?
 Users have a list of all the organizations and right now there is no field for flex/fixed in the cli.
 
+
+
+
+
+
+
+This document provides  content for new information to be displayed on Upsun docs and Platform.sh docs for fixed and flex org types as part of Brand Merger 2025.
+What is happening?
+As part of Brand Merger in Sep 2025, users will have the option to create either a fixed organization (currently known as PSH) or flex organization.
+
+Where should we reflect this update?
+This requires a new section in:
+ https://docs.upsun.com/ particularly under this section: https://docs.upsun.com/administration/organizations.html
+https://docs.platform.sh/ particularly under this section https://docs.platform.sh/administration/organizations.html 
+Potentially a new page? 
+
+Content
+What is a fixed organization?
+Ideal for workloads that have consistent resource requirements with stable and predictable usage.
+Users can select a plan with predefined CPU and Memory resources. You can not adjust these resources, nor scale them automatically. To increase capacity, you’ll need to upgrade to a higher plan.
+
+What is a flex organization?
+Ideal for workloads that evolve over time or have dynamic resource requirements. 
+Flex will suit most use cases.
+Users will be able to allocate the exact CPU and Memory resources that your applications and services need. You can adjust these resources at any time, or configure them to adapt automatically. You are charged based on the resources you allocate.
+
+What can the customer do?
+When creating a new organization, users will have the option to  select the organization type from a drop-down option based on their preference. 
+
+
+Once the organization is created, users can manage their organizations like they do today.
+
+More to follow: There will be a table in this section highlighting the feature differences between fixed and flex (WIP)
+
+Feature chart
+
+Flexible Resource Allocation
+Flex: Users can customize resources per container (per app or service) for ALL environments.
+Fixed: Resource from the plan is applied to the production environment. For preview, the user has the default small size for all containers.
+FAQs
+What happens to my URL?
+https://auth.api.platform.sh/ will become https://auth.upsun.com/.
+
+If I had a fixed organization (previously Platform.sh), will I be redirected to my organizations?
+Yes, you will be automatically redirected to the new console. You will be able to login using the same credentials.
+
+Will I be able to switch if I have both fixed and flex organizations?
+Yes,  you will be able to navigate between  your organizations (fixed or flex) from a drop-down list. 
+
+How will fixed vs flex be identifiable in the console? 
+Organizations will have tags next to the names in the console. Organizations will also be categorized by organization types in console.
+
+Will I  be able  to access fixed projects  via the upsun CLI?
+Correct.
+
+WillI I be able to (with fixed projects) still use the same configuration files and configuration file structures (ie .platform.app.yaml, .platform/services.yaml, .platform/routes.yaml, etc?
+Correct.
+
+Will mount differences still exist between fixed and flex after Sept?
+Yes, waiting for the git fixes for this.
+
+Beyond the name “platform.sh” going away in console, are there other visual changes in the fixed console that will be different than it is today?
+New way to create organizations ( either fixed or flex).
+Be able to navigate between the two organization types.
+15-day free trial for users creating flex organizations.
+
+Assuming a unified CLI, will there be a new field when viewing a project list to identify fixed vs flex?
+You will  have a list of all the organizations. There is no field for flex/fixed in the CLI.
+
+
+
