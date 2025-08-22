@@ -167,6 +167,12 @@ Selected project: [my-project (ID)]
 Selected environment: main (type: production)
 Deployment type: manual
 ```
+
+For more information about how this command works, use:
+
+```bash
+platform environment:deploy:type --help
+```
 <--->
 +++
 title=Using the Console
