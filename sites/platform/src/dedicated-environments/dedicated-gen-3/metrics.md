@@ -73,21 +73,10 @@ at 9.51&nbsp;GB, while the temporary disk is 49.04&nbsp;GB.
 
 ### Thresholds
 
-If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
-
-If you have a container in a prolonged burst state, you might want to consider:
+If the resources are high and hovering close to the threshold,
+you might want to consider:
 
 * [Optimizing your code](/increase-observability/_index.md)
 * Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
   or [service size](/add-services/_index.md#size)
 * [Increasing your plan](/administration/pricing/_index.md)
-
-You can reallocate your existing resources if other containers have resources they aren't using.
-
-If you have multiple containers in a burst state, review your configuration or plan size.
-
-{{< note theme="warning" title="Burst state">}}
-
-Resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded. Usage that crosses _100%_ will mean that you have crossed into a **burst** state.
-
-{{< /note >}}
