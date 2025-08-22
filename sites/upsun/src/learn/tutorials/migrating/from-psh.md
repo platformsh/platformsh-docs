@@ -247,7 +247,7 @@ applications:
 ```
 
 `instance` mounts on {{% vendor/name %}} are the equivalent of `local` mounts on {{% vendor/psh_ref %}}.
-To ensure continuity when migrating from {{% vendor/psh_ref %}} to {{% vendor/name %}},
+To ensure continuity when converting from {{% vendor/psh_ref %}} to {{% vendor/name %}},
 the `local` mount type works as an alias for the `instance` mount type.
 
 However, it is recommended to change the type of your `local` mounts to `instance` or another [supported mount type](/create-apps/app-reference/single-runtime-image.html#define-a-mount).
