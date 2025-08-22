@@ -30,5 +30,4 @@ ignoreerrors=
     ^https://www.baeldung.com/maven-wrapper$ ^403 Forbidden
     ^https://dzone\.com/.*$ ^403 Forbidden
     ^https://docs\.pimcore\.com/.*$ ^403 Forbidden
-    ^https://www\.pixelant\.net/.*$ ^ReadTimeOut
-    ^https://www\.gatsbyjs\.com/.*$ ^ReadTimeOut
+    ^https:// ^ReadTimeout
