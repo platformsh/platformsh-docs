@@ -145,19 +145,11 @@ Once the new project is running and the DNS has fully propagated, delete the old
 
 ## Alternative process
 
-**These tools are not directly supported by {{% vendor/name %}} support team, but you can open issues in their respective repositories directly.**
-
 We have open-sourced [ClonSun](https://github.com/upsun/clonsun), a tool that allows you to clone a project from one region to another.
 ClonSun helps you migrate most of your project assets from one region to another with some remaining manual steps like moving your domain names from one region to the other (or at the CDN level) and update your DNS records.
 
 We also have [ConvSun](https://github.com/upsun/convsun), a tool that allows you to change existing configuration files to another format. It converts details from files like `services.yaml` and `routes.yaml`, and generates a new `config.yaml` file. This streamlines the conversion process by significantly reducing the manual effort required to adapt your app’s infrastructure setup.
 
-To learn more about ConvSun and how it works, read the [converting projects](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html) page.
-
-Although not directly supported by {{% vendor/name %}},
-an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.
-This script automates most common configurations.
-If your site is a typical single app with a single SQL database,
-the script should take care of most of the process for you.
+Although not directly supported by {{% vendor/name %}}, an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script. This script automates most common configurations. If your site is a typical single app with a single SQL database, the script should take care of most of the process for you.
 
 See more at the [{{% vendor/name %}} Project Migration repository](https://gitlab.com/contextualcode/platformsh-migration).
