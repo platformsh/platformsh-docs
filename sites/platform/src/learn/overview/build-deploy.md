@@ -105,7 +105,7 @@ When manual deployment is enabled in an environment, the following actions are q
 | **Variables**        | `environment.variable.create`, `update`, `delete` |
 | **Resources**        | `environment.resources.update` |
 | **Domains & Routes** | `environment.domain.*`, `environment.route.*` |
-| **Subscription** | `environment.subscription.update `|
+| **Subscription**     | `environment.subscription.update `|
 | **Environment Settings** | `environment.update.http_access`, `smtp`, `restrict_robots` |
 
 
