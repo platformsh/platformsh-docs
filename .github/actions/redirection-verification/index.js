@@ -89,11 +89,31 @@ const verify = async () => {
 
     const redirectionrules = async ()=>{
       try {
-        return await redirectionInstance.get(`/rules?projectId=${redirectionProjectID}`  )
-          .then(response => {
-            //core.debug(response.data)
-            return response.data
-          })
+        let allRules = []
+        let searchAfter = null
+        let hasMoreResults = true
+
+        while (hasMoreResults) {
+          let url = `/rules?projectId=${redirectionProjectID}`
+          if (searchAfter) {
+            url += `&searchAfterId=${searchAfter}`
+          }
+
+          const response = await redirectionInstance.get(url)
+          const rules = response.data
+
+          if (rules && rules.length > 0 ) {
+            allRules = allRules.concat(rules)
+            // get the last rule id for the next page of results
+            searchAfter = rules[rules.length - 1].id
+          } else {
+            // no more results
+            hasMoreResults = false
+          }
+        }
+        core.debug(`Total rules retrieved: ${allRules.length} rules`)
+        return allRules
+
       } catch (error) {
         core.setFailed(`Action failed calling redirection Api with error ${error}`)
       }
@@ -107,6 +127,25 @@ const verify = async () => {
     const validateRedirects =anchors.map(async (object, index, array) => {
       let path = object.trigger.source
       let location = object.actions.find((element) => element.type == 'redirection').location
+
+      if (path.includes("@") && object.markers.length > 0) {
+        core.notice(`${path} contains a marker. We will need to switch to an example path for testing.`)
+        // make sure we have some examples
+        if (object.examples && Array.isArray(object.examples)) {
+          // we have a marker path. let's use an example path to test
+          let examplePaths = object.examples.filter( example => example.url.startsWith('/') )
+          if (examplePaths.length > 0 && examplePaths[0]) {
+            path = examplePaths[0].url
+          } else {
+            core.error(`path ${path} appears to contain a marker, but I was unable to find a valid example to use.`)
+            path = "/"
+          }
+        } else {
+          core.error(`path ${path} appears to contain a marker, but the rule does not contain any examples. This needs to be fixed.`)
+          path = "/"
+        }
+
+      }
 
       core.debug(`I'm going to test ${path} to see if it goes to ${location}`)
 
@@ -155,7 +194,7 @@ const verify = async () => {
         core.summary.write()
         core.setFailed('There was an error with one or more contracted redirects.')
       } else  {
-        core.notice('All contracted redirections are valid.')
+        core.notice(`All contracted redirections are valid. ${anchors.length} rules evaluated.`)
       }
     });
 
