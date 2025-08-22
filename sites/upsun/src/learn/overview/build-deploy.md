@@ -121,7 +121,7 @@ You can adjust deployment behavior in your environment (staging or production on
 
 {{< note theme="tip" >}}
 
-If manual deployment is disabled, all currently staged changes will be deployed immediately and the environment will resume automatic deployment (default) behavior.
+As soon as your deployment type is switched from automatic to manual, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
 
 {{< /note >}}
 
@@ -155,7 +155,7 @@ Deploying staged changes:
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
 
-You can also use the following command to manipulate the type from the CLI:
+You can also use the following command to view or change the deployment type:
 
 ```bash
 upsun environment:deploy:type
@@ -166,35 +166,6 @@ The output should look similar to the example below:
 Selected project: [my-project (ID)]
 Selected environment: main (type: production)
 Deployment type: manual
-```
-
-For more information about how this command works, use:
-
-```bash
---help
-``` 
-
-Where you will find context similar to the information shown below:
-
-```bash
-Description: Show or set the environment deployment type
-
-Usage:
- upsun environment:deploy:type [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<type>]
-
-Arguments:
-  type                           The environment deployment type: automatic or manual.
-
-Options:
-  ....
-
-Help:
- Choose automatic (the default) if you want your changes to be deployed immediately as they are made.
- Choose manual to have changes staged until you trigger a deployment (including changes to code, variables, domains and settings).
-
-Examples:
- Set the deployment type to "manual" (disable automatic deployments):
-   upsun environment:deploy:type manual
 ```
 <--->
 +++
