@@ -307,7 +307,7 @@ unused environments don't need to run cron jobs.
 To minimize unnecessary resource use,
 crons on environments with no deployments are paused.
 
-This affects all preview environments, _and_ production environment that do not yet have a domain attached to them.
+This affects all preview environments _and_ production environments that do not yet have a domain attached to them.
 
 Such environments with deployments within 14 days have crons with the status `running`.
 If there haven't been any deployments within 14 days, the status is `paused`.
