@@ -227,7 +227,7 @@ When creating a new organization, users will be able to select the organization 
 | Support SLA | Enterprise and Elite only | Yes, with add-on |
 | Uptime SLA | Enterprise and Elite only (Architecture based) | Yes, with add-on |
 | CDN | Enterprise and Elite only | Yes |
-| Fastly WAF | Enterprise & Elite only as add-on | Yes, with add-on? (To be announced soon) |
+| Fastly WAF | Enterprise & Elite only as add-on | Yes, with add-on |
 | Upsun WAF | Enterprise and Elite only | Yes |
 
 #### Billing
