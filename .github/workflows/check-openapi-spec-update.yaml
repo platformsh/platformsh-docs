@@ -39,6 +39,15 @@ jobs:
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output shared/pages/api.html \
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
+          # @todo let's refactor this to be more concise. maybe just retrieve everything in the directory?
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output shared/pages/openapispec-platformsh.json \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-platformsh.json',safe=''))")/raw?ref=${REF}"
+          # @todo see above
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output shared/pages/openapispec-platformsh.yaml \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-platformsh.yaml',safe=''))")/raw?ref=${REF}"
+
 
       - name: Create Pull Request if changes
         uses: peter-evans/create-pull-request@v6
