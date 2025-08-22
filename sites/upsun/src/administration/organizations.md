@@ -255,14 +255,6 @@ When creating a new organization, users will be able to select the organization 
 | PCI DSS Level 1-compatible | Yes | Yes |
 | HIPAA | Enterprise and Elite only in specific regions | Coming soon |
 
-#### Use cases
-
-| **Scenario** | **Upsun Fixed** | **Upsun Flex** |
-|--------------|-----------------|----------------|
-| Standard (single) app with few services, monolithic | All that is on fixed + (below) | |
-| Multi-app, more services | Can be used | Best option |
-| Decoupled CMS, eCommerce | Can be used | Best option |
-
 ### Fixed and Flex FAQs
 
 #### What happens to my URL?
