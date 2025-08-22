@@ -167,101 +167,15 @@
           }
         }
       },
-      "post": {
-        "tags": [
-          "Alerts"
-        ],
-        "summary": "Create a usage alert.",
-        "operationId": "create-usage-alert",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/subscription_id"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "id": {
-                    "description": "The usage group to create an alert for.",
-                    "type": "string"
-                  },
-                  "config": {
-                    "description": "The configuration of the alert.",
-                    "properties": {
-                      "threshold": {
-                        "description": "The amount after which a usage alert should be triggered.",
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "The created usage alert",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Alert"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/alerts/subscriptions/{subscriptionId}/usage/{usageId}": {
-      "delete": {
-        "tags": [
-          "Alerts"
-        ],
-        "summary": "Delete a usage alert.",
-        "operationId": "delete-usage-alert",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/subscription_id"
-          },
-          {
-            "name": "usageId",
-            "in": "path",
-            "description": "The usage id of the alert.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success."
-          }
-        }
-      },
       "patch": {
         "tags": [
           "Alerts"
         ],
-        "summary": "Update a usage alert.",
-        "operationId": "update-usage-alert",
+        "summary": "Update usage alerts.",
+        "operationId": "update-usage-alerts",
         "parameters": [
           {
             "$ref": "#/components/parameters/subscription_id"
-          },
-          {
-            "name": "usageId",
-            "in": "path",
-            "description": "The usage id of the alert.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -269,15 +183,12 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "config": {
-                    "description": "The configuration of the alert.",
-                    "properties": {
-                      "threshold": {
-                        "description": "The amount after which a usage alert should be triggered.",
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
+                  "alerts": {
+                    "description": "The list of usage alerts to create or update.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Alert"
+                    }
                   }
                 },
                 "type": "object"
@@ -287,11 +198,27 @@
         },
         "responses": {
           "200": {
-            "description": "The updated usage alert.",
+            "description": "The list of current and available alerts for the subscription.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Alert"
+                  "properties": {
+                    "available": {
+                      "description": "The list of available usage alerts.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Alert"
+                      }
+                    },
+                    "current": {
+                      "description": "The list of the current usage alerts.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Alert"
+                      }
+                    }
+                  },
+                  "type": "object"
                 }
               }
             }
@@ -11007,6 +10934,342 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/cdn": {
+      "get": {
+        "summary": "List project CDNs",
+        "description": "Retrieves the specified project's CDNs.",
+        "operationId": "list-org-project-cdns",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create project CDN",
+        "description": "Creates a new project CDN.",
+        "operationId": "create-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment",
+                  "domains"
+                ],
+                "properties": {
+                  "environment": {
+                    "$ref": "#/components/schemas/CdnEnvironment"
+                  },
+                  "service_name": {
+                    "$ref": "#/components/schemas/CdnServiceName"
+                  },
+                  "backend_hostname": {
+                    "$ref": "#/components/schemas/CdnBackendHostname"
+                  },
+                  "sni_hostname": {
+                    "$ref": "#/components/schemas/CdnSNIHostname"
+                  },
+                  "domains": {
+                    "$ref": "#/components/schemas/CdnDomains"
+                  },
+                  "comment": {
+                    "$ref": "#/components/schemas/CdnComment"
+                  },
+                  "skip_token_setup": {
+                    "$ref": "#/components/schemas/CdnSkipTokenSetup"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}": {
+      "get": {
+        "summary": "Get project CDN",
+        "description": "Retrieves the specified project's CDN.",
+        "operationId": "get-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update project CDN",
+        "description": "Updates the specified project's CDN.",
+        "operationId": "update-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "backend_hostname": {
+                    "$ref": "#/components/schemas/CdnBackendHostname"
+                  },
+                  "sni_hostname": {
+                    "$ref": "#/components/schemas/CdnSNIHostname"
+                  },
+                  "domains": {
+                    "$ref": "#/components/schemas/CdnDomains"
+                  },
+                  "comment": {
+                    "$ref": "#/components/schemas/CdnComment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete project CDN",
+        "description": "Deletes the specified project's CDN.",
+        "operationId": "delete-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden",
@@ -27695,6 +27958,72 @@
           }
         }
       },
+      "CDN": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectAddonID"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AddonType"
+          },
+          "value": {
+            "$ref": "#/components/schemas/ProjectAddonValue"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/CreatedAt"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "ProjectCarbon": {
         "type": "object",
         "properties": {
@@ -27856,6 +28185,57 @@
             "$ref": "#/components/schemas/UpdatedAt"
           }
         }
+      },
+      "AddonType": {
+        "type": "string",
+        "description": "The type of the add-on."
+      },
+      "ProjectAddonID": {
+        "type": "string",
+        "description": "The ID of the add-on."
+      },
+      "ProjectAddonValue": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "description": "The value of the add-on."
+      },
+      "CdnEnvironment": {
+        "type": "string",
+        "description": "The environment of the CDN."
+      },
+      "CdnServiceName": {
+        "type": "string",
+        "description": "The name of the CDN service."
+      },
+      "CdnBackendHostname": {
+        "type": "string",
+        "description": "The hostname of the CDN backend."
+      },
+      "CdnSNIHostname": {
+        "type": "string",
+        "description": "The SNI hostname of the CDN."
+      },
+      "CdnDomains": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "hostname"
+        },
+        "description": "The domains associated with the CDN."
+      },
+      "CdnComment": {
+        "type": "string",
+        "description": "The comment for the CDN."
+      },
+      "CdnSkipTokenSetup": {
+        "type": "boolean",
+        "description": "Whether to skip the token setup for the CDN."
       },
       "ProjectID": {
         "type": "string",
@@ -28888,6 +29268,15 @@
         "in": "path",
         "name": "region_id",
         "description": "The ID of the region.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "CdnID": {
+        "in": "path",
+        "name": "cdn_id",
+        "description": "The ID of the CDN.",
         "required": true,
         "schema": {
           "type": "string"
