@@ -294,8 +294,6 @@ and then runs the `update-file` source operation defined [previously](#define-a-
 
 ## Source operation examples
 
-{{< premium-features/tiered "Enterprise and Elite" >}}
-
 ### Update your application dependencies
 
 You can set up a source operation and a cron job to [automate your dependency updates](/learn/tutorials/dependency-updates.md).
