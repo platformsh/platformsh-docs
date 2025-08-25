@@ -37,8 +37,7 @@ The following table lists all the properties you can use at the top level of you
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-<!-- need to improve this - explain to user they're taken away from this page (do we need to explain?) -->
-- **Note:** Several properties (for example, `size`, `relationships`, `mounts`) are available in both single-runtime and composable images. Clicking the link for their details leads to a separate topic for that property. Properties that are unique to this image type are described in this topic. 
+- **Note:** Several properties (for example, `size`, `relationships`, `mounts`) are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for properties that are **unique** to this image type are provided later in this topic.  
 
 
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
