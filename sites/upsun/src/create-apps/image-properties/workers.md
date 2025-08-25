@@ -4,9 +4,9 @@ weight: 4
 description: Defines the list of worker names, which are alternate copies of the application to run as background processes.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images in {{% vendor/name %}}.
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
 
 {{< codetabs >}}
 

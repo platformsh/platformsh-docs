@@ -4,9 +4,9 @@ weight: 4
 description: A firewall dictionary that defines the outbound firewall rules for the application.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
 
 This property enables you to set limits in outbound traffic from your app with no impact on inbound requests.
 

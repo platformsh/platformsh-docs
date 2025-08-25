@@ -4,9 +4,9 @@ weight: 4
 description: Directories that are writable even after the app is built.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
-
 Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
 
 After your app is built, its file system is read-only.
 To make changes to your app's code, you need to use Git.

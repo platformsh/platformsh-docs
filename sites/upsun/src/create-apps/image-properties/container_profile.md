@@ -4,9 +4,9 @@ weight: 4
 description: Defines the container profile of the application.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images. 
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images. 
 
 By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it’s
 expected to need.

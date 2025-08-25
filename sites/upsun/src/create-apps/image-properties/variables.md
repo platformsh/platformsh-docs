@@ -4,9 +4,9 @@ weight: 4
 description: A variables dictionary that defines variables to control the environment.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images in {{% vendor/name %}}.
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
 
 {{% vendor/name %}} provides a number of ways to set [variables](/development/variables/_index.md).
 Variables set in your app configuration have the lowest precedence,
