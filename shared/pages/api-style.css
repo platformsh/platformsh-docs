@@ -50,59 +50,59 @@ p {
 /* Global */
 /****** Fonts *******/
 @import url("https://fonts.googleapis.com/css?family=Overpass:300,400,500,700,900");
-@font-face {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 400;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 500;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 500;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 700;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat Black';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: normal;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat Black';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: normal;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat Mono';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 700;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat Mono';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 400;*/
+/*  font-style: normal; }*/
 
 .platform_sh_standalone {
   /* Mixins */
@@ -174,60 +174,62 @@ p {
   /*****
      Any pages that do not want the default transparent nav-top.
      ***************************/ }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 500;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat Black';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: normal;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; } }
+/*@font-face {*/
+/*.platform_sh_standalone {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 400;*/
+/*  font-style: normal; }*/
+/*}*/
+/*@font-face {*/
+/*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 500;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 700;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat Black';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: normal;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat Mono';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 700;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat Mono';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 400;*/
+  /*  font-style: normal; } }*/
+
 .platform_sh_standalone :root {
   --blue: #145CC6;
   --indigo: #6610f2;
