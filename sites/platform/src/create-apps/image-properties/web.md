@@ -4,9 +4,9 @@ weight: 4
 description: A web instance that defines how the web application is served.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
 Use the `web` key to configure the web server running in front of your app.
 In single-runtime images, defaults may vary with a different [image `type`](/create-apps/app-reference/single-runtime-image.md#types).

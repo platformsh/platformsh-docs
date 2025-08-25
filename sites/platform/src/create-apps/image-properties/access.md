@@ -4,9 +4,10 @@ weight: 4
 description: An access dictionary that defines the access control for roles accessing app environments.
 ---
 
+{{% description %}}
+
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
-{{% description %}}
 
 The `access` dictionary has one allowed key:
 

@@ -7,9 +7,9 @@ keywords:
   - hooks
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images. 
 
 There are three different hooks that run as part of the process of building and deploying your app.
 These are places where you can run custom scripts.

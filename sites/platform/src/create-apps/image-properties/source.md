@@ -4,9 +4,9 @@ weight: 4
 description: Contains information about the app’s source code and operations that can be run on it.
 ---
 
-Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
-
 {{% description %}}
+
+Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#top-level-properties) and [composable](/create-apps/app-reference/composable-image.md#top-level-properties) images.
 
 The following table shows the properties that can be set in `source`:
 
