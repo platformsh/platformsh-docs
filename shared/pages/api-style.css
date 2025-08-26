@@ -50,59 +50,59 @@ p {
 /* Global */
 /****** Fonts *******/
 @import url("https://fonts.googleapis.com/css?family=Overpass:300,400,500,700,900");
-@font-face {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 400;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 500;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 500;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 700;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat Black';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: normal;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat Black';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: normal;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat Mono';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 700;*/
+/*  font-style: normal; }*/
 
-@font-face {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; }
+/*@font-face {*/
+/*  font-family: 'Moderat Mono';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 400;*/
+/*  font-style: normal; }*/
 
 .platform_sh_standalone {
   /* Mixins */
@@ -174,60 +174,62 @@ p {
   /*****
      Any pages that do not want the default transparent nav-top.
      ***************************/ }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 500;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat Black';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: normal;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 700;
-  font-style: normal; } }
-@font-face {
-.platform_sh_standalone {
-  font-family: 'Moderat Mono';
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");
-  /* IE9 Compat Modes */
-  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");
-  /* Pretty Modern Browsers */
-  font-weight: 400;
-  font-style: normal; } }
+/*@font-face {*/
+/*.platform_sh_standalone {*/
+/*  font-family: 'Moderat';*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.eot");*/
+/*  !* IE9 Compat Modes *!*/
+/*  src: url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Regular.woff") format("woff");*/
+/*  !* Pretty Modern Browsers *!*/
+/*  font-weight: 400;*/
+/*  font-style: normal; }*/
+/*}*/
+/*@font-face {*/
+/*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Medium.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 500;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Bold.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 700;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat Black';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Black.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Black.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: normal;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat Mono';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Bold.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 700;*/
+  /*  font-style: normal; } }*/
+  /*@font-face {*/
+  /*.platform_sh_standalone {*/
+  /*  font-family: 'Moderat Mono';*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.eot");*/
+  /*  !* IE9 Compat Modes *!*/
+  /*  src: url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff2") format("woff2"), url("https://platform.sh/fonts/Moderat/Moderat-Mono-Medium.woff") format("woff");*/
+  /*  !* Pretty Modern Browsers *!*/
+  /*  font-weight: 400;*/
+  /*  font-style: normal; } }*/
+
 .platform_sh_standalone :root {
   --blue: #145CC6;
   --indigo: #6610f2;
@@ -15125,7 +15127,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .bullets li {
   padding-left: 20px;
   margin-bottom: 1rem;
-  background: transparent url(/images/icons/bullets/bullet-red.svg) 0 10px no-repeat; }
+  /*background: transparent url(/images/icons/bullets/bullet-red.svg) 0 10px no-repeat;*/ }
 .platform_sh_standalone .btn, .platform_sh_standalone #user-widget .user-widget__log-in, .platform_sh_standalone #user-widget .user-widget__free-trial {
   font-family: "Moderat Mono", "Courier New", monospace;
   font-weight: 700;
@@ -15197,7 +15199,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   .platform_sh_standalone .btn-animate:hover span.icon {
     transition-delay: 0.75s;
     transition: background-image 0.1s linear;
-    background-image: url(/images/icons/chevrons/chevrons-red.svg); }
+    /*background-image: url(/images/icons/chevrons/chevrons-red.svg);*/ }
   .platform_sh_standalone .btn-animate::before,
   .platform_sh_standalone .btn-animate span.text {
     -webkit-transition: -webkit-transform 0.3s;
@@ -15222,7 +15224,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0); }
   .platform_sh_standalone .btn-animate span.icon {
-    background-image: url(/images/icons/chevrons/chevrons.svg);
+    background-image: url(/images/icons/chevrons.svg);
     background-size: 13px 11px;
     background-position: center center;
     background-repeat: no-repeat;
@@ -15236,11 +15238,11 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
     transform: none; }
   .platform_sh_standalone .btn-animate.inactive:hover span.icon {
     transition: none;
-    background-image: url(/images/icons/chevrons/chevrons.svg); } }
+    background-image: url(/images/icons/chevrons.svg); } }
 .platform_sh_standalone .btn-animate.gold {
   background-color: #DD901A; }
 .platform_sh_standalone .btn-animate.gold:hover span.icon {
-  background-image: url(/images/icons/chevrons/chevrons-submit.svg); }
+  /*background-image: url(/images/icons/chevrons/chevrons-submit.svg);*/ }
 .platform_sh_standalone .btn-animate.gold .text {
   color: #FFFFFF; }
 .platform_sh_standalone .btn-animate.blue {
@@ -15258,7 +15260,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   color: #145CC6;
   background-color: #FFBDBB; }
 .platform_sh_standalone .btn-animate.pink span.icon {
-  background-image: url(/images/icons/chevrons/chevrons-blue.svg); }
+  /*background-image: url(/images/icons/chevrons/chevrons-blue.svg);*/ }
 .platform_sh_standalone .btn-animate.pink span.text {
   position: relative; }
 .platform_sh_standalone .btn-animate.aqua {
@@ -15305,7 +15307,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   .platform_sh_standalone .btn-animate.no-fill span.icon {
     right: 30px;
     top: 21px;
-    background-image: url(/images/icons/chevrons/chevrons-red.svg); }
+    /*background-image: url(/images/icons/chevrons/chevrons-red.svg);*/ }
   .platform_sh_standalone .btn-animate.no-fill::before {
     background-color: #FFBDBB; }
   .platform_sh_standalone .btn-animate.no-fill.sand {
@@ -15316,7 +15318,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   background-color: #EEEDE4; }
 @media (min-width: 992px) {
   .platform_sh_standalone .callout {
-    background: #EEEDE4 url(/images/solutions/SaaSWorkshopBlock_Illustration@2x.png) 100% 0% no-repeat;
+    /*background: #EEEDE4 url(/images/solutions/SaaSWorkshopBlock_Illustration@2x.png) 100% 0% no-repeat;*/
     background-size: 50%;
     padding: 2rem 4rem; } }
 @media (min-width: 1200px) {
@@ -15391,7 +15393,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .customers .card.twitter blockquote {
   font-weight: 600; }
 .platform_sh_standalone .customers .card.emphasized {
-  background: transparent url(/images/customers/love/quotes.svg) 0 70% no-repeat; }
+  /*background: transparent url(/images/customers/love/quotes.svg) 0 70% no-repeat;*/ }
 .platform_sh_standalone .customers .card.emphasized .card-body blockquote {
   font-weight: 900;
   font-size: 18px;
@@ -15413,7 +15415,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .cta.vertical {
   padding: 3rem 0;
   background-size: 100% auto;
-  background: #1A182A url(/images/solutions/solutions-footer@2x.png) no-repeat center top; }
+  background: #1A182A /*url(/images/solutions/solutions-footer@2x.png)*/ no-repeat center top; }
 @media (min-width: 992px) {
   .platform_sh_standalone .cta.vertical {
     padding-top: 135px;
@@ -15456,7 +15458,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .cta.gold {
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-image: url(/images/cta/bg-plants.svg); }
+  /*background-image: url(/images/cta/bg-plants.svg);*/ }
 .platform_sh_standalone .cta.gold .btn, .platform_sh_standalone .cta.gold #user-widget .user-widget__log-in, .platform_sh_standalone #user-widget .cta.gold .user-widget__log-in, .platform_sh_standalone .cta.gold #user-widget .user-widget__free-trial, .platform_sh_standalone #user-widget .cta.gold .user-widget__free-trial {
   background-color: #DD901A; }
 .platform_sh_standalone .cta.blue {
@@ -15468,7 +15470,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .cta.red .btn::before, .platform_sh_standalone .cta.red #user-widget .user-widget__log-in::before, .platform_sh_standalone #user-widget .cta.red .user-widget__log-in::before, .platform_sh_standalone .cta.red #user-widget .user-widget__free-trial::before, .platform_sh_standalone #user-widget .cta.red .user-widget__free-trial::before {
   background-color: #FFBDBB; }
 .platform_sh_standalone .cta.red .btn:hover span.icon, .platform_sh_standalone .cta.red #user-widget .user-widget__log-in:hover span.icon, .platform_sh_standalone #user-widget .cta.red .user-widget__log-in:hover span.icon, .platform_sh_standalone .cta.red #user-widget .user-widget__free-trial:hover span.icon, .platform_sh_standalone #user-widget .cta.red .user-widget__free-trial:hover span.icon {
-  background-image: url(/images/icons/chevrons/chevrons-red.svg); }
+  /*background-image: url(/images/icons/chevrons/chevrons-red.svg); */}
 .platform_sh_standalone .cta.subscribe-form h2, .platform_sh_standalone .cta.subscribe-form h3 {
   text-align: right;
   margin-right: 2rem; }
@@ -15490,7 +15492,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   background-size: 12px 12px;
   background-repeat: no-repeat;
   background-position: 80% 52%;
-  background-image: url(/images/icons/chevrons/chevrons-blue.svg); }
+  /*background-image: url(/images/icons/chevrons/chevrons-blue.svg); */}
 .platform_sh_standalone .cta.subscribe-form .btn:hover, .platform_sh_standalone .cta.subscribe-form #user-widget .user-widget__log-in:hover, .platform_sh_standalone #user-widget .cta.subscribe-form .user-widget__log-in:hover, .platform_sh_standalone .cta.subscribe-form #user-widget .user-widget__free-trial:hover, .platform_sh_standalone #user-widget .cta.subscribe-form .user-widget__free-trial:hover {
   background-position: 85% 52%; }
 .platform_sh_standalone .cta-inline {
@@ -15508,7 +15510,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   background-size: 12px 12px;
   background-repeat: no-repeat;
   background-position: 99% 100%;
-  background-image: url(/images/icons/chevrons/chevrons-red.svg); }
+  /*background-image: url(/images/icons/chevrons/chevrons-red.svg); */}
 .platform_sh_standalone .cta-inline .btn:hover, .platform_sh_standalone .cta-inline #user-widget .user-widget__log-in:hover, .platform_sh_standalone #user-widget .cta-inline .user-widget__log-in:hover, .platform_sh_standalone .cta-inline #user-widget .user-widget__free-trial:hover, .platform_sh_standalone #user-widget .cta-inline .user-widget__free-trial:hover {
   background-position-x: 100%; }
 .platform_sh_standalone .form .form-control,
@@ -15550,7 +15552,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url(/images/icons/chevrons/chevrons-select-down.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-select-down.svg);*/
   background-position: right .7em top 50%, 0 0;
   background-repeat: no-repeat; }
 .platform_sh_standalone .form .select-css::-ms-expand {
@@ -15574,7 +15576,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   width: 48px;
   height: 48px;
   padding: 0;
-  background: transparent url(/images/icons/chevrons/chevrons-submit.svg) center center no-repeat;
+  /*background: transparent url(/images/icons/chevrons/chevrons-submit.svg) center center no-repeat;*/
   position: absolute;
   bottom: 0;
   right: 0; }
@@ -15592,7 +15594,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url(/images/icons/chevrons/chevrons-select-down.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-select-down.svg);*/
   background-position: 100% 30%;
   background-repeat: no-repeat;
   background-color: transparent; }
@@ -15607,7 +15609,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   width: 24px;
   height: 24px;
   text-indent: -999rem;
-  background: transparent url(/images/logo/logo-small.svg) 0 0 no-repeat; }
+  /*background: transparent url(/images/logo/logo-small.svg) 0 0 no-repeat;*/ }
 @media (min-width: 768px) {
   .platform_sh_standalone .footer .logo {
     width: 152px;
@@ -15696,7 +15698,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .link-more {
   padding: 0 1.5rem 0.5rem 0;
   font-weight: 700;
-  background-image: url(/images/icons/chevrons/chevrons-more.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-more.svg);*/
   background-size: 12px 12px;
   background-position: 100% 50%;
   background-repeat: no-repeat; }
@@ -15705,7 +15707,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .link-top {
   padding: 1.5rem 0;
   font-weight: 700;
-  background-image: url(/images/icons/chevrons/chevrons-top.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-top.svg);*/
   background-size: 12px 12px;
   background-position: 50% 15%;
   background-repeat: no-repeat; }
@@ -15715,7 +15717,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   color: #1A182A;
   padding: 0 0 0 1.5rem;
   font-family: "Moderat", "Helvetica Neue", Arial;
-  background-image: url(/images/icons/chevrons/chevrons-back.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-back.svg);*/
   background-size: 12px 12px;
   background-position: 3% 66%;
   background-repeat: no-repeat; }
@@ -15726,7 +15728,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .link-cta {
   padding: 0 2rem 0 0;
   font-weight: 700;
-  background-image: url(/images/icons/chevrons/chevrons-cta.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-cta.svg);*/
   background-size: 12px 12px;
   background-position: 95% 100%;
   background-repeat: no-repeat; }
@@ -15736,7 +15738,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   color: #1A182A;
   padding: 0 1.25rem 0 0;
   font-weight: 700;
-  background-image: url(/images/icons/chevrons/chevrons-cta.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-cta.svg);*/
   background-size: 12px 12px;
   background-position: 95% 70%;
   background-repeat: no-repeat; }
@@ -15747,7 +15749,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   color: #145CC6;
   padding: 0 1.25rem 0 0;
   font-weight: 700;
-  background-image: url(/images/icons/chevrons/chevrons-cta.svg);
+  /*background-image: url(/images/icons/chevrons/chevrons-cta.svg);*/
   background-size: 12px 12px;
   background-position: 97% 70%;
   background-repeat: no-repeat; }
@@ -15769,7 +15771,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 @media (min-width: 768px) {
   .platform_sh_standalone .linked-block .bunnies,
   .platform_sh_standalone .linked-block .people {
-    background: #EEEDE4 url(/images/linked-block/bunny-carrots.svg) no-repeat 80% 0;
+    /*background: #EEEDE4 url(/images/linked-block/bunny-carrots.svg) no-repeat 80% 0;*/
     background-size: auto 100%;
     height: 380px;
     padding: 60px; } }
@@ -15781,7 +15783,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
     margin-right: 30px; } }
 @media (min-width: 768px) {
   .platform_sh_standalone .linked-block .people {
-    background-image: url(/images/linked-block/people.png); } }
+    /*background-image: url(/images/linked-block/people.png);*/ } }
 .platform_sh_standalone .linked-block .link-wrapper {
   padding: 30px;
   background: #FFFFFF; }
@@ -15906,7 +15908,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar .navbar-nav.navbar-active .active > .nav-link {
     color: #1A182A;
-    background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat; } }
+    /*background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat;*/ } }
 .platform_sh_standalone .navbar .navbar-nav .dropdown {
   position: static; }
 .platform_sh_standalone .navbar .navbar-nav .dropdown:hover > .mega-menu-wrapper {
@@ -15928,7 +15930,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   .platform_sh_standalone .navbar .navbar-nav .nav-link > svg {
     display: none; }
   .platform_sh_standalone .navbar .navbar-nav .nav-link:hover {
-    background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat; }
+    /*background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat;*/ }
   .platform_sh_standalone .navbar .navbar-nav .nav-link.expand:hover + .mega-menu-wrapper, .platform_sh_standalone .navbar .navbar-nav .nav-link.expand.active + .mega-menu-wrapper {
     display: block; } }
 @media (min-width: 992px) and (max-width: 991.98px) {
@@ -16024,7 +16026,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .navbar .mega-menu .list-stack a:hover {
   padding-right: 1.5rem;
   text-decoration: none;
-  background: transparent url(/images/icons/chevrons/chevrons-pink-red.svg) 100% 50% no-repeat; }
+  /*background: transparent url(/images/icons/chevrons/chevrons-pink-red.svg) 100% 50% no-repeat;*/ }
 .platform_sh_standalone .navbar-top {
   background: transparent !important; }
 @media (min-width: 992px) {
@@ -16035,14 +16037,14 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar-top .navbar-nav:hover .nav-link:hover {
     color: #FFFFFF;
-    background-image: url(/images/icons/nav-highlight-light.svg); } }
+    /*background-image: url(/images/icons/nav-highlight-light.svg);*/ } }
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar-top .navbar-nav:hover .active .nav-link {
     color: #FFFFFF; } }
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar-top .navbar-nav .active .nav-link {
     color: #FFFFFF;
-    background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; } }
+    /*background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat;*/ } }
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar-top a.navbar-brand svg path {
     fill: #FFFFFF; } }
@@ -16057,7 +16059,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   display: none; }
 .platform_sh_standalone .navbar-top #user-widget .user-widget__projects_menu_toggle:hover, .platform_sh_standalone .navbar-top #user-widget .user-widget__projects_menu_toggle.user-widget__projects_menu_toggle--active {
   color: #FFFFFF;
-  background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; }
+  /*background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat;*/ }
 .platform_sh_standalone #user-widget {
   height: 47px; }
 @media (max-width: 991.98px) {
@@ -16112,7 +16114,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   display: none; }
 .platform_sh_standalone #user-widget .user-widget__projects_menu_toggle:hover, .platform_sh_standalone #user-widget .user-widget__projects_menu_toggle.user-widget__projects_menu_toggle--active {
   color: #1A182A;
-  background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat; }
+  /*background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat; */}
 .platform_sh_standalone #user-widget .user-widget__dropdown__menu {
   background: #FFFFFF;
   border-radius: 2px;
@@ -16138,14 +16140,14 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar.navbar-top .navbar-nav:hover .nav-link:hover {
     color: #FFFFFF;
-    background-image: url(/images/icons/nav-highlight-light.svg); } }
+    /*background-image: url(/images/icons/nav-highlight-light.svg);*/ } }
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar.navbar-top .navbar-nav:hover .active .nav-link {
     color: #FFFFFF; } }
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar.navbar-top .navbar-nav .active .nav-link {
     color: #FFFFFF;
-    background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; } }
+    /*background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; */} }
 @media (min-width: 992px) {
   .platform_sh_standalone .navbar.navbar-top a.navbar-brand svg path {
     fill: #FFFFFF; } }
@@ -16160,7 +16162,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   display: none; }
 .platform_sh_standalone .navbar.navbar-top #user-widget .user-widget__projects_menu_toggle:hover, .platform_sh_standalone .navbar.navbar-top #user-widget .user-widget__projects_menu_toggle.user-widget__projects_menu_toggle--active {
   color: #FFFFFF;
-  background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; }
+  /*background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat;*/ }
 @media (max-width: 991.98px) {
   .platform_sh_standalone body.home .navbar.navbar-top .navbar-brand rect,
   .platform_sh_standalone body.home .navbar.navbar-top .navbar-brand path,
@@ -16203,7 +16205,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   .platform_sh_standalone body.company .navbar.navbar-top .navbar-brand svg path {
     fill: #1A182A; }
   .platform_sh_standalone body.company .navbar.navbar-top .navbar-nav .active .nav-link {
-    background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; } }
+    /*background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat;*/ } }
 @media (min-width: 992px) {
   .platform_sh_standalone body.stacks .navbar.navbar-top,
   .platform_sh_standalone body.board .navbar.navbar-top,
@@ -16288,7 +16290,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   .platform_sh_standalone body.customers.stories .navbar.navbar-top .navbar-nav:hover .nav-link:hover,
   .platform_sh_standalone body.customers.story .navbar.navbar-top .navbar-nav:hover .nav-link:hover {
     color: #1A182A;
-    background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat; }
+    /*background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat;*/ }
   .platform_sh_standalone body.stacks .navbar.navbar-top #user-widget .user-widget__log-in,
   .platform_sh_standalone body.board .navbar.navbar-top #user-widget .user-widget__log-in,
   .platform_sh_standalone body.company-careers-jobs .navbar.navbar-top #user-widget .user-widget__log-in,
@@ -16325,14 +16327,14 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
   .platform_sh_standalone body.downloads .navbar.navbar-top .navbar-nav .active .nav-link,
   .platform_sh_standalone body.pricing .navbar.navbar-top .navbar-nav .active .nav-link {
     color: #1A182A;
-    background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat; } }
+    /*background: transparent url(/images/icons/nav-highlight.svg) center 90% no-repeat;*/ } }
 @media (min-width: 992px) {
   .platform_sh_standalone body.company .navbar.navbar-top {
     background: transparent; }
   .platform_sh_standalone body.company .navbar.navbar-top .navbar-brand svg path {
     fill: #1A182A; }
   .platform_sh_standalone body.company .navbar.navbar-top .navbar-nav .active .nav-link {
-    background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat; } }
+    /*background: transparent url(/images/icons/nav-highlight-light.svg) center 90% no-repeat;*/ } }
 @media (min-width: 768px) {
   .platform_sh_standalone body.company-careers .navbar.navbar-top .navbar-brand svg path {
     fill: #FFFFFF; } }
