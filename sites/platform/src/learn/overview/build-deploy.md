@@ -91,7 +91,7 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 
 ### Automatic deployment (default)
 
-This is the default behavior for all environments. With automatic deployment, changes like code pushes and variable updates are deployed immediately. This type of deployment is best suited for rapid iteration during development.
+This is the default behavior for all environments. With automatic deployment, changes like code pushes and variable updates are deployed immediately.
 
 ### Manual deployment
 
