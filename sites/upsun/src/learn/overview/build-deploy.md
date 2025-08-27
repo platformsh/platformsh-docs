@@ -204,7 +204,7 @@ POST /projects/{projectId}/environments/{environmentId}/deploy
 
 {{< note theme="tip" >}}
 
-As soon as your deployment type is switched from automatic to manual, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
+As soon as your deployment type is switched from manual to automatic, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
 
 {{< /note >}}
 
