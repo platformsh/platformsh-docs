@@ -3,6 +3,8 @@ const github = require('@actions/github')
 const fs = require('fs');
 const yaml = require('js-yaml');
 const axios = require('axios');
+const cheerio = require('cheerio');
+
 const tableData = [
   [
     {data: 'From', header: true},
