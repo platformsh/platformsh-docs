@@ -858,13 +858,13 @@ The following table presents the possible values:
 | `volatile-ttl`    | Removes cache items with the `expire` field set to `true` and the shortest remaining `time-to -live` value. |
 
 For more information on the different policies,
-see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
+see the official [Redis documentation](https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/).
 
 ## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
 you can access it using either the {{% vendor/name %}} CLI
-or through the [Redis CLI](https://redis.io/docs/ui/cli/).
+or through the [Redis CLI](https://redis.io/docs/latest/operate/rs/references/cli-utilities/).
 
 ### {{% vendor/name %}} CLI
 
