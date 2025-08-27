@@ -46,6 +46,33 @@ function sleep(ms) {
   });
 }
 
+const validateFragment = async (urlWithFragment) => {
+  try {
+    const [url,fragment] = urlWithFragment.split('#')
+    // we should have a fragment but let's make sure
+    if(!fragment){
+      return true; // no fragment to verify so just bail
+    }
+    core.debug(`Validating fragment '${fragment}' in URL: ${url}`)
+    // Make GET request to fetch HTML content
+    const response = await axios.get(url)
+    // Parse HTML with cheerio
+    const $ = cheerio.load(response.data)
+    // Look for element with matching id
+    const element = $(`#${fragment}`)
+    if (element.length > 0) {
+      core.debug(`Fragment '${fragment}' found in ${url}`)
+      return true
+    } else {
+      core.debug(`Fragment '${fragment}' NOT found in ${url}`)
+      return false
+    }
+  } catch (error) {
+    core.warning(`Error validating fragment '${fragment}' in ${url}: ${error.message}`)
+    return false
+  }
+}
+
 const retryTargetResponse = async (url='/',count=0) => {
   try {
     const axiosResponse = await axios.head(url);
@@ -127,6 +154,8 @@ const verify = async () => {
     const validateRedirects =anchors.map(async (object, index, array) => {
       let path = object.trigger.source
       let location = object.actions.find((element) => element.type == 'redirection').location
+      let pshVerification = true
+      let fragmentVerification = true
 
       if (path.includes("@") && object.markers.length > 0) {
         core.notice(`${path} contains a marker. We will need to switch to an example path for testing.`)
@@ -159,15 +188,28 @@ const verify = async () => {
           core.debug(`Now checking ${verificationLocation} to make sure it exists in the PR environment...`)
 
           try {
-            const verify = await retryTargetResponse(verificationLocation)
-            return verify
+            const pshVerify = await retryTargetResponse(verificationLocation)
+            location = verificationLocation
+            // return pshVerify
           } catch (verifyError) {
             core.debug(`Error when verifying ${verificationLocation} exists on PR environment!`)
             let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( verificationLocation, axios.defaults.baseURL) }]
             tableData.push(row)
+            pshVerification = false
           }
 
         }
+
+        // now finally check for fragments
+        if (response && pshVerification && location.includes("#")) {
+          fragmentVerification = await validateFragment(location)
+          if(!fragmentVerification) {
+            core.debug(`Error when verifying fragment destination for ${location} exists in PR environment!`)
+            let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( location, axios.defaults.baseURL) }]
+            tableData.push(row)
+          }
+        }
+
         return response
       } catch (reqerr) {
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
