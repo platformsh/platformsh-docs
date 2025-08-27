@@ -1,7 +1,7 @@
 ---
 title: Autoscaling
 description: Learn how autoscaling dynamically adjusts app instances based on CPU usage to keep apps responsive under load while optimizing costs.
-weight: -200
+weight: -400
 keywords:
   - "resources"
   - "CPU"
@@ -15,7 +15,31 @@ This ensures your apps remain responsive under load while helping you optimize c
 
 - **Scope:** Available for applications only  
 - **Product tiers:** Available for all Upsun Flex environments  
-- **Environments:** Configurable per environment - across dev, staging, and production. 
+- **Environments:** Configurable per environment - across dev, staging, and production
+  
+## How Autoscaling works
+
+### Thresholds
+
+Autoscaling continuously monitors the average CPU utilization across your app's running instances. It works by you setting your thresholds, which are specific CPU usage levels that determine when autoscaling should take action. There are two different thresholds that your CPU utilization operates within: A scale-up threshold and a scale-down threshold.
+
+- **Scale-up threshold**: The point at which your app's CPU usage would be considered too high. If average CPU usage stays above this level for the configured time period, autoscaling will launch additional instances to share the load.
+
+- **Scale-down threshold**: The point at which your app is considered underutilized. If CPU usage stays below this level for the configured time period, autoscaling will remove unneeded instances to save resources and costs.
+
+#### Example
+
+If your scale-up threshold is set to 80% CPU for 5 minutes, and your app's instances consistently exceed that level, autoscaling will add a new instance to distribute the workload. Later, if traffic decreases and CPU usage falls below the 20% scale-down threshold for 5 minutes, autoscaling will safely remove an instance.
+
+This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
+
+### Default settings
+
+The default setting for a scale-up threshold is 80% CPU for 5 minutes, while the default setting for a scale-down threshold is 20% CPU for 5 minutes.
+
+To prevent unnecessary back-and-forth, autoscaling also uses a cooldown window: a short waiting period before another scaling action can be triggered. The default setting for a cooldown window is 5 minutes before any additional scaling starts.  
+
+By default, autoscaling manages between one and ten instances per environment, though you can configure the minimum and maximum instance limits to suit your workload. Once enabled, autoscaling automatically manages instance counts for you, so manual adjustments are disabled.
 
 ## Enable Autoscaling
 
@@ -44,30 +68,6 @@ title=Using the API
 Cras vel tortor non nulla fermentum dapibus id scelerisque turpis. Nullam mollis purus id libero pretium, vel porta lacus venenatis. 
 
 {{< /codetabs >}}
-  
-## How Autoscaling works
-
-### Thresholds
-
-Autoscaling continuously monitors the average CPU utilization across your app's running instances. It works by you setting your thresholds, which are specific CPU usage levels that determine when autoscaling should take action. There are two different thresholds that your CPU utilization operates within: A scale-up threshold and a scale-down threshold.
-
-- **Scale-up threshold**: The point at which your app's CPU usage would be considered too high. If average CPU usage stays above this level for the configured time period, autoscaling will launch additional instances to share the load.
-
-- **Scale-down threshold**: The point at which your app is considered underutilized. If CPU usage stays below this level for the configured time period, autoscaling will remove unneeded instances to save resources and costs.
-
-#### Example
-
-If your scale-up threshold is set to 80% CPU for 5 minutes, and your app's instances consistently exceed that level, autoscaling will add a new instance to distribute the workload. Later, if traffic decreases and CPU usage falls below the 20% scale-down threshold for 5 minutes, autoscaling will safely remove an instance.
-
-This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
-
-### Default settings
-
-The default setting for a scale-up threshold is 80% CPU for 5 minutes, while the default setting for a scale-down threshold is 20% CPU for 5 minutes.
-
-To prevent unnecessary back-and-forth, autoscaling also uses a cooldown window: a short waiting period before another scaling action can be triggered. The default setting for a cooldown window is 5 minutes before any additional scaling starts.  
-
-By default, autoscaling manages between one and ten instances per environment, though you can configure the minimum and maximum instance limits to suit your workload. Once enabled, autoscaling automatically manages instance counts for you, so manual adjustments are disabled.
 
 ## Guardrails
 
