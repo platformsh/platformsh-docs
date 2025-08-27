@@ -202,6 +202,7 @@ const verify = async () => {
 
         // now finally check for fragments
         if (response && pshVerification && location.includes("#")) {
+          core.notice(`Fragment destination detected. Verifying element still exists at ${location}.`)
           fragmentVerification = await validateFragment(location)
           if(!fragmentVerification) {
             core.debug(`Error when verifying fragment destination for ${location} exists in PR environment!`)
