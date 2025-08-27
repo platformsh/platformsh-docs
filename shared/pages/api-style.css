@@ -15273,7 +15273,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .btn-animate.aqua:hover span.text {
   color: #FFFFFF; }
 .platform_sh_standalone .btn-animate.aqua:hover span.icon {
-  background-image: url(/images/icons/chevrons/chevrons.svg); }
+  background-image: url(/images/icons/chevrons.svg); }
 .platform_sh_standalone .btn-animate.purple {
   background: #871665; }
 .platform_sh_standalone .btn-animate.purple span.text {
@@ -15286,7 +15286,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .btn-animate.purple:hover span.text {
   color: #FFFFFF; }
 .platform_sh_standalone .btn-animate.purple:hover span.icon {
-  background-image: url(/images/icons/chevrons/chevrons.svg); }
+  background-image: url(/images/icons/chevrons.svg); }
 @media (max-width: 991.98px) {
   .platform_sh_standalone .btn-animate.mobile-block {
     width: 100%;
@@ -15438,7 +15438,7 @@ a.platform_sh_standalone .badge-dark:focus, a.platform_sh_standalone .badge-dark
 .platform_sh_standalone .cta.vertical .btn::before, .platform_sh_standalone .cta.vertical #user-widget .user-widget__log-in::before, .platform_sh_standalone #user-widget .cta.vertical .user-widget__log-in::before, .platform_sh_standalone .cta.vertical #user-widget .user-widget__free-trial::before, .platform_sh_standalone #user-widget .cta.vertical .user-widget__free-trial::before {
   background: #289B3F; }
 .platform_sh_standalone .cta.vertical .btn:hover span.icon, .platform_sh_standalone .cta.vertical #user-widget .user-widget__log-in:hover span.icon, .platform_sh_standalone #user-widget .cta.vertical .user-widget__log-in:hover span.icon, .platform_sh_standalone .cta.vertical #user-widget .user-widget__free-trial:hover span.icon, .platform_sh_standalone #user-widget .cta.vertical .user-widget__free-trial:hover span.icon {
-  background-image: url(/images/icons/chevrons/chevrons.svg); }
+  background-image: url(/images/icons/chevrons.svg); }
 .platform_sh_standalone .cta.vertical .center-behind {
   position: absolute;
   left: 50%;
