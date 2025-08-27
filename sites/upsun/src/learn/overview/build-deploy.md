@@ -118,13 +118,40 @@ Note that development environments **always** use automatic deployment, while ma
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment (staging or production only). To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+You can adjust deployment behavior in your environment (staging or production only). 
 
-{{< note theme="tip" >}}
+{{< codetabs >}}
 
-As soon as your deployment type is switched from automatic to manual, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
++++
+title=Using the CLI
++++
 
-{{< /note >}}
+Use the following command in the CLI to view or change the deployment type:
+
+```bash
+upsun environment:deploy:type
+```
+The output should look similar to the example below:
+
+```bash
+Selected project: [my-project (ID)]
+Selected environment: main (type: production)
+Deployment type: manual
+```
+
+For more information about how this command works, use:
+
+```bash
+upsun environment:deploy:type --help
+```
+<--->
++++
+title=Using the Console
++++
+
+To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+
+{{< /codetabs >}}
 
 ### Trigger deployment manually
 
@@ -136,7 +163,7 @@ Once manual deployment is enabled, eligible changes are staged. You can deploy t
 title=Using the CLI
 +++
 
-Deploy staged changes to your chosen environment:
+Deploy staged changes to your chosen environment using the following command:
 
 ```bash
 upsun environment:deploy
@@ -155,26 +182,6 @@ Deploying staged changes:
 | fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
-
-You can also use the following command to view or change the deployment type:
-
-```bash
-upsun environment:deploy:type
-```
-The output should look similar to the example below:
-
-```bash
-Selected project: [my-project (ID)]
-Selected environment: main (type: production)
-Deployment type: manual
-```
-
-For more information about how this command works, use:
-
-```bash
-upsun environment:deploy:type --help
-```
-
 <--->
 +++
 title=Using the Console
@@ -194,6 +201,12 @@ POST /projects/{projectId}/environments/{environmentId}/deploy
 ```
 
 {{< /codetabs >}}
+
+{{< note theme="tip" >}}
+
+As soon as your deployment type is switched from automatic to manual, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
+
+{{< /note >}}
 
 ## Deployment philosophy
 

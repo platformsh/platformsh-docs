@@ -118,17 +118,7 @@ Note that development environments **always** use automatic deployment, while ma
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment (staging or production only). To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
-
-{{< note theme="tip" >}}
-
-As soon as your deployment type is switched from automatic to manual, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
-
-{{< /note >}}
-
-### Trigger deployment manually
-
-Once manual deployment is enabled, eligible changes are staged. You can deploy them in the following ways:
+You can adjust deployment behavior in your environment (staging or production only). 
 
 {{< codetabs >}}
 
@@ -136,26 +126,7 @@ Once manual deployment is enabled, eligible changes are staged. You can deploy t
 title=Using the CLI
 +++
 
-Deploy staged changes to your chosen environment:
-
-```bash
-platform environment:deploy
-```
-
-The output should look similar to the example below:
-
-```bash
-Deploying staged changes:
-+---------------+---------------------------+-----------------------------------------------------------+---------+
-| ID            | Created                   | Description                                               | Result  |
-+---------------+---------------------------+-----------------------------------------------------------+---------+
-| 5uh3xwmkh5boq | 2024-11-22T14:01:10+00:00 | Patrick pushed to main                                    | failure |
-| fno2qiodq7e3c | 2024-11-22T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
-| xzvcazrtoafeu | 2024-11-22T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
-| fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
-+---------------+---------------------------+-----------------------------------------------------------+---------+
-```
-You can also use the following command to view or change the deployment type:
+Use the following command in the CLI to view or change the deployment type:
 
 ```bash
 platform environment:deploy:type
@@ -178,6 +149,44 @@ platform environment:deploy:type --help
 title=Using the Console
 +++
 
+To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+
+{{< /codetabs >}}
+
+### Trigger deployment manually
+
+Once manual deployment is enabled, eligible changes are staged. You can deploy them in the following ways:
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Deploy staged changes to your chosen environment using the following command:
+
+```bash
+platform environment:deploy
+```
+
+The output should look similar to the example below:
+
+```bash
+Deploying staged changes:
++---------------+---------------------------+-----------------------------------------------------------+---------+
+| ID            | Created                   | Description                                               | Result  |
++---------------+---------------------------+-----------------------------------------------------------+---------+
+| 5uh3xwmkh5boq | 2024-11-22T14:01:10+00:00 | Patrick pushed to main                                    | failure |
+| fno2qiodq7e3c | 2024-11-22T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
+| xzvcazrtoafeu | 2024-11-22T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
+| fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
++---------------+---------------------------+-----------------------------------------------------------+---------+
+```
+<--->
++++
+title=Using the Console
++++
+
 In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes. 
 
 <--->
@@ -192,6 +201,13 @@ POST /projects/{projectId}/environments/{environmentId}/deploy
 ```
 
 {{< /codetabs >}}
+
+{{< note theme="tip" >}}
+
+As soon as your deployment type is switched from automatic to manual, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
+
+{{< /note >}}
+
 
 ## Deployment philosophy
 
