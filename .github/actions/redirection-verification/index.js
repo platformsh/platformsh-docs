@@ -47,8 +47,8 @@ function sleep(ms) {
 }
 
 const validateFragment = async (urlWithFragment) => {
+  const [url,fragment] = urlWithFragment.split('#')
   try {
-    const [url,fragment] = urlWithFragment.split('#')
     // we should have a fragment but let's make sure
     if(!fragment){
       return true; // no fragment to verify so just bail
