@@ -5,59 +5,60 @@ description: Configure your app and control how it's built and deployed on {{% v
 layout: single
 ---
 
-<!-- 
-Jul20205 WORK IN PROGRESS 
-The point of this topic is to help the user to decide which type to choose
-- rework this topic make it clear when you choose one instead of the other (a table, if possible)
-- add "image" definition here and also in the glossary
-- link to use cases
-- mention the level of support for both types
--->
+An _image_ represents the configuration of the container that contains the application (or service) that you want to deploy. 
 
-An _image_ represents the configuration for the container that contains the application (or service) that you want to deploy. 
+Choosing the image type for the container that best suits your application is the first and most important decision in configuring how your application is deployed.
 
-<!-- JUL20205 kept the original content below for now -->
-To define your app, you can either use one of {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
-or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
+You can choose either {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
+or its [composable image (BETA)](/create-apps/app-reference/composable-image.md). **The key difference between them is the type of flexibility that they offer**. 
 
-The single-runtime image type has the following characteristics: 
-- Can contain only a single runtime
-- Requires more manual configuration the composable images, but are more flexible
-- Initial build takes
-- `type` defines your image version (for example, `php:8.4`)
-- You can move to a composable image later, if your application needs change
+## Which image type should you choose? {#which-image-type}
 
-The composable image type has the following characteristics: 
-- Can contain multiple runtimes
-- Requires less manual configuration than single-runtime images and offers more flexibility in other ways
-- Initial build and rebuilds and can take a long time,<!-- a few minutes? --> but caching increases the speed <!-- clarify this -->
-- `type` defines your Nix channel
-- Can be used for applications only, not services <!-- what about workers? -->
+**Single-runtime image**: This image type offers the flexibility to specify single runtime package versions, however, this typically requires more manual configuration.
+
+Consider using a single-runtime image when these factors are important:
+- Your application requires a single runtime only.
+- You want the ability to choose specific package versions, including patches.
+- You want {{% vendor/name %}} to update the image (perform package upgrades and apply security patches) rather do this maintenance yourself
+- Your team has the time and knowledge to manually configure package versions and manage dependencies: For example, writing scripts to cache binaries after they're downloaded, or understanding upgrade paths for complicated node binary dependencies. <!-- the latter "...or understanding upgrade paths..." seems to contradict the vendor maintenance point? -->
+
+If you initially choose a single-runtime image and your application needs change, you can move the app to a composable image if your app needs change. <!-- example of when? -->
+
+**Composable image** (BETA): This image type offers the flexibility to define or "compose" the stack (group of packages) to include in the container that runs your application. Developers spend less time manually configuring stacks and dependencies because stacks are already defined in the supported Nix channels.
+
+Consider using a composable image when these factors are important:
+- Your application requires multiple runtimes and tools, or even different versions of the same package
+- You want the ability to install _all_ the packages you need in your application container, ensuring consistency across environments and machines<!-- rather than ...? -->
+- You or your teams have the time and skills to upgrade packages and apply security patches. <!-- delete? does this repeat the next bullet? -->
+- You or your teams understand how to update a configured image when package versions change in supported stacks (for example, if a package version in Nix channel X.Y changes, you might need to update the versions of additonal packages defined in the stack)
+- Consistency: Nix channels ensure that what works on your local machine works on any other machine. This consistency also streamlines development and testing.
 
 
-<!-- add a feature/comparison table, if appropriate - easier to read for user 
-| Feature              | Single-runtime image | Composable image | 
-|----------------------|----------------------|------------------|
-|   Support            |                      |                  | 
-|   `type`             |                      |                  | 
-|                  |                      |                  | 
+| Criteria              | Single-runtime image | Composable image | 
+|-----------------------------|----------------------|------------------|
+| # of runtimes per container | one                  | one or more                    |
+| Manual configuration        | Typically required for downloads, dependencies       | Typically needed only when Nix channel versions and other versions listed in the `stack` are incompatible | 
+| Maintenance (upgrades and patches)  | Maintained by {{% vendor/name %}} | Maintained by you | 
+|   Support                   |    XXX                 | Stable Nix channels only, but any NixOs package can be installed, including `unstable`                                    | 
+|  config file                | `{{< vendor/configfile "app" >}}`  |   `{{< vendor/configfile "app" >}}`           | 
+| XXX                         |                      |Supports applications only, not services |
+| Performance                 |     XXXX                  | Initial builds and rebuilds take some time; automatic caching improves containe startup time |
+|   `type`                  |   Indicates the base container image used to run the application (`major.minor`). Cannot select a patch version.  |  Indicates the Nix channel version | 
+| build and deploy `hooks`     | Build flavor is run if applicable and any dependencies are installed | Managed by the Nix channel | 
 
--->
 
-## Single-runtime image
+## Differences in defining the keys
 
-{{% vendor/name %}} provides and maintains a list of single-runtime images you can use for each of your application containers.</br>
-See [all of the options you can use](/create-apps/app-reference/single-runtime-image.md) to define your app using a single-runtime image.
+Only the single-runtime image supports the [``build``](/create-apps/app-reference/single-runtime-image.md#build), [``dependencies``](/create-apps/app-reference/single-runtime-image.md#dependencies), and [``runtime``](/create-apps/app-reference/single-runtime-image.md#druntime) keys. In a composable image, the equivalent is the [`stack`](/create-apps/app-reference/composable-image.html#stack) key. 
 
-## Composable image (BETA)
+Otherwise, the same keys are available for both image types. Differences in syntax or meaning are noted in the details for that key.
 
-The {{% vendor/name %}} composable image provides more flexibility than single-runtime images. This image type enables you to define or "compose" the stack (or group of packages) to include in the container that runs your application. 
+## Multi-app projects
+In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#mix-of-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
 
+
+<!-- the content and table above contain a variation of this content. Make sure the content below is covered on the composable image page 
 Composable images can be used for applications only, not for services. This image type enables you to install multiple runtimes (such as PHP, Ruby, and so on) as well aXXX in your application container.
-
-<!-- orig sentence below, now in included in first para 
-When using a composable image, you can define a stack (or group of packages) for your application container to use. 
--->
 
 There are over 120,000 packages available from the [Nix Packages collection](https://search.nixos.org/) that you can add to your stack.
 You can add as many packages to your application container as you need.
@@ -71,3 +72,4 @@ but NixOs is responsible for their support.
 {{% /note %}}
 
 See [all of the options you can use](/create-apps/app-reference/composable-image.md) to define your app using the composable image.
+-->
