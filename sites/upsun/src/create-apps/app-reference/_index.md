@@ -57,19 +57,3 @@ Otherwise, the same keys are available for both image types. Differences in synt
 In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#mix-of-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
 
 
-<!-- the content and table above contain a variation of this content. Make sure the content below is covered on the composable image page 
-Composable images can be used for applications only, not for services. This image type enables you to install multiple runtimes (such as PHP, Ruby, and so on) as well aXXX in your application container.
-
-There are over 120,000 packages available from the [Nix Packages collection](https://search.nixos.org/) that you can add to your stack.
-You can add as many packages to your application container as you need.
-
-{{% note %}}
-
-{{% vendor/name %}} guarantees optimal user experience with the specific [set of packages](/create-apps/app-reference/composable-image.md#supported-nix-packages) it supports.
-You can use any other package available from the [Nix Packages collection](https://search.nixos.org/), including unstable ones,
-but NixOs is responsible for their support.
-
-{{% /note %}}
-
-See [all of the options you can use](/create-apps/app-reference/composable-image.md) to define your app using the composable image.
--->
