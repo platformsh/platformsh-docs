@@ -43,9 +43,8 @@ info:
     [PHP API client](https://github.com/platformsh/platformsh-client-php)
     and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).
 
-    In order to use the API you will first need to have a Platform.sh
-    account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup)
-    available) and create an API Token.
+    In order to use the API you will first need to have a [Platform.sh account](https://auth.api.platform.sh/register) 
+    and [create an API Token](https://docs.upsun.com/anchors/fixed/cli/api-token/).
 
     # Authentication
 
@@ -404,86 +403,42 @@ paths:
                     items:
                       $ref: '#/components/schemas/Alert'
                 type: object
-    post:
-      tags:
-        - Alerts
-      summary: Create a usage alert.
-      operationId: create-usage-alert
-      parameters:
-        - $ref: '#/components/parameters/subscription_id'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                id:
-                  description: The usage group to create an alert for.
-                  type: string
-                config:
-                  description: The configuration of the alert.
-                  properties:
-                    threshold:
-                      description: The amount after which a usage alert should be triggered.
-                      type: integer
-                  type: object
-              type: object
-      responses:
-        '201':
-          description: The created usage alert
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alert'
-  /alerts/subscriptions/{subscriptionId}/usage/{usageId}:
-    delete:
-      tags:
-        - Alerts
-      summary: Delete a usage alert.
-      operationId: delete-usage-alert
-      parameters:
-        - $ref: '#/components/parameters/subscription_id'
-        - name: usageId
-          in: path
-          description: The usage id of the alert.
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Success.
     patch:
       tags:
         - Alerts
-      summary: Update a usage alert.
-      operationId: update-usage-alert
+      summary: Update usage alerts.
+      operationId: update-usage-alerts
       parameters:
         - $ref: '#/components/parameters/subscription_id'
-        - name: usageId
-          in: path
-          description: The usage id of the alert.
-          required: true
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
             schema:
               properties:
-                config:
-                  description: The configuration of the alert.
-                  properties:
-                    threshold:
-                      description: The amount after which a usage alert should be triggered.
-                      type: integer
-                  type: object
+                alerts:
+                  description: The list of usage alerts to create or update.
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Alert'
               type: object
       responses:
         '200':
-          description: The updated usage alert.
+          description: The list of current and available alerts for the subscription.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Alert'
+                properties:
+                  available:
+                    description: The list of available usage alerts.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+                  current:
+                    description: The list of the current usage alerts.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+                type: object
   /orders/download:
     get:
       tags:
@@ -2947,9 +2902,9 @@ paths:
         (`created_at`), when the action concluded (`updated_at`),
         the current `state` of the action, the action's completion
         percentage (`completion_percent`), the `environments` it
-        applies to and other related information in
-        the `payload`.
+        applies to and when the activity expires (`expires_at`).
 
+        There are other related information in the `payload`.
         The contents of the `payload` varies based on the `type` of the
         activity. For example:
 
@@ -2960,6 +2915,10 @@ paths:
         - An `environment.push` action's `payload` can contain objects
         representing the `environment`, the specific `commits` included in
         the push, and the `user` who pushed.
+
+        Expired activities are removed from the project activity log, except
+        the last 100 expired objects provided they are not of type `environment.cron`
+        or `environment.backup`.
   /projects/{projectId}/activities/{activityId}:
     get:
       parameters:
@@ -5678,7 +5637,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AutoscalerSettingsPartial'
+              $ref: '#/components/schemas/AutoscalerSettings'
       responses:
         '200':
           description: Updated Autoscaler settings
@@ -7557,6 +7516,203 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrganizationProject'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /organizations/{organization_id}/projects/{project_id}/cdn:
+    get:
+      summary: List project CDNs
+      description: Retrieves the specified project's CDNs.
+      operationId: list-org-project-cdns
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create project CDN
+      description: Creates a new project CDN.
+      operationId: create-org-project-cdn
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - environment
+                - domains
+              properties:
+                environment:
+                  $ref: '#/components/schemas/CdnEnvironment'
+                service_name:
+                  $ref: '#/components/schemas/CdnServiceName'
+                backend_hostname:
+                  $ref: '#/components/schemas/CdnBackendHostname'
+                sni_hostname:
+                  $ref: '#/components/schemas/CdnSNIHostname'
+                domains:
+                  $ref: '#/components/schemas/CdnDomains'
+                comment:
+                  $ref: '#/components/schemas/CdnComment'
+                skip_token_setup:
+                  $ref: '#/components/schemas/CdnSkipTokenSetup'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}:
+    get:
+      summary: Get project CDN
+      description: Retrieves the specified project's CDN.
+      operationId: get-org-project-cdn
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+        - $ref: '#/components/parameters/CdnID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      summary: Update project CDN
+      description: Updates the specified project's CDN.
+      operationId: update-org-project-cdn
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+        - $ref: '#/components/parameters/CdnID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                backend_hostname:
+                  $ref: '#/components/schemas/CdnBackendHostname'
+                sni_hostname:
+                  $ref: '#/components/schemas/CdnSNIHostname'
+                domains:
+                  $ref: '#/components/schemas/CdnDomains'
+                comment:
+                  $ref: '#/components/schemas/CdnComment'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CDN'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete project CDN
+      description: Deletes the specified project's CDN.
+      operationId: delete-org-project-cdn
+      tags:
+        - Edge
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+        - $ref: '#/components/parameters/CdnID'
+      responses:
+        '204':
+          description: No Content
         '403':
           description: Forbidden
           content:
@@ -10674,6 +10830,26 @@ components:
           format: date-time
           nullable: true
           title: The date at which the activity will expire.
+        commands:
+          type: array
+          items:
+            type: object
+            properties:
+              app:
+                type: string
+                title: Application
+              type:
+                type: string
+                title: Type
+              exit_code:
+                type: integer
+                title: Exit status code
+            required:
+              - app
+              - type
+              - exit_code
+            additionalProperties: false
+          title: Commands
       required:
         - created_at
         - updated_at
@@ -10692,6 +10868,7 @@ components:
         - description
         - text
         - expires_at
+        - commands
       additionalProperties: false
     ActivityCollection:
       type: array
@@ -12151,6 +12328,10 @@ components:
                 type: object
                 nullable: true
                 title: Endpoints
+              instance_count:
+                type: integer
+                nullable: true
+                title: Instance replication count of this service
             required:
               - type
               - size
@@ -12162,6 +12343,7 @@ components:
               - resources
               - container_profile
               - endpoints
+              - instance_count
             additionalProperties: false
           title: Services
         routes:
@@ -13600,7 +13782,7 @@ components:
             - addresses
             - basic_auth
           additionalProperties: false
-          title: Http access permissions
+          title: HTTP access permissions
         enable_smtp:
           type: boolean
           title: Whether to configure SMTP for this environment.
@@ -14142,7 +14324,7 @@ components:
                 type: string
               title: Basic auth grants
           additionalProperties: false
-          title: Http access permissions
+          title: HTTP access permissions
         enable_smtp:
           type: boolean
           title: Whether to configure SMTP for this environment.
@@ -15096,6 +15278,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -15104,6 +15291,7 @@ components:
         - url
         - headers
         - tls_verify
+        - excluded_services
       additionalProperties: false
     HttpLogIntegrationCreateInput:
       type: object
@@ -15127,6 +15315,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15153,6 +15346,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15171,6 +15369,7 @@ components:
         - $ref: '#/components/schemas/HealthWebHookIntegration'
         - $ref: '#/components/schemas/HttpLogIntegration'
         - $ref: '#/components/schemas/NewRelicIntegration'
+        - $ref: '#/components/schemas/HttpLogIntegration'
         - $ref: '#/components/schemas/ScriptIntegration'
         - $ref: '#/components/schemas/SplunkIntegration'
         - $ref: '#/components/schemas/SumologicIntegration'
@@ -15194,6 +15393,7 @@ components:
         - $ref: '#/components/schemas/HealthWebHookIntegrationCreateInput'
         - $ref: '#/components/schemas/HttpLogIntegrationCreateInput'
         - $ref: '#/components/schemas/NewRelicIntegrationCreateInput'
+        - $ref: '#/components/schemas/HttpLogIntegrationCreateInput'
         - $ref: '#/components/schemas/ScriptIntegrationCreateInput'
         - $ref: '#/components/schemas/SplunkIntegrationCreateInput'
         - $ref: '#/components/schemas/SumologicIntegrationCreateInput'
@@ -15213,6 +15413,7 @@ components:
         - $ref: '#/components/schemas/HealthWebHookIntegrationPatch'
         - $ref: '#/components/schemas/HttpLogIntegrationPatch'
         - $ref: '#/components/schemas/NewRelicIntegrationPatch'
+        - $ref: '#/components/schemas/HttpLogIntegrationPatch'
         - $ref: '#/components/schemas/ScriptIntegrationPatch'
         - $ref: '#/components/schemas/SplunkIntegrationPatch'
         - $ref: '#/components/schemas/SumologicIntegrationPatch'
@@ -15245,6 +15446,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -15252,6 +15458,7 @@ components:
         - extra
         - url
         - tls_verify
+        - excluded_services
       additionalProperties: false
     NewRelicIntegrationCreateInput:
       type: object
@@ -15273,6 +15480,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15298,6 +15510,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15731,8 +15948,12 @@ components:
             enabled:
               type: boolean
               title: If true, guaranteed resources can be used
+            instance_limit:
+              type: integer
+              title: Instance limit for guaranteed resources
           required:
             - enabled
+            - instance_limit
           additionalProperties: false
           title: Guaranteed Resources
         images:
@@ -15987,6 +16208,17 @@ components:
                       title: Minimum required role for creating the integration.
                   additionalProperties: false
                   title: Blackfire integration configurations
+                otlp:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                      title: The integration is enabled.
+                    role:
+                      type: string
+                      title: Minimum required role for creating the integration.
+                  additionalProperties: false
+                  title: OpenTelemetry log-forwarding integration configurations
               additionalProperties: false
               title: Config
             allowed_integrations:
@@ -17552,6 +17784,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -17561,6 +17798,7 @@ components:
         - index
         - sourcetype
         - tls_verify
+        - excluded_services
       additionalProperties: false
     SplunkIntegrationCreateInput:
       type: object
@@ -17588,6 +17826,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17620,6 +17863,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17656,6 +17904,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -17664,6 +17917,7 @@ components:
         - url
         - category
         - tls_verify
+        - excluded_services
       additionalProperties: false
     SumologicIntegrationCreateInput:
       type: object
@@ -17685,6 +17939,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17709,6 +17968,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17759,6 +18023,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -17770,6 +18039,7 @@ components:
         - facility
         - message_format
         - tls_verify
+        - excluded_services
       additionalProperties: false
     SyslogIntegrationCreateInput:
       type: object
@@ -17816,6 +18086,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
       additionalProperties: false
@@ -17864,6 +18139,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
       additionalProperties: false
@@ -18666,6 +18946,26 @@ components:
         - value
       title: AutoscalerAlertPartial
       type: object
+    AutoscalerCPUPressureTrigger:
+      description: |-
+        CPU pressure trigger settings.
+
+        When CPU pressure goes below lower bound, service will be scaled down.
+        When CPU pressure goes above upper bound, service will be scaled up.
+      properties:
+        enabled:
+          type: boolean
+          nullable: true
+          title: Enabled
+          description: Whether the trigger is enabled
+        down:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Lower bound on resource usage
+        up:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Upper bound on resource usage
+      title: AutoscalerCPUPressureTrigger
+      type: object
     AutoscalerCPUResources:
       description: CPU scaling settings
       properties:
@@ -18749,6 +19049,26 @@ components:
           title: Max
           type: integer
       title: AutoscalerInstances
+      type: object
+    AutoscalerMemoryPressureTrigger:
+      description: |-
+        Memory pressure trigger settings.
+
+        When memory pressure goes below lower bound, service will be scaled down.
+        When memory pressure goes above upper bound, service will be scaled up.
+      properties:
+        enabled:
+          type: boolean
+          nullable: true
+          title: Enabled
+          description: Whether the trigger is enabled
+        down:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Lower bound on resource usage
+        up:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Upper bound on resource usage
+      title: AutoscalerMemoryPressureTrigger
       type: object
     AutoscalerMemoryResources:
       description: Memory scaling settings
@@ -18853,19 +19173,6 @@ components:
       title: AutoscalerServiceSettings
       type: object
     AutoscalerSettings:
-      description: Autoscaling settings for an environment.
-      properties:
-        services:
-          additionalProperties:
-            $ref: '#/components/schemas/AutoscalerServiceSettings'
-          description: Each service for which autoscaling is configured is listed in the key
-          title: Services
-          type: object
-      required:
-        - services
-      title: AutoscalerSettings
-      type: object
-    AutoscalerSettingsPartial:
       description: |-
         Update model for autoscaling settings.
 
@@ -18874,12 +19181,15 @@ components:
       properties:
         services:
           additionalProperties:
-            $ref: '#/components/schemas/AutoscalerServiceSettings'
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/AutoscalerServiceSettings'
+            nullable: true
           type: object
           nullable: true
           title: Services
           description: Each service for which autoscaling is configured is listed in the key
-      title: AutoscalerSettingsPartial
+      title: AutoscalerSettings
       type: object
     AutoscalerTriggers:
       additionalProperties: false
@@ -18897,6 +19207,18 @@ components:
             $ref: '#/components/schemas/AutoscalerMemoryTrigger'
           nullable: true
           description: Settings for scaling based on Memory usage
+        cpu_pressure:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AutoscalerCPUPressureTrigger'
+          nullable: true
+          description: Settings for scaling based on CPU pressure
+        memory_pressure:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AutoscalerMemoryPressureTrigger'
+          nullable: true
+          description: Settings for scaling based on Memory pressure
       title: AutoscalerTriggers
       type: object
     Invoice:
@@ -19809,6 +20131,51 @@ components:
             $ref: '#/components/schemas/OrganizationProjectCarbon'
         total:
           $ref: '#/components/schemas/CarbonTotal'
+    CDN:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ProjectAddonID'
+        project_id:
+          $ref: '#/components/schemas/ProjectID'
+        type:
+          $ref: '#/components/schemas/AddonType'
+        value:
+          $ref: '#/components/schemas/ProjectAddonValue'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              description: Link to the current add-on.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+            update:
+              type: object
+              description: Link for updating the current add-on.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+                method:
+                  type: string
+                  description: The HTTP method to use.
+            delete:
+              type: object
+              description: Link for deleting the current add-on.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+                method:
+                  type: string
+                  description: The HTTP method to use.
     ProjectCarbon:
       type: object
       properties:
@@ -19925,6 +20292,41 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+    AddonType:
+      type: string
+      description: The type of the add-on.
+    ProjectAddonID:
+      type: string
+      description: The ID of the add-on.
+    ProjectAddonValue:
+      oneOf:
+        - type: string
+        - type: integer
+      description: The value of the add-on.
+    CdnEnvironment:
+      type: string
+      description: The environment of the CDN.
+    CdnServiceName:
+      type: string
+      description: The name of the CDN service.
+    CdnBackendHostname:
+      type: string
+      description: The hostname of the CDN backend.
+    CdnSNIHostname:
+      type: string
+      description: The SNI hostname of the CDN.
+    CdnDomains:
+      type: array
+      items:
+        type: string
+        format: hostname
+      description: The domains associated with the CDN.
+    CdnComment:
+      type: string
+      description: The comment for the CDN.
+    CdnSkipTokenSetup:
+      type: boolean
+      description: Whether to skip the token setup for the CDN.
     ProjectID:
       type: string
       description: The ID of the project.
@@ -20710,6 +21112,13 @@ components:
       in: path
       name: region_id
       description: The ID of the region.
+      required: true
+      schema:
+        type: string
+    CdnID:
+      in: path
+      name: cdn_id
+      description: The ID of the CDN.
       required: true
       schema:
         type: string

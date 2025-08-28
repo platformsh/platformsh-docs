@@ -8,7 +8,7 @@
       "url": "https://platform.sh/contact"
     },
     "termsOfService": "https://platform.sh/tos",
-    "description": "# Introduction\n\nPlatform.sh is a container-based Platform-as-a-Service. Our main API\nis simply Git. With a single `git push` and a couple of YAML files in\nyour repository you can deploy an arbitrarily complex cluster.\nEvery [**Project**](#tag/Project) can have multiple applications (PHP,\nNode.js, Python, Ruby, Go, etc.) and managed, automatically\nprovisioned services (databases, message queues, etc.).\n\nEach project also comes with multiple concurrent\nlive staging/development [**Environments**](#tag/Environment).\nThese ephemeral development environments\nare automatically created every time you push a new branch or create a\npull request, and each has a full copy of the data of its parent branch,\nwhich is created on-the-fly in seconds.\n\nOur Git implementation supports integrations with third party Git\nproviders such as GitHub, Bitbucket, or GitLab, allowing you to simply\nintegrate Platform.sh into your existing workflow.\n\n## Using the REST API\n\nIn addition to the Git API, we also offer a REST API that allows you to manage\nevery aspect of the platform, from managing projects and environments,\nto accessing accounts and subscriptions, to creating robust workflows\nand integrations with your CI systems and internal services.\n\nThese API docs are generated from a standard **OpenAPI (Swagger)** Specification document\nwhich you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.\n\nThis RESTful API consumes and produces HAL-style JSON over HTTPS,\nand any REST library can be used to access it. On GitHub, we also host\na few API libraries that you can use to make API access easier, such as our\n[PHP API client](https://github.com/platformsh/platformsh-client-php)\nand our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).\n\nIn order to use the API you will first need to have a Platform.sh\naccount (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup)\navailable) and create an API Token.\n\n# Authentication\n\n## OAuth2\n\nAPI authentication is done with OAuth2 access tokens.\n\n### API tokens\n\nYou can use an API token as one way to get an OAuth2 access token. This\nis particularly useful in scripts, e.g. for CI pipelines.\n\nTo create an API token, go to the \"API Tokens\" section\nof the \"Account Settings\" tab on the [Console](https://console.platform.sh).\n\nTo exchange this API token for an access token, a `POST` request\nmust be made to `https://auth.api.platform.sh/oauth2/token`.\n\nThe request will look like this in cURL:\n\n<pre>\ncurl -u platform-api-user: \\\n    -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\\n    https://auth.api.platform.sh/oauth2/token\n</pre>\n\nThis will return a \"Bearer\" access token that\ncan be used to authenticate further API requests, for example:\n\n<pre>\n{\n    \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",\n    \"expires_in\": 900,\n    \"token_type\": \"bearer\"\n}\n</pre>\n\n### Using the Access Token\n\nTo authenticate further API requests, include this returned bearer token\nin the `Authorization` header. For example, to retrieve a list of\n[Projects](#tag/Project)\naccessible by the current user, you can make the following request\n(substituting the dummy token for your own):\n\n<pre>\ncurl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\\n    https://api.platform.sh/projects\n</pre>\n\n# HAL Links\n\nMost endpoints in the API return fields which defines a HAL\n(Hypertext Application Language) schema for the requested endpoint.\nThe particular objects returns and their contents can vary by endpoint.\nThe payload examples we give here for the requests do not show these\nelements. These links can allow you to create a fully dynamic API client\nthat does not need to hardcode any method or schema.\n\nUnless they are used for pagination we do not show the HAL links in the\npayload examples in this documentation for brevity and as their content\nis contextual (based on the permissions of the user).\n\n## _links Objects\n\nMost endpoints that respond to `GET` requests will include a `_links` object\nin their response. The `_links` object contains a key-object pair labelled `self`, which defines\ntwo further key-value pairs:\n\n* `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`.\n* `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.\n\nThere may be zero or more other fields in the `_links` object resembling fragment identifiers\nbeginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys\nrefers to a JSON object containing two key-value pairs:\n\n* `href` - A URL string referring to the path name of endpoint which can perform the action named in the key.\n* `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.\n\nTo use one of these HAL links, you must send a new request to the URL defined\nin the `href` field which contains a body defined the schema object in the `meta` field.\n\nFor example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links`\nobject in the returned response will include the key `#delete`. That object\nwill look something like this fragment:\n\n```\n\"#delete\": {\n    \"href\": \"/api/projects/abcdefghij1234567890\",\n    \"meta\": {\n        \"delete\": {\n            \"responses\": {\n                . . . // Response definition omitted for space\n            },\n            \"parameters\": []\n        }\n    }\n}\n```\n\nTo use this information to delete a project, you would then send a `DELETE`\nrequest to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890`\nwith no body or parameters to delete the project that was originally requested.\n\n## _embedded Objects\n\nRequests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE`\nrequests, will include an `_embedded` key in their response. The object\nrepresented by this key will contain the created or modified object. This\nobject is identical to what would be returned by a subsequent `GET` request\nfor the object referred to by the endpoint.\n",
+    "description": "# Introduction\n\nPlatform.sh is a container-based Platform-as-a-Service. Our main API\nis simply Git. With a single `git push` and a couple of YAML files in\nyour repository you can deploy an arbitrarily complex cluster.\nEvery [**Project**](#tag/Project) can have multiple applications (PHP,\nNode.js, Python, Ruby, Go, etc.) and managed, automatically\nprovisioned services (databases, message queues, etc.).\n\nEach project also comes with multiple concurrent\nlive staging/development [**Environments**](#tag/Environment).\nThese ephemeral development environments\nare automatically created every time you push a new branch or create a\npull request, and each has a full copy of the data of its parent branch,\nwhich is created on-the-fly in seconds.\n\nOur Git implementation supports integrations with third party Git\nproviders such as GitHub, Bitbucket, or GitLab, allowing you to simply\nintegrate Platform.sh into your existing workflow.\n\n## Using the REST API\n\nIn addition to the Git API, we also offer a REST API that allows you to manage\nevery aspect of the platform, from managing projects and environments,\nto accessing accounts and subscriptions, to creating robust workflows\nand integrations with your CI systems and internal services.\n\nThese API docs are generated from a standard **OpenAPI (Swagger)** Specification document\nwhich you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.\n\nThis RESTful API consumes and produces HAL-style JSON over HTTPS,\nand any REST library can be used to access it. On GitHub, we also host\na few API libraries that you can use to make API access easier, such as our\n[PHP API client](https://github.com/platformsh/platformsh-client-php)\nand our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).\n\nIn order to use the API you will first need to have a [Platform.sh account](https://auth.api.platform.sh/register) \nand [create an API Token](https://docs.upsun.com/anchors/fixed/cli/api-token/).\n\n# Authentication\n\n## OAuth2\n\nAPI authentication is done with OAuth2 access tokens.\n\n### API tokens\n\nYou can use an API token as one way to get an OAuth2 access token. This\nis particularly useful in scripts, e.g. for CI pipelines.\n\nTo create an API token, go to the \"API Tokens\" section\nof the \"Account Settings\" tab on the [Console](https://console.platform.sh).\n\nTo exchange this API token for an access token, a `POST` request\nmust be made to `https://auth.api.platform.sh/oauth2/token`.\n\nThe request will look like this in cURL:\n\n<pre>\ncurl -u platform-api-user: \\\n    -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\\n    https://auth.api.platform.sh/oauth2/token\n</pre>\n\nThis will return a \"Bearer\" access token that\ncan be used to authenticate further API requests, for example:\n\n<pre>\n{\n    \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",\n    \"expires_in\": 900,\n    \"token_type\": \"bearer\"\n}\n</pre>\n\n### Using the Access Token\n\nTo authenticate further API requests, include this returned bearer token\nin the `Authorization` header. For example, to retrieve a list of\n[Projects](#tag/Project)\naccessible by the current user, you can make the following request\n(substituting the dummy token for your own):\n\n<pre>\ncurl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\\n    https://api.platform.sh/projects\n</pre>\n\n# HAL Links\n\nMost endpoints in the API return fields which defines a HAL\n(Hypertext Application Language) schema for the requested endpoint.\nThe particular objects returns and their contents can vary by endpoint.\nThe payload examples we give here for the requests do not show these\nelements. These links can allow you to create a fully dynamic API client\nthat does not need to hardcode any method or schema.\n\nUnless they are used for pagination we do not show the HAL links in the\npayload examples in this documentation for brevity and as their content\nis contextual (based on the permissions of the user).\n\n## _links Objects\n\nMost endpoints that respond to `GET` requests will include a `_links` object\nin their response. The `_links` object contains a key-object pair labelled `self`, which defines\ntwo further key-value pairs:\n\n* `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`.\n* `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.\n\nThere may be zero or more other fields in the `_links` object resembling fragment identifiers\nbeginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys\nrefers to a JSON object containing two key-value pairs:\n\n* `href` - A URL string referring to the path name of endpoint which can perform the action named in the key.\n* `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.\n\nTo use one of these HAL links, you must send a new request to the URL defined\nin the `href` field which contains a body defined the schema object in the `meta` field.\n\nFor example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links`\nobject in the returned response will include the key `#delete`. That object\nwill look something like this fragment:\n\n```\n\"#delete\": {\n    \"href\": \"/api/projects/abcdefghij1234567890\",\n    \"meta\": {\n        \"delete\": {\n            \"responses\": {\n                . . . // Response definition omitted for space\n            },\n            \"parameters\": []\n        }\n    }\n}\n```\n\nTo use this information to delete a project, you would then send a `DELETE`\nrequest to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890`\nwith no body or parameters to delete the project that was originally requested.\n\n## _embedded Objects\n\nRequests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE`\nrequests, will include an `_embedded` key in their response. The object\nrepresented by this key will contain the created or modified object. This\nobject is identical to what would be returned by a subsequent `GET` request\nfor the object referred to by the endpoint.\n",
     "x-logo": {
       "url": "https://platform.sh/logos/redesign/Platformsh_logo_black.svg",
       "href": "https://platform.sh/",
@@ -167,101 +167,15 @@
           }
         }
       },
-      "post": {
-        "tags": [
-          "Alerts"
-        ],
-        "summary": "Create a usage alert.",
-        "operationId": "create-usage-alert",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/subscription_id"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "id": {
-                    "description": "The usage group to create an alert for.",
-                    "type": "string"
-                  },
-                  "config": {
-                    "description": "The configuration of the alert.",
-                    "properties": {
-                      "threshold": {
-                        "description": "The amount after which a usage alert should be triggered.",
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "The created usage alert",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Alert"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/alerts/subscriptions/{subscriptionId}/usage/{usageId}": {
-      "delete": {
-        "tags": [
-          "Alerts"
-        ],
-        "summary": "Delete a usage alert.",
-        "operationId": "delete-usage-alert",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/subscription_id"
-          },
-          {
-            "name": "usageId",
-            "in": "path",
-            "description": "The usage id of the alert.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Success."
-          }
-        }
-      },
       "patch": {
         "tags": [
           "Alerts"
         ],
-        "summary": "Update a usage alert.",
-        "operationId": "update-usage-alert",
+        "summary": "Update usage alerts.",
+        "operationId": "update-usage-alerts",
         "parameters": [
           {
             "$ref": "#/components/parameters/subscription_id"
-          },
-          {
-            "name": "usageId",
-            "in": "path",
-            "description": "The usage id of the alert.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -269,15 +183,12 @@
             "application/json": {
               "schema": {
                 "properties": {
-                  "config": {
-                    "description": "The configuration of the alert.",
-                    "properties": {
-                      "threshold": {
-                        "description": "The amount after which a usage alert should be triggered.",
-                        "type": "integer"
-                      }
-                    },
-                    "type": "object"
+                  "alerts": {
+                    "description": "The list of usage alerts to create or update.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Alert"
+                    }
                   }
                 },
                 "type": "object"
@@ -287,11 +198,27 @@
         },
         "responses": {
           "200": {
-            "description": "The updated usage alert.",
+            "description": "The list of current and available alerts for the subscription.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Alert"
+                  "properties": {
+                    "available": {
+                      "description": "The list of available usage alerts.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Alert"
+                      }
+                    },
+                    "current": {
+                      "description": "The list of the current usage alerts.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Alert"
+                      }
+                    }
+                  },
+                  "type": "object"
                 }
               }
             }
@@ -4115,7 +4042,7 @@
           "Project Activity"
         ],
         "summary": "Get project activity log",
-        "description": "Retrieve a project's activity log including logging actions in all\nenvironments within a project. This returns a list of objects\nwith records of actions such as:\n\n- Commits being pushed to the repository\n- A new environment being branched out from the specified environment\n- A snapshot being created of the specified environment\n\nThe object includes a timestamp of when the action occurred\n(`created_at`), when the action concluded (`updated_at`),\nthe current `state` of the action, the action's completion\npercentage (`completion_percent`), the `environments` it\napplies to and other related information in\nthe `payload`.\n\nThe contents of the `payload` varies based on the `type` of the\nactivity. For example:\n\n- An `environment.branch` action's `payload` can contain objects\nrepresenting the environment's `parent` environment and the\nbranching action's `outcome`.\n\n- An `environment.push` action's `payload` can contain objects\nrepresenting the `environment`, the specific `commits` included in\nthe push, and the `user` who pushed.\n"
+        "description": "Retrieve a project's activity log including logging actions in all\nenvironments within a project. This returns a list of objects\nwith records of actions such as:\n\n- Commits being pushed to the repository\n- A new environment being branched out from the specified environment\n- A snapshot being created of the specified environment\n\nThe object includes a timestamp of when the action occurred\n(`created_at`), when the action concluded (`updated_at`),\nthe current `state` of the action, the action's completion\npercentage (`completion_percent`), the `environments` it\napplies to and when the activity expires (`expires_at`).\n\nThere are other related information in the `payload`.\nThe contents of the `payload` varies based on the `type` of the\nactivity. For example:\n\n- An `environment.branch` action's `payload` can contain objects\nrepresenting the environment's `parent` environment and the\nbranching action's `outcome`.\n\n- An `environment.push` action's `payload` can contain objects\nrepresenting the `environment`, the specific `commits` included in\nthe push, and the `user` who pushed.\n\nExpired activities are removed from the project activity log, except\nthe last 100 expired objects provided they are not of type `environment.cron`\nor `environment.backup`.\n"
       }
     },
     "/projects/{projectId}/activities/{activityId}": {
@@ -7971,7 +7898,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AutoscalerSettingsPartial"
+                "$ref": "#/components/schemas/AutoscalerSettings"
               }
             }
           }
@@ -11007,6 +10934,342 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/cdn": {
+      "get": {
+        "summary": "List project CDNs",
+        "description": "Retrieves the specified project's CDNs.",
+        "operationId": "list-org-project-cdns",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create project CDN",
+        "description": "Creates a new project CDN.",
+        "operationId": "create-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "environment",
+                  "domains"
+                ],
+                "properties": {
+                  "environment": {
+                    "$ref": "#/components/schemas/CdnEnvironment"
+                  },
+                  "service_name": {
+                    "$ref": "#/components/schemas/CdnServiceName"
+                  },
+                  "backend_hostname": {
+                    "$ref": "#/components/schemas/CdnBackendHostname"
+                  },
+                  "sni_hostname": {
+                    "$ref": "#/components/schemas/CdnSNIHostname"
+                  },
+                  "domains": {
+                    "$ref": "#/components/schemas/CdnDomains"
+                  },
+                  "comment": {
+                    "$ref": "#/components/schemas/CdnComment"
+                  },
+                  "skip_token_setup": {
+                    "$ref": "#/components/schemas/CdnSkipTokenSetup"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}": {
+      "get": {
+        "summary": "Get project CDN",
+        "description": "Retrieves the specified project's CDN.",
+        "operationId": "get-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update project CDN",
+        "description": "Updates the specified project's CDN.",
+        "operationId": "update-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "backend_hostname": {
+                    "$ref": "#/components/schemas/CdnBackendHostname"
+                  },
+                  "sni_hostname": {
+                    "$ref": "#/components/schemas/CdnSNIHostname"
+                  },
+                  "domains": {
+                    "$ref": "#/components/schemas/CdnDomains"
+                  },
+                  "comment": {
+                    "$ref": "#/components/schemas/CdnComment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete project CDN",
+        "description": "Deletes the specified project's CDN.",
+        "operationId": "delete-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "403": {
             "description": "Forbidden",
@@ -15507,6 +15770,33 @@
             "format": "date-time",
             "nullable": true,
             "title": "The date at which the activity will expire."
+          },
+          "commands": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "app": {
+                  "type": "string",
+                  "title": "Application"
+                },
+                "type": {
+                  "type": "string",
+                  "title": "Type"
+                },
+                "exit_code": {
+                  "type": "integer",
+                  "title": "Exit status code"
+                }
+              },
+              "required": [
+                "app",
+                "type",
+                "exit_code"
+              ],
+              "additionalProperties": false
+            },
+            "title": "Commands"
           }
         },
         "required": [
@@ -15526,7 +15816,8 @@
           "payload",
           "description",
           "text",
-          "expires_at"
+          "expires_at",
+          "commands"
         ],
         "additionalProperties": false
       },
@@ -17425,6 +17716,11 @@
                   "type": "object",
                   "nullable": true,
                   "title": "Endpoints"
+                },
+                "instance_count": {
+                  "type": "integer",
+                  "nullable": true,
+                  "title": "Instance replication count of this service"
                 }
               },
               "required": [
@@ -17437,7 +17733,8 @@
                 "firewall",
                 "resources",
                 "container_profile",
-                "endpoints"
+                "endpoints",
+                "instance_count"
               ],
               "additionalProperties": false
             },
@@ -19354,7 +19651,7 @@
               "basic_auth"
             ],
             "additionalProperties": false,
-            "title": "Http access permissions"
+            "title": "HTTP access permissions"
           },
           "enable_smtp": {
             "type": "boolean",
@@ -20060,7 +20357,7 @@
               }
             },
             "additionalProperties": false,
-            "title": "Http access permissions"
+            "title": "HTTP access permissions"
           },
           "enable_smtp": {
             "type": "boolean",
@@ -21320,6 +21617,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21329,7 +21633,8 @@
           "extra",
           "url",
           "headers",
-          "tls_verify"
+          "tls_verify",
+          "excluded_services"
         ],
         "additionalProperties": false
       },
@@ -21361,6 +21666,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21397,6 +21709,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21442,6 +21761,9 @@
           },
           {
             "$ref": "#/components/schemas/NewRelicIntegration"
+          },
+          {
+            "$ref": "#/components/schemas/HttpLogIntegration"
           },
           {
             "$ref": "#/components/schemas/ScriptIntegration"
@@ -21505,6 +21827,9 @@
             "$ref": "#/components/schemas/NewRelicIntegrationCreateInput"
           },
           {
+            "$ref": "#/components/schemas/HttpLogIntegrationCreateInput"
+          },
+          {
             "$ref": "#/components/schemas/ScriptIntegrationCreateInput"
           },
           {
@@ -21560,6 +21885,9 @@
             "$ref": "#/components/schemas/NewRelicIntegrationPatch"
           },
           {
+            "$ref": "#/components/schemas/HttpLogIntegrationPatch"
+          },
+          {
             "$ref": "#/components/schemas/ScriptIntegrationPatch"
           },
           {
@@ -21609,6 +21937,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21617,7 +21952,8 @@
           "type",
           "extra",
           "url",
-          "tls_verify"
+          "tls_verify",
+          "excluded_services"
         ],
         "additionalProperties": false
       },
@@ -21646,6 +21982,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -21680,6 +22023,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -22247,10 +22597,15 @@
               "enabled": {
                 "type": "boolean",
                 "title": "If true, guaranteed resources can be used"
+              },
+              "instance_limit": {
+                "type": "integer",
+                "title": "Instance limit for guaranteed resources"
               }
             },
             "required": [
-              "enabled"
+              "enabled",
+              "instance_limit"
             ],
             "additionalProperties": false,
             "title": "Guaranteed Resources"
@@ -22596,6 +22951,21 @@
                     },
                     "additionalProperties": false,
                     "title": "Blackfire integration configurations"
+                  },
+                  "otlp": {
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "title": "The integration is enabled."
+                      },
+                      "role": {
+                        "type": "string",
+                        "title": "Minimum required role for creating the integration."
+                      }
+                    },
+                    "additionalProperties": false,
+                    "title": "OpenTelemetry log-forwarding integration configurations"
                   }
                 },
                 "additionalProperties": false,
@@ -24669,6 +25039,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24679,7 +25056,8 @@
           "url",
           "index",
           "sourcetype",
-          "tls_verify"
+          "tls_verify",
+          "excluded_services"
         ],
         "additionalProperties": false
       },
@@ -24716,6 +25094,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24759,6 +25144,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24806,6 +25198,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24815,7 +25214,8 @@
           "extra",
           "url",
           "category",
-          "tls_verify"
+          "tls_verify",
+          "excluded_services"
         ],
         "additionalProperties": false
       },
@@ -24844,6 +25244,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24877,6 +25284,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24943,6 +25357,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -24955,7 +25376,8 @@
           "protocol",
           "facility",
           "message_format",
-          "tls_verify"
+          "tls_verify",
+          "excluded_services"
         ],
         "additionalProperties": false
       },
@@ -25017,6 +25439,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -25082,6 +25511,13 @@
           "tls_verify": {
             "type": "boolean",
             "title": "Enable/Disable HTTPS certificate verification"
+          },
+          "excluded_services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Comma separated list of service and application names to exclude from logging"
           }
         },
         "required": [
@@ -26148,6 +26584,27 @@
         "title": "AutoscalerAlertPartial",
         "type": "object"
       },
+      "AutoscalerCPUPressureTrigger": {
+        "description": "CPU pressure trigger settings.\n\nWhen CPU pressure goes below lower bound, service will be scaled down.\nWhen CPU pressure goes above upper bound, service will be scaled up.",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Enabled",
+            "description": "Whether the trigger is enabled"
+          },
+          "down": {
+            "$ref": "#/components/schemas/AutoscalerCondition",
+            "description": "Lower bound on resource usage"
+          },
+          "up": {
+            "$ref": "#/components/schemas/AutoscalerCondition",
+            "description": "Upper bound on resource usage"
+          }
+        },
+        "title": "AutoscalerCPUPressureTrigger",
+        "type": "object"
+      },
       "AutoscalerCPUResources": {
         "description": "CPU scaling settings",
         "properties": {
@@ -26248,6 +26705,27 @@
           }
         },
         "title": "AutoscalerInstances",
+        "type": "object"
+      },
+      "AutoscalerMemoryPressureTrigger": {
+        "description": "Memory pressure trigger settings.\n\nWhen memory pressure goes below lower bound, service will be scaled down.\nWhen memory pressure goes above upper bound, service will be scaled up.",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Enabled",
+            "description": "Whether the trigger is enabled"
+          },
+          "down": {
+            "$ref": "#/components/schemas/AutoscalerCondition",
+            "description": "Lower bound on resource usage"
+          },
+          "up": {
+            "$ref": "#/components/schemas/AutoscalerCondition",
+            "description": "Upper bound on resource usage"
+          }
+        },
+        "title": "AutoscalerMemoryPressureTrigger",
         "type": "object"
       },
       "AutoscalerMemoryResources": {
@@ -26379,29 +26857,15 @@
         "type": "object"
       },
       "AutoscalerSettings": {
-        "description": "Autoscaling settings for an environment.",
-        "properties": {
-          "services": {
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AutoscalerServiceSettings"
-            },
-            "description": "Each service for which autoscaling is configured is listed in the key",
-            "title": "Services",
-            "type": "object"
-          }
-        },
-        "required": [
-          "services"
-        ],
-        "title": "AutoscalerSettings",
-        "type": "object"
-      },
-      "AutoscalerSettingsPartial": {
         "description": "Update model for autoscaling settings.\n\nThis model is mainly used for partial updates (PATCH), therefore all its\nattributes are optional.",
         "properties": {
           "services": {
             "additionalProperties": {
-              "$ref": "#/components/schemas/AutoscalerServiceSettings"
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/components/schemas/AutoscalerServiceSettings"
+              },
+              "nullable": true
             },
             "type": "object",
             "nullable": true,
@@ -26409,7 +26873,7 @@
             "description": "Each service for which autoscaling is configured is listed in the key"
           }
         },
-        "title": "AutoscalerSettingsPartial",
+        "title": "AutoscalerSettings",
         "type": "object"
       },
       "AutoscalerTriggers": {
@@ -26431,6 +26895,22 @@
             },
             "nullable": true,
             "description": "Settings for scaling based on Memory usage"
+          },
+          "cpu_pressure": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AutoscalerCPUPressureTrigger"
+            },
+            "nullable": true,
+            "description": "Settings for scaling based on CPU pressure"
+          },
+          "memory_pressure": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AutoscalerMemoryPressureTrigger"
+            },
+            "nullable": true,
+            "description": "Settings for scaling based on Memory pressure"
           }
         },
         "title": "AutoscalerTriggers",
@@ -27695,6 +28175,72 @@
           }
         }
       },
+      "CDN": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectAddonID"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AddonType"
+          },
+          "value": {
+            "$ref": "#/components/schemas/ProjectAddonValue"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/CreatedAt"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "ProjectCarbon": {
         "type": "object",
         "properties": {
@@ -27856,6 +28402,57 @@
             "$ref": "#/components/schemas/UpdatedAt"
           }
         }
+      },
+      "AddonType": {
+        "type": "string",
+        "description": "The type of the add-on."
+      },
+      "ProjectAddonID": {
+        "type": "string",
+        "description": "The ID of the add-on."
+      },
+      "ProjectAddonValue": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ],
+        "description": "The value of the add-on."
+      },
+      "CdnEnvironment": {
+        "type": "string",
+        "description": "The environment of the CDN."
+      },
+      "CdnServiceName": {
+        "type": "string",
+        "description": "The name of the CDN service."
+      },
+      "CdnBackendHostname": {
+        "type": "string",
+        "description": "The hostname of the CDN backend."
+      },
+      "CdnSNIHostname": {
+        "type": "string",
+        "description": "The SNI hostname of the CDN."
+      },
+      "CdnDomains": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "format": "hostname"
+        },
+        "description": "The domains associated with the CDN."
+      },
+      "CdnComment": {
+        "type": "string",
+        "description": "The comment for the CDN."
+      },
+      "CdnSkipTokenSetup": {
+        "type": "boolean",
+        "description": "Whether to skip the token setup for the CDN."
       },
       "ProjectID": {
         "type": "string",
@@ -28888,6 +29485,15 @@
         "in": "path",
         "name": "region_id",
         "description": "The ID of the region.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "CdnID": {
+        "in": "path",
+        "name": "cdn_id",
+        "description": "The ID of the CDN.",
         "required": true,
         "schema": {
           "type": "string"
