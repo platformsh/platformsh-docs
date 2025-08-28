@@ -57,7 +57,7 @@ const validateFragment = async (urlWithFragment) => {
     }
     core.debug(`Validating fragment '${fragment}' in URL: ${url}`)
     // Make GET request to fetch HTML content
-    const response = await axios.get(url)
+    const response = await retryTargetResponse(url,0,"get")
     // Parse HTML with cheerio
     const $ = cheerio.load(response.data)
     // Look for element with matching id
@@ -75,9 +75,9 @@ const validateFragment = async (urlWithFragment) => {
   }
 }
 
-const retryTargetResponse = async (url='/',count=0) => {
+const retryTargetResponse = async (url='/',count=0, method='head') => {
   try {
-    const axiosResponse = await axios.head(url);
+    const axiosResponse = await axios[method](url);;
     return axiosResponse;
   } catch (error) {
     if(error || error.status != 200) {
