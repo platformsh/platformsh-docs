@@ -1,13 +1,13 @@
 ---
-title: Migrating to {{% vendor/name %}}
-description: See how to migrate your app to {{% vendor/name %}} so it's ready to be deployed.
+title: Converting to {{% vendor/name %}}
+description: See how to convert your app to {{% vendor/name %}} so it's ready to be deployed.
 keywords:
   - "set remote"
-  - migration
 ---
 
-If you already have an app running somewhere else, you want to migrate it to {{% vendor/name %}} and deploy it.
+If you already have an app running somewhere else, you want to convert it to {{% vendor/name %}} and deploy it.
 To do so, follow these steps.
+
 
 ## Before you begin
 
