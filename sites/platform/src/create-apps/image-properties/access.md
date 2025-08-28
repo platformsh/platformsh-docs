@@ -22,9 +22,3 @@ can access the deployed environment via SSH:
 access:
   ssh: admin
 ``` 
-
-<!-- another option for getting back to the single/composable topics 
-Related topics:
-* [Single-runtime image](/create-apps/app-reference/single-runtime-image.md) 
-* [Composable image](/create-apps/app-reference/composable-image.md) 
--->
