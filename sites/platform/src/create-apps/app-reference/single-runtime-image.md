@@ -24,7 +24,7 @@ The following table lists all properties available at the top level of the YAML 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-- **Note:** Several properties (for example, `size`, `relationships`, `mounts`) are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for properties that are **unique** to this image type are provided later in this topic. 
+- **Note:** Except for the `build`, `dependencies`, and `runtime` keys, the keys listed below are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for properties that are **unique** to this image type are provided later in this topic.  
 
 
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
