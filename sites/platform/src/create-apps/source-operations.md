@@ -21,7 +21,7 @@ or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git re
 
 To run your source operations, you can use the [{{% vendor/name %}} CLI](/administration/cli/_index.md) or the [Console](https://console.platform.sh).
 If you want to run your source operations and update your code automatically,
-you can also define [cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
+you can also define [cron jobs](/create-apps/image-properties/crons.md).
 
 ## How source operations work
 
