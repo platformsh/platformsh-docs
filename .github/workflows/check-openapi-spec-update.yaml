@@ -41,11 +41,11 @@ jobs:
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
           # @todo let's refactor this to be more concise. maybe just retrieve everything in the directory?
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-            --output shared/pages/openapispec-platformsh.json \
+            --output shared/pages/openapispec-upsun.json \
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun.json',safe=''))")/raw?ref=${REF}"
           # @todo see above
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-            --output shared/pages/openapispec-platformsh.yaml \
+            --output shared/pages/openapispec-upsun.yaml \
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun.yaml',safe=''))")/raw?ref=${REF}"
 
 
