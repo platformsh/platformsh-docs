@@ -37,7 +37,7 @@ jobs:
           # Download into shared data using the GitLab API
           # @todo should we also copy over the stylesheet? or should the version in docs be canonical?
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-            --output shared/pages/api.html \
+            --output shared/pages/upsun-api.html \
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static.html',safe=''))")/raw?ref=${REF}"
           # @todo let's refactor this to be more concise. maybe just retrieve everything in the directory?
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
