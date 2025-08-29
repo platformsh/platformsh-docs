@@ -75,9 +75,9 @@ const validateFragment = async (urlWithFragment) => {
   }
 }
 
-const retryTargetResponse = async (url='/',count=0, method='head') => {
+const retryTargetResponse = async (url='/',count=0, method='head', config={}) => {
   try {
-    const axiosResponse = await axios[method](url);;
+    const axiosResponse = await axios[method](url,config);;
     return axiosResponse;
   } catch (error) {
     if(error || error.status != 200) {
@@ -128,7 +128,13 @@ const verify = async () => {
             url += `&searchAfterId=${searchAfter}`
           }
 
-          const response = await redirectionInstance.get(url)
+          //const response = await redirectionInstance.get(url)
+          let config = {
+            baseURL: redirectionApiURL,
+            timeout: 2000,
+            headers: {'Authorization': `Bearer ${redirectionApiToken}`}
+          }
+          const response = await retryTargetResponse(url,0,"get",config)
           const rules = response.data
 
           if (rules && rules.length > 0 ) {
