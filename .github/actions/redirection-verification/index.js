@@ -77,7 +77,7 @@ const validateFragment = async (urlWithFragment) => {
 
 const retryTargetResponse = async (url='/',count=0, method='head', config={}) => {
   try {
-    const axiosResponse = await axios[method](url,config);
+    const axiosResponse = await axios[method](url, config);
     return axiosResponse;
   } catch (error) {
     if(error || error.status != 200) {
