@@ -7262,6 +7262,111 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       x-vendor: upsun
+  /organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage:
+    get:
+      summary: Get usage alerts
+      description: Retrieves current and available usage alerts.
+      operationId: get-subscription-usage-alerts
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/OrganizationIDName'
+        - $ref: '#/components/parameters/SubscriptionID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current:
+                    type: array
+                    description: The list of currently set usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+                  available:
+                    type: array
+                    description: The list of available usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      summary: Update usage alerts.
+      description: Updates usage alerts for a subscription.
+      operationId: update-subscription-usage-alerts
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/OrganizationIDName'
+        - $ref: '#/components/parameters/SubscriptionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                alerts:
+                  type: array
+                  description: The list of alerts to update.
+                  items:
+                    type: object
+                    description: An alert object.
+                    properties:
+                      id:
+                        type: string
+                        description: The usage alert identifier.
+                      active:
+                        type: boolean
+                        description: Whether the alert is activated.
+                      config:
+                        type: object
+                        description: The configuration for the usage alerts.
+                        properties:
+                          threshold:
+                            type: integer
+                            description: The amount after which an alert should be triggered.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current:
+                    type: array
+                    description: The list of currently set usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+                  available:
+                    type: array
+                    description: The list of available usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /organizations/{organization_id}/discounts:
     get:
       summary: List organization discounts
@@ -7499,6 +7604,64 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Error'
+    post:
+      summary: Create project
+      description: Creates a new project in the specified organization.
+      operationId: create-org-project
+      tags:
+        - Organization Projects
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - region
+              properties:
+                organization_id:
+                  $ref: '#/components/schemas/OrganizationID'
+                region:
+                  $ref: '#/components/schemas/RegionID'
+                title:
+                  $ref: '#/components/schemas/ProjectTitle'
+                type:
+                  $ref: '#/components/schemas/ProjectType'
+                plan:
+                  $ref: '#/components/schemas/ProjectPlan'
+                default_branch:
+                  $ref: '#/components/schemas/ProjectDefaultBranch'
+                cse_notes:
+                  $ref: '#/components/schemas/ProjectCSENotes'
+                dedicated_tag:
+                  $ref: '#/components/schemas/ProjectDedicatedTag'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationProject'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /organizations/{organization_id}/projects/{project_id}:
     get:
       summary: Get project
@@ -7528,160 +7691,38 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /organizations/{organization_id}/projects/{project_id}/cdn:
-    get:
-      summary: List project CDNs
-      description: Retrieves the specified project's CDNs.
-      operationId: list-org-project-cdns
-      tags:
-        - Edge
-      parameters:
-        - $ref: '#/components/parameters/OrganizationID'
-        - $ref: '#/components/parameters/ProjectID'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CDN'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    post:
-      summary: Create project CDN
-      description: Creates a new project CDN.
-      operationId: create-org-project-cdn
-      tags:
-        - Edge
-      parameters:
-        - $ref: '#/components/parameters/OrganizationID'
-        - $ref: '#/components/parameters/ProjectID'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - environment
-                - domains
-              properties:
-                environment:
-                  $ref: '#/components/schemas/CdnEnvironment'
-                service_name:
-                  $ref: '#/components/schemas/CdnServiceName'
-                backend_hostname:
-                  $ref: '#/components/schemas/CdnBackendHostname'
-                sni_hostname:
-                  $ref: '#/components/schemas/CdnSNIHostname'
-                domains:
-                  $ref: '#/components/schemas/CdnDomains'
-                comment:
-                  $ref: '#/components/schemas/CdnComment'
-                skip_token_setup:
-                  $ref: '#/components/schemas/CdnSkipTokenSetup'
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CDN'
-        '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '409':
-          description: Conflict
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}:
-    get:
-      summary: Get project CDN
-      description: Retrieves the specified project's CDN.
-      operationId: get-org-project-cdn
-      tags:
-        - Edge
-      parameters:
-        - $ref: '#/components/parameters/OrganizationID'
-        - $ref: '#/components/parameters/ProjectID'
-        - $ref: '#/components/parameters/CdnID'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CDN'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
     patch:
-      summary: Update project CDN
-      description: Updates the specified project's CDN.
-      operationId: update-org-project-cdn
+      summary: Update project
+      description: Updates the specified project.
+      operationId: update-org-project
       tags:
-        - Edge
+        - Organization Projects
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
         - $ref: '#/components/parameters/ProjectID'
-        - $ref: '#/components/parameters/CdnID'
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                backend_hostname:
-                  $ref: '#/components/schemas/CdnBackendHostname'
-                sni_hostname:
-                  $ref: '#/components/schemas/CdnSNIHostname'
-                domains:
-                  $ref: '#/components/schemas/CdnDomains'
-                comment:
-                  $ref: '#/components/schemas/CdnComment'
+                title:
+                  $ref: '#/components/schemas/ProjectTitle'
+                plan:
+                  $ref: '#/components/schemas/ProjectPlan'
+                timezone:
+                  $ref: '#/components/schemas/ProjectTimeZone'
+                cse_notes:
+                  $ref: '#/components/schemas/ProjectCSENotes'
+                dedicated_tag:
+                  $ref: '#/components/schemas/ProjectDedicatedTag'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CDN'
+                $ref: '#/components/schemas/OrganizationProject'
         '400':
           description: Bad Request
           content:
@@ -7701,15 +7742,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     delete:
-      summary: Delete project CDN
-      description: Deletes the specified project's CDN.
-      operationId: delete-org-project-cdn
+      summary: Delete project
+      description: Deletes the specified project.
+      operationId: delete-org-project
       tags:
-        - Edge
+        - Organization Projects
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
         - $ref: '#/components/parameters/ProjectID'
-        - $ref: '#/components/parameters/CdnID'
       responses:
         '204':
           description: No Content
@@ -19941,6 +19981,45 @@ components:
             mode:
               type: string
               description: The mode of alert.
+    UsageAlert:
+      type: object
+      description: The usage alert for a subscription.
+      properties:
+        id:
+          type: string
+          description: Tidentifier of the alert.
+        active:
+          type: boolean
+          description: Whether the usage alert is activated.
+        alerts_sent:
+          type: number
+          description: Number of alerts sent.
+        last_alert_at:
+          type: string
+          description: The datetime the alert was last sent.
+          nullable: true
+        updated_at:
+          type: string
+          description: The datetime the alert was last updated.
+          nullable: true
+        config:
+          type: object
+          nullable: true
+          description: Configuration for the usage alert.
+          properties:
+            threshold:
+              type: object
+              description: Data regarding threshold spend.
+              properties:
+                formatted:
+                  type: string
+                  description: Formatted threshold value.
+                amount:
+                  type: number
+                  description: Threshold value.
+                unit:
+                  type: string
+                  description: Threshold unit.
     PrepaymentObject:
       type: object
       description: Prepayment information for an organization.
@@ -20131,51 +20210,6 @@ components:
             $ref: '#/components/schemas/OrganizationProjectCarbon'
         total:
           $ref: '#/components/schemas/CarbonTotal'
-    CDN:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/ProjectAddonID'
-        project_id:
-          $ref: '#/components/schemas/ProjectID'
-        type:
-          $ref: '#/components/schemas/AddonType'
-        value:
-          $ref: '#/components/schemas/ProjectAddonValue'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              description: Link to the current add-on.
-              properties:
-                href:
-                  type: string
-                  description: URL of the link.
-            update:
-              type: object
-              description: Link for updating the current add-on.
-              properties:
-                href:
-                  type: string
-                  description: URL of the link.
-                method:
-                  type: string
-                  description: The HTTP method to use.
-            delete:
-              type: object
-              description: Link for deleting the current add-on.
-              properties:
-                href:
-                  type: string
-                  description: URL of the link.
-                method:
-                  type: string
-                  description: The HTTP method to use.
     ProjectCarbon:
       type: object
       properties:
@@ -20292,41 +20326,6 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
-    AddonType:
-      type: string
-      description: The type of the add-on.
-    ProjectAddonID:
-      type: string
-      description: The ID of the add-on.
-    ProjectAddonValue:
-      oneOf:
-        - type: string
-        - type: integer
-      description: The value of the add-on.
-    CdnEnvironment:
-      type: string
-      description: The environment of the CDN.
-    CdnServiceName:
-      type: string
-      description: The name of the CDN service.
-    CdnBackendHostname:
-      type: string
-      description: The hostname of the CDN backend.
-    CdnSNIHostname:
-      type: string
-      description: The SNI hostname of the CDN.
-    CdnDomains:
-      type: array
-      items:
-        type: string
-        format: hostname
-      description: The domains associated with the CDN.
-    CdnComment:
-      type: string
-      description: The comment for the CDN.
-    CdnSkipTokenSetup:
-      type: boolean
-      description: Whether to skip the token setup for the CDN.
     ProjectID:
       type: string
       description: The ID of the project.
@@ -21112,13 +21111,6 @@ components:
       in: path
       name: region_id
       description: The ID of the region.
-      required: true
-      schema:
-        type: string
-    CdnID:
-      in: path
-      name: cdn_id
-      description: The ID of the CDN.
       required: true
       schema:
         type: string
