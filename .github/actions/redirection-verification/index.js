@@ -77,14 +77,14 @@ const validateFragment = async (urlWithFragment) => {
 
 const retryTargetResponse = async (url='/',count=0, method='head', config={}) => {
   try {
-    const axiosResponse = await axios[method](url,config);;
+    const axiosResponse = await axios[method](url,config);
     return axiosResponse;
   } catch (error) {
     if(error || error.status != 200) {
       core.debug(`At attempt ${count}, target url ${url} responded with status ${error.status}, retrying...`)
       if (count++ < retries) {
         await sleep(retrySleep)
-        return retryTargetResponse(url,count)
+        return retryTargetResponse(url,count,method,config)
       } else {
         core.warning(`Max number of retries ${retries} for end point ${url} reached. Aborting.`)
         //throw new Error(error)
