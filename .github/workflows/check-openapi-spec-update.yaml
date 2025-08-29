@@ -42,11 +42,11 @@ jobs:
           # @todo let's refactor this to be more concise. maybe just retrieve everything in the directory?
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output shared/pages/openapispec-platformsh.json \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-platformsh.json',safe=''))")/raw?ref=${REF}"
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun.json',safe=''))")/raw?ref=${REF}"
           # @todo see above
           curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
             --output shared/pages/openapispec-platformsh.yaml \
-            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-platformsh.yaml',safe=''))")/raw?ref=${REF}"
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun.yaml',safe=''))")/raw?ref=${REF}"
 
 
       - name: Create Pull Request if changes
