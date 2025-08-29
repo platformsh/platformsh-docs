@@ -32,12 +32,6 @@ All of the graphs show color-coded lines for the following thresholds:
 - Usage that crosses _90%_ results.
 - Usage that crosses _50%_ results.
 
-On Grid environments, usage that crosses _100%_ will mean that you have crossed into a **burst** state.
-
-The burst capability is available for containerized environments and allows a container to get more resources than it's allocated. Burst is considered useful for infrequent activities that cause usage spikes.
-
-On the Grid, resources are shared between customers, so these additional resources aren't guaranteed and burst can only be temporary. 
-
 ### Recommendations
 
 The default thresholds aim to give you an idea of when your hosts/containers are close to running out of resources. The impact differs based on your specific apps and service.
@@ -51,7 +45,6 @@ you might want to consider:
 * [Optimizing your code](/increase-observability/_index.md) (if possible)
 * [Increasing your plan](/administration/pricing/_index.md)
 
-
 #### Grid environments
 
 For Grid environments, the thresholds are set for each container.
@@ -62,13 +55,6 @@ you might want to consider:
 * Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
   or [service size](/add-services/_index.md#size)
 * [Increasing your plan](/administration/pricing/_index.md)
-
-Review your configuration or plan size if your containers are in a prolonged burst
-state, because burst isn't guaranteed for long periods.
-
-If the burst threshold is triggered for short, infrequent activities,
-it might not be an issue as long as the site is functioning properly.
-Burst allows your container to use additional resources when they aren't required on the container's host.
 
 ## Time intervals
 
