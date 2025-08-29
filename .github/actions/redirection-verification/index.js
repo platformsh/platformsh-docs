@@ -75,16 +75,16 @@ const validateFragment = async (urlWithFragment) => {
   }
 }
 
-const retryTargetResponse = async (url='/',count=0, method='head') => {
+const retryTargetResponse = async (url='/',count=0, method='head', config={}) => {
   try {
-    const axiosResponse = await axios[method](url);;
+    const axiosResponse = await axios[method](url, config);
     return axiosResponse;
   } catch (error) {
     if(error || error.status != 200) {
       core.debug(`At attempt ${count}, target url ${url} responded with status ${error.status}, retrying...`)
       if (count++ < retries) {
         await sleep(retrySleep)
-        return retryTargetResponse(url,count)
+        return retryTargetResponse(url,count,method,config)
       } else {
         core.warning(`Max number of retries ${retries} for end point ${url} reached. Aborting.`)
         //throw new Error(error)
@@ -128,7 +128,13 @@ const verify = async () => {
             url += `&searchAfterId=${searchAfter}`
           }
 
-          const response = await redirectionInstance.get(url)
+          //const response = await redirectionInstance.get(url)
+          let config = {
+            baseURL: redirectionApiURL,
+            timeout: 2000,
+            headers: {'Authorization': `Bearer ${redirectionApiToken}`}
+          }
+          const response = await retryTargetResponse(url,0,"get",config)
           const rules = response.data
 
           if (rules && rules.length > 0 ) {
