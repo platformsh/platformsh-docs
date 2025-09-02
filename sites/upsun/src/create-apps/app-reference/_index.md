@@ -16,7 +16,7 @@ For both image types, the image is defined in the `{{< vendor/configfile "app" >
 
 ## Which image type should you choose? {#which-image-type}
 
-**Single-runtime image**: This is the recommended choice for applications that require a single runtime, require a specific version of a runtime, and don't require extensions that are not related to its runtime: for example, a PHP application that requires a specific PHP version. 
+**Single-runtime image**: This is the recommended choice for applications that can use a standard Upsun runtime image (using a single runtime) and don't require extensions that are not related to its runtime: for example, a PHP application that requires a specific PHP version. 
 
 Consider using a single-runtime image when these factors are important:
 - Your application requires only a single runtime and no (or few) additional packages or tools.<BR> 
@@ -32,13 +32,16 @@ If you initially choose a single-runtime image and your application needs change
 
 **Composable image** (BETA): Choose this image type your application has multiple dependencies: for example, multiple runtimes, additional packages, or other items such as HTML files or PDF images. Composable images can be used for both applications and services.
 
-You can use the packages in the latest available Nix channel or you can define ("compose") the collection of packages (as defined by the `stack` key) for the container. Typically, it's simpler to define your a stack than it is to configure a single-runtime image and corresponding build hook. 
+This image type enables you to build an image by using the packages in the latest available Nix channel, or you can define ("compose") the collection of packages (as defined by the `stack` key) for your image, especially when packages are available in the {{% vendor/name %}} registry. 
+
+Manually building a stack in a composable image is typically simpler than adding packages to a build hook to support a single-runtime image.
 
 Consider using a composable image when these factors are important:
 - Your application requires multiple runtimes and tools, or different versions of the same package.
 - You build your own services. See the [Building your own services](#building-services) section below.
 - You want the ability to install _all_ the packages you need in your application container, ensuring that an application works on any machine.<BR> 
     In a composable image, you can accomplish this by using supported Nix channels. This method ensures app consistency and helps to streamline the development, testing, and deployment processes.
+    
 - Your team is comfortable with upgrading, testing, and refactoring images promptly when Nix a channel becomes deprecated (every six months). 
 
 
