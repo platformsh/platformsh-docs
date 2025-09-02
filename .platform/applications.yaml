@@ -24,6 +24,7 @@
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
           set -e
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
           # add yet another fall back redirect in case all the others fail
           echo '<html><head><meta http-equiv="refresh" content="0; url=https://docs.upsun.com/api/"></head>' > "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
           echo '<body><p>API documentation has moved to <a href="https://docs.upsun.com/api/">https://docs.upsun.com/api/</a></p></body></html>' >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
