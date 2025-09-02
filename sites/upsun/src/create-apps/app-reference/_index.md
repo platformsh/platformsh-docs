@@ -14,36 +14,41 @@ or its [composable image (BETA)](/create-apps/app-reference/composable-image.md)
 
 ## Which image type should you choose? {#which-image-type}
 
-**Single-runtime image**: This image type offers the flexibility to specify single runtime package versions, however, this typically requires more manual configuration.
+**Single-runtime image**: This is the recommended choice for applications that are "standard", for example, a PHP application and when you want to choose the package version for your image. 
 
 Consider using a single-runtime image when these factors are important:
-- Your application requires a single runtime only.
-- You want the ability to choose specific package versions, including patches.
+- Your application requires a single runtime and no (or few) additional packages or tools. 
+    You can add extensions, but most extra packages must be added to the build phase, which involves a common line installation. As a result, you might need to make  additional changes to the configuration file to get a valid configuration.   
+    If you anticipate this happening, consider using a composable image. 
+- You need to be able to choose specific package versions.
 - You want {{% vendor/name %}} to update the image (perform package upgrades and apply security patches) rather do this maintenance yourself
-- Your team has the time and knowledge to manually configure package versions and manage dependencies: For example, writing scripts to cache binaries after they're downloaded, or understanding upgrade paths for complicated node binary dependencies. <!-- the latter "...or understanding upgrade paths..." seems to contradict the vendor maintenance point? -->
+- Your team has the time and knowledge to manually configure package versions and manage dependencies: For example, writing scripts to cache binaries after they're downloaded
 
-If you initially choose a single-runtime image and your application needs change, you can move the app to a composable image if your app needs change. <!-- example of when? -->
+If you initially choose a single-runtime image and your application needs change, you can move the app to a composable image: For example, if you determine that your application needs additional packages or multiple runtimes.
 
-**Composable image** (BETA): This image type offers the flexibility to define or "compose" the stack (group of packages) to include in the container that runs your application. Developers spend less time manually configuring stacks and dependencies because stacks are already defined in the supported Nix channels.
+**Composable image** (BETA): Choose this image type for more complex applications. You can use the packages in a Nix channel, or define or "compose" the collection of packages for the container that runs your application. TYpically, composable images require more manual configuration than single-runtime images. 
 
 Consider using a composable image when these factors are important:
-- Your application requires multiple runtimes and tools, or even different versions of the same package
-- You want the ability to install _all_ the packages you need in your application container, ensuring consistency across environments and machines<!-- rather than ...? -->
-- You or your teams have the time and skills to upgrade packages and apply security patches. <!-- delete? does this repeat the next bullet? -->
-- You or your teams understand how to update a configured image when package versions change in supported stacks (for example, if a package version in Nix channel X.Y changes, you might need to update the versions of additonal packages defined in the stack)
-- Consistency: Nix channels ensure that what works on your local machine works on any other machine. This consistency also streamlines development and testing.
+- Your application requires multiple runtimes and tools, or different versions of the same package
+- You build your own services. See section below.
+- You want the ability to install _all_ the packages you need in your application container, ensuring that an application works on any machine. 
+    In a composable image, you can accomplish this by using supported Nix channels. This method ensures app consistency and helps to streamline the development, testing, and deployment processes.
+- Your team is comfortable with upgrading, testing, and refactoring images as packages are deprecated. 
 
 
-| Criteria              | Single-runtime image | Composable image | 
+
+| Criteria                    | Single-runtime image | Composable image | 
 |-----------------------------|----------------------|------------------|
-| # of runtimes per container | one                  | one or more                    |
-| Manual configuration        | Typically required for downloads, dependencies       | Typically needed only when Nix channel versions and other versions listed in the `stack` are incompatible | 
-| Maintenance (upgrades and patches)  | Maintained by {{% vendor/name %}} | Maintained by you | 
-|   Support                   |    XXX                 | Stable Nix channels only, but any NixOs package can be installed, including `unstable`                                    | 
+| # of runtimes per container | one                  | zero or more                    |
+| Best for buildling...  | Single runtime applications  | Applications, services (see section below)  | 
+| Packages permitted           | Runtime, extensions | >=0 runtimes; extensions, services | 
+| Manual configuration        | Downloads, dependencies       | If not using a channel: Downloads, dependencies, testing, and resolving package incompatibilities | 
+| Maintenance (upgrades and patches)  | {{% vendor/name %}} performs minor (`major.`)(_`minor`_) updates and applies patches automatically on deployment | You perform upgrades, patches, testing, and troubleshooting | 
+|   Support                   |    XXX                 | Only stable Nix channels (but any NixOs package can be installed, including `unstable`)                                    | 
 |  config file                | `{{< vendor/configfile "app" >}}`  |   `{{< vendor/configfile "app" >}}`           | 
-| XXX                         |                      |Supports applications only, not services |
-| Performance                 |     XXXX                  | Initial builds and rebuilds take some time; automatic caching improves containe startup time |
-|   `type`                  |   Indicates the base container image used to run the application (`major.minor`). Cannot select a patch version.  |  Indicates the Nix channel version | 
+| Method for adding packages         | Added manually to the build hook | Manually defined in the `stack` key |
+| Performance                 |     XXXX                  | Initial builds and rebuilds take some time; automatic caching improves container startup time |
+|   `type`                  |   Indicates the base container image used to run the application (`major.minor`). Cannot select a patch version.  |  Indicates the Nix channel version. | 
 | build and deploy `hooks`     | Build flavor is run if applicable and any dependencies are installed | Managed by the Nix channel | 
 
 
@@ -56,4 +61,9 @@ Otherwise, the same keys are available for both image types. Differences in synt
 ## Multi-app projects
 In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#mix-of-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
 
+
+## Building your own services {#building-services}
+The composable image type is typically the recommended choice for building services that {{% vendor/name %}} doesn't offer as an image. With this image type, you install _only_ the packages that the service requires. Installing a runtime is also optional, determined by whether the service requires a runtime.
+
+By contrast, a single-runtime image requires a runtime, and addiitonal pcakges must be added to the build phase, which requires more manual configuration.  
 
