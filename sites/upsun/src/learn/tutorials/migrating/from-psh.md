@@ -1,5 +1,5 @@
 ---
-title: Converting from Platform.sh to {{% vendor/name %}}
+title: Converting from Platform.sh 
 description: See how to configure your Platform.sh app to {{% vendor/name %}} so it's ready to be deployed.
 keywords:
   - "set remote"
