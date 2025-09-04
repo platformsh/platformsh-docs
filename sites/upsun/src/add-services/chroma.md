@@ -176,3 +176,7 @@ routes:
 ```
 
 **Be mindful that exposing Chroma publicly can be sensitive from a security standpoint.**
+
+## Other resources
+
+- [DevCenter: Store embeddings in chroma with persistent storage (nodejs and python examples)](https://devcenter.upsun.com/posts/store-embeddings-in-chroma-with-persistent-storage-nodejs-and-python-examples/)
