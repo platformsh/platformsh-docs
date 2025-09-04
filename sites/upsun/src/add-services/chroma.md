@@ -26,6 +26,7 @@ Create a Chroma application in your `.upsun/config.yaml`:
 applications:
   chroma:
     type: "python:3.12"
+    container_profile: HIGH_MEMORY
     source:
       root: "chroma"
     dependencies:
@@ -54,6 +55,8 @@ applications:
         uv_CACHE_DIR: "/tmp/uv-cache"
         PYTHONPATH: "."
 ```
+
+Note that example is using a `HIGH_MEMORY` container. You can refer to the [Container profiles documentation](/manage-resources/adjust-resources.html#advanced-container-profiles) for more information.
 
 ### 2. Connect from your application
 
