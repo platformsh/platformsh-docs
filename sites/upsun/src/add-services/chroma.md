@@ -56,7 +56,7 @@ applications:
         PYTHONPATH: "."
 ```
 
-Note that example is using a `HIGH_MEMORY` container. You can refer to the [Container profiles documentation](/manage-resources/adjust-resources.html#advanced-container-profiles) for more information.
+The example above is using a `HIGH_MEMORY` container. You can refer to the [Container profiles documentation](/manage-resources/adjust-resources.html#advanced-container-profiles) for more information.
 
 ### 2. Connect from your application
 
@@ -175,7 +175,11 @@ routes:
     upstream: "chroma:http"
 ```
 
-**Be mindful that exposing Chroma publicly can be sensitive from a security standpoint.**
+{{< note theme="warning" title="Exposing Chroma">}}
+
+Be mindful that exposing Chroma publicly can be sensitive from a security standpoint.
+
+{{< /note >}}
 
 ## Other resources
 
