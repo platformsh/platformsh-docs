@@ -1,4 +1,37 @@
 {
+  "chroma": {
+    "description": "Chroma vector database",
+    "repo_name": "chroma",
+    "disk": true,
+    "docs": {
+      "relationship_name": "chroma",
+      "service_name": "chroma",
+      "url": "/add-services/chroma.html"
+    },
+    "endpoint": "chroma",
+    "min_disk_size": 512,
+    "name": "Chroma",
+    "runtime": false,
+    "type": "application",
+    "premium": false,
+    "versions": {
+      "supported": [
+        "any"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "7.0",
+        "6.0",
+        "5.0",
+        "4.4"
+      ],
+      "deprecated": [
+        "4.2",
+        "4.0"
+      ]
+    }
+  },
   "chrome-headless": {
     "description": "",
     "disk": false,
@@ -804,7 +837,7 @@
     "versions-dedicated-gen-2": {
       "supported": [
         "8.4",
-        "8.3",     
+        "8.3",
         "8.2",
         "8.1",
         "8.0"
