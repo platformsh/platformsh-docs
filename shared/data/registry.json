@@ -21,14 +21,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
-        "7.0",
-        "6.0",
-        "5.0",
-        "4.4"
-      ],
-      "deprecated": [
-        "4.2",
-        "4.0"
+        "not available"
       ]
     }
   },
