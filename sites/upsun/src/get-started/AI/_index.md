@@ -1,8 +1,8 @@
 ---
-title: AI with Upsun
-weight: -150
+title: How to deploy AI 
+weight: -50
 layout: single
-sectionBefore: Artificial intelligence (AI)
+
 ---
 
 {{% vendor/name %}} provides powerful capabilities for hosting AI applications,
