@@ -9,13 +9,56 @@ keywords:
   - "scaling"
 ---
 
-Autoscaling allows your applications to automatically scale horizontally based on resource usage. Instead of manually adjusting instance counts, autoscaling dynamically increases or decreases the number of running instances based on CPU utilization.  
+Autoscaling allows your applications to automatically [scale horizontally](https://docs.upsun.com/manage-resources/adjust-resources.html#horizontal-scaling) based on resource usage. Instead of manually adjusting instance counts, autoscaling dynamically increases or decreases the number of running instances based on CPU utilization.  
 
 This ensures your apps remain responsive under load while helping you optimize costs.  
 
 - **Scope:** Available for applications only  
 - **Product tiers:** Available for all Upsun Flex environments  
 - **Environments:** Configurable per environment - across dev, staging, and production
+
+{{< note theme="info" title="Scale databases and resources">}}
+
+If you're looking to scale your databases and other services, or vertically scale resources (CPU, RAM, disk), see:
+
+- [Resource configuration](https://docs.upsun.com/manage-resources/adjust-resources.html)
+- [Resource initialization](https://docs.upsun.com/manage-resources/resource-init.html)
+- [Horizontal scaling (manual)](https://docs.upsun.com/manage-resources/adjust-resources.html#horizontal-scaling)
+
+{{< /note >}}
+
+## Autoscaling availability
+
+### Component support
+
+| Component | Horizontal Autoscaling | Vertical Scaling (Manual) |
+| --------- | ---------------------- | ------------------------- |
+| Applications — [PHP](https://docs.upsun.com/create-apps/languages/php.html), [Node.js](https://docs.upsun.com/create-apps/languages/nodejs.html), etc. | Available              | Available                 |
+| Services — [MySQL](https://docs.upsun.com/add-services/mysql.html), [Redis](https://docs.upsun.com/add-services/redis.html), etc. | Unavailable            | Available                 |
+| Queues — [workers](https://docs.upsun.com/add-services/worker.html), background jobs                            | Unavailable            | Available                 |
+
+### Product tier support
+
+| Product tier | Horizontal Autoscaling | Vertical Scaling (Manual) |
+| ------------ | ---------------------- | ------------------------- |
+| Upsun Flex   | Available              | Available                 |
+| Upsun Fixed  | Unavailable            | Available                 |
+
+### Environment support
+
+| Environment  | Horizontal Autoscaling | Vertical Scaling (Manual) |
+| ------------ | ---------------------- | ------------------------- |
+| Development  | Available              | Available                 |
+| Staging      | Available              | Available                 |
+| Production   | Available              | Available                 |
+
+### Scaling trigger support
+
+| Trigger                  | Console     | CLI         | API         |
+| ------------------------- | ----------- | ----------- | ----------- |
+| Average CPU (min/max)     | Available   | Available   | Available   |
+| Average Memory (min/max)  | Unavailable | Unavailable | Available   |
+
   
 ## How Autoscaling works
 
@@ -23,72 +66,80 @@ This ensures your apps remain responsive under load while helping you optimize c
 
 Autoscaling continuously monitors the average CPU utilization across your app's running instances. It works by you setting your thresholds, which are specific CPU usage levels that determine when autoscaling should take action. There are two different thresholds that your CPU utilization operates within: A scale-up threshold and a scale-down threshold.
 
-- **Scale-up threshold**: The point at which your app's CPU usage would be considered too high. If average CPU usage stays above this level for the configured time period, autoscaling will launch additional instances to share the load.
+- **Scale-up threshold**: If your chosen trigger (eg. CPU usage) stays **above** this level for the time period you've set (the evaluation period), autoscaling will launch additional instances to share the load.
 
-- **Scale-down threshold**: The point at which your app is considered underutilized. If CPU usage stays below this level for the configured time period, autoscaling will remove unneeded instances to save resources and costs.
+- **Scale-down threshold**: If your chosen trigger stays **below** this level for the time period you've set, autoscaling will remove unneeded instances to save resources and costs.
 
-#### Example
-
-If your scale-up threshold is set to 80% CPU for 5 minutes, and your app's instances consistently exceed that level, autoscaling will add a new instance to distribute the workload. Later, if traffic decreases and CPU usage falls below the 20% scale-down threshold for 5 minutes, autoscaling will safely remove an instance.
-
-This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
+To prevent unnecessary back-and-forth, autoscaling also uses a cooldown window: a short waiting period before another scaling action can be triggered. This can also be configured or kept to the [default](#default-settings) waiting period before any additional scaling starts. 
 
 ### Default settings
 
-The default setting for a scale-up threshold is 80% CPU for 5 minutes, while the default setting for a scale-down threshold is 20% CPU for 5 minutes.
+Autoscaling continuously monitors the configured **trigger** across your app’s running instances. We will use the **average CPU utilization** trigger as the primary example for the default settings and examples below.
 
-To prevent unnecessary back-and-forth, autoscaling also uses a cooldown window: a short waiting period before another scaling action can be triggered. The default setting for a cooldown window is 5 minutes before any additional scaling starts.  
+- **Scale-up threshold:** 80% CPU for 5 minutes
+- **Scale-down threshold:** 20% CPU for 5 minutes
+- **Cooldown window:** 5 minutes between scaling actions
+- **Instance limits:** 1–10 per environment (configurable)
 
-By default, autoscaling manages between one and ten instances per environment, though you can configure the minimum and maximum instance limits to suit your workload. Once enabled, autoscaling automatically manages instance counts for you, so manual adjustments are disabled.
+{{< note theme="info" title="Scale databases and resources">}}
 
-## Enable Autoscaling
-
-{{< codetabs >}}
-
-+++
-title=In the Console
-+++
-
-In the Console, head to Configure Resources in the Settings section, and select Enable under the Autoscaling column. You will be able to configure your thresholds from here, as shown below.
-
-![Configure autoscaling in the Console](/images/autoscaling/Configure-autoscaling.png "0.50")
-
-<--->
-+++
-title=Using the CLI
-+++
-
-Ut eu porta est. Vestibulum in placerat urna, ac viverra nunc. Sed fringilla venenatis nunc, at sagittis leo pellentesque in. Vestibulum vel lorem nec arcu bibendum volutpat.
-
-<--->
-+++
-title=Using the API
-+++
-
-Cras vel tortor non nulla fermentum dapibus id scelerisque turpis. Nullam mollis purus id libero pretium, vel porta lacus venenatis. 
-
-{{< /codetabs >}}
-
-## Guardrails
-
-Autoscaling gives you control over the minimum and maximum number of instances your app can run. These guardrails ensure your app never scales up or down too far.
-
-For example, you might configure:
-
-- **Minimum instances**: 2 (so your app always has at least 2 instances running, even during low traffic)
-- **Maximum instances**: 8 (so your app will never scale beyond 8 instances, even during a traffic spike)
-
-You can also customize the scaling thresholds (the CPU utilization percentages that trigger scale-up or scale-down actions) and the evaluation periods (how long usage must stay above or below a threshold before scaling occurs). Evaluation periods can be set anywhere between 1 and 60 minutes.
-
-{{< note theme="info" title="Manual instance scaling">}}
-
-When autoscaling is enabled, manual instance scaling is disabled. Autoscaling takes full control of instance counts within the min/max guardrails you define.
+When autoscaling is enabled, [manual instance count](https://docs.upsun.com/manage-resources/adjust-resources.html#horizontal-scaling) changes are disabled. Vertical resources (CPU/RAM/disk per instance) remain configurable.
 
 {{< /note >}}
 
+#### Default behaviour (CPU example)
+
+- If CPU stays at **≥ 80% for 5 minutes**, autoscaling adds an instance.
+- If CPU stays at **≤ 20% for 5 minutes**, autoscaling removes an instance.
+- After a scaling action, autoscaling waits **5 minutes** before making another change.
+
+This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
+
+## Guardrails and evaluation
+
+Autoscaling gives you control over the minimum and maximum number of instances your app can run. These guardrails ensure your app never scales up or down too far. Set boundaries to keep scaling safe, predictable, and cost-efficient:
+
+For example, you might configure:
+
+- **Minimum instances** — Ensures a minimum number of instances of the configured application are always running (e.g., `2`)
+- **Maximum instances** — Prevents runaway scaling (e.g., `8`)
+- **Evaluation period** — Time CPU must stay above/below a threshold before action (1–60 minutes)
+- **Cooldown window** — Wait time before any subsequent scaling action (default: 5 minutes)
+
+You can also customize the scaling [thresholds](#thresholds) and the evaluation periods (how long usage must stay above or below a threshold before scaling occurs). Evaluation periods can be set anywhere between 1 and 60 minutes.
+
+{{< note theme="info" title="Manual instance scaling">}}
+
+When autoscaling is enabled, manual instance scaling is disabled. Autoscaling manages instance counts within the min/max guardrails you define.
+
+{{< /note >}}
+
+## Enable Autoscaling
+
+To enable autoscaling, follow the steps below:
+
+1. Open your project in the Console
+2. Select the environment where you want to enable autoscaling
+3. Choose **Configure resources**
+4. Under the Autoscaling column select **Enable**
+5. Configure thresholds, evaluation period, cooldown, and instances as needed
+
+![Configure autoscaling in the Console](/images/autoscaling/Configure-autoscaling.png "0.50")
+
 ## Alerts and metrics
 
-When a scaling event occurs, it will appear in your metrics dashboards. Standard health alerts are also triggered when scaling occurs.
+- Scaling events appear in infrastructure and application metrics dashboards.
+- Standard health alerts are triggered when scaling occurs.
+- After enabling autoscaling, monitor CPU, instance count, and request latency to validate thresholds.
+
+{{< note theme="info" title="Metric resources">}}
+
+If you're looking to keep track of your infrastructure and application metrics see:
+
+- [Infrastructure metrics](https://docs.upsun.com/increase-observability/metrics.html)
+- [Application metrics](https://docs.upsun.com/increase-observability/application-metrics.html)
+
+{{< /note >}}
 
 ## Billing and cost impact
 
