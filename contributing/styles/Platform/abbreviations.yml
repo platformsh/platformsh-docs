@@ -43,6 +43,7 @@ exceptions:
   - PDF
   - PHP
   - POST
+  - Qdrant
   - RAM
   - REPL
   - REST
