@@ -215,6 +215,29 @@ Add them to the `type` key of the [service configuration](#1-configure-the-servi
 <!-- To update the versions in this table, use docs/data/registry.json -->
 {{% supported-services %}}
 
+### Running other services as applications
+
+While Upsun publishes and maintains service images for the list above, you can also run any other service as an application in your project as long as they rely on a http-based interface for their respective clients.
+
+To connect through the internal network to a service running as an application from your main application in your project, add a relationship in your application configuration block. Replace `chroma` in the example below with the name of your service application.
+
+```yaml {location=".upsun/config.yaml"}
+applications:
+  myapp:
+    source:
+      root: "myapp"
+    type: "python:3.12"
+    relationships:
+      chroma: "chroma:http"
+```
+
+You can find the documented `.upsun/config.yaml` configurations and setup steps for the following services:
+
+| Name                | Type            | Runtime           |
+| ------------------- | --------------- | ----------------- |
+| [Chroma](chroma.md) | Vector Database | Python            |
+| [Qdrant](qdrant.md) | Vector Database | Composable image  |
+
 ### Service versions
 
 These services generally follow [semantic versioning conventions](https://semver.org/).
