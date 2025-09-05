@@ -12,7 +12,7 @@ While Upsun does not provide an official service image for Qdrant, the database 
 
 ### 1. Configure the Qdrant application
 
-Create a Chroma application in your `.upsun/config.yaml`:
+Create a qdrant application in your `.upsun/config.yaml`:
 
 ```yaml {location=".upsun/config.yaml"}
 applications:
@@ -163,7 +163,7 @@ applications:
       root: "myapp"
     type: "python:3.12"
     relationships:
-      chroma: "qdrant:http"
+      qdrant: "qdrant:http"
 ```
 
 As the example uses `qdrant` as the relationship name, your application will have access to `QDRANT` environments variables.
@@ -259,7 +259,7 @@ If you are willing to make the Qdrant database publicly accessible, add a new ro
 routes:
   "https://qdrant.{default}/":
     type: upstream
-    upstream: "chroma:http"
+    upstream: "qdrant:http"
 ```
 
 {{< note theme="warning" title="Exposing Qdrant">}}
