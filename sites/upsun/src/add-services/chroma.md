@@ -1,7 +1,7 @@
 ---
 title: Chroma
 sidebarTitle: Chroma
-weight: 50
+weight: -120
 ---
 
 [Chroma](https://www.trychroma.com/) is an open-source vector database designed for AI applications that need to store, query, and manage embeddings efficiently.

@@ -1,6 +1,6 @@
 ---
 title: "Valkey"
-weight: 20
+weight: 40
 sidebarTitle: "Valkey"
 ---
 
