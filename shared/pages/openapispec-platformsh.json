@@ -11588,8 +11588,7 @@
                 ],
                 "properties": {
                   "plan": {
-                    "$ref": "#/components/schemas/ProjectPlan",
-                    "default": null
+                    "$ref": "#/components/schemas/ProjectPlan"
                   },
                   "project_region": {
                     "type": "string",
