@@ -81,7 +81,13 @@ Autoscaling continuously monitors the configured **trigger** across your app’s
 - **Scale-up threshold:** 80% CPU for 5 minutes
 - **Scale-down threshold:** 20% CPU for 5 minutes
 - **Cooldown window:** 5 minutes between scaling actions
-- **Instance limits:** 1–10 per environment (configurable)
+- **Instance limits:** 1–8 per environment (region-dependent) 
+
+{{< note theme="note" title="Instance limits">}}
+
+Default instance limits are typically **1–8 instances per environment**, but the exact values depend on the region. Some regions may have higher or lower defaults. The scaling settings in your project always reflect the limits for the region where it runs.  
+
+{{< /note >}}
 
 {{< note theme="info" title="Scale databases and resources">}}
 
