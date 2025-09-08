@@ -7902,7 +7902,6 @@ paths:
               properties:
                 plan:
                   $ref: '#/components/schemas/ProjectPlan'
-                  default: null
                 project_region:
                   type: string
                   description: The machine name of the region where the project is located. Cannot be changed after project creation.
