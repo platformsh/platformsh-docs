@@ -9,7 +9,7 @@ keywords:
   - "scaling"
 ---
 
-Autoscaling allows your applications to automatically [scale horizontally](https://docs.upsun.com/manage-resources/adjust-resources.html#horizontal-scaling) based on resource usage. Instead of manually adjusting instance counts, autoscaling dynamically increases or decreases the number of running instances based on CPU utilization.  
+Autoscaling allows your applications to automatically [scale horizontally](/manage-resources/adjust-resources.html#horizontal-scaling) based on resource usage. Instead of manually adjusting instance counts, autoscaling dynamically increases or decreases the number of running instances based on CPU utilization.  
 
 This ensures your apps remain responsive under load while helping you optimize costs.  
 
@@ -19,27 +19,29 @@ This ensures your apps remain responsive under load while helping you optimize c
 
 {{< note theme="info" title="Scale databases and resources">}}
 
-If you're looking to scale your databases and other services, or vertically scale resources (CPU, RAM, disk), see:
+If you're looking to scale your databases and other services, or [vertically scale](/manage-resources/adjust-resources.html#vertical-scaling) resources (CPU, RAM, disk), see:
 
-- [Resource configuration](https://docs.upsun.com/manage-resources/adjust-resources.html)
-- [Resource initialization](https://docs.upsun.com/manage-resources/resource-init.html)
-- [Horizontal scaling (manual)](https://docs.upsun.com/manage-resources/adjust-resources.html#horizontal-scaling)
+- [Resource configuration](/manage-resources/adjust-resources.html)
+- [Resource initialization](/manage-resources/resource-init.html)
+- [Horizontal scaling (manual)](/manage-resources/adjust-resources.html#horizontal-scaling)
 
 {{< /note >}}
 
 ## Autoscaling availability
 
+The tables below outline where autoscaling and manual scaling are supported, so you can plan your deployments with the right balance of flexibility and control.
+
 ### Component support
 
-| Component | Horizontal Autoscaling | Vertical Scaling (Manual) |
+| Component | Horizontal autoscaling | Vertical scaling (Manual) |
 | --------- | ---------------------- | ------------------------- |
-| Applications — [PHP](https://docs.upsun.com/create-apps/languages/php.html), [Node.js](https://docs.upsun.com/create-apps/languages/nodejs.html), etc. | Available              | Available                 |
-| Services — [MySQL](https://docs.upsun.com/add-services/mysql.html), [Redis](https://docs.upsun.com/add-services/redis.html), etc. | Unavailable            | Available                 |
-| Queues — [workers](https://docs.upsun.com/add-services/worker.html), background jobs                            | Unavailable            | Available                 |
+| Applications ([PHP](/create-apps/languages/php.html), [Node.js](/create-apps/languages/nodejs.html), etc.) | Available              | Available                 |
+| Services ([MySQL](/add-services/mysql.html), [Redis](/add-services/redis.html), etc.) | Unavailable            | Available                 |
+| Queues ([workers](/add-services/worker.html), background jobs)                            | Unavailable            | Available                 |
 
 ### Product tier support
 
-| Product tier | Horizontal Autoscaling | Vertical Scaling (Manual) |
+| Product tier | Horizontal autoscaling | Vertical scaling (Manual) |
 | ------------ | ---------------------- | ------------------------- |
 | Upsun Flex   | Available              | Available                 |
 | Upsun Fixed  | Unavailable            | Available                 |
@@ -54,13 +56,13 @@ If you're looking to scale your databases and other services, or vertically sca
 
 ### Scaling trigger support
 
-| Trigger                  | Console     | CLI         | API         |
-| ------------------------- | ----------- | ----------- | ----------- |
-| Average CPU (min/max)     | Available   | Available   | Available   |
-| Average Memory (min/max)  | Unavailable | Unavailable | Available   |
+| Trigger                   | Console     | CLI         | 
+| ------------------------- | ----------- | ----------- | 
+| Average CPU (min/max)     | Available   | Available   | 
+| Average Memory (min/max)  | Coming      | Coming      | 
 
   
-## How Autoscaling works
+## How autoscaling works
 
 ### Thresholds
 
@@ -83,14 +85,14 @@ Autoscaling continuously monitors the configured **trigger** across your app’s
 
 {{< note theme="info" title="Scale databases and resources">}}
 
-When autoscaling is enabled, [manual instance count](https://docs.upsun.com/manage-resources/adjust-resources.html#horizontal-scaling) changes are disabled. Vertical resources (CPU/RAM/disk per instance) remain configurable.
+When autoscaling is enabled, [manual instance count](/manage-resources/adjust-resources.html#horizontal-scaling) changes are disabled. [Vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) (CPU/RAM/disk per instance) remain configurable.
 
 {{< /note >}}
 
 #### Default behaviour (CPU example)
 
-- If CPU stays at **≥ 80% for 5 minutes**, autoscaling adds an instance.
-- If CPU stays at **≤ 20% for 5 minutes**, autoscaling removes an instance.
+- If CPU stays at **80% or higher for 5 minutes**, autoscaling adds an instance.
+- If CPU stays at **20% or lower for 5 minutes**, autoscaling removes an instance.
 - After a scaling action, autoscaling waits **5 minutes** before making another change.
 
 This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
@@ -101,12 +103,10 @@ Autoscaling gives you control over the minimum and maximum number of instances y
 
 For example, you might configure:
 
-- **Minimum instances** — Ensures a minimum number of instances of the configured application are always running (e.g., `2`)
-- **Maximum instances** — Prevents runaway scaling (e.g., `8`)
-- **Evaluation period** — Time CPU must stay above/below a threshold before action (1–60 minutes)
+- **Minimum instances** — Ensures a minimum number of instances of the configured application are always running (e.g. `2`)
+- **Maximum instances** — Prevents runaway scaling (e.g. `8`)
+- **Evaluation period** — Time CPU must stay above or below a threshold before action (1–60 minutes)
 - **Cooldown window** — Wait time before any subsequent scaling action (default: 5 minutes)
-
-You can also customize the scaling [thresholds](#thresholds) and the evaluation periods (how long usage must stay above or below a threshold before scaling occurs). Evaluation periods can be set anywhere between 1 and 60 minutes.
 
 {{< note theme="info" title="Manual instance scaling">}}
 
@@ -121,10 +121,13 @@ To enable autoscaling, follow the steps below:
 1. Open your project in the Console
 2. Select the environment where you want to enable autoscaling
 3. Choose **Configure resources**
-4. Under the Autoscaling column select **Enable**
+
+![Navigate to Configure resources in Console](/images/autoscaling/configure-resources-1.png "0.50")
+
+4. Under the autoscaling column select **Enable**
 5. Configure thresholds, evaluation period, cooldown, and instances as needed
 
-![Configure autoscaling in the Console](/images/autoscaling/Configure-autoscaling.png "0.50")
+![Configure autoscaling in Console](/images/autoscaling/Configure-autoscaling.png "0.50")
 
 ## Alerts and metrics
 
@@ -136,40 +139,50 @@ To enable autoscaling, follow the steps below:
 
 If you're looking to keep track of your infrastructure and application metrics see:
 
-- [Infrastructure metrics](https://docs.upsun.com/increase-observability/metrics.html)
-- [Application metrics](https://docs.upsun.com/increase-observability/application-metrics.html)
+- [Infrastructure metrics](/increase-observability/metrics.html)
+- [Application metrics](/increase-observability/application-metrics.html)
 
 {{< /note >}}
 
 ## Billing and cost impact
 
-Autoscaling costs are based on the actual resources consumed, just as with manual scaling. Instances added through autoscaling are billed normally, and there are no separate charges for scaling events. 
+Instances added through autoscaling are billed normally, and there are no separate charges for scaling events. 
 
-However, each scaling action consumes build minutes, since new instances follow the same deployment process as manual scaling. If your app scales frequently, this could increase build minute usage.
+However, each scaling action consumes build minutes, since new or removed instances are deployed with scaling action. If your app scales frequently, this could increase build minute usage.
 
-To avoid unnecessary costs, configure thresholds carefully. Overly aggressive settings (eg. scaling up and down every minute) can trigger constant deployments.
+To control costs, avoid overly aggressive settings (eg. very short evaluation periods).
+
+{{< note theme="info" title="Metric resources">}}
+
+If you're looking to keep track of your billing see:
+
+- [Monitor billing](/administration/billing/monitor-billing.html)
+- [Pricing overview](https://www.upsun.com/pricing/)
+
+{{< /note >}}
 
 ## Best practices for autoscaling
 
 Autoscaling gives you flexibility and resilience, but to get the best results it's important to configure your app and thresholds thoughtfully. Below are some best practices to help you balance performance, stability, and cost.
 
-#### Cost optimization
+### Cost & stability
 
-- Configure realistic scale-up and scale-down thresholds to avoid unnecessary deployments that can rapidly consume build minutes.
-- Use longer evaluation periods (e.g. 10–15 minutes) if your app traffic spikes often to prevent scaling up and down too frequently.
-- Set minimum and maximum instance counts to control costs while ensuring baseline availability.
-- Monitor billing and build minute usage after enabling autoscaling, then adjust thresholds as needed.
+- **Set thresholds wisely**: Configure realistic scale-up and scale-down thresholds to avoid unnecessary deployments that quickly consume build minutes.
+- **Smooth spikes**: Use longer evaluation periods (10–15 minutes) if your app traffic spikes often, to prevent rapid up-and-down scaling.
+- **Control instance counts**: Define minimum and maximum instances to manage costs while keeping required availability.
+- **Monitor costs**: Track billing and build minute usage after enabling autoscaling, then adjust thresholds as needed.
 
-#### Application architecture
+### Application design
 
-- Use external or managed services for components like databases rather than embedding them in autoscaled containers.
-- Follow {{% vendor/name %}} recommendations for [caching](/define-routes/cache.html) and mounts for [composable image](/create-apps/app-reference/composable-image.html#mounts) and [single-runtime](/create-apps/app-reference/single-runtime-image.html#mounts) to ensure autoscaled containers stay portable.
-- If using [composable images](/create-apps/app-reference/composable-image.html), be cautious when multiple containers rely on a single embedded service as scaling could introduce unexpected bottlenecks.
+- **External services**: Use external [services](/add-services/) such as databases and caches instead of embedding them within the autoscaled applications.
+- **Keep containers portable**: Follow {{% vendor/name %}} recommendations for [caching](/define-routes/cache.html) and mounts for [composable images](/create-apps/app-reference/composable-image.html#mounts) and [single-runtime images](/create-apps/app-reference/single-runtime-image.html#mounts).
+- **Avoid bottlenecks**: If using [composable images](/create-apps/app-reference/composable-image.html), be cautious when multiple containers depend on a single embedded service, as scaling may cause unexpected bottlenecks.
 
-#### Cron jobs and long-running tasks
+### Cron jobs & long-running tasks
 
-- Be aware that cron jobs increase CPU usage and may trigger scale-ups. Factor this into your threshold settings.
-- Cron jobs remain bound to the container they started in and are not interrupted by scaling events, so plan instances accordingly.
+- **CPU spikes from jobs**: Cron jobs can increase CPU usage and may trigger scale-ups so factor this into your threshold settings.
+- **Job continuity**: Cron jobs remain bound to their starting container and are **not** interrupted by scaling, so plan instances accordingly.
+
 
 {{< note theme="tip" title="Supported services and actions">}}
 
@@ -201,3 +214,4 @@ Scaling down to zero instances is also **not supported**. Use minimum instance c
 
 - [Payment FAQ](/administration/billing/payment-faq.html) 
 - [Monitor billing](/administration/billing/monitor-billing.html) 
+- [Pricing overview](https://www.upsun.com/pricing/)
