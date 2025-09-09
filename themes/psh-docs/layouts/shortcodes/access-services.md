@@ -17,6 +17,10 @@ Consult each of the individual service documentation to see how to retrieve and 
     {{ $suffix = "usage-example" }}
 {{ else if eq .File.Path "add-services/clickhouse.md" }}
     {{ $suffix = "usage-example" }}
+{{ else if eq .File.Path "add-services/chroma.md" }}
+    {{ $suffix = "3-use-the-relationship-in-your-application" }}
+{{ else if eq .File.Path "add-services/qdrant.md" }}
+    {{ $suffix = "4-use-the-relationship-in-your-application" }}
 {{ end }}
 - [{{ if .Params.sidebarTitle}}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}]({{ .RelPermalink }}#{{ $suffix }})
 {{ end }}
