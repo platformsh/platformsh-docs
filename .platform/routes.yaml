@@ -298,3 +298,7 @@ https://docs.upsun.com/:
   ssi:
     enabled: false
 
+https://fixed.docs.upsun.com/:
+  type: redirect
+  to: https://{default}/
+
