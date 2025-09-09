@@ -28,7 +28,7 @@ The converting tool performs the following transformations:
 
 1. Generation of Upsun `config.yaml`
 - Creates a new `config.yaml` file - the primary configuration file for {{% vendor/name %}} projects.
-- Extracts relevant information from `.platform.app.yaml`, `services.yaml`, and `routes.yaml`.
+- Extracts relevant information from `.platform.app.yaml`, `services.yaml`, `applications.yaml`, and `routes.yaml`.
 
 2. Refactoring of obsolete or incompatible fields
 Removes resource-related fields that are not applicable in {{% vendor/name %}}. This includes:
