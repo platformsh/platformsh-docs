@@ -2,15 +2,15 @@
 #
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
-# More information: https://docs.platform.sh/define-routes.html
+# More information: https://docs.upsun.com/anchors/fixed/routes/
 "https://{default}/":
     type: upstream
     upstream: "app:http"
     # Platform.sh supports HTTP caching at the server level. Caching is enabled by default, but is only applied to
     # GET and HEAD requests.
-    # More information: https://docs.platform.sh/define-routes/cache.html
+    # More information: https://docs.upsun.com/anchors/fixed/routes/cache/
     cache:
-        # All possible cache configuration options: https://docs.platform.sh/define-routes/cache.html#cache-configuration-properties
+        # All possible cache configuration options: https://docs.upsun.com/anchors/fixed/routes/cache/configuration-properties/
         enabled: true
         # Base the cache on the session cookies. Ignore all other cookies.
         cookies:
@@ -22,7 +22,7 @@
             - '/^wp-resetpass-/'
 
 # A basic redirect definition
-# More information: https://docs.platform.sh/define-routes.html#basic-redirect-definition
+# More information: https://docs.upsun.com/anchors/fixed/routes/examples/redirect/
 "https://www.{default}/":
     type: redirect
     to: "https://{default}/"
