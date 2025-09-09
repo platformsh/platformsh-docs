@@ -276,9 +276,6 @@ When creating a new organization, users will be able to select the organization 
 #### Will I still use the same configuration files for fixed projects?  
 - Correct. The same configuration file structures remain (`.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, etc).  
 
-#### Will mount differences still exist between fixed and flex after September?  
-- Yes. Waiting for git fixes to resolve this.  
-
 #### Besides the name "Platform.sh" going away, will there be visual changes in the console?  
 - Yes.
   - New way to create organizations (choose fixed or flex).  
@@ -288,3 +285,9 @@ When creating a new organization, users will be able to select the organization 
 #### With a unified CLI, will there be a way to identify fixed vs flex in the project list?  
 - You will see a list of all organizations.  
 - There is no field in the CLI that explicitly identifies fixed vs flex.  
+
+#### Do Upsun projects run in the same regions as Platform.sh projects?
+Correct.
+
+#### How can I anticipate my monthly invoice with a usage-based pricing?
+Upsun gives a monthly price estimation for the current and next full month based on current usage pattern.
