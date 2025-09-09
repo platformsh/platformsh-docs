@@ -277,10 +277,10 @@ When creating a new organization, users will be able to select the organization 
 - Correct. The same configuration file structures remain (`.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, etc).  
 
 #### Besides the name "Platform.sh" going away, will there be visual changes in the console?  
-- Yes.
-  - New way to create organizations (choose fixed or flex).  
+Yes.
+  - There will be a new way to create organizations (you can now choose fixed or flex).  
   - Ability to navigate between organization types.  
-  - **15-day free trial** for users creating Flex organizations.  
+  - **[15-day free trial](https://auth.upsun.com/register/)** for users creating Flex organizations.  
 
 #### With a unified CLI, will there be a way to identify fixed vs flex in the project list?  
 - You will see a list of all organizations.  
@@ -291,3 +291,15 @@ Correct.
 
 #### How can I anticipate my monthly invoice with usage-based pricing?
 Upsun gives a monthly price estimation for the current and next full month based on current usage pattern.
+
+#### Can I use the same credentials / SSO / 2FA on Platform and Upsun?
+Yes.
+
+#### Can I use BlackFire for my Upsun applications?
+Upsun includes Blackfire by default.
+
+#### Will Upsun be delivered entirely on a “self service” model?
+Yes. Additionally, Upsun offers discounts based on volume commitment that is contracted for 1+ Year.
+
+#### Can I try Upsun before buying?
+Yes, you can [sign-up for the 15-day trial](https://auth.upsun.com/register/).
