@@ -382,7 +382,7 @@ Below is an example configuration to make [PostgreSQL](/add-services/postgresql.
 # Each service listed will be deployed
 # to power your Platform.sh project.
 # More information: https://docs.platform.sh/add-services.html
-# Full list of available services: https://docs.platform.sh/add-services.html#available-services
+# Full list of available services: https://docs.upsun.com/anchors/fixed/services/available/
 db:
   type: postgresql:12
   disk: 1024
