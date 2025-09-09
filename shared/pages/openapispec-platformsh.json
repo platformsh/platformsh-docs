@@ -10790,7 +10790,6 @@
                   "type": "object",
                   "properties": {
                     "prepayment": {
-                      "type": "object",
                       "$ref": "#/components/schemas/PrepaymentObject"
                     },
                     "_links": {
@@ -10880,8 +10879,37 @@
                     },
                     "_links": {
                       "type": "object",
-                      "$ref": "#/components/schemas/ListLinks",
                       "properties": {
+                        "self": {
+                          "type": "object",
+                          "description": "Link to the current set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "previous": {
+                          "type": "object",
+                          "description": "Link to the previous set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "next": {
+                          "type": "object",
+                          "description": "Link to the next set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link"
+                            }
+                          }
+                        },
                         "prepayment": {
                           "type": "object",
                           "description": "Link to the prepayment resource.",
@@ -15176,34 +15204,24 @@
         "type": "object",
         "properties": {
           "self": {
-            "type": "object",
-            "description": "Link to the current set of items.",
-            "properties": {
-              "href": {
-                "type": "string",
-                "description": "URL of the link."
-              }
-            }
+            "$ref": "#/components/schemas/Link"
           },
           "previous": {
-            "type": "object",
-            "description": "Link to the previous set of items.",
-            "properties": {
-              "href": {
-                "type": "string",
-                "description": "URL of the link."
-              }
-            }
+            "$ref": "#/components/schemas/Link"
           },
           "next": {
-            "type": "object",
-            "description": "Link to the next set of items.",
-            "properties": {
-              "href": {
-                "type": "string",
-                "description": "URL of the link"
-              }
-            }
+            "$ref": "#/components/schemas/Link"
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "title": "Link",
+        "description": "A hypermedia link to the {current, next, previous} set of items.",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URL of the link"
           }
         }
       },
