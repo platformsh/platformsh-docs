@@ -31,7 +31,7 @@ We recommend the latest [MariaDB](/add-services/mysql/_index.md) version for Wor
 #
 # Each service listed will be deployed
 # to power your Platform.sh project.
-# More information: https://docs.platform.sh/add-services.html
+# More information: https://docs.upsun.com/anchors/fixed/services/
 # Full list of available services: https://docs.upsun.com/anchors/fixed/services/available/
 db:
     type: mariadb:10.4
