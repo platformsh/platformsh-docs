@@ -289,5 +289,5 @@ When creating a new organization, users will be able to select the organization 
 #### Do Upsun projects run in the same regions as Platform.sh projects?
 Correct.
 
-#### How can I anticipate my monthly invoice with a usage-based pricing?
+#### How can I anticipate my monthly invoice with usage-based pricing?
 Upsun gives a monthly price estimation for the current and next full month based on current usage pattern.
