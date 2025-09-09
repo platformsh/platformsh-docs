@@ -1,5 +1,5 @@
 ---
-title: How to deploy AI 
+title: How to deploy AI
 weight: -50
 layout: single
 
@@ -23,6 +23,7 @@ and chatbots using any
 supported runtime
 - [**MCP Servers**](mcp.md) - Deploy Model Context Protocol servers for
 AI tool integration
+- **Vector Databases** - [Chroma](add-services/chroma.md), [Qdrant](add-services/qdrant.md)
 
 ## Supported technologies
 
