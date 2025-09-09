@@ -2,13 +2,13 @@
 #
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
-# More information: https://docs.platform.sh/define-routes.html
+# More information: https://docs.upsun.com/anchors/fixed/routes/
 "https://{default}/":
   type: upstream
   upstream: "app:http"
 
 # A basic redirect definition
-# More information: https://docs.platform.sh/define-routes.html#basic-redirect-definition
+# More information: https://docs.upsun.com/anchors/fixed/routes/examples/redirect/
 "https://www.{default}/":
   type: redirect
   to: "https://{default}/"
