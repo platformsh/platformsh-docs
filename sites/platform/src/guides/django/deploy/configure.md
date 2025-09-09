@@ -38,7 +38,7 @@ type: 'python:3.10'
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: "db:postgresql"
 
@@ -130,7 +130,7 @@ type: 'python:3.10'
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: "db:postgresql"
 
@@ -233,7 +233,7 @@ type: 'python:3.10'
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: "db:postgresql"
 
