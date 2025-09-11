@@ -5813,6 +5813,13 @@ paths:
           schema:
             $ref: '#/components/schemas/StringFilter'
         - in: query
+          name: filter[type]
+          description: Allows filtering by `type` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
           name: filter[vendor]
           description: |
             Allows filtering by `vendor` using one or more operators.
