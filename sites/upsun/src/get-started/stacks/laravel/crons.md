@@ -50,7 +50,7 @@ applications:
 ## Run the Laravel scheduler every minute
 
 Cron job execution on the default {{< vendor/name >}} offering are limited to once every 5 minutes.
-For more information, see the [documentation on crons](/create-apps/app-reference/single-runtime-image.md#crons).
+For more information, see the [documentation on crons](/create-apps/image-properties/crons.md).
 
 However, you can add a [worker](/create-apps/app-reference/single-runtime-image.md#workers)
 and specify a start command that [runs the scheduler every minute](https://laravel.com/docs/11.x/scheduling#running-the-scheduler-locally).
