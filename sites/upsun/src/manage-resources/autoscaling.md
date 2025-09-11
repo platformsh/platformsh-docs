@@ -9,7 +9,7 @@ keywords:
   - "scaling"
 ---
 
-Autoscaling allows your applications to automatically [scale horizontally](/manage-resources/adjust-resources.html#horizontal-scaling) based on resource usage. Instead of manually adjusting instance counts, autoscaling dynamically increases or decreases the number of running instances based on CPU utilization.  
+Autoscaling allows your applications to automatically [scale horizontally](/manage-resources/adjust-resources.html#horizontal-scaling) based on resource usage. 
 
 This ensures your apps remain responsive under load while helping you optimize costs.  
 
@@ -33,7 +33,7 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 
 ### Component support
 
-| Component | Horizontal autoscaling | Vertical scaling (Manual) |
+| Component | Horizontal autoscaling | Manual scaling (Vertical) |
 | --------- | ---------------------- | ------------------------- |
 | Applications ([PHP](/create-apps/languages/php.html), [Node.js](/create-apps/languages/nodejs.html), etc.) | Available              | Available                 |
 | Services ([MySQL](/add-services/mysql.html), [Redis](/add-services/redis.html), etc.) | Unavailable            | Available                 |
@@ -41,14 +41,14 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 
 ### Product tier support
 
-| Product tier | Horizontal autoscaling | Vertical scaling (Manual) |
+| Product tier | Horizontal autoscaling | Manual scaling (Vertical) |
 | ------------ | ---------------------- | ------------------------- |
 | Upsun Flex   | Available              | Available                 |
 | Upsun Fixed  | Unavailable            | Available                 |
 
 ### Environment support
 
-| Environment  | Horizontal Autoscaling | Vertical Scaling (Manual) |
+| Environment  | Horizontal Autoscaling | Manual scaling (Vertical) |
 | ------------ | ---------------------- | ------------------------- |
 | Development  | Available              | Available                 |
 | Staging      | Available              | Available                 |
@@ -137,9 +137,22 @@ To enable autoscaling, follow the steps below:
 
 ## Alerts and metrics
 
-- Scaling events appear in infrastructure and application metrics dashboards.
-- Standard health alerts are triggered when scaling occurs.
-- After enabling autoscaling, monitor CPU, instance count, and request latency to validate thresholds.
+When autoscaling is enabled, the system continuously monitors metrics such as CPU usage, instance count, and request latency. If a defined threshold is crossed, an alert is triggered and the platform automatically responds by adjusting resources.
+
+Scaling activity is visible in several places:
+
+- **Metrics dashboards** show when scaling has occurred  
+- Alerts and scaling actions are also visible in the Console: 
+  - **Alerts** appear with a bell icon (for example - *Scaling: CPU for application below 70% for 5 minutes*) 
+  - **Scaling actions** appear with a resources icon (for example, *Upscale: 1 instance added to application*)  
+- Alerts and scaling actions are also listed in the CLI as `environment.alert` and `environment.resources.update`  
+- To review detailed scaling events, open the **Resources** dashboard by navigating to **{Select project} > {Select environment} > Resources**
+
+### Configure alerts
+
+You can also [configure notifications for alerts](/administration/billing/monitor-billing.html#set-a-billing-alert). 
+
+For example, by setting up an activity script on `environment.alert`, you can automatically send yourself an email, a Slack message, or another type of custom notification.
 
 {{< note theme="info" title="Metric resources">}}
 
