@@ -104,10 +104,10 @@ They would otherwise fail CORS checks if the wildcard value is used.
 ## `Strict_Transport_Security` header
 
 The `Strict_Transport_Security` header returns a value of `max-age=0`
-unless you enable [HTTP Strict Transport Security (HSTS)](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)
+unless you enable [HTTP Strict Transport Security (HSTS)](https://fixed.docs.upsun.com/define-routes/https.html#enable-http-strict-transport-security-hsts)
 in your [routes configuration](/define-routes/_index.md).
 
 Note that once HSTS is enabled, configuration capabilities depend
-on the [HSTS properties](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)
+on the [HSTS properties](https://fixed.docs.upsun.com/define-routes/https.html#enable-http-strict-transport-security-hsts)
 set in your routes configuration.
 For example, the `max-age` value is set to `31536000` by {{% vendor/name %}} and can't be customized.

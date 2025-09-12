@@ -25,7 +25,7 @@ See an example of Redis for caching in our [Drupal template](https://github.com/
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
+# to power your Upsun Fixed project.
 
 db:
     type: mariadb:10.11

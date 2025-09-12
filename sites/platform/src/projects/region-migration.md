@@ -88,7 +88,7 @@ Then upload them to your new project:
 ```
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 See more options on [how to export files](/learn/tutorials/exporting.md)
 and [how to import files](/learn/tutorials/migrating.md#5-import-data).
 <--->

@@ -174,7 +174,7 @@ As an example, to generate a PDF file of the {{% vendor/name %}} website, run th
 ```bash {location="Terminal"}
 curl \
 --request POST http://yduimhaby523ase4lju3qhimre.gotenberg8.service._.eu-3.{{< vendor/urlraw "hostname" >}}/forms/chromium/convert/url \
---form url=https://platform.sh \
+--form url=https://upsun.com \
 --form landscape=true \
 --form marginTop=1 \
 --form marginBottom=1 \

@@ -241,7 +241,7 @@ relationships:
 disk: 512
 
 # Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+# More information: https://fixed.docs.upsun.com/create-apps/app-reference.html#mounts
 mounts:
   'logs':
     source: local
@@ -380,7 +380,7 @@ Below is an example configuration to make [PostgreSQL](/add-services/postgresql.
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
+# to power your Upsun Fixed project.
 # More information: https://docs.upsun.com/anchors/fixed/services/
 # Full list of available services: https://docs.upsun.com/anchors/fixed/services/available/
 db:
