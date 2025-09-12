@@ -19,7 +19,7 @@ This ensures your apps remain responsive under load while helping you optimize c
 
 {{< note theme="info" title="Scale databases and resources">}}
 
-If you're looking to scale your databases and other services, or [vertically scale](/manage-resources/adjust-resources.html#vertical-scaling) resources (CPU, RAM, disk), see:
+To vertically scale CPU, RAM, or disk, or horizontally scale applications and workers (manually), see:  
 
 - [Resource configuration](/manage-resources/adjust-resources.html)
 - [Resource initialization](/manage-resources/resource-init.html)
