@@ -8,9 +8,15 @@
     {{ $logolinksto = .Site.Params.logolinksto }}
   {{ end }}
 
-  <a class="basis-1/4 md:basis-1/6 flex justify-center" href="{{ $logolinksto }}" data-engagement-id="logo-link">
+  <a class="basis-1/4 md:basis-1/6 flex justify-center items-center" href="{{ $logolinksto }}" data-engagement-id="logo-link">
 
     <img class="min-w-32 max-w-[175px]" src="{{ .Site.Params.logo | relURL }}" alt="{{ if isset .Site.Params "logoAlt" }}{{ .Site.Params.logoAlt }}{{ else if isset .Site.Params.meta "sitename" }}{{ .Site.Params.meta.sitename }}{{ end }}">
+    
+    {{ if eq .Site.Params.vendor.name "Upsun Fixed" }}
+      {{ partial "branding/fixed-badge" . }}
+    {{ else if eq .Site.Params.vendor.name "Upsun" }}
+      {{ partial "branding/flex-badge" . }}
+    {{ end }}
 
   </a>
 
