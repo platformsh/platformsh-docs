@@ -24,7 +24,7 @@ To vertically scale CPU, RAM, or disk, or horizontally scale applications and wo
 - [Resource configuration](/manage-resources/adjust-resources.html)
 - [Resource initialization](/manage-resources/resource-init.html)
 - [Horizontal scaling (manual)](/manage-resources/adjust-resources.html#horizontal-scaling)
-
+- [Vertical scaling](/manage-resources/adjust-resources.html#vertical-scaling)
 {{< /note >}}
 
 ## Autoscaling availability
