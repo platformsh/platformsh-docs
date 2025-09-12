@@ -107,12 +107,19 @@ If you use PHP, note that PHP-FPM is only started automatically if PHP is define
 
 ### Supported Nix channels
 
-- `24.05`
+A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems). 
+
+Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch). 
+
+Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. 
+
+The following channels are supported: 
 - `25.05`
+- `24.05`
 
 ### Configure Nix channels
 
-The Nix channel can be configured with the [top-level property `type`](#top-level-properties). 
+The Nix channel can be configured with the [top-level property `type`](#top-level-properties).
 
 For example, to use the Nix channel `25.05`, you would use the following syntax:
 
@@ -141,13 +148,13 @@ Security and other patches are applied automatically.
 | [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
 | [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
 | [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 21                                     |
+| [Java](/languages/java.html)                 | `java`        | 22<br/>21                              |
 | [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 24<br/>22<br/>20<br/>18                |
 | [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
+| [PHP](/languages/php.html)                   | `php`         | 8.4<br/>8.3<br/>8.2<br/>8.1            |
 | [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
+| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.4<br/>3.3<br/>3.2<br/>3.1            |
 
 **Example:**
 

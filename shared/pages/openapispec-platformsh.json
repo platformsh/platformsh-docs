@@ -5578,6 +5578,17 @@
             }
           }
         },
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnvironmentDeployInput"
+              }
+            }
+          }
+        },
         "tags": [
           "Environment"
         ]
@@ -7439,6 +7450,121 @@
           "Third-Party Integrations"
         ],
         "summary": "Delete an existing third-party integration"
+      }
+    },
+    "/projects/{projectId}/provisioners": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "projectId"
+          }
+        ],
+        "operationId": "list-projects-provisioners",
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateProvisionerCollection"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CertificateProvisioner"
+        ]
+      }
+    },
+    "/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "projectId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "certificateProvisionerDocumentId"
+          }
+        ],
+        "operationId": "get-projects-provisioners",
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateProvisioner"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CertificateProvisioner"
+        ]
+      },
+      "patch": {
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CertificateProvisionerPatch"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "projectId"
+          },
+          {
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "name": "certificateProvisionerDocumentId"
+          }
+        ],
+        "operationId": "update-projects-provisioners",
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptedResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CertificateProvisioner"
+        ]
       }
     },
     "/projects/{projectId}/settings": {
@@ -10540,6 +10666,175 @@
         "x-vendor": "upsun"
       }
     },
+    "/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage": {
+      "get": {
+        "summary": "Get usage alerts",
+        "description": "Retrieves current and available usage alerts.",
+        "operationId": "get-subscription-usage-alerts",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current": {
+                      "type": "array",
+                      "description": "The list of currently set usage alerts.",
+                      "items": {
+                        "$ref": "#/components/schemas/UsageAlert"
+                      }
+                    },
+                    "available": {
+                      "type": "array",
+                      "description": "The list of available usage alerts.",
+                      "items": {
+                        "$ref": "#/components/schemas/UsageAlert"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update usage alerts.",
+        "description": "Updates usage alerts for a subscription.",
+        "operationId": "update-subscription-usage-alerts",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationIDName"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "alerts": {
+                    "type": "array",
+                    "description": "The list of alerts to update.",
+                    "items": {
+                      "type": "object",
+                      "description": "An alert object.",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "The usage alert identifier."
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "description": "Whether the alert is activated."
+                        },
+                        "config": {
+                          "type": "object",
+                          "description": "The configuration for the usage alerts.",
+                          "properties": {
+                            "threshold": {
+                              "type": "integer",
+                              "description": "The amount after which an alert should be triggered."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current": {
+                      "type": "array",
+                      "description": "The list of currently set usage alerts.",
+                      "items": {
+                        "$ref": "#/components/schemas/UsageAlert"
+                      }
+                    },
+                    "available": {
+                      "type": "array",
+                      "description": "The list of available usage alerts.",
+                      "items": {
+                        "$ref": "#/components/schemas/UsageAlert"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/discounts": {
       "get": {
         "summary": "List organization discounts",
@@ -10621,7 +10916,6 @@
                   "type": "object",
                   "properties": {
                     "prepayment": {
-                      "type": "object",
                       "$ref": "#/components/schemas/PrepaymentObject"
                     },
                     "_links": {
@@ -10711,8 +11005,37 @@
                     },
                     "_links": {
                       "type": "object",
-                      "$ref": "#/components/schemas/ListLinks",
                       "properties": {
+                        "self": {
+                          "type": "object",
+                          "description": "Link to the current set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "previous": {
+                          "type": "object",
+                          "description": "Link to the previous set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link."
+                            }
+                          }
+                        },
+                        "next": {
+                          "type": "object",
+                          "description": "Link to the next set of items.",
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "description": "URL of the link"
+                            }
+                          }
+                        },
                         "prepayment": {
                           "type": "object",
                           "description": "Link to the prepayment resource.",
@@ -10906,6 +11229,100 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Create project",
+        "description": "Creates a new project in the specified organization.",
+        "operationId": "create-org-project",
+        "tags": [
+          "Organization Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "region"
+                ],
+                "properties": {
+                  "organization_id": {
+                    "$ref": "#/components/schemas/OrganizationID"
+                  },
+                  "region": {
+                    "$ref": "#/components/schemas/RegionID"
+                  },
+                  "title": {
+                    "$ref": "#/components/schemas/ProjectTitle"
+                  },
+                  "type": {
+                    "$ref": "#/components/schemas/ProjectType"
+                  },
+                  "plan": {
+                    "$ref": "#/components/schemas/ProjectPlan"
+                  },
+                  "default_branch": {
+                    "$ref": "#/components/schemas/ProjectDefaultBranch"
+                  },
+                  "cse_notes": {
+                    "$ref": "#/components/schemas/ProjectCSENotes"
+                  },
+                  "dedicated_tag": {
+                    "$ref": "#/components/schemas/ProjectDedicatedTag"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationProject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/organizations/{organization_id}/projects/{project_id}": {
@@ -10956,221 +11373,13 @@
             }
           }
         }
-      }
-    },
-    "/organizations/{organization_id}/projects/{project_id}/cdn": {
-      "get": {
-        "summary": "List project CDNs",
-        "description": "Retrieves the specified project's CDNs.",
-        "operationId": "list-org-project-cdns",
-        "tags": [
-          "Edge"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationID"
-          },
-          {
-            "$ref": "#/components/parameters/ProjectID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CDN"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create project CDN",
-        "description": "Creates a new project CDN.",
-        "operationId": "create-org-project-cdn",
-        "tags": [
-          "Edge"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationID"
-          },
-          {
-            "$ref": "#/components/parameters/ProjectID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "environment",
-                  "domains"
-                ],
-                "properties": {
-                  "environment": {
-                    "$ref": "#/components/schemas/CdnEnvironment"
-                  },
-                  "service_name": {
-                    "$ref": "#/components/schemas/CdnServiceName"
-                  },
-                  "backend_hostname": {
-                    "$ref": "#/components/schemas/CdnBackendHostname"
-                  },
-                  "sni_hostname": {
-                    "$ref": "#/components/schemas/CdnSNIHostname"
-                  },
-                  "domains": {
-                    "$ref": "#/components/schemas/CdnDomains"
-                  },
-                  "comment": {
-                    "$ref": "#/components/schemas/CdnComment"
-                  },
-                  "skip_token_setup": {
-                    "$ref": "#/components/schemas/CdnSkipTokenSetup"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CDN"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}": {
-      "get": {
-        "summary": "Get project CDN",
-        "description": "Retrieves the specified project's CDN.",
-        "operationId": "get-org-project-cdn",
-        "tags": [
-          "Edge"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/OrganizationID"
-          },
-          {
-            "$ref": "#/components/parameters/ProjectID"
-          },
-          {
-            "$ref": "#/components/parameters/CdnID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CDN"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
       },
       "patch": {
-        "summary": "Update project CDN",
-        "description": "Updates the specified project's CDN.",
-        "operationId": "update-org-project-cdn",
+        "summary": "Update project",
+        "description": "Updates the specified project.",
+        "operationId": "update-org-project",
         "tags": [
-          "Edge"
+          "Organization Projects"
         ],
         "parameters": [
           {
@@ -11178,9 +11387,6 @@
           },
           {
             "$ref": "#/components/parameters/ProjectID"
-          },
-          {
-            "$ref": "#/components/parameters/CdnID"
           }
         ],
         "requestBody": {
@@ -11189,17 +11395,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "backend_hostname": {
-                    "$ref": "#/components/schemas/CdnBackendHostname"
+                  "title": {
+                    "$ref": "#/components/schemas/ProjectTitle"
                   },
-                  "sni_hostname": {
-                    "$ref": "#/components/schemas/CdnSNIHostname"
+                  "plan": {
+                    "$ref": "#/components/schemas/ProjectPlan"
                   },
-                  "domains": {
-                    "$ref": "#/components/schemas/CdnDomains"
+                  "timezone": {
+                    "$ref": "#/components/schemas/ProjectTimeZone"
                   },
-                  "comment": {
-                    "$ref": "#/components/schemas/CdnComment"
+                  "cse_notes": {
+                    "$ref": "#/components/schemas/ProjectCSENotes"
+                  },
+                  "dedicated_tag": {
+                    "$ref": "#/components/schemas/ProjectDedicatedTag"
                   }
                 }
               }
@@ -11212,7 +11421,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CDN"
+                  "$ref": "#/components/schemas/OrganizationProject"
                 }
               }
             }
@@ -11250,11 +11459,11 @@
         }
       },
       "delete": {
-        "summary": "Delete project CDN",
-        "description": "Deletes the specified project's CDN.",
-        "operationId": "delete-org-project-cdn",
+        "summary": "Delete project",
+        "description": "Deletes the specified project.",
+        "operationId": "delete-org-project",
         "tags": [
-          "Edge"
+          "Organization Projects"
         ],
         "parameters": [
           {
@@ -11262,9 +11471,6 @@
           },
           {
             "$ref": "#/components/parameters/ProjectID"
-          },
-          {
-            "$ref": "#/components/parameters/CdnID"
           }
         ],
         "responses": {
@@ -11536,8 +11742,7 @@
                 ],
                 "properties": {
                   "plan": {
-                    "$ref": "#/components/schemas/ProjectPlan",
-                    "default": null
+                    "$ref": "#/components/schemas/ProjectPlan"
                   },
                   "project_region": {
                     "type": "string",
@@ -15125,34 +15330,24 @@
         "type": "object",
         "properties": {
           "self": {
-            "type": "object",
-            "description": "Link to the current set of items.",
-            "properties": {
-              "href": {
-                "type": "string",
-                "description": "URL of the link."
-              }
-            }
+            "$ref": "#/components/schemas/Link"
           },
           "previous": {
-            "type": "object",
-            "description": "Link to the previous set of items.",
-            "properties": {
-              "href": {
-                "type": "string",
-                "description": "URL of the link."
-              }
-            }
+            "$ref": "#/components/schemas/Link"
           },
           "next": {
-            "type": "object",
-            "description": "Link to the next set of items.",
-            "properties": {
-              "href": {
-                "type": "string",
-                "description": "URL of the link"
-              }
-            }
+            "$ref": "#/components/schemas/Link"
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "title": "Link",
+        "description": "A hypermedia link to the {current, next, previous} set of items.",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URL of the link"
           }
         }
       },
@@ -16690,6 +16885,66 @@
           "is_invalid": {
             "type": "boolean",
             "title": "Whether this certificate should be skipped during provisioning"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CertificateProvisioner": {
+        "type": "object",
+        "properties": {
+          "directory_url": {
+            "type": "string",
+            "title": "ACME directory url"
+          },
+          "email": {
+            "type": "string",
+            "title": "Contacted email address"
+          },
+          "eab_kid": {
+            "type": "string",
+            "nullable": true,
+            "title": "Eab Kid"
+          },
+          "eab_hmac_key": {
+            "type": "string",
+            "nullable": true,
+            "title": "Eab Hmac Key"
+          }
+        },
+        "required": [
+          "directory_url",
+          "email",
+          "eab_kid",
+          "eab_hmac_key"
+        ],
+        "additionalProperties": false
+      },
+      "CertificateProvisionerCollection": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CertificateProvisioner"
+        }
+      },
+      "CertificateProvisionerPatch": {
+        "type": "object",
+        "properties": {
+          "directory_url": {
+            "type": "string",
+            "title": "ACME directory url"
+          },
+          "email": {
+            "type": "string",
+            "title": "Contacted email address"
+          },
+          "eab_kid": {
+            "type": "string",
+            "nullable": true,
+            "title": "Eab Kid"
+          },
+          "eab_hmac_key": {
+            "type": "string",
+            "nullable": true,
+            "title": "Eab Hmac Key"
           }
         },
         "additionalProperties": false
@@ -19963,6 +20218,10 @@
             "type": "boolean",
             "title": "Is there any staged activity on this environment"
           },
+          "can_rolling_deploy": {
+            "type": "boolean",
+            "title": "If the environment supports rolling deployments"
+          },
           "has_code": {
             "type": "boolean",
             "title": "Does this environment have code"
@@ -20038,6 +20297,7 @@
           "is_main",
           "is_dirty",
           "has_staged_activities",
+          "can_rolling_deploy",
           "has_code",
           "head_commit",
           "merge_info",
@@ -20148,6 +20408,23 @@
         "items": {
           "$ref": "#/components/schemas/Environment"
         }
+      },
+      "EnvironmentDeployInput": {
+        "type": "object",
+        "properties": {
+          "strategy": {
+            "type": "string",
+            "enum": [
+              "rolling",
+              "stopstart"
+            ],
+            "title": "The deployment strategy (`rolling` or `stopstart`)"
+          }
+        },
+        "required": [
+          "strategy"
+        ],
+        "additionalProperties": false
       },
       "EnvironmentInitializeInput": {
         "type": "object",
@@ -20570,6 +20847,13 @@
             "type": "boolean",
             "title": "The variable is visible at runtime"
           },
+          "application_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Applications that have access to this variable"
+          },
           "project": {
             "type": "string",
             "title": "Project name"
@@ -20600,6 +20884,7 @@
           "is_sensitive",
           "visible_build",
           "visible_runtime",
+          "application_scope",
           "project",
           "environment",
           "inherited",
@@ -20647,6 +20932,13 @@
           "visible_runtime": {
             "type": "boolean",
             "title": "The variable is visible at runtime"
+          },
+          "application_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Applications that have access to this variable"
           },
           "is_enabled": {
             "type": "boolean",
@@ -20696,6 +20988,13 @@
           "visible_runtime": {
             "type": "boolean",
             "title": "The variable is visible at runtime"
+          },
+          "application_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Applications that have access to this variable"
           },
           "is_enabled": {
             "type": "boolean",
@@ -23436,9 +23735,44 @@
             "type": "boolean",
             "title": "If deployments can be manual, i.e. explicitly triggered by user."
           },
+          "allow_rolling_deployments": {
+            "type": "boolean",
+            "title": "If the project can use rolling deployments."
+          },
           "allow_burst": {
             "type": "boolean",
             "title": "Allow burst"
+          },
+          "router_resources": {
+            "type": "object",
+            "properties": {
+              "baseline_cpu": {
+                "type": "number",
+                "format": "float",
+                "title": "Router baseline CPU for flex plan"
+              },
+              "baseline_memory": {
+                "type": "integer",
+                "title": "Router baseline memory (MB) for flex plan"
+              },
+              "max_cpu": {
+                "type": "number",
+                "format": "float",
+                "title": "Router max CPU for flex plan"
+              },
+              "max_memory": {
+                "type": "integer",
+                "title": "Router max memory (MB) for flex plan"
+              }
+            },
+            "required": [
+              "baseline_cpu",
+              "baseline_memory",
+              "max_cpu",
+              "max_memory"
+            ],
+            "additionalProperties": false,
+            "title": "Router resource settings for flex plan"
           }
         },
         "required": [
@@ -23508,7 +23842,9 @@
           "git_server",
           "activity_logs_max_size",
           "allow_manual_deployments",
-          "allow_burst"
+          "allow_rolling_deployments",
+          "allow_burst",
+          "router_resources"
         ],
         "additionalProperties": false
       },
@@ -23635,6 +23971,13 @@
           "visible_runtime": {
             "type": "boolean",
             "title": "The variable is visible at runtime"
+          },
+          "application_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Applications that have access to this variable"
           }
         },
         "required": [
@@ -23645,7 +23988,8 @@
           "is_json",
           "is_sensitive",
           "visible_build",
-          "visible_runtime"
+          "visible_runtime",
+          "application_scope"
         ],
         "additionalProperties": false
       },
@@ -23688,6 +24032,13 @@
           "visible_runtime": {
             "type": "boolean",
             "title": "The variable is visible at runtime"
+          },
+          "application_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Applications that have access to this variable"
           }
         },
         "required": [
@@ -23729,6 +24080,13 @@
           "visible_runtime": {
             "type": "boolean",
             "title": "The variable is visible at runtime"
+          },
+          "application_scope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Applications that have access to this variable"
           }
         },
         "additionalProperties": false
@@ -25822,6 +26180,20 @@
             ],
             "additionalProperties": false,
             "title": "The configuration of the redirects."
+          },
+          "sticky": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "title": "Whether sticky routing is enabled."
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "additionalProperties": false,
+            "title": "Sticky routing configuration."
           }
         },
         "required": [
@@ -25834,7 +26206,8 @@
           "cache",
           "ssi",
           "upstream",
-          "redirects"
+          "redirects",
+          "sticky"
         ],
         "additionalProperties": false
       },
@@ -26037,6 +26410,20 @@
             ],
             "additionalProperties": false,
             "title": "The configuration of the redirects."
+          },
+          "sticky": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "title": "Whether sticky routing is enabled."
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "additionalProperties": false,
+            "title": "Sticky routing configuration."
           }
         },
         "required": [
@@ -26244,6 +26631,20 @@
             ],
             "additionalProperties": false,
             "title": "The configuration of the redirects."
+          },
+          "sticky": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "title": "Whether sticky routing is enabled."
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "additionalProperties": false,
+            "title": "Sticky routing configuration."
           }
         },
         "required": [
@@ -27905,6 +28306,59 @@
           }
         }
       },
+      "UsageAlert": {
+        "type": "object",
+        "description": "The usage alert for a subscription.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Tidentifier of the alert."
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the usage alert is activated."
+          },
+          "alerts_sent": {
+            "type": "number",
+            "description": "Number of alerts sent."
+          },
+          "last_alert_at": {
+            "type": "string",
+            "description": "The datetime the alert was last sent.",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The datetime the alert was last updated.",
+            "nullable": true
+          },
+          "config": {
+            "type": "object",
+            "nullable": true,
+            "description": "Configuration for the usage alert.",
+            "properties": {
+              "threshold": {
+                "type": "object",
+                "description": "Data regarding threshold spend.",
+                "properties": {
+                  "formatted": {
+                    "type": "string",
+                    "description": "Formatted threshold value."
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Threshold value."
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description": "Threshold unit."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "PrepaymentObject": {
         "type": "object",
         "description": "Prepayment information for an organization.",
@@ -28175,72 +28629,6 @@
           }
         }
       },
-      "CDN": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ProjectAddonID"
-          },
-          "project_id": {
-            "$ref": "#/components/schemas/ProjectID"
-          },
-          "type": {
-            "$ref": "#/components/schemas/AddonType"
-          },
-          "value": {
-            "$ref": "#/components/schemas/ProjectAddonValue"
-          },
-          "created_at": {
-            "$ref": "#/components/schemas/CreatedAt"
-          },
-          "updated_at": {
-            "$ref": "#/components/schemas/UpdatedAt"
-          },
-          "_links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "object",
-                "description": "Link to the current add-on.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  }
-                }
-              },
-              "update": {
-                "type": "object",
-                "description": "Link for updating the current add-on.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              },
-              "delete": {
-                "type": "object",
-                "description": "Link for deleting the current add-on.",
-                "properties": {
-                  "href": {
-                    "type": "string",
-                    "description": "URL of the link."
-                  },
-                  "method": {
-                    "type": "string",
-                    "description": "The HTTP method to use."
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "ProjectCarbon": {
         "type": "object",
         "properties": {
@@ -28402,57 +28790,6 @@
             "$ref": "#/components/schemas/UpdatedAt"
           }
         }
-      },
-      "AddonType": {
-        "type": "string",
-        "description": "The type of the add-on."
-      },
-      "ProjectAddonID": {
-        "type": "string",
-        "description": "The ID of the add-on."
-      },
-      "ProjectAddonValue": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "integer"
-          }
-        ],
-        "description": "The value of the add-on."
-      },
-      "CdnEnvironment": {
-        "type": "string",
-        "description": "The environment of the CDN."
-      },
-      "CdnServiceName": {
-        "type": "string",
-        "description": "The name of the CDN service."
-      },
-      "CdnBackendHostname": {
-        "type": "string",
-        "description": "The hostname of the CDN backend."
-      },
-      "CdnSNIHostname": {
-        "type": "string",
-        "description": "The SNI hostname of the CDN."
-      },
-      "CdnDomains": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "format": "hostname"
-        },
-        "description": "The domains associated with the CDN."
-      },
-      "CdnComment": {
-        "type": "string",
-        "description": "The comment for the CDN."
-      },
-      "CdnSkipTokenSetup": {
-        "type": "boolean",
-        "description": "Whether to skip the token setup for the CDN."
       },
       "ProjectID": {
         "type": "string",
@@ -29485,15 +29822,6 @@
         "in": "path",
         "name": "region_id",
         "description": "The ID of the region.",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "CdnID": {
-        "in": "path",
-        "name": "cdn_id",
-        "description": "The ID of the CDN.",
         "required": true,
         "schema": {
           "type": "string"
