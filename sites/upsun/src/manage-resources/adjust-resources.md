@@ -216,7 +216,7 @@ title= From the Console
 
 {{< note theme="info" title="Autoscaling">}}
 
-{{% vendor/name %}} provides **native autoscaling** support. You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.  
+[{{% vendor/name %}} provides **native autoscaling** support](/manage-resources/autoscaling.html). You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.  
 
 {{< /note >}}
 
