@@ -18,7 +18,7 @@ These data are sourced from an annual average, which we update as new informatio
 Summary of data being used in {{% vendor/name %}}’s Region Picker when creating a new Project:
 | Source | Last update of this page | Previous versions of this page |
 |--------|--------------------------|--------------------------------|
-| Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). <BR> See our [blog post](https://platform.sh/blog/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.| 11 May 2023 | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md) |
+| Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). <BR> See our [blog post](https://devcenter.upsun.com/posts/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.| 11 May 2023 | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md) |
 
 Information on carbon intensity is also available in the {{% vendor/name %}} API.
 For example, to get a list of the regions and their carbon intensities, run the following command:

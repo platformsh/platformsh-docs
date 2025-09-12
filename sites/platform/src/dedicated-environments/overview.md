@@ -26,7 +26,7 @@ From the Grid architecture diagram below, we can see that projects hosted in Gri
 
 ## Deployment
 
-With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/).
+With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://upsun.com/regions/).
 
 For a full list of public regions and IP addresses, visit the [Regions page](/development/regions.md#regions).
 

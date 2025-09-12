@@ -168,7 +168,7 @@ Agencies have access to several partner levels with many perks.
   |------------|------------|---------------|-------------|------------|------------|
   | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
 
-[Learn more and join today](https://platform.sh/solutions/digital-agencies/).
+[Learn more and join today](https://upsun.com/agency-hosting-partner/).
 
 If you have any questions, don't hesitate to [contact Sales](https://upsun.com/contact-us/).
 
@@ -187,6 +187,6 @@ For all other customers, you will receive a notification 10 days before your pro
 
 <div align="center">
 
-{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+{{< get-started/next-button next="https://upsun.com/community/open-source/" nextText="Apply" >}}
 
 </div>

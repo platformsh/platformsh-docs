@@ -49,7 +49,7 @@ in the 3rd party template repository.
 
 ## Making a button (with a widget)
 
-The easiest way to make a Deploy on {{% vendor/name %}} button is to use the [button builder widget](https://platform.sh/deploy/).
+The easiest way to make a Deploy on {{% vendor/name %}} button is to use the [button builder widget](https://docs.upsun.com/learn/overview/build-deploy.html).
 You provide it with either the Git URL of the repository or a URL to a corresponding template definition file.
 
 The button builder widget gives you an HTML fragment to copy and paste to wherever you want the button hosted.

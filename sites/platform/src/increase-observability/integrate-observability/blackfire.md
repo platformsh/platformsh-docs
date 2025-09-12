@@ -32,7 +32,7 @@ All customers can also subscribe to Blackfire separately.
 
 ### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure
 
-If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
+If you're using a plan with the [Observability Suite](https://upsun.com/product/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 Note that as an Observability Suite user, you can only access your Blackfire environments
 after you've been granted access to the related {{% vendor/name %}} project.
