@@ -213,13 +213,12 @@ title= From the Console
 
 {{< /codetabs >}}
 
-- **Alternative auto-scaling: :**
 
-**This is not an official product that will be supported by {{% vendor/name %}} staff, but you can escalate issues directly on the repository in Github.**
+{{< note theme="info" title="Autoscaling">}}
 
-This auto-scaling mechanism is based on the {{% vendor/cli %}} CLI.
-Go to the {{% vendor/name %}} github organization to download [ScalSun](https://github.com/upsun/scalsun) on your project to be able to configure CPU, RAM thresholds above or under which
-an API call will be automatically triggered to horizontally scale your application or worker, based on what you will have specified.
+{{% vendor/name %}} provides [**native autoscaling** support](/manage-resources/autoscaling.html). You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.  
+
+{{< /note >}}
 
 
 ## Advanced: Container profiles
