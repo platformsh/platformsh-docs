@@ -94,7 +94,7 @@ The **billing cycle** refers to the period between invoices. You will be billed 
 - [{{% vendor/name %}} prices](https://upsun.com/pricing/)
 
 ### Terms and conditions
-- [Legal terms of service](https://platform.sh/trust-center/legal/tos/)
+- [Legal terms of service](https://upsun.com/trust-center/legal/tos/)
 
 ### Documentation
 

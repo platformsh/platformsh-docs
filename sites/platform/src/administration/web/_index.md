@@ -41,5 +41,5 @@ The Console can be displayed in three ways:
 * High contrast mode
 * Dark mode
 
-To meet our [commitment to accessibility](https://platform.sh/trust-center/legal/wcag/),
+To meet our [commitment to accessibility](https://upsun.com/trust-center/legal/),
 all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

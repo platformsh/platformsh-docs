@@ -19,7 +19,7 @@ check it using `{{% vendor/cli %}} environment:list` or in the [Console](https:/
 
 ## Redeploy your environment
 
-If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.platform.sh/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
+If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.upsun.com/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
 
 ```bash
 git commit --allow-empty -m 'chore: force redeploy'
@@ -28,7 +28,7 @@ git push origin main
 
 ## Check your public key
 
-Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.platform.sh/).
+Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.upsun.com/).
 
 ## SSH key can not be duplicated
 

@@ -46,11 +46,11 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **NodeJS version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
 | **Cron management** | Self-service via YAML config files | Self-service via YAML config files |
 | **Web server internal config : locations**  | Self-service via YAML config files | Self-service via YAML config files |
-| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Platform.sh |
+| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Upsun Fixed |
 | **Dedicated IP** | Yes | No |
 | **Configuration management** | Self-service via YAML config files | Self-service via YAML config files  |
 | **Usable regions** | Any region needed | Only the publicly available |
-| **Autonomous upsize** | Managed through Platform.sh | Yes |
+| **Autonomous upsize** | Managed through Upsun Fixed | Yes |
 | **Upsize or downsize methods** | No downtime - each instance is altered in a rolling fashion | Redeploy - possible downtime depending on the hooks |
 | **Production branch** | Self-service | Self-service |
 | **Autoscaling** | Yes | No |
@@ -65,7 +65,7 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **Workers management**| Self-service via YAML config files | Self-service via YAML config files |
 | **Web server internal config  : domains** | Self-service via YAML config files | Self-service via YAML config files |
 | **Storage allocation between mounts, DB and services** | Self-service via YAML config files | Self-service via YAML config files |
-| **Storage increase responsibility** | Shared responsibility with Platform.sh | Self-service |
+| **Storage increase responsibility** | Shared responsibility with Upsun Fixed | Self-service |
 | **Cron tasks interrupted by deploys** | No: a running Cron task will block a deployment until it is complete | No: a running Cron task will block a deployment until it is complete |
 | **Sync and merge functionalities** | Yes on all branches | Yes on all branches |
 | **SLA** | 99.99% with [Enterprise or Elite](https://upsun.com/pricing/) | 99.9% with [Enterprise or Elite](https://upsun.com/pricing/)|
@@ -119,19 +119,19 @@ Dedicated Gen 3 gives you both the high availability of Dedicated Gen 2 and the 
 | **CDN** | Fastly  | Fastly  |
 | **Dedicated IP** | Yes | Yes |
 | **Usable regions** | Any region needed | Any region needed  |
-| **Autonomous upsize** | Managed through Platform.sh | Managed through Platform.sh|
+| **Autonomous upsize** | Managed through Upsun Fixed | Managed through Upsun Fixed|
 | **Multiple availability zones** | Yes | Yes |
 | **New Relic** | APM + New Relic infrastructure | APM + New Relic infrastructure |
 | **Multi-app support (PWA)** | Supported through docroots | Supported natively |
-| **Routes management**  | Managed by Platform.sh | Self-service via YAML config files |
+| **Routes management**  | Managed by Upsun Fixed | Self-service via YAML config files |
 | **Environment clone** | Only on development environments | Yes on all branches |
-| **Services : Add, remove, upgrade**  | Managed by Platform.sh | Self-service via YAML config files |
-| **Relationships : Add, remove, update** | Managed by Platform.sh| Self-service via YAML config files |
-| **Mounts management** | Self-service or managed by Platform.sh | Self-service via YAML config files |
-| **Workers management** | Managed by Platform.sh | Self-service via YAML config files |
-| **Web server internal config: domains** | Managed by Platform.sh | Self-service via YAML config files |
-| **Storage allocation between mounts, DB and services** | Managed by Platform.sh | Self-service via YAML config files |
-| **Storage increase responsibility** | Managed by Platform.sh | Self-service |
+| **Services : Add, remove, upgrade**  | Managed by Upsun Fixed | Self-service via YAML config files |
+| **Relationships : Add, remove, update** | Managed by Upsun Fixed| Self-service via YAML config files |
+| **Mounts management** | Self-service or managed by Upsun Fixed | Self-service via YAML config files |
+| **Workers management** | Managed by Upsun Fixed | Self-service via YAML config files |
+| **Web server internal config: domains** | Managed by Upsun Fixed | Self-service via YAML config files |
+| **Storage allocation between mounts, DB and services** | Managed by Upsun Fixed | Self-service via YAML config files |
+| **Storage increase responsibility** | Managed by Upsun Fixed | Self-service |
 | **Cron tasks interrupted by deploys** | Yes: a deploy will terminate a running Cron task | No: a running Cron task will block a deployment until it is complete |
 | **Sync and Merge functionalities** | Only on development environments | Yes on all branches |
 | **Functioning** | 3 nodes are running all applications and services are replicated | 3 nodes are running all applications and service are replicated |
@@ -160,7 +160,7 @@ If you prefer the peace of mind of hosting across multiple AZs, you can request 
 
 {{< note title="Note" theme="info" >}}
 
-Platform.sh is responsible for meeting the 99.99% uptime SLA, so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
+Upsun Fixed is responsible for meeting the 99.99% uptime SLA, so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
 
 {{< /note >}} 
 

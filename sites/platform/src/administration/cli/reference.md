@@ -3070,7 +3070,7 @@ platform environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--envir
 
 ### Examples
 
-* Initialize using the Platform.sh Go template:
+* Initialize using the Upsun Fixed Go template:
 ```
 platform environment:init https://github.com/platformsh-templates/golang
 ```
