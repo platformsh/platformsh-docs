@@ -133,7 +133,7 @@ To enable autoscaling, follow the steps below:
 4. Under the autoscaling column select **Enable**
 5. Configure thresholds, evaluation period, cooldown, and instances as needed
 
-![Configure autoscaling in Console](/images/autoscaling/Configure-autoscaling.png "0.50")
+![Configure autoscaling in Console](/images/autoscaling/autoscaling-console.png "0.50")
 
 ## Alerts and metrics
 
