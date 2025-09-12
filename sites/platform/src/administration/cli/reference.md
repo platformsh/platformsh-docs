@@ -745,7 +745,7 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
 #### Options
 
 * `--type` (`-t`) (expects a value)
-  Filter activities by type For a list of types see: https://docs.platform.sh/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
+  Filter activities by type For a list of types see: https://fixed.docs.upsun.com/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
 
 * `--exclude-type` (`-x`) (expects a value)
   Exclude activities by type. Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can exclude 'environment.cron' activities. The % or * characters can be used as a wildcard to exclude types.
@@ -1060,7 +1060,7 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 
 ## `auth:api-token-login`
 
-Log in to Platform.sh using an API token
+Log in to Upsun using an API token
 
 ### Usage
 
@@ -1068,10 +1068,10 @@ Log in to Platform.sh using an API token
 platform auth:api-token-login
 ```
 
-Use this command to log in to your Platform.sh account using an API token.
+Use this command to log in to your Upsun account using an API token.
 
 You can create an account at:
-    https://auth.api.platform.sh/register
+    https://auth.api.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
@@ -1098,7 +1098,7 @@ Alternatively, to log in to the CLI with a browser, run:
 
 ## `auth:browser-login`
 
-Log in to Platform.sh via a browser
+Log in to Upsun via a browser
 
 Aliases: `login`
 
@@ -1229,7 +1229,7 @@ platform auth:info id --no-auto-login
 
 ## `auth:logout`
 
-Log out of Platform.sh
+Log out of Upsun
 
 Aliases: `logout`
 
@@ -2568,7 +2568,7 @@ Delete one or more environments
 platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
-When a Platform.sh environment is deleted, it will become "inactive": it will
+When an Upsun environment is deleted, it will become "inactive": it will
 exist only as a Git branch, containing code but no services, databases nor
 files.
 
@@ -5586,7 +5586,7 @@ Create a new organization
 platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
 ```
 
-Organizations allow you to manage your Platform.sh projects, users and billing. Projects are owned by organizations.
+Organizations allow you to manage your Upsun Fixed projects, users and billing. Projects are owned by organizations.
 
 You can add other users to your organization, for collaboratively managing the organization as well as its projects and billing information.
 

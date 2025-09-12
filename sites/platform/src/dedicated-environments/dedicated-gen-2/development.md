@@ -61,7 +61,7 @@ For more information about deployment, see the [overview of the build and deplo
 
 ### Storage
 
-The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://platform.sh/pricing/).
+The development environment for a Dedicated Gen 2 project provides production and staging branches linked to the Dedicated Gen 2 cluster and 3 additional active environments for development. This number can be increased if needed for an [additional fee](https://upsun.com/pricing/).
 
 The default storage for Dedicated Gen 2 contracts is 50GB per environment (production, staging, and each development environment). This comprises total storage for your project and is inclusive of any databases, uploaded files, writable application logging directories, search index cores, and so on. The storage amount for your development environment reflects the amount in your Enterprise contract and can be altered based on the terms you agree.
 

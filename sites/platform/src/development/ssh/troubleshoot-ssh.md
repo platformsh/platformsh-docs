@@ -15,7 +15,7 @@ There are several places to check to try to solve such issues.
 If your environment is [inactive](/glossary/_index.md#inactive-environment) or the deployment has failed,
 you can't log in to it.
 To make sure the environment is active and the deployment has succeeded,
-check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.platform.sh/) .
+check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.upsun.com/).
 
 ## Redeploy your environment
 

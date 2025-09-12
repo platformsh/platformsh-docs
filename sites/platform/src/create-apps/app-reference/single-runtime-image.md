@@ -724,7 +724,7 @@ workers:
       ./worker.sh
 ```
 
-For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://upsun.com/pricing/).
 
 ## Access
 
@@ -862,9 +862,9 @@ Example output:
 ```bash
 facebook.com
 fastly.com
-platform.sh
+upsun.com
 www.google.com
-www.platform.sh
+www.upsun.com
 ```
 
 ## Build

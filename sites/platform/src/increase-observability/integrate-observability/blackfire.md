@@ -23,7 +23,7 @@ This results in an effortless setup process and smooth user experience.
 {{< note >}}
 
 Blackfire.io can be bundled with Enterprise and Elite subscriptions as part of the Observability Suite.
-To learn more, [contact Sales](https://platform.sh/contact/).
+To learn more, [contact Sales](https://upsun.com/contact-us/).
 All customers can also subscribe to Blackfire separately.
 
 {{< /note >}}

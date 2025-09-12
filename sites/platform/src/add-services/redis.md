@@ -538,7 +538,7 @@ const value = await client.get('x');     // returns 42
 
 {{% note theme="info" title="Feature availability" %}}
 
-This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://upsun.com/contact-us/).
 
 {{% /note %}}
 

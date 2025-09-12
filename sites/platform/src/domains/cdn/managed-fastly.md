@@ -17,7 +17,7 @@ These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 To modify any settings for a managed Fastly CDN,
 open a [support ticket](/learn/overview/get-support.md).
 To add a managed Fastly CDN to your project,
-[contact sales](https://platform.sh/contact/).
+[contact sales](https://upsun.com/contact-us/).
 
 {{< note theme="Info" >}}
 {{% vendor/name %}} does not write nor debug any custom VCL on Managed Fastly CDN services.

@@ -39,4 +39,4 @@ Included features may present limitations compared to those advertised by Fastly
 | [Standard API & ATO signals](https://www.fastly.com/documentation/guides/next-gen-waf/using-ngwaf/rules/working-with-templated-rules/)              | No              | No                                |
 
 To subscribe to a Fastly Next-Gen WAF offer through {{% vendor/name %}},
-[contact Sales](https://platform.sh/contact/).
+[contact Sales](https://upsun.com/contact-us/).
