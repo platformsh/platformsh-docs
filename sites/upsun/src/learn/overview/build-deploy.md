@@ -208,6 +208,110 @@ As soon as your deployment type is switched from manual to automatic, all curren
 
 {{< /note >}}
 
+
+## Zero Downtime Deployments
+
+## What is Zero Downtime?
+
+Zero Downtime Deployments (ZDD) let you update environments without interrupting live traffic. By default, deployments use stop-start (services stop, then restart with updates). With ZDD, you can switch to a [rolling strategy](#deployment-strategies) that keeps your app online during updates.
+
+### Deployment Strategies
+
+#### Stop-start (default)
+
+- Services stop first then restart with the new version  
+- Deployment is fast but may cause temporary downtime or freezing depending on the application
+
+#### Rolling (ZDD)
+
+- Creates a temporary copy of your services  
+- Routes traffic to the temporary copy while updating the original services  
+- Removes the temporary copy once the deployment is complete  
+- No downtime for users  
+- Deployment may take longer and use slightly more resources temporarily
+
+### Stop-start vs Rolling (ZDD)
+
+| Feature | Stop-start (default) | Rolling (ZDD) |
+|---------|--------------------|---------------|
+| **User impact** | Services may be unavailable briefly | Users experience no downtime |
+| **Deployment speed** | Fast | Slightly longer |
+| **Resource usage** | Standard | Higher temporarily (due to parallel services) |
+| **Process** | Stop services → deploy updates → start services | Deploy temporary services → switch traffic → update original services → remove temporary services |
+| **Best for** | Simple apps, quick updates | Apps requiring uninterrupted availability |
+| **Limitations** | Causes downtime/freezetime | Longer deploy time, higher temporary resource use |
+
+{{< note theme="warning" >}}
+
+**Environment type:** Zero Downtime Deployments are only available on Upsun Grid.
+
+**Storage:** To use ZDD, your app must run on network storage (NFS).
+
+**Deployment mode:** Requires Manual Deployments to be enabled.
+
+{{< /note >}}
+
+
+### Use cases
+
+| Use Case | Recommendation |
+|----------|----------------|
+| Code pushes | Suitable |
+| Config or environment variable changes | Suitable |
+| Stateful services (databases, caches) | Not suitable |
+| DB schema migrations | Not suitable |
+
+## How to use Zero Downtime Deployments
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+**Default (stop-start)**
+```bash
+upsun environment:deploy --strategy stopstart
+```
+
+**Zero Downtime (rolling)**
+```bash
+upsun environment:deploy --strategy rolling
+```
+
+<--->
++++
+title=Using the Console
++++
+
+In the Console, navigate to the environment settings and trigger a deployment from the deployment modal. Select Zero Downtime as a deployment strategy.
+
+<--->
++++
+title=Using the API
++++
+
+```
+POST /projects/{projectId}/environments/{environmentId}/deploy
+
+{
+"strategy": "rolling"
+}
+```
+
+{{< /codetabs >}}
+
+
+## Connection handling
+
+During any deployment, long-lived connections like WebSockets or Server-Sent Events (SSE) are dropped.
+
+With ZDD, you can plan for smooth reconnection:
+
+- SSE supports automatic retry logic (MDN reference).
+
+- WebSocket clients should implement reconnect logic.
+
 ## Deployment philosophy
 
 {{% vendor/name %}} values consistency over availability, acknowledging that it's nearly impossible to have both.
