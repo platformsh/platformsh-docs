@@ -56,10 +56,10 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 
 ### Scaling trigger support
 
-| Trigger                   | Console     | CLI         | 
-| ------------------------- | ----------- | ----------- | 
-| Average CPU (min/max)     | Available   | Available   | 
-| Average Memory (min/max)  | Coming      | Coming      | 
+| Trigger                   | Console     | 
+| ------------------------- | ----------- | 
+| Average CPU (min/max)     | Available   | 
+| Average Memory (min/max)  | Coming      | 
 
   
 ## How autoscaling works
@@ -91,7 +91,7 @@ Default instance limits are typically **1–8 instances per environment**, but t
 
 {{< note theme="info" title="Scale databases and resources">}}
 
-When autoscaling is enabled, [manual instance count](/manage-resources/adjust-resources.html#horizontal-scaling) changes are disabled. [Vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) (CPU/RAM/disk per instance) remain configurable.
+When autoscaling is enabled, [manual instance count](/manage-resources/adjust-resources.html#horizontal-scaling) changes to apps are disabled. [Vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) (CPU/RAM/disk per instance) remain configurable.
 
 {{< /note >}}
 
@@ -165,7 +165,7 @@ If you're looking to keep track of your infrastructure and application metrics s
 
 ## Billing and cost impact
 
-Instances added through autoscaling are billed normally, and there are no separate charges for scaling events. 
+Autoscaling projects are billed for the resources that they consume. Instances added through autoscaling are billed the same as if you were to manually configure those resources.
 
 However, each scaling action consumes build minutes, since new or removed instances are deployed with scaling action. If your app scales frequently, this could increase build minute usage.
 
@@ -195,7 +195,6 @@ Autoscaling gives you flexibility and resilience, but to get the best results it
 
 - **External services**: Use external [services](/add-services/) such as databases and caches instead of embedding them within the autoscaled applications.
 - **Keep containers portable**: Follow {{% vendor/name %}} recommendations for [caching](/define-routes/cache.html) and mounts for [composable images](/create-apps/app-reference/composable-image.html#mounts) and [single-runtime images](/create-apps/app-reference/single-runtime-image.html#mounts).
-- **Avoid bottlenecks**: If using [composable images](/create-apps/app-reference/composable-image.html), be cautious when multiple containers depend on a single embedded service, as scaling may cause unexpected bottlenecks.
 
 ### Cron jobs & long-running tasks
 
