@@ -166,7 +166,7 @@ Users can select a plan with predefined CPU and Memory resources. You can not ad
 
 {{< /note >}}
 
-### What is a flex organization?
+### What is a Upsun Flex organization?
 Ideal for workloads that evolve over time or have dynamic resource requirements. Flex will suit most use cases. Users will be able to allocate the exact CPU and Memory resources that your applications and services need. You can adjust these resources at any time, or configure them to adapt automatically. You are charged based on the resources you allocate.
 
 {{< note theme="info" title="Flex resources">}}
