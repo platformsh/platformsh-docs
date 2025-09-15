@@ -266,7 +266,7 @@ When creating a new organization, users will be able to select the organization 
 #### Will I be able to switch if I have both fixed and flex organizations?  
 - Yes. You can navigate between organizations (Fixed or Flex) from a drop-down list.  
 
-#### How will fixed vs flex be identifiable in the console?  
+#### How will Fixed vs Flex be identifiable in the console?  
 - Organizations will have tags next to their names in the console.  
 - Organizations will also be categorized by organization type in the console.  
 
