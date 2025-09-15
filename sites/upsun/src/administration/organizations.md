@@ -270,7 +270,7 @@ When creating a new organization, users will be able to select the organization 
 - Organizations will have tags next to their names in the console.  
 - Organizations will also be categorized by organization type in the console.  
 
-#### Will I be able to access fixed projects via the Upsun CLI?  
+#### Will I be able to access Fixed projects via the Upsun CLI?  
 - Correct.  
 
 #### Will I still use the same configuration files for fixed projects?  
