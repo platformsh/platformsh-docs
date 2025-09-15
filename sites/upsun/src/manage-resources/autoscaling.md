@@ -15,7 +15,7 @@ This ensures your apps remain responsive under load while helping you optimize c
 
 - **Scope:** Available for applications only  
 - **Product tiers:** Available for all Upsun Flex environments  
-- **Environments:** Configurable per environment - across dev, staging, and production
+- **Environments:** Configurable per environment - across development, staging, and production
 
 {{< note theme="info" title="Scale databases and resources">}}
 
