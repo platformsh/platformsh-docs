@@ -273,7 +273,7 @@ When creating a new organization, users will be able to select the organization 
 #### Will I be able to access Fixed projects via the Upsun CLI?  
 - Correct.  
 
-#### Will I still use the same configuration files for fixed projects?  
+#### Will I still use the same configuration files for Fixed projects?  
 - Correct. The same configuration file structures remain (`.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, etc).  
 
 #### Besides the name "Platform.sh" going away, will there be visual changes in the console?  
