@@ -29,7 +29,7 @@ To vertically scale CPU, RAM, or disk, or horizontally scale applications and wo
 
 ## Autoscaling availability
 
-The tables below outline where autoscaling and manual scaling are supported, so you can plan your deployments with the right balance of flexibility and [control](/sites/upsun/src/create-apps/workers.md).
+The tables below outline where autoscaling and manual scaling are supported, so you can plan your deployments with the right balance of flexibility and control.
 
 ### Component support
 
