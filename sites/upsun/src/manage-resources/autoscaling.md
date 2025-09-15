@@ -29,15 +29,15 @@ To vertically scale CPU, RAM, or disk, or horizontally scale applications and wo
 
 ## Autoscaling availability
 
-The tables below outline where autoscaling and manual scaling are supported, so you can plan your deployments with the right balance of flexibility and control.
+The tables below outline where autoscaling and manual scaling are supported, so you can plan your deployments with the right balance of flexibility and [control](/sites/upsun/src/create-apps/workers.md).
 
 ### Component support
 
 | Component | Horizontal autoscaling | Manual scaling (Vertical) |
 | --------- | ---------------------- | ------------------------- |
-| Applications ([PHP](/create-apps/languages/php.html), [Node.js](/create-apps/languages/nodejs.html), etc.) | Available              | Available                 |
+| Applications ([PHP](/languages/php.html), [Node.js](/languages/nodejs.html), etc.) | Available              | Available                 |
 | Services ([MySQL](/add-services/mysql.html), [Redis](/add-services/redis.html), etc.) | Unavailable            | Available                 |
-| Queues ([workers](/add-services/worker.html), background jobs)                            | Unavailable            | Available                 |
+| Queues ([workers](/create-apps/workers.html), background jobs)                            | Unavailable            | Available                 |
 
 ### Product tier support
 
