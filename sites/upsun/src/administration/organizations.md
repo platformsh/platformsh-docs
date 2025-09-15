@@ -260,7 +260,7 @@ When creating a new organization, users will be able to select the organization 
 #### What happens to my URL?
 - `https://auth.api.platform.sh/` will become `https://auth.upsun.com/`.
 
-#### If I had a fixed organization (previously Platform.sh), will I be redirected to my organizations?  
+#### If I had a Fixed organization (previously Platform.sh), will I be redirected to my organizations?  
 - Yes. You will be automatically redirected to the new console and can log in using the same credentials.  
 
 #### Will I be able to switch if I have both fixed and flex organizations?  
