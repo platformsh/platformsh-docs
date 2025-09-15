@@ -45,6 +45,7 @@ vendor:
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.api.platform.sh/register
+        discord: https://discord.gg/platformsh
 
 # Images (kept in static/)
 logo: "images/logos/Platformsh_logo_white.svg"
