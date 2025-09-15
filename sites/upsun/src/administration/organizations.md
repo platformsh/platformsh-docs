@@ -263,7 +263,7 @@ When creating a new organization, users will be able to select the organization 
 #### If I had a Fixed organization (previously Platform.sh), will I be redirected to my organizations?  
 - Yes. You will be automatically redirected to the new console and can log in using the same credentials.  
 
-#### Will I be able to switch if I have both fixed and flex organizations?  
+#### Will I be able to switch if I have both Fixed and Flex organizations?  
 - Yes. You can navigate between organizations (Fixed or Flex) from a drop-down list.  
 
 #### How will Fixed vs Flex be identifiable in the console?  
