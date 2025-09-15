@@ -141,12 +141,6 @@ We have open-sourced [the {{< vendor/name >}} cloning tool](https://github.com/u
 
 We also have [the {{< vendor/name >}} converting tool](https://github.com/upsun/convsun), which allows you to change existing configuration files to another format. It converts details from files like `services.yaml` and `routes.yaml`, and generates a new `config.yaml` file. This streamlines the conversion process by significantly reducing the manual effort required to adapt your app’s infrastructure setup.
 
-{{< note theme="info" >}}
-
-To learn more about the converter tool and how it works, read the [converting projects](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html) page.
-
-{{< /note >}}
-
 Although not directly supported by {{% vendor/name %}},
 an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.
 This script automates most common configurations.
