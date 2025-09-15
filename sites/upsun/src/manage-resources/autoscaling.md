@@ -68,7 +68,7 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 
 Autoscaling continuously monitors the average CPU utilization across your app's running instances. It works by you setting your thresholds, which are specific CPU usage levels that determine when autoscaling should take action. There are two different thresholds that your CPU utilization operates within: A scale-up threshold and a scale-down threshold.
 
-- **Scale-up threshold**: If your chosen trigger (eg. CPU usage) stays **above** this level for the time period you've set (the evaluation period), autoscaling will launch additional instances to share the load.
+- **Scale-up threshold**: If your chosen trigger (e.g. CPU usage) stays **above** this level for the time period you've set (the evaluation period), autoscaling will launch additional instances to share the load.
 
 - **Scale-down threshold**: If your chosen trigger stays **below** this level for the time period you've set, autoscaling will remove unneeded instances to save resources and costs.
 
@@ -169,7 +169,7 @@ Autoscaling projects are billed for the resources that they consume. Instances a
 
 However, each scaling action consumes build minutes, since new or removed instances are deployed with scaling action. If your app scales frequently, this could increase build minute usage.
 
-To control costs, avoid overly aggressive settings (eg. very short evaluation periods).
+To control costs, avoid overly aggressive settings (e.g. very short evaluation periods).
 
 {{< note theme="info" title="Metric resources">}}
 
