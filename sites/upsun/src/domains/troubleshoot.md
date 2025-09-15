@@ -36,7 +36,7 @@ If it isn't, try the following steps:
 ## Verify SSL/TLS encryption
 
 To find out where your domain is pointing to,
-you can use [the certificate checker tool](https://certcheck.upsun.con/).
+you can use [the certificate checker tool](https://certcheck.upsun.com/).
 This tool provides guidance on certificates,
 including when you use a [CDN](/domains/cdn/_index.md).
 Check both the apex and the `www` domains to ensure they both point to your project.
