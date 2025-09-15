@@ -282,7 +282,7 @@ Yes.
   - Ability to navigate between organization types.  
   - **[15-day free trial](https://auth.upsun.com/register/)** for users creating Flex organizations.  
 
-#### With a unified CLI, will there be a way to identify fixed vs flex in the project list?  
+#### With a unified CLI, will there be a way to identify Fixed vs Flex in the project list?  
 - You will see a list of all organizations.  
 - There is no field in the CLI that explicitly identifies fixed vs flex.  
 
