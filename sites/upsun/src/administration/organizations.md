@@ -278,7 +278,7 @@ When creating a new organization, users will be able to select the organization 
 
 #### Besides the name "Platform.sh" going away, will there be visual changes in the console?  
 Yes.
-  - There will be a new way to create organizations (you can now choose fixed or flex).  
+  - There will be a new way to create organizations (you can now choose Fixed or Flex).  
   - Ability to navigate between organization types.  
   - **[15-day free trial](https://auth.upsun.com/register/)** for users creating Flex organizations.  
 
