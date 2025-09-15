@@ -284,7 +284,7 @@ Yes.
 
 #### With a unified CLI, will there be a way to identify Fixed vs Flex in the project list?  
 - You will see a list of all organizations.  
-- There is no field in the CLI that explicitly identifies fixed vs flex.  
+- There is no field in the CLI that explicitly identifies Fixed vs Flex.  
 
 #### Do Upsun projects run in the same regions as Platform.sh projects?
 Correct.
