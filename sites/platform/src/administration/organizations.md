@@ -288,7 +288,7 @@ Upsun gives a monthly price estimation for the current and next full month based
 #### Can I use the same credentials / SSO / 2FA on Platform and Upsun?
 Yes.
 
-#### Can I use BlackFire for my Upsun applications?
+#### Can I use Blackfire for my Upsun applications?
 Upsun includes Blackfire by default.
 
 #### Will Upsun be delivered entirely on a “self service” model?
