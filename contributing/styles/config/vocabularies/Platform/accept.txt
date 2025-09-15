@@ -153,6 +153,7 @@ progs
 proxied
 Pthreads
 Pyenv
+Qdrant
 Quarkus
 [Rr]ebase
 recache
