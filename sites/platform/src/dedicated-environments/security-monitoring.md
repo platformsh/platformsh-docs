@@ -48,6 +48,6 @@ Cloud infrastructure issues are handled by the Upsun Customer Success team. Note
 
 As the official, in-house Upsun Fixed observability tool, [Blackfire](/increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies. Using Blackfire on Upsun Fixed enhances your experience and allows you to enjoy greater support as well as unique upcoming features.
 
-As an Enterprise or Elite customer, you can use the Upsun Fixed [Observability](https://upsun.com/product/) feature, which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability feature includes all Blackfire features, support, and usage that scales with your needs. 
+As an Enterprise or Elite customer, you can use the Upsun [Observability](https://upsun.com/product/) feature, which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability feature includes all Blackfire features, support, and usage that scales with your needs. 
 
 Upsun Fixed also supports third-party observability services such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md) and [Tideways](/increase-observability/integrate-observability/tideways.md). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.
