@@ -81,7 +81,7 @@ The 3% discount covers application CPU, application memory, service CPU, service
 It **doesn’t** apply to the project fee or other billing aspects.
 It can be combined with other offers or discounts.
 
-See [more information on the greener region discount](https://platform.sh/company/press/a-first-for-cloud-industry-platformsh-greener-region-discount/).
+See [more information on the greener region discount](https://upsun.com/blog/announcing-greener-region-discount/).
 
 ## Region availability
 
