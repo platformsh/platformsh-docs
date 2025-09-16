@@ -90,7 +90,7 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 ```
 
 {{% version/specific %}}
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 You can also add it in the Console,
 similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
 <--->
