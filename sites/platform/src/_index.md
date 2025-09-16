@@ -127,7 +127,7 @@ Looking for a way to contribute?
 ### Contribute
 
 Feel free to open an issue or pull request for any of the repositories below,
-or let us know on [Discord](https://discord.gg/platformsh) if you find a
+or let us know on [Discord](https://discord.gg/upsun) if you find a
 problem we can help with:
 
 {{< home/links-github >}}

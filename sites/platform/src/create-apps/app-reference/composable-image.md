@@ -763,7 +763,7 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 
 {{< note theme="info" >}}
 The `post_start` feature is _experimental_ and may change. Please share your feedback in the
-[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+[{{% vendor/name %}} discord](https://discord.gg/upsun).
 {{< /note >}}
 
 
