@@ -9,6 +9,9 @@ repo: "https://github.com/platformsh/platformsh-docs/"
 folder: "sites/platform"
 editPageButton: true
 
+theme:
+    use_vendor: true
+    
 # Vendorization
 vendor:
     name: Upsun Fixed
