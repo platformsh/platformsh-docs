@@ -98,7 +98,7 @@ On Grid projects, incoming requests are held at the edge router temporarily duri
 
 On Dedicated Gen 2 projects, incoming requests aren’t held during deploy and receive a 503 error. As the Dedicated Gen 2 cluster is almost always fronted by a CDN, the CDN continues to serve cached pages during the few seconds of deploy, so for the vast majority of users there is no downtime or even slow down. If a request does pass the CDN during a deploy, it isn’t counted as downtime covered by our Service Level Agreement.
 
-By default, Upsun Fixed serves generic Upsun-Fixed-branded error pages for errors generated before a request reaches the application. (5XX errors, some 4XX errors, etc.) Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN. This file may be any static HTML file but is limited to 64 KB in size.
+By default, Upsun Fixed serves generic Upsun-branded error pages for errors generated before a request reaches the application. (5XX errors, some 4XX errors, etc.) Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN. This file may be any static HTML file but is limited to 64 KB in size.
 
 #### Remote logging 
 
