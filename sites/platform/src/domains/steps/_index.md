@@ -59,7 +59,7 @@ title=In the Console
 
 {{< /codetabs >}}
 
-You can find [more information on plan tiers](https://platform.sh/pricing).
+You can find [more information on plan tiers](https://upsun.com/pricing).
 
 ## 1. Get the target for your project
 

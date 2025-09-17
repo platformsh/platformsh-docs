@@ -100,13 +100,13 @@ if (getenv('PLATFORM_RELATIONSHIPS')) {
 		define( 'DB_CHARSET', 'utf8' );
 		define( 'DB_COLLATE', '' );
 
-		// Debug mode should be disabled on Platform.sh. Set this constant to true
+		// Debug mode should be disabled on Upsun Fixed. Set this constant to true
 		// in a wp-config-local.php file to skip this setting on local development.
 		if (!defined( 'WP_DEBUG' )) {
 			define( 'WP_DEBUG', false );
 		}
 
-		// Set all of the necessary keys to unique values, based on the Platform.sh
+		// Set all of the necessary keys to unique values, based on the Upsun Fixed
 		// entropy value.
 		if (getenv('PLATFORM_PROJECT_ENTROPY')) {
 			$keys = [
