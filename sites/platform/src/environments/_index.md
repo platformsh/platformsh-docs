@@ -212,7 +212,7 @@ If you're on a development plan,
 all your environments are preview environments that can be paused automatically.
 This includes your future production environment.
 To prevent your production environment from being paused automatically,
-[upgrade to a non-development plan](https://upsun.com/pricing/).
+[upgrade to a non-development plan](https://upsun.com/fixed-pricing/).
 
 {{< /note >}}
 

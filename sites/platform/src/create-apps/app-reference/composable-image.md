@@ -926,7 +926,7 @@ workers:
         ./worker.sh
 ```
 
-For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://upsun.com/pricing/).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://upsun.com/fixed-pricing/).
 
 ## Access
 
