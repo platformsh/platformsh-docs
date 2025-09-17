@@ -187,6 +187,6 @@ For all other customers, you will receive a notification 10 days before your pro
 
 <div align="center">
 
-{{< get-started/next-button next="https://upsun.com/community/open-source/" nextText="Apply" >}}
+{{< get-started/next-button next="https://upsun.com/" nextText="Apply" >}}
 
 </div>
