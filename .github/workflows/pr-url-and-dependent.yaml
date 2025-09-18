@@ -131,8 +131,8 @@ jobs:
           if [ 'success' = '${{ needs.get_pr_url.outputs.pr_url_status }}' ]; then
             status_message="PR environment successfully deployed."
             status_state="${{ needs.get_pr_url.outputs.pr_url_status }}"
-          else
-            status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+          elseplatform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+            status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.
             # the status reported by our action most likely wont align with what the gh api is expecting, so if the
             # status reported by our action isn't `success` we'll manually set it to `failure`
             status_state="failure"

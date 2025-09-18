@@ -91,7 +91,7 @@ Where `TEMPLATE_URL` is the URL of a publicly visible template definition file.
 For example, to install {{% vendor/name %}}'s [Drupal 10 template](https://github.com/platformsh-templates/drupal10) you would use:
 
 ```text
-https://console.platform.sh/org/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal10/.platform.template.yaml
+https://console.upsun.com/org/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal10/.platform.template.yaml
 ```
 
 A new project is created, initialized with whatever code is at the tip of the default branch of the repository referenced by that file,
