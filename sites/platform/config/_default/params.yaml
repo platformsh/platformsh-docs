@@ -11,7 +11,7 @@ editPageButton: true
 
 theme:
     use_vendor: true
-    
+
 # Vendorization
 vendor:
     name: Upsun Fixed
@@ -42,13 +42,14 @@ vendor:
     urls:
         main: https://upsun.com
         docs: https://fixed.docs.upsun.com
-        support: https://support.upsun.com
+        support: https://support.platform.sh/
         sales: https://upsun.com/contact-us
         console: https://console.upsun.com/
         api: https://docs.upsun.com/api/
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.upsun.com/register
+        discord: https://discord.gg/platformsh
 
 # Images (kept in static/)
 logo: "images/logo.svg"
