@@ -35,7 +35,7 @@ You need a few things before you can start creating projects.
 To get started, you need a {{% vendor/name %}} account.
 You can start with a free 30-day trial that should contain everything you need to complete this guide.
 
-If you don't have an account yet, [register for an account](https://auth.api.platform.sh/register).
+If you don't have an account yet, [register for an account](https://auth.upsun.com/register).
 You can use an email address or a GitHub, Google, Bitbucket, or GitLab account.
 
 ### Git

@@ -16,7 +16,7 @@ You need:
 {{% version/specific %}}
 - An app that works and is ready to be built
 - Code in Git
-- A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
+- A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.upsun.com/register)
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 <--->
 - An app that works and is ready to be built

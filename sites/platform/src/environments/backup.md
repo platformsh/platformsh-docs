@@ -89,7 +89,7 @@ The exact cost depends on the size of your storage.
 
 To upgrade to the higher schedule, follow these steps:
 
-1. In the [Console](https://console.platform.sh/), navigate to the project where you want to change the schedule.
+1. In the [Console](https://console.upsun.com/), navigate to the project where you want to change the schedule.
 2. Click **{{< icon settings >}} Settings**.
 3. Click **Edit plan**.
 4. For **Backups**, click the name of your current schedule.

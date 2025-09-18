@@ -107,7 +107,7 @@ For example, a {{< partial "plans/multiapp-plan-name" >}} plan can support 3 app
 with a MySQL service and a Redis service.
 
 If you aren't sure whether a specific setup would fit into a plan,
-don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
+don't hesitate to [contact support](https://console.upsun.com/-/users/~/tickets).
 
 
 ## Enterprise overages

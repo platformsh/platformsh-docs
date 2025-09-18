@@ -1071,7 +1071,7 @@ platform auth:api-token-login
 Use this command to log in to your Platform.sh account using an API token.
 
 You can create an account at:
-    https://auth.api.platform.sh/register
+    https://auth.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
