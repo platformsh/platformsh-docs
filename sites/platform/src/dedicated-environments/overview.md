@@ -53,7 +53,7 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
 | **MongoDB** | Standalone service container | Yes |
-| **CDN** | A managed Fastly CDN service can be purchased through Upsun Fixed | Fastly |
+| **CDN** | A managed Fastly CDN service can be purchased through Upsun| Fastly |
 | **PHP version upgrade** | Self-service | Self-service |
 | **NodeJS version upgrade**| Self-service | Self-service |
 | **Routes management** | Self-service | Self-service |

@@ -46,7 +46,7 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **NodeJS version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
 | **Cron management** | Self-service via YAML config files | Self-service via YAML config files |
 | **Web server internal config : locations**  | Self-service via YAML config files | Self-service via YAML config files |
-| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Upsun Fixed |
+| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Upsun |
 | **Dedicated IP** | Yes | No |
 | **Configuration management** | Self-service via YAML config files | Self-service via YAML config files  |
 | **Usable regions** | Any region needed | Only the publicly available |
