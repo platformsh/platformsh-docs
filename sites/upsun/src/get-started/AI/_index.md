@@ -1,8 +1,8 @@
 ---
-title: AI with Upsun
-weight: -150
+title: How to deploy AI
+weight: -50
 layout: single
-sectionBefore: Artificial intelligence (AI)
+
 ---
 
 {{% vendor/name %}} provides powerful capabilities for hosting AI applications,
@@ -23,6 +23,7 @@ and chatbots using any
 supported runtime
 - [**MCP Servers**](mcp.md) - Deploy Model Context Protocol servers for
 AI tool integration
+- **Vector Databases** - [Chroma](add-services/chroma.md), [Qdrant](add-services/qdrant.md)
 
 ## Supported technologies
 

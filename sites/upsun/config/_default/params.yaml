@@ -51,6 +51,7 @@ vendor:
         host: upsun.com
         hostname: platformsh.site
         register: https://auth.upsun.com/register
+        discord: https://discord.gg/platformsh
 
 # Images (kept in static/)
 logo: "images/logo.svg"
