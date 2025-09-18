@@ -160,7 +160,7 @@ If you prefer the peace of mind of hosting across multiple AZs, you can request 
 
 {{< note title="Note" theme="info" >}}
 
-Upsun Fixed is responsible for meeting the 99.99% uptime SLA, so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
+Upsun is responsible for meeting the Premium Uptime SLA (99.99% gauranteed uptime SLA), so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
 
 {{< /note >}} 
 
