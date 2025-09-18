@@ -83,7 +83,7 @@ guide-buttons previous="Previous name" next="Next name" type="*" = if you want t
           {{ $loop = 1}}
         {{ end }}
       {{ end }}
-      <a href="{{ $firstPageInSection.RelPermalink }}" class="font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded !text-white hover:!text-white hover:!bg-skye-dark focus:!bg-skye-dark inline-flex items-center gap-2">
+      <a href="{{ $firstPageInSection.RelPermalink }}" class="font-semibold text-sm xl:text-base px-4 py-2 bg-[#6046FF] hover:!bg-[#4D38CC] rounded-full !text-white hover:!text-white focus:!bg-[#4D38CC] inline-flex items-center gap-2">
         {{ with .Get "next" }}{{ . | $pageContext.RenderString }}{{ end }}
         <svg class="inline -rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
       </a>

@@ -11,7 +11,7 @@ description:  "Backups are retained for different periods depending on various f
 
 ## Dedicated Generation 2 Backups
 
-Platform.sh takes a byte-for-byte snapshot of Dedicated Gen 2 production environments every 6 hours. Backups are retained for different durations depending on when they were taken. 
+Upsun Fixed takes a byte-for-byte snapshot of Dedicated Gen 2 production environments every 6 hours. Backups are retained for different durations depending on when they were taken. 
 
 | Backup retention period     | Retention            |  # of backups from time period available |
 |----------------|---------------------|--------------------|
@@ -34,7 +34,7 @@ Backups are created using snapshots saved to encrypted elastic block storage (EB
 -   Recovery Point Objective (RPO) is 6 hours (maximum time to last backup).
 -   Recovery Time Objective (RTO) depends on the size of the storage. Large EBS volumes take more time to restore.
 
-These backups are only used in cases of catastrophic failure and can only be restored by Platform.sh. To request a restoration, open a [support ticket](/learn/overview/get-support.md).
+These backups are only used in cases of catastrophic failure and can only be restored by Upsun. To request a restoration, open a [support ticket](/learn/overview/get-support.md).
 
 ## Dedicated Generation 2 restoration
  
@@ -44,6 +44,6 @@ MySQL is provided as a MySQL dump file on the server. You may restore these to y
 
 {{< note title="Note" theme="info" >}}
 
-Platform.sh does not proactively overwrite your production site with a backup. You are responsible for determining a “safe” time to restore the backup, or for selectively restoring individual files if desired.
+Upsun Fixed does not proactively overwrite your production site with a backup. You are responsible for determining a “safe” time to restore the backup, or for selectively restoring individual files if desired.
 
 {{< /note >}} 

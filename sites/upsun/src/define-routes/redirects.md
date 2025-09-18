@@ -186,7 +186,7 @@ When set to `true`, which is their default value, `prefix` and `append_suffix` a
 For example:
 
 {{< version/specific >}}
-<!-- Platform.sh configuration-->
+<!-- Upsun Fixed configuration-->
 ```yaml {configFile="app"}
 routes:
   https://{default}/:

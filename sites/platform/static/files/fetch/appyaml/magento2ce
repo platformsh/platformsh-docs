@@ -1,18 +1,18 @@
-# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+# Complete list of all available properties: https://docs.upsun.com/anchors/fixed/app/reference/
 
 # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
 # with the app.
 name: magento
 
 # The runtime the application uses.
-# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+# Complete list of available runtimes: https://docs.upsun.com/anchors/fixed/app/reference/type/
 type: php:7.4
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: magento_database:mysql
   redis: magento_redis:redis
@@ -22,7 +22,7 @@ relationships:
 disk: 2048
 
 # Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/mounts/
 mounts:
   "var": "shared:files/var"
   "generated": "shared:files/generated"
@@ -31,10 +31,10 @@ mounts:
   "pub/static": "shared:files/static"
 
 # The web key configures the web server running in front of your app.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/web/
 web:
   # Each key in locations is a path on your site with a leading /.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/locations/
   locations:
     '/':
       # The directory to serve static assets for this location relative to the app’s root directory. Must be an
@@ -53,7 +53,7 @@ web:
       # The key of each item in rules is a regular expression to match paths exactly. If an incoming request
       # matches the rule, it’s handled by the properties under the rule, overriding any conflicting rules from the
       # rest of the locations properties.
-      # More information: https://docs.platform.sh/create-apps/app-reference.html#rules
+      # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/locations/rules/
       rules:
         \.(css|js|map|hbs|gif|jpe?g|png|tiff|wbmp|ico|jng|bmp|svgz|midi?|mp?ga|mp2|mp3|m4a|ra|weba|3gpp?|mp4|mpe?g|mpe|ogv|mov|webm|flv|mng|asx|asf|wmv|avi|ogx|swf|jar|ttf|eot|woff|otf|html?)$:
           allow: true
@@ -76,7 +76,7 @@ web:
           passthru: "/static/$resource"
 
 # Alternate copies of the application to run as background processes.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#workers
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/workers/
 workers:
   queue:
     size: S
@@ -85,45 +85,45 @@ workers:
       start: |
         bin/magento queue:consumers:start async.operations.all --single-thread --max-messages=10000
 
-# Variables to control the environment. More information: https://docs.platform.sh/create-apps/app-reference.html#variables
+# Variables to control the environment. More information: https://docs.upsun.com/anchors/fixed/app/reference/variables/
 variables:
   # Customize your PHP.ini.
-  # See: https://docs.platform.sh/languages/php/ini.html
+  # See: https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/
   php:
     # Include Magento's out-of-the-box settings
     include: /app/.user.ini
 
 # Specifies a default set of build tasks to run. Flavors are language-specific.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#build
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/build/
 build:
   flavor: composer
 
 # Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and
 # are available in the PATH during the build process and in the runtime environment. They’re installed before
 # the build hook runs using a package manager for the language.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#dependencies
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/dependencies/
 dependencies:
   php:
     composer/composer: "^1"
 
 # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/hooks/
 hooks:
   # The build hook is run after any build flavor.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/build/
   build: |
     set -e
     mkdir -p .versioned_backup/etc && cp app/etc/* .versioned_backup/etc/
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/deploy/
   deploy: |
     set -e
     cp .versioned_backup/etc/* app/etc/
     php deploy.php
 
 # Scheduled tasks for the app.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#crons
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/crons/
 crons:
   magento:
     spec: "*/5 * * * *"
@@ -131,11 +131,11 @@ crons:
       start: "php bin/magento cron:run"
 
 ###
-# Customizations to your PHP runtime. More information: https://docs.platform.sh/create-apps/app-reference.html#runtime
+# Customizations to your PHP runtime. More information: https://docs.upsun.com/anchors/fixed/app/reference/runtime/
 # Specify additional PHP extensions that should be loaded.
 # To determine what you need to enable
 #   1. run locally: composer check-platform-reqs | grep "ext-\|php"
-#   2. Compare to https://docs.platform.sh/languages/php/extensions.html
+#   2. Compare to https://docs.upsun.com/anchors/fixed/languages/php/extensions/
 #      - "Def" = Already Enabled
 #      - "Avail" = Available, but you need to enable below.
 runtime:
@@ -144,12 +144,12 @@ runtime:
     - sodium
 
 # Information on the app's source code and operations that can be run on it.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#source
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/source/
 source:
   ######################################################################################################################
   ##                                                                                                                  ##
   ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
-  ## templates. For more information see https://docs.platform.sh/create-apps/source-operations.html and              ##
+  ## templates. For more information see https://docs.upsun.com/anchors/fixed/app/reference/source/operations/ and    ##
   ## https://github.com/platformsh/source-operations                                                                  ##
   ##                                                                                                                  ##
   ##                  YOU CAN SAFELY DELETE THIS COMMENT AND THE LINES BENEATH IT                                     ##

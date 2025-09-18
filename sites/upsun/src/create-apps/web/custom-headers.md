@@ -132,6 +132,6 @@ unless you enable [HTTP Strict Transport Security (HSTS)](https://docs.platform.
 in your [routes configuration](../../define-routes/_index.md).
 
 Note that once HSTS is enabled, configuration capabilities depend
-on the [HSTS properties](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)
+on the [HSTS properties](https://fixed.upsun.docs/define-routes/https.html#enable-http-strict-transport-security-hsts)
 set in your routes configuration.
 For example, the `max-age` value is set to `31536000` by {{% vendor/name %}} and can't be customized.

@@ -30,9 +30,9 @@ We recommend the latest [MariaDB](/add-services/mysql/_index.md) version for Wor
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
-# More information: https://docs.platform.sh/add-services.html
-# Full list of available services: https://docs.platform.sh/add-services.html#available-services
+# to power your Upsun Fixed project.
+# More information: https://docs.upsun.com/anchors/fixed/services/
+# Full list of available services: https://docs.upsun.com/anchors/fixed/services/available/
 db:
     type: mariadb:10.4
     disk: 2048

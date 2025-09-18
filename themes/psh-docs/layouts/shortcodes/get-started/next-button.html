@@ -4,6 +4,6 @@
  } }">
   <a href="{{ $destination }}" destination="{{ $destination }}" :href="getDestination" x-ref="next" type="button" class="{{ partial "pink-button-styles" }}">
     {{ .Get "nextText" }}
-    <img class="inline" aria-hidden="true" alt="" src="/images/icons/chevrons.svg" />
+    <svg class="inline -rotate-90" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">{{ readFile "layouts/shortcodes/icon-paths/chevron.html" | safeHTML }}</svg>
   </a>
 </div>

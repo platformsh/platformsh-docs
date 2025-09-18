@@ -46,7 +46,7 @@ type: "php:8.2"
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
+# to power your Upsun Fixed project.
 # {{< code-link destination="/add-services.html#available-services" text="Full list of available services" title="Click to see the complete list of all available services" >}}
 
 mariadb:
@@ -58,7 +58,7 @@ mariadb:
 # The routes of the project.
 #
 # Each route describes how an incoming URL is going
-# to be processed by Platform.sh.
+# to be processed by Upsun Fixed.
 # {{< code-link destination="/define-routes.html" text="More information" title="Click to see more information" >}}
 
 "https://{default}/":

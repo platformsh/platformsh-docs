@@ -14,9 +14,9 @@
 #   body: Explanation of the custom banner title
 beta:
     title: Beta
-    body: This feature is only available to Enterprise and Elite customers and is currently in Beta.
-        If you’re an Enterprise or Elite customer, to become a Beta tester [contact Support](/overview/get-support.html).
-        If you’re a Professional customer, you need to [contact Sales](https://platform.sh/contact/) first to upgrade your plan.
+    body: This feature is only available to Upsun Fixed Enterprise and Elite customers and is currently in Beta.
+        If you’re an Upsun Fixed Enterprise or Elite customer, to become a Beta tester [contact Support](/overview/get-support.html).
+        If you’re an Upsun Fixed Professional customer, you need to [contact Sales](https://upsun.com/contact-us/) first to upgrade your plan.
 
 # For now, the only tier-gated feature is applicable BOTH to Enterprise and Elite. 
 # If this changes, it may make sense to use instead
@@ -27,12 +27,12 @@ beta:
 # ...
 tiered-feature: 
     title: Tier availability
-    body: This feature is available for **Elite** and **Enterprise** customers. 
-        [Compare the Platform.sh tiers](https://platform.sh/pricing/) on our pricing page, 
-        or [contact our sales team](https://platform.sh/contact/) for more information.
+    body: This feature is available for Upsun Fixed **Elite** and **Enterprise** customers. 
+        [Compare the Upsun Fixed tiers](https://upsun.com/fixed-pricing/) on our pricing page, 
+        or [contact our Sales team](https://upsun.com/contact-us/) for more information.
 
 observability-suite:
     title: Observability Suite
     body: This feature is available as part of the [Observability Suite](https://platform.sh/features/observability-suite/).
         To add the Observability Suite to your project and take advantage of this feature,
-        [contact Sales](https://platform.sh/contact/).
+        [contact Sales](https://upsun.com/contact-us/).

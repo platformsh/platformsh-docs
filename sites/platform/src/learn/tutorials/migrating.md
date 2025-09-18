@@ -33,7 +33,7 @@ and for some apps, such as Drupal, configuration that you need to export from th
 
 ## 2. Create a project
 
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -110,7 +110,7 @@ You likely want to configure three areas:
 - [Routes](/define-routes/_index.md)
 
 {{% version/only "1" %}}
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 You can also take guidance from the [project templates](/development/templates.md),
 which are starting points for various technology stacks with working configuration examples.
 {{% /version/only %}}
@@ -268,7 +268,7 @@ If your app requires environment variables to build properly, [add them to your 
 
 Now that your app is ready to be deployed, you can do more:
 {{% version/only "1"%}}
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 - Upgrade from a Development plan.
 {{% /version/only %}}
 - [Add a domain](/domains/steps/_index.md).

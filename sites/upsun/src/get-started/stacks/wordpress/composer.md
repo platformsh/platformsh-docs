@@ -83,7 +83,7 @@ applications:
 
 {{< note theme="info" >}}
 If you're migrating your site, you may already have a `composer.json` file.
-You may even have generated your own instead of starting from the Platform.sh template version.</br>
+You may even have generated your own instead of starting from the Upsun Fixed template version.</br>
 If so, you may also have added a [`wordpress-install-dir` property](https://github.com/johnpbloch/wordpress-core-installer?tab=readme-ov-file#usage) for `extras` in your `composer.json` file.</br>
 In this case, set `root:` to the name of the directory where you are installing WordPress.
 {{< /note >}}

@@ -39,7 +39,7 @@ Note that resources are spread across all containers within the project.
 So the resources you see for a given container don't equal the total resources for the project.
 
 This reference project has a single app, two services (PostgreSQL and Redis), and two workers.
-The plan size for this project is [Medium](https://platform.sh/pricing/).
+The plan size for this project is [Medium](https://upsun.com/fixed-pricing/).
 The appropriate resources have been [allocated automatically](/create-apps/app-reference/single-runtime-image.md#sizes) for each container
 based on the number and type of containers for this plan size.
 The graphs show the current average usage in relation to the allocated resources.

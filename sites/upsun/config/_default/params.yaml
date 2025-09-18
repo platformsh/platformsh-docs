@@ -54,7 +54,7 @@ vendor:
         discord: https://discord.gg/platformsh
 
 # Images (kept in static/)
-logo: "images/logo.svg"
+logo: "images/logo-flex.svg"
 logolinksto: "/"
 logoAlt: "Upsun"
 favicon: "images/favicon.ico"

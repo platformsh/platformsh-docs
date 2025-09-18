@@ -35,7 +35,7 @@ If you have any additional information, you can select the submitted ticket and 
 ## Discord
 
 To talk about app development or framework-related questions,
-join other customers and engineers in the [public Discord channel](https://chat.platform.sh/).
+join other customers and engineers in the public {{< vendor/url "discord" "Discord" >}}.
 
 ## Community
 
