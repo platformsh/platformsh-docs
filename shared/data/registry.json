@@ -768,7 +768,7 @@
     }
   },
   "php": {
-    "description": "PHP service for Platform.sh.",
+    "description": "PHP service for Upsun Fixed.",
     "repo_name": "php",
     "disk": false,
     "docs": {
@@ -839,7 +839,7 @@
     }
   },
   "postgresql": {
-    "description": "PostgreSQL service for Platform.sh.",
+    "description": "PostgreSQL service for Upsun Fixed.",
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
