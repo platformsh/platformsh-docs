@@ -8,7 +8,7 @@ description:  "Our Dedicated Environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Upsun, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
+When you create an Upsun Fixed project, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
 
 ## What is Dedicated?
 
