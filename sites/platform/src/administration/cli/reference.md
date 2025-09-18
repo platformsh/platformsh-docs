@@ -5640,7 +5640,7 @@ Create a new organization
 platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
 ```
 
-Organizations allow you to manage your Upsun Fixed projects, users and billing. Projects are owned by organizations.
+Fixed Organizations allow you to manage your Upsun Fixed projects, users and billing. Projects are owned by organizations.
 
 You can add other users to your organization, for collaboratively managing the organization as well as its projects and billing information.
 
