@@ -230,4 +230,4 @@ The output produces information and statistics about Valkey,showing that the ser
 ### Documentation
 
 - [Valkey documentation](https://valkey.io/topics/)
-- [Platform.sh Valkey Documentation](/add-services/valkey)
+- [Upsun Fixed Valkey Documentation](/add-services/valkey)

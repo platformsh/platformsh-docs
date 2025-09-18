@@ -29,7 +29,7 @@ use Platformsh\ConfigReader\Config;
 
 require __DIR__.'/../vendor/autoload.php';
 
-// Create a new config object to ease reading the Platform.sh environment variables.
+// Create a new config object to ease reading the Upsun Fixed environment variables.
 // You can alternatively use getenv() yourself.
 $config = new Config();
 
@@ -46,7 +46,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
 if ($config->isValidPlatform()) {
 	if ($config->hasRelationship('database')) {
 		// This is where we get the relationships of our application dynamically
-		// from Platform.sh.
+		// from Upsun Fixed.
 
 		// Avoid PHP notices on CLI requests.
 		if (php_sapi_name() === 'cli') {
@@ -66,7 +66,7 @@ if ($config->isValidPlatform()) {
 		define( 'DB_CHARSET', 'utf8' );
 		define( 'DB_COLLATE', '' );
 
-		// Check whether a route is defined for this application in the Platform.sh
+		// Check whether a route is defined for this application in the Upsun Fixed
 		// routes. Use it as the site hostname if so (it is not ideal to trust HTTP_HOST).
 		if ($config->routes()) {
 
@@ -86,13 +86,13 @@ if ($config->isValidPlatform()) {
 			}
 		}
 
-		// Debug mode should be disabled on Platform.sh. Set this constant to true
+		// Debug mode should be disabled on Upsun Fixed. Set this constant to true
 		// in a wp-config-local.php file to skip this setting on local development.
 		if (!defined( 'WP_DEBUG' )) {
 			define( 'WP_DEBUG', false );
 		}
 
-		// Set all of the necessary keys to unique values, based on the Platform.sh
+		// Set all of the necessary keys to unique values, based on the Upsun Fixed
 		// entropy value.
 		if ($config->projectEntropy) {
 			$keys = [

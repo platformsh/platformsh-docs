@@ -90,7 +90,7 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 ```
 
 You can also add it in the Console,
-similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
+similar to this [video](https://fixed.docs.upsun.com/videos/management-console/add-ssh-mc.mp4).
 
 Now you are ready to use the key to [connect to an environment](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
 

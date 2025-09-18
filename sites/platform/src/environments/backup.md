@@ -75,7 +75,7 @@ The number of available backups for Production environments depends on your sche
 
 Note that [backup retention](/security/data-retention.md#grid-backups) also depends on your schedule.
 
-The schedules available to you depend on your [tier](https://platform.sh/pricing/).
+The schedules available to you depend on your [tier](https://upsun.com/fixed-pricing/).
 
 | Tier             | Default schedule | Possible upgrade |
 | ---------------- | ---------------- | ---------------- |
@@ -118,7 +118,7 @@ Automated backups are only available for production environments.
 If you're on a [development plan](/administration/pricing/_index.md#development-plans),
 all your environments are [development environments](/glossary/_index.md#environment-type).
 This includes your future production environment.
-If you want to enable automated backups for it, [upgrade to a non-development plan](https://platform.sh/pricing/).
+If you want to enable automated backups for it, [upgrade to a non-development plan](https://upsun.com/fixed-pricing/).
 
 {{< /note >}}
 
@@ -192,5 +192,5 @@ They don't affect the automated backups taken as part of the schedule.
 
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
-[within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
+[within the region your project is hosted in](https://upsun.com/trust-center/security/data-security/).
 This means that in the rare event a data center becomes unavailable, your backups are still available.

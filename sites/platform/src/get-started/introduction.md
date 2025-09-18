@@ -24,7 +24,7 @@ knowing the changes work the same in production as they have in your development
 
 See a more detailed overview of {{% vendor/name %}} and how it can fit within your workflow in this video:
 
-{{< youtube ny2YeD6Qt3M >}}
+{{< youtube JpW_RsFE0h4 >}}
 
 ## What you need
 

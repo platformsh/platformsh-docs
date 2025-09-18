@@ -28,7 +28,7 @@ From version 7.11 onward:
 {{% note title="Premium Service" theme="info" %}}
 Elasticsearch isn’t included in any {{< vendor/name >}} plan.
 You need to add it separately at an additional cost.
-To add Elasticsearch, [contact Sales](https://platform.sh/contact/).
+To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
 {{% /note %}}
 
 The following premium versions are supported:

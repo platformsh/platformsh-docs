@@ -9,6 +9,9 @@ repo: "https://github.com/platformsh/platformsh-docs/"
 folder: "sites/platform"
 editPageButton: true
 
+theme:
+    use_vendor: true
+    
 # Vendorization
 vendor:
     name: Upsun Fixed
@@ -40,7 +43,7 @@ vendor:
         main: https://upsun.com
         docs: https://fixed.docs.upsun.com
         support: https://support.upsun.com
-        sales: https://upsun.com/contact
+        sales: https://upsun.com/contact-us
         console: https://console.upsun.com/
         api: https://docs.upsun.com/api/
         host: platform.sh

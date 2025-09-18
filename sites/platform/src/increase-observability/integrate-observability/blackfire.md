@@ -23,7 +23,7 @@ This results in an effortless setup process and smooth user experience.
 {{< note >}}
 
 Blackfire.io can be bundled with Enterprise and Elite subscriptions as part of the Observability Suite.
-To learn more, [contact Sales](https://platform.sh/contact/).
+To learn more, [contact Sales](https://upsun.com/contact-us/).
 All customers can also subscribe to Blackfire separately.
 
 {{< /note >}}
@@ -32,7 +32,7 @@ All customers can also subscribe to Blackfire separately.
 
 ### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure
 
-If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
+If you're using a plan with the [Observability Suite](https://upsun.com/product/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 Note that as an Observability Suite user, you can only access your Blackfire environments
 after you've been granted access to the related {{% vendor/name %}} project.

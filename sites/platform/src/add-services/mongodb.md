@@ -30,7 +30,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 {{% note title="Premium Service" theme="info" %}}
 MongoDB Enterprise isn’t included in any {{< vendor/name >}} plan.
 You need to add it separately at an additional cost.
-To add MongoDB Enterprise, [contact Sales](https://platform.sh/contact/).
+To add MongoDB Enterprise, [contact Sales](https://https://upsun.com/contact-us/).
 {{% /note %}}
 
 <table>

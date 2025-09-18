@@ -118,7 +118,7 @@ You have the option to use several languages in microservices. If you're using J
 {{< note >}}
 You can load balance to some or [all applications in the project cluster](https://support.platform.sh/hc/en-us/community/posts/16439662235026).
 
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 
 {{< /note >}}
 
@@ -179,7 +179,7 @@ This sets environment variables with names your app needs and the values from [`
 | [Payara JPA](https://support.platform.sh/hc/en-us/community/posts/16439658290194) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
 {{< note version="2" >}}
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 {{< /note >}}
 
 To reduce the number of lines in the application file and to make it cleaner,

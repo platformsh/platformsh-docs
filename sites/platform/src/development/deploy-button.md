@@ -49,7 +49,7 @@ in the 3rd party template repository.
 
 ## Making a button (with a widget)
 
-The easiest way to make a Deploy on {{% vendor/name %}} button is to use the [button builder widget](https://platform.sh/deploy/).
+The easiest way to make a Deploy on {{% vendor/name %}} button is to use the [button builder widget](https://docs.upsun.com/learn/overview/build-deploy.html).
 You provide it with either the Git URL of the repository or a URL to a corresponding template definition file.
 
 The button builder widget gives you an HTML fragment to copy and paste to wherever you want the button hosted.
@@ -62,14 +62,14 @@ It also includes a tracking code to know whose Deploy on {{% vendor/name %}} but
 Create a link in the following form:
 
 ```text
-https://console.platform.sh/org/create-project?template=GIT_URL
+https://console.upsun.com/org/create-project?template=GIT_URL
 ```
 
 Where `GIT_URL` is the URL of a publicly visible Git repository.
 For example, to install {{% vendor/name %}}'s [Drupal 10 template on GitHub](https://github.com/platformsh-templates/drupal10) you would use:
 
 ```text
-https://console.platform.sh/org/create-project/?template=https://github.com/platformsh-templates/drupal10.git
+https://console.upsun.com/org/create-project/?template=https://github.com/platformsh-templates/drupal10.git
 ```
 
 (Note that's the URL of the Git repository as if you were cloning it, NOT the URL of the repository's home page on GitHub.)
@@ -84,7 +84,7 @@ If those are missing the project still initializes but fails to build.
 Create a link in the following form:
 
 ```text
-https://console.platform.sh/org/create-project?template=TEMPLATE_URL
+https://console.upsun.com/org/create-project?template=TEMPLATE_URL
 ```
 
 Where `TEMPLATE_URL` is the URL of a publicly visible template definition file.
