@@ -1075,7 +1075,7 @@ platform auth:api-token-login
 Use this command to log in to your Upsun account using an API token.
 
 You can create an account at:
-    https://auth.api.upsun.com/register
+    https://auth.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
