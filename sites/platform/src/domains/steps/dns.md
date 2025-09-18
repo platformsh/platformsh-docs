@@ -55,7 +55,7 @@ But unlike `CNAME` records, these custom records can point to apex domains.
 
 To use custom records, follow the instructions on [how to set up a custom domain](/domains/steps/_index.md).
 When you come to configuring your DNS provider, instead of a `CNAME` record,
-add a custom record pointing from your domain to [your project's target URL](https://docs.platform.sh/domains/steps.html#2-get-the-target-for-your-project).
+add a custom record pointing from your domain to [your project's target URL](https://fixed.docs.upsun.com/domains/steps.html#2-get-the-target-for-your-project).
 
 ### Domain forwarding
 

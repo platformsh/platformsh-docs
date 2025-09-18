@@ -6,5 +6,5 @@ banner:
 ---
 
 To protect your app from common security threats,
-Platform. sh provides its own Web Application Firewall (WAF).
+Upsun Fixed provides its own Web Application Firewall (WAF).
 You can also subscribe to the Fastly Next-Gen WAF through {{% vendor/name %}}.

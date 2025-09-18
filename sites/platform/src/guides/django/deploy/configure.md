@@ -24,21 +24,21 @@ title=Pip
 ##########################
 # Container configuration.
 
-# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+# Complete list of all available properties: https://docs.upsun.com/anchors/fixed/app/reference/
 
 # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
 # with the app.
 name: 'app'
 
 # The runtime the application uses.
-# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+# Complete list of available runtimes: https://docs.upsun.com/anchors/fixed/app/reference/types/
 type: 'python:3.10'
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: "db:postgresql"
 
@@ -46,29 +46,29 @@ relationships:
 disk: 512
 
 # Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/mounts/
 mounts:
   'logs':
     source: local
     source_path: logs
 
 # The web key configures the web server running in front of your app.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/web/
 web:
   # Commands are run once after deployment to start the application process.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/commands/
   commands:
     # The command to launch your app. If it terminates, it’s restarted immediately.
     start: "gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 
-  # More information: https://docs.platform.sh/configuration/app-containers.html#upstream
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/upstream/
   upstream:
     # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#where-to-listen
+    # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/upstream/socket-family/
     socket_family: unix
 
   # Each key in locations is a path on your site with a leading /.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/locations/
   locations:
     "/":
       # Whether to forward disallowed and missing resources from this location to the app. A string is a path
@@ -84,10 +84,10 @@ web:
       allow: true
 
 # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/hooks/
 hooks:
   # The build hook is run after any build flavor.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/build/
   build: |
     set -eu
 
@@ -101,7 +101,7 @@ hooks:
     python manage.py collectstatic
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/deploy/
   deploy: python manage.py migrate
 ```
 
@@ -116,21 +116,21 @@ title=Pipenv
 ##########################
 # Container configuration.
 
-# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+# Complete list of all available properties: https://docs.upsun.com/anchors/fixed/app/reference/
 
 # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
 # with the app.
 name: 'app'
 
 # The runtime the application uses.
-# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+# Complete list of available runtimes: https://docs.upsun.com/anchors/fixed/app/reference/types/
 type: 'python:3.10'
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: "db:postgresql"
 
@@ -138,7 +138,7 @@ relationships:
 disk: 512
 
 # Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/mounts/
 mounts:
   'logs':
     source: local
@@ -148,22 +148,22 @@ mounts:
     source_path: cache
 
 # The web key configures the web server running in front of your app.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/web/
 web:
   # Commands are run once after deployment to start the application process.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/commands/
   commands:
     # The command to launch your app. If it terminates, it’s restarted immediately.
     start: "pipenv run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 
-  # More information: https://docs.platform.sh/configuration/app-containers.html#upstream
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/upstream/
   upstream:
     # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#where-to-listen
+    # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/upstream/socket-family/
     socket_family: unix
 
   # Each key in locations is a path on your site with a leading /.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/locations/
   locations:
     "/":
       # Whether to forward disallowed and missing resources from this location to the app. A string is a path
@@ -181,16 +181,16 @@ web:
 # Installs global dependencies as part of the build process. They’re independent of your app’s dependencies and
 # are available in the PATH during the build process and in the runtime environment. They’re installed before
 # the build hook runs using a package manager for the language.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#dependencies
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/dependencies/
 dependencies:
   python3:
     pipenv: '2022.9.4'
 
 # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/hooks/
 hooks:
   # The build hook is run after any build flavor.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/build/
   build: |
     set -eu
 
@@ -204,7 +204,7 @@ hooks:
     pipenv run python manage.py collectstatic
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/deploy/
   deploy: pipenv run python manage.py migrate
 ```
 
@@ -219,21 +219,21 @@ title=Poetry
 ##########################
 # Container configuration.
 
-# Complete list of all available properties: https://docs.platform.sh/create-apps/app-reference.html
+# Complete list of all available properties: https://docs.upsun.com/anchors/fixed/app/reference/
 
 # A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated
 # with the app.
 name: 'app'
 
 # The runtime the application uses.
-# Complete list of available runtimes: https://docs.platform.sh/create-apps/app-reference.html#types
+# Complete list of available runtimes: https://docs.upsun.com/anchors/fixed/app/reference/types/
 type: 'python:3.10'
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   database: "db:postgresql"
 
@@ -241,29 +241,29 @@ relationships:
 disk: 512
 
 # Mounts define directories that are writable after the build is complete. If set as a local source, disk property is required.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#mounts
+# More information: https://fixed.docs.upsun.com/create-apps/app-reference.html#mounts
 mounts:
   'logs':
     source: local
     source_path: logs
 
 # The web key configures the web server running in front of your app.
-# More information: https://docs.platform.sh/create-apps/app-reference.html#web
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/web/
 web:
   # Commands are run once after deployment to start the application process.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/commands/
   commands:
     # The command to launch your app. If it terminates, it’s restarted immediately.
     start: "poetry run gunicorn -w 4 -b unix:$SOCKET myapp.wsgi:application"
 
-  # More information: https://docs.platform.sh/configuration/app-containers.html#upstream
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/upstream/
   upstream:
     # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#where-to-listen
+    # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/upstream/socket-family/
     socket_family: unix
 
       # Each key in locations is a path on your site with a leading /.
-    # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
+    # More information: https://docs.upsun.com/anchors/fixed/app/reference/web/locations/
   locations:
     "/":
       # Whether to forward disallowed and missing resources from this location to the app. A string is a path
@@ -278,17 +278,17 @@ web:
       # Whether to allow serving files which don’t match a rule.
       allow: true
 
-# Variables to control the environment. More information: https://docs.platform.sh/create-apps/app-reference.html#variables
+# Variables to control the environment. More information: https://docs.upsun.com/anchors/fixed/app/reference/variables/
 variables:
   env:
     POETRY_VIRTUALENVS_IN_PROJECT: true
     POETRY_VIRTUALENVS_CREATE: false
 
 # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
-# More information: https://docs.platform.sh/create-apps/app-reference.html#hooks
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/hooks/
 hooks:
   # The build hook is run after any build flavor.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#build-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/build/
   build: |
     set -eu
 
@@ -311,7 +311,7 @@ hooks:
     poetry run python manage.py collectstatic
 
   # The deploy hook is run after the app container has been started, but before it has started accepting requests.
-  # More information: https://docs.platform.sh/create-apps/hooks/hooks-comparison.html#deploy-hook
+  # More information: https://docs.upsun.com/anchors/fixed/app/hooks/compare/deploy/
   deploy: poetry run python manage.py migrate
 ```
 
@@ -380,9 +380,9 @@ Below is an example configuration to make [PostgreSQL](/add-services/postgresql.
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
-# More information: https://docs.platform.sh/add-services.html
-# Full list of available services: https://docs.platform.sh/add-services.html#available-services
+# to power your Upsun Fixed project.
+# More information: https://docs.upsun.com/anchors/fixed/services/
+# Full list of available services: https://docs.upsun.com/anchors/fixed/services/available/
 db:
   type: postgresql:12
   disk: 1024

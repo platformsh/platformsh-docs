@@ -10,7 +10,7 @@ All memory must stay within the limits set by your plan.
 {{< note >}}
 
 If you don't understand how your resources are being allocated or are having issues configuring them,
-[open a support ticket](https://console.platform.sh/-/users/~/tickets/open?category=high-mem-plans).
+[open a support ticket](https://console.upsun.com/-/users/~/tickets/open?category=high-mem-plans).
 The Support team can look into the details of your project.
 
 {{< /note >}}

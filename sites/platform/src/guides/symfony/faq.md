@@ -2,7 +2,7 @@
 title: "FAQ"
 weight: 200
 description: |
-    Troubleshoot issue you might encounter using [Symfony](https://www.symfony.com/), a [PHP](/development/templates.md#php) framework on {{% vendor/name %}}.
+    Troubleshoot issue you might encounter using Symfony, a PHP framework on {{% vendor/name %}}.
 ---
 
 ## Why is `DATABASE_URL` not defined during the build hook?

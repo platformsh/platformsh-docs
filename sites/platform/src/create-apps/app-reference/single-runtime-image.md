@@ -563,7 +563,7 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 
 {{< note theme="info" >}}
 The `post_start` feature is _experimental_ and may change. Please share your feedback in the
-[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+Upsun {{< vendor/url "discord" "Discord" >}}.
 {{< /note >}}
 
 
@@ -724,7 +724,7 @@ workers:
       ./worker.sh
 ```
 
-For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://upsun.com/fixed-pricing/).
 
 ## Access
 
@@ -862,9 +862,9 @@ Example output:
 ```bash
 facebook.com
 fastly.com
-platform.sh
+upsun.com
 www.google.com
-www.platform.sh
+www.upsun.com
 ```
 
 ## Build

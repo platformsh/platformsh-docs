@@ -40,7 +40,7 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 In each of the backend guides below, there is a "Deploy on {{% vendor/name %}}" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section.
 
 If however you are planning on using the templates and guides to deploy your existing codebase to {{% vendor/name %}},
-you first need to [register for a trial {{% vendor/name %}} account](https://auth.api.platform.sh/register).
+you first need to [register for a trial {{% vendor/name %}} account](https://auth.upsun.com/register).
 If you don't want to sign up initially with your e-mail address,
 you can sign up using an existing GitHub, Bitbucket, or Google account.
 If you choose one of these options, you can set a password for your {{% vendor/name %}} account later.
