@@ -1,6 +1,6 @@
 ---
 title: Converting from Upsun Fixed (formerly Platform.sh) 
-description: See how to configure your Upsun Fixed app to {{% vendor/name %}} so it's ready to be deployed.
+description: Learn how to configure your Upsun Fixed app to work on an Upsun Flex project so that it's deployment-ready.
 keywords:
   - "set remote"
 ---

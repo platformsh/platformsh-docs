@@ -46,7 +46,7 @@ Much of the tooling used on Grid is used for DG3, but there are still some diffe
 | **NodeJS version upgrade** | Self-service via YAML config files | Self-service via YAML config files |
 | **Cron management** | Self-service via YAML config files | Self-service via YAML config files |
 | **Web server internal config : locations**  | Self-service via YAML config files | Self-service via YAML config files |
-| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Upsun |
+| **CDN** | Fastly  | A managed Fastly CDN service can be purchased through Upsun Fixed |
 | **Dedicated IP** | Yes | No |
 | **Configuration management** | Self-service via YAML config files | Self-service via YAML config files  |
 | **Usable regions** | Any region needed | Only the publicly available |
@@ -160,7 +160,7 @@ If you prefer the peace of mind of hosting across multiple AZs, you can request 
 
 {{< note title="Note" theme="info" >}}
 
-Upsun is responsible for meeting the Premium Uptime SLA (99.99% gauranteed uptime SLA), so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
+Upsun is responsible for meeting the Premium Uptime SLA (99.99% guaranteed uptime SLA), so multiple-AZ deployments should only be considered in cases where they’re truly appropriate. Multi-AZ deployments are available only on select AWS regions.
 
 {{< /note >}} 
 
