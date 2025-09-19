@@ -552,7 +552,7 @@
     }
   },
   "mongodb": {
-    "description": "Experimental MongoDB support on Platform.sh",
+    "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
