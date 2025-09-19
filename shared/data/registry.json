@@ -646,7 +646,7 @@
     }
   },
   "nodejs": {
-    "description": "NodeJS service for Platform",
+    "description": "NodeJS service for Upsun Fixed",
     "repo_name": "nodejs",
     "disk": false,
     "docs": {
