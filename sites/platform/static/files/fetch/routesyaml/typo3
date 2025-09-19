@@ -4,7 +4,7 @@
 # See https://docs.upsun.com/anchors/fixed/routes/
 
 # URL template for the main route, where `{default}` is replaced by
-# the https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ generated environment URL or the configured domain.
+# the Upsun Fixed generated environment URL or the configured domain.
 "https://{default}/":
     # This route serves an application (upstream).
     type: upstream
@@ -17,7 +17,7 @@
     #
     # For TYPO3, the id "main" is used within `public/typo3conf/PlatformshConfig.php`
     # to set the `base` attribute for the site (in `config/sites/main/config.yaml`) from the
-    # https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ environment variable `PLATFORM_ROUTES`.
+    # Upsun Fixed environment variable `PLATFORM_ROUTES`.
     id: "main"
 
     # HTTP cache configuration.

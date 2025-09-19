@@ -1,7 +1,7 @@
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ project.
+# to power your Upsun Fixed project.
 
 dbpostgres:
     type: postgresql:12

@@ -1,7 +1,7 @@
 # The routes of the project.
 #
 # Each route describes how an incoming URL is going
-# to be processed by https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/.
+# to be processed by Upsun Fixed.
 # More information: https://docs.upsun.com/anchors/fixed/routes/
 "https://www.{default}/":
   type: upstream

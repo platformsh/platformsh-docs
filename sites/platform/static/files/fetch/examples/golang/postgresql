@@ -11,7 +11,7 @@ import (
 
 func UsageExamplePostgreSQL() string {
 
-	// Create a NewRuntimeConfig object to ease reading the https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ environment variables.
+	// Create a NewRuntimeConfig object to ease reading the Upsun Fixed environment variables.
 	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
 	checkErr(err)

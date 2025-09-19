@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Elasticsearch\ClientBuilder;
 use Platformsh\ConfigReader\Config;
 
-// Create a new config object to ease reading the https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ environment variables.
+// Create a new config object to ease reading the Upsun Fixed environment variables.
 // You can alternatively use getenv() yourself.
 $config = new Config();
 
@@ -14,7 +14,7 @@ $credentials = $config->credentials('elasticsearch');
 
 try {
     // The Elasticsearch library lets you connect to multiple hosts.
-    // On https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ Standard there is only a single host so just
+    // On Upsun Fixed Standard there is only a single host so just
     // register that.
     $hosts = [
         [
