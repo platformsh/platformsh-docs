@@ -3,7 +3,7 @@ golang:
     name: Beego
     repo: https://github.com/platformsh-templates/beego
     description: >
-      <p>This template demonstrates building the Beego framework for Platform.sh
+      <p>This template demonstrates building the Beego framework for Upsun Fixed
       using Go modules.  It includes a minimalist application skeleton that
       demonstrates how to connect to a MariaDB server.  It is intended for you
       to use as a starting point and modify for your own needs.</p>
@@ -36,7 +36,7 @@ golang:
     name: Echo
     repo: https://github.com/platformsh-templates/echo
     description: >
-      <p>This template demonstrates building the Echo framework for Platform.sh
+      <p>This template demonstrates building the Echo framework for Upsun Fixed
       using Go modules.  It includes a minimalist application skeleton that
       demonstrates how to connect to a MariaDB server.  It is intended for you
       to use as a starting point and modify for your own needs.</p>
@@ -56,7 +56,7 @@ golang:
     name: Gin
     repo: https://github.com/platformsh-templates/gin
     description: >
-      <p>This template demonstrates building the Gin framework for Platform.sh
+      <p>This template demonstrates building the Gin framework for Upsun Fixed
       using Go modules.  It includes a minimalist application skeleton that
       demonstrates how to connect to a MariaDB server for data storage.  It is
       intended for you to use as a starting point and modify for your own
@@ -78,7 +78,7 @@ nodejs:
     name: Directus
     repo: https://github.com/platformsh-templates/directus
     description: >
-      <p>This template demonstrates building Directus for Platform.sh. It
+      <p>This template demonstrates building Directus for Upsun Fixed. It
       includes a quickstart application configured to run with PostgreSQL. It is
       intended for you to use as a starting point and modify for your own
       needs.</p>
@@ -101,7 +101,7 @@ nodejs:
     repo: https://github.com/platformsh-templates/express
     description: >
       <p>This template demonstrates building the Express framework for
-      Platform.sh.  It includes a minimalist application skeleton that
+      Upsun Fixed.  It includes a minimalist application skeleton that
       demonstrates how to connect to a MariaDB server.  It is intended for you
       to use as a starting point and modify for your own needs.</p>
 
@@ -147,7 +147,7 @@ nodejs:
     name: Koa
     repo: https://github.com/platformsh-templates/koa
     description: >
-      <p>This template demonstrates building the Koa framework for Platform.sh. 
+      <p>This template demonstrates building the Koa framework for Upsun Fixed. 
       It includes a minimalist application skeleton that demonstrates how to
       connect to a MariaDB server for data storage.  It is intended for you to
       use as a starting point and modify for your own needs.</p>
@@ -207,7 +207,7 @@ nodejs:
     name: strapi4
     repo: https://github.com/platformsh-templates/strapi4
     description: >
-      <p>This template builds a Strapi version 4 backend for Platform.sh, which
+      <p>This template builds a Strapi version 4 backend for Upsun Fixed, which
       can be used to quickly create an API that can be served by itself or as a
       Headless CMS data source for another frontend application in the same
       project. This repository does not include a frontend application, but you
@@ -231,7 +231,7 @@ python:
     repo: https://github.com/platformsh-templates/django3
     description: >
       <p>This template deploys the Django 3 application framework on
-      Platform.sh, using the gunicorn application runner.  It also includes a
+      Upsun Fixed, using the gunicorn application runner.  It also includes a
       PostgreSQL database connection pre-configured.</p>
 
       <p>Django is a Python-based web application framework with a built-in
@@ -250,7 +250,7 @@ python:
     name: Django 4
     repo: https://github.com/platformsh-templates/django4
     description: >
-      <p>This template builds Django 4 on Platform.sh, using the gunicorn
+      <p>This template builds Django 4 on Upsun Fixed, using the gunicorn
       application runner.</p>
 
       <p>Django is a Python-based web application framework with a built-in
@@ -266,7 +266,7 @@ python:
     repo: https://github.com/platformsh-templates/fastapi
     description: >
       <p>This template demonstrates building the FastAPI framework for
-      Platform.sh.  It includes a minimalist application skeleton that
+      Upsun Fixed.  It includes a minimalist application skeleton that
       demonstrates how to connect to a MariaDB server for data storage and Redis
       for caching.  The application starts as a bare Python process with no
       separate runner.  It is intended for you to use as a starting point and
@@ -307,7 +307,7 @@ python:
     repo: https://github.com/platformsh-templates/flask
     description: >
       <p>This template demonstrates building the Flask framework for
-      Platform.sh.  It includes a minimalist application skeleton that
+      Upsun Fixed.  It includes a minimalist application skeleton that
       demonstrates how to connect to a MariaDB server for data storage and Redis
       for caching.  The application starts as a bare Python process with no
       separate runner.  It is intended for you to use as a starting point and
@@ -329,7 +329,7 @@ python:
     name: Pyramid
     repo: https://github.com/platformsh-templates/pyramid
     description: >
-      <p>This template builds Pyramid on Platform.sh.  It includes a minimalist
+      <p>This template builds Pyramid on Upsun Fixed.  It includes a minimalist
       application skeleton that demonstrates how to connect to a MariaDB server
       for data storage and Redis for caching.  It is intended for you to use as
       a starting point and modify for your own needs.</p>
@@ -372,7 +372,7 @@ python:
     name: Wagtail
     repo: https://github.com/platformsh-templates/wagtail
     description: >
-      <p>This template builds the Wagtail CMS on Platform.sh, using the gunicorn
+      <p>This template builds the Wagtail CMS on Upsun Fixed, using the gunicorn
       application runner.  It includes a PostgreSQL database that is configured
       automatically, and a basic demonstration app that shows how to use it.  It
       is intended for you to use as a starting point and modify for your own
@@ -509,7 +509,7 @@ php:
     name: Magento 2 Community Edition
     repo: https://github.com/platformsh-templates/magento2ce
     description: >
-      <p>This template builds Magento 2 CE on Platform.sh.  It includes
+      <p>This template builds Magento 2 CE on Upsun Fixed.  It includes
       additional scripts to customize Magento to run effectively in a
       build-and-deploy environment.  A MariaDB database and Redis cache server
       come pre-configured and work out of the box.  The installer has been
@@ -534,7 +534,7 @@ php:
     name: Sylius
     repo: https://github.com/platformsh-templates/sylius
     description: >
-      <p>This template builds a Sylius application for Platform.sh, which can be
+      <p>This template builds a Sylius application for Upsun Fixed, which can be
       used as a starting point for developing complex e-commerce
       applications.</p>
 
@@ -554,7 +554,7 @@ php:
     name: WordPress (Bedrock)
     repo: https://github.com/platformsh-templates/wordpress-bedrock
     description: >
-      <p>This template builds WordPress on Platform.sh using the Bedrock
+      <p>This template builds WordPress on Upsun Fixed using the Bedrock
       boilerplate by Roots with Composer. Plugins and themes should be managed
       with Composer exclusively. The only modifications made to the standard
       Bedrock boilerplate have been providing database credentials and main site
@@ -598,11 +598,11 @@ php:
     name: WordPress (Composer)
     repo: https://github.com/platformsh-templates/wordpress-composer
     description: >
-      <p>This template builds WordPress on Platform.sh using the <a
+      <p>This template builds WordPress on Upsun Fixed using the <a
       href="https://github.com/johnpbloch/wordpress"><code>johnbloch/wordpress</code></a>
       "Composer Fork" of WordPress.  Plugins and themes should be managed with
       Composer exclusively.  A custom configuration file is provided that runs
-      on Platform.sh to automatically configure the database, so the installer
+      on Upsun Fixed to automatically configure the database, so the installer
       will not ask you for database credentials.  For local-only configuration
       you can use a `wp-config-local.php` file that gets excluded from Git.</p>
 
@@ -618,14 +618,14 @@ php:
       Composer-based build<br />
     runtime: php
   - shortname: wordpress-vanilla
-    name: WordPress (Vanilla) for Platform.sh
+    name: WordPress (Vanilla) for Upsun Fixed
     repo: https://github.com/platformsh-templates/wordpress-vanilla
     description: >
-      <p>This template builds WordPress on Platform.sh, installing WordPress to
+      <p>This template builds WordPress on Upsun Fixed, installing WordPress to
       a subdirectory instead of to the project root. It does not use a package
       management tool like Composer, and updating core, themes, and plugins
       should be done with care. A custom configuration file is provided that
-      runs on Platform.sh to automatically configure the database, so the
+      runs on Upsun Fixed to automatically configure the database, so the
       installer will not ask you for database credentials.</p>
 
       <p>WordPress is a blogging and lightweight CMS written in PHP.</p>
@@ -639,10 +639,10 @@ php:
       Automatic TLS certificates<br />
     runtime: php
   - shortname: wordpress-woocommerce
-    name: WooCommerce (Bedrock) for Platform.sh
+    name: WooCommerce (Bedrock) for Upsun Fixed
     repo: https://github.com/platformsh-templates/wordpress-woocommerce
     description: >
-      <p>This template builds WordPress on Platform.sh using the Bedrock
+      <p>This template builds WordPress on Upsun Fixed using the Bedrock
       boilerplate by Roots with Composer. It includes WooCommerce and JetPack as
       dependencies, which when enabled will quickly allow you to create a store
       on WordPress.</p>
