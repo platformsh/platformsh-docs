@@ -88,7 +88,7 @@ hooks:
 source:
   ######################################################################################################################
   ##                                                                                                                  ##
-  ## This source operation is part of the Platform.sh process of updating and maintaining our collection of           ##
+  ## This source operation is part of the Upsun Fixed process of updating and maintaining our collection of           ##
   ## templates. For more information see https://docs.upsun.com/anchors/fixed/app/reference/source/operations/ and    ##
   ## https://github.com/platformsh/source-operations                                                                  ##
   ##                                                                                                                  ##
