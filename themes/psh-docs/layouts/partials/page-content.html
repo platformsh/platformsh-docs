@@ -101,7 +101,7 @@
   <div class="prose xl:prose-lg max-w-[96vw] md:max-w-full w-full prose-code:!mb-0 prose-h2:text-xl prose-h3:text-xl prose-h4:text-lg">
     <!-- Add the stack picker for Get started section -->
     {{ if and ( eq .context.Section "get-started" ) ( ne .context.Title "Introduction" ) }}
-      {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
+      {{ if eq $.Site.Params.vendor.name "Upsun Fixed" }}
         {{ partial "get-started/stack-picker" }}
       {{ end }}
     {{ end }}
