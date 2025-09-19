@@ -194,7 +194,7 @@ hooks:
             php vendor/bin/typo3cms install:setup \
                 --install-steps-config=src/SetupDatabase.yaml \
                 --site-setup-type=no \
-                --site-name="TYPO3 on Platform.sh" \
+                --site-name="TYPO3 on https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/" \
                 --admin-user-name=admin \
                 --admin-password=password \
                 --skip-extension-setup \

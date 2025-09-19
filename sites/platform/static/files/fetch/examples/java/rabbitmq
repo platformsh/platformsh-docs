@@ -18,7 +18,7 @@ public class RabbitMQSample implements Supplier<String> {
     public String get() {
         StringBuilder logger = new StringBuilder();
 
-        // Create a new config object to ease reading the Platform.sh environment variables.
+        // Create a new config object to ease reading the https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ environment variables.
         // You can alternatively use getenv() yourself.
         Config config = new Config();
         try {
@@ -34,7 +34,7 @@ public class RabbitMQSample implements Supplier<String> {
             MessageConsumer consumer = session.createConsumer(queue);
 
             // Sending a message into the queue.
-            TextMessage textMessage = session.createTextMessage("Platform.sh");
+            TextMessage textMessage = session.createTextMessage("https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/");
             textMessage.setJMSReplyTo(queue);
             MessageProducer producer = session.createProducer(queue);
             producer.send(textMessage);

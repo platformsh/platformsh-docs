@@ -114,7 +114,7 @@ runtime:
 
 ########################################################################################################################
 ##                                                                                                                    ##
-## This source operation is part of the Platform.sh process of updating and maintaining our collection of templates.  ##
+## This source operation is part of the https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ process of updating and maintaining our collection of templates.  ##
 ## For more information see https://docs.upsun.com/anchors/fixed/app/reference/source/operations/ and                 ##
 ## https://github.com/platformsh/source-operations                                                                    ##
 ##                                                                                                                    ##

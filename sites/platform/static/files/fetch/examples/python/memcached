@@ -5,7 +5,7 @@ from platformshconfig import Config
 
 def usage_example():
 
-    # Create a new Config object to ease reading the Platform.sh environment variables.
+    # Create a new Config object to ease reading the https://docs.upsun.com/anchors/fixed/languages/php/settings/customize/ environment variables.
     # You can alternatively use os.environ yourself.
     config = Config()
 
