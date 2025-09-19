@@ -1,4 +1,4 @@
-{{ $content := `This feature is available as part of the [Observability Suite](https://platform.sh/features/observability-suite/).
+{{ $content := `This feature is available as part of the [Observability Suite](https://upsun.com/product/).
 To add the Observability Suite to your project and take advantage of this feature,
 [contact Sales](https://upsun.com/contact-us/).`}}
 

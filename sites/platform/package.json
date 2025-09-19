@@ -1,14 +1,14 @@
 {
   "name": "platformsh-docs",
   "version": "1.0.0",
-  "description": "This repository holds the public user documentation for [Platform.sh](https://platform.sh/).",
+  "description": "This repository holds the public user documentation for [Upsun Fixed](https://fixed.docs.upsun.com/).",
   "license": "CC-BY-NC-SA-4.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/platformsh/platformsh-docs.git"
   },
   "main": "gulpfile.js",
-  "author": "Platform.sh",
+  "author": "Upsun",
   "scripts": {
     "build": "npm run registry-files",
     "build:search": "npm run build --workspace docs-search-input",

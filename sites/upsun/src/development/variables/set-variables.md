@@ -284,7 +284,7 @@ and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable]
 
 Many applications use a `.env` file in the application root for configuration.
 These are useful for local development to set variables without needing them to be global across the development computer.
-Read more about [the use cases for `.env` files](https://platform.sh/blog/2021/we-need-to-talk-about-the-env/).
+Read more about [the use cases for `.env` files](https://upsun.com/blog/what-is-env-file/).
 
 You shouldn't need to use a `.env` file in production.
 Add it to your `.gitignore` file to avoid confusion as its values can vary for each local developer.

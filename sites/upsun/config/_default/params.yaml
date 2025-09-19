@@ -26,7 +26,7 @@ vendor:
         title: Try Upsun for 15 days
         description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
         fine: "¹Terms and conditions apply"
-    psh_ref: Platform.sh
+    psh_ref: Upsun Fixed
     config:
         version: 2
         dir: .upsun

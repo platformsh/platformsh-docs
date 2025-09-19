@@ -6,14 +6,14 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in helping improve the Platform.sh docs!
+        Thanks for your interest in helping improve the Upsun Fixed docs!
         Please fill in the fields below so we can understand what changes are needed.
 
   - type: textarea
     attributes:
-      label: Where on docs.platform.sh should be changed?
+      label: Where on fixed.docs.upsun.com should be changed?
       description: Link to the pages you think should be updated.
-      placeholder: https://docs.platform.sh/
+      placeholder: https://fixed.docs.upsun.com/
     validations:
       required: true
 

@@ -132,7 +132,7 @@ jobs:
             status_message="PR environment successfully deployed."
             status_state="${{ needs.get_pr_url.outputs.pr_url_status }}"
           else
-            status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+            status_message="Unable to retrieve PR URL. See log output in Actions run or visit https://console.upsun.com/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
             # the status reported by our action most likely wont align with what the gh api is expecting, so if the
             # status reported by our action isn't `success` we'll manually set it to `failure`
             status_state="failure"
@@ -147,7 +147,7 @@ jobs:
           PLATFORMSH_CLI_TOKEN: ${{ secrets.PLATFORMSH_CLI_TOKEN }}
         run: |
           echo "::error::The environment for pull request ${{ env.PRNUM }} failed to deploy. Please rerun this workflow."
-          echo "::warning::Check the logs: https://console.platform.sh/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
+          echo "::warning::Check the logs: https://console.upsun.com/projects/${{ env.PLATFORM_PROJECT }}/${{ env.BRANCH }}"
           echo "The last status we received was ${{ needs.get_pr_url.outputs.pr_url_status }}"
           echo "List of activities that we ask for, but not limited to the last one:"
           platform activities --type "environment.push environment.activate environment.redeploy environment.branch" --environment ${{ env.BRANCH }}
@@ -236,7 +236,7 @@ jobs:
 
           done
 
-          # If there are changed files for Platform.sh, return a list
+          # If there are changed files for Upsun Fixed, return a list
           # Using "\n" here creates problems in passing data to the next step, so replace there instead
           if (( ${#files_platform[@]} != 0 )); then
             echo $(printf "||%s" "${files_platform[@]}")
@@ -261,7 +261,7 @@ jobs:
           PAGES_PLATFORM: ${{ steps.get-files.outputs.changed_files_platform }}
           PAGES_UPSUN: ${{ steps.get-files.outputs.changed_files_upsun }}
         run: |
-          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Platform.sh docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>\n\n<details>\n<summary>Upsun docs</summary><br/>\n\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
+          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the changed pages:\n\n<details>\n<summary>Upsun Fixed docs</summary><br/>\n\n${PAGES_PLATFORM//||/'\n- [ ] '}\n\n</details>\n\n<details>\n<summary>Upsun docs</summary><br/>\n\n${PAGES_UPSUN//||/'\n- [ ] '}" > pr_comment.txt
 
       # If there are no changed pages, create a comment
       # with a link to general URL
@@ -271,7 +271,7 @@ jobs:
           ENV_URL: ${{ needs.get_pr_url.outputs.pr_url }}
           UPSUN_ENV_URL: ${{ needs.get_pr_url.outputs.pr_url_upsun }}
         run: |
-          echo -e "Your Platform.sh environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Platform.sh docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
+          echo -e "Your Upsun Fixed environment has successfully deployed. :rocket:\n\nSee the site:\n\n- [Upsun Fixed docs]($ENV_URL)\n- [Upsun docs]($UPSUN_ENV_URL)" > pr_comment.txt
 
       - name: Post PR comment
         uses: marocchino/sticky-pull-request-comment@v2

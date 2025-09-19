@@ -12,7 +12,7 @@
     <!--If in the Get started section, define context and methods. -->
     <div class="grid md:grid-cols-10 divide-x-4 mt-24 print:mt-4 print:block print:mx-2"
     {{ if eq .Section "get-started" }}
-      {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
+      {{ if eq $.Site.Params.vendor.name "Upsun Fixed" }}
       x-data="{
         stack: new URLSearchParams(location.search).get('stack') || 'php',
         switchStack(targetStack) {

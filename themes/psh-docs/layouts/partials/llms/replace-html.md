@@ -10,7 +10,7 @@
   {{- if eq .version "2" }}
 {{ range $num := (seq $level) }}#{{ end }} {{ .title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun" }}
   {{- else -}}
-{{- range $num := (seq $level) }}#{{ end }} {{ .title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Platform.sh" -}}
+{{- range $num := (seq $level) }}#{{ end }} {{ .title | replaceRE `\{\{[%\|\<]?\ *vendor\/name\ *[\%|\>]?\}\}` "Upsun Fixed" -}}
 {{- end -}}
 {{- end }}
 {{- $level := .level -}}

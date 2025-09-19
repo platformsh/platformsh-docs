@@ -200,7 +200,7 @@ If the `command.start` entry is failing, it can result in a 502 error.
 ## Site outage
 
 If you can't access some part of your project, whether it's the live site, development environment, or Console,
-check the [{{% vendor/name %}} status page](https://status.platform.sh/).
+check the [{{% vendor/name %}} status page](https://status.upsun.com/).
 There you can see planned maintenance and subscribe to updates for any potential outages.
 
 If the status is operational, [contact support](/learn/overview/get-support.md).

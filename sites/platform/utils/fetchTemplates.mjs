@@ -133,7 +133,7 @@ const getTemplatesFullInfo = async (templateInfo) => {
       repo: `https://github.com/platformsh-templates/${templateInfo.name}`,
       description: info.description,
       image: info.image,
-      deploy: `https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${templateInfo.name}/.platform.template.yaml`,
+      deploy: `https://console.upsun.com/projects/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/${templateInfo.name}/.platform.template.yaml`,
       content: info.notes[0].content,
       runtime: runtime
     };

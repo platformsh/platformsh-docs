@@ -41,7 +41,7 @@ sidebarTitle: "Frameworks"
 | ------------------------------------------------------------ | -----------------------------------------------------------: |
 | [Search](https://www.payara.fish/page/payara-platform-and-paas-with-platform-sh/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/search) |
 | [NoSQL](https://dzone.com/articles/whats-new-with-jakarta-nosql-part-i-introduction-t) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/nosql) |
-| [JPA](https://platform.sh/blog/2019/eclipse-microprofiles-gain-agility-release-faster/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/jpa) |
+| [JPA](https://devcenter.upsun.com/posts/eclipse-microprofiles-gain-agility-release-faster/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/jpa) |
 | [Hello World](https://www.payara.fish/page/payara-platform-and-paas-with-platform-sh/) | [Source](https://github.com/platformsh-examples/payara-micro/tree/master/hello) |
 
 ## Quarkus

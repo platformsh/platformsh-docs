@@ -104,7 +104,7 @@ const cacheDir = () => {
   // and a readme
   if(!fs.existsSync(path.join(localFetchedCache,'README.txt'))) {
     let cacheReadMe = `This directory contains a cache of retrieved files needed by Hugo to build the
-    https://docs.platform.sh/ website. You can safely delete this directory and contents when you are finished
+    https://fixed.docs.upsun.com/ website. You can safely delete this directory and contents when you are finished
     with this repository.`
     fs.writeFile(path.join(localFetchedCache,'README.txt'),cacheReadMe, error => {
       if(error) {
