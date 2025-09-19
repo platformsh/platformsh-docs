@@ -211,7 +211,7 @@ const getTemplateInfo = async () => {
 }
 
 console.log(`
-### Getting info on Platform.sh templates
+### Getting info on Upsun Fixed templates
 `);
 
 getTemplateInfo()
