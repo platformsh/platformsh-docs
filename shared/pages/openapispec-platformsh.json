@@ -27468,6 +27468,14 @@
             "type": "string",
             "description": "The vendor."
           },
+          "billing_account_id": {
+            "type": "string",
+            "description": "The Billing Account ID."
+          },
+          "billing_legacy": {
+            "type": "boolean",
+            "description": "Whether the account is billed with the legacy system."
+          },
           "status": {
             "type": "string",
             "description": "The status of the organization.",
@@ -27674,6 +27682,10 @@
             "type": "string",
             "format": "ulid",
             "description": "The ID of the organization."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the organization."
           },
           "owner_id": {
             "type": "string",
