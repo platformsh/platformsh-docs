@@ -59,7 +59,7 @@ Please review and edit your configuration to suit your needs.
 Both the AI and non-AI processes will create an `.upsun/config.yaml` file in your project root with:
 
 * Application configuration (see the [App reference](/create-apps/app-reference/_index.md))
-* Service definitions (see [Add services](/add-services/_index.md)
+* Service definitions (see [Add services](/add-services/_index.md))
 * Route configurations (see [Define routes](/define-routes/_index.md))
 
 After running the command, you can deploy your project:
