@@ -46,7 +46,7 @@ Neither Upsun nor any of our AI providers will use your data for AI model traini
 
 The selected files whose contents are included in the repository digest are chosen to be unlikely to include sensitive information.
 
-The file contents are redacted locally before being sent to our API. Currently, we will redact email addresses and common secrets identified using [`gitleaks`](https://github.com/gitleaks/gitleaks).
+The file contents are sanitized locally before being sent to our API. Currently, we redact email addresses and common secrets identified using [`gitleaks`](https://github.com/gitleaks/gitleaks).
 
 ## Output
 
