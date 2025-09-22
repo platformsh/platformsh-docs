@@ -65,6 +65,8 @@ defer profiler.Stop()
 
 The `Start` function accepts the following options:
 
+- `WithAppName`: specifies the Application Name.
+
 - `WithCPUDuration`: specifies the length at which to collect CPU profiles.
 The default is 45 seconds. Can also be set via the environment variable `BLACKFIRE_CONPROF_CPU_DURATION`.
 
@@ -84,6 +86,13 @@ The default is 10 seconds. Can also be set via the environment variable `BLACKFI
 If the same parameter is set by both an environment variable and a `Start` call, the explicit
 parameter in the `Start` call takes precedence.
 {{% /note %}}
+
+{{< note theme="warning" >}}
+
+On Upsun, `AppName` is set to application name by default. If you override this value via `WithAppName`, you might
+not be able to see it on the profiling tab.
+
+{{< /note >}}
 
 There is also some additional configuration that can be done using environment variables:
 

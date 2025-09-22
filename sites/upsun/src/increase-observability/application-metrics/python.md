@@ -38,6 +38,13 @@ The Python profiler API (`profiler`) can be initiated with the following options
 - `upload_timeout`: observability data upload timeout. The default is 10 seconds.
 - `labels`: a dict containing the custom labels specific to the profile payload that is sent.
 
+{{< note theme="warning" >}}
+
+On Upsun, `application_name` is set to application name by default. If you override this value, you might
+not be able to see it on the profiling tab.
+
+{{< /note >}}
+
 The Python continuous profiler API has two functions:
 
 ``` python
