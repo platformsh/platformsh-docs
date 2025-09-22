@@ -16,7 +16,7 @@ For how that structure is applied to different types of docs in this project, se
 
 ## Table of contents
 
-- [Contributing to the Upsun Fixed (formerly Platform.sh) and Upsun Flex user documentation](#contributing-to-the-platformsh-user-documentation)
+- [Contributing to the Upsun Fixed (formerly Platform.sh) and Upsun Flex user documentation](#contributing-to-the-upsun-user-documentation)
   - [Table of contents](#table-of-contents)
   - [Adding new pages](#adding-new-pages)
     - [Adding security reports](#adding-security-reports)
