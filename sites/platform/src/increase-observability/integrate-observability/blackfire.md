@@ -23,7 +23,7 @@ This results in an effortless setup process and smooth user experience.
 {{< note >}}
 
 Blackfire.io can be bundled with Enterprise and Elite subscriptions as part of the Observability Suite.
-To learn more, [contact Sales](https://platform.sh/contact/).
+To learn more, [contact Sales](https://upsun.com/contact-us/).
 All customers can also subscribe to Blackfire separately.
 
 {{< /note >}}
@@ -32,7 +32,7 @@ All customers can also subscribe to Blackfire separately.
 
 ### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure
 
-If you're using a plan with the [Observability Suite](https://platform.sh/features/observability-suite/),
+If you're using a plan with the [Observability Suite](https://upsun.com/product/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 Note that as an Observability Suite user, you can only access your Blackfire environments
 after you've been granted access to the related {{% vendor/name %}} project.
@@ -46,7 +46,7 @@ To do so, follow these steps:
 2. In your Blackfire account, create an organization.
    If you subscribed to Blackfire independently, your organization is automatically activated.
    If you subscribed to Blackfire through {{% vendor/name %}},
-   [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+   [ask **{{% vendor/name %}}** Support](https://console.upsun.com/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
@@ -66,11 +66,11 @@ To install Blackfire on your {{% names/dedicated-gen-2 %}} environments:
 2. In your Blackfire account, create an organization.
    If you subscribed to Blackfire independently, your organization is automatically activated.
    If you subscribed to Blackfire through {{% vendor/name %}},
-   [ask **{{% vendor/name %}}** Support](https://console.platform.sh/-/users/~/tickets/open) to activate your organization.
+   [ask **{{% vendor/name %}}** Support](https://console.upsun.com/-/users/~/tickets/open) to activate your organization.
 3. In your organization, create an environment.
 4. In your environment, click **Settings/Environment Credentials**.
 5. Retrieve your Blackfire server ID and server token.
-6. Send those credentials to [Support](https://console.platform.sh/-/users/~/tickets/open) so they complete the installation.
+6. Send those credentials to [Support](https://console.upsun.com/-/users/~/tickets/open) so they complete the installation.
 
 If you're using the [Managed Fastly CDN](/domains/cdn/managed-fastly.md),
 it's already configured to operate with Blackfire.

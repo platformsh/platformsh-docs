@@ -4,7 +4,7 @@ description:
 banner:
   title: Beta Feature
   body: The Rust runtime is currently available in Beta.
-        To share your feedback so we can improve it, add a comment to the [Rust feature card](https://next.platform.sh/c/221-rust).
+        To share your feedback so we can improve it, add a comment to the [Rust feature card](https://devcenter.upsun.com/posts/releases/ ).
 ---
 
 {{% vendor/name %}} supports building and deploying applications written in Rust.

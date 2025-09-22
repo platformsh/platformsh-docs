@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.2.0
+# Platform.sh CLI 5.3.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -48,6 +48,10 @@ showTitle: false
 * [`auth:info`](#authinfo)
 * [`auth:logout`](#authlogout)
 * [`auth:verify-phone-number`](#authverify-phone-number)
+
+**autoscaling**
+
+* [`autoscaling:get`](#autoscalingget)
 
 **backup**
 
@@ -745,7 +749,7 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
 #### Options
 
 * `--type` (`-t`) (expects a value)
-  Filter activities by type For a list of types see: https://docs.platform.sh/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
+  Filter activities by type For a list of types see: https://docs.upsun.com/anchors/fixed/integrations/activity-scripts/type/ Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
 
 * `--exclude-type` (`-x`) (expects a value)
   Exclude activities by type. Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can exclude 'environment.cron' activities. The % or * characters can be used as a wildcard to exclude types.
@@ -1060,7 +1064,7 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 
 ## `auth:api-token-login`
 
-Log in to Platform.sh using an API token
+Log in to Upsun using an API token
 
 ### Usage
 
@@ -1068,10 +1072,10 @@ Log in to Platform.sh using an API token
 platform auth:api-token-login
 ```
 
-Use this command to log in to your Platform.sh account using an API token.
+Use this command to log in to your Upsun account using an API token.
 
 You can create an account at:
-    https://auth.api.platform.sh/register
+    https://auth.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
@@ -1098,7 +1102,7 @@ Alternatively, to log in to the CLI with a browser, run:
 
 ## `auth:browser-login`
 
-Log in to Platform.sh via a browser
+Log in to Upsun via a browser
 
 Aliases: `login`
 
@@ -1229,7 +1233,7 @@ platform auth:info id --no-auto-login
 
 ## `auth:logout`
 
-Log out of Platform.sh
+Log out of Upsun
 
 Aliases: `logout`
 
@@ -1276,6 +1280,53 @@ platform auth:verify-phone-number
 ```
 
 #### Options
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `autoscaling:get`
+
+View the autoscaling configuration of apps and workers on an environment
+
+Aliases: `autoscaling`
+
+### Usage
+
+```
+platform autoscaling [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
+
+#### Options
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: service*, metric*, direction*, threshold*, duration*, enabled*, instance_count*, cooldown, max_instances, min_instances (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
 
 * `--help` (`-h`)
   Display this help message
@@ -2568,7 +2619,7 @@ Delete one or more environments
 platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
-When a Platform.sh environment is deleted, it will become "inactive": it will
+When an environment is deleted, it will become "inactive": it will
 exist only as a Git branch, containing code but no services, databases nor
 files.
 
@@ -2673,15 +2724,18 @@ platform environment:delete --merged
 
 Deploy an environment's staged changes
 
-Aliases: `env:deploy`
+Aliases: `e:deploy`, `env:deploy`
 
 ### Usage
 
 ```
-platform env:deploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+platform e:deploy [-s|--strategy STRATEGY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
+
+* `--strategy` (`-s`) (expects a value)
+  The deployment strategy, stopstart (default, restart with a shutdown) or rolling (zero downtime)
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3070,7 +3124,7 @@ platform environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--envir
 
 ### Examples
 
-* Initialize using the Platform.sh Go template:
+* Initialize using the Upsun Fixed Go template:
 ```
 platform environment:init https://github.com/platformsh-templates/golang
 ```
@@ -4131,7 +4185,7 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlp')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -4460,7 +4514,7 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlp')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -5586,7 +5640,7 @@ Create a new organization
 platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
 ```
 
-Organizations allow you to manage your Platform.sh projects, users and billing. Projects are owned by organizations.
+Fixed Organizations allow you to manage your Upsun Fixed projects, users and billing. Projects are owned by organizations.
 
 You can add other users to your organization, for collaboratively managing the organization as well as its projects and billing information.
 

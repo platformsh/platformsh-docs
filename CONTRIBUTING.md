@@ -1,10 +1,10 @@
-# Contributing to the Platform.sh user documentation
+# Contributing to the Upsun user documentation
 
-Thank you for helping make the Platform.sh documentation better!
+Thank you for helping make the Upsun Fixed (formerly Platform.sh) and Upsun Flex documentation better!
 
 These contribution guides should help you keep the docs clear and consistent.
 They're intended for use by all contributors,
-from Platform.sh engineers to people from the community.
+from Upsun engineers to people from the community.
 
 For style and formatting guidance, see:
 
@@ -16,7 +16,7 @@ For how that structure is applied to different types of docs in this project, se
 
 ## Table of contents
 
-- [Contributing to the Platform.sh user documentation](#contributing-to-the-platformsh-user-documentation)
+- [Contributing to the Upsun Fixed (formerly Platform.sh) and Upsun Flex user documentation](#contributing-to-the-platformsh-user-documentation)
   - [Table of contents](#table-of-contents)
   - [Adding new pages](#adding-new-pages)
     - [Adding security reports](#adding-security-reports)
@@ -72,7 +72,7 @@ Although Hugo has a built-in `aliases` property for this purpose,
 it uses meta refresh tags and so you shouldn't use it.
 Instead, prefer redirects that return 301 codes (Moved Permanently).
 
-Set them up in the [Platform.sh routes configuration](./.platform/routes.yaml).
+Set them up in the [routes configuration](./.platform/routes.yaml).
 For more information, see how to [redirect routes](https://docs.platform.sh/define-routes/redirects.html).
 
 ## Commit messages
@@ -94,7 +94,7 @@ Where `GITMOJI` is the [gitmoji](https://gitmoji.dev/) that corresponds to what 
 ```txt
 :sparkles: Add documentation for organizations
 
-Added new pages to describe how organizations at Platform.sh work.
+Added new pages to describe how organizations at Upsun work.
 ```
 
 To help with the process, you can install the [gitmoji CLI](https://github.com/carloscuesta/gitmoji-cli).

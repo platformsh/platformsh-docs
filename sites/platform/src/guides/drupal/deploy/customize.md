@@ -36,7 +36,7 @@ The file itself is a bit long, but reasonably self-explanatory.
 <?php
 /**
  * @file
- * Platform.sh settings.
+ * Upsun Fixed settings.
  */
 
 use Drupal\Core\Installer\InstallerKernel;
@@ -160,8 +160,8 @@ if ($platformsh->inRuntime()) {
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
 // header then it can be an injection vector, depending on how the Host header is used.
-// However, Platform.sh already replaces the Host header with the route that was used to reach
-// Platform.sh, so it is guaranteed to be safe.  The following line explicitly allows all
+// However, Upsun Fixed already replaces the Host header with the route that was used to reach
+// Upsun Fixed, so it is guaranteed to be safe.  The following line explicitly allows all
 // Host headers, as the only possible Host header is already guaranteed safe.
 $settings['trusted_host_patterns'] = ['.*'];
 

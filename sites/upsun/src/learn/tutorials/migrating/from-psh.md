@@ -1,29 +1,33 @@
 ---
-title: From Platform.sh
-description: See how to migrate your app to {{% vendor/name %}} so it's ready to be deployed.
+title: Converting from Upsun Fixed (formerly Platform.sh) 
+description: Learn how to configure your Upsun Fixed app to work on an Upsun Flex project so that it's deployment-ready.
 keywords:
   - "set remote"
 ---
-
-If you already have an app running somewhere else, you want to migrate it to {{% vendor/name %}} and deploy it.
-To do so, follow these steps.
 
 ## Before you begin
 
 You need:
 
-- An app that works and is ready to be built
-- Code in Git
-- A {{< vendor/name >}} account -- if you don't already have one, [register](https://upsun.com/register/).
+- An Upsun Fixed (formerly Platform.sh) application that works and is ready to be built
+- The code in Git
+- A {{< vendor/name >}} account - if you don't already have one, [register](https://upsun.com/register/).
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 
-## 1. Export from previous system
+
+You can update your Upsun Fixed configuration to be compatible with {{% vendor/name %}}. 
+
+This conversion process gives you full control over the transition process and can be useful for projects with non-standard setups or advanced customizations.
+
+Follow the steps below to begin your migration.
+
+## 1. Export your source Upsun Fixed project
 
 Start by exporting everything you might need from your current app.
 This includes data in databases, files on a file system,
 and for some apps, such as Drupal, configuration that you need to export from the system into files.
 
-## 2. Create a project
+## 2. Create a new {{% vendor/name %}} project
 
 {{< codetabs >}}
 
@@ -62,7 +66,7 @@ You'll be able to define resources for the project after your first push.
 
 {{< /codetabs >}}
 
-## 3. Add configuration
+## 3. Convert your configuration files
 
 The exact configuration you want depends on your app.
 You likely want to configure three areas:
@@ -82,7 +86,7 @@ define your own [resource initialization strategy](/manage-resources/resource-in
 
 Alternatively, you can [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
-## 5. Push your code
+## 5. Push your changes
 
 The way to push your code to {{% vendor/name %}} depends on
 whether you're hosting your code with a third-party service using a [source integration](/integrations/source/_index.md).
@@ -198,7 +202,7 @@ applications:
 ```
 
 `instance` mounts on {{% vendor/name %}} are the equivalent of `local` mounts on {{% vendor/psh_ref %}}.
-To ensure continuity when migrating from {{% vendor/psh_ref %}} to {{% vendor/name %}},
+To ensure continuity when converting from {{% vendor/psh_ref %}} to {{% vendor/name %}},
 the `local` mount type works as an alias for the `instance` mount type.
 
 However, it is recommended to change the type of your `local` mounts to `instance` or another [supported mount type](/create-apps/app-reference/single-runtime-image.html#define-a-mount).

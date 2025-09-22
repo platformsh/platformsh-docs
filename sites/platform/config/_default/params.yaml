@@ -9,6 +9,9 @@ repo: "https://github.com/platformsh/platformsh-docs/"
 folder: "sites/platform"
 editPageButton: true
 
+theme:
+    use_vendor: true
+
 # Vendorization
 vendor:
     name: Upsun Fixed
@@ -39,13 +42,14 @@ vendor:
     urls:
         main: https://upsun.com
         docs: https://fixed.docs.upsun.com
-        support: https://support.upsun.com
-        sales: https://upsun.com/contact
+        support: https://support.platform.sh/
+        sales: https://upsun.com/contact-us
         console: https://console.upsun.com/
         api: https://docs.upsun.com/api/
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.upsun.com/register
+        discord: https://discord.gg/platformsh
 
 # Images (kept in static/)
 logo: "images/logo.svg"
@@ -109,15 +113,15 @@ nonDocsSections:
 meta:
   sitename: "Upsun Fixed User Documentation"
   description: Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://fixed.docs.upsun.com/images/logos/docs_social_2021.jpg"
+  image: "https://fixed.docs.upsun.com/images/default_social.png"
   url: "https://fixed.docs.upsun.com"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
+    site: "@upsundotcom"
     title: "Upsun Fixed User Documentation"
     description: "Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
-    image: "https://fixed.docs.upsun.com/images/logos/docs_social_2021.jpg"
+    creator: "@upsundotcom"
+    image: "https://fixed.docs.upsun.com/images/default_social.png"
   keywords:
     - PaaS
     - cloud hosting

@@ -107,8 +107,15 @@ If you use PHP, note that PHP-FPM is only started automatically if PHP is define
 
 ### Supported Nix channels
 
-- `24.05`
+A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems).
+
+Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
+
+Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended.
+
+The following channels are supported:
 - `25.05`
+- `24.05`
 
 ### Configure Nix channels
 
@@ -763,7 +770,7 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 
 {{< note theme="info" >}}
 The `post_start` feature is _experimental_ and may change. Please share your feedback in the
-[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+{{< vendor/url "discord" "Discord" >}}.
 {{< /note >}}
 
 
@@ -926,7 +933,7 @@ workers:
         ./worker.sh
 ```
 
-For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://upsun.com/fixed-pricing/).
 
 ## Access
 
@@ -1069,9 +1076,9 @@ Example output:
 ```bash
 facebook.com
 fastly.com
-platform.sh
+upsun.com
 www.google.com
-www.platform.sh
+www.upsun.com
 ```
 
 ## Hooks
