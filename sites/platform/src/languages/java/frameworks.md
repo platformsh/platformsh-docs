@@ -69,11 +69,11 @@ The [Spring Framework](https://spring.io/projects/spring-framework) provides a c
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [Spring Data MongoDB Reactive](https://dzone.com/articles/introduction-to-spring-data-mongodb-reactive-and-h) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mongodb-reactive) |
 | [Spring Webflux](https://dzone.com/articles/introduction-of-spring-webflux-and-how-to-apply-cl) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-webflux) |
-| [Spring Data Redis](https://platform.sh/blog/2019/spring-data-redis-in-the-cloud/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-boot-maven-redis) |
-| [Spring with Gradle](https://platform.sh/blog/2019/simplify-your-script-build-with-gradle/) | [Source](https://github.com/platformsh-templates/spring-boot-gradle-mysql) |
-| [Spring Data ElasticSearch and Spring Data Solr](https://platform.sh/blog/2019/elasticsearch-vs-solr-have-both-with-spring-data-and-platform.sh/) | [Elasticsearch](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-elasticsearch) and [Solr](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-solr) |
-| [Spring MVC and Spring Data MongoDB](https://platform.sh/blog/2019/spring-mvc-and-mongodb-a-match-made-in-platform.sh-heaven/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-mongodb) |
-| [Spring Boot and Spring Data JPA](https://platform.sh/blog/2019/java-hello-world-at-platform.sh/) | [Source](https://github.com/platformsh-templates/spring-boot-maven-mysql) |
+| [Spring Data Redis](https://devcenter.upsun.com/posts/redis-release/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-boot-maven-redis) |
+| [Spring with Gradle](https://devcenter.upsun.com/posts/redis-release/) | [Source](https://github.com/platformsh-templates/spring-boot-gradle-mysql) |
+| [Spring Data ElasticSearch and Spring Data Solr](https://docs.upsun.com/add-services/elasticsearch.html) | [Elasticsearch](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-elasticsearch) and [Solr](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-solr) |
+| [Spring MVC and Spring Data MongoDB](https://upsun.com/blog/) | [Source](https://github.com/platformsh/java-quick-start/tree/master/spring/spring-mvc-maven-mongodb) |
+| [Spring Boot and Spring Data JPA](https://devcenter.upsun.com/posts/java-hello-world-at-platform.sh/) | [Source](https://github.com/platformsh-templates/spring-boot-maven-mysql) |
 
 ## Tomcat
 
