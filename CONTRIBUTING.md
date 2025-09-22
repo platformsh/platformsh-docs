@@ -94,7 +94,7 @@ Where `GITMOJI` is the [gitmoji](https://gitmoji.dev/) that corresponds to what 
 ```txt
 :sparkles: Add documentation for organizations
 
-Added new pages to describe how organizations at Platform.sh work.
+Added new pages to describe how organizations at Upsun work.
 ```
 
 To help with the process, you can install the [gitmoji CLI](https://github.com/carloscuesta/gitmoji-cli).
