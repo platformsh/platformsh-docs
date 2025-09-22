@@ -1,6 +1,6 @@
 ---
-title: Converting from Platform.sh 
-description: See how to configure your Platform.sh app to {{% vendor/name %}} so it's ready to be deployed.
+title: Converting from Upsun Fixed (formerly Platform.sh) 
+description: Learn how to configure your Upsun Fixed app to work on an Upsun Flex project so that it's deployment-ready.
 keywords:
   - "set remote"
 ---
@@ -9,19 +9,19 @@ keywords:
 
 You need:
 
-- A Platform.sh application that works and is ready to be built
+- An Upsun Fixed (formerly Platform.sh) application that works and is ready to be built
 - The code in Git
 - A {{< vendor/name >}} account - if you don't already have one, [register](https://upsun.com/register/).
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 
 
-You can update your Platform.sh configuration to be compatible with {{% vendor/name %}}. 
+You can update your Upsun Fixed configuration to be compatible with {{% vendor/name %}}. 
 
 This conversion process gives you full control over the transition process and can be useful for projects with non-standard setups or advanced customizations.
 
 Follow the steps below to begin your migration.
 
-## 1. Export your source Platform.sh project
+## 1. Export your source Upsun Fixed project
 
 Start by exporting everything you might need from your current app.
 This includes data in databases, files on a file system,

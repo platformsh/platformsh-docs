@@ -117,10 +117,10 @@ meta:
   url: "https://fixed.docs.upsun.com"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
+    site: "@upsundotcom"
     title: "Upsun Fixed User Documentation"
     description: "Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
+    creator: "@upsundotcom"
     image: "https://fixed.docs.upsun.com/images/default_social.png"
   keywords:
     - PaaS
