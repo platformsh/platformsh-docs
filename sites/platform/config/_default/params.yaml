@@ -113,15 +113,15 @@ nonDocsSections:
 meta:
   sitename: "Upsun Fixed User Documentation"
   description: Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://fixed.docs.upsun.com/images/logos/docs_social_2021.jpg"
+  image: "https://fixed.docs.upsun.com/images/default_social.png"
   url: "https://fixed.docs.upsun.com"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
+    site: "@upsundotcom"
     title: "Upsun Fixed User Documentation"
     description: "Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
-    image: "https://fixed.docs.upsun.com/images/logos/docs_social_2021.jpg"
+    creator: "@upsundotcom"
+    image: "https://fixed.docs.upsun.com/images/default_social.png"
   keywords:
     - PaaS
     - cloud hosting

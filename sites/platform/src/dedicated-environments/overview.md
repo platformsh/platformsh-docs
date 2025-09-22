@@ -8,7 +8,7 @@ description:  "Our Dedicated Environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Upsun, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
+When you create an Upsun Fixed project, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
 
 ## What is Dedicated?
 
@@ -39,7 +39,7 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
 | **Availability** | All support tiers | Just with [Enterprise or Elite](https://upsun.com/fixed-pricing/) |
-| **Uptime SLA** | 99.9% with [Enterprise or Elite](https://upsun.com/fixed-pricing/)| 99.99% with [Enterprise or Elite](https://upsun.com/fixed-pricing/) |
+| **Uptime SLA** | 99.9% (Advanced Uptime SLA) with [Enterprise or Elite](https://upsun.com/fixed-pricing/)| 99.99% (Premium Uptime SLA) with [Enterprise or Elite](https://upsun.com/fixed-pricing/) |
 | **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
 | **Functioning** | A single container is deployed per runtime and per service| At least 3 nodes are running all applications and services are replicated across all of them |
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes

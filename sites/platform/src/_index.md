@@ -1,10 +1,10 @@
 ---
-title: Introduction
+title: Upsun Fixed Docs
 showTitle: false
 editPage: false
 ---
 
-{{< home >}}
+{{< home-fixed >}}
 
 ## How the docs are organized
 

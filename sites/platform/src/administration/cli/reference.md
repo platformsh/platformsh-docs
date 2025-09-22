@@ -1075,7 +1075,7 @@ platform auth:api-token-login
 Use this command to log in to your Upsun account using an API token.
 
 You can create an account at:
-    https://auth.api.upsun.com/register
+    https://auth.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
@@ -2619,7 +2619,7 @@ Delete one or more environments
 platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
-When an Upsun environment is deleted, it will become "inactive": it will
+When an environment is deleted, it will become "inactive": it will
 exist only as a Git branch, containing code but no services, databases nor
 files.
 
@@ -5640,7 +5640,7 @@ Create a new organization
 platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
 ```
 
-Organizations allow you to manage your Upsun Fixed projects, users and billing. Projects are owned by organizations.
+Fixed Organizations allow you to manage your Upsun Fixed projects, users and billing. Projects are owned by organizations.
 
 You can add other users to your organization, for collaboratively managing the organization as well as its projects and billing information.
 

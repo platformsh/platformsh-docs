@@ -79,7 +79,7 @@ It’s worth remembering that the JVM by its specification [doesn't read Java co
 
 | Article                                                      | Link                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Kotlin and Spring](https://platform.sh/blog/2019/ready-to-have-fun-try-kotlin-and-spring/) | [Source](https://github.com/platformsh-templates/spring-kotlin) |
+| [Kotlin and Spring](https://devcenter.upsun.com/posts/ready-to-have-fun-try-kotlin-and-spring/) | [Source](https://github.com/platformsh-templates/spring-kotlin) |
 | [Scala and Spring](https://dzone.com/articles/spring-scala-cloud-psh) | [Source](https://github.com/platformsh-examples/scala)       |
 
 {{< note version="2" >}}

@@ -7,7 +7,7 @@ maxrequestspersecond=5
 checkextern=1
 ignore=
     ^https://github.com/platformsh*
-    console.platform.sh/projects/*
+    console.upsun.com/projects/*
     support.blackfire.io/*
     cloud.orange-business.com/*
     developers.cloudflare.com/*
