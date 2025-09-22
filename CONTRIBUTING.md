@@ -1,6 +1,6 @@
 # Contributing to the Upsun user documentation
 
-Thank you for helping make the Upsun Fixed (formerly Platform.sh) and Upsun Flexed documentation better!
+Thank you for helping make the Upsun Fixed (formerly Platform.sh) and Upsun Flex documentation better!
 
 These contribution guides should help you keep the docs clear and consistent.
 They're intended for use by all contributors,
