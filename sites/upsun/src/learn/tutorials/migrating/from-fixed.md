@@ -32,6 +32,7 @@ The converting tool performs the following transformations:
 
 Removes resource-related fields that are not applicable in {{% vendor/name %}}. This includes:
 
+
 - Disk values
 - Size settings (e.g., S, M, L)
 - Legacy resources blocks
