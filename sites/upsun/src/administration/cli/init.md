@@ -9,7 +9,7 @@ keywords:
   - AI
 ---
 
-The `init` command generates starter configuration files for your Upsun project. You can use AI to automatically analyze your codebase and generate appropriate configuration, or follow a step-by-step guided setup.
+The `init` command generates starter configuration files for your Upsun project.
 
 ## Usage
 
@@ -17,18 +17,11 @@ The `init` command generates starter configuration files for your Upsun project.
 upsun init
 ```
 
-## Options
+When you run `upsun init` it will give you a choice between two options.
 
-| Option             | Description                                                                                                                                          |
-|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--ai`             | Use AI configuration (use `--ai=false` to disable)                                                                                                   |
-| `--digest`         | Only show the repository digest (AI input) without sending it                                                                                        |
-| `--yes` (`-y`)     | Answer "yes" to confirmation questions and accept defaults (including overwriting existing configuration, if it exists). Implies `--no-interaction`. |
-| `--no-interaction` | Don't ask interactive questions; accept default values                                                                                               |
+You can use AI to analyze your project and generate configuration automatically, or you can opt to follow a guided setup.
 
 ## AI configuration
-
-When you run `upsun init` it will give you a choice between two options. You can use AI to analyze your project and generate configuration automatically, or you can opt to follow a guided setup.
 
 The AI option will analyze the repository locally and send a sanitized "digest" to our API, which then contacts our AI provider.
 
@@ -70,3 +63,12 @@ git commit -m 'Add Upsun configuration'
 upsun project:set-remote
 upsun push
 ```
+
+## All `init` command options
+
+| Option             | Description                                                                                                                                          |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--ai`             | Use AI configuration (use `--ai=false` to disable)                                                                                                   |
+| `--digest`         | Only show the repository digest (AI input) without sending it                                                                                        |
+| `--yes` (`-y`)     | Answer "yes" to confirmation questions and accept defaults (including overwriting existing configuration, if it exists). Implies `--no-interaction`. |
+| `--no-interaction` | Don't ask interactive questions; accept default values                                                                                               |
