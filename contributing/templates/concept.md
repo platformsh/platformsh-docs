@@ -6,7 +6,7 @@ description: A short description (up to ~160 characters) of the article that sho
 
 <!-- 
 When to use
-  To explain a general concept that might help the reader understand Platform.sh.
+  To explain a general concept that might help the reader understand Upsun products.
   To compare various concepts that might be confused.
   When you have a Why question that a user might need answered.
   Only for general explanations, not for how to do something.
