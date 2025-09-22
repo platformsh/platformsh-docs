@@ -6,6 +6,9 @@
   {{ $currentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) }}
   <body class="bg-white" onload="dataLayer.push({'event': 'datalayer_ready', 'page_category1': '{{ .Section }}', 'page_category2': '{{ .Title | .Page.RenderString }}', 'link_url': '{{ $currentPage }}'});">
 
+    <!-- Announcement Banner -->
+    {{ partial "announcement-banner" . }}
+
     <!-- Header -->
     {{ partial "header/header" . }}
 
