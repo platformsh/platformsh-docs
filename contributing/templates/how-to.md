@@ -25,7 +25,7 @@ Also include what the goal of the task is.
 
 Include here any terms the reader might need
 that they might not be familiar with
-(like terms specific to Platform.sh).
+(like terms specific to Upsun products).
 Either define them here or link to a definition elsewhere in the docs.
 
 Also include any prerequisites they might need to install/know,
