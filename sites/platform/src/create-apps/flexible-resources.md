@@ -48,7 +48,7 @@ If you change the `size` to `L`, it gets 488&nbsp;MB of memory: `128 + (2 * 180)
 
 {{< note >}}
 
-If you need even more control of your app's resources, please take a look at the [Upsun Flex Organization](https://docs.upsun.com/administration/organizations.html#what-is-a-upsun-flex-organization) option. 
+If you need even more control of your app's resources, take a look at the [Upsun Flex Organization](https://docs.upsun.com/administration/organizations.html#what-is-a-upsun-flex-organization) option. 
 
 {{< /note >}}
 
