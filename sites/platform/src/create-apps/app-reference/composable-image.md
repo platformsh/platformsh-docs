@@ -1195,7 +1195,7 @@ crons:
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
-Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
+Note that this syntax is only supported on Grid projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 
 ### Example cron jobs

@@ -49,7 +49,7 @@ based on the following elements:
 
 You need:
 
-- A Grid or {{% names/dedicated-gen-3 %}} project on which you have **admin rights** <BR>
+- A Grid project on which you have **admin rights** <BR>
 
   {{< note theme="warning" >}}
 
