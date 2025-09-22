@@ -13,7 +13,7 @@ For example, if you have a static website,
 you may want to set up a runtime operation to occasionally fetch content from a backend system
 without having to rebuild your whole app.
 
-You can use runtime operations if you have Grid or {{% names/dedicated-gen-3 %}} environments.
+You can use runtime operations if you have a Grid environment.
 
 ## Define a runtime operation
 

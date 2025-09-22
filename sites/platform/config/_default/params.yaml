@@ -49,7 +49,7 @@ vendor:
         host: platform.sh
         hostname: platformsh.site
         register: https://auth.upsun.com/register
-        discord: https://discord.gg/platformsh
+        discord: https://discord.gg/upsun
 
 # Images (kept in static/)
 logo: "images/logo.svg"

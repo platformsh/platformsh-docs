@@ -30,7 +30,7 @@ All customers can also subscribe to Blackfire separately.
 
 ## Set up Blackfire
 
-### On a Grid or {{% names/dedicated-gen-3 %}} infrastructure
+### On a Grid infrastructure
 
 If you're using a plan with the [Observability Suite](https://upsun.com/product/),
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
@@ -38,7 +38,7 @@ Note that as an Observability Suite user, you can only access your Blackfire env
 after you've been granted access to the related {{% vendor/name %}} project.
 Therefore, to access your Blackfire environments, make sure you log in using your {{% vendor/name %}} account.
 
-If you have a {{% names/dedicated-gen-3 %}} cluster or Grid environments without the Observability suite,
+If you have Grid environments without the Observability suite,
 you need to enable the integration yourself.
 To do so, follow these steps:
 
@@ -82,7 +82,7 @@ to let Blackfire profile the code running on your servers.
 
 {{< partial "observability-suite/body.md" >}}
 
-The Blackfire automated integration is available for Grid and {{% names/dedicated-gen-3 %}} environments.
+The Blackfire automated integration is available for Grid.
 
 When you create a new environment,
 it automatically triggers the creation of a Blackfire environment with the same settings.
