@@ -16,7 +16,7 @@ or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) 
 
 
 {{% version/specific %}}
-Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
+Log forwarding is available for Grid projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](dedicated-environments/dedicated-gen-2/overview.md#remote-logging).
 <--->
 {{% /version/specific %}}

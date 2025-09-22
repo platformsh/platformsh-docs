@@ -472,7 +472,7 @@ Possible permissions:
 
 {{< partial "banners/replicas/body.md" >}}
 
-Your main database lives on one of the three nodes provided on Grid HA and {{% names/dedicated-gen-3 %}}.
+Your main database lives on one of the three nodes provided on Grid HA.
 The two other nodes can each accommodate a replica of your main database.
 
 For security reasons, you can grant your app access to a replica instead of your main database.
@@ -536,7 +536,7 @@ relationships:
 
 {{< partial "banners/replicas/body.md" >}}
 
-Your main database lives on one of the three nodes provided on Grid HA and {{% names/dedicated-gen-3 %}}.
+Your main database lives on one of the three nodes provided on Grid HA.
 The two other nodes can each accommodate a replica of your main database.
 
 You may want to grant access to both your main database and its replicas.
