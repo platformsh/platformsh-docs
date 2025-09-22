@@ -3,7 +3,7 @@ title: Adjusting resources on Fixed projects
 sidebarIgnore: true
 ---
 
-In Upsun Fixed projects, the amount of resources (memory) provisioned for a project is fixed. However, you can adjust the amount of memory your app can use by setting the resources key in your app configuration. The value of this key cannot exceed the limit set by your plan. Even though you get a fixed amount of resources with your plan, that doesn't mean you can't adjust them. The resources inside of your plan are still flexible. Sometimes you have apps that are more memory-intensive.
+In Upsun Fixed projects, the amount of resources (memory) provisioned for a project is fixed. However, you can still adjust the amount of memory your app can use by setting the `resources` key in your app configuration. The value of this key cannot exceed the limit set by your plan. For example, you might increase the `resources` value for memory-intensive apps.
 In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](/create-apps/_index.md).
 
 {{< note >}}
