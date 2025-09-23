@@ -111,7 +111,7 @@ The conversion then takes place within the {{% vendor/name %}} CLI and outputs t
 
 ### Convert manually
 
-The [CLI tool described above](#convert-with-the-cli) allows you to easily convert projects from Upsun Fixed to {{% vendor/name %}}, however, if your project has custom requirements that require a more hands-on approach, you can manually update your Upsun Fixed configuration to be compatible with {{% vendor/name %}}.
+The [CLI tool described above](#convert-with-the-cli) allows you to convert projects from Upsun Fixed to {{% vendor/name %}}, however, if your project has custom requirements that require a more hands-on approach, you can manually update your Upsun Fixed configuration to be compatible with {{% vendor/name %}}.
 
 Manual conversion gives you full control over the transition process and can be useful for projects with non-standard setups or advanced customizations.
 
