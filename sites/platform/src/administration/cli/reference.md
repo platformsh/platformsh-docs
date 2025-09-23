@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.3.0
+# Platform.sh CLI 5.4.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -52,6 +52,7 @@ showTitle: false
 **autoscaling**
 
 * [`autoscaling:get`](#autoscalingget)
+* [`autoscaling:set`](#autoscalingset)
 
 **backup**
 
@@ -977,7 +978,7 @@ platform app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJE
 
 Validate the config files of a project
 
-Aliases: `validate`
+Aliases: `validate`, `lint`
 
 ### Usage
 
@@ -1345,6 +1346,104 @@ platform autoscaling [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--fo
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `autoscaling:set`
+
+Set the autoscaling configuration of apps or workers in an environment
+
+### Usage
+
+```
+platform autoscaling:set [-s|--service SERVICE] [-m|--metric METRIC] [--enabled ENABLED] [--threshold-up THRESHOLD-UP] [--duration-up DURATION-UP] [--cooldown-up COOLDOWN-UP] [--threshold-down THRESHOLD-DOWN] [--duration-down DURATION-DOWN] [--cooldown-down COOLDOWN-DOWN] [--instances-min INSTANCES-MIN] [--instances-max INSTANCES-MAX] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+```
+
+Configure automatic scaling for apps or workers in an environment.
+
+You can also configure resources statically by running: platform resources:set
+
+#### Options
+
+* `--service` (`-s`) (expects a value)
+  Name of the app or worker to configure autoscaling for
+
+* `--metric` (`-m`) (expects a value)
+  Name of the metric to use for triggering autoscaling
+
+* `--enabled` (expects a value)
+  Enable autoscaling based on the given metric
+
+* `--threshold-up` (expects a value)
+  Threshold over which service will be scaled up
+
+* `--duration-up` (expects a value)
+  Duration over which metric is evaluated against threshold for scaling up
+
+* `--cooldown-up` (expects a value)
+  Duration to wait before attempting to further scale up after a scaling event
+
+* `--threshold-down` (expects a value)
+  Threshold under which service will be scaled down
+
+* `--duration-down` (expects a value)
+  Duration over which metric is evaluated against threshold for scaling down
+
+* `--cooldown-down` (expects a value)
+  Duration to wait before attempting to further scale down after a scaling event
+
+* `--instances-min` (expects a value)
+  Minimum number of instances that will be scaled down to
+
+* `--instances-max` (expects a value)
+  Maximum number of instances that will be scaled up to
+
+* `--dry-run`
+  Show the changes that would be made, without changing anything
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+### Examples
+
+* Enable autoscaling for an application using the default configuration:
+```
+platform autoscaling:set --service app --metric cpu
+```
+
+* Enable autoscaling for an application specifying a minimum of instances at all times:
+```
+platform autoscaling:set --service app --metric cpu --instances-min 3
+```
+
+* Enable autoscaling for an application specifying a maximum of instances at most:
+```
+platform autoscaling:set --service app --metric cpu --instances-max 5
+```
+
+* Disable autoscaling on cpu for an application:
+```
+platform autoscaling:set --service app --metric cpu --enabled false
+```
 
 ## `backup:create`
 
@@ -2724,12 +2823,12 @@ platform environment:delete --merged
 
 Deploy an environment's staged changes
 
-Aliases: `e:deploy`, `env:deploy`
+Aliases: `deploy`, `e:deploy`, `env:deploy`
 
 ### Usage
 
 ```
-platform e:deploy [-s|--strategy STRATEGY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+platform deploy [-s|--strategy STRATEGY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
@@ -5637,7 +5736,7 @@ Create a new organization
 ### Usage
 
 ```
-platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
+platform organization:create [--label LABEL] [--type TYPE] [--name NAME] [--country COUNTRY]
 ```
 
 Organizations allow you to manage your Platform.sh projects, users and billing. Projects are owned by organizations.
@@ -5650,6 +5749,9 @@ Access to individual projects (API and SSH) is managed separately, for now.
 
 * `--label` (expects a value)
   The full name of the organization, e.g. "ACME Inc."
+
+* `--type` (expects a value)
+  The organization type. ('flexible' or 'fixed')
 
 * `--name` (expects a value)
   The organization machine name, used for URL paths and similar purposes.
@@ -5796,7 +5898,7 @@ Aliases: `orgs`, `organizations`
 ### Usage
 
 ```
-platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+platform orgs [--my] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5810,11 +5912,14 @@ platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns C
 * `--reverse`
   Sort in reverse order
 
+* `--type` (expects a value)
+  Filter organizations by type
+
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: name*, label*, owner_email*, created_at, id, owner_id, owner_username, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: name*, label*, type*, owner_email*, created_at, id, owner_id, owner_username, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -6462,15 +6567,28 @@ platform project:info title "My project"
 
 Initialize a project
 
-Aliases: `ify`
+Aliases: `init`, `ify`
 
 ### Usage
 
 ```
-platform project:init
+platform init
 ```
 
+This command will generate a starter configuration that you can build on.
+You can use AI, or follow a step-by-step setup guide.
+
+Using AI will send a sanitized repository digest to OpenAI for automated analysis.
+You can review the digest at any time by running: platform init --digest
+
+
 #### Options
+
+* `--ai` (expects a value)
+  Use AI configuration
+
+* `--digest`
+  Only show the repository digest (the AI configuration input), without sending it
 
 * `--help` (`-h`)
   Display this help message
@@ -6489,9 +6607,14 @@ platform project:init
 
 ### Examples
 
-* Create the starter YAML files for your project:
+* Create the starter YAML file(s) for your project:
 ```
 platform project:init 
+```
+
+* Disable AI mode:
+```
+platform project:init --ai=false
 ```
 
 ## `project:list`
@@ -6503,7 +6626,7 @@ Aliases: `projects`, `pro`
 ### Usage
 
 ```
-platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--org-type ORG-TYPE] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -6538,11 +6661,14 @@ platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh R
 * `--org` (`-o`) (expects a value)
   Filter by organization name or ID
 
+* `--org-type` (expects a value)
+  Filter by organization type
+
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, title*, region*, organization_name*, created_at, organization_id, organization_label, status (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, title*, region*, organization_name*, organization_type*, created_at, organization_id, organization_label, status (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
