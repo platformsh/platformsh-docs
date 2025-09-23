@@ -9,7 +9,7 @@ description: "We're always open to new and fresh ideas that can help improve our
 ## How to submit a feature request
 If you'd like to submit a feature request, there are two ways for you to do so:
 
-### If you already have a Upsun account
+### If you already have an Upsun account
 
 You can open a [support ticket](/learn/overview/get-support.html#create-a-support-ticket) directly from [your Console](https://console.upsun.com/). Simply describe your needs and our team will take it from there.
 
