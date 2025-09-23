@@ -6,7 +6,7 @@ banner:
     type: tiered-feature
 ---
 
-On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](/security/web-application-firewall/waf.md) included in Enterprise and Elite plans,
+On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](/security/web-application-firewall/waf.md) included in Upsun Fixed Enterprise and Elite plans,
 you can subscribe to the Fastly Next-Gen WAF to further protect your app from security threats.
 
 ## Available offers
@@ -39,4 +39,4 @@ Included features may present limitations compared to those advertised by Fastly
 | [Standard API & ATO signals](https://www.fastly.com/documentation/guides/next-gen-waf/using-ngwaf/rules/working-with-templated-rules/)              | No              | No                                |
 
 To subscribe to a Fastly Next-Gen WAF offer through {{% vendor/name %}},
-[contact Sales](https://platform.sh/contact/).
+[contact Sales](https://upsun.com/contact-us/).

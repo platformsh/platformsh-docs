@@ -563,7 +563,7 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 
 {{< note theme="info" >}}
 The `post_start` feature is _experimental_ and may change. Please share your feedback in the
-[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+Upsun {{< vendor/url "discord" "Discord" >}}.
 {{< /note >}}
 
 
@@ -724,7 +724,7 @@ workers:
       ./worker.sh
 ```
 
-For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://platform.sh/pricing/).
+For resource allocation, using workers in your project requires a [{{< partial "plans/multiapp-plan-name" >}} plan or larger](https://upsun.com/fixed-pricing/).
 
 ## Access
 
@@ -862,9 +862,9 @@ Example output:
 ```bash
 facebook.com
 fastly.com
-platform.sh
+upsun.com
 www.google.com
-www.platform.sh
+www.upsun.com
 ```
 
 ## Build
@@ -1002,7 +1002,7 @@ The following table shows the properties for each job:
 
 | Name               | Type                                         | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ------------------ | -------------------------------------------- | -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid or {{% names/dedicated-gen-3 %}}** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.** |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance on **Grid** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax isn't available on {{% names/dedicated-gen-2 %}} projects.** |
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
@@ -1035,7 +1035,7 @@ crons:
 ```
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
-Note that this syntax is only supported on Grid and {{% names/dedicated-gen-3 %}} projects.
+Note that this syntax is only supported on Grid projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).
 
 ### Example cron jobs
