@@ -1,0 +1,151 @@
+<!-- preamble -->
+{{ $authorHandle := .Get 0 | default "all" }}
+{{ $contentType := .Get 1 | default "posts" }}
+{{ $author := slice ( $authorHandle ) }}
+{{ $categories := slice "all" }}
+{{ $attribution := "by" }}
+
+
+<!-- all data -->
+{{ $context := . }}
+{{ $output := partial "custom/all-articles.html" (dict "context" . ) }}
+
+<!-- empty struct -->
+{{ $categoryData := index .Site.Data.categories $contentType }}
+{{ $s := newScratch }}
+{{ $s.Set "all" slice }}
+{{ range $i, $v := $categoryData }}
+    {{ $categories = $categories | append $i }}
+    {{ $s.Set $i slice }}
+{{ end }}
+
+<!-- author-specific & category-specific data -->
+{{ range $output }}
+    {{ if in .author $authorHandle }} 
+        {{ $s.Add "all" ( slice . ) }}
+        {{ $currentPost := . }}
+        {{ range $categories }}
+           {{ if in $currentPost.categories . }}
+                {{ if ne $currentPost.draft true }}
+                    {{ $s.Add . ( slice $currentPost ) }}
+                {{ end }}
+           {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{if ne ( len ( $s.Get "all" ) ) 0 }}
+
+    <h2>Articles<span class="hx-absolute -hx-mt-20" id="articles"></span>
+        <a href="#articles" class="subheading-anchor" aria-label="Permalink for this section"></a></h2>
+
+
+    <div class="excludeSearch hx-overflow-x-auto hx-overflow-y-hidden hx-overscroll-x-contain">
+        <div class="hx-mt-4 hx-flex hx-w-max hx-min-w-full hx-border-b hx-border-gray-200 hx-pb-px dark:hx-border-neutral-800">
+        {{ $contentIndex := 0 }}
+        {{ range $categories }}
+            {{ if and ( ne ( len ( $s.Get . ) ) 0 ) ( ne . "all" ) }}
+                {{ if eq $contentIndex 0}}
+                    <button
+                        class="hextra-tabs-toggle data-[state=selected]:hx-border-primary-500 data-[state=selected]:hx-text-primary-600 hx-mr-2 hx-rounded-t hx-p-2 hx-font-medium hx-leading-5 hx-transition-colors -hx-mb-0.5 hx-select-none hx-border-b-2 hx-border-transparent hx-text-gray-600 hover:hx-border-gray-200 hover:hx-text-black dark:hx-text-gray-200 dark:hover:hx-border-neutral-800 dark:hover:hx-text-white"
+                        role="tab"
+                        type="button"
+                        aria-controls="tabs-panel-{{ $contentIndex }}"
+                        aria-selected="true"
+                        tabindex="0"
+                        data-state="selected"
+                    >
+                        {{ index $categoryData . "list" }}
+                    </button>
+                {{ else }}
+                    {{ if ne ( len ( $s.Get . ) ) 0 }}
+                    <button
+                        class="hextra-tabs-toggle data-[state=selected]:hx-border-primary-500 data-[state=selected]:hx-text-primary-600 hx-mr-2 hx-rounded-t hx-p-2 hx-font-medium hx-leading-5 hx-transition-colors -hx-mb-0.5 hx-select-none hx-border-b-2 hx-border-transparent hx-text-gray-600 hover:hx-border-gray-200 hover:hx-text-black dark:hx-text-gray-200 dark:hover:hx-border-neutral-800 dark:hover:hx-text-white"
+                        role="tab"
+                        type="button"
+                        aria-controls="tabs-panel-{{ $contentIndex }}"
+                    >
+                        {{ index $categoryData . "list" }}
+                    </button>
+                    {{ end }}
+                {{ end }}
+                {{ $contentIndex = add $contentIndex 1 }}
+            {{ end }}
+        {{ end }}
+        </div>
+    </div>
+
+
+    <div class="excludeSearch">
+        {{ $contentIndex := 0 }}
+        {{ range $categories }}
+            {{ $currentYear := "" }}
+            {{ if and ( ne ( len ( $s.Get . ) ) 0 ) ( ne . "all" ) }}
+                <div class="hextra-tabs-panel hx-rounded hx-pt-6 hx-hidden data-[state=selected]:hx-block" id="tabs-panel-{{ $contentIndex }}" role="tabpanel" {{ if eq 0 $contentIndex }}tabindex="0" data-state="selected"{{ end }}>
+                    <ul>
+                        {{ range $k, $v := sort ( $s.Get . ) "date" "desc" }}
+
+                            {{ $t := time.AsTime $v.date }}
+                            {{ $skip := $v.draft }}
+        
+                            {{ if not $skip }}
+        
+                                {{ if ( ne ( $t.Format "2006" ) $currentYear ) }}
+                                {{ $currentYear = $t.Format "2006" }}
+                                    <div class="hx-py-2 hx-font-bold">{{ $currentYear }}</div>
+                                {{ end }}
+        
+                                <div class="contrib-item">
+                                    <div class="contrib-img">
+                                        {{ if isset $v "image" }}
+                                        <img src="{{ $v.image }}" alt="{{ $v.title | anchorize }}">
+                                        {{ end }}
+                                    </div>
+                                    <div class="contrib-desc">
+                                        <span style="display: block; text-decoration: none;" class="post-category hx-text-xs hx-pb-4 max-md:hx-hidden hx-font-semibold">{{ $t.Format "02 Jan 2006" }}
+                                            {{ if and $v.date $v.author }}<span class="hx-mx-1">·</span>
+                                                {{ if eq ( len $v.author ) 1 }}
+                                                    {{ $author0 := $context.Page.GetPage ( printf "/community/engage/people/%s" ( index $v.author 0 ) )}}
+                                                    {{ if ne $author0.Title "" }}
+                                                        {{ $author0 = $author0.Title }}
+                                                    {{ else }}
+                                                        {{ $author0 = index $v.author 0 }}
+                                                    {{ end }}
+                                                    {{ $attribution }} {{ $author0 }}
+                                                {{ else }}
+                                                    {{ $author0 := $context.Page.GetPage ( printf "/community/engage/people/%s" ( index $v.author 0 ) )}}
+                                                    {{ if ne $author0.Title "" }}
+                                                        {{ $author0 = $author0.Title }}
+                                                    {{ else }}
+                                                        {{ $author0 = index $v.author 0 }}
+                                                    {{ end }}
+                                                    {{ $author1 := $context.Page.GetPage ( printf "/community/engage/people/%s" ( index $v.author 1 ) )}}
+                                                    {{ if ne $author1.Title "" }}
+                                                        {{ $author1 = $author1.Title }}
+                                                    {{ else }}
+                                                        {{ $author1 = index $v.author 1 }}
+                                                    {{ end }}
+                                                    {{ $attribution }} {{ $author0}} and {{ $author1 }}
+                                                {{ end }}
+                                            {{ end -}}
+                                        </span>
+                                        {{ if ( strings.Contains $v.full "devcenter.upsun.com" ) }}
+                                            <a href="{{ $v.path }}">{{ $v.title | markdownify }}{{ if $v.subtitle }}: {{ $v.subtitle | markdownify }}{{ end }}</a>
+                                        {{ else }}
+                                            <a href="{{ $v.full }}" target="_blank">{{ $v.title | markdownify }}{{ if $v.subtitle }}: {{ $v.subtitle | markdownify }}{{ end }} <sup>↗</sup></a>
+                                        {{ end }}
+                                    </div>
+                                </div>
+
+                            {{ end }}
+
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ $contentIndex = add $contentIndex 1 }}
+            {{ end }}
+            
+        {{ end }}
+    </div>
+
+{{ end }}
