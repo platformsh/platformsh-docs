@@ -26,7 +26,7 @@ vendor:
         title: Try Upsun for 15 days
         description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
         fine: "¹Terms and conditions apply"
-    psh_ref: Platform.sh
+    psh_ref: Upsun Fixed
     config:
         version: 2
         dir: .upsun
@@ -47,10 +47,11 @@ vendor:
         support: https://support.upsun.com
         sales: https://upsun.com/contact
         console: https://console.upsun.com/
-        api: https://proxy.upsun.com/
+        api: https://docs.upsun.com/api/
         host: upsun.com
         hostname: platformsh.site
         register: https://auth.upsun.com/register
+        discord: https://discord.gg/upsun
 
 # Images (kept in static/)
 logo: "images/logo.svg"
@@ -98,7 +99,7 @@ navSections:
 nonDocsSections:
   apidocs:
     title: API Documentation
-    link: https://proxy.upsun.com/docs
+    link: https://docs.upsun.com/api/
     weight: -80
 
 # Metadata

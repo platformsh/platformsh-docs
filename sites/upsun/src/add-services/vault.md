@@ -1,7 +1,7 @@
 ---
 title: Vault key management service
 sidebarTitle: Vault KMS
-weight: 50
+weight: 60
 ---
 
 The Vault key management service (KMS) provides key management and access control for your secrets.
