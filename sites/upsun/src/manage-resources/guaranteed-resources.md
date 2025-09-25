@@ -1,10 +1,10 @@
 ---
-title: Guaranteed CPU
+title: Guaranteed resources
 description: Learn how Guaranteed CPU on {{% vendor/name %}} provide dedicated CPU and memory allocations for consistent, high-performance workloads. 
-weight: -50
+weight: -350
 ---
 
-For applications that need to scale beyond 8 CPUs, {{% vendor/name %}} offers Guaranteed CPU.
+For applications or services that need to scale to large resources and have performance guarantees, {{% vendor/name %}} offers Guaranteed resources (Guaranteed CPU).
 
 Guaranteed CPU ensure that your app or service receives dedicated access to the specified amount of CPU and RAM. These resources are reserved exclusively for your container.
 
@@ -14,6 +14,12 @@ This kind of allocation provides performance close to dedicated infrastructure, 
 - Real-time APIs  
 - Load testing  
 - Performance-sensitive workloads
+
+{{% note theme="warning" title="Region availability"%}}
+
+Guaranteed CPU is **not supported on OVHcloud regions**, and some sizes **may not be available for [all regions](/development/regions.html).** 
+
+{{% /note %}}
 
 ## Enable Guaranteed CPU
 
@@ -28,22 +34,6 @@ This kind of allocation provides performance close to dedicated infrastructure, 
 {{% note %}}
 
 You cannot enable Guaranteed CPU if your [container profile is set to `HIGHER_MEMORY`](/manage-resources/adjust-resources.html#advanced-container-profiles).
-
-{{% /note %}}
-
-## View your Allocated CPU
-
-All projects display an Allocated Resources component in the Console. This shows:
-
-- CPU type: Shared vs. Guaranteed  
-- Allocated RAM and Disk  
-- Live usage metrics
-
-It will also show whether you have Guaranteed CPU is enabled or not. 
-
-{{% note %}}
-
-A small portion of host CPU and RAM is used by {{% vendor/name %}}’s system services. The available capacity will be slightly lower than the full allocation selected.
 
 {{% /note %}}
 
