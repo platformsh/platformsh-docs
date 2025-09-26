@@ -1,6 +1,6 @@
 ---
 title: How resources work on {{% vendor/name %}}
-description: Configure resources per environment for each of your apps and services.
+description: Understand how resources work on {{% vendor/name %}} Flex. Learn the differences between shared and guaranteed CPU, how RAM is allocated, and how to configure scalable resources for your apps.
 weight: -400
 keywords:
   - "resources"
@@ -12,7 +12,7 @@ keywords:
 
 On **{{% vendor/name %}} Flex**, you have granular control over your application's resources. Instead of choosing from pre-defined plans, you can configure resources (CPU, RAM, and disk) per environment for each of your apps and services. You can also add instances for each of your apps depending on your needs.
 
-Understanding how  allocates these resources is key to building a performant, stable, and cost-effective architecture for your project.
+Understanding how {{% vendor/name %}} allocates these resources is key to building a performant, stable, and cost-effective architecture for your project.
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 
