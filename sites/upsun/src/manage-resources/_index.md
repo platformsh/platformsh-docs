@@ -15,7 +15,7 @@ keywords:
 
 {{% note theme="note" title="Understand your resource options"%}}
 
-To understand how resources work on {{% vendor/name %}} and learn more about your options, visit the [How resources work](/manage-resources/how-resources-work.html) page.
+To understand how resources work on {{% vendor/name %}} and learn more about your options, visit the [how resources work](/manage-resources/how-resources-work.html) page.
 
 {{< /note >}}
 

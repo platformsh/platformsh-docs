@@ -1,7 +1,7 @@
 ---
 title: Guaranteed resources
 description: Learn how Guaranteed CPU on {{% vendor/name %}} provide dedicated CPU and memory allocations for consistent, high-performance workloads. 
-weight: -350
+weight: -50
 ---
 
 For applications or services that need to scale to large resources and have performance guarantees, {{% vendor/name %}} offers Guaranteed resources (Guaranteed CPU).
@@ -13,7 +13,9 @@ This kind of allocation provides performance close to dedicated infrastructure, 
 - Backend services  
 - Real-time APIs  
 - Load testing  
-- Performance-sensitive workloads
+- High-traffic production application containers  
+- Resource-intensive services (e.g. database, search engine)  
+- Any container requiring large resource allocations with consistent and predictable performance  
 
 {{% note theme="warning" title="Region availability"%}}
 
@@ -37,7 +39,7 @@ You cannot enable Guaranteed CPU if your [container profile is set to `HIGHER_ME
 
 {{% /note %}}
 
-## Pause Environments with Guaranteed CPU
+## Pause environments with Guaranteed CPU
 
 When any app or service in an environment uses Guaranteed CPU, that environment cannot be paused automatically or manually. 
 

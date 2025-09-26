@@ -1,7 +1,7 @@
 ---
 title: Autoscaling
 description: Learn how autoscaling dynamically adjusts app instances based on CPU usage to keep apps responsive under load while optimizing costs.
-weight: -400
+weight: -100
 keywords:
   - "resources"
   - "CPU"
