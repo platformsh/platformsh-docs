@@ -1,7 +1,7 @@
 ---
 title: Initialize a project
 description: |
-  Generate starter configuration for your Upsun project using AI or guided setup.
+  Generate starter configuration files for your Upsun project by using AI or guided setup.
 keywords:
   - init
   - configuration
@@ -17,45 +17,50 @@ The `init` command generates starter configuration files for your Upsun project.
 upsun init
 ```
 
-When you run `upsun init` it will give you a choice between two options.
-
-You can use AI to analyze your project and generate configuration automatically, or you can opt to follow a guided setup.
+When you run `upsun init`, you can choose how to generate your starter configuration files. You can either:
+- Use AI to analyze your project and generate a configuration automatically. 
+- Follow a guided setup, which does not use AI.
 
 ## AI configuration
 
-The AI option will analyze the repository locally and send a sanitized "digest" to our API, which then contacts our AI provider.
+The AI option analyzes the repository locally and sends a sanitized "digest" to the Upsun API, which then contacts our AI provider. 
 
-You can view the repository digest using `upsun init --digest`. It contains:
+You can view the repository digest by running `upsun init --digest`. The digest contains:
 
 * `tree`: a concise list of the files in the repository
 * `reports`: a list of findings for each directory in the repository, including identified frameworks or build tools
 * `selected_files`: the contents of a few files that look particularly relevant for configuration, including `README.md` and `Dockerfile`
 
-Currently, OpenAI is the provider used for all configuration generation. This may change in the future.
+At this time, OpenAI is the provider used for all configuration generation.
 
 ## Privacy
 
-Neither Upsun nor any of our AI providers will use your data for AI model training.
+{{% note theme="info"%}}
+**Neither Upsun nor our AI providers will use your data for AI model training.**
+{{% /note %}}
 
 The selected files whose contents are included in the repository digest are chosen to be unlikely to include sensitive information.
 
-The file contents are sanitized locally before being sent to our API. Currently, we redact email addresses and common secrets identified using [`gitleaks`](https://github.com/gitleaks/gitleaks).
+The file contents are sanitized locally before being sent to the Upsun API. Upsun redacts email addresses and common secrets identified by using [`gitleaks`](https://github.com/gitleaks/gitleaks).
+
 
 ## Output
 
-For both the AI and non-AI configuration processes, the result should be valid YAML, and in many cases it should be an acceptable starter configuration for the project.
+For both the AI and non-AI processes, the expected result is valid YAML. In many cases, the result is an acceptable starter configuration for the project.
 
-Note that AI can make convincing-looking mistakes, and projects can be very diverse in layout.
+{{% note theme="info"%}}
+AI can make convincing-looking mistakes, and projects can be very diverse in layout.
 
-Please review and edit your configuration to suit your needs.
+Be sure to review and edit your configuration to suit your needs.
+{{% /note %}}
 
-Both the AI and non-AI processes will create an `.upsun/config.yaml` file in your project root with:
+Both the AI and non-AI processes create an `.upsun/config.yaml` file in your project root. This config file contains:  
 
 * Application configuration (see the [App reference](/create-apps/app-reference/_index.md))
 * Service definitions (see [Add services](/add-services/_index.md))
 * Route configurations (see [Define routes](/define-routes/_index.md))
 
-After running the command, you can deploy your project:
+After running `upsun init`, you can deploy your project as follows:
 
 ```bash
 git add .upsun/config.yaml
@@ -64,7 +69,7 @@ upsun project:set-remote
 upsun push
 ```
 
-## All `init` command options
+## `init` command options {#init-options}
 
 | Option             | Description                                                                                                                                          |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
