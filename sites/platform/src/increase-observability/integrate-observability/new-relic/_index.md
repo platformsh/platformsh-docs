@@ -16,9 +16,9 @@ layout: single
 Open a [support ticket](/learn/overview/get-support.md) and let us know what your license key is.
 Our support team will install it and let you know when it's complete.
 
-## On a Grid plan or {{% names/dedicated-gen-3 %}} infrastructure
+## On a Grid plan 
 
-On Grid plans and {{% names/dedicated-gen-3 %}} infrastructure, configure your project.
+On Grid plans, you can configure your project.
 <--->
 {{% /version/specific %}}
 

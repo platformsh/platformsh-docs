@@ -28,7 +28,7 @@ From version 7.11 onward:
 {{% note title="Premium Service" theme="info" %}}
 Elasticsearch isn’t included in any {{< vendor/name >}} plan.
 You need to add it separately at an additional cost.
-To add Elasticsearch, [contact Sales](https://platform.sh/contact/).
+To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
 {{% /note %}}
 
 The following premium versions are supported:
@@ -173,7 +173,7 @@ name: myapp
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -236,7 +236,7 @@ name: myapp
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   elasticsearch:
     service: elasticsearch

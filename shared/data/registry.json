@@ -552,7 +552,7 @@
     }
   },
   "mongodb": {
-    "description": "Experimental MongoDB support on Platform.sh",
+    "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
@@ -646,7 +646,7 @@
     }
   },
   "nodejs": {
-    "description": "NodeJS service for Platform",
+    "description": "NodeJS service for Upsun Fixed",
     "repo_name": "nodejs",
     "disk": false,
     "docs": {
@@ -768,7 +768,7 @@
     }
   },
   "php": {
-    "description": "PHP service for Platform.sh.",
+    "description": "PHP service for Upsun Fixed.",
     "repo_name": "php",
     "disk": false,
     "docs": {
@@ -839,7 +839,7 @@
     }
   },
   "postgresql": {
-    "description": "PostgreSQL service for Platform.sh.",
+    "description": "PostgreSQL service for Upsun Fixed.",
     "repo_name": "postgresql",
     "disk": true,
     "docs": {

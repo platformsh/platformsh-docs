@@ -27,7 +27,7 @@ body:
       multiple: true
       description: What product is impacted by the feature? (select all that apply)
       options:
-        - Platform.sh
+        - Upsun Fixed
         - Upsun
         - Blackfire.io
         - DDEV
@@ -123,20 +123,20 @@ body:
       label: Docs impact
       description: Which areas of the documentation will be (or should be, in your mind) impacted by the feature?
       options:
-        - "(Platform.sh/Upsun) Getting started materials or framework-specfic guides"
-        - "(Platform.sh/Upsun) Learn: tutorials & best practices"
-        - "(Platform.sh/Upsun) Reference > Configuration > Apps"
-        - "(Platform.sh/Upsun) Reference > Configuration > Services"
-        - "(Platform.sh/Upsun) Reference > Configuration > Routes"
-        - "(Platform.sh/Upsun) Reference > Configuration > Runtime languages"
-        - "(Platform.sh/Upsun) Reference > Integrations"
-        - "(Platform.sh/Upsun) Reference > Observability"
-        - "(Platform.sh/Upsun) Reference > Managing projects/environments"
-        - "(Platform.sh/Upsun) Reference > Domains"
-        - "(Platform.sh/Upsun) Reference > Administration"
-        - "(Platform.sh/Upsun) Reference > Security"
-        - "(Platform.sh/Upsun) Reference > Development"
-        - "(Platform.sh) Reference > Dedicated 2/3"
+        - "(Upsun Fixed/Upsun) Getting started materials or framework-specfic guides"
+        - "(Upsun Fixed/Upsun) Learn: tutorials & best practices"
+        - "(Upsun Fixed/Upsun) Reference > Configuration > Apps"
+        - "(Upsun Fixed/Upsun) Reference > Configuration > Services"
+        - "(Upsun Fixed/Upsun) Reference > Configuration > Routes"
+        - "(Upsun Fixed/Upsun) Reference > Configuration > Runtime languages"
+        - "(Upsun Fixed/Upsun) Reference > Integrations"
+        - "(Upsun Fixed/Upsun) Reference > Observability"
+        - "(Upsun Fixed/Upsun) Reference > Managing projects/environments"
+        - "(Upsun Fixed/Upsun) Reference > Domains"
+        - "(Upsun Fixed/Upsun) Reference > Administration"
+        - "(Upsun Fixed/Upsun) Reference > Security"
+        - "(Upsun Fixed/Upsun) Reference > Development"
+        - "(Upsun Fixed) Reference > Dedicated 2/3"
         - "(Upsun) Reference > Manage resources"
         - "(Blackfire) Introduction"
         - "PHP"

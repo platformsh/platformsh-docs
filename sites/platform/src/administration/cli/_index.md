@@ -12,7 +12,7 @@ keywords:
 
 {{% description %}}
 
-The CLI uses the git interface and the [{{% vendor/name %}} REST API](https://api.platform.sh/docs/) to accomplish tasks.
+The CLI uses the git interface and the [{{% vendor/name %}} REST API](https://docs.upsun.com/api/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 ## 1. Install
