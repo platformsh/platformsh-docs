@@ -1,7 +1,7 @@
 ---
 title: Project build resources
 description: Configure project build resources on {{% vendor/name %}}.
-weight: -50
+weight: -30
 ---
 
 When you push changes through Git, your applications are first built, then deployed.
