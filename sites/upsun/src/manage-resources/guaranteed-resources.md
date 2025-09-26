@@ -26,7 +26,7 @@ Guaranteed CPU is **not supported on OVHcloud regions**, and some sizes **may no
 ## Enable Guaranteed CPU
 
 1. Open your project.
-2. Click the Configure resources button from the project card or App & Services panel.
+2. Click the Configure resources button from the Allocated resources block.
 3. For each app/service:
    - Select **Guaranteed** or **Shared** as the resource type.
    - Choose the desired CPU and RAM combination.
