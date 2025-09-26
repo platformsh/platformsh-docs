@@ -5591,7 +5591,9 @@
         },
         "tags": [
           "Environment"
-        ]
+        ],
+        "summary": "Deploy an environment",
+        "description": "Trigger a controlled [manual deployment](https://docs.upsun.com/learn/overview/build-deploy.html#manual-deployment)\nto release all the staged changes\n"
       }
     },
     "/projects/{projectId}/environments/{environmentId}/deployments": {
@@ -14605,7 +14607,7 @@
             ]
           },
           "recipient": {
-            "description": "Email address of the ticket recipient, defaults to support@platform.sh.",
+            "description": "Email address of the ticket recipient, defaults to support@upsun.com.",
             "type": "string"
           },
           "requester_id": {
