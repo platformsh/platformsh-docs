@@ -111,11 +111,10 @@ A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, w
 
 Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
 
-Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended.
+<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. 
+The following channels are supported: -->
+At this time, channel `25.05` is supported.
 
-The following channels are supported:
-- `25.05`
-- `24.05`
 
 ### Configure Nix channels
 
