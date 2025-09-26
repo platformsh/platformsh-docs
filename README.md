@@ -1,13 +1,13 @@
-# Platform.sh User Documentation
+# Upsun (formerly Platform.sh) User Documentation
 
-This repository holds the public user documentation for Platform.sh and Upsun.
+This repository holds the public user documentation for the Upsun Fixed (formerly Platform.sh) and Upsun Flex (formerly Upsun) product offerings.
 
-The documentation sites ([docs.platform.sh](https://docs.platform.sh/) and [docs.upsun.com](https://docs.upsun.com/) are themselves hosted on Platform.sh
-and built using the powerful Platform.sh build-and-deploy system.
+The documentation sites ([fixed.docs.upsun.com](https://fixed.docs.upsun.com/) and [docs.upsun.com](https://docs.upsun.com/) are themselves hosted on Upsun
+and built using the powerful Upsun build-and-deploy system.
 
-Every pull request (PR) is automatically built on Platform.sh
+Every pull request (PR) is automatically built on Upsun
 and provided with a link to a fully built environment just for that request.
-Each PR against the default branch of this repository has a Platform.sh check.
+Each PR against the default branch of this repository has an Upsun check.
 Click **Details** on an open PR to see a fully functional site based on the changes in the PR.
 (You can have the same functionality for your repository.)
 
@@ -16,7 +16,7 @@ Click **Details** on an open PR to see a fully functional site based on the chan
 The documentation site is build using [Hugo](https://gohugo.io), a Go static site generator.
 The build script is rerun on every deploy to produce a fresh static site instance.
 
-The cross-site search in the documentation is built as a separate Platform.sh app
+The cross-site search in the documentation is built as a separate Upsun app
 from the files in the `search` directory using [Meilisearch](https://www.meilisearch.com/).
 
 ## Contributing

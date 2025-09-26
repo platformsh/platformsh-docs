@@ -1,7 +1,7 @@
 <!-- SECTION HEADING -->
 {{ $sectionKeys := .sections }}
 {{ $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize }}
-<!-- Get rid of dots like in Platform.sh -->
+<!-- Get rid of dots like in Upsun Fixed -->
 {{ $sectionId = replace $sectionId "." "" }}
 
 {{ $isCurrentSection := false }}

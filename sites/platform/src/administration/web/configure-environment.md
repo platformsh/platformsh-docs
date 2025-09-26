@@ -52,13 +52,7 @@ There are also additional options:
 
 ## Environment URL
 
-When you access an environment in the Console, you can view its URL:
-
-![Environment URL and details](/images/management-console/env-url.png "0.25")
-
-While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL.
-If this message isn't updated once your [default environment](/environments/_index.md#default-environment)'s information is loaded,
-follow these steps:
+When you access an environment in the Console, you can view its URL. While the environment is loading in the Console, a `Waiting for URL...` message is displayed instead of the URL. If this message isn't updated once your [default environment](/environments/_index.md#default-environment)'s information is loaded, follow these steps:
 
 1. Check that [you have defined routes](/define-routes/_index.md) for your default environment.
 2. Verify that your [application](/create-apps/app-reference/single-runtime-image.md), [services](/add-services/_index.md), and [routes](/define-routes/_index.md) configurations are correct.
@@ -118,9 +112,7 @@ By default, you see configured routes.
 ### Routes
 
 The **Router** section shows a list of all the [routes configured on your environment](/define-routes/_index.md).
-You can see each route's type and check if caching and server side includes have been enabled for it:
-
-![Services: routes](/images/management-console/service-tab/routes.png "0.5")
+You can see each route's type and check if caching and server side includes have been enabled for it.
 
 To view the configuration file where your routes are set up, click **Configuration**.
 

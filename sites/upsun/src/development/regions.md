@@ -18,7 +18,7 @@ These data are sourced from an annual average, which we update as new informatio
 Summary of data being used in {{% vendor/name %}}’s Region Picker when creating a new Project:
 | Source | Last update of this page | Previous versions of this page |
 |--------|--------------------------|--------------------------------|
-| Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). <BR> See our [blog post](https://platform.sh/blog/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.| 11 May 2023 | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md) |
+| Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). <BR> See our [blog post](https://devcenter.upsun.com/posts/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.| 11 May 2023 | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md) |
 
 Information on carbon intensity is also available in the {{% vendor/name %}} API.
 For example, to get a list of the regions and their carbon intensities, run the following command:
@@ -81,7 +81,7 @@ The 3% discount covers application CPU, application memory, service CPU, service
 It **doesn’t** apply to the project fee or other billing aspects.
 It can be combined with other offers or discounts.
 
-See [more information on the greener region discount](https://platform.sh/company/press/a-first-for-cloud-industry-platformsh-greener-region-discount/).
+See [more information on the greener region discount](https://upsun.com/blog/announcing-greener-region-discount/).
 
 ## Region availability
 
