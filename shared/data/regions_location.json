@@ -12,6 +12,12 @@
     "timezone": "Australia/Sydney"
   },
   {
+    "name": "bnpp-1.platform.sh",
+    "provider": "none",
+    "zone": "",
+    "timezone": "UTC"
+  },
+  {
     "name": "ca-1.platform.sh",
     "provider": "AWS",
     "zone": "North America",
