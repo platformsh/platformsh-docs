@@ -3988,6 +3988,10 @@ paths:
               $ref: '#/components/schemas/EnvironmentDeployInput'
       tags:
         - Environment
+      summary: Deploy an environment
+      description: |
+        Trigger a controlled [manual deployment](https://docs.upsun.com/learn/overview/build-deploy.html#manual-deployment)
+        to release all the staged changes
   /projects/{projectId}/environments/{environmentId}/deployments:
     get:
       parameters:
@@ -9917,7 +9921,7 @@ components:
             - pending
             - solved
         recipient:
-          description: Email address of the ticket recipient, defaults to support@platform.sh.
+          description: Email address of the ticket recipient, defaults to support@upsun.com.
           type: string
         requester_id:
           description: UUID of the ticket requester.
