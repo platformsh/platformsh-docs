@@ -12,13 +12,13 @@ keywords:
 
 On **{{% vendor/name %}} Flex**, you have granular control over your application's resources. Instead of choosing from pre-defined plans, you can configure resources (CPU, RAM, and disk) per environment for each of your apps and services. You can also add instances for each of your apps depending on your needs.
 
-Understanding how {{% vendor/name %}} allocates these resources is key to building a performant, stable, and cost-effective architecture for your project.
+Understanding how {{% vendor/name %}} allocates these resources is key to building stable and cost-effective architecture for your project.
 
 For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
 
 ## CPUs vs. vCPUs
 
-Throughout our product and documentation, when we refer to **CPU**, we are describing **vCPUs (virtual CPUs)**. A vCPU is a virtualized representation of a physical CPU core. This is the standard for cloud computing, as it allows a physical server's resources to be securely divided among multiple applications.
+Throughout our product and documentation, when we refer to **CPU**, we are describing **vCPUs (virtual CPUs)**. A vCPU is a virtual representation of a physical CPU core. This is the standard for cloud computing, as it allows a physical server's resources to be securely divided among multiple applications.
 
 vCPU performance can sometimes vary depending on factors such as:
 
