@@ -86,7 +86,7 @@ symfony project:set-remote {{< variable "PROJECT_ID" >}}
 To deploy your project, run the following command:
 
 ```bash
-symfony cloud:deploy
+symfony cloud:push
 ```
 
 {{< note title="Tip" >}}
@@ -154,7 +154,7 @@ To make changes to your project, follow these steps:
 4. Deploy your changes to the `feat-a` environment:
 
    ```bash
-   symfony cloud:deploy
+   symfony cloud:push
    ```
 
    Note that each environment has its own domain name.
@@ -173,7 +173,7 @@ To make changes to your project, follow these steps:
    git merge feat-a
    symfony environment:delete feat-a
    git branch -d feat-a
-   symfony cloud:deploy
+   symfony cloud:push
    ```
 
    {{< note >}}
