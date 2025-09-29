@@ -31,7 +31,7 @@ Guaranteed CPU is **not supported on OVHcloud regions**, and some sizes **may no
    - Select **Guaranteed** or **Shared** as the resource type.
    - Choose the desired CPU and RAM combination.
    - Enter the amount of Disk/Storage to allocate.
-4. Click Save. Saving will redeploy your environment, which may cause temporary downtime.
+4. Click Save. Saving will rebuild your environment, which may cause temporary downtime.
 
 {{% note %}}
 
