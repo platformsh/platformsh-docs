@@ -22,7 +22,7 @@ Throughout our product and documentation, when we refer to **CPU**, we are descr
 
 vCPU performance can sometimes vary depending on factors such as:
 
-- Cloud provider and [region](/developemnt/regions.html)  
+- Cloud provider and [region](/development/regions.html)  
 - System load from other containers on a shared host (in shared mode)
 
 ## CPU: Shared vs. Guaranteed
