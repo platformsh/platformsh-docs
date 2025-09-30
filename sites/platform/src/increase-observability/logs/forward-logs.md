@@ -20,8 +20,7 @@ Log forwarding is available for Grid projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](dedicated-environments/dedicated-gen-2/overview.md#remote-logging).
 <--->
 {{% /version/specific %}}
-Logs to `stdout` and `stderr` are forwarded.
-Logs in files can't be forwarded.
+Logs to `stdout` and `stderr`, and logs (including Mariadb/MySQL slow query logs) written to the `journald` service can be forwarded. Logs in files cannot be forwarded.
 
 To enable log forwarding in a project, you need to be a [project admin](/administration/users.md).
 You also need your project to have the capability for log forwarding.
