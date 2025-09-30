@@ -111,7 +111,7 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Note that development environments **always** use automatic deployment, while manual deployment is only available for staging and production environments.
+Manual deployment is available for **development**, **staging** and **production** environments. 
 
 {{< /note >}}
 
