@@ -7,7 +7,7 @@ description: |
 
 {{% description %}}
 
-- [Click to install directly in the console](https://console.upsun.com/-/add-plugin?manifest=https%253A%252F%252Ffastsun.plugins.pltfrm.sh%252Fmanifest.json)
+- [Click to install directly in the Upsun console](https://console.upsun.com/-/add-plugin?manifest=https%253A%252F%252Ffastsun.plugins.pltfrm.sh%252Fmanifest.json)
 - Plugin manifest URL: 
 https://fastsun.plugins.pltfrm.sh/manifest.json 
 
