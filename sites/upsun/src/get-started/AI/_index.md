@@ -50,10 +50,10 @@ follows standard HTTP protocols.
 ## Get started
 
 1. **Choose your runtime**: Select the programming language that
-best fits your AI application needs
-1. **Configure your app**: Set up your application in the `.upsun/config.yaml` file
-1. **Integrate LLM APIs**: Connect to your preferred AI service providers
-1. **Deploy and scale**: Push your code and let Upsun handle the infrastructure
+best fits your AI application needs.
+1. **Configure your app**: Set up your application in the `.upsun/config.yaml` configuration file. You can use AI to [generate an initial configuration](/administration/cli/init.md).
+1. **Integrate LLM APIs**: Connect to your preferred AI service providers.
+1. **Deploy and scale**: Push your code and let Upsun handle the infrastructure.
 
 For detailed examples and tutorials, see the
 [AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/ai?utm_source=docs&utm_medium=ai-section&utm_campaign=tutorials).
