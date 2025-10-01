@@ -23,7 +23,7 @@ The Fastly CDN plugin enables you to:
 
 
 ## Using the Fastly CDN plugin
-When accessing an {{% vendor/name %}} environment page, you should see a Fastly CDN tab.
+When accessing an {{% vendor/name %}} environment page, go to the **Fastly CDN** tab.
 
 Log in with your Fastly credentials:
   - Service ID
