@@ -39,7 +39,7 @@ After you log in, you can see a dashboard with the following information:
 - A real-time metrics tab
 - A historical metrics tab, where you can:
   - View metrics over weeks, months, and years by using the date picker
-  - Enable/disable chart metrics by clicking on them. Disabled metrics are not displayed on the graph.
+  - Enable/disable chart metrics by clicking them. Disabled metrics are not shown on the graph.
   - View average, min, and max values for different metrics (when available, below the historical chart)
   
     Both the chart or the table presentation are based on the range you selected in the date picker.
