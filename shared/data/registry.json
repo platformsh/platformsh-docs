@@ -632,10 +632,10 @@
     "type": "network-storage",
     "versions": {
       "deprecated": [
-        "1.0"
+        "2.0"
       ],
       "supported": [
-        "2.0"
+        "1.0"
       ]
     },
     "versions-dedicated-gen-3": {
