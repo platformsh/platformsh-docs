@@ -204,7 +204,7 @@ to start forwarding logs [trigger a redeploy](/development/troubleshoot.md#force
 ## Log levels
 
 Your app may output logs with distinct severity levels.
-But as Plaform.sh only reads logs from `stdout`,
+But as Platform.sh only reads logs from `stdout`,
 this distinction is lost and everything gets logged at `INFO` level.
 
 To preserve the original log level, use a language-specific syslog module/package for logging.
