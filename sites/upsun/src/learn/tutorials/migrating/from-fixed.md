@@ -73,32 +73,26 @@ To assist with converting applications from Upsun Fixed to {{% vendor/name %}}, 
 #### Key functions
 The converting tool performs the following transformations:
 
-1. Generation of Upsun `.upsun/config.yaml`
-
-- Creates a new `config.yaml` file - the primary configuration file for {{% vendor/name %}} projects.
-- Extracts relevant information from `.platform.app.yaml`, `services.yaml`, `applications.yaml`, and `routes.yaml`.
+1. Generation of `.upsun/config.yaml`, which is the primary configuration file for {{% vendor/name %}} projects
+   - Extracts relevant information from `.platform.app.yaml`, `services.yaml`, `applications.yaml`, and `routes.yaml`.
 
 2. Refactoring of obsolete or incompatible fields
-3. 
-Removes resource-related fields that are not applicable in {{% vendor/name %}}. This includes:
-- Disk values
-- Size settings (e.g., S, M, L)
-- Legacy resources blocks
-- Any deprecated or unsupported container options in the source configuration
+   - Includes the removal of resource-related fields that are not applicable in {{% vendor/name %}}, such as:
+     - Disk values
+     - Size settings (for example, S, M, L)
+     - Legacy resources blocks
+     - Any deprecated or unsupported container options in the source configuration
 
-3. Mount and storage adjustments
-
-- Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency.
-- Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
+3. Adjustments to mount and storage
+   - Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency.
+   - Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
 
 4. Reorganization of custom service configuration
-
-- Moves custom configuration for services such as `Solr` into the `.upsun/ directory`, which is used to hold project-specific overrides and custom assets.
+   - Moves custom configuration for services such as `Solr` into the `.upsun/ directory`, which is used to hold project-specific overrides and custom assets.
 
 5. Support for cron jobs
-
-- Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
-- Flags any cron schedules requiring special support and prepares the `config.yaml` accordingly.
+   - Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
+   - Flags any cron schedules requiring special support and prepares the `config.yaml` accordingly.
 
 #### Usage
 
