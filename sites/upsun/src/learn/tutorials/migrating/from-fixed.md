@@ -74,7 +74,7 @@ To assist with converting applications from Upsun Fixed to {{% vendor/name %}}, 
 The converting tool performs the following transformations:
 
 1. Generation of `.upsun/config.yaml`, which is the primary configuration file for {{% vendor/name %}} projects
-   - Extracts relevant information from `.platform.app.yaml`, `services.yaml`, `applications.yaml`, and `routes.yaml`.
+   - Extracts relevant information from `.platform.app.yaml`, `.platform/applications.yaml`, `.platform/services.yaml`, and `.platform/routes.yaml`.
 
 2. Refactoring of obsolete or incompatible fields
    - Includes the removal of resource-related fields that are not applicable in {{% vendor/name %}}, such as:
@@ -92,7 +92,7 @@ The converting tool performs the following transformations:
 
 5. Support for cron jobs
    - Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
-   - Flags any cron schedules requiring special support and prepares the `config.yaml` accordingly.
+   - Flags any cron schedules requiring special support and prepares the `.upsun/config.yaml` accordingly.
 
 #### Usage
 
