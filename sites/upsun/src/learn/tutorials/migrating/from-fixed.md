@@ -88,7 +88,7 @@ The converting tool performs the following transformations:
    - Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
 
 4. Reorganization of custom service configuration
-   - Moves custom configuration for services such as `Solr` into the `.upsun/ directory`, which is used to hold project-specific overrides and custom assets.
+   - Moves custom configuration for [services](/add-services.md) such as `Solr` into the `.upsun/` directory, which is used to hold project-specific overrides and custom assets.
 
 5. Support for cron jobs
    - Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
