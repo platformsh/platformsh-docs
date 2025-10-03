@@ -66,7 +66,7 @@ There are two ways to change the configuration files of your Upsun Fixed (former
 1. [Convert projects with the CLI](#convert-with-the-cli)
 2. [Convert projects manually](#convert-manually)
 
-  **Tip:** Regardless of which method you choose, tools are available to make it easier to edit and validate `.upsun/config.yaml` files - check out [this article](https://devcenter.upsun.com/posts/validate-yaml-config/) in the Upsun Dev Center. 
+  **Tip:** Regardless of which method you choose, tools are available to make it easier to edit and validate `.upsun/config.yaml` files - check out [this article](https://devcenter.upsun.com/posts/validate-yaml-config/) in the Upsun DevCenter. 
 
 ### Convert with the CLI
 
