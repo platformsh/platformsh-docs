@@ -23,23 +23,28 @@ The Fastly CDN plugin enables you to:
 
 
 ## Using the Fastly CDN plugin
-When accessing an {{% vendor/name %}} environment page, go to the **Fastly CDN** tab.
+1. In the Upsun [console](https://upsun.console.com), navigate to the project and environment whose metrics you want to view.
 
-Log in with your Fastly credentials:
-  - Service ID
-  - API token
+      **Note:** To view summarized monthly _project-level_ traffic, including CDN bandwidth and CDN requests, see the **Traffic this month** section of a project page (make sure no environment is selected).
 
-     If you have a Fastly subscription, you can get your credentials directly from the Fastly interface.
+1. On the **Fastly CDN** tab, log in with your Fastly credentials:
+    - Service ID
+    - API token
 
-     If you purchased your Fastly service through Upsun, you can find your credentials in the Upsun project variables or you can get them by [opening a support ticket](https://console.upsun.com/-/users/~/tickets/open).
+      If you have a Fastly subscription, you can get your credentials directly from the Fastly interface.
 
-   These credentials are stored only in your browser because the Fastly CDN web plugin is a single-page application.
+      If you purchased your Fastly service through Upsun, you can find your credentials in the Upsun project variables or you can get them by [opening a support ticket](https://console.upsun.com/-/users/~/tickets/open).
 
-After you log in, you can see a dashboard with the following information:
+      Your Fastly credentials are stored securely within your browser and are never transmitted to Upsun.
+
+After you log in, you can see a dashboard with the following information for the selected environment:
 - A real-time metrics tab
 - A historical metrics tab, where you can:
-  - View metrics over weeks, months, and years by using the date picker.
+  - View metrics by weeks, months, and years by using the date picker.
   - Enable/disable chart metrics by clicking them. Disabled metrics are not shown on the graph.
-  - View average, min, and max values for different metrics (when available, below the historical chart).<BR>
+  - View average, min, and max values for different metrics (when available, these are shown below the historical chart).<BR>
 
-    Both the chart or the table presentation are based on the range you selected in the date picker.
+    Both the chart and the table presentation are based on the range you select in the date picker.
+
+The image below shows a sample Fastly CDN historical metrics tab:
+![Image showing the Fastly CDN historical metrics tab in the Upsun console](/images/integrations/console-fastly.png "0.75")
