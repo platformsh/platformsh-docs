@@ -84,7 +84,7 @@ All items used for the calculation are displayed in the [**Overview** tab](#acce
 
 {{< note theme="note" title="Monitor monthly traffic usage">}}
 
-You can also access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). 
+You can also access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). 
 
 {{< /note >}}
 
