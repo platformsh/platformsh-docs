@@ -82,6 +82,12 @@ The following formula is used to estimate how much accumulated resource usage ma
 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
 
+{{< note theme="note" title="Monitor monthly traffic usage">}}
+
+You can also access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). 
+
+{{< /note >}}
+
 <--->
 
 +++
@@ -100,6 +106,7 @@ The following formula is used to estimate how much allocated resource usage may 
 All items used for the calculation are displayed in the [**Overview** tab](#access-your-organization-billing-information).
 
 {{< /codetabs >}}
+
 
 ### Next month estimate
 

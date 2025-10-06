@@ -142,7 +142,7 @@ routes:
         to: "https://{default}/"
 ```
 
-This configuration is similar to the deployment process for [Drupal on Upsun Fixed](https://fixed.docs.upsun.com/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html).
+This configuration is similar to the deployment process for [Drupal on Upsun Fixed](https://fixed.docs.upsun.com/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-fixed.html).
 ## Variables
 
 The `project:init` command created a `.environment` file containing environment variables for the two services (MariaDB and Redis). Now append the following Drush configuration to the bottom of that file:
