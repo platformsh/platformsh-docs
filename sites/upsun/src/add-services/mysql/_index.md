@@ -512,11 +512,12 @@ You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONS
 
 You can configure your MySQL service in the [services configuration](../_index.md) with the following options:
 
-| Name         | Type                    | Version                            | Description |
-| ------------ | ----------------------- | ---------------------------------- | ----------- |
-| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
-| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
-| `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| Name               | Type                       | Version                            | Description |
+| ------------------ | -------------------------- | ---------------------------------- | ----------- |
+| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
 
 Example configuration:
 
@@ -571,16 +572,17 @@ For each endpoint you add, you can define the following properties:
 | Name             | Type                     | Required | Description |
 | ---------------- | ------------------------ | -------- | ----------- |
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
-| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
+| `privileges`     | A permissions dictionary |          | For each defined schema, specifies the permissions of the endpoint. |
 
-Possible permissions:
+Available permissions:
 
-| Name        | Type          | Description                                         |
-| ----------- | ------------- | --------------------------------------------------- |
-| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
-| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Name              | Type                | Description                                         |
+| ----------------- | ------------------- | --------------------------------------------------- |
+| Read-only         | `ro`                | Can select, create temporary tables, and see views. |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.        |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [DevCenter article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ## Multiple databases
 
@@ -728,7 +730,7 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 {{% note theme="info" %}}
-MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
+MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/server-management/variables-and-modes/server-system-variables#max_connections) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
 They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
@@ -745,6 +747,14 @@ For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
+
+{{% note theme="warning" %}}
+By default, the generated password will rotate on a regular
+basis. Your applications MUST use the passwords from the
+relationships, as the password _is_ going to change. Set
+`rotate_passwords` to `false` if you wish to change this default
+behavior.
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint

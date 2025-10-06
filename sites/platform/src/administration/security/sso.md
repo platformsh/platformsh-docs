@@ -40,7 +40,7 @@ If your organization has Google SSO enabled on {{% vendor/name %}}, you may be r
 To resolve that, you need to:
 
 1. Go to [https://myaccount.google.com/permissions](https://myaccount.google.com/permissions) and revoke the access from the `{{% vendor/name %}}` application that has `Access given to auth.api.platform.sh`.
-2. Go to [https://auth.api.platform.sh/auth/authorize/google?prompt=consent](https://auth.api.platform.sh/auth/authorize/google?prompt=consent) for the system to obtain a valid refresh token for your Google account.
+2. Go to [https://auth.upsun.com/auth/authorize/google?prompt=consent](https://auth.upsun.com/auth/authorize/google?prompt=consent) for the system to obtain a valid refresh token for your Google account.
 
 ### OpenId Connect
 
@@ -49,4 +49,4 @@ To resolve that, you need to:
 Enforce your users to authenticate with your OpenID Connect provider,
 such as Okta, Azure Active Directory or Ping Identity.
 To enable SSO with your OpenID Connect provider,
-[contact Support](https://console.platform.sh/-/users/~/tickets).
+[contact Support](https://console.upsun.com/-/users/~/tickets).

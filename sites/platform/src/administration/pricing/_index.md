@@ -7,7 +7,7 @@ layout: single
 
 {{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.
 
-Full pricing information is available at https://platform.sh/pricing/.
+Full pricing information is available at https://upsun.com/fixed-pricing/.
 The resources listed there are for [production environments](#production-environments).
 
 You can switch between plans freely, adding or removing resources, including [extras](#extras).
@@ -41,7 +41,7 @@ Production environments are the live environments available to your users.
 Each Production plan has one Production environment that can be mapped to a [custom domain name](/domains/steps/_index.md).
 
 The production environment has more resources than the project's preview environments.
-See the main [pricing page](https://platform.sh/pricing) for the resources available per plan for Production environments.
+See the main [pricing page](https://upsun.com/fixed-pricing/) for the resources available per plan for Production environments.
 
 ### Preview environments
 
@@ -107,7 +107,7 @@ For example, a {{< partial "plans/multiapp-plan-name" >}} plan can support 3 app
 with a MySQL service and a Redis service.
 
 If you aren't sure whether a specific setup would fit into a plan,
-don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
+don't hesitate to [contact support](https://console.upsun.com/-/users/~/tickets).
 
 
 ## Enterprise overages
@@ -182,9 +182,9 @@ Agencies have access to several partner levels with many perks.
   |------------|------------|---------------|-------------|------------|------------|
   | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
 
-[Learn more and join today](https://platform.sh/solutions/digital-agencies/).
+[Learn more and join today](https://upsun.com/agency-hosting-partner/).
 
-If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).
+If you have any questions, don't hesitate to [contact Sales](https://upsun.com/contact-us/).
 
 ## Sponsored sites
 
@@ -193,7 +193,7 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-If your initial payment fails, Platform.sh will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
+If your initial payment fails, Upsun will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
 
 If you are a new customer and your initial payment fails, your projects will be deleted on the 13th of the month - two days after the final payment attempt.  
 
@@ -201,6 +201,6 @@ For all other customers, you will receive a notification 10 days before your pro
 
 <div align="center">
 
-{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+{{< get-started/next-button next="https://upsun.com/" nextText="Apply" >}}
 
 </div>

@@ -90,7 +90,7 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 ```
 
 You can also add it in the Console,
-similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
+similar to this [video](https://fixed.docs.upsun.com/videos/management-console/add-ssh-mc.mp4).
 
 Now you are ready to use the key to [connect to an environment](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
 
@@ -98,7 +98,7 @@ Now you are ready to use the key to [connect to an environment](/development/ssh
 
 To connect to a server using SSH keys, find the details in the Console:
 
-1. Open the [{{% vendor/name %}} Console](https://console.platform.sh/).
+1. Open the [{{% vendor/name %}} Console](https://console.upsun.com/).
 1. Select a project.
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.

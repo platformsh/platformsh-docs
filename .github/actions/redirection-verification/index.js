@@ -3,6 +3,8 @@ const github = require('@actions/github')
 const fs = require('fs');
 const yaml = require('js-yaml');
 const axios = require('axios');
+const cheerio = require('cheerio');
+
 const tableData = [
   [
     {data: 'From', header: true},
@@ -46,16 +48,43 @@ function sleep(ms) {
   });
 }
 
-const retryTargetResponse = async (url='/',count=0) => {
+const validateFragment = async (urlWithFragment) => {
+  const [url,fragment] = urlWithFragment.split('#')
   try {
-    const axiosResponse = await axios.head(url);
+    // we should have a fragment but let's make sure
+    if(!fragment){
+      return true; // no fragment to verify so just bail
+    }
+    core.debug(`Validating fragment '${fragment}' in URL: ${url}`)
+    // Make GET request to fetch HTML content
+    const response = await retryTargetResponse(url,0,"get")
+    // Parse HTML with cheerio
+    const $ = cheerio.load(response.data)
+    // Look for element with matching id
+    const element = $(`#${fragment}`)
+    if (element.length > 0) {
+      core.debug(`Fragment '${fragment}' found in ${url}`)
+      return true
+    } else {
+      core.debug(`Fragment '${fragment}' NOT found in ${url}`)
+      return false
+    }
+  } catch (error) {
+    core.warning(`Error validating fragment '${fragment}' in ${url}: ${error.message}`)
+    return false
+  }
+}
+
+const retryTargetResponse = async (url='/',count=0, method='head', config={}) => {
+  try {
+    const axiosResponse = await axios[method](url, config);
     return axiosResponse;
   } catch (error) {
     if(error || error.status != 200) {
       core.debug(`At attempt ${count}, target url ${url} responded with status ${error.status}, retrying...`)
       if (count++ < retries) {
         await sleep(retrySleep)
-        return retryTargetResponse(url,count)
+        return retryTargetResponse(url,count,method,config)
       } else {
         core.warning(`Max number of retries ${retries} for end point ${url} reached. Aborting.`)
         //throw new Error(error)
@@ -89,11 +118,37 @@ const verify = async () => {
 
     const redirectionrules = async ()=>{
       try {
-        return await redirectionInstance.get(`/rules?projectId=${redirectionProjectID}`  )
-          .then(response => {
-            //core.debug(response.data)
-            return response.data
-          })
+        let allRules = []
+        let searchAfter = null
+        let hasMoreResults = true
+
+        while (hasMoreResults) {
+          let url = `/rules?projectId=${redirectionProjectID}`
+          if (searchAfter) {
+            url += `&searchAfterId=${searchAfter}`
+          }
+
+          //const response = await redirectionInstance.get(url)
+          let config = {
+            baseURL: redirectionApiURL,
+            timeout: 2000,
+            headers: {'Authorization': `Bearer ${redirectionApiToken}`}
+          }
+          const response = await retryTargetResponse(url,0,"get",config)
+          const rules = response.data
+
+          if (rules && rules.length > 0 ) {
+            allRules = allRules.concat(rules)
+            // get the last rule id for the next page of results
+            searchAfter = rules[rules.length - 1].id
+          } else {
+            // no more results
+            hasMoreResults = false
+          }
+        }
+        core.debug(`Total rules retrieved: ${allRules.length} rules`)
+        return allRules
+
       } catch (error) {
         core.setFailed(`Action failed calling redirection Api with error ${error}`)
       }
@@ -107,6 +162,27 @@ const verify = async () => {
     const validateRedirects =anchors.map(async (object, index, array) => {
       let path = object.trigger.source
       let location = object.actions.find((element) => element.type == 'redirection').location
+      let pshVerification = true
+      let fragmentVerification = true
+
+      if (path.includes("@") && object.markers.length > 0) {
+        core.notice(`${path} contains a marker. We will need to switch to an example path for testing.`)
+        // make sure we have some examples
+        if (object.examples && Array.isArray(object.examples)) {
+          // we have a marker path. let's use an example path to test
+          let examplePaths = object.examples.filter( example => example.url.startsWith('/') )
+          if (examplePaths.length > 0 && examplePaths[0]) {
+            path = examplePaths[0].url
+          } else {
+            core.error(`path ${path} appears to contain a marker, but I was unable to find a valid example to use.`)
+            path = "/"
+          }
+        } else {
+          core.error(`path ${path} appears to contain a marker, but the rule does not contain any examples. This needs to be fixed.`)
+          path = "/"
+        }
+
+      }
 
       core.debug(`I'm going to test ${path} to see if it goes to ${location}`)
 
@@ -120,15 +196,29 @@ const verify = async () => {
           core.debug(`Now checking ${verificationLocation} to make sure it exists in the PR environment...`)
 
           try {
-            const verify = await retryTargetResponse(verificationLocation)
-            return verify
+            const pshVerify = await retryTargetResponse(verificationLocation)
+            location = verificationLocation
+            // return pshVerify
           } catch (verifyError) {
             core.debug(`Error when verifying ${verificationLocation} exists on PR environment!`)
             let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( verificationLocation, axios.defaults.baseURL) }]
             tableData.push(row)
+            pshVerification = false
           }
 
         }
+
+        // now finally check for fragments
+        if (response && pshVerification && location.includes("#")) {
+          core.notice(`Fragment destination detected. Verifying element still exists at ${location}.`)
+          fragmentVerification = await validateFragment(location)
+          if(!fragmentVerification) {
+            core.debug(`Error when verifying fragment destination for ${location} exists in PR environment!`)
+            let row = [{data: linkify(path, axios.defaults.baseURL)},{data: linkify( location, axios.defaults.baseURL) }]
+            tableData.push(row)
+          }
+        }
+
         return response
       } catch (reqerr) {
         // core.debug(`issue encountered with path ${path}!!! Returned status is ${reqerr.status}. More info: `)
@@ -155,7 +245,7 @@ const verify = async () => {
         core.summary.write()
         core.setFailed('There was an error with one or more contracted redirects.')
       } else  {
-        core.notice('All contracted redirections are valid.')
+        core.notice(`All contracted redirections are valid. ${anchors.length} rules evaluated.`)
       }
     });
 
