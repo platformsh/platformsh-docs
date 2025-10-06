@@ -135,7 +135,7 @@ Plans with a Fastly CDN service include the following:
 
 ### Monitor monthly traffic usage
 
-You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.platform.sh). This will help you monitor your monthly bandwidth and requests consumption. 
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). This will help you monitor your monthly bandwidth and requests consumption. 
 
 In this summary, you will find specific details about:
 
