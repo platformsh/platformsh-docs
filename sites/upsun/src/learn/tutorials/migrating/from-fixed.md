@@ -66,6 +66,8 @@ There are two ways to change the configuration files of your Upsun Fixed (former
 1. [Convert projects with the CLI](#convert-with-the-cli)
 2. [Convert projects manually](#convert-manually)
 
+  **Tip:** Regardless of which method you choose, tools are available to make it easier to edit and validate `.upsun/config.yaml` files - check out [this article](https://devcenter.upsun.com/posts/validate-yaml-config/) in the Upsun DevCenter. 
+
 ### Convert with the CLI
 
 To assist with converting applications from Upsun Fixed to {{% vendor/name %}}, the {{< vendor/name >}} converting tool is available as part of the {{% vendor/name %}} CLI. This feature automates the conversion of Upsun Fixed config files into a format required by {{% vendor/name %}}, significantly reducing manual effort.
@@ -73,32 +75,29 @@ To assist with converting applications from Upsun Fixed to {{% vendor/name %}}, 
 #### Key functions
 The converting tool performs the following transformations:
 
-1. Generation of Upsun `.upsun/config.yaml`
-
-- Creates a new `config.yaml` file - the primary configuration file for {{% vendor/name %}} projects.
-- Extracts relevant information from `.platform.app.yaml`, `services.yaml`, `applications.yaml`, and `routes.yaml`.
+1. Generation of `.upsun/config.yaml`, which is the primary configuration file for {{% vendor/name %}} projects
+   - Extracts relevant information from `.platform.app.yaml`, `.platform/applications.yaml`, `.platform/services.yaml`, and `.platform/routes.yaml`.
 
 2. Refactoring of obsolete or incompatible fields
-3. 
-Removes resource-related fields that are not applicable in {{% vendor/name %}}. This includes:
-- Disk values
-- Size settings (e.g., S, M, L)
-- Legacy resources blocks
-- Any deprecated or unsupported container options in the source configuration
+   - Includes the removal of resource-related fields that are not applicable in {{% vendor/name %}}, such as:
+     - Disk values
+     - Size settings (for example, S, M, L)
+     - Legacy resources blocks
+     - Any deprecated or unsupported container options in the source configuration
 
-3. Mount and storage adjustments
+3. Adjustments to mounts and storage
+   - Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency. 
+   - Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
 
-- Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency.
-- Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
+        To learn more, refer to these topics: mounts in [single-runtime](/create-apps/app-reference/single-runtime-image.md#mounts) and [composable](/create-apps/app-reference/composable-image.md#mounts) images, and [network storage](add-services/network-storage.md). 
 
 4. Reorganization of custom service configuration
-
-- Moves custom configuration for services such as `Solr` into the `.upsun/ directory`, which is used to hold project-specific overrides and custom assets.
+   - Moves custom configuration for [services](/add-services.md) such as `Solr` into the `.upsun/` directory, which is used to hold project-specific overrides and custom assets.
 
 5. Support for cron jobs
+   - Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
+   - Flags any cron schedules requiring special support and prepares the `.upsun/config.yaml` accordingly.
 
-- Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
-- Flags any cron schedules requiring special support and prepares the `config.yaml` accordingly.
 
 #### Usage
 
