@@ -147,6 +147,20 @@ In this summary, you will find specific details about:
 
 This data is updated daily and will reflect your traffic usage throughout the billing period. 
 
+### Consumption alerts
+
+You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ['traffic this month' block within console](#monitor-monthly-traffic-usage):
+
+![Access the alert settings from the traffic usage section](/images/metrics/traffic-block.png "0.4")
+
+This will open a modal, as shown below. 
+
+![Set your alert notifications](/images/metrics/alerts-modal.png "0.4")
+
+Here you can configure usage thresholds for Origin bandwidth, Origin requests, CDN bandwidth and CDN requests (if applicable).
+
+If a threshold is exceeded during the month, you’ll receive an email notification.
+
 ### DDoS surge protection
 
 If your site is suffering from a DDoS attack, overages may apply.

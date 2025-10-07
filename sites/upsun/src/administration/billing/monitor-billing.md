@@ -88,6 +88,12 @@ You can also access a summary of your monthly traffic usage under the "Traffic t
 
 {{< /note >}}
 
+{{< note theme="info" title="Set up consumption alerts">}}
+
+Set up consumption alerts by clicking the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/). Here you can configure usage thresholds. If a threshold is exceeded during the month, you’ll receive an email notification.
+
+{{< /note >}}
+
 <--->
 
 +++
