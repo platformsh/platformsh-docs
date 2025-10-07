@@ -23,10 +23,8 @@ If you use one of the following frameworks, follow its guide:
 
 ## Supported versions
 
-From version 7.11 onward:
-
 {{% note title="Premium Service" theme="info" %}}
-Elasticsearch isn’t included in any {{< vendor/name >}} plan.
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
 You need to add it separately at an additional cost.
 To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
 {{% /note %}}
