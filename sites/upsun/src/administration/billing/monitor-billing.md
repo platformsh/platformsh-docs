@@ -183,7 +183,7 @@ Edit your billing alerts to have correct amounts in the new currency.
 
 ### Consumption alerts
 
-You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ['traffic this month' block within console](#monitor-monthly-traffic-usage):
+You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/):
 
 ![Access the alert settings from the traffic usage section](/images/billing/traffic-block.png "0.4")
 

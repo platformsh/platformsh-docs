@@ -149,7 +149,7 @@ This data is updated daily and will reflect your traffic usage throughout the bi
 
 ### Consumption alerts
 
-You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ['traffic this month' block within console](#monitor-monthly-traffic-usage):
+You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ["Traffic this month" block within Console](#monitor-monthly-traffic-usage):
 
 ![Access the alert settings from the traffic usage section](/images/metrics/traffic-block.png "0.4")
 
