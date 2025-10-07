@@ -41,7 +41,7 @@ This data is updated daily and will reflect your traffic usage throughout the bi
 
 {{< note theme="info" title="Set up traffic alerts">}}
 
-You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html#consumption-alerts).
+You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html#monthly-traffic-alerts).
 
 {{< /note >}}
 
