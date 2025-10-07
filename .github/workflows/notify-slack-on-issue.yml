@@ -1,0 +1,46 @@
+name: Notify Slack on new issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract and truncate issue body
+        id: prepare
+        run: |
+          BODY="${{ github.event.issue.body }}"
+          if [ -z "$BODY" ]; then
+            BODY="No description provided."
+          fi
+          # Garder les 4 premières lignes seulement
+          TRUNCATED=$(echo "$BODY" | head -n 4)
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$TRUNCATED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {
+              "text": "${{ github.event.issue.user.login }} added a new issue: <${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>",
+              "attachments": [
+                {
+                  "color": "#439FE0",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "${{ steps.prepare.outputs.body }}"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
