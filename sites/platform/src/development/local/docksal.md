@@ -31,7 +31,7 @@ See all [restrictions on the projects directory](https://docs.docksal.io/getting
 
 ## 3. Add an API token
 
-To connect Docksal with your {{% vendor/name %}} account, use a {{% vendor/name %}} API token.
+To connect Docksal with your {{% vendor/name %}} account, use an {{% vendor/name %}} API token.
 
 1. [Create an API token](/administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
 2. Add the token to your Docksal configuration by running this command:

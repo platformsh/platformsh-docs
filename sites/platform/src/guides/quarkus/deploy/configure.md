@@ -3,7 +3,7 @@ title: "Configure Quarkus for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for Quarkus.
+    Review the basics of what makes up an {{% vendor/name %}} project, including its three principle configuration files and how to define them for Quarkus.
 ---
 
 {{% guides/config-desc name="Quarkus" noService=true %}}

@@ -28,12 +28,12 @@ php artisan optimize:clear
 
 ## What is mapped
 
-* If a {{% vendor/name %}} relationship named `database` is defined,
+* If an {{% vendor/name %}} relationship named `database` is defined,
   it is taken as an SQL database and mapped to the `DB_*` environment variables for Laravel.
-* If a {{% vendor/name %}} relationship named `rediscache` is defined,
+* If an {{% vendor/name %}} relationship named `rediscache` is defined,
   it is mapped to the `REDIS_*` environment variables for Laravel.
   The `CACHE_DRIVER` variable is also set to `redis` to activate it automatically.
-* If a {{% vendor/name %}} relationship named `redissession` is defined,
+* If an {{% vendor/name %}} relationship named `redissession` is defined,
   the `SESSION_DRIVER` is set to `redis` and the `REDIS_*` variables set based on that relationship.
   NOTE: This means you _*must*_ set 2 relationships to the same Redis service and endpoint,
   as Laravel reuses the same backend connection.
@@ -41,7 +41,7 @@ php artisan optimize:clear
   which is provided for exactly this purpose.
 * The Laravel `APP_URL` variable is set based on the current route, when possible.
 * The `SESSION_SECURE_COOKIE` variable is set to `true` if it's not already defined.
-  A {{% vendor/name %}} environment is by default encrypted-always,
+  An {{% vendor/name %}} environment is by default encrypted-always,
   so there's no reason to allow unencrypted cookies.
   Overwrite this by setting the {{% vendor/name %}} variable `env:SESSION_SECURE_COOKIE` to 0.
 * The `MAIL_DRIVER`, `MAIL_HOST`, and `MAIL_PORT` variables are set
@@ -59,7 +59,7 @@ php artisan optimize:clear
 
 Laravel provides reasonable defaults for many environment variables already
 and this library doesn't override those.
-Customize them by setting a {{% vendor/name %}} variable named `env:ENV_NAME`.
+Customize them by setting an {{% vendor/name %}} variable named `env:ENV_NAME`.
 (Note the `env:` prefix.)
 
 The variables you are most likely to want to override are:

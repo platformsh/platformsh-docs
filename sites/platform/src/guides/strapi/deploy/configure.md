@@ -3,7 +3,7 @@ title: "Configure Strapi for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-  Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for Strapi.
+  Review the basics of what makes up an {{% vendor/name %}} project, including its three principle configuration files and how to define them for Strapi.
 ---
 
 {{% guides/config-desc name="Strapi" %}}

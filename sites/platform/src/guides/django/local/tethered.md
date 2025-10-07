@@ -1,7 +1,7 @@
 ---
 title: Tethered local
 weight: -90
-description: Connect a locally running Django server directly to active services on a {{% vendor/name %}} environment.
+description: Connect a locally running Django server directly to active services on an {{% vendor/name %}} environment.
 sectionBefore: Supported environments
 ---
 
@@ -20,7 +20,7 @@ If you followed the [Django deployment guide](/guides/django/deploy/_index.md),
 you should have a Django configuration file with settings for [decoding variables](/guides/django/deploy/customize.md#decoding-variables)
 and also [overrides for {{% vendor/name %}}](/guides/django/deploy/customize.md#decoding-variables).
 
-You can use these settings to set up a tethered connection to services running on a {{% vendor/name %}} environment.
+You can use these settings to set up a tethered connection to services running on an {{% vendor/name %}} environment.
 The settings are used to mock the conditions of the environment locally.
 
 ## Create the tethered connection
@@ -48,7 +48,7 @@ The settings are used to mock the conditions of the environment locally.
    export PLATFORM_RELATIONSHIPS="$({{< vendor/cli >}} tunnel:info --encode)"
    ```
 
-1.  To ensure your `settings.py` file acts as if in a {{% vendor/name %}} environment,
+1.  To ensure your `settings.py` file acts as if in an {{% vendor/name %}} environment,
     mock two variables present in active environments:
 
     ```bash

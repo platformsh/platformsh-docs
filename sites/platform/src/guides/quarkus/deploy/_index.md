@@ -4,7 +4,7 @@ sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-    Create a {{% vendor/name %}} account, download a few tools, and prepare to deploy Quarkus.
+    Create an {{% vendor/name %}} account, download a few tools, and prepare to deploy Quarkus.
 ---
 
 [Quarkus](https://quarkus.io/) is, in its own words, a cloud-native, (Linux) container-first framework for writing Java applications.
