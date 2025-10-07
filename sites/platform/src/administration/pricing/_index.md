@@ -147,7 +147,7 @@ In this summary, you will find specific details about:
 
 This data is updated daily and will reflect your traffic usage throughout the billing period. 
 
-### Consumption alerts
+### Monthly traffic alerts
 
 You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ["Traffic this month" block within Console](#monitor-monthly-traffic-usage):
 

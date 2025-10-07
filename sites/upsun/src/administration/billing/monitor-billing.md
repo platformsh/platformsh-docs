@@ -181,7 +181,7 @@ After Support changes the currency, your existing billing alerts are **not** aut
 Edit your billing alerts to have correct amounts in the new currency.
 {{% /note %}}
 
-### Consumption alerts
+### Monthly traffic alerts
 
 You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/):
 
