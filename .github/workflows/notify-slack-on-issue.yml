@@ -1,22 +1,50 @@
-name: Notify Slack on new issue
+name: Notify Slack on new issue or PR
 
 on:
   issues:
+    types: [opened]
+  pull_request:
     types: [opened]
 
 jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract and truncate issue body
+      - name: Prepare message content
         id: prepare
         run: |
-          BODY="${{ github.event.issue.body }}"
+          if [ "${{ github.event_name }}" = "issues" ]; then
+            TYPE="issue"
+            TITLE="${{ github.event.issue.title }}"
+            URL="${{ github.event.issue.html_url }}"
+            AUTHOR="${{ github.event.issue.user.login }}"
+            AUTHOR_URL="https://github.com/${{ github.event.issue.user.login }}"
+            BODY="${{ github.event.issue.body }}"
+          else
+            TYPE="pull request"
+            TITLE="${{ github.event.pull_request.title }}"
+            URL="${{ github.event.pull_request.html_url }}"
+            AUTHOR="${{ github.event.pull_request.user.login }}"
+            AUTHOR_URL="https://github.com/${{ github.event.pull_request.user.login }}"
+            BODY="${{ github.event.pull_request.body }}"
+          fi
+
           if [ -z "$BODY" ]; then
             BODY="No description provided."
           fi
-          # Garder les 4 premières lignes seulement
+
+          # Keep the first 4 lines and add "..." if longer
           TRUNCATED=$(echo "$BODY" | head -n 4)
+          LINE_COUNT=$(echo "$BODY" | wc -l)
+          if [ "$LINE_COUNT" -gt 4 ]; then
+            TRUNCATED="${TRUNCATED}\n..."
+          fi
+
+          echo "type=$TYPE" >> $GITHUB_OUTPUT
+          echo "author=$AUTHOR" >> $GITHUB_OUTPUT
+          echo "author_url=$AUTHOR_URL" >> $GITHUB_OUTPUT
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "url=$URL" >> $GITHUB_OUTPUT
           echo "body<<EOF" >> $GITHUB_OUTPUT
           echo "$TRUNCATED" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -26,7 +54,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "${{ github.event.issue.user.login }} added a new issue: <${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>",
+              "text": "<${{ steps.prepare.outputs.author_url }}|${{ steps.prepare.outputs.author }}> added a new ${{ steps.prepare.outputs.type }}: <${{ steps.prepare.outputs.url }}|${{ steps.prepare.outputs.title }}>",
               "attachments": [
                 {
                   "color": "#439FE0",
