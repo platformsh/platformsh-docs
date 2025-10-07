@@ -88,12 +88,6 @@ You can also access a summary of your monthly traffic usage under the "Traffic t
 
 {{< /note >}}
 
-{{< note theme="info" title="Set up consumption alerts">}}
-
-Set up consumption alerts by clicking the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/). Here you can configure usage thresholds. If a threshold is exceeded during the month, you’ll receive an email notification.
-
-{{< /note >}}
-
 <--->
 
 +++
@@ -186,6 +180,20 @@ To change the currency of your billing alerts, [contact support](/learn/overview
 After Support changes the currency, your existing billing alerts are **not** automatically converted to the new currency.
 Edit your billing alerts to have correct amounts in the new currency.
 {{% /note %}}
+
+### Consumption alerts
+
+You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ['traffic this month' block within console](#monitor-monthly-traffic-usage):
+
+![Access the alert settings from the traffic usage section](/images/billing/traffic-block.png "0.4")
+
+This will open a modal, as shown below. 
+
+![Set your alert notifications](/images/billing/alerts-modal.png "0.4")
+
+Here you can configure usage thresholds for Origin bandwidth, Origin requests, CDN bandwidth and CDN requests (if applicable).
+
+If a threshold is exceeded during the month, you’ll receive an email notification.
 
 ## Track resource usage on a project
 
