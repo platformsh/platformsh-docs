@@ -113,9 +113,8 @@ Using the latest stable Nix channel ensures that you get stable, verified packag
 
 <!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
 <-- At this time, channel `{{% latest composable %}}` is supported. -->
-The following channels are supported:
 
-{{< image-versions image="composable" status="supported" environment="grid" >}}
+At this time, channel `{{% latest composable %}}` is supported.
 
 ### Configure Nix channels
 

@@ -76,14 +76,9 @@
     "repo_name": "composable",
     "runtime": true,
     "type": "composable",
-    "versions": {
-      "deprecated": [
-      ],
-      "supported": [
-        "25.05",
-        "24.05"
-      ]
-    }
+    "versions": "25.05",
+    "deprecated": [],
+    "supported": []
   },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
