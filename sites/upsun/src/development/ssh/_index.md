@@ -30,7 +30,7 @@ To authenticate with the CLI:
 
 1. Install the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 2. Run `{{% vendor/cli %}} login`.
-3. In the open browser window, log in with your {{% vendor/name %}} account credentials.
+3. In the open browser window, log in with your {{% vendor/company_name %}} account credentials.
    (This webpage is encrypted with [HTTPS](/define-routes/https.md), making it secure.)
 4. Authorize the CLI to use your account.
 

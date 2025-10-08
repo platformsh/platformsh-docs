@@ -11,7 +11,7 @@ At any time, you can download your site's data for local development, to back up
 You need:
 
 - [Git](https://git-scm.com/downloads)
-- An {{% vendor/name %}} account
+- An {{% vendor/company_name %}} account
 - Code in your project
 - Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
