@@ -181,6 +181,31 @@ After Support changes the currency, your existing billing alerts are **not** aut
 Edit your billing alerts to have correct amounts in the new currency.
 {{% /note %}}
 
+### Monitor monthly traffic usage
+
+You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/):
+
+![Access the alert settings from the traffic usage section](/images/billing/traffic-block.png "0.4")
+
+This will open a modal, as shown below. 
+
+![Set your alert notifications](/images/billing/alerts-modal.png "0.4")
+
+Here you can configure usage thresholds for Origin bandwidth, Origin requests, CDN bandwidth and CDN requests (if applicable).
+
+If a threshold is exceeded during the month, you’ll receive an email notification.
+
+#### Monthly traffic alerts
+
+For all projects where an alert has been defined and enabled, if monthly usage rises above the defined threshold, an email is sent to the same list of users who receive billing alerts:
+
+- Organization owner
+- Organization members with billing role
+- Billing contact of the organization (if there is one)
+
+Alerts are sent once a day, after the job that pulls usage data into Accounts has finished.
+Once a threshold is crossed, we send a maximum of 3 alerts, on 3 consecutive days (1 per day). After this, alerts will stop.
+
 ## Track resource usage on a project
 
 {{% note theme="info" title="Feature availability" %}}
