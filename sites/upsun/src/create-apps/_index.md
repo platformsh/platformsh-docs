@@ -13,7 +13,7 @@ keywords:
 Within a single project, you can have one or more apps and each app can have multiple instances.
 Instances are where the same code can be run with different configurations,
 such as one for external communication and one for background processes.
-All the apps and instances are configured with the same syntax.
+All apps and instances are configured with the same syntax.
 You can find a [complete reference](/create-apps/app-reference/single-runtime-image.md) of all possible settings.
 
 ## A minimal application
