@@ -4,7 +4,7 @@ sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-  Create an Upsun account, download a few tools, and prepare to deploy Laravel.
+  Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Laravel.
 ---
 
 [Laravel](https://laravel.com) is an open-source PHP Framework.

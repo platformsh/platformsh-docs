@@ -4,7 +4,7 @@ sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-  Create an Upsun account, download a few tools, and prepare to deploy Strapi.
+  Create an {{% vendor/company_name %}} account, download a few tools, and prepare to deploy Strapi.
 ---
 
 [Strapi](https://strapi.io) is an open-source headless CMS for building fast and manageable APIs written in JavaScript.
