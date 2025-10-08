@@ -100,7 +100,12 @@
     </script>
     {{ end }}
 
+    <!-- copy anchor link if click from the same page   -->
     <script src="{{ "js/copy-anchor-link.js" | relURL }}"></script>
+
+    <!-- allow to zoom images   -->
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+    <script src="{{ "js/zoom.js" | relURL }}"></script>
 
   </body>
 </html>
