@@ -3,7 +3,7 @@ title: "Exporting data"
 description: See how to export your code, files and service data.
 ---
 
-As An {{% vendor/name %}} user, your code and data belong to you.
+As an {{% vendor/name %}} user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
 
 ## Before you begin
