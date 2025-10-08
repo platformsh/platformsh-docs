@@ -28,4 +28,19 @@
   cursor: pointer;
 }
 
+.copy-icon,
+.success-icon {
+  position: relative;
+  top: -90px;
+  right: -30px;
+}
 
+pre {
+  position: relative;
+}
+
+.hextra-code-copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}

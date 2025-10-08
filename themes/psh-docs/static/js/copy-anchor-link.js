@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         navigator.clipboard.writeText(url.href).then(() => {
           const tooltip = document.createElement("span");
-          tooltip.textContent = "Copied!";
+          tooltip.textContent = "Copied in the clipboard!";
           tooltip.style.position = "absolute";
           tooltip.style.background = "#333";
           tooltip.style.color = "#fff";
