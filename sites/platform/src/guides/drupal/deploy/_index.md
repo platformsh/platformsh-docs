@@ -4,7 +4,7 @@ sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-    Create an {{% vendor/name %}} account, download a few tools, and prepare to deploy Drupal.
+    Create an Upsun account, download a few tools, and prepare to deploy Drupal.
 ---
 
 Drupal is a flexible and extensible PHP-based CMS framework. To deploy Drupal on {{% vendor/name %}}, the recommended way is to use Composer, the PHP package management suite.

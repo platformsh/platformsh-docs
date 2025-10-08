@@ -4,7 +4,7 @@ sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-    Create an {{% vendor/name %}} account, download a few tools, and prepare to deploy WordPress using Composer.
+    Create an Upsun account, download a few tools, and prepare to deploy WordPress using Composer.
 ---
 
 WordPress is a popular Content Management System written in PHP. The recommended way to deploy WordPress on {{% vendor/name %}} is by using Composer, the PHP package management suite. The most popular and supported way to do so is with the [John Bloch](https://github.com/johnpbloch/wordpress) Composer fork script. This guide assumes from the beginning that you're migrating a Composer-flavored WordPress repository. 

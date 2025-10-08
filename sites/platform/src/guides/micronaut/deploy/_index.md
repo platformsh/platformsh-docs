@@ -4,7 +4,7 @@ sidebarTitle: Get started
 weight: -110
 layout: single
 description: |
-    Create an {{% vendor/name %}} account, download a few tools, and prepare to deploy Micronaut.
+    Create an Upsun account, download a few tools, and prepare to deploy Micronaut.
 ---
 
 [Micronaut](https://micronaut.io/) is an open-source, JVM-based framework for building full-stack, modular, testable microservice and serverless applications.

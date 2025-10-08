@@ -39,7 +39,7 @@ title=Using the CLI
    Note that you can further [adjust user roles](/administration/users.md#environment-type-roles) depending on your needs and each environment type.
 
 2. In the email invitation, click **Create account**.
-3. To create an {{% vendor/name %}} account for the machine user, click **Sign up** and follow the instructions.
+3. To create an Upsun account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
 +++
