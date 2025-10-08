@@ -32,7 +32,7 @@ You need a few things before you can start creating projects.
 
 ### An account
 
-To get started, you need an Upsun account.
+To get started, you need an {{% vendor/company_name %}} account.
 You can start with a free 30-day trial that should contain everything you need to complete this guide.
 
 If you don't have an account yet, [register for an account](https://auth.upsun.com/register).
