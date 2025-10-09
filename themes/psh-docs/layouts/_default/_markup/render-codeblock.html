@@ -3,7 +3,6 @@
 {{ $configFile := .Attributes.configfile | default ""}}
 {{ $prefixdir := .Attributes.dir | default "" }}
 {{ $noCopyButton := index .Attributes "no-copy" | default "false" }}
-
 {{ $v2Hide := .Attributes.v2hide | default "false" }}
 
 {{ if or ( eq $v2Hide "false" ) (and (eq .Page.Site.Params.vendor.config.version 1) (eq $v2Hide "true")) }}
