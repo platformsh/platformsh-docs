@@ -14,8 +14,7 @@ This Console offers you ways to manage projects and environments other than the 
 
 ## Project list
 
-Opening the [Console](https://console.platform.sh) takes you to the first organization you joined as a
-{{% vendor/name %}} user.
+Opening the [Console](https://console.upsun.com) takes you to the first organization you joined as a {{% vendor/name %}} user.
 You get an overview of all your projects within that organization.
 You can narrow the list down by searching for specific projects,
 or switch to a different organization from the menu in the top left-hand corner.
@@ -41,5 +40,5 @@ The Console can be displayed in three ways:
 * High contrast mode
 * Dark mode
 
-To meet our [commitment to accessibility](https://platform.sh/trust-center/legal/wcag/),
+To meet our [commitment to accessibility](https://upsun.com/trust-center/legal/),
 all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

@@ -87,7 +87,7 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 
 ## Deployment types
 
-{{% vendor/name %}} supports two deployment types - automatic and manual. These types help to provide control over when changes are applied to staging and production environments.
+{{% vendor/name %}} supports two deployment types - automatic and manual. These types help to provide control over when changes are applied to development, staging and production environments.
 
 ### Automatic deployment (default)
 
@@ -111,14 +111,14 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Note that development environments **always** use automatic deployment, while manual deployment is only available for staging and production environments.
+Manual deployment is available for **development**, **staging** and **production** environments. 
 
 {{< /note >}}
 
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment (staging or production only). 
+You can adjust deployment behavior in your environment. 
 
 {{< codetabs >}}
 

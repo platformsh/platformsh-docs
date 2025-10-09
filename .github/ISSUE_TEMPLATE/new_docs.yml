@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve the Platform.sh docs!
+        Thanks for helping improve the Upsun Fixed docs!
         Please fill in the fields below so we can understand what documentation is needed.
 
   - type: textarea

@@ -87,7 +87,7 @@ Then upload them to your new project:
 ```
 
 See more options on [how to export files](/learn/tutorials/exporting.md)
-and [how to import files](/learn/tutorials/migrating/from-psh.md#6-import-data).
+and [how to import files](/learn/tutorials/migrating/from-fixed.md#6-import-data).
 
 ## 5. Copy data from services
 
@@ -143,7 +143,7 @@ We also have [the {{< vendor/name >}} converting tool](https://github.com/upsun/
 
 {{< note theme="info" >}}
 
-To learn more about the converter tool and how it works, read the [converting projects](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html) page.
+To learn more about the converter tool and how it works, read the [converting projects](https://docs.upsun.com/learn/tutorials/migrating/from-fixed.html) page.
 
 {{< /note >}}
 
