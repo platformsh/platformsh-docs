@@ -126,16 +126,7 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
-### Supported Nix channels
-
-A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems).
-
-Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
-
-<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended.
-The following channels are supported: -->
-
-At this time, channel `{{% latest composable %}}` is supported.
+{{% composable-channels %}}
 
 ### Configure Nix channels
 
@@ -144,9 +135,9 @@ The Nix channel can be configured with the [top-level property `type`](#primary-
 For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
-
-type: "composable:{{% latest composable %}}"
-
+applications:
+  myapp:
+    type: "composable:{{% latest composable %}}"
 ```
 
 ### Supported Nix packages

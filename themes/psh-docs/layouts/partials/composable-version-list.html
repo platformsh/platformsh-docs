@@ -1,0 +1,15 @@
+{{/* layouts/partials/composable-version-list.html */}}
+
+{{ $ctx := .context }}
+{{ $status := .status }}
+{{ $versions := index $ctx.Site.Data.composable_versions.composable.versions $status }}
+
+{{ if and $versions (gt (len $versions) 0) }}
+<ul>
+  {{ range $versions }}
+  <li>{{ . }}</li>
+  {{ end }}
+</ul>
+{{ else }}
+<p>No {{ $status }} versions available.</p>
+{{ end }}
