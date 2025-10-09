@@ -28,14 +28,7 @@
   cursor: pointer;
 }
 
-.copy-icon,
-.success-icon {
-  position: relative;
-  top: -90px;
-  right: -30px;
-}
-
-pre {
+.code-block-wrapper {
   position: relative;
 }
 
@@ -43,4 +36,52 @@ pre {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+  z-index: 10;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hextra-code-copy-btn:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.copy-tooltip {
+  position: absolute;
+  top: -1.6rem;
+  right: 0;
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  animation: fade-in-out 1.5s ease forwards;
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0; transform: translateY(-4px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+.medium-zoom-overlay {
+  z-index: 1000 !important;
+}
+
+.medium-zoom-image--opened {
+  z-index: 1001 !important;
 }
