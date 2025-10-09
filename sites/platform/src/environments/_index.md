@@ -9,7 +9,7 @@ keywords:
   - git push options
 ---
 
-A {{% vendor/name %}} environment contains one instance of an app (or [group of apps](/create-apps/multi-app/_index.md))
+An {{% vendor/name %}} environment contains one instance of an app (or [group of apps](/create-apps/multi-app/_index.md))
 with all the services needed for it to run.
 
 Each project can include multiple environments,

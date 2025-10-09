@@ -90,7 +90,7 @@ Since Strapi uses SQLite by default, you don't need much configuration, just fol
    console.log('Using default configuration during {{% vendor/name %}} build hook until relationships are available.');
    } else {
    // Strapi default local configuration.
-   console.log('Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration.');
+   console.log('Not in an {{% vendor/name %}} Environment. Using default local sqlite configuration.');
     }
    }
 
