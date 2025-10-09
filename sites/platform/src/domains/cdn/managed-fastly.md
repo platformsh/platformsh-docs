@@ -23,6 +23,28 @@ To add a managed Fastly CDN to your project,
 {{% vendor/name %}} does not write nor debug any custom VCL on Managed Fastly CDN services.
 {{< /note >}}
 
+{{< note theme="note" title="Monitor CDN metrics">}}
+
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). This will help you monitor your monthly bandwidth and requests consumption. 
+
+In this summary, you will find specific details about:
+
+- **Origin Bandwidth:** Data transferred from origin servers (in TB).
+
+- **Origin Requests:** Requests served by origin servers (in millions of requests).
+
+- **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
+
+This data is updated daily and will reflect your traffic usage throughout the billing period. 
+
+{{< /note >}}
+
+{{< note theme="info" title="Set up traffic alerts">}}
+
+You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html#monthly-traffic-alerts).
+
+{{< /note >}}
+
 ### Domain control validation
 
 When you request for a new domain to be added to your Fastly service,
