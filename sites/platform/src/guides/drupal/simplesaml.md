@@ -5,7 +5,7 @@ description: |
 weight: -60
 banner:
     title: A note on versions
-    body: This page focuses on a Drupal and SimpleSAML 1.19.x combination. Documentation for later SimpleSAML versions (2.0.x) has been delayed due to compatibility issues. If, as a {{% vendor/name %}} user, you have successfully set up Drupal 9 or 10 with a SimpleSAML 2.0.x version, [we want to hear about it!](https://community.platform.sh/)
+    body: This page focuses on a Drupal and SimpleSAML 1.19.x combination. Documentation for later SimpleSAML versions (2.0.x) has been delayed due to compatibility issues. If, as an {{% vendor/name %}} user, you have successfully set up Drupal 9 or 10 with a SimpleSAML 2.0.x version, [we want to hear about it!](https://community.platform.sh/)
 ---
 
 SimpleSAMLphp is a library for authenticating a PHP-based application against a SAML server, such as Shibboleth.
