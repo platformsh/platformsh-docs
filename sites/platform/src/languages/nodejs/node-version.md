@@ -10,7 +10,7 @@ Each {{% vendor/name %}} container image includes a specific language in a speci
 A set of dependencies is also provided based on that language version.
 This ensures that your application container is as small and efficient as possible.
 
-Therefore, by default, when you use a {{% vendor/name %}} container image,
+Therefore, by default, when you use an {{% vendor/name %}} container image,
 you use the Node.js version that's included in that image, if any.
 
 If you want to use a different Node.js version, use a version manager to install it yourself.

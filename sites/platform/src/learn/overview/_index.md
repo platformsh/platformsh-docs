@@ -21,7 +21,7 @@ and [Define routes](define-routes.md) reference documentation.
 and features recommended optimizations for several [featured frameworks](/guides/_index.md).
 
 Finally, you can also get tips for setting up your own [development workflow](/development/_index.md)
-and [administrating](/administration/_index.md) your {{% vendor/name %}} account.
+and [administrating](/administration/_index.md) your {{% vendor/company_name %}} account.
 
 ## Git Driven Infrastructure
 

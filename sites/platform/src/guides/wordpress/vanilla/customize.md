@@ -3,7 +3,7 @@ title: "Customize WordPress for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your WordPress site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your WordPress site to read from an {{% vendor/name %}} environment.
 ---
 
 Deploying WordPress without Composer on {{% vendor/name %}} isn't recommended,
@@ -65,7 +65,7 @@ that are applied when deployed on {{% vendor/name %}} but not locally.
 
 ## `wp-config.php`
 
-Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on a {{% vendor/name %}} environment.
+Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on an {{% vendor/name %}} environment.
 
 Below is the `wp-config.php` file from the [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) using the variables defined in the previous section. Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 

@@ -128,7 +128,7 @@ where you are able to push your source code in different ways,
 using either the Git CLI or the {{% vendor/name %}} CLI.
 You can choose which way —or Git workflow— you want to use for your project from the following options:
 
-- Your project source code is **hosted on a {{% vendor/name %}} Git repository**
+- Your project source code is **hosted on an {{% vendor/name %}} Git repository**
 - Your project source code is **hosted on your own GitHub repository**
 
 {{< codetabs >}}

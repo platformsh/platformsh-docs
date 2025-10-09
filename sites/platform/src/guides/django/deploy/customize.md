@@ -3,11 +3,11 @@ title: "Customize Django for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Django site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your Django site to read from an {{% vendor/name %}} environment.
 ---
 
 Now that your code contains all of the configuration to deploy on {{% vendor/name %}},
-it's time to make your Django site itself ready to run on a {{% vendor/name %}} environment.
+it's time to make your Django site itself ready to run on an {{% vendor/name %}} environment.
 A number of additional steps are either required or recommended, depending on how much you want to optimize your site.
 
 ## Optional: Set up the Config Reader
@@ -60,7 +60,7 @@ Alternatively, you can use the [{{% vendor/name %}} Config Reader](#optional-set
 
 # Helper function for decoding base64-encoded JSON variables.
 def decode(variable):
-    """Decodes a {{% vendor/name %}} environment variable.
+    """Decodes an {{% vendor/name %}} environment variable.
     Args:
         variable (string):
             Base64-encoded JSON (the content of an environment variable).

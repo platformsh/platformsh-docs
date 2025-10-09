@@ -36,7 +36,7 @@ If you're using a plan with the [Observability Suite](https://upsun.com/product/
 the [Blackfire automated integration](#automated-integration) is enabled on your environments by default.
 Note that as an Observability Suite user, you can only access your Blackfire environments
 after you've been granted access to the related {{% vendor/name %}} project.
-Therefore, to access your Blackfire environments, make sure you log in using your {{% vendor/name %}} account.
+Therefore, to access your Blackfire environments, make sure you log in using your {{% vendor/company_name %}} account.
 
 If you have Grid environments without the Observability suite,
 you need to enable the integration yourself.

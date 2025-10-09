@@ -11,7 +11,7 @@ You can later set up an integration with GitHub, Bitbucket, or GitLab.
 
 To deploy your app, you need to connect its repository to a project in {{% vendor/name %}}.
 
-First, create a {{% vendor/name %}} project by running the following command:
+First, create an {{% vendor/name %}} project by running the following command:
 
 ```bash
 {{% vendor/cli %}} project:create
