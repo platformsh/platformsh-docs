@@ -80,7 +80,7 @@ When adding a new project, you only see regions allowed by your organization.
 
 As an alternative, you can also use the following command with the {{% vendor/name %}} CLI to find out where a given region is hosted:
 
-``` bash
+```bash
 {{% vendor/cli %}} api:curl regions | jq '.regions[] | select(.available)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
 ```
 

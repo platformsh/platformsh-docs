@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("pre > code").forEach((codeBlock) => {
     const pre = codeBlock.parentNode;
 
+    // check if a parent has class "no-copy"
+    if (pre.closest(".no-copy")) {
+      return;
+    }
+
     // Create a container to add the button outside of the <pre>
     const wrapper = document.createElement("div");
     wrapper.className = "code-block-wrapper";

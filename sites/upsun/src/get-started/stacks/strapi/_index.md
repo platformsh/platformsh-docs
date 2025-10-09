@@ -174,7 +174,7 @@ These files manage your app's behavior.
 They are located in a `.{{% vendor/cli %}}/` folder at the root of your source code
 and structured in a similar way to this:
 
-```txt
+```txt {no-copy="true"}
 my-strapi-project
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
@@ -292,7 +292,7 @@ To make changes to your project, follow these steps:
 
    Then follow the prompts to set up the `Blog` API containing an `Article` Content Type (Collection):
 
-   ```bash {location="Suggested responses"}
+   ```bash {location="Suggested responses", no-copy="true"}
    ? Content type display name Article
    ? Content type singular name article
    ? Content type plural name articles

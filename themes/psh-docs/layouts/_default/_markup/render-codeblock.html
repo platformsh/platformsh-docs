@@ -2,6 +2,7 @@
 {{ $location := .Attributes.location | default "" }}
 {{ $configFile := .Attributes.configfile | default ""}}
 {{ $prefixdir := .Attributes.dir | default "" }}
+{{ $noCopyButton := index .Attributes "no-copy" | default "false" }}
 
 {{ $v2Hide := .Attributes.v2hide | default "false" }}
 
@@ -10,7 +11,7 @@
 {{ $configFiles := .Page.Site.Params.vendor.config.files }}
 {{ $configDir := .Page.Site.Params.vendor.config.dir }}
 
-<div class="relative" data-engagement-id="content-codeblock">
+<div class="relative{{ if eq $noCopyButton "true" }} no-copy{{ end }}" data-engagement-id="content-codeblock">
 {{ with $location }}
     {{ $fullFile := . }}
     {{ $prefixLen := len $prefixdir }}

@@ -41,7 +41,7 @@ or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` variable](/development/var
 title= Service environment variables
 +++
 
-```bash {location="Terminal on app1 container"}
+```bash {location="Terminal on app1 container", no-copy="true"}
 $ echo $API_HOST
 api.internal
 ```
@@ -53,7 +53,7 @@ title= `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable
 +++
 It uses the `jq` library, which is included in all app containers for this purpose.
 
-```bash {location="Terminal on app1 container"}
+```bash {location="Terminal on app1 container", no-copy="true"}
 $ echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq '.api[0].host'
 api.internal
 ```
