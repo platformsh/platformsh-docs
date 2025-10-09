@@ -49,7 +49,7 @@ We have been working closely with Greenly to build upon the model, tailoring it 
 
 {{% note theme="warning" %}}
 
-[OVH](/development/regions.html#france-fr-3-fr-3) and [Orange](/development/regions.html#france-fr-1-fr-1) region data is not available in this dashboard. 
+[OVH](/development/regions.html#france-fr-3-fr-3) region data is not available in this dashboard. 
 
 {{% /note %}}
 
