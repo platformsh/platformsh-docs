@@ -69,4 +69,4 @@ Note that the following data retention limits apply when using the HTTP metrics 
 - **8-hour retention** for standard customers (without Observability Suite).
 - **24-hour retention** for Observability Suite customers (Enterprise and Elite tiers).
 
-For more information about the different tiers for standard and Observability Suite customers, visit the [Pricing page](https://platform.sh/pricing/).
+For more information about the different tiers for standard and Observability Suite customers, visit the [Pricing page](https://upsun.com/fixed-pricing/).

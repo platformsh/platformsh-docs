@@ -1,10 +1,10 @@
 ---
-title: Introduction
+title: Upsun Fixed Docs
 showTitle: false
 editPage: false
 ---
 
-{{< home >}}
+{{< home-fixed >}}
 
 ## How the docs are organized
 
@@ -91,9 +91,9 @@ much more material you can use in your day-to-day work.
 
 Find out more about {{% vendor/name %}}'s GIT implementation and REST API, and
 how you can leverage them to manage every aspect of your projects, through {{%
-vendor/name %}}'s [API documentation](https://api.platform.sh/docs/).
+vendor/name %}}'s [API documentation](https://api.upsun.com/docs/).
 
-<!-- For now, most of these links are only relevant to Platform.sh -->
+<!-- For now, most of these links are only relevant to Upsun Fixed -->
 ### More docs, found elsewhere
 
 There are many resources available outside of the documentation that will help
@@ -105,7 +105,7 @@ To stay informed of all the latest {{% vendor/name %}} news, join our newsletter
 
 <div style="margin-top: 3rem; text-align: center;">
     <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
-    href="https://platform.sh/preferences/" rel="noopener">Sign up for the newsletter</a>
+    href="https://upsun.com/preferences/" rel="noopener">Sign up for the newsletter</a>
 </div>
 
 ## Connect with us
@@ -114,20 +114,19 @@ To stay informed of all the latest {{% vendor/name %}} news, join our newsletter
 
 The {{% vendor/name %}} community meets on both a [Community
 forum](https://support.platform.sh/hc/en-us/community/topics) and
-[Discord](https://discord.gg/platformsh) for questions and discussion.
+{{< vendor/url "discord" "Discord" >}} for questions and discussion.
 
 Have an experiment you'd like to share?
 Looking for a way to contribute?
 
 <div style="margin-top: 3rem; text-align: center;">
-    <a class="start-cta font-semibold text-sm xl:text-base px-4 py-2 bg-skye rounded text-white hover:bg-skye-dark focus:bg-skye-dark"
-    href="https://chat.platform.sh" rel="noopener">Join us on Discord</a>
+    Join us on {{< vendor/url "discord" "Discord" >}}
 </div>
 
 ### Contribute
 
 Feel free to open an issue or pull request for any of the repositories below,
-or let us know on [Discord](https://discord.gg/platformsh) if you find a
+or let us know on {{< vendor/url "discord" "Discord" >}} if you find a
 problem we can help with:
 
 {{< home/links-github >}}

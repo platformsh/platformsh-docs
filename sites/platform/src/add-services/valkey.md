@@ -27,7 +27,7 @@ All products support the 8.0 version of Valkey.
 
 
 | Grid            | Dedicated Gen 2 |
-| --------------- | --------------- | 
+| --------------- | --------------- |
 | **8.0**         | **8.0**         |
 
 
@@ -330,7 +330,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -402,7 +402,7 @@ relationships:
 
 {{% note theme="info" title="Feature availability" %}}
 
-This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://upsun.com/contact-us/).
 
 {{% /note %}}
 

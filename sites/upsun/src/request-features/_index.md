@@ -11,7 +11,7 @@ If you'd like to submit a feature request, there are two ways for you to do so:
 
 ### If you already have an Upsun account 
 
-You can open a [support ticket](/learn/overview/get-support.html) directly from [your Console](https://console.platform.sh/). Simply describe your needs and our team will take it from there.
+You can open a [support ticket](/learn/overview/get-support.html) directly from [your Console](https://console.upsun.com/). Simply describe your needs and our team will take it from there.
 
 ### For non-account holders or those who prefer a chat
 

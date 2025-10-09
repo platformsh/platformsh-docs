@@ -99,7 +99,7 @@ use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](/development/variable
 ```yaml {configFile="app"}
 hooks:
   deploy: |
-    if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
+    if [ "${PLATFORM_ENVIRONMENT_TYPE}" != "production" ]; then
       symfony console app:dev:anonymize
     fi
 ```

@@ -43,9 +43,8 @@ info:
     [PHP API client](https://github.com/platformsh/platformsh-client-php)
     and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).
 
-    In order to use the API you will first need to have a Platform.sh
-    account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup)
-    available) and create an API Token.
+    In order to use the API you will first need to have a [Platform.sh account](https://auth.api.platform.sh/register) 
+    and [create an API Token](https://docs.upsun.com/anchors/fixed/cli/api-token/).
 
     # Authentication
 
@@ -59,7 +58,7 @@ info:
     is particularly useful in scripts, e.g. for CI pipelines.
 
     To create an API token, go to the "API Tokens" section
-    of the "Account Settings" tab on the [Console](https://console.platform.sh).
+    of the "Account Settings" tab on the [Console](https://console.upsun.com).
 
     To exchange this API token for an access token, a `POST` request
     must be made to `https://auth.api.platform.sh/oauth2/token`.
@@ -404,86 +403,42 @@ paths:
                     items:
                       $ref: '#/components/schemas/Alert'
                 type: object
-    post:
-      tags:
-        - Alerts
-      summary: Create a usage alert.
-      operationId: create-usage-alert
-      parameters:
-        - $ref: '#/components/parameters/subscription_id'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              properties:
-                id:
-                  description: The usage group to create an alert for.
-                  type: string
-                config:
-                  description: The configuration of the alert.
-                  properties:
-                    threshold:
-                      description: The amount after which a usage alert should be triggered.
-                      type: integer
-                  type: object
-              type: object
-      responses:
-        '201':
-          description: The created usage alert
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Alert'
-  /alerts/subscriptions/{subscriptionId}/usage/{usageId}:
-    delete:
-      tags:
-        - Alerts
-      summary: Delete a usage alert.
-      operationId: delete-usage-alert
-      parameters:
-        - $ref: '#/components/parameters/subscription_id'
-        - name: usageId
-          in: path
-          description: The usage id of the alert.
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Success.
     patch:
       tags:
         - Alerts
-      summary: Update a usage alert.
-      operationId: update-usage-alert
+      summary: Update usage alerts.
+      operationId: update-usage-alerts
       parameters:
         - $ref: '#/components/parameters/subscription_id'
-        - name: usageId
-          in: path
-          description: The usage id of the alert.
-          required: true
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
             schema:
               properties:
-                config:
-                  description: The configuration of the alert.
-                  properties:
-                    threshold:
-                      description: The amount after which a usage alert should be triggered.
-                      type: integer
-                  type: object
+                alerts:
+                  description: The list of usage alerts to create or update.
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Alert'
               type: object
       responses:
         '200':
-          description: The updated usage alert.
+          description: The list of current and available alerts for the subscription.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Alert'
+                properties:
+                  available:
+                    description: The list of available usage alerts.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+                  current:
+                    description: The list of the current usage alerts.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+                type: object
   /orders/download:
     get:
       tags:
@@ -2947,9 +2902,9 @@ paths:
         (`created_at`), when the action concluded (`updated_at`),
         the current `state` of the action, the action's completion
         percentage (`completion_percent`), the `environments` it
-        applies to and other related information in
-        the `payload`.
+        applies to and when the activity expires (`expires_at`).
 
+        There are other related information in the `payload`.
         The contents of the `payload` varies based on the `type` of the
         activity. For example:
 
@@ -2960,6 +2915,10 @@ paths:
         - An `environment.push` action's `payload` can contain objects
         representing the `environment`, the specific `commits` included in
         the push, and the `user` who pushed.
+
+        Expired activities are removed from the project activity log, except
+        the last 100 expired objects provided they are not of type `environment.cron`
+        or `environment.backup`.
   /projects/{projectId}/activities/{activityId}:
     get:
       parameters:
@@ -4022,6 +3981,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcceptedResponse'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentDeployInput'
       tags:
         - Environment
   /projects/{projectId}/environments/{environmentId}/deployments:
@@ -5375,6 +5341,76 @@ paths:
       tags:
         - Third-Party Integrations
       summary: Delete an existing third-party integration
+  /projects/{projectId}/provisioners:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+      operationId: list-projects-provisioners
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateProvisionerCollection'
+      tags:
+        - CertificateProvisioner
+  /projects/{projectId}/provisioners/{certificateProvisionerDocumentId}:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: certificateProvisionerDocumentId
+      operationId: get-projects-provisioners
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateProvisioner'
+      tags:
+        - CertificateProvisioner
+    patch:
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateProvisionerPatch'
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: certificateProvisionerDocumentId
+      operationId: update-projects-provisioners
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+      tags:
+        - CertificateProvisioner
   /projects/{projectId}/settings:
     get:
       parameters:
@@ -5678,7 +5714,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AutoscalerSettingsPartial'
+              $ref: '#/components/schemas/AutoscalerSettings'
       responses:
         '200':
           description: Updated Autoscaler settings
@@ -5772,6 +5808,13 @@ paths:
         - in: query
           name: filter[id]
           description: Allows filtering by `id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[type]
+          description: Allows filtering by `type` using one or more operators.
           style: deepObject
           explode: true
           schema:
@@ -7303,6 +7346,111 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       x-vendor: upsun
+  /organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage:
+    get:
+      summary: Get usage alerts
+      description: Retrieves current and available usage alerts.
+      operationId: get-subscription-usage-alerts
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/OrganizationIDName'
+        - $ref: '#/components/parameters/SubscriptionID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current:
+                    type: array
+                    description: The list of currently set usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+                  available:
+                    type: array
+                    description: The list of available usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      summary: Update usage alerts.
+      description: Updates usage alerts for a subscription.
+      operationId: update-subscription-usage-alerts
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/OrganizationIDName'
+        - $ref: '#/components/parameters/SubscriptionID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                alerts:
+                  type: array
+                  description: The list of alerts to update.
+                  items:
+                    type: object
+                    description: An alert object.
+                    properties:
+                      id:
+                        type: string
+                        description: The usage alert identifier.
+                      active:
+                        type: boolean
+                        description: Whether the alert is activated.
+                      config:
+                        type: object
+                        description: The configuration for the usage alerts.
+                        properties:
+                          threshold:
+                            type: integer
+                            description: The amount after which an alert should be triggered.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  current:
+                    type: array
+                    description: The list of currently set usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+                  available:
+                    type: array
+                    description: The list of available usage alerts.
+                    items:
+                      $ref: '#/components/schemas/UsageAlert'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /organizations/{organization_id}/discounts:
     get:
       summary: List organization discounts
@@ -7357,7 +7505,6 @@ paths:
                 type: object
                 properties:
                   prepayment:
-                    type: object
                     $ref: '#/components/schemas/PrepaymentObject'
                   _links:
                     type: object
@@ -7415,8 +7562,28 @@ paths:
                       $ref: '#/components/schemas/PrepaymentTransactionObject'
                   _links:
                     type: object
-                    $ref: '#/components/schemas/ListLinks'
                     properties:
+                      self:
+                        type: object
+                        description: Link to the current set of items.
+                        properties:
+                          href:
+                            type: string
+                            description: URL of the link.
+                      previous:
+                        type: object
+                        description: Link to the previous set of items.
+                        properties:
+                          href:
+                            type: string
+                            description: URL of the link.
+                      next:
+                        type: object
+                        description: Link to the next set of items.
+                        properties:
+                          href:
+                            type: string
+                            description: URL of the link
                       prepayment:
                         type: object
                         description: Link to the prepayment resource.
@@ -7540,6 +7707,64 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Error'
+    post:
+      summary: Create project
+      description: Creates a new project in the specified organization.
+      operationId: create-org-project
+      tags:
+        - Organization Projects
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - region
+              properties:
+                organization_id:
+                  $ref: '#/components/schemas/OrganizationID'
+                region:
+                  $ref: '#/components/schemas/RegionID'
+                title:
+                  $ref: '#/components/schemas/ProjectTitle'
+                type:
+                  $ref: '#/components/schemas/ProjectType'
+                plan:
+                  $ref: '#/components/schemas/ProjectPlan'
+                default_branch:
+                  $ref: '#/components/schemas/ProjectDefaultBranch'
+                cse_notes:
+                  $ref: '#/components/schemas/ProjectCSENotes'
+                dedicated_tag:
+                  $ref: '#/components/schemas/ProjectDedicatedTag'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationProject'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /organizations/{organization_id}/projects/{project_id}:
     get:
       summary: Get project
@@ -7557,6 +7782,80 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrganizationProject'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      summary: Update project
+      description: Updates the specified project.
+      operationId: update-org-project
+      tags:
+        - Organization Projects
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  $ref: '#/components/schemas/ProjectTitle'
+                plan:
+                  $ref: '#/components/schemas/ProjectPlan'
+                timezone:
+                  $ref: '#/components/schemas/ProjectTimeZone'
+                cse_notes:
+                  $ref: '#/components/schemas/ProjectCSENotes'
+                dedicated_tag:
+                  $ref: '#/components/schemas/ProjectDedicatedTag'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationProject'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete project
+      description: Deletes the specified project.
+      operationId: delete-org-project
+      tags:
+        - Organization Projects
+      parameters:
+        - $ref: '#/components/parameters/OrganizationID'
+        - $ref: '#/components/parameters/ProjectID'
+      responses:
+        '204':
+          description: No Content
         '403':
           description: Forbidden
           content:
@@ -7706,7 +8005,6 @@ paths:
               properties:
                 plan:
                   $ref: '#/components/schemas/ProjectPlan'
-                  default: null
                 project_region:
                   type: string
                   description: The machine name of the region where the project is located. Cannot be changed after project creation.
@@ -10187,26 +10485,19 @@ components:
       type: object
       properties:
         self:
-          type: object
-          description: Link to the current set of items.
-          properties:
-            href:
-              type: string
-              description: URL of the link.
+          $ref: '#/components/schemas/Link'
         previous:
-          type: object
-          description: Link to the previous set of items.
-          properties:
-            href:
-              type: string
-              description: URL of the link.
+          $ref: '#/components/schemas/Link'
         next:
-          type: object
-          description: Link to the next set of items.
-          properties:
-            href:
-              type: string
-              description: URL of the link
+          $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      title: Link
+      description: A hypermedia link to the {current, next, previous} set of items.
+      properties:
+        href:
+          type: string
+          description: URL of the link
     APIToken:
       description: ''
       type: object
@@ -10674,6 +10965,26 @@ components:
           format: date-time
           nullable: true
           title: The date at which the activity will expire.
+        commands:
+          type: array
+          items:
+            type: object
+            properties:
+              app:
+                type: string
+                title: Application
+              type:
+                type: string
+                title: Type
+              exit_code:
+                type: integer
+                title: Exit status code
+            required:
+              - app
+              - type
+              - exit_code
+            additionalProperties: false
+          title: Commands
       required:
         - created_at
         - updated_at
@@ -10692,6 +11003,7 @@ components:
         - description
         - text
         - expires_at
+        - commands
       additionalProperties: false
     ActivityCollection:
       type: array
@@ -11359,6 +11671,51 @@ components:
         is_invalid:
           type: boolean
           title: Whether this certificate should be skipped during provisioning
+      additionalProperties: false
+    CertificateProvisioner:
+      type: object
+      properties:
+        directory_url:
+          type: string
+          title: ACME directory url
+        email:
+          type: string
+          title: Contacted email address
+        eab_kid:
+          type: string
+          nullable: true
+          title: Eab Kid
+        eab_hmac_key:
+          type: string
+          nullable: true
+          title: Eab Hmac Key
+      required:
+        - directory_url
+        - email
+        - eab_kid
+        - eab_hmac_key
+      additionalProperties: false
+    CertificateProvisionerCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/CertificateProvisioner'
+    CertificateProvisionerPatch:
+      type: object
+      properties:
+        directory_url:
+          type: string
+          title: ACME directory url
+        email:
+          type: string
+          title: Contacted email address
+        eab_kid:
+          type: string
+          nullable: true
+          title: Eab Kid
+        eab_hmac_key:
+          type: string
+          nullable: true
+          title: Eab Hmac Key
       additionalProperties: false
     Commit:
       type: object
@@ -12151,6 +12508,10 @@ components:
                 type: object
                 nullable: true
                 title: Endpoints
+              instance_count:
+                type: integer
+                nullable: true
+                title: Instance replication count of this service
             required:
               - type
               - size
@@ -12162,6 +12523,7 @@ components:
               - resources
               - container_profile
               - endpoints
+              - instance_count
             additionalProperties: false
           title: Services
         routes:
@@ -13600,7 +13962,7 @@ components:
             - addresses
             - basic_auth
           additionalProperties: false
-          title: Http access permissions
+          title: HTTP access permissions
         enable_smtp:
           type: boolean
           title: Whether to configure SMTP for this environment.
@@ -13840,6 +14202,9 @@ components:
         has_staged_activities:
           type: boolean
           title: Is there any staged activity on this environment
+        can_rolling_deploy:
+          type: boolean
+          title: If the environment supports rolling deployments
         has_code:
           type: boolean
           title: Does this environment have code
@@ -13904,6 +14269,7 @@ components:
         - is_main
         - is_dirty
         - has_staged_activities
+        - can_rolling_deploy
         - has_code
         - head_commit
         - merge_info
@@ -13986,6 +14352,18 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Environment'
+    EnvironmentDeployInput:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+            - rolling
+            - stopstart
+          title: The deployment strategy (`rolling` or `stopstart`)
+      required:
+        - strategy
+      additionalProperties: false
     EnvironmentInitializeInput:
       type: object
       properties:
@@ -14142,7 +14520,7 @@ components:
                 type: string
               title: Basic auth grants
           additionalProperties: false
-          title: Http access permissions
+          title: HTTP access permissions
         enable_smtp:
           type: boolean
           title: Whether to configure SMTP for this environment.
@@ -14300,6 +14678,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
         project:
           type: string
           title: Project name
@@ -14324,6 +14707,7 @@ components:
         - is_sensitive
         - visible_build
         - visible_runtime
+        - application_scope
         - project
         - environment
         - inherited
@@ -14360,6 +14744,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
         is_enabled:
           type: boolean
           title: The variable is enabled on this environment
@@ -14396,6 +14785,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
         is_enabled:
           type: boolean
           title: The variable is enabled on this environment
@@ -15096,6 +15490,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -15104,6 +15503,7 @@ components:
         - url
         - headers
         - tls_verify
+        - excluded_services
       additionalProperties: false
     HttpLogIntegrationCreateInput:
       type: object
@@ -15127,6 +15527,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15153,6 +15558,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15171,6 +15581,7 @@ components:
         - $ref: '#/components/schemas/HealthWebHookIntegration'
         - $ref: '#/components/schemas/HttpLogIntegration'
         - $ref: '#/components/schemas/NewRelicIntegration'
+        - $ref: '#/components/schemas/HttpLogIntegration'
         - $ref: '#/components/schemas/ScriptIntegration'
         - $ref: '#/components/schemas/SplunkIntegration'
         - $ref: '#/components/schemas/SumologicIntegration'
@@ -15194,6 +15605,7 @@ components:
         - $ref: '#/components/schemas/HealthWebHookIntegrationCreateInput'
         - $ref: '#/components/schemas/HttpLogIntegrationCreateInput'
         - $ref: '#/components/schemas/NewRelicIntegrationCreateInput'
+        - $ref: '#/components/schemas/HttpLogIntegrationCreateInput'
         - $ref: '#/components/schemas/ScriptIntegrationCreateInput'
         - $ref: '#/components/schemas/SplunkIntegrationCreateInput'
         - $ref: '#/components/schemas/SumologicIntegrationCreateInput'
@@ -15213,6 +15625,7 @@ components:
         - $ref: '#/components/schemas/HealthWebHookIntegrationPatch'
         - $ref: '#/components/schemas/HttpLogIntegrationPatch'
         - $ref: '#/components/schemas/NewRelicIntegrationPatch'
+        - $ref: '#/components/schemas/HttpLogIntegrationPatch'
         - $ref: '#/components/schemas/ScriptIntegrationPatch'
         - $ref: '#/components/schemas/SplunkIntegrationPatch'
         - $ref: '#/components/schemas/SumologicIntegrationPatch'
@@ -15245,6 +15658,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -15252,6 +15670,7 @@ components:
         - extra
         - url
         - tls_verify
+        - excluded_services
       additionalProperties: false
     NewRelicIntegrationCreateInput:
       type: object
@@ -15273,6 +15692,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15298,6 +15722,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -15731,8 +16160,12 @@ components:
             enabled:
               type: boolean
               title: If true, guaranteed resources can be used
+            instance_limit:
+              type: integer
+              title: Instance limit for guaranteed resources
           required:
             - enabled
+            - instance_limit
           additionalProperties: false
           title: Guaranteed Resources
         images:
@@ -15987,6 +16420,17 @@ components:
                       title: Minimum required role for creating the integration.
                   additionalProperties: false
                   title: Blackfire integration configurations
+                otlp:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                      title: The integration is enabled.
+                    role:
+                      type: string
+                      title: Minimum required role for creating the integration.
+                  additionalProperties: false
+                  title: OpenTelemetry log-forwarding integration configurations
               additionalProperties: false
               title: Config
             allowed_integrations:
@@ -16338,9 +16782,36 @@ components:
         allow_manual_deployments:
           type: boolean
           title: If deployments can be manual, i.e. explicitly triggered by user.
+        allow_rolling_deployments:
+          type: boolean
+          title: If the project can use rolling deployments.
         allow_burst:
           type: boolean
           title: Allow burst
+        router_resources:
+          type: object
+          properties:
+            baseline_cpu:
+              type: number
+              format: float
+              title: Router baseline CPU for flex plan
+            baseline_memory:
+              type: integer
+              title: Router baseline memory (MB) for flex plan
+            max_cpu:
+              type: number
+              format: float
+              title: Router max CPU for flex plan
+            max_memory:
+              type: integer
+              title: Router max memory (MB) for flex plan
+          required:
+            - baseline_cpu
+            - baseline_memory
+            - max_cpu
+            - max_memory
+          additionalProperties: false
+          title: Router resource settings for flex plan
       required:
         - initialize
         - product_name
@@ -16408,7 +16879,9 @@ components:
         - git_server
         - activity_logs_max_size
         - allow_manual_deployments
+        - allow_rolling_deployments
         - allow_burst
+        - router_resources
       additionalProperties: false
     ProjectSettingsPatch:
       type: object
@@ -16503,6 +16976,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
       required:
         - created_at
         - updated_at
@@ -16512,6 +16990,7 @@ components:
         - is_sensitive
         - visible_build
         - visible_runtime
+        - application_scope
       additionalProperties: false
     ProjectVariableCollection:
       type: array
@@ -16543,6 +17022,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
       required:
         - name
         - value
@@ -16573,6 +17057,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
       additionalProperties: false
     ProxyRoute:
       type: object
@@ -17552,6 +18041,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -17561,6 +18055,7 @@ components:
         - index
         - sourcetype
         - tls_verify
+        - excluded_services
       additionalProperties: false
     SplunkIntegrationCreateInput:
       type: object
@@ -17588,6 +18083,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17620,6 +18120,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17656,6 +18161,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -17664,6 +18174,7 @@ components:
         - url
         - category
         - tls_verify
+        - excluded_services
       additionalProperties: false
     SumologicIntegrationCreateInput:
       type: object
@@ -17685,6 +18196,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17709,6 +18225,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
         - url
@@ -17759,6 +18280,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - created_at
         - updated_at
@@ -17770,6 +18296,7 @@ components:
         - facility
         - message_format
         - tls_verify
+        - excluded_services
       additionalProperties: false
     SyslogIntegrationCreateInput:
       type: object
@@ -17816,6 +18343,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
       additionalProperties: false
@@ -17864,6 +18396,11 @@ components:
         tls_verify:
           type: boolean
           title: Enable/Disable HTTPS certificate verification
+        excluded_services:
+          type: array
+          items:
+            type: string
+          title: Comma separated list of service and application names to exclude from logging
       required:
         - type
       additionalProperties: false
@@ -18095,6 +18632,16 @@ components:
             - paths
           additionalProperties: false
           title: The configuration of the redirects.
+        sticky:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Whether sticky routing is enabled.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Sticky routing configuration.
       required:
         - primary
         - id
@@ -18106,6 +18653,7 @@ components:
         - ssi
         - upstream
         - redirects
+        - sticky
       additionalProperties: false
     UpstreamRouteCreateInput:
       type: object
@@ -18258,6 +18806,16 @@ components:
             - paths
           additionalProperties: false
           title: The configuration of the redirects.
+        sticky:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Whether sticky routing is enabled.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Sticky routing configuration.
       required:
         - type
         - upstream
@@ -18413,6 +18971,16 @@ components:
             - paths
           additionalProperties: false
           title: The configuration of the redirects.
+        sticky:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Whether sticky routing is enabled.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Sticky routing configuration.
       required:
         - type
         - upstream
@@ -18666,6 +19234,26 @@ components:
         - value
       title: AutoscalerAlertPartial
       type: object
+    AutoscalerCPUPressureTrigger:
+      description: |-
+        CPU pressure trigger settings.
+
+        When CPU pressure goes below lower bound, service will be scaled down.
+        When CPU pressure goes above upper bound, service will be scaled up.
+      properties:
+        enabled:
+          type: boolean
+          nullable: true
+          title: Enabled
+          description: Whether the trigger is enabled
+        down:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Lower bound on resource usage
+        up:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Upper bound on resource usage
+      title: AutoscalerCPUPressureTrigger
+      type: object
     AutoscalerCPUResources:
       description: CPU scaling settings
       properties:
@@ -18749,6 +19337,26 @@ components:
           title: Max
           type: integer
       title: AutoscalerInstances
+      type: object
+    AutoscalerMemoryPressureTrigger:
+      description: |-
+        Memory pressure trigger settings.
+
+        When memory pressure goes below lower bound, service will be scaled down.
+        When memory pressure goes above upper bound, service will be scaled up.
+      properties:
+        enabled:
+          type: boolean
+          nullable: true
+          title: Enabled
+          description: Whether the trigger is enabled
+        down:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Lower bound on resource usage
+        up:
+          $ref: '#/components/schemas/AutoscalerCondition'
+          description: Upper bound on resource usage
+      title: AutoscalerMemoryPressureTrigger
       type: object
     AutoscalerMemoryResources:
       description: Memory scaling settings
@@ -18853,19 +19461,6 @@ components:
       title: AutoscalerServiceSettings
       type: object
     AutoscalerSettings:
-      description: Autoscaling settings for an environment.
-      properties:
-        services:
-          additionalProperties:
-            $ref: '#/components/schemas/AutoscalerServiceSettings'
-          description: Each service for which autoscaling is configured is listed in the key
-          title: Services
-          type: object
-      required:
-        - services
-      title: AutoscalerSettings
-      type: object
-    AutoscalerSettingsPartial:
       description: |-
         Update model for autoscaling settings.
 
@@ -18874,12 +19469,15 @@ components:
       properties:
         services:
           additionalProperties:
-            $ref: '#/components/schemas/AutoscalerServiceSettings'
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/AutoscalerServiceSettings'
+            nullable: true
           type: object
           nullable: true
           title: Services
           description: Each service for which autoscaling is configured is listed in the key
-      title: AutoscalerSettingsPartial
+      title: AutoscalerSettings
       type: object
     AutoscalerTriggers:
       additionalProperties: false
@@ -18897,6 +19495,18 @@ components:
             $ref: '#/components/schemas/AutoscalerMemoryTrigger'
           nullable: true
           description: Settings for scaling based on Memory usage
+        cpu_pressure:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AutoscalerCPUPressureTrigger'
+          nullable: true
+          description: Settings for scaling based on CPU pressure
+        memory_pressure:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AutoscalerMemoryPressureTrigger'
+          nullable: true
+          description: Settings for scaling based on Memory pressure
       title: AutoscalerTriggers
       type: object
     Invoice:
@@ -19009,6 +19619,12 @@ components:
         vendor:
           type: string
           description: The vendor.
+        billing_account_id:
+          type: string
+          description: The Billing Account ID.
+        billing_legacy:
+          type: boolean
+          description: Whether the account is billed with the legacy system.
         status:
           type: string
           description: The status of the organization.
@@ -19157,6 +19773,9 @@ components:
           type: string
           format: ulid
           description: The ID of the organization.
+        type:
+          type: string
+          description: The type of the organization.
         owner_id:
           type: string
           format: uuid
@@ -19619,6 +20238,45 @@ components:
             mode:
               type: string
               description: The mode of alert.
+    UsageAlert:
+      type: object
+      description: The usage alert for a subscription.
+      properties:
+        id:
+          type: string
+          description: Tidentifier of the alert.
+        active:
+          type: boolean
+          description: Whether the usage alert is activated.
+        alerts_sent:
+          type: number
+          description: Number of alerts sent.
+        last_alert_at:
+          type: string
+          description: The datetime the alert was last sent.
+          nullable: true
+        updated_at:
+          type: string
+          description: The datetime the alert was last updated.
+          nullable: true
+        config:
+          type: object
+          nullable: true
+          description: Configuration for the usage alert.
+          properties:
+            threshold:
+              type: object
+              description: Data regarding threshold spend.
+              properties:
+                formatted:
+                  type: string
+                  description: Formatted threshold value.
+                amount:
+                  type: number
+                  description: Threshold value.
+                unit:
+                  type: string
+                  description: Threshold unit.
     PrepaymentObject:
       type: object
       description: Prepayment information for an organization.

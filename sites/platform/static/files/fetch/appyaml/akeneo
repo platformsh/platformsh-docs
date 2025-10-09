@@ -126,7 +126,7 @@ mounts:
     "var":
         source: local
         source_path: "var"
-    # Used to control the Platform.sh install process. Do not delete the file inside it.
+    # Used to control the Upsun Fixed install process. Do not delete the file inside it.
     "installer":
         source: local
         source_path: "installer"

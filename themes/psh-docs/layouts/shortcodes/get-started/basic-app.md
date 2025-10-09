@@ -32,7 +32,7 @@ name: app
 type: 'php:8.0'
 
 # Indicate to use Composer 2 (leave out if you want Composer 1)
-# See how without Composer: https://docs.platform.sh/guides/wordpress/vanilla.html
+# See how without Composer: https://fixed.docs.upsun.com/guides/wordpress/vanilla.html
 dependencies:
     php:
         composer/composer: '^2'
@@ -62,7 +62,7 @@ name: app
 type: 'php:8.0'
 
 # Indicate to use Composer 2 (leave out if you want Composer 1)
-# See how without Composer: https://docs.platform.sh/guides/wordpress/vanilla.html
+# See how without Composer: https://fixed.docs.upsun.com/guides/wordpress/vanilla.html
 dependencies:
     php:
         composer/composer: '^2'
