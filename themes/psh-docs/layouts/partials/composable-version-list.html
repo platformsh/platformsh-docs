@@ -7,7 +7,7 @@
 {{ if and $versions (gt (len $versions) 0) }}
 <ul>
   {{ range $versions }}
-  <li>{{ . }}</li>
+  <li><a href="https://nixos.org/manual/nixos/stable/release-notes#sec-release-{{ . }}" target="_blank" title="See NixOs release note"> {{ . }}</a></li>
   {{ end }}
 </ul>
 {{ else }}
