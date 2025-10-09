@@ -140,7 +140,7 @@ When you use a CDN, to ensure the challenge succeeds, check that:
 
 If you don't follow those requirements, you get an error message similar to:
 
-``` text
+```text {no-copy="true"}
   W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
 ```

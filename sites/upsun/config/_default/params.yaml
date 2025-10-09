@@ -15,6 +15,7 @@ theme:
 # Vendorization
 vendor:
     name: Upsun
+    company_name: Upsun
     cli: upsun
     altname: upsun
     env_prefix: PLATFORM

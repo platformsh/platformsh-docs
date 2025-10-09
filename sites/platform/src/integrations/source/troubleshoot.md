@@ -8,7 +8,7 @@ keywords:
 - "source integrations"
 ---
 
-If you [add a user](/administration/users.md#add-a-user-to-a-project) to a {{% vendor/name %}} project,
+If you [add a user](/administration/users.md#add-a-user-to-a-project) to an {{% vendor/name %}} project,
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 

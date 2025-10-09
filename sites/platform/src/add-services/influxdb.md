@@ -320,7 +320,7 @@ To export your data from InfluxDB, follow these steps:
 
 4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
 
-    ``` bash
+    ```bash
     influx backup --host {{< variable "URL_FROM_STEP_2" >}} --token {{< variable "API_TOKEN_FROM_STEP_3" >}}
     ```
 

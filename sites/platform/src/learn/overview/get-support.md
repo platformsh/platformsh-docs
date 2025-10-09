@@ -50,11 +50,11 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/name %}} account, follow these steps:
+To permanently delete your {{% vendor/company_name %}} account, follow these steps:
 
 {{% note theme=warning title="Warning"%}}
 
-Deleting your {{% vendor/name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
+Deleting your {{% vendor/company_name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
 {{% /note %}}
 

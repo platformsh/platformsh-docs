@@ -8,7 +8,7 @@ However, you can also create arbitrary links to spawn projects on {{% vendor/nam
 There are two ways to create such a link, shown below.
 In each case, when a user clicks on the link they are redirected to create a new {{% vendor/name %}} project,
 with the template selection step skipped in favor of the template specified.
-If the user doesn't have a {{% vendor/name %}} account yet they're prompted to create one.
+If the user doesn't have an {{% vendor/company_name %}} account yet, they're prompted to create one.
 
 You may include the link on your own project's website, your company's internal Wiki,
 or anywhere else a link can go to make launching your code base as straightforward as possible.

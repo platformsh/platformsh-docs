@@ -95,7 +95,7 @@ For example, by changing `https://en.example.com/style.css` to `https://example.
 
 The following diagram shows the example project forwarding specific requests to the correct app.
 
-``` mermaid
+```mermaid {no-copy="true"}
 sequenceDiagram
     participant User
     participant Project as Proxy project

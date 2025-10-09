@@ -147,9 +147,9 @@ Below are the typical causes and potential solutions:
 - Use [observability tools](/increase-observability/application-metrics/_index.md) provided in your project for better insight into performance issues and potential bottlenecks.
 
 #### 5. PHP process crashing due to segmentation fault
-If your PHP process crashes due to a segmentation fault, you may encounter a message like the warning error detailed below. This indicates that either a PHP extension is causing the segmentation fault or there’s an issue in your PHP app code. 
+If your PHP process crashes due to a segmentation fault, you may encounter a message like the warning error detailed below. This indicates that either a PHP extension is causing the segmentation fault or there’s an issue in your PHP app code.
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
 ```
 - **Solution**: Review recent changes made to your app to identify potential causes.
@@ -158,7 +158,7 @@ WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 secon
 #### 6. PHP process killed by kernel out-of-memory killer
 If your PHP process is killed by the kernel, you may encounter a message like the warning error detailed below. This indicates that the memory usage of your container exceeded the allocated limit, causing the kernel to kill the offending process.
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
 ```
 - **Solution**: Check if the memory usage of your app is as expected and try to optimize it.
