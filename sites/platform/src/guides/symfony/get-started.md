@@ -134,7 +134,7 @@ To make changes to your project, follow these steps:
    For example, if you created a Symfony Demo app,
    edit the `templates/default/homepage.html.twig` template and make the following visual changes:
 
-   ```html {location="templates/default/homepage.html.twig"}
+   ```diff {location="templates/default/homepage.html.twig", no-copy="true"}
    {% block body %}
        <div class="page-header">
    -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
@@ -142,7 +142,6 @@ To make changes to your project, follow these steps:
        </div>
 
        <div class="row">
-
    ```
 
 3. Commit your changes:

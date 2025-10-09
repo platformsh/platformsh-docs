@@ -27,7 +27,7 @@ For example, if you have an API Platform backend with a Symfony API,
 a Mercure Rocks server, and a Gatsby frontend,
 you can organize your repository like this:
 
-```txt
+```txt {no-copy="true"}
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified configuration
 ├── admin
@@ -205,7 +205,7 @@ For example, you might have a Python app (`main`) that runs a script that requir
 But the Java app (`languagetool`) doesn't require updating when the Python app (`main`) is updated.
 In that case, you can nest the Java app within the Python app:
 
-```txt
+```txt {no-copy="true"}
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" %}}
 ├── languagetool

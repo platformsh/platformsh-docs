@@ -170,7 +170,7 @@ These files manage your app's behavior.
 They are located in a `.{{% vendor/cli %}}/` folder at the root of your source code
 and structured in a similar way to this:
 
-```txt
+```txt {no-copy="true"}
 myapp
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
@@ -314,7 +314,7 @@ To make changes to your project, follow these steps:
 2. Make changes to your project.
    For example, edit the `views/index.jade` file and make the following changes:
 
-   ```diff
+   ```diff {no-copy="true"}
    diff --git a/views/index.jade b/views/index.jade
    index 3d63b9a..77aee43 100644
    --- a/views/index.jade

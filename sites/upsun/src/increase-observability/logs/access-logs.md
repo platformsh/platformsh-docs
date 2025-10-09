@@ -31,7 +31,7 @@ title=Using the CLI
 
 1. Get a list of activities by running
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} activity:list -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
@@ -39,7 +39,7 @@ title=Using the CLI
 
 2. To see details about the activity's state and timing, run
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} activity:get {{% variable "ACTIVITY_ID" %}}
    ```
 
@@ -47,7 +47,7 @@ title=Using the CLI
 
 3. Get a log of any given activity by running
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} activity:log {{% variable "ACTIVITY_ID" %}}
    ```
 
@@ -101,7 +101,7 @@ title=Using SSH directly
 
 1. Access the container by running
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} ssh -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
@@ -109,7 +109,7 @@ title=Using SSH directly
    {{< version/specific >}}
    If you're on a {{% names/dedicated-gen-2 %}} cluster, run
 
-   ``` bash
+   ```bash
    cd /var/log/{{% vendor/cli %}}/{{% variable "APP_NAME" %}}/
    ```
    <--->

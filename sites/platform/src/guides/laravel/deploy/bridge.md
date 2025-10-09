@@ -16,13 +16,13 @@ This library handles mapping the {{% vendor/name %}} variables to the format Lar
 Require this package using Composer.
 When Composer's autoload is included, this library is activated and the environment variables set.
 
-``` bash
+```bash
 composer require platformsh/laravel-bridge
 ```
 
 Make sure to clear the cache on relevant {{% vendor/name %}} environments afterwards.
 
-``` bash
+```bash
 php artisan optimize:clear
 ```
 
