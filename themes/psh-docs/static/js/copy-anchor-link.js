@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('a[href*="#"]').forEach(link => {
     link.addEventListener("click", event => {
+      // Skip links that are inside a <nav>
+      if (link.closest("nav")) return;
+
       const href = link.getAttribute("href");
       const url = new URL(href, window.location.href);
 
