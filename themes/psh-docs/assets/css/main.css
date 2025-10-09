@@ -45,8 +45,8 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: transparent;
+  border: 0;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
@@ -69,6 +69,13 @@
   opacity: 0;
   transform: translateY(-4px);
   animation: fade-in-out 1.5s ease forwards;
+}
+
+.hextra-code-copy-btn svg {
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  color: #000;
 }
 
 @keyframes fade-in-out {
