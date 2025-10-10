@@ -107,7 +107,7 @@ To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these st
        // Strapi default local configuration.
 
        console.log(
-         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
+         "Not in an {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }

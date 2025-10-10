@@ -19,6 +19,16 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 {{< image-versions image="chrome-headless" status="supported" environment="grid" >}}
 
+## Deprecated versions
+
+The following versions are still available in your projects,
+but they're at their end of life and are no longer receiving security updates from upstream.
+
+{{< image-versions image="chrome-headless" status="deprecated" environment="grid" >}}
+
+To ensure your project remains stable in the future,
+switch to a [supported version](#supported-versions).
+
 ## Relationship reference
 
 For each service [defined via a relationship](#usage-example) to your application,

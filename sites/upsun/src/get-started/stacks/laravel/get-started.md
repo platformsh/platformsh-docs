@@ -139,7 +139,7 @@ To make changes to your project, follow these steps:
 
    For example, edit the `resources/views/welcome.blade.php` template and make the following visual changes:
 
-   ```html {location="resources/views/welcome.blade.php"}
+   ```html {location="resources/views/welcome.blade.php", no-copy="true"}
    <meta name="viewport" content="width=device-width, initial-scale=1">
    -    <title>Laravel</title>
    +    <title>Laravel On {{% vendor/name %}}</title>

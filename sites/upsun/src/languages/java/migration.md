@@ -110,15 +110,15 @@ You have the option to use several languages in microservices. If you're using J
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Microservices in the cloud, part two](https://platform.sh/blog/2019/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
-| [Microservices in the cloud, part one](https://platform.sh/blog/2019/microservices-in-the-cloud-part-one/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part two](https://devcenter.upsun.com/posts/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part one](https://upsun.com/blog/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Multiple Applications](https://support.platform.sh/hc/en-us/community/posts/16439649733010) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://support.platform.sh/hc/en-us/community/posts/16439676928274) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
 {{< note >}}
 You can load balance to some or [all applications in the project cluster](https://support.platform.sh/hc/en-us/community/posts/16439662235026).
 
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 
 {{< /note >}}
 
@@ -179,7 +179,7 @@ This sets environment variables with names your app needs and the values from [`
 | [Payara JPA](https://support.platform.sh/hc/en-us/community/posts/16439658290194) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
 {{< note version="2" >}}
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 {{< /note >}}
 
 To reduce the number of lines in the application file and to make it cleaner,

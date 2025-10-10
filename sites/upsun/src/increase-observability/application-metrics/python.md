@@ -47,7 +47,7 @@ not be able to see it on the profiling tab.
 
 The Python continuous profiler API has two functions:
 
-``` python
+```python
 def start():
 def stop():
 ```
@@ -63,7 +63,7 @@ Here is an example of how you can initiate the Python `profiler` on a basic app:
 
 1. Create `example.py` with the following code:
 
-   ``` python
+   ```python
    def foo():
      import time
      time.sleep(1.0)
@@ -76,6 +76,6 @@ Here is an example of how you can initiate the Python `profiler` on a basic app:
 
 2. Run the app:
 
-   ``` bash
+   ```bash
    python example.py
    ```

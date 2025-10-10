@@ -18,7 +18,7 @@ These data are sourced from an annual average, which we update as new informatio
 Summary of data being used in {{% vendor/name %}}’s Region Picker when creating a new Project:
 | Source | Last update of this page | Previous versions of this page |
 |--------|--------------------------|--------------------------------|
-| Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). <BR> See our [blog post](https://platform.sh/blog/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.| 11 May 2023 | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md) |
+| Electricity Maps 2022 annual averages (previous to May 2023, we had used annual averages from the IEA). <BR> See our [blog post](https://devcenter.upsun.com/posts/platformsh-is-now-using-annual-carbon-intensities-from-electricity-maps/) for more information.| 11 May 2023 | Available [here](https://github.com/platformsh/platformsh-docs/commits/main/docs/src/development/regions.md) |
 
 Information on carbon intensity is also available in the {{% vendor/name %}} API.
 For example, to get a list of the regions and their carbon intensities, run the following command:
@@ -27,7 +27,7 @@ For example, to get a list of the regions and their carbon intensities, run the 
 {{% vendor/cli %}} api:curl regions | jq -r '.regions[] | select(.available) | "\(.label): \(.environmental_impact.carbon_intensity)"'
 ```
 
-See all available information in the [API documentation](https://api.platform.sh/docs/#tag/Regions).
+See all available information in the [API documentation](https://docs.upsun.com/api/#tag/Regions).
 
 ### Carbon Emissions dashboard
 
@@ -49,7 +49,7 @@ We have been working closely with Greenly to build upon the model, tailoring it 
 
 {{% note theme="warning" %}}
 
-[OVH](/development/regions.html#france-fr-3-fr-3) and [Orange](/development/regions.html#france-fr-1-fr-1) region data is not available in this dashboard. 
+[OVH](/development/regions.html#france-fr-3-fr-3) region data is not available in this dashboard. 
 
 {{% /note %}}
 
@@ -80,7 +80,7 @@ When adding a new project, you only see regions allowed by your organization.
 
 As an alternative, you can also use the following command with the {{% vendor/name %}} CLI to find out where a given region is hosted:
 
-``` bash
+```bash
 {{% vendor/cli %}} api:curl regions | jq '.regions[] | select(.available)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
 ```
 

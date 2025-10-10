@@ -48,7 +48,7 @@ applications:
             - xsl
             - pdo_sqlite
       - "nodejs@{{% latest "nodejs" %}}"
-      - "python@3.12"
+      - "python@{{% latest python %}}"
     # Additional frontend configuration
 ```
 
@@ -60,7 +60,7 @@ To override any part of a property, you have to provide the entire property.
 
 | Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:{{% latest composable %}}"`                                                                                                                                                                                      |
 | `stack`              | An array of [Nix packages](#stack)                                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                            |
 | `container_profile`  | A [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles) |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
 | `relationships`      | A dictionary of [relationships](#relationships)                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
@@ -128,25 +128,24 @@ If you use PHP, note that PHP-FPM is only started automatically if PHP is define
 
 ### Supported Nix channels
 
-A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems). 
+A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems).
 
-Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch). 
+Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
 
-Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. 
+<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended.
+The following channels are supported: -->
 
-The following channels are supported: 
-- `25.05`
-- `24.05`
+At this time, channel `{{% latest composable %}}` is supported.
 
 ### Configure Nix channels
 
 The Nix channel can be configured with the [top-level property `type`](#primary-application-properties).
 
-For example, to use the Nix channel `25.05`, you would use the following syntax:
+For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
 
-type: "composable:25.05"
+type: "composable:{{% latest composable %}}"
 
 ```
 
@@ -164,18 +163,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 22<br/>21                              |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 24<br/>22<br/>20<br/>18                |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.4<br/>8.3<br/>8.2<br/>8.1            |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.4<br/>3.3<br/>3.2<br/>3.1            |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -250,14 +249,14 @@ for your PHP extensions.
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
   myapp:
     stack:
-      - "python@3.12"
+      - "python@3.13"
       - "python312Packages.yq" # python package specific
 ```
 
@@ -277,8 +276,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
       - "yq"                   # tool
 ```
 
@@ -299,8 +298,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
   backend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
@@ -335,7 +334,6 @@ commands:
 ```bash
 {{% vendor/cli %}} push --resources-init=manual
 ```
-
 {{% /note %}}
 
 ## Relationships
@@ -835,9 +833,13 @@ See some [examples of how to configure what's served](../web/_index.md).
 |--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
 | `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
 | `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
-| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.       |
 
 {{< note theme="info" >}}
+The `pre_start` feature is **not blocking**, which means the `deploy` hook may start running **before** the `pre_start` command finishes.
+This can lead to unexpected behavior if `pre_start` performs setup tasks that `deploy` depends on.
+To avoid issues, make sure any critical initialization in `pre_start` is either quick or safe to run concurrently with `deploy`.
+
 The `post_start` feature is _experimental_ and may change. Please share your feedback in the
 [{{% vendor/name %}} discord]({{< vendor/urlraw "discord" >}}/).
 {{< /note >}}
@@ -879,10 +881,10 @@ See how to set up [alternate start commands on PHP](/languages/php/_index.md#alt
 
 ### Upstream
 
-| Name            | Type                | Required | Description                                                       | Default                                                                                                |
-|-----------------|---------------------|----------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Name            | Type                | Required | Description                                                       | Default                                                                                                   |
+|-----------------|---------------------|----------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket.                 | Defaults to `tcp` for all [primary runtimes](#primary-runtime) except PHP; for PHP the default is `unix`. |
-| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](#primary-runtime).                                                        |
+| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](#primary-runtime).                                         |
 
 For PHP, the defaults are configured for PHP-FPM and shouldn't need adjustment.
 For all other containers, the default for `protocol` is `http`.
@@ -929,7 +931,7 @@ The following table presents possible properties for each location:
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d.                                                                                                                                                                                                                            |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.html)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.html)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                    |
 | `request_buffering` | A [request buffering dictionary](#request-buffering) | See below | Handling for chunked requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `rules`             | A [rules dictionary](#rules)                         |           | Specific overrides for specific locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
@@ -1467,8 +1469,8 @@ title=In the Console
 +++
 
 1. In the Console, navigate to your project.
-1. Open the environment where you'd like the crons to run.
-1. Click `Redeploy` next to the cron status of `Paused`.
+2. Open the environment where you'd like the crons to run.
+3. Click `Redeploy` next to the cron status of `Paused`.
 
 <--->
 

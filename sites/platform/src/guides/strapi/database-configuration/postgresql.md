@@ -94,7 +94,7 @@ To configure a PostgreSQL database for Strapi on {{% vendor/name %}}, follow the
      } else {
        // Strapi default local configuration.
        console.log(
-         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
+         "Not in an {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }

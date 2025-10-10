@@ -25,7 +25,7 @@ The response differs depending on the activity and doesn't always include all fi
 The following is a shortened example of a response for an [environment sync activity](/glossary/_index.md#sync).
 You can also see [complete examples of responses](#examples).
 
-``` json
+```json {no-copy="true"}
 {
   "id": "abcdefg123456",
   ...
@@ -337,7 +337,7 @@ with the command `sleep 60 && echo sleep-60-finished && date` and times out afte
 
 To get details about the configured cron job, see the `parameters` property:
 
-``` json
+```json {no-copy="true"}
 ...
   "parameters": {
     "user": "admin",
@@ -359,7 +359,7 @@ To get details about the configured cron job, see the `parameters` property:
 
 The following example shows the full activity response to a cron job:
 
-``` json
+```json {no-copy="true"}
 {
   "id": "ypalrypnezbye",
   "_links": {
@@ -499,7 +499,7 @@ The following example shows the full activity response to a cron job:
 A push activity contains several properties.
 The `commits` property contains everything related to the Git push that triggered the activity:
 
-``` json
+```json  {no-copy="true"}
 ...
     "commits": [
       {
@@ -520,7 +520,7 @@ The `commits` property contains everything related to the Git push that triggere
 
 The `environment` property contains the settings for the environment that was pushed to:
 
-``` json
+```json {no-copy="true"}
 ...
     "environment": {
       "id": "main",
@@ -572,7 +572,7 @@ including the [image type](/create-apps/app-reference/single-runtime-image.md#ty
 
 The following example shows a shortened excerpt of the `deployment` property:
 
-``` json
+```json {no-copy="true"}
 ...
  "deployment": {
       "id": "current",
@@ -637,7 +637,7 @@ The following example shows a shortened excerpt of the `deployment` property:
 
 The following example shows the full activity response to a Git push:
 
-``` json
+```json {no-copy="true"}
 {
   "id": "a1kz6ffxui7em",
   "_links": {

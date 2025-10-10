@@ -1,7 +1,7 @@
 ---
 title: Autoscaling
 description: Learn how autoscaling dynamically adjusts app instances based on CPU usage to keep apps responsive under load while optimizing costs.
-weight: -400
+weight: -100
 keywords:
   - "resources"
   - "CPU"
@@ -167,7 +167,7 @@ If you're looking to keep track of your infrastructure and application metrics s
 
 Autoscaling projects are billed for the resources that they consume. Instances added through autoscaling are billed the same as if you were to manually configure those resources.
 
-However, each scaling action consumes build minutes, since new or removed instances are deployed with scaling action. If your app scales frequently, this could increase build minute usage.
+Added instances are deployed automatically without downtime.
 
 To control costs, avoid overly aggressive settings (e.g. very short evaluation periods).
 
@@ -186,10 +186,10 @@ Autoscaling gives you flexibility and resilience, but to get the best results it
 
 ### Cost & stability
 
-- **Set thresholds wisely**: Configure realistic scale-up and scale-down thresholds to avoid unnecessary deployments that quickly consume build minutes.
+- **Set thresholds wisely**: Configure realistic scale-up and scale-down thresholds to avoid unnecessary deployments.
 - **Smooth spikes**: Use longer evaluation periods (10–15 minutes) if your app traffic spikes often, to prevent rapid up-and-down scaling.
 - **Control instance counts**: Define minimum and maximum instances to manage costs while keeping required availability.
-- **Monitor costs**: Track billing and build minute usage after enabling autoscaling, then adjust thresholds as needed.
+- **Monitor costs**: Track billing and usage after enabling autoscaling, then adjust thresholds as needed.
 
 ### Application design
 

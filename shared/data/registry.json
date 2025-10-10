@@ -14,26 +14,22 @@
     "runtime": false,
     "type": "chrome-headless",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86"
+      ],
       "supported": [
         "120",
         "113",
         "95",
-        "91",
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
+        "91"
       ],
       "legacy": [
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
+
       ]
     },
     "versions-dedicated-gen-3": {
@@ -42,6 +38,43 @@
         "95"
       ]
     }
+  },
+  "composable": {
+    "description": "Composable image",
+    "disk": false,
+    "docs": {
+      "relationship_name": null,
+      "service_name": null,
+      "url": "/create-apps/app-reference/composable-image.html",
+      "web": {
+        "upstream": {
+          "socket_family": "tcp",
+          "protocol": "http"
+        },
+        "commands": {
+          "start": ""
+        },
+        "locations": {
+          "/": {
+            "allow": false,
+            "passthru": true
+          }
+        }
+      },
+      "hooks": {
+        "build": [
+        ]
+      }
+    },
+    "endpoint": null,
+    "min_disk_size": null,
+    "name": "Composable image",
+    "repo_name": "composable",
+    "runtime": true,
+    "type": "composable",
+    "versions": "25.05",
+    "deprecated": [],
+    "supported": []
   },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
@@ -552,7 +585,7 @@
     }
   },
   "mongodb": {
-    "description": "Experimental MongoDB support on Platform.sh",
+    "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
@@ -632,10 +665,10 @@
     "type": "network-storage",
     "versions": {
       "deprecated": [
-        "1.0"
+        "2.0"
       ],
       "supported": [
-        "2.0"
+        "1.0"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -646,7 +679,7 @@
     }
   },
   "nodejs": {
-    "description": "NodeJS service for Platform",
+    "description": "NodeJS service for Upsun Fixed",
     "repo_name": "nodejs",
     "disk": false,
     "docs": {
@@ -768,7 +801,7 @@
     }
   },
   "php": {
-    "description": "PHP service for Platform.sh.",
+    "description": "PHP service for Upsun Fixed.",
     "repo_name": "php",
     "disk": false,
     "docs": {
@@ -839,7 +872,7 @@
     }
   },
   "postgresql": {
-    "description": "PostgreSQL service for Platform.sh.",
+    "description": "PostgreSQL service for Upsun Fixed.",
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
