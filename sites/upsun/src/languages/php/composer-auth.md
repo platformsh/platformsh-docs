@@ -14,7 +14,7 @@ follow the instructions on this page.
 ## Before you begin
 
 You need:
-- A {{% vendor/name %}} project using [PHP](../php/_index.md) and Composer
+- An {{% vendor/name %}} project using [PHP](../php/_index.md) and Composer
 - Credentials to access a private third-party Composer repository
 - The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
 

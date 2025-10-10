@@ -36,7 +36,7 @@ If it isn't, try the following steps:
 ## Verify SSL/TLS encryption
 
 To find out where your domain is pointing to,
-you can use [the certificate checker tool](https://certcheck.pltfrm.sh/).
+you can use [the certificate checker tool](https://certcheck.upsun.com/).
 This tool provides guidance on certificates,
 including when you use a [CDN](/domains/cdn/_index.md).
 Check both the apex and the `www` domains to ensure they both point to your project.
@@ -140,7 +140,7 @@ When you use a CDN, to ensure the challenge succeeds, check that:
 
 If you don't follow those requirements, you get an error message similar to:
 
-``` text
+```text {no-copy="true"}
   W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
 ```

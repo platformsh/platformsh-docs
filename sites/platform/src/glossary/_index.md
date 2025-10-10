@@ -94,7 +94,7 @@ They're always deployed together as a single unit.
 
 ## Control plane
 
-The control plane is Platform.sh’s orchestration, control, and management environment. It helps us to establish and operate regions, provision services and networks.
+The control plane is Upsun Fixed’s orchestration, control, and management environment. It helps us to establish and operate regions, provision services and networks.
 
 
 ## {{% names/dedicated-gen-2 %}}

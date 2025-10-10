@@ -9,7 +9,7 @@ keywords:
   - git push options
 ---
 
-A {{% vendor/name %}} environment contains one instance of an app (or [group of apps](/create-apps/multi-app/_index.md))
+An {{% vendor/name %}} environment contains one instance of an app (or [group of apps](/create-apps/multi-app/_index.md))
 with all the services needed for it to run.
 
 Each project can include multiple environments,
@@ -212,7 +212,7 @@ If you're on a development plan,
 all your environments are preview environments that can be paused automatically.
 This includes your future production environment.
 To prevent your production environment from being paused automatically,
-[upgrade to a non-development plan](https://platform.sh/pricing/).
+[upgrade to a non-development plan](https://upsun.com/fixed-pricing/).
 
 {{< /note >}}
 

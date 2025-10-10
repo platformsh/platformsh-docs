@@ -108,9 +108,13 @@ printf "From: someone@example.com\nSubject: Test \nThis is a test message" | /us
 
 In a little while, the test message should arrive at the recipient address.
 
-Be careful to test with real email addresses.
-If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation.
-Make sure your test emails are deliverable.
+{{% note theme="warning" %}}
+
+When sending emails from your project, **use a mail address that is on the same domain as your project** otherwise it will be flagged as spoofing attempt and not be sent.
+
+Also, **make sure to test with real email addresses**. If you send emails to fake domains (such as `example.com`), they fail and hurt your sending reputation. Make sure your test emails are deliverable.
+
+{{< /note >}}
 
 ## 5. Send email from your app
 

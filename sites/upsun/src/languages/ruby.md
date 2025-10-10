@@ -15,7 +15,7 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-### Ruby MRI
+### Ruby
 
 {{< image-versions image="ruby" status="supported" environment="grid" >}}
 
@@ -398,14 +398,20 @@ For Rails, you can use the standard Rails `config/database.yml` with the values 
 
 - For garbage collection tuning, you can read [this article](https://shopify.engineering/17489064-tuning-rubys-global-method-cache)
   and look for [discourse configurations](https://github.com/discourse/discourse_docker/blob/b259c8d38e0f42288fd279c9f9efd3cefbc2c1cb/templates/web.template.yml#L8)
-- New images are released on a regular basis to apply security patches.
+- New images are released on a regular basis to apply security patches. While the minor version will not change (as you are specifying it in the `type` property), the patch version will be updated. You may encounter this kind of error:
+
+  ```
+  bundler: failed to load command: puma (/app/vendor/bundle/ruby/3.2.0/bin/puma)
+  /app/.global/gems/bundler-2.4.22/lib/bundler/definition.rb:447:in `validate_ruby!': Your Ruby version is 3.2.9, but your Gemfile specified 3.2.8 (Bundler::RubyVersionMismatch)
+  ```
+
   To avoid issues when such updates are performed, use
 
-  ``` ruby
+  ```ruby
   ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
   ```
 
-  in your `Gemfile`.
+  in your `Gemfile`, where `TARGET_RUBY_VERSION` has been defined as above.
 
 
 {{< repolist lang="ruby" displayName="Ruby" >}}
@@ -418,7 +424,7 @@ This is safer for version yank issues and other version upgrade breakages.
 
 You may encounter an error like the following during a build:
 
-```txt
+```txt {no-copy="true"}
 W: bundler: failed to load command: rake (/app/.global/bin/rake)
 W: /app/.global/gems/bundler-2.3.5/lib/bundler/resolver.rb:268:in `block in verify_gemfile_dependencies_are_found!': Could not find gem 'rails (= 5.2.6)' in locally installed gems. (Bundler::GemNotFound)
 ```

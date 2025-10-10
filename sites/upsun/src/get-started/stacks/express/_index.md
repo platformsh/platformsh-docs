@@ -128,7 +128,7 @@ where you are able to push your source code in different ways,
 using either the Git CLI or the {{% vendor/name %}} CLI.
 You can choose which way —or Git workflow— you want to use for your project from the following options:
 
-- Your project source code is **hosted on a {{% vendor/name %}} Git repository**
+- Your project source code is **hosted on an {{% vendor/name %}} Git repository**
 - Your project source code is **hosted on your own GitHub repository**
 
 {{< codetabs >}}
@@ -170,7 +170,7 @@ These files manage your app's behavior.
 They are located in a `.{{% vendor/cli %}}/` folder at the root of your source code
 and structured in a similar way to this:
 
-```txt
+```txt {no-copy="true"}
 my-express-app
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
@@ -281,7 +281,7 @@ To make changes to your project, follow these steps:
 2. Make changes to your project.
    For example, edit the `views/index.jade` file and make the following changes:
 
-   ```diff
+   ```diff {no-copy="true"}
    diff --git a/views/index.jade b/views/index.jade
    index 3d63b9a..77aee43 100644
    --- a/views/index.jade
@@ -311,7 +311,7 @@ To make changes to your project, follow these steps:
    When satisfied with your changes, merge them to the main branch,
    and remove the feature branch:
 
-   ```bash {location="Terminal"}
+   ```bash {location="Terminal", no-copy="true"}
    {{% vendor/cli %}} merge
        Are you sure you want to merge feat-a into its parent, main? [Y/n] y
    {{% vendor/cli %}} checkout main

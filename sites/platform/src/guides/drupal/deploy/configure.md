@@ -3,7 +3,7 @@ title: "Configure Drupal for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for Drupal.
+    Review the basics of what makes up an {{% vendor/name %}} project, including its three principle configuration files and how to define them for Drupal.
 ---
 
 {{% guides/config-desc name="Drupal" %}}
@@ -25,7 +25,7 @@ See an example of Redis for caching in our [Drupal template](https://github.com/
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
+# to power your Upsun Fixed project.
 
 db:
     type: mariadb:10.11

@@ -279,9 +279,7 @@ git commit -m "adds remaining environment variables to .environment"
 ## 4. Push and deploy
 Now that we've added the required files, you're ready to push your changes and deploy your WordPress site:
 ```bash {location="Terminal"}
-
 {{% vendor/cli %}} push -y
-
 ```
 
 ## 5. Routinely run WP Cron (optional)

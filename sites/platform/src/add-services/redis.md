@@ -189,7 +189,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -362,7 +362,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -538,7 +538,7 @@ const value = await client.get('x');     // returns 42
 
 {{% note theme="info" title="Feature availability" %}}
 
-This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://upsun.com/contact-us/).
 
 {{% /note %}}
 
@@ -660,13 +660,13 @@ The following table presents the possible values:
 | `volatile-ttl`    | Removes cache items with the `expire` field set to `true` and the shortest remaining `time-to -live` value. |
 
 For more information on the different policies,
-see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
+see the official [Redis documentation](https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/).
 
 ## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
 you can access it using either the {{% vendor/name %}} CLI
-or through the [Redis CLI](https://redis.io/docs/ui/cli/).
+or through the [Redis CLI](https://redis.io/docs/latest/operate/rs/references/cli-utilities/).
 
 ### {{% vendor/name %}} CLI
 

@@ -20,8 +20,6 @@ The latest compatible minor version and patches are applied automatically.
 
 {{< image-versions image="opensearch" status="supported" environment="grid" >}}
 
-You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://docs.opensearch.org/lines/2x.html) and [`1.x`](https://docs.opensearch.org/lines/1x.html) (1.3) release lines.
-
 ## Deprecated versions
 
 The following versions are still available in your projects,

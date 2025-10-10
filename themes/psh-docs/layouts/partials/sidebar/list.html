@@ -1,7 +1,7 @@
 <!-- SECTION HEADING -->
 {{ $sectionKeys := .sections }}
 {{ $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize }}
-<!-- Get rid of dots like in Platform.sh -->
+<!-- Get rid of dots like in Upsun Fixed -->
 {{ $sectionId = replace $sectionId "." "" }}
 
 {{ $isCurrentSection := false }}
@@ -53,6 +53,7 @@
         {{ $itemTitle }}
         {{ if .Context.Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
         {{ if .Context.Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
+        {{ if .Context.Params.newfeature }}{{ partial "newfeature/badge" }}{{ end }}
         {{ if .Context.Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
       </a>
 
@@ -93,6 +94,7 @@
           <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+              {{ if .Params.newfeature }}{{ partial "newfeature/badge" }}{{ end }}
               {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
               {{ if .Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
           </a>
@@ -118,6 +120,7 @@
                     <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
                         {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
                         {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+                        {{ if .Params.newfeature }}{{ partial "newfeature/badge" }}{{ end }}
                         {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
                     </a>
                   </li>

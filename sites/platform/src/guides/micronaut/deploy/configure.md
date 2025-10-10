@@ -3,7 +3,7 @@ title: "Configure Micronaut for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for Micronaut.
+    Review the basics of what makes up an {{% vendor/name %}} project, including its three principle configuration files and how to define them for Micronaut.
 ---
 
 {{% guides/config-desc name="Micronaut" noService=true %}}

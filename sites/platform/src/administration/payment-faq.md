@@ -13,7 +13,7 @@ You'll also find important details about billing cycles, invoice eligibility, an
 
 This page is _not_ meant to be your primary resource for the exact costs of certain features.
 
-The official {{% vendor/name %}} [Pricing page](https://platform.sh/pricing/) should always be considered the primary source of pricing details.
+The official {{% vendor/name %}} [Pricing page](https://upsun.com/fixed-pricing/) should always be considered the primary source of pricing details.
 
 {{< /note >}}
 
@@ -78,7 +78,7 @@ The currency used for payments is based on your country:
 
 Enterprise and Elite tier customers have the option to **pay via invoice**.
 
-If you're interested in making invoice payments, [contact the Sales team](https://platform.sh/contact/) to discuss your options.
+If you're interested in making invoice payments, [contact the Sales team](https://upsun.com/contact-us/) to discuss your options.
 
 ## What are your Fraud Protection Methods?
 
@@ -91,10 +91,10 @@ The **billing cycle** refers to the period between invoices. You will be billed 
 ## Further resources
 
 ### Pricing
-- [{{% vendor/name %}} prices](https://platform.sh/pricing/)
+- [{{% vendor/name %}} prices](https://upsun.com/fixed-pricing/)
 
 ### Terms and conditions
-- [Legal terms of service](https://platform.sh/trust-center/legal/tos/)
+- [Legal terms of service](https://upsun.com/trust-center/legal/tos/)
 
 ### Documentation
 
