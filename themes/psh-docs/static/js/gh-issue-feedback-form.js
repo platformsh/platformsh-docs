@@ -212,7 +212,7 @@ ${selection.toString().trim()}
     const anchor = getClosestAnchor(selection.anchorNode.parentElement);
     const url = window.location.href.split('#')[0] + anchor;
 
-    const title = encodeURIComponent("Content feedback: " + url);
+    const title = encodeURIComponent("Content feedback: " + document.title);
     const issueBaseUrl = typeof FEEDBACK_ISSUE_URL !== "undefined" ? FEEDBACK_ISSUE_URL : "https://github.com/platformsh/platformsh-docs/issues/new";
     const body = encodeURIComponent(
       `### 📝 Selected text
@@ -224,7 +224,11 @@ ${selectedText}
 ${feedback}
 
 ### 🌐 Page
-${url}`
+${url}
+
+### Template
+${CURRENT_TEMPLATE}
+`
     );
 
     const issueUrl = `${issueBaseUrl}?title=${title}&body=${body}`;

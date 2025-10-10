@@ -109,6 +109,7 @@
     <!-- GitHub's feedback form -->
     <script>
       const FEEDBACK_ISSUE_URL = "{{ .Site.Params._404.issues }}";
+      const CURRENT_TEMPLATE = "{{ printf "%s/src/%s" site.Params.folder .File.Path }}"
     </script>
     <script src="{{ "js/gh-issue-feedback-form.js" | relURL }}"></script>
 
