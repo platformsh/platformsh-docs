@@ -1,0 +1,6 @@
+composable:
+  versions:
+    supported:
+      - "25.05"
+    available:
+      - "24.05"

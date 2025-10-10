@@ -1,6 +1,4 @@
-{{- $image := index .Site.Data.registry (.Get 0) -}}
-{{- if and (isset $image.versions "supported") ($image.versions.supported) -}}
-{{- index $image.versions.supported 0 -}}
-{{- else -}}
-{{- $image.versions -}}
-{{- end -}}
+{{- $arg := .Get 0 -}}
+{{- $data := cond (eq $arg "composable") .Site.Data.composable_versions .Site.Data.registry -}}
+{{- $supported := index $data $arg "versions" "supported" -}}
+{{- index $supported 0 -}}
