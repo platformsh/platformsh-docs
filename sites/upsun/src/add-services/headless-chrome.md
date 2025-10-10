@@ -86,10 +86,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_HEADLESSCHROME_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.chrome-headless[0].host')"
+export APP_HEADLESSCHROME_HOST=="$(echo "$RELATIONSHIPS_JSON" | jq -r '.chrome-headless[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -341,8 +341,8 @@ From this, `myapp` can retrieve access credentials to the service through the [r
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export CHROME_IP=${CHROME_HEADLESS_IP}
-export CHROME_PORT=${CHROME_HEADLESS_PORT}
+export CHROME_IP="${CHROME_HEADLESS_IP}"
+export CHROME_PORT="${CHROME_HEADLESS_PORT}"
 
 # Combine into a single base URL to be used within app.
 export CHROME_BASEURL="http://${CHROME_IP}:${CHROME_PORT}"

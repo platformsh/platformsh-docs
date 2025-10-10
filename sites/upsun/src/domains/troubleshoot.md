@@ -18,7 +18,7 @@ host www.{{< variable "YOUR_DOMAIN" >}}
 
 If your domain is `example.com`, the response should be something like the following:
 
-```text
+```text {no-copy="true"}
 www.example.com is an alias for main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}}
 main-abcd123.abcdefgh1234567.eu.{{< vendor/urlraw "hostname" >}} has address 192.0.2.1
 ```
@@ -119,7 +119,7 @@ domains and subdomains must point directly to your {{% vendor/name %}} project.
 
 Otherwise, you get an error similar to:
 
-```text
+```text {no-copy="true"}
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: pending | DNS01: pending | TLSALPN01: pending]
   Unable to validate domains www.example.com, will retry in the background.
 ```
