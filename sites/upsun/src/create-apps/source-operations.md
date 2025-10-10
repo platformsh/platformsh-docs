@@ -194,7 +194,7 @@ you can't run source operations on environments created from pull or merge reque
 
 If you try running a source operation on a non-supported environment, you see the following error:
 
-```text
+```text {no-copy="true"}
 [ApiFeatureMissingException]
 This project doesn't support source operations.
 ```
