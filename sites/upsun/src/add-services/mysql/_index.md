@@ -141,10 +141,10 @@ Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/develo
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mariadb[0].host")
+export APP_DATABASE_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r ".mariadb[0].host")"
 ```
 
 {{< /codetabs >}}
@@ -216,10 +216,10 @@ Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/develo
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_ORACLE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.oraclemysql[0].host')"
+export APP_ORACLE_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.oraclemysql[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -469,12 +469,12 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export DB_CONNECTION=${MARIADB_SCHEME}
-export DB_USERNAME=${MARIADB_USERNAME}
-export DB_PASSWORD=${MARIADB_PASSWORD}
-export DB_HOST=${MARIADB_HOST}
-export DB_PORT=${MARIADB_PORT}
-export DB_DATABASE=${MARIADB_PATH}
+export DB_CONNECTION="${MARIADB_SCHEME}"
+export DB_USERNAME="${MARIADB_USERNAME}"
+export DB_PASSWORD="${MARIADB_PASSWORD}"
+export DB_HOST="${MARIADB_HOST}"
+export DB_PORT="${MARIADB_PORT}"
+export DB_DATABASE="${MARIADB_PATH}"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"

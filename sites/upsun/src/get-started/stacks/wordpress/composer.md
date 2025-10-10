@@ -287,9 +287,9 @@ following:
 
 ```bash {location=".environment"}
 # Routes, URLS, and primary domain
-export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
-export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
-export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+export SITE_ROUTES="$(echo "$PLATFORM_ROUTES" | base64 --decode)"; \
+export UPSTREAM_URLS="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.type == "upstream" and .upstream == $app)) | keys')"; \
+export DOMAIN_CURRENT_SITE="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app)) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')"
 ```
 <!-- @todo figure out the full expression for 1.5
 {{< note >}}
