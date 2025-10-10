@@ -153,9 +153,7 @@ type: "composable:{{% latest composable %}}"
 
 {{% note %}}
 The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
-However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
-This includes packages from the ``unstable`` channel,
-like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.</br>
 While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
 {{% /note %}}
 
