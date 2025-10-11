@@ -319,7 +319,7 @@ console.log(stuffColors);
 ## Use provided variables
 
 {{% vendor/name %}} also provides a series of variables to inform your app about its runtime configuration.
-They're mostly prefixed with `PLATFORM_` to differentiate them from user-provided values.
+Many of them have a `PLATFORM_` prefix to differentiate them from user-provided values.
 You can't set or update them directly.
 
 The most important of these variables is the relationship information in `PLATFORM_RELATIONSHIPS`,
@@ -331,6 +331,7 @@ and at runtime.
 
 | Variable name                            | Build | Runtime | Description                                                                                                                                                                                                                                                                                                                                                                                              |
 |------------------------------------------|-------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CI`      | Yes    | No     | Available for use in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity), which can help to reduce build failures.                                                                                                                                                                                                                                                                                                |
 | `{{< vendor/prefix >}}_APP_COMMAND`      | No    | Yes     | The contents of the [web start command](/create-apps/app-reference/single-runtime-image.md#web-commands).                                                                                                                                                                                                                                                                                                |
 | `{{< vendor/prefix >}}_APP_DIR`          | Yes   | Yes     | The absolute path to the app directory.                                                                                                                                                                                                                                                                                                                                                                  |
 | `{{< vendor/prefix >}}_APPLICATION`      | Yes   | Yes     | A base64-encoded JSON object that describes the app. It maps certain attributes from your [app configuration](/create-apps/_index.md), some with more structure. See [notes](#platform_application).                                                                                                                                                                                                     |
