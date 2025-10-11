@@ -45,11 +45,13 @@ Once the app has gone through all of the build steps, it can connect to services
    For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
    You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
 5. **Run build hook**:
-   The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
-   It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
+   The `build` hook comprises one or more shell commands that you write to finish creating your production code base: for example, compiling Sass files, running a bundler, rearranging files on disk, or compiling.
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
-   Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures..<br> 
+   You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+
 6. **Freeze app container**:
    The file system is frozen and produces a read-only container image, which is the final build artifact.
 
