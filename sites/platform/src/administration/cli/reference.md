@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI (Platform.sh compatibility) 5.5.0
+# Upsun CLI (Platform.sh compatibility) 5.6.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -4278,7 +4278,7 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlp')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -4607,7 +4607,7 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlp')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
