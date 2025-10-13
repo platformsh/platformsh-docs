@@ -1,7 +1,7 @@
 # This file describes an application. You can have multiple applications
 # in the same project.
 #
-# See https://docs.platform.sh/user_guide/reference/platform-app-yaml.html
+# See https://docs.upsun.com/anchors/fixed/app/configure/
 
 # The name of this app. Must be unique within a project.
 name: app
@@ -40,4 +40,4 @@ source:
     auto-update:
       command: |
         curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
-    
+

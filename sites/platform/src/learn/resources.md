@@ -7,9 +7,8 @@ The following resources are also helpful for working with {{% vendor/name %}}:
 
 | Source            | Links |
 | :---------------- | :------ |
-| [{{% vendor/name %}} Blog](https://platform.sh/blog)       |   {{< home/links-blog >}}   |
-| [Blackfire.io resources](https://platform.sh/blog)       |   {{< home/links-blackfire >}}   |
-| [DDEV resources](https://platform.sh/blog)       |   {{< home/links-ddev >}}   |
-| [YouTube](https://www.youtube.com/@Platformsh)          |   {{< home/links-youtube >}}    |
-| [GitHub](https://github.com/platformsh)    |  {{< home/links-github >}} |
+| [{{% vendor/name %}} Blog](https://upsun.com/blog)       |   {{< home/links-blog >}}   |
+| [Blackfire.io resources](https://upsun.com/blog)       |   {{< home/links-blackfire >}}   |
+| [DDEV resources](https://upsun.com/blog)       |   {{< home/links-ddev >}}   |
+| [GitHub](https://github.com/upsun)    |  {{< home/links-github >}} |
 

@@ -28,13 +28,13 @@ Our TYPO3 template comes [pre-configured to use Redis](https://github.com/platfo
 # This file describes an application's services. You can define as many services as your
 # application requires, subject to your plan's resource restrictions.
 #
-# See https://docs.platform.sh/configuration/services.html.
+# See https://docs.upsun.com/anchors/fixed/services/.
 
 # MariaDB/MySQL 10.4 service with 2048MB of allocated disk.
 # The service name `db` is used in defining the `database` relationship in the
 # `.platform.app.yaml` file.
 #
-# See https://docs.platform.sh/configuration/services/mysql.html.
+# See https://docs.upsun.com/anchors/fixed/services/mysql/.
 db:
     type: mysql:10.4
     disk: 2048
@@ -43,7 +43,7 @@ db:
 # The service name `cache` is used in defining the `rediscache` relationship in the
 # `.platform.app.yaml` file.
 #
-# See https://docs.platform.sh/configuration/services/redis.html.
+# See https://docs.upsun.com/anchors/fixed/services/redis/.
 cache:
     type: redis:5.0
 ```

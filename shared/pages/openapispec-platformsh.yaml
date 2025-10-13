@@ -58,7 +58,7 @@ info:
     is particularly useful in scripts, e.g. for CI pipelines.
 
     To create an API token, go to the "API Tokens" section
-    of the "Account Settings" tab on the [Console](https://console.platform.sh).
+    of the "Account Settings" tab on the [Console](https://console.upsun.com).
 
     To exchange this API token for an access token, a `POST` request
     must be made to `https://auth.api.platform.sh/oauth2/token`.
@@ -19619,6 +19619,12 @@ components:
         vendor:
           type: string
           description: The vendor.
+        billing_account_id:
+          type: string
+          description: The Billing Account ID.
+        billing_legacy:
+          type: boolean
+          description: Whether the account is billed with the legacy system.
         status:
           type: string
           description: The status of the organization.
@@ -19767,6 +19773,9 @@ components:
           type: string
           format: ulid
           description: The ID of the organization.
+        type:
+          type: string
+          description: The type of the organization.
         owner_id:
           type: string
           format: uuid

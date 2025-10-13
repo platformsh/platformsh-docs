@@ -12,8 +12,7 @@ architecture and dependencies.
 
 Upsun supports multiple runtimes through container-based deployments including
 Python, Node.js, PHP, Ruby, Go, Java, and more. For the complete list of
-supported runtimes and their versions, see the [runtime types reference]
-(/create-apps/app-reference/single-runtime-image.md#types).
+supported runtimes and their versions, see the [runtime types reference](/create-apps/app-reference/single-runtime-image.md#types).
 
 Configure your runtime in the [`.upsun/config.yaml`](/learn/overview/yaml/yaml-structure.md)
  file.

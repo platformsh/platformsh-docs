@@ -294,7 +294,7 @@ applications:
 
 #### Use Bun as a runtime
 
-You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here/) by adjusting the `start` command as follows:
+You can even [use Bun as a runtime](https://devcenter.upsun.com/posts/bun-support-is-here/) by adjusting the `start` command as follows:
 
 ```yaml {configFile="app"}
 applications:
