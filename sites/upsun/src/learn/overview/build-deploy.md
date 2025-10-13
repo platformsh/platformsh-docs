@@ -208,15 +208,38 @@ As soon as your deployment type is switched from manual to automatic, all curren
 
 {{< /note >}}
 
-
 ## Zero Downtime Deployments
-
 ## What is Zero Downtime?
 
-Zero Downtime Deployments (ZDD) let you update environments without interrupting live traffic. By default, deployments use stop-start (services stop, then restart with updates). With ZDD, you can switch to a [rolling strategy](#deployment-strategies) that keeps your app online during updates.
+Zero Downtime Deployments (ZDD) let you update environments without interrupting live traffic. By default, [deployments](#manual-deployment) use stop-start (services stop, then restart with updates). With ZDD, you can switch to a [rolling strategy](#deployment-strategies) that keeps your app online during updates.
 
-### Deployment Strategies
+## How Zero Downtime works
 
+Instead of stopping services before updating, a temporary copy of your application is created and prepared behind the scenes during the deployment process. Your services work with both the original application and the temporary copy during the whole deployment process, which means that any changes you make to your services during deployment will be applied to the original application. Here's the step-by-step process:
+
+**A clone is made of your current application**
+
+- {{% vendor/name %}} starts a temporary container running a cloned version of your app.
+- The cloned app begins handling all live traffic during this time.
+- Your services (eg. Redis) will serve the cloned app as well as the original app.
+
+![A duplicate is made of your current application](/images/ZDD/ZDD-1.jpg "0.4")
+
+**Cloned apps are removed after deployment**
+
+- When deployment is complete, the clone of your app is shut down and removed.
+- All traffic and services are now solely applied to the original app alone.
+
+![The duplicate of your original application is removed](/images/ZDD/ZDD-2.jpg "0.4")
+
+{{< note theme="warning" >}} 
+During the Zero Downtime Deployment process, both the old and new containers run simultaneously for a short period.
+You could be temporarily be billed for extra resources while both versions are active.
+- If your app uses fewer resources and has a short build time, additional costs will be minimal.
+- If your app uses larger resources and takes longer to build, expect proportionally higher temporary costs.
+{{< /note >}}
+
+### Deployment strategies
 #### Stop-start (default)
 
 - Services stop first then restart with the new version  
@@ -245,9 +268,7 @@ Zero Downtime Deployments (ZDD) let you update environments without interrupting
 
 **Environment type:** Zero Downtime Deployments are only available on Upsun Grid.
 
-**Storage:** To use ZDD, your app must run on network storage (NFS).
-
-**Deployment mode:** Requires Manual Deployments to be enabled.
+**Deployment mode:** Requires [Manual Deployments](#manual-deployment) to be enabled.
 
 {{< /note >}}
 
@@ -259,7 +280,7 @@ Zero Downtime Deployments (ZDD) let you update environments without interrupting
 | Code pushes | Suitable |
 | Config or environment variable changes | Suitable |
 | Stateful services (databases, caches) | Not suitable |
-| DB schema migrations | Not suitable |
+| DB schema migrations | Not suitable _(except if updates are backward or forward compatible)_ | |
 
 ## How to use Zero Downtime Deployments
 
@@ -311,6 +332,32 @@ With ZDD, you can plan for smooth reconnection:
 - SSE supports automatic retry logic (MDN reference).
 
 - WebSocket clients should implement reconnect logic.
+
+## Zero Downtime Troubleshooting 
+
+This section covers two common scenarios and how to resolve them.
+
+### Application is slow to start
+
+If your application takes longer to become responsive, traffic might be [switched back to your original application](#how-zero-downtime-works) before it’s fully ready. This can cause temporary errors immediately after deployment.
+
+{{< note theme="info" title="Use a post_start command">}}
+
+You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port. 
+
+For example, if your framework needs several seconds to initialize (e.g. building caches or database connections), `post_start` can help coordinate the handover so the app receives traffic only when it’s ready.
+
+**For more information about the `post_start` command, visit [web commands](/create-apps/app-reference/single-runtime-image.html#web-commands).**
+
+{{< /note >}}
+
+### Deployment fails midway
+
+If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an unintented increase in resource usage and costs.
+
+{{< note theme="info" title="Redeploy manually">}}
+After a failed or interrupted deployment, check your environment’s running containers and [redeploy manually](#manual-deployment) to ensure no duplicates remain active. This helps prevent hidden resource consumption.
+{{< /note >}}
 
 ## Deployment philosophy
 
