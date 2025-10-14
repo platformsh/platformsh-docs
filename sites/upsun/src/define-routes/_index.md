@@ -157,7 +157,7 @@ using either the absolute URL or the `{default}` placeholder results in the same
 
 In any case, you get the same URL for an environment named `feature`:
 
-```txt
+```txt {no-copy="true"}
 https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 

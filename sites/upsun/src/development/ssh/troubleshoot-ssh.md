@@ -4,7 +4,7 @@ title: "Troubleshoot SSH"
 
 While trying to use SSH, you may get a response indicating permission is denied. Or if you get an error with a code of 255, it means there's a problem with your SSH connection.
 
-```txt
+```txt {no-copy="true"}
 The command failed with the exit code: 255
 ```
 

@@ -163,7 +163,7 @@ Follow the instructions to change the default branch to `main` for your provider
 ## 7. Update DNS records
 
 Whether or not you're using a CDN,
-if your site is live you have probably added a {{% vendor/name %}} address somewhere when configuring a [custom domain](../domains/steps/_index.md).
+if your site is live you have probably added an {{% vendor/name %}} address somewhere when configuring a [custom domain](../domains/steps/_index.md).
 If you have a CDN, it's with the CDN provider.
 If you don't have a CDN, it's probably a `CNAME` record.
 

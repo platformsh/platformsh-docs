@@ -10,7 +10,7 @@ description: Configure your project
 To host your application on {{% vendor/name %}}, a configuration file (YAML) is needed to manage the way your application behaves.
 This configuration file is located inside a `.upsun`folder at the root of your source code:
 
-```bash
+```bash {no-copy="true"}
 my-app
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
