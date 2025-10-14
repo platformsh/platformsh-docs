@@ -257,7 +257,7 @@ Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Su
 All your apps are configured in a single `{{< vendor/configfile "apps" >}}` file.
 So you could organize your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) like this:
 
-```text
+```text {no-copy="true"}
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}
 ├── @admin      <-- API Platform Admin submodule

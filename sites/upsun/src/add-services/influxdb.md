@@ -105,7 +105,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
 export APP_INFLUXDB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdb[0].host')"
@@ -312,11 +312,11 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export INFLUX_USER=${INFLUXDB_USERNAME}
-export INFLUX_HOST=${INFLUXDB_HOST}
-export INFLUX_ORG=$(echo $INFLUXDB_QUERY | jq -r ".org")
-export INFLUX_TOKEN=$(echo $INFLUXDB_QUERY | jq -r ".api_token")
-export INFLUX_BUCKET=$(echo $INFLUXDB_QUERY | jq -r ".bucket")
+export INFLUX_USER="${INFLUXDB_USERNAME}"
+export INFLUX_HOST="${INFLUXDB_HOST}"
+export INFLUX_ORG="$(echo "$INFLUXDB_QUERY" | jq -r '.org')"
+export INFLUX_TOKEN="$(echo "$INFLUXDB_QUERY" | jq -r '.api_token')"
+export INFLUX_BUCKET="$(echo "$INFLUXDB_QUERY" | jq -r '.bucket')"
 ```
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``INFLUX_HOST`` can be used within the application to connect to the service.

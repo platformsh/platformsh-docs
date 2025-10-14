@@ -254,7 +254,7 @@ applications:
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
         # we install the bundled bundler version and fallback to a default (in env vars above)
-        export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || $DEFAULT_BUNDLER_VERSION
+        export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || "$DEFAULT_BUNDLER_VERSION"
         echo "Install bundler $BUNDLER_VERSION"
         gem install --no-document bundler -v $BUNDLER_VERSION
 

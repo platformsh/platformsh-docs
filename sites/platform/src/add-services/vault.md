@@ -419,3 +419,5 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 | `encrypt` | `transit/encrypt/${KEY}` | `read`, `update` | Encrypting data with an existing key |
 | `decrypt` | `transit/decrypt/${KEY}` | `read`, `update` | Decrypting data with an existing key |
 | `rewrap`  | `transit/rewrap/${KEY}` | `read`, `update` | Re-encrypting data with a new key version without revealing the secret |
+
+
