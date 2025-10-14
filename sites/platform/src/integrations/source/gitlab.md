@@ -139,7 +139,7 @@ Instead, [set up a push-based GitLab CI/CD pipeline](https://devcenter.upsun.com
 - Clean up environments when branches or MRs are removed
 - Keep your GitLab instance fully private
 
-{{< note theme="tip" title="Detailed walkthrough" >}}
+{{< note theme="tip" title="Detailed tutorial" >}}
 
 For a detailed walkthrough of how this works, with code samples and rationale, see this blog post: [Synchronize your air-gapped GitLab](https://devcenter.upsun.com/posts/gitlab-push-solution/).
 
