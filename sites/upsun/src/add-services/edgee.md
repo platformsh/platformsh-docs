@@ -14,10 +14,10 @@ Edge Analytics integrates with platforms such as GA4, Amplitude, and Segment, pr
 
 **Before you begin you need:**
 - An up-and-running {{% vendor/name %}} [Fixed or Flex](/administration/organizations.html#fixed-and-flex-organizations) project
-- [Fastly CDN subscription](/domains/cdn/_index.html)
+- [Fastly CDN subscription](/domains/cdn.html)
 
 ## Setup Edgee
-Edge Analytics integrates smoothly with your existing Platform.sh infrastructure and analytics tools. Our structured onboarding process includes dedicated technical sessions, staged deployment, and continuous support to ensure successful implementation.  
+Edge Analytics integrates smoothly with your existing {{% vendor/name %}} infrastructure and analytics tools. Our structured onboarding process includes dedicated technical sessions, staged deployment, and continuous support to ensure successful implementation.  
 
 **Learn more about expected setup steps [here](https://www.edgee.cloud/docs/getting-started).**
 
