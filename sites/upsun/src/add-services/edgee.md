@@ -5,7 +5,7 @@ description: |
   Learn about Edge Analytics, brought to you through the {{% vendor/name %}} partnership with Edgee.
 partner: true
 ---
-
+<!-- vale off -->
 Edge Analytics enables enterprises to collect analytics data at the edge, rather than in the browser. This approach helps prevent data loss caused by ad blockers, privacy restrictions, or performance limitations. 
 
 Built on Edgee’s open-source technology and Upsun’s global CDN and edge infrastructure, it delivers analytics in a privacy-compliant manner without impacting website performance. 
@@ -40,3 +40,4 @@ Pricing is usage-based, determined by the number of requests, events tracked, an
 {{< note theme="note" title="FAQ">}}
 For more information, read the FAQ posted on the [Edgee website here](https://www.edgee.cloud/docs/introduction/faq). 
 {{< /note >}}
+<!-- vale on -->
