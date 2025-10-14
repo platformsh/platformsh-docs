@@ -235,7 +235,7 @@ Instead of stopping services before updating, a temporary copy of your applicati
 {{< note theme="warning" >}} 
 During the Zero Downtime Deployment process, both the old and new containers run simultaneously for a short period.
 You could be temporarily be billed for extra resources while both versions are active.
-- If your app uses fewer resources and has a short build time, additional costs will be minimal.
+- If your app uses fewer resources and has a short deploy hook time, additional costs will be minimal.
 - If your app uses larger resources and takes longer to build, expect proportionally higher temporary costs.
 {{< /note >}}
 
