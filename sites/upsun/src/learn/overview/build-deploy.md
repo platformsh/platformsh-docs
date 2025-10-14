@@ -261,7 +261,7 @@ You could be temporarily be billed for extra resources while both versions are a
 | **Deployment speed** | Fast | Slightly longer |
 | **Resource usage** | Standard | Higher temporarily (due to parallel services) |
 | **Process** | Stop services → deploy updates → start services | Deploy temporary services → switch traffic → update original services → remove temporary services |
-| **Best for** | Simple apps, quick updates | Apps requiring uninterrupted availability |
+| **Best for** | Small apps, quick updates | Apps requiring uninterrupted availability |
 | **Limitations** | Causes downtime/freezetime | Longer deploy time, higher temporary resource use |
 
 {{< note theme="warning" >}}
