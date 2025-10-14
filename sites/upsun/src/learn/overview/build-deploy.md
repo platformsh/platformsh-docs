@@ -353,7 +353,7 @@ For example, if your framework needs several seconds to initialize (e.g. buildin
 
 ### Deployment fails midway
 
-If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an unintented increase in resource usage and costs.
+If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an increase in resource usage and costs.
 
 {{< note theme="info" title="Redeploy manually">}}
 After a failed or interrupted deployment, check your environment’s running containers and [redeploy manually](#manual-deployment) to ensure no duplicates remain active. This helps prevent hidden resource consumption.
