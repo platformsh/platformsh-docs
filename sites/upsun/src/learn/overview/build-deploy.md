@@ -280,7 +280,7 @@ You could be temporarily be billed for extra resources while both versions are a
 | Code pushes | Suitable |
 | Config or environment variable changes | Suitable |
 | Stateful services (databases, caches) | Not suitable |
-| DB schema migrations | Not suitable _(except if updates are backward or forward compatible)_ | |
+| DB schema migrations | Not suitable _(except if updates are backward and forward compatible)_ | |
 
 ## How to use Zero Downtime Deployments
 
