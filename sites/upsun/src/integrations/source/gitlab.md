@@ -143,7 +143,7 @@ Instead, [set up a push-based GitLab CI/CD pipeline](https://devcenter.upsun.com
 
 {{< note theme="tip" title="Detailed walkthrough" >}}
 
-For a detailed walkthrough of how this works, with code samples and rationale, see this blog post: [Synchronize your air-gapped GitLab](https://devcenter.upsun.com/posts/gitlab-push-solution/).
+For a detailed tutorial of how this works, with code samples and rationale, see this blog post: [Synchronize your air-gapped GitLab](https://devcenter.upsun.com/posts/gitlab-push-solution/).
 
 You can also find a complete working example of how this works in the {{% vendor/name %}} [GitHub snippets repository](https://github.com/upsun-snippets/gitlab-ci).
 
