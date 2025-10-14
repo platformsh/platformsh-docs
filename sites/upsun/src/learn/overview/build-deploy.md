@@ -221,7 +221,7 @@ Instead of stopping services before updating, a temporary copy of your applicati
 
 - {{% vendor/name %}} starts a temporary container running a cloned version of your app.
 - The cloned app begins handling all live traffic during this time.
-- Your services (eg. Redis) will serve the cloned app as well as the original app.
+- Your services (for example Redis) will serve the cloned app as well as the original app.
 
 ![A duplicate is made of your current application](/images/ZDD/ZDD-1.jpg "0.4")
 
