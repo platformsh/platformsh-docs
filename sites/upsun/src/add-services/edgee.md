@@ -18,10 +18,13 @@ Edge Analytics integrates with platforms such as GA4, Amplitude, and Segment, pr
 
 ## Setup Edgee
 Edge Analytics integrates smoothly with your existing Platform.sh infrastructure and analytics tools. Our structured onboarding process includes dedicated technical sessions, staged deployment, and continuous support to ensure successful implementation.  
-Learn more about expected setup steps [here](https://www.edgee.cloud/docs/getting-started). 
+
+**Learn more about expected setup steps [here](https://www.edgee.cloud/docs/getting-started).**
 
 ## Configuration options
-Choose between cookieless and cookie-based user identification. Learn more on which option is best for you based on Edgee documentation [here](https://www.edgee.cloud/docs/services/overview#cookieless-mode).  
+Choose between cookieless and cookie-based user identification. 
+
+**Learn more on which option is best for you based on Edgee documentation [here](https://www.edgee.cloud/docs/services/overview#cookieless-mode).**
 
 ## Pricing
 Edgee is available as an add-on, offering two flexible plans designed to suit your needs.
