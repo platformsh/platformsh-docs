@@ -15,7 +15,7 @@ body:
     id: description
     attributes:
       label: Feature details
-      description: Please include a description that can be shared publicly at this point. The DevRel team will follow-up to create a documentation sync schedule ahead of delivery.
+      description: Please include a description that can be shared PUBLICLY at this point. The DevRel team will follow-up to create a documentation sync schedule ahead of delivery.
       placeholder: |
         Please edit this line with a few sentences publicly describing the feature. 
   - type: dropdown
@@ -27,8 +27,8 @@ body:
       multiple: true
       description: What product is impacted by the feature? (select all that apply)
       options:
+        - Upsun Flex
         - Upsun Fixed
-        - Upsun
         - Blackfire.io
         - DDEV
       default: 0
