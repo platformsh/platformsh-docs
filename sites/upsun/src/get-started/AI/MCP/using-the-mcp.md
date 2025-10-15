@@ -13,7 +13,7 @@ keywords:
 <!-- vale off -->
 The {{% vendor/name %}} Model Context Protocol [(MCP) Server](https://devcenter.upsun.com/posts/upsun-mcp-announcement/) enables management of {{% vendor/name %}} projects and environments through AI assistants such as Claude. It supports conversational commands to create, modify, and monitor infrastructure without using the terminal or console.
 
-![MCP projects](/images/ai/mcp-projects.png "0.65")
+![MCP projects](/images/AI/mcp-projects.png "0.65")
 
 ## Key capabilities
 
