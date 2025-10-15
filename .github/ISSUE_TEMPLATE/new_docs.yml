@@ -21,6 +21,6 @@ body:
   - type: textarea
     attributes:
       label: Additional context
-      description: Optional: Include other information or screenshots that could help us understand what to document.
+      description: 'Optional: Include other information or screenshots that could help us understand what to document.'
     validations:
       required: false

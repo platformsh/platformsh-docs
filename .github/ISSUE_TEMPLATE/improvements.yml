@@ -30,6 +30,6 @@ body:
   - type: textarea
     attributes:
       label: Additional context
-      description: Optional: Add any other information or screenshots that could help us understand and implement the change.
+      description: 'Optional: Add any other information or screenshots that could help us understand and implement the change.'
     validations:
       required: false
