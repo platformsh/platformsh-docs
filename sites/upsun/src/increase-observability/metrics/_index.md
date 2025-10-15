@@ -71,8 +71,6 @@ Pressure indicates the percentage of time your app’s tasks were delayed due to
 
 **Low pressure with high resource usage** typically means your app is making efficient use of its allocated resources. It's fully utilizing them without significant delays.
 
-![How Pressure metrics work](/images/observability/pressure-flowchart.svg "0.65")
-
 #### Understanding the values
 
 - **0% pressure:** No contention - tasks had immediate access to resources.  
@@ -89,15 +87,12 @@ Pressure below 100%, especially when it fluctuates, does not cause noticeable pe
 
 ### Pressure metrics case study
 
-![Pressure metrics case study](/images/observability/pressure-example.png "0.65")
+If a MariaDB instance shows memory usage above 100% in your metrics dashboard but the CPU pressure metric remains at 0%, this indicates there’s no contention or delay in accessing memory.
 
-This application shows high CPU pressure even though CPU usage hovers around 20%. In this scenario, the app's tasks are competing for CPU cycles with other containers on the same host. Although the app appears to use only a small portion of its allocated CPU, it's frequently waiting for access - a common situation in shared environments.
-
-**What this means:**  
-Traditional usage metrics might suggest the app has plenty of spare capacity, but the pressure metric reveals that it’s actually starved for compute time. This explains why performance might feel slow even when CPU usage looks low.
+Databases such as MariaDB are designed to fully utilize their allocated memory buffers to optimize performance through caching. In this example, the performance constraint is not in the database layer but in the application tier, where CPU pressure is observed instead.
 
 **Key takeaway:**  
-Pressure metrics expose hidden contention at the infrastructure level. They help you distinguish between an app that’s truly idle and one that’s ready to run but waiting on resources.
+High resource usage without corresponding pressure typically reflects efficient resource utilization, not a performance issue. Pressure metrics add valuable context to traditional usage metrics, helping you distinguish between normal resource optimization and genuine bottlenecks.
 
 ## Deployments
 
