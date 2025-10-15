@@ -7,7 +7,7 @@ weight: -40
 
 The {{% vendor/name %}} Model Context Protocol (MCP) Server allows users to perform infrastructure operations, monitor environments, and manage resources using natural language commands. 
 
-**You can set up the {{% vendor/name %}} MCP Server with this [step-by-step guide](/get-started/AI/MCP/using-the-mcp.md).**
+**You can set up the {{% vendor/name %}} MCP Server with this [step-by-step guide](/get-started/ai/mcp/using-the-mcp.html).**
 
 {{< /note >}}
 
