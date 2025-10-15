@@ -85,15 +85,6 @@ Pressure below 100%, especially when it fluctuates, does not cause noticeable pe
 
 {{< /note >}}
 
-### Pressure metrics case study
-
-If a MariaDB instance shows memory usage above 100% in your metrics dashboard but the CPU pressure metric remains at 0%, this indicates there’s no contention or delay in accessing memory.
-
-Databases such as MariaDB are designed to fully utilize their allocated memory buffers to optimize performance through caching. In this example, the performance constraint is not in the database layer but in the application tier, where CPU pressure is observed instead.
-
-**Key takeaway:**  
-High resource usage without corresponding pressure typically reflects efficient resource utilization, not a performance issue. Pressure metrics add valuable context to traditional usage metrics, helping you distinguish between normal resource optimization and genuine bottlenecks.
-
 ## Deployments
 
 Sometimes deployment activities (pushes, merges, syncs) can influence the underlying infrastructure.
