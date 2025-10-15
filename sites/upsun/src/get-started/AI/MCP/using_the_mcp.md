@@ -84,7 +84,7 @@ graph TB
 - Generate a new API token with permissions appropriate for your projects.
 
 ### 2. Configure the MCP Client
-- Configure your MCP client to connect to `[https://mcp.upsun.com/mcp](https://mcp.upsun.com/mcp)`
+- Configure your MCP client to connect to [mcp.upsun.com/mcp](https://mcp.upsun.com/mcp).
 
 ### 3. Connect and Use
 
@@ -104,7 +104,9 @@ The {{% vendor/name %}} MCP server works with all major AI development environme
 
 Go to: `Settings` -> `Cursor Settings` -> `MCP` -> `Add new global MCP server`
 
-Pasting the following configuration into your Cursor `~/.cursor/mcp.json` file is the recommended approach. You may also install in a specific project by creating `.cursor/mcp.json` in your project folder. See [Cursor MCP docs](https://docs.cursor.com/context/model-context-protocol) for more info.
+Pasting the following configuration into your Cursor `~/.cursor/mcp.json` file is the recommended approach. You may also install in a specific project by creating `.cursor/mcp.json` in your project folder. 
+
+See the [Cursor MCP docs](https://docs.cursor.com/context/model-context-protocol) for more info.
 
 #### Cursor Remote Server Connection
 
