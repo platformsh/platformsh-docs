@@ -17,7 +17,7 @@ The {{% vendor/name %}} Model Context Protocol [(MCP) Server](https://devcenter.
 
 ## Key capabilities
 
-| Capability | Description | Use cases                   |
+| Capability | Description | Use case                   |
 |------------|-------------|-----------------------------|
 | **Natural Language Infrastructure Management** | Converts user instructions written in natural language to corresponding API operations. | - “Show me all active environments in my project.” <br> - “Add Redis caching to my staging environment.” |
 | **CI/CD Integration** | Integrates with existing development workflows and interacts with CI/CD pipelines to trigger or respond to automated workflows. | - Trigger deployments from the IDE. <br> - Monitor build progress from documentation tools or chat interfaces. |
