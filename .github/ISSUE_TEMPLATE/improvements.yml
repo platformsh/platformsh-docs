@@ -1,19 +1,19 @@
 name: Improvements
-description: For changes to improve existing content.
+description: For changes to improve existing Upsun Flex and Upsun Fixed content.
 labels:
   - ungroomed
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in helping improve the Upsun Fixed docs!
+        Thanks for your interest in helping improve the Upsun docs!
         Please fill in the fields below so we can understand what changes are needed.
 
   - type: textarea
     attributes:
-      label: Where on fixed.docs.upsun.com should be changed?
-      description: Link to the pages you think should be updated.
-      placeholder: https://fixed.docs.upsun.com/
+      label: Where should the changes be made? 
+      description: Provide the links to the Upsun Flex and/or Upsun Fixed pages you think should be updated.
+      placeholder: https://docs.upsun.com/ and/or https://fixed.docs.upsun.com 
     validations:
       required: true
 
@@ -22,7 +22,7 @@ body:
       label: What exactly should be updated?
       description: |
         - Share as much detail as you can to help us understand the suggestion. 
-        - What is written now that shouldn't be or isn't written that should be?
+        - What needs to be added, removed, or updated? 
         - What do you expect as an outcome?
     validations:
       required: true
@@ -30,6 +30,6 @@ body:
   - type: textarea
     attributes:
       label: Additional context
-      description: Optionally add any other information or screenshots that could help us understand and implement the change.
+      description: 'Optional: Add any other information or screenshots that could help us understand and implement the change.'
     validations:
       required: false
