@@ -84,7 +84,7 @@ graph TB
 - Generate a new API token with permissions appropriate for your projects.
 
 ### 2. Configure the MCP Client
-- Configure your MCP client to connect to [mcp.upsun.com/mcp](https://mcp.upsun.com/mcp).
+- Configure your MCP client to connect to `mcp.upsun.com/mcp`.
 
 ### 3. Connect and Use
 
