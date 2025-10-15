@@ -10,6 +10,12 @@ keywords:
 {{% source-integration/intro source="GitLab" %}}
 {{% source-integration/requirements source="GitLab" %}}
 
+{{< note theme="note" >}}
+
+If your GitLab instance is not accessible from the public internet, configure a [GitLab CI/CD pipeline](#optional-use-a-gitlab-cicd-pipeline) that pushes code to {{% vendor/name %}} and manages environments via the {{% vendor/name %}} API. This method provides full deployment control while keeping your GitLab instance isolated. 
+
+{{< /note >}}
+
 ## 1. Generate a token
 
 To integrate your {{% vendor/name %}} project with an existing GitLab repository,
@@ -121,3 +127,23 @@ To [keep your repository clean](/learn/bestpractices/clean-repository.md) and av
 {{% source-integration/sync-fetch-prune service="GitLab" %}}
 
 {{% source-integration/url source="GitLab" %}}
+
+## Optional: use a GitLab CI/CD pipeline
+
+If your GitLab instance is not accessible from the internet (e.g. air-gapped or behind a firewall), the GitLab integration process outlined above, based on incoming webhooks, might not be the best option to use.
+
+Instead, [set up a push-based GitLab CI/CD pipeline](https://devcenter.upsun.com/posts/gitlab-push-solution/) that pushes code to {{% vendor/name %}} and manages environments using the {{% vendor/name %}} API. This setup allows you to:
+
+- Deploy to production on `main` branch updates
+- Create preview environments for Merge Requests
+- Clean up environments when branches or MRs are removed
+- Keep your GitLab instance fully private
+
+{{< note theme="tip" title="Detailed tutorial" >}}
+
+For a detailed tutorial of how this works, with code samples and rationale, see this blog post: [Synchronize your air-gapped GitLab](https://devcenter.upsun.com/posts/gitlab-push-solution/).
+
+You can also find a complete working example of how this works in the {{% vendor/name %}} [GitHub snippets repository](https://github.com/upsun-snippets/gitlab-ci).
+
+
+{{< /note >}}
