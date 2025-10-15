@@ -6,21 +6,21 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve the Upsun Fixed docs!
-        Please fill in the fields below so we can understand what documentation is needed.
+        Thanks for helping improve the Upsun docs!
+        Please fill in the fields below so we can understand what to document.
 
   - type: textarea
     attributes:
       label: What needs to be documented?
       description: |
         Describe in detail what is missing from the documentation.
-        Include the use case for the missing feature: why people want to use it.
+        For new features, include information such as key use cases, benefits to the user, business problem solved, etc. 
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: Additional context
-      description: Optionally add any other information or screenshots that could help us understand what to document.
+      description: 'Optional: Include other information or screenshots that could help us understand what to document.'
     validations:
       required: false
