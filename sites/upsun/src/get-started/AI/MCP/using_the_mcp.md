@@ -10,7 +10,7 @@ keywords:
     - LLM
     - Claude
 ---
-
+<!-- vale off -->
 The {{% vendor/name %}} Model Context Protocol [(MCP) Server](https://devcenter.upsun.com/posts/upsun-mcp-announcement/) enables management of {{% vendor/name %}} projects and environments through AI assistants such as Claude. It supports conversational commands to create, modify, and monitor infrastructure without using the terminal or console.
 
 ![MCP projects](/images/ai/mcp-projects.png "0.65")
@@ -743,3 +743,4 @@ See [Local and Remote MCPs for Perplexity](https://www.perplexity.ai/help-center
 
 - [Host AI Agents](/get-started/ai/aiagent.html) on {{% vendor/name %}}
 - [Deploy AI](/get-started/ai.html) on {{% vendor/name %}}
+<!-- vale on -->
