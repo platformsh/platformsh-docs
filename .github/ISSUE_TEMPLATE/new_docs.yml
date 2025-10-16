@@ -39,7 +39,7 @@ body:
       label: Docs impact
       description: Where do you believe these docs should be placed? For further comments, use the Additional context field later in this form.
       options:
-        - "Get started materials or framework-specfic guides"
+        - "Get started materials or framework-specific guides"
         - "Learn: tutorials & best practices"
         - "Frameworks (Fixed only)"
         - "Reference > Configure apps"
