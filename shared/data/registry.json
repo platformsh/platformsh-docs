@@ -1247,6 +1247,35 @@
       "deprecated": []
     }
   },
+  "valkey": {
+    "description": "",
+    "repo_name": "valkey",
+    "disk": false,
+    "docs": {
+      "relationship_name": "valkey",
+      "service_name": "valkey",
+      "url": "/add-services/valkey.html"
+    },
+    "endpoint": "http+stats",
+    "min_disk_size": null,
+    "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
+    "name": "Valkey",
+    "runtime": false,
+    "type": "valkey",
+    "versions": {
+      "supported": [
+        "8.0"
+      ],
+      "deprecated": []
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "8.0"
+      ],
+      "deprecated": []
+    }
+  },
   "varnish": {
     "description": "",
     "repo_name": "varnish",
