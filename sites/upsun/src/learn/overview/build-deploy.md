@@ -268,7 +268,7 @@ You could be temporarily be billed for extra resources while both versions are a
 
 {{< note theme="warning" >}}
 
-**Environment type:** Zero Downtime Deployments are only available on Upsun Grid.
+**Environment type:** Zero Downtime Deployments are only available on {{% vendor/name %}} Flex.
 
 **Deployment mode:** Requires [Manual Deployments](#manual-deployment) to be enabled.
 
