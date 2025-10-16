@@ -30,9 +30,9 @@ In your [app configuration](/create-apps/app-reference/single-runtime-image.md),
 
 Connection credentials for Redis, like any service, are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to Elasticsearch into it's own environment variables that can be used by Spring. On {{% vendor/name %}}, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
-```text
-export SPRING_REDIS_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".redisdata[0].host")
-export SPRING_REDIS_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".redisdata[0].port")
+```bash {location=".environment"}
+export SPRING_REDIS_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.redisdata[0].host')"
+export SPRING_REDIS_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.redisdata[0].port')"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 

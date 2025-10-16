@@ -8,7 +8,7 @@
 <!-- Asciinema player: moved to tailwind config.css -->
 
 <!-- Syntax highlighting -->
-{{ $syntaxHighlightingCSS := resources.Get "css/vendor.css" | postCSS | fingerprint }}
+{{ $syntaxHighlightingCSS := resources.Get "css/syntax-highlighting.css" | postCSS | fingerprint }}
 <link rel="stylesheet" href="{{ printf "%s?version=%s" $syntaxHighlightingCSS.RelPermalink $.Site.Params.version }}">
 
 <!-- TailwindCSS files -->

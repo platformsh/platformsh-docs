@@ -3,10 +3,10 @@ title: "Customize WordPress for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your WordPress site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your WordPress site to read from an {{% vendor/name %}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it’s time to make your WordPress site itself ready to run on a {{% vendor/name %}} environment.
+Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it’s time to make your WordPress site itself ready to run on an {{% vendor/name %}} environment.
 
 ## Install the Config Reader
 

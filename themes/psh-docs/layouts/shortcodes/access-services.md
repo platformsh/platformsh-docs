@@ -21,6 +21,8 @@ Consult each of the individual service documentation to see how to retrieve and 
     {{ $suffix = "3-use-the-relationship-in-your-application" }}
 {{ else if eq .File.Path "add-services/qdrant.md" }}
     {{ $suffix = "4-use-the-relationship-in-your-application" }}
+{{ else if eq .File.Path "add-services/edgee.md" }}
+    {{ $suffix = "setup-edgee" }}
 {{ end }}
 - [{{ if .Params.sidebarTitle}}{{ .Params.sidebarTitle }}{{ else }}{{ .Title }}{{ end }}]({{ .RelPermalink }}#{{ $suffix }})
 {{ end }}

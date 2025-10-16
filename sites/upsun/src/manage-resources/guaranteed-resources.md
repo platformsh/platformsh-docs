@@ -2,6 +2,7 @@
 title: Guaranteed resources
 description: Learn how Guaranteed CPU on {{% vendor/name %}} provide dedicated CPU and memory allocations for consistent, high-performance workloads. 
 weight: -50
+newfeature: true
 ---
 
 For applications or services that need to scale to large resources and have performance guarantees, {{% vendor/name %}} offers Guaranteed resources (Guaranteed CPU).

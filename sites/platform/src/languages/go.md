@@ -174,7 +174,7 @@ func main() {
 	p, err := psh.NewPlatformInfo()
 
 	if err != nil {
-		panic("Not in a {{% vendor/name %}} Environment.")
+		panic("Not in an {{% vendor/name %}} Environment.")
 	}
 
 	http.HandleFunc("/bar", func(w http.ResponseWriter, r *http.Request) {

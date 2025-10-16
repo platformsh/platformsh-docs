@@ -10,7 +10,7 @@ description: |
 
 ![Overview of projects in the Console](/images/console/upsun-console-main-view.png "0.6")
 
-This Console offers you ways to manage projects and environments other than the [command line interface (CLI))](../cli/_index.md).
+This Console offers you ways to manage projects and environments other than the [command line interface (CLI)](../cli/_index.md).
 
 ## Project list
 
