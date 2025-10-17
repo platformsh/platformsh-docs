@@ -17,7 +17,12 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-- 8.0
+{{< image-versions image="valkey" status="supported" environment="grid" >}}
+<!-- uncomment this when Upsun deprecates Valkey v8.0 
+{{% deprecated-versions %}}
+
+{{< image-versions image="valkey" status="deprecated" environment="grid" >}}
+-->
 
 ## Service types
 
@@ -56,7 +61,7 @@ VALKEY_REL=valkey
 VALKEY_PATH=
 VALKEY_QUERY={}
 VALKEY_PASSWORD=
-VALKEY_TYPE=valkey:8.0
+VALKEY_TYPE=valkey:{{% latest "valkey" %}}
 VALKEY_PUBLIC=false
 VALKEY_HOST_MAPPED=false
 ```
@@ -86,7 +91,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
       "epoch": 0,
       "rel": "valkey",
       "scheme": "valkey",
-      "type": "valkey:8.0",
+      "type": "valkey:{{% latest "valkey" %}}",
       "public": false
     }
 ```
@@ -128,9 +133,9 @@ To switch from persistent to ephemeral Valkey, set up a new service with a diffe
 - Disk size
 - The amount of memory allocated to the service container
 
-For instance, if your Valkey container has 3072 MB of disk space and 1024 MB of memory,only 512 MB of RAM are actually available to the service (3072/6 = 512).
+For instance, if your Valkey container has 3072 MB of disk space and 1024 MB of memory, only 512 MB of RAM are actually available to the service (3072/6 = 512).
 
-But if your Valkey container has 3072 MB of disk space and 256 MB of memory,only 256 MB of Valkey are actually available to the service (as per the container limit).
+But if your Valkey container has 3072 MB of disk space and 256 MB of memory, only 256 MB of Valkey are actually available to the service (as per the container limit).
 
 {{% /note %}}
 
@@ -291,7 +296,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     valkey:
-      valkey: valkey-persistent: 8.0
+      valkey: valkey-persistent: {{% latest "valkey" %}}"
 ```
 
 <--->
@@ -324,7 +329,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey-persistent: 8.0
+    type: valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
@@ -518,7 +523,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 ```
 
 <--->
@@ -551,7 +556,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
@@ -588,7 +593,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 <--->
 
 +++
@@ -618,7 +623,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
@@ -660,7 +665,7 @@ To customize those cache cleanups, set up an eviction policy such as the followi
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: "valkey:8.0"
+    type: "valkey:{{% latest "valkey" %}}"
     configuration:
       maxmemory_policy: allkeys-lfu
 ```
@@ -762,7 +767,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkeysession:
-    type: "valkey-persistent:8.0"
+    type: "valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 <--->
@@ -807,7 +812,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkeysession:
-    type: "valkey-persistent:8.0"
+    type: "valkey-persistent:{{% latest "valkey" %}}""
 ```
 
 {{< /codetabs >}}
@@ -824,10 +829,9 @@ my_service_name:
 
 with the following:
 
-```
-json
+```json
 my_service_name:
-  type: valkey-persistent:8.0
+  type: valkey-persistent:{{% latest "valkey" %}}"
   disk: 256
 ```
 
