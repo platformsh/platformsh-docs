@@ -662,6 +662,7 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
@@ -675,17 +676,16 @@
       "supported": [
         "24",
         "22",
-        "20",
-        "18"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "20",
-        "19",
-        "18"
+        "19"
       ],
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
