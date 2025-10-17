@@ -68,7 +68,7 @@ if (config.isValidPlatform() && !config.inBuild()) {
   } else {
     // Strapi default local configuration.
     console.log(
-      "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
+      "Not in an {{% vendor/name %}} Environment. Using default local sqlite configuration."
     );
   }
 }

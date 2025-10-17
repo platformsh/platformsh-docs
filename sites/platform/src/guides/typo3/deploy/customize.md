@@ -3,11 +3,11 @@ title: "Customize TYPO3 for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your TYPO3 site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your TYPO3 site to read from an {{% vendor/name %}} environment.
 ---
 
 Now that your code contains all of the configuration to deploy on {{% vendor/name %}},
-it’s time to make your TYPO3 site itself ready to run on a {{% vendor/name %}} environment.
+it’s time to make your TYPO3 site itself ready to run on an {{% vendor/name %}} environment.
 There are a number of additional steps that are either required or recommended,
 depending on how well you want to optimize your site.
 
@@ -179,7 +179,7 @@ Finally, you can start using the {{% vendor/name %}} Configuration Reader librar
 to starting reading from the environment from within your application.
 In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the library to:
 
-- Verify the deployment is occurring on a {{% vendor/name %}} project (`if (!$platformConfig->isValidPlatform())`)
+- Verify the deployment is occurring on an {{% vendor/name %}} project (`if (!$platformConfig->isValidPlatform())`)
 - Verify that it's not running during build,
   when services aren't yet available (`if ($platformConfig->inBuild())`)
 - Set the `PLATFORM_ROUTES_MAIN` environment variable used in `config/sites/main/config.yaml`)

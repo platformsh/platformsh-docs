@@ -13,7 +13,7 @@ For more general information, see how to [troubleshoot development](/development
 If the server is receiving more concurrent requests than it has PHP processes allocated,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] server reached max_children setting (2), consider raising it
 ```
 
@@ -30,7 +30,7 @@ You have two ways to increase the number of workers:
 If your PHP app can't handle the amount of traffic or is slow,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
 ```
 
@@ -62,7 +62,7 @@ Otherwise, you may check if the following options are applicable:
 If your PHP process crashed with a segmentation fault,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
 ```
 
@@ -75,7 +75,7 @@ You might want to use a tool such as [Xdebug](/languages/php/xdebug.md) for quic
 If your PHP process is killed by the kernel,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
 ```
 
@@ -102,7 +102,7 @@ pkill -f php-fpm
 If all PHP workers are busy,
 you encounter a message like the following:
 
-```text {location="/var/log/error.log"}
+```text {location="/var/log/error.log", no-copy="true"}
 connect() to unix:/run/app.sock failed (11: Resource temporarily unavailable)
 ```
 

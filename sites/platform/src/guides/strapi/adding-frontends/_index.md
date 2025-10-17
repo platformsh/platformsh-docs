@@ -50,10 +50,10 @@ If you're planning on deploying a template and following along with these guides
 feel free to move onto the next section.
 
 If you're planning on using the templates and guides to deploy your existing codebase to {{% vendor/name %}},
-you first need to [register for a trial {{% vendor/name %}} account](https://auth.upsun.com/register).
+you first need to [register for a trial {{% vendor/company_name %}} account](https://auth.upsun.com/register).
 If you don't want to sign up initially with your e-mail address,
 you can sign up using an existing GitHub, Bitbucket, or Google account.
-If you choose one of these options, you can set a password for your {{% vendor/name %}} account later.
+If you choose one of these options, you can set a password for your {{% vendor/company_name %}} account later.
 
 After creating an account, you're prompted to create your first project.
 Since you are providing your own code, use the **Blank project** option.

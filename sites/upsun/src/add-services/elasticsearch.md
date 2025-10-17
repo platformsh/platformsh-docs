@@ -109,10 +109,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsearch[0].host')"
+export APP_ELASTICSEARCH_HOST=="$(echo "$RELATIONSHIPS_JSON" | jq -r '.elasticsearch[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -321,13 +321,13 @@ From this, `myapp` can retrieve access credentials to the service through the [r
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export ELASTIC_SCHEME=${ELASTICSEARCH_SCHEME}
-export ELASTIC_HOST=${ELASTICSEARCH_HOST}
-export ELASTIC_PORT=${ELASTICSEARCH_PORT}
+export ELASTIC_SCHEME="${ELASTICSEARCH_SCHEME}"
+export ELASTIC_HOST="${ELASTICSEARCH_HOST}"
+export ELASTIC_PORT="${ELASTICSEARCH_PORT}"
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=${ELASTICSEARCH_USERNAME}
-export ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD}
+export ELASTIC_USERNAME="${ELASTICSEARCH_USERNAME}"
+export ELASTIC_PASSWORD="${ELASTICSEARCH_PASSWORD}"
 export ELASTIC_HOSTS=["$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT"]
 ```
 

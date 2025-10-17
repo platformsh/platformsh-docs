@@ -148,7 +148,7 @@ title= Service environment variables
 Assuming the relationship `postgresql` is configured to grant access to a PostgreSQL service container, you can map the automatically generated environment variable (`POSTGRESQL_HOST`) to whatever your application expects to use:
 
 ```bash {location=".environment"}
-export DB_HOST=$POSTGRESQL_HOST
+export DB_HOST="$POSTGRESQL_HOST"
 ```
 This sets environment variables with the names your app needs,
 and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
@@ -164,7 +164,7 @@ This variable is a base64-encoded JSON object with keys of the relationship name
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
 ```bash {location=".environment"}
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].host')"
 ```
 
 This sets environment variables with names your app needs and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -197,12 +197,12 @@ title= Service environment variables
 +++
 
 ```bash {location=".environment"}
-export DB_HOST=${POSTGRESQL_HOST}
-export DB_PASSWORD=${POSTGRESQL_PASSWORD}
-export DB_USER=${POSTGRESQL_USERNAME}
-export DB_DATABASE=${POSTGRESQL_PATH}
-export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+export DB_HOST="${POSTGRESQL_HOST}"
+export DB_PASSWORD="${POSTGRESQL_PASSWORD}"
+export DB_USER="${POSTGRESQL_USERNAME}"
+export DB_DATABASE="${POSTGRESQL_PATH}"
+export JDBC="jdbc:postgresql://${HOST}/${DATABASE}"
+export JAVA_MEMORY="-Xmx$(jq .info.limits.memory /run/config.json)m"
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 
@@ -219,12 +219,12 @@ This `{{% vendor/prefix %}}_RELATIONSHIPS` variable is a base64-encoded JSON obj
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
 ```bash {location=".environment"}
-export DB_HOST=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
-export DB_PASSWORD=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].password"`
-export DB_USER=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].username"`
-export DB_DATABASE=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].path"`
-export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+export DB_HOST="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].host')"
+export DB_PASSWORD="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].password')"
+export DB_USER="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].username')"
+export DB_DATABASE="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].path')"
+export JDBC="jdbc:postgresql://${HOST}/${DATABASE}"
+export JAVA_MEMORY="-Xmx$(jq .info.limits.memory /run/config.json)m"
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 

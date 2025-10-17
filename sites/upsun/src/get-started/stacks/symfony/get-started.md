@@ -127,7 +127,7 @@ To make changes to your project, follow these steps:
    For example, if you created a Symfony Demo app,
    edit the `templates/default/homepage.html.twig` template and make the following visual changes:
 
-   ```html {location="templates/default/homepage.html.twig"}
+   ```html {location="templates/default/homepage.html.twig", no-copy="true"}
    {% block body %}
        <div class="page-header">
    -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
@@ -149,7 +149,7 @@ To make changes to your project, follow these steps:
    ```bash {location="Terminal"}
    symfony {{% vendor/cli %}}:deploy
    ```
-   
+
    Note that each environment has its own domain name.
    To view the domain name of your new environment, run the following command:
 
