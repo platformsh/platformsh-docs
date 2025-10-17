@@ -60,7 +60,7 @@ To override any part of a property, you have to provide the entire property.
 
 | Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:{{% latest composable %}}"`                                                                                                                                                                                      |
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
 | `stack`              | An array of [Nix packages](#stack)                                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                            |
 | `container_profile`  | A [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles) |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
 | `relationships`      | A dictionary of [relationships](#relationships)                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
@@ -132,20 +132,19 @@ A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, w
 
 Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
 
-<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended.
-The following channels are supported: -->
-
-At this time, channel `{{% latest composable %}}` is supported.
+<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
+<!-- The following channels are supported: -->
+At this time, channel `25.05` is supported.
 
 ### Configure Nix channels
 
 The Nix channel can be configured with the [top-level property `type`](#primary-application-properties).
 
-For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
+For example, to use the Nix channel `25.05`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
 
-type: "composable:{{% latest composable %}}"
+type: "composable:25.05"
 
 ```
 

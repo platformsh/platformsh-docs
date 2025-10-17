@@ -40,7 +40,7 @@ To override any part of a property, you have to provide the entire property.
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
 |--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
-| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:{{% latest composable %}}"`                                                                                                                                                                                      |
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
 | `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                      |
 | `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
 | `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
@@ -112,19 +112,19 @@ A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, w
 Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
 
 <!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
-<-- At this time, channel `{{% latest composable %}}` is supported. -->
+<!-- The following channels are supported: -->
+At this time, channel `25.05` is supported.
 
-At this time, channel `{{% latest composable %}}` is supported.
 
 ### Configure Nix channels
 
 The Nix channel can be configured with the [top-level property `type`](#top-level-properties).
 
-For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
+For example, to use the Nix channel `25.05`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
 
-type: "composable:{{% latest composable %}}"
+type: "composable:25.05"
 
 ```
 
@@ -140,18 +140,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**                        |
-|----------------------------------------------|-----------------|-------------------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
-| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
-| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
-| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
-| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
-| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
-| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
+| **Language**                                 | **Nix package** | **Supported version(s)**             |
+|----------------------------------------------|---------------|----------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
+| [Elixir](/languages/elixir.html)             | `elixir`      | 1.18<br/>1.15<br/>1.14                 |
+| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
+| [Java](/languages/java.html)                 | `java`        | 22<br/>21                              |
+| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 24<br/>22<br/>20<br/>18                |
+| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
+| [PHP](/languages/php.html)                   | `php`         | 8.4<br/>8.3<br/>8.2<br/>8.1            |
+| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.4<br/>3.3<br/>3.2<br/>3.1            |
 
 **Example:**
 
