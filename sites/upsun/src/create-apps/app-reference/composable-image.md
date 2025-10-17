@@ -48,7 +48,7 @@ applications:
             - xsl
             - pdo_sqlite
       - "nodejs@{{% latest "nodejs" %}}"
-      - "python@3.12"
+      - "python@{{% latest python %}}"
     # Additional frontend configuration
 ```
 
@@ -132,8 +132,8 @@ A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, w
 
 Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
 
-<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. 
-The following channels are supported: -->
+<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
+<!-- The following channels are supported: -->
 At this time, channel `25.05` is supported.
 
 ### Configure Nix channels
@@ -160,18 +160,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.18<br/>1.15<br/>1.14                 |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 22<br/>21                              |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 24<br/>22<br/>20<br/>18                |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.4<br/>8.3<br/>8.2<br/>8.1            |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.4<br/>3.3<br/>3.2<br/>3.1            |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -246,14 +246,14 @@ for your PHP extensions.
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
   myapp:
     stack:
-      - "python@3.12"
+      - "python@3.13"
       - "python312Packages.yq" # python package specific
 ```
 
@@ -273,8 +273,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
       - "yq"                   # tool
 ```
 
@@ -295,8 +295,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
   backend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
@@ -331,7 +331,6 @@ commands:
 ```bash
 {{% vendor/cli %}} push --resources-init=manual
 ```
-
 {{% /note %}}
 
 ## Relationships
@@ -1467,8 +1466,8 @@ title=In the Console
 +++
 
 1. In the Console, navigate to your project.
-1. Open the environment where you'd like the crons to run.
-1. Click `Redeploy` next to the cron status of `Paused`.
+2. Open the environment where you'd like the crons to run.
+3. Click `Redeploy` next to the cron status of `Paused`.
 
 <--->
 

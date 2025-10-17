@@ -9,7 +9,7 @@ const save_dir = "src/registry/images/"
 const registry = new psh.RegistryParser(registrySource, saveDir=save_dir);
 
 console.log(`
-### updateExampleConfigFiles.js: Updating example Upsun Fixed configuration yamls.
+### updateExampleConfigFiles.js: Updating example Upsun Flex configuration yamls.
 `);
 
 

@@ -111,8 +111,8 @@ A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, w
 
 Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
 
-<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. 
-The following channels are supported: -->
+<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
+<!-- The following channels are supported: -->
 At this time, channel `25.05` is supported.
 
 
@@ -223,14 +223,14 @@ Note that you can use environment variables or your `php.ini` file to [include f
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="apps"}
 myapp:
   stack:
-    - "python@3.12"
-    - "python312Packages.yq" # python package specific
+    - "python@3.13"
+    - "python313Packages.yq" # python package specific
 ```
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
@@ -248,8 +248,8 @@ myapp:
           - sodium
           - xsl
           - pdo_sqlite
-    - "python@3.12"
-    - "python312Packages.yq" # python package specific
+    - "python@3.13"
+    - "python313Packages.yq" # python package specific
     - "yq"                   # tool
 ```
 
@@ -269,8 +269,8 @@ backend:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
 frontend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
