@@ -34,10 +34,22 @@ jobs:
           cd sites/${{ matrix.site }}
           npm run build:search
 
+      - name: Retrieve Hugo version
+        id: get-hugo-version
+        run: |
+          export siteName="${{ matrix.site }}"
+          if [[ "platform" == "${{ matrix.site }}" ]]; then
+            export siteName="docs"
+          fi
+
+          hugoVersion=$(  yq '.[] | select(.name == env(siteName)) | .variables.env.HUGOVERSION' .platform/applications.yaml)
+
+          echo "hugov=${hugoVersion}" >> $GITHUB_OUTPUT
+
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.125.0'
+          hugo-version: ${{ steps.get-hugo-version.outputs.hugov }}
 
       - name: Build Hugo site
         run: |
