@@ -18,11 +18,12 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="valkey" status="supported" environment="grid" >}}
-<!-- uncomment this when Upsun deprecates Valkey v8.0 
+{{% comment %}} uncomment this when Upsun deprecates Valkey v8.0 {{% /comment %}}
+{{% comment %}}
 {{% deprecated-versions %}}
 
 {{< image-versions image="valkey" status="deprecated" environment="grid" >}}
--->
+{{% /comment %}}
 
 ## Service types
 
