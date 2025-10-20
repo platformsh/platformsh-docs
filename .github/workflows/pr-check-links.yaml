@@ -42,7 +42,7 @@ jobs:
             export siteName="docs"
           fi
 
-          hugoVersion=$(  yq '.[] | select(.name == env(siteName)) | .variables.env.HUGOVERSION' .platform/applications.yaml)
+          hugoVersion=$(yq '.[] | select(.name == env(siteName)) | .variables.env.HUGOVERSION' .platform/applications.yaml)
 
           echo "hugov=${hugoVersion}" >> $GITHUB_OUTPUT
 
