@@ -349,6 +349,16 @@ You can use the `post_start` command to ensure your app is fully active before t
 
 For example, if your framework needs several seconds to initialize (e.g. building caches or database connections), `post_start` can help coordinate the handover so the app receives traffic only when it’s ready.
 
+An example of a `post_start` command waiting for your application would be:
+
+```
+web:
+  commands:
+    post_start: |
+	  date
+	  curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+```
+
 **For more information about the `post_start` command, visit [web commands](/create-apps/app-reference/single-runtime-image.html#web-commands).**
 
 {{< /note >}}
