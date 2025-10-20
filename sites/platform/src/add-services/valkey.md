@@ -597,7 +597,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
 
     web:
       locations:
@@ -642,7 +642,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$VALKEYSSESSION_HOSTNAME" >}}:{{< variable "$VALKEYSSESSION_PORT" >}}"
+        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
 
     web:
       locations:

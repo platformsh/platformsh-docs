@@ -39,43 +39,6 @@
       ]
     }
   },
-  "composable": {
-    "description": "Composable image",
-    "disk": false,
-    "docs": {
-      "relationship_name": null,
-      "service_name": null,
-      "url": "/create-apps/app-reference/composable-image.html",
-      "web": {
-        "upstream": {
-          "socket_family": "tcp",
-          "protocol": "http"
-        },
-        "commands": {
-          "start": ""
-        },
-        "locations": {
-          "/": {
-            "allow": false,
-            "passthru": true
-          }
-        }
-      },
-      "hooks": {
-        "build": [
-        ]
-      }
-    },
-    "endpoint": null,
-    "min_disk_size": null,
-    "name": "Composable image",
-    "repo_name": "composable",
-    "runtime": true,
-    "type": "composable",
-    "versions": "25.05",
-    "deprecated": [],
-    "supported": []
-  },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
     "repo_name": "dotnet",
@@ -699,6 +662,7 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
@@ -710,18 +674,18 @@
         "0.12"
       ],
       "supported": [
+        "24",
         "22",
-        "20",
-        "18"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "20",
-        "19",
-        "18"
+        "19"
       ],
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",

@@ -1,6 +1,2 @@
-{{- $image := index .Site.Data.registry (.Get 0) -}}
-{{- if and (isset $image.versions "supported") ($image.versions.supported) -}}
-{{- index $image.versions.supported 0 -}}
-{{- else -}}
-{{- $image.versions -}}
-{{- end -}}
+{{- $supported := index .Site.Data.registry ( .Get 0 ) "versions" "supported" -}}
+{{- index $supported 0 -}}
