@@ -251,8 +251,8 @@ For example, the following [`.environment` script](#set-variables-via-script) ex
 It uses the `jq` library, which is included in all app containers for this purpose.
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
+export APP_DATABASE_HOST="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].host')"
+export APP_DATABASE_USER="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].username')"
 ```
 
 This sets environment variables with names your app needs and the values from `PLATFORM_RELATIONSHIPS`.

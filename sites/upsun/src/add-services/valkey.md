@@ -95,10 +95,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_VALKEY_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.valkey[0].host')"
+export APP_VALKEY_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.valkey[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -751,7 +751,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${VALKEYSESSION_HOSTNAME}" >}}:{{< variable "${VALKEYSESSION_PORT}" >}}"
 
     web:
       locations:
@@ -796,7 +796,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$VALKEYSSESSION_HOSTNAME" >}}:{{< variable "$VALKEYSSESSION_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${VALKEYSSESSION_HOSTNAME}" >}}:{{< variable "${VALKEYSSESSION_PORT}" >}}"
 
     web:
       locations:

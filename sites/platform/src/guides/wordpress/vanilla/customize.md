@@ -41,18 +41,16 @@ which you can use to define your database connection to the MariaDB container.
 To make each property (username, password, and so on) more accessible to `wp-config.php`,
 you can use the pre-installed `jq` package to clean the object into individual variables.
 
-```text
-# .environment
+```bash {location=".environment"}
+export DB_NAME="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].path')"
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].host')"
+export DB_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].port')"
+export DB_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
+export DB_PASSWORD="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].password')"
 
-export DB_NAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path")
-export DB_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export DB_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].port")
-export DB_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
-export DB_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password")
-
-export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
+export WP_HOME="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')"
 export WP_SITEURL="${WP_HOME}wp"
-export WP_DEBUG_LOG=/var/log/app.log
+export WP_DEBUG_LOG="/var/log/app.log"
 if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ] ; then
     export WP_ENV='development'
 else

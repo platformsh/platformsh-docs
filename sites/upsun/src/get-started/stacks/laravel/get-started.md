@@ -52,7 +52,7 @@ This guide provides instructions for deploying and working with Laravel on {{% v
    To generate the key locally, run `php artisan key:generate`.
    Copy the key from your local `.env` file into `.environment` as follows:
 
-   ```bash  {configFile="env"}
+   ```bash {configFile="env"}
    export APP_KEY="base64:{{< variable "APP_KEY" >}}"
    ```
 

@@ -30,7 +30,7 @@ requests to your environment might look something like this:
 
 If you have only one app container, your repository might look like this:
 
-```text
+```text {no-copy="true"}
 project
 ├── .git
 ├── {{< vendor/configdir >}}

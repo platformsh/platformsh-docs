@@ -170,7 +170,7 @@ It can help to introduce a convention for how you name and structure your enviro
 For each environment, choose a name that represents what the environment is for.
 If you use Agile, for example, you can adopt a naming convention similar to the following:
 
-```text
+```text {no-copy="true"}
 Live
   Sprint1
     Feature1
@@ -184,7 +184,7 @@ Live
 If you prefer splitting your environments per developer and having a specific environment for each task or ticket,
 you can adopt a naming convention similar to the following:
 
-```text
+```text {no-copy="true"}
 Staging
   Developer1
     Ticket-526
