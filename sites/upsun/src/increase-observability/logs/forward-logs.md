@@ -21,8 +21,7 @@ For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsysl
 <--->
 {{% /version/specific %}}
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
-You also need your project to have the capability for log forwarding.
-To get a price quote, [contact Sales](https://upsun.com/contact-us/).
+For pricing information for real-time logs forwarding, refer to the **Observability and performance monitoring** section of the [Upsun pricing page](https://upsun.com/pricing/).
 
 ### Which logs are forwarded?
 When log forwarding is enabled, {{% vendor/name %}} forwards logs sent to journald.  
