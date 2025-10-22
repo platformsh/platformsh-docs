@@ -1,19 +1,32 @@
-name: Improvements
-description: For changes to improve existing content.
+name: 'Docs - Improvements and corrections'
+description: Suggest changes to improve or correct the existing Upsun Flex or Fixed content
 labels:
   - ungroomed
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your interest in helping improve the Platform.sh docs!
-        Please fill in the fields below so we can understand what changes are needed.
+        Please complete the fields below to help us improve the Upsun docs.
+  - type: dropdown
+    id: priority
+    validations:
+      required: true
+    attributes:
+      label: Priority
+      description: How urgent is this update?
+      options:
+        - 1 - Urgent - customers are affected; causes support issues
+        - 2 - Important - inaccurate info needs to be corrected to prevent customer issues
+        - 3 - Not urgent - can be addressed as team bandwidth permits
+        - 4 - Nice-to-have - ideal, but not mandatory
+        - 5 - Unsure - Docs/Advocacy team will assess 
+      default: 2
 
   - type: textarea
     attributes:
-      label: Where on docs.platform.sh should be changed?
-      description: Link to the pages you think should be updated.
-      placeholder: https://docs.platform.sh/
+      label: Where should the changes be made?
+      description: Add the links to the Upsun Flex and/or Upsun Fixed pages you think should be updated.
+      placeholder: https://docs.upsun.com, https://fixed.docs.upsun.com/
     validations:
       required: true
 
@@ -21,15 +34,16 @@ body:
     attributes:
       label: What exactly should be updated?
       description: |
-        - Share as much detail as you can to help us understand the suggestion. 
-        - What is written now that shouldn't be or isn't written that should be?
-        - What do you expect as an outcome?
+        - **Do not** include Upsun-internal information, Slack threads, etc. in this field.
+        - What needs to be added, removed, or updated? Please provide as much detail as possible. 
+        - Include expected outcomes that users will find useful. 
+        - Include additional guidance that prevent unexpected outcomes for users.
     validations:
       required: true
 
   - type: textarea
     attributes:
-      label: Additional context
-      description: Optionally add any other information or screenshots that could help us understand and implement the change.
+      label: 'Optional: Additional context'
+      description: Include other information or screenshots that could help us understand and implement the change.
     validations:
       required: false

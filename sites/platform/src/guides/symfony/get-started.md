@@ -86,7 +86,7 @@ symfony project:set-remote {{< variable "PROJECT_ID" >}}
 To deploy your project, run the following command:
 
 ```bash
-symfony cloud:deploy
+symfony cloud:push
 ```
 
 {{< note title="Tip" >}}
@@ -134,7 +134,7 @@ To make changes to your project, follow these steps:
    For example, if you created a Symfony Demo app,
    edit the `templates/default/homepage.html.twig` template and make the following visual changes:
 
-   ```html {location="templates/default/homepage.html.twig"}
+   ```diff {location="templates/default/homepage.html.twig", no-copy="true"}
    {% block body %}
        <div class="page-header">
    -        <h1>{{ 'title.homepage'|trans|raw }}</h1>
@@ -142,7 +142,6 @@ To make changes to your project, follow these steps:
        </div>
 
        <div class="row">
-
    ```
 
 3. Commit your changes:
@@ -154,7 +153,7 @@ To make changes to your project, follow these steps:
 4. Deploy your changes to the `feat-a` environment:
 
    ```bash
-   symfony cloud:deploy
+   symfony cloud:push
    ```
 
    Note that each environment has its own domain name.
@@ -173,7 +172,7 @@ To make changes to your project, follow these steps:
    git merge feat-a
    symfony environment:delete feat-a
    git branch -d feat-a
-   symfony cloud:deploy
+   symfony cloud:push
    ```
 
    {{< note >}}

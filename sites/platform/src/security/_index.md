@@ -7,7 +7,7 @@ banner:
    title: Note
    body: For more details about the security, and privacy of our products and services, along with information about our
      security certifications like PCI, SOC2, HIPAA, etc. please visit the
-     [Trust Center](https://platform.sh/trust-center/).
+     [Trust Center](https://upsun.com/trust-center/).
 keywords:
 - pen-test
 - penetration test

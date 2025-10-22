@@ -3,11 +3,11 @@ title: "Multiple Drupal sites in a single Project"
 sidebarTitle: "Multi-site"
 toc: false
 description: |
-    {{% vendor/name %}} supports running [multiple applications](/learn/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
+    Run multiple applications within the same project, including two or more Drupal sites.
 weight: -80
 ---
 
-{{% description %}}
+{{% vendor/name %}} supports running [multiple applications](/learn/bestpractices/oneormany.md) in the same project, and these can be two or more Drupal sites.
 
 But they would be separate Drupal instances: they have their assets separate and live their lives apart, and it would be much better for them not to share the same database (though they could).
 

@@ -14,26 +14,22 @@
     "runtime": false,
     "type": "chrome-headless",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86"
+      ],
       "supported": [
         "120",
         "113",
         "95",
-        "91",
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
+        "91"
       ],
       "legacy": [
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
+
       ]
     },
     "versions-dedicated-gen-3": {
@@ -268,6 +264,7 @@
         "1.8"
       ],
       "supported": [
+        "1.25",
         "1.24",
         "1.23",
         "1.22",
@@ -411,20 +408,21 @@
     "type": "mariadb",
     "versions": {
       "deprecated": [
+        "11.2",
+        "11.0",
+        "10.5",
+        "10.4",
+        "10.3",
         "10.2",
         "10.1",
-        "10.3",
         "10.0",
         "5.5"
       ],
       "supported": [
+        "11.8",
         "11.4",
-        "11.2",
-        "11.0",
         "10.11",
-        "10.6",
-        "10.5",
-        "10.4"
+        "10.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -550,7 +548,7 @@
     }
   },
   "mongodb": {
-    "description": "Experimental MongoDB support on Platform.sh",
+    "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
@@ -630,10 +628,10 @@
     "type": "network-storage",
     "versions": {
       "deprecated": [
-        "1.0"
+        "2.0"
       ],
       "supported": [
-        "2.0"
+        "1.0"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -644,7 +642,7 @@
     }
   },
   "nodejs": {
-    "description": "NodeJS service for Platform",
+    "description": "NodeJS service for Upsun Fixed",
     "repo_name": "nodejs",
     "disk": false,
     "docs": {
@@ -664,6 +662,7 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
@@ -675,18 +674,18 @@
         "0.12"
       ],
       "supported": [
+        "24",
         "22",
-        "20",
-        "18"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "20",
-        "19",
-        "18"
+        "19"
       ],
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
@@ -766,7 +765,7 @@
     }
   },
   "php": {
-    "description": "PHP service for Platform.sh.",
+    "description": "PHP service for Upsun Fixed.",
     "repo_name": "php",
     "disk": false,
     "docs": {
@@ -803,7 +802,7 @@
     "versions-dedicated-gen-2": {
       "supported": [
         "8.4",
-        "8.3",     
+        "8.3",
         "8.2",
         "8.1",
         "8.0"
@@ -837,7 +836,7 @@
     }
   },
   "postgresql": {
-    "description": "PostgreSQL service for Platform.sh.",
+    "description": "PostgreSQL service for Upsun Fixed.",
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
@@ -1207,6 +1206,7 @@
         "3.6"
       ],
       "supported": [
+        "9.9",
         "9.6",
         "9.4",
         "9.2",
@@ -1240,6 +1240,35 @@
         "9.2",
         "9.1",
         "8.11"
+      ],
+      "deprecated": []
+    }
+  },
+  "valkey": {
+    "description": "",
+    "repo_name": "valkey",
+    "disk": false,
+    "docs": {
+      "relationship_name": "valkey",
+      "service_name": "valkey",
+      "url": "/add-services/valkey.html"
+    },
+    "endpoint": "http+stats",
+    "min_disk_size": null,
+    "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
+    "name": "Valkey",
+    "runtime": false,
+    "type": "valkey",
+    "versions": {
+      "supported": [
+        "8.0"
+      ],
+      "deprecated": []
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "8.0"
       ],
       "deprecated": []
     }

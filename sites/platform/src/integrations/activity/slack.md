@@ -37,8 +37,13 @@ For formatting more complex messages, see the [Slack messaging documentation](ht
 function sendSlackMessage(title, message) {
   const url = SLACK_URL;
 
+  if (!message) {
+    // No message. Don't send it.
+    return;
+  }
+
   const messageTitle =
-    title + (new Date().getDay() === 5) ? " (On a Friday! :calendar:)" : "";
+    title + ((new Date().getDay() === 5) ? " (On a Friday! :calendar:)" : "");
 
   const color = activity.result === "success" ? "#66c000" : "#ff0000";
 

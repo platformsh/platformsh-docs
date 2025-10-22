@@ -3,10 +3,10 @@ title: "Customize Quarkus for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Quarkus site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your Quarkus site to read from an {{% vendor/name %}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it's time to make your Quarkus site itself ready to run on a {{% vendor/name %}} environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
+Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it's time to make your Quarkus site itself ready to run on an {{% vendor/name %}} environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
 

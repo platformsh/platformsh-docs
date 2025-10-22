@@ -19,7 +19,7 @@ For example, you need the CLI to do the following:
 ## 1. Create a machine user
 
 To safely run automated tasks, first create machine users.
-Each machine user has its own {{% vendor/name %}} account associated with a unique email address.
+Each machine user has its own {{% vendor/company_name %}} account associated with a unique email address.
 You can grant them restrictive [access permissions](../users.md) to handle specific automated tasks.
 For security purposes, create a machine user for each type of task you want to automate.
 
@@ -39,7 +39,7 @@ title=Using the CLI
    Note that you can further [adjust user roles](../users.md#environment-type-roles) depending on your needs and each environment type.
 
 2. In the email invitation, click **Create account**.
-3. To create a {{% vendor/name %}} account for the machine user, click **Sign up** and follow the instructions.
+3. To create an {{% vendor/company_name %}} account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
 +++

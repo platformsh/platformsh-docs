@@ -1,8 +1,8 @@
 # The routes of the project.
 #
 # Each route describes how an incoming URL is going
-# to be processed by Platform.sh.
-# More information: https://docs.platform.sh/define-routes.html
+# to be processed by Upsun Fixed.
+# More information: https://docs.upsun.com/anchors/fixed/routes/
 "https://{default}/":
   type: upstream
   upstream: "app:http"

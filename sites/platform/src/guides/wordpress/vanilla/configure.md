@@ -3,7 +3,7 @@ title: "Configure WordPress for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for WordPress.
+    Review the basics of what makes up an {{% vendor/name %}} project, including its three principle configuration files and how to define them for WordPress.
 ---
 
 {{% guides/config-desc name="WordPress" %}}
@@ -24,7 +24,7 @@ We recommend the latest [MariaDB](/add-services/mysql/_index.md) version for Wor
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
+# to power your Upsun Fixed project.
 
 db:
     type: mariadb:10.4

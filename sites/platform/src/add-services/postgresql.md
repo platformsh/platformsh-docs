@@ -153,7 +153,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -220,7 +220,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   postgresql:
     service: postgresql
@@ -375,8 +375,7 @@ You can choose your locale when a database is created by setting locale-related 
 
 ## Multiple databases
 
-If you are using version `10`, `11`, `12`, `13`, or later of this service,
-it's possible to define multiple databases as well as multiple users with different permissions.
+Support for defining multiple databases and multiple users with different permissions is available in versions `10` and later of this service. 
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 
@@ -427,7 +426,7 @@ Once these endpoints are defined, you need to expose them to your application as
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported:
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   database:
     service: postgresql
     endpoint: admin

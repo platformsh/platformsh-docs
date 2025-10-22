@@ -20,8 +20,6 @@ The latest compatible minor version and patches are applied automatically.
 
 {{< image-versions image="opensearch" status="supported" environment="grid" >}}
 
-You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://docs.opensearch.org/lines/2x.html) and [`1.x`](https://docs.opensearch.org/lines/1x.html) (1.3) release lines.
-
 ## Deprecated versions
 
 The following versions are still available in your projects,
@@ -106,10 +104,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_OPENSEARCH_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.opensearch[0].host')"
+export APP_OPENSEARCH_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.opensearch[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -315,13 +313,13 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export OS_SCHEME=${OPENSEARCH_SCHEME}
-export OS_HOST=${OPENSEARCH_HOST}
-export OS_PORT=${OPENSEARCH_PORT}
+export OS_SCHEME="${OPENSEARCH_SCHEME}"
+export OS_HOST="${OPENSEARCH_HOST}"
+export OS_PORT="${OPENSEARCH_PORT}"
 
 # Surface more common OpenSearch connection string variables for use in app.
-export OS_USERNAME=${OPENSEARCH_USERNAME}
-export OS_PASSWORD=${OPENSEARCH_PASSWORD}
+export OS_USERNAME="${OPENSEARCH_USERNAME}"
+export OS_PASSWORD="${OPENSEARCH_PASSWORD}"
 export OPENSEARCH_HOSTS=[\"$OS_SCHEME://$OS_HOST:$OS_PORT\"]
 ```
 

@@ -9,7 +9,7 @@ You need:
   Push commits to deploy changes and control configuration through YAML files.
   These files describe your infrastructure, making it transparent and version-controlled.
 - A {{ .Site.Params.vendor.name }} account.
-  If you don't already have one, [register for a trial account]({{ .Site.Params.vendor.urls.register }}).
+  If you don't already have one, [register for a trial account](https://auth.upsun.com/register).
   You can sign up with an email address or an existing GitHub, Bitbucket, or Google account.
   If you choose one of these accounts, you can set a password for your {{ .Site.Params.vendor.name }} account later.
 - The {{ if $isSymfony }}[Symfony CLI](https://symfony.com/download){{ else }}[{{ .Site.Params.vendor.name }} CLI](/administration/cli/_index.md){{ end }}.

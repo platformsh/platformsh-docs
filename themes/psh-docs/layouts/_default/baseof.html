@@ -6,13 +6,16 @@
   {{ $currentPage := printf "%s%s" ( .Site.BaseURL ) ( .Page.RelPermalink ) }}
   <body class="bg-white" onload="dataLayer.push({'event': 'datalayer_ready', 'page_category1': '{{ .Section }}', 'page_category2': '{{ .Title | .Page.RenderString }}', 'link_url': '{{ $currentPage }}'});">
 
+    <!-- Announcement Banner -->
+    {{ partial "announcement-banner" . }}
+
     <!-- Header -->
     {{ partial "header/header" . }}
 
     <!--If in the Get started section, define context and methods. -->
     <div class="grid md:grid-cols-10 divide-x-4 mt-24 print:mt-4 print:block print:mx-2"
     {{ if eq .Section "get-started" }}
-      {{ if eq $.Site.Params.vendor.name "Platform.sh" }}
+      {{ if eq $.Site.Params.vendor.name "Upsun Fixed" }}
       x-data="{
         stack: new URLSearchParams(location.search).get('stack') || 'php',
         switchStack(targetStack) {
@@ -85,7 +88,7 @@
           (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
             v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
               o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-            y=e.createElement(n);y.async=!0;y.src='https://cdn.eu.pendo.io/agent/static/'+apiKey+'/pendo.js';
+            y=e.createElement(n);y.async=!0;y.src='https://content.engage.upsun.com/agent/static/'+apiKey+'/pendo.js';
             z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
           pendo.initialize({
             visitor: {
@@ -96,6 +99,20 @@
       }
     </script>
     {{ end }}
+
+    <!-- copy anchor link if click from the same page   -->
+    {{ $script := resources.Get "js/copy-anchor-link.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script src="{{ $script.RelPermalink }}"></script>
+
+    <!-- copy code   -->
+    {{ $script := resources.Get "js/copy-code.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script src="{{ $script.RelPermalink }}"></script>
+
+    <!-- allow to zoom images   -->
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+    {{ $script := resources.Get "js/zoom.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script src="{{ $script.RelPermalink }}"></script>
+
 
   </body>
 </html>

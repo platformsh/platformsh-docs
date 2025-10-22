@@ -10,7 +10,7 @@ description: Configure your project
 To host your application on {{% vendor/name %}}, a configuration file (YAML) is needed to manage the way your application behaves.
 This configuration file is located inside a `.upsun`folder at the root of your source code:
 
-```bash
+```bash {no-copy="true"}
 my-app
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
@@ -25,18 +25,18 @@ To pre-generate these YAML files, run the following command from the root of you
 
 Follow the prompts. The `{{% vendor/cli %}} project:init` command does the following:
 
-- If possible, automatically detects which framework you’re using. If not detected, you are asked which runtime language your codebase is in.
-- Asks if you want to add any services.
+- If possible, automatically detects which framework you’re using. If not detected, you are asked which [runtime language](/languages/_index.md) your codebase is in.
+- Asks if you want to [add any services](/add-services.md).
 - Generates the corresponding `{{% vendor/configfile "app" %}}` and `.environment` files.
 
-The generated configuration varies slightly based on your answers to these prompts and whether a framework is detected.
+The [generated configuration](/create-apps/app-reference/single-runtime-image.md) varies slightly based on your answers to these prompts and whether a framework is detected.
 However, the structure of the configuration file remains similar to the following:
 
 ```yaml {configFile="app"}
 {{< code-link destination="/create-apps/app-reference/single-runtime-image.html" text="applications:" title="Top-level key for all applications" >}}
   # Configuration for all applications within an environment.
   {{< code-link destination="/create-apps/app-reference/single-runtime-image.html" text="myapp:" title="Configuration for a unique application" >}}
-    # configuration for the application 'app'
+    # configuration for the application 'myapp'
 
 {{< code-link destination="/add-services.html" text="services:" title="Top-level key for all services" >}}
   # Configuration for all services within an environment.
@@ -127,6 +127,6 @@ With your deployment finished, you may have noticed that the resources allocated
 Each time you create a new branch, your new environment inherits its parent environment's resource allocation.
 {{% /note %}}
 
-If you need more disk for uploaded files, or less memory for rarely used services, you can [adjust resources](/manage-resources/adjust-resources.md) at any time.
+If you need more disk for [uploaded files](/development/file-transfer.md), or less memory for rarely used [services](/add-services.md), you can [adjust resources](/manage-resources/adjust-resources.md) at any time.
 
 {{< guide-buttons previous="Back" next="Resources" nextLink="/get-started/here/set-resources.md" type="*" >}}

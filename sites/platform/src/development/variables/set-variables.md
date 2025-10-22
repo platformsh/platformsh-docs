@@ -251,8 +251,8 @@ For example, the following [`.environment` script](#set-variables-via-script) ex
 It uses the `jq` library, which is included in all app containers for this purpose.
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
+export APP_DATABASE_HOST="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].host')"
+export APP_DATABASE_USER="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].username')"
 ```
 
 This sets environment variables with names your app needs and the values from `PLATFORM_RELATIONSHIPS`.
@@ -261,7 +261,7 @@ This sets environment variables with names your app needs and the values from `P
 
 Many applications use a `.env` file in the application root for configuration.
 These are useful for local development to set variables without needing them to be global across the development computer.
-Read more about [the use cases for `.env` files](https://platform.sh/blog/2021/we-need-to-talk-about-the-env/).
+Read more about [the use cases for `.env` files](https://upsun.com/blog/what-is-env-file/).
 
 You shouldn't need to use a `.env` file in production.
 Add it to your `.gitignore` file to avoid confusion as its values can vary for each local developer.
