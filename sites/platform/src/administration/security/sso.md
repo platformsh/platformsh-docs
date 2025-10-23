@@ -47,6 +47,6 @@ To resolve that, you need to:
 {{< premium-features/tiered "Elite" >}}
 
 Enforce your users to authenticate with your OpenID Connect (OIDC) provider,
-such as Microsoft (Azure Active Directory), Okta, Ory, and Ping Identity.
+such as Microsoft (Azure Active Directory), Okta, Ory, or Ping Identity.
 To enable SSO with your OIDC provider, please
 [create a Support ticket](https://console.upsun.com/-/users/~/tickets).
