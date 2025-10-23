@@ -96,7 +96,7 @@ Filter by the index name to find the relevant events.
 title=Sumo Logic
 +++
 
-1. In Sumo Logic, [configure an HTTP source](https://help-opensource.sumologic.com/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
+1. In Sumo Logic, [configure an HTTP source](https://www.sumologic.com/help/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 
