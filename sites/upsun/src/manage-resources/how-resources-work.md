@@ -31,11 +31,19 @@ CPU resources can be allocated in two distinct ways. This choice allows you to p
 
 ### Shared CPU (Default)
 
-By default, projects on {{% vendor/name %}} Flex run on **shared hosts**, which means the processing power allocated to your containers can be dependent on resources other customers are using on the same hosts. Our orchestration layer works to ensure stable access to resources when possible, however some variability should be expected due to the shared infrastructure of our regions.
+By default, projects on {{% vendor/name %}} run on a **shared infrastructure**.
+
+Our shared infrastructure is designed to provide CPU performance that typically aligns with the resources you've purchased. However, because this environment is shared among multiple tenants, performance can occasionally vary due to "noisy neighbor" effects — where other workloads on the same physical host temporarily consume more system resources.
+
+In most cases, this variability is short-lived and performance returns to normal levels without intervention. We continuously monitor performance at the regional level to detect and mitigate systemic issues, by constantly balancing containers to hosts that are less busy.
+
+However, if you experience prolonged or recurring performance issues that may be caused by noisy neighbors, please open a support ticket so our team can investigate directly.
+
+If you require fully consistent and isolated performance, we recommend using our [Guaranteed Resources](/manage-resources/guaranteed-resources) offering, which provides [dedicated CPU allocations](#guaranteed-cpu) and eliminates variability from shared usage.
 
 {{< note theme="info" >}}
 
- It should be noted that projects are always kept **strictly isolated** from each other. 
+ It should be noted that projects are always kept **strictly isolated** from each other. This behaviour applies to both [Fixed and Flex](/administration/organizations.md#fixed-and-flex-organizations) projects.
 
 {{< /note >}}
 
