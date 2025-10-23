@@ -128,7 +128,7 @@ Downgrades are performed through the Console and take effect based on the Organi
 
 ## Single sign-on {#single-sign-on}
 
-The Advanced User Management add-on enables you enforce single sign-on (SSO) with Google or the following OpenID Connect (OIDC)–compliant providers: Microsoft (Azure Active Directory), Okta, Ory, and Ping Identity.
+The Advanced User Management add-on enables you to enforce single sign-on (SSO) with Google or the following OpenID Connect (OIDC)–compliant providers: Microsoft (Azure Active Directory), Okta, Ory, and Ping Identity.
 
 As explained previously in this topic, you can [upgrade to this add-on](#upgrade-to-the-advanced-user-management-add-on) directly in the {{% vendor/name %}} console. To learn more about this add-on, contact our [Support team](https://console.upsun.com/-/users/~/tickets/open) or visit the [Upsun pricing](https://upsun.com/pricing/) page.
 
