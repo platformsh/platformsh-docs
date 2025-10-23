@@ -257,11 +257,10 @@ export APP_DATABASE_USER="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq 
 
 This sets environment variables with names your app needs and the values from `PLATFORM_RELATIONSHIPS`.
 
-## Use `.env` files
+## When to use `.env` files {#use-env-files}
 
-Many applications use a `.env` file in the application root for configuration.
-These are useful for local development to set variables without needing them to be global across the development computer.
+Upsun does not read `.env files`, as conventionally they are not committed to Git. You can use these for local
+development, but they will not be sourced on any Upsun environment. Typically, you can add `.env` to your .gitignore
+file so that its contents can vary for different developers.
+
 Read more about [the use cases for `.env` files](https://upsun.com/blog/what-is-env-file/).
-
-You shouldn't need to use a `.env` file in production.
-Add it to your `.gitignore` file to avoid confusion as its values can vary for each local developer.
