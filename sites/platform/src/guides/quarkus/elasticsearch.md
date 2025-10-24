@@ -15,7 +15,7 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Elasticsearch service
 
-In your [service configuration](../../add-services/_index.md), include Elasticsearch with a [valid supported version](../../add-services/elasticsearch.md):
+In your [service configuration](/add-services/_index.md), include Elasticsearch with a [valid supported version](/add-services/elasticsearch.md):
 
 {{< readFile file="registry/images/examples/full/elasticsearch.services.yaml" highlight="yaml" configFile="services" >}}
 
@@ -29,11 +29,11 @@ In your [app configuration](/create-apps/app-reference/single-runtime-image.md),
 
 Connection credentials for Elasticsearch, like any service, are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to Elasticsearch into it's own environment variables that can be used by Quarkus. On {{% vendor/name %}}, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
-```text
-export ES_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".essearch[0].host")
-export ES_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".essearch[0].port")
-export QUARKUS_HIBERNATE_SEARCH_ELASTICSEARCH_HOSTS=${ES_HOST}:${ES_PORT}
-export QUARKUS_HTTP_PORT=$PORT
+```bash {location=".environment"}
+export ES_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.essearch[0].host')"
+export ES_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.essearch[0].port')"
+export QUARKUS_HIBERNATE_SEARCH_ELASTICSEARCH_HOSTS="${ES_HOST}:${ES_PORT}"
+export QUARKUS_HTTP_PORT="${PORT}"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 

@@ -16,7 +16,7 @@ The Symfony integration is automatically enabled when:
 - You run `symfony project:init --{{% vendor/cli %}}` on an existing project to automatically
   generate the {{% vendor/name %}} configuration
 
-If you already have a {{% vendor/name %}} configuration without the Symfony
+If you already have an {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
 ```yaml {configFile="app"}
@@ -41,16 +41,16 @@ The **configurator** enables the following integration:
 - It adds some [extra tools](#tools)
 
 - It defines [additional infrastructure environment
-variables](/get-started/stacks/symfony/environment-variables#symfony-environment-variables) and
+variables](/get-started/stacks/symfony/environment-variables.md#symfony-environment-variables) and
 [environment variables for all
-services](/get-started/stacks/symfony/environment-variables#service-environment-variables)
+services](/get-started/stacks/symfony/environment-variables.md#service-environment-variables)
 
 ## Tools
 
 The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator | bash`) is a script specially crafted for {{% vendor/name %}}.
 It ensures that projects are always using the latest version of the following tools:
 
-- [croncape](/get-started/stacks/symfony/crons#use-croncape) for cron feedback
+- [croncape](/get-started/stacks/symfony/crons.md#use-croncape) for cron feedback
 - [Symfony CLI](https://symfony.com/download)
 - [Composer](https://getcomposer.org/download/)
 
@@ -89,7 +89,7 @@ To have your hooks fail on the first failed command, start your scripts with `se
 
 {{< /note >}}
 
-For more information, see [Hooks](/create-apps/hooks/hooks-comparison).
+For more information, see [Hooks](/create-apps/hooks/hooks-comparison.md).
 
 To gain a better understanding of how hooks relate to each other when building and deploying an app,
 see the [{{% vendor/name %}} philosophy](/learn/overview/philosophy.md).
@@ -230,7 +230,7 @@ applications:
 
         # Setup everything to use the Node installation
         unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${SPLATFORM_APP_DIR}/.nvm
+        export NVM_DIR="${SPLATFORM_APP_DIR}/.nvm"
         set +x && . "${NVM_DIR}/nvm.sh" use --lts && set -x
         # Starting from here, everything is setup to use the same Node
         yarn encore dev
@@ -252,7 +252,7 @@ applications:
 
         cd web/js_app
         unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
+        export NVM_DIR="${PLATFORM_APP_DIR}/.nvm"
 
         NODE_VERSION=8 yarn-install
 

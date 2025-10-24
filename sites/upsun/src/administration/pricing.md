@@ -4,7 +4,7 @@ weight: 1
 description: Understand how {{% vendor/name %}} pricing works.
 ---
 
-{{% vendor/name %}} offers flexible, usage-based [pricing](https://upsun.com/pricing/) for organizations and projects.
+{{% vendor/name %}} offers flexible, predictable [pricing](https://upsun.com/pricing/) for organizations and projects.
 
 {{< note theme="info" >}}
 
@@ -19,7 +19,7 @@ In general, there are four main dimensions that determine the cost of work on {{
 
 |  Pricing dimension  |  Details  |
 |---|---|
-|  Project fees |  An individual project on {{% vendor/name %}} comes with a consistent monthly cost. The cost includes all of the orchestration and provisioning characteristics that define the {{% vendor/name %}} PaaS.<br/><br/>It comes with some baseline features and feature limits, such as infrastructure metrics and a certain number of build minutes. Individual preview environments do not come with their own associated creation cost - you are charged only for the resources those preview environments use during their lifespan (see next row).  |
+|  Project fees |  An individual project on {{% vendor/name %}} comes with a consistent monthly cost. The cost includes all of the orchestration and provisioning characteristics that define the {{% vendor/name %}} platform.<br/><br/>It comes with some baseline features and feature limits, such as infrastructure metrics and a certain number of build minutes. Individual preview environments do not come with their own associated creation cost - you are charged only for the resources those preview environments use during their lifespan (see next row).  |
 |  [Project resources](/manage-resources.md) | Deploying on {{% vendor/name %}} allows you fine-grained control over the amount of resources allocated for your application and service containers. CPU, memory, and disk (including backup disk) are calculated across each organization, project, and environment to determine your overall usage for a billing period.   |
 |  [User licenses](/administration/users.md) | Each organization user comes with a license fee. Users can be given different levels of access to singular projects within an organization, or to multiple projects, without changing that license fee. There are two exceptions which are not charged the license fee: Viewers and Viewers who Manage Billing. There are no limits to the number of users you can have in an organization.|
 |  Feature add-ons |  There are additional features that can be added to the organization that come with their own cost. Few of these are available immediately during the Beta phase, but more will be added.  |
@@ -31,7 +31,18 @@ You can also [set billing alerts](/administration/billing/monitor-billing.html#m
 
 ## Dunning process
 
-In instances where a payment has failed, your organization will be immediately restricted. Upsun will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. If your payment fails after the third attempt on the 11th, your organization will be suspended the following day.
+If a payment fails, your organization will be immediately restricted. Upsun will proceed to make three separate attempts to take the outstanding balance from your account. These attempts will be made on the 4th, 6th and 11th of the month. If your payment fails after the third attempt on the 11th, your organization will be suspended the following day.
+
+When an organization is restricted or suspended, the following applies:
+
+- Access to `/projects/{project_id}/user-access` and `/users/{user_id}/project-access` will be denied.  
+- Access to `/projects/{project_id}/team-access` and `/teams/{user_id}/project-access` will be denied.  
+- Access to `/projects/{project_id}/access` and its subresources will be denied.  
+- Projects cannot be transferred to a restricted organization.  
+- Editing or deleting the organization is not allowed.  
+- Creating or deleting members is forbidden.  
+- Editing member permissions is allowed only to add the billing permission - no permissions can be removed.  
+- Access to all account proxy endpoints requiring `plans` or `project:create` permissions is denied, so creating or editing subscriptions at the organization level is forbidden.
 
 If you are a new Upsun customer and your first payment has failed, your projects will be deleted on the 13th - two days after the final payment attempt.
 

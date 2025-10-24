@@ -155,9 +155,9 @@ URLs in [preview environments](../glossary/_index.md#preview-environment) (devel
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.
 
-In any case, you get the same URL for a `feature` environment:
+In any case, you get the same URL for an environment named `feature`:
 
-```txt
+```txt {no-copy="true"}
 https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 
@@ -217,7 +217,7 @@ If you have configured `example.com` as your default domain,
 HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
 
 It also works on preview environments.
-If you have a `feature` branch, it's `{default}` domain looks something like:
+If you have a branch named `feature`, it's `{default}` domain looks something like:
 `feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` (depending on the project's region).
 So requests to `blog.feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` and `us.feature-def123-vmwklxcpbi6zq.eu.{{< vendor/urlraw "host" >}}`
 are both routed to the same endpoint.
@@ -255,10 +255,10 @@ routes:
     upstream: 'app2:http'
 ```
 
-To see the generated routes on your `feature` environment, run:
+To see the generated routes on your environment named `feature`, run:
 
 ```bash
-{{% vendor/cli %}} ssh -e feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
+{{% vendor/cli %}} ssh --environment feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
 ```
 
 The result is something like this:
@@ -360,7 +360,7 @@ You can configure each route separately with the following properties:
 | Name         | Type      | Required                | Description |
 | ------------ | --------- | ----------------------- | ----------- |
 | `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](/define-routes/proxy.md).</li></ul> |
-| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../create-apps/_index.md)) followed by `:http`. Example: `app:http` |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](/create-apps/_index.md)) followed by `:http`. Example: `app:http` |
 | `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
 | `ssi`        | `boolean` | No                      | Whether [server side includes](/define-routes/ssi.md) are enabled. |
 | `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](/define-routes/redirects.md). |

@@ -18,11 +18,6 @@ but are available for Grid environments (such as your preview environments).
 
 ![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-2 %}} environments](/images/metrics/dg2-dashboard.png "0.45")
 
-[{{% names/dedicated-gen-3 %}} environments](/dedicated-environments/dedicated-gen-3/_index.md): each of the three hosts and their average.
-These metrics are available for all of your {{% names/dedicated-gen-3 %}} environments.
-
-![A screenshot of what the metrics dashboard displays for {{% names/dedicated-gen-3 %}} environments](/images/metrics/dg3-dashboard.png "0.45")
-
 Grid environments: your service, app, and worker containers.
 These metrics are available for all of your Grid environments.
 
@@ -37,12 +32,6 @@ All of the graphs show color-coded lines for the following thresholds:
 - Usage that crosses _90%_ results.
 - Usage that crosses _50%_ results.
 
-On {{% names/dedicated-gen-3 %}} and Grid environments, usage that crosses _100%_ will mean that you have crossed into a **burst** state.
-
-The burst capability is available for containerized environments and allows a container to get more resources than it's allocated. Burst is considered useful for infrequent activities that cause usage spikes.
-
-On the Grid, resources are shared between customers, so these additional resources aren't guaranteed and burst can only be temporary. On {{% names/dedicated-gen-3 %}}, resources are dedicated to a single customer, but they're shared between services. Therefore, burst is allowed until the dedicated resource usage is exceeded.
-
 ### Recommendations
 
 The default thresholds aim to give you an idea of when your hosts/containers are close to running out of resources. The impact differs based on your specific apps and service.
@@ -53,25 +42,8 @@ For {{% names/dedicated-gen-2 %}} environments, the thresholds are set for each 
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
-* [Increasing your plan](../../administration/pricing/_index.md)
-
-#### {{% names/dedicated-gen-3 %}} environments
-
-For {{% names/dedicated-gen-3 %}} environments, the thresholds are set for each container.
-
-If you have one container in a temporary burst state but your host still has plenty of available resources, it might not be an issue as long as the site is functioning properly. Burst allows your container to use additional resources when they aren't needed elsewhere.
-
-If you have a container in a prolonged burst state, you might want to consider:
-
-* [Optimizing your code](../integrate-observability/_index.md)
-* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../administration/pricing/_index.md)
-
-You can reallocate your existing resources if other containers have resources they aren't using.
-
-If you have multiple containers in a burst state, review your configuration or plan size.
+* [Optimizing your code](/increase-observability/_index.md) (if possible)
+* [Increasing your plan](/administration/pricing/_index.md)
 
 #### Grid environments
 
@@ -79,17 +51,10 @@ For Grid environments, the thresholds are set for each container.
 If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
-* [Optimizing your code](../integrate-observability/_index.md) (if possible)
+* [Optimizing your code](/increase-observability/_index.md) (if possible)
 * Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
-  or [service size](../../add-services/_index.md#size)
-* [Increasing your plan](../../administration/pricing/_index.md)
-
-Review your configuration or plan size if your containers are in a prolonged burst
-state, because burst isn't guaranteed for long periods.
-
-If the burst threshold is triggered for short, infrequent activities,
-it might not be an issue as long as the site is functioning properly.
-Burst allows your container to use additional resources when they aren't required on the container's host.
+  or [service size](/add-services/_index.md#size)
+* [Increasing your plan](/administration/pricing/_index.md)
 
 ## Time intervals
 
@@ -124,6 +89,34 @@ These data should help you understand trends over time
 and whether a given measurement is normal, something that occurs occasionally, or a true anomaly.
 
 To see data over a given time frame, use the date picker to select the range to display.
+
+## Pressure metrics
+
+CPU pressure is available in your metrics dashboard alongside existing resource metrics such as CPU, memory, and disk usage. This metric helps you spot hidden performance bottlenecks, especially in shared environments where multiple containers compete for resources.
+
+### What is Pressure?
+
+Pressure indicates the percentage of time your app’s tasks were delayed due to resource contention. This means they needed CPU, memory, or disk access but had to wait because those resources were fully occupied. For example, 6.8% pressure means that tasks were blocked from making progress for 6.8% of that period of time. 
+
+### How to understand Pressure
+
+**High pressure** indicates performance bottlenecks, which means that your app's tasks are frequently waiting for access to resources, even if overall usage appears normal.
+
+**Low pressure with high resource usage** typically means your app is making efficient use of its allocated resources. It's fully utilizing them without significant delays.
+
+#### Understanding the values
+
+- **0% pressure:** No contention - tasks had immediate access to resources.  
+- **0–100% pressure:** During each second of measurement, the application experienced contention for that percentage of time.  
+- **>100% pressure:** The app is consistently demanding more resources than are available. 
+
+For example, 200% CPU pressure with one CPU already at 100% utilization suggests the app would need roughly three CPUs in total to eliminate contention.
+
+{{< note theme="info" title="Pressure below 100%">}}
+
+Pressure below 100%, especially when it fluctuates, does not cause noticeable performance issues.
+
+{{< /note >}}
 
 ## Deployments
 

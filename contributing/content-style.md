@@ -1,16 +1,14 @@
-# Platform.sh Docs content style guide
+# Upsun (formerly Platform.sh) Docs content style guide
 
-Thank you for your interest in contributing to the Platform.sh docs!
+Thank you for your interest in contributing to the Upsun docs!
 It's nice to share the goal of having clear and up-to-date documentation.
 
-This content style guide should help make sure the Platform.sh docs are clear and consistent.
-It's intended for use by all contributors,
-from Platform.sh engineers to people from the community.
+This content style guide should help make sure the Upsun product docs are clear and consistent. It's intended for use by all contributors, from Upsun engineers to people from the community.
 
 <!-- vale Platform.condescending = NO -->
 ## Table of contents
 
-- [Platform.sh Docs content style guide](#platformsh-docs-content-style-guide)
+- [Upsun Docs content style guide](#platformsh-docs-content-style-guide)
   - [Table of contents](#table-of-contents)
   - [About the audience](#about-the-audience)
   - [Style defaults](#style-defaults)
@@ -19,6 +17,7 @@ from Platform.sh engineers to people from the community.
   - [Use inclusive language](#use-inclusive-language)
     - [Resources for inclusive language](#resources-for-inclusive-language)
     - [Use meaningful link text](#use-meaningful-link-text)
+    - [Use imperative verbs](#use-verbs-imperatives-for-headings-and-section-titles)
     - [Link at the end of sentences in sentence case](#link-at-the-end-of-sentences-in-sentence-case)
     - [Minimize distractions](#minimize-distractions)
     - [Include alt text](#include-alt-text)
@@ -34,17 +33,17 @@ from Platform.sh engineers to people from the community.
     - [Make commands work across shells](#make-commands-work-across-shells)
   - [Use notes appropriately](#use-notes-appropriately)
   - [Add short descriptions](#add-short-descriptions)
+  - [Use shortcodes for latest versions and dates](#use-shortcodes-for-versions-and-dates)
   - [Guidance enforcement](#guidance-enforcement)
 <!-- vale Platform.condescending = YES -->
 
 ## About the audience
 
-The goal of Platform.sh's documentation is to help tech-savvy users self-educate
-on how to use and get the most out of Platform.sh.
-Readers are generally familiar with common web development tools and practices
-(such as Git, branching, web servers, and databases),
-but not necessarily with server administration.
-Make sure to provide enough context, potentially by linking to existing resources elsewhere.
+The goal of Upsun's documentation is to help tech-savvy users self-educate on how to use and get the most out of their Upsun products.
+
+Readers are generally familiar with common web development tools and practices, but it's best not to assume an in-depth knowledge of processes related to the Upsun Fixed or Upsun Flex products. Remember, our audience may be comprised of more than developers, so try to explain concepts as simply as possible.
+
+Make sure to provide enough context, potentially by linking to existing resources elsewhere. Try to include as many examples as you sit fit to demonstrate the process you're taking the user through.
 
 ## Style defaults
 
@@ -53,20 +52,18 @@ If you come across something not addressed here,
 look for guidance in the [Google developer documentation style guide](https://developers.google.com/style).
 For a quick summary of that guide, see the [Google style guide highlights](https://developers.google.com/style/highlights).
 
-Platform.sh docs should be in standard U.S. spelling,
+Upsun docs use standard U.S. spelling,
 with reference to the [Merriam-Webster dictionary](https://www.merriam-webster.com/).
 
-The name of the company is always written as "Platform.sh", not only "Platform".
-It shouldn't be used as a link.
+The name of the company is always written as "Upsun".
 
 ## Address the reader directly
 
-In keeping with the Platform.sh value that to "tell it like it is",
+In keeping with the Upsun value that is to "tell it like it is",
 focus texts on readers and talk to them directly.
 
 This means using the second person ("you") and telling them what to do.
-Unless you have a very good reason (such as an action that has to be done by Platform.sh manually),
-avoid the first person ("we", "us", and "our").
+Unless you have a very good reason (such as an action that must be completed manually by someone at Upsun), avoid the first person ("we", "us", and "our").
 
 Use                                              | Avoid 
 -------------------------------------------------|-------
@@ -75,10 +72,17 @@ To get started quickly, use the default settings | We recommend that you use the
 Once you add the file to your repository         | Once we've added the file to our repository
 
 Part of this directness is also avoiding using `please`.
-Only use `please` if you're asking for something that benefits Platform.sh
+Only use `please` if you're asking for something that benefits Upsun
 or inconveniences the reader.
 
-So it's OK in phrases like `If you get an error, please open a support ticket.`
+So it's okay in phrases like `If you get an error, please open a support ticket.`
+
+{{< note theme="info" title="Using first person in articles" >}}
+ It should be noted that the first person plural ("we", "us", and "our") can be used in articles on DevCenter. The style of this content is more conversational in tone, and suits the use of the collective first person when guiding the user through a process.
+ For example, the sentences below are acceptable for articles:
+ - 'Our content will be loaded directly in the assistant on OpenAI.'
+ - 'Now that our Chainlit application is deployed and available, it would be great to add some form of authentication to make sure only you and your folks can access it.'
+   {{< /note >}}
 
 ## Aim for neutral text
 
@@ -91,9 +95,15 @@ Use                                             | Avoid
 Be careful not to break anything                | Of course, you naturally have to avoid breaking anything
 Making this small change can have large effects | Surprisingly, making this tiny change can have huge effects
 
+   {{< note theme="info" title="Using neutral text in articles" >}}
+
+ It should be noted that the technical articles on DevCenter are allowed less neutrality than the documentation, as this content is naturally more conversational in tone. 
+
+   {{< /note >}}
+
 ## Use inclusive language
 
-In keeping with the Platform.sh value of being diverse,
+In keeping with the Upsun value of being diverse,
 use language that welcomes everyone and excludes no one.
 
 Use                                                      | Avoid 
@@ -119,7 +129,6 @@ To make your content as accessible as possible, the purpose of a link should be 
 Avoid links with text like `click here`
 and instead try to include meaning inside the link itself.
 
-Remember to use the [proper format for links](./markup-format.md#links)
 
 The supporting documentation for the Web Content Accessibility Guidelines
 explains [why link purpose in the text alone is good](https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only).
@@ -128,10 +137,19 @@ Use                                                        | Avoid
 -----------------------------------------------------------|-------
 Read more information [about images](https://example.com)  | For more info on images, [click here](https://example.com)
 
+### Use root format for links
+
+Always define links from the root of the `sites/upsun/src` folder.
+
+Use                                                        | Avoid 
+-----------------------------------------------------------|-------
+'/development/variables/set-variables.md#set-variables-via-script'  | './set-variables.md#set-variables-in-your-app'
+
+Formatting our links this way allows for our content to easily be converted to markdown. It also allows our content to be easily interpreted by any large language models that might be used. This is a way of ensuring our content remains AI-friendly.
+
 ### Link at the end of sentences in sentence case
 
-Readers often scan through text looking for links and other important information.
-Having links in the middle of sentences can make them harder to parse.
+Readers often scan through text looking for links and other important information. Having links in the middle of sentences can make them harder to parse.
 
 Put links at the end of sentences and keep them in sentence case.
 
@@ -139,6 +157,26 @@ Use                                                                     | Avoid
 ----------------------------------------------------------------------- |-------
 To learn how to set it up, read about [services](https://example.com).  | Reading about [Services](https://example.com) shows you how to set it up.
 For more information, see how to [configure apps](https://example.com). | For more information, see [Configure apps](https://example.com).
+
+### Use verbs (imperatives) for headings and section titles
+
+To maintain a clear and authoritative tone, use imperative verbs (the base form of the verb) rather than gerunds (*-ing*) in headings and section titles.
+
+This approach helps guide the reader with direct instructions, making it immediately clear what action they should take.
+
+Do this:
+* Set up your environment  
+* Deploy your project  
+* Configure environment variables  
+* Troubleshoot common errors
+
+Not this:
+* Setting up your environment  
+* Deploying your project  
+* Configuring environment variables  
+* Troubleshooting common errors
+
+Using verbs keeps the content focused, concise, and easier to scan, while reinforcing the instructional nature of our documentation.
 
 ### Minimize distractions
 
@@ -205,7 +243,7 @@ By avoiding overly wordy phrases, you help make it clearer what needs to be done
 
 For example, try to avoid using sentences starting with `There is/are` or `It is` too often.
 While there are times when this makes sense, often you can rephrase the sentence to be more direct.
-Such phrases work well for rhythm and emphasis, but that is usually less important in technical writing.
+Such phrases work well for rhythm and emphasis, but that is usually less important in technical writing for both documentation and technical blogs or articles.
 
 Similar arguments apply to passive sentences.
 Sometimes, they work well, such as when the subject would be `the system`
@@ -306,7 +344,7 @@ You have many service options, including Elasticsearch and Kafka.           | Yo
 
 ### Use the long form of commands
 
-The Platform.sh CLI has aliases for certain commands to make typing shorter.
+The Upsun CLI has aliases for certain commands to make typing shorter.
 Some of these are semantically valid, but some might be confusing.
 
 Always use the long form of the command to show the entire context, including the namespace.
@@ -362,6 +400,31 @@ something that makes sense out of the context of the rest of the page.
 
 Remember to keep it short.
 If possible, it should be no more than about 160 characters.
+
+## Use shortcodes for versions and dates
+
+When referencing service or runtime versions in documentation, always use the shortcode `{{% latest "xxx" %}}` instead of hardcoding version numbers. Replace `xxx` with the name of the service or runtime exactly as it appears in the `.json` or `.yaml` file you’re referring to.
+
+For example, if you’re editing a code snippet like this:
+
+```yaml {configFile="services"}
+mariadb:
+  type: mariadb:11.4
+  disk: 2048
+```
+You should replace the hardcoded version with the shortcode:
+
+```yaml {configFile="services"}
+mariadb:
+  type: mariadb:{{% latest "mariadb" %}}
+  disk: 2048
+```
+
+In this case, `{{% latest "mariadb" %}}` automatically pulls in the most recent version of MariaDB (e.g. `11.4`) and will update automatically as new versions become available. The value inside the shortcode that follows `latest` (in this case, it is `"mariadb"`) must match how the service name is presented in the `.yaml` file. For instance, `{{% latest "mariadb" %}}` is correct, but `{{% latest "Maria DB" %}}` is wrong.
+
+Similarly, use `{{ now.Year }}` instead of hardcoding a specific year. This ensures the current year is always displayed and helps keep time references up to date.
+
+Using these shortcodes improves accuracy and reduces the need for manual updates across the documentation.
 
 ## Guidance enforcement
 

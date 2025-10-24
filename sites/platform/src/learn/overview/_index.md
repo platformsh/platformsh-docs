@@ -5,7 +5,7 @@ description: "Find out which problem {{% vendor/name %}} is trying to solve."
 layout: single
 ---
 
-{{% vendor/name %}} is a Platform-as-a-Service built especially for continuous deployment.
+{{% vendor/name %}} is a Cloud Application Platform built especially for continuous deployment.
 It allows you to host web applications on the cloud while making your development and testing workflows more productive.
 
 If you're new to {{% vendor/name %}}, the [Philosophy](/learn/overview/philosophy.md), [Structure](/learn/overview/structure.md),
@@ -21,11 +21,11 @@ and [Define routes](define-routes.md) reference documentation.
 and features recommended optimizations for several [featured frameworks](/guides/_index.md).
 
 Finally, you can also get tips for setting up your own [development workflow](/development/_index.md)
-and [administrating](/administration/_index.md) your {{% vendor/name %}} account.
+and [administrating](/administration/_index.md) your {{% vendor/company_name %}} account.
 
 ## Git Driven Infrastructure
 
-As a Platform as a Service, or PaaS, {{% vendor/name %}} automatically manages everything your application needs to run.
+As a Cloud Application Platform, {{% vendor/name %}} automatically manages everything your application needs to run.
 That means you can, and should, view your infrastructure needs as part of your application and address them under version control.
 
 ### Infrastructure as code

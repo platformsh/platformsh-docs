@@ -18,7 +18,7 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 <table>
     <thead>
         <tr>
-            <th>Grid and {{% names/dedicated-gen-3 %}}</th>
+            <th>Grid</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
@@ -82,7 +82,7 @@ web:
 ```
 
 You can choose from many web servers such as Daphne, Gunicorn, Hypercorn, and Uvicorn.
-See more about [running Python web servers](./server.md).
+See more about [running Python web servers](/languages/python/server.md).
 
 ### Use uWSGI
 
@@ -155,7 +155,7 @@ hooks:
 
 Your app container comes with pip pre-installed.
 For more about managing packages with pip, Pipenv, and Poetry,
-see how to [manage dependencies](./dependencies.md).
+see how to [manage dependencies](/languages/python/dependencies.md).
 
 To add global dependencies (packages available as commands),
 add them to the `dependencies` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#dependencies):
@@ -179,7 +179,7 @@ hooks:
 ```
 ## Connect to services
 
-The following examples show how to access various [services](../../add-services/_index.md) with Python.
+The following examples show how to access various [services](/add-services/_index.md) with Python.
 For more information on configuring a given service, see the page for that service.
 
 {{< codetabs v2hide="true" >}}
@@ -273,14 +273,14 @@ markdownify=false
 
 By default, data is inherited automatically by each child environment from its parent.
 If you need to sanitize data in preview environments for compliance,
-see how to [sanitize databases](../../development/sanitize-db/_index.md).
+see how to [sanitize databases](/development/sanitize-db/_index.md).
 
 ## Frameworks
 
 All major Python web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Django](../../guides/django/_index.md)
+- [Django](/guides/django/_index.md)
 
 ## Project templates
 

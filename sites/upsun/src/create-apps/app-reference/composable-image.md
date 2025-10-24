@@ -16,7 +16,7 @@ in a **"one image to rule them all"** approach.
 The composable image is built on [Nix](https://nix.dev), which offers the following benefits:
 
 - You can add as many packages to your application container as you need,
-  choosing from over 80,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
+  choosing from over 120,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
 - The packages you add are built in total isolation, so you can install different versions of the same package.
 - With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
   What works on your local machine is guaranteed to work on any other machine.
@@ -25,7 +25,7 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-If you're pressed for time, jump to this comprehensive [configuration example](../_index.md#comprehensive-example).
+If you're pressed for time, jump to this comprehensive [configuration example](/create-apps/_index.md#comprehensive-example).
 
 ## Primary application properties
 
@@ -48,7 +48,7 @@ applications:
             - xsl
             - pdo_sqlite
       - "nodejs@{{% latest "nodejs" %}}"
-      - "python@3.12"
+      - "python@{{% latest python %}}"
     # Additional frontend configuration
 ```
 
@@ -58,27 +58,32 @@ above).
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name               | Type                                                | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
-|--------------------|-----------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `stack`            | An array of [Nix packages](#stack)                | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                                                                                                          |
-| `relationships`    | A dictionary of [relationships](#relationships)     |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
-| `mounts`           | A dictionary of [mounts](#mounts)                   |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
-| `web`              | A [web instance](#web)                              |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
-| `workers`          | A [worker instance](#workers)                       |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
-| `timezone`         | `string`                                            |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md) |
-| `access`           | An [access dictionary](#access)                     |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                             |
-| `variables`        | A [variables dictionary](#variables)                |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
-| `firewall`         | A [firewall dictionary](#firewall)                  |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
-| `hooks`            | A [hooks dictionary](#hooks)                        |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
-| `crons`            | A [cron dictionary](#crons)                         |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
-| `source`           | A [source dictionary](#source)                      |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts) |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
+|----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
+| `stack`              | An array of [Nix packages](#stack)                                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                            |
+| `container_profile`  | A [container profile](/manage-resources/adjust-resources.md#advanced-container-profiles) |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
+| `relationships`      | A dictionary of [relationships](#relationships)                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
+| `mounts`             | A dictionary of [mounts](#mounts)                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
+| `web`                | A [web instance](#web)                                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
+| `workers`            | A [worker instance](#workers)                                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                              |
+| `timezone`           | `string`                                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](../timezone.md). |
+| `access`             | An [access dictionary](#access)                                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                             |
+| `variables`          | A [variables dictionary](#variables)                                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
+| `firewall`           | A [firewall dictionary](#firewall)                                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
+| `hooks`              | A [hooks dictionary](#hooks)                                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
+| `crons`              | A [cron dictionary](#crons)                                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
+| `source`             | A [source dictionary](#source)                                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
+| `additional_hosts`   | An [additional hosts dictionary](#additional-hosts)                                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| `operations`         | A [dictionary of Runtime operations](/create-apps/runtime-operations.md)                 |          | No               | Runtime operations for the application.                                                                                                                                                                                                                          |
+
 
 {{% note %}}
-The ``type``, ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
+
 
 ## Stack
 
@@ -121,13 +126,33 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
+### Supported Nix channels
+
+A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems).
+
+Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
+
+<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
+<!-- The following channels are supported: -->
+At this time, channel `25.05` is supported.
+
+### Configure Nix channels
+
+The Nix channel can be configured with the [top-level property `type`](#primary-application-properties).
+
+For example, to use the Nix channel `25.05`, you would use the following syntax:
+
+```yaml {configFile="apps"}
+
+type: "composable:25.05"
+
+```
+
 ### Supported Nix packages
 
 {{% note %}}
 The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
-However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
-This includes packages from the ``unstable`` channel,
-like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.</br>
 While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
 {{% /note %}}
 
@@ -135,19 +160,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Common Lisp (SBCL)](/languages/lisp.html)   | `sbcl`        | 2                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 21                                     |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -222,14 +246,14 @@ for your PHP extensions.
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
   myapp:
     stack:
-      - "python@3.12"
+      - "python@3.13"
       - "python312Packages.yq" # python package specific
 ```
 
@@ -249,8 +273,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
       - "yq"                   # tool
 ```
 
@@ -271,8 +295,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
   backend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
@@ -307,7 +331,6 @@ commands:
 ```bash
 {{% vendor/cli %}} push --resources-init=manual
 ```
-
 {{% /note %}}
 
 ## Relationships
@@ -530,7 +553,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 You can decrease the size of an existing disk for an app. If you do so, be aware that:
 
-- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup).
+- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup.md).
 - The downsize fails if there’s more data on the disk than the desired size.
 
 ## Mounts
@@ -574,7 +597,7 @@ See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-fold
 
 | Name          | Type                           | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |---------------|--------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `source`      | `storage`, `tmp`, or `service` | Yes      | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount). |
+| `source`      | `storage`, `instance`, `tmp`, or `service` | Yes      | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount). |
 | `source_path` | `string`                       | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                         |
 | `service`     | `string`                       |          | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage.                                                                                                                                                                                                                                                                                                                                                                                     |
 
@@ -803,10 +826,21 @@ See some [examples of how to configure what's served](../web/_index.md).
 
 ### Web commands
 
-| Name        | Type     | Required                      | Description                                                                                         |
-|-------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
-| `pre_start` | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start`     | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| Name         | Type     | Required                      | Description                                                                                         |
+|--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
+| `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
+| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.       |
+
+{{< note theme="info" >}}
+The `pre_start` feature is **not blocking**, which means the `deploy` hook may start running **before** the `pre_start` command finishes.
+This can lead to unexpected behavior if `pre_start` performs setup tasks that `deploy` depends on.
+To avoid issues, make sure any critical initialization in `pre_start` is either quick or safe to run concurrently with `deploy`.
+
+The `post_start` feature is _experimental_ and may change. Please share your feedback in the
+[{{% vendor/name %}} discord]({{< vendor/urlraw "discord" >}}/).
+{{< /note >}}
+
 
 Example:
 
@@ -844,10 +878,10 @@ See how to set up [alternate start commands on PHP](/languages/php/_index.md#alt
 
 ### Upstream
 
-| Name            | Type                | Required | Description                                                       | Default                                                                                                |
-|-----------------|---------------------|----------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Name            | Type                | Required | Description                                                       | Default                                                                                                   |
+|-----------------|---------------------|----------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket.                 | Defaults to `tcp` for all [primary runtimes](#primary-runtime) except PHP; for PHP the default is `unix`. |
-| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](#primary-runtime).                                                        |
+| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](#primary-runtime).                                         |
 
 For PHP, the defaults are configured for PHP-FPM and shouldn't need adjustment.
 For all other containers, the default for `protocol` is `http`.
@@ -888,13 +922,13 @@ The following table presents possible properties for each location:
 
 | Name                | Type                                                 | Default   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |---------------------|------------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the app's root directory ([see `source.root`](#source)). Must be an actual directory inside the root directory.                                                                                                                                                                                                                                                                                                                                                          |
+| `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the app's root directory ([see `source.root`](#source)). Must be an actual directory inside the root directory.                                                                                                                                                                                                                                                                                                                                              |
 | `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. <BR> <BR> If your app is in PHP, when setting `passthru` to `true`, you might want to set `scripts` to `false` for enhanced security. This prevents PHP scripts from being executed from the specified location. You might also want to set `allow` to `false` so that not only PHP scripts can't be executed, but their source code also can't be delivered. |
 | `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys.                                                                                                                                                                                                                                                                                                                                                                                           |
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d.                                                                                                                                                                                                                            |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values. Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.html)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                    |
 | `request_buffering` | A [request buffering dictionary](#request-buffering) | See below | Handling for chunked requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `rules`             | A [rules dictionary](#rules)                         |           | Specific overrides for specific locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
@@ -905,8 +939,8 @@ The key of each item is a regular expression to match paths exactly.
 If an incoming request matches the rule, it's handled by the properties under the rule,
 overriding any conflicting rules from the rest of the `locations` dictionary.
 
-Under `rules`, you can set all of the other possible [`locations` properties](#locations)
-except `root`, `index` and `request_buffering`.
+Under `rules`, you can set all the other possible [`locations` properties](#locations)
+except `root`, `index`, `rules` and `request_buffering`.
 
 In the following example, the `allow` key disallows requests for static files anywhere in the site.
 This is overridden by a rule that explicitly allows common image file formats.
@@ -1397,7 +1431,7 @@ If a new job is triggered while another is running, the new job is paused until 
 To minimize conflicts, a random offset is applied to all triggers.
 The offset is a random number of seconds up to 20 minutes or the cron frequency, whichever is smaller.
 
-Crons are also paused while activities such as [backups](/environments/backup) are running.
+Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
@@ -1432,8 +1466,8 @@ title=In the Console
 +++
 
 1. In the Console, navigate to your project.
-1. Open the environment where you'd like the crons to run.
-1. Click `Redeploy` next to the cron status of `Paused`.
+2. Open the environment where you'd like the crons to run.
+3. Click `Redeploy` next to the cron status of `Paused`.
 
 <--->
 
@@ -1477,10 +1511,10 @@ expected to need.
 Each container profile gives you access to a specific list of CPU and RAM combinations.
 Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
-- [Container profile types and resources](/manage-resources/adjust-resources#advanced-container-profiles)
-- [Default container profiles](/manage-resources/adjust-resources#default-container-profiles) for runtime and service
+- [Container profile types and resources](/manage-resources/adjust-resources.md#advanced-container-profiles)
+- [Default container profiles](/manage-resources/adjust-resources.md#default-container-profiles) for runtime and service
   containers
-- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources#adjust-a-container-profile)
+- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources.md#adjust-a-container-profile)
 
 ## Additional hosts
 

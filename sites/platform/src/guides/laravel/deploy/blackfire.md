@@ -5,7 +5,7 @@ weight: -90
 description: Set up a continuous observability strategy for your Laravel app with Blackfire.
 ---
 
-[Blackfire.io](../../../increase-observability/integrate-observability/blackfire.md) is the recommended solution for monitoring and profiling web sites and applications. Blackfire works seamlessly with any application built with Laravel, like any PHP application.
+[Blackfire.io](/increase-observability/integrate-observability/blackfire.md) is the recommended solution for monitoring and profiling web sites and applications. Blackfire works seamlessly with any application built with Laravel, like any PHP application.
 
 For advanced cases, the Blackfire PHP SDK provides the following integrations with Laravel:
 - [Laravel Artisan](https://blackfire.io/docs/php/integrations/laravel/artisan)

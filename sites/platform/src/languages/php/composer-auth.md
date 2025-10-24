@@ -14,9 +14,9 @@ follow the instructions on this page.
 ## Before you begin
 
 You need:
-- A {{% vendor/name %}} project using [PHP](../php/_index.md) and Composer
+- An {{% vendor/name %}} project using [PHP](/languages/php/_index.md) and Composer
 - Credentials to access a private third-party Composer repository
-- The [{{% vendor/name %}} CLI](../../administration/cli/_index.md)
+- The [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
 ## 1. Declare a private Composer repository
 
@@ -37,7 +37,7 @@ declare the repository in your Composer setup.
 ## 2. Set up Composer authentication using a variable
 
 To allow Composer to successfully authenticate when accessing the declared private repository,
-set an [`env:COMPOSER_AUTH` variable](../../development/variables/_index.md) for your project.
+set an [`env:COMPOSER_AUTH` variable](/development/variables/_index.md) for your project.
 
 To do so, run the following command:
 
@@ -47,7 +47,7 @@ To do so, run the following command:
   --value '{"http-basic": {"{{< variable "PRIVATE_REPOSITORY_URL" >}}": {"username": "{{< variable "USERNAME" >}}", "password": "{{< variable "PASSWORD" >}}"}}}'
 ```
 
-The [`env:` prefix](../../development/variables/_index.md#top-level-environment-variables) means that the variable is exposed
+The [`env:` prefix](/development/variables/_index.md#top-level-environment-variables) means that the variable is exposed
 as its own Unix environment variable.
 The `--visible-runtime false` and `--visible-build true` flags mean the variable is available to Composer only during the build.
 
@@ -63,7 +63,7 @@ To do so, run the following command:
 ## Access dependencies downloaded from a private repository
 
 When you download a dependency from a private third-party Composer repository,
-that dependency is usually hosted in a [private Git repository](../../development/private-repository.md).
+that dependency is usually hosted in a [private Git repository](/development/private-repository.md).
 Access to private Git repositories is restricted through the use of SSH keys.
 But most private Composer tools mirror tagged releases of dependencies
 and serve them directly without hitting the Git repository.

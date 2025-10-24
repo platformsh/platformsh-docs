@@ -105,7 +105,7 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
 export APP_INFLUXDB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.influxdb[0].host')"
@@ -152,12 +152,12 @@ applications:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -183,10 +183,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -305,18 +305,18 @@ service:
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `influxdb` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for common InfluxDB credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export INFLUX_USER=${INFLUXDB_USERNAME}
-export INFLUX_HOST=${INFLUXDB_HOST}
-export INFLUX_ORG=$(echo $INFLUXDB_QUERY | jq -r ".org")
-export INFLUX_TOKEN=$(echo $INFLUXDB_QUERY | jq -r ".api_token")
-export INFLUX_BUCKET=$(echo $INFLUXDB_QUERY | jq -r ".bucket")
+export INFLUX_USER="${INFLUXDB_USERNAME}"
+export INFLUX_HOST="${INFLUXDB_HOST}"
+export INFLUX_ORG="$(echo "$INFLUXDB_QUERY" | jq -r '.org')"
+export INFLUX_TOKEN="$(echo "$INFLUXDB_QUERY" | jq -r '.api_token')"
+export INFLUX_BUCKET="$(echo "$INFLUXDB_QUERY" | jq -r '.bucket')"
 ```
 
 The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``INFLUX_HOST`` can be used within the application to connect to the service.
@@ -353,7 +353,7 @@ To export your data from InfluxDB, follow these steps:
 
 4. Adapt and run [InfluxDB's CLI export command](https://docs.influxdata.com/influxdb/v2.3/reference/cli/influx/backup/).
 
-    ``` bash
+    ```bash
     influx backup --host {{< variable "URL_FROM_STEP_2" >}} --token {{< variable "API_TOKEN_FROM_STEP_3" >}}
     ```
 

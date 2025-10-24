@@ -5,7 +5,7 @@ description: Learn how to scale your live site.
 ---
 
 Your production environment gets a [pool of resources](/create-apps/app-reference/single-runtime-image.md#sizes)
-based on your [plan size](../administration/pricing/_index.md).
+based on your [plan size](/administration/pricing/_index.md).
 These resources are split up between the apps and services you've defined.
 
 You might occasionally get increased load on your site,
@@ -63,11 +63,11 @@ If upscaling is necessary, it's handled for you and you're kept up to date in th
 When the traffic spike passes, your plan is downgraded again to use only the necessary resources.
 
 On Dedicated environments, the upscaling is handled by cycling through each node in the redundant architecture.
-One at a time, they're removed from the cluster, upsized, and returned. 
+One at a time, they're removed from the cluster, upsized, and returned.
 
 On Split Architecture dedicated environments, additional web servers may be added to provide additional capacity (Horizontal scaling).
 
 ## Manually scale Grid environments
 
 To increase the pool of resources available to your project,
-[upgrade your plan](../administration/pricing/_index.md#switch-plans) and redeploy your site.
+[upgrade your plan](/administration/pricing/_index.md#switch-plans) and redeploy your site.

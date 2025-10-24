@@ -87,7 +87,7 @@ Then upload them to your new project:
 ```
 
 See more options on [how to export files](/learn/tutorials/exporting.md)
-and [how to import files](/learn/tutorials/migrating/from-psh.md#6-import-data).
+and [how to import files](/learn/tutorials/migrating/from-fixed.md#6-import-data).
 
 ## 5. Copy data from services
 
@@ -121,7 +121,7 @@ After you have finished all your testing, sync all your data (code, files, datab
 
 Now that you know the new project works, switch public traffic to that site:
 
-1. Make sure your new project has the right plan size.
+1. Make sure your new project has the [necessary resources](/manage-resources/adjust-resources.md).
 2. If possible, put your site into read-only mode or maintenance mode.
 3. Add your domain names to your new project and remove them from the old project.
 4. (Optional) Add any custom SSL certificates you have.
@@ -136,6 +136,16 @@ In most cases that resolves itself in 1--3 hours.
 Once the new project is running and the DNS has fully propagated, delete the old project.
 
 ## Alternative process
+
+We have open-sourced [the {{< vendor/name >}} cloning tool](https://github.com/upsun/clonsun), which allows you to clone a project from one region to another. This cloning tool helps you migrate most of your project assets from one region to another with some remaining manual steps like moving your domain names from one region to the other (or at the CDN level) and update your DNS records.
+
+We also have [the {{< vendor/name >}} converting tool](https://github.com/upsun/convsun), which allows you to change existing configuration files to another format. It converts details from files like `services.yaml` and `routes.yaml`, and generates a new `config.yaml` file. This streamlines the conversion process by significantly reducing the manual effort required to adapt your app’s infrastructure setup.
+
+{{< note theme="info" >}}
+
+To learn more about the converter tool and how it works, read the [converting projects](https://docs.upsun.com/learn/tutorials/migrating/from-fixed.html) page.
+
+{{< /note >}}
 
 Although not directly supported by {{% vendor/name %}},
 an agency named [Contextual Code](https://www.contextualcode.com/) has built a bash migration script.

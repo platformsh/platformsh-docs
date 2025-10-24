@@ -9,7 +9,7 @@ description: |
 {{< note title="Note" theme="info" >}}
 
 Before you start, check out the [{{% vendor/name %}} demo app](https://console.upsun.com/projects/create-project) and the main [Getting started guide](/get-started/here/_index.md).
-They provide all of the core concepts and common commands you need to know before using the materials below.
+They provide all the core concepts and common commands you need to know before using the materials below.
 
 {{< /note >}}
 
@@ -24,7 +24,7 @@ The CLI generated a `.environment` file during the Getting started guide.
 Notice it has already created some environmental variables for you to connect to your database service.
 
 ```bash {location=".environment"}
-export RELATIONSHIPS_JSON="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)"
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set database environment variables
 export DB_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].host')"
@@ -64,26 +64,41 @@ To configure all the environment variables Flask needs to run smoothly, follow t
 3. Set the `FLASK_DEBUG` environment variable to ``1`` (enabled) if you're not running in production.
 
    ```bash {location=".environment"}
-   export FLASK_DEBUG=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 0 || echo 1)
+   if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+     FLASK_DEBUG=0
+   else
+     FLASK_DEBUG=1
+   fi
+   export FLASK_DEBUG
    ```
 
 4. Do the same for `LOG_LEVEL`.
 
    ```bash {location=".environment"}
-   export LOG_LEVEL=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo "info" || echo "debug")
+   if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+     LOG_LEVEL="info"
+   else
+     LOG_LEVEL="debug"
+   fi
+   export LOG_LEVEL
    ```
 
 5. Set the `SEND_FILE_MAX_AGE_DEFAULT` to ``0`` (disabled) if you're not in production, but a higher value if you are.
 
    ```bash {location=".environment"}
-   export SEND_FILE_MAX_AGE_DEFAULT=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 31556926 || echo 0)
+   if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+     SEND_FILE_MAX_AGE_DEFAULT=31556926
+   else
+     SEND_FILE_MAX_AGE_DEFAULT=0
+   fi
+   export SEND_FILE_MAX_AGE_DEFAULT
    ```
 
 6. Optional: You may also need to set a `SECRET_KEY` environment variable.
    It's used for securely signing the session cookie and can be used for any other security-related needs by extensions or your app.
    It usually is a long random string.
 
-   Set the `SECRET_KEY` environment variable to leverage the [`PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables#use-provided-variables) provided by {{% vendor/name %}}:
+   Set the `SECRET_KEY` environment variable to leverage the [`PLATFORM_PROJECT_ENTROPY` variable](/development/variables/use-variables.md#use-provided-variables) provided by {{% vendor/name %}}:
 
    ```bash {location=".environment"}
    export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
@@ -102,9 +117,24 @@ To configure all the environment variables Flask needs to run smoothly, follow t
    export DATABASE_URL="${DB_SCHEME}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_PATH}"
 
    export FLASK_ENV="${PLATFORM_ENVIRONMENT_TYPE}"
-   export FLASK_DEBUG=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 0 || echo 1)
-   export LOG_LEVEL=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo "info" || echo "debug")
-   export SEND_FILE_MAX_AGE_DEFAULT=$( [ "${PLATFORM_ENVIRONMENT_TYPE}" = "production" ] && echo 31556926 || echo 0)
+   if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+     FLASK_DEBUG=0
+   else
+     FLASK_DEBUG=1
+    fi
+   export FLASK_DEBUG
+   if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+     LOG_LEVEL="info"
+   else
+     LOG_LEVEL="debug"
+   fi
+   export LOG_LEVEL
+   if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then
+     SEND_FILE_MAX_AGE_DEFAULT=31556926
+   else
+     SEND_FILE_MAX_AGE_DEFAULT=0
+   fi
+   export SEND_FILE_MAX_AGE_DEFAULT
    export SECRET_KEY="${PLATFORM_PROJECT_ENTROPY}"
    ```
 
@@ -112,13 +142,13 @@ To configure all the environment variables Flask needs to run smoothly, follow t
 
 You need to add some writable disk space to hold the static assets that `flask-static-digest` generates and `npm` builds.
 
-To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image#mounts).
+To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).
 In your app configuration, locate the section dedicated to mounts and update it as follows:
 
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     mounts:
       "<APP_NAME>/static":
         source: "storage"
@@ -138,7 +168,7 @@ In your app configuration, locate the section dedicated to it and update it as f
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
     hooks:
@@ -158,7 +188,7 @@ applications:
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
     hooks:
@@ -182,11 +212,11 @@ In your app configuration, locate the section dedicated to it:
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
     hooks:
-      ...
+      #...
       # The deploy hook is run after the app container has been started, but before it has started accepting requests.
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
       deploy: |
@@ -199,11 +229,11 @@ Add `npm run build`:
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
     hooks:
-      ...
+      #...
       # The deploy hook is run after the app container has been started, but before it has started accepting requests.
       # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
       deploy: |
@@ -219,7 +249,7 @@ To do so, in your app configuration, locate the section dedicated to the web ser
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#web
     web:
@@ -233,7 +263,7 @@ Also, change the `socket_family` value from `unix` to `tcp`:
 ```yaml {configFile="app"}
 applications:
   myapp:
-    ...
+    #...
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/create-apps/app-reference.html#web
     web:
@@ -307,9 +337,9 @@ To do so, follow these steps.
 5. Set the following environment variables as they aren't set via ``PLATFORM_RELATIONSHIPS``:
 
    ```bash {location=".environment"}
-   export PLATFORM_ENVIRONMENT_TYPE=production
+   export PLATFORM_ENVIRONMENT_TYPE="production"
    export PORT=8888
-   export PLATFORM_PROJECT_ENTROPY=$(openssl rand -base64 32)
+   export PLATFORM_PROJECT_ENTROPY="$(openssl rand -base64 32)"
    ```
 
 6. Source your `.environment` file to finish setting up all the environmental variables in your current bash:
@@ -348,11 +378,11 @@ To do so, follow these steps.
    ```yaml {configFile="app"}
    applications:
      myapp:
-       ...
+       #...
        # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
        # More information: https://docs.upsun.com/create-apps/app-reference.html#hooks
        hooks:
-         ...
+         #...
          # The deploy hook is run after the app container has been started, but before it has started accepting requests.
          # More information: https://docs.upsun.com/create-apps/hooks/hooks-comparison.html#deploy-hook
          deploy: |
@@ -373,9 +403,9 @@ To do so, follow these steps.
 
 ### Documentation
 
-- [Python documentation](/languages/python/)
-- [Managing dependencies](/languages/python/dependencies)
-- [Configuring web servers](/languages/python/server)
+- [Python documentation](/languages/python/_index.md)
+- [Managing dependencies](/languages/python/dependencies.md)
+- [Configuring web servers](/languages/python/server.md)
 
 ### Community content
 

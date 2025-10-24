@@ -7,7 +7,7 @@ sidebarTitle: SSH keys
 To connect to your app using SSH keys, you need two keys:
 
 * A **private key** you must keep _secret_
-* A **public key** stored in your {{% vendor/name %}} account
+* A **public key** stored in your {{% vendor/company_name %}} account
 
 A given SSH key pair can only be linked to a single user account.
 
@@ -17,9 +17,9 @@ If you have a key pair available, you aren't prompted to login.
 To keep connection secure, you need to regularly update the keys you use.
 A well-encrypted key is no substitute for regular key rotation.
 
-If you used GitHub to sign up for your {{% vendor/name %}} account
-your public keys from GitHub are automatically synced to your {{% vendor/name %}} account.
-So you can use them already with the CLI or to [connect to your app](./_index.md#2-connect-to-an-app-with-ssh).
+If you used GitHub to sign up for your {{% vendor/company_name %}} account
+your public keys from GitHub are automatically synced to your {{% vendor/company_name %}} account.
+So you can use them already with the CLI or to [connect to your app](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
 
 ## Add SSH keys
 
@@ -54,14 +54,14 @@ To find your public key file:
    ```
 
 If you find a file ending in `.pub`,
-copy the location and [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-account).
+copy the location and [add it to your {{% vendor/company_name %}} account](#2-add-an-ssh-key-to-your-account).
 
 If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 
-If you're logged in using the [{{% vendor/name %}} CLI](./_index.md#1-authenticate-with-the-cli),
-generate a key and have it added to your {{% vendor/name %}} account automatically.
+If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/_index.md#1-authenticate-with-the-cli),
+generate a key and have it added to your {{% vendor/company_name %}} account automatically.
 
 1. In a terminal, run `{{% vendor/cli %}} ssh-key:add`.
 1. If necessary, log in to a browser.
@@ -76,13 +76,13 @@ generate a key and have it added to your {{% vendor/name %}} account automatical
 
 To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
 
-Then you need to [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-account).
+Then you need to [add it to your {{% vendor/company_name %}} account](#2-add-an-ssh-key-to-your-account).
 
 ### 2. Add an SSH key to your account
 
-Once you have the location of your public key, add it to your {{% vendor/name %}} account.
+Once you have the location of your public key, add it to your {{% vendor/company_name %}} account.
 
-If you're logged in using the [{{% vendor/name %}} CLI](./_index.md#1-authenticate-with-the-cli),
+If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/_index.md#1-authenticate-with-the-cli),
 in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_KEY" >}}` with the location of your public key):
 
 ```bash
@@ -90,15 +90,15 @@ in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_K
 ```
 
 You can also add it in the Console,
-similar to this [video](https://docs.platform.sh/videos/management-console/add-ssh-mc.mp4).
+similar to this [video](https://fixed.docs.upsun.com/videos/management-console/add-ssh-mc.mp4).
 
-Now you are ready to use the key to [connect to an environment](./_index.md#2-connect-to-an-app-with-ssh).
+Now you are ready to use the key to [connect to an environment](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
 
 ### 3. Connect to your server with SSH keys
 
 To connect to a server using SSH keys, find the details in the Console:
 
-1. Open the [{{% vendor/name %}} Console](https://console.platform.sh/).
+1. Open the [{{% vendor/name %}} Console](https://console.upsun.com/).
 1. Select a project.
 1. In the **Environment** dropdown, select the environment you want to access.
 1. Click the **SSH** dropdown.
@@ -107,7 +107,7 @@ To connect to a server using SSH keys, find the details in the Console:
 1. Enter the command into a terminal.
 
 Note that if you have just added your SSH key,
-you need to [redeploy your environment](./troubleshoot-ssh.md#redeploy-your-environment) before you can access it using SSH keys.
+you need to [redeploy your environment](/development/ssh/troubleshoot-ssh.md#redeploy-your-environment) before you can access it using SSH keys.
 
 ## Forwarding keys by default
 

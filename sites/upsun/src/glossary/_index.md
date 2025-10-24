@@ -112,6 +112,10 @@ The {{% vendor/name %}} CLI configures Drush aliases for you on your local envir
 (via `{{% vendor/cli %}} get` or `{{% vendor/cli %}} drush-aliases`).
 You can also configure them manually.
 
+## Endpoint
+
+An endpoint is a named set of credentials to give access to other apps and services in your project.
+
 ## Environment
 
 An [environment](../environments/_index.md) is a standalone copy of your site,
@@ -192,11 +196,14 @@ that includes workflow tools, APIs, and other functionality above and beyond bas
 The best example is {{% vendor/name %}}(although we're a little biased).
 
 ## Preview environment
+*Related terms: [Environment type](#environment-type)*
 
 A preview environment is a non-production environment you can use to develop and/or test changes without affecting production.</br>
 A preview environment can either be a development environment or a staging environment.
-Staging environments have an identical software configuration to your production hardware but reduced hardware specs.
+Preview environments have an identical software configuration to your production hardware but reduced hardware specs.
 They are useful to perform user acceptance testing.
+
+To learn more, see [Branch](#branch) also in this glossary.
 
 ## Production plan
 
@@ -234,7 +241,7 @@ This trial grants you a certain amount of time and resources to try out the {{% 
 1. A trial lasts for **15 days**, which starts automatically from creating your first organization.
 1. A trial allows for **one (1)** active [project](#project) at a time.
 1. For a trial project, the trial allows for **two (2)** [active environments](#active-environment).
-1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources):
+1. At the organization level, there is a limit on the amount of [resources available to your project](/manage-resources/_index.md):
 
     - 4.5 CPU
     - 12 GB RAM
@@ -245,4 +252,4 @@ If your trial ends before adding payment details, there are additional things to
 - When a trial expires, both the organization and the project are suspended.
 - Projects where no code has been pushed are deleted **1 day** after a trial expires.
 - Projects where code _has_ been pushed are deleted **5 days** after the trial expires.
-- Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support#delete-your-account).
+- Even with the trial expiration, organizations and user accounts are preserved, [rather than deleted](/learn/overview/get-support.md#delete-your-account).

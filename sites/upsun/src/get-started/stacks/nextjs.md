@@ -125,7 +125,7 @@ where you are able to push your source code in different ways,
 using either the Git CLI or the {{% vendor/name %}} CLI.
 You can choose which way —or Git workflow— you want to use for your project from the following options:
 
-- Your project source code is **hosted on a {{% vendor/name %}} Git repository**
+- Your project source code is **hosted on an {{% vendor/name %}} Git repository**
 - Your project source code is **hosted on your own GitHub repository**
 
 {{< codetabs >}}
@@ -170,7 +170,7 @@ These files manage your app's behavior.
 They are located in a `.{{% vendor/cli %}}/` folder at the root of your source code
 and structured in a similar way to this:
 
-```txt
+```txt {no-copy="true"}
 myapp
 ├── .{{% vendor/cli %}}
 │   └── config.yaml
@@ -276,7 +276,7 @@ If you're pushing a new Git branch, a new environment is created.
 {{% vendor/name %}} then reads your configuration files,
 and deploys your project using [default container resources](/manage-resources/resource-init.md).
 If you don't want to use those default resources,
-define your own [resource initialization strategy](/manage-resources/resource-init#specify-a-resource-initialization-strategy),
+define your own [resource initialization strategy](/manage-resources/resource-init.md#specify-a-resource-initialization-strategy),
 or [amend those default container resources](/manage-resources/adjust-resources.md) after your project is deployed.
 
 Et voilà, your Next.js application is live!
@@ -314,7 +314,7 @@ To make changes to your project, follow these steps:
 2. Make changes to your project.
    For example, edit the `views/index.jade` file and make the following changes:
 
-   ```diff
+   ```diff {no-copy="true"}
    diff --git a/views/index.jade b/views/index.jade
    index 3d63b9a..77aee43 100644
    --- a/views/index.jade
@@ -362,8 +362,8 @@ To make changes to your project, follow these steps:
 
 ### Documentation
 
-- [JavaScript/Node.js documentation](/languages/nodejs/)
-- [Managing dependencies](/languages/nodejs#dependencies)
+- [JavaScript/Node.js documentation](/languages/nodejs/_index.md)
+- [Managing dependencies](/languages/nodejs/_index.md#dependencies)
 
 ### Community content
 

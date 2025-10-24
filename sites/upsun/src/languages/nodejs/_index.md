@@ -294,7 +294,7 @@ applications:
 
 #### Use Bun as a runtime
 
-You can even [use Bun as a runtime](https://platform.sh/blog/bun-support-is-here/) by adjusting the `start` command as follows:
+You can even [use Bun as a runtime](https://devcenter.upsun.com/posts/bun-support-is-here/) by adjusting the `start` command as follows:
 
 ```yaml {configFile="app"}
 applications:
@@ -383,6 +383,6 @@ highlight=js
 All major Javascript/Node.js web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Express](/get-started/stacks/express)
+- [Express](/get-started/stacks/express/_index.md)
 - [Next.js](/get-started/stacks/nextjs.md)
-- [Strapi](/get-started/stacks/strapi)
+- [Strapi](/get-started/stacks/strapi/_index.md)

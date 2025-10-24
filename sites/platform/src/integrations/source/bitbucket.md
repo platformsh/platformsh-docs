@@ -92,12 +92,12 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on a {{% vendor/name %}} isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on an {{% vendor/name %}} environment isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the Bitbucket repository. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `resync-pull-requests` | `false` | Whether to sync data from the parent environment on every push to a pull request. |
 
-To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+To [keep your repository clean](/learn/bestpractices/clean-repository.md) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="Bitbucket" %}}
 1. Follow the [Bitbucket instructions to create a webhook](https://support.atlassian.com/bitbucket-cloud/docs/manage-webhooks/#Create-webhooks)

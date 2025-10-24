@@ -10,18 +10,17 @@ description: |
 
 ![Overview of projects in the Console](/images/management-console/psh-console-main-view.png "0.6")
 
-This Console offers you ways to manage projects and environments other than the [command line interface (CLI))](../cli/_index.md).
+This Console offers you ways to manage projects and environments other than the [command line interface (CLI))](/administration/cli/_index.md).
 
 ## Project list
 
-Opening the [Console](https://console.platform.sh) takes you to the first organization you joined as a 
-{{% vendor/name %}} user.
+Opening the [Console](https://console.upsun.com) takes you to the first organization you joined as an {{% vendor/name %}} user.
 You get an overview of all your projects within that organization.
 You can narrow the list down by searching for specific projects,
 or switch to a different organization from the menu in the top left-hand corner.
 
-Once you select a project, you can [configure the project settings](./configure-project.md).
-You can also choose individual environments within the project and [configure each environment](./configure-environment.md).
+Once you select a project, you can [configure the project settings](/administration/web/configure-project.md).
+You can also choose individual environments within the project and [configure each environment](/administration/web/configure-environment.md).
 
 You can also create a new project by clicking **+ Create project**.
 
@@ -41,5 +40,5 @@ The Console can be displayed in three ways:
 * High contrast mode
 * Dark mode
 
-To meet our [commitment to accessibility](https://platform.sh/trust-center/legal/wcag/),
+To meet our [commitment to accessibility](https://upsun.com/trust-center/legal/),
 all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

@@ -4,10 +4,10 @@ europe:
         label: ch-1
         provider: Google Cloud Platform
         available: true
-        outbound_ips: 
-            - "34.65.236.213"
-            - "34.65.152.61"
-            - "34.65.244.185"
+        outbound_ips:
+            - "34.65.197.163"
+            - "34.65.144.16"
+            - "34.65.72.28"
         inbound_location: gw.ch-1
         inbound_ips:
             - "34.65.236.213"
@@ -18,7 +18,7 @@ europe:
         label: eu
         provider: AWS
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "54.72.94.105"
             - "54.76.137.67"
             - "54.76.137.94"
@@ -32,7 +32,7 @@ europe:
         label: eu-2
         provider: AWS
         available: false
-        outbound_ips: 
+        outbound_ips:
             - "52.208.123.9"
             - "52.214.63.84"
             - "52.30.200.164"
@@ -46,7 +46,7 @@ europe:
         label: eu-4
         provider: AWS
         available: false
-        outbound_ips: 
+        outbound_ips:
             - "18.200.158.188"
             - "18.200.157.200"
             - "18.200.184.206"
@@ -60,7 +60,7 @@ europe:
         label: eu-5
         provider: AWS
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "13.48.116.14"
             - "13.51.46.87"
             - "13.48.202.56"
@@ -72,35 +72,21 @@ europe:
         label: de-2
         provider: Google Cloud Platform
         available: true
-        outbound_ips: 
-            - "35.246.248.138"
-            - "35.246.184.45"
-            - "35.242.229.239"
+        outbound_ips:
+            - "34.159.207.210"
+            - "34.159.181.149"
+            - "34.107.79.7"
         inbound_location: gw.de-2
         inbound_ips:
             - "35.246.248.138"
             - "35.246.184.45"
             - "35.242.229.239"
-    fr-1:
-        name: France (fr-1)
-        label: fr-1
-        provider: Orange
-        available: false
-        outbound_ips: 
-            - "90.84.46.222"
-            - "90.84.47.148"
-            - "90.84.46.40"
-        inbound_location: gw.fr-1
-        inbound_ips:
-            - "90.84.46.40"
-            - "90.84.47.148"
-            - "90.84.46.222"
     fr-3:
         name: France (fr-3)
         label: fr-3
         provider: OVHcloud
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "135.125.91.125"
             - "135.125.89.47"
             - "135.125.90.255"
@@ -112,10 +98,10 @@ europe:
         label: fr-4
         provider: Azure
         available: true
-        outbound_ips: 
-            - "20.74.41.190"
-            - "20.74.41.218"
-            - "20.74.42.30"
+        outbound_ips:
+            - "20.188.46.156"
+            - "20.188.46.158"
+            - "20.188.46.165"
         inbound_location: gw.fr-4
         inbound_ips:
             - "20.74.41.190"
@@ -126,22 +112,23 @@ europe:
         label: uk-1
         provider: Google Cloud Platform
         available: true
-        outbound_ips: 
-            - "35.242.142.110"
-            - "35.189.126.202"
-            - "35.242.183.249"
+        outbound_ips:
+            - "35.246.36.142"
+            - "34.147.217.161"
+            - "34.89.33.176"
         inbound_location: gw.uk-1
         inbound_ips:
             - "35.242.142.110"
             - "35.189.126.202"
             - "35.242.183.249"
+            - "34.147.168.147"
 us:
     us:
         name: East (us)
         label: us
         provider: AWS
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "54.88.149.31"
             - "54.209.114.37"
             - "54.210.53.51"
@@ -155,7 +142,7 @@ us:
         label: us-2
         provider: AWS
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "34.238.64.193"
             - "52.4.246.137"
             - "54.157.66.30"
@@ -169,10 +156,10 @@ us:
         label: us-3
         provider: Azure
         available: true
-        outbound_ips: 
-            - "52.137.90.183"
-            - "52.156.93.30"
-            - "51.143.107.76"
+        outbound_ips:
+            - "52.148.128.255"
+            - "52.250.13.106"
+            - "40.91.69.215"
         inbound_location: gw.us-3
         inbound_ips:
             - "52.137.90.183"
@@ -183,10 +170,10 @@ us:
         label: us-4
         provider: Google Cloud Platform
         available: true
-        outbound_ips: 
-            - "34.73.189.215"
-            - "34.74.8.155"
-            - "34.75.104.115"
+        outbound_ips:
+            - "104.196.203.234"
+            - "34.148.171.57"
+            - "35.243.131.172"
         inbound_location: gw.us-4
         inbound_ips:
             - "34.73.189.215"
@@ -199,7 +186,7 @@ canada:
         label: ca-1
         provider: AWS
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "35.182.24.224"
             - "52.60.213.255"
             - "35.182.220.113"
@@ -214,7 +201,7 @@ australia:
         label: au
         provider: AWS
         available: true
-        outbound_ips: 
+        outbound_ips:
             - "13.55.135.0"
             - "13.54.121.225"
             - "13.55.215.151"
@@ -228,10 +215,10 @@ australia:
         label: au-2
         provider: Azure
         available: true
-        outbound_ips: 
-            - "20.92.240.74"
-            - "20.191.224.199"
-            - "20.92.240.236"
+        outbound_ips:
+            - "104.210.116.116"
+            - "40.126.245.226"
+            - "104.210.117.92"
         inbound_location: gw.au-2
         inbound_ips:
             - "20.92.240.74"

@@ -18,7 +18,7 @@ To use Fastly, Varnish must be disabled:
 - In [`{{< vendor/configfile "routes" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/common/4.6/.platform/routes.yaml#L3),
    change routes to use `myapp` instead of the `varnish` service you removed in previous step:
 
-```diff
+```diff {no-copy="true"}
  "https://{default}/":
      type: upstream
 -     upstream: "varnish:http"

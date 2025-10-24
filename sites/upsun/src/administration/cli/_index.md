@@ -19,6 +19,12 @@ Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 {{< cli-installation >}}
 
+{{< note theme="info" >}}
+
+If you are using Scoop, you **must** have the [Extras bucket](https://github.com/ScoopInstaller/Extras) already installed before installing the {{% vendor/name %}} CLI.
+
+{{< /note >}}
+
 ## 2. Authenticate
 
 To list and manage your projects, authenticate by running the following command:
@@ -133,7 +139,7 @@ If you check out a project via Git directly and not using the `{{% vendor/cli %}
 the CLI may be unable to determine what project it's in.
 You might run a CLI command from within a project directory you've checked out and get an error like this:
 
-```text
+```text {no-copy="true"}
 [RootNotFoundException] Project root not found. This can only be run from inside a project directory.
 ```
 

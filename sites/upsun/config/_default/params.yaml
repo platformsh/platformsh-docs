@@ -15,6 +15,7 @@ theme:
 # Vendorization
 vendor:
     name: Upsun
+    company_name: Upsun
     cli: upsun
     altname: upsun
     env_prefix: PLATFORM
@@ -26,7 +27,7 @@ vendor:
         title: Try Upsun for 15 days
         description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
         fine: "¹Terms and conditions apply"
-    psh_ref: Platform.sh
+    psh_ref: Upsun Fixed
     config:
         version: 2
         dir: .upsun
@@ -45,16 +46,17 @@ vendor:
         main: https://upsun.com
         docs: https://docs.upsun.com
         support: https://support.upsun.com
-        sales: https://upsun.com/contact
+        sales: https://upsun.com/contact-us
         console: https://console.upsun.com/
-        api: https://proxy.upsun.com/
+        api: https://docs.upsun.com/api/
         host: upsun.com
         hostname: platformsh.site
         register: https://auth.upsun.com/register
+        discord: https://discord.gg/upsun
 
 # Images (kept in static/)
 logo: "images/logo.svg"
-logolinksto: "https://upsun.com"
+logolinksto: "/"
 logoAlt: "Upsun"
 favicon: "images/favicon.ico"
 
@@ -98,22 +100,22 @@ navSections:
 nonDocsSections:
   apidocs:
     title: API Documentation
-    link: https://proxy.upsun.com/docs
+    link: https://docs.upsun.com/api/
     weight: -80
 
 # Metadata
 meta:
   sitename: "Upsun User Documentation"
-  description: Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
+  description: Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "https://docs.upsun.com/images/default_social.png"
   url: "https://docs.upsun.com"
   twittercard:
     card: "summary_large_image"
     site: "@upsuncom"
     title: "Upsun User Documentation"
-    description: "Upsun is a second-generation Platform-as-a-Service built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    description: "Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
     creator: "@upsuncom"
-    image: "https://docs.upsun.com/images/logos/docs_social_2021.jpg"
+    image: "https://docs.upsun.com/images/default_social.png"
   keywords:
     - PaaS
     - cloud hosting
@@ -130,7 +132,6 @@ meta:
     - Wordpress
     - Symfony
     - Maven
-    - Lisp
     - Hibernate
     - Jakarta
     - Spring

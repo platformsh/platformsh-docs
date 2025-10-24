@@ -1,5 +1,5 @@
 ---
-title: "Add a database"
+title: "Add a database to Strapi"
 weight: -130
 description: |
   Once Your Strapi application has been deployed on {{% vendor/name %}}, you might want to add and configure a service to your application.
@@ -142,16 +142,16 @@ export DATABASE_SCHEME="$DB_SCHEME"
 
 # Set secrets needed by Strapi, if they are not set
 # Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
-if [[ -z "$ADMIN_JWT_SECRET" ]]; then
+if [ -z "$ADMIN_JWT_SECRET" ]; then
   export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$JWT_SECRET" ]]; then
+if [ -z "$JWT_SECRET" ]; then
   export JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$API_TOKEN_SALT" ]]; then
+if [ -z "$API_TOKEN_SALT" ]; then
     export API_TOKEN_SALT="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$APP_KEYS" ]]; then
+if [ -z "$APP_KEYS" ]; then
     export APP_KEYS="$PLATFORM_PROJECT_ENTROPY"
 fi
 ```
@@ -168,21 +168,21 @@ title=PostgreSQL
 ```bash {location=".environment"}
 # Set secrets needed by Strapi, if they are not set
 # Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
-if [[ -z "$ADMIN_JWT_SECRET" ]]; then
+if [ -z "$ADMIN_JWT_SECRET" ]; then
   export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$JWT_SECRET" ]]; then
+if [ -z "$JWT_SECRET" ]; then
   export JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$API_TOKEN_SALT" ]]; then
+if [ -z "$API_TOKEN_SALT" ]; then
     export API_TOKEN_SALT="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$APP_KEYS" ]]; then
+if [ -z "$APP_KEYS" ]; then
     export APP_KEYS="$PLATFORM_PROJECT_ENTROPY"
 fi
 
 # Switch to configure to the production database service _only_ at deploy time.
-if [[ -z "$PLATFORM_ENVIRONMENT" ]]; then
+if [ -z "$PLATFORM_ENVIRONMENT" ]; then
     export DATABASE_CLIENT="postgres"
 fi
 ```
@@ -194,21 +194,21 @@ title=Oracle MySQL
 ```bash {location=".environment"}
 # Set secrets needed by Strapi, if they are not set
 # Prefer setting these as project secret variables with {{% vendor/cli %}} variable:create env:SECRET_NAME --sensitive=true
-if [[ -z "$ADMIN_JWT_SECRET" ]]; then
+if [ -z "$ADMIN_JWT_SECRET" ]; then
   export ADMIN_JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$JWT_SECRET" ]]; then
+if [ -z "$JWT_SECRET" ]; then
   export JWT_SECRET="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$API_TOKEN_SALT" ]]; then
+if [ -z "$API_TOKEN_SALT" ]; then
     export API_TOKEN_SALT="$PLATFORM_PROJECT_ENTROPY"
 fi
-if [[ -z "$APP_KEYS" ]]; then
+if [ -z "$APP_KEYS" ]; then
     export APP_KEYS="$PLATFORM_PROJECT_ENTROPY"
 fi
 
 # Switch to configure to the production database service _only_ at deploy time.
-if [[ -z "$PLATFORM_ENVIRONMENT" ]]; then
+if [ -z "$PLATFORM_ENVIRONMENT" ]; then
     export DATABASE_CLIENT="mysql"
 fi
 ```

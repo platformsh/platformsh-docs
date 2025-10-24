@@ -1,7 +1,7 @@
 <!-- SECTION HEADING -->
 {{ $sectionKeys := .sections }}
 {{ $sectionId := printf "section-%s-sidebar-id" .Context.Title | urlize }}
-<!-- Get rid of dots like in Platform.sh -->
+<!-- Get rid of dots like in Upsun Fixed -->
 {{ $sectionId = replace $sectionId "." "" }}
 
 {{ $isCurrentSection := false }}
@@ -28,7 +28,7 @@
     {{ range .Context.Pages }}
       <div class="pl-8 py-2 pr-2 flex items-center justify-between min-h-[2.5rem]">
         <h4 class="pr-2 font-semibold text-sm">
-          <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
+          <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}" {{ if $isCurrentSection }} aria-current="true" {{ end }}>
             {{ .Title }}
           </a>
         </h4>
@@ -37,12 +37,12 @@
 
 <!-- Handle all other directories -->
 {{ else }}
-<div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }">
-  <!-- {{ .Page }} -->
-  {{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
-  {{ if .Context.Params.sidebarTitle }}
-    {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
-  {{ end }}
+<!-- {{ .Page }} -->
+{{ $itemTitle := .Context.Title | .Context.Page.RenderString }}
+{{ if .Context.Params.sidebarTitle }}
+  {{ $itemTitle = .Context.Params.sidebarTitle | .Context.Page.RenderString }}
+{{ end }}
+<div class="text-sm" x-data="{ topExpanded: {{ $isCurrentSection }} }" data-engagement-id="sidebar-subsection-{{ $itemTitle | htmlEscape }}">
   <!-- Allow for top-level sectionBefore titles -->
   {{ with .Context.Params.sectionBefore }}
     <h5 class="text-xs px-5 pt-2 pb-2 uppercase">{{ . }}</h5>
@@ -53,14 +53,15 @@
         {{ $itemTitle }}
         {{ if .Context.Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
         {{ if .Context.Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
+        {{ if .Context.Params.newfeature }}{{ partial "newfeature/badge" }}{{ end }}
         {{ if .Context.Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
-      </a> 
-      
+      </a>
+
     </h4>
 
     <!-- Add button for expanding if has children-->
     {{ if and ( eq .Context.Kind "section" ) ( gt ( len .Context.Pages ) 0  ) }}
-      {{ partial "sidebar/expand-button" (dict "itemID" $sectionId "isCurrentSection" $isCurrentSection "expandLevel" "topExpanded" )}}
+      {{ partial "sidebar/expand-button" (dict "itemID" $sectionId "itemTitle" $itemTitle "isCurrentSection" $isCurrentSection "expandLevel" "topExpanded" )}}
     {{ end }}
   </div>
   <ul x-show="topExpanded" class="pl-12" aria-labelledby="nav-expand-{{ $sectionId }}" id="{{ $sectionId }}">
@@ -88,11 +89,12 @@
       {{ with .Params.sectionBefore }}
         <h5 class="text-xs pt-2 pb-2 uppercase">{{ . }}</h5>
       {{ end }}
-      <li x-data="{ secondExpanded: {{ $isCurrentSection }} }">
+      <li x-data="{ secondExpanded: {{ $isCurrentSection }} }" data-engagement-id="sidebar-subsection-nested-{{ $itemTitle | htmlEscape }}">
         <div class="flex items-center pl-4 justify-between{{ if ne .Kind "section" }} py-2 pl-4 {{ end }}">
           <a href="{{ .RelPermalink }}" destination="{{ .RelPermalink }}" {{ $getStartedAttribute | safeHTMLAttr }} class="hover:text-skye-dark focus:text-skye-dark{{ if $isCurrentSection }} text-skye-dark{{ end }}">
               {{ $itemTitle }}
               {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+              {{ if .Params.newfeature }}{{ partial "newfeature/badge" }}{{ end }}
               {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
               {{ if .Params.partner }}{{ partial "white-labels/badge" }}{{ end }}
           </a>
@@ -101,7 +103,7 @@
           {{ if eq .Kind "section"}}
 
             <!-- Add button for expanding -->
-            {{ partial "sidebar/expand-button" (dict "itemID" $itemId "isCurrentSection" $isCurrentSection "expandLevel" "secondExpanded")}}
+            {{ partial "sidebar/expand-button" (dict "itemID" $itemId "itemTitle" $itemTitle "isCurrentSection" $isCurrentSection "expandLevel" "secondExpanded")}}
         </div>
             <ul x-show="secondExpanded" class="pl-4 py-2" aria-labelledby="nav-expand-{{ $itemId }}" id="{{ $itemId }}">
 
@@ -118,6 +120,7 @@
                     <a href="{{ .RelPermalink }}" class="hover:text-skye-dark focus:text-skye-dark{{ if eq $currentPage . }} text-skye-dark{{ end }}">
                         {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
                         {{ if .Params.premium }}{{ partial "premium-features/badge" }}{{ end }}
+                        {{ if .Params.newfeature }}{{ partial "newfeature/badge" }}{{ end }}
                         {{ if .Params.beta}}{{ partial "beta-features/badge" }}{{ end }}
                     </a>
                   </li>

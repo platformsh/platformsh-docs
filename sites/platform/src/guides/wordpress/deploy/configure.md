@@ -3,7 +3,7 @@ title: "Configure WordPress for {{% vendor/name %}}"
 sidebarTitle: "Configure"
 weight: -100
 description: |
-    Review the basics of what makes up a {{% vendor/name %}} project, including its three principle configuration files and how to define them for WordPress.
+    Review the basics of what makes up an {{% vendor/name %}} project, including its three principle configuration files and how to define them for WordPress.
 ---
 
 {{% guides/config-desc name="WordPress" %}}
@@ -22,7 +22,7 @@ If you are migrating WordPress or starting from scratch, you should copy this li
 
 {{% guides/config-service WordPress=true framework=WordPress %}}
 
-We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version for WordPress.
+We recommend the latest [MariaDB](/add-services/mysql/_index.md) version for WordPress.
 
 {{% /guides/config-service %}}
 
@@ -30,9 +30,9 @@ We recommend the latest [MariaDB](../../../add-services/mysql/_index.md) version
 # The services of the project.
 #
 # Each service listed will be deployed
-# to power your Platform.sh project.
-# More information: https://docs.platform.sh/add-services.html
-# Full list of available services: https://docs.platform.sh/add-services.html#available-services
+# to power your Upsun Fixed project.
+# More information: https://docs.upsun.com/anchors/fixed/services/
+# Full list of available services: https://docs.upsun.com/anchors/fixed/services/available/
 db:
     type: mariadb:10.4
     disk: 2048

@@ -133,7 +133,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     dependencies:
       php:
         composer/composer: '^2'
@@ -159,7 +159,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     build:
       flavor: none
 
@@ -188,7 +188,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     dependencies:
       php:
         require:
@@ -203,7 +203,7 @@ applications:
   # The app's name, which must be unique within the project.
   myapp:
     type: 'php:{{% latest "php" %}}'
-    [...]
+    <snip>
     dependencies:
       php:
         require:
@@ -225,13 +225,53 @@ applications:
     [...]
     dependencies:
       php:
-        composer/composer: '^2'
         require:
+          composer/composer: '^2'
           "platformsh/client": "2.x-dev"
         repositories:
           - type: vcs
             url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
+
+### Additional Composer schema properties
+In addition to [alternate repositories](#alternative-repositories), other
+[Composer schema properties](https://getcomposer.org/doc/04-schema.md) can be added to the global dependencies. For
+example, one of your dependencies may be a plugin where you need to explicitly whitelist it as an
+[allowed-plugin](https://getcomposer.org/doc/06-config.md#allow-plugins).
+
+To add additional composer schema properties:
+
+1. Set an explicit `require` block:
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        require:
+          "third-party/required-plugin"": "^3.0"
+```
+
+2. Add each additional property as a block at the same indentation as the `require` block:
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        require:
+          symfony/runtime: '*'
+        config:
+          "allow-plugins":
+            symfony/runtime: true
+```
+
 ## Connect to services
 
 {{< codetabs v2hide="true" >}}
@@ -627,7 +667,7 @@ applications:
 All major PHP web frameworks can be deployed on {{% vendor/name %}}.
 See dedicated guides for deploying and working with them:
 
-- [Laravel](/get-started/stacks/laravel)
+- [Laravel](/get-started/stacks/laravel/_index.md)
 - [Symfony](/get-started/stacks/symfony/_index.md)
 
 ## Modify your PHP runtime when using the composable image
@@ -642,13 +682,13 @@ The following table presents the possible modifications you can make to your PHP
 Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
 See the example below for more details.
 
-| Name                        | Type                                                       | Description                                                                                |
-|-----------------------------|------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                  |
-| `disabled_extensions`       | List of `string`s                                          | [PHP extensions](/languages/php/extensions.md) to disable.                                 |
-| `request_terminate_timeout` | `integer`                                                  | The timeout for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image#sizing-hints)                 | The assumptions for setting the number of workers in your PHP-FPM runtime.                 |
-| `xdebug`                    | An Xdebug definition                                       | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                 |
+| Name                        | Type                                                                                                                          | Description                                                                                             |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
+| `disabled_extensions`       | List of `string`s                                                                                                             | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
+| `request_terminate_timeout` | `integer`                                                                                                                     | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
+| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
+| `xdebug`                    | An Xdebug definition                                                                                                          | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
 
 Here is an example configuration:
 

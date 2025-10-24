@@ -3,10 +3,10 @@ title: "Customize WordPress for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your WordPress site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your WordPress site to read from an {{% vendor/name %}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it’s time to make your WordPress site itself ready to run on a {{% vendor/name %}} environment. 
+Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it’s time to make your WordPress site itself ready to run on an {{% vendor/name %}} environment.
 
 ## Install the Config Reader
 
@@ -16,9 +16,9 @@ Now that your code contains all of the configuration to deploy on {{% vendor/nam
 
 With the Configuration Reader library installed, add or update a `wp-config.php` file in the root of your repository to match the code below. In this file, the library's `Config` object is used to:
 
-- Retrieve connection credentials for MariaDB through the `database` relationship to configure the WordPress database. This will set up the database automatically and avoid you having to set the connection yourself during the installer. 
-- Use the project's [routes](../../../define-routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings. 
-- Set all of WordPress's security and authentication keys to the {{% vendor/name %}}-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments. 
+- Retrieve connection credentials for MariaDB through the `database` relationship to configure the WordPress database. This will set up the database automatically and avoid you having to set the connection yourself during the installer.
+- Use the project's [routes](/define-routes/_index.md) to set `WP_HOME` and `WP_SITEURL` settings.
+- Set all of WordPress's security and authentication keys to the {{% vendor/name %}}-provided `PLATFORM_PROJECT_ENTROPY` - a hashed variable specific to your repository consistent across environments.
 
 Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 
@@ -29,7 +29,7 @@ use Platformsh\ConfigReader\Config;
 
 require __DIR__.'/../vendor/autoload.php';
 
-// Create a new config object to ease reading the Platform.sh environment variables.
+// Create a new config object to ease reading the Upsun Fixed environment variables.
 // You can alternatively use getenv() yourself.
 $config = new Config();
 
@@ -46,7 +46,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
 if ($config->isValidPlatform()) {
 	if ($config->hasRelationship('database')) {
 		// This is where we get the relationships of our application dynamically
-		// from Platform.sh.
+		// from Upsun Fixed.
 
 		// Avoid PHP notices on CLI requests.
 		if (php_sapi_name() === 'cli') {
@@ -66,7 +66,7 @@ if ($config->isValidPlatform()) {
 		define( 'DB_CHARSET', 'utf8' );
 		define( 'DB_COLLATE', '' );
 
-		// Check whether a route is defined for this application in the Platform.sh
+		// Check whether a route is defined for this application in the Upsun Fixed
 		// routes. Use it as the site hostname if so (it is not ideal to trust HTTP_HOST).
 		if ($config->routes()) {
 
@@ -86,13 +86,13 @@ if ($config->isValidPlatform()) {
 			}
 		}
 
-		// Debug mode should be disabled on Platform.sh. Set this constant to true
+		// Debug mode should be disabled on Upsun Fixed. Set this constant to true
 		// in a wp-config-local.php file to skip this setting on local development.
 		if (!defined( 'WP_DEBUG' )) {
 			define( 'WP_DEBUG', false );
 		}
 
-		// Set all of the necessary keys to unique values, based on the Platform.sh
+		// Set all of the necessary keys to unique values, based on the Upsun Fixed
 		// entropy value.
 		if ($config->projectEntropy) {
 			$keys = [
@@ -209,7 +209,7 @@ With these packages included, the WordPress CLI is available when you SSH into t
 composer require wp-cli/wp-cli-bundle psy/psysh --ignore-platform-reqs
 ```
 
-If you've installed the WordPress CLI as a dependency as in the [previous step](./configure.md#configure-apps-in-platformappyaml),
+If you've installed the WordPress CLI as a dependency as in the [previous step](/guides/wordpress/deploy/configure.md#configure-apps-in-platformappyaml),
 you can use it directly.
 (As long as you have only `wp-cli/wp-cli-bundle` as a dependency and not `wp-cli/wp-cli`.)
 

@@ -61,11 +61,11 @@ web:
 You might have multiple apps you want to run from a single Git repository,
 such as a RESTful web service and a front-end or a main website and a blog.
 In such cases, you configure each app separately and define the relationships among them.
-See the various ways to set up a [multi-app project](./multi-app/_index.md).
+See the various ways to set up a [multi-app project](/create-apps/multi-app/_index.md).
 
 ## Connect to services
 
-If you want to use one of the [databases or other services {{% vendor/name %}} provides](../add-services/_index.md),
+If you want to use one of the [databases or other services {{% vendor/name %}} provides](/add-services/_index.md),
 set it up by following these steps:
 
 1. Configure the service based on the documentation for that service.
@@ -79,7 +79,7 @@ If you're running a PHP or Node.js app, this starts with the [build flavor](/cre
 which runs a default set of tasks.
 Then any [global dependencies](/create-apps/app-reference/single-runtime-image.md#dependencies) can be installed.
 
-Once these optional tasks are done, you can run [hooks](./hooks/_index.md) at various points in the process.
+Once these optional tasks are done, you can run [hooks](/create-apps/hooks/_index.md) at various points in the process.
 Hooks are places for your custom scripts to control how your app is built and deployed.
 
 ## Configure what's served
@@ -120,7 +120,8 @@ Unlike other runtimes most PHP applications do not have a start command. There i
 
 {{< /note >}}
 
-The following example shows a setup for a PHP app with comments to explain the settings. Please note that Composable image is currently available as a Beta feature.
+The following example shows a setup for a PHP app with comments to explain the settings.  Please note that Composable image is currently available as a Beta feature.
+
 
 {{< codetabs >}}
 
@@ -183,10 +184,11 @@ web:
       allow: true
       passthru: '/app.php'
 ```
+
 <--->
 
 +++
-title=Composable image (Beta)
+title=Composable image (BETA)
 +++
 
 ```yaml {configFile="app"}

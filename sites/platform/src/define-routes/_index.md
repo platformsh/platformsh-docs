@@ -8,7 +8,7 @@ keywords:
 ---
 
 You might need to control how people access your web applications,
-for example when you have [multiple apps](../create-apps/multi-app/_index.md) in one project.
+for example when you have [multiple apps](/create-apps/multi-app/_index.md) in one project.
 Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
 
 Control where external requests are directed by defining routes in a `{{< vendor/configfile "routes" >}}` file in your Git repository.
@@ -85,7 +85,7 @@ So you might define routes for 2 apps named `myapp` and `api` as follows:
 ```
 
 Both of these routes would be resolved with trailing slashes.
-So if you check your [`PLATFORM_ROUTES` variable](../development/variables/use-variables.md#use-provided-variables),
+So if you check your [`PLATFORM_ROUTES` variable](/development/variables/use-variables.md#use-provided-variables),
 you see the following resolved routes (assuming `example.com` is your default domain):
 
 ```json
@@ -117,7 +117,7 @@ Each route in your configuration file is defined in one of two ways:
 * A URL with a placeholder such as `https://{default}/blog`
 
 The available placeholders are `{default}` and `{all}`.
-They stand in for the [custom domains](../domains/steps/_index.md) you've defined in your project.
+They stand in for the [custom domains](/domains/steps/_index.md) you've defined in your project.
 
 These domains can be top-level domains (`example.com`) or subdomains (`myapp.example.com`).
 
@@ -147,12 +147,12 @@ In both cases, the URLs for your Production environment are the same.
 
 #### URLs in preview environments
 
-URLs in [preview environments](../glossary/_index.md#preview-environment) (development and staging types) follow a different pattern.
+URLs in [preview environments](/glossary/_index.md#preview-environment) (development and staging types) follow a different pattern.
 
 No matter how you have set your default domain (even if you don't have one),
 using either the absolute URL or the `{default}` placeholder results in the same URL.
 
-In any case, you get the same URL for a `feature` environment:
+In any case, you get the same URL for an environment named `feature`:
 
 ```txt
 https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
@@ -246,14 +246,14 @@ If you have configured `example.com` as your default domain,
 HTTP requests to `www.example.com`, `blog.example.com`, and `us.example.com` are all routed to the same endpoint.
 
 It also works on preview environments.
-If you have a `feature` branch, it's `{default}` domain looks something like:
+If you have a branch named `feature`, it's `{default}` domain looks something like:
 `feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` (depending on the project's region).
 So requests to `blog.feature-def123-vmwklxcpbi6zq.us.{{< vendor/urlraw "host" >}}` and `us.feature-def123-vmwklxcpbi6zq.eu.{{< vendor/urlraw "host" >}}`
 are both routed to the same endpoint.
 
 Let's Encrypt wildcard certificates aren't supported (they would need DNS validation).
 So if you want to use a wildcard route and protect it with HTTPS,
-you need to provide a [custom TLS certificate](../domains/steps/tls.md).
+you need to provide a [custom TLS certificate](/domains/steps/tls.md).
 
 {{% version/only "1" %}}
 {{< note >}}
@@ -295,10 +295,10 @@ You can define your routes like this:
   upstream: 'app2:http'
 ```
 
-To see the generated routes on your `feature` environment, run:
+To see the generated routes on your environment named `feature`, run:
 
 ```bash
-{{% vendor/cli %}} ssh -e feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
+{{% vendor/cli %}} ssh --environment feature 'echo $PLATFORM_ROUTES | base64 --decode | jq .'
 ```
 
 The result is something like this:
@@ -386,7 +386,7 @@ As a general rule, you should keep to your defined routes under 100.
 If your `{{< vendor/configfile "routes" >}}` file is rejected for being too big, do one of the following:
 
 * Move redirect routes to the application.
-* Collapse the route definitions into a [regular expression-based redirect](./redirects.md#partial-redirects).
+* Collapse the route definitions into a [regular expression-based redirect](/define-routes/redirects.md#partial-redirects).
 
 {{% lets_encrypt_limitations %}}
 
@@ -398,20 +398,20 @@ You can configure each route separately with the following properties:
 
 | Name         | Type      | Required                | Description |
 | ------------ | --------- | ----------------------- | ----------- |
-| `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](./proxy.md).</li></ul> |
-| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](../create-apps/_index.md)) followed by `:http`. Example: `app:http` |
+| `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](/define-routes/proxy.md).</li></ul> |
+| `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](/create-apps/_index.md)) followed by `:http`. Example: `app:http` |
 | `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
-| `ssi`        | `boolean` | No                      | Whether [server side includes](./ssi.md) are enabled. |
-| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](./redirects.md). |
-| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](./cache.md). |
+| `ssi`        | `boolean` | No                      | Whether [server side includes](/define-routes/ssi.md) are enabled. |
+| `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](/define-routes/redirects.md). |
+| `cache`      | Object    | No                      | Defines caching policies for the given route. Enabled by default. For details and options, see [route caching](/define-routes/cache.md). |
 | `id`         | `string`  | No                      | A unique identifier for the route. See [route identifiers](#route-identifiers). |
 | `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
-| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](./https.md#optional-configure-tls-connections). |
+| `tls`        | Object    | No                      | TLS configuration. See [HTTPS](/define-routes/https.md#optional-configure-tls-connections). |
 | `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
 
 ## CLI access
 
-The [{{% vendor/name %}} CLI](../administration/cli/_index.md) can show you the routes you have configured for an environment.
+The [{{% vendor/name %}} CLI](/administration/cli/_index.md) can show you the routes you have configured for an environment.
 These are the routes as defined in the `{{< vendor/configfile "routes" >}}` file with the [placeholders](#route-placeholders)
 plus the default redirect from HTTP to HTTPS.
 They aren't the final generated routes.
@@ -463,7 +463,7 @@ which is a requirement for the router caching.
     enabled: false
 ```
 
-2. [Disable request buffering](../create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
+2. [Disable request buffering](/create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
 web:
@@ -484,5 +484,5 @@ web:
 {{% vendor/name %}} uses Nginx servers, not Apache ones.
 You [can't use `.htaccess` files with Nginx](https://www.nginx.com/resources/wiki/start/topics/examples/likeapache-htaccess/),
 they are therefore ignored on {{% vendor/name %}}.
-You can accomplish the same redirect and rewrite goals with your [routes](../define-routes/_index.md)
-and [web server locations](../create-apps/web/_index.md).
+You can accomplish the same redirect and rewrite goals with your [routes](/define-routes/_index.md)
+and [web server locations](/create-apps/web/_index.md).

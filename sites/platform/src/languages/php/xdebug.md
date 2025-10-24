@@ -12,9 +12,9 @@ While usually used for local development, it can also be helpful for debugging a
 As configured on {{% vendor/name %}}, it avoids any runtime overhead for non-debug requests, even in production, and only allows connections via SSH tunnels to avoid any security issues.
 
 Note that Xdebug runs only on your app containers.
-So you can't use it for [worker containers](../../create-apps/workers.md).
+So you can't use it for [worker containers](/create-apps/workers.md).
 
-Also, note that if you use a [custom start command](./_index.md#alternate-start-commands),
+Also, note that if you use a [custom start command](/languages/php/_index.md#alternate-start-commands),
 Xdebug is automatically disabled.
 
 ## Before you begin
@@ -26,7 +26,7 @@ The following table shows the PHP versions where Xdebug is available on Grid env
 
 You also need:
 
-- The {{% vendor/name %}} [CLI](../../administration/cli/_index.md)
+- The {{% vendor/name %}} [CLI](/administration/cli/_index.md)
 - A Xdebug-compatible IDE installed on your machine.
     For setup instructions, consult your IDE's Xdebug documentation, such as that for [PHPStorm](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html).
 
@@ -47,7 +47,7 @@ When that key is defined, {{% vendor/name %}} starts a second PHP-FPM process on
 Only incoming requests that have an Xdebug cookie or query parameter set are forwarded to the debug PHP-FPM process.
 All other requests are directed to the normal PHP-FPM process and thus have no performance impact.
 
-If you have enabled the [router cache](../../define-routes/cache.md),
+If you have enabled the [router cache](/define-routes/cache.md),
 you need to explicitly add the Xdebug cookie (`XDEBUG_SESSION`) to the cookie allowlist.
 Depending on the cookies already listed, the result should look similar to the following:
 
@@ -59,14 +59,14 @@ Depending on the cookies already listed, the result should look similar to the f
     cookies: ['/^SS?ESS/', 'XDEBUG_SESSION']
 ```
 Xdebug has several configuration options available.
-They can be set the same way as any other [PHP setting](./_index.md#php-settings).
+They can be set the same way as any other [PHP setting](/languages/php/_index.md#php-settings).
 For a full list of available options, consult the [Xdebug documentation](https://xdebug.org/docs/).
 
 ## 2. Use Xdebug
 
 ### Open a tunnel
 
-To open an SSH tunnel to the server from a local checkout of your app, run the following [CLI command](../../administration/cli/_index.md) :
+To open an SSH tunnel to the server from a local checkout of your app, run the following [CLI command](/administration/cli/_index.md) :
 
 ```bash
 {{% vendor/cli %}} environment:xdebug
@@ -79,13 +79,6 @@ Generally, it's best to configure your IDE to use that port.
 To use an alternate port, use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
-
-{{< note title="On {{% names/dedicated-gen-3 %}}" version="1" >}}
-
-Note that because you have several virtual machines running but your tunnel is connected to only one of them,
-your requests don't always reach the same host.
-
-{{< /note >}}
 
 ### Install an Xdebug helper
 
@@ -117,4 +110,4 @@ The common steps for setup usually include:
 
 ## What's next
 
-Learn more about how to [set up Xdebug on Dedicated server clusters](https://community.platform.sh/t/set-up-xdebug-on-dedicated-pro-server-clusters/403).
+Learn more about how to [set up Xdebug on Dedicated server clusters](https://support.platform.sh/hc/en-us/community/posts/16439588829330).

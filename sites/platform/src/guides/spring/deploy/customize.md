@@ -3,10 +3,10 @@ title: "Customize Spring for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Spring site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your Spring site to read from an {{% vendor/name %}} environment.
 ---
 
-Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it's time to make your Spring site itself ready to run on a {{% vendor/name %}} environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
+Now that your code contains all of the configuration to deploy on {{% vendor/name %}}, it's time to make your Spring site itself ready to run on an {{% vendor/name %}} environment. There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
 
@@ -30,7 +30,7 @@ compile group: 'sh.platform', name: 'config', version: '2.2.2'
 
 ## `.environment`
 
-The `{{< vendor/configfile "app" >}}` file in the [previous step](./configure.md#configure-apps-in-platformappyaml)
+The `{{< vendor/configfile "app" >}}` file in the [previous step](/guides/spring/deploy/configure.md#configure-apps-in-platformappyaml)
 has been pulled directly from the [Spring template](https://github.com/platformsh-templates/spring-mvc-maven-mongodb/blob/master/.platform.app.yaml).
 It is sufficient to deploy Spring on its own, but since [Spring Config](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config.typesafe-configuration-properties.relaxed-binding.environment-variables)
 makes it possible to overwrite configurations without impacting the application itself,

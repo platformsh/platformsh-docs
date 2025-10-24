@@ -54,7 +54,7 @@ You can [monitor these costs](/administration/billing/monitor-billing.md) in the
 | `child`    | Initializes new containers using the same resources as on the child environment. Only relevant during merge activities. |
 | `backup`   | When restoring a backup, initializes new containers using the same resources as when the backup was taken. |
 
-{{% note theme="info" title="More information on..."%}} 
+{{% note theme="info" title="More information on..."%}}
 <details>
   <summary><b>{{% vendor/name %}} minimum resources</b></summary>
 
@@ -66,35 +66,34 @@ The following table shows the resources {{% vendor/name %}} allocates to your co
 | Chrome Headless         | 0.1  | 64 MB  | None    |
 | Elasticsearch           | 0.1  | 448 MB | 256 MB  |
 | Elasticsearch Premium   | 0.1  | 448 MB | 256 MB  |
-| Elixir                  | 0.1  | 64 MB  | 0 MB    | 
+| Elixir                  | 0.1  | 64 MB  | 0 MB    |
 | Go                      | 0.1  | 64 MB  | 0 MB    |
 | InfluxDB                | 0.1  | 448 MB | 256 MB  |
 | Java                    | 0.1  | 448 MB | 0 MB    |
 | Kafka                   | 0.1  | 448 MB | 512 MB  |
-| Lisp                    | 0.1  | 64 MB  | 0 MB    |
 | MariaDB                 | 0.1  | 448 MB | 256 MB  |
 | Memcached               | 0.1  | 352 MB | None    |
-| MongoDB                 | 0.1  | 448 MB | 256 MB  | 
+| MongoDB                 | 0.1  | 448 MB | 256 MB  |
 | MongoDB Premium         | 0.1  | 448 MB | 256 MB  |
-| Network Storage         | 0.1  | 448 MB | 256 MB  | 
+| Network Storage         | 0.1  | 448 MB | 256 MB  |
 | Node.js                 | 0.1  | 64 MB  | 0 MB    |
 | OpenSearch              | 0.1  | 448 MB | 256 MB  |
-| Oracle MySQL            | 0.1  | 448 MB | 256 MB  | 
+| Oracle MySQL            | 0.1  | 448 MB | 256 MB  |
 | PHP                     | 0.1  | 64 MB  | 0 MB    |
-| PostgreSQL              | 0.1  | 448 MB | 256 MB  | 
+| PostgreSQL              | 0.1  | 448 MB | 256 MB  |
 | Python                  | 0.1  | 64 MB  | 0 MB    |
-| RabbitMQ                | 0.1  | 448 MB | 256 MB  | 
+| RabbitMQ                | 0.1  | 448 MB | 256 MB  |
 | Redis ephemeral         | 0.1  | 352 MB | None    |
-| Redis persistent        | 0.1  | 352 MB | 256 MB  | 
+| Redis persistent        | 0.1  | 352 MB | 256 MB  |
 | Ruby                    | 0.1  | 64 MB  | 0 MB    |
 | Rust                    | 0.1  | 64 MB  | 0 MB    |
-| Solr                    | 0.1  | 448 MB | 256 MB  | 
+| Solr                    | 0.1  | 448 MB | 256 MB  |
 | Varnish                 | 0.1  | 448 MB | None    |
 | Vault KMS               | 0.1  | 448 MB | 256 MB  |
 
 \* The disk size is set to `None` when the container never uses disk, and to `0 MB` when the container doesn't require disk but _can_ use it.
 </details>
-{{% /note %}} 
+{{% /note %}}
 
 You can specify a resource initialization strategy when performing the following actions:
 
@@ -103,17 +102,17 @@ You can specify a resource initialization strategy when performing the following
 | [First deployment](#first-deployment) | `parent`, `default`, `minimum`, `manual` | `parent` |
 | [Environment branch](#environment-branch) | `parent`, `default`, `minimum` | `parent` |
 | [Environment merge](#environment-merge) | `child`, `default`, `minimum`, `manual` | `child` |
-| [Environment activation](#environment-activation) | `parent`, `default`, `minimum` | `parent` | 
+| [Environment activation](#environment-activation) | `parent`, `default`, `minimum` | `parent` |
 | [Backup restoration](#backup-restoration) | `backup`, `parent`, `default`, `minimum` | `backup` |
 
 ### First deployment
 
-{{% note theme="info" title="Resource initialization strategies" %}} 
+{{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `parent`, `default`, `minimum`, `manual` </br>
 Default: `parent`
 
-{{% /note %}} 
+{{% /note %}}
 
 You can define [which resource initialization strategy](#specify-a-resource-initialization-strategy) {{% vendor/name %}} uses to allocate resources
 when you first deploy your project or add a new container.
@@ -165,13 +164,13 @@ Once a resource initialization strategy is specified for your source integration
 it applies to **all** the deployments you launch through that source integration.
 
 {{< /note >}}
-
+#### **When creating a new source integration**
 To specify a resource initialization strategy when [creating your source integration](/integrations/source/_index.md),
 include the `--resources-init` flag in your source integration options.</br>
-For example, if you [set up a GitHub integration](/integrations/source/github), use the following options:
+For example, if you [set up a GitHub integration](/integrations/source/github.md), use the following options:
 
 ```bash {location="Terminal"}
-platform integration:add \
+{{% vendor/cli %}} integration:add \
   --project {{< variable "PROJECT_ID" >}} \
   --type github \
   --repository {{< variable "OWNER/REPOSITORY" >}} \
@@ -179,7 +178,7 @@ platform integration:add \
   --base-url {{< variable "GITHUB_URL" >}}
   --resources-init {{< variable "INITIALIZATION_STRATEGY" >}}
 ```
-
+#### **Update an existing source integration**
 To specify a resource initialization strategy for an existing source integration,
 run the following command:
 
@@ -197,15 +196,17 @@ For example, to use the `minimum` strategy for your deployment, run the the foll
 
 ### Environment branch
 
-{{% note theme="info" title="Resource initialization strategies" %}} 
+{{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `parent`, `default`, `minimum` </br>
-Default: `parent`
+Default: `default` if the new environment is of type `staging`, `minimum` if the new environment is of type `development`
 
-{{% /note %}} 
+{{% /note %}}
 
-By default, when you [branch an environment](/glossary.md#branch) to create a new child environment,
-the child environment inherits all the resources from its parent.
+By default, when you [branch an environment](/glossary.md#branch) to create a new child environment, 
+the resources allocated to this child environment depends on its type (staging or development). 
+If the child environment is a staging environment, the default resources are allocated.
+If the child environment is a development environment, the minimum resources are allocated. 
 However, you can specify a different [resource initialization strategy](#specify-a-resource-initialization-strategy).
 
 {{% note %}}
@@ -229,10 +230,10 @@ Run the following command:
 {{% vendor/cli %}} environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
-For example, to use the `minimum` resource initialization strategy, run the following command:
+For example, to use the `parent` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-{{% vendor/cli %}} environment:branch --resources-init=minimum
+{{% vendor/cli %}} environment:branch --resources-init=parent
 ```
 
 <--->
@@ -251,12 +252,12 @@ title=In the Console
 
 ### Environment merge
 
-{{% note theme="info" title="Resource initialization strategies" %}} 
+{{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `child`, `default`, `minimum`, `manual` </br>
 Default: `child`
 
-{{% /note %}} 
+{{% /note %}}
 
 When you [merge](/glossary.md#merge) a child environment into its parent environment,
 any apps and services you created on the child are merged and therefore created on the parent.
@@ -306,15 +307,16 @@ title=In the Console
 
 ### Environment activation
 
-{{% note theme="info" title="Resource initialization strategies" %}} 
+{{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `parent`, `default`, `minimum` </br>
-Default: `parent`
+Default: `default` if the new environment is of type `staging`, `minimum` if the new environment is of type `development`
 
-{{% /note %}} 
+{{% /note %}}
 
-When you activate an environment, {{% vendor/name %}} uses the same resource allocation as on the parent environment.
-If there is no parent environment, the [`default` resource initialization strategy](#default-resources) applies.
+When you activate a new environment, {{% vendor/name %}} allocates the resources depending on the environment type. 
+If the environment is a staging environment, the default resources are allocated. 
+If the environment is a development environment, the minimum resources are allocated. 
 
 You can also specify a different resource initialization strategy using the CLI.
 To do so, run the following command:
@@ -323,24 +325,24 @@ To do so, run the following command:
 {{% vendor/cli %}} environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
-For example, to use the `minimum` resource initialization strategy, run the following command:
+For example, to use the `parent` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-{{% vendor/cli %}} environment:activate --resources-init=minimum
+{{% vendor/cli %}} environment:activate --resources-init=parent
 ```
 
 {{% note %}}
-[Setting resources](/manage-resources/adjust-resources.md) on a inactive environment using the Console or the CLI automatically activates it. 
+[Setting resources](/manage-resources/adjust-resources.md) on a inactive environment using the Console or the CLI automatically activates it.
 {{% /note %}}
 
 ### Backup restoration
 
-{{% note theme="info" title="Resource initialization strategies" %}} 
+{{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `backup`, `parent`, `default`, `minimum` </br>
 Default: `backup`
 
-{{% /note %}} 
+{{% /note %}}
 
 {{< codetabs >}}
 
@@ -470,7 +472,7 @@ Run the following commands depending on your needs:
   ```bash {location="Terminal"}
   {{% vendor/cli %}} sync code data resources
   ```
- 
+
   You can adjust the command depending on the exact combination of elements you want to sync.
 
 <--->

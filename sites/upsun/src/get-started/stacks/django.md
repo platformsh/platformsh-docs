@@ -26,7 +26,7 @@ Your `settings.py` file may allow for environment variables to be set for common
 In this case, add and commit a `.environment` file that includes those details.
 
 ```bash {location=".environment"}
-export DJANGO_SETTINGS_MODULE=config.settings.production
+export DJANGO_SETTINGS_MODULE="config.settings.production"
 export DJANGO_SECRET_KEY="$PLATFORM_PROJECT_ENTROPY"
 export DJANGO_ALLOWED_HOSTS=".{{< vendor/urlraw "hostname" >}}"
 ```
@@ -44,9 +44,9 @@ By default, other than `localhost`, Django only allows hosts listed in `settings
 
 The simplest method is to add the following line to `.environment` :
 ```bash
-export DJANGO_ALLOWED_HOSTS=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key' | sed 's:/*$::' | sed 's|https\?://||')
+export DJANGO_ALLOWED_HOSTS="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key' | sed 's:/*$::' | sed 's|https\?://||')"
 ```
-This will add the primary route of the current application to the `DJANGO_ALLOWED_HOSTS` environment variable. 
+This will add the primary route of the current application to the `DJANGO_ALLOWED_HOSTS` environment variable.
 
 ## 3. {{% vendor/name %}}-specific settings
 
@@ -203,9 +203,9 @@ git push
 
 ### Documentation
 
-- [Python documentation](/languages/python/)
-- [Managing dependencies](/languages/python/dependencies)
-- [Configuring web servers](/languages/python/server)
+- [Python documentation](/languages/python/_index.md)
+- [Managing dependencies](/languages/python/dependencies.md)
+- [Configuring web servers](/languages/python/server.md)
 
 ### Community content
 

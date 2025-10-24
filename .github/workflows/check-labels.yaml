@@ -27,13 +27,13 @@ jobs:
     if: github.event.action == 'opened' || github.event.action == 'reopened'
     steps:
       - name: Get repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Verify label exists
         shell: bash
         run: |
-          if [[ "${{ vars.LBL_MRKDWNPROSE }}" != $(gh label list --search "${{ vars.LBL_MRKDWNPROSE }}" --json name -q '.[] | .name') ]]; then
+          if [[ "${{ vars.LBL_MRKDWNPROSE }}" != $(gh label list --json name -q '.[] | select(.name | startswith("${{ vars.LBL_MRKDWNPROSE }}")) | .name') ]]; then
             echo "Label ${{ vars.LBL_MRKDWNPROSE }} doesn't exist so I need to create it."
             gh label create "${{ vars.LBL_MRKDWNPROSE }}"
           else

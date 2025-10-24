@@ -1,16 +1,15 @@
 ---
-title: Use flexible resources
+title: Adjusting resources on Fixed projects
 sidebarIgnore: true
 ---
 
-Sometimes you have apps that are more memory-intensive.
-In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](./_index.md).
-All memory must stay within the limits set by your plan.
+In Upsun Fixed projects, the amount of resources (memory) provisioned for a project is fixed. However, you can still adjust the amount of memory your app can use by setting the `resources` key in your app configuration. The value of this key cannot exceed the limit set by your plan. For example, you might increase the `resources` value for memory-intensive apps.
+In such cases, you can adjust the amount of memory using the `resources` key in your [app configuration](/create-apps/_index.md).
 
 {{< note >}}
 
 If you don't understand how your resources are being allocated or are having issues configuring them,
-[open a support ticket](https://console.platform.sh/-/users/~/tickets/open?category=high-mem-plans).
+[open a support ticket](https://console.upsun.com/-/users/~/tickets/open?category=high-mem-plans).
 The Support team can look into the details of your project.
 
 {{< /note >}}
@@ -46,6 +45,12 @@ resources:
 
 If your app is set with a `size` of `S`, it gets 218&nbsp;MB of memory: `128 + (0.5 * 180) = 218`.
 If you change the `size` to `L`, it gets 488&nbsp;MB of memory: `128 + (2 * 180) = 488`.
+
+{{< note >}}
+
+If you need even more control of your app's resources, take a look at the [Upsun Flex Organization](https://docs.upsun.com/administration/organizations.html#what-is-a-upsun-flex-organization) option. 
+
+{{< /note >}}
 
 ## Other containers and workers
 

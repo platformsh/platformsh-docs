@@ -31,9 +31,9 @@ See all [restrictions on the projects directory](https://docs.docksal.io/getting
 
 ## 3. Add an API token
 
-To connect Docksal with your {{% vendor/name %}} account, use a {{% vendor/name %}} API token.
+To connect Docksal with your {{% vendor/company_name %}} account, use an {{% vendor/company_name %}} API token.
 
-1. [Create an API token](../../administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
+1. [Create an API token](/administration/cli/api-tokens.md#2-create-an-api-token) in the Console.
 2. Add the token to your Docksal configuration by running this command:
 
    ```bash
@@ -57,7 +57,7 @@ These files are ignored by {{% vendor/name %}}.
 ## 5. Add commands
 
 Docksal doesn't automatically copy over any commands you have in your [build flavor](/create-apps/app-reference/single-runtime-image.md#build)
-and [hooks](../../create-apps/hooks/_index.md).
+and [hooks](/create-apps/hooks/_index.md).
 To get your project running like on {{% vendor/name %}}, you have to add the commands to Docksal.
 
 The `.docksal/commands` directory should already have one command (`init`) such as the following:

@@ -6,7 +6,7 @@ description: Learn about the many ways you can define routes between your apps.
 banner:
    title: Feature availability
    type: tiered-feature
-   body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
+   body: This page applies to Grid projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://upsun.com/contact-us/).
 ---
 
 When you set up a project containing multiple applications,
@@ -77,7 +77,7 @@ So if your default domain is `example.com`, that means:
 
 {{< note >}}
 
-Using a subdomain might [double your network traffic](https://nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
+Using a subdomain might [double your network traffic](https://www.nickolinger.com/blog/2021-08-04-you-dont-need-that-cors-request/),
 so consider using a path like `https://{default}/api` instead.
 
 {{< /note >}}

@@ -34,6 +34,7 @@ CPUs?
 [Cc]ron
 coroutine
 Datadog
+datastore
 DDEV
 denylist
 deprovision
@@ -75,6 +76,7 @@ Hypercorn
 Ibexa
 IDEs?
 IPs?
+[Jj]ournald
 JVM
 imagetragick
 impactful
@@ -152,6 +154,7 @@ progs
 proxied
 Pthreads
 Pyenv
+Qdrant
 Quarkus
 [Rr]ebase
 recache
@@ -202,6 +205,7 @@ Uvloop
 [Uu]ntrusted
 upscal(?:e|ing)
 upsiz(?:e|ing)
+Valkey
 Verisign
 Webflux
 webpack

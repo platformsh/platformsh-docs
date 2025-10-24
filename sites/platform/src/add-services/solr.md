@@ -12,9 +12,9 @@ Solr search with generic schemas provided, and a custom schema is also supported
 
 If you use one of the following frameworks, follow its guide:
 
-- [Ibexa DXP](../guides/ibexa/deploy.md#solr)
-- [Jakarta EE](../guides/jakarta/deploy.md#apache-solr)
-- [Spring](../guides/spring/solr.md)
+- [Ibexa DXP](/guides/ibexa/deploy.md#solr)
+- [Jakarta EE](/guides/jakarta/deploy.md#apache-solr)
+- [Spring](/guides/spring/solr.md)
 
 ## Supported versions
 
@@ -26,14 +26,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="solr" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="solr" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -50,14 +48,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="solr" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="solr" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -130,12 +126,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -149,7 +145,7 @@ title=Using explicit endpoints
 # Relationships enable access from this app to a given service.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -159,10 +155,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -206,7 +202,7 @@ title=Using explicit endpoints
 # Relationships enable access from this app to a given service.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   solr:
     service: solr

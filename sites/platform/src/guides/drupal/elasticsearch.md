@@ -48,12 +48,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](/add-services/elasticsearch.md#2-define-the-relationship) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -68,7 +68,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -78,10 +78,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#2-define-the-relationship) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -89,7 +89,7 @@ With the above definition, the application container now has [access to the serv
 
 ### Example configuration
 
-#### [Service definition](/add-services)
+#### [Service definition](/add-services/_index.md)
 
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
@@ -101,7 +101,7 @@ elasticsearch:
 If you're using a [premium version](add-services/elasticsearch.md#supported-versions),
 use the `elasticsearch-enterprise` type in the service definition.
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 {{< codetabs >}}
 
@@ -129,7 +129,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: elasticsearch
@@ -157,7 +157,7 @@ Then, paste the following code snippet into your `settings.platformsh.php` file.
 
 {{< note >}}
 
-If you do not already have the [Config Reader library](../../development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
+If you do not already have the [Config Reader library](/development/variables/use-variables.md#access-variables-in-your-app) installed and referenced at the top of the file, you need to install it with `composer require platformsh/config-reader` and then add the following code before the block below:
 
 ```php
 <?php

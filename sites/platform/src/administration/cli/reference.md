@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Platform.sh CLI 5.0.15
+# Upsun CLI (Platform.sh compatibility) 5.6.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -21,12 +21,12 @@ showTitle: false
 ## All commands
 
 * [`clear-cache`](#clear-cache)
+* [`console`](#console)
 * [`decode`](#decode)
 * [`docs`](#docs)
 * [`help`](#help)
 * [`list`](#list)
 * [`multi`](#multi)
-* [`web`](#web)
 
 **activity**
 
@@ -48,6 +48,11 @@ showTitle: false
 * [`auth:info`](#authinfo)
 * [`auth:logout`](#authlogout)
 * [`auth:verify-phone-number`](#authverify-phone-number)
+
+**autoscaling**
+
+* [`autoscaling:get`](#autoscalingget)
+* [`autoscaling:set`](#autoscalingset)
 
 **backup**
 
@@ -88,6 +93,8 @@ showTitle: false
 * [`environment:branch`](#environmentbranch)
 * [`environment:checkout`](#environmentcheckout)
 * [`environment:delete`](#environmentdelete)
+* [`environment:deploy`](#environmentdeploy)
+* [`environment:deploy:type`](#environmentdeploytype)
 * [`environment:drush`](#environmentdrush)
 * [`environment:http-access`](#environmenthttp-access)
 * [`environment:info`](#environmentinfo)
@@ -192,6 +199,7 @@ showTitle: false
 * [`service:mongo:restore`](#servicemongorestore)
 * [`service:mongo:shell`](#servicemongoshell)
 * [`service:redis-cli`](#serviceredis-cli)
+* [`service:valkey-cli`](#servicevalkey-cli)
 
 **source-operation**
 
@@ -271,11 +279,58 @@ platform cc
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `console`
+
+Open the project in the Console
+
+Aliases: `web`
+
+### Usage
+
+```
+platform web [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+```
+
+#### Options
+
+* `--browser` (expects a value)
+  The browser to use to open the URL. Set 0 for none.
+
+* `--pipe`
+  Output the URL to stdout.
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--help` (`-h`)
+  Display this help message
+
 * `--version` (`-V`)
   Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -306,11 +361,14 @@ platform decode [-P|--property PROPERTY] [--] <value>
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -351,11 +409,14 @@ platform docs [--browser BROWSER] [--pipe] [--] [<search>]...
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -406,11 +467,14 @@ To display the list of available commands, please use the list command.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -466,11 +530,14 @@ It's also possible to get raw list of commands (useful for embedding command run
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -510,11 +577,14 @@ platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -528,45 +598,6 @@ platform multi [-p|--projects PROJECTS] [--continue] [--sort SORT] [--reverse] [
 ```
 platform multi -p l7ywemwizmmgb,o43m25zns6k2d,3nyujoslhydhx -- var -e main
 ```
-
-## `web`
-
-Open the project in the Web Console
-
-### Usage
-
-```
-platform web [--browser BROWSER] [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
-```
-
-#### Options
-
-* `--browser` (expects a value)
-  The browser to use to open the URL. Set 0 for none.
-
-* `--pipe`
-  Output the URL to stdout.
-
-* `--project` (`-p`) (expects a value)
-  The project ID or URL
-
-* `--environment` (`-e`) (expects a value)
-  The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
 
 ## `activity:cancel`
 
@@ -603,11 +634,14 @@ platform activity:cancel [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [-a|-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -674,11 +708,14 @@ platform activity:get [-P|--property PROPERTY] [-t|--type TYPE] [-x|--exclude-ty
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -713,7 +750,7 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
 #### Options
 
 * `--type` (`-t`) (expects a value)
-  Filter activities by type For a list of types see: https://docs.platform.sh/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
+  Filter activities by type For a list of types see: https://docs.upsun.com/anchors/fixed/integrations/activity-scripts/type/ Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
 
 * `--exclude-type` (`-x`) (expects a value)
   Exclude activities by type. Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can exclude 'environment.cron' activities. The % or * characters can be used as a wildcard to exclude types.
@@ -757,11 +794,14 @@ platform activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit L
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -854,11 +894,14 @@ platform activity:log [--refresh REFRESH] [-t|--timestamps] [--type TYPE] [-x|--
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -916,11 +959,14 @@ platform app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJE
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -932,7 +978,7 @@ platform app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJE
 
 Validate the config files of a project
 
-Aliases: `validate`
+Aliases: `validate`, `lint`
 
 ### Usage
 
@@ -1002,11 +1048,14 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1016,7 +1065,7 @@ platform apps [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment ENVI
 
 ## `auth:api-token-login`
 
-Log in to Platform.sh using an API token
+Log in to Upsun (formerly Platform.sh) using an API token
 
 ### Usage
 
@@ -1024,10 +1073,10 @@ Log in to Platform.sh using an API token
 platform auth:api-token-login
 ```
 
-Use this command to log in to your Platform.sh account using an API token.
+Use this command to log in to your Upsun (formerly Platform.sh) account using an API token.
 
 You can create an account at:
-    https://auth.api.platform.sh/register
+    https://auth.upsun.com/register
 
 Alternatively, to log in to the CLI with a browser, run:
     platform auth:browser-login
@@ -1037,11 +1086,14 @@ Alternatively, to log in to the CLI with a browser, run:
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1051,7 +1103,7 @@ Alternatively, to log in to the CLI with a browser, run:
 
 ## `auth:browser-login`
 
-Log in to Platform.sh via a browser
+Log in to Upsun (formerly Platform.sh) via a browser
 
 Aliases: `login`
 
@@ -1061,7 +1113,8 @@ Aliases: `login`
 platform login [-f|--force] [--method METHOD] [--max-age MAX-AGE] [--browser BROWSER] [--pipe]
 ```
 
-Use this command to log in to the Platform.sh CLI using a web browser.
+Use this command to log in to the Upsun CLI (Platform.sh compatibility) using a
+web browser.
 
 It launches a temporary local website which redirects you to log in if
 necessary, and then captures the resulting authorization code.
@@ -1095,11 +1148,14 @@ PLATFORMSH_CLI_TOKEN environment variable.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1145,11 +1201,14 @@ platform auth:info [--no-auto-login] [-P|--property PROPERTY] [--refresh] [--for
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1176,7 +1235,7 @@ platform auth:info id --no-auto-login
 
 ## `auth:logout`
 
-Log out of Platform.sh
+Log out of Upsun (formerly Platform.sh)
 
 Aliases: `logout`
 
@@ -1197,11 +1256,14 @@ platform logout [-a|--all] [--other]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1224,17 +1286,165 @@ platform auth:verify-phone-number
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `autoscaling:get`
+
+View the autoscaling configuration of apps and workers on an environment
+
+Aliases: `autoscaling`
+
+### Usage
+
+```
+platform autoscaling [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
+
+#### Options
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: service*, metric*, direction*, threshold*, duration*, enabled*, instance_count*, cooldown, max_instances, min_instances (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `autoscaling:set`
+
+Set the autoscaling configuration of apps or workers in an environment
+
+### Usage
+
+```
+platform autoscaling:set [-s|--service SERVICE] [-m|--metric METRIC] [--enabled ENABLED] [--threshold-up THRESHOLD-UP] [--duration-up DURATION-UP] [--cooldown-up COOLDOWN-UP] [--threshold-down THRESHOLD-DOWN] [--duration-down DURATION-DOWN] [--cooldown-down COOLDOWN-DOWN] [--instances-min INSTANCES-MIN] [--instances-max INSTANCES-MAX] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+```
+
+Configure automatic scaling for apps or workers in an environment.
+
+You can also configure resources statically by running: platform resources:set
+
+#### Options
+
+* `--service` (`-s`) (expects a value)
+  Name of the app or worker to configure autoscaling for
+
+* `--metric` (`-m`) (expects a value)
+  Name of the metric to use for triggering autoscaling
+
+* `--enabled` (expects a value)
+  Enable autoscaling based on the given metric
+
+* `--threshold-up` (expects a value)
+  Threshold over which service will be scaled up
+
+* `--duration-up` (expects a value)
+  Duration over which metric is evaluated against threshold for scaling up
+
+* `--cooldown-up` (expects a value)
+  Duration to wait before attempting to further scale up after a scaling event
+
+* `--threshold-down` (expects a value)
+  Threshold under which service will be scaled down
+
+* `--duration-down` (expects a value)
+  Duration over which metric is evaluated against threshold for scaling down
+
+* `--cooldown-down` (expects a value)
+  Duration to wait before attempting to further scale down after a scaling event
+
+* `--instances-min` (expects a value)
+  Minimum number of instances that will be scaled down to
+
+* `--instances-max` (expects a value)
+  Maximum number of instances that will be scaled up to
+
+* `--dry-run`
+  Show the changes that would be made, without changing anything
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+### Examples
+
+* Enable autoscaling for an application using the default configuration:
+```
+platform autoscaling:set --service app --metric cpu
+```
+
+* Enable autoscaling for an application specifying a minimum of instances at all times:
+```
+platform autoscaling:set --service app --metric cpu --instances-min 3
+```
+
+* Enable autoscaling for an application specifying a maximum of instances at most:
+```
+platform autoscaling:set --service app --metric cpu --instances-max 5
+```
+
+* Disable autoscaling on cpu for an application:
+```
+platform autoscaling:set --service app --metric cpu --enabled false
+```
 
 ## `backup:create`
 
@@ -1273,11 +1483,14 @@ platform backup [--live] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1334,11 +1547,14 @@ platform backup:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1378,11 +1594,14 @@ platform backup:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1425,11 +1644,14 @@ platform backups [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1485,11 +1707,14 @@ platform backup:restore [--target TARGET] [--branch-from BRANCH-FROM] [--no-code
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1542,11 +1767,14 @@ platform certificate:add [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1583,11 +1811,14 @@ platform certificate:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1624,11 +1855,14 @@ platform certificate:get [-P|--property PROPERTY] [--date-fmt DATE-FMT] [-p|--pr
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1695,11 +1929,14 @@ platform certificates [--domain DOMAIN] [--exclude-domain EXCLUDE-DOMAIN] [--iss
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1746,11 +1983,14 @@ platform commit:get [-P|--property PROPERTY] [-p|--project PROJECT] [-e|--enviro
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1823,11 +2063,14 @@ platform commits [--limit LIMIT] [-p|--project PROJECT] [-e|--environment ENVIRO
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1904,11 +2147,14 @@ platform db:dump [--schema SCHEMA] [-f|--file FILE] [-d|--directory DIRECTORY] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -1968,11 +2214,14 @@ platform sql [--raw] [--schema SCHEMA] [-p|--project PROJECT] [-e|--environment 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2041,11 +2290,14 @@ platform domain:add [--cert CERT] [--key KEY] [--chain CHAIN] [--attach ATTACH] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2097,11 +2349,14 @@ platform domain:delete [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2157,11 +2412,14 @@ platform domain:get [-P|--property PROPERTY] [--format FORMAT] [-c|--columns COL
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2201,11 +2459,14 @@ platform domains [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--pr
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2254,11 +2515,14 @@ platform domain:update [--cert CERT] [--key KEY] [--chain CHAIN] [-p|--project P
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2308,11 +2572,14 @@ platform environment:activate [--parent PARENT] [-p|--project PROJECT] [-e|--env
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2376,11 +2643,14 @@ platform branch [--title TITLE] [--type TYPE] [--no-clone-parent] [--no-checkout
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2417,11 +2687,14 @@ platform checkout [<id>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2446,7 +2719,7 @@ Delete one or more environments
 platform environment:delete [--delete-branch] [--no-delete-branch] [--type TYPE] [-t|--only-type ONLY-TYPE] [--exclude EXCLUDE] [--exclude-type EXCLUDE-TYPE] [--inactive] [--status STATUS] [--only-status ONLY-STATUS] [--exclude-status EXCLUDE-STATUS] [--merged] [--allow-delete-parent] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<environment>]...
 ```
 
-When a Platform.sh environment is deleted, it will become "inactive": it will
+When a Upsun (formerly Platform.sh) environment is deleted, it will become "inactive": it will
 exist only as a Git branch, containing code but no services, databases nor
 files.
 
@@ -2510,11 +2783,14 @@ This command allows you to delete environments as well as their Git branches.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2542,6 +2818,113 @@ platform environment:delete --inactive
 * Delete all environments merged with their parent:
 ```
 platform environment:delete --merged
+```
+
+## `environment:deploy`
+
+Deploy an environment's staged changes
+
+Aliases: `deploy`, `e:deploy`, `env:deploy`
+
+### Usage
+
+```
+platform deploy [-s|--strategy STRATEGY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+```
+
+#### Options
+
+* `--strategy` (`-s`) (expects a value)
+  The deployment strategy, stopstart (default, restart with a shutdown) or rolling (zero downtime)
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--no-wait` (`-W`)
+  Do not wait for the operation to complete
+
+* `--wait`
+  Wait for the operation to complete (default)
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+## `environment:deploy:type`
+
+Show or set the environment deployment type
+
+### Usage
+
+```
+platform environment:deploy:type [--pipe] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<type>]
+```
+
+Choose automatic (the default) if you want your changes to be deployed immediately as they are made.
+Choose manual to have changes staged until you trigger a deployment (including changes to code, variables, domains and settings).
+
+#### Arguments
+
+* `type`(optional)
+  The environment deployment type: automatic or manual.
+
+#### Options
+
+* `--pipe`
+  Output the deployment type to stdout
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--no-wait` (`-W`)
+  Do not wait for the operation to complete
+
+* `--wait`
+  Wait for the operation to complete (default)
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+### Examples
+
+* Set the deployment type to "manual" (disable automatic deployments):
+```
+platform environment:deploy:type manual
 ```
 
 ## `environment:drush`
@@ -2575,11 +2958,14 @@ platform drush [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app A
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2647,11 +3033,14 @@ platform httpaccess [--access ACCESS] [--auth AUTH] [--enabled ENABLED] [-p|--pr
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2731,11 +3120,14 @@ platform environment:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2815,24 +3207,20 @@ platform environment:init [--profile PROFILE] [-p|--project PROJECT] [-e|--envir
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-### Examples
-
-* Initialize using the Platform.sh Go template:
-```
-platform environment:init https://github.com/platformsh-templates/golang
-```
 
 ## `environment:list`
 
@@ -2884,11 +3272,14 @@ platform environments [-I|--no-inactive] [--status STATUS] [--pipe] [--refresh R
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -2939,11 +3330,14 @@ platform log [--lines LINES] [--tail] [-p|--project PROJECT] [-e|--environment E
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3009,11 +3403,14 @@ This command will initiate a Git merge of the specified environment into its par
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3059,11 +3456,14 @@ The environment will be unavailable until it is resumed. No data will be lost.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3129,11 +3529,14 @@ platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upst
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3187,11 +3590,14 @@ platform redeploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3236,11 +3642,14 @@ platform relationships [-P|--property PROPERTY] [--refresh] [-p|--project PROJEC
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3292,11 +3701,14 @@ platform environment:resume [-p|--project PROJECT] [-e|--environment ENVIRONMENT
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3344,11 +3756,14 @@ platform scp [-r|--recursive] [-p|--project PROJECT] [-e|--environment ENVIRONME
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3424,11 +3839,14 @@ platform ssh [--pipe] [--all] [-o|--option OPTION] [-p|--project PROJECT] [-e|--
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3509,11 +3927,14 @@ parent to the child.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3565,11 +3986,14 @@ platform url [-1|--primary] [--browser BROWSER] [--pipe] [-p|--project PROJECT] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3634,11 +4058,14 @@ platform xdebug [--port PORT] [-p|--project PROJECT] [-e|--environment ENVIRONME
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3697,11 +4124,14 @@ platform integration:activity:get [-P|--property PROPERTY] [-p|--project PROJECT
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3770,11 +4200,14 @@ platform integration:activities [--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3817,11 +4250,14 @@ platform integration:activity:log [-t|--timestamps] [--date-fmt DATE-FMT] [-p|--
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -3842,7 +4278,7 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -3985,11 +4421,14 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4038,11 +4477,14 @@ platform integration:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4085,11 +4527,14 @@ platform integration:get [-P|--property [PROPERTY]] [--format FORMAT] [-c|--colu
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4129,11 +4574,14 @@ platform integrations [-t|--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4159,7 +4607,7 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -4302,11 +4750,14 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4354,11 +4805,14 @@ repository may be deleted.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4433,11 +4887,14 @@ platform build [-a|--abslinks] [-s|--source SOURCE] [-d|--destination DESTINATIO
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4484,11 +4941,14 @@ platform dir [<subdir>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4522,11 +4982,14 @@ platform drush-aliases [-r|--recreate] [-g|--group GROUP] [--pipe]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4597,11 +5060,14 @@ platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4679,11 +5145,14 @@ platform cpu [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4750,11 +5219,14 @@ platform disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4818,11 +5290,14 @@ platform mem [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4884,11 +5359,14 @@ platform mount:download [-a|--all] [-m|--mount MOUNT] [--target TARGET] [--sourc
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -4943,11 +5421,14 @@ platform mounts [--paths] [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5003,11 +5484,14 @@ platform mount:upload [--source SOURCE] [-m|--mount MOUNT] [--delete] [--exclude
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5056,11 +5540,14 @@ platform ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5106,11 +5593,14 @@ platform operation:run [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5145,7 +5635,7 @@ platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--d
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
@@ -5162,11 +5652,14 @@ platform organization:billing:address [-o|--org ORG] [-p|--project PROJECT] [--d
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5198,7 +5691,7 @@ platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--d
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
@@ -5215,11 +5708,14 @@ platform organization:billing:profile [-o|--org ORG] [-p|--project PROJECT] [--d
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5234,10 +5730,10 @@ Create a new organization
 ### Usage
 
 ```
-platform organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
+platform organization:create [--label LABEL] [--type TYPE] [--name NAME] [--country COUNTRY]
 ```
 
-Organizations allow you to manage your Platform.sh projects, users and billing. Projects are owned by organizations.
+Organizations allow you to manage your Upsun (formerly Platform.sh) projects, users and billing. Projects are owned by organizations.
 
 You can add other users to your organization, for collaboratively managing the organization as well as its projects and billing information.
 
@@ -5248,6 +5744,9 @@ Access to individual projects (API and SSH) is managed separately, for now.
 * `--label` (expects a value)
   The full name of the organization, e.g. "ACME Inc."
 
+* `--type` (expects a value)
+  The organization type. ('flexible' or 'fixed')
+
 * `--name` (expects a value)
   The organization machine name, used for URL paths and similar purposes.
 
@@ -5257,11 +5756,14 @@ Access to individual projects (API and SSH) is managed separately, for now.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5285,16 +5787,19 @@ platform organization:delete [-o|--org ORG] [-p|--project PROJECT]
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5309,7 +5814,7 @@ View or change organization details
 ### Usage
 
 ```
-platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
+platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--] [<property>] [<value>]
 ```
 
 #### Arguments
@@ -5326,7 +5831,10 @@ platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DAT
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
+
+* `--refresh`
+  Refresh the cache
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
@@ -5343,11 +5851,14 @@ platform organization:info [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DAT
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5381,7 +5892,7 @@ Aliases: `orgs`, `organizations`
 ### Usage
 
 ```
-platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+platform orgs [--my] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5395,11 +5906,14 @@ platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns C
 * `--reverse`
   Sort in reverse order
 
+* `--type` (expects a value)
+  Filter organizations by type
+
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: name*, label*, owner_email*, created_at, id, owner_id, owner_username, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: name*, label*, type*, owner_email*, created_at, id, owner_id, owner_username, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -5407,11 +5921,14 @@ platform orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns C
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5443,7 +5960,7 @@ platform org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project 
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
 
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
@@ -5457,11 +5974,14 @@ platform org:subs [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [-p|--project 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5495,11 +6015,14 @@ platform organization:user:add [-o|--org ORG] [--permission PERMISSION] [--] [<e
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5530,11 +6053,14 @@ platform organization:user:delete [-o|--org ORG] [--] <email>
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5580,11 +6106,14 @@ platform organization:user:get [-o|--org ORG] [-P|--property PROPERTY] [--date-f
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5633,11 +6162,14 @@ platform org:users [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5685,11 +6217,14 @@ platform oups [-o|--org ORG] [--list-all] [--format FORMAT] [-c|--columns COLUMN
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5723,11 +6258,14 @@ platform organization:user:update [-o|--org ORG] [--permission PERMISSION] [--] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5753,11 +6291,14 @@ platform project:clear-build-cache [-p|--project PROJECT]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5774,7 +6315,7 @@ Aliases: `create`
 ### Usage
 
 ```
-platform create [-o|--org ORG] [--title TITLE] [--region REGION] [--plan PLAN] [--environments ENVIRONMENTS] [--storage STORAGE] [--default-branch DEFAULT-BRANCH] [--set-remote] [--no-set-remote]
+platform create [-o|--org ORG] [--title TITLE] [--region REGION] [--plan PLAN] [--environments ENVIRONMENTS] [--storage STORAGE] [--default-branch DEFAULT-BRANCH] [--init-repo INIT-REPO] [--set-remote] [--no-set-remote]
 ```
 
 Use this command to create a new project.
@@ -5813,20 +6354,26 @@ to STDERR.
 * `--default-branch` (expects a value)
   The default Git branch name for the project (the production environment)
 
+* `--init-repo` (expects a value)
+  URL of a Git repository to use for initialization. A GitHub path such as "platformsh-templates/nuxtjs" can be used.
+
 * `--set-remote`
-  Set the new project as the remote for this repository. This is the default if no remote project is already set.
+  Set the new project as the remote for the local project directory. This is the default if no remote is already set.
 
 * `--no-set-remote`
-  Do not set the new project as the remote for this repository
+  Do not set the new project as the remote
 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5857,11 +6404,14 @@ platform project:delete [-p|--project PROJECT] [--] [<project>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5906,11 +6456,14 @@ platform get [-e|--environment ENVIRONMENT] [--depth DEPTH] [--build] [-p|--proj
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -5972,11 +6525,14 @@ platform project:info [--refresh] [--date-fmt DATE-FMT] [--format FORMAT] [-c|--
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6005,15 +6561,28 @@ platform project:info title "My project"
 
 Initialize a project
 
-Aliases: `ify`
+Aliases: `init`, `ify`
 
 ### Usage
 
 ```
-platform project:init
+platform init
 ```
 
+This command will generate a starter configuration that you can build on.
+You can use AI, or follow a step-by-step setup guide.
+
+Using AI will send a sanitized repository digest to OpenAI for automated analysis.
+You can review the digest at any time by running: platform init --digest
+
+
 #### Options
+
+* `--ai` (expects a value)
+  Use AI configuration
+
+* `--digest`
+  Only show the repository digest (the AI configuration input), without sending it
 
 * `--help` (`-h`)
   Display this help message
@@ -6032,9 +6601,14 @@ platform project:init
 
 ### Examples
 
-* Create the starter YAML files for your project:
+* Create the starter YAML file(s) for your project:
 ```
 platform project:init 
+```
+
+* Disable AI mode:
+```
+platform project:init --ai=false
 ```
 
 ## `project:list`
@@ -6046,7 +6620,7 @@ Aliases: `projects`, `pro`
 ### Usage
 
 ```
-platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--org-type ORG-TYPE] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -6081,11 +6655,14 @@ platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh R
 * `--org` (`-o`) (expects a value)
   Filter by organization name or ID
 
+* `--org-type` (expects a value)
+  Filter by organization type
+
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, title*, region*, organization_name*, created_at, organization_id, organization_label, status (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, title*, region*, organization_name*, organization_type*, created_at, organization_id, organization_label, status (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -6096,11 +6673,14 @@ platform projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh R
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6130,11 +6710,14 @@ platform set-remote [<project>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6183,11 +6766,14 @@ platform repo:cat [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6240,11 +6826,14 @@ platform repo:ls [-d|--directories] [-f|--files] [--git-style] [-c|--commit COMM
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6283,11 +6872,14 @@ platform read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVI
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6324,11 +6916,14 @@ platform build-resources:get [-p|--project PROJECT] [--format FORMAT] [-c|--colu
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6383,11 +6978,14 @@ platform route:get [--id ID] [-1|--primary] [-P|--property PROPERTY] [--refresh]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6442,11 +7040,14 @@ platform routes [--refresh] [--format FORMAT] [-c|--columns COLUMNS] [--no-heade
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6492,11 +7093,14 @@ platform services [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6542,11 +7146,14 @@ platform mongodump [-c|--collection COLLECTION] [-z|--gzip] [-o|--stdout] [-r|--
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6595,11 +7202,14 @@ platform mongoexport [-c|--collection COLLECTION] [--jsonArray] [--type TYPE] [-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6646,11 +7256,14 @@ platform mongorestore [-c|--collection COLLECTION] [-r|--relationship RELATIONSH
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6690,11 +7303,14 @@ platform mongo [--eval EVAL] [-r|--relationship RELATIONSHIP] [-p|--project PROJ
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6718,13 +7334,13 @@ Aliases: `redis`
 ### Usage
 
 ```
-platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]
+platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]...
 ```
 
 #### Arguments
 
-* `args`(optional)
-  Arguments to add to the Redis command
+* `args`(optional; multiple values allowed)
+  Arguments to add to the redis-cli command
 
 #### Options
 
@@ -6743,11 +7359,14 @@ platform redis [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--env
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6780,6 +7399,82 @@ platform service:redis-cli -- --scan
 * Scan keys matching a pattern:
 ```
 platform service:redis-cli -- "--scan --pattern '*-11*'"
+```
+
+## `service:valkey-cli`
+
+Access the Valkey CLI
+
+Aliases: `valkey`
+
+### Usage
+
+```
+platform valkey [-r|--relationship RELATIONSHIP] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-A|--app APP] [--] [<args>]...
+```
+
+#### Arguments
+
+* `args`(optional; multiple values allowed)
+  Arguments to add to the valkey-cli command
+
+#### Options
+
+* `--relationship` (`-r`) (expects a value)
+  The service relationship to use
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--app` (`-A`) (expects a value)
+  The remote application name
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+### Examples
+
+* Open the valkey-cli shell:
+```
+platform service:valkey-cli 
+```
+
+* Ping the Valkey server:
+```
+platform service:valkey-cli ping
+```
+
+* Show Valkey status information:
+```
+platform service:valkey-cli info
+```
+
+* Scan keys:
+```
+platform service:valkey-cli -- --scan
+```
+
+* Scan keys matching a pattern:
+```
+platform service:valkey-cli -- "--scan --pattern '*-11*'"
 ```
 
 ## `source-operation:list`
@@ -6817,11 +7512,14 @@ platform source-ops [--full] [-p|--project PROJECT] [-e|--environment ENVIRONMEN
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6864,11 +7562,14 @@ platform source-operation:run [--variable VARIABLE] [-p|--project PROJECT] [-e|-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6923,11 +7624,14 @@ explicitly. For unattended scripts, remember to turn off interaction via
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -6966,11 +7670,14 @@ To load or check your SSH certificate, run: platform ssh-cert:load
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7006,11 +7713,14 @@ To load or check your SSH certificate, run: platform ssh-cert:load
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7059,11 +7769,14 @@ To load or check your SSH certificate, run: platform ssh-cert:load
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7112,11 +7825,14 @@ platform subscription:info [-s|--id ID] [--date-fmt DATE-FMT] [--format FORMAT] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7171,11 +7887,14 @@ platform team:create [--label LABEL] [--no-check-unique] [-r|--role ROLE] [--out
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7204,11 +7923,14 @@ platform team:delete [-o|--org ORG] [-t|--team TEAM]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7232,7 +7954,7 @@ platform team:get [-o|--org ORG] [-p|--project PROJECT] [-t|--team TEAM] [-P|--p
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
 
 * `--team` (`-t`) (expects a value)
   The team ID
@@ -7255,11 +7977,14 @@ platform team:get [-o|--org ORG] [-p|--project PROJECT] [-t|--team TEAM] [-P|--p
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7276,7 +8001,7 @@ Aliases: `teams`
 ### Usage
 
 ```
-platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
+platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-A|--all] [-o|--org ORG] [-p|--project PROJECT] [--date-fmt DATE-FMT] [--format FORMAT] [--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -7290,11 +8015,14 @@ platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|-
 * `--reverse`
   Sort in reverse order
 
+* `--all` (`-A`)
+  List all teams in the organization (regardless of a selected project)
+
 * `--org` (`-o`) (expects a value)
   The organization name (or ID)
 
 * `--project` (`-p`) (expects a value)
-  The project ID or URL, to auto-select the organization if --org is not used
+  The project ID or URL, which auto-selects the organization if --org is not used
 
 * `--date-fmt` (expects a value)
   The date format (as a PHP date format string)
@@ -7303,7 +8031,7 @@ platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|-
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, label*, member_count*, project_count*, project_permissions*, created_at, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, label*, member_count*, project_count*, project_permissions*, created_at, granted_at, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -7311,17 +8039,37 @@ platform teams [-c|--count COUNT] [--sort SORT] [--reverse] [-o|--org ORG] [-p|-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
+
+### Examples
+
+* List teams (in the current project, if any):
+```
+platform team:list 
+```
+
+* List all teams in an organization:
+```
+platform team:list --all
+```
+
+* List teams with access to a specified project, including when they were added:
+```
+platform team:list --project myProjectId --columns +granted_at
+```
 
 ## `team:project:add`
 
@@ -7352,11 +8100,14 @@ platform team:project:add [--all] [-o|--org ORG] [-t|--team TEAM] [--] [<project
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7390,11 +8141,14 @@ platform team:project:delete [-o|--org ORG] [-t|--team TEAM] [--] [<project>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7440,11 +8194,14 @@ platform team:projects [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--dat
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7488,11 +8245,14 @@ platform team:update [--label LABEL] [--no-check-unique] [-r|--role ROLE] [-t|--
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7526,11 +8286,14 @@ platform team:user:add [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7564,11 +8327,14 @@ platform team:user:delete [-o|--org ORG] [-t|--team TEAM] [--] [<user>]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7614,11 +8380,14 @@ platform team:users [-c|--count COUNT] [-o|--org ORG] [-t|--team TEAM] [--date-f
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7653,11 +8422,14 @@ platform tunnel:close [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRO
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7695,11 +8467,14 @@ platform tunnel:info [-P|--property PROPERTY] [-c|--encode] [-p|--project PROJEC
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7745,11 +8520,14 @@ platform tunnels [-a|--all] [-p|--project PROJECT] [-e|--environment ENVIRONMENT
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7795,11 +8573,14 @@ extensions.
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7840,11 +8621,14 @@ platform tunnel:single [--port PORT] [-g|--gateway-ports] [-p|--project PROJECT]
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7887,11 +8671,14 @@ platform user:add [-r|--role ROLE] [--force-invite] [-p|--project PROJECT] [-W|-
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -7945,11 +8732,14 @@ platform user:delete [-p|--project PROJECT] [-W|--no-wait] [--wait] [--] <email>
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8005,11 +8795,14 @@ platform user:get [-l|--level LEVEL] [--pipe] [-p|--project PROJECT] [-e|--envir
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8058,11 +8851,14 @@ platform users [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [-p|--proj
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8102,11 +8898,14 @@ platform user:update [-r|--role ROLE] [-p|--project PROJECT] [-W|--no-wait] [--w
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8191,11 +8990,14 @@ platform variable:create [-u|--update] [-l|--level LEVEL] [--name NAME] [--value
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8238,11 +9040,14 @@ platform variable:delete [-l|--level LEVEL] [-p|--project PROJECT] [-e|--environ
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8303,11 +9108,14 @@ platform vget [-P|--property PROPERTY] [-l|--level LEVEL] [--format FORMAT] [-c|
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8357,11 +9165,14 @@ platform variables [-l|--level LEVEL] [--format FORMAT] [-c|--columns COLUMNS] [
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8428,11 +9239,14 @@ platform variable:update [--allow-no-change] [-l|--level LEVEL] [--value VALUE] 
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
@@ -8478,11 +9292,14 @@ platform workers [--refresh] [--pipe] [-p|--project PROJECT] [-e|--environment E
 * `--help` (`-h`)
   Display this help message
 
+* `--version` (`-V`)
+  Display this application version
+
 * `--verbose` (`-v|-vv|-vvv`)
   Increase the verbosity of messages
 
-* `--version` (`-V`)
-  Display this application version
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
 
 * `--yes` (`-y`)
   Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction

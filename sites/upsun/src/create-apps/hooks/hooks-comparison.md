@@ -20,8 +20,9 @@ The `build` hook is run after any [build flavor](/create-apps/app-reference/sing
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can only use [environment variables](../../development/variables/use-variables.md#use-provided-variables)
-that are available at build time.
+The `build` hook can access only the variables that are available at build time: 
+  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column) 
+  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI) 
 
 During the `build` hook, there are three writeable directories:
 
@@ -89,7 +90,7 @@ the execution of the `deploy` hook is logged in the [deploy log](../../increase-
 For example:
 
 ```bash
-[2022-03-01 08:27:25.495579] Launching command 'bash export-config.sh'.
+[{{ now.Year }}-03-01 08:27:25.495579] Launching command 'bash export-config.sh'.
 
 🔥 Successfully cleared configuration
 🚀 Added new configuration details

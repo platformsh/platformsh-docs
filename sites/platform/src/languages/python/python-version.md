@@ -13,7 +13,7 @@ For example, a container might have a long-term support version, while you want 
 In such cases, use the [Pyenv version manager](https://github.com/pyenv/pyenv)
 to install the specific version you want to use.
 
-1.  Add your target Python version as a [variable](../../development/variables/_index.md):
+1.  Add your target Python version as a [variable](/development/variables/_index.md):
 
     ```yaml {configFile="app"}
     variables:
@@ -22,7 +22,7 @@ to install the specific version you want to use.
         PYTHON_VERSION: "3.11.0"
     ```
 
-2.  Add Pyenv in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
+2.  Add Pyenv in a [`build` hook](/create-apps/hooks/hooks-comparison.md#build-hook):
 
     ```yaml {configFile="app"}
     hooks:
@@ -73,7 +73,7 @@ to install the specific version you want to use.
         # Rehash Pyenv for new (runtime) location
         PYENV_ROOT="$PLATFORM_APP_DIR/.pyenv" $PLATFORM_APP_DIR/.pyenv/bin/pyenv rehash
     ```
-2.  Create an [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script):
+2.  Create an [`.environment` file](/development/variables/set-variables.md#set-variables-via-script):
 
     ```bash
     touch .environment

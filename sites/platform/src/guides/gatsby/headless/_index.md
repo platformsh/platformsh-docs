@@ -13,7 +13,7 @@ A common pattern for Gatsby sites is to decouple services from the main site, pu
 
 The location of an external CMS is usually hard coded into Gatsby's configuration, so when you're developing your site every branch points to the same backend resource. Should the location of that resource change, you would need to commit the new URL to update the configuration.
 
-The decoupled pattern can work differently on {{% vendor/name %}} due to support for [multi-app configuration](../../../create-apps/multi-app/_index.md) on your projects. Consider the following project structure:
+The decoupled pattern can work differently on {{% vendor/name %}} due to support for [multi-app configuration](/create-apps/multi-app/_index.md) on your projects. Consider the following project structure:
 
 ```bash
 .
@@ -40,10 +40,10 @@ Drupal is just one example of a backend CMS that can be used with this pattern, 
 In each of the backend guides below, there is a "Deploy on {{% vendor/name %}}" button that will not only deploy the guide's project for you, but also sign you up for a trial account. If you are planning on deploying a template and following along with these guides for greater context, feel free to move onto the next section.
 
 If however you are planning on using the templates and guides to deploy your existing codebase to {{% vendor/name %}},
-you first need to [register for a trial {{% vendor/name %}} account](https://auth.api.platform.sh/register).
+you first need to [register for a trial {{% vendor/company_name %}} account](https://auth.upsun.com/register).
 If you don't want to sign up initially with your e-mail address,
 you can sign up using an existing GitHub, Bitbucket, or Google account.
-If you choose one of these options, you can set a password for your {{% vendor/name %}} account later.
+If you choose one of these options, you can set a password for your {{% vendor/company_name %}} account later.
 
 After creating an account, you are prompted to create your first project. Since you're providing your own code, use the "Blank project" option. You can give the project a title and choose a region closest to the visitors of your site. You also have the option to select more resources for your project. This is especially important with multi-application projects, so make sure to consult the [**Plan size**](#plan-size) note below for more details.
 

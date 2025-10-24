@@ -16,7 +16,7 @@ The Symfony integration is automatically enabled when:
 - You run `symfony project:init` on an existing project to automatically
   generate the {{% vendor/name %}} configuration.
 
-If you already have a {{% vendor/name %}} configuration without the Symfony
+If you already have an {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
    ```yaml {configFile="app"}
@@ -39,16 +39,16 @@ The **configurator** enables the following integration:
 - It adds some [extra tools](#tools);
 
 - It defines [additional infrastructure environment
-variables](./environment-variables#symfony-environment-variables) and
+variables](/guides/symfony/environment-variables.md#symfony-environment-variables) and
 [environment variables for all
-services](./environment-variables#service-environment-variables).
+services](/guides/symfony/environment-variables.md#service-environment-variables).
 
 ## Tools
 
 The **configurator** (`curl -fs https://get.symfony.com/cloud/configurator | bash`) is a script specially crafted for {{% vendor/name %}}.
 It ensures that projects are always using the latest version of the following tools:
 
-- [croncape](./crons#use-croncape) for cron feedback
+- [croncape](/guides/symfony/crons.md#use-croncape) for cron feedback
 - [Symfony CLI](https://symfony.com/download)
 - [Composer](https://getcomposer.org/download/)
 
@@ -56,9 +56,9 @@ It ensures that projects are always using the latest version of the following to
 
 The `hooks` section defines the scripts that {{% vendor/name %}} runs at specific times of an application lifecycle:
 
-- The [build hook](../../create-apps/hooks/hooks-comparison.md#build-hook) is run during the build process
-- The [deploy hook](../../create-apps/hooks/hooks-comparison.md#deploy-hook) is run during the deployment process
-- The [post-deploy hook](../../create-apps/hooks/hooks-comparison.md#post-deploy-hook) is run after the deploy hook,
+- The [build hook](/create-apps/hooks/hooks-comparison.md#build-hook) is run during the build process
+- The [deploy hook](/create-apps/hooks/hooks-comparison.md#deploy-hook) is run during the deployment process
+- The [post-deploy hook](/create-apps/hooks/hooks-comparison.md#post-deploy-hook) is run after the deploy hook,
   once the application container starts accepting connections
 
 Here's the default `hooks` section optimized for Symfony projects:
@@ -85,7 +85,7 @@ To have your hooks fail on the first failed command, start your scripts with `se
 
 {{< /note >}}
 
-For more information, see [Hooks](../../../create-apps/hooks/hooks-comparison).
+For more information, see [Hooks](/create-apps/hooks/hooks-comparison.md).
 
 To gain a better understanding of how hooks relate to each other when building and deploying an app,
 see the [{{% vendor/name %}} philosophy](/learn/overview/philosophy.md).
@@ -94,12 +94,12 @@ see the [{{% vendor/name %}} philosophy](/learn/overview/philosophy.md).
 
 During the `deploy` or `post_deploy` hooks, you can execute actions for a specific environment type only.
 To do so, in your `{{< vendor/configfile "app" >}}`file,
-use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](../../development/variables/_index.md)) in a condition:
+use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](/development/variables/_index.md)) in a condition:
 
 ```yaml {configFile="app"}
 hooks:
   deploy: |
-    if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
+    if [ "${PLATFORM_ENVIRONMENT_TYPE}" != "production" ]; then
       symfony console app:dev:anonymize
     fi
 ```

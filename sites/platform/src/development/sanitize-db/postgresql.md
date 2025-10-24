@@ -29,15 +29,15 @@ Assumptions:
 Set up a script by following these steps:
 
 1.  Retrieve service credentials from the `PLATFORM_RELATIONSHIPS` environment variable to use the `psql` command interface.
-    Export these values to a [`.environment` file](../variables/set-variables.md#set-variables-via-script)
+    Export these values to a [`.environment` file](/development/variables/set-variables.md#set-variables-via-script)
     or include them directly in the sanitization script.
 
     ```bash {location=".environment"}
     # Pull credentials from the PLATFORM_RELATIONSHIPS environment variable.
-    DB_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].username')
-    DB_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].host')
-    DB_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].port')
-    DB_PASS=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].password')
+    export DB_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
+    export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].host')"
+    export DB_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].port')"
+    export DB_PASS="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].password')"
     ```
 
 2.  Create an executable sanitizing script by running the following command:
@@ -46,7 +46,7 @@ Set up a script by following these steps:
     touch sanitize.sh && chmod +x sanitize.sh
     ```
 
-3.  Make the script sanitize environments with an [environment type](../../administration/users.md#environment-type-roles)
+3.  Make the script sanitize environments with an [environment type](/administration/users.md#environment-type-roles)
     other than `production`.
 
     The following example runs only in preview environments

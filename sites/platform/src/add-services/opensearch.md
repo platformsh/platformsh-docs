@@ -23,24 +23,21 @@ To update the versions in this table, use docs/data/registry.json
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="opensearch" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="opensearch" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
 </table>
 <!-- vale off -->
 
-On Grid and {{% names/dedicated-gen-3 %}}, from version 2, you only specify the major version.
-The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream (starting with opensearch 1.3).
+On Grid, from version 2, you only specify the major version. The latest compatible minor version and patches are applied automatically. On Grid, version 1 represents a rolling release - the latest minor version available from the upstream (starting with opensearch 1.3).
 
-You can see the latest minor and patch versions of OpenSearch available from the [`2.x`](https://opensearch.org/lines/2x.html) and [`1.x`](https://opensearch.org/lines/1x.html) release lines.
+You can see the latest versions of OpenSearch available [here](https://github.com/opensearch-project/OpenSearch/releases).
 
 ## Deprecated versions
 
@@ -52,14 +49,12 @@ or are no longer the recommended way to configure the service on {{% vendor/name
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="opensearch" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="opensearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -135,12 +130,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships)
+The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -155,7 +150,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -165,10 +160,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -213,7 +208,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   opensearch:
     service: opensearch
@@ -262,7 +257,7 @@ relationships:
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `opensearch` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
 
 From this, `myapp` can retrieve access credentials to the service through the environment variable `{{< vendor/prefix >}}_RELATIONSHIPS`. That variable is a base64-encoded JSON object, but can be decoded at runtime (using the built-in tool `jq`) to provide more accessible environment variables to use within the application itself:
 
@@ -285,7 +280,7 @@ The above file &mdash; `.environment` in the `myapp` directory &mdash; is automa
 
 Note that `OPENSEARCH_HOSTS` and all {{< vendor/name >}}-provided environment variables like `{{% vendor/prefix %}}_RELATIONSHIPS`, are environment-dependent. Unlike the build produced for a given commit, they can't be reused across environments and only allow your app to connect to a single service instance on a single environment.
 
-A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started).
+A file very similar to this is generated automatically for your when using the `{{< vendor/cli >}} ify` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 {{< note >}}
 
@@ -358,21 +353,65 @@ If there is a publicly available plugin you need that isn't listed here, [contac
 
 This is the complete list of plugins that can be enabled:
 
-| Plugin                  | Description                                                                               | 1   | 2 |
-|-------------------------|-------------------------------------------------------------------------------------------|-----|---|
-| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | * |
-| `analysis-kuromoji`     | Japanese language support                                                                 | *   | * |
-| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   | * |
-| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | * |
-| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | * |
-| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | * |
-| `analysis-ukrainian`    | Ukrainian language support                                                                | *   | * |
-| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   | * |
-| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | * |
-| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | * |
-| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | * |
-| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | * |
-| `transport-nio`         | Support for NIO transport                                                                 | *   | * |
+| Plugin                  | Description                                                                               | 1   | 2 | 3   |
+|-------------------------|-------------------------------------------------------------------------------------------|-----|----|-----|
+| `analysis-icu`          | Support ICU Unicode text analysis                                                         | *   | *  | *   |
+| `analysis-kuromoji`     | Japanese language support                                                                 | *   | *  | *   |
+| `analysis-nori`         | Integrates Lucene Nori analysis module into OpenSearch                                    | *   | *  | *   |
+| `analysis-phonetic`     | Phonetic analysis                                                                         | *   | *  | *   |
+| `analysis-smartcn`      | Smart Chinese Analysis Plugins                                                            | *   | *  | *   |
+| `analysis-stempel`      | Stempel Polish Analysis Plugin                                                            | *   | *  | *   |
+| `analysis-ukrainian`    | Ukrainian language support                                                                | *   | *  | *   |
+| `ingest-attachment`     | Extract file attachments in common formats (such as PPT, XLS, and PDF)                    | *   | *  | *   |
+| `mapper-annotated-text` | Adds support for text fields with markup used to inject annotation tokens into the index  | *   | *  | *   |
+| `mapper-murmur3`        | Murmur3 mapper plugin for computing hashes at index-time                                  | *   | *  | *   |
+| `mapper-size`           | Size mapper plugin, enables the `_size` meta field                                        | *   | *  | *   |
+| `repository-s3`         | Support for using S3 as a repository for Snapshot/Restore                                 | *   | *  | *   |
+
+
+
+### Alternative plugins
+
+These plugins are currently available for OpenSearch `2.0` and `3.0`. The names below show exactly how they should be added to your configuration. For example, to use the `alerting` plugin, specify it in your `services.yaml` as so:
+
+```yaml {configFile="services"}
+# The name of the service container. Must be unique within a project.
+opensearch:
+  type: "opensearch:{{% latest "opensearch" %}}"
+  disk: 1024
+  configuration:
+    plugins:
+      - alerting
+```
+
+{{< note title="Different names used" theme="warning" >}}
+
+It should be noted that **these names may differ to what they are commonly known as** in the [OpenSearch docs](https://opensearch.org/docs/latest/). To help your understanding of what each plugin does, please click each plugin name for a link to the corresponding Github repository.
+
+{{< /note >}}
+
+
+| Plugin                                                                                                    | Description                                                                                         | 1     | 2   | 3   |
+|-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-------|-----|-----|
+| [`alerting`](https://github.com/opensearch-project)                                                       | Monitor data and send alert notifications automatically                                             | N/A   | *   | *   |
+| [`opensearch-anomaly-detection`](https://github.com/opensearch-project/anomaly-detection)                 | Detect anomalies as your log data and monitor data in near real time                                | N/A   | *   | *   |
+| [`asynchronous-search`](https://github.com/opensearch-project/asynchronous-search)                        | Run search queries in the background and retrieve results as they become available                  | N/A   | *   | *   |
+| [`opensearch-cross-cluster-replication`](https://github.com/opensearch-project/cross-cluster-replication) | Replicate data across two OpenSearch clusters                                                       | N/A   | *   | *   |
+| [`opensearch-custom-codecs`](https://github.com/opensearch-project/custom-codecs)                         | Provide custom Lucene codecs for loading through Apache Lucene's `NamedSPILoader`                  | N/A   | *   | *   |
+| [`opensearch-flow-framework`](https://github.com/opensearch-project/flow-framework)                       | Innovate AI applications on OpenSearch                                                              | N/A   | *   | *   |
+| [`notifications`](https://github.com/opensearch-project/notifications)                                    | A central location for all of your notifications from OpenSearch plugins                            | N/A   | *   | *   |
+| [`opensearch-reports-scheduler`](https://github.com/opensearch-project/reporting)                         | Export and share reports from OpenSearch Dashboards dashboards, saved search, alerts and visualizations | N/A   | *   | *   |
+| [`geospatial`](https://github.com/opensearch-project/geospatial)                                          | An OpenSearch plugin that contains geospatial specific features                                     | N/A   | *   | *   |
+| [`opensearch-index-management`](https://github.com/opensearch-project/index-management)                   | A suite of features to monitor and manage indexes                                                   | N/A   | *   | *   |
+| [`opensearch-job-scheduler`](https://github.com/opensearch-project/job-scheduler)                         | Schedule periodical jobs running within OpenSearch nodes                                            | N/A   | *   | *   |
+| [`opensearch-knn`](https://github.com/opensearch-project/k-NN)                                            | Easily run the nearest neighbor search on billions of documents                                     | N/A   | *   | *   |
+| [`opensearch-ml-plugin`](https://github.com/opensearch-project/ml-commons/)                               | Leverage existing open source machine learning algorithms                                           | N/A   | *   | *   |
+| [`opensearch-skills`](https://github.com/opensearch-project/skills)                                       | Provides tools for ml-common's agent framework OpenSearch ml-commons                                | N/A   | *   | *   |
+| [`neural-search`](https://github.com/opensearch-project/neural-search)                                    | Index documents and conduct a neural search on indexed documents                                    | N/A   | *   | *   |
+| [`opensearch-observability`](https://github.com/opensearch-project/observability)                         | Collection of plugins and applications that let you visualize data-driven events                    | N/A   | *   | *   |
+| [`performance-analyzer`](https://github.com/opensearch-project/performance-analyzer)                      | A REST API that allows you to query numerous performance metrics                                    | N/A   | *   | *   |
+| [`opensearch-sql-plugin`](https://github.com/opensearch-project/sql)                                      | Extract insights out of OpenSearch using the familiar SQL or Piped Processing Language (PPL) query syntax | N/A   | *   | *   |
+
 
 ### Plugin removal
 

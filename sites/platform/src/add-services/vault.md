@@ -10,7 +10,7 @@ to sign, verify, encrypt, decrypt, and rewrap information.
 
 Vault doesn't store the data sent to the transit secrets engine,
 so it can be viewed as encryption as a service.
-To store secrets such as API keys, create sensitive [environment variables](../development/variables/_index.md).
+To store secrets such as API keys, create sensitive [environment variables](/development/variables/_index.md).
 
 ## Supported versions
 
@@ -22,14 +22,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="vault-kms" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="vault-kms" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
@@ -124,7 +122,7 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships) for relationships.
+The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships) for relationships.
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -154,12 +152,12 @@ vault-kms:
           type: sign
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported:
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   vault_secret:
     service: "vault-kms"
     endpoint: "manage_keys"
@@ -189,12 +187,12 @@ vault-kms:
           type: sign
 ```
 
-#### [App configuration](/create-apps)
+#### [App configuration](/create-apps/_index.md)
 
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   vault_manage:
     service: vault-kms
     endpoint: management
@@ -421,3 +419,5 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 | `encrypt` | `transit/encrypt/${KEY}` | `read`, `update` | Encrypting data with an existing key |
 | `decrypt` | `transit/decrypt/${KEY}` | `read`, `update` | Decrypting data with an existing key |
 | `rewrap`  | `transit/rewrap/${KEY}` | `read`, `update` | Re-encrypting data with a new key version without revealing the secret |
+
+

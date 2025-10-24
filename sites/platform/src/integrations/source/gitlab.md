@@ -10,6 +10,12 @@ keywords:
 {{% source-integration/intro source="GitLab" %}}
 {{% source-integration/requirements source="GitLab" %}}
 
+{{< note theme="note" >}}
+
+If your GitLab instance is not accessible from the public internet, configure a [GitLab CI/CD pipeline](#optional-use-a-gitlab-cicd-pipeline) that pushes code to {{% vendor/name %}} and manages environments via the {{% vendor/name %}} API. This method provides full deployment control while keeping your GitLab instance isolated. 
+
+{{< /note >}}
+
 ## 1. Generate a token
 
 To integrate your {{% vendor/name %}} project with an existing GitLab repository,
@@ -95,13 +101,13 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on a {{% vendor/name %}} isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on an {{% vendor/name %}} environment isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitLab repository. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-merge-requests` | `true` | Whether to track all merge requests and create active environments from them, which builds the merge request. |
 | `build-wip-merge-requests` | `true` | Whether to also track and build draft merge requests. Automatically disabled when merge requests aren’t built. |
 | `merge-requests-clone-parent-data` | `true` | Whether to clone data from the parent environment when creating a merge request environment. |
 
-To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
+To [keep your repository clean](/learn/bestpractices/clean-repository.md) and avoid performance issues, make sure you enable both the `fetch-branches` and `prune-branches` options.
 
 {{% source-integration/validate source="GitLab" %}}
 1. In your GitLab repository, click **Settings** > **Webhooks**.
@@ -121,3 +127,23 @@ To [keep your repository clean](/learn/bestpractices/clean-repository) and avoid
 {{% source-integration/sync-fetch-prune service="GitLab" %}}
 
 {{% source-integration/url source="GitLab" %}}
+
+## Optional: use a GitLab CI/CD pipeline
+
+If your GitLab instance is not accessible from the internet (e.g. air-gapped or behind a firewall), the GitLab integration process outlined above, based on incoming webhooks, might not be the best option to use.
+
+Instead, [set up a push-based GitLab CI/CD pipeline](https://devcenter.upsun.com/posts/gitlab-push-solution/) that pushes code to {{% vendor/name %}} and manages environments using the {{% vendor/name %}} API. This setup allows you to:
+
+- Deploy to production on `main` branch updates
+- Create preview environments for Merge Requests
+- Clean up environments when branches or MRs are removed
+- Keep your GitLab instance fully private
+
+{{< note theme="tip" title="Detailed tutorial" >}}
+
+For a detailed tutorial of how this works, with code samples and rationale, see this blog post: [Synchronize your air-gapped GitLab](https://devcenter.upsun.com/posts/gitlab-push-solution/).
+
+You can also find a complete working example of how this works in the {{% vendor/name %}} [GitHub snippets repository](https://github.com/upsun/snippets/tree/main/examples/gitlab-ci).
+
+
+{{< /note >}}

@@ -19,18 +19,18 @@ All variables can be strings or base64-encoded JSON-serialized values.
 
 The following table defines what types of variables are available to you:
 
-| Type                                               | Definer     | Scope       | Precedence | Build | Runtime  | Uses |
-| -------------------------------------------------- | ----------- | ----------- | ---------- | ----- | -------- |----- |
-| [Application](./set-variables.md#set-variables-in-your-app) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
-| [Project](./set-variables.md#create-project-variables)               | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
-| [Environment](./set-variables.md#create-environment-specific-variables)       | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
-| [{{% vendor/name %}}](./use-variables.md#use-provided-variables)  | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{% vendor/name %}} project |
+| Type                                                                             | Definer     | Scope       | Precedence | Build | Runtime  | Uses |
+|----------------------------------------------------------------------------------| ----------- | ----------- | ---------- | ----- | -------- |----- |
+| [Application](/development/variables/set-variables.md#set-variables-in-your-app) | Application | Application | 4          | Yes   | Yes      | Non-secret values that are the same across all environments |
+| [Project](/development/variables/set-variables.md#create-project-variables)                           | User        | Project     | 3          | Yes   | Yes      | Secret values that are the same across all environments, such as database credentials |
+| [Environment](/development/variables/set-variables.md#create-environment-specific-variables)          | User        | Environment | 2          | Some  | Yes      | Values that vary by environment, such as which database to connect to or which payment API keys to use |
+| [{{% vendor/name %}}](/development/variables/use-variables.md#use-provided-variables)                 | Pre-defined | Environment | 1          | Some  | Yes      | For information about your {{% vendor/name %}} project |
 
 If there are conflicts between variables with the same name, variables [take precedence](#overrides) from 1 down.
 So {{% vendor/name %}}-provided values (1) override environment variables (2), which override project variables (3),
 which override application-provided variables (4).
 
-All of the variables can also be [overridden via a script](./set-variables.md#set-variables-via-script).
+All of the variables can also be [overridden via a script](/development/variables/set-variables.md#set-variables-via-script).
 
 ### Choosing a variable type
 
@@ -40,32 +40,32 @@ Some environment variables should be the same for all environments.
 For example:
 
 - Build tool versions.
-  If you have scripts that use specific versions of build tools (such as a [specific Node.js version](../../languages/nodejs/node-version.md)),
+  If you have scripts that use specific versions of build tools (such as a [specific Node.js version](/languages/nodejs/node-version.md)),
   You want the tools to be versioned along with your code so you can track the impact of changes.
-  Set those variables [in the application](./set-variables.md#set-variables-in-your-app).
+  Set those variables [in the application](/development/variables/set-variables.md#set-variables-in-your-app).
 - Credentials for common services.
   If you have credentials for services shared across your environments,
   you don't want to commit these secrets to code.
-  Set them as sensitive [project variables](./set-variables.md#create-project-variables).
+  Set them as sensitive [project variables](/development/variables/set-variables.md#create-project-variables).
 
 Other configurations should vary between environment types.
 For example:
 
 - Service configuration for databases and such.
-  This information be read from the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](./use-variables.md#use-provided-variables).
+  This information be read from the {{% vendor/name %}}-provided [`PLATFORM_RELATIONSHIPS` variable](/development/variables/use-variables.md#use-provided-variables).
   It varies by environment automatically.
 - Mode toggles such as enabling `debug` mode, disabling certain caches, and displaying more verbose errors.
-  This information might vary by environment type and should be set on the [environment level](./set-variables.md#create-environment-specific-variables).
+  This information might vary by environment type and should be set on the [environment level](/development/variables/set-variables.md#create-environment-specific-variables).
 - API keys for remote services, especially payment gateways.
   If you have a different payment gateway for production and for testing,
-  set its keys on the [environment level](./set-variables.md#create-environment-specific-variables).
+  set its keys on the [environment level](/development/variables/set-variables.md#create-environment-specific-variables).
 
 ## Overrides
 
 If the names of variables at different levels match,
 an environment variable overrides a variable with the same name in a parent environment
 and both override a project variable.
-All variables can also be [overridden via script](./set-variables.md#set-variables-via-script).
+All variables can also be [overridden via script](/development/variables/set-variables.md#set-variables-via-script).
 
 For an example of how the different levels work,
 suppose you have the following inheritable variables defined for the `main` environment:
@@ -172,13 +172,13 @@ Any variable with the prefix `php` is added to the PHP configuration for all PHP
 
 Using variables, you can use the same files for all your environments and override values on any given environment if needed.
 
-You can set the PHP memory limit to 256 MB on a specific environment by running the following [CLI command](../../administration/cli/_index.md):
+You can set the PHP memory limit to 256 MB on a specific environment by running the following [CLI command](/administration/cli/_index.md):
 
 ```bash
 {{% vendor/cli %}} variable:create --level environment --prefix php --name memory_limit --value 256M --environment {{< variable "ENVIRONMENT_NAME" >}}
 ```
 
-To use variables across environments, set them in your [app configuration](../../create-apps/_index.md).
+To use variables across environments, set them in your [app configuration](/create-apps/_index.md).
 For example, to change the PHP memory limit for all environments, use the following configuration:
 
 ```yaml {configFile="app"}
@@ -191,7 +191,7 @@ applications:
 
 ### Framework-specific variables
 
-For specific frameworks, you can implement logic to override global configurations with [environment-specific variables](./set-variables.md#create-environment-specific-variables).
+For specific frameworks, you can implement logic to override global configurations with [environment-specific variables](/development/variables/set-variables.md#create-environment-specific-variables).
 So you can use the same codebase and settings for all your environments,
 but still adapt the behavior to each environment.
 
@@ -210,9 +210,9 @@ Variables for the override are composed of three distinct parts each separated b
 - The property to set (`name`)
 
 Setting the `drupalsettings:system.site:name` variable overrides the `name` property of the `system.site` configuration object located in the global `$settings` array.
-You can do this by running the following [CLI command](../../administration/cli/_index.md):
+You can do this by running the following [CLI command](/administration/cli/_index.md):
 
-``` bash
+```bash
 {{% vendor/cli %}} variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
 ```
 
@@ -222,5 +222,5 @@ such as the global `$config` array, which uses the variable prefix `drupalconfig
 You need to name your {{% vendor/name %}} variables to match the ones used in your script.
 Make sure that the {{% vendor/name %}} variables start with a string present in your `switch` statement.
 
-You can apply similar logic for [other frameworks and languages](../../development/variables/use-variables.md#access-variables-in-your-app).
+You can apply similar logic for [other frameworks and languages](/development/variables/use-variables.md#access-variables-in-your-app).
 {{% /version/only %}}

@@ -29,14 +29,12 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="network-storage" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="network-storage" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="network-storage" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -63,14 +61,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -145,7 +141,7 @@ mounts:
 
 ## Multi-application usage
 
-If your project contains [multiple apps](../create-apps/multi-app/_index.md), they can all use the same network mounts.
+If your project contains [multiple apps](/create-apps/multi-app/_index.md), they can all use the same network mounts.
 If the `source_path` is the same for both apps,
 the files are shared between the two applications even if the mount location is different.
 

@@ -4,7 +4,7 @@ description:
 banner:
   title: Beta Feature
   body: The Rust runtime is currently available in Beta.
-        To share your feedback so we can improve it, add a comment to the [Rust feature card](https://next.platform.sh/c/221-rust).
+        To share your feedback so we can improve it, add a comment to the [Rust feature card](https://devcenter.upsun.com/posts/releases/ ).
 ---
 
 {{% vendor/name %}} supports building and deploying applications written in Rust.
@@ -20,14 +20,12 @@ When you deploy your app, you always get the latest available patches.
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="rust" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="rust" status="supported" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>
@@ -48,7 +46,7 @@ You can then start it from the `web.commands.start` directive.
 Note that the start command _must_ run in the foreground.
 If the program terminates for any reason it is automatically restarted.
 
-The following basic [app configuration](../../create-apps/_index.md) is sufficient to run most Rust apps.
+The following basic [app configuration](/create-apps/_index.md) is sufficient to run most Rust apps.
 See the [complete example](#complete-example) below for more details.
 
 ```yaml {configFile="app"}
@@ -80,7 +78,7 @@ Note that there is still an Nginx proxy server sitting in front of your applicat
 
 ## Built-in variables
 
-{{% vendor/name %}} exposes relationships and other configuration as [environment variables](../development/variables/_index.md).
+{{% vendor/name %}} exposes relationships and other configuration as [environment variables](/development/variables/_index.md).
 
 To get the `PORT` environment variable (the port on which your app is supposed to listen),
 use the following snippet:
@@ -131,7 +129,7 @@ Follow these steps:
     serde_json = "1.0"
     ```
 
-3. Add the following [app configuration](../../create-apps/_index.md):
+3. Add the following [app configuration](/create-apps/_index.md):
 
     ```yaml {configFile="app"}
     # The app's name, which must be unique within the project.

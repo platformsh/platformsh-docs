@@ -71,19 +71,19 @@ They likely contain an error message describing the root cause:
 
 ```bash
 {{% vendor/cli %}} logs all
-  [app] [14-Aug-2020 10:52:27 UTC] [critical] Uncaught PHP Exception Exception: [...]
+  [app] [14-Aug-2024 10:52:27 UTC] [critical] Uncaught PHP Exception Exception: [...]
   [app]
-  [php.access] 2020-08-14T10:52:27Z GET 500 2.386 ms 2048 kB 419.11% /
-  [access] 78.247.136.119 - - [14/Aug/2020:10:52:27 +0000] "GET / HTTP/1.1" 500 843 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
+  [php.access] {{ now.Year }}-08-14T10:52:27Z GET 500 2.386 ms 2048 kB 419.11% /
+  [access] 78.247.136.119 - - [14/Aug/{{ now.Year }}:10:52:27 +0000] "GET / HTTP/1.1" 500 843 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"
 ```
 
 If the error occurs on a preview environment,
 or on the main environment of a non-production project,
 you can also enable Laravel's dev/debug mode to inspect the cause of the error
 via the `APP_DEBUG` [environment variable](/get-started/stacks/laravel/environment-variables.md) in your
-`.environment` file or via [{{% vendor/cli %}} console](/development/variables):
+`.environment` file or via [{{% vendor/cli %}} console](/development/variables.md):
 
-```bash
+```bash {configFile="env"}
 # Enable debug mode
 export APP_DEBUG=1
 # Disable debug mode

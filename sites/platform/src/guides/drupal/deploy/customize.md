@@ -3,11 +3,11 @@ title: "Customize Drupal for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Drupal site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your Drupal site to read from an {{% vendor/name %}} environment.
 ---
 
 Now that your code contains all of the configuration to deploy on {{% vendor/name %}},
-it's time to make your Drupal site itself ready to run on a {{% vendor/name %}} environment.
+it's time to make your Drupal site itself ready to run on an {{% vendor/name %}} environment.
 There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
@@ -36,7 +36,7 @@ The file itself is a bit long, but reasonably self-explanatory.
 <?php
 /**
  * @file
- * Platform.sh settings.
+ * Upsun Fixed settings.
  */
 
 use Drupal\Core\Installer\InstallerKernel;
@@ -160,8 +160,8 @@ if ($platformsh->inRuntime()) {
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
 // header then it can be an injection vector, depending on how the Host header is used.
-// However, Platform.sh already replaces the Host header with the route that was used to reach
-// Platform.sh, so it is guaranteed to be safe.  The following line explicitly allows all
+// However, Upsun Fixed already replaces the Host header with the route that was used to reach
+// Upsun Fixed, so it is guaranteed to be safe.  The following line explicitly allows all
 // Host headers, as the only possible Host header is already guaranteed safe.
 $settings['trusted_host_patterns'] = ['.*'];
 
@@ -220,8 +220,8 @@ This modifies the `$PATH` to include the `vendor/bin` directory,
 where command line tools like Drush are stored.
 
 You need the file or one like it if you plan to run `drush` as a command,
-such as in a cron task like the one in the [app configuration from the previous step](./configure.md#configure-apps-in-platformappyaml).
-If you don't include the file, you get a [command not found error](../../../development/troubleshoot.md#command-not-found).
+such as in a cron task like the one in the [app configuration from the previous step](/guides/drupal/deploy/configure.md#configure-apps-in-platformappyaml).
+If you don't include the file, you get a [command not found error](/development/troubleshoot.md#command-not-found).
 
 ```text {location=".environment"}
 # Allow executable app dependencies from Composer to be run from the path.

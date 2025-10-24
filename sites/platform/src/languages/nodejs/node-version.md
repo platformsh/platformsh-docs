@@ -10,7 +10,7 @@ Each {{% vendor/name %}} container image includes a specific language in a speci
 A set of dependencies is also provided based on that language version.
 This ensures that your application container is as small and efficient as possible.
 
-Therefore, by default, when you use a {{% vendor/name %}} container image,
+Therefore, by default, when you use an {{% vendor/name %}} container image,
 you use the Node.js version that's included in that image, if any.
 
 If you want to use a different Node.js version, use a version manager to install it yourself.
@@ -20,7 +20,7 @@ You can use one of the following version managers:
 - [Use `nvm`](#use-nvm)
 
 Both of the recommendations use a `.nvmrc` file to specify the desired Node.js version.
-You could also specify a different file or use [environment variables](../../development/variables/_index.md).
+You could also specify a different file or use [environment variables](/development/variables/_index.md).
 
 ## Use `n`
 
@@ -88,7 +88,7 @@ variables:
   env:
     N_PREFIX: /app/.global
 ```
-4. Install the specified version of Node.js in a [`build` hook](../../create-apps/hooks/hooks-comparison.md#build-hook):
+4. Install the specified version of Node.js in a [`build` hook](/create-apps/hooks/hooks-comparison.md#build-hook):
 
 ```yaml {configFile="app"}
 hooks:
@@ -136,13 +136,13 @@ hooks:
 You can use it to:
 
 - Make a specific version available in the build and optionally the runtime container.
-- Control the specific versions to be installed with [environment variables](../../development/variables/_index.md),
+- Control the specific versions to be installed with [environment variables](/development/variables/_index.md),
   meaning you can also have different versions in different environments.
 
 To use `nvm`, follow these steps:
 
-1. Define which `nvm` version to use using an [environment variable](../../development/variables/_index.md).
-   Add it to your [app configuration](../../create-apps/_index.md):
+1. Define which `nvm` version to use using an [environment variable](/development/variables/_index.md).
+   Add it to your [app configuration](/create-apps/_index.md):
 
 ```yaml {configFile="app"}
 variables:
@@ -160,9 +160,9 @@ variables:
     NVM_VERSION: v0.39.3
     NODE_VERSION: v18.14.2
 ```
-   To get different versions in different environments, [set environment-specific variables](../../development/variables/set-variables.md#create-environment-specific-variables).
+   To get different versions in different environments, [set environment-specific variables](/development/variables/set-variables.md#create-environment-specific-variables).
 
-3. Add a `.nvm` directory to your cache in your [build hook](../../create-apps/hooks/_index.md):
+3. Add a `.nvm` directory to your cache in your [build hook](/create-apps/hooks/_index.md):
 
 ```yaml {configFile="app"}
 hooks:
@@ -214,7 +214,7 @@ hooks:
     nvm use "$NODE_VERSION"
 ```
 5. Optional: To use the specified Node.js version in the runtime container and not just the build,
-   activate `nvm` via [script](../../development/variables/set-variables.md#set-variables-via-script):
+   activate `nvm` via [script](/development/variables/set-variables.md#set-variables-via-script):
 
    ```bash {location=".environment"}
    unset NPM_CONFIG_PREFIX

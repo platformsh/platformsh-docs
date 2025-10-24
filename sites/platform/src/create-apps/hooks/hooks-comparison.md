@@ -20,8 +20,9 @@ The `build` hook is run after any [build flavor](/create-apps/app-reference/sing
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can only use [environment variables](../../development/variables/use-variables.md#use-provided-variables)
-that are available at build time.
+The `build` hook can access only the variables that are available at build time: 
+  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column) 
+  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI)  
 
 During the `build` hook, there are three writeable directories:
 
@@ -43,11 +44,11 @@ The only constraint on what can be downloaded during a `build` hook is the disk 
 This is _not_ the `disk` specified in your [app configuration](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
 
 If you exceed this limit, you receive a `No space left on device` error.
-See how to [troubleshoot this error](../troubleshoot-disks.md#no-space-left-on-device).
+See how to [troubleshoot this error](/create-apps/troubleshoot-disks.md#no-space-left-on-device).
 
 The `build` hook runs only when the app or its runtime (variables and such) have changed.
 Redeploys with no changes trigger only the `post_deploy` hook.
-If you need the `build` hook to run, [manually trigger a build](../../development/troubleshoot.md#manually-trigger-builds).
+If you need the `build` hook to run, [manually trigger a build](/development/troubleshoot.md#manually-trigger-builds).
 
 Each hook is executed as a single script, so they're considered to have failed only if the final command in them fails.
 To cause them to fail on the first failed command, add `set -e` to the beginning of the hook.
@@ -85,7 +86,7 @@ such as database schema updates or some types of cache clear (those where the co
 A task that can safely run concurrently with new incoming requests should be run as a `post_deploy` hook instead.
 
 After a Git push, in addition to the log shown in the activity log,
-the execution of the `deploy` hook is logged in the [deploy log](../../increase-observability/logs/access-logs.md#container-logs).
+the execution of the `deploy` hook is logged in the [deploy log](/increase-observability/logs/access-logs.md#container-logs).
 For example:
 
 ```bash
@@ -99,7 +100,7 @@ Your `deploy` hook is tied to commits in the same way as your builds.
 Once a commit has been pushed and a new build image has been created,
 the result of both the `build` and `deploy` hooks are reused until there is a new git commit.
 Redeploys with no changes trigger only the `post_deploy` hook.
-If you need the `deploy` hook to run, [manually trigger a build](../../development/troubleshoot.md#manually-trigger-builds).
+If you need the `deploy` hook to run, [manually trigger a build](/development/troubleshoot.md#manually-trigger-builds).
 
 ## Post-deploy hook
 
@@ -111,6 +112,6 @@ That makes it well suited to any updates that don't require exclusive database a
 What's "safe" to run in a `post_deploy` hook vs. in a `deploy` hook varies by the application.
 Often times content imports, some types of cache warmups, and other such tasks are good candidates for a `post_deploy` hook.
 
-In addition to the activity log, the `post_deploy` hook logs to the [post-deploy log](../../increase-observability/logs/access-logs.md#container-logs).
+In addition to the activity log, the `post_deploy` hook logs to the [post-deploy log](/increase-observability/logs/access-logs.md#container-logs).
 
 The `post_deploy` hook is the only hook that runs during a redeploy.

@@ -8,7 +8,7 @@ However, you can also create arbitrary links to spawn projects on {{% vendor/nam
 There are two ways to create such a link, shown below.
 In each case, when a user clicks on the link they are redirected to create a new {{% vendor/name %}} project,
 with the template selection step skipped in favor of the template specified.
-If the user doesn't have a {{% vendor/name %}} account yet they're prompted to create one.
+If the user doesn't have an {{% vendor/company_name %}} account yet, they're prompted to create one.
 
 You may include the link on your own project's website, your company's internal Wiki,
 or anywhere else a link can go to make launching your code base as straightforward as possible.
@@ -17,10 +17,10 @@ or anywhere else a link can go to make launching your code base as straightforwa
 
 To have a deployable template, you need to first prepare the repository.
 The Deploy on {{% vendor/name %}} button works with any Git repository that's deployable on {{% vendor/name %}}.
-It needs [app configuration](../create-apps/_index.md)
-and [`{{< vendor/configfile "routes" >}}` file](../define-routes/_index.md).
-If you are using any [services](../add-services/_index.md),
-you also need a [`{{< vendor/configfile "services" >}}` file](../add-services/_index.md),
+It needs [app configuration](/create-apps/_index.md)
+and [`{{< vendor/configfile "routes" >}}` file](/define-routes/_index.md).
+If you are using any [services](/add-services/_index.md),
+you also need a [`{{< vendor/configfile "services" >}}` file](/add-services/_index.md),
 
 The repository must be available at a publicly accessible Git URL.
 That may be hosted with GitHub, GitLab, Bitbucket, your own custom Git hosting,
@@ -49,7 +49,7 @@ in the 3rd party template repository.
 
 ## Making a button (with a widget)
 
-The easiest way to make a Deploy on {{% vendor/name %}} button is to use the [button builder widget](https://platform.sh/deploy/).
+The easiest way to make a Deploy on {{% vendor/name %}} button is to use the [button builder widget](https://docs.upsun.com/learn/overview/build-deploy.html).
 You provide it with either the Git URL of the repository or a URL to a corresponding template definition file.
 
 The button builder widget gives you an HTML fragment to copy and paste to wherever you want the button hosted.
@@ -62,14 +62,14 @@ It also includes a tracking code to know whose Deploy on {{% vendor/name %}} but
 Create a link in the following form:
 
 ```text
-https://console.platform.sh/org/create-project?template=GIT_URL
+https://console.upsun.com/org/create-project?template=GIT_URL
 ```
 
 Where `GIT_URL` is the URL of a publicly visible Git repository.
 For example, to install {{% vendor/name %}}'s [Drupal 10 template on GitHub](https://github.com/platformsh-templates/drupal10) you would use:
 
 ```text
-https://console.platform.sh/org/create-project/?template=https://github.com/platformsh-templates/drupal10.git
+https://console.upsun.com/org/create-project/?template=https://github.com/platformsh-templates/drupal10.git
 ```
 
 (Note that's the URL of the Git repository as if you were cloning it, NOT the URL of the repository's home page on GitHub.)
@@ -84,14 +84,14 @@ If those are missing the project still initializes but fails to build.
 Create a link in the following form:
 
 ```text
-https://console.platform.sh/org/create-project?template=TEMPLATE_URL
+https://console.upsun.com/org/create-project?template=TEMPLATE_URL
 ```
 
 Where `TEMPLATE_URL` is the URL of a publicly visible template definition file.
 For example, to install {{% vendor/name %}}'s [Drupal 10 template](https://github.com/platformsh-templates/drupal10) you would use:
 
 ```text
-https://console.platform.sh/org/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal10/.platform.template.yaml
+https://console.upsun.com/org/create-project/?template=https://github.com/platformsh/template-builder/blob/master/templates/drupal10/.platform.template.yaml
 ```
 
 A new project is created, initialized with whatever code is at the tip of the default branch of the repository referenced by that file,

@@ -10,7 +10,7 @@ You need to set up an API token to authenticate the {{% vendor/name %}} CLI for 
 
 ## Before you begin
 
-You might need the [{{% vendor/name %}} CLI](../cli/_index.md) to perform certain tasks.
+You might need the [{{% vendor/name %}} CLI](/administration/cli/_index.md) to perform certain tasks.
 For example, you need the CLI to do the following:
 - [Check the validity of an API token](#optional-check-the-validity-of-your-api-token).
 - [Load the CLI SSH certificate for non-CLI commands](#use-the-cli-ssh-certificate-for-non-cli-commands).
@@ -19,8 +19,8 @@ For example, you need the CLI to do the following:
 ## 1. Create a machine user
 
 To safely run automated tasks, first create machine users.
-Each machine user has its own {{% vendor/name %}} account associated with a unique email address.
-You can grant them restrictive [access permissions](../users.md) to handle specific automated tasks.
+Each machine user has their own {{% vendor/company_name %}} account associated with a unique email address.
+You can grant them restrictive [access permissions](/administration/users.md) to handle specific automated tasks.
 For security purposes, create a machine user for each type of task you want to automate.
 
 To create a machine user, follow these steps:
@@ -36,10 +36,10 @@ title=Using the CLI
    ```
    This sets your machine user as a viewer on your project and a contributor on development environments,
    with no access to other environment types.
-   Note that you can further [adjust user roles](../users.md#environment-type-roles) depending on your needs and each environment type.
+   Note that you can further [adjust user roles](/administration/users.md#environment-type-roles) depending on your needs and each environment type.
 
 2. In the email invitation, click **Create account**.
-3. To create a {{% vendor/name %}} account for the machine user, click **Sign up** and follow the instructions.
+3. To create an {{% vendor/company_name %}} account for the machine user, click **Sign up** and follow the instructions.
 
 <--->
 +++
@@ -50,9 +50,15 @@ title=In the Console
 2. In the **Project Settings** menu, click **Access**.
 3. Click **Add**.
 4. Enter your machine user's email address.
-5. For each [environment type](../users.md#environment-type-roles), assign a role to your machine user and click **Save**.
+5. For each [environment type](/administration/users.md#environment-type-roles), assign a role to your machine user and click **Save**.
 
 {{< /codetabs >}}
+
+{{< note theme="info" >}}
+
+Machine users with an email address under your Single Sign-On (SSO) domain can be excluded from the SSO enforcement rule so they aren’t required to authenticate through your identity provider. See the [SSO documentation](/administration/security/sso.html#service-users) for more information.
+
+{{< /note >}}
 
 
 ## 2. Create an API token
@@ -111,12 +117,12 @@ see how to [load the proper SSH certificate](#use-the-cli-ssh-certificate-for-no
 ### Authenticate in an environment
 
 You can run automated tasks on an app container using the {{% vendor/name %}} CLI.
-To do so, set your API token as a [top-level environment variable](../../development/variables/_index.md#top-level-environment-variables).
+To do so, set your API token as a [top-level environment variable](/development/variables/_index.md#top-level-environment-variables).
 
 {{< note theme="warning" >}}
 
 Once you add the token as an environment variable,
-anyone with [SSH access](../../development/ssh/_index.md) can read its value.
+anyone with [SSH access](/development/ssh/_index.md) can read its value.
 Make sure your [machine user has only the necessary permissions](#1-create-a-machine-user).
 
 {{< /note >}}

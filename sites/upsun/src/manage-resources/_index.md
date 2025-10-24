@@ -13,7 +13,10 @@ keywords:
   - "scaling"
 ---
 
-{{% vendor/name %}} allows you to configure resources (CPU, RAM, and disk) per environment for each of your apps and services.
-You can also add instances for each of your apps depending on your needs.
+{{% note theme="note" title="Understand your resource options"%}}
 
-For information on costs related to resource usage, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
+To understand how resources work on {{% vendor/name %}} and learn more about your options, visit the [how resources work](/manage-resources/how-resources-work.html) page.
+
+{{< /note >}}
+
+

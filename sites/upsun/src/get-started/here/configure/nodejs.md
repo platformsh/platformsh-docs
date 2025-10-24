@@ -7,9 +7,9 @@ description: All you need to know about configuring a new Javascript/Node.js pro
 When dealing with Javascript/Node.js stacks, the information below may help customize your configuration.
 These sections provide Javascript/Node.js-specific configuration details, but you can also refer to the common {{% vendor/name %}} documentation:
 
-- [Configuring applications](/create-apps)
-- [Setting up managed services](/add-services)
-- [Handling requests](/define-routes)
+- [Configuring applications](/create-apps/_index.md)
+- [Setting up managed services](/add-services/_index.md)
+- [Handling requests](/define-routes/_index.md)
 
 ## Build flavors
 
@@ -17,7 +17,7 @@ By default, {{% vendor/name %}} makes assumptions about how you want to build yo
 Namely, that you are managing your dependencies with npm, and that the very first thing you'd like to run is a particular and common production flavor of `npm install`.
 
 This is called a build `flavor`, but its assumption may prove inappropriate for your application and cause your builds to fail (such as if you'd like to use yarn or bun instead of npm).
-Therefore, you can [disable this feature](/languages/nodejs#dependencies).
+Therefore, you can [disable this feature](/languages/nodejs.html#dependencies).
 
 ## Available package managers
 
@@ -55,7 +55,7 @@ applications:
         sharp: "*"
 #services:
 #  db:
-#    type: postgresql:15
+#    type: postgresql:{{% latest "postgresql" %}}
 routes:
   "https://{default}/":
     type: upstream
@@ -88,7 +88,7 @@ applications:
         sharp: "*"
 #services:
 #  db:
-#    type: postgresql:14
+#    type: postgresql:{{% latest "postgresql" %}}
 routes:
   "https://{default}/":
     type: upstream
@@ -131,7 +131,7 @@ applications:
         yarn build
 services:
   postgresql:
-    type: postgresql:15
+    type: postgresql:{{% latest "postgresql" %}}
 
 routes:
   "https://{default}/":
@@ -150,9 +150,9 @@ routes:
 
 The {{% vendor/name %}} documentation includes a wide array of community resources to help with framework-specific configuration:
 
-- [Express](/get-started/stacks/express)
-- [Next.js](/get-started/stacks/nextjs)
-- [Strapi](/get-started/stacks/strapi)
+- [Express](/get-started/stacks/express/_index.md)
+- [Next.js](/get-started/stacks/nextjs/_index.md)
+- [Strapi](/get-started/stacks/strapi/_index.md)
 
 ## Get support
 

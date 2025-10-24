@@ -8,8 +8,8 @@ layout: single
 
 {{% vendor/name %}} supports both MariaDB and Oracle MySQL to manage your relational databases.
 Their infrastructure setup is nearly identical, though they differ in some features.
-See the [MariaDB documentation](https://mariadb.org/learn/)
-or [MySQL documentation](https://dev.mysql.com/doc/refman/en/) for more information.
+See the [MariaDB documentation](https://mariadb.org/documentation/)
+or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
 ## Supported versions
 
@@ -18,25 +18,26 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-The service types `mariadb` and `mysql` both refer to MariaDB.
-The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
-Other than the value for their `type`,
-MySQL and MariaDB have the same behavior and the rest of this page applies to both of them.
+{{< note theme="info" title="" >}}
+- The service types `mariadb` and `mysql` both refer to MariaDB.\
+  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
+{{< /note >}}
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|---------------|-------------|--------------------|
-|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="mysql" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="supported" >}} | {{< image-versions image="oracle-mysql" status="supported" >}} |
 
 {{% deprecated-versions %}}
 
-| **`mariadb`** | **`mysql`** | **`oracle-mysql`** |
-|----------------------------------|---------------|-------------------------|
-|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
+| **`mariadb` / `mysql`** | **`oracle-mysql`** |
+|-------------------------|--------------------|
+|  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
 ### Upgrade
 
 When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.5 -> 10.6 -> 10.11 -> 11.0),
+Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
 and check that each upgrade commit translates into an actual deployment.
 
 To upgrade, update the service version in your [service configuration](../_index.md).
@@ -140,10 +141,10 @@ Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/develo
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mariadb[0].host")
+export APP_DATABASE_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r ".mariadb[0].host")"
 ```
 
 {{< /codetabs >}}
@@ -215,10 +216,10 @@ Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/develo
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_ORACLE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.oraclemysql[0].host')"
+export APP_ORACLE_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.oraclemysql[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -295,10 +296,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -468,12 +469,12 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export DB_CONNECTION==${MARIADB_SCHEME}
-export DB_USERNAME=${MARIADB_USERNAME}
-export DB_PASSWORD=${MARIADB_PASSWORD}
-export DB_HOST=${MARIADB_HOST}
-export DB_PORT=${MARIADB_PORT}
-export DB_DATABASE=${MARIADB_PATH}
+export DB_CONNECTION="${MARIADB_SCHEME}"
+export DB_USERNAME="${MARIADB_USERNAME}"
+export DB_PASSWORD="${MARIADB_PASSWORD}"
+export DB_HOST="${MARIADB_HOST}"
+export DB_PORT="${MARIADB_PORT}"
+export DB_DATABASE="${MARIADB_PATH}"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -505,17 +506,18 @@ You can obtain the complete list of available service environment variables in y
 
 Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
-You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://community.platform.sh/t/convert-platform-relationships-to-database-url/841).
+You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://support.platform.sh/hc/en-us/community/posts/16439596373010).
 
 ## Configuration options
 
 You can configure your MySQL service in the [services configuration](../_index.md) with the following options:
 
-| Name         | Type                    | Version                            | Description |
-| ------------ | ----------------------- | ---------------------------------- | ----------- |
-| `schemas`    | An array of `string`s   | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
-| `endpoints`  | An endpoints dictionary | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
-| `properties` | A properties dictionary | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| Name               | Type                       | Version                            | Description |
+| ------------------ | -------------------------- | ---------------------------------- | ----------- |
+| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
+| `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
 
 Example configuration:
 
@@ -570,16 +572,17 @@ For each endpoint you add, you can define the following properties:
 | Name             | Type                     | Required | Description |
 | ---------------- | ------------------------ | -------- | ----------- |
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
-| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
+| `privileges`     | A permissions dictionary |          | For each defined schema, specifies the permissions of the endpoint. |
 
-Possible permissions:
+Available permissions:
 
-| Name        | Type          | Description                                         |
-| ----------- | ------------- | --------------------------------------------------- |
-| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
-| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Name              | Type                | Description                                         |
+| ----------------- | ------------------- | --------------------------------------------------- |
+| Read-only         | `ro`                | Can select, create temporary tables, and see views. |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.        |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [DevCenter article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ## Multiple databases
 
@@ -727,9 +730,9 @@ ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_
 For further details, see the [MariaDB documentation](https://mariadb.com/kb/en/character-set-and-collation-overview/).
 
 {{% note theme="info" %}}
-MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/ref/mdb/system-variables/max_connections/) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
+MariaDB configuration properties like [`max_connections`](https://mariadb.com/docs/server/server-management/variables-and-modes/server-system-variables#max_connections) and [`innodb_buffer_pool_size`](https://mariadb.com/kb/en/innodb-buffer-pool/#innodb_buffer_pool_size) are not directly configurable from `configuration.properties` in your services configuration.
 They can, however, be set indirectly, which can be useful for solving `Too many connection` errors.
-See [the troubleshooting documentation](/add-services/mysql/troubleshoot#too-many-connections) for more details.
+See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
 
 ## Password generation
@@ -744,6 +747,14 @@ For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
+
+{{% note theme="warning" %}}
+By default, the generated password will rotate on a regular
+basis. Your applications MUST use the passwords from the
+relationships, as the password _is_ going to change. Set
+`rotate_passwords` to `false` if you wish to change this default
+behavior.
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint

@@ -15,17 +15,17 @@ or each time you increase the storage space of your services.
 You also have regularly scheduled automated backups of your production environments to cover most cases.
 
 You can only create backups and restore active environments.
-To work with an [inactive environment](/glossary.md#inactive-environment), first activate it.
+To work with an [inactive environment](/glossary/_index.md#inactive-environment), first activate it.
 
 ## How backup and restore works
 
-1. As an [admin user](../administration/users.md), you can do a backup of your environment.
+1. As an [admin user](/administration/users.md), you can do a backup of your environment.
    This backup includes the complete data and code of the environment.
-   All persistent data from all running [services](../add-services/_index.md)
+   All persistent data from all running [services](/add-services/_index.md)
    and any files stored on [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) are included.
    The backup is stored internally on {{% vendor/name %}}.
    That is, the backup can be applied to environments on {{% vendor/name %}}, but it can't be downloaded.
-   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md)).
+   If you need to download backups, instead [export your mount and service data](/learn/tutorials/exporting.md).
 
 2. You restore your environment using the backup.
    At this point, the data and code from the backup are restored to ensure a consistent state.
@@ -58,7 +58,7 @@ For consistent backups, create the backups during non-peak hours for your site.
 
 ## Retention
 
-For information on how long backups are retained, see the [data retention policy](../security/data-retention.md).
+For information on how long backups are retained, see the [data retention policy](/security/data-retention.md).
 
 ## Backup schedule
 
@@ -73,9 +73,9 @@ The number of available backups for Production environments depends on your sche
 | Advanced | 4              | 21 backups:</br>- 6 daily backups (1 backup for each of the last 6 days) </br>- 3 weekly backups (1 backup for each of the last 3 weeks)</br>- 12 monthly backups (1 backup for each of the last 12 months) |
 | Premium  | 4              | 44 backups:</br>- 3 backups for the last 24 hours</br>- 30 daily backups (1 backup for each of the last 30 days)</br>- 11 monthly backups (1 backup for each of the last 11 months) |
 
-Note that [backup retention](../security/data-retention.md#grid-backups) also depends on your schedule.
+Note that [backup retention](/security/data-retention.md#grid-backups) also depends on your schedule.
 
-The schedules available to you depend on your [tier](https://platform.sh/pricing/).
+The schedules available to you depend on your [tier](https://upsun.com/fixed-pricing/).
 
 | Tier             | Default schedule | Possible upgrade |
 | ---------------- | ---------------- | ---------------- |
@@ -89,7 +89,7 @@ The exact cost depends on the size of your storage.
 
 To upgrade to the higher schedule, follow these steps:
 
-1. In the [Console](https://console.platform.sh/), navigate to the project where you want to change the schedule.
+1. In the [Console](https://console.upsun.com/), navigate to the project where you want to change the schedule.
 2. Click **{{< icon settings >}} Settings**.
 3. Click **Edit plan**.
 4. For **Backups**, click the name of your current schedule.
@@ -106,7 +106,7 @@ For Dedicated environments, see more about [backups of Dedicated environments](/
 For Grid environments, automated backups are taken for production environments at least once every day.
 The exact number of backups depends on your [backup schedule](#backup-schedule).
 
-Daily backups are taken at around 4:00 every day based on the [project timezone](../projects/change-project-timezone.md).
+Daily backups are taken at around 4:00 every day based on the [project timezone](/projects/change-project-timezone.md).
 The time for 6-hourly backups is based on the daily backup.
 
 Automated backups are always [live](#live-backups).
@@ -116,9 +116,9 @@ Automated backups are always [live](#live-backups).
 Automated backups are only available for production environments.
 
 If you're on a [development plan](/administration/pricing/_index.md#development-plans),
-all your environments are [development environments](/glossary.md#environment-type).
+all your environments are [development environments](/glossary/_index.md#environment-type).
 This includes your future production environment.
-If you want to enable automated backups for it, [upgrade to a non-development plan](https://platform.sh/pricing/).
+If you want to enable automated backups for it, [upgrade to a non-development plan](https://upsun.com/fixed-pricing/).
 
 {{< /note >}}
 
@@ -132,8 +132,7 @@ They may make restorations less reliable.
 To avoid such issues, schedule [manual backups](#create-a-manual-backup) during non-peak hours,
 when the short amount of downtime is least noticed.
 
-Automated backups are always live, including those taken on [{{% names/dedicated-gen-3 %}}](/dedicated-environments/dedicated-gen-3/_index.md)
-and [{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/overview/_index.md) environments.
+Automated backups are always live, including those taken on [{{% names/dedicated-gen-2 %}}](/dedicated-environments/dedicated-gen-2/overview/_index.md) environments.
 
 You can create a manual live backup on a Grid project:
 
@@ -159,7 +158,7 @@ When [creating the backup](#create-a-manual-backup), select **Run live backup** 
 
 ## Create a manual backup
 
-You can create a manual backup using the [CLI](../administration/cli/_index.md) or in the [Console](../administration/web/_index.md).
+You can create a manual backup using the [CLI](/administration/cli/_index.md) or in the [Console](/administration/web/_index.md).
 
 {{< codetabs >}}
 +++
@@ -183,7 +182,7 @@ title=In the Console
 
 You can also automate the process of creating manual backups through [cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
 The cron job uses the CLI command to back up the environment.
-It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-an-environment).
+It requires you to [set up the CLI on the environment with an API token](/administration/cli/api-tokens.md#authenticate-in-an-environment).
 
 Although this process is automated,
 backups created in this way count as manual for the [backup schedule](#backup-schedule).
@@ -193,5 +192,5 @@ They don't affect the automated backups taken as part of the schedule.
 
 Backups are stored as binary large objects separate from your environments.
 This storage is replicated over multiple data centers in different locations
-[within the region your project is hosted in](https://platform.sh/trust-center/security/data-security/).
+[within the region your project is hosted in](https://upsun.com/trust-center/security/data-security/).
 This means that in the rare event a data center becomes unavailable, your backups are still available.

@@ -13,8 +13,8 @@ but they're flexible enough so you can choose what package manager you want.
 This article describes how to configure major package management tools.
 
 This package management is different from global dependencies (packages available as commands),
-which you can add in your [app configuration](../../create-apps/_index.md).
-See more about [managing global dependencies](./_index.md#package-management).
+which you can add in your [app configuration](/create-apps/_index.md).
+See more about [managing global dependencies](/languages/python/_index.md#package-management).
 
 ## Pip
 
@@ -24,7 +24,7 @@ You can use it to install packages from the Python Package Index and other locat
 
 To manage packages with pip,
 commit a `requirements.txt` file with all of the dependencies needed for your app.
-Then install the packages in your [`build` hook](../../create-apps/hooks/_index.md),
+Then install the packages in your [`build` hook](/create-apps/hooks/_index.md),
 such as by running the following command: `pip install -r requirements.txt`.
 
 The following sections present ideas to keep in mind to ensure repeatable deployments on {{% vendor/name %}}.
@@ -35,7 +35,7 @@ The version of pip on Python containers gets updated regularly.
 But it isn't guaranteed to be the latest version or the version that matches your local environment.
 You might want to define a specific version of pip in your deployments to further enforce repeatable builds.
 
-To do so, modify your [app configuration](../../create-apps/_index.md), as in the following examples:
+To do so, modify your [app configuration](/create-apps/_index.md), as in the following examples:
 
 {{< codetabs >}}
 +++
@@ -141,6 +141,20 @@ hooks:
 ```
 {{< /codetabs >}}
 
+## UV
+
+[uv](https://docs.astral.sh/uv/) is an extremely fast Python package and project
+manager, written in Rust.
+
+```yaml {configFile="app"}
+{{< snippet name="myapp" config="app" root="myapp" >}}
+type: 'python:{{% latest "python" %}}'
+dependencies:
+  python3:
+    uv: "*"
+{{< /snippet >}}
+```
+
 ## Poetry
 
 [Poetry](https://python-poetry.org/docs/) is a tool for dependency management and packaging in Python.
@@ -150,7 +164,7 @@ It also creates and manages virtual environments to keep project work isolated f
 
 To set up Poetry on {{% vendor/name %}}, follow these steps:
 
-1.  Configure your virtual environment by setting two variables in your [app configuration](../../create-apps/_index.md).
+1.  Configure your virtual environment by setting two variables in your [app configuration](/create-apps/_index.md).
 
     - [`POETRY_VIRTUALENVS_IN_PROJECT`](https://python-poetry.org/docs/configuration/#virtualenvsin-project):
       Setting this to `true` places the virtual environment at the root of the app container: `/app/.venv`.
@@ -226,7 +240,7 @@ hooks:
     it isn't enough to make it available at subsequent stages.
 
     To use Poetry in a start command, a deploy hook, or during SSH sessions,
-    update the `PATH` in a [`.environment` file](../../development/variables/set-variables.md#set-variables-via-script).
+    update the `PATH` in a [`.environment` file](/development/variables/set-variables.md#set-variables-via-script).
 
     ```text {location=".environment"}
     # Updates PATH when Poetry is used, making it available during deploys, start commands, and SSH.
@@ -240,5 +254,5 @@ hooks:
 Some frameworks and tools recommend using Anaconda or Miniconda to manage packages in Python.
 The following Community resources can help get you started with them:
 
-- [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-an-anaconda-miniconda-python-stack-on-platform-sh/230)
-- [Running R Shiny using Miniconda on {{% vendor/name %}}](https://community.platform.sh/t/how-to-run-r-shiny-on-platform-sh/231)
+- [Running and installing Anaconda/Miniconda on {{% vendor/name %}}](https://support.platform.sh/hc/en-us/community/posts/16439726140946)
+- [Running R Shiny using Miniconda on {{% vendor/name %}}](https://support.platform.sh/hc/en-us/community/posts/16439711774994)

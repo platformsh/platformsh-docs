@@ -5,7 +5,7 @@ description: See how to delete projects you no longer need.
 
 To delete a project, you must be an organization owner or have the [manage plans permission](../administration/users.md#organization-permissions).
 
-To delete a {{% vendor/name %}} project, including all data, code, and active environments:
+To delete an {{% vendor/name %}} project, including all data, code, and active environments:
 
 {{< codetabs >}}
 
@@ -14,7 +14,7 @@ title=In the Console
 +++
 
 - On the tile of the project you want to delete, click **{{< icon more >}} More**.
-- Click **Edit plan**.
+- Click **Project settings**.
 - Click **Delete project**.
 - To confirm your choice, enter the project's name.
 - Click **Yes, Delete Project**.

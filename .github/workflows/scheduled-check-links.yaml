@@ -7,14 +7,37 @@ on:
     inputs:
       url:
         description: 'Site to check for broken links'
-        required: true
         type: string
-        default: 'https://docs.platform.sh/'
+        default: ''
 
 jobs:
+  determine-urls:
+    name: determine which urls to use
+    runs-on: ubuntu-latest
+    outputs:
+      urls: ${{ steps.determine-url.outputs.urls }}
+    steps:
+      - id: determine-url
+        run: |
+          # default URLs we want to check
+          # todo: replace this with a vars.VAL ?
+          urls="[\"https://fixed.docs.upsun.com\",\"https://docs.upsun.com\"]"
+          if [ "workflow_dispatch" = "${{ github.event_name }}" ]; then
+            # make sure there's no extra spaces in what we were given
+            inputURL=$(echo "${{ inputs.url }}" | xargs)
+            if [ -n "${inputURL}" ]; then
+              urls="[\"${inputURL}\"]"
+            fi
+          fi
+          echo "urls=${urls}" >> $GITHUB_OUTPUT
   check-links:
     name: Check links
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: ${{ fromJSON(needs.determine-urls.outputs.urls) }}
+    needs:
+      - determine-urls
     steps:
       - uses: actions/setup-python@v4
         with:
@@ -26,38 +49,29 @@ jobs:
           pip3 install linkchecker
 
       - name: checkout xml to markdown
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: platformsh/linkchecker-xml2md
 
+      - name: checkout linkchecker config
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            linkcheckerrc
+          sparse-checkout-cone-mode: false
+          path: linkchecker
       - name: install-parser
         run: |
           pip3 install -r requirements.txt
-
-      - name: Set URL to scan
-        id: set-url
-        shell: bash
-        run: |
-          # If this is a workflow dispatch, then use what was entered.
-          # If not, then use the repository variable SCAN_URL if it is set
-          # if not, fall back to the hard-coded default
-          scanURL="https://docs.platform.sh/"
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            scanURL="${{ inputs.url }}"
-          elif [[ -n "${{ vars.SCAN_URL }}" ]]; then
-            scanURL="${{ vars.SCAN_URL }}"
-          fi
-
-          echo "scanURL=${scanURL}" >> "$GITHUB_ENV"
 
       - name: Run linkchecker
         id: run-link-checker
         continue-on-error: true
         shell: bash
         run: |
-          echo "::notice::Scanning ${{ inputs.url }} for broken links."
+          echo "::notice::Scanning ${{ matrix.url }} for broken links."
           # if linkchecker exits with a non-zero then it means broken links were found.
-          scan=$(linkchecker ${{ env.scanURL }} -F xml/utf_8/brokenlinks.xml --check-extern --user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" --ignore-url="^https://github.com/platformsh*" --ignore-url="console.platform.sh/projects/*" --ignore-url="support.blackfire.io/*" --ignore-url="cloud.orange-business.com/*" --ignore-url="developers.cloudflare.com/*" --ignore-url="discord.com/*" --ignore-url="pptr.dev/*" --ignore-url="mvnrepository.com/*" --ignore-url="https://dev.mysql.com/doc/refman/en/" --ignore-url="https://www.microsoft.com/en-us/trust-center/privacy/data-management")
+          scan=$(linkchecker ${{ matrix.url }} -f ./linkchecker/linkcheckerrc -F xml/utf_8/brokenlinks.xml )
           result=$?
           if [[ $result -ne 0 ]]; then
             echo "::notice::Broken links detected."
@@ -74,15 +88,56 @@ jobs:
         run: |
           echo "::notice::No broken links were detected"
 
-      - name: Create issue from Markdown file
+      - name: get domain name
+        if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        id: get-domain-name
+        run: |
+          domainName=$(basename ${{ matrix.url }})
+          echo "domain=${domainName}" >> $GITHUB_OUTPUT
+      - name: check message size
+        id: check-msg-size
+        if: ${{ steps.run-link-checker.outcome == 'failure' }}
+        run: |
+          artifact="false"
+          sizeOfMessage=$(cat broken_links.md | wc -c)
+          echo "::notice::Size of report: ${sizeOfMessage}"
+          # the size of a comment in an issue is 65536
+          if [ "${sizeOfMessage}" -gt 65000 ]; then
+            # we'll need to store the broken_links.md file as an aritifact
+            artifact="true"
+          fi
+
+          echo "artifact=${artifact}" >> $GITHUB_ENV
+
+      - name: Upload artifact if applicable
+        id: upload-artifact
+        if: ${{ steps.run-link-checker.outcome == 'failure' && env.artifact == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: broken-links-${{ steps.get-domain-name.outputs.domain }}
+          path: |
+            ./broken_links.md
+
+      - name: Create issue
         id: create-issue
         if: ${{ steps.run-link-checker.outcome == 'failure' }}
-        uses: actions/github-script@v6
+        env:
+          ARTIFACT: ${{ env.artifact }}
+          DOMAIN: ${{ steps.get-domain-name.outputs.domain }}
+        uses: actions/github-script@v7
         with:
           script: |
+            const { ARTIFACT, DOMAIN } = process.env
             var fs = require('fs');
-            var bodyMsg = fs.readFileSync('broken_links.md','utf8');
-            failMsg = ':bug: Broken links detected'
+            //
+            failMsg = ':bug: Broken links detected on ' + DOMAIN
+
+            if ('true' == ARTIFACT) {
+              address = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}#artifacts`
+              var bodyMsg = `Broken links found. Please view the report artifact at ${address}`
+            } else {
+              var bodyMsg = fs.readFileSync('broken_links.md','utf8');
+            }
 
             github.rest.issues.create({
               owner: context.repo.owner,

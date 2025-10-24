@@ -14,26 +14,22 @@
     "runtime": false,
     "type": "chrome-headless",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "73",
+        "80",
+        "81",
+        "83",
+        "84",
+        "86"
+      ],
       "supported": [
         "120",
         "113",
         "95",
-        "91",
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
+        "91"
       ],
       "legacy": [
-        "86",
-        "84",
-        "83",
-        "81",
-        "80",
-        "73"
+
       ]
     },
     "versions-dedicated-gen-3": {
@@ -133,16 +129,17 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
-        "8.5",
-        "7.17"
-      ],
-      "deprecated" : [
-        "7.10",
-        "7.9",
-        "7.7",
-        "7.6",
-        "7.5",
         "7.2",
+        "7.5",
+        "7.6",
+        "7.7",
+        "7.9",
+        "7.10",
+        "7.17",
+        "8.5",
+        "8.8"
+      ],
+      "deprecated": [
         "6.8",
         "6.5",
         "5.6",
@@ -192,7 +189,6 @@
           "mix do deps.get --only prod, deps.compile, compile"
         ]
       }
-
     },
     "endpoint": null,
     "min_disk_size": null,
@@ -208,6 +204,7 @@
         "1.9"
       ],
       "supported": [
+        "1.18",
         "1.15",
         "1.14"
       ],
@@ -267,6 +264,8 @@
         "1.8"
       ],
       "supported": [
+        "1.25",
+        "1.24",
         "1.23",
         "1.22",
         "1.21",
@@ -393,41 +392,6 @@
       ]
     }
   },
-  "lisp": {
-    "description": "",
-    "id": 1102,
-    "repo_name": "lisp",
-    "disk": false,
-    "docs": {
-      "relationship_name": null,
-      "service_name": null,
-      "url": "/languages/lisp.html",
-      "web": {
-        "commands": {
-          "start": "./example"
-        },
-        "locations": {
-          "/": {
-            "allow": false,
-            "passthru": true
-          }
-        }
-      }
-    },
-    "endpoint": null,
-    "min_disk_size": null,
-    "name": "Lisp",
-    "runtime": true,
-    "type": "lisp",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "2.1",
-        "2.0",
-        "1.5"
-      ]
-    }
-  },
   "mariadb": {
     "description": "A manufacture-based container for MariaDB",
     "repo_name": "mariadb",
@@ -444,36 +408,37 @@
     "type": "mariadb",
     "versions": {
       "deprecated": [
+        "11.2",
+        "11.0",
+        "10.5",
+        "10.4",
+        "10.3",
         "10.2",
         "10.1",
-        "10.3",
         "10.0",
         "5.5"
       ],
       "supported": [
+        "11.8",
         "11.4",
-        "11.2",
-        "11.0",
         "10.11",
-        "10.6",
-        "10.5",
-        "10.4"
+        "10.6"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "11.4 Galera",
         "10.11 Galera",
-        "10.8 Galera",
-        "10.7 Galera",
         "10.6 Galera",
         "10.5 Galera",
-        "10.4 Galera",
-        "10.3 Galera"
+        "10.4 Galera"
       ],
       "deprecated": [
+        "11.2 Galera",
         "10.2 Galera",
         "10.1 Galera",
-        "10.0 Galera"
+        "10.0 Galera",
+        "10.3 Galera"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -506,6 +471,8 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
+        "11.2",
+        "10.4",
         "10.2",
         "10.1",
         "10.0",
@@ -522,11 +489,16 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "11.4 Galera",
+        "10.11 Galera",
+        "10.6 Galera",
         "10.5 Galera",
-        "10.4 Galera",
-        "10.3 Galera"
+        "10.5 Galera"
       ],
       "deprecated": [
+        "11.2 Galera",
+        "10.4 Galera",
+        "10.3 Galera",
         "10.2 Galera",
         "10.1 Galera",
         "10.0 Galera"
@@ -569,11 +541,14 @@
       ]
     },
     "versions-dedicated-gen-2": {
-      "supported": ["1.4*"]
+      "supported": [
+        "1.5",
+        "1.4"
+      ]
     }
   },
   "mongodb": {
-    "description": "Experimental MongoDB support on Platform.sh",
+    "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
     "disk": true,
     "docs": {
@@ -626,6 +601,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "7.0",
         "6.0",
         "5.0",
         "4.4"
@@ -652,10 +628,10 @@
     "type": "network-storage",
     "versions": {
       "deprecated": [
-        "1.0"
+        "2.0"
       ],
       "supported": [
-        "2.0"
+        "1.0"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -666,7 +642,7 @@
     }
   },
   "nodejs": {
-    "description": "NodeJS service for Platform",
+    "description": "NodeJS service for Upsun Fixed",
     "repo_name": "nodejs",
     "disk": false,
     "docs": {
@@ -686,6 +662,8 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
+        "16",
         "14",
         "12",
         "10",
@@ -696,17 +674,19 @@
         "0.12"
       ],
       "supported": [
+        "24",
         "22",
-        "20",
-        "18",
-        "16"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
-
+        "20",
+        "19"
       ],
       "deprecated": [
+        "18",
+        "16",
         "14",
         "12",
         "10",
@@ -734,6 +714,7 @@
         "1.1"
       ],
       "supported": [
+        "3",
         "2",
         "1"
       ],
@@ -744,8 +725,14 @@
     "versions-dedicated-gen-2": {
       "deprecated": [],
       "supported": [
+        "1.2",
+        "1.99",
+        "2.12",
+        "2.14",
         "2.5",
-        "1.2"
+        "2.18",
+        "2.19",
+        "2.99"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -778,7 +765,7 @@
     }
   },
   "php": {
-    "description": "PHP service for Platform.sh.",
+    "description": "PHP service for Upsun Fixed.",
     "repo_name": "php",
     "disk": false,
     "docs": {
@@ -814,6 +801,8 @@
     "type": "php",
     "versions-dedicated-gen-2": {
       "supported": [
+        "8.4",
+        "8.3",
         "8.2",
         "8.1",
         "8.0"
@@ -847,7 +836,7 @@
     }
   },
   "postgresql": {
-    "description": "PostgreSQL service for Platform.sh.",
+    "description": "PostgreSQL service for Upsun Fixed.",
     "repo_name": "postgresql",
     "disk": true,
     "docs": {
@@ -870,6 +859,8 @@
         "9.3"
       ],
       "supported": [
+        "18",
+        "17",
         "16",
         "15",
         "14",
@@ -885,8 +876,7 @@
         "9.4",
         "9.3"
       ],
-      "supported": [
-      ]
+      "supported": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [
@@ -894,6 +884,7 @@
         "10"
       ],
       "supported": [
+        "17",
         "16",
         "15",
         "14",
@@ -940,6 +931,7 @@
         "2.7*"
       ],
       "supported": [
+        "3.13",
         "3.12",
         "3.11",
         "3.10",
@@ -973,6 +965,7 @@
         "3.5"
       ],
       "supported": [
+        "4.1",
         "4.0",
         "3.13",
         "3.12"
@@ -986,6 +979,8 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "4.1",
+        "4.0",
         "3.13",
         "3.12"
       ],
@@ -1025,6 +1020,8 @@
     "type": "redis",
     "versions": {
       "deprecated": [
+        "7.0",
+        "6.2",
         "6.0",
         "5.0",
         "4.0",
@@ -1033,9 +1030,8 @@
         "2.8"
       ],
       "supported": [
-        "7.2",
-        "7.0",
-        "6.2"
+        "8.0",
+        "7.2"
       ],
       "legacy": [
         "6.0"
@@ -1043,10 +1039,13 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
-        "7.0",
-        "6.2"
+        "8.0",
+        "7.4",
+        "7.2"
       ],
       "deprecated": [
+        "7.0",
+        "6.2",
         "6.0",
         "5.0",
         "3.2"
@@ -1054,6 +1053,8 @@
     },
     "versions-dedicated-gen-3": {
       "deprecated": [
+        "7.0",
+        "6.2",
         "6.0",
         "5.0",
         "4.0",
@@ -1062,9 +1063,8 @@
         "2.8"
       ],
       "supported": [
-        "7.2",
-        "7.0",
-        "6.2"
+        "8.0",
+        "7.2"
       ]
     }
   },
@@ -1117,6 +1117,7 @@
         "2.3"
       ],
       "supported": [
+        "3.4",
         "3.3",
         "3.2",
         "3.1",
@@ -1206,6 +1207,7 @@
         "3.6"
       ],
       "supported": [
+        "9.9",
         "9.6",
         "9.4",
         "9.2",
@@ -1215,9 +1217,15 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "9.7",
+        "9.6",
+        "9.4",
+        "9.2",
+        "9.1",
+        "9.0",
         "8.11"
       ],
-      "deprecated":[
+      "deprecated": [
         "8.6",
         "8.0",
         "7.7",
@@ -1234,8 +1242,36 @@
         "9.1",
         "8.11"
       ],
-      "deprecated": [
-      ]
+      "deprecated": []
+    }
+  },
+  "valkey": {
+    "description": "",
+    "repo_name": "valkey",
+    "disk": false,
+    "docs": {
+      "relationship_name": "valkey",
+      "service_name": "valkey",
+      "url": "/add-services/valkey.html"
+    },
+    "endpoint": "http+stats",
+    "min_disk_size": null,
+    "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
+    "name": "Valkey",
+    "runtime": false,
+    "type": "valkey",
+    "versions": {
+      "supported": [
+        "8.0"
+      ],
+      "deprecated": []
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "8.0"
+      ],
+      "deprecated": []
     }
   },
   "varnish": {

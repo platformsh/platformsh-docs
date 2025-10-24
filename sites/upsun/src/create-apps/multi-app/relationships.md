@@ -3,10 +3,6 @@ title: Define relationships between your multiple apps
 sidebarTitle: Define relationships
 weight: 30
 description: Find out how relationships are managed between your apps.
-banner:
-   title: Feature availability
-   type: tiered-feature
-   body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
 ---
 
 When you set up a project containing multiple applications,
@@ -45,7 +41,7 @@ or through the [`{{% vendor/prefix %}}_RELATIONSHIPS` variable](/development/var
 title= Service environment variables
 +++
 
-```bash {location="Terminal on app1 container"}
+```bash {location="Terminal on app1 container", no-copy="true"}
 $ echo $API_HOST
 api.internal
 ```
@@ -57,7 +53,7 @@ title= `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable
 +++
 It uses the `jq` library, which is included in all app containers for this purpose.
 
-```bash {location="Terminal on app1 container"}
+```bash {location="Terminal on app1 container", no-copy="true"}
 $ echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq '.api[0].host'
 api.internal
 ```

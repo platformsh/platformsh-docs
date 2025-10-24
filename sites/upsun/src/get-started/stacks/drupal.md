@@ -3,7 +3,7 @@ title: Deploy Drupal on {{% vendor/name %}}
 sidebarTitle: Drupal
 sectionBefore: PHP
 #layout: single
-weight: -67
+weight: -64
 description: |
     Complete the last required steps to successfully deploy Drupal on {{% vendor/name %}}.
 ---
@@ -23,15 +23,15 @@ It should also be noted that this guide works for the following variations of Dr
 {{< /note >}}
 
 
-For Drupal to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here)**,
+For Drupal to successfully deploy and operate, **after completing the [Getting started guide](/get-started/here/_index.md)**,
 you still need to make a few changes to your {{% vendor/name %}} configuration.
 
 {{% guides/requirements name="Drupal" %}}
-In addition to the above, you should also have: 
+In addition to the above, you should also have:
 
 - The Drupal files in a repository
 
--  A local copy of that repository where you have selected both `Redis` and `MariaDB` during the [Configure your project](/get-started/here/configure) portion of the[Getting Started](/get-started/here) guide
+-  A local copy of that repository where you have selected both `Redis` and `MariaDB` during the [Configure your project](/get-started/here/configure) portion of the [Getting Started](/get-started/here/_index.md) guide
 
 ## Configure
 
@@ -40,7 +40,7 @@ Open the `.upsun/config.yaml` file that's been generated and replace with the fo
 ```yaml {filename=".upsun/config.yaml"}
 applications:
     drupal:
-        type: "php:8.3"
+        type: php:{{% latest "php" %}}
         relationships:
             mariadb: 'db:mysql'
             redis: 'cache:redis'
@@ -126,9 +126,9 @@ applications:
             root: /
 services:
     db:
-        type: mariadb:10.6
+        type: mariadb:{{% latest "mariadb" %}}
     cache:
-        type: redis:7.2
+        type: redis:{{% latest "redis" %}}
 routes:
     "https://{default}/":
         type: upstream
@@ -142,7 +142,7 @@ routes:
         to: "https://{default}/"
 ```
 
-This configuration is similar to the deployment process for [Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html). 
+This configuration is similar to the deployment process for [Drupal on Upsun Fixed](https://fixed.docs.upsun.com/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-fixed.html).
 ## Variables
 
 The `project:init` command created a `.environment` file containing environment variables for the two services (MariaDB and Redis). Now append the following Drush configuration to the bottom of that file:
@@ -173,7 +173,7 @@ defined in `.environment`. This file should contain the following:
 <?php
 /**
  * @file
- * Platform.sh settings.
+ * Upsun Fixed settings.
  */
 
 use Drupal\Core\Installer\InstallerKernel;
@@ -288,8 +288,8 @@ if (getenv('PLATFORM_BRANCH')) {
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
 // header then it can be an injection vector, depending on how the Host header is used.
-// However, Platform.sh already replaces the Host header with the route that was used to reach
-// Platform.sh, so it is guaranteed to be safe.  The following line explicitly allows all
+// However, Upsun Fixed already replaces the Host header with the route that was used to reach
+// Upsun Fixed, so it is guaranteed to be safe.  The following line explicitly allows all
 // Host headers, as the only possible Host header is already guaranteed safe.
 $settings['trusted_host_patterns'] = ['.*'];
 ```
@@ -448,8 +448,8 @@ You can also find all the snippets described in this post on GitHub
 
 ### Documentation
 
-- [PHP documentation](/languages/php/)
-- [Authenticated Composer repositories](/languages/php/composer-auth)
+- [PHP documentation](/languages/php/_index.md)
+- [Authenticated Composer repositories](/languages/php/composer-auth.md)
 
 
 ### Community content

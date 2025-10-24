@@ -2,10 +2,9 @@ name: Generate CLI commands doc page
 
 on:
   workflow_dispatch:
-    branches: [ main ]
   schedule:
     # Run at 00:15 every day
-    - cron: '15 */19 * * *'
+    - cron: '15 0 * * *'
 
 env:
   PLATFORMSH_CLI_NO_INTERACTION: 1
@@ -32,11 +31,15 @@ jobs:
 
       # Set up workflow environment to use the Platform.sh CLI
       - name: Set up Platform.sh CLI
-        uses: ./.github/actions/set-up-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'platform'
 
       # Set up workflow environment to use the Upsun CLI
       - name: Set up Upsun CLI
-        uses: ./.github/actions/set-up-upsun-cli
+        uses: upsun/action-cli@v1
+        with:
+          cli_provider: 'upsun'
 
       - name: Make changes to pull request
         run: |

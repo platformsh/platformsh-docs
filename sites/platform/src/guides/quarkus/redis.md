@@ -15,7 +15,7 @@ This guide only covers the *addition* of a service configuration to an existing 
 
 ## 1. Add the Redis service
 
-In your [service configuration](../../add-services/_index.md), include Persistent Redis with a [valid supported version](../../add-services/redis.md#persistent-redis):
+In your [service configuration](/add-services/_index.md), include Persistent Redis with a [valid supported version](/add-services/redis.md#persistent-redis):
 
 {{< readFile file="registry/images/examples/full/redis-persistent.services.yaml" highlight="yaml" configFile="services" >}}
 
@@ -29,11 +29,11 @@ In your [app configuration](/create-apps/app-reference/single-runtime-image.md),
 
 Connection credentials for Redis, like any service, are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to Elasticsearch into it's own environment variables that can be used by Quarkus. On {{% vendor/name %}}, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
-```text
-export REDIS_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".redisdata[0].host")
-export REDIS_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".redisdata[0].port")
-export QUARKUS_REDIS_HOSTS=redis://${REDIS_HOST}:${REDIS_PORT}
-export QUARKUS_HTTP_PORT=$PORT
+```bash {location=".environment"}
+export REDIS_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.redisdata[0].host')"
+export REDIS_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.redisdata[0].port')"
+export QUARKUS_REDIS_HOSTS="redis://${REDIS_HOST}:${REDIS_PORT}"
+export QUARKUS_HTTP_PORT="${PORT}"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 

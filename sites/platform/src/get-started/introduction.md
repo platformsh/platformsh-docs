@@ -24,7 +24,7 @@ knowing the changes work the same in production as they have in your development
 
 See a more detailed overview of {{% vendor/name %}} and how it can fit within your workflow in this video:
 
-{{< youtube ny2YeD6Qt3M >}}
+{{< youtube JpW_RsFE0h4 >}}
 
 ## What you need
 
@@ -32,10 +32,10 @@ You need a few things before you can start creating projects.
 
 ### An account
 
-To get started, you need a {{% vendor/name %}} account.
+To get started, you need an {{% vendor/company_name %}} account.
 You can start with a free 30-day trial that should contain everything you need to complete this guide.
 
-If you don't have an account yet, [register for an account](https://auth.api.platform.sh/register).
+If you don't have an account yet, [register for an account](https://auth.upsun.com/register).
 You can use an email address or a GitHub, Google, Bitbucket, or GitLab account.
 
 ### Git
@@ -58,13 +58,19 @@ This lets you carry out various actions from a terminal.
 
 {{< cli-installation >}}
 
+{{< note theme="info" >}}
+
+If you are using Scoop, you **must** have the [Extras bucket](https://github.com/ScoopInstaller/Extras) already installed before installing the {{% vendor/name %}} CLI.
+
+{{< /note >}}
+
 ### Code
 
 To start a project, you should have code on your computer that you'd like to deploy.
 It can be a basic "Hello World" site, such as you can find in the [{{% vendor/name %}} demos](https://github.com/orgs/platformsh/repositories?type=all&q=topic%3Ademo).
 Just something that you know runs.
 
-An alternative is one of the [{{% vendor/name %}} templates](../development/templates.md).
+An alternative is one of the [{{% vendor/name %}} templates](/development/templates.md).
 These are example apps that come with everything needed to run on {{% vendor/name %}}.
 
 ## Choose your stack

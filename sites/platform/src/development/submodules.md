@@ -103,8 +103,8 @@ title= Automated update
 {{< note theme="warning" title="Tier availability" version="1" >}}
 
 This feature is available for **Elite** and **Enterprise** customers.
-[Compare the {{% vendor/name %}} tiers](https://platform.sh/pricing/) on our pricing page,
-or [contact our Sales team](https://platform.sh/contact/) for more information.
+[Compare the {{% vendor/name %}} tiers](https://upsun.com/fixed-pricing/) on our pricing page,
+or [contact our Sales team](https://upsun.com/contact-us/) for more information.
 
 {{< /note >}}
 
@@ -167,14 +167,14 @@ source:
 
 2. Run your source operation.</br>
 
-   To do so, in the [Console](../administration/web/_index.md),
+   To do so, in the [Console](/administration/web/_index.md),
    navigate to the environment where you want to run the source operation.</br>
    Click {{< icon more >}} **More**.</br>
    Click **Run Source Operation**.</br>
    Select the operation you want to run.</br>
    Click **Run**.
 
-   Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](../administration/cli/_index.md),
+   Alternatively, to run your source operation from the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
    run the following command:
 
    ```bash
@@ -231,8 +231,9 @@ To fix this, follow these steps:
         branch = submodule/branch
     ```
 
-2. Add the [project's public key to your remote Git repository](./private-repository.md).
-   This allows your {{% vendor/name %}} project to pull the repository from the remote Git service.
+2. Add the [project's public key to your remote Git repository](/development/private-repository.md). If there are nested
+   submodules in your submodule, then add the public key to those repositories as well. This allows your
+   {{% vendor/name %}} project to pull the repository from the remote Git service.
 
 {{< note >}}
 

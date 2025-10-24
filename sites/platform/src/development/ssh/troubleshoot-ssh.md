@@ -12,14 +12,14 @@ There are several places to check to try to solve such issues.
 
 ## Check your environment
 
-If your environment is [inactive](/glossary.md#inactive-environment) or the deployment has failed,
+If your environment is [inactive](/glossary/_index.md#inactive-environment) or the deployment has failed,
 you can't log in to it.
 To make sure the environment is active and the deployment has succeeded,
-check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.platform.sh/) .
+check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.upsun.com/).
 
 ## Redeploy your environment
 
-If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.platform.sh/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
+If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.upsun.com/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
 
 ```bash
 git commit --allow-empty -m 'chore: force redeploy'
@@ -28,13 +28,13 @@ git push origin main
 
 ## Check your public key
 
-Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.platform.sh/).
+Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.upsun.com/).
 
 ## SSH key can not be duplicated
 
 A given SSH key pair can only be linked to a single user account.
 If you add an already used SSH key to another account, you see the error: `SSH key can not be duplicated`.
-[Generate a new pair of SSH keys](/development/ssh/ssh-keys#add-ssh-keys) for the second user account you want to add.
+[Generate a new pair of SSH keys](/development/ssh/ssh-keys.md#add-ssh-keys) for the second user account you want to add.
 
 ## Check your SSH agent
 
@@ -133,9 +133,9 @@ Follow the instructions so you can effectively access its contents.
 Similarly for bot users and CLI tokens, you may see the message:
 
 ```bash
-  [RequestException]                                           
-  Multi-factor authentication (MFA) is required.               
-  The API token may need to be re-created after enabling MFA.  
+  [RequestException]
+  Multi-factor authentication (MFA) is required.
+  The API token may need to be re-created after enabling MFA.
 ```
 
 In this case, as described, it will be necessary to:
@@ -145,6 +145,6 @@ In this case, as described, it will be necessary to:
 
 ## Something still wrong?
 
-For more general information, see how to [troubleshoot development](/development/troubleshoot).
+For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
-If you're still stuck, open a [support ticket](/learn/overview/get-support) and provide the full SSH debug information.
+If you're still stuck, open a [support ticket](/learn/overview/get-support.md) and provide the full SSH debug information.

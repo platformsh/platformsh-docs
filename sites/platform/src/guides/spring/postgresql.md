@@ -5,7 +5,7 @@ weight: -110
 description: Configure a Spring application with PostgreSQL.
 ---
 
-[PostgreSQL](../../add-services/postgresql.md) is an open-source relational database technology.
+[PostgreSQL](/add-services/postgresql.md) is an open-source relational database technology.
 Spring has a robust integration with this technology: [Spring Data JPA](https://spring.io/projects/spring-data-jpa).
 
 The first step is to choose the database that you would like to use in your project.

@@ -6,16 +6,16 @@ keywords:
 ---
 
 When developing your site, you might want to hide your preview environments from outside viewers.
-Or you may find you have performance issues from [excessive bot access](https://community.platform.sh/t/diagnosing-and-resolving-issues-with-excessive-bot-access/792).
+Or you may find you have performance issues from [excessive bot access](https://support.platform.sh/hc/en-us/community/posts/16439634723858).
 You can control access with a username and password **or** by allowing/denying specific IP addresses or networks.
 This setting applies to the entire environment.
 
 The settings for a specific environment are inherited by all of its children.
-So if you have a `staging` environment and you [branch environments from it](/glossary.md#branch),
+So if you have a `staging` environment and you [branch environments from it](/glossary/_index.md#branch),
 all of the environments branched from it inherit the same authentication information.
 
 Changing access control triggers a new deploy of the current environment.
-The changes don't propagate to child environments until they're [redeployed manually](../development/troubleshoot.md#force-a-redeploy).
+The changes don't propagate to child environments until they're [redeployed manually](/development/troubleshoot.md#force-a-redeploy).
 
 ## Use a username and password
 
