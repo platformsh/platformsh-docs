@@ -12,7 +12,7 @@
     "path": null,
     "query": [],
     "password": null,
-    "type": "opensearch:1.2",
+    "type": "opensearch:2",
     "public": false,
     "host_mapped": false
 }
