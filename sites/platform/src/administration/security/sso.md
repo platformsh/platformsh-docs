@@ -29,7 +29,7 @@ Please open a [support ticket](/learn/overview/get-support.md) if you need to ex
 
 ### Google
 
-{{< premium-features/tiered "Enterprise" >}}
+{{< premium-features/tiered "Elite and Enterprise" >}}
 
 Enforce your users to authenticate with Google. Please open a [support ticket](/learn/overview/get-support.md) to enable Google SSO.
 
@@ -46,7 +46,7 @@ To resolve that, you need to:
 
 {{< premium-features/tiered "Elite" >}}
 
-Enforce your users to authenticate with your OpenID Connect provider,
-such as Okta, Azure Active Directory or Ping Identity.
-To enable SSO with your OpenID Connect provider,
-[contact Support](https://console.upsun.com/-/users/~/tickets).
+Enforce your users to authenticate with your OpenID Connect (OIDC) provider,
+such as Microsoft (Azure Active Directory), Okta, Ory, or Ping Identity.
+To enable SSO with your OIDC provider, please
+[create a Support ticket](https://console.upsun.com/-/users/~/tickets).
