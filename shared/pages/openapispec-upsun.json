@@ -611,44 +611,6 @@
         }
       }
     },
-    "/plans": {
-      "get": {
-        "tags": [
-          "Plans"
-        ],
-        "summary": "List available plans",
-        "description": "Retrieve information about plans and pricing on Platform.sh.",
-        "operationId": "list-plans",
-        "responses": {
-          "200": {
-            "description": "The list of plans.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "count": {
-                      "description": "Total number of plans.",
-                      "type": "integer"
-                    },
-                    "plans": {
-                      "description": "Array of plans.",
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Plan"
-                      }
-                    },
-                    "_links": {
-                      "$ref": "#/components/schemas/HalLinks"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/subscriptions/{subscriptionId}/can-update": {
       "get": {
         "tags": [
@@ -7893,57 +7855,6 @@
         }
       }
     },
-    "/projects/{projectId}/environments/{environmentId}/autoscaling/alerts": {
-      "post": {
-        "tags": [
-          "Autoscaling"
-        ],
-        "description": "Sends an Autoscaler alert for processing",
-        "operationId": "post-autoscaler-alert",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "description": "A string that uniquely identifies the project",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "environmentId",
-            "in": "path",
-            "description": "A string that uniquely identifies the project environment",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Alert to process",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AutoscalerAlertPartial"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Alert is accepted for processing",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AutoscalerEmptyBody"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/ref/organizations": {
       "get": {
         "summary": "List referenced organizations",
@@ -13701,20 +13612,6 @@
           },
           "changed": {
             "description": "The time of the last key modification (ISO 8601)",
-            "type": "string"
-          }
-        },
-        "type": "object"
-      },
-      "Plan": {
-        "description": "The hosting plan.",
-        "properties": {
-          "name": {
-            "description": "The machine name of the plan.",
-            "type": "string"
-          },
-          "label": {
-            "description": "The human-readable name of the plan.",
             "type": "string"
           }
         },
@@ -20138,6 +20035,10 @@
           },
           "can_rolling_deploy": {
             "type": "boolean",
+            "title": "If the environment has rolling deployments ready for use"
+          },
+          "supports_rolling_deployments": {
+            "type": "boolean",
             "title": "If the environment supports rolling deployments"
           },
           "has_code": {
@@ -20217,6 +20118,7 @@
           "is_dirty",
           "has_staged_activities",
           "can_rolling_deploy",
+          "supports_rolling_deployments",
           "has_code",
           "head_commit",
           "merge_info",
@@ -21382,6 +21284,20 @@
             ],
             "title": "The resources used when initializing a new service"
           },
+          "token_expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "'expires_at' value of the current token."
+          },
+          "rotate_token": {
+            "type": "boolean",
+            "title": "Whether or not to rotate token automatically using Gitlab API."
+          },
+          "rotate_token_validity_in_weeks": {
+            "type": "integer",
+            "title": "Validity in weeks of a new token after rotation."
+          },
           "base_url": {
             "type": "string",
             "title": "The base URL of the GitLab installation."
@@ -21410,6 +21326,9 @@
           "fetch_branches",
           "prune_branches",
           "environment_init_resources",
+          "token_expires_at",
+          "rotate_token",
+          "rotate_token_validity_in_weeks",
           "base_url",
           "project",
           "build_merge_requests",
@@ -21446,6 +21365,14 @@
           "token": {
             "type": "string",
             "title": "The GitLab private token."
+          },
+          "rotate_token": {
+            "type": "boolean",
+            "title": "Whether or not to rotate token automatically using Gitlab API."
+          },
+          "rotate_token_validity_in_weeks": {
+            "type": "integer",
+            "title": "Validity in weeks of a new token after rotation."
           },
           "base_url": {
             "type": "string",
@@ -21503,6 +21430,14 @@
           "token": {
             "type": "string",
             "title": "The GitLab private token."
+          },
+          "rotate_token": {
+            "type": "boolean",
+            "title": "Whether or not to rotate token automatically using Gitlab API."
+          },
+          "rotate_token_validity_in_weeks": {
+            "type": "integer",
+            "title": "Validity in weeks of a new token after rotation."
           },
           "base_url": {
             "type": "string",
@@ -23576,6 +23511,10 @@
             "type": "boolean",
             "title": "Whether self-upgrades are enabled"
           },
+          "self_upgrade_latest_major": {
+            "type": "boolean",
+            "title": "Whether to check for n+1 major version when self-upgrades are enabled"
+          },
           "additional_hosts": {
             "type": "object",
             "additionalProperties": {
@@ -23790,6 +23729,7 @@
           "build_resources",
           "outbound_restrictions_default_policy",
           "self_upgrade",
+          "self_upgrade_latest_major",
           "additional_hosts",
           "max_allowed_routes",
           "max_allowed_redirects_paths",
@@ -25955,64 +25895,6 @@
         ],
         "additionalProperties": false
       },
-      "AutoscalerAlertPartial": {
-        "properties": {
-          "name": {
-            "description": "User friendly name for the alert",
-            "title": "Name",
-            "type": "string"
-          },
-          "environment": {
-            "type": "string",
-            "nullable": true,
-            "title": "Environment",
-            "description": "Environment for which the alert was received"
-          },
-          "service": {
-            "description": "Service for which the alert was received",
-            "title": "Service",
-            "type": "string"
-          },
-          "resource": {
-            "type": "string",
-            "nullable": true,
-            "title": "Resource",
-            "description": "Name of resource that triggered the alert"
-          },
-          "condition": {
-            "description": "Comparison condition to use when evaluating the alert",
-            "title": "Condition",
-            "type": "string"
-          },
-          "threshold": {
-            "description": "Value that has to be crossed for the alert to be considered triggered",
-            "title": "Threshold",
-            "type": "number"
-          },
-          "duration": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AutoscalerDuration"
-            },
-            "nullable": true,
-            "description": "Number of seconds during which the condition was satisfied"
-          },
-          "value": {
-            "description": "Current value for the received alert",
-            "title": "Value",
-            "type": "number"
-          }
-        },
-        "required": [
-          "name",
-          "service",
-          "condition",
-          "threshold",
-          "value"
-        ],
-        "title": "AutoscalerAlertPartial",
-        "type": "object"
-      },
       "AutoscalerCPUPressureTrigger": {
         "description": "CPU pressure trigger settings.\n\nWhen CPU pressure goes below lower bound, service will be scaled down.\nWhen CPU pressure goes above upper bound, service will be scaled up.",
         "properties": {
@@ -26112,12 +25994,6 @@
         ],
         "title": "AutoscalerDuration",
         "type": "integer"
-      },
-      "AutoscalerEmptyBody": {
-        "description": "Empty body",
-        "properties": {},
-        "title": "AutoscalerEmptyBody",
-        "type": "object"
       },
       "AutoscalerInstances": {
         "description": "Horizontal scaling settings",
@@ -27669,6 +27545,129 @@
           }
         }
       },
+      "ProjectAddon": {
+        "description": "Project add-on. Uses discriminator on `type` to select field shape.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ProjectAddonBase"
+          },
+          {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ProjectAddonWithSkuFields"
+              },
+              {
+                "$ref": "#/components/schemas/ProjectAddonWithQuantityFields"
+              }
+            ]
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "backups": "#/components/schemas/ProjectAddonWithSkuFields",
+            "big_dev": "#/components/schemas/ProjectAddonWithSkuFields",
+            "big_dev_service": "#/components/schemas/ProjectAddonWithSkuFields",
+            "blackfire": "#/components/schemas/ProjectAddonWithSkuFields",
+            "continuous_profiling": "#/components/schemas/ProjectAddonWithSkuFields",
+            "project_support_level": "#/components/schemas/ProjectAddonWithSkuFields",
+            "observability_suite": "#/components/schemas/ProjectAddonWithSkuFields",
+            "user_licenses": "#/components/schemas/ProjectAddonWithQuantityFields",
+            "hipaa": "#/components/schemas/ProjectAddonWithSkuFields",
+            "environments": "#/components/schemas/ProjectAddonWithQuantityFields",
+            "storage": "#/components/schemas/ProjectAddonWithQuantityFields"
+          }
+        }
+      },
+      "ProjectAddonBase": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ProjectAddonID"
+          },
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AddonType"
+          },
+          "created_at": {
+            "$ref": "#/components/schemas/CreatedAt"
+          },
+          "updated_at": {
+            "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "_links": {
+            "type": "object",
+            "properties": {
+              "self": {
+                "type": "object",
+                "description": "Link to the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "update": {
+                "type": "object",
+                "description": "Link for updating the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "delete": {
+                "type": "object",
+                "description": "Link for deleting the current add-on.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProjectAddonWithSkuFields": {
+        "type": "object",
+        "required": [
+          "sku"
+        ],
+        "properties": {
+          "sku": {
+            "$ref": "#/components/schemas/ProjectAddonSKU"
+          }
+        }
+      },
+      "ProjectAddonWithQuantityFields": {
+        "type": "object",
+        "required": [
+          "quantity"
+        ],
+        "properties": {
+          "quantity": {
+            "$ref": "#/components/schemas/ProjectAddonQuantity"
+          }
+        }
+      },
       "ProjectCarbon": {
         "type": "object",
         "properties": {
@@ -27830,6 +27829,22 @@
             "$ref": "#/components/schemas/UpdatedAt"
           }
         }
+      },
+      "AddonType": {
+        "type": "string",
+        "description": "The type of the add-on."
+      },
+      "ProjectAddonID": {
+        "type": "string",
+        "description": "The ID of the add-on."
+      },
+      "ProjectAddonSKU": {
+        "type": "string",
+        "description": "The SKU of the add-on."
+      },
+      "ProjectAddonQuantity": {
+        "type": "integer",
+        "description": "The quantity of the add-on."
       },
       "ProjectID": {
         "type": "string",
