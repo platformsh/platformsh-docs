@@ -7,7 +7,7 @@ maxrequestspersecond=5
 checkextern=1
 ignore=
     ^https://github.com/platformsh*
-    console.platform.sh/projects/*
+    console.upsun.com/projects/*
     support.blackfire.io/*
     cloud.orange-business.com/*
     developers.cloudflare.com/*
@@ -17,6 +17,7 @@ ignore=
     https://dev.mysql.com/doc/refman/en/
     https://www.microsoft.com/en-us/trust-center/privacy/data-management
     http://localhost:1337/*
+    https://platform.openai.com/docs*
 
 [output]
 warnings=0

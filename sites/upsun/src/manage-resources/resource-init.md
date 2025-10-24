@@ -199,12 +199,14 @@ For example, to use the `minimum` strategy for your deployment, run the the foll
 {{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `parent`, `default`, `minimum` </br>
-Default: `parent`
+Default: `default` if the new environment is of type `staging`, `minimum` if the new environment is of type `development`
 
 {{% /note %}}
 
-By default, when you [branch an environment](/glossary.md#branch) to create a new child environment,
-the child environment inherits all the resources from its parent.
+By default, when you [branch an environment](/glossary.md#branch) to create a new child environment, 
+the resources allocated to this child environment depends on its type (staging or development). 
+If the child environment is a staging environment, the default resources are allocated.
+If the child environment is a development environment, the minimum resources are allocated. 
 However, you can specify a different [resource initialization strategy](#specify-a-resource-initialization-strategy).
 
 {{% note %}}
@@ -228,10 +230,10 @@ Run the following command:
 {{% vendor/cli %}} environment:branch --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
-For example, to use the `minimum` resource initialization strategy, run the following command:
+For example, to use the `parent` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-{{% vendor/cli %}} environment:branch --resources-init=minimum
+{{% vendor/cli %}} environment:branch --resources-init=parent
 ```
 
 <--->
@@ -308,12 +310,13 @@ title=In the Console
 {{% note theme="info" title="Resource initialization strategies" %}}
 
 Available: `parent`, `default`, `minimum` </br>
-Default: `parent`
+Default: `default` if the new environment is of type `staging`, `minimum` if the new environment is of type `development`
 
 {{% /note %}}
 
-When you activate an environment, {{% vendor/name %}} uses the same resource allocation as on the parent environment.
-If there is no parent environment, the [`default` resource initialization strategy](#default-resources) applies.
+When you activate a new environment, {{% vendor/name %}} allocates the resources depending on the environment type. 
+If the environment is a staging environment, the default resources are allocated. 
+If the environment is a development environment, the minimum resources are allocated. 
 
 You can also specify a different resource initialization strategy using the CLI.
 To do so, run the following command:
@@ -322,10 +325,10 @@ To do so, run the following command:
 {{% vendor/cli %}} environment:activate --resources-init={{< variable "INITIALIZATION_STRATEGY" >}}
 ```
 
-For example, to use the `minimum` resource initialization strategy, run the following command:
+For example, to use the `parent` resource initialization strategy, run the following command:
 
 ```bash {location="Terminal"}
-{{% vendor/cli %}} environment:activate --resources-init=minimum
+{{% vendor/cli %}} environment:activate --resources-init=parent
 ```
 
 {{% note %}}

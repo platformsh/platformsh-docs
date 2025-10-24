@@ -7,15 +7,15 @@ description: "We're always open to new and fresh ideas that can help improve our
 {{% description %}}
 
 ## How to submit a feature request
-If you'd like to submit a feature request, there are two ways for you to do so: 
+If you'd like to submit a feature request, there are two ways for you to do so:
 
-### If you already have a Platform.sh account 
+### If you already have an {{% vendor/company_name %}} account
 
-You can open a [support ticket](/learn/overview/get-support.html#create-a-support-ticket) directly from [your Console](https://console.platform.sh/). Simply describe your needs and our team will take it from there.
+You can open a [support ticket](/learn/overview/get-support.html#create-a-support-ticket) directly from [your Console](https://console.upsun.com/). Simply describe your needs and our team will take it from there.
 
-### For non-account holders or those who prefer a chat 
+### For non-account holders or those who prefer a chat
 
-Join us on our Discord server! We have a dedicated [feedback channel](https://discord.com/channels/1121795479785721957/1284195722299834510) where you can share your ideas and discuss them with our community and team members.
+Join us on our {{< vendor/url "discord" "Discord" >}} server! We have a dedicated [feedback channel](https://discord.com/channels/1121795479785721957/1284195722299834510) where you can share your ideas and discuss them with our community and team members.
 
 {{< note title="We love to hear from you!" theme="info" >}}
 

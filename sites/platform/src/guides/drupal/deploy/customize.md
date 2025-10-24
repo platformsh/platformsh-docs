@@ -3,11 +3,11 @@ title: "Customize Drupal for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your Drupal site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your Drupal site to read from an {{% vendor/name %}} environment.
 ---
 
 Now that your code contains all of the configuration to deploy on {{% vendor/name %}},
-it's time to make your Drupal site itself ready to run on a {{% vendor/name %}} environment.
+it's time to make your Drupal site itself ready to run on an {{% vendor/name %}} environment.
 There are a number of additional steps that are either required or recommended, depending on how well you want to optimize your site.
 
 ## Install the Config Reader
@@ -36,7 +36,7 @@ The file itself is a bit long, but reasonably self-explanatory.
 <?php
 /**
  * @file
- * Platform.sh settings.
+ * Upsun Fixed settings.
  */
 
 use Drupal\Core\Installer\InstallerKernel;
@@ -160,8 +160,8 @@ if ($platformsh->inRuntime()) {
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
 // header then it can be an injection vector, depending on how the Host header is used.
-// However, Platform.sh already replaces the Host header with the route that was used to reach
-// Platform.sh, so it is guaranteed to be safe.  The following line explicitly allows all
+// However, Upsun Fixed already replaces the Host header with the route that was used to reach
+// Upsun Fixed, so it is guaranteed to be safe.  The following line explicitly allows all
 // Host headers, as the only possible Host header is already guaranteed safe.
 $settings['trusted_host_patterns'] = ['.*'];
 
@@ -223,24 +223,19 @@ You need the file or one like it if you plan to run `drush` as a command,
 such as in a cron task like the one in the [app configuration from the previous step](/guides/drupal/deploy/configure.md#configure-apps-in-platformappyaml).
 If you don't include the file, you get a [command not found error](/development/troubleshoot.md#command-not-found).
 
+Some Drush commands need to know the site's URI. This is achieved with the
+`DRUSH_OPTIONS_URI` variable defined in the same file.
+
 ```text {location=".environment"}
 # Allow executable app dependencies from Composer to be run from the path.
 if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
   bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
   export PATH="${PLATFORM_APP_DIR}/${bin:-vendor/bin}:${PATH}"
 fi
+
+# Set the URI for Drush commands.
+export PRIMARY_ROUTE_URL="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key | rtrimstr("/")')"
+export DRUSH_OPTIONS_URI="$PRIMARY_ROUTE_URL"
 ```
-
-## Drush configuration
-
-Drush requires a YAML file that declares what its URL is.
-That value varies depending on the branch you're on, so it can't be included in a static file.
-Instead, the `drush` directory includes a [short script](https://github.com/platformsh-templates/drupal10/blob/master/drush/platformsh_generate_drush_yml.php)
-that generates that file on each deploy, writing it to `.drush/drush.yml`.
-That allows Drush to run successfully on {{% vendor/name %}}, such as to run cron tasks.
-
-The script contents aren't especially interesting.
-For the most part, you can download it from the template,
-place it in a `drush` directory in your project so they can be called from the deploy hook, and then forget about it.
 
 {{< guide-buttons previous="Back" next="Deploy Drupal" >}}

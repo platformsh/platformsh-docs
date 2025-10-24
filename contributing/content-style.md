@@ -1,14 +1,14 @@
-# Platform.sh Docs content style guide
+# Upsun (formerly Platform.sh) Docs content style guide
 
-Thank you for your interest in contributing to the Platform.sh docs!
+Thank you for your interest in contributing to the Upsun docs!
 It's nice to share the goal of having clear and up-to-date documentation.
 
-This content style guide should help make sure the Platform.sh docs are clear and consistent. It's intended for use by all contributors,from Platform.sh engineers to people from the community.
+This content style guide should help make sure the Upsun product docs are clear and consistent. It's intended for use by all contributors, from Upsun engineers to people from the community.
 
 <!-- vale Platform.condescending = NO -->
 ## Table of contents
 
-- [Platform.sh Docs content style guide](#platformsh-docs-content-style-guide)
+- [Upsun Docs content style guide](#platformsh-docs-content-style-guide)
   - [Table of contents](#table-of-contents)
   - [About the audience](#about-the-audience)
   - [Style defaults](#style-defaults)
@@ -39,9 +39,9 @@ This content style guide should help make sure the Platform.sh docs are clear an
 
 ## About the audience
 
-The goal of Platform.sh and Upsun's documentation is to help tech-savvy users self-educate on how to use and get the most out of Platform.sh.
+The goal of Upsun's documentation is to help tech-savvy users self-educate on how to use and get the most out of their Upsun products.
 
-Readers are generally familiar with common web development tools and practices, but it's best not to assume an in-depth knowledge of processes related to Upsun or Platform.sh. Remember, our audience may be comprised of more than developers, so try to explain concepts as simply as possible.
+Readers are generally familiar with common web development tools and practices, but it's best not to assume an in-depth knowledge of processes related to the Upsun Fixed or Upsun Flex products. Remember, our audience may be comprised of more than developers, so try to explain concepts as simply as possible.
 
 Make sure to provide enough context, potentially by linking to existing resources elsewhere. Try to include as many examples as you sit fit to demonstrate the process you're taking the user through.
 
@@ -52,18 +52,18 @@ If you come across something not addressed here,
 look for guidance in the [Google developer documentation style guide](https://developers.google.com/style).
 For a quick summary of that guide, see the [Google style guide highlights](https://developers.google.com/style/highlights).
 
-Platform.sh docs should be in standard U.S. spelling,
+Upsun docs use standard U.S. spelling,
 with reference to the [Merriam-Webster dictionary](https://www.merriam-webster.com/).
 
-The name of the company is always written as "Platform.sh" or "Upsun", not only "Platform".
+The name of the company is always written as "Upsun".
 
 ## Address the reader directly
 
-In keeping with the Platform.sh value that is to "tell it like it is",
+In keeping with the Upsun value that is to "tell it like it is",
 focus texts on readers and talk to them directly.
 
 This means using the second person ("you") and telling them what to do.
-Unless you have a very good reason (such as an action that has to be done by Platform.sh manually), avoid the first person ("we", "us", and "our").
+Unless you have a very good reason (such as an action that must be completed manually by someone at Upsun), avoid the first person ("we", "us", and "our").
 
 Use                                              | Avoid 
 -------------------------------------------------|-------
@@ -72,7 +72,7 @@ To get started quickly, use the default settings | We recommend that you use the
 Once you add the file to your repository         | Once we've added the file to our repository
 
 Part of this directness is also avoiding using `please`.
-Only use `please` if you're asking for something that benefits Platform.sh
+Only use `please` if you're asking for something that benefits Upsun
 or inconveniences the reader.
 
 So it's okay in phrases like `If you get an error, please open a support ticket.`
@@ -103,7 +103,7 @@ Making this small change can have large effects | Surprisingly, making this tiny
 
 ## Use inclusive language
 
-In keeping with the Platform.sh value of being diverse,
+In keeping with the Upsun value of being diverse,
 use language that welcomes everyone and excludes no one.
 
 Use                                                      | Avoid 
@@ -344,7 +344,7 @@ You have many service options, including Elasticsearch and Kafka.           | Yo
 
 ### Use the long form of commands
 
-The Platform.sh CLI has aliases for certain commands to make typing shorter.
+The Upsun CLI has aliases for certain commands to make typing shorter.
 Some of these are semantically valid, but some might be confusing.
 
 Always use the long form of the command to show the entire context, including the namespace.

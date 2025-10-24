@@ -157,7 +157,7 @@ vault-kms:
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported:
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   vault_secret:
     service: "vault-kms"
     endpoint: "manage_keys"
@@ -192,7 +192,7 @@ vault-kms:
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   vault_manage:
     service: vault-kms
     endpoint: management
@@ -419,3 +419,5 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 | `encrypt` | `transit/encrypt/${KEY}` | `read`, `update` | Encrypting data with an existing key |
 | `decrypt` | `transit/decrypt/${KEY}` | `read`, `update` | Decrypting data with an existing key |
 | `rewrap`  | `transit/rewrap/${KEY}` | `read`, `update` | Re-encrypting data with a new key version without revealing the secret |
+
+

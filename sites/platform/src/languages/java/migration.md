@@ -92,8 +92,8 @@ You have the option to use several languages in microservices. If you're using J
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Microservices in the cloud, part two](https://platform.sh/blog/2019/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
-| [Microservices in the cloud, part one](https://platform.sh/blog/2019/microservices-in-the-cloud-part-one/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part two](https://devcenter.upsun.com/posts/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part one](https://upsun.com/blog/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Multiple Applications](https://support.platform.sh/hc/en-us/community/posts/16439649733010) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://support.platform.sh/hc/en-us/community/posts/16439676928274) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
@@ -123,8 +123,8 @@ This variable is a base64-encoded JSON object with keys of the relationship name
 
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
-```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
+```bash {location=".environment"}
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].host')"
 ```
 
 | Article                                                      | Source                                                       |
@@ -139,13 +139,13 @@ you have the option to move the variable environment to another file: a [`.envir
 
 E.g.:
 
-```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
-export DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].password"`
-export DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].username"`
-export DB_DATABASE=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].path"`
-export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+```bash {location=".environment"}
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].host')"
+export DB_PASSWORD="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].password')"
+export DB_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].username')"
+export DB_DATABASE="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].path')"
+export JDBC="jdbc:postgresql://${HOST}/${DATABASE}"
+export JAVA_MEMORY="-Xmx$(jq .info.limits.memory /run/config.json)m"
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 
@@ -166,7 +166,7 @@ web:
 ### Using Java Config Reader
 
 If your framework doesn't support configuration via environment variables, use the [Config Reader](/development/variables/use-variables.md#access-variables-in-your-app).
-This library provides a streamlined way to interact with a {{% vendor/name %}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
+This library provides a streamlined way to interact with an {{% vendor/name %}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
 
 ```java
 import Config;
