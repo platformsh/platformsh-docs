@@ -83,7 +83,7 @@ you can also enable Laravel's dev/debug mode to inspect the cause of the error
 via the `APP_DEBUG` [environment variable](/get-started/stacks/laravel/environment-variables.md) in your
 `.environment` file or via [{{% vendor/cli %}} console](/development/variables.md):
 
-```bash
+```bash {configFile="env"}
 # Enable debug mode
 export APP_DEBUG=1
 # Disable debug mode

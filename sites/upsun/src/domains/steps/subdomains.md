@@ -11,7 +11,7 @@ within a single project using [routes](../../define-routes/_index.md).
 If you try to use a subdomain that's used in another project,
 you get an error like the following:
 
-```text
+```text {no-copy="true"}
 This domain is already claimed by another service
 ```
 
@@ -24,7 +24,7 @@ add a specific `TXT` DNS record for your apex domain.
 
 The `TXT` record should look like the following:
 
-```text
+```text {no-copy="true"}
 _public-suffix-root.{{<variable "YOUR_APEX_DOMAIN" >}} TXT "public-suffix-root={{<variable "YOUR_APEX_DOMAIN" >}}"
 ```
 

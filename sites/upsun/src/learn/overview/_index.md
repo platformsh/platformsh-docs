@@ -20,7 +20,7 @@ usually located at the root of your app folder in your Git repository.
 and features recommended optimizations for several [featured frameworks](/get-started/_index.md).
 
 Finally, you can also get tips for setting up your own [development workflow](/development/_index.md)
-and [administrating](/administration/_index.md) your {{% vendor/name %}} account.
+and [administrating](/administration/_index.md) your {{% vendor/company_name %}} account.
 
 ## Git Driven Infrastructure
 

@@ -23,13 +23,44 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-All products support the 8.0 version of Valkey.
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="valkey" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="valkey" status="supported" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
 
+<!-- uncomment this section when Upsun deprecates Valkey v8
+### Deprecated versions
 
-| Grid            | Dedicated Gen 2 |
-| --------------- | --------------- | 
-| **8.0**         | **8.0**         |
+The following versions are [deprecated](/glossary.html#deprecated-versions).
+They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
+They'll be removed in the future,
+so migrate to one of the [supported versions](#supported-versions).
 
+<table>
+    <thead>
+        <tr>
+            <th>Grid</th>
+            <th>Dedicated Gen 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{< image-versions image="valkey" status="deprecated" environment="grid" >}}</td>
+            <td>{{< image-versions image="valkey" status="deprecated" environment="dedicated-gen-2" >}}</thd>
+        </tr>
+    </tbody>
+</table>
+-->
 
 ## Service types
 
@@ -59,7 +90,7 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
   "path": null,
   "query": [],
   "password": null,
-  "type": "valkey:8.0",
+  "type": "valkey:{{% latest "valkey" %}}",
   "public": false,
   "host_mapped": false
 }
@@ -330,7 +361,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -365,7 +396,7 @@ runtime:
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 valkey:
-  type: valkey:8.0
+  type: valkey:{{% latest "valkey" %}}
   disk: 256
 ```
 
@@ -402,7 +433,7 @@ relationships:
 
 {{% note theme="info" title="Feature availability" %}}
 
-This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://platform.sh/contact/).
+This feature is only available on Dedicated Gen 3 projects. For more information, contact [Sales](https://upsun.com/contact-us/).
 
 {{% /note %}}
 
@@ -426,7 +457,7 @@ For example, if you define a `valkey-persistent` database as follows:
 
 ```yaml {configFile="services"}
 postgresql:
-  type: "valkey-persistent:8.0"
+  type: "valkey-persistent:{{% latest "valkey" %}}"
   disk: 2048
   configuration:
     databases:
@@ -474,7 +505,7 @@ To customize those cache cleanups, set up an eviction policy such as the followi
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: "valkey:8.0"
+    type: "valkey:{{% latest "valkey" %}}"
     configuration:
       maxmemory_policy: allkeys-lfu
 ```
@@ -566,7 +597,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
 
     web:
       locations:
@@ -577,7 +608,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkeysession:
-    type: "valkey-persistent:8.0"
+    type: "valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 <--->
@@ -611,7 +642,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$VALKEYSSESSION_HOSTNAME" >}}:{{< variable "$VALKEYSSESSION_PORT" >}}"
+        session.save_path: "tcp://{{< variable "HOSTNAME" >}}:{{< variable "PORT" >}}"
 
     web:
       locations:
@@ -622,7 +653,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkeysession:
-    type: "valkey-persistent:8.0"
+    type: "valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
@@ -639,10 +670,9 @@ my_service_name:
 
 with the following:
 
-```
-json
+```json
 my_service_name:
-  type: valkey-persistent:8.0
+  type: valkey-persistent:{{% latest "valkey" %}}
   disk: 256
 ```
 

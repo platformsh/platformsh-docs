@@ -156,7 +156,7 @@ If they aren't yet, [add them](/administration/users.md#add-a-user-to-an-organiz
 
 ## Fixed and Flex organizations
 
-### What is a Upsun Fixed organization?
+### What is an Upsun Fixed organization?
 Ideal for workloads that have consistent resource requirements with stable and predictable usage.
 Users can select a plan with predefined CPU and Memory resources. You can not adjust these resources, nor scale them automatically. To increase capacity, you’ll need to upgrade to a higher plan.
 
@@ -166,7 +166,7 @@ Users can select a plan with predefined CPU and Memory resources. You can not ad
 
 {{< /note >}}
 
-### What is a Upsun Flex organization?
+### What is an Upsun Flex organization?
 Ideal for workloads that evolve over time or have dynamic resource requirements. Flex will suit most use cases. Users will be able to allocate the exact CPU and Memory resources that your applications and services need. You can adjust these resources at any time, or configure them to adapt automatically. You are charged based on the resources you allocate.
 
 {{< note theme="info" title="Flex resources">}}

@@ -35,7 +35,7 @@ If you have any additional information, you can select the submitted ticket and 
 ## Discord
 
 To talk about app development or framework-related questions,
-join other customers and engineers in the [public Discord channel](https://chat.platform.sh/).
+join other customers and engineers in the public {{< vendor/url "discord" "Discord" >}}.
 
 ## Community
 
@@ -50,11 +50,11 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/name %}} account, follow these steps:
+To permanently delete your {{% vendor/company_name %}} account, follow these steps:
 
 {{% note theme=warning title="Warning"%}}
 
-Deleting your {{% vendor/name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
+Deleting your {{% vendor/company_name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
 {{% /note %}}
 

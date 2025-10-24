@@ -16,7 +16,7 @@ The Symfony integration is automatically enabled when:
 - You run `symfony project:init` on an existing project to automatically
   generate the {{% vendor/name %}} configuration.
 
-If you already have a {{% vendor/name %}} configuration without the Symfony
+If you already have an {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
    ```yaml {configFile="app"}
@@ -99,7 +99,7 @@ use the `PLATFORM_ENVIRONMENT_TYPE` [environment variable](/development/variable
 ```yaml {configFile="app"}
 hooks:
   deploy: |
-    if [ "PLATFORM_ENVIRONMENT_TYPE" != "production" ]; then
+    if [ "${PLATFORM_ENVIRONMENT_TYPE}" != "production" ]; then
       symfony console app:dev:anonymize
     fi
 ```
