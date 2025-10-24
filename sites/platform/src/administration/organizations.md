@@ -213,12 +213,12 @@ When creating a new organization, users will be able to select the organization 
 
 #### User management
 
-| **Feature** | **Upsun Fixed** | **Upsun Flex** |
-|-------------|-----------------|----------------|
-| Google SSO | Enterprise and Elite only | Yes, with add-on |
-| OpenID | Elite only | No |
-| Multifactor Authentication | Enterprise and Elite only | Yes, with add-on |
-| Teams | Enterprise and Elite only | Yes, with add-on |
+| **Feature**    | **Upsun Fixed**                        | **Upsun Flex**   |
+|----------------|----------------------------------------|------------------|
+| Google SSO     | Enterprise and Elite only              | Yes, with add-on |
+| OpenID Connect | Elite only                             | Yes, with add-on |
+| Multifactor Authentication  | Enterprise and Elite only | Yes, with add-on |
+| Teams          | Enterprise and Elite only              | Yes, with add-on |
 
 #### Support & SLAs
 
