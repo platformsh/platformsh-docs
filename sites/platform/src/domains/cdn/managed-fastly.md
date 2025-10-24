@@ -92,3 +92,6 @@ In this case, the Fastly API token is stored in a text file called `fastly_token
 typically located at `/mnt/shared/fastly_tokens.txt`.
 
 {{% /note %}}
+
+## Additional resources
+- [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/community/posts/26091087795602-Working-with-platform-sh-rate-limiting-implementation-Fastly) (Upsun Community): Learn how to update a dynamic access control list (ACL) and apply rate limiting. 
