@@ -104,9 +104,22 @@
     {{ $script := resources.Get "js/copy-anchor-link.js" | resources.Minify | resources.Fingerprint "sha256" }}
     <script src="{{ $script.RelPermalink }}"></script>
 
+
     <!-- copy code   -->
     {{ $script := resources.Get "js/copy-code.js" | resources.Minify | resources.Fingerprint "sha256" }}
     <script src="{{ $script.RelPermalink }}"></script>
+
+    <!-- GitHub's feedback form -->
+    <script>
+      const FEEDBACK_ISSUE_URL = "{{ .Site.Params._404.issues }}";
+      {{ with .File }}
+      const CURRENT_TEMPLATE = "{{ printf "%s/src/%s" site.Params.folder .Path }}"
+      {{ else }}
+      const CURRENT_TEMPLATE = ""
+      {{ end }}
+    </script>
+    <script src="{{ "js/gh-issue-feedback-form.js" | relURL }}"></script>
+
 
     <!-- allow to zoom images   -->
     <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
