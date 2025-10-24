@@ -61,14 +61,12 @@ so migrate to one of the [supported versions](#supported-versions).
     <thead>
         <tr>
             <th>Grid</th>
-            <th>Dedicated Gen 3</th>
             <th>Dedicated Gen 2</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-3" >}}</td>
             <td>{{< image-versions image="network-storage" status="deprecated" environment="dedicated-gen-2" >}}</thd>
         </tr>
     </tbody>

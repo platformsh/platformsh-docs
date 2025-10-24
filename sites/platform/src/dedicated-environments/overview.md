@@ -8,7 +8,7 @@ description:  "Our Dedicated Environments are well-suited for those who need mor
 
 {{% description %}}
 
-When you create a project on Platform.sh, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
+When you create an Upsun Fixed project, you can choose to deploy it using one of the following types of architecture offerings: Professional (known as [Grid](/glossary/_index.md#grid)) or [Dedicated Generation 2](/dedicated-environments/dedicated-gen-2/_index.md) (DG2). 
 
 ## What is Dedicated?
 
@@ -26,7 +26,7 @@ From the Grid architecture diagram below, we can see that projects hosted in Gri
 
 ## Deployment
 
-With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://platform.sh/regions/).
+With a Dedicated Environment, you are given the freedom to deploy into **any public region of supported IaaS providers** (currently **AWS, Azure, GCP, OVH**). This differs from the Grid architecture, which is solely available in [public regions](https://upsun.com/regions/).
 
 For a full list of public regions and IP addresses, visit the [Regions page](/development/regions.md#regions).
 
@@ -38,13 +38,13 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 
 | FEATURE | GRID | DEDICATED |
 | --- | --- | --- |
-| **Availability** | All support tiers | Just with [Enterprise or Elite](https://platform.sh/pricing/) |
-| **Uptime SLA** | 99.9% with [Enterprise or Elite](https://platform.sh/pricing/)| 99.99% with [Enterprise or Elite](https://platform.sh/pricing/) |
+| **Availability** | All support tiers | Just with [Enterprise or Elite](https://upsun.com/fixed-pricing/) |
+| **Uptime SLA** | 99.9% (Advanced Uptime SLA) with [Enterprise or Elite](https://upsun.com/fixed-pricing/)| 99.99% (Premium Uptime SLA) with [Enterprise or Elite](https://upsun.com/fixed-pricing/) |
 | **Infrastructure** | Containers with dedicated resources on top of a shared redundant infrastructure| Dedicated 3 node clusters|
 | **Functioning** | A single container is deployed per runtime and per service| At least 3 nodes are running all applications and services are replicated across all of them |
 | **Resource Allocation** | Resources are spread through one container with fixed sizes after deployment| Resources are deployed across a least 3 nodes
 | **Usable regions** | Any public region can be used to deploy | Any public region of supported IaaS providers can be used to deploy |
-| **Autonomous upsize** | Yes | Managed through Platform.sh |
+| **Autonomous upsize** | Yes | Managed through Upsun Fixed |
 | **Upsize and downsize methods** | Redeploy - possible downtime depending on the hooks | No downtime - each instance is altered in a rolling fashion |
 | **Multi-app support** | Supported natively | Supported through docroots on Dedicated Gen 2 |
 | **Custom domains name** | On all branches for Enterprise and Elite customers | On all branches for Enterprise and Elite customers |
@@ -53,16 +53,16 @@ Whether you choose a Grid or Dedicated Environment depends on the needs you have
 | **MySQL Replication** | None: standalone service container | Yes: at least 3 services nodes cluster that follow the leader-follower principle|
 | **Redis Replication** | None: standalone service container | Yes: at least 3 services nodes cluster |
 | **MongoDB** | Standalone service container | Yes |
-| **CDN** | A managed Fastly CDN service can be purchased through Platform.sh | Fastly |
+| **CDN** | A managed Fastly CDN service can be purchased through Upsun Fixed | Fastly |
 | **PHP version upgrade** | Self-service | Self-service |
 | **NodeJS version upgrade**| Self-service | Self-service |
 | **Routes management** | Self-service | Self-service |
 | **Cron management** | Self-service | Self-service |
 | **Cron tasks interrupted by deploys** | No: a running Cron task will block a deployment until it is complete | Yes: a deploy will terminate a running Cron task |
 | **Mounts management** | Self-service | Self-service |
-| **Workers management** | Self-service | Managed by Platform.sh |
-| **Storage increase** | Self-service | Managed by Platform.sh |
-| **Storage allocation between mounts, DB and services** | Self-service | Managed by Platform.sh on Dedicated Gen 2 |
+| **Workers management** | Self-service | Managed by Upsun Fixed |
+| **Storage increase** | Self-service | Managed by Upsun Fixed |
+| **Storage allocation between mounts, DB and services** | Self-service | Managed by Upsun Fixed on Dedicated Gen 2 |
 
 
 

@@ -24,7 +24,7 @@ collecting information 100 times per second.
 
 1. Add the `datadog` gem to your `Gemfile` or `gems.rb` file:
 
-``` bash
+```bash
 gem 'datadog', '~> 2.0'
 ```
 
@@ -32,17 +32,17 @@ gem 'datadog', '~> 2.0'
 
 3. Add the ``ddprofrb exec`` command to your Ruby application start command:
 
-``` bash
+```bash
 bundle exec ddprofrb exec ruby myrubyapp.rb
 ```
 
 Rails example:
-``` bash
+```bash
 bundle exec ddprofrb exec bin/rails s
 ```
 
 Alternatively, start the profiler by adding the following code in your application's entry point if you can't start it using `ddprofrb exec`:
 
-``` bash
+```bash
 require 'datadog/profiling/preload'
 ```

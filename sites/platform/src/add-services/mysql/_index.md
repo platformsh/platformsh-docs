@@ -157,7 +157,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -215,7 +215,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   mariadb:
     service: mariadb
@@ -263,7 +263,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   oraclemysql:
     service: oraclemysql
@@ -459,20 +459,21 @@ For each endpoint you add, you can define the following properties:
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
 | `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
 
-Possible permissions:
+Available permissions:
 
-| Name        | Type          | Description                                                                                                                                                                                |
-| ----------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Read-only   | `ro`          | Can select, create temporary tables, and see views.                                                                                                                                        |
-| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                               |
-| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                         |
+| Name              | Type                | Description                                                                                                                                                                                                                                                                |
+|-------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Read-only         | `ro`                | Can select, create temporary tables, and see views.                                                                                                                                                                                                                        |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.                                                                                 |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                                                                                                               |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                                                                                                         |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [Dev Center article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ### Restrict access to database replicas only
 
 {{< partial "banners/replicas/body.md" >}}
 
-Your main database lives on one of the three nodes provided on Grid HA and {{% names/dedicated-gen-3 %}}.
+Your main database lives on one of the three nodes provided on Grid HA.
 The two other nodes can each accommodate a replica of your main database.
 
 For security reasons, you can grant your app access to a replica instead of your main database.
@@ -536,7 +537,7 @@ relationships:
 
 {{< partial "banners/replicas/body.md" >}}
 
-Your main database lives on one of the three nodes provided on Grid HA and {{% names/dedicated-gen-3 %}}.
+Your main database lives on one of the three nodes provided on Grid HA.
 The two other nodes can each accommodate a replica of your main database.
 
 You may want to grant access to both your main database and its replicas.
@@ -673,7 +674,7 @@ name: myapp
 # Relationships enable an app container's access to a service.
 relationships:
   # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   database:
     service: mariadb
     endpoint: admin

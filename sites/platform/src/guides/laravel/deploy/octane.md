@@ -17,13 +17,13 @@ Laravel Octane requires PHP 8.0+.
 
 Require Laravel Octane using Composer.
 
-``` bash
+```bash
 composer require laravel/octane
 ```
 
 Then make sure to clear the cache on all relevant {{% vendor/name %}} environments.
 
-``` bash
+```bash
 php artisan optimize:clear
 ```
 

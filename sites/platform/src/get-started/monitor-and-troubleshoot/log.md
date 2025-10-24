@@ -72,8 +72,6 @@ You can change environments using the `--environment` flag.
 You see information about your project as well as a list of activities,
 which should be the same as what you saw by running `{{% vendor/cli %}} activities`.
 
-![An overview of what you see when you open the Console](/images/management-console/env-overview.png)
-
 To see metrics, open the **Metrics** tab.
 You see your CPU, RAM, and disk usage over the past 15 minutes, with options for changing the time frame.
 

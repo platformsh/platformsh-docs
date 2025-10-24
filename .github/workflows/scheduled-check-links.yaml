@@ -21,7 +21,7 @@ jobs:
         run: |
           # default URLs we want to check
           # todo: replace this with a vars.VAL ?
-          urls="[\"https://docs.platform.sh\",\"https://docs.upsun.com\"]"
+          urls="[\"https://fixed.docs.upsun.com\",\"https://docs.upsun.com\"]"
           if [ "workflow_dispatch" = "${{ github.event_name }}" ]; then
             # make sure there's no extra spaces in what we were given
             inputURL=$(echo "${{ inputs.url }}" | xargs)

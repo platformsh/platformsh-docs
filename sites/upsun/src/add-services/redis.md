@@ -104,10 +104,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_REDIS_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
+export APP_REDIS_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.redis[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -858,13 +858,13 @@ The following table presents the possible values:
 | `volatile-ttl`    | Removes cache items with the `expire` field set to `true` and the shortest remaining `time-to -live` value. |
 
 For more information on the different policies,
-see the official [Redis documentation](https://redis.io/docs/reference/eviction/).
+see the official [Redis documentation](https://redis.io/docs/latest/operate/rs/databases/memory-performance/eviction-policy/).
 
 ## Access your Redis service
 
 After you've [configured your Redis service](#usage-example),
 you can access it using either the {{% vendor/name %}} CLI
-or through the [Redis CLI](https://redis.io/docs/ui/cli/).
+or through the [Redis CLI](https://redis.io/docs/latest/operate/rs/references/cli-utilities/).
 
 ### {{% vendor/name %}} CLI
 
@@ -931,7 +931,7 @@ applications:
     variables:
       php:
         session.save_handler: redis
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${REDISSESSION_HOST}" >}}:{{< variable "${SESSIONSTORAGE_PORT}" >}}"
 
     web:
       locations:
@@ -976,7 +976,7 @@ applications:
     variables:
       php:
         session.save_handler: redis
-        session.save_path: "tcp://{{< variable "$REDISSSESSION_HOSTNAME" >}}:{{< variable "$REDISSSESSION_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${REDISSSESSION_HOSTNAME}" >}}:{{< variable "${REDISSSESSION_PORT}" >}}"
 
     web:
       locations:

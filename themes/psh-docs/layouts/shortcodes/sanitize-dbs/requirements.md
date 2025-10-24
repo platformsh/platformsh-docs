@@ -9,7 +9,7 @@
 {{ if eq $framework "Drupal" }}
   {{ $cli = "[Drush](https://www.drush.org/latest/install/)" }}
 {{ end }}
-{{ $cliLink := "[Platform CLI](../../administration/cli/_index.md)" }}
+{{ $cliLink := "[Upsun CLI](../../administration/cli/_index.md)" }}
 {{ if eq $.Site.Params.vendor.config.version 2 }}
   {{ $cliLink = "[Upsun CLI](../../administration/cli/_index.md)" }}
 {{ end }}

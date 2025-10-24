@@ -45,11 +45,13 @@ Once the app has gone through all of the build steps, it can connect to services
    For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
    You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
 5. **Run build hook**:
-   The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
-   It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
+   The `build` hook comprises one or more shell commands that you write to finish creating your production code base: for example, compiling Sass files, running a bundler, rearranging files on disk, or compiling.
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
-   Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br> 
+   You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+
 6. **Freeze app container**:
    The file system is frozen and produces a read-only container image, which is the final build artifact.
 
@@ -84,6 +86,130 @@ but the file system is read-only.
   Incoming requests to your newly deployed application are allowed.
 
 After the deploy process is over, any commands in your `post_deploy` hook are run.
+
+## Deployment types
+
+{{% vendor/name %}} supports two deployment types - automatic and manual. These types help to provide control over when changes are applied to development, staging and production environments.
+
+### Automatic deployment (default)
+
+This is the default behavior for all environments. With automatic deployment, changes like code pushes and variable updates are deployed immediately.
+
+### Manual deployment
+
+When enabled, manual deployment lets you control when deployments happen. This means that changes will be staged but not deployed until explicitly triggered by the user. This type of deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
+
+When manual deployment is enabled in an environment, the following actions are queued until deployment is triggered:
+
+| Category             | Staged Activities |
+|----------------------|------------------|
+| **Code**             | `environment.push`, `environment.merge`, `environment.merge-pr` |
+| **Variables**        | `environment.variable.create`, `update`, `delete` |
+| **Resources**        | `environment.resources.update` |
+| **Domains & Routes** | `environment.domain.*`, `environment.route.*` |
+| **Subscription**     | `environment.subscription.update `|
+| **Environment Settings** | `environment.update.http_access`, `smtp`, `restrict_robots` |
+
+
+{{< note theme="info" >}}
+
+Manual deployment is available for **development**, **staging** and **production** environments. 
+
+{{< /note >}}
+
+
+### Change deployment type
+
+You can adjust deployment behavior in your environment. 
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Use the following command in the CLI to view or change the deployment type:
+
+```bash
+platform environment:deploy:type
+```
+The output should look similar to the example below:
+
+```bash
+Selected project: [my-project (ID)]
+Selected environment: main (type: production)
+Deployment type: manual
+```
+
+For more information about how this command works, use:
+
+```bash
+platform environment:deploy:type --help
+```
+<--->
++++
+title=Using the Console
++++
+
+To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+
+{{< /codetabs >}}
+
+### Trigger deployment manually
+
+Once manual deployment is enabled, eligible changes are staged. You can deploy them in the following ways:
+
+{{< codetabs >}}
+
++++
+title=Using the CLI
++++
+
+Deploy staged changes to your chosen environment using the following command:
+
+```bash
+platform environment:deploy
+```
+
+The output should look similar to the example below:
+
+```bash
+Deploying staged changes:
++---------------+---------------------------+-----------------------------------------------------------+---------+
+| ID            | Created                   | Description                                               | Result  |
++---------------+---------------------------+-----------------------------------------------------------+---------+
+| 5uh3xwmkh5boq | 2024-11-22T14:01:10+00:00 | Patrick pushed to main                                    | failure |
+| fno2qiodq7e3c | 2024-11-22T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
+| xzvcazrtoafeu | 2024-11-22T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
+| fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
++---------------+---------------------------+-----------------------------------------------------------+---------+
+```
+<--->
++++
+title=Using the Console
++++
+
+In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes. 
+
+<--->
++++
+title=Using the API
++++
+
+Trigger the deployment of staged changes with the following:
+
+```bash
+POST /projects/{projectId}/environments/{environmentId}/deploy
+```
+
+{{< /codetabs >}}
+
+{{< note theme="tip" >}}
+
+As soon as your deployment type is switched from manual to automatic, all currently staged changes are deployed immediately and the environment resumes its default automatic deployment behavior.
+
+{{< /note >}}
+
 
 ## Deployment philosophy
 

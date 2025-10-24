@@ -212,7 +212,7 @@ Variables for the override are composed of three distinct parts each separated b
 Setting the `drupalsettings:system.site:name` variable overrides the `name` property of the `system.site` configuration object located in the global `$settings` array.
 You can do this by running the following [CLI command](/administration/cli/_index.md):
 
-``` bash
+```bash
 {{% vendor/cli %}} variable:create --name "drupalsettings:system.site:name" --value "{{< variable "SITE_NAME" >}}"
 ```
 
