@@ -33,14 +33,17 @@ To get {{ $name }} running on {{ .Site.Params.vendor.name }}, you have two poten
 
 {{ markdownify (readFile "/layouts/shortcodes/template-intro.md") }}
 
+<!--
 To use a template, click the button below to create a {{ .Get "name" }} template project.
 
 <p class="flex justify-center not-prose">
-  <a href='https://console.platform.sh/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ $repo }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
+  <a href='https://console.upsun.com/org/create-project?template=https://raw.githubusercontent.com/platformsh/template-builder/master/templates/{{ $repo }}/.platform.template.yaml&_utm_campaign=cta_deploy_marketplace_template&utm_source=public_documentation&_utm_medium=organic'>
     <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on {{ .Site.Params.vendor.name }}" width="180px" />
   </a>
 </p>
 
-Once the template is deployed, you can follow the rest of this guide
-to better understand the extra files and changes to the repository.
+-->
+
+<!-- Once the template is deployed, you can follow the rest of this guide
+to better understand the extra files and changes to the repository. -->
 <!-- shortcode end {{ .Name }} -->

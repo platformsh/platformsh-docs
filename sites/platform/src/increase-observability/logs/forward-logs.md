@@ -16,16 +16,24 @@ or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) 
 
 
 {{% version/specific %}}
-Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
+Log forwarding is available for Grid projects.
 For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](dedicated-environments/dedicated-gen-2/overview.md#remote-logging).
 <--->
 {{% /version/specific %}}
-Logs to `stdout` and `stderr` are forwarded.
-Logs in files can't be forwarded.
-
-To enable log forwarding in a project, you need to be a [project admin](/administration/users.md).
+To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
 You also need your project to have the capability for log forwarding.
-To get a price quote, [contact Sales](https://platform.sh/contact/).
+To get a price quote, [contact Sales](https://upsun.com/contact-us/).
+
+### Which logs are forwarded?
+When log forwarding is enabled, {{% vendor/name %}} forwards logs sent to journald.  
+
+By default, {{% vendor/name %}} sends the following logs to journald: 
+- `stdout` and `stderr` logs from your application<br>
+   Note: You can configure your application to use syslog to send these (or additional) messages to journald.
+- MariaDB/MySQL slow query logs 
+- Redis logs (all except command-level operations and low-level internals)
+
+Logs in files are not forwarded to journald.
 
 ## Use a log forwarding integration
 
@@ -44,7 +52,7 @@ Integrations exist for the following third-party services to enable log forwardi
 
 #### Using the CLI
 
-To enable log forwarding for a specific project using the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
+To enable log forwarding for a specific project using the [Upsun CLI](/administration/cli/_index.md),
 follow the steps for your selected service.
 
 {{< codetabs >}}
@@ -89,7 +97,7 @@ Filter by the index name to find the relevant events.
 title=Sumo Logic
 +++
 
-1. In Sumo Logic, [configure an HTTP source](https://help-opensource.sumologic.com/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
+1. In Sumo Logic, [configure an HTTP source](https://www.sumologic.com/help/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 
@@ -204,7 +212,7 @@ to start forwarding logs [trigger a redeploy](/development/troubleshoot.md#force
 ## Log levels
 
 Your app may output logs with distinct severity levels.
-But as Plaform.sh only reads logs from `stdout`,
+But as {{% vendor/name %}} only reads logs from `stdout`,
 this distinction is lost and everything gets logged at `INFO` level.
 
 To preserve the original log level, use a language-specific syslog module/package for logging.

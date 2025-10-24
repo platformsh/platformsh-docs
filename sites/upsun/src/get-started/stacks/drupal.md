@@ -142,7 +142,7 @@ routes:
         to: "https://{default}/"
 ```
 
-This configuration is similar to the deployment process for [Drupal on Platform.sh](https://docs.platform.sh/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-psh.html).
+This configuration is similar to the deployment process for [Drupal on Upsun Fixed](https://fixed.docs.upsun.com/guides/drupal/deploy.html), however it is slightly updated for [Upsun's configuration](https://docs.upsun.com/learn/tutorials/migrating/from-fixed.html).
 ## Variables
 
 The `project:init` command created a `.environment` file containing environment variables for the two services (MariaDB and Redis). Now append the following Drush configuration to the bottom of that file:
@@ -173,7 +173,7 @@ defined in `.environment`. This file should contain the following:
 <?php
 /**
  * @file
- * Platform.sh settings.
+ * Upsun Fixed settings.
  */
 
 use Drupal\Core\Installer\InstallerKernel;
@@ -288,8 +288,8 @@ if (getenv('PLATFORM_BRANCH')) {
 // The 'trusted_hosts_pattern' setting allows an admin to restrict the Host header values
 // that are considered trusted.  If an attacker sends a request with a custom-crafted Host
 // header then it can be an injection vector, depending on how the Host header is used.
-// However, Platform.sh already replaces the Host header with the route that was used to reach
-// Platform.sh, so it is guaranteed to be safe.  The following line explicitly allows all
+// However, Upsun Fixed already replaces the Host header with the route that was used to reach
+// Upsun Fixed, so it is guaranteed to be safe.  The following line explicitly allows all
 // Host headers, as the only possible Host header is already guaranteed safe.
 $settings['trusted_host_patterns'] = ['.*'];
 ```

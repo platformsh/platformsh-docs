@@ -9,7 +9,7 @@ keywords:
   - git push options
 ---
 
-A {{% vendor/name %}} environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
+An {{% vendor/name %}} environment contains one instance of an app (or [group of apps](../create-apps/multi-app/_index.md))
 with all the services needed for it to run.
 
 Each project can include multiple environments,
@@ -170,7 +170,7 @@ It can help to introduce a convention for how you name and structure your enviro
 For each environment, choose a name that represents what the environment is for.
 If you use Agile, for example, you can adopt a naming convention similar to the following:
 
-```text
+```text {no-copy="true"}
 Live
   Sprint1
     Feature1
@@ -184,7 +184,7 @@ Live
 If you prefer splitting your environments per developer and having a specific environment for each task or ticket,
 you can adopt a naming convention similar to the following:
 
-```text
+```text {no-copy="true"}
 Staging
   Developer1
     Ticket-526

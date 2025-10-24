@@ -3,7 +3,7 @@ title: "Exporting data"
 description: See how to export your code, files and service data.
 ---
 
-As a {{% vendor/name %}} user, your code and data belong to you.
+As an {{% vendor/name %}} user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
 
 ## Before you begin
@@ -11,7 +11,7 @@ At any time, you can download your site's data for local development, to back up
 You need:
 
 - [Git](https://git-scm.com/downloads)
-- A {{% vendor/name %}} account
+- An {{% vendor/company_name %}} account
 - Code in your project
 - Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 

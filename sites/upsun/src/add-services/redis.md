@@ -104,10 +104,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_REDIS_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.redis[0].host')"
+export APP_REDIS_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.redis[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -931,7 +931,7 @@ applications:
     variables:
       php:
         session.save_handler: redis
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${REDISSESSION_HOST}" >}}:{{< variable "${SESSIONSTORAGE_PORT}" >}}"
 
     web:
       locations:
@@ -976,7 +976,7 @@ applications:
     variables:
       php:
         session.save_handler: redis
-        session.save_path: "tcp://{{< variable "$REDISSSESSION_HOSTNAME" >}}:{{< variable "$REDISSSESSION_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${REDISSSESSION_HOSTNAME}" >}}:{{< variable "${REDISSSESSION_PORT}" >}}"
 
     web:
       locations:

@@ -1,0 +1,72 @@
+<!-- CSS to prevent layout bounce -->
+<style>
+  /* Assume banner is visible by default to prevent layout shift */
+  body:not(.banner-dismissed) {
+    padding-top: 48px; /* More accurate banner height (py-3 = 12px top + 12px bottom + ~24px content) */
+  }
+  body:not(.banner-dismissed) header {
+    top: 48px; /* More accurate banner height */
+  }
+  /* Hide banner immediately if dismissed (before JS loads) */
+  .banner-dismissed #platformsh-upsun-announcement {
+    display: none !important;
+  }
+</style>
+
+<!-- Announcement Banner: Platform.sh is now Upsun -->
+<div id="platformsh-upsun-announcement" class="announcement-banner fixed top-0 left-0 right-0 z-50 w-full text-black text-center py-3 px-4" style="background-color: #FAD2FB; display: block;">
+  <div class="flex items-center justify-center gap-2 max-w-6xl mx-auto">
+    <!-- Close button -->
+    <button 
+      aria-controls="platformsh-upsun-announcement" 
+      aria-label="Close announcement" 
+      class="absolute right-4 top-1/2 transform -translate-y-1/2 p-1 hover:bg-black hover:bg-opacity-10 rounded"
+      onclick="dismissBanner();">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+        <path fill="currentColor" fill-rule="evenodd" d="M17.705 6.295a1.01 1.01 0 0 0-1.426 0L12 10.574 7.722 6.295a1.008 1.008 0 1 0-1.427 1.427L10.574 12l-4.279 4.279a1.008 1.008 0 1 0 1.427 1.426L12 13.426l4.279 4.279a1.008 1.008 0 1 0 1.426-1.426L13.426 12l4.279-4.278a1.01 1.01 0 0 0 0-1.427" clip-rule="evenodd"/>
+      </svg>
+    </button>
+    
+    <!-- Banner content -->
+    <div class="text-sm md:text-base font-medium">
+      Platform.sh is now Upsun. 
+      <a href="https://upsun.com/platform-sh-is-now-upsun/" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="underline hover:no-underline font-semibold">
+        Click here to learn more
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Script to handle banner dismissal -->
+<script>
+  function dismissBanner() {
+    // Add dismissed class to trigger CSS hiding
+    document.documentElement.classList.add('banner-dismissed');
+    document.body.classList.add('banner-dismissed');
+    
+    // No JavaScript adjustments to reset - CSS handles everything
+    
+    // Remember dismissal
+    localStorage.setItem('platformsh-upsun-announcement-dismissed', 'true');
+  }
+
+  // Check dismissal status immediately (before DOMContentLoaded to prevent flash)
+  if (localStorage.getItem('platformsh-upsun-announcement-dismissed') === 'true') {
+    document.documentElement.classList.add('banner-dismissed');
+    document.body.classList.add('banner-dismissed');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // No JavaScript adjustments needed - CSS handles everything
+    // This prevents any layout bouncing after page load
+  });
+  
+  // Function to reset banner (for testing - can be called in browser console)
+  function resetAnnouncementBanner() {
+    localStorage.removeItem('platformsh-upsun-announcement-dismissed');
+    location.reload();
+  }
+</script>

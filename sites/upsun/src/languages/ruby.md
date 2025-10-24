@@ -254,7 +254,7 @@ applications:
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
         # we install the bundled bundler version and fallback to a default (in env vars above)
-        export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || $DEFAULT_BUNDLER_VERSION
+        export BUNDLER_VERSION="$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" || "$DEFAULT_BUNDLER_VERSION"
         echo "Install bundler $BUNDLER_VERSION"
         gem install --no-document bundler -v $BUNDLER_VERSION
 
@@ -407,7 +407,7 @@ For Rails, you can use the standard Rails `config/database.yml` with the values 
 
   To avoid issues when such updates are performed, use
 
-  ``` ruby
+  ```ruby
   ruby ENV["TARGET_RUBY_VERSION"] || File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
   ```
 
@@ -424,7 +424,7 @@ This is safer for version yank issues and other version upgrade breakages.
 
 You may encounter an error like the following during a build:
 
-```txt
+```txt {no-copy="true"}
 W: bundler: failed to load command: rake (/app/.global/bin/rake)
 W: /app/.global/gems/bundler-2.3.5/lib/bundler/resolver.rb:268:in `block in verify_gemfile_dependencies_are_found!': Could not find gem 'rails (= 5.2.6)' in locally installed gems. (Bundler::GemNotFound)
 ```

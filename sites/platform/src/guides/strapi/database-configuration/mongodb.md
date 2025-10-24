@@ -81,7 +81,7 @@ To use MongoDB with a Strapi v3 application on {{% vendor/name %}}, follow these
      } else {
        // Strapi default local configuration.
        console.log(
-         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
+         "Not in an {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }

@@ -3,11 +3,11 @@ title: "Customize TYPO3 for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your TYPO3 site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your TYPO3 site to read from an {{% vendor/name %}} environment.
 ---
 
 Now that your code contains all of the configuration to deploy on {{% vendor/name %}},
-it’s time to make your TYPO3 site itself ready to run on a {{% vendor/name %}} environment.
+it’s time to make your TYPO3 site itself ready to run on an {{% vendor/name %}} environment.
 There are a number of additional steps that are either required or recommended,
 depending on how well you want to optimize your site.
 
@@ -179,7 +179,7 @@ Finally, you can start using the {{% vendor/name %}} Configuration Reader librar
 to starting reading from the environment from within your application.
 In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the library to:
 
-- Verify the deployment is occurring on a {{% vendor/name %}} project (`if (!$platformConfig->isValidPlatform())`)
+- Verify the deployment is occurring on an {{% vendor/name %}} project (`if (!$platformConfig->isValidPlatform())`)
 - Verify that it's not running during build,
   when services aren't yet available (`if ($platformConfig->inBuild())`)
 - Set the `PLATFORM_ROUTES_MAIN` environment variable used in `config/sites/main/config.yaml`)
@@ -193,22 +193,22 @@ In a `public/typo3conf/PlatformshConfiguration.php` file, you can use the librar
 <?php
 
 /**
- * Platform.sh-specific configuration for TYPO3.
+ * Upsun Fixed-specific configuration for TYPO3.
  *
  * You may edit this file as desired, but connection configuration
- * should be based on Platform.sh environment variables.
+ * should be based on Upsun Fixed environment variables.
  */
 
 declare(strict_types=1);
 
 use Platformsh\ConfigReader\Config;
 
-// Leverages the Platform.sh Configuration Reader library for PHP.
+// Leverages the Upsun Fixed Configuration Reader library for PHP.
 // 
 // See https://github.com/platformsh/config-reader-php.
 $platformConfig = new Config();
 
-// Ensures script does not run if not on Platform.sh.
+// Ensures script does not run if not on Upsun Fixed.
 if (!$platformConfig->isValidPlatform()) {
     return;
 }
@@ -223,7 +223,7 @@ if ($platformConfig->inBuild()) {
 // Relies on the `id: "main"` configuration set in `.platform/routes.yaml`.
 putenv('PLATFORM_ROUTES_MAIN=' . $platformConfig->getRoute('main')['url']);
 
-// Configure the database for `doctrine-dbal` for TYPO3 based on the Platform.sh relationships. 
+// Configure the database for `doctrine-dbal` for TYPO3 based on the Upsun Fixed relationships. 
 // 
 // See https://docs.typo3.org/m/typo3/reference-coreapi/9.5/en-us/ApiOverview/Database/Configuration/Index.html.
 // 
@@ -268,7 +268,7 @@ if ($platformConfig->hasRelationship('rediscache')) {
 // outgoing HTTP requests.
 $GLOBALS['TYPO3_CONF_VARS']['HTTP']['timeout'] = 3;
 
-// Add additional Platform.sh-specific configuration here, such as a search backend.
+// Add additional Upsun Fixed-specific configuration here, such as a search backend.
 ```
 
 Then include the `require_once()` function within your `public/typo3conf/AdditionalConfiguration.php` file to load the {{% vendor/name %}}-specific configuration into the site if present.

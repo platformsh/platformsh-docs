@@ -56,12 +56,11 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/register/).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/name %}} account, follow these steps:
+To permanently delete your {{% vendor/company_name %}} account, follow these steps:
 
 {{% note theme=warning title="Warning"%}}
 
-Deleting your {{% vendor/name %}} account automatically deletes your linked {{% vendor/psh_ref %}} account,
-as well as any linked Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
+Deleting your {{% vendor/name %}} account automatically deletes all your linked Ibexa Cloud, Pimcore PaaS, and Shopware PaaS accounts.
 {{% /note %}}
 
 1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).

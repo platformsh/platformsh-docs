@@ -16,7 +16,7 @@ The Symfony integration is automatically enabled when:
 - You run `symfony project:init --{{% vendor/cli %}}` on an existing project to automatically
   generate the {{% vendor/name %}} configuration
 
-If you already have a {{% vendor/name %}} configuration without the Symfony
+If you already have an {{% vendor/name %}} configuration without the Symfony
 integration, enable it by adding the following configuration:
 
 ```yaml {configFile="app"}
@@ -230,7 +230,7 @@ applications:
 
         # Setup everything to use the Node installation
         unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${SPLATFORM_APP_DIR}/.nvm
+        export NVM_DIR="${SPLATFORM_APP_DIR}/.nvm"
         set +x && . "${NVM_DIR}/nvm.sh" use --lts && set -x
         # Starting from here, everything is setup to use the same Node
         yarn encore dev
@@ -252,7 +252,7 @@ applications:
 
         cd web/js_app
         unset NPM_CONFIG_PREFIX
-        export NVM_DIR=${PLATFORM_APP_DIR}/.nvm
+        export NVM_DIR="${PLATFORM_APP_DIR}/.nvm"
 
         NODE_VERSION=8 yarn-install
 

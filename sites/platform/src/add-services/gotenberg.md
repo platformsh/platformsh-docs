@@ -44,10 +44,10 @@ in a [`.environment` file](/development/variables/set-variables.md#use-env-files
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_GOTENBERG_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.gotenberg[0].host')"
+export APP_GOTENBERG_HOST=="$(echo "$RELATIONSHIPS_JSON" | jq -r '.gotenberg[0].host')"
 ```
 
 ## Usage example
@@ -100,7 +100,7 @@ name: myapp
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -158,7 +158,7 @@ name: myapp
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   gotenberg:
     service: gotenberg
@@ -174,7 +174,7 @@ As an example, to generate a PDF file of the {{% vendor/name %}} website, run th
 ```bash {location="Terminal"}
 curl \
 --request POST http://yduimhaby523ase4lju3qhimre.gotenberg8.service._.eu-3.{{< vendor/urlraw "hostname" >}}/forms/chromium/convert/url \
---form url=https://platform.sh \
+--form url=https://upsun.com \
 --form landscape=true \
 --form marginTop=1 \
 --form marginBottom=1 \

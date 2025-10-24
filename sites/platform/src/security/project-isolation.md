@@ -23,7 +23,7 @@ Data is stored redundantly and mounted into the environments on deployment.
 title=Dedicated 
 +++
 
-All {{% names/dedicated-gen-2 %}} and {{% names/dedicated-gen-3 %}} clusters are single-tenant.
+All {{% names/dedicated-gen-2 %}} clusters are single-tenant.
 They provide three hosts that are exclusively used by a single customer.
 
 Each cluster is launched into its own isolated network (VPC on AWS, equivalent on other providers).

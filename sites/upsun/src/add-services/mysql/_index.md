@@ -141,10 +141,10 @@ Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/develo
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".mariadb[0].host")
+export APP_DATABASE_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r ".mariadb[0].host")"
 ```
 
 {{< /codetabs >}}
@@ -216,10 +216,10 @@ Example on how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/develo
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_ORACLE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.oraclemysql[0].host')"
+export APP_ORACLE_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.oraclemysql[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -469,12 +469,12 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export DB_CONNECTION=${MARIADB_SCHEME}
-export DB_USERNAME=${MARIADB_USERNAME}
-export DB_PASSWORD=${MARIADB_PASSWORD}
-export DB_HOST=${MARIADB_HOST}
-export DB_PORT=${MARIADB_PORT}
-export DB_DATABASE=${MARIADB_PATH}
+export DB_CONNECTION="${MARIADB_SCHEME}"
+export DB_USERNAME="${MARIADB_USERNAME}"
+export DB_PASSWORD="${MARIADB_PASSWORD}"
+export DB_HOST="${MARIADB_HOST}"
+export DB_PORT="${MARIADB_PORT}"
+export DB_DATABASE="${MARIADB_PATH}"
 
 # Surface connection string variable for use in app.
 export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
@@ -572,16 +572,17 @@ For each endpoint you add, you can define the following properties:
 | Name             | Type                     | Required | Description |
 | ---------------- | ------------------------ | -------- | ----------- |
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
-| `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
+| `privileges`     | A permissions dictionary |          | For each defined schema, specifies the permissions of the endpoint. |
 
-Possible permissions:
+Available permissions:
 
-| Name        | Type          | Description                                         |
-| ----------- | ------------- | --------------------------------------------------- |
-| Read-only   | `ro`          | Can select, create temporary tables, and see views. |
-| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Name              | Type                | Description                                         |
+| ----------------- | ------------------- | --------------------------------------------------- |
+| Read-only         | `ro`                | Can select, create temporary tables, and see views. |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.        |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [DevCenter article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ## Multiple databases
 

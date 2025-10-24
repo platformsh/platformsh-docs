@@ -1,26 +1,69 @@
-name: New docs
-description: For adding documentation that doesn't yet exist, such as for a new feature.
+name: 'Docs - New documentation request'
+description: Propose new documentation (new features, new guides, etc.)
 labels:
   - ungroomed
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve the Platform.sh docs!
-        Please fill in the fields below so we can understand what documentation is needed.
+        Please complete the fields below to help us improve the Upsun docs.
+
+  - type: dropdown
+    id: offering
+    validations:
+      required: true
+    attributes:
+      label: Offering
+      multiple: true
+      description: Which offering is impacted by the feature? (select all that apply)
+      options:
+        - Upsun Flex
+        - Upsun Fixed
+      default: 0,1
 
   - type: textarea
     attributes:
       label: What needs to be documented?
       description: |
-        Describe in detail what is missing from the documentation.
-        Include the use case for the missing feature: why people want to use it.
+        - **Do not** include Upsun-internal information, Slack threads, etc. in this field.
+        - Include information such as key use cases, benefits to the user, business problem solved, etc.
+        - Include expected outcomes that users will find useful. 
+        - Include guidance that will prevent negative or unexpected outcomes for users.
     validations:
       required: true
 
-  - type: textarea
+  - type: dropdown
+    id: docs_impact
     attributes:
-      label: Additional context
-      description: Optionally add any other information or screenshots that could help us understand what to document.
+      multiple: true
+      label: Docs impact
+      description: Where do you believe these docs should be placed? For further comments, use the Additional context field later in this form.
+      options:
+        - "Get started materials or framework-specific guides"
+        - "Learn: tutorials & best practices"
+        - "Frameworks (Fixed only)"
+        - "Reference > Configure apps"
+        - "Reference > Add services"
+        - "Reference > Define routes"
+        - "Reference > Languages"
+        - "Reference > Development"
+        - "Reference > Integrations"
+        - "Reference > Increase observability"
+        - "Reference > Managing manage enviornments/projects"
+        - "Reference > Custom domains"
+        - "Reference > Administration"
+        - "Reference > Security and compliance"
+        - "Reference > Dedicated 2 (Fixed only)"
+        - "Reference > Manage resources (Flex only)"
+        - "Reference > Glossary"
+      default: 0
     validations:
       required: false
+
+  - type: textarea
+    attributes:
+      label: 'Optional: Additional context'  
+      description: Include other information or screenshots that could help us understand and implement the change.
+    validations:
+      required: false
+
