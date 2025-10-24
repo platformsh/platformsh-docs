@@ -101,10 +101,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_POSTGRESQL_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.postgresql[0].host')"
+export APP_POSTGRESQL_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.postgresql[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -497,8 +497,7 @@ You can choose your locale when a database is created by setting locale-related 
 
 ## Multiple databases
 
-If you are using version `10`, `11`, `12`, `13`, or later of this service,
-it's possible to define multiple databases as well as multiple users with different permissions.
+Support for defining multiple databases and multiple users with different permissions is available in versions `10` and later of this service. 
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 

@@ -1,7 +1,7 @@
 # This file describes an application. You can have multiple applications
 # in the same project.
 #
-# See https://docs.platform.sh/configuration/app.html
+# See https://docs.upsun.com/anchors/fixed/app/configure/
 
 # The name of this app. Must be unique within a project.
 name: 'drupal'
@@ -80,13 +80,17 @@ hooks:
     # fast.
     deploy: |
         set -e
-        php ./drush/platformsh_generate_drush_yml.php
-        # if drupal is installed, will call the following drush commands:
-        #   - `cache-rebuild`
-        #   - `updatedb`
-        #   - and if config files are present, `config-import`
-        cd web
-        bash $PLATFORM_APP_DIR/drush/platformsh_deploy_drupal.sh
+        if [ -n "$(drush status --field=bootstrap)" ]; then
+            drush -y cache-rebuild
+            drush -y updatedb
+            if [ -n "$(ls $(drush php:eval "echo realpath(Drupal\Core\Site\Settings::get('config_sync_directory'));")/*.yml 2>/dev/null)" ]; then
+                drush -y config-import
+            else
+                echo "No config to import. Skipping."
+            fi
+        else
+            echo "Drupal not installed. Skipping standard Drupal deploy steps"
+        fi
 
 # The configuration of app when it is exposed to the web.
 web:
@@ -148,7 +152,7 @@ crons:
     # Run Drupal's cron tasks every 19 minutes.
     drupal:
         spec: '*/19 * * * *'
-        commands: 
+        commands:
             start: 'cd web ; drush core-cron'
 
 source:

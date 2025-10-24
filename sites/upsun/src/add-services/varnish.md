@@ -22,7 +22,7 @@ When you deploy your app, you always get the latest available patches.
 All incoming requests go through the [standard router](../define-routes/_index.md).
 The Varnish service sits between the router and all apps in the project.
 
-``` mermaid
+```mermaid {no-copy="true"}
 graph LR
     A(Request) -->B(Router)
     B --> C{Varnish}

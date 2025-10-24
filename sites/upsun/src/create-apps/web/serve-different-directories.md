@@ -10,7 +10,7 @@ You might want to create a URL structure different than the structure on your di
 For example, in Git you might have a folder for your app and another folder that builds your documentation.
 Your entire Git repository might look like the following:
 
-```text
+```text {no-copy="true"}
 {{% vendor/configdir %}}
     {{< vendor/configfile "routes" "strip" >}}
 application/

@@ -188,7 +188,7 @@ For example, the following `.environment` file allows any executable installed i
 to be run regardless of the current directory:
 
 ```bash {location=".environment"}
-export PATH=/app/vendor/bin:$PATH
+export PATH="/app/vendor/bin:${PATH}"
 ```
 
 You can also dynamically define environment variables based on the current environment.
@@ -256,8 +256,8 @@ title= Service environment variables
 +++
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=${DATABASE_HOST}
-export APP_DATABASE_USER=${DATABASE_USERNAME}
+export APP_DATABASE_HOST="${DATABASE_HOST}"
+export APP_DATABASE_USER="${DATABASE_USERNAME}"
 ```
 
 This sets environment variables with the names your app needs,
@@ -271,8 +271,8 @@ title= `PLATFORM_RELATIONSHIPS` environment variable
 It uses the `jq` library, which is included in all app containers for this purpose.
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
+export APP_DATABASE_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].host')"
+export APP_DATABASE_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
 ```
 
 This sets environment variables with names your app needs,
@@ -280,11 +280,10 @@ and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable]
 
 {{< /codetabs >}}
 
-## Use `.env` files
+## When to use `.env` files {#use-env-files}
 
-Many applications use a `.env` file in the application root for configuration.
-These are useful for local development to set variables without needing them to be global across the development computer.
-Read more about [the use cases for `.env` files](https://platform.sh/blog/2021/we-need-to-talk-about-the-env/).
+Upsun does not read `.env files`, as conventionally they are not committed to Git. You can use these for local
+development, but they will not be sourced on any Upsun environment. Typically, you can add `.env` to your .gitignore
+file so that its contents can vary for different developers.
 
-You shouldn't need to use a `.env` file in production.
-Add it to your `.gitignore` file to avoid confusion as its values can vary for each local developer.
+Read more about [the use cases for `.env` files](https://upsun.com/blog/what-is-env-file/).

@@ -170,7 +170,7 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
             # Runs all due cron events
             wp cron event run --due-now
     ```
-    
+
 5. Add your crons
 
 Under your application configuration you can now add a cron.
@@ -265,9 +265,9 @@ after the other database-related variables, add a blank line or two and add the 
 
 ```bash {location=".environment"}
 # Routes, URLS, and primary domain
-export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
-export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
-export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+export SITE_ROUTES="$(echo "$PLATFORM_ROUTES" | base64 --decode)"; \
+export UPSTREAM_URLS="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.type == "upstream" and .upstream == $app)) | keys')"; \
+export DOMAIN_CURRENT_SITE="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app)) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')"
 ```
 
 Save, add, and commit those changes:
@@ -279,9 +279,7 @@ git commit -m "adds remaining environment variables to .environment"
 ## 4. Push and deploy
 Now that we've added the required files, you're ready to push your changes and deploy your WordPress site:
 ```bash {location="Terminal"}
-
 {{% vendor/cli %}} push -y
-
 ```
 
 ## 5. Routinely run WP Cron (optional)

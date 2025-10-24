@@ -10,7 +10,7 @@ description: |
 
 ![Overview of projects in the Console](/images/console/upsun-console-main-view.png "0.6")
 
-This Console offers you ways to manage projects and environments other than the [command line interface (CLI))](../cli/_index.md).
+This Console offers you ways to manage projects and environments other than the [command line interface (CLI)](../cli/_index.md).
 
 ## Project list
 
@@ -41,5 +41,5 @@ The Console can be displayed in three ways:
 * High contrast mode
 * Dark mode
 
-To meet our [commitment to accessibility](https://platform.sh/trust-center/legal/wcag/),
+To meet our [commitment to accessibility](https://upsun.com/trust-center/legal/),
 all three options are compliant with level AA of the Web Content Accessibility Guidelines 2.0.

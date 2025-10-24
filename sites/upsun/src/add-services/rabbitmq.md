@@ -95,10 +95,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_RABBITMQ_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.rabbitmq[0].host')"
+export APP_RABBITMQ_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.rabbitmq[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -303,11 +303,11 @@ From this, ``myapp`` can retrieve access credentials to the service through the 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials.
 # For more information, please visit https://docs.upsun.com/development/variables.html#service-environment-variables.
-export QUEUE_SCHEME=${RABBITMQ_SCHEME}
-export QUEUE_USERNAME=${RABBITMQ_USERNAME}
-export QUEUE_PASSWORD=${RABBITMQ_PASSWORD}
-export QUEUE_HOST=${RABBITMQ_HOST}
-export QUEUE_PORT=${RABBITMQ_PORT}
+export QUEUE_SCHEME="${RABBITMQ_SCHEME}"
+export QUEUE_USERNAME="${RABBITMQ_USERNAME}"
+export QUEUE_PASSWORD="${RABBITMQ_PASSWORD}"
+export QUEUE_HOST="${RABBITMQ_HOST}"
+export QUEUE_PORT="${RABBITMQ_PORT}"
 
 # Set a single RabbitMQ connection string variable for AMQP.
 export AMQP_URL="${QUEUE_SCHEME}://${QUEUE_USERNAME}:${QUEUE_PASSWORD}@${QUEUE_HOST}:${QUEUE_PORT}/"
