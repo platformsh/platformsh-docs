@@ -37,26 +37,26 @@ The following table presents all the properties you can use at the top level of 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
-|--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
-| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
-| `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                      |
-| `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
-| `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
+| Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                 |
+|--------------------|--------------------------------------------------------------------------|----------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                              |
+| `type`             | A type                                                                   | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:{{% latest composable %}}"`                                                                                                                                                  |
+| `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                       |
+| `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                     |
+| `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                     |
 | `disk`             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space).                                                                     |
-| `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
-| `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
-| `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
+| `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                    |
+| `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                          |
+| `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                         |
 | `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md). |
-| `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
-| `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
-| `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
-| `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
-| `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
-| `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
-| `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
+| `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                        |
+| `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                       |
+| `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                                |
+| `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                      |
+| `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                                |
+| `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                  |
+| `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                          |
+| `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                     |
 
 {{% note %}}
 The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
@@ -105,27 +105,16 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
-### Supported Nix channels
-
-A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems).
-
-Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
-
-<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. -->
-<!-- The following channels are supported: -->
-At this time, channel `25.05` is supported.
-
+{{% composable/composable-channels %}}
 
 ### Configure Nix channels
 
 The Nix channel can be configured with the [top-level property `type`](#top-level-properties).
 
-For example, to use the Nix channel `25.05`, you would use the following syntax:
+For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
-
-type: "composable:25.05"
-
+type: "composable:{{% latest composable %}}"
 ```
 
 ### Supported Nix packages
@@ -140,18 +129,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.18<br/>1.15<br/>1.14                 |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 22<br/>21                              |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 24<br/>22<br/>20<br/>18                |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.4<br/>8.3<br/>8.2<br/>8.1            |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.4<br/>3.3<br/>3.2<br/>3.1            |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -325,36 +314,36 @@ There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``
 
 #### ``HIGH_CPU`` container profile
 
-| Size |  CPU  | MEMORY   |
-| ---- | ----- | -------- |
-| S    | 0.40  | 128 MB   |
-| M    | 0.40  | 128 MB   |
-| L    | 1.20  | 256 MB   |
-| XL   | 2.50  | 384 MB   |
-| 2XL  | 5.00  | 768 MB   |
-| 4XL  | 10.00 | 1536 MB  |
+| Size | CPU   | MEMORY  |
+|------|-------|---------|
+| S    | 0.40  | 128 MB  |
+| M    | 0.40  | 128 MB  |
+| L    | 1.20  | 256 MB  |
+| XL   | 2.50  | 384 MB  |
+| 2XL  | 5.00  | 768 MB  |
+| 4XL  | 10.00 | 1536 MB |
 
 #### `BALANCED` container profile
 
-| Size | CPU  | MEMORY   |
-| ---- | ---- | -------- |
-| S    | 0.05 | 32 MB    |
-| M    | 0.05 | 64 MB    |
-| L    | 0.08 | 256 MB   |
-| XL   | 0.10 | 512 MB   |
-| 2XL  | 0.20 | 1024 MB  |
-| 4XL  | 0.40 | 2048 MB  |
+| Size | CPU  | MEMORY  |
+|------|------|---------|
+| S    | 0.05 | 32 MB   |
+| M    | 0.05 | 64 MB   |
+| L    | 0.08 | 256 MB  |
+| XL   | 0.10 | 512 MB  |
+| 2XL  | 0.20 | 1024 MB |
+| 4XL  | 0.40 | 2048 MB |
 
 #### `HIGH_MEMORY` container profile
 
-| Size | CPU  | MEMORY    |
-| ---- | ---- | --------- |
-| S    | 0.25 | 128 MB    |
-| M    | 0.25 | 288 MB    |
-| L    | 0.40 | 1280 MB   |
-| XL   | 0.75 | 2624 MB   |
-| 2XL  | 1.50 | 5248 MB   |
-| 4XL  | 3.00 | 10496 MB  |
+| Size | CPU  | MEMORY   |
+|------|------|----------|
+| S    | 0.25 | 128 MB   |
+| M    | 0.25 | 288 MB   |
+| L    | 0.40 | 1280 MB  |
+| XL   | 0.75 | 2624 MB  |
+| 2XL  | 1.50 | 5248 MB  |
+| 4XL  | 3.00 | 10496 MB |
 
 #### Container profile reference
 
