@@ -93,5 +93,5 @@ typically located at `/mnt/shared/fastly_tokens.txt`.
 
 {{% /note %}}
 
-## Additional resources
-- [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/community/posts/26091087795602-Working-with-platform-sh-rate-limiting-implementation-Fastly) (Upsun Community): Learn how to update a dynamic access control list (ACL) and apply rate limiting. 
+## Dynamic ACL and rate limiting
+For details about updating an access control list (ACL) and applying rate limiting, check out the [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/community/posts/26091087795602-Working-with-platform-sh-rate-limiting-implementation-Fastly) article in the Upsun Community.
