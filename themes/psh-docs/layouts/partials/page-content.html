@@ -81,7 +81,7 @@
           {{ end }}
           <div class="cta-text main-copy flex-col justify-start items-start gap-2 inline-flex">
             <div class="cta-body">
-              {{ index $recruitment "description"}}
+              {{ index $recruitment "description" | markdownify }}
             </div>
 
           </div>
