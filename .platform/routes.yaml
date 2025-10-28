@@ -11,7 +11,7 @@ https://{default}/:
     paths:
       "/frameworks/(?!deploy|drupal)(.*).html":  { "to": "/guides/$1/deploy.html", "code": 301, "regexp": true }
       # Here just in case this path isn't update on redirection.io
-      "/api(/index.html)?": { "to": "https://docs.upsun.com/api/", "code": 301, "regexp" : true }
+      "^/api(/index.html)?": { "to": "https://docs.upsun.com/api/", "code": 301, "regexp" : true }
 
 "https://search.{default}/":
     type: upstream
