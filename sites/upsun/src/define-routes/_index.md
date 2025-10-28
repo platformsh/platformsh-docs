@@ -70,7 +70,7 @@ The specifics of configuring the Router container for multiple applications is e
 
 ### Sticky routing
 
-Sticky routing is a method that directs a client’s requests to the same application container, helping maintain request consistency. You can enable it in your [route configuration](#route-configuration-reference) to have the router attempt to send repeated requests from the same client to the same backend.
+Sticky routing ensures that all requests from a specific client are consistently routed to the same instance of your application. This can be critical for stateful applications that rely on local session data, preventing user context from being lost in a horizontally scaled environment. You can enable it in your [route configuration](#route-configuration-reference) to have the router attempt to send repeated requests from the same client to the same instance.
 
 At {{% vendor/name %}}, sticky routing is implemented using a hash of the client’s IP address. This ensures requests from the same IP are generally routed to the same container.
 
