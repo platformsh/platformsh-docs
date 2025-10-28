@@ -69,6 +69,15 @@ hovering on the next unselected line gives you the amount of time that passed be
 
 ![An activity log with multiple lines selected showing the duration of part of the activity](/images/management-console/activity-lines.png "0.5")
 
+### Activity log retention
+
+Activity logs are not retained indefinitely.
+Most activities are retained for one year, indicated by an `expires_at` field in the activity data.
+
+Even after activities reach their expiration date, approximately 100 of the most recent expired activities are preserved.
+This ensures you can still access recent historical data even after extended periods of inactivity.
+Note that cron and backup activities are excluded from this preservation policy.
+
 ## Container logs
 
 Events that occur within an app container are logged within that container.
