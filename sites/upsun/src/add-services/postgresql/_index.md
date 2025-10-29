@@ -8,6 +8,10 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
+{{% note theme="info" title="Note" %}}
+The [example](#usage-example) provided later in this topic is specific to using only a **primary** database. For details about using read-only replicas to improve performance of read-heavy applications, see the [PostgreSQL read-only replication](/add-services/postgresql/postgresql-readonly-replication.md) topic.
+{{% /note %}}
+
 ## Supported versions
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
@@ -110,6 +114,10 @@ export APP_POSTGRESQL_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.postgresql[0]
 {{< /codetabs >}}
 
 ## Usage example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** PostgreSQL database. For details about using read-only replicas to improve performance of read-heavy applications, see the [PostgreSQL read-only replication](/add-services/postgresql/postgresql-readonly-replication.md) topic.
+{{% /note %}}
 
 ### 1. Configure the service
 
@@ -400,7 +408,7 @@ A file very similar to this is generated automatically for your when using the `
 
 Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
-You can also access it from your app container via [SSH](../development/ssh/_index.md).
+You can also access it from your app container via [SSH](/development/ssh/_index.md).
 From your [relationship data](#relationship-reference), you need: `POSTGRESQL_USERNAME`, `POSTGRESQL_HOST`, and `POSTGRESQL_PORT`.
 Then run the following command:
 
@@ -481,7 +489,7 @@ Taking a backup or a database export before doing so is strongly recommended.
 ## Sanitizing data
 
 To ensure people who review code changes can't access personally identifiable information stored in your database,
-[sanitize your preview environments](../development/sanitize-db/postgresql.md).
+[sanitize your preview environments](/development/sanitize-db/postgresql.md).
 
 ## Set locale for database
 
