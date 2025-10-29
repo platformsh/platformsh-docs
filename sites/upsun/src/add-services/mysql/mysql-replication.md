@@ -1,7 +1,7 @@
 ---
 title: "MariaDB/MySQL External Replication"
 sidebarTitle: "MariaDB/MySQL Replication"
-description: In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}}.
+description: In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}} on a remote server.
 ---
 
 {{% description %}}
