@@ -1,26 +1,32 @@
 ---
-title: "MariaDB/MySQL read-only replication"
-sidebarTitle: "Read-only replication"
-description: Configure and access read-only MariaDB/MySQL replicas to ease the load on a primary database.
+title: "MariaDB read-only replication"
+sidebarTitle: "MariaDB read-only replication"
+description: Configure and access read-only MariaDB replicas to ease the load on a primary database.
 ---
 
-You can improve the performance of read-heavy applications by defining read-only replicas of your MariaDB/MySQL database and then connecting your applications to those replicas. 
+You can improve the performance of read-heavy applications by defining read-only replicas of your MariaDB database and then connecting your applications to those replicas. 
 
 Examples of read-heavy applications include: 
 - Listing pages or dashboards
 - Reporting or analytics jobs
 - Background jobs that frequently query data
 
+{{< note theme="info" title="Note" >}}
+- **Replication is asynchronous**: Delays of a few milliseconds might occur between writes on the primary database and reads on the replica database.
+- **Replicas are read-only**: This restriction ensures data consistency and integrity. Attempts to modify data will result in an SQL error.
+{{< /note >}}
+
+### Read-only vs. external replicas
+Read-only replicas are used primarily to improve application performance by distributing database read requests from read-heavy applications.  
+
 Other common use cases for read-only replicas include: 
 - Cross-region backup: Replicating data to different geographical regions
 - Data warehousing: Extracting data from production to analytics projects
 
-**Note:** Read-only replicas are used primarily to improve application performance by distributing database read requests from read-heavy applications.  
-
-[External replicas](/add-services/mysql/mysql-replication.md) have different use cases, including disaster recovery.
+[External replicas](/add-services/mysql/mysql-replication.md) reside on remote servers and have different use cases, including disaster recovery.
 
 ### Replica scope and sharing services {#replica-scope-sharing-services}
-MariaDB/MySQL services (which provide access to databases and replicas) defined in a project can be accessed by the applications in that project only. 
+MariaDB services (which provide access to databases and replicas) defined in a project cannot be accessed by or shared with applications in other projects. 
 
 {{< note theme="info" title="Important" >}}
 - **Replication is asynchronous**: Delays of a few milliseconds might occur between writes on the primary database and reads on the replica database.
@@ -32,7 +38,7 @@ MariaDB/MySQL services (which provide access to databases and replicas) defined 
 The following code fragment defines two MariaDB services: a primary and a replica. You can use this fragment as a template by copying it into your `services.yaml` or `application.yaml` file. 
 
 Be sure to: 
-- Replace `<VERSION>` with the [supported MariaDB/MySQL version](/add-services/mysql/_index.md#supported-versions) that you need. Use the same version number for the primary and replica services.
+- Replace `<VERSION>` with the [supported MariaDB version](/add-services/mysql/_index.md#supported-versions) that you need. Use the same version number for the primary and replica services.
 - **Important:** Use `replicator` as the endpoint name when you define the replica service. This is a special endpoint name that the replica service uses to connect to the database.
 
 ```yaml {configFile="services"}
