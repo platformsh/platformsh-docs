@@ -1,10 +1,10 @@
 ---
-title: "MariaDB/MySQL External Replication"
-sidebarTitle: "MariaDB/MySQL Replication"
+title: "MariaDB/MySQL external replication"
+sidebarTitle: "External replication"
 description: In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}}.
 ---
 
-In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}}.
+In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}} on a remote server.
 
 Typically, an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.
 In that case, you can enable external replication using an extra permission.
