@@ -106,3 +106,5 @@ relationships:
   database-readonly:
     service: db-replica
 ```
+
+If your application's performance is still not what you expect, you can configure additional replicas as described above.

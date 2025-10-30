@@ -127,4 +127,4 @@ relationships:
     service: db-replica
 ```
 
-If you find the performance is what you expect, you can configure more replicas as described above.
+If your application's performance is still not what you expect, you can configure additional replicas as described above.
