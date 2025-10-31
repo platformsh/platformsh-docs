@@ -33,7 +33,7 @@ CPU resources can be allocated in two distinct ways. This choice allows you to p
 
 By default, projects on {{% vendor/name %}} run on a **shared infrastructure**.
 
-Our shared infrastructure is designed to provide CPU performance that typically aligns with the resources you've purchased. However, because this environment is shared among multiple tenants, performance can occasionally vary due to "noisy neighbor" effects — where other workloads on the same physical host temporarily consume more system resources.
+Our shared infrastructure is designed to provide CPU performance that typically aligns with the resources you've purchased. However, because this environment is shared among multiple tenants, performance can occasionally vary for [many reasons](/manage-resources/resource-init.html#default-resources) - for example, other workloads on the same physical host temporarily [consuming more system resources]().
 
 In most cases, this variability is short-lived and performance returns to normal levels without intervention. We continuously monitor performance at the regional level to detect and mitigate systemic issues, by constantly balancing containers to hosts that are less busy.
 
