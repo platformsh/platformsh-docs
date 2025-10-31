@@ -90,34 +90,6 @@ and whether a given measurement is normal, something that occurs occasionally, o
 
 To see data over a given time frame, use the date picker to select the range to display.
 
-## Pressure metrics
-
-CPU pressure is available in your metrics dashboard alongside existing resource metrics such as CPU, memory, and disk usage. This metric helps you spot hidden performance bottlenecks, especially in shared environments where multiple containers compete for resources.
-
-### What is Pressure?
-
-Pressure indicates the percentage of time your app’s tasks were delayed due to resource contention. This means they needed CPU, memory, or disk access but had to wait because those resources were fully occupied. For example, 6.8% pressure means that tasks were blocked from making progress for 6.8% of that period of time. 
-
-### How to understand Pressure
-
-**High pressure** indicates performance bottlenecks, which means that your app's tasks are frequently waiting for access to resources, even if overall usage appears normal.
-
-**Low pressure with high resource usage** typically means your app is making efficient use of its allocated resources. It's fully utilizing them without significant delays.
-
-#### Understanding the values
-
-- **0% pressure:** No contention - tasks had immediate access to resources.  
-- **0–100% pressure:** During each second of measurement, the application experienced contention for that percentage of time.  
-- **>100% pressure:** The app is consistently demanding more resources than are available. 
-
-For example, 200% CPU pressure with one CPU already at 100% utilization suggests the app would need roughly three CPUs in total to eliminate contention.
-
-{{< note theme="info" title="Pressure below 100%">}}
-
-Pressure below 100%, especially when it fluctuates, does not cause noticeable performance issues.
-
-{{< /note >}}
-
 ## Deployments
 
 Sometimes deployment activities (pushes, merges, syncs) can influence the underlying infrastructure.

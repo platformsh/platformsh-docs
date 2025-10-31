@@ -11,6 +11,11 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/documentation/)
 or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
+{{% note theme="info" title="MariaDB note" %}}
+The [example](#mariadb-example) provided later in this topic is specific to using only a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
+
+
 ## Supported versions
 
 You can select the major and minor version.
@@ -306,6 +311,10 @@ With the above definition, the application container now has [access to the serv
 {{< /codetabs >}}
 
 ### MariaDB example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
 
 {{< codetabs >}}
 
