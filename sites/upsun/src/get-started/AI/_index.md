@@ -21,8 +21,9 @@ using the following materials.
 - [**AI Agents**](aiagent.md) - Host conversational AI agents
 and chatbots using any
 supported runtime
-- [**MCP Servers**](mcp.md) - Deploy Model Context Protocol servers for
+- [**MCP Servers**](deploy-mcp.md) - Deploy Model Context Protocol servers for
 AI tool integration
+- [**{{% vendor/name %}} MCP Server**](using-the-mcp.md) - Use the {{% vendor/name %}} Model Context Protocel Server
 - **Vector Databases** - [Chroma](add-services/chroma.md), [Qdrant](add-services/qdrant.md)
 
 ## Supported technologies
