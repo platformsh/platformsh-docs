@@ -49,7 +49,7 @@ Once the app has gone through all of the build steps, it can connect to services
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
 
-   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures..<br> 
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br> 
    You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
 
 6. **Freeze app container**:
@@ -268,7 +268,7 @@ You could be temporarily be billed for extra resources while both versions are a
 
 {{< note theme="warning" >}}
 
-**Environment type:** Zero Downtime Deployments are only available on Upsun Grid.
+**Environment type:** Zero Downtime Deployments are only available on {{% vendor/name %}} Flex.
 
 **Deployment mode:** Requires [Manual Deployments](#manual-deployment) to be enabled.
 
@@ -348,6 +348,16 @@ If your application takes longer to become responsive, traffic might be [switche
 You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port. 
 
 For example, if your framework needs several seconds to initialize (e.g. building caches or database connections), `post_start` can help coordinate the handover so the app receives traffic only when it’s ready.
+
+An example of a `post_start` command waiting for your application would be:
+
+```
+web:
+  commands:
+    post_start: |
+	  date
+	  curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
+```
 
 **For more information about the `post_start` command, visit [web commands](/create-apps/app-reference/single-runtime-image.html#web-commands).**
 

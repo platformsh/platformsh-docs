@@ -39,43 +39,6 @@
       ]
     }
   },
-  "composable": {
-    "description": "Composable image",
-    "disk": false,
-    "docs": {
-      "relationship_name": null,
-      "service_name": null,
-      "url": "/create-apps/app-reference/composable-image.html",
-      "web": {
-        "upstream": {
-          "socket_family": "tcp",
-          "protocol": "http"
-        },
-        "commands": {
-          "start": ""
-        },
-        "locations": {
-          "/": {
-            "allow": false,
-            "passthru": true
-          }
-        }
-      },
-      "hooks": {
-        "build": [
-        ]
-      }
-    },
-    "endpoint": null,
-    "min_disk_size": null,
-    "name": "Composable image",
-    "repo_name": "composable",
-    "runtime": true,
-    "type": "composable",
-    "versions": "25.05",
-    "deprecated": [],
-    "supported": []
-  },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
     "repo_name": "dotnet",
@@ -699,6 +662,7 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
@@ -710,18 +674,18 @@
         "0.12"
       ],
       "supported": [
+        "24",
         "22",
-        "20",
-        "18"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "20",
-        "19",
-        "18"
+        "19"
       ],
       "deprecated": [
+        "18",
         "16",
         "14",
         "12",
@@ -746,13 +710,13 @@
     "type": "opensearch",
     "versions": {
       "deprecated": [
+        "1.3",
         "1.2",
         "1.1"
       ],
       "supported": [
         "3",
-        "2",
-        "1"
+        "2"
       ],
       "legacy": [
         "1.1"
@@ -895,6 +859,7 @@
         "9.3"
       ],
       "supported": [
+        "18",
         "17",
         "16",
         "15",
@@ -1276,6 +1241,35 @@
         "9.2",
         "9.1",
         "8.11"
+      ],
+      "deprecated": []
+    }
+  },
+  "valkey": {
+    "description": "",
+    "repo_name": "valkey",
+    "disk": false,
+    "docs": {
+      "relationship_name": "valkey",
+      "service_name": "valkey",
+      "url": "/add-services/valkey.html"
+    },
+    "endpoint": "http+stats",
+    "min_disk_size": null,
+    "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
+    "service_relationships": "application: 'app:http'",
+    "name": "Valkey",
+    "runtime": false,
+    "type": "valkey",
+    "versions": {
+      "supported": [
+        "8.0"
+      ],
+      "deprecated": []
+    },
+    "versions-dedicated-gen-2": {
+      "supported": [
+        "8.0"
       ],
       "deprecated": []
     }

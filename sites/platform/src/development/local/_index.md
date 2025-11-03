@@ -26,8 +26,7 @@ your app on your computer.
 
 You need to have:
 
-- A {{< vendor/name >}} account:
-  new users can sign up for a [free trial account](https://auth.upsun.com/register)
+- An {{% vendor/company_name %}} account
 - A working project
 - [Git](https://git-scm.com/downloads)
 - The [{{% vendor/name %}} CLI](/administration/cli/_index.md)
