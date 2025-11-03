@@ -49,7 +49,7 @@ Once the app has gone through all of the build steps, it can connect to services
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
 
-   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures..<br> 
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br> 
    You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
 
 6. **Freeze app container**:
