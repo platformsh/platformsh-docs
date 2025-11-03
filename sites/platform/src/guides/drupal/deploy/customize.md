@@ -223,24 +223,19 @@ You need the file or one like it if you plan to run `drush` as a command,
 such as in a cron task like the one in the [app configuration from the previous step](/guides/drupal/deploy/configure.md#configure-apps-in-platformappyaml).
 If you don't include the file, you get a [command not found error](/development/troubleshoot.md#command-not-found).
 
+Some Drush commands need to know the site's URI. This is achieved with the
+`DRUSH_OPTIONS_URI` variable defined in the same file.
+
 ```text {location=".environment"}
 # Allow executable app dependencies from Composer to be run from the path.
 if [ -n "$PLATFORM_APP_DIR" -a -f "$PLATFORM_APP_DIR"/composer.json ] ; then
   bin=$(composer config bin-dir --working-dir="$PLATFORM_APP_DIR" --no-interaction 2>/dev/null)
   export PATH="${PLATFORM_APP_DIR}/${bin:-vendor/bin}:${PATH}"
 fi
+
+# Set the URI for Drush commands.
+export PRIMARY_ROUTE_URL="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary) | .key | rtrimstr("/")')"
+export DRUSH_OPTIONS_URI="$PRIMARY_ROUTE_URL"
 ```
-
-## Drush configuration
-
-Drush requires a YAML file that declares what its URL is.
-That value varies depending on the branch you're on, so it can't be included in a static file.
-Instead, the `drush` directory includes a [short script](https://github.com/platformsh-templates/drupal10/blob/master/drush/platformsh_generate_drush_yml.php)
-that generates that file on each deploy, writing it to `.drush/drush.yml`.
-That allows Drush to run successfully on {{% vendor/name %}}, such as to run cron tasks.
-
-The script contents aren't especially interesting.
-For the most part, you can download it from the template,
-place it in a `drush` directory in your project so they can be called from the deploy hook, and then forget about it.
 
 {{< guide-buttons previous="Back" next="Deploy Drupal" >}}

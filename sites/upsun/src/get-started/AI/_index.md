@@ -36,7 +36,7 @@ AI tool integration
 [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/),
 [AWS Bedrock](https://docs.aws.amazon.com/bedrock/),
 and any other HTTP-based API service
-- **AI Frameworks**: [LangChain](https://python.langchain.com/docs/get_started/introduction),
+- **AI Frameworks**: [LangChain](https://docs.langchain.com/oss/python/langchain/install),
 [LlamaIndex](https://docs.llamaindex.ai/), [Chainlit](https://docs.chainlit.io/),
 and custom implementations
 - **Integration**: REST APIs, WebSockets, and event-driven architectures

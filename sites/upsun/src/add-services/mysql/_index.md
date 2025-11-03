@@ -11,6 +11,11 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/documentation/)
 or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
+{{% note theme="info" title="MariaDB note" %}}
+The [example](#mariadb-example) provided later in this topic is specific to using only a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
+
+
 ## Supported versions
 
 You can select the major and minor version.
@@ -307,6 +312,10 @@ With the above definition, the application container now has [access to the serv
 
 ### MariaDB example
 
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
+
 {{< codetabs >}}
 
 +++
@@ -576,13 +585,13 @@ For each endpoint you add, you can define the following properties:
 
 Available permissions:
 
-| Name              | Type                | Description                                         |
-| ----------------- | ------------------- | --------------------------------------------------- |
-| Read-only         | `ro`                | Can select, create temporary tables, and see views. |
-| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.        |
-| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines. |
-| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables. |
-| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [DevCenter article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
+| Name              | Type                | Description                                                                                                                                                                                                                                                                |
+|-------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Read-only         | `ro`                | Can select, create temporary tables, and see views.                                                                                                                                                                                                                        |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.                                                                                 |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                                                                                                               |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                                                                                                         |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [Dev Center article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ## Multiple databases
 

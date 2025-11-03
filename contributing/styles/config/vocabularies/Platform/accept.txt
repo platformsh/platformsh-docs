@@ -129,6 +129,7 @@ OPcache
 Opigno
 Opsgenie
 optipng
+Ory
 overutilize
 OVHcloud
 Packagist

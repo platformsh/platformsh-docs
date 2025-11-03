@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Skip links that are inside a <nav>
       if (link.closest("nav")) return;
 
+      // Skip normal behavior if click on an anchor in another part of the page
+      if (link.dataset.engagementId !== "content-section-anchor") return;
+
       const href = link.getAttribute("href");
       const url = new URL(href, window.location.href);
 

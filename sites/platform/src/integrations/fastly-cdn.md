@@ -23,7 +23,7 @@ The Fastly CDN plugin enables you to:
 
 
 ## Using the Fastly CDN plugin
-1. In the Upsun [console](https://upsun.console.com), navigate to the project and environment whose metrics you want to view.
+1. In the Upsun [console](https://console.upsun.com), navigate to the project and environment whose metrics you want to view.
 
       **Note:** To view summarized monthly _project-level_ traffic, including CDN bandwidth and CDN requests, see the **Traffic this month** section of a project page (make sure no environment is selected).
 
