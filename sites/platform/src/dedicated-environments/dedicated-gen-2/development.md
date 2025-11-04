@@ -53,6 +53,12 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 -   The deploy hook is run on one, and only one, of the three servers.
 -   The cluster is opened to allow new requests.
 
+{{< note title="info" theme="Note" >}}
+
+Note that hooks still run without containers. For example, [commands like `pre_start`](/create-apps/app-reference/single-runtime-image.md#web-commands) and other hooks run directly on the app docroot or worker service.
+
+{{< /note >}}
+
 The deploy usually takes approximately 30-90 seconds, although that is dependent on how your deploy hook has been configured.
 
 During the deploy process the cluster is unavailable. All Dedicated Gen 2 instances are fronted by the Fastly Content Delivery Network (CDN) unless you decide to bring your own CDN. You can also decide that you'd rather not use Fastly. Fastly can be configured to allow a “grace period”, meaning that requests to the origin that fail are served from the existing cache, even if that cache item is stale. We configure a default grace period that is longer than a typical deployment, and can extend that time upon request. That means anonymous users should see no interruption in service at all. Authenticated traffic that can’t be served by the CDN still sees a brief interruption.
