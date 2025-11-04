@@ -6,8 +6,8 @@ weight: 3
 ---
 
 [Lando](https://docs.lando.dev) is a third-party local development tool for which several stacks are available (LAMP, LEMP, MEAN).
-Lando works with most services supported by {{% vendor/name %}} [except for](https://docs.lando.dev/platformsh/caveats.html#unsupported-things) Vault KMS and network storage.
-See a list of [supported services](https://docs.lando.dev/platformsh/config.html#services-yaml).
+Lando works with most services supported by {{% vendor/name %}} [except for](https://docs.lando.dev/plugins/platformsh/caveats.html#unsupported-things) Vault KMS and network storage.
+See a list of [supported services](https://docs.lando.dev/plugins/platformsh/config.html#services-yaml).
 
 {{< note >}}
 
@@ -17,7 +17,7 @@ See a list of [supported services](https://docs.lando.dev/platformsh/config.html
 
 For a complete reference, consult the following resources:
 
-- [Lando {{% vendor/name %}} plugin documentation](https://docs.lando.dev/platformsh/) and [source code](https://github.com/lando/platformsh)
+- [Lando {{% vendor/name %}} plugin documentation](https://docs.lando.dev/plugins/platformsh/) and [source code](https://github.com/lando/platformsh)
 - [Lando documentation](https://docs.lando.dev/)
 
 ## Before you begin
@@ -28,7 +28,7 @@ You need :
 - A PHP project.
 
 Lando doesn't automatically pull and set up environment variables that have been set in the Console.
-To use a build hook that requires environment variables, manually [add them](https://docs.lando.dev/platformsh/config.html#environment-variables).
+To use a build hook that requires environment variables, manually [add them](https://docs.lando.dev/plugins/platformsh/config.html#environment-variables).
 
 ## 1. Install Lando
 
@@ -60,7 +60,7 @@ Run <code>lando init --recipe platformsh --source cwd --platformsh-auth {{% vari
 
 If for some reason you get an error using the {{% vendor/name %}} recipe,
 be sure to
-[install the latest version of the {{% vendor/name %}} plugin](https://docs.lando.dev/platformsh/getting-started.html#custom-installation)
+[install the latest version of the {{% vendor/name %}} plugin](https://docs.lando.dev/plugins/platformsh/getting-started.html#custom-installation)
 and run the command again.
 
 {{< /note >}}
@@ -99,7 +99,7 @@ Access your app and services by opening the according URLs in your browser.
 
 ## What's next
 
-- [Import data and download files](https://docs.lando.dev/platformsh/sync.html) from your remote {{% vendor/name %}} site.
+- [Import data and download files](https://docs.lando.dev/plugins/platformsh/sync.html) from your remote {{% vendor/name %}} site.
 - If you make changes in the {{% vendor/name %}} [configuration files](/learn/overview/structure.md) during development, run `lando rebuild` for these to be taken into account in Lando.
 - To keep your Lando image up-to-date, see how to [update Lando](https://docs.lando.dev/getting-started/updating.html).
 
@@ -112,8 +112,8 @@ Access your app and services by opening the according URLs in your browser.
 {{< /note >}}
 
 - Make sure that the [{{% vendor/name %}} configuration files](/learn/overview/structure.md) are present in your local repository.
-- Check that your [services](https://docs.lando.dev/platformsh/config.html#services-yaml) are supported by Lando.
-- Check [caveats and known issues](https://docs.lando.dev/platformsh/caveats.html).
+- Check that your [services](https://docs.lando.dev/plugins/platformsh/config.html#services-yaml) are supported by Lando.
+- Check [caveats and known issues](https://docs.lando.dev/plugins/platformsh/caveats.html).
 - Carefully check the output of the Lando commands you run to spot warnings and errors.
 - Run `lando rebuild`.
 - Restart Lando in debug mode by running `lando restart -vvv`.
@@ -141,4 +141,4 @@ Find out how to solve it in the [Lando blog](https://lando.dev/blog/2020/03/20/5
 
 ### Something still wrong?
 
-[Get in touch with Lando](https://docs.lando.dev/platformsh/support.html).
+[Get in touch with Lando](https://docs.lando.dev/plugins/platformsh/support.html).
