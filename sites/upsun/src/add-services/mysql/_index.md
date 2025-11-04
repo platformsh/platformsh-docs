@@ -770,7 +770,7 @@ make sure your service name remains unchanged.
 which removes any existing data from your database.**
 
 ## Password rotation {#password-rotation}
-By default, password rotation is enabled (`rotate_passwords=true`): {{% vendor/name %}} automatically changes (or _rotates_) MariaDB passwords each time you [update the version of the MariaDB service](#1-configure-the-service) used in the service container. Password rotation also occurs as defined by any password lifetime settings in MariaDB. 
+By default, password rotation is enabled (`rotate_passwords=true`), enabling {{% vendor/name %}} to automatically change (or _rotate_) MariaDB passwords each time it upgrades the Debian packages in the MariaDB image. Password rotation also occurs as defined by any password lifetime settings in MariaDB. 
 
 Specific scenarios might warrant disabling password rotation (` rotate_passwords=false`): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
 
@@ -779,7 +779,6 @@ Passwords do **not** rotate automatically when you reset this value to `true`.
 {{% note title="Important" theme="warning" %}}
 Disabling password rotation can jeopardize compliance with security certifications - make sure you weigh this risk alongside the convenience of SSH-tunneling access.
 {{% /note %}}
-
 
 ## Storage Engine
 
