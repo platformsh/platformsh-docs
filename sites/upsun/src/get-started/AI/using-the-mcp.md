@@ -65,10 +65,10 @@ graph TB
     API -->|Action| PROJECT3
     
     %% Styling
-    classDef client fill:#D0F302,stroke:#000,stroke-width:2px,color:#000,font-color:#000000 
-    classDef server fill:#6046FF,stroke:#000,stroke-width:2px,color:#fff,font-color:#000000 
-    classDef api fill:#000,stroke:#D0F302,stroke-width:2px,color:#D0F302,font-color:white
-    classDef projects fill:#D0F302,stroke:#000,stroke-width:2px,color:#000,font-color:#000000 
+    classDef client fill:#D0F302,stroke:#000,stroke-width:2px,color:#000000
+    classDef server fill:#6046FF,stroke:#000,stroke-width:2px,color:#FFFFFF
+    classDef api fill:#000,stroke:#D0F302,stroke-width:2px,color:#D0F302
+    classDef projects fill:#D0F302,stroke:#000,stroke-width:2px,color:#000000
     
     class AI client
     class MCP server
