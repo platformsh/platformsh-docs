@@ -53,7 +53,7 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 -   The deploy hook is run on one, and only one, of the three servers.
 -   The cluster is opened to allow new requests.
 <!-- vale off -->
-{{< note title="note" theme="Note" >}}
+{{< note title="Note" theme="Note" >}}
 
 Note that hooks still run without containers. For example, [commands like `pre_start`](/create-apps/app-reference/single-runtime-image.md#web-commands) and other hooks run directly on the app docroot or worker service.
 
