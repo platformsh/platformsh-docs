@@ -526,7 +526,7 @@ You can configure your MySQL service in the [services configuration](../_index.m
 | `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
 | `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
 | `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
-| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Defaults to `true`. When set to `false`, [password rotation](#password-rotation) is disabled. |
 
 Example configuration:
 
@@ -755,27 +755,31 @@ define custom endpoints in your [service configuration](#1-configure-the-service
 For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
-
-{{% note theme="warning" %}}
-By default, the generated password will rotate on a regular
-basis. Your applications MUST use the passwords from the
-relationships, as the password _is_ going to change. Set
-`rotate_passwords` to `false` if you wish to change this default
-behavior.
-{{% /note %}}
+You cannot customize these generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
 through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
- within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
-The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
-Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app). 
+ 
+Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.** 
 
 When you switch from the default configuration with an empty password to custom endpoints,
 make sure your service name remains unchanged.
-Failure to do so results in the creation of a new service,
-which removes any existing data from your database.
+**Changing the service name creates a new service,
+which removes any existing data from your database.**
+
+## Password rotation {#password-rotation}
+By default, password rotation is enabled (`rotate_passwords=true`): {{% vendor/name %}} automatically changes (or _rotates_) MariaDB passwords each time you [update the version of the MariaDB service](#1-configure-the-service) used in the service container. Password rotation also occurs as defined by any password lifetime settings in MariaDB. 
+
+Specific scenarios might warrant disabling password rotation (` rotate_passwords=false`): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
+
+Passwords do **not** rotate automatically when you reset this value to `true`. 
+
+{{% note title="Important" theme="warning" %}}
+Disabling password rotation can jeopardize compliance with security certifications - make sure you weigh this risk alongside the convenience of SSH-tunneling access.
+{{% /note %}}
+
 
 ## Storage Engine
 
