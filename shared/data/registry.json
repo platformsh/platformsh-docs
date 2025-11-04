@@ -681,6 +681,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "22",
         "20",
         "19"
       ],
