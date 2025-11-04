@@ -1347,5 +1347,30 @@
         "1.6"
       ]
     }
+  },
+  "clickhouse": {
+    "description": "ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "min_disk_size": 512,
+    "configuration": "applications:\n  <APP_NAME>:\n    relationships:\n      <SERVICE_NAME>:",
+    "name": "ClickHouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "versions": {
+      "supported": [
+        "25.3",
+        "24.3",
+        "23.8"
+      ],
+      "deprecated": [],
+      "legacy": []
+    }
   }
 }
