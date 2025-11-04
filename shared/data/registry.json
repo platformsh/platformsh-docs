@@ -1363,6 +1363,9 @@
     "repo_name": "clickhouse",
     "runtime": false,
     "type": "clickhouse",
+    "exclude_from": [
+      "platformsh"
+    ],
     "versions": {
       "supported": [
         "25.3",
