@@ -681,7 +681,7 @@ See [Qodo Gen docs](https://docs.qodo.ai/qodo-documentation/qodo-gen/qodo-gen-ch
 
 See [Local and Remote MCPs for Perplexity](https://www.perplexity.ai/help-center/en/articles/11502712-local-and-remote-mcps-for-perplexity) for more information.
 
-1. Navigate `Perplexity` > `Settings`
+1. Navigate to `Perplexity` > `Settings`.
 2. Select `Connectors`.
 3. Click `Add Connector`.
 4. Select `Advanced`.
