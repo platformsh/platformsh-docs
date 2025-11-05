@@ -1218,7 +1218,6 @@
     "versions-dedicated-gen-2": {
       "supported": [
         "9.9",
-        "9.8",
         "9.7",
         "9.6",
         "9.4",
