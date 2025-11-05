@@ -169,7 +169,6 @@ You can easily configure the Upsun MCP server through Cline:
 1. Open **Cline**.
 2. Click the hamburger menu icon (☰) to enter the **MCP Servers** section.
 3. On the **Remote Servers** tab, click **Edit Configuration**.
-4. Click the **Edit Configuration** button.
 5. Add upsun to `mcpServers`:
 
 ```json
