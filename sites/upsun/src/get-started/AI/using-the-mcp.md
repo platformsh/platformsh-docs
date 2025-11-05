@@ -341,7 +341,7 @@ See [JetBrains AI Assistant Documentation](https://www.jetbrains.com/help/ai-ass
 
 1. In JetBrains IDEs, go to `Settings` -> `Tools` -> `AI Assistant` -> `Model Context Protocol (MCP)`
 2. Click `+ Add`.
-3. Click on `Command` in the top-left corner of the dialog and select the As JSON option from the list
+3. Click `Command` in the top-left corner of the dialog and select **As JSON** from the list.
 4. Add this configuration and click `OK`
 
 ```json
