@@ -359,7 +359,7 @@ See [JetBrains AI Assistant Documentation](https://www.jetbrains.com/help/ai-ass
 ```
 
 5. Click `Apply` to save changes.
-6. The same way upsun could be added for JetBrains Junie in `Settings` -> `Tools` -> `Junie` -> `MCP Settings`
+6. Repeat these steps to add `upsun` for JetBrains Junie: Go to `Settings` -> `Tools` -> `Junie` -> `MCP Settings`.
 
 </details>
 
