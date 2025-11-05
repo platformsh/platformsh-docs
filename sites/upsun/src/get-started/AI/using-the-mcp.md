@@ -598,7 +598,7 @@ More information is available on [BoltAI's Documentation site](https://docs.bolt
 <details>
 <summary><b>Install in Rovo Dev CLI</b></summary>
 
-Edit your Rovo Dev CLI MCP config by running the command below -
+Edit your Rovo Dev CLI MCP config by running the following command:
 
 ```bash
 acli rovodev mcp
