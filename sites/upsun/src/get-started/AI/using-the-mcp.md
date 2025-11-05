@@ -396,7 +396,7 @@ See [Kiro Model Context Protocol Documentation](https://kiro.dev/docs/mcp/config
 <details>
 <summary><b>Install in Trae</b></summary>
 
-Use the Add manually feature and fill in the JSON configuration information for that MCP server.
+Use the **Add manually** feature and populate the JSON configuration information for that MCP server.
 For more details, visit the [Trae documentation](https://docs.trae.ai/ide/model-context-protocol?_lang=en).
 
 #### Trae Remote Server Connection
