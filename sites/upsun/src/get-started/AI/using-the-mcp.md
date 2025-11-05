@@ -47,6 +47,35 @@ The {{% vendor/name %}} MCP Server uses [Streamable HTTP transport](https://mode
 
 It uses HTTP POST for client-to-server messages with optional Server-Sent Events for streaming capabilities. This transport enables remote server communication and supports standard HTTP authentication methods including bearer tokens, API keys, and custom headers.
 
+```mermaid
+graph TB
+    AI["AI Assistant<br/>(MCP Client)"]
+    MCP["Upsun MCP Server<br/>mcp.upsun.com/mcp"]
+    API["Upsun API"]
+    
+    PROJECT1["Upsun Project 1"]
+    PROJECT2["Upsun Project 2"]
+    PROJECT3["Upsun Project 3"]
+    
+    %% Connections
+    AI -->|API Token| MCP
+    MCP --> API
+    API -->|Action| PROJECT1
+    API -->|Action| PROJECT2
+    API -->|Action| PROJECT3
+    
+    %% Styling
+    classDef client fill:#D0F302,stroke:#000,stroke-width:2px,color:#000000
+    classDef server fill:#6046FF,stroke:#000,stroke-width:2px,color:#FFFFFF
+    classDef api fill:#000,stroke:#D0F302,stroke-width:2px,color:#D0F302
+    classDef projects fill:#D0F302,stroke:#000,stroke-width:2px,color:#000000
+    
+    class AI client
+    class MCP server
+    class API api
+    class PROJECT1,PROJECT2,PROJECT3 projects
+```
+
 ## Installation
 
 ### 1. Generate an API Token
