@@ -218,7 +218,7 @@ To configure the Upsun MCP server in Augment Code:
 
 **Manual Configuration**
 
-1. Press Cmd/Ctrl Shift P or go to the hamburger menu in the Augment panel
+1. Press Cmd/Ctrl+Shift+P or go to the hamburger menu in the Augment panel.
 2. Select Edit Settings
 3. Under Advanced, click Edit in settings.json
 4. Add the server configuration to the `mcpServers` array in the `augment.advanced` object
