@@ -8,4 +8,4 @@ description: Develop your Laravel app locally with **Lando**, a development tool
 which dramatically simplifies local development.
 
 To learn more about how to run your Laravel app in a local Lando-managed environment,
-see the [official integration documentation](https://docs.lando.dev/platformsh/).
+see the [official integration documentation](https://docs.lando.dev/plugins/platformsh/).
