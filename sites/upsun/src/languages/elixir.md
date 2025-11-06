@@ -188,5 +188,5 @@ applications:
       deploy: |
         mix do ecto.setup
 ```
-## View application instance details
+## View application instance details {#view-application-instance-details}
 {{% view-instance-details %}}
