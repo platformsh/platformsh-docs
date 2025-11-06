@@ -220,6 +220,28 @@ title= From the Console
 
 {{< /note >}}
 
+## View application instance details {#view-application-instance-details}
+{{% vendor/name %}} maintains a real-time indexed list of an application's instances and their IP addresses in the project's `/run/peers.json` file. You might view this read-only file to gain insight into how your application instances are distributed. Upsun maintains this file whether you scale instances manually or have autoscaling enabled.
+
+Distributed applications (for example, those running on Elixir and Erlang) and applications that can scale horizontally must be aware of all its instances in order to coordinate activities such as setting up clusters and handling application failures.  
+
+The number of instances in this file at any time matches the number of application instances shown on the Configure Resources page of the Console. 
+
+To view the contents of the file, run this command from the root of your project directory:
+
+```sh
+cat /run/peers.json | jq
+```
+
+The output is similar to this: 
+```json
+{
+  "hello_distributed.1": "123.456.789.10",
+  "hello_distributed.3": "123.456.789.20",
+  "hello_distributed.2": "123.456.789.30",
+  "hello_distributed.0": "123.456.789.40"
+}
+```
 
 ## Advanced: Container profiles
 
