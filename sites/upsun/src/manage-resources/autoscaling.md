@@ -117,6 +117,9 @@ When autoscaling is enabled, [manual instance count](/manage-resources/adjust-re
 
 {{< /note >}}
 
+### View instance details
+{{% view-instance-details %}}
+
 #### Default behaviour (CPU example)
 
 - If CPU stays at **80% or higher for 5 minutes**, autoscaling adds an instance.
