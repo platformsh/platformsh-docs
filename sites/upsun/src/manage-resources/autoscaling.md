@@ -84,7 +84,6 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 | Average CPU (min/max)     | Available   | 
 | Average Memory (min/max)  | Coming      | 
 
-  
 ## How autoscaling works
 
 ### Thresholds
@@ -125,6 +124,49 @@ When autoscaling is enabled, [manual instance count](/manage-resources/adjust-re
 - After a scaling action, autoscaling waits **5 minutes** before making another change.
 
 This cycle ensures your app automatically scales up during high demand and scales down when demand drops, helping balance performance with cost efficiency.
+
+## Memory-based autoscaling
+
+Autoscaling primarily relies on CPU utilization as its trigger, however you can also configure memory-based autoscaling, which works in a similar way, but with a few important differences to understand.
+
+### CPU-based triggers
+
+CPU-based autoscaling reacts to sustained changes in average CPU utilization.
+
+- Scale-up threshold: When average CPU usage stays above your defined limit for the evaluation period, Upsun adds instances to distribute the load.
+- Scale-down threshold: When CPU usage remains below your lower limit for the evaluation period, instances are removed to save resources.
+- Cooldown window: A delay (default: 5 minutes) before another scaling action can occur.
+
+This approach works well for CPU-intensive workloads such as request-heavy APIs or web apps that process data or run frequent computations.
+
+### Memory-based triggers
+
+Memory-based autoscaling follows the same principle as CPU triggers but measures average memory utilization instead. When your app consistently uses more memory than your upper threshold, {{% vendor/name %}} adds instances; when memory usage remains low, it removes them.
+
+This option is useful for workloads where memory pressure, caching, or in-memory data handling determine performance — for example, large data processing apps or services with persistent caching layers.
+
+#### Example
+
+| Condition | Scaling action |
+|------------|----------------|
+| Memory above 80% for 5 minutes | Scale up: Add one instance |
+| Memory below 30% for 5 minutes | Scale down: Remove one instance |
+
+{{< note theme="warning" title="Understand your app’s memory profile" >}}
+High memory usage doesn’t always mean your app needs more instances. Linux systems use available memory for caching and buffering, so 90–100% usage can be normal even under stable conditions. Before using memory-based autoscaling, profile your application’s typical memory behavior to avoid unnecessary scaling and extra cost.
+
+Tools such as [Blackfire](https://www.blackfire.io/) or system-level metrics in your [Application metrics dashboard](/increase-observability/application-metrics.html) can help you understand what “normal” looks like for your app.
+{{< /note >}}
+
+#### Step-by-step: Configure memory triggers
+1. Open your project in the Console.  
+2. Select your target environment.  
+3. Choose **Configure resources**.  
+4. Under **Autoscaling**, select **Enable** (if not already enabled).  
+5. Choose **Memory usage (min/max)** as your scaling trigger.  
+6. Set scale-up and scale-down thresholds, evaluation period, and cooldown window.  
+7. Save changes — your app will now automatically scale based on memory utilization.
+
 
 ## Guardrails and evaluation
 
