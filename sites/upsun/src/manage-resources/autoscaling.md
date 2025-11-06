@@ -9,13 +9,36 @@ keywords:
   - "scaling"
 ---
 
-Autoscaling allows your applications to automatically [scale horizontally](/manage-resources/adjust-resources.html#horizontal-scaling) based on resource usage. 
 
-This ensures your apps remain responsive under load while helping you optimize costs.  
+# What is autoscaling?
+
+Autoscaling is a feature that automatically adjusts how many instances of your application are running, increasing capacity when demand rises, and reducing it when things are quiet. It helps your app stay responsive under heavy load while keeping your infrastructure costs efficient.
+
+Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application instances depending on resource usage. If CPU utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds, cooldowns, and limits, so scaling always happens safely and predictably.
 
 - **Scope:** Available for applications only  
 - **Product tiers:** Available for all Upsun Flex environments  
 - **Environments:** Configurable per environment - across development, staging, and production
+
+{{< note theme="info" title="Know your app first">}}
+Autoscaling is quick to set up: you can [enable it in a few clicks](#enable-autoscaling) from your environment’s **Configure resources** tab. However, because it reacts to real traffic patterns, it’s important to understand your app’s typical performance before turning it on. 
+
+Tools like [Blackfire](https://www.blackfire.io/) can help you identify where your app consumes CPU or memory, so you can set realistic thresholds that reflect your traffic patterns. Blackfire can also help you spot whether autoscaling is likely to benefit your app or if a fixed setup with tuned [vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) like CPU/RAM would serve you better.
+{{< /note >}}
+
+## When to use autoscaling
+
+Autoscaling makes the most sense for workloads with variable or unpredictable traffic. It’s especially valuable when:
+
+- You run time-sensitive or customer-facing applications where latency matters.
+- Your app experiences seasonal or campaign-driven spikes.
+- You want to avoid paying for idle capacity during quieter periods.
+
+### Example: When autoscaling works effectively
+A retail app sees traffic jump fivefold every Friday evening and during holiday campaigns. By enabling autoscaling, the app automatically adds instances when CPU usage rises and scales back overnight, ensuring smooth checkouts without wasted cost.
+
+### Example: When autoscaling might not be needed
+An internal dashboard with predictable, low usage may not benefit from autoscaling. In this case, a fixed number of instances and tuned vertical resources (CPU/RAM) can be more cost-effective and stable.
 
 {{< note theme="info" title="Scale databases and resources">}}
 
