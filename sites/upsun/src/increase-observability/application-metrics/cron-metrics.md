@@ -46,7 +46,7 @@ This combination of **color** and **height** makes it easy to spot outliers — 
 
 ## Example
 
-![Screenshot of Cron job visualization in the Console](../images/cron-visualization.png "0.75")
+[ADD SCREENSHOT HERE]
 
 Each vertical bar corresponds to a single execution. Hover over any bar to view basic details such as:
 - Execution date and time
@@ -54,7 +54,6 @@ Each vertical bar corresponds to a single execution. Hover over any bar to view 
 - Status (success/failure)
 
 Click a bar to open the **detailed execution log**, where you can inspect errors or performance information.
-
 
 ## Troubleshooting and best practices
 
