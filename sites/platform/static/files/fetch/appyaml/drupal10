@@ -110,6 +110,9 @@ web:
             # 365 days).
             expires: 5m
 
+            # Redirect any incoming request to Drupal's front controller.
+            passthru: '/index.php'
+
             # Deny access to all static files, except those specifically allowed below.
             allow: false
 
@@ -119,23 +122,28 @@ web:
             # Rules for specific URI patterns.
             rules:
                 # Allow access to common static files.
-                web:
-                    '^/sites/[^/]+/settings.*?\.php$':
-                        scripts: false
-                        
-                    # Allow only a selected set of PHP scripts to be executed.
-                    '^/index\.php$':
-                        scripts: true
-                    '^/core/install\.php$':
-                        scripts: true
-                    '^/update\.php$':
-                        scripts: true
-                    '^/core/rebuild\.php':
-                        scripts: true
-                    '^/core/authorize\.php':
-                        scripts: true
-                    '^/core/modules/statistics/statistics\.php':
-                        scripts: true
+                '\.(avif|webp|jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+                    allow: true
+                '^/robots\.txt$':
+                    allow: true
+                '^/sitemap\.xml$':
+                    allow: true
+
+                # Allow only a selected set of PHP scripts to be executed.
+                '^/sites/[^/]+/settings.*?\.php$':
+                    scripts: false
+                '^/index\.php$':
+                    scripts: true
+                '^/core/install\.php$':
+                    scripts: true
+                '^/update\.php$':
+                    scripts: true
+                '^/core/rebuild\.php':
+                    scripts: true
+                '^/core/authorize\.php':
+                    scripts: true
+                '^/core/modules/statistics/statistics\.php':
+                    scripts: true
 
         # The files directory has its own special configuration rules.
         '/sites/default/files':
