@@ -13,7 +13,6 @@ Autoscaling is a feature that automatically adjusts how many instances of your a
 
 ## What is autoscaling?
 
-
 Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application instances depending on resource usage. If CPU utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
 
 - **Scope:** Available for applications only  
