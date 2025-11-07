@@ -159,7 +159,7 @@ High memory usage doesn’t always mean your app needs more instances. Linux sys
 Tools such as [Blackfire](https://www.blackfire.io/) or system-level metrics in your [Application metrics dashboard](/increase-observability/application-metrics.html) can help you understand what “normal” looks like for your app.
 {{< /note >}}
 
-#### Step-by-step: Configure memory triggers
+#### Configure memory triggers
 1. Open your project in the Console.  
 2. Select your target environment.  
 3. Choose **Configure resources**.  
