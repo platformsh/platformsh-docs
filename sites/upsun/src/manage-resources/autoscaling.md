@@ -144,7 +144,7 @@ CPU-based autoscaling reacts to sustained changes in average CPU utilization.
 
 Memory-based autoscaling follows the same principle as CPU triggers but measures average memory utilization instead. When your app consistently uses more memory than your upper threshold, {{% vendor/name %}} adds instances; when memory usage remains low, it removes them.
 
-This option is useful for workloads where memory pressure, caching, or in-memory data handling determine performance — for example, large data processing apps or services with persistent caching layers.
+This option is useful for workloads where caching or in-memory data handling determine performance - for example, large data processing apps or services with persistent caching layers.
 
 #### Example
 
