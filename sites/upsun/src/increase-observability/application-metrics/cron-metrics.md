@@ -1,7 +1,7 @@
 ---
 title: Monitor Cron job executions
 description: Learn how to visualize and interpret your Cron job runs directly in the console.
-weight: -50
+weight: -5
 keywords:
   - "cron"
   - "jobs"
