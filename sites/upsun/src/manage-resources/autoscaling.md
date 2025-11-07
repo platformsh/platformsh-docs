@@ -1,6 +1,6 @@
 ---
 title: Autoscaling
-description: Learn how autoscaling dynamically adjusts app instances based on CPU usage to keep apps responsive under load while optimizing costs.
+description: Learn how autoscaling adjusts app instances based on CPU and memory usage to keep apps stable and cost-efficient under varying workloads.
 weight: -100
 keywords:
   - "resources"
@@ -87,13 +87,24 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 
 ### Thresholds
 
-Autoscaling continuously monitors the average CPU utilization across your app's running instances. It works by you setting your thresholds, which are specific CPU usage levels that determine when autoscaling should take action. There are two different thresholds that your CPU utilization operates within: A scale-up threshold and a scale-down threshold.
+
+Autoscaling monitors the average CPU and [memory usage](#memory-based-autoscaling) of your running app instances.  
+You define thresholds that determine when new instances are launched or removed.
+
+There are two different thresholds that your CPU and memory utilization operate within: A scale-up threshold and a scale-down threshold.
 
 - **Scale-up threshold**: If your chosen trigger (e.g. CPU usage) stays **above** this level for the time period you've set (the evaluation period), autoscaling will launch additional instances to share the load.
 
 - **Scale-down threshold**: If your chosen trigger stays **below** this level for the time period you've set, autoscaling will remove unneeded instances to save resources and costs.
 
 To prevent unnecessary back-and-forth, autoscaling also uses a cooldown window: a short waiting period before another scaling action can be triggered. This can also be configured or kept to the [default](#default-settings) waiting period before any additional scaling starts. 
+
+{{< note theme="warning" title="Combined triggers" >}}
+
+If both CPU and memory triggers are enabled, either one can initiate scaling. A global cooldown applies after each scaling event, but in rare cases, combined triggers may interact unexpectedly. For example, CPU scaling up followed by memory scaling down. Adjust thresholds and cooldowns carefully to avoid oscillation.
+
+{{< /note >}}
+
 
 ### Default settings
 
