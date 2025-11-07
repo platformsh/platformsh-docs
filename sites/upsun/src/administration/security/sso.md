@@ -3,8 +3,6 @@ title: "Single Sign-On (SSO)"
 weight: 4
 description: |
   {{% vendor/name %}} enables you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
-banner:
-    type: tiered-feature
 ---
 
 {{% description %}}
@@ -29,8 +27,6 @@ Please open a [support ticket](/learn/overview/get-support.md) if you need to ex
 
 ### Google
 
-{{< premium-features/tiered "Elite and Enterprise" >}}
-
 Enforce your users to authenticate with Google. Please open a [support ticket](/learn/overview/get-support.md) to enable Google SSO.
 
 #### Issue with re-authenticating every 15 minutes
@@ -43,8 +39,6 @@ To resolve that, you need to:
 2. Go to [https://auth.upsun.com/auth/authorize/google?prompt=consent](https://auth.upsun.com/auth/authorize/google?prompt=consent) for the system to obtain a valid refresh token for your Google account.
 
 ### OpenId Connect
-
-{{< premium-features/tiered "Elite" >}}
 
 Enforce your users to authenticate with your OpenID Connect (OIDC) provider,
 such as Microsoft (Entra ID), Okta, Ory, or Ping Identity.

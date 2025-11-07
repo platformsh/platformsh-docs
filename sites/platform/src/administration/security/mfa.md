@@ -26,7 +26,7 @@ and an [error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-me
 To enable MFA on your user account, follow these steps:
 
 1. In the Console, open the user menu (your name or profile picture).
-2. Click **My profile**
+2. Click **My profile**.
 4. Click **Authentication settings**.
 5. Follow the instructions for the chosen authentication app.
 6. Click **Verify & save**.
