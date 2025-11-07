@@ -40,7 +40,7 @@ Each execution appears as a vertical bar in the visualization:
 | **Height** | Proportional to the job’s execution time. | Taller bars indicate longer runtimes |
 | **Click a bar** | Opens detailed logs for that specific run. | Review stdout/stderr for debugging |
 
-This combination of color and height makes it easy to spot outliers, for example:
+This combination of color and height helps in spotting outliers, for example:
 
 - A sudden tall red bar indicates a failed job that took longer than usual.
 - Consistently tall green bars suggest a job that may need optimization.
