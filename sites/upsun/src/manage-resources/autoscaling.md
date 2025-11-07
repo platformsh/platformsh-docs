@@ -82,7 +82,7 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 | Trigger                   | Console     | 
 | ------------------------- | ----------- | 
 | Average CPU (min/max)     | Available   | 
-| Average Memory (min/max)  | Coming      | 
+| Average Memory (min/max)  | Available   | 
 
 ## How autoscaling works
 
