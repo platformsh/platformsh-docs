@@ -140,7 +140,6 @@ CPU-based autoscaling reacts to sustained changes in average CPU utilization.
 - Scale-down threshold: When CPU usage remains below your lower limit for the evaluation period, instances are removed to save resources.
 - Cooldown window: A delay (default: 5 minutes) before another scaling action can occur.
 
-
 ### Memory-based triggers
 
 Memory-based autoscaling follows the same principle as CPU triggers but measures average memory utilization instead. When your app consistently uses more memory than your upper threshold, {{% vendor/name %}} adds instances; when memory usage remains low, it removes them.
