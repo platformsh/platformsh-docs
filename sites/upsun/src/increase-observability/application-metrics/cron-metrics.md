@@ -10,9 +10,9 @@ keywords:
   - "console"
 ---
 
-You can view your Cron job executions directly from your project’s Services > Apps or Services > Workers pages. This visualization helps you quickly understand how scheduled jobs are performing and spot unusual patterns without manually checking logs.
+You can view your [Cron job](/create-apps/app-reference/single-runtime-image.html#crons) executions directly from your project’s Services > Apps or Services > Workers pages. This visualization helps you quickly understand how scheduled jobs are performing and spot unusual patterns without manually checking logs.
 
-Each execution is represented visually, letting you **monitor performance trends and failures at a glance.**
+Each execution is represented visually, letting you monitor performance trends and failures at a glance.
 
 This makes it easier to:
 
@@ -22,9 +22,9 @@ This makes it easier to:
 
 ## How to view Cron job executions
 
-1. Open your project in the **Upsun Console**.  
+1. Open your project in the Console.  
 2. Navigate to:
-   - **Services > Apps**, or  
+   - **Services > Apps** or  
    - **Services > Workers** (for background jobs).  
 3. Click the **Crons** tab to view your scheduled jobs.  
 
@@ -32,7 +32,7 @@ Each Cron job displays a visual history of its executions over time.
 
 ## Understanding the visualization
 
-Each execution appears as a **vertical bar** in the visualization:
+Each execution appears as a vertical bar in the visualization:
 
 | Visual element | Meaning | Example |
 |----------------|----------|----------|
@@ -40,35 +40,35 @@ Each execution appears as a **vertical bar** in the visualization:
 | **Height** | Proportional to the job’s execution time. | Taller bars indicate longer runtimes |
 | **Click a bar** | Opens detailed logs for that specific run. | Review stdout/stderr for debugging |
 
-This combination of **color** and **height** makes it easy to spot outliers — for example:
-- A sudden tall red bar indicates a **failed job that took longer than usual**.
-- Consistently tall green bars suggest **a job that may need optimization**.
+This combination of color and height makes it easy to spot outliers, for example:
 
-## Example
-
-[ADD SCREENSHOT HERE]
+- A sudden tall red bar indicates a failed job that took longer than usual.
+- Consistently tall green bars suggest a job that may need optimization.
 
 Each vertical bar corresponds to a single execution. Hover over any bar to view basic details such as:
+
 - Execution date and time
 - Duration
 - Status (success/failure)
 
-Click a bar to open the **detailed execution log**, where you can inspect errors or performance information.
+Click a bar to open the detailed execution log, where you can inspect errors or performance information.
 
 ## Troubleshooting and best practices
 
 - **Monitor for patterns**: Look for recurring red (failed) bars or progressively longer runtimes.  
 - **Drill into logs**: Clicking a bar takes you directly to logs for that specific execution.  
 - **Correlate with metrics**: Combine this view with [application metrics](/increase-observability/application-metrics.html) to identify performance bottlenecks.  
-- **Adjust Cron timing**: If jobs overlap or run too frequently, adjust their schedule in your [`crons` configuration](/manage-resources/crons.html).  
+- **Adjust Cron timing**: If jobs overlap or run too frequently, adjust their schedule in your [`crons` configuration](/create-apps/app-reference/single-runtime-image.html#crons).  
 
 {{< note theme="warning" title="Tip: investigate consistently high durations" >}}
 If you notice that your Cron job runtimes are consistently increasing, this may indicate:
+
 - Growing data volumes,
-- Inefficient queries, or
+- Inefficient queries
 - Resource limits being reached.
 
-Use profiling tools like [Blackfire](/increase-observability/blackfire-for-php-and-python.html) to identify and resolve performance issues.
+Use profiling tools like [Blackfire](/increase-observability/application-metrics/blackfire.html) to identify and resolve performance issues.
+
 {{< /note >}}
 
 ## When to check Cron execution history
@@ -82,7 +82,7 @@ Use profiling tools like [Blackfire](/increase-observability/blackfire-for-php-a
 
 ## Related content
 
-- [Define and schedule Cron jobs](/manage-resources/crons.html)  
+- [Define and schedule Cron jobs](/create-apps/app-reference/single-runtime-image.html#crons)  
 - [Application metrics](/increase-observability/application-metrics.html)  
-- [Consume logs](/increase-observability/consume-logs.html)  
-- [Blackfire for PHP and Python](/increase-observability/blackfire-for-php-and-python.html)  
+- [Consume logs](/increase-observability/logs.html)  
+- [Blackfire for PHP and Python](/increase-observability/application-metrics/blackfire.html)  
