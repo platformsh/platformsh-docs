@@ -10,7 +10,7 @@ keywords:
 ---
 
 
-# What is autoscaling?
+## What is autoscaling?
 
 Autoscaling is a feature that automatically adjusts how many instances of your application are running, increasing capacity when demand rises, and reducing it when things are quiet. It helps your app stay responsive under heavy load while keeping your infrastructure costs efficient.
 
