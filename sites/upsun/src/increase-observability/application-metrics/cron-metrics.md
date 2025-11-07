@@ -23,10 +23,11 @@ This makes it easier to:
 ## How to view Cron job executions
 
 1. Open your project in the Console.  
-2. Navigate to:
-   - **Services > Apps** or  
-   - **Services > Workers** (for background jobs).  
-3. Click the **Crons** tab to view your scheduled jobs.  
+2. Select your chosen Environment.
+3. Navigate to:
+   - Services --> Apps & Services --> Apps --> app
+   - Services --> Apps & Services --> Apps --> Workers (for background jobs).  
+4. Click the **Crons** tab to view your scheduled jobs.  
 
 Each Cron job displays a visual history of its executions over time.
 
@@ -60,7 +61,7 @@ Click a bar to open the detailed execution log, where you can inspect errors or 
 - **Correlate with metrics**: Combine this view with [application metrics](/increase-observability/application-metrics.html) to identify performance bottlenecks.  
 - **Adjust Cron timing**: If jobs overlap or run too frequently, adjust their schedule in your [`crons` configuration](/create-apps/app-reference/single-runtime-image.html#crons).  
 
-{{< note theme="warning" title="Investigate consistently high durations" >}}
+{{< note theme="info" title="Investigate consistently high durations" >}}
 If you notice that your Cron job runtimes are consistently increasing, this may indicate:
 
 - Growing data volumes,
