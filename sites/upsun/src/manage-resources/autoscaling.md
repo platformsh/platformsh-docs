@@ -140,7 +140,6 @@ CPU-based autoscaling reacts to sustained changes in average CPU utilization.
 - Scale-down threshold: When CPU usage remains below your lower limit for the evaluation period, instances are removed to save resources.
 - Cooldown window: A delay (default: 5 minutes) before another scaling action can occur.
 
-This approach works well for CPU-intensive workloads such as request-heavy APIs or web apps that process data or run frequent computations.
 
 ### Memory-based triggers
 
