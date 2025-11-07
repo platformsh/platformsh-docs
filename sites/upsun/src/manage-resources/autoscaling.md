@@ -136,7 +136,7 @@ Autoscaling primarily relies on CPU utilization as its trigger, however you can 
 
 CPU-based autoscaling reacts to sustained changes in average CPU utilization.
 
-- Scale-up threshold: When average CPU usage stays above your defined limit for the evaluation period, Upsun adds instances to distribute the load.
+- Scale-up threshold: When average CPU usage stays above your defined limit for the evaluation period, instances are added to distribute the load.
 - Scale-down threshold: When CPU usage remains below your lower limit for the evaluation period, instances are removed to save resources.
 - Cooldown window: A delay (default: 5 minutes) before another scaling action can occur.
 
