@@ -56,7 +56,7 @@ title=In the Console
 
 {{< note theme="info" >}}
 
-Machine users with an email address under your Single Sign-On (SSO) domain can be excluded from the SSO enforcement rule so they aren’t required to authenticate through your identity provider. See the [SSO documentation](/administration/security/sso.html#service-users) for more information.
+Machine users with an email address under your Single Sign-On (SSO) domain can be excluded from the SSO enforcement rule so they aren’t required to authenticate through your identity provider. See the [SSO documentation](/administration/security/sso.md#service-users) for more information.
 
 {{< /note >}}
 
