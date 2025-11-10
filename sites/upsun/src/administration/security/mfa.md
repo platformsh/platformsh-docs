@@ -10,6 +10,8 @@ keywords:
 description: Enhance your organizations' security with Multifactor Authentication (MFA).
 ---
 
+{{< partial "user-mgt-sellable/body.md" >}}
+
 Multifactor Authentication (MFA) enhances security by protecting both your organization and every user account that interacts with it
 through SSH or the {{% vendor/name %}} API.
 
@@ -26,57 +28,39 @@ and an [error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-me
 To enable MFA on your user account, follow these steps:
 
 1. In the Console, open the user menu (your name or profile picture).
-2. Click **My profile**
-3. Click **Security**.
-4. Click **Set up application**.
-5. Follow the instructions for the chosen authentication app.
-6. Click **Verify & save**.
-7. Refresh your SSH credentials by running `{{% vendor/cli %}} login -f` in the CLI.
+1. Click **My profile**.
+1. On the **Authentication Settings** tab, click **Set up application**.
+1. Follow the instructions for the chosen authentication app.
+1. Click **Verify & save**.
+1. Refresh your SSH credentials by running `{{% vendor/cli %}} login -f` in the CLI.
 
 ## Enforce MFA within your organization
 
-{{< note theme="info" title="Feature availability and permissions">}}
+Prerequisites:
+- You must be an **organization owner** or **admin user**.
+- Your organization must have the [Advanced User Management add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
+- You must first [enable MFA on _your own_ user account](#enable-mfa-on-your-user-account) as described above. 
 
-This feature is available as part of the Advanced User Management add-on.
-To add it to your organization, [administer your organization's billing](/administration/billing/billing-admin.md).
+To enforce MFA within your organization, follow these steps:
 
-Only **organization owners** and **admin users** can enable MFA within an organization.
-However, even if you have the required permissions,
-you **must** [enable MFA on your user account](#enable-mfa-on-your-user-account) prior to enforcing it within the whole organization.
+1. In the Console, select an organization from the organization menu in the upper left of the page.
+1. Click the organization name again, and from the expanded menu, click **Security**. 
 
-{{< /note >}}
+   On the **Security** tab, in the **User security settings** section, you can see which users in your organization have [activated MFA for their user accounts](#enable-mfa-on-your-user-account).
 
-To enable MFA within your organization, follow these steps:
+1. In the **MFA required** section, click the **Enable MFA** toggle to the on position.
 
-1. In the Console, open the user menu (your name or profile picture).
-2. Click **Settings**.
-3. Click **Security**.
-4. In the **MFA required** area, set the **Enable** toggle on.
-
-{{< note >}}
-
-Under **User security settings**, you can view which users in your organization have [activated MFA for their user accounts](#enable-mfa-on-your-user-account).
-
-{{< /note >}}
 
 ### Send email reminders
 
-You can send email reminders to users who haven't enabled MFA on their user account yet.
-To do so, follow these steps:
+To send email reminders to users who haven't enabled MFA on their account:
 
-1. In the Console, open the user menu (your name or profile picture).
-2. Click **Settings**.
-3. Click **Security**.
-4. In the **User security settings** area, find the user you want to send a reminder to.
-5. Click **{{< icon more >}} More** next to that user.
-6. Select **Remind**.</br>
-   An email is sent to the user with instructions on how to enable MFA on their user account.
+1. In the Console, select an organization from the organization menu in the upper left of the page.
+2. Click the organization name again, and from the expanded menu, click **Security**. 
+3. On the **Security** tab, in the **User security settings** section, complete the steps below based on the action you want to take.<br><br>
 
-{{< note >}}
+   - To send an email reminder to an individual user, click **{{< icon more >}} More** beside the user's name and then click **Remind**.</br>
 
-You can send reminders to multiple users at once.</br>
-To do so, in the **User security settings** user list,
-select the desired users by checking the boxes in front of their names.
-Click **Remind** at the top of the list to trigger the reminder emails.
+   - To send an email reminder to multiple users at once, select the checkbox beside the names of the users you want to remind. To remind _all_ of the users who do not have MFA enabled, select the **Name** checkbox at the top of the list. Then, near the **Name** checkbox, click **Remind**.
 
-{{< /note >}}
+An email is sent to the user with instructions on how to enable MFA on their user account.
