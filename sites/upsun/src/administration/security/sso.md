@@ -52,6 +52,7 @@ To resolve this issue:
 1. Go to [https://myaccount.google.com/permissions](https://myaccount.google.com/permissions) and revoke the access from the `{{% vendor/name %}}` application that has `Access given to auth.api.platform.sh`.
 2. Go to [https://auth.upsun.com/auth/authorize/google?prompt=consent](https://auth.upsun.com/auth/authorize/google?prompt=consent) for the system to obtain a valid refresh token for your Google account.
 
+<!-- vale off -->
 ### OpenId Connect
 
 Enforce your users to authenticate with your OpenID Connect (OIDC) provider,
