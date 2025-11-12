@@ -5,6 +5,16 @@ keywords:
   - "set remote"
 ---
 
+{{< note theme="note" title="Important" >}}
+
+{{< vendor/name >}} Fixed and Flex are [**separate products**](/administration/organizations.html#fixed-and-flex-organizations) with different configuration formats and organizations. You **cannot** mix these configurations in the same project.
+
+- {{< vendor/name >}} Fixed continues to use `.platform/` configuration files.
+- {{< vendor/name >}} Flex uses `.upsun/` configuration files.
+
+{{< /note >}}
+
+
 ## Before you begin
 
 You need:
@@ -12,7 +22,7 @@ You need:
 - An Upsun Fixed (formerly Platform.sh) application that works and is ready to be built
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 
-Follow the steps below to begin the manual migration.
+Follow the steps below to begin the conversion of your project.
 
 ## 1. Export your source Upsun Fixed project
 
@@ -68,9 +78,31 @@ There are two ways to change the configuration files of your Upsun Fixed (former
 
   **Tip:** Regardless of which method you choose, tools are available to make it easier to edit and validate `.upsun/config.yaml` files - check out [this article](https://devcenter.upsun.com/posts/validate-yaml-config/) in the Upsun DevCenter. 
 
+{{< note theme="info" title="Only one format should exist in your repository" >}}
+
+Upsun Fixed projects only read configuration files in the `.platform/` folder, while {{% vendor/name %}} Flex projects only read configuration files in the `.upsun/` folder. You **cannot mix or combine** these formats. **Only one** should exist in your repository.
+
+If both `.platform/` and `.upsun/` directories are present, deployment will fail with an error such as:
+
+```yaml
+
+ E: Error parsing configuration files: No .platform.app.yaml file found anywhere in the repo
+ 
+ ``` 
+
+{{< /note >}}
+
 ### Convert with the CLI
 
-To assist with converting applications from Upsun Fixed to {{% vendor/name %}}, the {{< vendor/name >}} converting tool is available as part of the {{% vendor/name %}} CLI. This feature automates the conversion of Upsun Fixed config files into a format required by {{% vendor/name %}}, significantly reducing manual effort.
+To assist with converting applications from Upsun Fixed (formerly Platform.sh) to {{% vendor/name %}}, the {{< vendor/name >}} converting tool is available as part of the {{% vendor/name %}} CLI. 
+
+This feature helps you prepare your existing Upsun Fixed (formerly Platform.sh) configuration for {{% vendor/name %}} Flex. This tool should only be used when migrating to an {{% vendor/name %}} Flex project. After conversion, remove the `.platform/` folder and files from your repository as {{% vendor/name %}} Flex will only read `.upsun/` configuration files.
+
+{{< note theme="info" title="Important" >}}
+
+If you plan to stay on Upsun Fixed, **do not** run this conversion. Fixed projects continue to use `.platform/` files.
+
+{{< /note >}}
 
 #### Key functions
 The converting tool performs the following transformations:
@@ -98,7 +130,6 @@ The converting tool performs the following transformations:
    - Identifies cron jobs defined in Upsun Fixed and provides guidance on how to replicate similar functionality in {{% vendor/name %}}.
    - Flags any cron schedules requiring special support and prepares the `.upsun/config.yaml` accordingly.
 
-
 #### Usage
 
 ```bash
@@ -107,6 +138,14 @@ upsun convert
 You will be prompted to enter the path to the Upsun Fixed project you would like to convert.
 
 The conversion then takes place within the {{% vendor/name %}} CLI and outputs the updated `config.yaml` file to the specified destination directory.
+
+{{< note theme="warning" title="Check your organization" >}}
+
+When converting from Upsun Fixed (formerly Platform.sh) to {{% vendor/name %}} Flex, ensure your new {{% vendor/name %}} Flex project **belongs to the correct Upsun organization.**
+
+The conversion **does not** update your organization or hosting plan automatically.
+
+{{< /note >}}
 
 ### Convert manually
 
