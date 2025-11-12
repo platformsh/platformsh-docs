@@ -1,7 +1,7 @@
 ---
 title: Multifactor Authentication (MFA)
 weight: 4
-keywords: 
+keywords:
 - 2fa
 - twofactor
 - two factor
@@ -9,6 +9,8 @@ keywords:
 - multifactor authentication
 description: Enhance your organizations' security with Multifactor Authentication (MFA).
 ---
+
+{{< partial "user-mgt-sellable/body.md" >}}
 
 Multifactor Authentication (MFA) enhances security by protecting both your organization and every user account that interacts with it
 through SSH or the {{% vendor/name %}} API.
@@ -34,10 +36,9 @@ To enable MFA on your user account, follow these steps:
 
 ## Enforce MFA within your organization
 
-{{< premium-features/tiered "Elite and Enterprise" >}}
-
 Prerequisites:
 - You must be an **organization owner** or **admin user**.
+- Your organization must have the [Advanced User Management add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 - You must first [enable MFA on _your own_ user account](#enable-mfa-on-your-user-account) as described above. 
 
 To enforce MFA within your organization, follow these steps:
