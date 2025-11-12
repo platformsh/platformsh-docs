@@ -83,20 +83,17 @@ Autoscaling continuously monitors the configured **trigger** across your app’s
 - **Cooldown window:** 5 minutes between scaling actions
 - **Instance limits:** 1–8 per environment (region-dependent) 
 
-{{< note theme="note" title="Instance limits">}}
+  {{< note theme="info" title="Instance limits and counts">}}
 
-Default instance limits are typically **1–8 instances per environment**, but the exact values depend on the region. Some regions may have higher or lower defaults. The scaling settings in your project always reflect the limits for the region where it runs.  
+  - **Default instance limits are typically 1–8 instances per environment**, but the exact values depend on the region. Some regions may have higher or lower defaults. The scaling settings in your project always reflect the limits for the region where it runs.  
+  - **When autoscaling is enabled, [manual instance count](/manage-resources/adjust-resources.html#horizontal-scaling) changes to apps are disabled.** [Vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) (CPU/RAM/disk per instance) remain configurable.
+  - **To understand how an application's instances are distributed**, you can view the 
+  instance details in the project's `/run/peers.json` file. To learn more, see [View application instance details](/manage-resources/adjust-resources.md#view-application-instance-details) in the "Resource configuration" topic.
 
-{{< /note >}}
+  {{< /note >}}
 
-{{< note theme="info" title="Scale databases and resources">}}
 
-When autoscaling is enabled, [manual instance count](/manage-resources/adjust-resources.html#horizontal-scaling) changes to apps are disabled. [Vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) (CPU/RAM/disk per instance) remain configurable.
 
-{{< /note >}}
-
-### View instance details
-{{% view-instance-details %}}
 
 #### Default behaviour (CPU example)
 
@@ -120,6 +117,7 @@ For example, you might configure:
 {{< note theme="info" title="Manual instance scaling">}}
 
 When autoscaling is enabled, manual instance scaling is disabled. Autoscaling manages instance counts within the min/max guardrails you define.
+{{% view-instance-details %}}
 
 {{< /note >}}
 
