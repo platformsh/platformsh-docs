@@ -54,6 +54,12 @@ title=In the Console
 
 {{< /codetabs >}}
 
+{{< note theme="info" >}}
+
+Machine users with an email address under your single sign-on (SSO) domain can be excluded from the SSO enforcement rule so they aren’t required to authenticate through your identity provider. See the [SSO documentation](/administration/security/sso.md#service-users) for more information.
+
+{{< /note >}}
+
 
 ## 2. Create an API token
 
