@@ -8,7 +8,7 @@ keywords:
   - "autoscaling"
   - "scaling"
 ---
-
+<!-- vale off -->
 Autoscaling is a feature that automatically adjusts how many instances of your application are running, increasing capacity when demand rises, and reducing it when things are quiet. It helps your app stay responsive under heavy load while keeping your infrastructure costs efficient.
 
 ## What is autoscaling?
@@ -305,3 +305,4 @@ Scaling down to zero instances is also **not supported**. Use minimum instance c
 - [Payment FAQ](/administration/billing/payment-faq.html) 
 - [Monitor billing](/administration/billing/monitor-billing.html) 
 - [Pricing overview](https://www.upsun.com/pricing/)
+<!-- vale on -->
