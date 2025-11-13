@@ -52,7 +52,7 @@ This structure ensures applications can start cleanly, scale horizontally, and s
 
 ### Autoscaling example
 
-When autoscaling [adds new instances](/manage-resources/autoscaling.html#thresholds) in response to traffic spikes, each instance must start and warm up before serving live requests. Use `post-start` to complete initialization tasks such as:
+When autoscaling [adds new instances](/manage-resources/autoscaling.html#thresholds), each instance must start and warm up before serving live requests. Use `post-start` to complete initialization tasks such as:
 
 - Cache priming or session loading
 - Running lightweight readiness checks
