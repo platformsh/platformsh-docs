@@ -77,11 +77,3 @@ Guaranteed CPU is not currently available on [OVHcloud regions](/development/reg
 For more information about the available configurations and sizes, visit the {{% vendor/name %}} [pricing calculator](https://upsun.com/pricing/calculator/).
 
 {{% /note %}}
-
-
-
-
-
-
-
-.
