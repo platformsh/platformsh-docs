@@ -326,3 +326,23 @@ services:
     type: {{< variable "SERVICE_TYPE" >}}:{{< variable "VERSION" >}}
     container_profile: HIGHER_MEMORY
 ```
+### Guaranteed CPU container sizes
+
+When selecting a container profile for [Guaranteed CPU](/manage-resources/guaranteed-resources.html), use the table below to identify available CPU and memory combinations. These predefined sizes help you match resource profiles to your application’s workload requirements.
+
+| CPU | HIGH_CPU | BALANCED | HIGH_MEMORY | HIGHER_MEMORY |
+|-----|-----------|-----------|--------------|----------------|
+| 4   | 8 GB      | 16 GB     | 32 GB        | not supported  |
+| 8   | 16 GB     | 32 GB     | 64 GB        | not supported  |
+| 16  | 32 GB     | 64 GB     | 128 GB       | not supported  |
+| 32  | 64 GB     | 128 GB    | 256 GB       | not supported  |
+| 48  | 96 GB     | 192 GB    | 384 GB       | not supported  |
+| 64  | 128 GB    | 256 GB    | 512 GB       | not supported  |
+
+{{% note %}}
+
+Guaranteed CPU is not currently available on [OVHcloud regions](/development/regions.html) and some CPU sizes may not be available in all regions.
+
+For more information about the available configurations and sizes, visit the {{% vendor/name %}} [pricing calculator](https://upsun.com/pricing/calculator/).
+
+{{% /note %}}
