@@ -13,14 +13,14 @@ Autoscaling is a feature that automatically adjusts how many instances of your a
 
 ## What is autoscaling?
 
-Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application instances depending on resource usage. If CPU utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
+Autoscaling works through [horizontal scaling](/manage-resources/adjust-resources.html#horizontal-scaling), by adding or removing whole application instances depending on resource usage. If CPU or [memory](#memory-based-autoscaling) utilization stays above a certain threshold for a set time, {{% vendor/name %}} automatically adds more instances. If it stays low, {{% vendor/name %}} removes unneeded ones. You control these thresholds and limits, so scaling always happens safely and predictably.
 
 - **Scope:** Available for applications only  
 - **Product tiers:** Available for all Upsun Flex environments  
 - **Environments:** Configurable per environment - across development, staging, and production
 
 {{< note theme="info" title="Know your app first">}}
-Autoscaling is quick to set up: you can [enable it in a few clicks](#enable-autoscaling) from your environment’s **Configure resources** tab. However, because it reacts to real traffic patterns, it’s important to understand your app’s typical performance before turning it on. 
+Autoscaling is quick to set up: you can [enable it in a few clicks](#enable-autoscaling) from your environment’s **Configure resources** tab. However, it’s important to understand your app’s typical performance before turning it on. 
 
 Tools like [Blackfire](https://www.blackfire.io/) can help you identify where your app consumes CPU or memory, so you can set realistic thresholds that reflect your traffic patterns. Blackfire can also help you spot whether autoscaling is likely to benefit your app or if a fixed setup with tuned [vertical resources](/manage-resources/adjust-resources.html#vertical-scaling) like CPU/RAM would serve you better.
 {{< /note >}}
@@ -86,7 +86,6 @@ The tables below outline where autoscaling and manual scaling are supported, so 
 ## How autoscaling works
 
 ### Thresholds
-
 
 Autoscaling monitors the average CPU and [memory usage](#memory-based-autoscaling) of your running app instances.  
 You define thresholds that determine when new instances are launched or removed.
@@ -177,7 +176,6 @@ Tools such as [Blackfire](https://www.blackfire.io/) or system-level metrics in 
 5. Choose **Memory usage (min/max)** as your scaling trigger.  
 6. Set scale-up and scale-down thresholds, evaluation period, and cooldown window.  
 7. Save changes — your app will now automatically scale based on memory utilization.
-
 
 ## Guardrails and evaluation
 
