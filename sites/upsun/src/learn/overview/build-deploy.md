@@ -331,7 +331,7 @@ During any deployment, long-lived connections like WebSockets or Server-Sent Eve
 
 With ZDD, you can plan for smooth reconnection:
 
-- SSE supports automatic retry logic (MDN reference).
+- SSE supports automatic retry logic ([MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#retry)).
 
 - WebSocket clients should implement reconnect logic.
 
