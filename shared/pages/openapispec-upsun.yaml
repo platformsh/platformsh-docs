@@ -5882,6 +5882,10 @@ paths:
                   type: string
                   description: The organization country (2-letter country code).
                   maxLength: 2
+                security_contact:
+                  type: string
+                  format: email
+                  description: The security contact email address for the organization.
       responses:
         '201':
           description: Created
@@ -5953,6 +5957,10 @@ paths:
                   type: string
                   description: The organization country (2-letter country code).
                   maxLength: 2
+                security_contact:
+                  type: string
+                  format: email
+                  description: The security contact email address for the organization.
       responses:
         '200':
           description: OK
@@ -20244,6 +20252,10 @@ components:
         billing_legacy:
           type: boolean
           description: Whether the account is billed with the legacy system.
+        security_contact:
+          type: string
+          format: email
+          description: The security contact email address for the organization.
         status:
           type: string
           description: The status of the organization.
@@ -21119,6 +21131,26 @@ components:
           $ref: '#/components/schemas/ProjectID'
         type:
           $ref: '#/components/schemas/AddonType'
+        status:
+          type: string
+          description: Lifecycle status of the add-on.
+          enum:
+            - requested
+            - active
+            - failed
+        title:
+          type: string
+          description: Human-friendly title of the add-on or SKU.
+        unit:
+          type: string
+          description: Unit for quantity-based add-ons when applicable.
+        allowed_values:
+          description: Allowed values for the add-on depending on user role and options.
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
