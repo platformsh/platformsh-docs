@@ -145,18 +145,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 21                                     |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -304,6 +304,7 @@ To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
 For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="app"}
@@ -359,8 +360,8 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
   backend:
     # this app uses the single-runtime image
     type: 'nodejs:{{% latest "nodejs" %}} 
@@ -396,7 +397,6 @@ commands:
 ```bash
 {{% vendor/cli %}} push --resources-init=manual
 ```
-
 {{% /note %}}
 
 ## Available disk space

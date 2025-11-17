@@ -24,7 +24,7 @@ For example, you can set up a source operation to [automatically update your app
 [update a site from an upstream repository](#update-a-site-from-an-upstream-repository-or-template),
 or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git repository.
 
-To run your source operations, you can use the [{{% vendor/name %}} CLI](../administration/cli/_index.md) or the [Console](https://console.platform.sh).
+To run your source operations, you can use the [{{% vendor/name %}} CLI](../administration/cli/_index.md) or the [Console](https://console.upsun.com).
 If you want to run your source operations and update your code automatically,
 you can also define [cron jobs](/create-apps/image-properties/crons.md).
 
@@ -194,7 +194,7 @@ you can't run source operations on environments created from pull or merge reque
 
 If you try running a source operation on a non-supported environment, you see the following error:
 
-```text
+```text {no-copy="true"}
 [ApiFeatureMissingException]
 This project doesn't support source operations.
 ```

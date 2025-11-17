@@ -1,7 +1,7 @@
 # This file describes an application. You can have multiple applications
 # in the same project.
 #
-# See https://docs.platform.sh/configuration/app.html
+# See https://docs.upsun.com/anchors/fixed/app/configure/
 
 # The name of this app. Must be unique within a project.
 name: app
@@ -194,7 +194,7 @@ hooks:
             php vendor/bin/typo3cms install:setup \
                 --install-steps-config=src/SetupDatabase.yaml \
                 --site-setup-type=no \
-                --site-name="TYPO3 on Platform.sh" \
+                --site-name="TYPO3 on Upsun Fixed" \
                 --admin-user-name=admin \
                 --admin-password=password \
                 --skip-extension-setup \

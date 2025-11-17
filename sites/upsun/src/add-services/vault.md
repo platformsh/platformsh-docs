@@ -1,7 +1,7 @@
 ---
 title: Vault key management service
 sidebarTitle: Vault KMS
-weight: 50
+weight: 60
 ---
 
 The Vault key management service (KMS) provides key management and access control for your secrets.
@@ -100,10 +100,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_VAULT_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.vault_secret[0].host')"
+export APP_VAULT_HOST=="$(echo "$RELATIONSHIPS_JSON" | jq -r '.vault_secret[0].host')"
 ```
 
 {{< /codetabs >}}

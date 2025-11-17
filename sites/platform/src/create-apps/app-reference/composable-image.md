@@ -108,30 +108,23 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
-### Supported Nix channels
-
-- `24.05`
-- `25.05`
+{{% composable/composable-channels %}}
 
 ### Configure Nix channels
 
-The Nix channel can be configured with the [top-level property `type`](#top-level-properties). 
+The Nix channel can be configured with the [top-level property `type`](#top-level-properties).
 
-For example, to use the Nix channel `25.05`, you would use the following syntax:
+For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
-
-type: "composable:25.05"
-
+type: "composable:{{% latest composable %}}"
 ```
 
 ### Supported Nix packages
 
 {{% note %}}
 The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
-However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
-This includes packages from the ``unstable`` channel,
-like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.</br>
 While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
 {{% /note %}}
 
@@ -139,18 +132,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 21                                     |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -222,14 +215,14 @@ Note that you can use environment variables or your `php.ini` file to [include f
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="apps"}
 myapp:
   stack:
-    - "python@3.12"
-    - "python312Packages.yq" # python package specific
+    - "python@3.13"
+    - "python313Packages.yq" # python package specific
 ```
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
@@ -247,8 +240,8 @@ myapp:
           - sodium
           - xsl
           - pdo_sqlite
-    - "python@3.12"
-    - "python312Packages.yq" # python package specific
+    - "python@3.13"
+    - "python313Packages.yq" # python package specific
     - "yq"                   # tool
 ```
 
@@ -268,8 +261,8 @@ backend:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
 frontend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```

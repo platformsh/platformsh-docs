@@ -15,6 +15,7 @@ theme:
 # Vendorization
 vendor:
     name: Upsun
+    company_name: Upsun
     cli: upsun
     altname: upsun
     env_prefix: PLATFORM
@@ -24,9 +25,9 @@ vendor:
         link: https://upsun.com/register/
         cta: Activate your 15-day trial
         title: Try Upsun for 15 days
-        description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
+        description: "After that, enjoy the same game-changing Upsun features for less with the [First Project Incentive](https://upsun.com/blog/first-project-incentive/)!¹ A monthly $19 perk!"
         fine: "¹Terms and conditions apply"
-    psh_ref: Platform.sh
+    psh_ref: Upsun Fixed
     config:
         version: 2
         dir: .upsun
@@ -45,12 +46,13 @@ vendor:
         main: https://upsun.com
         docs: https://docs.upsun.com
         support: https://support.upsun.com
-        sales: https://upsun.com/contact
+        sales: https://upsun.com/contact-us
         console: https://console.upsun.com/
         api: https://docs.upsun.com/api/
         host: upsun.com
         hostname: platformsh.site
         register: https://auth.upsun.com/register
+        discord: https://discord.gg/upsun
 
 # Images (kept in static/)
 logo: "images/logo.svg"

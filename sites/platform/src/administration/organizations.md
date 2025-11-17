@@ -146,3 +146,153 @@ Ownership transfer automatically transfers subscription charges to the new organ
 To transfer an organization to a different owner, first make sure that user is part of the organization.
 If they aren't yet, [add them](/administration/users.md#add-a-user-to-an-organization).
 Then open a [support ticket](/learn/overview/get-support.md) from the current organization to ask for the transfer.
+
+## Fixed and Flex organizations
+
+### What is an Upsun Fixed organization?
+Ideal for workloads that have consistent resource requirements with stable and predictable usage.
+Users can select a plan with predefined CPU and Memory resources. You can not adjust these resources, nor scale them automatically. To increase capacity, you’ll need to upgrade to a higher plan.
+
+{{< note theme="note" title="Fixed resources">}}
+
+**Fixed:** Resource from the plan is applied to the production environment. For preview, the user has the default small size for all containers.
+
+{{< /note >}}
+
+### What is an Upsun Flex organization?
+Ideal for workloads that evolve over time or have dynamic resource requirements. Flex will suit most use cases. Users will be able to allocate the exact CPU and Memory resources that your applications and services need. You can adjust these resources at any time, or configure them to adapt automatically. You are charged based on the resources you allocate.
+
+{{< note theme="info" title="Flex resources">}}
+
+**Flex:** Users can customize resources per container (per app or service) for **all** environments.
+
+{{< /note >}}
+
+### What can you do?
+When creating a new organization, users will be able to select the organization type from a drop-down option based on their preference. Once the organization is created, users can manage their organizations like they do today.
+
+### Feature differences
+
+#### Developer experience
+
+| **Feature** | **Upsun Fixed** | **Upsun Flex** |
+|-------------|-----------------|----------------|
+| Manual backups | Yes | Yes |
+| Health notifications | Yes | Yes |
+| Preview environments | Yes | Yes |
+| Free SSL certificates | Yes | Yes |
+| Source integrations (GitHub, GitLab, Bitbucket) | Yes | Yes |
+| Runtime operations | Yes | Yes |
+| Custom # of preview environments | No (3 small included, purchase by bulk of 3) | Yes |
+| Custom size of preview environments | No | Yes |
+| Resource allocation | Project Level Plans | Container Level |
+| Custom build resources | No | Yes |
+| Autoscaling | No | Yes |
+| Horizontal scaling of apps | No | Yes |
+| Guaranteed CPU | No | Yes |
+| Dedicated architecture | Yes | No |
+| Custom domains on preview environments | Enterprise and Elite only | Yes |
+| Automated code updates | Enterprise and Elite only | Yes |
+| Manual deployment | Enterprise and Elite only | Yes |
+| Zero downtime deployment | Enterprise and Elite only | Yes |
+| Custom backup retention policies | Different packages | Unlimited (pay for storage) |
+| Email SMTP server | Yes | Yes |
+| Email validation (DKIM) | Enterprise and Elite only | Yes |
+| ElasticSearch (Premium containers) | Enterprise and Elite only | No |
+| MongoDB (Premium containers) | Enterprise and Elite only | No |
+
+#### Observability tools
+
+| **Feature** | **Upsun Fixed** | **Upsun Flex** |
+|-------------|-----------------|----------------|
+| Logs forwarding | Enterprise and Elite only | Yes |
+| Blackfire | Enterprise and Elite only (or self-service add-on) | Yes |
+| HTTP Traffic | Yes (but longer timeframe with Enterprise) | Yes |
+| Continuous profiling | Enterprise and Elite only | Yes |
+| Resources | Yes (but longer timeframe with Enterprise) | Yes |
+
+#### User management
+
+| **Feature**    | **Upsun Fixed**                        | **Upsun Flex**   |
+|----------------|----------------------------------------|------------------|
+| Google SSO     | Enterprise and Elite only              | Yes, with add-on |
+| OpenID Connect | Elite only                             | Yes, with add-on |
+| Multifactor Authentication  | Enterprise and Elite only | Yes, with add-on |
+| Teams          | Enterprise and Elite only              | Yes, with add-on |
+
+#### Support & SLAs
+
+| **Feature** | **Upsun Fixed** | **Upsun Flex** |
+|-------------|-----------------|----------------|
+| Support SLA | Enterprise and Elite only | Yes, with add-on |
+| Uptime SLA | Enterprise and Elite only (Architecture based) | Yes, with add-on |
+| CDN | Enterprise and Elite only | Yes |
+| Fastly WAF | Enterprise & Elite only as add-on | Yes, with add-on |
+| Upsun WAF | Enterprise and Elite only | Yes |
+
+#### Billing
+
+| **Feature** | **Upsun Fixed** | **Upsun Flex** |
+|-------------|-----------------|----------------|
+| Pay as you go (Monthly) | Yes | Yes |
+| Pay with credit card | Yes | Yes |
+| Pay with SEPA | Enterprise and Elite only | Yes |
+| Volume discounts | No | Yes |
+
+#### Security & Compliance
+
+| **Feature** | **Upsun Fixed** | **Upsun Flex** |
+|-------------|-----------------|----------------|
+| Privacy regulations | Yes | Yes |
+| SOC 2 | Yes | Yes |
+| PCI DSS Level 1-compatible | Yes | Yes |
+| HIPAA | Enterprise and Elite only in specific regions | Coming soon |
+
+### Fixed and Flex FAQs
+
+#### What happens to my URL?
+- `https://auth.api.platform.sh/` will become `https://auth.upsun.com/`.
+
+#### If I had a Fixed organization (previously Platform.sh), will I be redirected to my organizations?  
+- Yes. You will be automatically redirected to the new console and can log in using the same credentials.  
+
+#### Will I be able to switch if I have both Fixed and Flex organizations?  
+- Yes. You can navigate between organizations (Fixed or Flex) from a drop-down list.  
+
+#### How will Fixed vs Flex be identifiable in the console?  
+- Organizations will have tags next to their names in the console.  
+- Organizations will also be categorized by organization type in the console.  
+
+#### Will I be able to access Fixed projects via the Upsun CLI?  
+- Correct.  
+
+#### Will I still use the same configuration files for Fixed projects?  
+- Correct. The same configuration file structures remain (`.platform.app.yaml`, `.platform/services.yaml`, `.platform/routes.yaml`, etc).  
+
+#### Besides the name "Platform.sh" going away, will there be visual changes in the console?  
+Yes.
+  - There will be a new way to create organizations (you can now choose Fixed or Flex).  
+  - Ability to navigate between organization types.  
+  - **[15-day free trial](https://auth.upsun.com/register/)** for users creating Flex organizations.  
+
+#### With a unified CLI, will there be a way to identify Fixed vs Flex in the project list?  
+- You will see a list of all organizations.  
+- There is no field in the CLI that explicitly identifies Fixed vs Flex.  
+
+#### Do Upsun projects run in the same regions as Platform.sh projects?
+Correct.
+
+#### How can I anticipate my monthly invoice with usage-based pricing?
+Upsun gives a monthly price estimation for the current and next full month based on current usage pattern.
+
+#### Can I use the same credentials / SSO / 2FA on Platform and Upsun?
+Yes.
+
+#### Can I use Blackfire for my Upsun applications?
+Upsun includes Blackfire by default.
+
+#### Will Upsun be delivered entirely on a “self service” model?
+Yes. Additionally, Upsun offers discounts based on volume commitment that is contracted for 1+ Year.
+
+#### Can I try Upsun before buying?
+Yes, you can [sign-up for the 15-day trial](https://auth.upsun.com/register/).

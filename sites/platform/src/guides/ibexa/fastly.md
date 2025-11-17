@@ -18,7 +18,7 @@ To use Fastly, Varnish must be disabled:
 - In [`{{< vendor/configfile "routes" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
    change routes to use `myapp` instead of the `varnish` service you removed in previous step:
 
-```diff
+```diff {no-copy="true"}
  "https://{default}/":
      type: upstream
 -     upstream: "varnish:http"

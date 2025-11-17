@@ -1,8 +1,8 @@
-# Markup reference for Platform.sh docs
+# Markup reference for Upsun docs
 
 ## Table of contents
 
-- [Markup reference for Platform.sh docs](#markup-reference-for-platformsh-docs)
+- [Markup reference for Upsun docs](#markup-reference-for-platformsh-docs)
   - [Table of contents](#table-of-contents)
   - [Markdown](#markdown)
   - [Front matter](#front-matter)

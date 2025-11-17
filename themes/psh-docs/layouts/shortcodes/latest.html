@@ -1,2 +1,4 @@
-{{- $supported := index .Site.Data.registry ( .Get 0 ) "versions" "supported" -}}
+{{- $arg := .Get 0 -}}
+{{- $data := cond (eq $arg "composable") .Site.Data.composable_versions .Site.Data.registry -}}
+{{- $supported := index $data $arg "versions" "supported" -}}
 {{- index $supported 0 -}}

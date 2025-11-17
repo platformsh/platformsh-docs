@@ -8,32 +8,17 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
-## Use a framework
-
-If you use one of the following frameworks, follow its guide:
-
-- [Hibernate](/guides/hibernate/deploy.md#postgresql)
-- [Jakarta EE](/guides/jakarta/deploy.md#postgresql)
-- [Spring](/guides/spring/postgresql.md)
+{{% note theme="info" title="Note" %}}
+The [example](#usage-example) provided later in this topic is specific to using only a **primary** database. For details about using read-only replicas to improve performance of read-heavy applications, see the [PostgreSQL read-only replication](/add-services/postgresql/postgresql-readonly-replication.md) topic.
+{{% /note %}}
 
 ## Supported versions
 
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="postgresql" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="postgresql" status="supported" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
-\* No High-Availability on {{% names/dedicated-gen-2 %}}.
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+{{< image-versions image="postgresql" status="supported" environment="grid" >}}
 
 {{< note >}}
 
@@ -42,35 +27,56 @@ For more details, see how to [upgrade to PostgreSQL 12 with `postgis`](#upgrade-
 
 {{< /note >}}
 
-### Deprecated versions
+{{% deprecated-versions %}}
 
-The following versions are [deprecated](/glossary.html#deprecated-versions).
-They're available, but they aren't receiving security updates from upstream and aren't guaranteed to work.
-They'll be removed in the future,
-so migrate to one of the [supported versions](#supported-versions).
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="postgresql" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+{{< image-versions image="postgresql" status="deprecated" environment="grid" >}}
 
 ## Relationship reference
 
-Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
-or by running `{{% vendor/cli %}} relationships`.
+For each service [defined via a relationship](#usage-example) to your application,
+{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
+in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
-So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
+or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
+
+{{< codetabs >}}
++++
+title= Service environment variables
++++
+
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
+
+```bash
+POSTGRESQL_USERNAME=main
+POSTGRESQL_SCHEME=pgsql
+POSTGRESQL_SERVICE=postgresql
+POSTGRESQL_FRAGMENT=
+POSTGRESQL_IP=123.456.78.90
+POSTGRESQL_HOSTNAME=azertyuiopqsdfghjklm.postgresql.service._.eu-1.{{< vendor/urlraw "hostname" >}}
+POSTGRESQL_PORT=5432
+POSTGRESQL_CLUSTER=azertyuiopqsdf-main-afdwftq
+POSTGRESQL_EPOCH=0
+POSTGRESQL_HOST=postgresql.internal
+POSTGRESQL_REL=postgresql
+POSTGRESQL_PATH=main
+POSTGRESQL_QUERY={'is_master': True}
+POSTGRESQL_PASSWORD=ChangeMe
+POSTGRESQL_TYPE=postgresql:{{% latest "postgresql" %}}
+POSTGRESQL_PUBLIC=false
+POSTGRESQL_HOST_MAPPED=false
+```
+
+<--->
+
++++
+title= `PLATFORM_RELATIONSHIPS` environment variable
++++
+
+For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
 
 ```json
 {
@@ -95,21 +101,36 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 }
 ```
 
+Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
+
+```bash {location=".environment"}
+# Decode the built-in credentials object variable.
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
+
+# Set environment variables for individual credentials.
+export APP_POSTGRESQL_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.postgresql[0].host')"
+```
+
+{{< /codetabs >}}
+
 ## Usage example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** PostgreSQL database. For details about using read-only replicas to improve performance of read-heavy applications, see the [PostgreSQL read-only replication](/add-services/postgresql/postgresql-readonly-replication.md) topic.
+{{% /note %}}
 
 ### 1. Configure the service
 
-To define the service, use the `postgresql` type:
+To define the service, use the ``postgresql`` type:
 
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-<SERVICE_NAME>:
-  type: postgresql:<VERSION>
-  disk: 256
+```yaml {configFile="app"}
+services:
+  # The name of the service container. Must be unique within a project.
+  <SERVICE_NAME>:
+    type: postgresql:<VERSION>
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
+Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
 ### 2. Define the relationship
 
@@ -122,12 +143,15 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
-  <SERVICE_NAME>:
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
@@ -140,7 +164,7 @@ That is, it uses default endpoints behind-the-scenes, providing a [relationship]
 Depending on your needs, instead of default endpoint configuration,
 you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container (``<APP_NAME>``) now has access to the service via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 <--->
 
@@ -148,16 +172,17 @@ With the above definition, the application container now has [access to the serv
 title=Using explicit endpoints
 +++
 
-```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
-  <RELATIONSHIP_NAME>:
-    service: <SERVICE_NAME>
-    endpoint: postgresql
+```yaml {configFile="services"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: postgresql
 ```
 
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
@@ -168,31 +193,11 @@ The example above leverages [explicit endpoint](/create-apps/app-reference/singl
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
+With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 {{< /codetabs >}}
 
-For PHP, enable the [extension](/languages/php/extensions.md) for the service:
-
-```yaml {configFile="app"}
-# PHP extensions.
-runtime:
-  extensions:
-    - pdo_pgsql
-```
-
-### Example configuration
-
-### [Service definition](/add-services.html)
-
-```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-postgresql:
-  type: postgresql:{{% latest "postgresql" %}}
-  disk: 256
-```
-
-#### [App configuration](/create-apps/_index.md)
+For PHP, enable the [extension](/languages/php/extensions.html) for the service:
 
 {{< codetabs >}}
 
@@ -201,12 +206,19 @@ title=Using default endpoints
 +++
 
 ```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-# The example below shows simplified configuration leveraging a default service
-# (identified from the relationship name) and a default endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-relationships:
-  postgresql:
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - pdo_pgsql
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <SERVICE_NAME>:
 ```
 
 <--->
@@ -216,15 +228,77 @@ title=Using explicit endpoints
 +++
 
 ```yaml {configFile="app"}
-# Relationships enable access from this app to a given service.
-# The example below shows configuration with an explicitly set service name and endpoint.
-# See the Application reference for all options for defining relationships and endpoints.
-# Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-relationships:
+applications:
+  # The name of the app container. Must be unique within a project.
+  <APP_NAME>:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - pdo_pgsql
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      <RELATIONSHIP_NAME>:
+        service: <SERVICE_NAME>
+        endpoint: postgresql
+```
+
+{{< /codetabs >}}
+
+### Example configuration
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - pdo_pgsql
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      postgresql:
+services:
+  # The name of the service container. Must be unique within a project.
   postgresql:
-    service: postgresql
-    endpoint: postgresql
+    type: postgresql:{{% latest "postgresql" %}}
+```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # PHP extensions.
+    runtime:
+      extensions:
+        - pdo_pgsql
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      postgresql:
+        service: postgresql
+        endpoint: postgresql
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+      type: postgresql:{{% latest "postgresql" %}}
 ```
 
 {{< /codetabs >}}
@@ -233,59 +307,113 @@ relationships:
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-<!-- Version 1: Codetabs using config reader + examples.docs.platform.sh -->
 {{< codetabs >}}
 
 +++
-title=Go
-file=static/files/fetch/examples/golang/postgresql
-highlight=go
+title=Using default endpoints
 +++
+
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # The location of the application's code.
+    source:
+      root: "myapp"
+
+    # PHP extensions.
+    runtime:
+      extensions:
+        - pdo_pgsql
+
+    [...]
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      postgresql:
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: postgresql:{{% latest "postgresql" %}}
+```
 
 <--->
 
 +++
-title=Java
-file=static/files/fetch/examples/java/postgresql
-highlight=java
+title=Using explicit endpoints
 +++
 
-<--->
+```yaml {configFile="app"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # The location of the application's code.
+    source:
+      root: "myapp"
 
-+++
-title=Node.js
-file=static/files/fetch/examples/nodejs/postgresql
-highlight=js
-+++
+    # PHP extensions.
+    runtime:
+      extensions:
+        - pdo_pgsql
 
-<--->
+    [...]
 
-+++
-title=PHP
-file=static/files/fetch/examples/php/postgresql
-highlight=php
-+++
-
-<--->
-
-+++
-title=Python
-file=static/files/fetch/examples/python/postgresql
-highlight=python
-+++
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      postgresql:
+        service: postgresql
+        endpoint: postgresql
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: postgresql:{{% latest "postgresql" %}}
+```
 
 {{< /codetabs >}}
+
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `postgresql` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
+(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+
+```bash {location="myapp/.environment"}
+# Set environment variables for individual credentials.
+# For more information, please visit https://docs.upsun.com/development/variables.html#service-environment-variables.
+export DB_CONNECTION="${POSTGRESQL_SCHEME}"
+export DB_USERNAME="${POSTGRESQL_USERNAME}"
+export DB_PASSWORD="${POSTGRESQL_PASSWORD}"
+export DB_HOST="${POSTGRESQL_HOST}"
+export DB_PORT="${POSTGRESQL_PORT}"
+export DB_DATABASE="${POSTGRESQL_PATH}"
+
+# Surface connection string variable for use in app.
+export DATABASE_URL="${DB_CONNECTION}://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+```
+
+The above file — ``.environment`` in the ``myapp`` directory — is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``DATABASE_URL`` can be used within the application to connect to the service.
+
+Note that ``DATABASE_URL``, and all {{% vendor/name %}} [service environment variables](/development/variables/_index.md#service-environment-variables) like ``POSTGRESQL_HOST``, are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} ify`` command to [migrate a codebase to {{% vendor/name %}}](/get-started/_index.md).
 
 ## Access the service directly
 
 Access the service using the {{< vendor/name >}} CLI by running `{{< vendor/cli >}} sql`.
 
 You can also access it from your app container via [SSH](/development/ssh/_index.md).
-From your [relationship data](#relationship-reference), you need: `username`, `host`, and `port`.
+From your [relationship data](#relationship-reference), you need: `POSTGRESQL_USERNAME`, `POSTGRESQL_HOST`, and `POSTGRESQL_PORT`.
 Then run the following command:
 
 ```bash
-psql -U {{< variable "USERNAME" >}} -h {{< variable "HOST" >}} -p {{< variable "PORT" >}}
+psql -U {{< variable "POSTGRESQL_USERNAME" >}} -h {{< variable "POSTGRESQL_HOST" >}} -p {{< variable "POSTGRESQL_PORT" >}}
 ```
 
 Using the values from the [example](#relationship-reference), that would be:
@@ -294,7 +422,9 @@ Using the values from the [example](#relationship-reference), that would be:
 psql -U main -h postgresql.internal -p 5432
 ```
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
+
+Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
 
 ## Exporting data
 
@@ -375,8 +505,7 @@ You can choose your locale when a database is created by setting locale-related 
 
 ## Multiple databases
 
-If you are using version `10`, `11`, `12`, `13`, or later of this service,
-it's possible to define multiple databases as well as multiple users with different permissions.
+Support for defining multiple databases and multiple users with different permissions is available in versions `10` and later of this service. 
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 
@@ -391,27 +520,27 @@ Under the `configuration` key of your service there are two additional keys:
 Consider the following illustrative example:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-postgresql:
-  type: "postgresql:{{% latest "postgresql" %}}"
-  disk: 2048
-  configuration:
-    databases:
-      - main
-      - legacy
-    endpoints:
-      admin:
-        privileges:
-          main: admin
-          legacy: admin
-      reporter:
-        default_database: main
-        privileges:
-          main: ro
-      importer:
-        default_database: legacy
-        privileges:
-          legacy: rw
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+      databases:
+        - main
+        - legacy
+      endpoints:
+        admin:
+          privileges:
+            main: admin
+            legacy: admin
+        reporter:
+          default_database: main
+          privileges:
+            main: ro
+        importer:
+          default_database: legacy
+          privileges:
+            legacy: rw
 ```
 
 This example creates a single PostgreSQL service named `postgresql`. The server has two databases, `main` and `legacy` with three endpoints created.
@@ -425,70 +554,102 @@ If a given endpoint has access to multiple databases you should also specify whi
 Once these endpoints are defined, you need to expose them to your application as a relationship. Continuing with the above example, your `relationships` in `{{< vendor/configfile "app" >}}` might look like:
 
 ```yaml {configFile="app"}
-relationships:
-  # Please note: Legacy definition of the relationship is still supported:
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
-  database:
-    service: postgresql
-    endpoint: admin
-  reports:
-    service: postgresql
-    endpoint: reporter
-  imports:
-    service: postgresql
-    endpoint: importer
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+
+    source:
+      root: "/"
+
+    [...]
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with explicitly set service names and endpoints.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      database:
+        service: postgresql
+        endpoint: admin
+      reports:
+        service: postgresql
+        endpoint: reporter
+      imports:
+        service: postgresql
+        endpoint: importer
+
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+      databases:
+          - main
+          - legacy
+      endpoints:
+        admin:
+          privileges:
+            main: admin
+            legacy: admin
+        reporter:
+          default_database: main
+          privileges:
+            main: ro
+        importer:
+          default_database: legacy
+          privileges:
+            legacy: rw
 ```
 
 Each database is accessible to your application through the `database`, `reports`, and `imports` relationships.
-They'll be available in the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable and all have the same structure documented above, but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
+They'll be available in the [service environment variables](/development/variables/_index.md#service-environment-variables) and all have the same structure documented [above](#relationship-reference), but with different credentials. You can use those to connect to the appropriate database with the specified restrictions using whatever the SQL access tools are for your language and application.
 
 A service configuration without the `configuration` block defined is equivalent to the following default values:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-postgresql:
-  type: "postgresql:{{% latest "postgresql" %}}"
-  disk: 2048
-  configuration:
-    databases:
-      - main
-    endpoints:
-      postgresql:
-        default_database: main
-        privileges:
-          main: admin
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+      databases:
+        - main
+      endpoints:
+        postgresql:
+          default_database: main
+          privileges:
+            main: admin
 ```
 
 If you do not define `database` but `endpoints` are defined, then the single database `main` is created with the following assumed configuration:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-postgresql:
-  type: "postgresql:{{% latest "postgresql" %}}"
-  disk: 2048
-  configuration:
-    databases:
-      - main
-    endpoints: <your configuration>
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+      databases:
+        - main
+      endpoints: <your configuration>
 ```
 
 Alternatively, if you define multiple databases but no endpoints, a single user `main` is created with `admin` access to each of your databases, equivalent to the configuration below:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-postgresql:
-  type: "postgresql:{{% latest "postgresql" %}}"
-  disk: 2048
-  configuration:
-    databases:
-      - firstdb
-      - seconddb
-      - thirddb
-    endpoints:
-      main:
-        firstdb: admin
-        seconddb: admin
-        thirddb: admin
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+      databases:
+        - firstdb
+        - seconddb
+        - thirddb
+      endpoints:
+        main:
+          firstdb: admin
+          seconddb: admin
+          thirddb: admin
 ```
 
 ## Password generation
@@ -504,10 +665,9 @@ you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
 Note that you can't customize these automatically generated passwords.
 
-After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
-within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+through the [service environment variables](/development/variables/_index.md#service-environment-variables) within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
 Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
 
@@ -515,69 +675,6 @@ When you switch from the default configuration with an empty password to custom 
 make sure your service name remains unchanged.
 Failure to do so results in the creation of a new service,
 which removes any existing data from your database.
-
-## Restrict access to database replicas only
-
-{{< partial "banners/replicas/body.md" >}}
-
-For security reasons, you can grant your app access to replicas instead of your actual database.
-To do so, when defining the relationship between your app and database,
-make sure you do the following:
-
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
-2. Add the `-replica` suffix to the name of the endpoint you want to use.
-
-This results in the following configuration:
-
-```yaml {configFile="app"}
-relationships:
-  {{% variable "RELATIONSHIP_NAME" %}}:
-    service: {{% variable "SERVICE_NAME" %}}
-    endpoint: {{% variable "ENDPOINT_NAME" %}}-replica
-```
-
-For example, if you define a `postgresql` database as follows:
-
-```yaml {configFile="services"}
-postgresql:
-  type: "postgresql:16"
-  disk: 2048
-  configuration:
-    databases:
-      - main
-      - legacy
-    endpoints:
-      admin:
-        privileges:
-          main: admin
-          legacy: admin
-      reporter:
-        default_database: main
-        privileges:
-          main: ro
-```
-
-To create a replica of the `postgresql` database and allow your app to connect to it
-through the `admin` endpoint with admin permissions,
-use the following configuration:
-
-```yaml {configFile="app"}
-relationships:
-  postgresql:
-    service: postgresql
-    endpoint: admin-replica
-```
-
-To create a replica of the `postgresql` database and allow your app to connect to it
-through the `reporter` endpoint with read-only permissions instead,
-use the following configuration:
-
-```yaml {configFile="app"}
-relationships:
-  postgresql:
-    service: postgresql
-    endpoint: reporter-replica
-```
 
 ## Service timezone
 
@@ -588,14 +685,14 @@ To change the timezone for the current session, run `SET TIME ZONE {{< variable 
 {{% vendor/name %}} supports a number of PostgreSQL extensions. To enable them, list them under the `configuration.extensions` key in your `{{< vendor/configfile "services" >}}` file, like so:
 
 ```yaml {configFile="services"}
-# The name of the service container. Must be unique within a project.
-postgresql:
-  type: "postgresql:{{% latest "postgresql" %}}"
-  disk: 2048
-  configuration:
-    extensions:
-      - pg_trgm
-      - hstore
+services:
+  # The name of the service container. Must be unique within a project.
+  postgresql:
+    type: "postgresql:{{% latest "postgresql" %}}"
+    configuration:
+      extensions:
+        - pg_trgm
+        - hstore
 ```
 
 In this case, you have `pg_trgm` installed, providing functions to determine the similarity of text based on trigram matching, and `hstore` providing a key-value store.

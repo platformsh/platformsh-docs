@@ -17,10 +17,32 @@ These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 To modify any settings for a managed Fastly CDN,
 open a [support ticket](/learn/overview/get-support.md).
 To add a managed Fastly CDN to your project,
-[contact sales](https://platform.sh/contact/).
+[contact sales](https://upsun.com/contact-us/).
 
 {{< note theme="Info" >}}
 {{% vendor/name %}} does not write nor debug any custom VCL on Managed Fastly CDN services.
+{{< /note >}}
+
+{{< note theme="note" title="Monitor CDN metrics">}}
+
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). This will help you monitor your monthly bandwidth and requests consumption. 
+
+In this summary, you will find specific details about:
+
+- **Origin Bandwidth:** Data transferred from origin servers (in TB).
+
+- **Origin Requests:** Requests served by origin servers (in millions of requests).
+
+- **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
+
+This data is updated daily and will reflect your traffic usage throughout the billing period. 
+
+{{< /note >}}
+
+{{< note theme="info" title="Set up traffic alerts">}}
+
+You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html#monthly-traffic-alerts).
+
 {{< /note >}}
 
 ### Domain control validation
@@ -70,3 +92,6 @@ In this case, the Fastly API token is stored in a text file called `fastly_token
 typically located at `/mnt/shared/fastly_tokens.txt`.
 
 {{% /note %}}
+
+## Dynamic ACL and rate limiting
+For details about updating an access control list (ACL) and applying rate limiting, check out the [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/community/posts/26091087795602-Working-with-platform-sh-rate-limiting-implementation-Fastly) article in the Upsun Community.

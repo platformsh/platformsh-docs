@@ -9,6 +9,7 @@ keywords:
 - two factor
 - mfa
 - multifactor authentication
+- sso
 sidebarTitle: Connect with SSH
 ---
 
@@ -30,7 +31,7 @@ To authenticate with the CLI:
 
 1. Install the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 2. Run `{{% vendor/cli %}} login`.
-3. In the open browser window, log in with your {{% vendor/name %}} account credentials.
+3. In the open browser window, log in with your {{% vendor/company_name %}} account credentials.
    (This webpage is encrypted with [HTTPS](/define-routes/https.md), making it secure.)
 4. Authorize the CLI to use your account.
 
@@ -167,7 +168,7 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
 ## SSH into an MFA-protected environment
 
 For enhanced security, as an organization owner or admin user,
-you can [enforce Multi-Factor Authentication (MFA) within your organization](/administration/security/mfa.md#enforce-mfa-within-your-organization).
+you can [enforce multifactor authentication (MFA) within your organization](/administration/security/mfa.md#enforce-mfa-within-your-organization).
 
 As a project contributor, if you haven't enabled MFA on your user account and SSH into an environment that is protected by MFA,
 you get an error message. See how you can [troubleshoot that error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-message).

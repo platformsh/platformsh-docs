@@ -1,10 +1,10 @@
 ---
-title: "MariaDB/MySQL External Replication"
-sidebarTitle: "MariaDB/MySQL Replication"
+title: "MariaDB/MySQL external replication"
+sidebarTitle: "External replication"
 description: In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}}.
 ---
 
-In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}}.
+In rare cases, it may be useful to maintain a replica instance of your MySQL/MariaDB database outside of {{% vendor/name %}} on a remote server.
 
 Typically, an automated backup is better for short-term usage and a `mysqldump` for longer term storage, but in some cases the data set is large enough that `mysqldump` is prohibitive.
 In that case, you can enable external replication using an extra permission.
@@ -35,10 +35,10 @@ mariadb:
           main: replication
 ```
 The preceding example:
-- Creates a `replicator` user. 
-- Grants read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges). 
+- Creates a `replicator` user.
+- Grants read-only and table locking rights on the `main` database (namely `Select_priv`, `Show_view_priv`, `Create_tmp_table_priv`, `Lock_tables_priv` privileges).
 - Grants global replication rights (namely `Repl_slave_priv` and `Repl_client_priv` privileges).
-- Grants flushing rights (`Reload_priv` used for flushing before reading the binary log position). 
+- Grants flushing rights (`Reload_priv` used for flushing before reading the binary log position).
 - If at least one `replication` permission is defined, the bin-logging is enabled on the primary server, which is essential for the replication.
 
 ## Add a relationship for the new endpoint
@@ -54,7 +54,7 @@ name: myapp
 # Relationships enable an app container's access to a service.
 relationships:
   # Please note: Legacy definition of the relationship is still supported:
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   database:
     service: "mariadb"
     endpoint: "mysql"
@@ -150,13 +150,13 @@ You can set up an SSH tunnel using one of the following methods:
   ```bash
     {{% vendor/cli %}} tunnel:open --project {{< variable "PROJECT_ID" >}} --environment {{< variable "BRANCH_NAME" >}}
   ```
-  This command opens local SSH tunnels to all services accessible from the application. 
-  
-To configure an auto-restart, you need the project's SSH address, which you can retrieve by running: 
+  This command opens local SSH tunnels to all services accessible from the application.
+
+To configure an auto-restart, you need the project's SSH address, which you can retrieve by running:
 
   ```bash
   {{% vendor/cli %}} ssh --pipe --project {{< variable "PROJECT_ID" >}}
-  ``` 
+  ```
 For details about this command, see the [{{% vendor/name %}} CLI reference](/administration/cli/reference.md#usage-54).
 
 ### Binary log retention and cleanup

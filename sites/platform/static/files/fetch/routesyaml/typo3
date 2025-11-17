@@ -1,10 +1,10 @@
 # This file describes an application's routes. You can define as many routes as your
 # application requires.
 #
-# See https://docs.platform.sh/configuration/routes.html
+# See https://docs.upsun.com/anchors/fixed/routes/
 
 # URL template for the main route, where `{default}` is replaced by
-# the Platform.sh generated environment URL or the configured domain.
+# the Upsun Fixed generated environment URL or the configured domain.
 "https://{default}/":
     # This route serves an application (upstream).
     type: upstream
@@ -13,11 +13,11 @@
     # where the `name` attribute from `.platform.app.yaml` is used.
     upstream: "app:http"
 
-    # Optional route identifier; constant across all environments. 
-    # 
-    # For TYPO3, the id "main" is used within `public/typo3conf/PlatformshConfig.php` 
-    # to set the `base` attribute for the site (in `config/sites/main/config.yaml`) from the 
-    # Platform.sh environment variable `PLATFORM_ROUTES`.
+    # Optional route identifier; constant across all environments.
+    #
+    # For TYPO3, the id "main" is used within `public/typo3conf/PlatformshConfig.php`
+    # to set the `base` attribute for the site (in `config/sites/main/config.yaml`) from the
+    # Upsun Fixed environment variable `PLATFORM_ROUTES`.
     id: "main"
 
     # HTTP cache configuration.
@@ -25,7 +25,7 @@
         # Enabled (default `true`, but only if `cache` attribute is unspecified).
         enabled: true
 
-        # List of allowed cookie names, all others are ignored. 
+        # List of allowed cookie names, all others are ignored.
         cookies:
           # Used to identify a backend session when Backend User logged in.
           - 'be_typo_user'

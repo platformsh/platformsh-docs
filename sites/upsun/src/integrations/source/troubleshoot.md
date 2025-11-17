@@ -8,7 +8,7 @@ keywords:
 - "source integrations"
 ---
 
-If you [add a user](/administration/users.md#add-a-user-to-a-project) to a {{% vendor/name %}} project,
+If you [add a user](/administration/users.md#add-a-user-to-a-project) to an {{% vendor/name %}} project,
 but you haven’t added them to the remote repository on GitHub, GitLab, or Bitbucket,
 they can't clone the project locally.
 
@@ -20,7 +20,7 @@ That user might try to clone the repository using the CLI with the following com
 
 In this case, the user gets an error similar to the following:
 
-```txt
+```txt {no-copy="true"}
 Failed to connect to the Git repository: git@github.com:organization/repository.git
 Please make sure you have the correct access rights and the repository exists.
 ```

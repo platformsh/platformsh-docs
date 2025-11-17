@@ -39,7 +39,7 @@ applications:
 
 You can transpose these variables to set up Laravel's default configuration in a `.environment` file:
 
-```bash  {configFile="env"}
+```bash {configFile="env"}
 # Set MySQL database environment variables
 export DB_HOST="$MYSQL_HOST"
 export DB_PORT="$MYSQL_PORT"

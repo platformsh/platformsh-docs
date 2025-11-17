@@ -68,6 +68,27 @@ Redirects from `http` to `https` are generally included by default and don't nee
 
 The specifics of configuring the Router container for multiple applications is explored in detail in the [Multiple apps](/create-apps/multi-app/routes.md) documentation.
 
+### Sticky routing
+
+Sticky routing ensures that all requests from a specific client are consistently routed to the same instance of your application. This can be critical for stateful applications that rely on local session data, preventing user context from being lost in a horizontally scaled environment. You can enable it in your [route configuration](#route-configuration-reference) to have the router attempt to send repeated requests from the same client to the same instance.
+
+At {{% vendor/name %}}, sticky routing is implemented using a hash of the client’s IP address. This ensures requests from the same IP are generally routed to the same container.
+
+```yaml {configFile="routes"}
+routes:
+  "https://{default}/":
+    type: upstream
+    upstream: app:http
+    sticky: true
+```
+This enables sticky routing at the router level.
+
+{{< note theme="note" title="Note">}}
+
+Because the routing uses IP hashing, scaling your environment up or down can change the hash distribution, causing requests to be routed to different containers. For production workloads that require persistent sessions, use an external session store (for example, [Redis](/add-services/redis.md)), or design your app to be stateless.
+
+{{< /note >}}
+
 ## Trailing slashes
 
 All defined routes have at least a slash in the path.
@@ -157,7 +178,7 @@ using either the absolute URL or the `{default}` placeholder results in the same
 
 In any case, you get the same URL for an environment named `feature`:
 
-```txt
+```txt {no-copy="true"}
 https://feature-t6dnbai-abcdef1234567.us-2.{{< vendor/urlraw "hostname" >}}/blog
 ```
 
@@ -358,9 +379,10 @@ Non-default ports (other than `80` and `443`) aren't supported and can't be incl
 You can configure each route separately with the following properties:
 
 | Name         | Type      | Required                | Description |
-| ------------ | --------- | ----------------------- | ----------- |
+| ------------- | --------- | ----------------------- | ----------- |
 | `type`       | `string`  | Yes                     | One of the following options:<ul><li>`upstream` means content is served at that route by an app and requires the `upstream` property to be set.</li><li>`redirect` means the route is redirected elsewhere in your project and requires the `to` property.</li><li>`proxy` means requests are redirected _outside_ your project and requires the `to` property. See more about [proxy routes](/define-routes/proxy.md).</li></ul> |
 | `upstream`   | `string`  | If `type` is `upstream` | The `name` of the app to be served (as defined in your [app configuration](/create-apps/_index.md)) followed by `:http`. Example: `app:http` |
+| `sticky`     | `boolean` | No                      | Enables [sticky routing](#sticky-routing) for the route. When `true`, the router attempts to send repeat requests from the same client to the same upstream container, based on a hash of the client’s IP address. |
 | `to`         | `string`  | If `type` is `redirect` | The absolute URL or other route to which the given route should be redirected with an HTTP 301 status code. |
 | `ssi`        | `boolean` | No                      | Whether [server side includes](/define-routes/ssi.md) are enabled. |
 | `redirects`  | Object    | No                      | Defines redirects for partial routes. For definition and options, see the [redirect rules](/define-routes/redirects.md). |
@@ -369,6 +391,7 @@ You can configure each route separately with the following properties:
 | `primary`    | `boolean` | No                      | Whether the route is the primary route for the project. Can only be `true` for one route in the configuration file, but if you use the [`{all}` placeholder](#all), it can be `true` for multiple final routes. Defaults to the first defined `upstream` route. |
 | `tls`        | Object    | No                      | TLS configuration. See [HTTPS](/define-routes/https.md#optional-configure-tls-connections). |
 | `attributes` | Object    | No                      | Any key-value pairs you want to make available to your app. See [route attributes](#route-attributes). |
+
 
 ## CLI access
 

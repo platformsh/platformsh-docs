@@ -14,7 +14,7 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-### Ruby MRI
+### Ruby
 
 <table>
     <thead>
@@ -356,7 +356,7 @@ For Rails, you have two choices:
 
 - New images are released on a regular basis to apply security patches. While the minor version will not change (as you are specifying it in the `type` property), the patch version will be updated. You may encounter this kind of error:
 
-  ```
+  ``` {no-copy="true"}
   bundler: failed to load command: puma (/app/vendor/bundle/ruby/3.2.0/bin/puma)
   /app/.global/gems/bundler-2.4.22/lib/bundler/definition.rb:447:in `validate_ruby!': Your Ruby version is 3.2.9, but your Gemfile specified 3.2.8 (Bundler::RubyVersionMismatch)
   ```

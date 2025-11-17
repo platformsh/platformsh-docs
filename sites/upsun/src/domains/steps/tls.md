@@ -23,8 +23,7 @@ To avoid switching to a default certificate,
 make sure you replace your custom certificate with an updated one
 more than seven days before its expiration date.
 
-Note that custom certificates aren't necessary for preview environments.
-Wildcard certificates that cover all `*.platform.sh` domains, including preview environments, are automatically provided.
+Note that custom certificates aren't necessary for preview environments as we provision Let's Encrypt certificates by default for them.
 
 ### Add a custom certificate
 

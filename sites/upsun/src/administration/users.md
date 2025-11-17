@@ -5,12 +5,12 @@ sidebarTitle: Users
 description: Manage user access and permissions across all your projects and organizations.
 ---
 
-{{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations.
+{{% vendor/name %}} offers fine-grained and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
 {{< note title="Available add-on" >}}
 
-The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/mfa.md) and [Single sign-on (Google)](/administration/billing/add-on-subscription.md#single-sign-on-google). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
+The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/security/mfa.md) and [single sign-on](/administration/security/sso.md). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 
 {{< /note >}}
 
@@ -225,10 +225,7 @@ For more information on project access control, see how to [manage project users
 
 ### Organization permissions
 
-{{< partial "user-mgt-sellable/body.md" >}}
-
-As an organization owner or an organization user with the **Manage users** permission,
-you can invite other users to your organization and grant them the following permissions:
+As an organization owner or an organization user with the **Manage users** permission, you can invite other users to your organization and grant them the following permissions:
 
 - **Admin** (`owner`):
   Manage the organization and access all organization permissions, including all listed below.
@@ -243,6 +240,7 @@ you can invite other users to your organization and grant them the following per
   Create new projects within the organization.
 - **List projects** (`projects:list`):
   See all projects in an organization, even those the user can't access.
+
 
 {{< note >}}
 
@@ -260,6 +258,21 @@ Organization owners have all permissions within their organization.
 Their permission level can't be edited.
 Organization owners can't be removed from their organization,
 except through an [ownership transfer](../administration/organizations.md#transfer-project-ownership).
+
+#### Viewer permissions
+
+A user is considered a viewer only if **all** of the following are true:
+
+- Their organization-level permissions are limited to **view**, `project:list`, or **billing**  
+- They are **not** an admin or contributor on any project  
+- They do **not** have team-level access that grants admin permissions  
+
+{{< note >}}
+
+If any of these conditions are not met, the user is counted as an **admin** for billing.
+
+{{< /note >}}
+
 
 ### Add a user to an organization
 
