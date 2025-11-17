@@ -18,7 +18,7 @@ An _image_ represents the configuration for the container that contains the appl
 
 <!-- JUL20205 kept the original content below for now -->
 To define your app, you can either use one of {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
-or its [composable image (BETA)](/create-apps/app-reference/composable-image.md).
+or its [composable image](/create-apps/app-reference/composable-image.md).
 
 The single-runtime image type has the following characteristics: 
 - Can contain only a single runtime
@@ -49,7 +49,7 @@ The composable image type has the following characteristics:
 {{% vendor/name %}} provides and maintains a list of single-runtime images you can use for each of your application containers.</br>
 See [all of the options you can use](/create-apps/app-reference/single-runtime-image.md) to define your app using a single-runtime image.
 
-## Composable image (BETA)
+## Composable image
 
 The {{% vendor/name %}} composable image provides more flexibility than single-runtime images. This image type enables you to define or "compose" the stack (or group of packages) to include in the container that runs your application. 
 

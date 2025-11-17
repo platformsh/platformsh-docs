@@ -6,7 +6,7 @@ layout: single
 
 {{% note theme="info" %}}
 
-You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
 To find out more about this feature, see the [dedicated documentation page](/create-apps/app-reference/composable-image.md).</br>
 Also, see how you can [modify your PHP runtime when using the composable image](#modify-your-php-runtime-when-using-the-composable-image).
 
@@ -674,7 +674,7 @@ See dedicated guides for deploying and working with them:
 
 {{% note theme= "warning" %}}
 
-This section is only relevant when using the {{% vendor/name %}} [composable image (BETA)](/create-apps/app-reference/composable-image.md).
+This section is only relevant when using the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md).
 
 {{% /note %}}
 

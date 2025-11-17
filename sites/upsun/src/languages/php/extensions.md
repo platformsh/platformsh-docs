@@ -6,7 +6,7 @@ description: See what PHP extensions are available with each PHP version on {{% 
 
 {{% note theme="info" %}}
 
-You can now use the [{{% vendor/name %}} composable image (BETA)](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
+You can now use the [{{% vendor/name %}} composable image](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 When using the composable image, see how you can:
 - [Manage PHP extensions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages)
 - [Modify your PHP runtime](/languages/php/_index.md#modify-your-php-runtime-when-using-the-composable-image)

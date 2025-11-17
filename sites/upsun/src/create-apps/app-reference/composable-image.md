@@ -2,7 +2,6 @@
 title: "Composable image"
 weight: 5
 description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
-beta: true
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
@@ -25,8 +24,7 @@ If you're pressed for time, jump to this comprehensive [configuration example](/
 
 ## Primary application properties
 
-All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured
-under a unique key beneath the top-level `applications` key.
+All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured under a unique key beneath the top-level `applications` key.
 
 It is possible to use multiple runtimes in a single application container,
 for instance PHP, NodeJS and Python, while remaining in control of their versions.
@@ -35,7 +33,7 @@ For example, the unified `{{< vendor/configfile "app" >}}` file may look like th
 
 ```yaml {configFile="app"}
 applications:
-  frontend:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     stack:
       - runtimes:
@@ -47,22 +45,25 @@ applications:
                 - pdo_sqlite
           - "nodejs@{{% latest "nodejs" %}}"
           - "python@3.13"
-  # Additional frontend configuration
+    # Additional {{% variable "APP_NAME" %}}: configuration
 ```
 
-The following table presents all properties available at the level just below the unique application name (`frontend`
-above).
+The following table presents all of the properties available to each unique application name (`{{% variable "APP_NAME" %}}:` above).
 
-The _Set in instance?_ column defines whether the given property can be overridden within a `web` or `workers` instance.
+The **Set in instance?** column defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you must provide the entire property.
 
-- **Note:** Except for the `stack` key, the keys listed below are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for keys that are **unique** to this image type are provided later in this topic. 
+{{% note theme="info" %}}
 
+- Except for `type` and `stack` keys, the single-runtime and composable image types use the keys listed below in the same manner, and clicking the key name takes you to a separate topic for that key. Descriptions for keys that are **unique** to this image type are provided later in this topic. 
+- The ``stack`` key replaces the ``build``, ``dependencies``, and ``runtime`` keys available in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+
+{{% /note %}}
 
 | Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory for each application that uses the composable image. Example: `type: "composable:{{% latest composable %}}"`.                                                                                                                                                                                      |
-| [`stack`](#stack)              |  A dictionary of `runtimes` and/or Nix `packages`                                                      | Yes      | No               | Defines what to install in the application container: `runtimes` is an array of [supported runtimes](#supported-nix-packages) from the {{% vendor/name %}} collection; `packages` is an array of [NixPkgs](https://search.nixos.org/packages).                                                                                            |
+| [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory in each application that uses the composable image. Example: `type: "composable:{{% latest composable %}}"`.                                                                                                                                                                                      |
+| [`stack`](#stack)              |  `runtimes` and/or  `packages` arrays                                                     | Yes      | No               | Defines what to install in the application container: `runtimes` is an array of [{{% vendor/name %}}-supported runtimes](#supported-nix-packages); `packages` is an array of [NixPkgs](https://search.nixos.org/packages).                                                                                            |
 | [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
 | [`relationships`](/create-apps/image-properties/relationships.md)      | A dictionary of relationships                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | [`mounts`](/create-apps/image-properties/mounts.md)             | A dictionary of mounts                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
@@ -79,12 +80,6 @@ To override any part of a property, you must provide the entire property.
 | [`operations`](/create-apps/runtime-operations.md)         | A dictionary of runtime operations                 |          | No               | Runtime operations for the application.                                                                                                                                                                                                                          |
 
 
-{{% note %}}
-The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
-They are **not** supported when using the composable image.
-They are replaced by the `stack` key.
-{{% /note %}}
-
 ## `type` {#type}
 
 Required in all applications that use the composable image. Defines the version of the Nix channel the application uses. 
@@ -97,10 +92,10 @@ applications:
       type: "composable:{{% latest composable %}}"
 ```
 
-If all applications in the container use the composable image, you can define the type globall for the container as follows: 
+If all applications in the container use the composable image, you can define the type globally for the container as follows: 
 
 ```yaml
-application: 
+applications: 
    # All applications use the composable image
    type: "composable:{{% latest composable %}}"
    frontend:
@@ -113,7 +108,7 @@ application:
 
 If the applications in the container are a mix of composable and single-runtime images, then define the `type` as needed for each application: 
 ```yaml
-application: 
+applications: 
    frontend:
       # This application uses the composable image. 
       type: "composable:{{% latest composable %}}"
@@ -134,8 +129,8 @@ Upsun supports the following Nix channel versions:
 ### Supported Nix packages
 
 {{% note %}}
-The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
-However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack` array (see the [`stack](#stack) section below).
+The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.<br>
+However, you can add any other packages from the [Nixpkgs collection](https://search.nixos.org/) to your `stack` array (see the [`stack`](#stack) section below).
 This includes packages from the ``unstable`` channel,
 such as [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
 While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
@@ -179,6 +174,7 @@ applications:
 ## `stack` {#stack}
 
 You must define the `stack` element with distinct `runtimes` and `packages` keys, as follows:
+
 - **`runtimes`**: an array of language runtimes. Examples:`php`, `python`, `node.js`. See the complete list of [supported language runtimes](#supported-nix-packages).<br>
   Optional: version numbers and other keys such as `extensions`, `disabled_extensions`. 
 - **`packages`**: an array of extra system tools or libraries installed from Nix packages.<br>

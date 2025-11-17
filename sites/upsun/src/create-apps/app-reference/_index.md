@@ -10,7 +10,7 @@ An _image_ represents the configuration of the container that contains the appli
 Choosing the image type for the container that best suits your application is the first and most important decision in configuring how your application is deployed.
 
 You can choose either {{% vendor/name %}}'s [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
-or its [composable image (BETA)](/create-apps/app-reference/composable-image.md). **The key difference between them is the type of flexibility that they offer**. 
+or its [composable image](/create-apps/app-reference/composable-image.md). **The key difference between them is the type of flexibility that they offer**. 
 
 For both image types, the image is defined in the `{{< vendor/configfile "app" >}}` file. 
 
@@ -30,7 +30,7 @@ Consider using a single-runtime image when these factors are important:
 
 If you initially choose a single-runtime image and your application needs change, you can move the app to a composable image: For example, if you determine that your application needs additional packages or multiple runtimes.
 
-**Composable image** (BETA): Choose this image type your application has multiple dependencies: for example, multiple runtimes, additional packages, or other items such as HTML files or PDF images. Composable images can be used for both applications and services.
+**Composable image**: Choose this image type your application has multiple dependencies: for example, multiple runtimes, additional packages, or other items such as HTML files or PDF images. Composable images can be used for both applications and services.
 
 This image type enables you to build an image by using the packages in the latest available Nix channel, or you can define ("compose") the collection of packages (as defined by the `stack` key) for your image, especially when packages are available in the {{% vendor/name %}} registry. 
 
