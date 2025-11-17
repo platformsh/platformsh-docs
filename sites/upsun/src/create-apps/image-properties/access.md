@@ -43,7 +43,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 

@@ -50,7 +50,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -104,7 +104,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -168,7 +168,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 

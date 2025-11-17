@@ -36,7 +36,7 @@ For example, the unified `{{< vendor/configfile "app" >}}` file may look like th
 ```yaml {configFile="app"}
 applications:
   frontend:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     stack:
       - runtimes:
           - "php@{{% latest "php" %}}":
@@ -61,7 +61,7 @@ To override any part of a property, you must provide the entire property.
 
 | Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory for each application that uses the composable image. Example: `type: "composable:25.05"`.                                                                                                                                                                                      |
+| [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory for each application that uses the composable image. Example: `type: "composable:{{% latest composable %}}"`.                                                                                                                                                                                      |
 | [`stack`](#stack)              |  A dictionary of `runtimes` and/or Nix `packages`                                                      | Yes      | No               | Defines what to install in the application container: `runtimes` is an array of [supported runtimes](#supported-nix-packages) from the {{% vendor/name %}} collection; `packages` is an array of [NixPkgs](https://search.nixos.org/packages).                                                                                            |
 | [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
 | [`relationships`](/create-apps/image-properties/relationships.md)      | A dictionary of relationships                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
@@ -89,12 +89,12 @@ They are replaced by the `stack` key.
 
 Required in all applications that use the composable image. Defines the version of the Nix channel the application uses. 
 
-For example, to use the Nix channel `25.05`, use the following syntax:
+For example, to use the Nix channel `{{% latest composable %}}`, use the following syntax:
 
 ```yaml {configFile="apps"}
 applications:
   {{% variable "APP_NAME" %}}:
-      type: "composable:25.05"
+      type: "composable:{{% latest composable %}}"
 ```
 
 If all applications in the container use the composable image, you can define the type globall for the container as follows: 
@@ -102,7 +102,7 @@ If all applications in the container use the composable image, you can define th
 ```yaml
 application: 
    # All applications use the composable image
-   type: "composable:25.05"
+   type: "composable:{{% latest composable %}}"
    frontend:
       stack:
       ...
@@ -116,7 +116,7 @@ If the applications in the container are a mix of composable and single-runtime 
 application: 
    frontend:
       # This application uses the composable image. 
-      type: "composable:25.05"
+      type: "composable:{{% latest composable %}}"
       stack:
       ...
    backend:
@@ -129,7 +129,7 @@ application:
 
 Upsun supports the following Nix channel versions: 
 
-- `25.05`
+- `{{% latest composable %}}`
 
 ### Supported Nix packages
 
@@ -166,7 +166,7 @@ To do so, use the following configuration:
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     stack: 
       runtimes: [ "php@{{% latest php %}}", "facedetect" ]
     # OR
@@ -268,7 +268,7 @@ For instance:
 
 ```yaml {configFile="app"}
 applications:
-  type: "composable:25.05"
+  type: "composable:{{% latest composable %}}"
   {{% variable "APP_NAME" %}}:
     source:
       root: "/"
@@ -310,7 +310,7 @@ use the following configuration:
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "python@3.13"
@@ -326,7 +326,7 @@ Here is a full composable image configuration example. Note the use of the `<nix
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "php@{{% latest "php" %}}":
@@ -352,7 +352,7 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 applications:
   frontend:
     # this app uses the composable image
-    type: "composable:25.05" 
+    type: "composable:{{% latest composable %}}" 
     stack:
       - "php@{{% latest "php" %}}":
           extensions:

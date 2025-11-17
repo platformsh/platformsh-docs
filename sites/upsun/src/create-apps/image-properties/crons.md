@@ -38,7 +38,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'nodejs:{{% latest "nodejs" %}}'  # for a composable image, set type: "composable:25.05"
+    type: 'nodejs:{{% latest "nodejs" %}}'  # for a composable image, set type: "composable:{{% latest composable %}}"
     crons:
       mycommand:
         spec: 'H * * * *'
@@ -267,7 +267,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:25.05"
+  type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 

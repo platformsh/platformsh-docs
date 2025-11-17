@@ -61,7 +61,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:25.05"
+  type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -145,7 +145,7 @@ The following example is the default on non-PHP containers:
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:25.05"
+  type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -280,7 +280,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:25.05"
+  type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -344,7 +344,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:25.05"
+  type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 

@@ -77,7 +77,7 @@ A worker named `queue` that was small and had a different start command could lo
 ```yaml {configFile="app"}
 applications:
   myapp:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
