@@ -77,9 +77,11 @@ A worker named `queue` that was small and had a different start command could lo
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     workers:
       queue:
         commands:

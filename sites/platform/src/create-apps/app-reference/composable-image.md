@@ -74,6 +74,7 @@ Define them as a YAML array as follows:
 
 ```yaml {configFile="apps"}
 myapp:
+  type: "composable:25.05"
   stack: [ "<nixpackage>@<version>" ]
   # OR
   stack:

@@ -61,9 +61,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+  type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     web:
       commands:
         start: 'uwsgi --ini conf/server.ini'
@@ -143,9 +145,11 @@ The following example is the default on non-PHP containers:
 ```yaml {configFile="app"}
 applications:
   myapp:
+  type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     web:
       upstream:
         socket_family: tcp
@@ -276,9 +280,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+  type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     web:
       locations:
         '/':
@@ -338,9 +344,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+  type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     web:
       locations:
         '/':

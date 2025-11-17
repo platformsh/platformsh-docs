@@ -26,7 +26,7 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     source:
       root: "/"
     type: 'python:{{% latest "python" %}}'
@@ -42,10 +42,12 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     access:
       ssh: admin
 ```

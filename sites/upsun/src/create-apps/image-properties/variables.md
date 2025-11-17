@@ -53,9 +53,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+  type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     variables:
       env:
         AUTHOR: 'Juan'

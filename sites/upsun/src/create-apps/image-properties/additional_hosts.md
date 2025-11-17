@@ -16,7 +16,7 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     source:
       root: "/"
     type: 'php:{{% latest "php" %}}'
@@ -32,10 +32,12 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "php@{{% latest php %}}" ]
+    stack: 
+      runtimes: [ "php@{{% latest php %}}" ]
     additional_hosts:
       api.example.com: "192.0.2.23"
       web.example.com: "203.0.113.42"

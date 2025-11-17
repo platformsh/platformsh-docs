@@ -50,9 +50,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     firewall:
       outbound:
         - ips: [ "0.0.0.0/0" ]
@@ -102,9 +104,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     firewall:
       outbound:
         - ips: [ "1.2.3.4/32" ]
@@ -164,9 +168,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "python@{{% latest python %}}" ]
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     firewall:
       outbound:
         - protocol: tcp

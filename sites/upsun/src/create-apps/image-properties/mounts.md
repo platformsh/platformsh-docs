@@ -20,8 +20,8 @@ much like you would plug a hard drive into your computer to transfer data.
 
 {{% note %}}
 
-- Mounts aren't available during the build
-- When you [back up an environment](/environments/backup.md), the mounts on that environment are backed up too
+- Mounts aren't available during the build.
+- When you [back up an environment](/environments/backup.md), the mounts on that environment are also backed up.
 
 {{% /note %}}
 
@@ -65,9 +65,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "nodejs@{{% latest nodejs %}}" ]
+    stack: 
+      runtimes: [ "nodejs@{{% latest nodejs %}}" ]
     mounts:
       '{{< variable "MOUNT_PATH" >}}':
         source: {{< variable "MOUNT_TYPE" >}}
@@ -135,9 +137,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "nodejs@{{% latest nodejs %}}" ]
+    stack: 
+      runtimes: [ "nodejs@{{% latest nodejs %}}" ]
     mounts:
       'web/uploads':
         source: storage

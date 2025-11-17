@@ -3,10 +3,6 @@ title: "Composable image"
 weight: 5
 description: Use {{% vendor/name %}}'s composable image to build and deploy your app.
 beta: true
-banner:
-  title: Beta Feature
-  body: The {{% vendor/name %}} composable image is currently available in Beta.
-        This feature as well as its documentation is subject to change.
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
@@ -40,31 +36,33 @@ For example, the unified `{{< vendor/configfile "app" >}}` file may look like th
 ```yaml {configFile="app"}
 applications:
   frontend:
+    type: "composable:25.05"
     stack:
-      - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
-      - "nodejs@{{% latest "nodejs" %}}"
-      - "python@3.12"
-    # Additional frontend configuration
+      - runtimes:
+          - "php@{{% latest "php" %}}":
+              extensions:
+                - apcu
+                - sodium
+                - xsl
+                - pdo_sqlite
+          - "nodejs@{{% latest "nodejs" %}}"
+          - "python@3.13"
+  # Additional frontend configuration
 ```
 
 The following table presents all properties available at the level just below the unique application name (`frontend`
 above).
 
-The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
-To override any part of a property, you have to provide the entire property.
+The _Set in instance?_ column defines whether the given property can be overridden within a `web` or `workers` instance.
+To override any part of a property, you must provide the entire property.
 
 - **Note:** Except for the `stack` key, the keys listed below are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for keys that are **unique** to this image type are provided later in this topic. 
 
 
 | Name                 | Type                                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`. If not present, defaults to last stable version.                                                                                                                                                                                     |
-| [`stack`](#stack)              | An array of Nix packages                                                      | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [NixPkgs](https://search.nixos.org/packages).                                                                                            |
+| [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory for each application that uses the composable image. Example: `type: "composable:25.05"`.                                                                                                                                                                                      |
+| [`stack`](#stack)              |  A dictionary of `runtimes` and/or Nix `packages`                                                      | Yes      | No               | Defines what to install in the application container: `runtimes` is an array of [supported runtimes](#supported-nix-packages) from the {{% vendor/name %}} collection; `packages` is an array of [NixPkgs](https://search.nixos.org/packages).                                                                                            |
 | [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
 | [`relationships`](/create-apps/image-properties/relationships.md)      | A dictionary of relationships                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | [`mounts`](/create-apps/image-properties/mounts.md)             | A dictionary of mounts                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
@@ -87,23 +85,139 @@ They are **not** supported when using the composable image.
 They are replaced by the `stack` key.
 {{% /note %}}
 
+## `type` {#type}
 
-## `stack` {#stack}
+Required in all applications that use the composable image. Defines the version of the Nix channel the application uses. 
 
-Use the ``stack`` key to define which runtimes and binaries you want to install in your application container.
-Define them as a YAML array as follows:
+For example, to use the Nix channel `25.05`, use the following syntax:
+
+```yaml {configFile="apps"}
+applications:
+  {{% variable "APP_NAME" %}}:
+      type: "composable:25.05"
+```
+
+If all applications in the container use the composable image, you can define the type globall for the container as follows: 
+
+```yaml
+application: 
+   # All applications use the composable image
+   type: "composable:25.05"
+   frontend:
+      stack:
+      ...
+   backend:
+      stack:
+   ...
+```
+
+If the applications in the container are a mix of composable and single-runtime images, then define the `type` as needed for each application: 
+```yaml
+application: 
+   frontend:
+      # This application uses the composable image. 
+      type: "composable:25.05"
+      stack:
+      ...
+   backend:
+      # This application does not use the composable image. 
+      stack:
+   ...
+```
+
+### Supported Nix channels
+
+Upsun supports the following Nix channel versions: 
+
+- `25.05`
+
+### Supported Nix packages
+
+{{% note %}}
+The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
+However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack` array (see the [`stack](#stack) section below).
+This includes packages from the ``unstable`` channel,
+such as [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
+{{% /note %}}
+
+Depending on the Nix package, you can select only the major runtime version,
+or the major and minor runtime versions as shown in the table.
+Security and other patches are applied automatically.
+
+| **Language**                                 | **Nix package** | **Supported version(s)**             |
+|----------------------------------------------|---------------|----------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
+| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
+| [Java](/languages/java.html)                 | `java`        | 21                                     |
+| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
+| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
+| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
+| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
+
+**Example:**
+
+Suppose you want to add PHP version {{% latest php %}} and ``facedetect`` to your application container.
+To do so, use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
-    stack: [ "<nixpackage>@<version>" ]
+  {{% variable "APP_NAME" %}}:
+    type: "composable:25.05"
+    stack: 
+      runtimes: [ "php@{{% latest php %}}", "facedetect" ]
     # OR
     stack:
-      - "<nixpackage>@<version>"
+      runtimes: 
+        - "php@{{% latest php %}}"
+        - "facedetect"
 ```
 
-To add a language to your stack, use the `<nixpackage>@<version>` format.</br>
-To add a tool to your stack, use the `<nixpackage>` format, as no version is needed.
+## `stack` {#stack}
+
+You must define the `stack` element with distinct `runtimes` and `packages` keys, as follows:
+- **`runtimes`**: an array of language runtimes. Examples:`php`, `python`, `node.js`. See the complete list of [supported language runtimes](#supported-nix-packages).<br>
+  Optional: version numbers and other keys such as `extensions`, `disabled_extensions`. 
+- **`packages`**: an array of extra system tools or libraries installed from Nix packages.<br>
+  Packages originate from the Nix channel that is defined by the `type` key, unless overridden locally with `channel`. See the `config.yaml` file excerpt below.
+  Optional: additional keys, such as:
+  - `package` (string)
+  - `channel` (string; for example, `unstable`)
+  - Additional configuration keys (to demonstrate passthrough flexibility)
+
+
+    For example, to use a package version in an unstable channel, define a package:channel mapping in the `packages` array, as shown below: 
+    ```yaml
+    packages:
+      - package: wkhtmltopdf
+        channel: unstable
+    ```
+
+Example:
+
+```yaml {configFile="app"}
+applications: 
+  {{% variable "APP_NAME" %}}:
+    stack:
+      runtimes:
+        - "php@{{% latest "php" %}}":
+            extensions: 
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
+            disabled_extensions:
+              - gd
+        - "nodejs@{{% latest "nodejs" %}}"
+      packages:
+        - yarn
+        - imagemagick
+        - package: wkhtmltopdf
+          channel: unstable
+```
 
 {{% note theme=warning title="Warning" %}}
 While technically available during the build phase, `nix` commands aren't supported at runtime as the image becomes read-only.
@@ -128,65 +242,6 @@ and visit the documentation page dedicated to your runtime.
 {{% note %}}
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
-
-### Supported Nix channels
-
-- `24.05`
-- `25.05`
-
-### Configure Nix channels
-
-The Nix channel can be configured with the [top-level property `type`](#primary-application-properties). 
-
-For example, to use the Nix channel `25.05`, you would use the following syntax:
-
-```yaml {configFile="apps"}
-
-type: "composable:25.05"
-
-```
-
-### Supported Nix packages
-
-{{% note %}}
-The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
-However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
-This includes packages from the ``unstable`` channel,
-like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
-While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
-{{% /note %}}
-
-Depending on the Nix package, you can select only the major runtime version,
-or the major and minor runtime versions as shown in the table.
-Security and other patches are applied automatically.
-
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 21                                     |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 22<br/>20<br/>18                       |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.3<br/>8.2<br/>8.1                    |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.3<br/>3.2<br/>3.1                    |
-
-**Example:**
-
-You want to add PHP version {{% latest php %}} and ``facedetect`` to your application container.
-To do so, use the following configuration:
-
-```yaml {configFile="app"}
-applications:
-  myapp:
-    stack: [ "php@{{% latest php %}}", "facedetect" ]
-    # OR
-    stack:
-      - "php@{{% latest php %}}"
-      - "facedetect"
-```
 
 ### PHP extensions and Python packages
 
@@ -213,18 +268,20 @@ For instance:
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  type: "composable:25.05"
+  {{% variable "APP_NAME" %}}:
     source:
       root: "/"
     stack:
-      - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
-          disabled_extensions:
-            - gd
+      runtimes:
+        - "php@{{% latest "php" %}}":
+            extensions:
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
+            disabled_extensions:
+              - gd
 ```
 
 {{% note %}}
@@ -246,15 +303,17 @@ for your PHP extensions.
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:25.05"
     stack:
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      runtimes:
+        - "python@3.13"
+        - "python313Packages.yq" # python package specific
 ```
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
@@ -265,16 +324,19 @@ Here is a full composable image configuration example. Note the use of the `<nix
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:25.05"
     stack:
-      - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      runtimes:
+        - "php@{{% latest "php" %}}":
+            extensions:
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
+        - "python@3.13"
+        - "python313Packages.yq" # python package specific
+      packages: 
       - "yq"                   # tool
 ```
 
@@ -288,6 +350,8 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 ```yaml {configFile="app"}
 applications:
   frontend:
+    # this app uses the composable image
+    type: "composable:25.05" 
     stack:
       - "php@{{% latest "php" %}}":
           extensions:
@@ -298,7 +362,8 @@ applications:
       - "python@3.12"
       - "python312Packages.yq" # python package specific
   backend:
-    type: 'nodejs:{{% latest "nodejs" %}}
+    # this app uses the single-runtime image
+    type: 'nodejs:{{% latest "nodejs" %}} 
 ```
 
 {{% note %}}

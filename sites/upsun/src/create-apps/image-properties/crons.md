@@ -38,7 +38,7 @@ applications:
   myapp:
     source:
       root: "/"
-    type: 'nodejs:{{% latest "nodejs" %}}'
+    type: 'nodejs:{{% latest "nodejs" %}}'  # for a composable image, set type: "composable:25.05"
     crons:
       mycommand:
         spec: 'H * * * *'
@@ -149,7 +149,8 @@ title=Drupal
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "php@{{% latest php %}}" ]
+stack: 
+  runtimes: [ "php@{{% latest php %}}" ]
 crons:
   # Run Drupal's cron tasks every 19 minutes.
   drupal:
@@ -173,7 +174,8 @@ title=Ruby on Rails
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "ruby@{{% latest ruby %}}" ]
+stack: 
+  runtimes: [ "ruby@{{% latest ruby %}}" ]
 crons:
   # Execute a rake script every 19 minutes.
   ruby:
@@ -191,7 +193,8 @@ title=Laravel
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "php@{{% latest php %}}" ]
+stack: 
+  runtimes: [ "php@{{% latest php %}}" ]
 crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
@@ -209,7 +212,8 @@ title=Symfony
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "php@{{% latest php %}}" ]
+stack: 
+  runtimes: [ "php@{{% latest php %}}" ]
 crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
@@ -263,9 +267,11 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
+  type: "composable:25.05"
     source:
       root: "/"
-    stack: [ "php@{{% latest php %}}" ]
+    stack: 
+      runtimes: [ "php@{{% latest php %}}" ]
     crons:
       update:
         spec: '0 0 * * *'
