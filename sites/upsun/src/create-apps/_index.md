@@ -189,7 +189,8 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
     # The list of packages you want installed (from the {{% vendor/name %}} collection
     # of supported runtimes and/or from Nixpkgs).
     # For more information, see the Composable image page in the App reference section.
