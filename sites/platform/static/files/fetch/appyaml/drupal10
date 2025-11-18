@@ -116,6 +116,9 @@ web:
             # Deny access to all static files, except those specifically allowed below.
             allow: false
 
+            # Disable global PHP execution, allow only nominated paths to be run.
+            scripts: false
+
             # Rules for specific URI patterns.
             rules:
                 # Allow access to common static files.
@@ -126,11 +129,21 @@ web:
                 '^/sitemap\.xml$':
                     allow: true
 
-                # Deny direct access to configuration files.
-                '^/sites/sites\.php$':
-                    scripts: false
+                # Allow only a selected set of PHP scripts to be executed.
                 '^/sites/[^/]+/settings.*?\.php$':
                     scripts: false
+                '^/index\.php$':
+                    scripts: true
+                '^/core/install\.php$':
+                    scripts: true
+                '^/update\.php$':
+                    scripts: true
+                '^/core/rebuild\.php':
+                    scripts: true
+                '^/core/authorize\.php':
+                    scripts: true
+                '^/core/modules/statistics/statistics\.php':
+                    scripts: true
 
         # The files directory has its own special configuration rules.
         '/sites/default/files':

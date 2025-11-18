@@ -121,10 +121,10 @@ Service: abcdefg123456-main-bvxea6i--app
 User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
 Parameters: {"amr":["mfa"]}
 Detail: Additional authentication is required:
-	 - Multi-factor authentication (MFA)
+	 - Multifactor authentication (MFA)
 ```
 
-To solve this, [enable MFA on your user account](../../administration/mfa.md#enable-mfa-on-your-user-account).
+To solve this, [enable MFA on your user account](../../administration/security/mfa.md#enable-mfa-on-your-user-account).
 
 Alternatively, open the Console and select the desired organization.
 Follow the instructions so you can effectively access its contents.
@@ -133,7 +133,7 @@ Similarly for bot users and CLI tokens, you may see the message:
 
 ```bash
   [RequestException]
-  Multi-factor authentication (MFA) is required.
+  Multifactor authentication (MFA) is required.
   The API token may need to be re-created after enabling MFA.
 ```
 

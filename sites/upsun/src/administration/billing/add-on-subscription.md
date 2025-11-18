@@ -18,8 +18,8 @@ You can do so directly from the Console.
 The Advanced User Management add-on gives you access to the following features:
 
 - [Teams](/administration/teams.md)
-- [MFA enforcement](/administration/mfa.md)
-- [Single sign-on](#single-sign-on)
+- [MFA enforcement](/administration/security/mfa.md)
+- [Single sign-on (SSO)](/administration/security/sso.md) 
 
 {{% note theme="info" %}}
 
@@ -125,11 +125,5 @@ Downgrades are permitted only after the 365 day MTC has been completed. Organiza
 - Downgrade from Advanced or Premium to Standard
 
 Downgrades are performed through the Console and take effect based on the Organization's billing cycle.
-
-## Single sign-on {#single-sign-on}
-
-The Advanced User Management add-on enables you to enforce single sign-on (SSO) with <span id="single-sign-on-google">Google</span> or the following OpenID Connect (OIDC)–compliant providers: Microsoft (Azure Active Directory), Okta, Ory, or Ping Identity.
-
-As explained previously in this topic, you can [upgrade to this add-on](#upgrade-to-the-advanced-user-management-add-on) directly in the {{% vendor/name %}} console. For additional questions, please contact our [Support team](https://console.upsun.com/-/users/~/tickets/open) or visit the [Upsun pricing](https://upsun.com/pricing/) page.
 
 

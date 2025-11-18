@@ -57,3 +57,23 @@ You can upscale to Guaranteed CPU even if the environment is currently paused. D
 
 {{% /note %}}
 
+## Guaranteed CPU container sizes
+
+The following table lists the available CPU and memory configurations for [containers](/manage-resources/adjust-resources.html#advanced-container-profiles) using Guaranteed CPU. These container profiles (`HIGH_CPU`, `BALANCED`, `HIGH_MEMORY`, and `HIGHER_MEMORY`) ensure consistent performance by allocating dedicated compute resources to your services.
+
+| CPU | HIGH_CPU | BALANCED | HIGH_MEMORY | HIGHER_MEMORY |
+|-----|-----------|-----------|--------------|----------------|
+| 4   | 8 GB      | 16 GB     | 32 GB        | not supported  |
+| 8   | 16 GB     | 32 GB     | 64 GB        | not supported  |
+| 16  | 32 GB     | 64 GB     | 128 GB       | not supported  |
+| 32  | 64 GB     | 128 GB    | 256 GB       | not supported  |
+| 48  | 96 GB     | 192 GB    | 384 GB       | not supported  |
+| 64  | 128 GB    | 256 GB    | 512 GB       | not supported  |
+
+{{% note %}}
+
+Guaranteed CPU is not currently available on [OVHcloud regions](/development/regions.html) and some CPU sizes may not be available in all regions.
+
+For more information about the available configurations and sizes, visit the {{% vendor/name %}} [pricing calculator](https://upsun.com/pricing/calculator/).
+
+{{% /note %}}

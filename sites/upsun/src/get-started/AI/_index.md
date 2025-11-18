@@ -4,7 +4,7 @@ weight: -50
 layout: single
 
 ---
-
+<!-- vale off -->
 {{% vendor/name %}} provides powerful capabilities for hosting AI applications,
 agents, and services. You can deploy AI workloads using any supported runtime
 and integrate with various LLM APIs and services.
@@ -21,8 +21,9 @@ using the following materials.
 - [**AI Agents**](aiagent.md) - Host conversational AI agents
 and chatbots using any
 supported runtime
-- [**MCP Servers**](mcp.md) - Deploy Model Context Protocol servers for
+- [**MCP Servers**](deploy-mcp.md) - Deploy Model Context Protocol servers for
 AI tool integration
+- [**{{% vendor/name %}} MCP Server**](using-the-mcp.md) - Use the {{% vendor/name %}} Model Context Protocel Server
 - **Vector Databases** - [Chroma](add-services/chroma.md), [Qdrant](add-services/qdrant.md)
 
 ## Supported technologies
@@ -59,3 +60,4 @@ For detailed examples and tutorials, see the
 [AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/ai?utm_source=docs&utm_medium=ai-section&utm_campaign=tutorials).
 
 Find out more about the many [languages {{% vendor/name %}} supports](/languages/_index.md).
+<!-- vale on -->

@@ -1,6 +1,6 @@
 ---
 title: Host AI Agents
-weight: -40
+weight: -60
 ---
 
 You can host AI agents on Upsun using any runtime that supports your preferred
