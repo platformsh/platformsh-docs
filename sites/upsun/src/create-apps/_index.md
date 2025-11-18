@@ -194,16 +194,25 @@ applications:
     # of supported runtimes and/or from Nixpkgs).
     # For more information, see the Composable image page in the App reference section.
     stack:
-      - "php@8.3"
-          # The list of PHP extensions you want installed.
-          extensions:
-            - apcu
-            - ctype
-            - iconv
-            - mbstring
-            - pdo_pgsql
-            - sodium
-            - xsl
+      runtimes:
+        - "php@{{% latest "php" %}}":
+            # The list of PHP extensions you want installed.
+            extensions:
+              - apcu
+              - ctype
+              - iconv
+              - mbstring
+              - pdo_pgsql
+              - sodium
+              - xsl
+            disabled_extensions:
+              - gd
+        - "nodejs@{{% latest "nodejs" %}}"
+      packages:
+        - yarn
+        - imagemagick
+        - package: wkhtmltopdf
+          channel: unstable
     # Relationships enable an app container's access to a service or another app.
     # The example below shows simplified configuration leveraging a default service
     # (identified from the relationship name) and a default endpoint.
