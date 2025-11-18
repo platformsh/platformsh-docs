@@ -13,13 +13,15 @@ keywords:
 - pingID
 description: |
   {{% vendor/name %}} enables you to set up mandatory SSO with a third-party identity provider (IdP) for all your users.
-banner:
-    type: tiered-feature
 ---
+
+{{< partial "user-mgt-sellable/body.md" >}}
 
 {{% description %}}
 
 Your SSO provider can be enabled for a specific email domain, for example `@example.com`. Every user with a matching email address needs to log in or register on {{% vendor/name %}} using your SSO provider. Such users can't use an alternative provider, or register a password, or change their email address.
+
+
 
 ## Mitigation controls
 
@@ -39,9 +41,7 @@ Please open a [support ticket](/learn/overview/get-support.md) if you need to ex
 
 ### Google
 
-{{< premium-features/tiered "Elite and Enterprise" >}}
-
-Enforce your users to authenticate with Google. To enable Google SSO, please [create a Support ticket](/learn/overview/get-support.md#create-a-support-ticket). 
+Enforce your users to authenticate with Google. To enable Google SSO, please open a [support ticket](/learn/overview/get-support.md).
 
 #### Issue with re-authenticating every 15 minutes
 
@@ -55,9 +55,7 @@ To resolve this issue:
 <!-- vale off -->
 ### OpenId Connect
 
-{{< premium-features/tiered "Elite" >}}
-
 Enforce your users to authenticate with your OpenID Connect (OIDC) provider,
-such as Microsoft (Entra), Okta, Ory, or Ping Identity.
+such as Microsoft (Entra ID), Okta, Ory, or Ping Identity.
 To enable SSO with your OIDC provider, please
-[create a Support ticket](/learn/overview/get-support.md#create-a-support-ticket).
+[create a Support ticket](https://console.upsun.com/-/users/~/tickets).
