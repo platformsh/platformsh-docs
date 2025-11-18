@@ -27,9 +27,7 @@ If you're pressed for time, jump to this comprehensive [configuration example](/
 All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured under a unique key beneath the top-level `applications` key.
 
 It is possible to use multiple runtimes in a single application container,
-for instance PHP, NodeJS and Python, while remaining in control of their versions.
-
-For example, the unified `{{< vendor/configfile "app" >}}` file may look like the following:
+for instance PHP, NodeJS and Python, while remaining in control of their versions, as shown in the following `{{< vendor/configfile "app" >}}` excerpt:
 
 ```yaml {configFile="app"}
 applications:
@@ -55,8 +53,8 @@ To override any part of a property, you must provide the entire property.
 
 {{% note theme="info" %}}
 
-- Except for `type` and `stack` keys, the single-runtime and composable image types use the keys listed below in the same manner, and clicking the key name takes you to a separate topic for that key. Descriptions for keys that are **unique** to this image type are provided later in this topic. 
-- The ``stack`` key replaces the ``build``, ``dependencies``, and ``runtime`` keys available in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
+- Except for the `type` and `stack` keys, the single-runtime and composable image types use the keys listed below in the same manner. Clicking the key name takes you to a separate topic about that key. Descriptions for keys that are **unique** to this image type are provided later in this topic. 
+- The ``stack`` key replaces the ``build``, ``dependencies``, and ``runtime`` keys that are available in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 
 {{% /note %}}
 
@@ -97,7 +95,6 @@ applications:
 Upsun supports the following Nix channel versions: 
 
 - `{{% latest composable %}}`
-
 
 
 ## `stack` {#stack}
