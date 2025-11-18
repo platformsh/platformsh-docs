@@ -82,42 +82,14 @@ To override any part of a property, you must provide the entire property.
 
 ## `type` {#type}
 
-Required in all applications that use the composable image. Defines the version of the Nix channel the application uses. 
+Required for all applications that use the composable image. Defines the version of the Nix channel that application uses. 
 
-For example, to use the Nix channel `{{% latest composable %}}`, use the following syntax:
+For example, to specify the Nix channel `{{% latest composable %}}` for `{{< variable "APP_NAME" >}}`, use the following syntax:
 
 ```yaml {configFile="apps"}
 applications:
   {{% variable "APP_NAME" %}}:
       type: "composable:{{% latest composable %}}"
-```
-
-If all applications in the container use the composable image, you can define the type globally for the container as follows: 
-
-```yaml
-applications: 
-   # All applications use the composable image
-   type: "composable:{{% latest composable %}}"
-   frontend:
-      stack:
-      ...
-   backend:
-      stack:
-   ...
-```
-
-If the applications in the container are a mix of composable and single-runtime images, then define the `type` as needed for each application: 
-```yaml
-applications: 
-   frontend:
-      # This application uses the composable image. 
-      type: "composable:{{% latest composable %}}"
-      stack:
-      ...
-   backend:
-      # This application does not use the composable image. 
-      stack:
-   ...
 ```
 
 ### Supported Nix channels
@@ -126,6 +98,28 @@ Upsun supports the following Nix channel versions:
 
 - `{{% latest composable %}}`
 
+
+
+## `stack` {#stack}
+
+You must define the `stack` element with distinct `runtimes` and `packages` keys, as follows:
+
+- **`runtimes`**: an array of language runtimes. Examples:`php`, `python`, `node.js`. See the complete list of [supported language runtimes](#supported-nix-packages).<br>
+  Optional: version numbers and other keys such as `extensions`, `disabled_extensions`. 
+- **`packages`**: an array of extra system tools or libraries installed from Nix packages.<br>
+  Packages originate from the Nix channel that is defined by the `type` key, unless overridden locally with `channel`. See the `config.yaml` file excerpt below.
+  Optional: additional keys, such as:
+  - `package` (string)
+  - `channel` (string; for example, `unstable`)
+  - Additional configuration keys (to demonstrate passthrough flexibility)
+
+
+    For example, to use a package version in an unstable channel, define a package:channel mapping in the `packages` array, as shown below: 
+    ```yaml
+    packages:
+      - package: wkhtmltopdf
+        channel: unstable
+    ```
 ### Supported Nix packages
 
 {{% note %}}
@@ -153,50 +147,18 @@ Security and other patches are applied automatically.
 | [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
 | [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
-**Example:**
+**Example `stack` configuration**
 
-Suppose you want to add PHP version {{% latest php %}} and ``facedetect`` to your application container.
-To do so, use the following configuration:
-
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    stack: 
-      runtimes: [ "php@{{% latest php %}}", "facedetect" ]
-    # OR
-    stack:
-      runtimes: 
-        - "php@{{% latest php %}}"
-        - "facedetect"
-```
-
-## `stack` {#stack}
-
-You must define the `stack` element with distinct `runtimes` and `packages` keys, as follows:
-
-- **`runtimes`**: an array of language runtimes. Examples:`php`, `python`, `node.js`. See the complete list of [supported language runtimes](#supported-nix-packages).<br>
-  Optional: version numbers and other keys such as `extensions`, `disabled_extensions`. 
-- **`packages`**: an array of extra system tools or libraries installed from Nix packages.<br>
-  Packages originate from the Nix channel that is defined by the `type` key, unless overridden locally with `channel`. See the `config.yaml` file excerpt below.
-  Optional: additional keys, such as:
-  - `package` (string)
-  - `channel` (string; for example, `unstable`)
-  - Additional configuration keys (to demonstrate passthrough flexibility)
-
-
-    For example, to use a package version in an unstable channel, define a package:channel mapping in the `packages` array, as shown below: 
-    ```yaml
-    packages:
-      - package: wkhtmltopdf
-        channel: unstable
-    ```
-
-Example:
+To put it all together, the `config.yaml` excerpt below shows the configuration for the following stack: 
+- `php@{{% latest "php" %}}` runtime with additional `extensions` and one item under `disabled_extensions`
+- `nodejs@{{% latest "nodejs" %}}` runtime
+- `yarn` and `imagemagick` packages from the {{% latest composable %}} Nix channel
+- `wkhtmltopdf` package from the `unstable` Nix channel
 
 ```yaml {configFile="app"}
 applications: 
   {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "php@{{% latest "php" %}}":
@@ -205,6 +167,7 @@ applications:
               - sodium
               - xsl
               - pdo_sqlite
+              - php-facedetect
             disabled_extensions:
               - gd
         - "nodejs@{{% latest "nodejs" %}}"
@@ -256,16 +219,14 @@ follow these steps:
 
 #### Install PHP extensions
 
-To enable [PHP extensions](/languages/php/extensions.md),
-specify a list of `extensions` below the language definition.</br>
-To disable [PHP extensions](/languages/php/extensions.md),
-specify a list of `disabled_extensions` below the language definition.</br>
-For instance:
+Indicate enabled or disabled [PHP extensions](/languages/php/extensions.md) by including the `extensions` and `disabled_extensions` keys as needed below the language definition.</br>
+
+Example:
 
 ```yaml {configFile="app"}
 applications:
-  type: "composable:{{% latest composable %}}"
   {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack:
@@ -281,13 +242,13 @@ applications:
 ```
 
 {{% note %}}
-To help you find out the name of the PHP package you want to use,
+To help you find PHP package names,
 some maintainers provide a ``PHP upstream extension`` value in the [NixOS search engine](https://search.nixos.org/packages?channel=unstable&show=php82Extensions.gd).
 
 ![Screenshot of an upstream extension value shown in the NixOS search](/images/nixos/nixossearch-upstream-value.png "0.5")
 
 If this information is not provided, note that PHP package names on NixOS always respect the ``<PHP><VERSION>Extensions.<EXTENSION-NAME>`` format.
-Therefore, you can copy the ``<EXTENSION-NAME>`` as shown in the NixOS search results, and use it in your configuration.
+Therefore, you can copy the ``<EXTENSION-NAME>`` as shown in the NixOS search results and use it in your configuration.
 
 Note that you can use environment variables or your `php.ini` file to [include further configuration options](/languages/php/_index.md#customize-php-settings)
 for your PHP extensions.
@@ -296,19 +257,17 @@ for your PHP extensions.
 
 #### Install Python packages
 
-To install Python packages, add them to your stack as new packages.
-To do so, use the full name of the package.
+To install Python packages, add them as new packages to the `packages` array of the `stack`. 
+Specify the complete package name.
 
-For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
-For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
-use the following configuration:
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq), use the following configuration:
 
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     stack:
-      runtimes:
+      packages:
         - "python@3.13"
         - "python313Packages.yq" # python package specific
 ```
@@ -320,21 +279,29 @@ Alternatively, if you need to include configuration options for your extensions,
 Here is a full composable image configuration example. Note the use of the `<nixpackage>@<version>` format.
 
 ```yaml {configFile="app"}
-applications:
+applications: 
   {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "php@{{% latest "php" %}}":
-            extensions:
+            extensions: 
               - apcu
               - sodium
               - xsl
               - pdo_sqlite
+              - php-facedetect
+            disabled_extensions:
+              - gd
+        - "nodejs@{{% latest "nodejs" %}}"
+      packages:
+        - yq                     # tool
+        - yarn
+        - imagemagick
         - "python@3.13"
         - "python313Packages.yq" # python package specific
-      packages: 
-      - "yq"                   # tool
+        - package: wkhtmltopdf
+          channel: unstable
 ```
 
 ### Combine single-runtime and composable images
@@ -342,7 +309,7 @@ applications:
 In a [multiple application context](/create-apps/multi-app/_index.md),
 you can use a mix of [single-runtime images](/create-apps/app-reference/single-runtime-image.md)
 and [composable images](/create-apps/app-reference/composable-image.md).
-Here is an example configuration including a ``frontend`` app and a ``backend`` app:
+The following sample configuration includes two applications: a ``frontend`` app and a ``backend`` app:
 
 ```yaml {configFile="app"}
 applications:
@@ -359,7 +326,7 @@ applications:
       - "python@3.13"
       - "python313Packages.yq" # python package specific
   backend:
-    # this app uses the single-runtime image
+    # this app uses the single-runtime image with a specific node.js runtime
     type: 'nodejs:{{% latest "nodejs" %}} 
 ```
 
