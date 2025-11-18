@@ -14,6 +14,8 @@ expected to need.
 Each container profile gives you access to a specific list of CPU and RAM combinations.
 Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
 
-- [Default container profiles](/manage-resources/adjust-resources.md#default-container-profiles) for runtime and service containers
-- [Advanced: Container profile types and resources](/manage-resources/adjust-resources.md#advanced-container-profiles)
-- [Customize resources using the `container_profile` key](/manage-resources/adjust-resources.md#adjust-a-container-profile)
+To help you choose a container profile based on your preferred resource allocation strategy (shared CPU or guaranteed CPU), refer to the [Advanced: Container profile](/manage-resources/adjust-resources.html#advanced-container-profiles) section of the "Resource configuration" topic. There, you'll find the following details:
+- Shared CPU container sizes
+- Guaranteed CPU container sizes
+- Default container profiles
+- Adjusting a container profile
