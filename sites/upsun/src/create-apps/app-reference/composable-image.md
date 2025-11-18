@@ -317,14 +317,15 @@ applications:
     # this app uses the composable image
     type: "composable:{{% latest composable %}}" 
     stack:
-      - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
-      - "python@3.13"
-      - "python313Packages.yq" # python package specific
+      runtimes:
+        - "php@{{% latest "php" %}}":
+            extensions:
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
+        - "python@3.13"
+        - "python313Packages.yq" # python package specific
   backend:
     # this app uses the single-runtime image with a specific node.js runtime
     type: 'nodejs:{{% latest "nodejs" %}} 
