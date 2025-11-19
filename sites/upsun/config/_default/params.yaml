@@ -8,6 +8,7 @@ issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
 folder: "sites/upsun"
 editPageButton: true
+registryBaseURL: "https://master-7rqtwti-b3ghjlg3f5nug.eu-5.platformsh.site/service"
 
 theme:
     use_vendor: true

@@ -13,22 +13,28 @@
   {{ errorf "Incorrect environment param: %q. Possible values are grid, dedicated-gen-2, and dedicated-gen-3. Empty defaults to \"grid\". Image: %s" $envParam $image }}
 {{ end }}
 
-{{ if (index .Site.Data.registry $image $environment) }}
-  {{ if isset (index .Site.Data.registry $image $environment) $status }}
-    {{ if gt ( len ( index .Site.Data.registry $image $environment $status ) ) 0 }}
-<ul>
-{{ range index .Site.Data.registry $image $environment $status }}
-  <li>{{ . }}</li>
-{{ end }}
-</ul>
-    {{ else if ne $status "deprecated" }}
+{{- $baseURL := .Site.Params.registryBaseURL -}}
+{{- $url := printf "%s/%s?items=versions" $baseURL $image -}}
+{{- $remote := resources.GetRemote $url -}}
+
+
+{{- $data := $remote.Content | transform.Unmarshal | default dict -}}
+{{- $versions := $data.versions | default dict -}}
+
+{{ if index $versions $status }}
+  {{ if gt (len (index $versions $status)) 0 }}
+    <ul>
+      {{ range index $versions $status }}
+        <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  {{ else if ne $status "deprecated" }}
     None available
-    {{ end }}
   {{ end }}
 {{ else }}
   {{ if and (eq $envParam "dedicated") (eq $status "supported") }}
-  None available
+    None available
   {{ else }}
-  None available
+    None available
   {{ end }}
 {{ end }}

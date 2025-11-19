@@ -1,4 +1,18 @@
 {{- $arg := .Get 0 -}}
-{{- $data := cond (eq $arg "composable") .Site.Data.composable_versions .Site.Data.registry -}}
-{{- $supported := index $data $arg "versions" "supported" -}}
-{{- index $supported 0 -}}
+{{- $baseURL := .Site.Params.registryBaseURL -}}
+
+{{- if eq $arg "composable" -}}
+  {{- $data := .Site.Data.composable_versions -}}
+  {{- $supported := index $data $arg "versions" "supported" -}}
+  {{- index $supported 0 | default "n/a" -}}
+{{- else -}}
+  {{- $url := printf "%s/%s?items=versions,supported" $baseURL $arg -}}
+  {{- $remote := resources.GetRemote $url -}}
+  {{- if and $remote $remote.Content -}}
+    {{- $data := $remote.Content | transform.Unmarshal | default dict -}}
+    {{- $supported := $data.versions.supported | default slice -}}
+    {{- index $supported 0 | default "n/a" -}}
+  {{- else -}}
+    n/a
+  {{- end -}}
+{{- end -}}

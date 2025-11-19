@@ -114,6 +114,7 @@ export APP_REDIS_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.redis[0].host')"
 
 The format of the relationship is identical whether your Redis service is [ephemeral](#ephemeral-redis) or [persistent](#persistent-redis).
 
+
 ## Persistent Redis
 
 By default, Redis is an ephemeral service that stores data in memory.
