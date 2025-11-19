@@ -8,7 +8,7 @@ issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
 folder: "sites/platform"
 editPageButton: true
-registryBaseURL: "https://master-7rqtwti-b3ghjlg3f5nug.eu-5.platformsh.site/service"
+registryBaseURL: "https://master-7rqtwti-b3ghjlg3f5nug.eu-5.platformsh.site/image"
 
 theme:
     use_vendor: true
