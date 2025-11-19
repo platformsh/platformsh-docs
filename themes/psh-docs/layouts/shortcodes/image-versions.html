@@ -17,7 +17,6 @@
 {{- $url := printf "%s/%s?items=versions" $baseURL $image -}}
 {{- $remote := resources.GetRemote $url -}}
 
-
 {{- $data := $remote.Content | transform.Unmarshal | default dict -}}
 {{- $versions := $data.versions | default dict -}}
 
@@ -29,12 +28,8 @@
       {{ end }}
     </ul>
   {{ else if ne $status "deprecated" }}
-    None available
+    None
   {{ end }}
 {{ else }}
-  {{ if and (eq $envParam "dedicated") (eq $status "supported") }}
-    None available
-  {{ else }}
-    None available
-  {{ end }}
+  None
 {{ end }}
