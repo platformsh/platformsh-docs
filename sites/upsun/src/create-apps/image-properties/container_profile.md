@@ -8,14 +8,15 @@ description: Defines the container profile of the application.
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images. 
 
-By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it’s
-expected to need.
+A _container profile_ is a predefined resource‑configuration category that determines which combinations of CPU and RAM a container can use.
 
-Each container profile gives you access to a specific list of CPU and RAM combinations.
-Using the {{% vendor/name %}} CLI or Console, you can then pick a CPU and RAM combination for each of your apps and services.
+Four container profiles are available: `HIGH_CPU`, `BALANCED`, `HIGH_MEMORY`, and `HIGHER_MEMORY`. Choosing a container size that's offered within the profile means that you don't have to _manually_ configure CPU and RAM. 
 
-To help you choose a container profile based on your preferred resource allocation strategy (shared CPU or guaranteed CPU), refer to the [Advanced: Container profile](/manage-resources/adjust-resources.html#advanced-container-profiles) section of the "Resource configuration" topic. There, you'll find the following details:
-- Shared CPU container sizes
-- Guaranteed CPU container sizes
-- Default container profiles
-- Adjusting a container profile
+By default, {{% vendor/name %}} assigns a container profile and container size when deploying the application for the first time. You can choose from a variety of resource initialization strategies. For details, see the [Resource initialization](/manage-resources/resource-init.md) topic. 
+
+Because {{% vendor/name %}} assigns these values on initial deployment, you typically don't need to change the `container_profile` property. For details and further guidance, see [Adjust a container profile](/manage-resources/adjust-resources.md#adjust-a-container-profile) in the "Resource configuration" topic.
+
+You can change the container _size_ assigned to an app or service by using the {{% vendor/name %}} CLI or Console: 
+- For detailed steps, see the [Resource configuration](/manage-resources/adjust-resources.md). 
+- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+
