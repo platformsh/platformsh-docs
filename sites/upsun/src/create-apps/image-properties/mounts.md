@@ -37,25 +37,16 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: nodejs:{{% latest "nodejs" %}}
     source:
       root: "/"
-    type: nodejs:{{% latest "nodejs" %}}
     mounts:
       '{{< variable "MOUNT_PATH" >}}':
         source: {{< variable "MOUNT_TYPE" >}}
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
-{{< variable "MOUNT_PATH" >}} is the path to your mount **within the app container** (relative to the app's root).
-If you already have a directory with that name, you get a warning that it isn't accessible after the build.
-See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-folders).
-
-| Name          | Type                 | Required | Description |
-| ------------- | -------------------- | -------- | ----------- |
-| `source`      | `storage`, `instance`, `tmp` (also called `temporary`), or `service` | Yes | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` (or `temporary`) mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount).|
-| `source_path` | `string`             | No      | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files. |
-| `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
 <--->
 
 +++
@@ -64,7 +55,7 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
@@ -76,17 +67,18 @@ applications:
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
 
+{{< /codetabs >}}
+
+
 {{< variable "MOUNT_PATH" >}} is the path to your mount **within the app container** (relative to the app's root).
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-folders).
 
-| Name          | Type                           | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|---------------|--------------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `source`      | `storage`, `tmp`, or `service` | Yes      | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount). |
-| `source_path` | `string`                       | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                         |
-| `service`     | `string`                       |          | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage.                                                                                                                                                                                                                                                                                                                                                                                     |
-
-{{< /codetabs >}}
+| Name          | Type                 | Required | Description |
+| ------------- | -------------------- | -------- | ----------- |
+| `source`      | `storage`, `instance`, `tmp` (also called `temporary`), or `service` | Yes | Specifies the type of the mount:<br/><br/>- By design, `storage` mounts can be shared between instances of the same app. You can also configure them so they are [shared between different apps](#share-a-mount-between-several-apps).<br/><br/>-`instance` mounts are local mounts. Unique to your app, they are useful to store files that remain local to the app instance, such as application logs.<br/><br/>- `tmp` (or `temporary`) mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.<br/>The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.<br/>Note that the `/tmp` directory has **a maximum allocation of 8 GB**.<br/><br/>- `service` mounts can be useful if you want to explicitly define and use a [Network Storage](/add-services/network-storage.md) service to share data between different apps (instead of using a `storage` mount).|
+| `source_path` | `string`             | No      | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files. |
+| `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
 Files can be all public, all private, or with different rules for different paths and file types.
@@ -106,10 +98,10 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "nodejs@{{% latest nodejs %}}"
     source:
       root: "/"
-    type: nodejs:20
     mounts:
       'web/uploads':
         source: storage
@@ -136,7 +128,7 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
@@ -166,7 +158,7 @@ applications:
 
 Changing the name of your mount affects the default `source_path`.
 
-Say you have a `/my/cache/` mount with an undefined `source_path`:
+Suppose you have a `/my/cache/` mount with an undefined `source_path`:
 
 {{< codetabs >}}
 
@@ -176,7 +168,8 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "nodejs@{{% latest nodejs %}}"
     mounts:
       '/my/cache/':
         source: tmp
@@ -189,16 +182,19 @@ title=Composable image
 +++
 
 ```yaml {configFile="app"}
-mounts:
-  '/my/cache/':
-    source: tmp
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    mounts:
+      '/my/cache/':
+        source: tmp
 ```
 
 {{< /codetabs >}}
 
 If you rename the mount to `/cache/files/`, it will point to a new, empty `/cache/files/` directory.
 
-To ensure continuity, you need to explicitly define the `source_path` as the previous name of the mount, without leading
+To ensure continuity, you must explicitly define the `source_path` as the previous name of the mount, without leading
 or trailing slashes:
 
 {{< codetabs >}}
@@ -209,11 +205,12 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "nodejs@{{% latest nodejs %}}"
     mounts:
       '/cache/files/':
         source: tmp
-        source_path: my/cache
+        source_path: /my/cache
 ```
 
 <--->
@@ -223,15 +220,18 @@ title=Composable image
 +++
 
 ```yaml {configFile="app"}
-mounts:
-  '/cache/files/':
-    source: tmp
-    source_path: my/cache
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    mounts:
+      '/cache/files/':
+        source: tmp
+        source_path: /my/cache
 ```
 
 {{< /codetabs >}}
 
-The `/cache/files/` mount will point to the original `/my/cache/` directory, maintaining access to all your existing
+The `/cache/files/` mount now points to the original `/my/cache/` directory, maintaining access to all your existing
 files in that directory.
 
 ### Share a mount between several apps
@@ -247,21 +247,56 @@ and point each of those mounts to the same shared external network directory.
 
 Use the following configuration:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
+  ```yaml {configFile="app"}
+  applications:
+    app1:
+      type: "nodejs@{{% latest nodejs %}}"
+      mounts:
+        '{{< variable "MOUNT_PATH_1" >}}':
+          source: storage
+          source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
+
+    app2:
+      type: "nodejs@{{% latest nodejs %}}"
+      mounts:
+        '{{< variable "MOUNT_PATH_2" >}}':
+          source: storage
+          service: app1
+          source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
+  ```
+
+<--->
+
++++
+title=Composable image
++++
+
 ```yaml {configFile="app"}
 applications:
   app1:
+    type: "composable:{{% latest composable %}}"
     mounts:
       '{{< variable "MOUNT_PATH_1" >}}':
         source: storage
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 
   app2:
+    type: "composable:{{% latest composable %}}"
     mounts:
       '{{< variable "MOUNT_PATH_2" >}}':
         source: storage
         service: app1
         source_path: {{< variable "SOURCE_PATH_LOCATION" >}}
 ```
+
+{{< /codetabs >}}
+
 
 - {{< variable "MOUNT_PATH_1" >}} and {{< variable "MOUNT_PATH_2" >}} are the paths to each mount **within their
   respective app container** (relative to the app's root).
@@ -272,60 +307,76 @@ applications:
 - The `source_path` allows you to point each mount to the same subdirectory **within the shared external network
   directory**.
 
+
+#### Example
+
+Suppose you have a `backend` app and a `frontend` app, and you want both apps to share data from the same mount.</br>
+To achieve this, complete the following steps:
+
+1. In your `backend` app configuration, define a `storage` mount:
+
 {{< codetabs >}}
 
 +++
 title=Single-runtime image
 +++
 
-{{% note title = "Single-runtime image: Example" %}}
+  ```yaml {configFile="app"}
+  applications:
+    backend:
+    type: "nodejs@{{% latest nodejs %}}"
+      mounts:
+        var/uploads: #The path to your mount within the backend app container.
+          source: storage
+          source_path: backend/uploads #The path to the source of the mount within the external network directory.
+  ```
+<--->
 
-You have a `backend` app and a `frontend` app.
-You want both apps to share data from the same mount.</br>
-Follow these steps:
++++
+title=Composable image
++++
 
-1. In your `backend` app configuration, define a `storage` mount:
+  ```yaml {configFile="app"}
+  applications:
+    backend:
+      type: "composable:{{% latest composable %}}"
+      mounts:
+        var/uploads: #The path to your mount within the backend app container.
+          source: storage
+          source_path: backend/uploads #The path to the source of the mount within the external network directory.
+  ```
 
-   ```yaml {configFile="app"}
-   applications:
-     backend:
-       mounts:
-         var/uploads: #The path to your mount within the backend app container.
-           source: storage
-           source_path: backend/uploads #The path to the source of the mount within the external network directory.
-   ```
+{{< /codetabs >}}
 
-   This creates a `storage` mount named `var/uploads` in the `backend` app container.
-   The mount points to the `backend/uploads` directory within an external network directory.
+
+  This creates a `storage` mount named `var/uploads` in the `backend` app container.
+  The mount points to the `backend/uploads` directory within an external network directory.
 
 2. In your `frontend` app configuration, define another `storage` mount:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
    ```yaml {configFile="app"}
    applications:
-     applications:
-       backend:
-         mounts:
-           var/uploads:
-             source: storage
-             source_path: backend/uploads
+      backend:
+        type: "nodejs@{{% latest nodejs %}}"
+        mounts:
+          var/uploads:
+            source: storage
+            source_path: backend/uploads
 
-       frontend:
-         mounts:
-           web/uploads: #The path to your mount within the frontend app container.
-             source: storage
-             service: backend #The name of the other app, so the mount can point to the same external network directory as that other app's mount.
-             source_path: backend/uploads #The path to the source of the mount within the shared external network directory.
+      frontend:
+        type: "nodejs@{{% latest nodejs %}}"
+        mounts:
+          web/uploads: #The path to your mount within the frontend app container.
+            source: storage
+            service: backend #The name of the other app, so the mount can point to the same external network directory as that other app's mount.
+            source_path: backend/uploads #The path to the source of the mount within the shared external network directory.
    ```
-
-   This creates another `storage` mount named `web/uploads` in the `frontend` app container.
-
-   The `service` key allows you to specify that the `web/uploads` mount should use the same external network directory
-   as the mount previously defined in the `backend` app container.
-
-   The `source_path` key specifies which subdirectory within the external network directory both mounts should share (
-   here, the `backend/uploads` directory).
-
-{{% /note %}}
 
 <--->
 
@@ -333,43 +384,26 @@ Follow these steps:
 title=Composable image
 +++
 
-{{% note title = "Composable image: Example" %}}
-
-You have a `backend` app and a `frontend` app.
-You want both apps to share data from the same mount.</br>
-Follow these steps:
-
-1. In your `backend` app configuration, define a `storage` mount:
-
    ```yaml {configFile="app"}
    applications:
      backend:
-       mounts:
-         var/uploads: #The path to your mount within the backend app container.
-           source: storage
-           source_path: backend/uploads #The path to the source of the mount within the external network directory.
-   ```
-
-   This creates a `storage` mount named `var/uploads` in the `backend` app container.
-   The mount points to the `backend/uploads` directory within an external network directory.
-
-2. In your `frontend` app configuration, define another `storage` mount:
-
-   ```yaml {configFile="app"}
-   applications:
-     backend:
+       type: "composable:{{% latest composable %}}"
        mounts:
          var/uploads:
            source: storage
            source_path: backend/uploads
 
      frontend:
+       type: "composable:{{% latest composable %}}"
        mounts:
          web/uploads: #The path to your mount within the frontend app container.
            source: storage
            service: backend #The name of the other app, so the mount can point to the same external network directory as that other app's mount.
            source_path: backend/uploads #The path to the source of the mount within the shared external network directory.
    ```
+
+{{< /codetabs >}}
+
 
    This creates another `storage` mount named `web/uploads` in the `frontend` app container.
 
@@ -379,14 +413,8 @@ Follow these steps:
    The `source_path` key specifies which subdirectory within the external network directory both mounts should share (
    here, the `backend/uploads` directory).
 
-{{% /note %}}
-
-
 Note that another way to share data between apps through a mount is by
 explicitly [defining a Network Storage service](/add-services/network-storage.md).
-
-{{< /codetabs >}}
-
 
 ### Composable image only: Local mounts
 
