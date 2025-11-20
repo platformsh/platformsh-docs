@@ -3,7 +3,7 @@ title: The application lifecycle
 weight: 3
 description: "Understand the {{% vendor/name %}} application lifecycle and learn how to use build, deploy, and runtime hooks to control app behavior"
 ---
-
+<!-- vale off -->
 Hooks let you run custom commands at specific points in your application’s lifecycle: during [`build`, `deploy`](/learn/overview/build-deploy.html), and at `runtime`. They’re essential for setting up your app, managing graceful shutdowns, or preparing instances to handle traffic in autoscaling environments.
 
 Each web application on {{% vendor/name %}} can define web commands inside its `.upsun/config.yaml` file:
@@ -102,4 +102,4 @@ For more information about Zero Downtime Deployment, visit the [build deploy doc
 - [Zero-downtime deployments](/learn/overview/build-deploy.html#zero-downtime-deployments)  
 
 
-
+<!-- vale on -->
