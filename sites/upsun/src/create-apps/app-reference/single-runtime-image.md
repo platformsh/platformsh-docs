@@ -31,14 +31,16 @@ applications:
     # Additional backend configuration
 ```
 
-The following table presents all properties available at the level just below the unique application name (`frontend`
-and `backend` above).
+The following table presents all properties available at the level just below the unique application name.
 
-The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
+The **Set in instance** column defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-- **Note:** Except for the `build`, `dependencies`, and `runtime` keys, the keys listed below are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for properties that are **unique** to this image type are provided later in this topic.  
+{{% note theme="info" %}}
 
+The `build`, `dependencies`, and `runtime` properties are unique to this image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click their names to view details in separate topics.  
+
+{{% /note %}}
 
 | Name                | Type                                                                                       | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |---------------------|--------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -104,30 +106,37 @@ These are used in the format `runtime:version`:
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: 'php:{{% latest "php" %}}'
 ```
 
-### Mix of images
+### Combine single-runtime and composable images {#combine-single-runtime-and-composable-images}
 
 In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [single-runtime image](/create-apps/app-reference/single-runtime-image.md) and [composable image](/create-apps/app-reference/composable-image.md) per application.
 
-As an example configuration for a ``frontend`` and a ``backend`` application:
+The following sample configuration includes two applications: 
+  - a `backend` app that uses a single-runtime image
+  - a `frontend` app that uses a composable image
 
 ```yaml {configFile="app"}
 applications:
   backend:
-    type: 'nodejs:{{% latest "nodejs" %}}
+    # this app uses the single-runtime image 
+    type: 'nodejs:{{% latest "nodejs" %}}'
   frontend:
+    # this app uses the composable image
+    type: "composable:{{% latest composable %}}"
     stack:
-      - "php@{{% latest "php" %}}":
+      runtimes:
+        - "php@{{% latest "php" %}}":
           extensions:
             - apcu
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+        - "python@3.12"
+      packages:
+        - "python312Packages.yq" # python package specific
 ```
 
 ## Resources
@@ -195,10 +204,10 @@ An example of dependencies in multiple languages:
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'nodejs:{{% latest "nodejs" %}}'
     source:
       root: "/"
-    type: 'nodejs:{{% latest "nodejs" %}}'
     dependencies:
       php: # Specify one Composer package per line.
         drush/drush: '8.0.0'
@@ -231,19 +240,19 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 ### Extensions
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
-If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
-See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image.md#primary-application-properties).
+You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.<br>
+If you've reached this section from another page and are using the composable image, you enable/disable extensions by adding the `extensions`/`disabled_extensions` keys to the `runtimes` array that is part of the `stack` property.<br>
+For details and an example, see the [`stack`](/create-apps/app-reference/composable-image.md#stack) section in the "Composable image" topic.
 {{% /note %}}
 
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'php:{{% latest "php" %}}'
     source:
       root: "/"
-    type: 'php:{{% latest "php" %}}'
     runtime:
       extensions:
         - geoip
@@ -254,10 +263,10 @@ Alternatively, if you need to include configuration options, use a dictionary fo
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'php:{{% latest "php" %}}'
     source:
       root: "/"
-    type: 'php:{{% latest "php" %}}'
     runtime:
       extensions:
         - geoip
