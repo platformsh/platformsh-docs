@@ -27,9 +27,9 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
+    type: "python:{{% latest "python" %}}"
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     access:
       ssh: admin
 ```
