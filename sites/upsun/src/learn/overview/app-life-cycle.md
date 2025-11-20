@@ -20,17 +20,26 @@ applications:
 ```
 ## Web commands
 
-| Name | Type | Required | Description |
-|------|------|-----------|--------------|
-| **pre_start** | string | No | Runs just before `start`. Useful for short setup actions that must run per instance, such as moving cache files or setting permissions. |
-| **start** | string | Yes | The main command that launches your app. If it terminates, {{% vendor/name %}} restarts it immediately. |
-| **post_start** | string | No | Runs after the `start` command but before the container is added to the router. This lets you complete warm-up tasks before the app starts handling traffic. |
 
-{{< note theme="info" title="Note" >}}
+| Name          | Type   | Required | Blocks Traffic | Description |
+|---------------|--------|----------|------------------|-------------|
+| **pre_start** | string | No       | No               | Runs just before `start`. Useful for short per-instance setup actions, such as moving cache files or setting permissions. |
+| **start**     | string | Yes      | Yes (until running) | The main command that launches your app. The instance cannot serve traffic until `start` is successfully running. If it terminates, {{% vendor/name %}} restarts it immediately. |
+| **post_start**| string | No       | Yes (until completed) | Runs after the `start` command but *before* the container is added to the router. Instances will not receive traffic until this script completes successfully, making it ideal for warm-up tasks that must finish before the app begins handling requests. |
 
 For more information about web commands, visit the [Single-runtime Image page](/create-apps/app-reference/single-runtime-image.html#web-commands).
 
+{{< note theme="info" title="Blocking vs. non-blocking hooks" >}}
+
+A hook is considered *blocking* if the instance cannot receive traffic until that hook finishes successfully.  
+
+- `start` blocks traffic until the application is running.  
+- `post_start` blocks traffic until all warm-up tasks complete.  
+
+Non-blocking hooks, such as `pre_start`, run before traffic concerns and do not affect when an instance begins receiving requests.
+
 {{< /note >}}
+
 
 ## Lifecycle overview
 
