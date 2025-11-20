@@ -10,11 +10,14 @@ Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#
 
 Use the `web` key to configure the web server running in front of your app.
 
-In **single-runtime images**, defaults may vary with a different [image `type`](/create-apps/app-reference/single-runtime-image.md#types).
+For **single-runtime images**, default values might vary based on the image [`type`](/create-apps/app-reference/single-runtime-image.md#types), which defines the base container used to run the application.
+<!-- the preceding new sentence "For single runtime-time images..." replaces the following original sentence in the single-runtime image topic:
+Defaults may vary with a different image type. <- where image type linked to the `type` property in the single-runtime image topic. -->
+
 
 | Name        | Type                                       | Required                      | Description                                          |
 |-------------|--------------------------------------------|-------------------------------|------------------------------------------------------|
-| `commands`  | A [web commands dictionary](#web-commands) | See [note](#required-command) | The command to launch your app.                      |
+| `commands`  | A [web commands dictionary](#web-commands) | See [`start`](#start) | The command to launch your app.                      |
 | `upstream`  | An [upstream dictionary](#upstream)        |                               | How the front server connects to your app.           |
 | `locations` | A [locations dictionary](#locations)       |                               | How the app container responds to incoming requests. |
 
@@ -24,16 +27,45 @@ See some [examples of how to configure what's served](../web/_index.md).
 
 | Name         | Type     | Required                      | Description                                                                                         |
 |--------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------|
-| `pre_start`  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
-| `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                       |
-| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.       |
+| [`pre_start`](#pre_start)  | `string` |                               | Command run just prior to `start`, which can be useful when you need to run _per-instance_ actions. Non-blocking. |
+| [`start`](#start)      | `string` | Typically, except for PHP; see [`start`](#start). | The command to launch your app. If it terminates, it's restarted immediately.                       |
+| [`post_start`](#post_start) | `string` |                               | Command runs **after** the `start` command and **before** adding the container to the router. Can be used to ensure app is active before routing traffic to it.       |
 
-{{< note theme="info" >}}
-The `post_start` feature is _experimental_ and may change. Please share your feedback in the
-[{{% vendor/name %}} discord](https://discord.gg/platformsh).
+### `pre_start` command {#pre_start}
+The `pre_start` command is **not blocking**, which means the `deploy` hook may start running **before** the `pre_start` command finishes. This can lead to unexpected behavior if `pre_start` performs setup tasks that `deploy` depends on.<br>
+To avoid issues, make sure any critical initialization in `pre_start` can complete quickly or is safe to run concurrently with `deploy`.
+
+### `start` command {#start}
+On all containers other than PHP, it's a best practice to include a `start` command. This command runs every time your app is restarted, regardless of whether new code is deployed.
+
+
+On PHP containers, `start` is optional and defaults to starting PHP-FPM (`/usr/bin/start-php-app`).
+You can set it explicitly on a PHP container to run a dedicated process,
+such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
+or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
+See [Alternate start commands](/languages/php/_index.md#alternate-start-commands) in the PHP topic.
+
+
+{{< note >}}
+
+Do not run a `start` process in the background by using `&` syntax.
+The {{% vendor/name %}} supervisor interprets that syntax as the command terminating and starts another copy, creating a loop that continues until the container crashes.
+Run the command as usual and allow the {{% vendor/name %}} supervisor to manage it.
+
 {{< /note >}}
 
-Example:
+### `post_start` command {#post_start}
+You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port. 
+
+For example, if your framework needs several seconds to initialize (for example, to build caches or establish database connections), `post_start` can help coordinate the handover to ensure that the app receives traffic only after it is initialized.
+
+
+#### Example:
+
+This example contains two web commands:
+
+- A `start` command that starts the application every time, whether or not new code is deployed. 
+- A `post_start` command that repeatedly checks whether a service on `localhost` is responding.
 
 {{< codetabs >}}
 
@@ -43,13 +75,16 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "python:{{% latest "python" %}}"
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     web:
       commands:
         start: 'uwsgi --ini conf/server.ini'
+        post_start: |
+        date
+        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 <--->
@@ -60,40 +95,20 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
-  type: "composable:{{% latest composable %}}"
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
-    stack: 
-      runtimes: [ "python@{{% latest python %}}" ]
     web:
       commands:
         start: 'uwsgi --ini conf/server.ini'
+        post_start: |
+        date
+        curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
 {{< /codetabs >}}
 
-
-This command runs every time your app is restarted, regardless of whether or not new code is deployed.
-
-{{< note >}}
-
-Never "background" a start process using `&`.
-That's interpreted as the command terminating and the supervisor process starts a second copy,
-creating an infinite loop until the container crashes.
-Just run it as normal and allow the {{% vendor/name %}} supervisor to manage it.
-
-{{< /note >}}
-
-#### Required command
-
-On all containers other than PHP, the value for `start` should be treated as required.
-
-On PHP containers, it's optional and defaults to starting PHP-FPM (`/usr/bin/start-php-app`).
-It can also be set explicitly on a PHP container to run a dedicated process,
-such as [React PHP](https://github.com/platformsh-examples/platformsh-example-reactphp)
-or [Amp](https://github.com/platformsh-examples/platformsh-example-amphp).
-See how to set up [alternate start commands on PHP](/languages/php/_index.md#alternate-start-commands).
 
 ### Upstream
 
