@@ -5,14 +5,14 @@ description: Use {{% vendor/name %}}'s composable image to build and deploy your
 ---
 
 The {{% vendor/name %}} composable image provides enhanced flexibility when defining your app.
-It allows you to install several runtimes and tools in your application container,
+It enables you to install several runtimes and tools in your application container,
 in a **"one image to rule them all"** approach.
 
 The composable image is built on [Nix](https://nix.dev), which offers the following benefits:
 
 - You can add as many packages to your application container as you need,
   choosing from over 120,000 packages from [the Nixpkgs collection](https://search.nixos.org/packages).
-- The packages you add are built in total isolation, so you can install different versions of the same package.
+- The packages you add are built in isolation, enabling you to install different versions of the same package.
 - With [Nix](https://nix.dev/reference/glossary#term-Nix), there are no undeclared dependencies in your source code.
   What works on your local machine is guaranteed to work on any other machine.
 
@@ -20,40 +20,20 @@ This page introduces all the settings available to configure your composable ima
 (usually located at the root of your Git repository).</br>
 Note that multi-app projects can be [set in various ways](../multi-app/_index.md).
 
-If you're pressed for time, jump to this comprehensive [configuration example](/create-apps/_index.md#comprehensive-example).
+You can also skip directly to this [comprehensive example](/create-apps/_index.md#comprehensive-example) of a composable image configuration on the "Configure apps" page. This example includes all of the properties listed in the table in the next section.
 
 ## Primary application properties
 
 All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured under a unique key beneath the top-level `applications` key.
 
-It is possible to use multiple runtimes in a single application container,
-for instance PHP, NodeJS and Python, while remaining in control of their versions, as shown in the following `{{< vendor/configfile "app" >}}` excerpt:
+The following table presents all of the properties available to each unique application name.
 
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    stack:
-      - runtimes:
-          - "php@{{% latest "php" %}}":
-              extensions:
-                - apcu
-                - sodium
-                - xsl
-                - pdo_sqlite
-          - "nodejs@{{% latest "nodejs" %}}"
-          - "python@3.13"
-    # Additional {{% variable "APP_NAME" %}}: configuration
-```
-
-The following table presents all of the properties available to each unique application name (`{{< variable "APP_NAME" >}}` above).
-
-The **Set in instance?** column defines whether the given property can be overridden within a `web` or `workers` instance.
+The **Set in instance** column defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you must provide the entire property.
 
 {{% note theme="info" %}}
 
-- Except for the `type` and `stack` keys, the single-runtime and composable image types use the keys listed below in the same manner. Clicking the key name takes you to a separate topic about that key. Descriptions for keys that are **unique** to this image type are provided later in this topic. 
+- The `type` and `stack` properties are unique to the composable image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click a property name to view its details in a separate topic.  
 - The ``stack`` key replaces the ``build``, ``dependencies``, and ``runtime`` keys that are available in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 
 {{% /note %}}
@@ -62,7 +42,7 @@ To override any part of a property, you must provide the entire property.
 |----------------------|------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory in each application that uses the composable image. Example: `type: "composable:{{% latest composable %}}"`.                                                                                                                                                                                      |
 | [`stack`](#stack)              |  `runtimes` and/or  `packages` arrays                                                     | Yes      | No               | Defines the array of [{{% vendor/name %}}-supported `runtimes`](#supported-nix-packages) and the array of [NixPkgs `packages`](https://search.nixos.org/packages) to install in addition to those available in the channel specified in `type` key.                                                                                            |
-| [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
+| [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Determines which combinations of CPU and RAM a container can use. Default value is `HIGH_CPU`; see [Resources](#resources) if using multiple runtimes.                                                                                                                                                                                                                            |
 | [`relationships`](/create-apps/image-properties/relationships.md)      | A dictionary of relationships                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | [`mounts`](/create-apps/image-properties/mounts.md)             | A dictionary of mounts                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
 |[`web`](/create-apps/image-properties/web.md)                | A web instance                                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
@@ -96,61 +76,37 @@ Upsun supports the following Nix channel versions:
 
 - `{{% latest composable %}}`
 
+View the list of [supported Nix runtimes](#supported-nix-packages) in the `stack` section below. 
 
 ## `stack` {#stack}
 
-You must define the `stack` element with distinct `runtimes` and `packages` keys, as follows:
+You must define the `stack` element by using distinct `runtimes` and `packages` keys, as follows:
 
-- **`runtimes`**: an array of language runtimes. Examples:`php`, `python`, `node.js`. See the complete list of [supported language runtimes](#supported-nix-packages).<br>
-  Optional: version numbers and other keys such as `extensions`, `disabled_extensions`. 
+- **`runtimes`**: an array of language runtimes, with or without version numbers. You can specify multiple runtimes in one application container, as shown in the [example `stack` configuration](#example-stack-configuration) below. See the complete list of [supported runtimes](#supported-nix-packages).<br>
+
+  The first declared runtime is considered the [primary runtime](#primary-runtime) and is started automatically.<br>
+
+  Optional: 
+    - version numbers: If omitted, the most recent version in the channel is used. 
+    - `extensions` key
+    - `disabled_extensions` key
+
 - **`packages`**: an array of extra system tools or libraries installed from Nix packages.<br>
-  Packages originate from the Nix channel that is defined by the `type` key, unless overridden locally with `channel`. See the `config.yaml` file excerpt below.
+  Packages originate from the Nix channel that is defined by the `type` key, unless overridden locally by specifying the `package` and its `channel`. See the `config.yaml` file excerpt below.<br>
+
   Optional: additional keys, such as:
-  - `package` (string)
-  - `channel` (string; for example, `unstable`)
+  - `package` (string, as part of a `package` object) 
+  - `channel` (string; defines the channel that contains the package, such as `unstable`)
   - Additional configuration keys (to demonstrate passthrough flexibility)
 
+### Example `stack` configuration {#example-stack-configuration}
 
-    For example, to use a package version in an unstable channel, define a package:channel mapping in the `packages` array, as shown below: 
-    ```yaml
-    packages:
-      - package: wkhtmltopdf
-        channel: unstable
-    ```
-### Supported Nix packages
-
-{{% note %}}
-The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.<br>
-However, you can add any other packages from the [Nixpkgs collection](https://search.nixos.org/) to your `stack` array (see the [`stack`](#stack) section below).
-This includes packages from the ``unstable`` channel,
-such as [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
-While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
-{{% /note %}}
-
-Depending on the Nix package, you can select only the major runtime version,
-or the major and minor runtime versions as shown in the table.
-Security and other patches are applied automatically.
-
-| **Language**                                 | **Nix package** | **Supported version(s)**                        |
-|----------------------------------------------|-----------------|-------------------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
-| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
-| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
-| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
-| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
-| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
-| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
-
-**Example `stack` configuration**
-
-To put it all together, the `config.yaml` excerpt below shows the configuration for the following stack: 
-- `php@{{% latest "php" %}}` runtime with additional `extensions` and one item under `disabled_extensions`
-- `nodejs@{{% latest "nodejs" %}}` runtime
-- `yarn` and `imagemagick` packages from the {{% latest composable %}} Nix channel
+The `config.yaml` file excerpt below shows the following stack configuration: 
+- `php@{{% latest "php" %}}` as the primary runtime with additional `extensions` and one `disabled_extensions`
+- `nodejs@{{% latest "nodejs" %}}` and `python@{{% latest "python" %}}` runtimes
+- `yq`, `yarn`, and `imagemagick` packages from the {{% latest composable %}} Nix channel
 - `wkhtmltopdf` package from the `unstable` Nix channel
+
 
 ```yaml {configFile="app"}
 applications: 
@@ -168,9 +124,12 @@ applications:
             disabled_extensions:
               - gd
         - "nodejs@{{% latest "nodejs" %}}"
+        - "python@{{% latest "python" %}}"
       packages:
+        - yq                     # tool
         - yarn
         - imagemagick
+        - "python313Packages.yq" # specific Python package
         - package: wkhtmltopdf
           channel: unstable
 ```
@@ -185,7 +144,32 @@ For instance, to [start a secondary runtime](#primary-runtime),
 just issue the command (e.g. in the [`start` command](/create-apps/image-properties/web.md#web-commands)) instead of the `nix run` command.
 {{% /note %}}
 
-#### Primary runtime
+### Supported runtimes {#supported-nix-packages}
+
+{{% note %}}
+The Nix runtimes listed in the following table are officially supported by {{% vendor/name %}} and can be added to the `runtimes` array in the [`stack`](#stack) property.<br>
+You can also add any other packages from the [Nixpkgs collection](https://search.nixos.org/) to the `packages` array in the [`stack`](#stack) property.
+This includes packages from the ``unstable`` channel,
+such as [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+While available for you to install, runtimes that aren't listed in the following table are supported by Nix itself (as _packages_ from the Nixpgks collection), and not as runtimes by {{% vendor/name %}}.
+{{% /note %}}
+
+Note that for some runtimes (such as Clojure), you can specify only the major version. 
+
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
+
+### Primary runtime {#primary-runtime}
 
 If you add multiple runtimes to your application container,
 the first declared runtime becomes the primary runtime.
@@ -198,6 +182,9 @@ and visit the documentation page dedicated to your runtime.
 {{% note %}}
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
+
+See the [example `stack` configuration](#example-stack-configuration) above, which declares multiple runtimes.
+
 
 ### PHP extensions and Python packages
 
@@ -216,27 +203,9 @@ follow these steps:
 
 #### Install PHP extensions
 
-Indicate enabled or disabled [PHP extensions](/languages/php/extensions.md) by including the `extensions` and `disabled_extensions` keys as needed below the language definition.</br>
+Indicate enabled or disabled [PHP extensions](/languages/php/extensions.md) by including the `extensions` and `disabled_extensions` keys as needed below the `runtimes` definition.</br>
 
-Example:
-
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
-    stack:
-      runtimes:
-        - "php@{{% latest "php" %}}":
-            extensions:
-              - apcu
-              - sodium
-              - xsl
-              - pdo_sqlite
-            disabled_extensions:
-              - gd
-```
+See the [example `stack` configuration](#example-stack-configuration) above, which includes these keys in the `runtimes` definition.
 
 {{% note %}}
 To help you find PHP package names,
@@ -252,61 +221,39 @@ for your PHP extensions.
 
 {{% /note %}}
 
+### Sizing hints
+
+The following table shows the properties that can be set in `sizing_hints`:
+
+| Name              | Type      | Default | Minimum | Description                                    |
+|-------------------|-----------|---------|---------|------------------------------------------------|
+| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
+| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
+
+See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
+
+
 #### Install Python packages
 
-To install Python packages, add them as new packages to the `packages` array of the `stack`. 
-Specify the complete package name.
+To install Python packages (which supplement runtimes), add them as new packages to the `packages` array of the `stack`. 
+Provide the complete package name.
 
-For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq), use the following configuration:
-
-```yaml {configFile="app"}
-applications:
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    stack:
-      packages:
-        - "python@3.13"
-        - "python313Packages.yq" # python package specific
-```
+See the [example `stack` configuration](#example-stack-configuration) above, which shows the addition of   [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq) to the `packages` array in the stack.
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
 
-### Example configuration
 
-Here is a full composable image configuration example. Note the use of the `<nixpackage>@<version>` format.
-
-```yaml {configFile="app"}
-applications: 
-  {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
-    stack:
-      runtimes:
-        - "php@{{% latest "php" %}}":
-            extensions: 
-              - apcu
-              - sodium
-              - xsl
-              - pdo_sqlite
-              - php-facedetect
-            disabled_extensions:
-              - gd
-        - "nodejs@{{% latest "nodejs" %}}"
-      packages:
-        - yq                     # tool
-        - yarn
-        - imagemagick
-        - "python@3.13"
-        - "python313Packages.yq" # python package specific
-        - package: wkhtmltopdf
-          channel: unstable
-```
-
-### Combine single-runtime and composable images
+### Combine single-runtime and composable images {#combine-single-runtime-and-composable-images}
 
 In a [multiple application context](/create-apps/multi-app/_index.md),
 you can use a mix of [single-runtime images](/create-apps/app-reference/single-runtime-image.md)
 and [composable images](/create-apps/app-reference/composable-image.md).
-The following sample configuration includes two applications: a ``frontend`` app and a ``backend`` app:
+
+In this scenario, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [Primary runtime](#primary-runtime) section in this topic.
+
+The following sample configuration includes two applications: 
+- a ``frontend`` app that uses a composable image
+- a ``backend`` app that uses a single-runtime image
 
 ```yaml {configFile="app"}
 applications:
@@ -322,23 +269,12 @@ applications:
               - xsl
               - pdo_sqlite
         - "python@3.13"
+      packages:
         - "python313Packages.yq" # python package specific
   backend:
     # this app uses the single-runtime image with a specific node.js runtime
-    type: 'nodejs:{{% latest "nodejs" %}} 
+    type: 'nodejs:{{% latest "nodejs" %}}' 
 ```
-
-{{% note %}}
-If you add multiple runtimes to your application container,
-the first declared runtime becomes the primary runtime.
-The primary runtime is the one that is automatically started.
-
-To start other declared runtimes, you need to start them manually, using [web commands](/create-apps/image-properties/web.md#web-commands).
-To find out which start command to use, go to the [Languages](/languages/_index.md) section,
-and visit the documentation page dedicated to your language.
-
-If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
-{{% /note %}}
 
 ## Resources
 
@@ -348,17 +284,18 @@ Console or the `{{% vendor/cli %}} resources:set` command.
 For more information, see how to [manage resources](/manage-resources.md).
 
 {{% note %}}
-Composable image container profile defaults to ``HIGH_CPU``.
-<BR>If multiple runtimes are added to your stack,
-you would need to change
+The default container profile for a composable image is ``HIGH_CPU``.<br>
+<BR>If your stack defines multiple runtimes, you need to do one of the following:
+- Change
 the [default container_profile](/manage-resources/adjust-resources.md#advanced-container-profiles)
-<br>or change [default CPU and RAM ratio](/manage-resources/resource-init.md) on first deployment using the following
+- Change [default CPU and RAM ratio](/manage-resources/resource-init.md) on first deployment using the following
 commands:
 
-```bash
-{{% vendor/cli %}} push --resources-init=manual
-```
+    ```bash
+    {{% vendor/cli %}} push --resources-init=manual
+    ```
 {{% /note %}}
+
 
 ## Available disk space
 
