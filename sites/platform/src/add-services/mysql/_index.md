@@ -11,6 +11,11 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/documentation/)
 or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
+{{% note theme="info" title="MariaDB note" %}}
+The [example](#mariadb-example) provided later in this topic is specific to using only a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
+
+
 ## Use a framework
 
 If you use one of the following frameworks, follow its guide:
@@ -177,6 +182,10 @@ With the above definition, the application container now has [access to the serv
 {{< /codetabs >}}
 
 ### MariaDB example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
 
 #### [Service definition](/add-services/_index.md)
 
@@ -345,7 +354,7 @@ You can configure your MySQL service in the [services configuration](/add-servic
 | `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
 | `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
 | `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
-| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Defaults to `true`. When set to `false`, [password rotation](#password-rotation) is disabled. |
 
 Example configuration:
 
@@ -459,14 +468,15 @@ For each endpoint you add, you can define the following properties:
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
 | `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
 
-Possible permissions:
+Available permissions:
 
-| Name        | Type          | Description                                                                                                                                                                                |
-| ----------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Read-only   | `ro`          | Can select, create temporary tables, and see views.                                                                                                                                        |
-| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                               |
-| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                         |
+| Name              | Type                | Description                                                                                                                                                                                                                                                                |
+|-------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Read-only         | `ro`                | Can select, create temporary tables, and see views.                                                                                                                                                                                                                        |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.                                                                                 |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                                                                                                               |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                                                                                                         |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [Dev Center article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ### Restrict access to database replicas only
 
@@ -755,27 +765,30 @@ define custom endpoints in your [service configuration](#1-configure-the-service
 For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
+You cannot customize these generated passwords.
 
-{{% note theme="warning" %}}
-By default, the generated password will rotate on a regular
-basis. Your applications MUST use the passwords from the
-relationships, as the password _is_ going to change. Set
-`rotate_passwords` to `false` if you wish to change this default
-behavior.
-{{% /note %}}
-
-After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
- within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
-The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
-Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app). 
+ 
+Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.** 
 
 When you switch from the default configuration with an empty password to custom endpoints,
 make sure your service name remains unchanged.
-Failure to do so results in the creation of a new service,
-which removes any existing data from your database.
+**Changing the service name creates a new service,
+which removes any existing data from your database.**
+
+## Password rotation {#password-rotation}
+By default, password rotation is enabled (`rotate_passwords=true`), enabling {{% vendor/name %}} to automatically change (or _rotate_) MariaDB passwords each time it updates the MariaDB image. Password rotation also occurs as defined by any password lifetime settings in MariaDB. 
+
+Specific scenarios might warrant disabling password rotation (` rotate_passwords=false`): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
+
+Passwords do **not** rotate automatically when you reset this value to `true`. 
+
+{{% note title="Important" theme="warning" %}}
+Disabling password rotation can jeopardize compliance with security certifications - make sure you weigh this risk alongside the convenience of SSH-tunneling access.
+{{% /note %}}
 
 ## Storage Engine
 

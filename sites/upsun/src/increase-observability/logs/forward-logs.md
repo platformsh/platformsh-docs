@@ -21,8 +21,7 @@ For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsysl
 <--->
 {{% /version/specific %}}
 To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
-You also need your project to have the capability for log forwarding.
-To get a price quote, [contact Sales](https://upsun.com/contact-us/).
+For pricing information for real-time logs forwarding, refer to the **Observability and performance monitoring** section of the [Upsun pricing page](https://upsun.com/pricing/).
 
 ### Which logs are forwarded?
 When log forwarding is enabled, {{% vendor/name %}} forwards logs sent to journald.  
@@ -97,7 +96,7 @@ Filter by the index name to find the relevant events.
 title=Sumo Logic
 +++
 
-1. In Sumo Logic, [configure an HTTP source](https://help-opensource.sumologic.com/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
+1. In Sumo Logic, [configure an HTTP source](https://www.sumologic.com/help/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 

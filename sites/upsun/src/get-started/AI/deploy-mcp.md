@@ -1,7 +1,15 @@
 ---
 title: Hosting Model Context Protocal (MCP) Servers
-weight: -40
+weight: -50
 ---
+
+{{< note theme="info" title="Connect to the {{% vendor/name %}} MCP Server">}}
+
+The {{% vendor/name %}} Model Context Protocol (MCP) Server allows users to perform infrastructure operations, monitor environments, and manage resources using natural language commands. 
+
+**You can set up the {{% vendor/name %}} MCP Server with this [step-by-step guide]( /get-started/ai/using-the-mcp.md).**
+
+{{< /note >}}
 
 **Model Context Protocol (MCP)** is a standard interface that allows large
 language models (LLMs) to communicate with external tools and data sources.
@@ -14,7 +22,7 @@ specifications, examples, and implementation details, we recomend you visit the
 
 ## Get started with MCP on Upsun
 
-- **[Build and deploy AI-native applications with MCP servers on Upsun](https://devcenter.upsun.com/posts/tutorials/?utm_source=chatgpt.com)**  
+- **[Build and deploy AI-native applications with MCP servers on Upsun](https://devcenter.upsun.com/posts/deploy-mcp-servers-on-upsun/)**  
   Learn how to build and deploy AI-native applications by leveraging MCP servers
   hosted on Upsun.
 

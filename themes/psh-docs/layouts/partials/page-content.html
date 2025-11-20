@@ -80,8 +80,8 @@
           </div>
           {{ end }}
           <div class="cta-text main-copy flex-col justify-start items-start gap-2 inline-flex">
-            <div class="cta-body">
-              {{ index $recruitment "description"}}
+            <div class="cta-body a">
+              {{ index $recruitment "description" | markdownify }}
             </div>
 
           </div>
@@ -128,18 +128,26 @@
 
     <!-- If the page is a list page, add section cards -->
     {{ if .isList }}
-      <div class="space-y-4 not-prose">
+      <div class="space-y-4">
         {{ range .context.Pages }}
+          {{ if isset .Params "sectionbefore" }}
+            <h2 class="scroll-mt-24 prose" id="{{ .Params.sectionBefore }}">
+              {{ .Params.sectionBefore }}
+              <a data-engagement-id="content-section-anchor" class="headline-hash" href="#{{ .Params.sectionBefore }}"><img alt="Anchor to this heading" src="/images/svg/link.svg"></a>
+            </h2>
+          {{ end }}
+          <div class=" not-prose">
           <a href="{{ .RelPermalink }}"
              class="block p-[2px] bg-stone hover:bg-skye-dark rounded-xl transition-all"
              data-engagement-id="content-card-{{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString | htmlEscape }}{{ else }}{{ .Title | .RenderString | htmlEscape}}{{ end }}">
-            <div class="p-8 bg-white rounded-xl h-full hover:shadow-lg">
+            <div class="p-8 bg-white rounded-xl h-full hover:shadow-lg not-prose">
               <h3 class="text-xl font-medium mb-2 text-gray-900">
                 {{ if isset .Params "sidebartitle" }}{{ .Params.sidebarTitle | .RenderString }}{{ else }}{{ .Title | .RenderString }}{{ end }}
               </h3>
               <p class="text-gray-600 m-0">{{ .Params.description | .RenderString }}</p>
             </div>
           </a>
+          </div>
         {{ end }}
       </div>
     {{ end }}

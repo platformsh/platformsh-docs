@@ -20,7 +20,7 @@ To solve this issue:
 To get approximate disk usage for a database, run the command `{{% vendor/cli %}} db:size`.
 This returns an estimate such as the following:
 
-```text
+```text {no-copy="true"}
 +----------------+-----------------+--------+
 | Allocated disk | Estimated usage | % used |
 +----------------+-----------------+--------+
@@ -43,7 +43,7 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 During the `build` hook, you may see the following error:
 
-```text
+```text {no-copy="true"}
 W: [Errno 28] No space left on device: ...
 ```
 

@@ -18,8 +18,8 @@ You can do so directly from the Console.
 The Advanced User Management add-on gives you access to the following features:
 
 - [Teams](/administration/teams.md)
-- [MFA enforcement](/administration/mfa.md)
-- [Single sign-on (Google)](#single-sign-on-google)
+- [MFA enforcement](/administration/security/mfa.md)
+- [Single sign-on (SSO)](/administration/security/sso.md) 
 
 {{% note theme="info" %}}
 
@@ -125,9 +125,5 @@ Downgrades are permitted only after the 365 day MTC has been completed. Organiza
 - Downgrade from Advanced or Premium to Standard
 
 Downgrades are performed through the Console and take effect based on the Organization's billing cycle.
-
-## Single sign-on (Google)
-
-{{% vendor/name %}} allows you to set up Single sign-on (SSO) with Google. To learn more about this feature, contact our [sales team](https://upsun.com/contact-us/) or visit [the pricing page](https://upsun.com/pricing/).
 
 

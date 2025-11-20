@@ -140,7 +140,7 @@ When you use a CDN, to ensure the challenge succeeds, check that:
 
 If you don't follow those requirements, you get an error message similar to:
 
-``` text
+```text {no-copy="true"}
   W: Failed to verify the challenge at the gateway for the domain 'www.example.com'
   E: Error validating domain www.example.com: Couldn't complete challenge [HTTP01: The client lacks sufficient authorization]
 ```
@@ -201,7 +201,7 @@ On the command line type `{{% vendor/cli %}} logs app` and `{{% vendor/cli %}} l
 
 {{% vendor/name %}} expects an ASCII representation of your domain.
 To use an internationalized domain name (IDN), convert it to ASCII.
-Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/en_US/channel-resources/domain-registry-products/idn/idn-conversion-tool/index.xhtml).
+Use a tool such as the [conversion tool provided by Verisign](https://www.verisign.com/resources/internationalized-domain-names/idn-conversion-tool/).
 
 ## Something still wrong?
 

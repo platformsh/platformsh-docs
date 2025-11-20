@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI (Platform.sh compatibility) 5.5.0
+# Upsun CLI (Platform.sh compatibility) 5.7.2
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -181,10 +181,6 @@ showTitle: false
 * [`repo:cat`](#repocat)
 * [`repo:ls`](#repols)
 * [`repo:read`](#reporead)
-
-**resources**
-
-* [`resources:build:get`](#resourcesbuildget)
 
 **route**
 
@@ -839,6 +835,11 @@ platform activity:list --type push --start 2015-03-15
 * List up to 25 incomplete activities:
 ```
 platform activity:list --limit 25 -i
+```
+
+* Include the activity type in the table:
+```
+platform activity:list --columns +type
 ```
 
 ## `activity:log`
@@ -3480,7 +3481,7 @@ Aliases: `push`
 ### Usage
 
 ```
-platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
+platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [-s|--deploy-strategy DEPLOY-STRATEGY] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
 ```
 
 #### Arguments
@@ -3513,6 +3514,9 @@ platform push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upst
 
 * `--no-clone-parent`
   Do not clone the parent branch's data (only used with --activate)
+
+* `--deploy-strategy` (`-s`) (expects a value)
+  Set the deployment strategy, rolling or stopstart (default)
 
 * `--no-wait` (`-W`)
   Do not wait for the operation to complete
@@ -4278,7 +4282,7 @@ platform integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlp')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -4607,7 +4611,7 @@ platform integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlp')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -5049,7 +5053,7 @@ platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to 
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, tmp_disk_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_percent, inodes_used, mem_limit, mem_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_percent, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, inodes_percent*, tmp_disk_percent*, tmp_inodes_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_used, mem_limit, mem_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -5082,9 +5086,9 @@ platform metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to 
 platform metrics:all 
 ```
 
-* Show metrics in five-minute intervals over the last hour:
+* Show metrics over the last hour:
 ```
-platform metrics:all -i 5m -r 1h
+platform metrics:all  -r 1h
 ```
 
 * Show metrics for all SQL services:
@@ -5169,13 +5173,16 @@ Aliases: `disk`
 ### Usage
 
 ```
-platform disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [--tmp] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+platform disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
 
 * `--bytes` (`-B`)
   Show sizes in bytes
+
+* `--tmp`
+  Report temporary disk usage (shows columns: timestamp, service, tmp_used, tmp_limit, tmp_percent, tmp_ipercent)
 
 * `--range` (`-r`) (expects a value)
   The time range. Metrics will be loaded for this duration until the end time (--to). You can specify units: hours (h), minutes (m), or seconds (s). Minimum 5m, maximum 8h or more (depending on the project), default 10m.
@@ -5194,9 +5201,6 @@ platform disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
 
 * `--type` (expects a value)
   Filter by service type (if --service is not provided). The version is not required. The % or * characters may be used as a wildcard.
-
-* `--tmp`
-  Report temporary disk usage (shows columns: timestamp, service, tmp_used, tmp_limit, tmp_percent, tmp_ipercent)
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -6581,6 +6585,9 @@ You can review the digest at any time by running: platform init --digest
 * `--ai` (expects a value)
   Use AI configuration
 
+* `--context` (expects a value)
+  Add extra context for AI configuration
+
 * `--digest`
   Only show the repository digest (the AI configuration input), without sending it
 
@@ -6609,6 +6616,11 @@ platform project:init
 * Disable AI mode:
 ```
 platform project:init --ai=false
+```
+
+* Add context for AI configuration:
+```
+platform project:init --ai --context='Use PostgreSQL for the database'
 ```
 
 ## `project:list`
@@ -6868,50 +6880,6 @@ platform read [-c|--commit COMMIT] [-p|--project PROJECT] [-e|--environment ENVI
 
 * `--environment` (`-e`) (expects a value)
   The environment ID. Use "." to select the project's default environment.
-
-* `--help` (`-h`)
-  Display this help message
-
-* `--version` (`-V`)
-  Display this application version
-
-* `--verbose` (`-v|-vv|-vvv`)
-  Increase the verbosity of messages
-
-* `--quiet` (`-q`)
-  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
-
-* `--yes` (`-y`)
-  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
-
-* `--no-interaction`
-  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: PLATFORMSH_CLI_NO_INTERACTION=1
-
-## `resources:build:get`
-
-View the build resources of a project
-
-Aliases: `build-resources:get`, `build-resources`
-
-### Usage
-
-```
-platform build-resources:get [-p|--project PROJECT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
-```
-
-#### Options
-
-* `--project` (`-p`) (expects a value)
-  The project ID or URL
-
-* `--format` (expects a value)
-  The output format: table, csv, tsv, or plain
-
-* `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: cpu, memory. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
-
-* `--no-header`
-  Do not output the table header
 
 * `--help` (`-h`)
   Display this help message

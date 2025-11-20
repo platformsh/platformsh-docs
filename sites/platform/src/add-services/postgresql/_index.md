@@ -8,6 +8,10 @@ PostgreSQL is a high-performance, standards-compliant relational SQL database.
 
 See the [PostgreSQL documentation](https://www.postgresql.org/docs/9.6/index.html) for more information.
 
+{{% note theme="info" title="Note" %}}
+The [example](#usage-example) provided later in this topic is specific to using only a **primary** database. For details about using read-only replicas to improve performance of read-heavy applications, see the [PostgreSQL read-only replication](/add-services/postgresql/postgresql-readonly-replication.md) topic.
+{{% /note %}}
+
 ## Use a framework
 
 If you use one of the following frameworks, follow its guide:
@@ -96,6 +100,10 @@ So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` envir
 ```
 
 ## Usage example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** PostgreSQL database. For details about using read-only replicas to improve performance of read-heavy applications, see the [PostgreSQL read-only replication](/add-services/postgresql/postgresql-readonly-replication.md) topic.
+{{% /note %}}
 
 ### 1. Configure the service
 
@@ -375,8 +383,7 @@ You can choose your locale when a database is created by setting locale-related 
 
 ## Multiple databases
 
-If you are using version `10`, `11`, `12`, `13`, or later of this service,
-it's possible to define multiple databases as well as multiple users with different permissions.
+Support for defining multiple databases and multiple users with different permissions is available in versions `10` and later of this service. 
 To do so requires defining multiple endpoints.
 Under the `configuration` key of your service there are two additional keys:
 

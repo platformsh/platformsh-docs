@@ -13,11 +13,10 @@ description: |
 
 If you're experiencing issues related to the proper functioning of the {{% vendor/name %}} infrastructure, application container software, build processes, have found possible bugs, have general questions or wish to submit a feature request, open a support ticket:
 
-1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/)
-2. Click the **Help** dropdown in the upper right-hand corner.
-3. Select **Support** from the options in the dropdown.
-4. Click **+ New ticket**.
-5. Fill in the ticket fields and click **Submit**.
+1. [Open the Console](https://console.{{< vendor/urlraw "host" >}}/).
+1. In the upper right-hand corner, click **Help** and select **Support** from the menu.
+1. In the **Support tickets** section, click **New ticket**.
+1. Complete the **Create a ticket** form and then click **Submit**.
 
 Or use these shortcuts to [access all support tickets](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets)
 or [open a new ticket](https://console.{{< vendor/urlraw "host" >}}/-/users/~/tickets/open).
@@ -50,11 +49,11 @@ get in touch with [Sales](https://{{< vendor/urlraw "host" >}}/contact/).
 
 ## Delete your account
 
-To permanently delete your {{% vendor/name %}} account, follow these steps:
+To permanently delete your {{% vendor/company_name %}} account, follow these steps:
 
 {{% note theme=warning title="Warning"%}}
 
-Deleting your {{% vendor/name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
+Deleting your {{% vendor/company_name %}} account automatically deletes any linked Upsun, Ibexa Cloud, Pimcore PaaS, or Shopware PaaS accounts you may hold.
 
 {{% /note %}}
 

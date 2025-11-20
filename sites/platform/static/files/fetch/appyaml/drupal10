@@ -80,13 +80,17 @@ hooks:
     # fast.
     deploy: |
         set -e
-        php ./drush/platformsh_generate_drush_yml.php
-        # if drupal is installed, will call the following drush commands:
-        #   - `cache-rebuild`
-        #   - `updatedb`
-        #   - and if config files are present, `config-import`
-        cd web
-        bash $PLATFORM_APP_DIR/drush/platformsh_deploy_drupal.sh
+        if [ -n "$(drush status --field=bootstrap)" ]; then
+            drush -y cache-rebuild
+            drush -y updatedb
+            if [ -n "$(ls $(drush php:eval "echo realpath(Drupal\Core\Site\Settings::get('config_sync_directory'));")/*.yml 2>/dev/null)" ]; then
+                drush -y config-import
+            else
+                echo "No config to import. Skipping."
+            fi
+        else
+            echo "Drupal not installed. Skipping standard Drupal deploy steps"
+        fi
 
 # The configuration of app when it is exposed to the web.
 web:
@@ -112,6 +116,9 @@ web:
             # Deny access to all static files, except those specifically allowed below.
             allow: false
 
+            # Disable global PHP execution, allow only nominated paths to be run.
+            scripts: false
+
             # Rules for specific URI patterns.
             rules:
                 # Allow access to common static files.
@@ -122,11 +129,21 @@ web:
                 '^/sitemap\.xml$':
                     allow: true
 
-                # Deny direct access to configuration files.
-                '^/sites/sites\.php$':
-                    scripts: false
+                # Allow only a selected set of PHP scripts to be executed.
                 '^/sites/[^/]+/settings.*?\.php$':
                     scripts: false
+                '^/index\.php$':
+                    scripts: true
+                '^/core/install\.php$':
+                    scripts: true
+                '^/update\.php$':
+                    scripts: true
+                '^/core/rebuild\.php':
+                    scripts: true
+                '^/core/authorize\.php':
+                    scripts: true
+                '^/core/modules/statistics/statistics\.php':
+                    scripts: true
 
         # The files directory has its own special configuration rules.
         '/sites/default/files':

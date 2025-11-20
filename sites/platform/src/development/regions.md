@@ -49,7 +49,7 @@ We have been working closely with Greenly to build upon the model, tailoring it 
 
 {{% note theme="warning" %}}
 
-[OVH](/development/regions.html#france-fr-3-fr-3) and [Orange](/development/regions.html#france-fr-1-fr-1) region data is not available in this dashboard. 
+[OVH](/development/regions.html#france-fr-3-fr-3) region data is not available in this dashboard. 
 
 {{% /note %}}
 
@@ -80,7 +80,7 @@ When adding a new project, you only see regions allowed by your organization.
 
 As an alternative, you can also use the following command with the {{% vendor/name %}} CLI to find out where a given region is hosted:
 
-``` bash
+```bash
 {{% vendor/cli %}} api:curl regions | jq '.regions[] | select(.available)  | .id + ": " + .provider.name + " - " + .zone + " - " + .timezone' | sort
 ```
 

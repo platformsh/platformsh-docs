@@ -49,7 +49,7 @@ Configure your `pom.xml` to download `newrelic-java.zip`:
 </dependency>
 ```
 
-Replace `JAVA_AGENT_VERSION` with the [latest Java agent version 1](https://docs.newrelic.com/docs/agents/java-agent/getting-started/java-release-notes).
+Replace `JAVA_AGENT_VERSION` with the [latest Java agent version 1](https://docs.newrelic.com/docs/release-notes/agent-release-notes/java-release-notes/index).
 
 Unzip `newrelic-java.zip` by configuring `maven-dependency-plugin` in your `pom.xml`:
 

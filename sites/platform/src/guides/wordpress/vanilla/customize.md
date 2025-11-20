@@ -3,7 +3,7 @@ title: "Customize WordPress for {{% vendor/name %}}"
 sidebarTitle: "Customize"
 weight: -90
 description: |
-    Add some helpful dependencies, and modify your WordPress site to read from a {{% vendor/name %}} environment.
+    Add some helpful dependencies, and modify your WordPress site to read from an {{% vendor/name %}} environment.
 ---
 
 Deploying WordPress without Composer on {{% vendor/name %}} isn't recommended,
@@ -41,18 +41,16 @@ which you can use to define your database connection to the MariaDB container.
 To make each property (username, password, and so on) more accessible to `wp-config.php`,
 you can use the pre-installed `jq` package to clean the object into individual variables.
 
-```text
-# .environment
+```bash {location=".environment"}
+export DB_NAME="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].path')"
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].host')"
+export DB_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].port')"
+export DB_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
+export DB_PASSWORD="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].password')"
 
-export DB_NAME=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].path")
-export DB_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export DB_PORT=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].port")
-export DB_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
-export DB_PASSWORD=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].password")
-
-export WP_HOME=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
+export WP_HOME="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')"
 export WP_SITEURL="${WP_HOME}wp"
-export WP_DEBUG_LOG=/var/log/app.log
+export WP_DEBUG_LOG="/var/log/app.log"
 if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ] ; then
     export WP_ENV='development'
 else
@@ -65,7 +63,7 @@ that are applied when deployed on {{% vendor/name %}} but not locally.
 
 ## `wp-config.php`
 
-Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on a {{% vendor/name %}} environment.
+Now that your database credentials have been cleaned up and `WP_HOME` defined, you can pull these values into `wp-config.php` to configure WordPress for deployment on an {{% vendor/name %}} environment.
 
 Below is the `wp-config.php` file from the [WordPress template](https://github.com/platformsh-templates/wordpress-vanilla) using the variables defined in the previous section. Many other WordPress settings are pre-defined in this file for you, so consult the inline comments for more information.
 

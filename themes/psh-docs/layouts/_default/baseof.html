@@ -100,5 +100,19 @@
     </script>
     {{ end }}
 
+    <!-- copy anchor link if click from the same page   -->
+    {{ $script := resources.Get "js/copy-anchor-link.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script src="{{ $script.RelPermalink }}"></script>
+
+    <!-- copy code   -->
+    {{ $script := resources.Get "js/copy-code.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script src="{{ $script.RelPermalink }}"></script>
+
+    <!-- allow to zoom images   -->
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+    {{ $script := resources.Get "js/zoom.js" | resources.Minify | resources.Fingerprint "sha256" }}
+    <script src="{{ $script.RelPermalink }}"></script>
+
+
   </body>
 </html>

@@ -5,12 +5,12 @@ sidebarTitle: Users
 description: Manage user access and permissions across all your projects and organizations.
 ---
 
-{{% vendor/name %}} offers very granular and flexible user permissions across projects and organizations.
+{{% vendor/name %}} offers fine-grained and flexible user permissions across projects and organizations.
 When a user is added to a project, they are automatically added to your organization.
 
 {{< note title="Available add-on" >}}
 
-The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/mfa.md) and [Single sign-on (Google)](/administration/billing/add-on-subscription.md#single-sign-on-google). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
+The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/security/mfa.md) and [single sign-on](/administration/security/sso.md). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 
 {{< /note >}}
 

@@ -37,26 +37,26 @@ The following table presents all the properties you can use at the top level of 
 The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-| Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
-|--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
-| `type`             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:25.05"`                                                                                                                                                                                      |
-| `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                      |
-| `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
-| `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
+| Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                 |
+|--------------------|--------------------------------------------------------------------------|----------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                              |
+| `type`             | A type                                                                   | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Example: `type: "composable:{{% latest composable %}}"`                                                                                                                                                  |
+| `stack`            | An array of [Nix packages](#stack)                                       | Yes      | No               | A list of packages from the {{% vendor/name %}} collection of [supported runtimes](#supported-nix-packages) and/or from [Nixpkgs](https://search.nixos.org/packages).                                                                                                       |
+| `size`             | A [size](#sizes)                                                         |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                     |
+| `relationships`    | A dictionary of [relationships](#relationships)                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                     |
 | `disk`             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See [note on available space](#available-disk-space).                                                                     |
-| `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
-| `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                         |
-| `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                        |
+| `mounts`           | A dictionary of [mounts](#mounts)                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                    |
+| `web`              | A [web instance](#web)                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                                          |
+| `workers`          | A [worker instance](#workers)                                            |          | N/A              | Alternate copies of the application to run as background processes.                                                                                                                                                                                                         |
 | `timezone`         | `string`                                                                 |          | No               | The timezone for crons to run. Format: a [TZ database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). Defaults to `UTC`, which is the timezone used for all logs no matter the value here. See also [app runtime timezones](/create-apps/timezone.md). |
-| `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                       |
-| `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                      |
-| `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
-| `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
-| `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
-| `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
-| `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                         |
-| `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
+| `access`           | An [access dictionary](#access)                                          |          | Yes              | Access control for roles accessing app environments.                                                                                                                                                                                                                        |
+| `variables`        | A [variables dictionary](#variables)                                     |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                                       |
+| `firewall`         | A [firewall dictionary](#firewall)                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                                |
+| `hooks`            | A [hooks dictionary](#hooks)                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                      |
+| `crons`            | A [cron dictionary](#crons)                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                                |
+| `source`           | A [source dictionary](#source)                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                  |
+| `additional_hosts` | An [additional hosts dictionary](#additional-hosts)                      |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                                          |
+| `operations`       | A [dictionary of Runtime operations](/create-apps/runtime-operations.md) |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                     |
 
 {{% note %}}
 The ``build``, ``dependencies``, and ``runtime`` keys are only supported when using a [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
@@ -105,36 +105,23 @@ and visit the documentation page dedicated to your runtime.
 If you use PHP, note that PHP-FPM is only started automatically if PHP is defined as the primary runtime.
 {{% /note %}}
 
-### Supported Nix channels
-
-A Nix channel represents a curated, tested snapshot of the Nixpkgs repository, which contains a collection of Nix expressions (code for building packages and configuring systems).
-
-Using the latest stable Nix channel ensures that you get stable, verified packages (not all `git` commits are heavily tested before being merged into the `master` branch).
-
-<!-- Uncomment if later we support multiple channels: Upsun typically supports only the most recent channel, but sometimes support for a previous channel is extended. 
-The following channels are supported: -->
-At this time, channel `25.05` is supported.
-
+{{% composable/composable-channels %}}
 
 ### Configure Nix channels
 
 The Nix channel can be configured with the [top-level property `type`](#top-level-properties).
 
-For example, to use the Nix channel `25.05`, you would use the following syntax:
+For example, to use the Nix channel `{{% latest composable %}}`, you would use the following syntax:
 
 ```yaml {configFile="apps"}
-
-type: "composable:25.05"
-
+type: "composable:{{% latest composable %}}"
 ```
 
 ### Supported Nix packages
 
 {{% note %}}
 The Nix packages listed in the following table are officially supported by {{% vendor/name %}} to provide optimal user experience.</br>
-However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.
-This includes packages from the ``unstable`` channel,
-like [FrankenPHP](https://search.nixos.org/packages?channel=unstable&show=frankenphp&from=0&size=50&sort=relevance&type=packages&query=frankenphp).</br>
+However, you can add any other packages from [the Nixpkgs collection](https://search.nixos.org/) to your `stack`.</br>
 While available for you to install, packages that aren't listed in the following table are supported by Nix itself, not {{% vendor/name %}}.
 {{% /note %}}
 
@@ -142,18 +129,18 @@ Depending on the Nix package, you can select only the major runtime version,
 or the major and minor runtime versions as shown in the table.
 Security and other patches are applied automatically.
 
-| **Language**                                 | **Nix package** | **Supported version(s)**             |
-|----------------------------------------------|---------------|----------------------------------------|
-| [Clojure](https://clojure.org/)              | `clojure`     | 1                                      |
-| [Elixir](/languages/elixir.html)             | `elixir`      | 1.18<br/>1.15<br/>1.14                 |
-| [Go](/languages/go.html)                     | `golang`      | 1.22<br/>1.21                          |
-| [Java](/languages/java.html)                 | `java`        | 22<br/>21                              |
-| [Javascript/Bun](https://bun.sh/)            | `bun`         | 1                                      |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`      | 24<br/>22<br/>20<br/>18                |
-| [Perl](https://www.perl.org/)                | `perl`        | 5                                      |
-| [PHP](/languages/php.html)                   | `php`         | 8.4<br/>8.3<br/>8.2<br/>8.1            |
-| [Python](/languages/python.html)             | `python`      | 3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`        | 3.4<br/>3.3<br/>3.2<br/>3.1            |
+| **Language**                                 | **Nix package** | **Supported version(s)**                        |
+|----------------------------------------------|-----------------|-------------------------------------------------|
+| [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
+| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
 
 **Example:**
 
@@ -225,14 +212,14 @@ Note that you can use environment variables or your `php.ini` file to [include f
 To install Python packages, add them to your stack as new packages.
 To do so, use the full name of the package.
 
-For instance, to install [``python312Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python312Packages.yq),
+For instance, to install [``python313Packages.yq``](https://search.nixos.org/packages?channel=unstable&show=python313Packages.yq),
 use the following configuration:
 
 ```yaml {configFile="apps"}
 myapp:
   stack:
-    - "python@3.12"
-    - "python312Packages.yq" # python package specific
+    - "python@3.13"
+    - "python313Packages.yq" # python package specific
 ```
 
 Alternatively, if you need to include configuration options for your extensions, use either your ``php.ini`` file or [environment variables](/development/variables/set-variables.md).
@@ -250,8 +237,8 @@ myapp:
           - sodium
           - xsl
           - pdo_sqlite
-    - "python@3.12"
-    - "python312Packages.yq" # python package specific
+    - "python@3.13"
+    - "python313Packages.yq" # python package specific
     - "yq"                   # tool
 ```
 
@@ -271,8 +258,8 @@ backend:
             - sodium
             - xsl
             - pdo_sqlite
-      - "python@3.12"
-      - "python312Packages.yq" # python package specific
+      - "python@3.13"
+      - "python313Packages.yq" # python package specific
 frontend:
     type: 'nodejs:{{% latest "nodejs" %}}
 ```
@@ -327,36 +314,36 @@ There are three container profiles available: ``HIGH_CPU``, ``BALANCED``, and ``
 
 #### ``HIGH_CPU`` container profile
 
-| Size |  CPU  | MEMORY   |
-| ---- | ----- | -------- |
-| S    | 0.40  | 128 MB   |
-| M    | 0.40  | 128 MB   |
-| L    | 1.20  | 256 MB   |
-| XL   | 2.50  | 384 MB   |
-| 2XL  | 5.00  | 768 MB   |
-| 4XL  | 10.00 | 1536 MB  |
+| Size | CPU   | MEMORY  |
+|------|-------|---------|
+| S    | 0.40  | 128 MB  |
+| M    | 0.40  | 128 MB  |
+| L    | 1.20  | 256 MB  |
+| XL   | 2.50  | 384 MB  |
+| 2XL  | 5.00  | 768 MB  |
+| 4XL  | 10.00 | 1536 MB |
 
 #### `BALANCED` container profile
 
-| Size | CPU  | MEMORY   |
-| ---- | ---- | -------- |
-| S    | 0.05 | 32 MB    |
-| M    | 0.05 | 64 MB    |
-| L    | 0.08 | 256 MB   |
-| XL   | 0.10 | 512 MB   |
-| 2XL  | 0.20 | 1024 MB  |
-| 4XL  | 0.40 | 2048 MB  |
+| Size | CPU  | MEMORY  |
+|------|------|---------|
+| S    | 0.05 | 32 MB   |
+| M    | 0.05 | 64 MB   |
+| L    | 0.08 | 256 MB  |
+| XL   | 0.10 | 512 MB  |
+| 2XL  | 0.20 | 1024 MB |
+| 4XL  | 0.40 | 2048 MB |
 
 #### `HIGH_MEMORY` container profile
 
-| Size | CPU  | MEMORY    |
-| ---- | ---- | --------- |
-| S    | 0.25 | 128 MB    |
-| M    | 0.25 | 288 MB    |
-| L    | 0.40 | 1280 MB   |
-| XL   | 0.75 | 2624 MB   |
-| 2XL  | 1.50 | 5248 MB   |
-| 4XL  | 3.00 | 10496 MB  |
+| Size | CPU  | MEMORY   |
+|------|------|----------|
+| S    | 0.25 | 128 MB   |
+| M    | 0.25 | 288 MB   |
+| L    | 0.40 | 1280 MB  |
+| XL   | 0.75 | 2624 MB  |
+| 2XL  | 1.50 | 5248 MB  |
+| 4XL  | 3.00 | 10496 MB |
 
 #### Container profile reference
 
@@ -637,11 +624,11 @@ mounts:
 If you already have a directory with that name, you get a warning that it isn't accessible after the build.
 See how to [troubleshoot the warning](/create-apps/troubleshoot-mounts.md#overlapping-folders).
 
-| Name          | Type                          | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ------------- |-------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `source`      | `local`, `service`, or `tmp`  | Yes      | Specifies the type of the mount: <br/><br/>- `local` mounts are unique to your app. They can be useful to store files that remain local to the app instance, such as application logs.</br> `local` mounts require disk space. To successfully set up a local mount, set the `disk` key in your app configuration. <br/><br/>- `service` mounts point to [Network Storage](/add-services/network-storage.md) services that can be shared between several apps. <br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.</br> The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br> Note that the `/tmp` directory has **a maximum allocation of 8 GB**. |
-| `source_path` | `string`                      | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory.  <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                       |
-| `service`     | `string`                      |          | Only for `service` mounts: the name of the [Network Storage service](/add-services/network-storage.md). |
+| Name          | Type                         | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|---------------|------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `source`      | `local`, `service`, or `tmp` | Yes      | Specifies the type of the mount: <br/><br/>- `local` mounts are unique to your app. They can be useful to store files that remain local to the app instance, such as application logs.</br> `local` mounts require disk space. To successfully set up a local mount, set the `disk` key in your app configuration. <br/><br/>- `service` mounts point to [Network Storage](/add-services/network-storage.md) services that can be shared between several apps. <br/><br/>- `tmp` mounts are local ephemeral mounts, where an external directory is mounted to the `/tmp` directory of your app.</br> The content of a `tmp` mount **may be removed during infrastructure maintenance operations**. Therefore, `tmp` mounts allow you to **store files that you’re not afraid to lose**, such as your application cache that can be seamlessly rebuilt.</br> Note that the `/tmp` directory has **a maximum allocation of 8 GB**. |
+| `source_path` | `string`                     | No       | Specifies where the mount points **inside the [external directory](#mounts)**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory.  <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#ensure-continuity-when-changing-the-name-of-your-mount) and maintain access to your files.                       |
+| `service`     | `string`                     |          | Only for `service` mounts: the name of the [Network Storage service](/add-services/network-storage.md).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 
 The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
@@ -765,9 +752,13 @@ See some [examples of how to configure what's served](/create-apps/web/_index.md
 |--------------|----------|-------------------------------|------------------------------------------------------------------------------------------------------|
 | `pre_start`  | `string` |                               | Command runs just prior to `start`, which can be useful when you need to run _per-instance_ actions. |
 | `start`      | `string` | See [note](#required-command) | The command to launch your app. If it terminates, it's restarted immediately.                        |
-| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.                |
+| `post_start` | `string` |                               | Command runs **before** adding the container to the router and **after** the `start` command.        |
 
 {{< note theme="info" >}}
+The `pre_start` feature is **not blocking**, which means the `deploy` hook may start running **before** the `pre_start` command finishes.
+This can lead to unexpected behavior if `pre_start` performs setup tasks that `deploy` depends on.
+To avoid issues, make sure any critical initialization in `pre_start` is either quick or safe to run concurrently with `deploy`.
+
 The `post_start` feature is _experimental_ and may change. Please share your feedback in the
 {{< vendor/url "discord" "Discord" >}}.
 {{< /note >}}
@@ -804,10 +795,10 @@ See how to set up [alternate start commands on PHP](/languages/php/_index.md#alt
 
 ### Upstream
 
-| Name            | Type                | Required | Description                                                       | Default                                                                                                |
-|-----------------|---------------------|----------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Name            | Type                | Required | Description                                                       | Default                                                                                                   |
+|-----------------|---------------------|----------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket.                 | Defaults to `tcp` for all [primary runtimes](#primary-runtime) except PHP; for PHP the default is `unix`. |
-| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](#primary-runtime).                                                        |
+| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](#primary-runtime).                                         |
 
 For PHP, the defaults are configured for PHP-FPM and shouldn't need adjustment.
 For all other containers, the default for `protocol` is `http`.
@@ -849,7 +840,7 @@ The following table presents possible properties for each location:
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d.                                                                                                                                                                                                                            |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.html)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `headers`           | A headers dictionary                                 |           | Any additional headers to apply to static assets, mapping header names to values (see [Set custom headers on static content](/create-apps/web/custom-headers.html)). Responses from the app aren't affected.                                                                                                                                                                                                                                                                                                                    |
 | `request_buffering` | A [request buffering dictionary](#request-buffering) | See below | Handling for chunked requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `rules`             | A [rules dictionary](#rules)                         |           | Specific overrides for specific locations.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
@@ -1308,7 +1299,7 @@ crons:
 Minimum time between cron jobs being triggered:
 
 | Plan                | Time      |
-|-------------------- | --------- |
+|---------------------|-----------|
 | Professional        | 5 minutes |
 | Elite or Enterprise | 1 minute  |
 
@@ -1387,9 +1378,9 @@ See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
 
 The following table shows the properties that can be set in `source`:
 
-| Name         | Type                     | Required | Description                                                                                                                     |
-|--------------|--------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------|
-| `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](/create-apps/source-operations.md)                             |
+| Name         | Type                     | Required | Description                                                                                                                                 |
+|--------------|--------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `operations` | An operations dictionary |          | Operations that can be applied to the source code. See [source operations](/create-apps/source-operations.md)                               |
 | `root`       | `string`                 |          | The path where the app code lives. Defaults to the root project directory. Useful for [multi-app setups](/create-apps/multi-app/_index.md). |
 
 ## Additional hosts

@@ -7,7 +7,7 @@ sidebarTitle: SSH keys
 To connect to your app using SSH keys, you need two keys:
 
 * A **private key** you must keep _secret_
-* A **public key** stored in your {{% vendor/name %}} account
+* A **public key** stored in your {{% vendor/company_name %}} account
 
 A given SSH key pair can only be linked to a single user account.
 
@@ -17,8 +17,8 @@ If you have a key pair available, you aren't prompted to login.
 To keep connection secure, you need to regularly update the keys you use.
 A well-encrypted key is no substitute for regular key rotation.
 
-If you used GitHub to sign up for your {{% vendor/name %}} account
-your public keys from GitHub are automatically synced to your {{% vendor/name %}} account.
+If you used GitHub to sign up for your {{% vendor/company_name %}} account
+your public keys from GitHub are automatically synced to your {{% vendor/company_name %}} account.
 So you can use them already with the CLI or to [connect to your app](/development/ssh/_index.md#2-connect-to-an-app-with-ssh).
 
 ## Add SSH keys
@@ -39,7 +39,7 @@ It contains seemingly random lines of characters,
 like this example of a public [RSA key](https://en.wikipedia.org/wiki/RSA_%28cryptosystem%29)
 (note the email address at the end, which wouldn't be present in a private key):
 
-```text
+```text {no-copy="true"}
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2nDRLgPANWParTiaGIgySG+thTtnqFGI1tMWyqDdfvH+5hL91w2tK9PzaP+NJ5hA/cOyh30YRFb52Y64toU16Ko5K1mLqNFJajjWEI5Y4VukG6betrWfqdQ7XBr/s7nBuDOFQ5+eKbvug4rRSCSo8CsEI1eI0VNQkC9HJWYK28k7KurMdTN7X/Z/4vknM4/Rm2bnMk2idoORQgomeZS1p3GkG8dQs/c0j/b4H7azxnqdcCaR4ahbytX3d49BN0WwE84C+ItsnkCt1g5tVADPrab+Ywsm/FTnGY3cJKKdOAHt7Ls5lfpyyug2hNAFeiZF0MoCekjDZ2GH2xdFc7AX/ your_email_address@example.com
 ```
 
@@ -54,14 +54,14 @@ To find your public key file:
    ```
 
 If you find a file ending in `.pub`,
-copy the location and [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-account).
+copy the location and [add it to your {{% vendor/company_name %}} account](#2-add-an-ssh-key-to-your-account).
 
 If you don't find an existing key, [generate new keys](#1b-generate-new-keys).
 
 ### 1B. Generate new keys
 
 If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/_index.md#1-authenticate-with-the-cli),
-generate a key and have it added to your {{% vendor/name %}} account automatically.
+generate a key and have it added to your {{% vendor/company_name %}} account automatically.
 
 1. In a terminal, run `{{% vendor/cli %}} ssh-key:add`.
 1. If necessary, log in to a browser.
@@ -76,11 +76,11 @@ generate a key and have it added to your {{% vendor/name %}} account automatical
 
 To generate a key otherwise, GitHub has a good [walk-through for creating SSH key pairs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on various operating systems.
 
-Then you need to [add it to your {{% vendor/name %}} account](#2-add-an-ssh-key-to-your-account).
+Then you need to [add it to your {{% vendor/company_name %}} account](#2-add-an-ssh-key-to-your-account).
 
 ### 2. Add an SSH key to your account
 
-Once you have the location of your public key, add it to your {{% vendor/name %}} account.
+Once you have the location of your public key, add it to your {{% vendor/company_name %}} account.
 
 If you're logged in using the [{{% vendor/name %}} CLI](/development/ssh/_index.md#1-authenticate-with-the-cli),
 in a terminal run the following command (replacing `{{< variable "PATH_TO_YOUR_KEY" >}}` with the location of your public key):

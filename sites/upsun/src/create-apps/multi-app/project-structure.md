@@ -27,7 +27,7 @@ For example, if you have an API Platform backend with a Symfony API,
 a Mercure Rocks server, and a Gatsby frontend,
 you can organize your repository like this:
 
-```txt
+```txt {no-copy="true"}
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}   <- Unified configuration
 ├── admin
@@ -205,7 +205,7 @@ For example, you might have a Python app (`main`) that runs a script that requir
 But the Java app (`languagetool`) doesn't require updating when the Python app (`main`) is updated.
 In that case, you can nest the Java app within the Python app:
 
-```txt
+```txt {no-copy="true"}
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" %}}
 ├── languagetool
@@ -257,7 +257,7 @@ Each app has its own [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Su
 All your apps are configured in a single `{{< vendor/configfile "apps" >}}` file.
 So you could organize your [project repository](https://github.com/platformsh-templates/bigfoot-multiapp/tree/submodules-root-app-yaml) like this:
 
-```text
+```text {no-copy="true"}
 ├── {{% vendor/configdir %}}
 │   ├── {{% vendor/configfile "apps" "strip" %}}
 ├── @admin      <-- API Platform Admin submodule

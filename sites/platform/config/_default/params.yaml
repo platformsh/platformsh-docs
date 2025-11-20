@@ -15,6 +15,7 @@ theme:
 # Vendorization
 vendor:
     name: Upsun Fixed
+    company_name: Upsun
     cli: platform
     altname: platformsh
     env_prefix: PLATFORM
@@ -24,8 +25,8 @@ vendor:
         link: https://upsun.com/register/
         cta: Activate your 15-day trial
         title: Try Upsun for 15 days
-        description: "After that, enjoy the same, game-changing Upsun features for less with the First Project Incentive!¹ A monthly $19 perk!"
-        fine: "¹Terms and conditions apply"
+        description: "After that, enjoy the same game-changing Upsun features for less with the [First Project Incentive](https://upsun.com/blog/first-project-incentive/)!¹ A monthly $19 perk!"
+        fine: "¹Terms and conditions apply. Only for Flexible Resource projects."
     config:
         version: 1
         dir: .platform
@@ -72,7 +73,7 @@ headerActions:
 rank: 1
 site: docs
 # Don't include trailing slash. It's just easier that way.
-rooturl: "https://docs.fixed.upsun.com"
+rooturl: "https://fixed.docs.upsun.com"
 
 # 404
 _404:
