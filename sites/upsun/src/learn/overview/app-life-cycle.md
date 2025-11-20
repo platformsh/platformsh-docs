@@ -4,7 +4,7 @@ weight: 3
 description: "Understand the {{% vendor/name %}} application lifecycle and learn how to use build, deploy, and runtime hooks to control app behavior"
 ---
 
-Hooks let you run custom commands at specific points in your application’s lifecycle during [`build`, `deploy`](/learn/overview/build-deploy.html), or `runtime`. They’re essential for setting up your app, managing graceful shutdowns, or preparing instances to handle traffic in autoscaling environments.
+Hooks let you run custom commands at specific points in your application’s lifecycle: during [`build`, `deploy`](/learn/overview/build-deploy.html), and at `runtime`. They’re essential for setting up your app, managing graceful shutdowns, or preparing instances to handle traffic in autoscaling environments.
 
 Each web application on {{% vendor/name %}} can define web commands inside its `.upsun/config.yaml` file:
 
