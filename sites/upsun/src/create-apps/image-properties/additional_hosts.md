@@ -17,9 +17,9 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
+    type: 'php:{{% latest "php" %}}'
     source:
       root: "/"
-    type: 'php:{{% latest "php" %}}'
     additional_hosts:
       api.example.com: "192.0.2.23"
       web.example.com: "203.0.113.42"

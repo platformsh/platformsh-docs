@@ -32,10 +32,10 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     firewall:
       outbound:
         - ips: [ "0.0.0.0/0" ]
@@ -49,7 +49,7 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
@@ -84,10 +84,10 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     firewall:
       outbound:
         - ips: [ "1.2.3.4/32" ]
@@ -103,7 +103,7 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
@@ -145,10 +145,10 @@ title=Single-runtime image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     firewall:
       outbound:
         - protocol: tcp
@@ -167,7 +167,7 @@ title=Composable image
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"

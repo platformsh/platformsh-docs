@@ -35,10 +35,10 @@ A worker named `queue` that was small and had a different start command could lo
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     workers:
       queue:
         commands:
@@ -76,7 +76,7 @@ A worker named `queue` that was small and had a different start command could lo
 
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
