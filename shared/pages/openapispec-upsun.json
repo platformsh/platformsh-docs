@@ -34,7 +34,7 @@
   "tags": [
     {
       "name": "Cert Management",
-      "description": "User-supplied SSL/TLS certificates can be managed using these\nendpoints. For more information, see our\n[Third-party TLS certificate](https://docs.upsun.com/anchors/domains/custom/custom-certificates/)\ndocumentation. These endpoints are not for managing certificates\nthat are automatically supplied by Upsun via Let's Encrypt.\n"
+      "description": "User-supplied SSL/TLS certificates can be managed using these\nendpoints. You can now list and modify certificate provisioners\nusing the `/projects/{projectId}/provisioners` and\n`/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}`\nendpoints. For more information, see our\n[Third-party TLS certificate](https://docs.upsun.com/anchors/domains/custom/custom-certificates/)\ndocumentation. These endpoints are not for managing certificates\nthat are automatically supplied by Upsun via Let's Encrypt.\n"
     },
     {
       "name": "Environment",
@@ -51,6 +51,10 @@
     {
       "name": "Environment Variables",
       "description": "These endpoints manipulate user-defined variables which are bound to a\nspecific environment, as well as (optionally) the children of an\nenvironment. These variables can be made available at both build time\nand runtime. For more information on environment variables,\nsee the [Variables](https://docs.upsun.com/anchors/variables/set/environment/create/)\nsection of the documentation.\n"
+    },
+    {
+      "name": "Autoscaling",
+      "description": "Upsun provides native support for autoscaling, allowing your applications to automatically adjust based on resource usage.\nThis ensures that your apps remain responsive under load while helping you optimize costs.\nYou can configure thresholds for metrics such as CPU, RAM, and request latency.  \nResources will automatically scale to meet demand.\nEach container profile assigned to an application or service provides a specific combination of CPU and RAM, which you can select via the Upsun UI or CLI.\n\nThese endpoints manage autoscaling configurations that are tied to a\nspecific environment, and optionally to its child environments.\nYou can define scaling rules based on metrics like CPU, memory, or\nrequest latency, and these rules will be applied at both build time\nand runtime. For more information on configuring autoscaling for your\nenvironments, see the [Autoscaling](https://docs.upsun.com/manage-resources/autoscaling.html) section\nof the documentation.\n"
     },
     {
       "name": "Project",
@@ -74,7 +78,7 @@
     },
     {
       "name": "Routing",
-      "description": "These endpoints access an environment's `routes:` section of the `.upsun/config.yaml` file.\nFor routes to propagate to child environments, the child environments\nmust be synchronized with their parent.\n\nMore information about routing can be found in the [Routes](https://docs.upsun.com/anchors/routes/)\nsection of the documentation.\n"
+      "description": "These endpoints modify an environment's `routes:` section of the `.upsun/config.yaml` file.\nFor routes to propagate to child environments, the child environments\nmust be synchronized with their parent.\n\nMore information about routing can be found in the [Routes](https://docs.upsun.com/anchors/routes/)\nsection of the documentation.\n"
     },
     {
       "name": "Source Operations",
@@ -7290,7 +7294,7 @@
           }
         },
         "tags": [
-          "CertificateProvisioner"
+          "Cert Management"
         ]
       }
     },
@@ -7328,7 +7332,7 @@
           }
         },
         "tags": [
-          "CertificateProvisioner"
+          "Cert Management"
         ]
       },
       "patch": {
@@ -7375,7 +7379,7 @@
           }
         },
         "tags": [
-          "CertificateProvisioner"
+          "Cert Management"
         ]
       }
     },
@@ -7754,7 +7758,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Retrieves Autoscaler settings"
       },
       "post": {
         "tags": [
@@ -7803,7 +7808,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Updates Autoscaler settings"
       },
       "patch": {
         "tags": [
@@ -7852,7 +7858,8 @@
               }
             }
           }
-        }
+        },
+        "summary": "Modifies Autoscaler settings"
       }
     },
     "/ref/organizations": {
@@ -8291,6 +8298,11 @@
                     "type": "string",
                     "description": "The organization country (2-letter country code).",
                     "maxLength": 2
+                  },
+                  "security_contact": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "The security contact email address for the organization."
                   }
                 }
               }
@@ -8407,6 +8419,11 @@
                     "type": "string",
                     "description": "The organization country (2-letter country code).",
                     "maxLength": 2
+                  },
+                  "security_contact": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "The security contact email address for the organization."
                   }
                 }
               }
@@ -10940,7 +10957,7 @@
           {
             "in": "query",
             "name": "sort",
-            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `id`, `created_at`, `updated_at`.\n",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `id`, `region`, `title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
             "schema": {
               "type": "string",
               "example": "-updated_at"
@@ -14101,11 +14118,6 @@
           },
           "billing_contact": {
             "description": "The e-mail address of a contact to whom billing notices will be sent.",
-            "type": "string",
-            "format": "email"
-          },
-          "security_contact": {
-            "description": "The e-mail address of a contact to whom security notices will be sent.",
             "type": "string",
             "format": "email"
           },
@@ -27322,12 +27334,24 @@
             "description": "Whether the trigger is enabled"
           },
           "down": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Lower bound on resource usage"
+            "allOf": [
+              {
+                "description": "Lower bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           },
           "up": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Upper bound on resource usage"
+            "allOf": [
+              {
+                "description": "Upper bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           }
         },
         "title": "AutoscalerCPUPressureTrigger",
@@ -27362,12 +27386,24 @@
             "description": "Whether the trigger is enabled"
           },
           "down": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Lower bound on resource usage"
+            "allOf": [
+              {
+                "description": "Lower bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           },
           "up": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Upper bound on resource usage"
+            "allOf": [
+              {
+                "description": "Upper bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           }
         },
         "title": "AutoscalerCPUTrigger",
@@ -27384,8 +27420,14 @@
             "type": "number"
           },
           "duration": {
-            "$ref": "#/components/schemas/AutoscalerDuration",
-            "description": "Number of seconds during which the condition must be satisfied"
+            "allOf": [
+              {
+                "description": "Number of seconds during which the condition must be satisfied"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerDuration"
+              }
+            ]
           },
           "enabled": {
             "type": "boolean",
@@ -27439,12 +27481,24 @@
             "description": "Whether the trigger is enabled"
           },
           "down": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Lower bound on resource usage"
+            "allOf": [
+              {
+                "description": "Lower bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           },
           "up": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Upper bound on resource usage"
+            "allOf": [
+              {
+                "description": "Upper bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           }
         },
         "title": "AutoscalerMemoryPressureTrigger",
@@ -27479,12 +27533,24 @@
             "description": "Whether the trigger is enabled"
           },
           "down": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Lower bound on resource usage"
+            "allOf": [
+              {
+                "description": "Lower bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           },
           "up": {
-            "$ref": "#/components/schemas/AutoscalerCondition",
-            "description": "Upper bound on resource usage"
+            "allOf": [
+              {
+                "description": "Upper bound on resource usage"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerCondition"
+              }
+            ]
           }
         },
         "title": "AutoscalerMemoryTrigger",
@@ -27555,24 +27621,54 @@
         "description": "Autoscaling settings for a specific service",
         "properties": {
           "triggers": {
-            "$ref": "#/components/schemas/AutoscalerTriggers",
-            "description": "Metrics should be evaluated as triggers for autoscaling"
+            "allOf": [
+              {
+                "description": "Metrics should be evaluated as triggers for autoscaling"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerTriggers"
+              }
+            ]
           },
           "instances": {
-            "$ref": "#/components/schemas/AutoscalerInstances",
-            "description": "Lower/Upper bounds on number of instances for horizontal scaling"
+            "allOf": [
+              {
+                "description": "Lower/Upper bounds on number of instances for horizontal scaling"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerInstances"
+              }
+            ]
           },
           "resources": {
-            "$ref": "#/components/schemas/AutoscalerResources",
-            "description": "Lower/Upper bounds on cpu/memory for vertical scaling"
+            "allOf": [
+              {
+                "description": "Lower/Upper bounds on cpu/memory for vertical scaling"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerResources"
+              }
+            ]
           },
           "scale_factor": {
-            "$ref": "#/components/schemas/AutoscalerScalingFactor",
-            "description": "How many instances to add/remove on each scaling attempt"
+            "allOf": [
+              {
+                "description": "How many instances to add/remove on each scaling attempt"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerScalingFactor"
+              }
+            ]
           },
           "scale_cooldown": {
-            "$ref": "#/components/schemas/AutoscalerScalingCooldown",
-            "description": "How long to wait before the next scaling attempt can be performed"
+            "allOf": [
+              {
+                "description": "How long to wait before the next scaling attempt can be performed"
+              },
+              {
+                "$ref": "#/components/schemas/AutoscalerScalingCooldown"
+              }
+            ]
           }
         },
         "title": "AutoscalerServiceSettings",
@@ -27786,6 +27882,11 @@
           "billing_legacy": {
             "type": "boolean",
             "description": "Whether the account is billed with the legacy system."
+          },
+          "security_contact": {
+            "type": "string",
+            "format": "email",
+            "description": "The security contact email address for the organization."
           },
           "status": {
             "type": "string",
@@ -29012,6 +29113,37 @@
           "type": {
             "$ref": "#/components/schemas/AddonType"
           },
+          "status": {
+            "type": "string",
+            "description": "Lifecycle status of the add-on.",
+            "enum": [
+              "requested",
+              "active",
+              "failed"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-friendly title of the add-on or SKU."
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit for quantity-based add-ons when applicable."
+          },
+          "allowed_values": {
+            "description": "Allowed values for the add-on depending on user role and options.",
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
           "created_at": {
             "$ref": "#/components/schemas/CreatedAt"
           },
@@ -29139,8 +29271,6 @@
           "type",
           "plan",
           "status",
-          "agency_site",
-          "support_tier",
           "created_at",
           "updated_at"
         ],
@@ -30452,6 +30582,7 @@
         "Project",
         "Domain Management",
         "Cert Management",
+        "Certificate Provisioner",
         "Project Variables",
         "Repository",
         "Third-Party Integrations",
@@ -30463,11 +30594,13 @@
       "tags": [
         "Environment",
         "Environment Backups",
+        "Environment Type",
         "Environment Variables",
         "Routing",
         "Source Operations",
         "Runtime Operations",
-        "Deployment"
+        "Deployment",
+        "Autoscaling"
       ]
     },
     {
