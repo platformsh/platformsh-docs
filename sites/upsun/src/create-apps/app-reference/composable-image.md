@@ -258,6 +258,9 @@ The following sample configuration includes two applications:
 ```yaml {configFile="app"}
 applications:
   frontend:
+    # this app uses the single-runtime image with a specific node.js runtime
+    type: 'nodejs:{{% latest "nodejs" %}}' 
+backend:
     # this app uses the composable image
     type: "composable:{{% latest composable %}}" 
     stack:
@@ -271,9 +274,6 @@ applications:
         - "python@3.13"
       packages:
         - "python313Packages.yq" # python package specific
-  backend:
-    # this app uses the single-runtime image with a specific node.js runtime
-    type: 'nodejs:{{% latest "nodejs" %}}' 
 ```
 
 ## Resources

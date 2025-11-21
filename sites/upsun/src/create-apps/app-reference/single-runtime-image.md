@@ -115,15 +115,15 @@ applications:
 In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [single-runtime image](/create-apps/app-reference/single-runtime-image.md) and [composable image](/create-apps/app-reference/composable-image.md) per application.
 
 The following sample configuration includes two applications: 
-  - a `backend` app that uses a single-runtime image
-  - a `frontend` app that uses a composable image
+  - a `frontend` app that uses a single-runtime image
+  - a `backend` app that uses a composable image
 
 ```yaml {configFile="app"}
 applications:
-  backend:
+  frontend:
     # this app uses the single-runtime image 
     type: 'nodejs:{{% latest "nodejs" %}}'
-  frontend:
+  backend:
     # this app uses the composable image
     type: "composable:{{% latest composable %}}"
     stack:
@@ -134,9 +134,9 @@ applications:
             - sodium
             - xsl
             - pdo_sqlite
-        - "python@3.12"
+        - "python@3.13"
       packages:
-        - "python312Packages.yq" # python package specific
+        - "python313Packages.yq" # python package specific
 ```
 
 ## Resources
