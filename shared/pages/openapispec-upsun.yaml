@@ -171,6 +171,9 @@ tags:
   - name: Cert Management
     description: |
       User-supplied SSL/TLS certificates can be managed using these
+      endpoints. You can now list and modify certificate provisioners
+      using the `/projects/{projectId}/provisioners` and
+      `/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}`
       endpoints. For more information, see our
       [Third-party TLS certificate](https://docs.upsun.com/anchors/domains/custom/custom-certificates/)
       documentation. These endpoints are not for managing certificates
@@ -229,6 +232,21 @@ tags:
       and runtime. For more information on environment variables,
       see the [Variables](https://docs.upsun.com/anchors/variables/set/environment/create/)
       section of the documentation.
+  - name: Autoscaling
+    description: |
+      Upsun provides native support for autoscaling, allowing your applications to automatically adjust based on resource usage.
+      This ensures that your apps remain responsive under load while helping you optimize costs.
+      You can configure thresholds for metrics such as CPU, RAM, and request latency.  
+      Resources will automatically scale to meet demand.
+      Each container profile assigned to an application or service provides a specific combination of CPU and RAM, which you can select via the Upsun UI or CLI.
+
+      These endpoints manage autoscaling configurations that are tied to a
+      specific environment, and optionally to its child environments.
+      You can define scaling rules based on metrics like CPU, memory, or
+      request latency, and these rules will be applied at both build time
+      and runtime. For more information on configuring autoscaling for your
+      environments, see the [Autoscaling](https://docs.upsun.com/manage-resources/autoscaling.html) section
+      of the documentation.
   - name: Project
     description: |
       ## Project Overview
@@ -288,7 +306,7 @@ tags:
       section of our documentation.
   - name: Routing
     description: |
-      These endpoints access an environment's `routes:` section of the `.upsun/config.yaml` file.
+      These endpoints modify an environment's `routes:` section of the `.upsun/config.yaml` file.
       For routes to propagate to child environments, the child environments
       must be synchronized with their parent.
 
@@ -5210,7 +5228,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CertificateProvisionerCollection'
       tags:
-        - CertificateProvisioner
+        - Cert Management
   /projects/{projectId}/provisioners/{certificateProvisionerDocumentId}:
     get:
       parameters:
@@ -5233,7 +5251,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CertificateProvisioner'
       tags:
-        - CertificateProvisioner
+        - Cert Management
     patch:
       requestBody:
         description: ''
@@ -5262,7 +5280,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AcceptedResponse'
       tags:
-        - CertificateProvisioner
+        - Cert Management
   /projects/{projectId}/settings:
     get:
       parameters:
@@ -5512,6 +5530,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AutoscalerSettings'
+      summary: Retrieves Autoscaler settings
     post:
       tags:
         - Autoscaling
@@ -5543,6 +5562,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AutoscalerSettings'
+      summary: Updates Autoscaler settings
     patch:
       tags:
         - Autoscaling
@@ -5574,6 +5594,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AutoscalerSettings'
+      summary: Modifies Autoscaler settings
   /ref/organizations:
     get:
       summary: List referenced organizations
@@ -5882,6 +5903,10 @@ paths:
                   type: string
                   description: The organization country (2-letter country code).
                   maxLength: 2
+                security_contact:
+                  type: string
+                  format: email
+                  description: The security contact email address for the organization.
       responses:
         '201':
           description: Created
@@ -5953,6 +5978,10 @@ paths:
                   type: string
                   description: The organization country (2-letter country code).
                   maxLength: 2
+                security_contact:
+                  type: string
+                  format: email
+                  description: The security contact email address for the organization.
       responses:
         '200':
           description: OK
@@ -7491,7 +7520,7 @@ paths:
           description: |
             Allows sorting by a single field.<br>
             Use a dash ("-") to sort descending.<br>
-            Supported fields: `id`, `created_at`, `updated_at`.
+            Supported fields: `id`, `region`, `title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
           schema:
             type: string
             example: '-updated_at'
@@ -9543,10 +9572,6 @@ components:
           format: date-time
         billing_contact:
           description: The e-mail address of a contact to whom billing notices will be sent.
-          type: string
-          format: email
-        security_contact:
-          description: The e-mail address of a contact to whom security notices will be sent.
           type: string
           format: email
         current_trial:
@@ -19871,11 +19896,13 @@ components:
           title: Enabled
           description: Whether the trigger is enabled
         down:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Lower bound on resource usage
+          allOf:
+            - description: Lower bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
         up:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Upper bound on resource usage
+          allOf:
+            - description: Upper bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
       title: AutoscalerCPUPressureTrigger
       type: object
     AutoscalerCPUResources:
@@ -19906,11 +19933,13 @@ components:
           title: Enabled
           description: Whether the trigger is enabled
         down:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Lower bound on resource usage
+          allOf:
+            - description: Lower bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
         up:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Upper bound on resource usage
+          allOf:
+            - description: Upper bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
       title: AutoscalerCPUTrigger
       type: object
     AutoscalerCondition:
@@ -19923,8 +19952,9 @@ components:
           title: Threshold
           type: number
         duration:
-          $ref: '#/components/schemas/AutoscalerDuration'
-          description: Number of seconds during which the condition must be satisfied
+          allOf:
+            - description: Number of seconds during which the condition must be satisfied
+            - $ref: '#/components/schemas/AutoscalerDuration'
         enabled:
           type: boolean
           nullable: true
@@ -19970,11 +20000,13 @@ components:
           title: Enabled
           description: Whether the trigger is enabled
         down:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Lower bound on resource usage
+          allOf:
+            - description: Lower bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
         up:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Upper bound on resource usage
+          allOf:
+            - description: Upper bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
       title: AutoscalerMemoryPressureTrigger
       type: object
     AutoscalerMemoryResources:
@@ -20005,11 +20037,13 @@ components:
           title: Enabled
           description: Whether the trigger is enabled
         down:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Lower bound on resource usage
+          allOf:
+            - description: Lower bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
         up:
-          $ref: '#/components/schemas/AutoscalerCondition'
-          description: Upper bound on resource usage
+          allOf:
+            - description: Upper bound on resource usage
+            - $ref: '#/components/schemas/AutoscalerCondition'
       title: AutoscalerMemoryTrigger
       type: object
     AutoscalerResources:
@@ -20063,20 +20097,25 @@ components:
       description: Autoscaling settings for a specific service
       properties:
         triggers:
-          $ref: '#/components/schemas/AutoscalerTriggers'
-          description: Metrics should be evaluated as triggers for autoscaling
+          allOf:
+            - description: Metrics should be evaluated as triggers for autoscaling
+            - $ref: '#/components/schemas/AutoscalerTriggers'
         instances:
-          $ref: '#/components/schemas/AutoscalerInstances'
-          description: Lower/Upper bounds on number of instances for horizontal scaling
+          allOf:
+            - description: Lower/Upper bounds on number of instances for horizontal scaling
+            - $ref: '#/components/schemas/AutoscalerInstances'
         resources:
-          $ref: '#/components/schemas/AutoscalerResources'
-          description: Lower/Upper bounds on cpu/memory for vertical scaling
+          allOf:
+            - description: Lower/Upper bounds on cpu/memory for vertical scaling
+            - $ref: '#/components/schemas/AutoscalerResources'
         scale_factor:
-          $ref: '#/components/schemas/AutoscalerScalingFactor'
-          description: How many instances to add/remove on each scaling attempt
+          allOf:
+            - description: How many instances to add/remove on each scaling attempt
+            - $ref: '#/components/schemas/AutoscalerScalingFactor'
         scale_cooldown:
-          $ref: '#/components/schemas/AutoscalerScalingCooldown'
-          description: How long to wait before the next scaling attempt can be performed
+          allOf:
+            - description: How long to wait before the next scaling attempt can be performed
+            - $ref: '#/components/schemas/AutoscalerScalingCooldown'
       title: AutoscalerServiceSettings
       type: object
     AutoscalerSettings:
@@ -20244,6 +20283,10 @@ components:
         billing_legacy:
           type: boolean
           description: Whether the account is billed with the legacy system.
+        security_contact:
+          type: string
+          format: email
+          description: The security contact email address for the organization.
         status:
           type: string
           description: The status of the organization.
@@ -21119,6 +21162,26 @@ components:
           $ref: '#/components/schemas/ProjectID'
         type:
           $ref: '#/components/schemas/AddonType'
+        status:
+          type: string
+          description: Lifecycle status of the add-on.
+          enum:
+            - requested
+            - active
+            - failed
+        title:
+          type: string
+          description: Human-friendly title of the add-on or SKU.
+        unit:
+          type: string
+          description: Unit for quantity-based add-ons when applicable.
+        allowed_values:
+          description: Allowed values for the add-on depending on user role and options.
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -21207,8 +21270,6 @@ components:
         - type
         - plan
         - status
-        - agency_site
-        - support_tier
         - created_at
         - updated_at
       properties:
@@ -22202,6 +22263,7 @@ x-tagGroups:
       - Project
       - Domain Management
       - Cert Management
+      - Certificate Provisioner
       - Project Variables
       - Repository
       - Third-Party Integrations
@@ -22210,11 +22272,13 @@ x-tagGroups:
     tags:
       - Environment
       - Environment Backups
+      - Environment Type
       - Environment Variables
       - Routing
       - Source Operations
       - Runtime Operations
       - Deployment
+      - Autoscaling
   - name: User Activity
     tags:
       - Project Activity
