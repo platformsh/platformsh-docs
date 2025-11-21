@@ -14,12 +14,9 @@ a `{{< vendor/configfile "app" >}}` file.
 
 ## Primary application properties
 
-All application configuration takes place in a `{{< vendor/configfile "app" >}}` file, with each application configured
-under a unique key beneath the top-level `applications` key.
-For example, it is possible to deploy two application containers - one JavaScript and the other Python - for the
-frontend and backend components of a deployed site.
+In the `{{< vendor/configfile "app" >}}` file, configure each application under a unique key beneath the top-level `applications` key.
 
-In this case, the unified `{{< vendor/configfile "app" >}}` file would look like:
+For example, if your deployed site requires a Javascript `frontend` application container and a Python `backend` application container, the `{{< vendor/configfile "app" >}}` file would start to look something like this:
 
 ```yaml {configFile="app"}
 applications:
