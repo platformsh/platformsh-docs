@@ -1542,7 +1542,16 @@ grid:
       - xsl  
       - yaml  
       - zip 
-
+    built-in:
+      - json
+      - zendopcache
+  "8.5":
+    available:
+      - apcu
+      - blackfire
+      - datadog-profiling
+      - igbinary
+      - redis
       # - datadog
       # - enchant
       # - event
@@ -1579,7 +1588,7 @@ grid:
       # - uv
       # - xdebug
       # - yaml
-    default:
+    # default:
       #- bcmath
      # - bz2
       #- calendar
@@ -1608,8 +1617,8 @@ grid:
      # - sysvmsg
       # - sysvsem
       # - sysvshm
-    built-in:
-      - json
-      - zendopcache
+    # built-in:
+    #   - json
+    #  - zendopcache
     # with-webp:
     #   - imagick
