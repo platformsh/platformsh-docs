@@ -19,7 +19,7 @@ The following table shows the properties for each job:
 
 | Name               | Type                                         | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | ------------------ | -------------------------------------------- | -------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. <BR><BR>**Single-runtime image**: The `H` syntax is available on Grid projects only, and not on {{% names/dedicated-gen-2 %}} projects. |
+| `spec`             | `string`                                     | Yes      | The [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression). To prevent competition for resources that might hurt performance, on **Grid** projects use `H` in definitions to indicate an unspecified but invariant time. For example, instead of using `0 * * * *` to indicate the cron job runs at the start of every hour, you can use `H * * * *` to indicate it runs every hour, but not necessarily at the start. This prevents multiple cron jobs from trying to start at the same time. **The `H` syntax is available on Grid projects only, and not on {{% names/dedicated-gen-2 %}} projects.** |
 | `commands`         | A [cron commands dictionary](#cron-commands) | Yes      | A definition of what commands to run when starting and stopping the cron job.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `shutdown_timeout` | `integer`                                    | No       | When a cron is canceled, this represents the number of seconds after which a `SIGKILL` signal is sent to the process to force terminate it. The default is `10` seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `timeout`          | `integer`                                    | No       | The maximum amount of time a cron can run before it's terminated. Defaults to the maximum allowed value of `86400` seconds (24 hours).
@@ -41,15 +41,51 @@ and update your existing cron jobs to ensure continuity.
 | `start`            | `string`  | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell). |
 | `stop`             | `string`  | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-crons:
-  mycommand:
-    spec: 'H * * * *'
-    commands:
-      start: sleep 60 && echo sleep-60-finished && date
-      stop: killall sleep
-    shutdown_timeout: 18
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'nodejs:{{% latest "nodejs" %}}'  
+    source:
+      root: "/"
+    crons:
+      mycommand:
+        spec: 'H * * * *'
+        commands:
+          start: sleep 60 && echo sleep-60-finished && date
+          stop: killall sleep
+        shutdown_timeout: 18
 ```
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack:
+      runtimes: [ 'nodejs:{{% latest "nodejs" %}}' ]
+    crons:
+      mycommand:
+        spec: 'H * * * *'
+        commands:
+          start: sleep 60 && echo sleep-60-finished && date
+          stop: killall sleep
+        shutdown_timeout: 18
+```
+
+{{< /codetabs >}}
+
 In this example configuration, the crons [`spec`](#crons) uses the `H` syntax.
 
 Note that this syntax is only supported on Grid projects.
@@ -154,7 +190,9 @@ title=Drupal
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "php@{{% latest php %}}" ]
+type: "composable:{{% latest composable %}}"
+stack: 
+  runtimes: [ "php@{{% latest php %}}" ]
 crons:
   # Run Drupal's cron tasks every 19 minutes.
   drupal:
@@ -178,7 +216,9 @@ title=Ruby on Rails
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "ruby@{{% latest ruby %}}" ]
+type: "composable:{{% latest composable %}}"
+stack:
+  runtimes: [ "ruby@{{% latest ruby %}}" ]
 crons:
   # Execute a rake script every 19 minutes.
   ruby:
@@ -196,7 +236,9 @@ title=Laravel
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "php@{{% latest php %}}" ]
+type: "composable:{{% latest composable %}}"
+stack:
+  runtimes: [ "php@{{% latest php %}}" ]
 crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
@@ -214,7 +256,9 @@ title=Symfony
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
-stack: [ "php@{{% latest php %}}" ]
+type: "composable:{{% latest composable %}}"
+stack:
+  runtimes: [ "php@{{% latest php %}}" ]
 crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:
@@ -237,17 +281,55 @@ If you want to set up customized cron schedules depending on the environment typ
 define conditional crons.
 To do so, use a configuration similar to the following:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-crons:
-  update:
-    spec: '0 0 * * *'
-    commands:
-      start: |
-        if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
-          {{% vendor/cli %}} backup:create --yes --no-wait
-          {{% vendor/cli %}} source-operation:run update --no-wait --yes
-        fi
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'php:{{% latest "php" %}}'
+    crons:
+      update:
+        spec: '0 0 * * *'
+        commands:
+          start: |
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+              {{% vendor/cli %}} backup:create --yes --no-wait
+              {{% vendor/cli %}} source-operation:run update --no-wait --yes
+            fi
 ```
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: "composable:{{% latest composable %}}"
+    stack: 
+      runtimes: [ "php@{{% latest php %}}" ]
+    crons:
+      update:
+        spec: '0 0 * * *'
+        commands:
+          start: |
+            if [ "$PLATFORM_ENVIRONMENT_TYPE" = production ]; then
+              {{% vendor/cli %}} backup:create --yes --no-wait
+              {{% vendor/cli %}} source-operation:run update --no-wait --yes
+            fi
+```
+
+{{< /codetabs >}}
+
 ### Cron job timing
 
 Minimum time between cron jobs being triggered:

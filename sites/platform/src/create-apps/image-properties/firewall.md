@@ -25,11 +25,43 @@ Each rule has the following properties where at least one is required and `ips` 
 
 The default settings would look like this:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-firewall:
-  outbound:
-    - ips: ["0.0.0.0/0"]
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
+    source:
+      root: "/"
+    firewall:
+      outbound:
+        - ips: [ "0.0.0.0/0" ]
 ```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
+    firewall:
+      outbound:
+        - ips: [ "0.0.0.0/0" ]
+```
+
+{{< /codetabs >}}
 
 ### Support for rules
 
@@ -44,13 +76,47 @@ In such cases, a given outbound request is allowed if it matches _any_ of the de
 So in the following example requests to any IP on port 80 are allowed
 and requests to 1.2.3.4 on either port 80 or 443 are allowed:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-firewall:
-  outbound:
-    - ips: ["1.2.3.4/32"]
-      ports: [443]
-    - ports: [80]
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
+    source:
+      root: "/"
+    firewall:
+      outbound:
+        - ips: [ "1.2.3.4/32" ]
+          ports: [ 443 ]
+        - ports: [ 80 ]
 ```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
+    firewall:
+      outbound:
+        - ips: [ "1.2.3.4/32" ]
+          ports: [ 443 ]
+        - ports: [ 80 ]
+```
+
+{{< /codetabs >}}
 
 ### Outbound traffic to CDNs
 
@@ -70,16 +136,55 @@ This means that you allow potentially hundreds or thousands of other servers als
 
 An example rule filtering by domain:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-firewall:
-  outbound:
-    - protocol: tcp
-      domains: ["api.stripe.com", "api.twilio.com"]
-      ports: [80, 443]
-    - protocol: tcp
-      ips: ["1.2.3.4/29","2.3.4.5"]
-      ports: [22]
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'python:{{% latest "python" %}}'
+    source:
+      root: "/"
+    firewall:
+      outbound:
+        - protocol: tcp
+          domains: [ "api.stripe.com", "api.twilio.com" ]
+          ports: [ 80, 443 ]
+        - protocol: tcp
+          ips: [ "1.2.3.4/29","2.3.4.5" ]
+          ports: [ 22 ]
 ```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
+    firewall:
+      outbound:
+        - protocol: tcp
+          domains: [ "api.stripe.com", "api.twilio.com" ]
+          ports: [ 80, 443 ]
+        - protocol: tcp
+          ips: [ "1.2.3.4/29","2.3.4.5" ]
+          ports: [ 22 ]
+```
+
+{{< /codetabs >}}
+
+
 #### Determine which domains to allow
 
 To determine which domains to include in your filtering rules,

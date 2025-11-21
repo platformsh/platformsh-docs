@@ -24,13 +24,47 @@ The following example sets two variables:
 - A variable named `d8config:system.site:name` with the value `My site rocks`
   that's available in the `PLATFORM_VARIABLES` environment variable
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-variables:
-  env:
-    AUTHOR: 'Juan'
-  d8config:
-    "system.site:name": 'My site rocks'
+applications:
+  myapp:
+    source:
+      root: "/"
+    type: 'python:{{% latest "python" %}}'
+    variables:
+      env:
+        AUTHOR: 'Juan'
+      d8config:
+        "system.site:name": 'My site rocks'
 ```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  myapp:
+  type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
+    variables:
+      env:
+        AUTHOR: 'Juan'
+      d8config:
+        "system.site:name": 'My site rocks'
+```
+
+{{< /codetabs >}}
 
 You can also define and access more [complex values](/development/variables/use-variables.md#access-complex-values).
 
