@@ -8,17 +8,20 @@ description: Defines the list of worker names, which are alternate copies of the
 
 Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) and [composable](/create-apps/app-reference/composable-image.md#primary-application-properties) images.
 
-{{< codetabs >}}
-
-+++
-title=Single-runtime image
-+++
+Workers require resource definition using `{{% vendor/cli %}} resources:set`, same as application containers.
+For more information, see how to [manage resources](/manage-resources.md).
 
 Workers are exact copies of the code and compilation output as a `web` instance after a [`build` hook](/create-apps/image-properties/hooks.md).
 They use the same container image.
 
 Workers can't accept public requests and so are suitable only for background tasks.
 If they exit, they're automatically restarted.
+
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
@@ -46,21 +49,11 @@ applications:
             ./worker.sh
 ```
 
-Workers require resource definition using `{{% vendor/cli %}} resources:set`, same as application containers.
-For more information, see how to [manage resources](/manage-resources.md).
-
-
 <--->
 
 +++
 title=Composable image
 +++
-
-Workers are exact copies of the code and compilation output as a `web` instance after a [`build` hook](/create-apps/image-properties/hooks.md).
-They use the same container image.
-
-Workers can't accept public requests and so are suitable only for background tasks.
-If they exit, they're automatically restarted.
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
@@ -88,8 +81,5 @@ applications:
           start: |
             ./worker.sh
 ```
-
-Workers require resource definition using `{{% vendor/cli %}} resources:set`, same as application containers.
-For more information, see how to [manage resources](/manage-resources.md).
 
 {{< /codetabs >}}
