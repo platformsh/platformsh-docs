@@ -1652,6 +1652,7 @@ grid:
       - mbstring
       - mysqli
       - mysqlnd
+      - opcache
       - pdo
       - pdo_mysql
       - pdo_sqlite
