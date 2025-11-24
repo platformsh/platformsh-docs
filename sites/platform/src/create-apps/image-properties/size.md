@@ -20,6 +20,7 @@ By default, resource sizes (CPU and memory) are chosen automatically for an app
 based on the plan size and the number of other containers in the cluster.
 Most of the time, this automatic sizing is enough.
 
+### Container sizes {#sizes}
 You can set sizing suggestions for production environments when you know a given container has specific needs.
 Such as a worker that doesn't need much and can free up resources for other apps.
 To do so, set `size` to one of the following values:
