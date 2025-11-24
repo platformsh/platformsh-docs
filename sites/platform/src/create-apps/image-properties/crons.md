@@ -400,14 +400,4 @@ Run the following command:
 
 {{< /codetabs >}}
 
-### Composable image only: Sizing hints
-
-The following table shows the properties that can be set in `sizing_hints`:
-
-| Name              | Type      | Default | Minimum | Description                                    |
-|-------------------|-----------|---------|---------|------------------------------------------------|
-| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
-| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
-
-See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
 
