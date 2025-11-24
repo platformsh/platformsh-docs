@@ -121,19 +121,24 @@ The format for package names and version constraints are defined by the specific
 An example of dependencies in multiple languages:
 
 ```yaml {configFile="app"}
-dependencies:
-  php: # Specify one Composer package per line.
-    drush/drush: '8.0.0'
-    composer/composer: '^2'
-  python2: # Specify one Python 2 package per line.
-    behave: '*'
-    requests: '*'
-  python3: # Specify one Python 3 package per line.
-    numpy: '*'
-  ruby: # Specify one Bundler package per line.
-    sass: '3.4.7'
-  nodejs: # Specify one NPM package per line.
-    pm2: '^4.5.0'
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'nodejs:{{% latest "nodejs" %}}'
+    source:
+      root: "/"
+    dependencies:
+      php: # Specify one Composer package per line.
+        drush/drush: '8.0.0'
+        composer/composer: '^2'
+      python2: # Specify one Python 2 package per line.
+        behave: '*'
+        requests: '*'
+      python3: # Specify one Python 3 package per line.
+        numpy: '*'
+      ruby: # Specify one Bundler package per line.
+        sass: '3.4.7'
+      nodejs: # Specify one NPM package per line.
+        pm2: '^4.5.0'
 ```
 
 ## `runtime` {#runtime}
@@ -161,22 +166,32 @@ See [how to configure extensions with the composable image](/create-apps/app-ref
 You can enable [PHP extensions](/languages/php/extensions.md) just with a list of extensions:
 
 ```yaml {configFile="app"}
-runtime:
-  extensions:
-    - geoip
-    - tidy
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'php:{{% latest "php" %}}'
+    source:
+      root: "/"
+    runtime:
+      extensions:
+        - geoip
+        - tidy
 ```
 
 Alternatively, if you need to include configuration options, use a dictionary for that extension:
 
 ```yaml {configFile="app"}
-runtime:
-  extensions:
-    - geoip
-    - name: blackfire
-      configuration:
-        server_id: foo
-        server_token: bar
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'php:{{% latest "php" %}}'
+    source:
+      root: "/"
+    runtime:
+      extensions:
+        - geoip
+        - name: blackfire
+          configuration:
+            server_id: foo
+            server_token: bar
 ```
 
 In this case, the `name` property is required.
