@@ -33,12 +33,18 @@ Note that you can [cancel pending or running crons](/environments/cancel-activit
 | `start` | `string` | Yes      | The command that's run. It's run in [Dash](https://en.wikipedia.org/wiki/Almquist_shell).                                                                                                                                                                                          |
 | `stop`  | `string` | No       | The command that's issued to give the cron command a chance to shutdown gracefully, such as to finish an active item in a list of tasks. Issued when a cron task is interrupted by a user through the CLI or Console. If not specified, a `SIGTERM` signal is sent to the process. |
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
 applications:
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: 'nodejs:{{% latest "nodejs" %}}'  
     source:
       root: "/"
-    type: 'nodejs:{{% latest "nodejs" %}}'  # for a composable image, set type: "composable:{{% latest composable %}}"
     crons:
       mycommand:
         spec: 'H * * * *'
@@ -47,6 +53,31 @@ applications:
           stop: killall sleep
         shutdown_timeout: 18
 ```
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack:
+      runtimes: [ 'nodejs:{{% latest "nodejs" %}}' ]
+    crons:
+      mycommand:
+        spec: 'H * * * *'
+        commands:
+          start: sleep 60 && echo sleep-60-finished && date
+          stop: killall sleep
+        shutdown_timeout: 18
+```
+
+{{< /codetabs >}}
+
 
 In this example configuration, the [cron specification](#crons) uses the `H` syntax.
 
@@ -149,6 +180,7 @@ title=Drupal
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
+type: "composable:{{% latest composable %}}"
 stack: 
   runtimes: [ "php@{{% latest php %}}" ]
 crons:
@@ -174,6 +206,7 @@ title=Ruby on Rails
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
+type: "composable:{{% latest composable %}}"
 stack: 
   runtimes: [ "ruby@{{% latest ruby %}}" ]
 crons:
@@ -193,6 +226,7 @@ title=Laravel
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
+type: "composable:{{% latest composable %}}"
 stack: 
   runtimes: [ "php@{{% latest php %}}" ]
 crons:
@@ -212,6 +246,7 @@ title=Symfony
 
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
+type: "composable:{{% latest composable %}}"
 stack: 
   runtimes: [ "php@{{% latest php %}}" ]
 crons:
@@ -245,9 +280,9 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: 'php:{{% latest "php" %}}'
     source:
       root: "/"
-    type: 'php:{{% latest "php" %}}'
     crons:
       update:
         spec: '0 0 * * *'
@@ -267,7 +302,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:{{% latest composable %}}"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
