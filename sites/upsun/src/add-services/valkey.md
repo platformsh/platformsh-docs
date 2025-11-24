@@ -19,14 +19,6 @@ Patch versions are applied periodically for bug fixes and the like. When you dep
 
 {{< image-versions image="valkey" status="supported" environment="grid" >}}
 
-<!-- uncomment this when Upsun deprecates Valkey v8.0 
-
-{{% deprecated-versions %}} 
-
-{{< image-versions image="valkey" status="deprecated" environment="grid" >}}
-
--->
-
 ## Service types
 
 Depending on your needs, you can set up Valkey as [persistent](#persistent-valkey) or [ephemeral](#ephemeral-valkey).
