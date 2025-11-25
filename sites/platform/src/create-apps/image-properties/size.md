@@ -32,7 +32,7 @@ To do so, set `size` to one of the following values:
 - `2XL`
 - `4XL`
 
-The total resources allocated across all apps and services can't exceed what's in your plan.
+The total resources allocated across all apps and services cannnot exceed what's in your plan.
 
 ### Container profiles: CPU and memory
 
