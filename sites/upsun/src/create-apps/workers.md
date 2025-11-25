@@ -33,7 +33,7 @@ To restart a worker manually, [access the container](#access-the-worker-containe
 {{< codetabs >}}
 
 +++
-title=Using SystemCTL
+title=Using ``systemctl``
 +++
 
 ```bash
