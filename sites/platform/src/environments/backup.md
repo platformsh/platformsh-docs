@@ -62,7 +62,7 @@ For information on how long backups are retained, see the [data retention policy
 
 ## Backup schedule
 
-Backups for Dedicated environments have a [specific frequency](/dedicated-environments/dedicated-gen-2/environment-differences.md#backups).
+Backups for Dedicated environments have a [specific frequency](/dedicated-environments/backups-restores.md).
 
 On Grid environments, preview environments can have up to 2 [manual backups](#create-a-manual-backup).
 The number of available backups for Production environments depends on your schedule.
