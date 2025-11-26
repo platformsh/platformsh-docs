@@ -133,7 +133,7 @@ For more information about Autoscaling, visit the [Autoscaling docs page](/manag
 
 If your [application takes longer to become responsive](/learn/overview/build-deploy.html#application-is-slow-to-start), traffic might be switched back to your original application before it’s fully ready. This can cause temporary errors immediately after deployment.
 
-If your framework needs time to initialize, `post_start` can help co-ordinate so the app receives traffic only when it’s ready. An example of a `post_start` command waiting for your application would be:
+`post_start` can help co-ordinate so the app receives traffic only when it’s ready. An example of a `post_start` command waiting for your application would be:
 
 ```
 web:
