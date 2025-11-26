@@ -678,17 +678,35 @@ This section is only relevant when using the {{% vendor/name %}} [composable ima
 
 {{% /note %}}
 
-The following table presents the possible modifications you can make to your PHP primary runtime using the `stack` key and composable image.
-Each modification should be listed below the stack chosen (i.e. `extensions` are enabled under `.applications.frontend.stack[0]["php@8.3"].extensions` for PHP 8.3).
-See the example below for more details.
+The following table presents the possible modifications you can make to your PHP primary runtime using the `stack.runtimes` key in a composable image.
+
+For example, `extensions` are enabled under `.applications.frontend.stack.runtimes[0]["php@{{% latest php %}}"].extensions` for PHP {{% latest php %}}).
+See the [example](#example-php-configuration) below for more details.
+
+{{% note %}}
+The PHP-FPM service starts automatically only when PHP is the primary runtime.
+{{% /note %}}
 
 | Name                        | Type                                                                                                                          | Description                                                                                             |
 |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
 | `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
 | `disabled_extensions`       | List of `string`s                                                                                                             | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
 | `request_terminate_timeout` | `integer`                                                                                                                     | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
+| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                                      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
 | `xdebug`                    | An Xdebug definition                                                                                                          | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
+
+### PHP-FPM service sizing hints {#sizing_hints}
+
+The following table shows the properties that can be set in `sizing_hints`:
+
+| Name              | Type      | Default | Minimum | Description                                    |
+|-------------------|-----------|---------|---------|------------------------------------------------|
+| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
+| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
+
+See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
+
+### Example PHP configuration {#example-php-configuration}
 
 Here is an example configuration:
 
@@ -696,28 +714,29 @@ Here is an example configuration:
 applications:
   frontend:
     stack:
-      - "php@8.3":
-          extensions:
-            - apcu # A PHP extension made available to the PHP runtime
-            - sodium
-            - xsl
-            - pdo_sqlite
+      runtimes:
+        - "php@8.3":
+            extensions:
+              - apcu # A PHP extension made available to the PHP runtime
+              - sodium
+              - xsl
+              - pdo_sqlite
 
-          xdebug:
-            idekey: YOUR_KEY
+            xdebug:
+              idekey: YOUR_KEY
 
-          disabled_extensions:
-            - gd
+            disabled_extensions:
+              - gd
 
-          request_terminate_timeout: 200
+            request_terminate_timeout: 200
 
-          sizing_hints:
-            request_memory: 45
-            reserved_memory: 70
+            sizing_hints:
+              request_memory: 45
+              reserved_memory: 70
 
-      - "php83Extensions.apcu" # A PHP extension made available to all runtimes.
-      - "python@3.12"
-      - "python312Packages.yq"
+        - "php83Extensions.apcu" # A PHP extension made available to all runtimes.
+        - "python@3.12"
+        - "python312Packages.yq"
 ```
 
 {{% note %}}

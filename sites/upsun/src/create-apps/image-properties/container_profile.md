@@ -16,9 +16,9 @@ By default, {{% vendor/name %}} assigns a container profile and container size w
 
 Because {{% vendor/name %}} assigns these values on initial deployment, you typically don't need to change the `container_profile` property. For details and further guidance, see [Adjust a container profile](/manage-resources/adjust-resources.md#adjust-a-container-profile) in the "Resource configuration" topic.
 
-{{% note %}}
+{{% note title="Note: Composable images" %}}
 The default container profile for a composable image is ``HIGH_CPU``.<br>
-<BR>If your stack defines multiple runtimes, you need to do one of the following:
+<BR>If your `stack` defines multiple runtimes, you need to do one of the following:
 - Change
 the [default container_profile](/manage-resources/adjust-resources.md#advanced-container-profiles)
 - Change [default CPU and RAM ratio](/manage-resources/resource-init.md) on first deployment using the following
@@ -30,6 +30,6 @@ commands:
 {{% /note %}}
 
 You can change the container _size_ assigned to an app or service by using the {{% vendor/name %}} CLI or Console: 
-- For detailed steps, see the [Resource configuration](/manage-resources/adjust-resources.md). 
+- For detailed steps, see the [Resource configuration](/manage-resources/adjust-resources.md) topic. 
 - For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
 
