@@ -28,22 +28,22 @@ applications:
     # Additional backend configuration
 ```
 
-The following table presents all properties available at the level just below the unique application name.
+The following table presents all of the properties available to each unique application `name`.
 
 The **Set in instance** column defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
 {{% note theme="info" %}}
 
-The `build`, `dependencies`, and `runtime` properties are unique to this image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click their names to view details in separate topics.  
+The `build`, `dependencies`, and `runtime` properties are unique to this image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click a property name to view its details in a separate topic. 
 
 {{% /note %}}
 
 | Name                | Type                                                                                       | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |---------------------|--------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
+| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. **Changing the name destroys data associated with the app.**                                                                                                                                             |
 | [`type`](#types)               | A type                                                                          | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`.                                                                                                                                                                                   |
-| [`container_profile`](/create-apps/image-properties/container_profile.md) | A container profile   |          | Yes              | Container profile of the application.                                                                                                                                                                                                                            |
+| [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Determines which combinations of CPU and RAM a container can use.    
 | [`relationships`](/create-apps/image-properties/relationships.md)     | A dictionary of relationships                                            |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | [`mounts`](/create-apps/image-properties/mounts.md)            | A dictionary of mounts                                                           |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
 | [`web`](/create-apps/image-properties/web.md)               | A web instance                                                                     |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
@@ -53,12 +53,12 @@ The `build`, `dependencies`, and `runtime` properties are unique to this image t
 | [`variables`](/create-apps/image-properties/variables.md)         | A variables dictionary                                                       |          | Yes              | Variables to control the environment.                                                                                                                                                                                                                            |
 | [`firewall`](/create-apps/image-properties/firewall.md)          | A firewall dictionary                                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                     |
 | [`build`](#build)            | A build dictionary                                                               |          | No               | What happens when the app is built.                                                                                                                                                                                                                              |
-| [`dependencies`](#dependencies)      | A dependencies dictionary                                                 |          | No               | What global dependencies to install before the `build` hook is run.                                                                                                                                                                                              |
-| [`hooks`](/create-apps/image-properties/hooks.md)             | A hooks dictionary                                                               |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                           |
+| [`dependencies`](#dependencies)      | A dependencies dictionary                                                 |          | No               | What global dependencies to install before the `build` hook runs.                                                                                                                                                                                              |
+| [`hooks`](/create-apps/image-properties/hooks.md)             | A hooks dictionary                                                               |          | No               | What commands run at different stages in the `build`, `deploy`, and `post_deploy` phases.                                                                                                                                                                                           |
 | [`crons`](/create-apps/image-properties/crons.md)             | A cron dictionary                                                                |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
-| [`source`](/create-apps/image-properties/source.md)            | A source dictionary                                                             |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                       |
+| [`source`](/create-apps/image-properties/source.md)            | A source dictionary                                                             |          | No               | Details about the app’s source code and available operations.                                                                                                                                                                                       |
 | [`runtime`](#runtime)           | A runtime dictionary                                                           |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                      |
-| [`additional_hosts`](/create-apps/image-properties/additional_hosts.md)  | An additional hosts dictionary                                        |          | Yes              | Maps of hostnames to IP addresses.                                                                                                                                                                                                                               |
+| [`additional_hosts`](/create-apps/image-properties/additional_hosts.md)  | An additional hosts dictionary                                        |          | Yes              | Maps hostnames to their corresponding IP addresses.                                                                                                                                                                                                                               |
 | [`operations`](/create-apps/runtime-operations.md)        | A dictionary of runtime operations                   |          | No               | Runtime operations for the application.                                                                                                                                                                                                                          |
 
 ## Root directory
@@ -84,9 +84,9 @@ use the [`source.root` property](#source).
 ## `type` {#types}
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
-If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
-See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image.md#supported-nix-packages) for more information.
+To install _multiple_ runtimes and tools in your application container, use the {{% vendor/name %}} composable image.<br>
+If you arrived here from another page, you may want to review the supported `stack` key where `type` was referenced.<br>
+For details, see the list of [supported Nix runtimes](/create-apps/app-reference/composable-image.md#supported-nix-packages) that you can define in a composable image `stack`. 
 {{% /note %}}
 
 The `type` defines the base container image used to run the application.
@@ -110,34 +110,37 @@ applications:
 
 ### Combine single-runtime and composable images {#combine-single-runtime-and-composable-images}
 
-In a [multiple application context](/create-apps/multi-app/_index.md), you can mix both [single-runtime image](/create-apps/app-reference/single-runtime-image.md) and [composable image](/create-apps/app-reference/composable-image.md) per application.
+In a [multiple application context](/create-apps/multi-app/_index.md),
+you can use a mix of single-runtime images
+and [composable images](/create-apps/app-reference/composable-image.md).
+
 
 The following sample configuration includes two applications: 
-  - a `frontend` app that uses a single-runtime image
-  - a `backend` app that uses a composable image
+- ``frontend`` – uses a single-runtime image
+- ``backend`` – uses a composable image<br>
 
 ```yaml {configFile="app"}
 applications:
   frontend:
-    # this app uses the single-runtime image 
-    type: 'nodejs:{{% latest "nodejs" %}}'
+    # this app uses the single-runtime image with a specific node.js runtime
+    type: 'nodejs:{{% latest "nodejs" %}}' 
   backend:
-    # this app uses the composable image
-    type: "composable:{{% latest composable %}}"
+    # this app uses the composable image and specifies two runtimes
+    type: "composable:{{% latest composable %}}" 
     stack:
       runtimes:
         - "php@{{% latest "php" %}}":
-          extensions:
-            - apcu
-            - sodium
-            - xsl
-            - pdo_sqlite
+            extensions:
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
         - "python@3.13"
       packages:
         - "python313Packages.yq" # python package specific
 ```
 
-## Resources
+## Resources (CPU and memory) {#resources}
 
 Resources for application containers are not committed to YAML files, but instead managed over the API using either the
 Console or the `{{% vendor/cli %}} resources:set` command.
@@ -146,17 +149,15 @@ For more information, see how to [manage resources](/manage-resources.md).
 
 ## Available disk space
 
-Disk for application containers are not committed to YAML files, but instead managed over the API using either the
-Console or the `{{% vendor/cli %}} resources:set` command.
+Disk space for application containers isn’t configured in YAML. Instead, it’s managed via the API using the Console or the `{{% vendor/cli %}} resources:set` command.
 
 For more information, see how to [manage resources](/manage-resources.md).
 
 ### Downsize a disk
 
-You can decrease the size of an existing disk for an app. If you do so, be aware that:
-
-- Backups from before the downsize are incompatible and can no longer be used. You need to [create new backups](/environments/backup.md).
-- The downsize fails if there’s more data on the disk than the desired size.
+You can reduce the target disk size of an app. Keep in mind:
+- Backups created before the downsize are incompatible and cannot be used; you must [create new backups](/environments/backup.md).
+- The downsize will fail if the disk contains more data than the target size.
 
 ## `build` {#build}
 
@@ -223,7 +224,7 @@ applications:
 
 ## `runtime` {#runtime}
 
-The following table presents the various possible modifications to your PHP runtime:
+The following table lists the various possible modifications to your PHP runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                             |
 |-----------------------------|------------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------|
@@ -238,8 +239,8 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 ### Extensions
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.<br>
-If you've reached this section from another page and are using the composable image, you enable/disable extensions by adding the `extensions`/`disabled_extensions` keys to the `runtimes` array that is part of the `stack` property.<br>
+To install multiple runtimes and tools in your application container, use the {{% vendor/name %}} composable image.<br>
+If you arrived here from another page and you are using the composable image, you enable and disable extensions by using the `stack.runtimes.extensions`/`stack.runtimes.disabled_extensions` keys.<br>
 For details and an example, see the [`stack`](/create-apps/app-reference/composable-image.md#stack) section in the "Composable image" topic.
 {{% /note %}}
 
@@ -270,8 +271,8 @@ applications:
         - geoip
         - name: blackfire
           configuration:
-            server_id: foo
-            server_token: bar
+            server_id: {{% variable "SERVER_ID" %}}:
+            server_token: {{% variable "SERVER_TOKEN" %}}:
 ```
 
 In this case, the `name` property is required.
