@@ -1,0 +1,60 @@
+{{ define "main" }}
+
+{{ $former := .Params.former | default false }}
+
+  <div class='hx-mx-auto hx-flex {{ partial "utils/page-width" . }}'>
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" true) }}
+    {{ partial "toc.html" . }}
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-6xl hx-px-6 hx-pt-4 md:hx-px-12">
+        <br class="hx-mt-1.5 hx-text-sm" />
+        <div class="content">
+            {{ if isset .Page.Params "image" }}
+                <img class="hx-rounded-full" style="max-width: 160px; border-radius: 50%;" src="{{ .Page.Params.image }}">
+            {{ else }}
+                <img class="hx-rounded-full" style="max-width: 160px; border-radius: 50%;" src="https://github.com/{{ .Page.File }}.png">
+            {{ end }}
+            <h1 class="hx-text-center hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100">{{ .Title }}</h1>
+            <p class="hx-text-gray-500" style="font-weight: 400; font-size: 18px; line-height: 32px; text-align: center; margin-top: 0;">
+                {{ if $former }}Former {{ end }}{{ .Page.Params.role }}
+            </p>
+            <p class="hx-text-gray-500" style="font-weight: 400; font-size: 18px; line-height: 32px; text-align: center; margin-top: 0;">
+              {{ .Page.Params.company }} {{ .Page.Params.team }}
+            </p>
+            <p style="text-align: center; margin-top: 0.5rem;">
+                {{ if isset .Params.links "github" }}
+                <span class="author-social">
+                    <a href="https://github.com/{{ .Params.links.github }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "github" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "twitter" }}
+                <span class="author-social">
+                    <a href="https://x.com/{{ .Params.links.twitter }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "x-twitter" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "linkedin" }}
+                <span class="author-social">
+                    <a href="https://linkedin.com/in/{{ .Params.links.linkedin }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "linkedin" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "mailto" }}
+                <span class="author-social">
+                    <a href="mailto:{{ .Params.links.mailto }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "mail" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+                {{ if isset .Params.links "website" }}
+                <span class="author-social">
+                    <a href="{{ .Params.links.website }}" target="_blank">{{- partial "utils/icon.html" (dict "name" "globe-alt" "attributes" "height=1.25em") -}}</a>
+                </span>
+                {{ end }}
+            </p>
+    
+          {{ .Content }}
+
+        </div>
+        <div class="hx-mt-16"></div>
+        {{ partial "components/comments.html" . }}
+      </main>
+    </article>
+  </div>
+{{ end }}
