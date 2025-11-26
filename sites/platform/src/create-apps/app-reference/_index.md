@@ -49,7 +49,7 @@ Consider using a composable image when these factors are important:
 | Criteria                    | Single-runtime image | Composable image | 
 |-----------------------------|----------------------|------------------|
 | # of runtimes per container | one                  | zero or more                    |
-| Best for buildling...  | Single runtime applications  | Applications, services  | 
+| Best for building...  | Single runtime applications  | Applications, services  | 
 | Packages permitted           | Runtime and its extensions | 0 or more runtimes; extensions, services | 
 | Manual configuration required for...       | Downloads, dependencies, adding packages to build hook       | If not using a Nix channel: Defining the container stack, resolving package incompatibilities | 
 | Updates and security patches  | {{% vendor/name %}} performs minor (`major.`)(_`minor`_) updates and applies patches automatically upon deployment | You perform upgrades, apply patches, and ensure package compatibility | 
