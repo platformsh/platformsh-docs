@@ -43,7 +43,7 @@ To override any part of a property, you must provide the entire property.
 | `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. **Changing the name destroys data associated with the app**.                                                                                                                                             |
 | [`type`](#type)             | A type                                                         | Yes      | No               | [Defines the version of the Nix channel](#supported-nix-channels). Mandatory in each application that uses the composable image. Example: `type: "composable:{{% latest composable %}}"`.                                                                                                                                                                                      |
 | [`stack`](#stack)              |  `runtimes` and/or  `packages` arrays                                                     | Yes      | No               | Specifies [{{% vendor/company_name %}}-supported `runtimes`](#supported-nix-packages) and extra [Nixpkgs `packages`](https://search.nixos.org/packages) beyond those in the `type` channel.                                                                                            |
-| [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Determines which combinations of CPU and RAM a container can use. Default value is `HIGH_CPU`; see [Resources](#resources) if using multiple runtimes.                                                                                                                                                                                                                            |
+| [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Determines which combinations of CPU and RAM an app or service container can use. Default value is `HIGH_CPU`; see [Resources](#resources) if using multiple runtimes.                                                                                                                                                                                                                            |
 | [`relationships`](/create-apps/image-properties/relationships.md)      | A dictionary of relationships                                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
 | [`mounts`](/create-apps/image-properties/mounts.md)             | A dictionary of mounts                                                        |          | Yes              | Directories that are writable even after the app is built. Allocated disk for mounts is defined with a separate resource configuration call using `{{% vendor/cli %}} resources:set`.                                                                            |
 |[`web`](/create-apps/image-properties/web.md)                | A web instance                                                                   |          | N/A              | How the web application is served.                                                                                                                                                                                                                               |
@@ -92,11 +92,11 @@ See the [example `stack` configuration](#example-stack-configuration) that follo
 
 
 {{% note title="Runtimes extensions or packages?" %}}
-Be sure you understand whether a runtime's additional components belong to **runtime extensions** or **packages**. For example: 
-- **PHP**: Manage extensions with `stack.runtimes.extensions` and `stack.runtimes.disabled_extensions`.<br> 
+Be sure you understand where to specify a runtime's additional components. For example: 
+- **PHP**: Manage extensions by using the `stack.runtimes.extensions` and `stack.runtimes.disabled_extensions` keys.<br> 
   - Note: In some scenarios, you might [add PHP settings](/languages/php/_index.md#customize-php-settings) via environment variables or `php.ini`.
       
-- **Python**: Install extra packages via `stack.packages`. 
+- **Python**: Install extra packages via the `stack.packages` key.<br>
 
 See the [example `stack` configuration](#example-stack-configuration) below.<br>
 For other runtimes, see the [Languages](/languages/_index.md) section.
@@ -105,7 +105,7 @@ For other runtimes, see the [Languages](/languages/_index.md) section.
 ### Example: `stack` configuration {#example-stack-configuration}
 
 The `config.yaml` file excerpt below shows the following `stack` configuration: 
-- **Primary runtime:** `php@{{% latest "php" %}}` with additional extensions and one disabled extension
+- **Primary runtime:** `php@8.4` with additional extensions and one disabled extension
 - **Secondary runtimes:** `nodejs@{{% latest "nodejs" %}}` and `python@{{% latest "python" %}}` 
 - **Nix packages:** 
   - `yarn` and `python313Packages.yq` from the channel defined in `type`
@@ -117,14 +117,14 @@ applications:
     type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
-        - "php@{{% latest "php" %}}":
+        - "php@8.4":
             extensions: 
               - apcu
               - pdo_sqlite
-              - php-facedetect
+              - facedetect
               - sodium
               - xsl
-              - name: blackfire   # php@{{% latest "php" %}} extension
+              - name: blackfire   # php@8.4 extension
                 configuration:    # extension subkeys
                     server_id: {{% variable "SERVER_ID" %}}
                     server_token: {{% variable "SERVER_TOKEN" %}}
@@ -235,7 +235,7 @@ To discover which PHP extensions and Python packages are available for these run
 
 
 
-## Resources (CPU and memory) {#resources}
+## Resources (CPU, memory, disk space) {#resources}
 
 Resources for application containers are not committed to YAML files, but instead managed over the API using either the
 Console or the `{{% vendor/cli %}} resources:set` command.
@@ -252,14 +252,6 @@ commands:
     {{% vendor/cli %}} push --resources-init=manual
     ```
 {{% /note %}}
-
-<!-- For more information, see how to [manage resources](/manage-resources.md). -->
-
-
-
-## Available disk space
-
-Disk space for application containers isn’t configured in YAML. Instead, it’s managed via the API using the Console or the `{{% vendor/cli %}} resources:set` command.
 
 For more information, see how to [manage resources](/manage-resources.md).
 
@@ -289,10 +281,10 @@ applications:
     type: 'nodejs:{{% latest "nodejs" %}}' 
   backend:
     # this app uses the composable image and specifies two runtimes
-    type: "composable:{{% latest composable %}}" 
+    type: "composable:8.4" 
     stack:
       runtimes:
-        - "php@{{% latest "php" %}}":
+        - "php@8.4":
             extensions:
               - apcu
               - sodium
