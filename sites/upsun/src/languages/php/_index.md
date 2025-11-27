@@ -713,9 +713,10 @@ Here is an example configuration:
 ```yaml {configFile="app"}
 applications:
   frontend:
+    type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
-        - "php@8.3":
+        - "php@8.4":
             extensions:
               - apcu # A PHP extension made available to the PHP runtime
               - sodium
@@ -734,9 +735,10 @@ applications:
               request_memory: 45
               reserved_memory: 70
 
-        - "php83Extensions.apcu" # A PHP extension made available to all runtimes.
-        - "python@3.12"
-        - "python312Packages.yq"
+        - "python@3.13"
+      packages:
+        - "php84Extensions.apcu" # A PHP extension made available to all runtimes.
+        - "python313Packages.yq"
 ```
 
 {{% note %}}

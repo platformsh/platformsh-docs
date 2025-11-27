@@ -63,10 +63,10 @@ title=Composable image
 applications:
   {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
     stack:
       runtimes: [ 'nodejs:{{% latest "nodejs" %}}' ]
+    source:
+      root: "/"
     crons:
       mycommand:
         spec: 'H * * * *'
@@ -182,7 +182,7 @@ title=Drupal
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
 stack: 
-  runtimes: [ "php@{{% latest php %}}" ]
+  runtimes: [ "php@8.4" ]
 crons:
   # Run Drupal's cron tasks every 19 minutes.
   drupal:
@@ -228,7 +228,7 @@ title=Laravel
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
 stack: 
-  runtimes: [ "php@{{% latest php %}}" ]
+  runtimes: [ "php@8.4" ]
 crons:
   # Run Laravel's scheduler every 5 minutes.
   scheduler:
@@ -248,7 +248,7 @@ title=Symfony
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
 stack: 
-  runtimes: [ "php@{{% latest php %}}" ]
+  runtimes: [ "php@8.4" ]
 crons:
   # Take a backup of the environment every day at 5:00 AM.
   snapshot:

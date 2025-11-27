@@ -44,12 +44,13 @@ title=Composable image
 applications:
   {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
-    source:
-      root: "/"
     stack: 
       runtimes: [ "python@{{% latest python %}}" ]
+    source:
+      root: "/"
     access:
       ssh: admin
+
 ```
 
 {{< /codetabs >}}

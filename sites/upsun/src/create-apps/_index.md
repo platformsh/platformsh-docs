@@ -196,7 +196,7 @@ applications:
     # For more information, see the Composable image page in the App reference section.
     stack:
       runtimes:
-        - "php@{{% latest "php" %}}":
+        - "php@8.4":
             # The list of PHP extensions you want installed.
             extensions:
               - apcu

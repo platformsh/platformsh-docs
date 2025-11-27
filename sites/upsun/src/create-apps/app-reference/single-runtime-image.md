@@ -129,7 +129,7 @@ applications:
     type: "composable:{{% latest composable %}}" 
     stack:
       runtimes:
-        - "php@{{% latest "php" %}}":
+        - "php@8.4":
             extensions:
               - apcu
               - sodium

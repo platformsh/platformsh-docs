@@ -34,10 +34,10 @@ title=Composable image
 applications:
   {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
+    stack: 
+      runtimes: [ "php@8.4" ]
     source:
       root: "/"
-    stack: 
-      runtimes: [ "php@{{% latest php %}}" ]
     additional_hosts:
       api.example.com: "192.0.2.23"
       web.example.com: "203.0.113.42"
