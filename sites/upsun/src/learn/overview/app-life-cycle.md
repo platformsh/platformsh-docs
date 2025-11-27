@@ -5,18 +5,48 @@ description: "Understand the {{% vendor/name %}} application lifecycle and learn
 ---
 <!-- vale off -->
 
-Hooks and web commands let you automate and control different stages of your [application’s lifecycle](#lifecycle-overview).  
+Hooks and web commands let you automate and control different stages of your [application’s lifecycle](#lifecycle-overview).
 
-- Web commands (`pre_start`, `start`, `post_start`) run per instance, ensuring each container is correctly initialized before it receives traffic.  
-- Hooks [(`build`, `deploy`, `post_deploy`)](/learn/overview/build-deploy.html) run at the application level and control environment-wide tasks during deployment, such as preparing images, running migrations, or performing background jobs.
+- **Web commands** (`pre_start`, `start`, `post_start`) run **on every instance**, every time that instance starts. They ensure each container is correctly initialised before it receives traffic, including during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling.
 
-Together, hooks and web commands help manage the application lifecycle, ensuring smooth start-up, reliable [autoscaling](/manage-resources/autoscaling.html), and safe deployments.
+- **Hooks** (`build`, `deploy`, `post_deploy`) run **once per deployment**, on a single instance. They are used for environment-wide tasks such as preparing the image, running database migrations, or triggering background jobs.
+
+Together, hooks and web commands give you fine-grained control of the application lifecycle, ensuring smooth start-up, reliable [autoscaling](/manage-resources/autoscaling.html), and safe deployments.
 
 ## Lifecycle overview
 
-Every application instance follows this flow:
+The {{% vendor/name %}} deployment lifecycle has two parallel tracks:
 
-![The steps in the start-up flow](/images/lifecycle/app-lifecycle.png "0.50")
+- Deployment process (runs once per deployment)
+This is where your environment is built, deployed, updated, and released.
+- Instance startup process (runs on every container instance)
+Each new application instance goes through its own startup steps before it can receive traffic.
+
+Understanding how these two tracks interact helps you choose the right hook for each task.
+
+### Deployment Lifecycle (Environment-level)
+
+These steps run once per deployment, no matter how many instances you have:
+
+- `build` → Create the application image
+- `deploy` → Run blocking environment-wide tasks before going live
+- `post-deploy` → Run safe, non-blocking background tasks after the deployment is live
+
+[![The steps in the deployment flow](https://mermaid.ink/img/pako:eNplkt2O0zAQhV9l5L0BKa3c_NEECalN1DskhPYKglhjTxqrjh05zpal6i0PwCPyJDhpWoq48xyd74w94xPhRiDJSa3MkTfMOngsKw3wSD9XpMROmZcWtYMP1nDse1iAHXQPRnOEDi2Im6UiXyp9QWGxeAcbH1BYZA5B4xFY1ynJmZNGAzfaManR9hMEsJmIrSc-DhqeLqFP0BhzgFet3NuJ6wNA_QyO9Yf-9UxuJ7Lw5EaIu2BwBqwZnL_i75-_wFlW15LPUDFB5bVdZ3r39d-e3xg_7D2vxX27keWK-TFs4Fkahe7tX2kLSrZ4JxT_e8qr5yaVWM82qKVS-UNK43S3C7hRxubHRrq7yNE8BszWku4iGs7WB0qpd5KA7K0UJHd2wIC0aFs2luQ0plTENdhiRXJ_FFizQfm9VfrssY7pT8a0V9I_ft-QvGaq99XQCb_IUjK_ivamWtQCbeHH5EierqYMkp_Id5KH8XqZrsJkHa2TlIZRFJAXkkfxck2TMKSrLI3DMKLxOSA_pq50-SYNkyxOs2ydZOkq83EopDP2_eWHTh_1_AfE39-r?type=png)](https://mermaid.live/edit#pako:eNplkt2O0zAQhV9l5L0BKa3c_NEECalN1DskhPYKglhjTxqrjh05zpal6i0PwCPyJDhpWoq48xyd74w94xPhRiDJSa3MkTfMOngsKw3wSD9XpMROmZcWtYMP1nDse1iAHXQPRnOEDi2Im6UiXyp9QWGxeAcbH1BYZA5B4xFY1ynJmZNGAzfaManR9hMEsJmIrSc-DhqeLqFP0BhzgFet3NuJ6wNA_QyO9Yf-9UxuJ7Lw5EaIu2BwBqwZnL_i75-_wFlW15LPUDFB5bVdZ3r39d-e3xg_7D2vxX27keWK-TFs4Fkahe7tX2kLSrZ4JxT_e8qr5yaVWM82qKVS-UNK43S3C7hRxubHRrq7yNE8BszWku4iGs7WB0qpd5KA7K0UJHd2wIC0aFs2luQ0plTENdhiRXJ_FFizQfm9VfrssY7pT8a0V9I_ft-QvGaq99XQCb_IUjK_ivamWtQCbeHH5EierqYMkp_Id5KH8XqZrsJkHa2TlIZRFJAXkkfxck2TMKSrLI3DMKLxOSA_pq50-SYNkyxOs2ydZOkq83EopDP2_eWHTh_1_AfE39-r)
+
+This lifecycle details the kind of work that affects the entire environment, such as migrations, asset compilation, cache resets, and index updates.
+
+### Instance Startup Lifecycle (per-instance)
+
+Every application container goes through the following before it can handle traffic:
+
+- `pre_start` → Quick per-instance setup
+- `start` → Launch the application (traffic is blocked until this completes)
+- `post_start` → Warm-up tasks before instance is added to router
+
+[![The steps in the start-up flow](https://mermaid.ink/img/pako:eNplkk2L2zAQQP_KMHtpwQ6Kv2q7UNjEBHroqXtqXYrWHseismQkedNtyH-v7HXSQG-a0XszGkZnbHRLWGIn9anpuXHwVNUK4Il9r_Gzso6rhuCr8zfTCCGYSVkYyYBY72r8Uas3A8LwEzx6bzT0084KvLPkvQCUVuGz1M0voY7vFwXgceF3nl9ZySfV9AEsoIVJOSHnhupO2i3Sfm6irbt2OXEzhP59z9RpQ2CIt69XY78Y1f04lswLWXCGd51obhM0klvrn_UitCT38V9qB1IMdJfY_89UV-aWqqhbMeiElOVDxpLscAgaLbUpT71wdyVneC6wohU7xCxa0QfGmCcxwKMRLZbOTBTgQGbgc4jnuUqNrqfBr6P0x5Y6PklXY60uXhu5-qb1cDWNno49lh2X1kfT2HJHleBHw4db1pBqyey1XwKWUbrUwPKMv32U5JtsG6V5nKcZi-I4wFcs42STszSK2LbIkiiKWXIJ8M_SlW0-ZFFaJFlR5GmRbYttgNQKp82Xt8-3_MHLX2fu0Mg?type=png)](https://mermaid.live/edit#pako:eNplkk2L2zAQQP_KMHtpwQ6Kv2q7UNjEBHroqXtqXYrWHseismQkedNtyH-v7HXSQG-a0XszGkZnbHRLWGIn9anpuXHwVNUK4Il9r_Gzso6rhuCr8zfTCCGYSVkYyYBY72r8Uas3A8LwEzx6bzT0084KvLPkvQCUVuGz1M0voY7vFwXgceF3nl9ZySfV9AEsoIVJOSHnhupO2i3Sfm6irbt2OXEzhP59z9RpQ2CIt69XY78Y1f04lswLWXCGd51obhM0klvrn_UitCT38V9qB1IMdJfY_89UV-aWqqhbMeiElOVDxpLscAgaLbUpT71wdyVneC6wohU7xCxa0QfGmCcxwKMRLZbOTBTgQGbgc4jnuUqNrqfBr6P0x5Y6PklXY60uXhu5-qb1cDWNno49lh2X1kfT2HJHleBHw4db1pBqyey1XwKWUbrUwPKMv32U5JtsG6V5nKcZi-I4wFcs42STszSK2LbIkiiKWXIJ8M_SlW0-ZFFaJFlR5GmRbYttgNQKp82Xt8-3_MHLX2fu0Mg)
+
+This is the work that every instance must do to be ready for traffic, like preparing local caches, installing runtime files, or loading ML models.
 
 ## Web commands
 
@@ -33,36 +63,38 @@ applications:
         post_start: "./scripts/warm-up.sh"
 ```
 
-| Name          | Type   | Required | Blocks Traffic | Description |
-|---------------|--------|----------|------------------|-------------|
-| **pre_start** | string | No       | No               | Runs just before `start`. Useful for short per-instance setup actions, such as moving cache files or setting permissions. |
-| **start**     | string | Yes      | Yes (until running) | The main command that launches your app. The instance cannot serve traffic until `start` is successfully running. If it terminates, {{% vendor/name %}} restarts it immediately. |
-| **post_start**| string | No       | Yes (until completed) | Runs after the `start` command but *before* the container is added to the router. Instances will not receive traffic until this script completes successfully, making it ideal for warm-up tasks that must finish before the app begins handling requests. |
+| Name           | Type   | Required | Blocks Traffic        | Description                                                                                                                                               |
+| -------------- | ------ | -------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre_start**  | string | No       | No                    | Runs before `start`. Ideal for short per-instance setup tasks, such as preparing local caches or setting file permissions.                                |
+| **start**      | string | Yes      | Yes (until running)   | The main command that launches your app. Traffic is blocked until this command successfully runs. If it exits, {{% vendor/name %}} restarts the instance. |
+| **post_start** | string | No       | Yes (until completed) | Runs after the app starts but before the instance is added to the router. Use for warm-up tasks that must complete before serving traffic.                |
 
 For more information about web commands, visit the [Single-runtime Image page](/create-apps/app-reference/single-runtime-image.html#web-commands).
 
-{{< note theme="info" title="Blocking vs. non-blocking hooks" >}}
+{{< note theme="info" title="Blocking vs. non-blocking commands" >}}
 
-A hook is considered blocking if the instance cannot receive traffic until it finishes successfully.
+A command is blocking if an instance cannot receive traffic until it completes successfully.
 
 - `start` blocks traffic until the application is running.  
 - `post_start` blocks traffic until all warm-up tasks complete.  
 - `pre_start` is non-blocking.
 
-This principle applies both to instance-level and deployment-level hooks.
+These rules apply only to instance startup, not to deployments.
 
 {{< /note >}}
 
 ## Web comannd use cases 
 
-| Hook | When to use | Example task |
-|------|--------------|----------------|
-| **pre_start** | For configuration and prep that must complete before your app starts | Moving cache, updating file permissions |
-| **post_start** | For initialization after your app starts but before it serves traffic | Cache warming, dependency loading |
+| Command        | When to use                              | Example task                                |
+| -------------- | ---------------------------------------- | ------------------------------------------- |
+| **pre_start**  | Per-instance setup before app launch     | Preparing local caches, setting permissions |
+| **post_start** | Warm-up before instance receives traffic | Cache priming, loading dependencies         |
 
-## Deploy and post_deploy hooks
+## Deploy and `post_deploy` hooks
 
-While [web commands](#web-commands) (`pre_start`, `start`, `post_start`) control per-instance startup behaviour, the `build`, `deploy`, and `post_deploy` hooks run at the application level during a deployment. Use these hooks to automate image preparation, environment-wide tasks, migrations, and background jobs that should run when the application is deployed.
+While [web commands](#web-commands) run on every instance during startup, deployment-level hooks run only once per deployment, on a single container. They do not run during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling or instance restarts.
+
+Use `build`, `deploy`, and `post_deploy` for image preparation, environment-wide tasks, or background jobs that should run per-deployment.
 
 Define hooks in `.upsun/config.yaml`:
 
@@ -76,52 +108,54 @@ applications:
       post_deploy: "./scripts/warm-cache.sh"
 ```
 
-| Hook         | When it runs                                       | Blocks traffic |  Purpose                                                   |
-|--------------|-----------------------------------------------------|------------------|-------------------------------------------------------------------|
-| **build**    | During image build (before deployment)              | N/A              | Install dependencies, compile assets, prepare runtime image               |
-| **deploy**   | After containers start, before they handle requests | Yes              | Critical, environment-wide tasks that must finish before traffic  |
-| **post_deploy** | After deployment is live and serving traffic     | No               | Non-blocking background work safe to run while serving requests   |
+| Hook          | When it runs                                      | Blocks traffic | Purpose                                                      |
+|---------------|---------------------------------------------------|----------------|--------------------------------------------------------------|
+| **build**     | During the image build (before deployment)        | N/A            | Install dependencies, compile assets, prepare the runtime image |
+| **deploy**    | After new containers start but before they serve traffic | Yes            | Environment-wide tasks that must complete before the new version goes live |
+| **post_deploy** | After deployment is live and serving traffic      | No             | Non-blocking background work safe to run after the deployment completes |
 
 ### `deploy`
 
-The `deploy` hook runs after new containers are created but before they are added to the router. Because it blocks traffic until it finishes, use it only for tasks that must complete before the new version goes live.
+`deploy` runs once per deployment, **never** per instance. Because it blocks traffic until it completes, use it only for tasks that must finish before the application is switched over.
 
-{{< note theme="note" title="Note" >}}
+{{< note theme="note" title="Keep deploy short" >}}
 
-Keep `deploy` short. Long-running deploy hooks delay releases and may cause timeouts.
+Long-running deploy tasks slow down releases and may cause timeouts.
 
 {{< /note >}}
 
 ### `post_deploy`
 
-The `post_deploy` hook runs after the deployment is successful and the application is already serving traffic. It is intended for non-blocking, background-safe tasks.
+`post_deploy` runs after the deployment is successful and traffic has already switched to the new version. Use it for background tasks that don’t need to block deployment.
 
-{{< note theme="info" title="Note" >}}
+{{< note theme="info" title="Runs on every redeploy" >}}
 
-`post_deploy` executes on every redeploy (even without code changes), so it’s ideal for tasks triggered by:
+`post_deploy` runs on every redeploy (even without code changes). It’s ideal for tasks triggered by:
 
-- configuration changes  
-- new or updated environment variables  
+- configuration changes
+- new or updated environment variables
 - dependency or service updates
 
 {{< /note >}}
 
-## Deploy and post_deploy use cases
+## Deploy and `post_deploy` use cases
 
-| Hook          | When to use                                        | Example task                             |
-|---------------|---------------------------------------------------|-----------------------------------------|
-| **deploy**    | Environment-wide tasks that must complete first   | Database migrations, cache clearing, updating indexes |
-| **post_deploy** | Non-blocking background tasks safe to run while serving traffic | Cache warming, background imports, notifications |
+| Hook            | When to use                                         | Example task                                     |
+|-----------------|------------------------------------------------------|--------------------------------------------------|
+| **deploy**      | Environment-wide tasks that must run before traffic  | Database migrations, index updates               |
+| **post_deploy** | Background tasks safe while serving traffic          | CDN cache clearing, cache warming, notifications |
 
 ### Autoscaling example
 
-When autoscaling [adds new instances](/manage-resources/autoscaling.html#thresholds), each instance must start and warm up before serving live requests. Use `post-start` to complete initialization tasks such as:
+When autoscaling [adds new instances](/manage-resources/autoscaling.html#thresholds), only web commands run, not `deploy` or `post_deploy`. Each new instance must run `start` and `post_start` before receiving traffic.
+
+Good uses for post_start during scaling include:
 
 - Cache priming or session loading
-- Running lightweight readiness checks
-- Loading config or dependencies into memory
+- Lightweight readiness checks
+- Loading configuration or dependencies into memory
 
-This ensures new instances are ready to perform immediately when the router adds them.
+This ensures new instances are ready before the router adds them.
 
 {{< note theme="tip" title="Autoscaling" >}}
 
@@ -133,7 +167,7 @@ For more information about Autoscaling, visit the [Autoscaling docs page](/manag
 
 If your [application takes longer to become responsive](/learn/overview/build-deploy.html#application-is-slow-to-start), traffic might be switched back to your original application before it’s fully ready. This can cause temporary errors immediately after deployment.
 
-`post_start` can help co-ordinate so the app receives traffic only when it’s ready. An example of a `post_start` command waiting for your application would be:
+`post_start` can help co-ordinate so the app receives traffic only when it’s fully ready. An example of a `post_start` command waiting for your application would be:
 
 ```
 web:
