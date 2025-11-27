@@ -1536,6 +1536,7 @@ grid:
       - gettext
       - gnupg
       - gmp
+      - grpc
       - http
       - iconv
       - igbinary
