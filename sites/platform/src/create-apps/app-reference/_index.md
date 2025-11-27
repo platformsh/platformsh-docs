@@ -16,7 +16,7 @@ For both image types, the image is defined in the `{{< vendor/configfile "app" >
 
 ## Which image type should you choose? {#which-image-type}
 
-**Single-runtime image**: This is the recommended choice for applications that can use a standard Upsun runtime image (using a single runtime) and don't require extensions that are not related to its runtime: for example, a PHP application that requires a specific PHP version. 
+**Single-runtime image**: This is the recommended choice for applications that can use a standard Upsun runtime image (using a single runtime) and that don't require additional extensions that are not related to its runtime: for example, a PHP application that requires a specific PHP version. 
 
 Consider using a single-runtime image when these factors are important:
 - Your application requires only a single runtime and no (or few) additional packages or tools.<BR> 
