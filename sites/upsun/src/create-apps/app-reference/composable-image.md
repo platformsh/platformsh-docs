@@ -237,23 +237,28 @@ To discover which PHP extensions and Python packages are available for these run
 
 ## Resources (CPU, memory, disk space) {#resources}
 
-Resources for application containers are not committed to YAML files, but instead managed over the API using either the
-Console or the `{{% vendor/cli %}} resources:set` command.
+By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
 
-{{% note %}}
-The default container profile for a composable image is ``HIGH_CPU``.<br>
-<BR>If your stack defines multiple runtimes, you need to do one of the following:
+The default container _profile_ for an app or service in a composable image is ``HIGH_CPU``.
+
+You can change the container _size_ assigned to an app or service by using the {{% vendor/name %}} CLI or Console. {{% vendor/name %}} redeploys the container with the updated CPU amount and the corresponding amount of RAM. 
+- For detailed steps, see the [Resource configuration](/manage-resources/adjust-resources.md) topic. 
+- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+
+If you define **multiple runtimes** in an application's `.applications.<app_name>.stack.runtimes` key, you need to do one of the following:
 - Change
-the [default container_profile](/manage-resources/adjust-resources.md#advanced-container-profiles)
-- Change [default CPU and RAM ratio](/manage-resources/resource-init.md) on first deployment using the following
-commands:
+`.applications.<app_name>.container_profile` to a profile that uses a larger container size.<br>
+
+  For details about container sizes, see the tables in the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+
+- Change the [resource initialization policy](/manage-resources/resource-init.md) (the default CPU and RAM ratio) by running this command:
 
     ```bash
     {{% vendor/cli %}} push --resources-init=manual
     ```
-{{% /note %}}
 
-For more information, see how to [manage resources](/manage-resources.md).
+To learn more about managing resources, see the topics in the [Manage resources](/manage-resources.md) section.
+
 
 ### Downsize a disk
 
