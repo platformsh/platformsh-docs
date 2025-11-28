@@ -83,7 +83,7 @@ These rules apply only to instance startup, not to deployments.
 
 {{< /note >}}
 
-## Web comannd use cases 
+## Web command use cases 
 
 | Command        | When to use                              | Example task                                |
 | -------------- | ---------------------------------------- | ------------------------------------------- |
