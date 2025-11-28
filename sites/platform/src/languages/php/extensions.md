@@ -18,16 +18,54 @@ See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](/dedicated-envi
 
 You can define the PHP extensions you want to enable or disable:
 
+{{< codetabs >}}
+
++++
+title=Single-runtime image
++++
+
 ```yaml {configFile="app"}
-runtime:
-  extensions:
-    - raphf
-    - http
-    - igbinary
-    - redis
-  disabled_extensions:
-    - sqlite3
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: 'php:{{% latest "php" %}}'
+    source:
+      root: "/"
+    runtime:
+      extensions:
+        - raphf
+        - http
+        - igbinary
+        - redis
+      disabled_extensions:
+        - sqlite3
 ```
+
+<--->
+
++++
+title=Composable image
++++
+
+```yaml {configFile="app"}
+applications:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
+    source:
+      root: "/"
+    stack: 
+      runtimes: "php@{{% latest php %}}"
+        extensions:
+          - raphf
+          - http
+          - igbinary
+          - redis
+        disabled_extensions:
+          - sqlite3
+```
+
+{{< /codetabs >}}
+
+
 You can also [include configuration options](/create-apps/app-reference/single-runtime-image.md#extensions) for specific extensions.
 
 The following table shows all extensions that are available (Avail) and on by default (Def).

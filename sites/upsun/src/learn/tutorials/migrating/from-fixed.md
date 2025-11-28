@@ -121,7 +121,7 @@ The converting tool performs the following transformations:
    - Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency. 
    - Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
 
-        To learn more, refer to these topics: mounts in [single-runtime](/create-apps/app-reference/single-runtime-image.md#mounts) and [composable](/create-apps/app-reference/composable-image.md#mounts) images, and [network storage](add-services/network-storage.md). 
+        To learn more, refer to these topics: [`mounts`](/create-apps/image-properties/mounts) (the property available in the [single-runtime](/create-apps/app-reference/single-runtime-image.md#mounts) and [composable](/create-apps/app-reference/composable-image.md#mounts) images), and [network storage](add-services/network-storage.md). 
 
 4. Reorganization of custom service configuration
    - Moves custom configuration for [services](/add-services.md) such as `Solr` into the `.upsun/` directory, which is used to hold project-specific overrides and custom assets.

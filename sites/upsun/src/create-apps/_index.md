@@ -114,7 +114,7 @@ Unlike other runtimes, most PHP applications do not have a start command. There 
 
 {{< /note >}}
 
-The following example shows a setup for a PHP app with comments to explain the settings.  Please note that Composable image is currently available as a Beta feature.
+The following example shows a setup for a PHP app with comments to explain the settings.
 
 
 {{< codetabs >}}
@@ -183,27 +183,37 @@ services:
 <--->
 
 +++
-title=Composable image (BETA)
+title=Composable image 
 +++
 
 ```yaml {configFile="app"}
 applications:
   # The app's name, which must be unique within the project.
-  myapp:
+  {{% variable "APP_NAME" %}}:
+    type: "composable:{{% latest composable %}}"
     # The list of packages you want installed (from the {{% vendor/name %}} collection
     # of supported runtimes and/or from Nixpkgs).
     # For more information, see the Composable image page in the App reference section.
     stack:
-      - "php@8.3"
-          # The list of PHP extensions you want installed.
-          extensions:
-            - apcu
-            - ctype
-            - iconv
-            - mbstring
-            - pdo_pgsql
-            - sodium
-            - xsl
+      runtimes:
+        - "php@8.4":
+            # The list of PHP extensions you want installed.
+            extensions:
+              - apcu
+              - ctype
+              - iconv
+              - mbstring
+              - pdo_pgsql
+              - sodium
+              - xsl
+            disabled_extensions:
+              - gd
+        - "nodejs@{{% latest "nodejs" %}}"
+      packages:
+        - yarn
+        - imagemagick
+        - package: wkhtmltopdf
+          channel: unstable
     # Relationships enable an app container's access to a service or another app.
     # The example below shows simplified configuration leveraging a default service
     # (identified from the relationship name) and a default endpoint.

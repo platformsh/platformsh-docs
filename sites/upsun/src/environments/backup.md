@@ -243,7 +243,7 @@ See more information on [backup policies](#backup-policy) and [data retention](#
 
 ### Automate manual backups
 
-You can also automate the process of creating manual backups through [cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
+You can also automate the process of creating manual backups through [cron jobs](/create-apps/image-properties/crons.md).
 The cron job uses the CLI command to back up the environment.
 It requires you to [set up the CLI on the environment with an API token](../administration/cli/api-tokens.md#authenticate-in-an-environment).
 
