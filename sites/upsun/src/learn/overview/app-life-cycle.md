@@ -76,7 +76,7 @@ For more information about web commands, visit the [Single-runtime Image page](/
 | Command        | When to use                              | Example task                                |
 | -------------- | ---------------------------------------- | ------------------------------------------- |
 | **pre_start**  | Per-instance setup before app launch     | Preparing local caches, setting permissions |
-| **post_start** | Warm-up before instance receives traffic | Cache priming, loading dependencies         |
+| **post_start** | Warm-up before instance receives traffic | Co-ordinating so app receives traffic when ready |
 
 ## Deploy and `post_deploy` hooks
 
