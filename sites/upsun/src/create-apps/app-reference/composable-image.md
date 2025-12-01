@@ -239,17 +239,12 @@ To discover which PHP extensions and Python packages are available for these run
 
 By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
 
-The default container _profile_ for an app or service in a composable image is ``HIGH_CPU``.
+The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.    
 
-You can change the container _size_ assigned to an app or service by using the {{% vendor/name %}} CLI or Console. {{% vendor/name %}} redeploys the container with the updated CPU amount and the corresponding amount of RAM. 
-- For detailed steps, see the [Resource configuration](/manage-resources/adjust-resources.md) topic. 
-- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+Use the {{% vendor/name %}} CLI or Console to manually adjust the allocated container _size_ (CPU and memory resources)—that is, to perform a **vertical‑scaling** action. When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
 
 If you define **multiple runtimes** in an application's `.applications.<app_name>.stack.runtimes` key, you need to do one of the following:
-- Change
-`.applications.<app_name>.container_profile` to a profile that uses a larger container size.<br>
-
-  For details about container sizes, see the tables in the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+- Change the [`.applications.<app_name>.container_profile`](#/create-apps/image-properties/container_profile.md) to a profile that uses a larger container size.<br>
 
 - Change the [resource initialization policy](/manage-resources/resource-init.md) (the default CPU and RAM ratio) by running this command:
 
@@ -257,7 +252,10 @@ If you define **multiple runtimes** in an application's `.applications.<app_name
     {{% vendor/cli %}} push --resources-init=manual
     ```
 
-To learn more about managing resources, see the topics in the [Manage resources](/manage-resources.md) section.
+Related topics: 
+- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic. 
+- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+- To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
 
 
 ### Downsize a disk
