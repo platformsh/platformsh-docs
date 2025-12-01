@@ -167,7 +167,7 @@ applications:
 ## `dependencies` {#dependencies}
 
 Installs global dependencies as part of the build process.
-They're independent of your app's dependencies
+They're independent of the code dependencies of your application
 and are available in the `PATH` during the build process and in the runtime environment.
 They're installed before the `build` hook runs using a package manager for the language.
 
