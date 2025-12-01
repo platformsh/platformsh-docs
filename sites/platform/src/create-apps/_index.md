@@ -207,7 +207,7 @@ myapp:
   # of supported runtimes and/or from Nixpkgs).
   # For more information, see the Composable image page in the App reference section.
   stack:
-    - "php@8.3"
+    - "php@8.4"
         # The list of PHP extensions you want installed.
         extensions:
           - apcu
