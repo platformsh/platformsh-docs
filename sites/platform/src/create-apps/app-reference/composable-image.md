@@ -99,7 +99,7 @@ See the [example `stack` configuration](#example-stack-configuration) that follo
 ### Example: `stack` configuration {#example-stack-configuration}
 
 The `config.yaml` file excerpt below shows the following stack configuration: 
-- `php@{{% latest "php" %}}` as the primary runtime with additional `extensions` and one `disabled_extensions`
+- `php@8.4` as the primary runtime with additional `extensions` and one `disabled_extensions`
 - `nodejs@{{% latest "nodejs" %}}` and `python@{{% latest "python" %}}` runtimes
 - `yq`, `yarn`, and `python313Packages.yq` packages (by default from the latest {{% vendor/company_name %}}-supported Nix channel you defined in `type`)
 - `wkhtmltopdf` package from the `unstable` Nix channel
@@ -111,7 +111,7 @@ applications:
     type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
-        - "php@{{% latest "php" %}}":
+        - "php@8.4":
             extensions: 
               - apcu
               - sodium
@@ -258,7 +258,7 @@ Here is a full composable image configuration example. Note the use of the `<nix
 ```yaml {configFile="apps"}
 myapp:
   stack:
-    - "php@{{% latest "php" %}}":
+    - "php@8.4":
         extensions:
           - apcu
           - sodium
@@ -279,7 +279,7 @@ Here is an example configuration including a ``frontend`` app and a ``backend`` 
 ```yaml {configFile="apps"}
 backend:
     stack:
-      - "php@{{% latest "php" %}}":
+      - "php@8.4":
           extensions:
             - apcu
             - sodium
