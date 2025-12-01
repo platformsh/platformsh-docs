@@ -17,7 +17,7 @@ Instances are where the same code can be run with different configurations,
 such as one for external communication and one for background processes.
 Apps and instances use similar properties, with minor differences depending on the image type that you choose: 
 - [single-runtime image](/create-apps/app-reference/single-runtime-image.md)
-- [composable image](/create-apps/app-reference/composable.md)
+- [composable image](/create-apps/app-reference/composable-image.md)
 Not sure which image type to use? See [choosing an image type](/create-apps/app-reference.md). 
 
 
