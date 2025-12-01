@@ -71,18 +71,6 @@ applications:
 
 For more information about web commands, visit the [Single-runtime Image page](/create-apps/app-reference/single-runtime-image.html#web-commands).
 
-{{< note theme="info" title="Blocking vs. non-blocking commands" >}}
-
-A command is blocking if an instance cannot receive traffic until it completes successfully.
-
-- `start` blocks traffic until the application is running.  
-- `post_start` blocks traffic until all warm-up tasks complete.  
-- `pre_start` is non-blocking.
-
-These rules apply only to instance startup, not to deployments.
-
-{{< /note >}}
-
 ## Web comannd use cases 
 
 | Command        | When to use                              | Example task                                |
