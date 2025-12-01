@@ -7,22 +7,23 @@ description: "Understand the {{% vendor/name %}} application lifecycle and learn
 
 Hooks and web commands let you automate and control different stages of your [application’s lifecycle](#lifecycle-overview).
 
-- **Web commands** (`pre_start`, `start`, `post_start`) run **on every instance**, every time that instance starts. They ensure each container is correctly initialised before it receives traffic, including during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling.
+- **[Web commands](/create-apps/app-reference/single-runtime-image.html#web-commands)** (`pre_start`, `start`, `post_start`) run **on every instance**, every time that instance starts. They ensure each container is correctly initialised before it receives traffic, including during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling.
 
-- **Hooks** (`build`, `deploy`, `post_deploy`) run **once per deployment**, on a single instance. They are used for environment-wide tasks such as preparing the image, running database migrations, or triggering background jobs.
+- **[Hooks](/create-apps/hooks/hooks-comparison.html)** (`build`, `deploy`, `post_deploy`) run **once per deployment**, on a single instance. They are used for environment-wide tasks such as preparing the image, running database migrations, or triggering background jobs.
 
 Together, hooks and web commands give you fine-grained control of the application lifecycle, ensuring smooth start-up, reliable [autoscaling](/manage-resources/autoscaling.html), and safe deployments.
 
 ## Lifecycle overview
 
-The {{% vendor/name %}} deployment lifecycle has two parallel tracks:
+The {{% vendor/name %}} deployment lifecycle has two parallel tracks. Understanding how these two tracks interact helps you choose the right hook for each task:
 
-- Deployment process (runs once per deployment)
+- **Deployment process** (runs once per deployment)
+
 This is where your environment is built, deployed, updated, and released.
-- Instance startup process (runs on every container instance)
-Each new application instance goes through its own startup steps before it can receive traffic.
 
-Understanding how these two tracks interact helps you choose the right hook for each task.
+- **Instance startup process** (runs on every container instance)
+
+Each new application instance goes through its own startup steps before it can receive traffic.
 
 ### Deployment Lifecycle (Environment-level)
 
