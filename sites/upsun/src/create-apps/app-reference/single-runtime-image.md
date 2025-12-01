@@ -206,6 +206,8 @@ applications:
 
 ## `runtime` {#runtime}
 
+This applies to PHP only. 
+
 The following table lists the various possible modifications to your PHP runtime:
 
 | Name                        | Type                                                       | Language | Description                                                                                             |
