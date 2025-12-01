@@ -141,26 +141,6 @@ applications:
         - "python313Packages.yq" # python package specific
 ```
 
-## Resources (CPU, memory, and disk space) {#resources}
-
-By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
-
-The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.    
-
-Use the {{% vendor/name %}} CLI or Console to manually adjust the allocated container _size_ (CPU and memory resources)—that is, to perform a **vertical‑scaling** action. When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
-
-Related topics: 
-- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic. 
-- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
-- To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
-
-
-### Downsize a disk
-
-You can reduce the target disk size of an app. Keep in mind:
-- Backups created before the downsize are incompatible and cannot be used; you must [create new backups](/environments/backup.md).
-- The downsize will fail if the disk contains more data than the target size.
-
 ## `build` {#build}
 
 The only property of the `build` dictionary is `flavor`, which specifies a default set of build tasks to run.
@@ -290,3 +270,23 @@ The following table shows the properties that can be set in `sizing_hints`:
 
 See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
 
+
+## Resources (CPU, memory, and disk space) {#resources}
+
+By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
+
+The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.    
+
+Use the {{% vendor/name %}} CLI or Console to manually adjust the allocated container _size_ (CPU and memory resources)—that is, to perform a **vertical‑scaling** action. When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
+
+Related topics: 
+- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic. 
+- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+- To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
+
+
+### Downsize a disk
+
+You can reduce the target disk size of an app. Keep in mind:
+- Backups created before the downsize are incompatible and cannot be used; you must [create new backups](/environments/backup.md).
+- The downsize will fail if the disk contains more data than the target size.
