@@ -16,7 +16,7 @@ For both image types, the image is defined in the `{{< vendor/configfile "app" >
 
 ## Which image type should you choose? {#which-image-type}
 
-**Single-runtime image**: This is the recommended choice for applications that can use a standard Upsun runtime image (using a single runtime) and that don't require additional extensions that are not related to its runtime: for example, a PHP application that requires a specific PHP version. 
+**Single-runtime image**: Use this image type for applications that require a {{% vendor/company_name %}}-supported single-runtime image and don't need any extra extensions beyond what that runtime image already includes.
 
 Consider using a single-runtime image when these factors are important:
 - Your application requires only a single runtime and no (or few) additional packages or tools.<BR> 
@@ -30,7 +30,7 @@ Consider using a single-runtime image when these factors are important:
 
 If you initially choose a single-runtime image and your application needs change, you can move the app to a composable image: For example, if you determine that your application needs additional packages or multiple runtimes.
 
-**Composable image**: Choose this image type your application has multiple dependencies: for example, multiple runtimes, additional packages, or other items such as HTML files or PDF images. Composable images can be used for both applications and services.
+**Composable image**: Choose this image type your application has multiple dependencies: for example, multiple runtimes, additional packages, or other items such as HTML files or PDF images. 
 
 This image type enables you to build an image by using the packages in the latest available Nix channel, or you can define ("compose") the collection of packages (as defined by the `stack` key) for your image, especially when packages are available in the {{% vendor/name %}} registry. 
 
@@ -49,12 +49,12 @@ Consider using a composable image when these factors are important:
 | Criteria                    | Single-runtime image | Composable image | 
 |-----------------------------|----------------------|------------------|
 | # of runtimes per container | one                  | zero or more                    |
-| Best for building...  | Single runtime applications  | Applications, services  | 
+| Best for building...  | Single runtime applications  | Application with custom secondary runtimes, static applications, or installing custom binaries  | 
 | Packages permitted           | Runtime and its extensions | 0 or more runtimes; extensions, services | 
-| Manual configuration required for...       | Downloads, dependencies, adding packages to build hook       | If not using a Nix channel: Defining the container stack, resolving package incompatibilities | 
-| Updates and security patches  | {{% vendor/name %}} performs minor (`major.`)(_`minor`_) updates and applies patches automatically upon deployment | You perform upgrades, apply patches, and ensure package compatibility | 
-|   Support                   |    ?                 | Stable Nix channels only (but any NixOs package can be installed, including `unstable`)                                    | 
-| Performance                 |     ?                  | Initial builds and rebuilds take some time; automatic caching improves container startup time |
+| Manual configuration required for...       | Downloads, dependencies, adding packages to build hook       | Custom definition of the composition of the container using available runtimes and Nix packages | 
+| Updates and security patches  | {{% vendor/name %}} performs minor (`major.`)(_`minor`_) updates and applies patches automatically upon deployment | Redeploy often to ensure that the latest package versions that are available on Nix are applied. The cadence of package updates is determined by the package maintainers. | 
+|   Support                   |    See the list of supported versions of any runtime in the runtime-specific topic in the [Languages](/languages/_index.md) section.                 | Stable Nix channels only (however, any NixOS package can be installed, including `unstable` packages)                                    | 
+| Performance                 |     Initial builds and rebuilds take some time; automatic caching improves container startup time                  | Same as for a single-runtime image |
 |   `type`                  |   Indicates the base container image used to run the application (`major.minor`). Cannot select a patch version.  |  Indicates the Nix channel version. | 
 | build and deploy `hooks`     | Build flavor is run if applicable and any dependencies are installed | Managed by the Nix channel | 
 
@@ -68,9 +68,4 @@ Otherwise, the same keys are available for both image types. Differences in synt
 ## Multi-app projects
 In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
 
-
-## Building your own services {#building-services}
-The composable image type is typically the recommended choice for building services that {{% vendor/name %}} doesn't offer as an image. With this image type, you install _only_ the packages that the service requires. Installing a runtime is also optional, determined by whether the service requires a runtime.
-
-By contrast, a single-runtime image requires a runtime, and additional packages must be added to the build phase, which requires more manual configuration.  
 
