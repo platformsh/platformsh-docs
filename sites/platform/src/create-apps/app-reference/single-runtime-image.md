@@ -68,7 +68,7 @@ use the [`source.root` property](#source).
 ## `type` {#types}
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 If you've reached this section from another page, you may be interested in supported `stacks` where `type` was referenced.
 See [supported Nix packages for the `stack` key](/create-apps/app-reference/composable-image.md#supported-nix-packages) for more information.
 {{% /note %}}
@@ -164,7 +164,7 @@ You can also set your [app's runtime timezone](/create-apps/timezone.md).
 ### Extensions
 
 {{% note theme="info" %}}
-You can now use the {{% vendor/name %}} composable image to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 If you've reached this section from another page and are using the composable image, enabling/disabling extensions should be placed under the `stack` key instead of what is listed below.
 See [how to configure extensions with the composable image](/create-apps/app-reference/composable-image.md#top-level-properties).
 {{% /note %}}

@@ -43,11 +43,12 @@ applications:
       root: "/"
     workers:
       queue:
+        size: S
         commands:
           start: |
-            ./worker.sh
+            ./worker.sh        
 ```
-
+    
 <--->
 
 +++
@@ -76,9 +77,10 @@ applications:
       runtimes: [ "python@{{% latest python %}}" ]
     workers:
       queue:
+        size: S
         commands:
           start: |
-            ./worker.sh
+            ./worker.sh        
 ```
 
 {{< /codetabs >}}
