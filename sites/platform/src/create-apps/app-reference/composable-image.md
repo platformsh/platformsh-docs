@@ -59,7 +59,7 @@ To override any part of a property, you must provide the entire property.
 | [`firewall`](/create-apps/image-properties/firewall.md)         | A firewall dictionary                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
 | [`hooks`](/create-apps/image-properties/hooks.md)            | A hooks dictionary                                             |          | No               | Specifies commands and/or scripts to run in the `build`, `deploy`, and `post_deploy` phases.                                                                                                                                                                                                      |
 | [`crons`](/create-apps/image-properties/crons.md)            | A cron dictionary                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
-| [`source`](/create-apps/image-properties/source.md)           | A source dictionary                                           |          | No               | Information on the app source code and operations that can be run on it.                                                                                                                                                                                                 |
+| [`source`](/create-apps/image-properties/source.md)           | A source dictionary                                           |          | No               | Details about the app’s source code and available operations.                                                                                                                                                                                                 |
 | [`additional_hosts`](/create-apps/image-properties/additional_hosts.md) | An additional hosts dictionary                      |          | Yes              | Mappings of hostnames to IP addresses.                                                                                                                                                                                                                                         |
 | [`operations`](/create-apps/runtime-operations.md)       | A dictionary of runtime operations |          | No               | Runtime operations for the application.                                                                                                                                                                                                                                    |
 
@@ -117,7 +117,7 @@ applications:
               - sodium
               - xsl
               - pdo_sqlite
-              - php-facedetect
+              - facedetect
             disabled_extensions:
               - gd
         - "nodejs@{{% latest "nodejs" %}}"

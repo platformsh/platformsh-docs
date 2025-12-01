@@ -9,11 +9,13 @@ keywords:
 
 {{% description %}}
 
-For single-app projects, the configuration is all done in a `{{< vendor/configfile "app" >}}` file,
-usually located at the root of your app folder in your Git repository.
-[Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
+For single-app projects, use the `{{< vendor/configfile "app" >}}` file,
+which is typically located at the root of your Git repository, to configure the apps in your single-runtime image.
 
-See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in a `{{< vendor/configfile "app" >}}` file.
+See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in
+a `{{< vendor/configfile "app" >}}` file.
+
+[Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
 
 For reference, see a [log of changes to app configuration](/create-apps/upgrading.md).
 
@@ -21,17 +23,21 @@ For reference, see a [log of changes to app configuration](/create-apps/upgradin
 
 The following table lists all properties available at the top level of the YAML for the app.
 
-The column _Set in instance?_ defines whether the given property can be overridden within a `web` or `workers` instance.
+The **Set in instance** column defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
 
-- **Note:** Except for the `build`, `dependencies`, and `runtime` keys, the keys listed below are available in **both** the single-runtime and composable image types. Clicking the link for their details leads you to a separate topic for that property. Descriptions for properties that are **unique** to this image type are provided later in this topic.  
+{{% note theme="info" %}}
+
+The `build`, `dependencies`, and `runtime` properties are unique to this image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click a property name to view its details in a separate topic. 
+
+{{% /note %}}
 
 
 | Name               | Type                                                                     | Required | Set in instance? | Description                                                                                                                                                                                                                                                                |
 |--------------------|--------------------------------------------------------------------------|----------|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.                                                                                                                                             |
+| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. **Changing the name destroys data associated with the app.**                                                                                                                                             |
 | [`type`](#types)             | A type                                                         | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`.                                                                                                                                                                                             |
-| [`size`](/create-apps/image-properties/size.md)            | A size                                                        |          | Yes              | How much resources to devote to the app. Defaults to `AUTO` in production environments.                                                                                                                                                                                    |
+| [`size`](/create-apps/image-properties/size.md)            | A size                                                        |          | Yes              | Amount of resources to allocate to the app; defaults to `AUTO` in production environments. Examples: `S`, `M`,`4XL`.                                                                                                                                                                                    |
 | [`relationships`](/create-apps/image-properties/relationships.md)    | A dictionary of relationships                          |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                                    |
 | [`disk`](/create-apps/image-properties/disk.md)             | `integer` or `null`                                                      |          | Yes              | The size of the disk space for the app in [MB](/glossary/_index.md#mb). Minimum value is `128`. Defaults to `null`, meaning no disk is available. See the [`disk`](/create-apps/image-properties/disk.md) property details.                                                                     |
 | [`mounts`](/create-apps/image-properties/mounts.md)           | A dictionary of mounts                                        |          | Yes              | Directories that are writable even after the app is built. If set as a local source, `disk` is required.                                                                                                                                                                   |
@@ -43,7 +49,7 @@ To override any part of a property, you have to provide the entire property.
 | [`firewall`](/create-apps/image-properties/firewall.md)         | A [firewall dictionary                                       |          | Yes              | Outbound firewall rules for the application.                                                                                                                                                                                                                               |
 | [`build`](#build)              | A build dictionary                                           |          | No               | What happens when the app is built.                                                                                                                                                                                                                                        |
 | [`dependencies`](#dependencies)     | A dependencies dictionary                               |          | No               | What global dependencies to install before the `build` hook is run.                                                                                                                                                                                                        |
-| [`hooks`](/create-apps/image-properties/hooks.md)            | A hooks dictionary                                             |          | No               | What commands run at different stages in the build and deploy process.                                                                                                                                                                                                     |
+| [`hooks`](/create-apps/image-properties/hooks.md)            | A hooks dictionary                                             |          | No               | Specifies commands and/or scripts to run in the `build`, `deploy`, and `post_deploy` phases.                                                                                                                                                                                                      |
 | [`crons`](/create-apps/image-properties/crons.md)            | A cron dictionary                                              |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                               |
 | [`source`](/create-apps/image-properties/source.md)           | A source dictionary                                           |          | No               | Information on the app's source code and operations that can be run on it.                                                                                                                                                                                                 |
 | [`runtime`](#runtime)          | A runtime dictionary                                         |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                                |
