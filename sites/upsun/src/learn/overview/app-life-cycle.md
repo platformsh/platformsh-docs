@@ -71,7 +71,7 @@ applications:
 
 For more information about web commands, visit the [Single-runtime Image page](/create-apps/app-reference/single-runtime-image.html#web-commands).
 
-## Web comannd use cases 
+## Web command use cases 
 
 | Command        | When to use                              | Example task                                |
 | -------------- | ---------------------------------------- | ------------------------------------------- |
