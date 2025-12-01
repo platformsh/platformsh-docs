@@ -246,21 +246,9 @@ By default, {{% vendor/name %}} assigns a container profile and container size t
 
 The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.    
 
-Use the {{% vendor/name %}} CLI or Console to manually adjust the allocated container _size_ (CPU and memory resources)—that is, to perform a **vertical‑scaling** action. When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
+To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
 
-If you define **multiple runtimes** in an application's `.applications.<app_name>.stack.runtimes` key, you need to do one of the following:
-- Change the [`.applications.<app_name>.container_profile`](#/create-apps/image-properties/container_profile.md) to a profile that uses a larger container size.<br>
-
-- Change the [resource initialization policy](/manage-resources/resource-init.md) (the default CPU and RAM ratio) by running this command:
-
-    ```bash
-    {{% vendor/cli %}} push --resources-init=manual
-    ```
-
-Related topics: 
-- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic. 
-- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
-- To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
+If you define **multiple runtimes** in an application's `.applications.<app_name>.stack.runtimes` key, you must [change your plan size](/administration/pricing.md#plans) to Medium (`M`) or larger.
 
 
 ### Downsize a disk
