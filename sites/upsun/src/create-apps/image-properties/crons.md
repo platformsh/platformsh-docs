@@ -306,7 +306,7 @@ applications:
     source:
       root: "/"
     stack: 
-      runtimes: [ "php@{{% latest php %}}" ]
+      runtimes: [ "php@8.4" ]
     crons:
       update:
         spec: '0 0 * * *'
