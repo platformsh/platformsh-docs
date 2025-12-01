@@ -6,15 +6,17 @@ description: See all of the options for controlling your apps and how they're bu
 
 {{% description %}}
 
-Configuration is all done in a `{{< vendor/configfile "app" >}}` file,
-located at the root of your Git repository.
+Use the `{{< vendor/configfile "app" >}}` file,
+located at the root of your Git repository, to configure the apps in a single-runtime image.
 
 See a [comprehensive example](/create-apps/_index.md#comprehensive-example) of a configuration in
 a `{{< vendor/configfile "app" >}}` file.
 
+[Multi-app projects](/create-apps/multi-app/_index.md) can be set up in various ways.
+
 ## Primary application properties
 
-In the `{{< vendor/configfile "app" >}}` file, configure each application under a unique key beneath the top-level `applications` key.
+In the `{{< vendor/configfile "app" >}}` file, configure each application as a unique key beneath the top-level `applications` key.
 
 For example, if your deployed site requires a Javascript `frontend` application container and a Python `backend` application container, the `{{< vendor/configfile "app" >}}` file would start to look something like this:
 
@@ -28,7 +30,7 @@ applications:
     # Additional backend configuration
 ```
 
-The following table presents all of the properties available to each unique application `name`.
+The following table presents all of the properties available to each unique app beneath the `applications` key.
 
 The **Set in instance** column defines whether the given property can be overridden within a `web` or `workers` instance.
 To override any part of a property, you have to provide the entire property.
@@ -41,7 +43,6 @@ The `build`, `dependencies`, and `runtime` properties are unique to this image t
 
 | Name                | Type                                                                                       | Required | Set in instance? | Description                                                                                                                                                                                                                                                      |
 |---------------------|--------------------------------------------------------------------------------------------|----------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `name`             | `string`                                                                 | Yes      | No               | A unique name for the app. Must be lowercase alphanumeric characters. **Changing the name destroys data associated with the app.**                                                                                                                                             |
 | [`type`](#types)               | A type                                                                          | Yes      | No               | The base image to use with a specific app language. Format: `runtime:version`.                                                                                                                                                                                   |
 | [`container_profile`](/create-apps/image-properties/container_profile.md)  | A container profile |          | Yes              | Determines which combinations of CPU and RAM a container can use.    
 | [`relationships`](/create-apps/image-properties/relationships.md)     | A dictionary of relationships                                            |          | Yes              | Connections to other services and apps.                                                                                                                                                                                                                          |
@@ -58,7 +59,7 @@ The `build`, `dependencies`, and `runtime` properties are unique to this image t
 | [`crons`](/create-apps/image-properties/crons.md)             | A cron dictionary                                                                |          | No               | Scheduled tasks for the app.                                                                                                                                                                                                                                     |
 | [`source`](/create-apps/image-properties/source.md)            | A source dictionary                                                             |          | No               | Details about the app’s source code and available operations.                                                                                                                                                                                       |
 | [`runtime`](#runtime)           | A runtime dictionary                                                           |          | No               | Customizations to your PHP runtime.                                                                                                                                                                                                                      |
-| [`additional_hosts`](/create-apps/image-properties/additional_hosts.md)  | An additional hosts dictionary                                        |          | Yes              | Maps hostnames to their corresponding IP addresses.                                                                                                                                                                                                                               |
+| [`additional_hosts`](/create-apps/image-properties/additional_hosts.md)  | An additional hosts dictionary                                        |          | Yes              | Mappings of hostnames to IP addresses.                                                                                                                                                                                                               |
 | [`operations`](/create-apps/runtime-operations.md)        | A dictionary of runtime operations                   |          | No               | Runtime operations for the application.                                                                                                                                                                                                                          |
 
 ## Root directory
@@ -140,18 +141,19 @@ applications:
         - "python313Packages.yq" # python package specific
 ```
 
-## Resources (CPU and memory) {#resources}
+## Resources (CPU, memory, and disk space) {#resources}
 
-Resources for application containers are not committed to YAML files, but instead managed over the API using either the
-Console or the `{{% vendor/cli %}} resources:set` command.
+By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
 
-For more information, see how to [manage resources](/manage-resources.md).
+The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.    
 
-## Available disk space
+Use the {{% vendor/name %}} CLI or Console to manually adjust the allocated container _size_ (CPU and memory resources)—that is, to perform a **vertical‑scaling** action. When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
 
-Disk space for application containers isn’t configured in YAML. Instead, it’s managed via the API using the Console or the `{{% vendor/cli %}} resources:set` command.
+Related topics: 
+- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic. 
+- For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
+- To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
 
-For more information, see how to [manage resources](/manage-resources.md).
 
 ### Downsize a disk
 
