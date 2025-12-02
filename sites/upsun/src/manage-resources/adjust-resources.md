@@ -38,7 +38,7 @@ You can [monitor these costs](/administration/billing/monitor-billing.md) in the
 
 {{< /note >}}
 
-## Vertical scaling {#vertical-scaling}
+## Vertical scaling {#vertical-scaling} 
 
 To define how much CPU, RAM, and disk storage you want to allocate to each individual container,
 follow these steps:
