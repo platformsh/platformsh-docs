@@ -167,7 +167,7 @@ public class App {
 ### Access complex values
 
 Variables can have nested structures.
-The following example shows nested structures in an [app configuration](/create-apps/app-reference/single-runtime-image.md#variables):
+The following example shows nested structures in an [app configuration](/create-apps/image-properties/variables.md):
 
 ```yaml {configFile="app"}
 applications:
