@@ -42,7 +42,7 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   {{% variable "APP_NAME" %}}:
-    type: 'nodejs:{{% latest "nodejs" %}}'  
+    type: 'nodejs:{{% latest "nodejs" %}}'
     source:
       root: "/"
     crons:
@@ -79,7 +79,7 @@ applications:
 {{< /codetabs >}}
 
 
-In this example configuration, the [cron specification](#crons) uses the `H` syntax.
+In this example configuration, the [cron specification](https://en.wikipedia.org/wiki/Cron#Cron_expression) uses the `H` syntax.
 
 ### Single-runtime image: Example cron jobs
 
@@ -181,7 +181,7 @@ title=Drupal
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
-stack: 
+stack:
   runtimes: [ "php@8.4" ]
 crons:
   # Run Drupal's cron tasks every 19 minutes.
@@ -207,7 +207,7 @@ title=Ruby on Rails
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
-stack: 
+stack:
   runtimes: [ "ruby@{{% latest ruby %}}" ]
 crons:
   # Execute a rake script every 19 minutes.
@@ -227,7 +227,7 @@ title=Laravel
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
-stack: 
+stack:
   runtimes: [ "php@8.4" ]
 crons:
   # Run Laravel's scheduler every 5 minutes.
@@ -247,7 +247,7 @@ title=Symfony
 ```yaml {configFile="app"}
 {{< snippet name="myapp" config="app" root="/" >}}
 type: "composable:{{% latest composable %}}"
-stack: 
+stack:
   runtimes: [ "php@8.4" ]
 crons:
   # Take a backup of the environment every day at 5:00 AM.
@@ -305,7 +305,7 @@ applications:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
-    stack: 
+    stack:
       runtimes: [ "php@8.4" ]
     crons:
       update:
@@ -335,7 +335,7 @@ The offset is a random number of seconds up to 20 minutes or the cron frequency,
 Crons are also paused while activities such as [backups](/environments/backup.md) are running.
 The crons are queued to run after the other activity finishes.
 
-To run cron jobs in a timezone other than UTC, set the `timezone` property property as described for the image type ([single-runtime image](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) or 
+To run cron jobs in a timezone other than UTC, set the `timezone` property property as described for the image type ([single-runtime image](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) or
 [composable image](/create-apps/app-reference/composable-image.md#primary-application-properties)).
 
 To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
