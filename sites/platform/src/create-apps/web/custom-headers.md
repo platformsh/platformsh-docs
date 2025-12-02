@@ -30,7 +30,7 @@ web:
 This sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.
 Now your files can only be embedded within your site.
 
-Now set up an exception for Markdown (`*.md`) files using a [rule](/create-apps/app-reference/image-properties/web.md#rules):
+Now set up an exception for Markdown (`*.md`) files using a [rule](/create-apps/image-properties/web.md#rules):
 
 ```yaml {configFile="app"}
 web:
