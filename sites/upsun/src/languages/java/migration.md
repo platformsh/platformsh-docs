@@ -125,7 +125,7 @@ While the table above shows examples for Upsun Fixed rather than for {{% vendor/
 ## Access to managed services
 
 {{% vendor/name %}} provides [managed services](/add-services/_index.md) such as databases, cache and search engines.
-However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/app-reference/single-runtime-image.md#firewall).
+However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/image-properties/firewall.md).
 
 When applications need to access a service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
 By default an application may not talk to any other container without a `relationship` explicitly allowing access.

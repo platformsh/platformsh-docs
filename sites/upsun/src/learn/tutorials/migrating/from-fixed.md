@@ -299,7 +299,7 @@ applications:
 To ensure continuity when converting from {{% vendor/psh_ref %}} to {{% vendor/name %}},
 the `local` mount type works as an alias for the `instance` mount type.
 
-However, it is recommended to change the type of your `local` mounts to `instance` or another [supported mount type](/create-apps/app-reference/single-runtime-image.html#define-a-mount).
+However, it is recommended to change the type of your `local` mounts to `instance` or another [supported mount type](/create-apps/image-properties/mounts.md#define-a-mount).
 
 
 For example:
