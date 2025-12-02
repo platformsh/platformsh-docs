@@ -338,7 +338,7 @@ The crons are queued to run after the other activity finishes.
 To run cron jobs in a timezone other than UTC, set the `timezone` property property as described for the image type ([single-runtime image](/create-apps/app-reference/single-runtime-image.md#primary-application-properties) or
 [composable image](/create-apps/app-reference/composable-image.md#primary-application-properties)).
 
-To run cron jobs in a timezone other than UTC, set the [timezone property](#primary-application-properties).
+To run cron jobs in a timezone other than UTC, set the [timezone property](/create-apps/timezone.md).
 
 ### Paused crons
 

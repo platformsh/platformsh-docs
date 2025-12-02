@@ -695,7 +695,7 @@ The PHP-FPM service starts automatically only when PHP is the primary runtime.
 | `sizing_hints`              | A [sizing hints definition](#sizing-hints)                                      | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
 | `xdebug`                    | An Xdebug definition                                                                                                          | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
 
-### PHP-FPM service sizing hints {#sizing_hints}
+### PHP-FPM service sizing hints {#sizing-hints}
 
 The following table shows the properties that can be set in `sizing_hints`:
 
