@@ -55,7 +55,7 @@ web:
 
 {{< note >}}
 
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/app-reference/single-runtime-image.md#mounts).
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/image-properties/mounts.md).
 
 {{< /note >}}
 
