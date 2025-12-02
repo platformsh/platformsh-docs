@@ -44,6 +44,7 @@ Consider using a composable image when these factors are important:
     
 - Your team is comfortable with upgrading, testing, and refactoring images promptly when Nix a channel becomes deprecated (every six months). 
 
+### Feature and behavior comparison {#feature-behavior-comparison}
 
 
 | Criteria                    | Single-runtime image | Composable image | 

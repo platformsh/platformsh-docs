@@ -38,13 +38,12 @@ Manually defining a stack in a composable image is typically simpler than adding
 
 Consider using a composable image when these factors are important:
 - Your application requires multiple runtimes and tools, or different versions of the same package.
-- You build your own services. See the [Building your own services](#building-services) section below.
 - You want the ability to install _all_ the packages you need in your application container, ensuring that an application works on any machine.<BR>
     In a composable image, you can accomplish this by using supported Nix channels. This method ensures app consistency and helps to streamline the development, testing, and deployment processes.
 
 - Your team is comfortable with upgrading, testing, and refactoring images promptly when Nix a channel becomes deprecated (every six months).
 
-### Feature and behavior comparison {#}
+### Feature and behavior comparison {#feature-behavior-comparison}
 
 | Feature / behavior          | Single-runtime image | Composable image |
 |-----------------------------|----------------------|------------------|
