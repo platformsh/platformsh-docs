@@ -271,7 +271,7 @@ If you attempt to write to disk outside a `build` hook, you may encounter a `rea
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-To generate anything you need later, [write to disk during a `build` hook](/create-apps/app-reference/single-runtime-image.md#writable-directories-during-build).
+To generate anything you need later, [write to disk during a `build` hook](/create-apps/image-properties/hooks.md#writable-directories-during-build).
 Or [declare mounts](/create-apps/image-properties/mounts.md),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
