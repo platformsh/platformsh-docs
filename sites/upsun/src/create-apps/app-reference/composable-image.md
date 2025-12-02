@@ -26,7 +26,7 @@ You can also skip directly to this [comprehensive example](/create-apps/_index.m
 
 In the `{{< vendor/configfile "app" >}}` file, configure each application as a unique key beneath the top-level `applications` key.
 
-In a composable image, you can add multiple runtimes to a single application container by defining them in the [`.applications.<APP_NAME>.stack`](/create-apps/app-reference/composable-image.html#example-stack-configuration) key, described later in this topic.
+In a composable image, you can add multiple runtimes to a single application container by defining them in the [`.applications.<APP_NAME>.stack`](/create-apps/app-reference/composable-image.md#example-stack-configuration) key, described later in this topic.
 
 The following table presents all of the properties available to each unique application.
 

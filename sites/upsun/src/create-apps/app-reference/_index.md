@@ -61,7 +61,7 @@ Consider using a composable image when these factors are important:
 
 ## Keys used in each image type
 
-Only the single-runtime image supports the [``build``](/create-apps/app-reference/single-runtime-image.md#build), [``dependencies``](/create-apps/app-reference/single-runtime-image.md#dependencies), and [``runtime``](/create-apps/app-reference/single-runtime-image.md#druntime) keys. In a composable image, the equivalent is the [`stack`](/create-apps/app-reference/composable-image.html#stack) key. 
+Only the single-runtime image supports the [``build``](/create-apps/app-reference/single-runtime-image.md#build), [``dependencies``](/create-apps/app-reference/single-runtime-image.md#dependencies), and [``runtime``](/create-apps/app-reference/single-runtime-image.md#druntime) keys. In a composable image, the equivalent is the [`stack`](/create-apps/app-reference/composable-image.md#stack) key. 
 
 Otherwise, the same keys are available for both image types. Differences in syntax or meaning are noted in each key's topic - see the [Image properties](/create-apps/image-properties.md) section for the topics that describe each key.  
 

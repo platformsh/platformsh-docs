@@ -149,8 +149,8 @@ title=Composable image
 
 | Name            | Type                | Required | Description                                                       | Default                                                                                                |
 |-----------------|---------------------|----------|-------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket.                 | Defaults to `tcp` for all [primary runtimes](/create-apps/app-reference/composable-image.html#primary-runtime) except PHP; for PHP the default is `unix`. |
-| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](/create-apps/app-reference/composable-image.html#primary-runtime).                                                        |
+| `socket_family` | `tcp` or `unix`     |          | Whether your app listens on a Unix or TCP socket.                 | Defaults to `tcp` for all [primary runtimes](/create-apps/app-reference/composable-image.md#multiple-runtimes-primary-runtime) except PHP; for PHP the default is `unix`. |
+| `protocol`      | `http` or `fastcgi` |          | Whether your app receives incoming requests over HTTP or FastCGI. | Default varies based on the [primary runtimes](/create-apps/app-reference/composable-image.md#multiple-runtimes-primary-runtime).                                                        |
 
 For PHP, the defaults are configured for PHP-FPM and shouldn't need adjustment.
 For all other containers, the default for `protocol` is `http`.
