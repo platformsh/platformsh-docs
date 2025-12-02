@@ -28,7 +28,7 @@ In particular, notice:
 
   There are consequences to postponing the Gatsby build,
   as you don't generally have write access to the container this late in the pipeline.
-  To allow Gatsby to write to `public`, that directory has been defined as a [mount](/create-apps/app-reference/single-runtime-image#mounts).
+  To allow Gatsby to write to `public`, that directory has been defined as a [mount](/create-apps/image-properties/mounts.md).
 
 {{ .Inner | .Page.RenderString }}
 

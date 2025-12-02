@@ -142,12 +142,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
+That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -172,10 +172,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -351,7 +351,7 @@ You can configure your MySQL service in the [services configuration](/add-servic
 
 | Name               | Type                       | Version                            | Description |
 | ------------------ | -------------------------- | ---------------------------------- | ----------- |
-| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `schemas`          | `string` array      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
 | `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
 | `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
 | `rotate_passwords` | A boolean                  | 10.3+                              | Defaults to `true`. When set to `false`, [password rotation](#password-rotation) is disabled. |
@@ -489,7 +489,7 @@ For security reasons, you can grant your app access to a replica instead of your
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+1. Use the [explicit endpoint syntax](/create-apps/image-properties/relationships.md).
 2. Add the `-replica` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration:
@@ -553,7 +553,7 @@ You may want to grant access to both your main database and its replicas.
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+1. Use the [explicit endpoint syntax](/create-apps/image-properties/relationships.md).
 2. Add the `-all` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration,

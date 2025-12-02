@@ -25,7 +25,7 @@ You may need a variable to change per environment. If so, use the `{{% vendor/cl
 about the app and its infrastructure.
 
 Assuming that MySQL, PostgreSQL, and Redis services have been added to your environment,
-and that the app has been granted access to those services via the following [relationships](/create-apps/app-reference/single-runtime-image.md#relationships):
+and that the app has been granted access to those services via the following [relationships](/create-apps/image-properties/relationships.md):
 
 ```yaml {configFile="app"}
 applications:
