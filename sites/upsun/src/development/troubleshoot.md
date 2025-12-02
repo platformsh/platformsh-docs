@@ -124,13 +124,13 @@ For troubleshooting tips specifically for 502 errors, please head to the [502 er
 
 {{< /note >}}
 
-If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error while accessing your application, it typically indicates that your application is either crashing or unavailable. 
+If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error while accessing your application, it typically indicates that your application is either crashing or unavailable.
 
 Below are the typical causes and potential solutions:
 
 #### 1. Your app is listening at the wrong place
 - **Solution**: Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
-- If your app is listening at a specific port, verify that it’s using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables) and ensure that it is listening at the correct port. 
+- If your app is listening at a specific port, verify that it’s using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables) and ensure that it is listening at the correct port.
 
 #### 2. Configuration issues in `.upsun/config.yaml`
 - **Solution**: Review your `.upsun/config.yaml` configuration.
@@ -171,8 +171,8 @@ For more troubleshooting tips specifically for PHP, please head to the [PHP trou
 
 {{< /note >}}
 
-#### 7. Project created but not pushed 
-- **Solution**: If a project is created but hasn’t been pushed, it can result in a 502 error. 
+#### 7. Project created but not pushed
+- **Solution**: If a project is created but hasn’t been pushed, it can result in a 502 error.
 - Ensure that the project is properly pushed to the environment.
 
 #### 8. Domain added to edge hostname but not the project
@@ -180,7 +180,7 @@ If you add a domain and point it to an edge hostname but haven’t added the dom
 
 **Solution**: If you have added a domain, ensure that you have added the domain to the project and also make sure that it is pointing to the correct edge hostname.
 
-#### 9. Mistyped edge hostname 
+#### 9. Mistyped edge hostname
 If there’s a typo in the edge hostname or if you attempt to request a site while it’s still coming up, you may encounter a 502 error like the one detailed in the example below. It will specify that there is no route known for the url you have provided.
 
   - Example:
@@ -190,9 +190,9 @@ If there’s a typo in the edge hostname or if you attempt to request a site whi
     Error: Response from environment was something other than 200. Response returned was 502
     ```
 
-- **Solution**: Review your edge hostname to ensure that it has been typed correctly. Also, ensure that your site has fully loaded up before requesting it. 
+- **Solution**: Review your edge hostname to ensure that it has been typed correctly. Also, ensure that your site has fully loaded up before requesting it.
 
-#### 10. `command.start` is failing 
+#### 10. `command.start` is failing
 If the `command.start` entry is failing, it can result in a 502 error.
 
 - **Solution**: Comment out the `command:` and `start` lines in your `config.yaml`, then deploy. After deployment, SSH into the environment and copy-paste the command into the terminal to retrieve logs for further debugging.
@@ -368,7 +368,7 @@ and [cookie entry](../define-routes/cache.md#cookies).
 Because the router cache follows cache headers from your app,
 your app needs to send the correct `cache-control` header.
 
-For static assets, set cache headers using the `expires` key in your [app configuration](/create-apps/app-reference/single-runtime-image.md#locations).
+For static assets, set cache headers using the `expires` key in your [app configuration](/create-apps/image-properties/web.md#locations).
 
 ## Language-specific troubleshooting
 
