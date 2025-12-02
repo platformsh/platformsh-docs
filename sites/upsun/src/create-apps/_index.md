@@ -21,7 +21,7 @@ Not sure which image type to use? See [choosing an image type](/create-apps/app-
 
 ## A minimal application
 
-To create a very basic app, you need a few things:
+To create a very basic app (for this example, using a single-runtime image), you need a few things:
 
 * A unique name not shared by any other app in the project.
 * The runtime `type` defining what language it uses.
@@ -193,10 +193,10 @@ title=Composable image
 applications:
   # The app's name, which must be unique within the project.
   {{% variable "APP_NAME" %}}:
-    type: "composable:{{% latest composable %}}"
     # The list of packages you want installed (from the {{% vendor/name %}} collection
     # of supported runtimes and/or from Nixpkgs).
     # For more information, see the Composable image page in the App reference section.
+    type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "php@8.4":

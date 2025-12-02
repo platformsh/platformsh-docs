@@ -23,7 +23,7 @@ Not sure which image type to use? See [choosing an image type](/create-apps/app-
 
 ## A minimal application
 
-To create a very basic app, you need a few things:
+To create a very basic app (for this example, using a single-runtime image), you need a few things:
 
 * A unique `name` not shared by any other app in the project.
 * The runtime `type` defining what language it uses.
