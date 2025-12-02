@@ -26,9 +26,9 @@ title=Single-runtime image
 
 1. Variables accessible at build time become available.
 1. [Build flavor](/create-apps/app-reference/single-runtime-image.md#build) runs if applicable.
-1. Any [dependencies](/create-apps/app-reference/single-runtime-image.md##dependencies) are installed.
+1. Any [dependencies](/create-apps/app-reference/single-runtime-image.md#dependencies) are installed.
 1. The `build` hook is run.
-1. The file system is changed to read only, except for any [mounts](/create-apps/image-properties/mounts.md). 
+1. The file system is changed to read only, except for any [mounts](/create-apps/image-properties/mounts.md).
 1. The app container starts. Variables accessible at runtime and services become available.
 1. The `deploy` hook is run.
 1. The app container begins accepting requests.
@@ -42,7 +42,7 @@ title=Composable image
 
 1. Variables accessible at build time become available.
 1. The `build` hook is run.
-1. The file system is changed to read only, except for any [mounts](/create-apps/image-properties/mounts.md). 
+1. The file system is changed to read only, except for any [mounts](/create-apps/image-properties/mounts.md).
 1. The app container starts. Variables accessible at runtime and services become available.
 1. The `deploy` hook is run.
 1. The app container begins accepting requests.
