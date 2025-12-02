@@ -124,7 +124,7 @@ it indicates your application is crashing or unavailable.
 Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
-  - Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
+  - Check your app's [upstream properties](/create-apps/image-properties/web.html#upstream).
   - If your app listening at a port, make sure it's using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables).
 - Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
