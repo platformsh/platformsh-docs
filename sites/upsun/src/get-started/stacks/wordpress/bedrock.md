@@ -274,7 +274,7 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
 ## 9. Routinely run WP Cron (optional)
 If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
 in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
-a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+a [cron job](/create-apps/image-properties/crons.md) to your project's configuration to have WP CLI
 run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
 as follows:
 
