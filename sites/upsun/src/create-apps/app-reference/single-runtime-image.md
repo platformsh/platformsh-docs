@@ -80,7 +80,7 @@ That is, if a custom value for `source.root` is not provided in your configurati
 to the above.
 
 To specify another directory, for example for a [multi-app project](../multi-app/_index.md),
-use the [`source.root` property](#source).
+use the [`source.root` property](create-apps/image-properties/source.md).
 
 ## `type` {#types}
 
@@ -282,7 +282,7 @@ The container _profile_ defines and enforces a specific CPU-to-memory ratio. The
 Use the {{% vendor/name %}} CLI or Console to manually adjust the allocated container _size_ (CPU and memory resources)—that is, to perform a **vertical‑scaling** action. When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified.
 
 Related topics:
-- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic.
+- For detailed steps for changing the container size, see the [Vertical scaling](/manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic.
 - For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
 - To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
 
