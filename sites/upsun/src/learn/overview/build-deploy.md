@@ -359,7 +359,7 @@ web:
 	  curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
-**For more information about the `post_start` command, visit [web commands](/create-apps/app-reference/single-runtime-image.html#web-commands).**
+**For more information about the `post_start` command, visit [web commands](/create-apps/image-properties/web.md#post_start).**
 
 {{< /note >}}
 

@@ -489,7 +489,7 @@ For security reasons, you can grant your app access to a replica instead of your
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+1. Use the [explicit endpoint syntax](/create-apps/image-properties/relationships.md).
 2. Add the `-replica` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration:
@@ -553,7 +553,7 @@ You may want to grant access to both your main database and its replicas.
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+1. Use the [explicit endpoint syntax](/create-apps/image-properties/relationships.md).
 2. Add the `-all` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration,
