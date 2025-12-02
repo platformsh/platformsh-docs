@@ -56,7 +56,7 @@ The name of the runtime operation in this case is `clear-rebuild`.
 
 For more possibilities, see other [runtime operation examples](#runtime-operation-examples).
 
-## Run a runtime operation 
+## Run a runtime operation
 
 {{< codetabs >}}
 +++
@@ -79,7 +79,7 @@ title=Using the CLI
 +++
 
 
-A runtime operation can be triggered through the {{% vendor/name %}} CLI once it has been [defined](#define-a-runtime-operation). 
+A runtime operation can be triggered through the {{% vendor/name %}} CLI once it has been [defined](#define-a-runtime-operation).
 
 Run the following command:
 
@@ -135,7 +135,7 @@ but want to avoid going through the whole {{% vendor/name %}} [build and deploy 
 The following examples assume that the frontend and backend containers are included in the same environment.
 This isn’t necessary for the commands to run successfully.<BR>
 What _is_ necessary is that the build destination for your frontend **is  writable at runtime**
-(meaning, you must [define a mount](/create-apps/app-reference/single-runtime-image.md#mounts) for it).
+(meaning, you must [define a mount](/create-apps/image-properties/mounts.md) for it).
 If you don’t want to include a build within a mount (especially if your data source **isn’t** on {{% vendor/name %}}),
 you can use [source operations](../create-apps/source-operations.md) to achieve a similar effect,
 but through generating a new commit.

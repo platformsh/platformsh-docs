@@ -80,7 +80,7 @@ applications:
 ## 2. Set up a location for uploads
 
 Application containers are read-only by default; WordPress needs a writable location to store uploaded media.
-To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts). To do so,
+To make the location writable, set up [a mount](/create-apps/image-properties/mounts.md). To do so,
 locate the `mounts:` section that is commented out, and update it as follows:
 
 ```yaml {configFile="app"}

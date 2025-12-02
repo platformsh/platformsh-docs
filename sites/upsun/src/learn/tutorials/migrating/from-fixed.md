@@ -1,5 +1,5 @@
 ---
-title: Converting from Upsun Fixed (formerly Platform.sh) 
+title: Converting from Upsun Fixed (formerly Platform.sh)
 description: Learn how to configure your Upsun Fixed app to work on an Upsun Flex project so that it's deployment-ready.
 keywords:
   - "set remote"
@@ -76,7 +76,7 @@ There are two ways to change the configuration files of your Upsun Fixed (former
 1. [Convert projects with the CLI](#convert-with-the-cli)
 2. [Convert projects manually](#convert-manually)
 
-  **Tip:** Regardless of which method you choose, tools are available to make it easier to edit and validate `.upsun/config.yaml` files - check out [this article](https://devcenter.upsun.com/posts/validate-yaml-config/) in the Upsun DevCenter. 
+  **Tip:** Regardless of which method you choose, tools are available to make it easier to edit and validate `.upsun/config.yaml` files - check out [this article](https://devcenter.upsun.com/posts/validate-yaml-config/) in the Upsun DevCenter.
 
 {{< note theme="info" title="Only one format should exist in your repository" >}}
 
@@ -87,14 +87,14 @@ If both `.platform/` and `.upsun/` directories are present, deployment will fail
 ```yaml
 
  E: Error parsing configuration files: No .platform.app.yaml file found anywhere in the repo
- 
- ``` 
+
+ ```
 
 {{< /note >}}
 
 ### Convert with the CLI
 
-To assist with converting applications from Upsun Fixed (formerly Platform.sh) to {{% vendor/name %}}, the {{< vendor/name >}} converting tool is available as part of the {{% vendor/name %}} CLI. 
+To assist with converting applications from Upsun Fixed (formerly Platform.sh) to {{% vendor/name %}}, the {{< vendor/name >}} converting tool is available as part of the {{% vendor/name %}} CLI.
 
 This feature helps you prepare your existing Upsun Fixed (formerly Platform.sh) configuration for {{% vendor/name %}} Flex. This tool should only be used when migrating to an {{% vendor/name %}} Flex project. After conversion, remove the `.platform/` folder and files from your repository as {{% vendor/name %}} Flex will only read `.upsun/` configuration files.
 
@@ -118,10 +118,10 @@ The converting tool performs the following transformations:
      - Any deprecated or unsupported container options in the source configuration
 
 3. Adjustments to mounts and storage
-   - Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency. 
+   - Converts mounts of type local into {{% vendor/name %}}'s storage format to support horizontal scaling and infrastructure consistency.
    - Ensures that volumes and file persistence are aligned with how {{% vendor/name %}} manages data across containers.
 
-        To learn more, refer to these topics: [`mounts`](/create-apps/image-properties/mounts) (the property available in the [single-runtime](/create-apps/app-reference/single-runtime-image.md#mounts) and [composable](/create-apps/app-reference/composable-image.md#mounts) images), and [network storage](add-services/network-storage.md). 
+        To learn more, refer to these topics: [`mounts`](/create-apps/image-properties/mounts) (the property available in the [single-runtime](/create-apps/image-properties/mounts.md) and [composable](/create-apps/app-reference/composable-image.md#mounts) images), and [network storage](add-services/network-storage.md).
 
 4. Reorganization of custom service configuration
    - Moves custom configuration for [services](/add-services.md) such as `Solr` into the `.upsun/` directory, which is used to hold project-specific overrides and custom assets.
@@ -277,7 +277,7 @@ For any potential more details, see the [specific service](/add-services/_index.
 ## 7. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
-You can upload such files to [mounts you created](/create-apps/app-reference/single-runtime-image.md#mounts).
+You can upload such files to [mounts you created](/create-apps/image-properties/mounts.md).
 Upload to each mount separately.
 
 Suppose you have the following mounts defined:

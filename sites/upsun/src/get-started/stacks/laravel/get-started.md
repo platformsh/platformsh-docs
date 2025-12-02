@@ -113,7 +113,7 @@ The {{% vendor/name %}} default configuration stipulates three writable folders 
 - `"storage"`
 
 If your application writes content outside of these default ones,
-you can [set up mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
+you can [set up mounts](/create-apps/image-properties/mounts.md).
 
 ## 5. Make changes to your project
 

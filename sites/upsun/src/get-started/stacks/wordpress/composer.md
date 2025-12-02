@@ -126,7 +126,7 @@ To set one up, follow these steps:
                  allow: true
                  expires: 1w
    ```
-2. To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).</br>
+2. To make the location writable, set up [a mount](/create-apps/image-properties/mounts.md).</br>
    To do so, locate the `mounts:` section that is commented it out, and update it as follows:
 
    ```yaml {configFile="app"}

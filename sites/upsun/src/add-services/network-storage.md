@@ -3,7 +3,7 @@ title: "Network Storage"
 weight: -30
 ---
 
-The Network Storage service enables a new kind of [mount](../create-apps/app-reference/single-runtime-image.md#mounts)
+The Network Storage service enables a new kind of [mount](../create-apps/image-properties/mounts.md)
 that refers to a shared service rather than to a local directory.
 This service allows you to store data and share it between different apps.
 
