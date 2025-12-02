@@ -59,7 +59,7 @@ applications:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
-    stack: 
+    stack:
       runtimes: [ "nodejs@{{% latest nodejs %}}" ]
     mounts:
       '{{< variable "MOUNT_PATH" >}}':
@@ -80,7 +80,7 @@ See how to [troubleshoot the warning](../troubleshoot-mounts.md#overlapping-fold
 | `source_path` | `string`             | No      | Specifies where the mount points **inside the external directory**.<br/><br/> - If you explicitly set a `source_path`, your mount points to a specific subdirectory in the external directory. <br/><br/> - If the `source_path` is an empty string (`""`), your mount points to the entire external directory.<br/><br/> - If you don't define a `source_path`, {{% vendor/name %}} uses the {{< variable "MOUNT_PATH" >}} as default value, without leading or trailing slashes.</br>For example, if your mount lives in the `/web/uploads/` directory in your app container, it will point to a directory named `web/uploads` in the external directory.  </br></br> **WARNING:** Changing the name of your mount affects the `source_path` when it's undefined. See [how to ensure continuity](#change-name) and maintain access to your files. |
 | `service`     | `string`             |         | The purpose of the `service` key depends on your use case.</br></br> In a multi-app context where a `storage` mount is shared between apps, `service` is required. Its value is the name of the app whose mount you want to share. See how to [share a mount between several apps](#share-a-mount-between-several-apps).</br></br> In a multi-app context where a [Network Storage service](/add-services/network-storage.md) (`service` mount) is shared between apps, `service` is required and specifies the name of that Network Storage. |
 
-The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](#web).
+The accessibility to the web of a mounted directory depends on the [`web.locations` configuration](/create-apps/image-properties/web.md).
 Files can be all public, all private, or with different rules for different paths and file types.
 
 Note that when you remove a `tmp` mount from your `{{< vendor/configfile "app" >}}` file,
@@ -132,7 +132,7 @@ applications:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
-    stack: 
+    stack:
       runtimes: [ "nodejs@{{% latest nodejs %}}" ]
     mounts:
       'web/uploads':
@@ -236,7 +236,7 @@ files in that directory.
 
 ### Share a mount between several apps
 
-By design, [`storage` mounts](#mounts) are shared **between different instances of the same app**,
+By design, [`storage` mounts](/create-apps/image-properties/mounts.md) are shared **between different instances of the same app**,
 which enables [horizontal scaling](/manage-resources/_index.md).
 
 In a [multi-application context](/create-apps/multi-app/_index.md),

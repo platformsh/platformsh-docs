@@ -129,7 +129,7 @@ If you encounter a **502 Bad Gateway** or **503 Service Unavailable** error whil
 Below are the typical causes and potential solutions:
 
 #### 1. Your app is listening at the wrong place
-- **Solution**: Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
+- **Solution**: Check your app's [upstream properties](/create-apps/image-properties/web.md#upstream).
 - If your app is listening at a specific port, verify that it’s using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables) and ensure that it is listening at the correct port.
 
 #### 2. Configuration issues in `.upsun/config.yaml`
