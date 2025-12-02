@@ -72,7 +72,7 @@ If you want to use one of the [databases or other services {{% vendor/name %}} p
 set it up by following these steps:
 
 1. Configure the service based on the documentation for that service.
-1. Use the information from that service inside your app's [`relationships` definition](/create-apps/app-reference/single-runtime-image.md#relationships)
+1. Use the information from that service inside your app's [`relationships` definition](/create-apps/image-properties/relationships.md)
    to configure how your app communicates with the service.
 
 ## Control the build and deploy process

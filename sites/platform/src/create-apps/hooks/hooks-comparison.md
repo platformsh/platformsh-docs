@@ -8,8 +8,8 @@ The following table presents the main differences among the three available hook
 | Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
 | ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- | -------------------- | --------------- | --------------- |
 | `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
-| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts)                   | Yes | No  |
-| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts)                   | No  | Yes |
+| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)                   | Yes | No  |
+| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)                   | No  | Yes |
 
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
