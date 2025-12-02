@@ -33,9 +33,9 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     variables:
       env:
         AUTHOR: 'Juan'
@@ -52,7 +52,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:{{% latest composable %}}"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 

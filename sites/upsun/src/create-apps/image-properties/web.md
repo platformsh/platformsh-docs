@@ -11,8 +11,6 @@ Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#
 Use the `web` key to configure the web server running in front of your app.
 
 For **single-runtime images**, default values might vary based on the image [`type`](/create-apps/app-reference/single-runtime-image.md#types), which defines the base container used to run the application.
-<!-- the preceding new sentence "For single runtime-time images..." replaces the following original sentence in the single-runtime image topic:
-Defaults may vary with a different image type. <- where image type linked to the `type` property in the single-runtime image topic. -->
 
 
 | Name        | Type                                       | Required                      | Description                                          |
@@ -99,6 +97,8 @@ applications:
     type: "composable:{{% latest composable %}}"
     source:
       root: "/"
+    stack: 
+      runtimes: [ "python@{{% latest python %}}" ]
     web:
       commands:
         start: 'uwsgi --ini conf/server.ini'
@@ -132,9 +132,9 @@ The following example is the default on non-PHP containers:
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     web:
       upstream:
         socket_family: tcp
@@ -160,7 +160,7 @@ The following example is the default on non-PHP containers:
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:{{% latest composable %}}"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -204,7 +204,7 @@ title=Single-runtime image
 |---------------------|------------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the [app's root directory](/create-apps/app-reference/single-runtime-image.md#root-directory). Must be an actual directory inside the root directory.                                                                                                                                                                                                                                                                                                                                              |
 | `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. <BR> <BR> If your app is in PHP, when setting `passthru` to `true`, you might want to set `scripts` to `false` for enhanced security. This prevents PHP scripts from being executed from the specified location. You might also want to set `allow` to `false` so that not only PHP scripts can't be executed, but their source code also can't be delivered. |
-| `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys.                                                                                                                                                                                                                                                                                                                                                                                           |
+| `index`             | `string` array or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys.                                                                                                                                                                                                                                                                                                                                                                                           |
 | `expires`           | `string`                                             | `-1`       | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d. If a `Cache-Control` appears on the `headers` configuration, `expires`, if set, will be ignored. Thus, make sure to set the `Cache-Control`'s `max-age` value when specifying a header.                                |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -222,7 +222,7 @@ title=Composable image
 |---------------------|------------------------------------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `root`              | `string`                                             |           | The directory to serve static assets for this location relative to the app's root directory ([see `source.root`](/create-apps/image-properties/source.md)). Must be an actual directory inside the root directory.                                                                                                                                                                                                                                                                                                                                              |
 | `passthru`          | `boolean` or  `string`                               | `false`   | Whether to forward disallowed and missing resources from this location to the app. A string is a path with a leading `/` to the controller, such as `/index.php`. <BR> <BR> If your app is in PHP, when setting `passthru` to `true`, you might want to set `scripts` to `false` for enhanced security. This prevents PHP scripts from being executed from the specified location. You might also want to set `allow` to `false` so that not only PHP scripts can't be executed, but their source code also can't be delivered. |
-| `index`             | Array of `string`s or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys.                                                                                                                                                                                                                                                                                                                                                                                           |
+| `index`             | `string` array or `null`                         |           | Files to consider when serving a request for a directory. When set, requires access to the files through the `allow` or `rules` keys.                                                                                                                                                                                                                                                                                                                                                                                           |
 | `expires`           | `string`                                             | `-1`      | How long static assets are cached. The default means no caching. Setting it to a value enables the `Cache-Control` and `Expires` headers. Times can be suffixed with `ms` = milliseconds, `s` = seconds, `m` = minutes, `h` = hours, `d` = days, `w` = weeks, `M` = months/30d, or `y` = years/365d.                                                                                                                                                                                                                            |
 | `allow`             | `boolean`                                            | `true`    | Whether to allow serving files which don't match a rule.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `scripts`           | `boolean`                                            |           | Whether to allow scripts to run. Doesn't apply to paths specified in `passthru`. Meaningful only on PHP containers.                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -254,9 +254,9 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     web:
       locations:
         '/':
@@ -280,7 +280,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:{{% latest composable %}}"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
@@ -323,9 +323,9 @@ title=Single-runtime image
 ```yaml {configFile="app"}
 applications:
   myapp:
+    type: 'python:{{% latest "python" %}}'
     source:
       root: "/"
-    type: 'python:{{% latest "python" %}}'
     web:
       locations:
         '/':
@@ -344,7 +344,7 @@ title=Composable image
 ```yaml {configFile="app"}
 applications:
   myapp:
-  type: "composable:{{% latest composable %}}"
+    type: "composable:{{% latest composable %}}"
     source:
       root: "/"
     stack: 
