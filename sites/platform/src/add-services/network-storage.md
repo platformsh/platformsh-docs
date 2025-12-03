@@ -206,7 +206,7 @@ and the `done` mount refers to the same directory as the `web/uploads/done` dire
 
 ## Worker instances
 
-When defining a [worker](/create-apps/app-reference/single-runtime-image.md#workers) instance,
+When defining a [worker](/create-apps/image-properties/workers.md) instance,
 keep in mind what mount behavior you want.
 
 `local` mounts are a separate storage area for each instance,

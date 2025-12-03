@@ -65,7 +65,7 @@ So if you accidentally add an unbroken loop, it gets cut off and you can continu
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
 Note that the deploy hook only runs on [`web` instances](/create-apps/image-properties/web.md),
-not [`worker` instances](/create-apps/app-reference/single-runtime-image.md#workers).
+not [`worker` instances](/create-apps/image-properties/workers.md).
 
 You can access other services at this stage (such as MySQL, Solr, Redis).
 The disk where the application lives is read-only at this point.

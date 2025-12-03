@@ -8,7 +8,7 @@ Grid environments consist of:
 
 * App containers: one or more [app containers](/create-apps/_index.md)
 * Service containers: zero or more [service containers](/add-services/_index.md)
-* Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
+* Worker containers: zero or more [worker instances](/create-apps/image-properties/workers.md).
 
 Infrastructure metrics report CPU, RAM, and disk space for app and worker containers
 and CPU and disk space for service containers. These metrics are available for all of your Grid environments.

@@ -96,7 +96,7 @@ It's assumed you want the settings the same, unless you state otherwise in the t
 
 The following settings require a [support ticket](/learn/overview/get-support.md):
 
-* [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
+* [Worker instances](/create-apps/image-properties/workers.md)
 * [Service configuration](/add-services/_index.md)
 * Relationships among services and apps
 * Plan upsizing
