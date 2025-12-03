@@ -73,8 +73,7 @@ The disk where the application lives is read-only at this point.
 This hook should be used when something needs to run once when new code is deployed.
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an instance of an app starts (regardless of whether there's new code)
-should go in the `pre_start` key in [your `web` configuration](/create-apps/image-properties/web.md#web-commands).
-For example, clearing the cache.
+should go in the `pre_start` key in [your `web` configuration](/create-apps/image-properties/web.md#web-commands). For example, clearing the cache.
 
 Be aware: The deploy hook blocks the site accepting new requests.
 If your `deploy` hook is only a few seconds,
