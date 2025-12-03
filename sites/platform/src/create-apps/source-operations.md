@@ -51,7 +51,7 @@ When you trigger a source operation, the following happens in order:
 A source operation requires two things:
 
 - A name that must be unique within the application.
-  The name is the key of the block defined under `source.operations` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#source).
+  The name is the key of the block defined under `source.operations` in your [app configuration](/create-apps/image-properties/source.md).
 
 - A `command` that defines what's run when the operation is triggered.
 
