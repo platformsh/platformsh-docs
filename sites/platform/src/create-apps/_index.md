@@ -15,11 +15,11 @@ keywords:
 Within a single project, you can have one or more apps and each app can have multiple instances.
 Instances are where the same code can be run with different configurations,
 such as one for external communication and one for background processes.
-Apps and instances use similar properties, with minor differences depending on the image type that you choose: 
+Apps and instances use similar properties, with minor differences depending on the image type that you choose:
 - [Single-runtime image](/create-apps/app-reference/single-runtime-image.md)
 - [Composable image](/create-apps/app-reference/composable-image.md)
 
-Not sure which image type to use? See [choosing an image type](/create-apps/app-reference.md). 
+Not sure which image type to use? See [choosing an image type](/create-apps/app-reference.md).
 
 ## A minimal application
 
@@ -88,7 +88,7 @@ Hooks are places for your custom scripts to control how your app is built and de
 ## Configure what's served
 
 Once your app is built, it needs a defined way to communicate with the outside world.
-Define its behavior with a [`web` instance](/create-apps/app-reference/single-runtime-image.md#web).
+Define its behavior with a [`web` instance](/create-apps/image-properties/web.md).
 There you can set what command runs every time your app is restarted,
 how dynamic requests are handled, and how to respond with static files.
 
@@ -123,7 +123,7 @@ Unlike other runtimes most PHP applications do not have a start command. There i
 
 {{< /note >}}
 
-The following example shows a setup for a PHP app with comments to explain the settings. 
+The following example shows a setup for a PHP app with comments to explain the settings.
 
 
 {{< codetabs >}}
@@ -191,7 +191,7 @@ web:
 <--->
 
 +++
-title=Composable image 
+title=Composable image
 +++
 
 ```yaml {configFile="app"}
