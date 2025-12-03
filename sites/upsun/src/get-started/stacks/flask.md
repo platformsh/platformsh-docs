@@ -265,10 +265,10 @@ applications:
   myapp:
     #...
     # The web key configures the web server running in front of your app.
-    # More information: https://docs.upsun.com/create-apps/image-properties/web.html
+    # More information: https://docs.upsun.com/anchors/app/reference/web/
     web:
       # Commands are run once after deployment to start the application process.
-      # More information: https://docs.upsun.com/create-apps/image-properties/web.md#web-commands
+      # More information: https://docs.upsun.com/anchors/app/reference/web/commands/
       commands:
         start: "flask run -p $PORT"
       upstream:
