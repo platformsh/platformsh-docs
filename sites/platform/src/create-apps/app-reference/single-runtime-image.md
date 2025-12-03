@@ -63,7 +63,7 @@ The root defaults to the location of your `{{< vendor/configfile "app" >}}` file
 That is, if a custom value for `source.root` is not provided in your configuration, the default behavior is equivalent to the above.
 
 To specify another directory, for example for a [multi-app project](/create-apps/multi-app/_index.md),
-use the [`source.root` property](#source).
+use the [`source.root` property](/create-apps/image-properties/source.md).
 
 ## `type` {#types}
 
