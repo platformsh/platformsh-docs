@@ -49,7 +49,7 @@ Once the app has gone through all of the build steps, it can connect to services
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
 
-   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br> 
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br>
    You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
 
 6. **Freeze app container**:
@@ -75,7 +75,7 @@ but the file system is read-only.
 1. **Expose services**:
    Networking connections are opened between any containers specified in your app and services configurations.
 1. **Run (pre-) start commands**:
-   The [commands](/create-apps/app-reference/single-runtime-image.md#web-commands) necessary to start your app are run.
+   The [commands](/create-apps/image-properties/web.md#web-commands) necessary to start your app are run.
    Often this stage will only include a start command, which is restarted if ever terminated going forward.
    You may also, however, define a `pre_start` command, when you need to run _per-instance_ actions.
    In this case, as you might expect, the `pre_start` command is run, then the `start` command.
@@ -113,14 +113,14 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Manual deployment is available for **development**, **staging** and **production** environments. 
+Manual deployment is available for **development**, **staging** and **production** environments.
 
 {{< /note >}}
 
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment. 
+You can adjust deployment behavior in your environment.
 
 {{< codetabs >}}
 
@@ -151,7 +151,7 @@ platform environment:deploy:type --help
 title=Using the Console
 +++
 
-To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+To switch to manual, navigate to the environment settings in the Console and select the manual deployments option.
 
 {{< /codetabs >}}
 
@@ -189,7 +189,7 @@ Deploying staged changes:
 title=Using the Console
 +++
 
-In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes. 
+In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes.
 
 <--->
 +++
