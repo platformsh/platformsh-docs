@@ -254,7 +254,7 @@ If you define **multiple runtimes** in an application's `.applications.<app_name
     ```
 
 Related topics:
-- For detailed steps for changing the container size, see the [Vertical scaling](manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic.
+- For detailed steps for changing the container size, see the [Vertical scaling](/manage-resources/adjust-resources.html#vertical-scaling) section of the "Resource configuration topic.
 - For details about container sizes for each resource allocation strategy (shared CPU, guaranteed CPU, and initial allocation), see the [Advanced: Container profiles](/manage-resources/adjust-resources.md#advanced-container-profiles) section of the "Resource configuration" topic.
 - To learn more about general resource management in {{% vendor/name %}}, see the topics in the [Manage resources](/manage-resources.md) section.
 
