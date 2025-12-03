@@ -568,7 +568,7 @@ The `environment` property contains the settings for the environment that was pu
 
 The `deployment` property contains the settings for the deployment,
 including the [image type](/create-apps/app-reference/single-runtime-image.md#types) and
-[resource allocation](/create-apps/app-reference/single-runtime-image.md#sizes).
+[resource allocation](/create-apps/image-properties/size.md).
 
 The following example shows a shortened excerpt of the `deployment` property:
 
