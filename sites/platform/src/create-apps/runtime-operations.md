@@ -5,7 +5,7 @@ weight: 6
 ---
 
 Runtime operations allow you to trigger one-off commands or scripts on your project.
-Similar to [crons](/create-apps/app-reference/single-runtime-image.md#crons), they run in the app container but not on a specific schedule.
+Similar to [crons](/create-apps/image-properties/crons.md), they run in the app container but not on a specific schedule.
 You can [define runtime operations](#define-a-runtime-operation) in your [app configuration](/create-apps/app-reference/single-runtime-image.md)
 and [trigger them](#run-a-runtime-operation) at any time through the {{% vendor/name %}} CLI.
 
@@ -140,7 +140,7 @@ but want to avoid going through the whole {{% vendor/name %}} [build and deploy 
 The following examples assume that the frontend and backend containers are included in the same environment.
 This isn’t necessary for the commands to run successfully.<BR>
 What _is_ necessary is that the build destination for your frontend **is  writable at runtime**
-(meaning, you must [define a mount](/create-apps/app-reference/single-runtime-image.md#mounts) for it).
+(meaning, you must [define a mount](/create-apps/image-properties/mounts.md) for it).
 If you don’t want to include a build within a mount (especially if your data source **isn’t** on {{% vendor/name %}}),
 you can use [source operations](/create-apps/source-operations.md) to achieve a similar effect,
 but through generating a new commit.

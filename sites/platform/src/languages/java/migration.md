@@ -55,7 +55,7 @@ web:
 
 {{< note >}}
 
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/app-reference/single-runtime-image.md#mounts).
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/image-properties/mounts.md).
 
 {{< /note >}}
 
@@ -106,7 +106,7 @@ You can load balance to some or [all applications in the project cluster](https:
 {{% vendor/name %}} provides [managed services](/add-services/_index.md) such as databases, cache and search engines.
 However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/app-reference/single-runtime-image.md#firewall).
 
-When applications need to access a service, it is important to include the [`relationships` key](/create-apps/app-reference/single-runtime-image.md#relationships).
+When applications need to access a service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
 By default an application may not talk to any other container without a `relationship` explicitly allowing access.
 
 To connect to a service from your deployed application, you need to pass the relationships information into your application's configuration.

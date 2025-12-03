@@ -142,7 +142,7 @@ To configure all the environment variables Flask needs to run smoothly, follow t
 
 You need to add some writable disk space to hold the static assets that `flask-static-digest` generates and `npm` builds.
 
-To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/image-properties/mounts.md).
 In your app configuration, locate the section dedicated to mounts and update it as follows:
 
 ```yaml {configFile="app"}

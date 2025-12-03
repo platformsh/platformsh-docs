@@ -67,7 +67,7 @@ You can have services that are only exposed to another service as well as servic
 In a clustered application, you can have one of the following configurations:
 
 - Multiple [applications](/create-apps/multi-app/_index.md), often in different directories or with separate code bases that deploy separately
-- A single app that spawns one or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers) that run background processes
+- A single app that spawns one or more [worker instances](/create-apps/image-properties/workers.md) that run background processes
 
 With a clustered application, you often don't need multiple service instances.
 The [MySQL, MariaDB](/add-services/mysql/_index.md),
@@ -97,7 +97,7 @@ Leveraging the multi-site capabilities of an app are appropriate only in the fol
 
 - There is only a single team working on all of the "sites" involved
 - All "sites" should be updated simultaneously as a single unit
-- Each individual site is relatively low traffic. This means that the total traffic for all sites is appropriate for the resources that have been allocated. 
+- Each individual site is relatively low traffic. This means that the total traffic for all sites is appropriate for the resources that have been allocated.
   [allocated resources](/manage-resources.md)
 - All sites really do use the same codebase with no variation, just different data
 

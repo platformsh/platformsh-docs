@@ -124,7 +124,7 @@ it indicates your application is crashing or unavailable.
 Typical causes and potential solutions include:
 
 - Your app is listening at the wrong place.
-  - Check your app's [upstream properties](/create-apps/app-reference/single-runtime-image.md#upstream).
+  - Check your app's [upstream properties](/create-apps/image-properties/web.html#upstream).
   - If your app listening at a port, make sure it's using the [`PORT` environment variable](/development/variables/use-variables.md#use-provided-variables).
 - Your `{{< vendor/configfile "app" >}}` configuration has an error and a process isn't starting
   or requests can't be forwarded to it correctly.
@@ -214,8 +214,8 @@ If you attempt to write to disk outside a `build` hook, you may encounter a `rea
 Except where you define it, the file system is all read-only, with code changes necessary through git.
 This gives you benefits like repeatable deployments, consistent backups, and traceability.
 
-To generate anything you need later, [write to disk during a `build` hook](/create-apps/app-reference/single-runtime-image.md#writable-directories-during-build).
-Or [declare mounts](/create-apps/app-reference/single-runtime-image.md#mounts),
+To generate anything you need later, [write to disk during a `build` hook](/create-apps/image-properties/hooks.md#writable-directories-during-build).
+Or [declare mounts](/create-apps/image-properties/mounts.md),
 which are writable even during and after deploy.
 They can be used for your data: file uploads, logs, and temporary files.
 
@@ -291,7 +291,7 @@ strace -T {{< variable "YOUR_HOOK_COMMAND" >}} # Print a system call report
 
 ### Cron jobs
 
-Containers can't be shutdown while long-running [cron jobs and scheduled tasks](/create-apps/app-reference/single-runtime-image.md#crons) are active.
+Containers can't be shutdown while long-running [cron jobs and scheduled tasks](/create-apps/image-properties/crons.md) are active.
 That means long-running cron jobs block a container from being shut down to make way for a new deploy.
 
 Make sure your custom cron jobs run quickly and properly.
