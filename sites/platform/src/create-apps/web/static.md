@@ -40,7 +40,7 @@ web:
 
 See more information on the required minimal settings:
 - [Top-level properties](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
-- [`web` property](/create-apps/app-reference/single-runtime-image.md#web).
+- [`web` property](/create-apps/image-properties/web.md).
 - [`locations` properties](/create-apps/app-reference/single-runtime-image.md#locations).
 
 ## Add more features

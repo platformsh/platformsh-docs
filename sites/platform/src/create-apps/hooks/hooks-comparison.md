@@ -20,9 +20,9 @@ The `build` hook is run after any [build flavor](/create-apps/app-reference/sing
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can access only the variables that are available at build time: 
-  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column) 
-  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI)  
+The `build` hook can access only the variables that are available at build time:
+  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column)
+  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI)
 
 During the `build` hook, there are three writeable directories:
 
@@ -64,7 +64,7 @@ So if you accidentally add an unbroken loop, it gets cut off and you can continu
 ## Deploy hook
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
-Note that the deploy hook only runs on [`web` instances](/create-apps/app-reference/single-runtime-image.md#web),
+Note that the deploy hook only runs on [`web` instances](/create-apps/image-properties/web.md),
 not [`worker` instances](/create-apps/app-reference/single-runtime-image.md#workers).
 
 You can access other services at this stage (such as MySQL, Solr, Redis).
