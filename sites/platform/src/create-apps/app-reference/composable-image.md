@@ -37,7 +37,7 @@ To override any part of a property, you must provide the entire property.
 
 {{% note theme="info" %}}
 
-- The `type` and `stack` properties are unique to the composable image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click a property name to view its details in a separate topic.  
+- The `type` and `stack` properties are unique to the composable image type and are described later in this topic. All other properties are available in both single-runtime and composable images — click a property name to view its details in a separate topic.
 - The ``stack`` key replaces the ``build``, ``dependencies``, and ``runtime`` keys that are available in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md).
 
 {{% /note %}}
@@ -67,7 +67,7 @@ To override any part of a property, you must provide the entire property.
 
 ## `type` {#type}
 
-Required for all applications that use the composable image. Defines the version of the Nix channel that application uses. 
+Required for all applications that use the composable image. Defines the version of the Nix channel that application uses.
 
 For example, to specify the Nix channel `{{% latest composable %}}` for `{{< variable "APP_NAME" >}}`, use the following syntax:
 
@@ -79,28 +79,28 @@ applications:
 
 ### Supported Nix channels
 
-Upsun supports the following Nix channel versions: 
+Upsun supports the following Nix channel versions:
 
 - `{{% latest composable %}}`
 
-View the list of [supported Nix runtimes](#supported-nix-packages) in the `stack` section below. 
+View the list of [supported Nix runtimes](#supported-nix-packages) in the `stack` section below.
 
 ## `stack` {#stack}
 
-You must define the `stack` element by using distinct `runtimes` and `packages` keys, as described in the following table. 
+You must define the `stack` element by using distinct `runtimes` and `packages` keys, as described in the following table.
 
 See the [example `stack` configuration](#example-stack-configuration) that follows this table.
 
-| Name            | Type                | Required | Additional keys | Description                                                       | 
+| Name            | Type                | Required | Additional keys | Description                                                       |
 |-----------------|---------------------|------------------| ----------|-------------------------------------------------------------------|
-| `runtimes` | array     |  No        | `extensions`, `disabled_extensions`, and related subkeys | An array of 1+ language runtimes specified as `"<nixruntime@version>"` or `<nixruntime>`.<BR>The first declared runtime (or _[primary runtime](#primary-runtime)_) is started automatically.<BR>See the complete list of [supported runtimes](#supported-nix-packages) below. |
+| `runtimes` | array     |  No        | `extensions`, `disabled_extensions`, and related subkeys | An array of 1+ language runtimes specified as `"<nixruntime@version>"` or `<nixruntime>`.<BR>The first declared runtime (or _[primary runtime](#multiple-runtimes-primary-runtime)_) is started automatically.<BR>See the complete list of [supported runtimes](#supported-nix-packages) below. |
 | `packages`      | array |  No        | `package`, `channel`, additional keys to demonstrate passthrough flexibility | Additional Nix tools/libraries, using the channel from `type` unless overridden locally by specifying the `package` and its `channel`. Format: `<nixpackage>`   |
 
 {{% note title="Runtimes extensions or packages?" %}}
-Be sure you understand where to specify a runtime's additional components. For example: 
-- **PHP**: Manage extensions by using the `stack.runtimes.extensions` and `stack.runtimes.disabled_extensions` keys.<br> 
+Be sure you understand where to specify a runtime's additional components. For example:
+- **PHP**: Manage extensions by using the `stack.runtimes.extensions` and `stack.runtimes.disabled_extensions` keys.<br>
   - Note: In some scenarios, you might [add PHP settings](/languages/php/_index.md#customize-php-settings) via environment variables or `php.ini`.
-      
+
 - **Python**: Install extra packages via the `stack.packages` key.<br>
 
 See the [example `stack` configuration](#example-stack-configuration) below.<br>
@@ -109,21 +109,21 @@ For other runtimes, see the [Languages](/languages/_index.md) section.
 
 ### Example: `stack` configuration {#example-stack-configuration}
 
-The `config.yaml` file excerpt below shows the following `stack` configuration: 
+The `config.yaml` file excerpt below shows the following `stack` configuration:
 - **Primary runtime:** `php@8.4` with additional extensions and one disabled extension
-- **Secondary runtimes:** `nodejs@{{% latest "nodejs" %}}` and `python@{{% latest "python" %}}` 
-- **Nix packages:** 
+- **Secondary runtimes:** `nodejs@{{% latest "nodejs" %}}` and `python@{{% latest "python" %}}`
+- **Nix packages:**
   - `yarn` and `python313Packages.yq` from the channel defined in `type`
   - `python313Packages.jupyterlab` (with config) and `wkhtmltopdf` from the `unstable` channel
 
 ```yaml {configFile="app"}
-applications: 
+applications:
   {{% variable "APP_NAME" %}}:
     type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "php@8.4":
-            extensions: 
+            extensions:
               - apcu
               - pdo_sqlite
               - facedetect
@@ -139,7 +139,7 @@ applications:
         - "python@{{% latest "python" %}}"
       packages:
         - yarn                      # Package manager
-        - python313Packages.yq      # Python package 
+        - python313Packages.yq      # Python package
         - package: python313Packages.jupyterlab   # Python package with optional Nix configuration
           channel: unstable
           configuration:
@@ -175,13 +175,13 @@ See the [`stack` configuration example](#example-stack-configuration) above, whi
 
 ### PHP as a primary runtime {#php-as-a-primary-runtime}
 
-If a PHP runtime is the first declared (or _primary_) runtime in the app: 
-  - The PHP-FPM service starts automatically.  
-  - You can configure the PHP-FPMP service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key. 
+If a PHP runtime is the first declared (or _primary_) runtime in the app:
+  - The PHP-FPM service starts automatically.
+  - You can configure the PHP-FPMP service by using `request_terminate_timeout` and `sizing_hints` keys in the app's `stack.runtimes` key.
 
-    The [`stack` configuration example](#example-stack-configuration) above declares PHP as a primary runtime but does not show these additional keys. 
-    
-For the complete list of PHP extension keys and PHP-FPM sizing hints, see [Modify your PHP runtime when using the composable image](/languages/php.html#modify-your-php-runtime-when-using-the-composable-image) section in the "PHP" topic.
+    The [`stack` configuration example](#example-stack-configuration) above declares PHP as a primary runtime but does not show these additional keys.
+
+For the complete list of PHP extension keys and PHP-FPM sizing hints, see [Modify your PHP runtime when using the composable image](/languages/php.md#modify-your-php-runtime-when-using-a-composable-image) section in the "PHP" topic.
 
 Related resource: [When php-fpm runs out of workers: a 502 error field guide](https://devcenter.upsun.com/posts/when-php-fpm-runs-out-of-workers-a-502-error-field-guide/) (Dev Center article)
 
@@ -196,9 +196,9 @@ Runtimes **not** listed below are supported only by Nix as Nixpkgs _packages_, n
 
 {{% /note %}}
 
-For some runtimes (such as Clojure), you can specify only a major version. 
+For some runtimes (such as Clojure), you can specify only a major version.
 </br>
-For other runtimes (such as Elixir), you can specify a major or a major.minor version. 
+For other runtimes (such as Elixir), you can specify a major or a major.minor version.
 Security and other patches are applied automatically.
 
 | **Language**                                 | **Nix package** | **Supported version(s)**                        |
@@ -217,7 +217,7 @@ Security and other patches are applied automatically.
 
 ### PHP extensions and Python packages {#php-extensions-and-python-packages}
 
-To discover which PHP extensions and Python packages are available for these runtimes: 
+To discover which PHP extensions and Python packages are available for these runtimes:
 
 1. Go to the [NixOS search](https://search.nixos.org/).
 1. Enter a runtime and click **Search**.
@@ -236,7 +236,7 @@ To discover which PHP extensions and Python packages are available for these run
 
   {{% /note %}}
 
-4. Add extensions to `stack.runtimes.extensions` and packages to `stack.packages` as described in the [`stack`](#stack) section above. 
+4. Add extensions to `stack.runtimes.extensions` and packages to `stack.packages` as described in the [`stack`](#stack) section above.
 
 
 
@@ -244,9 +244,9 @@ To discover which PHP extensions and Python packages are available for these run
 
 By default, {{% vendor/name %}} assigns a container profile and container size to each application and service on the first deployment of a project. <br>
 
-The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.    
+The container _profile_ defines and enforces a specific CPU-to-memory ratio. The default container profile for an app or service in a composable image is ``HIGH_CPU``.
 
-To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified. 
+To change the container _size_, which is a **vertical‑scaling** action, you must [change your plan size](/administration/pricing.md#plans). When you redeploy, the container runs with the CPU‑to‑memory ratio defined by its profile, so it enforces the size you specified.
 
 If you define **multiple runtimes** in an application's `.applications.<app_name>.stack.runtimes` key, you must [change your plan size](/administration/pricing.md#plans) to Medium (`M`) or larger.
 
@@ -264,7 +264,7 @@ you can use a mix of [single-runtime images](/create-apps/app-reference/single-r
 and composable images.
 
 
-The following sample configuration includes two applications: 
+The following sample configuration includes two applications:
 - ``frontend`` – uses a single-runtime image
 - ``backend`` – uses a composable image<br>
   In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](#php-as-a-primary-runtime) section in this topic.
@@ -274,10 +274,10 @@ The following sample configuration includes two applications:
 applications:
   frontend:
     # this app uses the single-runtime image with a specific node.js runtime
-    type: 'nodejs:{{% latest "nodejs" %}}' 
+    type: 'nodejs:{{% latest "nodejs" %}}'
   backend:
     # this app uses the composable image and specifies two runtimes
-    type: "composable:8.4" 
+    type: "composable:8.4"
     stack:
       runtimes:
         - "php@8.4":
