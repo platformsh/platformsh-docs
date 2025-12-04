@@ -52,7 +52,7 @@ If the resources are high and hovering close to the 100% threshold,
 you might want to consider:
 
 * [Optimizing your code](/increase-observability/_index.md) (if possible)
-* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
+* Changing your [app size](/create-apps/image-properties/size.md)
   or [service size](/add-services/_index.md#size)
 * [Increasing your plan](/administration/pricing/_index.md)
 

@@ -51,12 +51,12 @@ applications:
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
 2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar. For example, `mvn clean package`.
-3. [The commands key defines the command to launch the application](/create-apps/app-reference/single-runtime-image.md#web-commands). For example,  `java -jar file.jar`.
+3. [The commands key defines the command to launch the application](create-apps/image-properties/web.md#web-commands). For example,  `java -jar file.jar`.
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. For example, `java -jar jar --port=$PORT`.
 
 {{< note >}}
 
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/app-reference/single-runtime-image.md#mounts).
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/image-properties/mounts.md).
 
 {{< /note >}}
 
@@ -125,9 +125,9 @@ While the table above shows examples for Upsun Fixed rather than for {{% vendor/
 ## Access to managed services
 
 {{% vendor/name %}} provides [managed services](/add-services/_index.md) such as databases, cache and search engines.
-However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/app-reference/single-runtime-image.md#firewall).
+However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/image-properties/firewall.md).
 
-When applications need to access a service, it is important to include the [`relationships` key](/create-apps/app-reference/single-runtime-image.md#relationships).
+When applications need to access a service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
 By default an application may not talk to any other container without a `relationship` explicitly allowing access.
 
 To connect to a service from your deployed application, you need to pass the relationships information into your application's configuration.

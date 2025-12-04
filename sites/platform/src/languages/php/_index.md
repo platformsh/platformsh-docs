@@ -6,7 +6,7 @@ layout: single
 
 {{% note theme="info" %}}
 
-You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 To find out more about this feature, see the [dedicated documentation page](/create-apps/app-reference/composable-image.md).</br>
 Also, see how you can [modify your PHP runtime when using a composable image](#modify-your-php-runtime-when-using-a-composable-image).
 
@@ -482,7 +482,7 @@ Common functions to disable include:
 PHP has two execution modes you can choose from:
 
 - The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
-  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/app-reference/single-runtime-image.md#crons),
+  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/image-properties/crons.md),
   and usually also for [alternate start commands](#alternate-start-commands).
   To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
   where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
@@ -495,7 +495,7 @@ PHP has two execution modes you can choose from:
 ## Alternate start commands
 
 To specify an alternative process to run your code, set a `start` command.
-For more information about the start command, see the [web commands reference](/create-apps/app-reference/single-runtime-image.md#web-commands).
+For more information about the start command, see the [web commands reference](/create-apps/image-properties/web.md#web-commands).
 
 By default, start commands use PHP-CLI.
 Find out how and when to use each [execution mode](#execution-mode).
@@ -555,7 +555,7 @@ web:
 ```
 
    When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
-   See more options on how to [configure where requests are sent](/create-apps/app-reference/single-runtime-image.md#upstream).
+   See more options on how to [configure where requests are sent](/create-apps/image-properties/web.html#upstream).
    You might have to configure your app to connect via the `$PORT` TCP socket,
    especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 
@@ -650,7 +650,7 @@ See [complete working examples for C and Rust](https://github.com/platformsh-exa
 
 {{% note theme= "warning" %}}
 
-This section is only relevant when using the {{% vendor/name %}} [composable image (BETA)](/create-apps/app-reference/composable-image.md).
+This section is only relevant when using the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md).
 
 {{% /note %}}
 
@@ -660,7 +660,7 @@ See the example below for more details.
 
 | Name                        | Type                                                                                                                             | Description                                                                                             |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
+| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image.md#stack) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
 | `disabled_extensions`       | List of `string`s                                                                                                                | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
 | `request_terminate_timeout` | `integer`                                                                                                                        | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
 | `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |

@@ -76,7 +76,7 @@ On {{% names/dedicated-gen-2 %}} Environments, it runs as [SolrCloud](https://so
 
 ## Cron tasks interrupted by deploys
 
-How [cron tasks](/create-apps/app-reference/single-runtime-image.md#crons) interact with deploys changes based on the environment.
+How [cron tasks](/create-apps/image-properties/crons.md) interact with deploys changes based on the environment.
 
 On Grid environments, a running cron task blocks a deploy until the cron is complete.
 On {{% names/dedicated-gen-2 %}} environments, a deploy terminates a running cron task.
@@ -96,7 +96,7 @@ It's assumed you want the settings the same, unless you state otherwise in the t
 
 The following settings require a [support ticket](/learn/overview/get-support.md):
 
-* [Worker instances](/create-apps/app-reference/single-runtime-image.md#workers)
+* [Worker instances](/create-apps/image-properties/workers.md)
 * [Service configuration](/add-services/_index.md)
 * Relationships among services and apps
 * Plan upsizing

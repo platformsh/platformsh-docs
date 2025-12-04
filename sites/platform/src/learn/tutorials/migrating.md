@@ -235,7 +235,7 @@ For any potential more details, see the [specific service](/add-services/_index.
 ## {{% version/ifelse "6" "7" %}}. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
-You can upload such files to [mounts you created](/create-apps/app-reference/single-runtime-image.md#mounts).
+You can upload such files to [mounts you created](/create-apps/image-properties/mounts.md).
 Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:
