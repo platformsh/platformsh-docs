@@ -64,11 +64,12 @@ applications:
         post_start: "./scripts/warm-up.sh"
 ```
 
-| Name           | Type   | Required | Blocks Traffic        | Description                                                                                                                                               |
-| -------------- | ------ | -------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **pre_start**  | string | No       | No                    | Runs before `start`. Ideal for short per-instance setup tasks, such as preparing local caches or setting file permissions.                                |
-| **start**      | string | Yes      | Yes (until running)   | The main command that launches your app. Traffic is blocked until this command successfully runs. If it exits, {{% vendor/name %}} restarts the instance. |
-| **post_start** | string | No       | Yes (until completed) | Runs after the app starts but before the instance is added to the router. Use for warm-up tasks that must complete before serving traffic.                |
+| Name           | Type   | Required | Description                                                                                                                                               |
+| -------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **pre_start**  | string | No       | Runs before `start`. Ideal for short per-instance setup tasks, such as preparing local caches or setting file permissions.                                |
+| **start**      | string | Yes      | The main command that launches your app. If it exits, {{% vendor/name %}} restarts the instance.                                                          |
+| **post_start** | string | No       | Runs after the app starts but before the instance is added to the router. Use for warm-up tasks that must complete before serving traffic.                |
+
 
 For more information about web commands, visit the [Single-runtime Image page](/create-apps/app-reference/single-runtime-image.html#web-commands).
 
