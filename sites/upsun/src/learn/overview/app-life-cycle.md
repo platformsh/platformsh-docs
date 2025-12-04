@@ -166,7 +166,7 @@ web:
 	  date
 	  curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
-{{< note theme="info" title="Zero Downtime Deployment" >}}
+{{< note theme="info" title="Zero-Downtime Deployment" >}}
 
 For more information about Zero Downtime Deployment, visit the [build deploy documentation page](/learn/overview/build-deploy.html#zero-downtime-deployments).
 
