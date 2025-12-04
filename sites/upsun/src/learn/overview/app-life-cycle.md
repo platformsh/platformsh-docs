@@ -27,7 +27,7 @@ Each new application instance goes through its own startup steps before it can r
 
 ### Deployment Lifecycle (Environment-level)
 
-These steps run once per deployment, no matter how many instances you have:
+These steps run one time per deployment, no matter how many instances you have:
 
 - `build` → Create the application image
 - `deploy` → Run blocking environment-wide tasks before going live
