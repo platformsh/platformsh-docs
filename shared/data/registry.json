@@ -39,6 +39,31 @@
       ]
     }
   },
+  "clickhouse": {
+    "description": "",
+    "disk": false,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "min_disk_size": null,
+    "name": "ClickHouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "25.8",
+        "25.3",
+        "24.3",
+        "23.8"
+      ],
+      "legacy": []
+    }
+  },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
     "repo_name": "dotnet",
