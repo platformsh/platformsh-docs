@@ -27,10 +27,10 @@ Each new application instance goes through its own startup steps before it can r
 
 ### Deployment Lifecycle (Environment-level)
 
-These steps run once per deployment, no matter how many instances you have:
+These steps run one time per deployment, no matter how many instances you have:
 
 - `build` → Create the application image
-- `deploy` → Run blocking environment-wide tasks before going live
+- `deploy` → Run blocking environment-wide tasks before publication in production
 - `post-deploy` → Run safe, non-blocking background tasks after the deployment is live
 
 [![The steps in the deployment flow](https://mermaid.ink/img/pako:eNplkt2O0zAQhV9l5L0BKa3c_NEECalN1DskhPYKglhjTxqrjh05zpal6i0PwCPyJDhpWoq48xyd74w94xPhRiDJSa3MkTfMOngsKw3wSD9XpMROmZcWtYMP1nDse1iAHXQPRnOEDi2Im6UiXyp9QWGxeAcbH1BYZA5B4xFY1ynJmZNGAzfaManR9hMEsJmIrSc-DhqeLqFP0BhzgFet3NuJ6wNA_QyO9Yf-9UxuJ7Lw5EaIu2BwBqwZnL_i75-_wFlW15LPUDFB5bVdZ3r39d-e3xg_7D2vxX27keWK-TFs4Fkahe7tX2kLSrZ4JxT_e8qr5yaVWM82qKVS-UNK43S3C7hRxubHRrq7yNE8BszWku4iGs7WB0qpd5KA7K0UJHd2wIC0aFs2luQ0plTENdhiRXJ_FFizQfm9VfrssY7pT8a0V9I_ft-QvGaq99XQCb_IUjK_ivamWtQCbeHH5EierqYMkp_Id5KH8XqZrsJkHa2TlIZRFJAXkkfxck2TMKSrLI3DMKLxOSA_pq50-SYNkyxOs2ydZOkq83EopDP2_eWHTh_1_AfE39-r?type=png)](https://mermaid.live/edit#pako:eNplkt2O0zAQhV9l5L0BKa3c_NEECalN1DskhPYKglhjTxqrjh05zpal6i0PwCPyJDhpWoq48xyd74w94xPhRiDJSa3MkTfMOngsKw3wSD9XpMROmZcWtYMP1nDse1iAHXQPRnOEDi2Im6UiXyp9QWGxeAcbH1BYZA5B4xFY1ynJmZNGAzfaManR9hMEsJmIrSc-DhqeLqFP0BhzgFet3NuJ6wNA_QyO9Yf-9UxuJ7Lw5EaIu2BwBqwZnL_i75-_wFlW15LPUDFB5bVdZ3r39d-e3xg_7D2vxX27keWK-TFs4Fkahe7tX2kLSrZ4JxT_e8qr5yaVWM82qKVS-UNK43S3C7hRxubHRrq7yNE8BszWku4iGs7WB0qpd5KA7K0UJHd2wIC0aFs2luQ0plTENdhiRXJ_FFizQfm9VfrssY7pT8a0V9I_ft-QvGaq99XQCb_IUjK_ivamWtQCbeHH5EierqYMkp_Id5KH8XqZrsJkHa2TlIZRFJAXkkfxck2TMKSrLI3DMKLxOSA_pq50-SYNkyxOs2ydZOkq83EopDP2_eWHTh_1_AfE39-r)
@@ -82,7 +82,7 @@ For more information about web commands, visit the [Single-runtime Image page](/
 
 ## Deploy and `post_deploy` hooks
 
-While [web commands](#web-commands) run on every instance during startup, deployment-level hooks run only once per deployment, on a single container. They do not run during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling or instance restarts.
+While [web commands](#web-commands) run on every instance during startup, deployment-level hooks run only one time per deployment, on a single container. They do not run during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling or instance restarts.
 
 Use `build`, `deploy`, and `post_deploy` for image preparation, environment-wide tasks, or background jobs that should run per-deployment.
 
@@ -149,13 +149,13 @@ This ensures new instances are ready before the router adds them.
 
 {{< note theme="tip" title="Autoscaling" >}}
 
-For more information about Autoscaling, visit the [Autoscaling docs page](/manage-resources/autoscaling.html).
+For more information about autoscaling, visit the [Autoscaling docs page](/manage-resources/autoscaling.html).
 
 {{< /note >}}
 
 ### Zero-downtime example
 
-If your [application takes longer to become responsive](/learn/overview/build-deploy.html#application-is-slow-to-start), traffic might be switched back to your original application before it’s fully ready. This can cause temporary errors immediately after deployment.
+If your [application is slow to respond](/learn/overview/build-deploy.html#application-is-slow-to-start), traffic might be routed back to your original application before it’s fully ready. This rerouting can cause temporary errors immediately after deployment.
 
 `post_start` can help co-ordinate so the app receives traffic only when it’s fully ready. An example of a `post_start` command waiting for your application would be:
 
