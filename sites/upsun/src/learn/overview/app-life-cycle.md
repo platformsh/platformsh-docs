@@ -81,7 +81,7 @@ For more information about web commands, visit the [Single-runtime Image page](/
 
 ## Deploy and `post_deploy` hooks
 
-While [web commands](#web-commands) run on every instance during startup, deployment-level hooks run only once per deployment, on a single container. They do not run during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling or instance restarts.
+While [web commands](#web-commands) run on every instance during startup, deployment-level hooks run only one time per deployment, on a single container. They do not run during [horizontal](/manage-resources/adjust-resources.html#horizontal-scaling) autoscaling or instance restarts.
 
 Use `build`, `deploy`, and `post_deploy` for image preparation, environment-wide tasks, or background jobs that should run per-deployment.
 
