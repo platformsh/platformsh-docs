@@ -148,7 +148,7 @@ This ensures new instances are ready before the router adds them.
 
 {{< note theme="tip" title="Autoscaling" >}}
 
-For more information about Autoscaling, visit the [Autoscaling docs page](/manage-resources/autoscaling.html).
+For more information about autoscaling, visit the [Autoscaling docs page](/manage-resources/autoscaling.html).
 
 {{< /note >}}
 
