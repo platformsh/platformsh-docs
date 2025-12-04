@@ -326,6 +326,27 @@
       ]
     }
   },
+  "gotenberg": {
+    "description": "",
+    "disk": true,
+    "docs": {
+      "relationship_name": "gotenberg",
+      "service_name": "gotenberg",
+      "url": "/add-services/gotenberg.html"
+    },
+    "endpoint": "gotenberg",
+    "min_disk_size": null,
+    "name": "Gotenberg",
+    "repo_name": "gotenberg",
+    "runtime": false,
+    "type": "gotenberg",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "8"
+      ]
+    }
+  },
   "java": {
     "description": "",
     "docs": {
