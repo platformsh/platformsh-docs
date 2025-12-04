@@ -24,7 +24,7 @@ title=Single-runtime image
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
-the [top-level properties](/create-apps/app-reference/single-runtime-image.md#primary-application-properties).
+the [top-level properties](/create-apps/app-reference/single-runtime-image.md#top-level-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 

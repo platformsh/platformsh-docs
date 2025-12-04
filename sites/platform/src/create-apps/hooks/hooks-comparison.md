@@ -20,9 +20,9 @@ The `build` hook is run after any [build flavor](/create-apps/app-reference/sing
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can access only the variables that are available at build time: 
-  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column) 
-  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI)  
+The `build` hook can access only the variables that are available at build time:
+  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column)
+  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI)
 
 During the `build` hook, there are three writeable directories:
 
@@ -64,8 +64,8 @@ So if you accidentally add an unbroken loop, it gets cut off and you can continu
 ## Deploy hook
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
-Note that the deploy hook only runs on [`web` instances](/create-apps/app-reference/single-runtime-image.md#web),
-not [`worker` instances](/create-apps/app-reference/single-runtime-image.md#workers).
+Note that the deploy hook only runs on [`web` instances](/create-apps/image-properties/web.md),
+not [`worker` instances](/create-apps/image-properties/workers.md).
 
 You can access other services at this stage (such as MySQL, Solr, Redis).
 The disk where the application lives is read-only at this point.
@@ -73,8 +73,7 @@ The disk where the application lives is read-only at this point.
 This hook should be used when something needs to run once when new code is deployed.
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an instance of an app starts (regardless of whether there's new code)
-should go in the `pre_start` key in [your `web` configuration](/create-apps/app-reference/single-runtime-image.md#web-commands).
-For example, clearing the cache.
+should go in the `pre_start` key in [your `web` configuration](/create-apps/image-properties/web.md#web-commands). For example, clearing the cache.
 
 Be aware: The deploy hook blocks the site accepting new requests.
 If your `deploy` hook is only a few seconds,

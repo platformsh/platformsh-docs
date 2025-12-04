@@ -6,7 +6,7 @@ weight: 15
 
 Workers are instances of your code that aren't open to connections from other apps or services or the outside world.
 They're good for handling background tasks.
-See how to [configure a worker](/create-apps/app-reference/single-runtime-image.md#workers) for your app.
+See how to [configure a worker](/create-apps/image-properties/workers.md) for your app.
 
 Note that to have enough resources to support a worker and a service, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project).
 
@@ -74,7 +74,7 @@ It may be any valid shell command, although most often it runs a command in your
 If the command specified by the `start` key terminates, it's restarted automatically.
 
 Note that [`deploy` and `post_deploy` hooks](/create-apps/hooks/_index.md) as well as [`cron` commands](/create-apps/image-properties/crons.md)
-run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
+run only on the [`web`](/create-apps/image-properties/web.md) container, not on workers.
 
 ## Inheritance
 

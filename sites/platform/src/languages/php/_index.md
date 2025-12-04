@@ -495,7 +495,7 @@ PHP has two execution modes you can choose from:
 ## Alternate start commands
 
 To specify an alternative process to run your code, set a `start` command.
-For more information about the start command, see the [web commands reference](/create-apps/app-reference/single-runtime-image.md#web-commands).
+For more information about the start command, see the [web commands reference](/create-apps/image-properties/web.md#web-commands).
 
 By default, start commands use PHP-CLI.
 Find out how and when to use each [execution mode](#execution-mode).
