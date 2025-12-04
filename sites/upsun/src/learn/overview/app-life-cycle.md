@@ -168,7 +168,7 @@ web:
 ```
 {{< note theme="info" title="Zero-Downtime Deployment" >}}
 
-For more information about Zero Downtime Deployment, visit the [build deploy documentation page](/learn/overview/build-deploy.html#zero-downtime-deployments).
+For more information about Zero-Downtime Deployment, visit the [build deploy documentation page](/learn/overview/build-deploy.html#zero-downtime-deployments).
 
 {{< /note >}}
 
