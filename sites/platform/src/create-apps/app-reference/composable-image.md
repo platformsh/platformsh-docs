@@ -274,7 +274,7 @@ applications:
     type: 'nodejs:{{% latest "nodejs" %}}'
   backend:
     # this app uses the composable image and specifies two runtimes
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     stack:
       runtimes:
         - "php@8.4":
