@@ -14,7 +14,7 @@
         "is_master": true
     },
     "password": "",
-    "type": "oracle-mysql:8.4",
+    "type": "oracle-mysql:{{< latest "oracle-mysql" >}}",
     "public": false,
     "host_mapped": false
 }
