@@ -73,7 +73,7 @@ Also, should the program terminate for any reason, it's automatically restarted.
 Note that the start command _must_ run in the foreground.
 
 Incoming requests are passed to the application using either a TCP (default) or Unix socket.
-The application must use the [appropriate environment variable](/create-apps/app-reference/single-runtime-image.md#where-to-listen) to determine the URI to listen on.
+The application must use the [appropriate environment variable](/create-apps/image-properties/variables.md) to determine the URI to listen on.
 For a TCP socket ([recommended](https://go.microsoft.com/fwlink/?linkid=874850)), the application must listen on `http://127.0.0.1`,
 using the `PORT` environment variable.
 

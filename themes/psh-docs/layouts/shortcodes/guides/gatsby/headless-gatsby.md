@@ -9,7 +9,7 @@ In particular, notice:
 
 - `relationships`
 
-  Access to another service or app container in the cluster is given through [`relationships`](/create-apps/app-reference/single-runtime-image#relationships).
+  Access to another service or app container in the cluster is given through [`relationships`](/create-apps/image-properties/relationships.md).
   In this case, one has been defined to the backend {{ .Get "name" }} container using it's `name`.
 
 - `post_deploy`

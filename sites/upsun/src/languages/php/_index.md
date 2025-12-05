@@ -68,7 +68,7 @@ Usually, it contains the two following (optional) keys:
 - `root` for the document root,
   the directory to which all requests for existing `.php` and static files (such as `.css`, `.jpg`) are sent.
 - `passthru` to [define a front controller](../../create-apps/web/php-basic.md#set-different-rules-for-specific-locations) to handle nonexistent files.
-  The value is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
+  The value is a file path relative to the [app root](/create-apps/image-properties/source.md).
 
   {{< note >}}
 

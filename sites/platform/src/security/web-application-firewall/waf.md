@@ -104,7 +104,7 @@ The WAF enforces any file extension restriction you may have defined in your [ap
 
 To set up a file extension restriction,
 adjust the [`web.locations` dictionary](/create-apps/app-reference/single-runtime-image.md#locations).
-Set up [rules](/create-apps/app-reference/single-runtime-image.md#rules) to allow only certain file extensions on a given path.
+Set up [rules](/create-apps/image-properties/web.md#rules) to allow only certain file extensions on a given path.
 
 ### Disallowed requests and headers
 
