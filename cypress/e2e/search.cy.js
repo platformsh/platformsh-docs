@@ -50,7 +50,7 @@ describe("Searches",()=>{
 
     it("Searches for something that should not match on Platformsh, but should on Upsun", ()=>{
       const searchDetails = {
-        search: 'vertical scaling',
+        search: 'qdrant',
         header: 'No results',
         body: 'No documentation matched'
       }

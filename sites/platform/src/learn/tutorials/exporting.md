@@ -59,7 +59,7 @@ title=Using Git
 ## 2. Download your files
 
 Some files might not be stored in Git,
-such as data your app writes [in mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
+such as data your app writes [in mounts](/create-apps/image-properties/mounts.md).
 
 You can download your files [using the CLI](/development/file-transfer.md#transfer-files-using-the-cli) or [using SSH](/development/file-transfer.md#transfer-files-using-an-ssh-client).
 

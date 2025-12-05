@@ -17,7 +17,7 @@ This means that the only way you can edit your app's code is through Git.
 However, you can transfer files to and from your built app without using Git.
 To do so, you need to configure mounts or use an SSH client.
 
-[Mounts](/create-apps/app-reference/single-runtime-image.md#mounts) let you set up directories that remain writable after the build is complete.
+[Mounts](/create-apps/image-properties/mounts.md) let you set up directories that remain writable after the build is complete.
 You can then transfer files directly to and from mounts inside your app
 with a single command via the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 
