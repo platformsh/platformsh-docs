@@ -136,11 +136,8 @@ applications:
       packages:
         - yarn                      # Package manager
         - python313Packages.yq      # Python package
-        - package: python313Packages.jupyterlab   # Python package with optional Nix configuration
+        - package: python313Packages.jupyterlab
           channel: unstable
-          configuration:
-            withMathjax: false      # Disable MathJax support
-            withMimeExtensions: true
         - package: wkhtmltopdf      # Conversion tool
           channel: unstable
 ```
@@ -285,7 +282,7 @@ applications:
     type: 'nodejs:{{% latest "nodejs" %}}'
   backend:
     # this app uses the composable image and specifies two runtimes
-    type: "composable:8.4"
+    type: "composable:25.05"
     stack:
       runtimes:
         - "php@8.4":
