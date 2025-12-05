@@ -57,7 +57,7 @@ db:
 
 # Uncomment the line below to use a MySQL database
 # dbmysql:
-#   type: oracle-mysql:8.0
+#   type: oracle-mysql:8.4
 #   disk: 256
 ```
 
