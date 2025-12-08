@@ -78,7 +78,7 @@ type: 'php:{{% latest "php" %}}'
 ```
 ### 2. Serve your app
 
-To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/app-reference/single-runtime-image.md#locations).
+To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/image-properties/web.md#locations).
 
 Usually, it contains the two following (optional) keys:
 

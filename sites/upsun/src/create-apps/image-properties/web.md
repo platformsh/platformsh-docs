@@ -110,7 +110,7 @@ applications:
 {{< /codetabs >}}
 
 
-### Upstream
+### `upstream` {#upstream}
 
 {{< codetabs >}}
 
@@ -186,7 +186,7 @@ Where to listen depends on your setting for `web.upstream.socket_family` (defaul
 If your application isn't listening at the same place that the runtime is sending requests,
 you see `502 Bad Gateway` errors when you try to connect to your website.
 
-### Locations
+### `locations` {#locations}
 
 Each key in the `locations` dictionary is a path on your site with a leading `/`.
 For `example.com`, a `/` matches `example.com/` and `/admin` matches `example.com/admin`.
