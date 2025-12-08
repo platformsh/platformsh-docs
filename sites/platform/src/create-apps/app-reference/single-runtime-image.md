@@ -222,7 +222,7 @@ you can use a mix of single-runtime images and [composable images](/create-apps/
 The following sample configuration includes two applications:
 - ``frontend`` – uses a single-runtime image
 - ``backend`` – uses a composable image<br>
-  In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](#php-as-a-primary-runtime) section in this topic.
+  In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](/create-apps/app-reference/composable-image.md#php-as-a-primary-runtime) section in the Composable image topic.
 
 
 ```yaml {configFile="app"}

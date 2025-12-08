@@ -67,6 +67,6 @@ Only the single-runtime image supports the [``build``](/create-apps/app-referenc
 Otherwise, the same keys are available for both image types. Differences in syntax or meaning are noted in each key's topic - see the [Image properties](/create-apps/image-properties.md) section for the topics that describe each key.  
 
 ## Multi-app projects
-In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
+In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable image](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) topic.
 
 
