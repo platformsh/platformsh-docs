@@ -212,3 +212,36 @@ The following table shows the properties that can be set in `sizing_hints`:
 | `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
 
 See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
+
+## Combine single-runtime and composable images {#combine-single-runtime-and-composable-images}
+
+In a [multiple application context](/create-apps/multi-app/_index.md),
+you can use a mix of single-runtime images and [composable images](/create-apps/app-reference/composable-image.md).
+
+
+The following sample configuration includes two applications:
+- ``frontend`` – uses a single-runtime image
+- ``backend`` – uses a composable image<br>
+  In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](#php-as-a-primary-runtime) section in this topic.
+
+
+```yaml {configFile="app"}
+applications:
+  frontend:
+    # this app uses the single-runtime image with a specific node.js runtime
+    type: 'nodejs:{{% latest "nodejs" %}}'
+  backend:
+    # this app uses the composable image and specifies two runtimes
+    type: "composable:8.4"
+    stack:
+      runtimes:
+        - "php@8.4":
+            extensions:
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
+        - "python@3.13"
+      packages:
+        - "python313Packages.yq" # python package specific
+```
