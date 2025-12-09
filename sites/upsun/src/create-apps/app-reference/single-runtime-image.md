@@ -109,38 +109,6 @@ applications:
     type: 'php:{{% latest "php" %}}'
 ```
 
-### Combine single-runtime and composable images {#combine-single-runtime-and-composable-images}
-
-In a [multiple application context](/create-apps/multi-app/_index.md),
-you can use a mix of single-runtime images
-and [composable images](/create-apps/app-reference/composable-image.md).
-
-
-The following sample configuration includes two applications:
-- ``frontend`` – uses a single-runtime image
-- ``backend`` – uses a composable image<br>
-
-```yaml {configFile="app"}
-applications:
-  frontend:
-    # this app uses the single-runtime image with a specific node.js runtime
-    type: 'nodejs:{{% latest "nodejs" %}}'
-  backend:
-    # this app uses the composable image and specifies two runtimes
-    type: "composable:{{% latest composable %}}"
-    stack:
-      runtimes:
-        - "php@8.4":
-            extensions:
-              - apcu
-              - sodium
-              - xsl
-              - pdo_sqlite
-        - "python@3.13"
-      packages:
-        - "python313Packages.yq" # python package specific
-```
-
 ## `build` {#build}
 
 The only property of the `build` dictionary is `flavor`, which specifies a default set of build tasks to run.
@@ -292,3 +260,36 @@ Related topics:
 You can reduce the target disk size of an app. Keep in mind:
 - Backups created before the downsize are incompatible and cannot be used; you must [create new backups](/environments/backup.md).
 - The downsize will fail if the disk contains more data than the target size.
+
+### Combine single-runtime and composable images {#combine-single-runtime-and-composable-images}
+
+In a [multiple application context](/create-apps/multi-app/_index.md),
+you can use a mix of single-runtime images
+and [composable images](/create-apps/app-reference/composable-image.md).
+
+
+The following sample configuration includes two applications:
+- ``frontend`` – uses a single-runtime image
+- ``backend`` – uses a composable image<br>
+  In this app, PHP is the primary runtime and is started automatically (PHP-FPM also starts automatically when PHP is the primary runtime). For details, see the [PHP as a primary runtime](/create-apps/app-reference/composable-image.md#php-as-a-primary-runtime) section in the Composable image topic.
+
+```yaml {configFile="app"}
+applications:
+  frontend:
+    # this app uses the single-runtime image with a specific node.js runtime
+    type: 'nodejs:{{% latest "nodejs" %}}'
+  backend:
+    # this app uses the composable image and specifies two runtimes
+    type: "composable:{{% latest composable %}}"
+    stack:
+      runtimes:
+        - "php@8.4":
+            extensions:
+              - apcu
+              - sodium
+              - xsl
+              - pdo_sqlite
+        - "python@3.13"
+      packages:
+        - "python313Packages.yq" # python package specific
+```

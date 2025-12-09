@@ -36,7 +36,7 @@ Defining your app's tech stack depends on on the image type you choose:
 - Composable image: In the [`stack`](/create-apps/app-reference/composable-image.md#stack) key, define the ``runtimes`` and ``packages`` that your app requires.
 
 ## Multi-app projects
-In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
+In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable image](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) topic.
 
 
 

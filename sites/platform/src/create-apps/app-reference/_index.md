@@ -38,7 +38,7 @@ Manually defining a stack in a composable image is typically simpler than adding
 
 Consider using a composable image when these factors are important:
 - Your application requires multiple runtimes and tools, or different versions of the same package.
-- You build your own services. See the [Building your own services](#building-services) section below.
+- You build your own services. 
 - You want the ability to install _all_ the packages you need in your application container, ensuring that an application works on any machine.<BR> 
     In a composable image, you can accomplish this by using supported Nix channels. This method ensures app consistency and helps to streamline the development, testing, and deployment processes.
     
@@ -62,11 +62,11 @@ Consider using a composable image when these factors are important:
 
 ## Keys used in each image type
 
-Only the single-runtime image supports the [``build``](/create-apps/app-reference/single-runtime-image.md#build), [``dependencies``](/create-apps/app-reference/single-runtime-image.md#dependencies), and [``runtime``](/create-apps/app-reference/single-runtime-image.md#druntime) keys. In a composable image, the equivalent is the [`stack`](/create-apps/app-reference/composable-image.md#stack) key. 
+Only the single-runtime image supports the [``build``](/create-apps/app-reference/single-runtime-image.md#build), [``dependencies``](/create-apps/app-reference/single-runtime-image.md#dependencies), and [``runtime``](/create-apps/app-reference/single-runtime-image.md#runtime) keys. In a composable image, the equivalent is the [`stack`](/create-apps/app-reference/composable-image.md#stack) key. 
 
 Otherwise, the same keys are available for both image types. Differences in syntax or meaning are noted in each key's topic - see the [Image properties](/create-apps/image-properties.md) section for the topics that describe each key.  
 
 ## Multi-app projects
-In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) image topic.
+In a multiple application context, you can use a mix of single-runtime images and composable images. See the examples in the [single-runtime image](/create-apps/app-reference/single-runtime-image.md#combine-single-runtime-and-composable-images) topic and [composable image](/create-apps/app-reference/composable-image.md#combine-single-runtime-and-composable-images) topic.
 
 
