@@ -14,7 +14,7 @@ Also, see how you can [modify your PHP runtime when using the composable image](
 
 ## Supported versions
 
-{{< images-lifecycle >}}
+{{% images-lifecycle %}}
 
 You can select the major and minor version.
 
