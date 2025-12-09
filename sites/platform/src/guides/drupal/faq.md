@@ -41,4 +41,4 @@ For Drupal sites, the name of the session cookie is based on a hash of the domai
 If you see a bare "File not found" error when accessing your Drupal site with a browser,
 you've pushed your code as a vanilla project but no `index.php` has been found.
 
-Make sure your repository contains an `index.php` file in the [web location root](/create-apps/app-reference/single-runtime-image.md#locations).
+Make sure your repository contains an `index.php` file in the [web location root](/create-apps/image-properties/web.md#locations).
