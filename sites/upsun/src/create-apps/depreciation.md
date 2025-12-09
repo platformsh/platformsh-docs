@@ -15,10 +15,14 @@ Each {{% vendor/name %}} image moves through four lifecycle stages:
 
 | **Stage** | **Description** | **{{% vendor/name %}} Support** | **User Action** |
 | ---- | ---- | ---- | ---- |
-| Active | Latest LTS or community-supported version with ongoing updates. | Full support | No action needed |
-| Deprecated | Upstream version leaves active support. Upsun still maintains the image, but it will be retired soon. | Full support |Start preparing migration |
-| Retired | Upstream security support ends. Image is frozen, provided as-is and not maintained. |	Limited support	| Upgrade as soon as possible |
-| Decommissioned | Image is no longer available. Builds using it will fail. | - | Migration required to continue deploying |
+| **Active** | Latest LTS or community-supported version with ongoing updates. | Full support | No action needed |
+| **Deprecated** | Upstream version leaves active support.
+Upsun still maintains the image, but it will be retired soon. | Full support |Start preparing migration |
+| **Retired** | Upstream security support ends.
+Image is frozen, provided as-is and not maintained.
+The image will be decomissioned in 180 days |	Limited support	| Upgrade as soon as possible |
+| **Decommissioned** | Image is no longer available.
+Builds using it will fail. | - | Upgrade required to continue deploying |
 
 These lifecycle stages are aligned with upstream support timelines for each ecosystem. {{% vendor/name %}} only supports:
 - LTS versions for ecosystems with formal LTS (e.g., Node.js), and
