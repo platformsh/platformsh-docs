@@ -1,5 +1,5 @@
 ---
-title: "`hooks`"
+title: "hooks"
 weight: 4
 description: A hooks dictionary that defines which commands run at different stages in the build and deploy process.
 keywords:

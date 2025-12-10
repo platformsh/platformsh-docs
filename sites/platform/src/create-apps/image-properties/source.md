@@ -1,5 +1,5 @@
 ---
-title: "`source`"
+title: "source"
 weight: 4
 description: Contains information about the app’s source code and operations that can be run on it.
 ---
