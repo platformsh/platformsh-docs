@@ -67,7 +67,7 @@ During the `build` hook, there are three writeable directories:
 - `/tmp`:
   Isn't deployed and is wiped between each build.
   Note that `PLATFORM_CACHE_DIR` is mapped to `/tmp`
-  and together they offer about 8GB of free space.
+  and together they offer about 8 GB of free space.
 
 ### Hook failure
 
