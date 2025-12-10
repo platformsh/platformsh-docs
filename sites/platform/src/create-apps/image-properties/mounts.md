@@ -1,5 +1,5 @@
 ---
-title: "`mounts`"
+title: "mounts"
 weight: 4
 description: Defines the directories that are writable even after the app is built.
 ---
@@ -149,6 +149,5 @@ applications:
 
 The `service` mount type specifically exists to share data between instances of the same application, whereas `tmp` and `instance` are meant to restrict data to build time and runtime of a single application instance, respectively.
 These allowances are not compatible, and will result in an error if pushed.
-
 
 

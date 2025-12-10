@@ -1,5 +1,5 @@
 ---
-title: "`crons`"
+title: "crons"
 weight: 4
 description: A cron dictionary that defines scheduled tasks for the app.
 ---

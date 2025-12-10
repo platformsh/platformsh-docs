@@ -1,5 +1,5 @@
 ---
-title: "`mounts`"
+title: "mounts"
 weight: 4
 description: Directories that are writable even after the app is built.
 ---

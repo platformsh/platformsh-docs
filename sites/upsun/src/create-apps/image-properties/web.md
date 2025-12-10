@@ -1,5 +1,5 @@
 ---
-title: "`web`"
+title: "web"
 weight: 4
 description: A web instance that defines how the web application is served.
 ---
