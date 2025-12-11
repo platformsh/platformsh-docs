@@ -20,79 +20,79 @@ Dedicated Generation 2 consists of two parts: a development environment and a De
 
 ## Dedicated Generation 2 vs Grid
 
-Much of the tooling used on Grid is used for DG2, but there are still some differences. Please find a list of the similarities and differences between these two environments below: 
+Much of the tooling used on Grid is used for DG2, but there are still some differences. Please find a list of the similarities and differences between these two environments below:
 
-| Feature                                                | Dedicated Generation 2                                                            | Grid                                                                              |
-|--------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| **Source Operations**                                  | Yes                                                                               | Yes                                                                               |
-| **PHP version upgrade**                                | Self-service via YAML config files                                                | Self-service via YAML config files                                                |
-| **Node.js version upgrade**                            | Self-service via YAML config files                                                | Self-service via YAML config files                                                |
-| **Cron management**                                    | Self-service via YAML config files                                                | Self-service via YAML config files                                                |
-| **Web server internal config : locations**             | Self-service via YAML config files                                                | Self-service via YAML config files                                                |
-| **CDN**                                                | Fastly                                                                            | A managed Fastly CDN service can be purchased through Upsun                 |
-| **Dedicated IP**                                       | Yes                                                                               | No                                                                                |
-| **Configuration management**                           | Split responsibility between Upsun and customer                             | only YAML files                                                                   |
-| **Usable regions**                                     | Any region needed                                                                 | Only publicly available                                                           |
-| **Autonomous upsize**                                  | Managed through Upsun Fixed                                                       | Yes                                                                               |
-| **Autoscaling**                                        | Yes                                                                               | No                                                                                |
-| **Upsize or Downsize methods**                         | No downtime - each instance is altered in a rolling fashion                       | Redeploy - possible downtime depending on the hooks                               |
-| **Multi availability zones**                           | Yes                                                                               | No                                                                                |
-| **New Relic**                                          | APM + New Relic infrastructure                                                    | APM Supported only                                                                |
-| **Multi-app support**                                  | Supported through docroots                                                        | Supported natively                                                                |
-| **Routes management**                                  | Self-service                                                                      | Self-service                                                                      |
-| **Environment clone**                                  | Only on development environments                                                  | Yes on all branches                                                               |
-| **Services : Add, remove, upgrade**                    | Managed by Upsun Fixed                                                            | Self-service                                                                      |
-| **Relationships : Add, remove, update**                | Managed by Upsun Fixed                                                            | Self-service                                                                      |
-| **Workers management**                                 | Managed by Upsun Fixed                                                            | Self-service                                                                      |
-| **Web server internal config : domains**               | Managed by Upsun Fixed                                                            | Self-service                                                                      |
-| **Storage allocation between mounts, DB and services** | Managed by Upsun Fixed                                                            | Self-service                                                                      |
-| **Cron tasks interrupted by deploys**                  | Yes: a deploy will terminate a running Cron task                                  | No: a running Cron task will block a deployment until it is complete              |
-| **Log exports**                                        | Managed by Upsun Fixed with Rsyslog exports and Fastly log exports                | Log forwarding feature and Fastly log export also available                       |
-| **Sync and merge functionalities**                     | Only on development environments                                                  | Yes on all branches                                                               |
+| Feature                                                | Dedicated Generation 2                                                                | Grid                                                                                  |
+|--------------------------------------------------------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Source Operations**                                  | Yes                                                                                   | Yes                                                                                   |
+| **PHP version upgrade**                                | Self-service via YAML config files                                                    | Self-service via YAML config files                                                    |
+| **Node.js version upgrade**                            | Self-service via YAML config files                                                    | Self-service via YAML config files                                                    |
+| **Cron management**                                    | Self-service via YAML config files                                                    | Self-service via YAML config files                                                    |
+| **Web server internal config : locations**             | Self-service via YAML config files                                                    | Self-service via YAML config files                                                    |
+| **CDN**                                                | Fastly                                                                                | A managed Fastly CDN service can be purchased through Upsun                           |
+| **Dedicated IP**                                       | Yes                                                                                   | No                                                                                    |
+| **Configuration management**                           | Split responsibility between Upsun and customer                                       | only YAML files                                                                       |
+| **Usable regions**                                     | Any region needed                                                                     | Only publicly available                                                               |
+| **Autonomous upsize**                                  | Managed through Upsun Fixed                                                           | Yes                                                                                   |
+| **Autoscaling**                                        | Yes                                                                                   | No                                                                                    |
+| **Upsize or Downsize methods**                         | No downtime - each instance is altered in a rolling fashion                           | Redeploy - possible downtime depending on the hooks                                   |
+| **Multi availability zones**                           | Yes                                                                                   | No                                                                                    |
+| **New Relic**                                          | APM + New Relic infrastructure                                                        | APM Supported only                                                                    |
+| **Multi-app support**                                  | Supported through docroots                                                            | Supported natively                                                                    |
+| **Routes management**                                  | Self-service                                                                          | Self-service                                                                          |
+| **Environment clone**                                  | Only on development environments                                                      | Yes on all branches                                                                   |
+| **Services : Add, remove, upgrade**                    | Managed by Upsun Fixed                                                                | Self-service                                                                          |
+| **Relationships : Add, remove, update**                | Managed by Upsun Fixed                                                                | Self-service                                                                          |
+| **Workers management**                                 | Managed by Upsun Fixed                                                                | Self-service                                                                          |
+| **Web server internal config : domains**               | Managed by Upsun Fixed                                                                | Self-service                                                                          |
+| **Storage allocation between mounts, DB and services** | Managed by Upsun Fixed                                                                | Self-service                                                                          |
+| **Cron tasks interrupted by deploys**                  | Yes: a deploy will terminate a running Cron task                                      | No: a running Cron task will block a deployment until it is complete                  |
+| **Log exports**                                        | Managed by Upsun Fixed with Rsyslog exports and Fastly log exports                    | Log forwarding feature and Fastly log export also available                           |
+| **Sync and merge functionalities**                     | Only on development environments                                                      | Yes on all branches                                                                   |
 | **SLA**                                                | 99.99% with [Enterprise or Elite](https://upsun.com/fixed-pricing/)                   | 99.9% with [Enterprise or Elite](https://upsun.com/fixed-pricing/)                    |
-| **Infrastructure**                                     | Dedicated 3 node cluster                                                          | Containers with dedicated resources on top of a shared redundant infrastructure   |
-| **Functioning**                                        | 3 nodes are running all applications and services and are replicated              | A single container is deployed per runtimes and per services                      |
-| **Resources allocation**                               | Resources deployed on 3 nodes                                                     | Resources are spread through the container with fixed sizes after deployment      |
-| **MySQL Replication**                                  | Yes: 3 services nodes cluster                                                     | None: standalone service container                                                |
-| **Redis Replication**                                  | Yes: 3 services nodes cluster                                                     | None: standalone service container                                                |
-| **High Availability (HA)**                             | Yes                                                                               | No                                                                                |
-| **Split Architecture**                                 | Yes                                                                               | No                                                                                |
-| **Storage**                                            | Local disks are accessed either locally or via glusterfs                          | 100 GB self service max (can be extended upon request)                            |
-| **Automated backup**                                   | Yes                                                                               | Yes                                                                               |
+| **Infrastructure**                                     | Dedicated 3 node cluster                                                              | Containers with dedicated resources on top of a shared redundant infrastructure       |
+| **Functioning**                                        | 3 nodes are running all applications and services and are replicated                  | A single container is deployed per runtimes and per services                          |
+| **Resources allocation**                               | Resources deployed on 3 nodes                                                         | Resources are spread through the container with fixed sizes after deployment          |
+| **MySQL Replication**                                  | Yes: 3 services nodes cluster                                                         | None: standalone service container                                                    |
+| **Redis Replication**                                  | Yes: 3 services nodes cluster                                                         | None: standalone service container                                                    |
+| **High Availability (HA)**                             | Yes                                                                                   | No                                                                                    |
+| **Split Architecture**                                 | Yes                                                                                   | No                                                                                    |
+| **Storage**                                            | Local disks are accessed either locally or via glusterfs                              | 100 GB self service max (can be extended upon request)                                |
+| **Automated backup**                                   | Yes                                                                                   | Yes                                                                                   |
 | **Custom domains name**                                | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers | On all branches for [Enterprise or Elite](https://upsun.com/fixed-pricing/) customers |
-| **MongoDB**                                            | Yes                                                                               | Standalone service container                                                      |
-| **web.commands.post_start**                            | No                                                                                | Self-service via YAML config files                                                |
+| **MongoDB**                                            | Yes                                                                                   | Standalone service container                                                          |
+| **web.commands.post_start**                            | No                                                                                    | Self-service via YAML config files                                                    |
 
 
 ### Optional features
 
-You can enable the following features on your Dedicated Gen 2 projects. To enable an optional feature or get more information on potential fees, [contact Sales](https://upsun.com/contact-us/).
+You can enable the following features on your Dedicated Gen 2 projects. To enable an optional feature or get more information on potential fees, [contact Sales](https://upsun.com/contact-us/).
 
 #### Multiple applications
 
 You can create multiple apps within a single project so they can share data. This can be useful if you have several apps that are closely related, such as a backend-only CMS and a frontend system for content delivery and display.
 
-For more information, see how to [configure multiple apps in a single project](/create-apps/multi-app/_index.md).
+For more information, see how to [configure multiple apps in a single project](/create-apps/multi-app/_index.md).
 
-#### Staging environments 
+#### Staging environments
 
 A dedicated single-node staging machine is provisioned for your application with an identical software configuration to your production hardware, but reduced hardware specs. This gives the advantages of isolating the staging load from the production hardware as well as having an identical software configuration to perform UAT, but this option doesn’t provide a bed for performance testing as the physical hardware configuration isn’t the same as production.
 
-#### Additional application servers (Split Architecture)
+#### Additional application servers (Split Architecture)
 
 For especially high-traffic sites we can also add additional application-only servers. These servers contain just the application code; data storage services (such as SQL, Solr, Redis) are limited to the standard three. The cluster begins to look more like a standard N-Tier architecture at this point, with a horizontal line of web application servers in front of a 3 node (N+1) cluster of Galera database servers.
 
 Speak to your sales representative about the costs associated with adding additional application servers. This configuration requires a separate setup from the default so advanced planning is required.
 
-#### SFTP 
+#### SFTP
 
 In addition to SSH accounts, you can create SFTP accounts with a custom user/password that are restricted to certain directories. These directories must be one of the writeable mounts.
 
-There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). SSH public key based authentication is also supported on the SFTP account.
+There is no cost for this configuration, and you can request it at any time via a [support ticket](/learn/overview/get-support.md). SSH public key based authentication is also supported on the SFTP account.
 
-See how to [transfer files through sftp](/development/file-transfer.md).
+See how to [transfer files through sftp](/development/file-transfer.md).
 
-#### Error handling 
+#### Error handling
 
 On Grid projects, incoming requests are held at the edge router temporarily during a deploy. That allows a site to “respond slowly” rather than be offline during a deploy, provided the deploy time is short (a few seconds).
 
@@ -100,9 +100,11 @@ On Dedicated Gen 2 projects, incoming requests aren’t held during deploy and r
 
 By default, Upsun Fixed serves generic Upsun-branded error pages for errors generated before a request reaches the application. (5XX errors, some 4XX errors, etc.) Alternatively you may provide a static error page for each desired error code via a ticket for us to configure with the CDN. This file may be any static HTML file but is limited to 64 KB in size.
 
-#### Remote logging 
+#### Remote logging
 
-Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support.md). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
+Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support.md). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
+
+For a broader list of supported third-party destinations and configuration details, see [Third-party log forwarding integrations](/increase-observability/logs/forward-logs.html#third-party-log-forwarding-integrations).
 
 When contacting support to enable rsyslog, you need:
 
@@ -112,9 +114,9 @@ When contacting support to enable rsyslog, you need:
 
 There is no cost for this functionality.
 
-#### IP restrictions 
+#### IP restrictions
 
-Upsun Fixed supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](/environments/http-access-control.md). These may be configured through the development environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
+Upsun Fixed supports [project-level IP restrictions (allow/deny) and HTTP Basic authentication](/environments/http-access-control.md). These may be configured through the development environment and are automatically replicated from the production and staging branches to the production and staging environments, respectively.
 
 Changing access control triggers a new deployment of the current environment. However, the changes aren’t propagated to child environments until they’re manually redeployed.
 
