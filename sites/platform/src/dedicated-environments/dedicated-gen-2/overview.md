@@ -104,7 +104,7 @@ By default, Upsun Fixed serves generic Upsun-branded error pages for errors gene
 
 Dedicated Gen 2 supports sending logs to a remote logging service such as Loggly, Papertrail, or Logz.io using the rsyslog service. This is an optional feature and you can request that it be enabled via a [support ticket](/learn/overview/get-support.md). Once enabled and configured your application can direct log output to the system syslog facility and is replicated to the remote service you have configured.
 
-For a broader list of supported third-party destinations and configuration details, see [Third-party log forwarding integrations](/increase-observability/logs/forward-logs.html#third-party-log-forwarding-integrations).
+For a broader list of supported third-party destinations and configuration details, see [Third-party log forwarding integrations](/increase-observability/logs/forward-logs.md#third-party-log-forwarding-integrations).
 
 When contacting support to enable rsyslog, you need:
 
