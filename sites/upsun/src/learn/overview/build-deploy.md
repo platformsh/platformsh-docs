@@ -221,6 +221,11 @@ Instead of stopping services before updating, a temporary copy of your applicati
 
 ![A duplicate is made of your current application](/images/ZDD/ZDD-1.jpg "0.4")
 
+**Original application is updated**
+
+- The original app is updated with the new code and configuration.
+- The deploy hook is executed for the original app.
+
 **Cloned apps are removed after deployment**
 
 - When deployment is complete, the clone of your app is shut down and removed.
@@ -230,9 +235,9 @@ Instead of stopping services before updating, a temporary copy of your applicati
 
 {{< note theme="warning" >}}
 During the Zero Downtime Deployment process, both the old and new containers run simultaneously for a short period.
-You could be temporarily be billed for extra resources while both versions are active.
-- If your app uses fewer resources and has a short deploy hook time, additional costs will be minimal.
-- If your app’s deploy hook takes longer to run and uses larger resources, expect proportionally higher temporary costs.
+You could be temporarily billed for extra resources while both versions are active.
+- If your app uses fewer resources and has a short deployment time, additional costs will be minimal.
+- If your app’s deployment takes longer to run and uses larger resources, expect proportionally higher temporary costs.
 {{< /note >}}
 
 ### Deployment strategies
@@ -264,8 +269,6 @@ You could be temporarily be billed for extra resources while both versions are a
 
 **Environment type:** Zero Downtime Deployments are only available on {{% vendor/name %}} Flex.
 
-**Deployment mode:** Requires [Manual Deployments](#manual-deployment) to be enabled.
-
 {{< /note >}}
 
 
@@ -278,6 +281,12 @@ You could be temporarily be billed for extra resources while both versions are a
 | Stateful services (databases, caches) | Not suitable |
 | DB schema migrations | Not suitable _(except if updates are backward and forward compatible)_ | |
 
+{{< note theme="info" >}}
+
+If the last deployment failed, you can only use the default stop-start strategy.
+
+{{< /note >}}
+
 ## How to use Zero Downtime Deployments
 
 {{< codetabs >}}
@@ -286,12 +295,12 @@ You could be temporarily be billed for extra resources while both versions are a
 title=Using the CLI
 +++
 
-**Default (stop-start)**
+**On code push**
 ```bash
-upsun environment:deploy --strategy stopstart
+upsun push --deploy-strategy rolling
 ```
 
-**Zero Downtime (rolling)**
+**With Manual Deployments**
 ```bash
 upsun environment:deploy --strategy rolling
 ```
@@ -325,7 +334,7 @@ During any deployment, long-lived connections like WebSockets or Server-Sent Eve
 
 With ZDD, you can plan for smooth reconnection:
 
-- SSE supports automatic retry logic (MDN reference).
+- SSE supports automatic [retry logic](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#retry).
 
 - WebSocket clients should implement reconnect logic.
 
@@ -361,9 +370,7 @@ web:
 
 If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an increase in resource usage and costs.
 
-{{< note theme="info" title="Redeploy manually">}}
-After a failed or interrupted deployment, check your environment’s running containers and [redeploy manually](#manual-deployment) to ensure no duplicates remain active. This helps prevent hidden resource consumption.
-{{< /note >}}
+Try redeploy or deploy using the stop-start strategy (if Manual Deployments enabled) to ensure no duplicates remain active. If you still experience issues, [contact support](/learn/overview/get-support.md).
 
 ## Deployment philosophy
 
