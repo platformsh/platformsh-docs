@@ -1,5 +1,5 @@
 ---
-title: "`disk`"
+title: "disk"
 weight: 4
 description: An `integer` (or `null`) that defines the disk space allocated (in MB) to an app.
 ---
@@ -10,7 +10,7 @@ Optional in [single-runtime](/create-apps/app-reference/single-runtime-image.md#
 
 The maximum total space available to all apps and services is set by the storage in your plan settings.
 When deploying your project, the sum of all `disk` keys defined in app and service configurations
-must be *equal or less* than the plan storage size.
+cannot exceed the available storage in your plan.
 
 So if your *plan storage size* is 5&nbsp;GB, you can, for example, assign it in one of the following ways:
 
@@ -23,7 +23,10 @@ You need to either increase your plan's storage or decrease the `disk` values yo
 
 You configure the disk size in [MB](/glossary/_index.md#mb). Your actual available disk space is slightly smaller with some space used for formatting and the filesystem journal. When checking available space, note whether it’s reported in MB or MiB.
 
-### Altering `disk` values
+If you need more storage to fit the sum of all `disk` keys, it is necessary to [switch plans](/administration/pricing.md#switch-plans). This can only be done by people with the [manage plans permission](/administration/users.md#organization-permissions).
+
+
+### Backups and altering `disk` values
 
 It's a best practice to [back up your environment](/environments/backup.md) **before and after** you increase **or** decrease the `disk` value (the amount of allocated storage space) of an app or service.
 

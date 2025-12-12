@@ -1,5 +1,5 @@
 ---
-title: "`container_profile`"
+title: "container_profile"
 weight: 4
 description: Defines the container profile of the application.
 ---

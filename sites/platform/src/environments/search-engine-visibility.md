@@ -58,7 +58,7 @@ It's automatically on for all `{{% vendor/cli %}}.site` domains, and it's automa
 
 You can also send instructions to search engine indexers using a `robots.txt` file.
 Your app can serve this as a static file from its disk or as a dynamic response from its `passthru`.
-Control either with the [`location` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations).
+Control either with the [`location` section of your app configuration](/create-apps/image-properties/web.md#locations).
 
 If your `robots.txt` file includes instructions to ignore a page,
 search engine indexers may ignore it even if you have configured {{% vendor/name %}} to not send the header.

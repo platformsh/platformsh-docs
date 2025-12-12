@@ -25,7 +25,15 @@
 
 <!-- Page title -->
 {{ if ne .context.Params.showTitle false }}
-<h1 class="font-black text-2xl mb-8 xl:text-4xl">{{ .context.Title | .context.RenderString }}</h1>
+  {{ $isImagePropertiesPage := in .context.RelPermalink "/create-apps/image-properties/" }}
+  {{ $titleClasses := "text-2xl mb-8 xl:text-4xl" }}
+  {{ if not $isImagePropertiesPage }}
+    {{ $titleClasses = printf "%s %s" $titleClasses "font-black" }}
+  {{ end }}
+  {{ if $isImagePropertiesPage }}
+    {{ $titleClasses = printf "%s %s" $titleClasses "image-property-page__title" }}
+  {{ end }}
+  <h1 class="{{ $titleClasses }}">{{ .context.Title | .context.RenderString }}</h1>
 {{ end }}
 
 <div class="grid md:grid-cols-[minmax(0,1fr),270px] md:gap-4 md:pr-4 print:block">
