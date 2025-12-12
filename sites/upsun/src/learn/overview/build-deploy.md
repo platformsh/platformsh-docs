@@ -113,7 +113,7 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Manual deployment is available for **development**, **staging** and **production** environments.
+Use **Redeploy** to restart your application without applying staged changes.
 
 {{< /note >}}
 
@@ -139,12 +139,6 @@ The output should look similar to the example below:
 Selected project: [my-project (ID)]
 Selected environment: main (type: production)
 Deployment type: manual
-```
-
-For more information about how this command works, use:
-
-```bash
-upsun environment:deploy:type --help
 ```
 <--->
 +++
