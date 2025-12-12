@@ -10,18 +10,28 @@ layout: single
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 ### OpenJDK versions:
 
-{{< image-versions image="java" status="supported" environment="grid" >}}
+<!-- {{< image-versions image="java" status="supported" environment="grid" >}} -->
 
 These versions refer to the headless packages of OpenJDK.
 To save space and reduce potential vulnerabilities, they don't contain GUI classes, which can't be used on the server.
 
-{{% language-specification type="java" display_name="Java" %}}
+- 21: `Active`. Will deprecate on `2028-09-30`
+- 19: `To be decommissionned`.
+- 18: `To be decommissionned`.
+- 17: `Active`. Will deprecate on `2026-09-30`
+- 11: `Deprecated`. Will retire on `2032-01-31`
+- 8: `Deprecated`. Will retire on `2030-12-31`
+
+
+<!-- {{% language-specification type="java" display_name="Java" %}} -->
 
 ```yaml {configFile="app"}
 applications:
