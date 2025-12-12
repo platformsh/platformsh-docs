@@ -86,7 +86,7 @@ jobs:
         id: set-automerge
         if: ${{ steps.create-pr.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
           PRNUM: ${{ steps.create-pr.outputs.pull-request-number }}
         run: |
           echo "::notice::Setting PR ${PRNUM} to automerge once checks complete"
