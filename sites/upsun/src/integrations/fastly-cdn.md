@@ -34,7 +34,7 @@ The Fastly CDN plugin enables you to:
 
       If you have a Fastly subscription, you can get your credentials directly from the Fastly interface.
 
-      If you purchased your Fastly service through Upsun, you can find your credentials in the Upsun project variables or you can get them by [opening a support ticket](https://console.upsun.com/-/users/~/tickets/open).
+      If you purchased your Fastly service through Upsun, you can find your credentials in the [Upsun project environment variables](https://docs.upsun.com/development/variables/set-variables.html#create-environment-specific-variables) with a query like `upsun ssh "printenv | grep FASTLY"`, or you can get them by [opening a support ticket](https://console.upsun.com/-/users/~/tickets/open).
 
       Your Fastly credentials are stored securely within your browser and are never transmitted to Upsun.
 
