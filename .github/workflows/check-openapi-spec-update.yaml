@@ -62,6 +62,7 @@ jobs:
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun-internal.yaml',safe=''))")/raw?ref=${REF}"
 
       - name: Create Pull Request if changes
+        id: create-pr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}
@@ -81,3 +82,13 @@ jobs:
             automated pr
           add-paths: |
             shared/pages
+      - name: Set PR to automerge
+        id: set-automerge
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          PRNUM: ${{ steps.create-pr.outputs.pull-request-number }}
+        run: |
+          echo "::notice::Setting PR ${PRNUM} to automerge once checks complete"
+          gh pr merge "${PRNUM}" --auto --merge
+
