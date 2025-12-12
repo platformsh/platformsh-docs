@@ -82,6 +82,13 @@ jobs:
             automated pr
           add-paths: |
             shared/pages
+      - name: set repo to allow auto merge
+        id: set-allow-auto-merge
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        run: |
+          gh api --method PATCH -H "Accept: application/vnd.github+json" repos/platformsh/platformsh-docs -f allow_auto_merge=true
       - name: Set PR to automerge
         id: set-automerge
         if: ${{ steps.create-pr.outputs.pull-request-number }}
@@ -91,4 +98,10 @@ jobs:
         run: |
           echo "::notice::Setting PR ${PRNUM} to automerge once checks complete"
           gh pr merge "${PRNUM}" --auto --merge
-
+      - name: redisable automerge
+        id: disable-automerge
+        if: ${{ steps.create-pr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        run: |
+          gh api --method PATCH -H "Accept: application/vnd.github+json" repos/platformsh/platformsh-docs -f allow_auto_merge=false
