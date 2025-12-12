@@ -56,10 +56,10 @@ jobs:
             console.log(`- Mergeable state: ${pr.mergeable_state}`);
 
             if (
-              pr.user.login == 'platformsh-devrel'
-              && pr.head.ref == 'update-api-doc'
+              pr.user.login === 'platformsh-devrel'
+              && pr.head.ref === 'update-api-doc'
               && !pr.head.repo.fork
-              && pr.mergeable_state == 'clean'
+              && pr.mergeable_state === 'clean'
             ) {
               try {
                 await github.rest.pulls.merge({
