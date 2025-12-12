@@ -311,7 +311,7 @@ and [cookie entry](/define-routes/cache.md#cookies).
 Because the router cache follows cache headers from your app,
 your app needs to send the correct `cache-control` header.
 
-For static assets, set cache headers using the `expires` key in your [app configuration](/create-apps/app-reference/single-runtime-image.md#locations).
+For static assets, set cache headers using the `expires` key in your [app configuration](/create-apps/image-properties/web.md#locations).
 
 ## Language-specific troubleshooting
 

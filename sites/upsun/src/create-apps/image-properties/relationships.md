@@ -1,5 +1,5 @@
 ---
-title: "`relationships`"
+title: "relationships"
 weight: 4
 description: A dictionary of relationships that defines the connections to other services and apps.
 ---

@@ -1,5 +1,5 @@
 ---
-title: "`size`"
+title: "size"
 weight: 4
 description: Defines the amount of resources to dedicate to the app. 
 keywords:
