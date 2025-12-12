@@ -37,7 +37,7 @@ During the `build` hook, there are three writeable directories:
   The temp directory is also useful for writing files that aren't needed in the final application,
   but it's wiped between each build.
   Note that `$PLATFORM_CACHE_DIR` is mapped to `/tmp`
-  and together they offer about 8GB of free space.
+  and together they offer about 8 GB of free space.
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
 

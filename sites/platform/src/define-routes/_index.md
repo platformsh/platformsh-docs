@@ -485,7 +485,7 @@ which is a requirement for the router caching.
     enabled: false
 ```
 
-2. [Disable request buffering](/create-apps/app-reference/single-runtime-image.md#locations) in your app configuration.
+2. [Disable request buffering](/create-apps/image-properties/web.md#locations) in your app configuration.
 
 ```yaml {configFile="app"}
 web:

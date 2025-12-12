@@ -1,5 +1,5 @@
 ---
-title: "`hooks`"
+title: "hooks"
 weight: 4
 description: A hooks dictionary that defines which commands run at different stages in the build and deploy process.
 keywords:
@@ -67,7 +67,7 @@ During the `build` hook, there are three writeable directories:
 - `/tmp`:
   Isn't deployed and is wiped between each build.
   Note that `PLATFORM_CACHE_DIR` is mapped to `/tmp`
-  and together they offer about 8GB of free space.
+  and together they offer about 8 GB of free space.
 
 ### Hook failure
 
