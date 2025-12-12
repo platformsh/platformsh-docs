@@ -28,6 +28,31 @@
   cursor: pointer;
 }
 
+.image-property-page__title {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #d6dae1;
+  background: #f8f9fb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 400;
+  color: #1c2434;
+  letter-spacing: -0.01em;
+}
+
+.dark .image-property-page__title {
+  border-color: #475569;
+  background: #101726;
+  color: #f8fafc;
+}
+
+.image-property-sidebar__link {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
 .code-block-wrapper {
   position: relative;
 }

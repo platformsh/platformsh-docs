@@ -760,6 +760,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "8.4",
         "8.0",
         "5.7"
       ]
@@ -1269,12 +1270,14 @@
     "type": "valkey",
     "versions": {
       "supported": [
+        "8.1",
         "8.0"
       ],
       "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "8.1",
         "8.0"
       ],
       "deprecated": []

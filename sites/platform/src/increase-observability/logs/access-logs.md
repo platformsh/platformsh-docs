@@ -73,7 +73,7 @@ hovering on the next unselected line gives you the amount of time that passed be
 
 Events that occur within an app container are logged within that container.
 The logs can be written to, but you should do so only with standard logging mechanisms.
-If your app has its own logging mechanism, use it to write to a dedicated logs [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+If your app has its own logging mechanism, use it to write to a dedicated logs [mount](/create-apps/image-properties/mounts.md).
 
 To access the logs of various types of events:
 
@@ -120,7 +120,7 @@ title=Using SSH directly
 {{< /codetabs >}}
 
 All log files are trimmed to 100 MB automatically.
-If you need larger logs, set up a [cron job](/create-apps/app-reference/single-runtime-image.md#crons) to upload them to third-party storage.
+If you need larger logs, set up a [cron job](/create-apps/image-properties/crons.md) to upload them to third-party storage.
 See an example of [uploading logs to Amazon S3](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) from Contextual Code.
 
 ### Types of container logs

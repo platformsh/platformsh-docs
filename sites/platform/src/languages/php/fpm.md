@@ -14,7 +14,7 @@ By default, {{% vendor/name %}} automatically sets a maximum number of PHP-FPM w
 This number is calculated based on three parameters:
 
 - The container memory: the amount of memory you can allot for PHP processing
-  depending on [app size](/create-apps/app-reference/single-runtime-image.md#sizes).
+  depending on [app size](/create-apps/app-reference/single-runtime-image.md#sizing-hints)
 - The request memory: the amount of memory an average PHP request is expected to require.
 - The reserved memory: the amount of memory you need to reserve for tasks that aren't related to requests.
 

@@ -10,7 +10,7 @@ keywords:
   - "console"
 ---
 
-You can view your [Cron job](/create-apps/app-reference/single-runtime-image.html#crons) executions directly from your project’s Services > Apps or Services > Workers pages. This visualization helps you quickly understand how scheduled jobs are performing and spot unusual patterns without manually checking logs.
+You can view your [Cron job](/create-apps/image-properties/crons.md) executions directly from your project’s Services > Apps or Services > Workers pages. This visualization helps you quickly understand how scheduled jobs are performing and spot unusual patterns without manually checking logs.
 
 Each execution is represented visually, letting you monitor performance trends and failures at a glance.
 
@@ -59,7 +59,7 @@ Click a bar to open the detailed execution log, where you can inspect errors or 
 - **Monitor for patterns**: Look for recurring red (failed) bars or progressively longer runtimes.  
 - **Drill into logs**: Clicking a bar takes you directly to logs for that specific execution.  
 - **Correlate with metrics**: Combine this view with [application metrics](/increase-observability/application-metrics.html) to identify performance bottlenecks.  
-- **Adjust Cron timing**: If jobs overlap or run too frequently, adjust their schedule in your [`crons` configuration](/create-apps/app-reference/single-runtime-image.html#crons).  
+- **Adjust Cron timing**: If jobs overlap or run too frequently, adjust their schedule in your [`crons` configuration](/create-apps/image-properties/crons.md).  
 
 {{< note theme="info" title="Investigate consistently high durations" >}}
 If you notice that your Cron job runtimes are consistently increasing, this may indicate:
@@ -83,7 +83,7 @@ Use profiling tools like [Blackfire](/increase-observability/application-metrics
 
 ## Related content
 
-- [Define and schedule Cron jobs](/create-apps/app-reference/single-runtime-image.html#crons)  
+- [Define and schedule Cron jobs](/create-apps/image-properties/crons.md)  
 - [Application metrics](/increase-observability/application-metrics.html)  
 - [Consume logs](/increase-observability/logs.html)  
 - [Blackfire for PHP and Python](/increase-observability/application-metrics/blackfire.html)  

@@ -64,7 +64,7 @@ Set up a script by following these steps:
     ```
 
     To sanitize only on the initial deploy and not all future deploys,
-    on sanitization create a file on a [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+    on sanitization create a file on a [mount](/create-apps/image-properties/mounts.md).
     Then add a check for the file as in the following example:
 
     ```bash {location="sanitize.sh"}
