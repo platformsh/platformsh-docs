@@ -1,5 +1,5 @@
 ---
-title: "`workers`"
+title: "workers"
 weight: 4
 description: Defines the list of worker names, which are alternate copies of the application to run as background processes.
 ---
@@ -25,7 +25,7 @@ title=Single-runtime image
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
-the [top-level properties](/create-apps/app-reference/single-runtime-image.md#primary-application-properties).
+the [primary application properties](/create-apps/app-reference/single-runtime-image.md#primary-application-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
@@ -57,7 +57,7 @@ title=Composable image
 
 The keys of the `workers` definition are the names of the workers.
 You can then define how each worker differs from the `web` instance using
-the [top-level properties](/create-apps/app-reference/composable-image.md#primary-application-properties).
+the [primary application properties](/create-apps/app-reference/composable-image.md#primary-application-properties).
 
 Each worker can differ from the `web` instance in all properties _except_ for:
 
