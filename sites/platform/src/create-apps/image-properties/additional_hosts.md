@@ -1,5 +1,5 @@
 ---
-title: "`additional_hosts`"
+title: "additional_hosts"
 weight: 4
 description: An additional hosts dictionary that maps hostnames to IP addresses.
 ---

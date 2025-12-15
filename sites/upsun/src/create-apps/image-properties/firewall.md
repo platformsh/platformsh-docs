@@ -1,5 +1,5 @@
 ---
-title: "`firewall`"
+title: "firewall"
 weight: 4
 description: A firewall dictionary that defines the outbound firewall rules for the application.
 ---
