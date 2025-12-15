@@ -16,8 +16,7 @@ Routes define how your web applications are accessed, which is helpful when [mul
 If you have a single route served by a single app, you do not need to configure routes: 
 your project includes a [default route](#default-route-definition).
 
-**Before adding routes to your {{% vendor/name %}} project, you must configure your DNS records** so that each route’s hostname resolves to the project’s assigned target (for example, via CNAME or appropriate DNS records).
-If DNS doesn’t point to your project, certificate renewal will fail. 
+{{% define-routes/define-routes-dns %}}
 
 ## Examples
 

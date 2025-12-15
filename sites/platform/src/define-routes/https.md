@@ -50,6 +50,8 @@ These automatic renewals trigger a redeployment of your environment, at which ti
 
 ## Enable HTTPS
 
+{{% define-routes/define-routes-dns %}}
+
 To enable HTTPS, add a routing configuration similar to the following:
 
 ```yaml {configFile="routes"}
