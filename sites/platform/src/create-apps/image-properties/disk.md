@@ -1,5 +1,5 @@
 ---
-title: "`disk`"
+title: "disk"
 weight: 4
 description: An `integer` (or `null`) that defines the disk space allocated (in MB) to an app.
 ---

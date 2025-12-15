@@ -1,5 +1,5 @@
 ---
-title: "`access`"
+title: "access"
 weight: 4
 description: An access dictionary that defines the access control for roles accessing app environments.
 ---

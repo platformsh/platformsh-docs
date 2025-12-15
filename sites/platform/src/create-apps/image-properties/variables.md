@@ -1,5 +1,5 @@
 ---
-title: "`variables`"
+title: "variables"
 weight: 4
 description: A variables dictionary that defines variables to control the environment.
 ---

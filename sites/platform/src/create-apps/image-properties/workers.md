@@ -1,5 +1,5 @@
 ---
-title: "`workers`"
+title: "workers"
 weight: 4
 description: Defines the list of worker names, which are alternate copies of the application to run as background processes.
 ---
