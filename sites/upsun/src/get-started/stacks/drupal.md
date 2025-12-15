@@ -14,10 +14,8 @@ They provide all of the core concepts and common commands you need to know befor
 
 It should also be noted that this guide works for the following variations of Drupal:
 
-- [v10.x](https://www.drupal.org/project/drupal/releases/10.3.12)
-
 - [v11.x](https://www.drupal.org/project/drupal/releases/11.1.2)
-
+- [v10.x](https://www.drupal.org/project/drupal/releases/10.3.12)
 - [CMS](https://new.drupal.org/docs/drupal-cms/get-started/install-drupal-cms)
 
 {{< /note >}}
@@ -164,8 +162,8 @@ export PRIMARY_URL="$(echo "$PLATFORM_ROUTES" | base64 --decode | jq -r 'to_entr
 export DRUSH_OPTIONS_URI="$PRIMARY_URL"
 ```
 
-## `settings.php`
-Open `web/sites/default/settings.php` and append the following to the bottom of that file.
+## `default.settings.php`
+Open `web/sites/default/default.settings.php` and append the following to the bottom of that file.
 
 ```php {location="web/sites/default/settings.php"}
 // Upsun configuration
@@ -308,6 +306,21 @@ Create the `config/sync` empty directory referenced in the settings file:
 
 ```bash {location="Terminal"}
 mkdir -p config/sync && touch config/sync/.gitkeep
+```
+
+## add `config/sync` mount
+Be aware that after the `build`, it creates a read-only system, which means that you need to define a [mount](/create-apps/image-properties/mounts.md) for any location where your application needs write access.
+
+Update your ``.upsun/config.yaml`` and add the following ``config/sync`` mount:
+
+```yaml {location="{{< vendor/configfile "apps" >}}",linenos=table,hl_lines=["4"],linenostart=1}
+applications:
+  drupal:
+    #...
+    mounts:
+      #...
+      config/sync:
+        source: storage
 ```
 
 ## Deploy changes
