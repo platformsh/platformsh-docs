@@ -228,7 +228,7 @@ See the [examples](/define-routes.md#examples) in the "Define routes" topic.
 
 ## Router {#router}
 
-The _router_ is the traffic director of your {{% vendor/name %}} environment: it handles routing logic, basic caching, and traffic entry, and directs traffic to the correct container or containers based on the [_routes_](#routes)  that you define in your `{{% vendor/configfile "app" %}}` file.
+The _router_ is the traffic director of your {{% vendor/name %}} environment: it handles routing logic, basic caching, and traffic entry, and directs traffic to the correct container or containers based on the [_routes_](#route) that you define in your `{{% vendor/configfile "app" %}}` file.
 
 
 ## Sync
