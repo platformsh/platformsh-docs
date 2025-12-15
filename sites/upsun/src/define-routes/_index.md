@@ -11,7 +11,7 @@ A [_route_](/glossary/_index.md#route) defines how requests are handled _after_ 
 
 You define routes in a [_router_](/glossary/_index.md#router), which is the `.routes` key in your project's `{{% vendor/configfile "app" %}}` file in your Git repository.
 
-Routes define how your web applications are accessed, which is helpful when [multiple apps](../create-apps/multi-app/_index.md) in one project or you want to redirect requests to specific destinations, such as `example.com` rather than `www.example.com`.
+Routes define how your web applications are accessed, which is helpful when you have [multiple apps](../create-apps/multi-app/_index.md) in one project or you want to redirect requests to specific destinations, such as `example.com` rather than `www.example.com`.
 
 If you have a single route served by a single app, you do not need to configure routes: 
 your project includes a [default route](#default-route-definition).
