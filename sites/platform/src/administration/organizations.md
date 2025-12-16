@@ -179,7 +179,7 @@ Customers with existing contracts that include eligibility for a Fixed organizat
 
 To request a Fixed organization, follow these steps:
 
-### 1. Submit a Support Ticket
+### 1. Submit a support ticket
 
 Open a [support ticket](/learn/overview/get-support.md) and specify that you would like a Fixed organization.
 
