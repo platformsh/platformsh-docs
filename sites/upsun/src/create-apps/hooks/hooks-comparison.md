@@ -114,4 +114,4 @@ Often times content imports, some types of cache warmups, and other such tasks a
 
 In addition to the activity log, the `post_deploy` hook logs to the [post-deploy log](../../increase-observability/logs/access-logs.md#container-logs).
 
-The `post_deploy` hook is the only hook that runs during a redeploy.
+The `post_deploy` hook is the only hook that runs during a redeploy. {{% create-apps/post-deploy-idempotent %}}
