@@ -1302,15 +1302,12 @@
     "runtime": false,
     "type": "vault-kms",
     "versions": {
-      "supported": [
-        "1.12"
-      ],
       "deprecated": [
         "1.8",
         "1.6"
       ],
-      "legacy": [
-        "1.6"
+      "supported": [
+        "1.12"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1330,11 +1327,9 @@
   },
   "activemq-artemis": {
     "versions": {
-      "deprecated": [
-        "2"
-      ],
+      "deprecated": [],
       "supported": [
-        "2.42"
+        "2"
       ]
     }
   },
@@ -1363,17 +1358,6 @@
       "deprecated": [],
       "supported": [
         "8"
-      ]
-    }
-  },
-  "vault": {
-    "versions": {
-      "deprecated": [
-        "1.8",
-        "1.6"
-      ],
-      "supported": [
-        "1.12"
       ]
     }
   }
