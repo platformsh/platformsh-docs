@@ -4,7 +4,7 @@
     "docs": {
       "relationship_name": "chrome-headless",
       "service_name": "chrome-headless",
-      "url": "https://docs.upsun.com/add-services/chrome-headless.html"
+      "url": "/add-services/headless-chrome.html"
     },
     "min_disk_size": null,
     "name": "Headless Chrome",
@@ -40,7 +40,7 @@
     "docs": {
       "relationship_name": "dotnet",
       "service_name": "dotnet",
-      "url": "https://docs.upsun.com/languages/dotnet.html"
+      "url": "/languages/dotnet.html"
     },
     "min_disk_size": null,
     "name": "C#/.Net Core",
@@ -66,7 +66,7 @@
     "docs": {
       "relationship_name": "elasticsearch",
       "service_name": "elasticsearch",
-      "url": "https://docs.upsun.com/add-services/elasticsearch.html"
+      "url": "/add-services/elasticsearch.html"
     },
     "min_disk_size": 256,
     "name": "Elasticsearch",
@@ -134,7 +134,7 @@
     "docs": {
       "relationship_name": "elixir",
       "service_name": "elixir",
-      "url": "https://docs.upsun.com/languages/elixir.html"
+      "url": "/languages/elixir.html"
     },
     "min_disk_size": null,
     "name": "Elixir",
@@ -160,7 +160,7 @@
     "docs": {
       "relationship_name": "golang",
       "service_name": "golang",
-      "url": "https://docs.upsun.com/languages/golang.html"
+      "url": "/languages/go.html"
     },
     "min_disk_size": null,
     "name": "Go",
@@ -197,7 +197,7 @@
     "docs": {
       "relationship_name": "influxdb",
       "service_name": "influxdb",
-      "url": "https://docs.upsun.com/add-services/influxdb.html"
+      "url": "/add-services/influxdb.html"
     },
     "min_disk_size": null,
     "name": "InfluxDB",
@@ -225,7 +225,7 @@
     "docs": {
       "relationship_name": "java",
       "service_name": "java",
-      "url": "https://docs.upsun.com/languages/java.html"
+      "url": "/languages/java.html"
     },
     "min_disk_size": null,
     "name": "Java",
@@ -264,7 +264,7 @@
     "docs": {
       "relationship_name": "kafka",
       "service_name": "kafka",
-      "url": "https://docs.upsun.com/add-services/kafka.html"
+      "url": "/add-services/kafka.html"
     },
     "min_disk_size": 512,
     "name": "Kafka",
@@ -295,7 +295,7 @@
     "docs": {
       "relationship_name": "mariadb",
       "service_name": "mariadb",
-      "url": "https://docs.upsun.com/add-services/mariadb.html"
+      "url": "/add-services/mysql.html"
     },
     "min_disk_size": 256,
     "name": "MariaDB/MySQL",
@@ -420,7 +420,7 @@
     "docs": {
       "relationship_name": "memcached",
       "service_name": "memcached",
-      "url": "https://docs.upsun.com/add-services/memcached.html"
+      "url": "/add-services/memcached.html"
     },
     "min_disk_size": null,
     "name": "Memcached",
@@ -448,7 +448,7 @@
     "docs": {
       "relationship_name": "mongodb",
       "service_name": "mongodb",
-      "url": "https://docs.upsun.com/add-services/mongodb.html"
+      "url": "/add-services/mongodb.html"
     },
     "min_disk_size": 512,
     "name": "MongoDB",
@@ -472,7 +472,7 @@
     "docs": {
       "relationship_name": "mongodb-enterprise",
       "service_name": "mongodb-enterprise",
-      "url": "https://docs.upsun.com/add-services/mongodb-enterprise.html"
+      "url": "/add-services/mongodb.html"
     },
     "min_disk_size": 512,
     "name": "MongoDB",
@@ -539,7 +539,7 @@
     "docs": {
       "relationship_name": "nodejs",
       "service_name": "nodejs",
-      "url": "https://docs.upsun.com/languages/nodejs.html"
+      "url": "/languages/nodejs.html"
     },
     "min_disk_size": null,
     "name": "JavaScript/Node.js",
@@ -591,7 +591,7 @@
     "docs": {
       "relationship_name": "opensearch",
       "service_name": "opensearch",
-      "url": "https://docs.upsun.com/add-services/opensearch.html"
+      "url": "/add-services/opensearch.html"
     },
     "min_disk_size": 256,
     "name": "OpenSearch",
@@ -635,7 +635,7 @@
     "docs": {
       "relationship_name": "oracle-mysql",
       "service_name": "oracle-mysql",
-      "url": "https://docs.upsun.com/add-services/oracle-mysql.html"
+      "url": "/add-services/mysql.html"
     },
     "min_disk_size": 256,
     "name": "Oracle MySQL",
@@ -656,7 +656,7 @@
     "docs": {
       "relationship_name": "php",
       "service_name": "php",
-      "url": "https://docs.upsun.com/languages/php.html"
+      "url": "/languages/php.html"
     },
     "min_disk_size": null,
     "name": "PHP",
@@ -706,7 +706,7 @@
     "docs": {
       "relationship_name": "postgresql",
       "service_name": "postgresql",
-      "url": "https://docs.upsun.com/add-services/postgresql.html"
+      "url": "/add-services/postgresql.html"
     },
     "min_disk_size": null,
     "name": "PostgreSQL",
@@ -761,7 +761,7 @@
     "docs": {
       "relationship_name": "python",
       "service_name": "python",
-      "url": "https://docs.upsun.com/languages/python.html"
+      "url": "/languages/python.html"
     },
     "min_disk_size": null,
     "name": "Python",
@@ -790,7 +790,7 @@
     "docs": {
       "relationship_name": "rabbitmq",
       "service_name": "rabbitmq",
-      "url": "https://docs.upsun.com/add-services/rabbitmq.html"
+      "url": "/add-services/rabbitmq.html"
     },
     "min_disk_size": 512,
     "name": "RabbitMQ",
@@ -846,7 +846,7 @@
     "docs": {
       "relationship_name": "redis",
       "service_name": "redis",
-      "url": "https://docs.upsun.com/add-services/redis.html"
+      "url": "/add-services/redis.html"
     },
     "min_disk_size": null,
     "name": "Redis",
@@ -905,7 +905,7 @@
     "docs": {
       "relationship_name": "ruby",
       "service_name": "ruby",
-      "url": "https://docs.upsun.com/languages/ruby.html"
+      "url": "/languages/ruby.html"
     },
     "min_disk_size": null,
     "name": "Ruby",
@@ -956,7 +956,7 @@
     "docs": {
       "relationship_name": "rust",
       "service_name": "rust",
-      "url": "https://docs.upsun.com/languages/rust.html"
+      "url": "/languages/rust.html"
     },
     "min_disk_size": null,
     "name": "Rust",
@@ -975,7 +975,7 @@
     "docs": {
       "relationship_name": "solr",
       "service_name": "solr",
-      "url": "https://docs.upsun.com/add-services/solr.html"
+      "url": "/add-services/solr.html"
     },
     "min_disk_size": 256,
     "name": "Solr",
@@ -1042,7 +1042,7 @@
     "docs": {
       "relationship_name": "valkey",
       "service_name": "valkey",
-      "url": "https://docs.upsun.com/add-services/valkey.html"
+      "url": "/add-services/valkey.html"
     },
     "min_disk_size": null,
     "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
@@ -1071,7 +1071,7 @@
     "docs": {
       "relationship_name": "varnish",
       "service_name": "varnish",
-      "url": "https://docs.upsun.com/add-services/varnish.html"
+      "url": "/add-services/varnish.html"
     },
     "min_disk_size": null,
     "configuration": "    configuration:\n        vcl: !include\n            type: string\n            path: config.vcl",
@@ -1099,7 +1099,7 @@
     "docs": {
       "relationship_name": "vault-kms",
       "service_name": "vault-kms",
-      "url": "https://docs.upsun.com/add-services/vault-kms.html"
+      "url": "/add-services/vault-kms.html"
     },
     "min_disk_size": 512,
     "configuration": "    configuration:\n        endpoints:\n            <ENDPOINT_ID>:\n                - policy: <POLICY>\n                  key: <KEY_NAME>\n                  type: <ENDPOINT_TYPE>",
@@ -1141,7 +1141,7 @@
     "docs": {
       "relationship_name": "activemq-artemis",
       "service_name": "activemq-artemis",
-      "url": "https://docs.upsun.com/add-services/activemq-artemis.html"
+      "url": "/add-services/activemq-artemis.html"
     }
   },
   "clickhouse": {
@@ -1157,7 +1157,7 @@
     "docs": {
       "relationship_name": "clickhouse",
       "service_name": "clickhouse",
-      "url": "https://docs.upsun.com/add-services/clickhouse.html"
+      "url": "/add-services/clickhouse.html"
     }
   },
   "elasticsearch-enterprise": {
@@ -1171,7 +1171,7 @@
     "docs": {
       "relationship_name": "elasticsearch-enterprise",
       "service_name": "elasticsearch-enterprise",
-      "url": "https://docs.upsun.com/add-services/elasticsearch-enterprise.html"
+      "url": "/add-services/elasticsearch-enterprise.html"
     }
   },
   "gotenberg": {
@@ -1184,7 +1184,7 @@
     "docs": {
       "relationship_name": "gotenberg",
       "service_name": "gotenberg",
-      "url": "https://docs.upsun.com/add-services/gotenberg.html"
+      "url": "/add-services/gotenberg.html"
     }
   }
 }
