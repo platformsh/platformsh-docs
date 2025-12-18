@@ -1136,6 +1136,7 @@ grid:
       - ffi
       - geoip
       - gmp
+      - gnupg
       - http
       - igbinary
       - imagick
@@ -1223,6 +1224,7 @@ grid:
       - ffi
       - geoip
       - gmp
+      - gnupg
       - http
       - igbinary
       - imagick
