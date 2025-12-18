@@ -1154,7 +1154,7 @@
     "docs": {
       "relationship_name": "vault-kms",
       "service_name": "vault-kms",
-      "url": "/add-services/vault-kms.html"
+      "url": "/add-services/vault.html"
     },
     "endpoint": "manage_keys",
     "min_disk_size": 512,
