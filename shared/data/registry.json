@@ -15,7 +15,6 @@
     "type": "chrome-headless",
     "versions": {
       "deprecated": [
-        "113",
         "95",
         "91",
         "86",
@@ -26,7 +25,8 @@
         "73"
       ],
       "supported": [
-        "120"
+        "120",
+        "113"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -52,8 +52,6 @@
     "type": "dotnet",
     "versions": {
       "deprecated": [
-        "7.0",
-        "6.0",
         "5.0",
         "3.1",
         "2.2",
@@ -61,7 +59,9 @@
         "2.0"
       ],
       "supported": [
-        "8.0"
+        "8.0",
+        "7.0",
+        "6.0"
       ]
     }
   },
@@ -150,7 +150,6 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
-        "1.14",
         "1.13",
         "1.12",
         "1.11",
@@ -159,7 +158,8 @@
       ],
       "supported": [
         "1.18",
-        "1.15"
+        "1.15",
+        "1.14"
       ]
     }
   },
@@ -179,10 +179,6 @@
     "type": "golang",
     "versions": {
       "deprecated": [
-        "1.23",
-        "1.22",
-        "1.21",
-        "1.20",
         "1.19",
         "1.18",
         "1.17",
@@ -198,7 +194,11 @@
       ],
       "supported": [
         "1.25",
-        "1.24"
+        "1.24",
+        "1.23",
+        "1.22",
+        "1.21",
+        "1.20"
       ]
     }
   },
@@ -246,18 +246,17 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [
+      "deprecated": [],
+      "supported": [
+        "21",
         "19",
         "18",
+        "17",
         "14",
         "13",
         "12",
         "11",
         "8"
-      ],
-      "supported": [
-        "21",
-        "17"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -289,9 +288,6 @@
     "type": "kafka",
     "versions": {
       "deprecated": [
-        "3.6",
-        "3.4",
-        "3.2",
         "2.7",
         "2.6",
         "2.5",
@@ -301,7 +297,10 @@
         "2.1"
       ],
       "supported": [
-        "3.7"
+        "3.7",
+        "3.6",
+        "3.4",
+        "3.2"
       ]
     }
   },
@@ -449,12 +448,11 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [
+      "deprecated": [],
+      "supported": [
+        "1.6",
         "1.5",
         "1.4"
-      ],
-      "supported": [
-        "1.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -506,15 +504,14 @@
     "type": "mongodb-enterprise",
     "premium": true,
     "versions": {
-      "deprecated": [
+      "deprecated": [],
+      "supported": [
+        "7.0",
         "6.0",
         "5.0",
         "4.4",
         "4.2",
         "4.0"
-      ],
-      "supported": [
-        "7.0"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -576,8 +573,6 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
-        "18",
-        "16",
         "8.9",
         "6.10",
         "6.9",
@@ -596,7 +591,9 @@
       "supported": [
         "24",
         "22",
-        "20"
+        "20",
+        "18",
+        "16"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -752,8 +749,6 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
-        "13",
-        "12",
         "11",
         "10",
         "9.6",
@@ -765,7 +760,9 @@
         "17",
         "16",
         "15",
-        "14"
+        "14",
+        "13",
+        "12"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -809,7 +806,6 @@
     "type": "python",
     "versions": {
       "deprecated": [
-        "3.9",
         "3.8",
         "3.7",
         "3.6",
@@ -820,7 +816,8 @@
         "3.13",
         "3.12",
         "3.11",
-        "3.10"
+        "3.10",
+        "3.9"
       ]
     }
   },
@@ -840,9 +837,6 @@
     "type": "rabbitmq",
     "versions": {
       "deprecated": [
-        "4.0",
-        "3.13",
-        "3.12",
         "3.11",
         "3.10",
         "3.9",
@@ -852,7 +846,10 @@
         "3.5"
       ],
       "supported": [
-        "4.1"
+        "4.1",
+        "4.0",
+        "3.13",
+        "3.12"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -898,8 +895,6 @@
     "type": "redis",
     "versions": {
       "deprecated": [
-        "7.0",
-        "6.2",
         "6.0",
         "5.0",
         "4.0",
@@ -909,7 +904,9 @@
       ],
       "supported": [
         "8.0",
-        "7.2"
+        "7.2",
+        "7.0",
+        "6.2"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1135,14 +1132,14 @@
     "type": "varnish",
     "versions": {
       "deprecated": [
-        "7.3",
-        "7.2",
-        "7.1",
         "5.2",
         "5.1"
       ],
       "supported": [
         "7.6",
+        "7.3",
+        "7.2",
+        "7.1",
         "6.3",
         "6.0"
       ]
