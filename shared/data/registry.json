@@ -385,20 +385,22 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
+        "11.3",
         "11.2",
+        "11.0",
+        "10.5",
         "10.4",
+        "10.3",
         "10.2",
         "10.1",
         "10.0",
         "5.5"
       ],
       "supported": [
-        "11.0",
+        "11.8",
+        "11.4",
         "10.11",
-        "10.6",
-        "10.5",
-        "10.4",
-        "10.3"
+        "10.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -533,7 +535,7 @@
     "repo_name": "network-storage",
     "disk": true,
     "docs": {
-      "relationship_name": "null",
+      "relationship_name": "network-storage",
       "service_name": "network-storage",
       "url": "/add-services/network-storage.html"
     },
@@ -544,9 +546,10 @@
     "type": "network-storage",
     "versions": {
       "deprecated": [
-        "2.0"
+        "0.2"
       ],
       "supported": [
+        "2.0",
         "1.0"
       ]
     },
@@ -672,11 +675,12 @@
     "runtime": false,
     "type": "oracle-mysql",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "5.7"
+      ],
       "supported": [
         "8.4",
-        "8.0",
-        "5.7"
+        "8.0"
       ]
     }
   },
