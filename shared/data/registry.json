@@ -36,6 +36,34 @@
       ]
     }
   },
+  "clickhouse": {
+    "description": "ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "min_disk_size": 512,
+    "configuration": "applications:\n  <APP_NAME>:\n    relationships:\n      <SERVICE_NAME>:",
+    "name": "ClickHouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "exclude_from": [
+      "platformsh"
+    ],
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "25.8",
+        "25.3",
+        "24.3",
+        "23.8"
+      ]
+    }
+  },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
     "repo_name": "dotnet",
@@ -229,6 +257,27 @@
         "2.7",
         "2.3",
         "1.8"
+      ]
+    }
+  },
+  "gotenberg": {
+    "description": "",
+    "disk": true,
+    "docs": {
+      "relationship_name": "gotenberg",
+      "service_name": "gotenberg",
+      "url": "/add-services/gotenberg.html"
+    },
+    "endpoint": "gotenberg",
+    "min_disk_size": null,
+    "name": "Gotenberg",
+    "repo_name": "gotenberg",
+    "runtime": false,
+    "type": "gotenberg",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "8"
       ]
     }
   },
@@ -1197,22 +1246,6 @@
       "url": "/add-services/activemq-artemis.html"
     }
   },
-  "clickhouse": {
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "25.8",
-        "25.3",
-        "24.3",
-        "23.8"
-      ]
-    },
-    "docs": {
-      "relationship_name": "clickhouse",
-      "service_name": "clickhouse",
-      "url": "/add-services/clickhouse.html"
-    }
-  },
   "elasticsearch-enterprise": {
     "versions": {
       "deprecated": [],
@@ -1225,19 +1258,6 @@
       "relationship_name": "elasticsearch-enterprise",
       "service_name": "elasticsearch-enterprise",
       "url": "/add-services/elasticsearch-enterprise.html"
-    }
-  },
-  "gotenberg": {
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "8"
-      ]
-    },
-    "docs": {
-      "relationship_name": "gotenberg",
-      "service_name": "gotenberg",
-      "url": "/add-services/gotenberg.html"
     }
   }
 }
