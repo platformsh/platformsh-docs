@@ -23,7 +23,7 @@ Error: Resources exceeding plan limit; disk: 8192.00MB > 5120.00MB; try removing
 To fix the error, do one of the following:
 
 * Lower the `disk` parameters to a value within your plan's storage limits.
-  Note the [limits to downsizing disks](/create-apps/app-reference/single-runtime-image.md#downsize-a-disk).
+  Note the [limits to downsizing disks](/create-apps/image-properties/disk.md).
 * Increase your plan's storage limits.
   This can only be done by people with the [manage plans permission](/administration/users.md#organization-permissions).
 

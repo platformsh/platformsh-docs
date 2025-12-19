@@ -62,7 +62,7 @@ If you use a Fastly CDN provided by {{% vendor/name %}},
 you can provide your own third-party TLS certificates for an additional fee.
 
 To do so, if you don't have one,
-set up a [mount](/create-apps/app-reference/single-runtime-image.md#mounts) that isn't accessible to the web.
+set up a [mount](/create-apps/image-properties/mounts.md) that isn't accessible to the web.
 Use an environment with access limited to {{% vendor/name %}} support and trusted users.
 [Transfer](/development/file-transfer.md) each certificate, its unencrypted private key,
 and the intermediate certificate to the mount.
@@ -94,4 +94,4 @@ typically located at `/mnt/shared/fastly_tokens.txt`.
 {{% /note %}}
 
 ## Dynamic ACL and rate limiting
-For details about updating an access control list (ACL) and applying rate limiting, check out the [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/community/posts/26091087795602-Working-with-platform-sh-rate-limiting-implementation-Fastly) article in the Upsun Community.
+For details about updating an access control list (ACL) and applying rate limiting, check out the [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/articles/29528777071890-Upsun-Fastly-Rate-Limiting-How-it-works-how-to-tune-it) article in the Upsun Community.

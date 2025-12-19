@@ -156,7 +156,65 @@ dedicated:
     - zbarcode
     - zip
     - zts
-  "7.2-7.3":
+  "7.2":
+    - amqp
+    - apcu
+    - apcu-bc
+    - bcmath
+    - bz2
+    - cgi
+    - cli
+    - common
+    - curl
+    - dba
+    - dev
+    - enchant
+    - event
+    - fpm
+    - gd
+    - geoip
+    - gmp
+    - igbinary
+    - imagick
+    - imap
+    - interbase
+    - intl
+    - json
+    - ldap
+    - mailparse
+    - mbstring
+    - memcached
+    - mongodb
+    - msgpack
+    - mysql
+    - oauth
+    - odbc
+    - opcache
+    - pdo-sqlsrv
+    - pgsql
+    - phpdbg
+    - pspell
+    - readline
+    - recode
+    - redis
+    - snmp
+    - soap
+    - sodium
+    - sqlite3
+    - sqlsrv
+    - ssh2
+    - sybase
+    - tideways-xhprof
+    - tidy
+    - uuid
+    - xdebug
+    - xml
+    - xmlrpc
+    - xsl
+    - zbarcode
+    - zip
+    - zts
+  "7.3":
     - amqp
     - apcu
     - apcu-bc
@@ -1456,160 +1514,163 @@ grid:
       - imagick
   "8.4":
     available:
-      - amqp  
-      - apcu  
-      - bcmath  
-      - blackfire  
-      - bz2  
-      - calendar  
-      - ctype  
-      - curl  
-      - datadog-profiling  
-      - dba  
-      - dom  
-      - enchant  
-      - event  
-      - exif  
-      - ffi  
-      - fileinfo  
-      - ftp  
-      - gd  
-      - geoip  
-      - gettext  
-      - gnupg  
-      - gmp  
-      - http  
-      - iconv  
-      - igbinary 
-      - imagick 
+      - amqp
+      - apcu
+      - bcmath
+      - blackfire
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - datadog-profiling
+      - dba
+      - dom
+      - enchant
+      - event
+      - exif
+      - ffi
+      - fileinfo
+      - ftp
+      - gd
+      - geoip
+      - gettext
+      - gnupg
+      - gmp
+      - grpc
+      - http
+      - iconv
+      - igbinary
+      - imagick
       - imap
-      - intl  
-      - ioncube  
-      - ldap  
-      - mailparse  
-      - mbstring  
-      - memcached  
-      - mongodb  
-      - msgpack  
-      - mysqli  
-      - mysqlnd  
-      - newrelic  
-      - oauth  
-      - odbc  
-      - opcache  
-      - openswoole  
-      - opentelemetry  
-      - pdo  
-      - pdo_dblib  
-      - pdo_firebird  
-      - pdo_mysql  
-      - pdo_odbc  
-      - pdo_pgsql  
-      - pdo_sqlite  
-      - pdo_sqlsrv  
-      - pgsql  
-      - phar  
-      - posix  
-      - protobuf  
-      - raphf  
-      - rdkafka  
-      - readline  
-      - redis  
+      - intl
+      - ioncube
+      - ldap
+      - mailparse
+      - mbstring
+      - memcached
+      - mongodb
+      - msgpack
+      - mysqli
+      - mysqlnd
+      - newrelic
+      - oauth
+      - odbc
+      - opcache
+      - openswoole
+      - opentelemetry
+      - pdo
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_mysql
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlite
+      - pdo_sqlsrv
+      - pgsql
+      - phar
+      - posix
+      - protobuf
+      - raphf
+      - rdkafka
+      - readline
+      - redis
       - shmop
-      - simplexml  
-      - snmp  
-      - soap  
-      - sockets  
-      - sodium  
-      - sourceguardian  
-      - sqlite3  
-      - ssh2  
-      - swoole  
-      - sybase  
-      - sysvmsg  
-      - sysvsem  
-      - sysvshm  
-      - tidy  
-      - tideways  
-      - tokenizer  
-      - uuid  
-      - uv  
-      - xdebug  
-      - xml  
-      - xmlreader  
-      - xmlrpc  
-      - xmlwriter  
-      - xsl  
-      - yaml  
-      - zip 
-
-      # - datadog
-      # - enchant
-      # - event
-      # - ffi
-      # - geoip
-      # - gmp
-      # - gnupg
-      # - http
-      # - ldap
-      # - mailparse
-      # - memcached
-      # - msgpack
-      # - mysql
-      # - newrelic
-      # - oauth
-      # - odbc
-      # - openswoole
-      # - opentelemetry
-      # - pdo_sqlsrv
-      # - protobuf
-      # - pspell
-      # - raphf
-      # - rdkafka
-      # - readline
-      # - snmp
-      # - sqlsrv
-      # - ssh2
-      # - swoole
-      # - sybase
-      # - tideways
-      # - tideways-xhprof
-      # - tidy
-      # - uuid
-      # - uv
-      # - xdebug
-      # - yaml
-    default:
-      #- bcmath
-     # - bz2
-      #- calendar
-      #- ctype
-     # - curl
-      #- dba
-     # - dom
-     # - exif
-     # - fileinfo
-     # - ftp
-      #- gd
-     # - gettext
-      #- iconv
-     # - intl
-     # - mbstring
-     # - mysqli
-     # - mysqlnd
-      # - opcache
-    #  - pdo
-    #  - pdo_mysql
-     # - pdo_sqlite
-     # - phar
-     # - posix
-     # - simplexml
-      #- soap
-     # - sysvmsg
-      # - sysvsem
-      # - sysvshm
+      - simplexml
+      - snmp
+      - soap
+      - sockets
+      - sodium
+      - sourceguardian
+      - sqlite3
+      - ssh2
+      - swoole
+      - sybase
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tidy
+      - tideways
+      - tokenizer
+      - uuid
+      - uv
+      - xdebug
+      - xml
+      - xmlreader
+      - xmlrpc
+      - xmlwriter
+      - xsl
+      - yaml
+      - zip
     built-in:
       - json
       - zendopcache
-    # with-webp:
-    #   - imagick
+  "8.5":
+    available:
+      - apcu
+      - blackfire
+      - datadog-profiling
+      - enchant
+      - event
+      - ffi
+      - geoip
+      - gmp
+      - igbinary
+      - ldap
+      - mailparse
+      - newrelic
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - readline
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sybase
+      - tideways
+      - tidy
+      - xmlrpc
+      - xsl
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - curl
+      - ctype
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - opcache
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - json
+      - zendopcache

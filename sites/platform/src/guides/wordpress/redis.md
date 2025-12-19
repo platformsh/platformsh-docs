@@ -77,7 +77,7 @@ Then commit the resulting changes to your `composer.json` and `composer.lock` fi
 
 To enable the Redis cache to work with WordPress,
 the `object-cache.php` file needs to be copied from the plugin's directory to the `wp-content` directory.
-Add the following line to the bottom of your `build` hook in your [app configuration](/create-apps/app-reference/single-runtime-image.md#hooks),
+Add the following line to the bottom of your `build` hook in your [app configuration](/create-apps/image-properties/hooks.md),
 adjusting the paths based on where your plugins are located:
 
 {{< codetabs >}}

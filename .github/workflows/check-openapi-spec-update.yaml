@@ -23,7 +23,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Download redoc_static.html from GitLab
+      - name: Download redoc_static.html and redoc-static-internal.html from GitLab
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
         run: |
@@ -48,8 +48,21 @@ jobs:
             --output shared/pages/openapispec-upsun.yaml \
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun.yaml',safe=''))")/raw?ref=${REF}"
 
+          # @todo should we also copy over the stylesheet? or should the version in docs be canonical?
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output shared/pages/api-internal.html \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/redoc-static-internal.html',safe=''))")/raw?ref=${REF}"
+          # @todo let's refactor this to be more concise. maybe just retrieve everything in the directory?
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output shared/pages/openapispec-upsun-internal.json \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun-internal.json',safe=''))")/raw?ref=${REF}"
+          # @todo see above
+          curl --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+            --output shared/pages/openapispec-upsun-internal.yaml \
+            "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun-internal.yaml',safe=''))")/raw?ref=${REF}"
 
       - name: Create Pull Request if changes
+        id: create-pr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}

@@ -18,12 +18,14 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="valkey" status="supported" environment="grid" >}}
-{{% comment %}} uncomment this when Upsun deprecates Valkey v8.0 {{% /comment %}}
-{{% comment %}}
+
+<!-- uncomment this when Upsun deprecates Valkey v8.0
+
 {{% deprecated-versions %}}
 
 {{< image-versions image="valkey" status="deprecated" environment="grid" >}}
-{{% /comment %}}
+
+-->
 
 ## Service types
 
@@ -180,9 +182,9 @@ applications:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -208,10 +210,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -387,9 +389,9 @@ applications:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -415,10 +417,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -631,7 +633,7 @@ services:
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `valkey` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 

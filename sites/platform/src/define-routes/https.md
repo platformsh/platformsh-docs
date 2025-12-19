@@ -44,12 +44,15 @@ is not guaranteed to be the same on each certificate renewal.
 ### Certificate renewals
 
 When you use the [TLS certificates](#tls-certificates) provided by {{% vendor/name %}},
-certificate renewals are automatic.
-They trigger a redeployment of your environment.
-During this redeployment, required security and system upgrades are applied to your containers.
-So the duration of the redeployment depends on what needs to be upgraded.
+certificate renewals occur automatically.
+
+These automatic renewals trigger a redeployment, and the following events occur, which can affect the duration of the redeployment: 
+- Any required security and system upgrades are applied to your containers.
+- The `post_deploy` hook is invoked. {{% create-apps/post-deploy-idempotent %}} 
 
 ## Enable HTTPS
+
+{{% define-routes/define-routes-dns %}}
 
 To enable HTTPS, add a routing configuration similar to the following:
 
@@ -63,9 +66,8 @@ To enable HTTPS, add a routing configuration similar to the following:
   to: "https://{default}/"
 ```
 
-All traffic to your domain is then sent to your app.
-The `www` subdomain redirects to the [default domain](/define-routes/_index.md#default).
-This also includes redirecting requests from HTTP to HTTPS.
+In this example, all traffic to your domain is routed to `myapp`. The `www` subdomain redirects to the [{default} domain](/define-routes/_index.md#default), and this includes redirecting requests from HTTP to HTTPS.
+
 
 For more information, see how to [define routes](/define-routes/_index.md).
 
