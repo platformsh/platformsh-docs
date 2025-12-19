@@ -61,6 +61,21 @@ title=Using the Console
 
 {{< /codetabs >}}
 
+## Create a Fixed organization
+
+**This option is available only to {{% vendor/name %}} customers under current contracts.** 
+
+For all other customers, all new organization types are Flex organizations, which you can create yourself by using the Console or CLI as described in [Create a Flex organization](#create-flex-organization) below.
+
+To create a Fixed organization, please open a [support ticket](/learn/overview/get-support.md), and indicate the following information in your ticket:
+
+- Indicate that you are requesting the creation of a Fixed organization.
+- **Category:** Access  
+- **Priority:** Low / Normal (as required)  
+- **Description:** Make sure to include the **organization name** you would like.
+
+Our Support team will verify your eligibility for a Fixed organization. Once approved, a Fixed organization will be created on your behalf. Support will notify you when the organization is ready, and your ticket will be closed.
+
 ## Create a Flex organization {#create-flex-organization}
 
 You can create new organizations with different payment methods and billing addresses
@@ -167,22 +182,6 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 **Flex:** Users can customize resources per container (per app or service) for **all** environments.
 
 {{< /note >}}
-
-
-## Create a Fixed organization
-
-**Only {{% vendor/name %}} customers under current contracts can create a Fixed organization, and this is accomplished by opening a support ticket as described below.** 
-
-For all other customers, all new organization types are Flex organizations, which you can create yourself by using the Console or CLI as described above.
-
-To create a Fixed organization, please open a [support ticket](/learn/overview/get-support.md), and indicate the following information in your ticket:
-
-- Indicate that you are requesting the creation of a Fixed organization.
-- **Category:** Access  
-- **Priority:** Low / Normal (as required)  
-- **Description:** Make sure to include the **organization name** you would like.
-
-Our Support team will verify your eligibility for a Fixed organization. Once approved, a Fixed organization will be created on your behalf. Support will notify you when the organization is ready, and your ticket will be closed.
 
 
 ### Feature differences
