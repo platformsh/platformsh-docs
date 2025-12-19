@@ -13,17 +13,20 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-{{% note title="Premium Service" theme="info" %}}
-Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
-You need to add it separately at an additional cost.
-To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
-{{% /note %}}
 
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+
+### Enterprise edition
+
+{{% note title="Premium Service" theme="info" %}}
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
+You need to add it separately at an additional cost.
+To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
+{{% /note %}}
 
 ## Deprecated versions
 
