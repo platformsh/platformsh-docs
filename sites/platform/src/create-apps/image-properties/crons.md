@@ -1,5 +1,5 @@
 ---
-title: "`crons`"
+title: "crons"
 weight: 4
 description: A cron dictionary that defines scheduled tasks for the app.
 ---
@@ -86,7 +86,7 @@ applications:
 
 {{< /codetabs >}}
 
-In this example configuration, the crons [`spec`](#crons) uses the `H` syntax.
+In this example configuration, the crons `spec` key uses the `H` syntax.
 
 Note that this syntax is only supported on Grid projects.
 On {{% names/dedicated-gen-2 %}} projects, use the [standard cron syntax](https://en.wikipedia.org/wiki/Cron#Cron_expression).

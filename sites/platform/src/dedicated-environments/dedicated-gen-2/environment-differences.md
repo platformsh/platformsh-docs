@@ -103,7 +103,7 @@ The following settings require a [support ticket](/learn/overview/get-support.md
 * Increasing storage
 * Allocating storage among mounts and services
 * [PHP extensions](/languages/php/extensions.md)
-* Web server configuration (the [`web.locations` section of your app configuration](/create-apps/app-reference/single-runtime-image.md#locations))
+* Web server configuration (the [`web.locations` section of your app configuration](/create-apps/image-properties/web.md#locations))
 
 ## Logs
 
