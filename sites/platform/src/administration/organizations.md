@@ -168,30 +168,25 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 
 {{< /note >}}
 
-### What can you do?
-When creating a new organization, users will be able to select the organization type from a drop-down option based on their preference. Once the organization is created, users can manage their organizations like they do today.
 
-# Requesting a Fixed organization
+## Create a Fixed organization
 
-Customers with existing contracts that include eligibility for a Fixed organization can request one through our [support team](/learn/overview/get-support.md).
 
-## How to request a Fixed organization
 
-To request a Fixed organization, follow these steps:
 
-### 1. Submit a support ticket
 
-Open a [support ticket](/learn/overview/get-support.md) and specify that you would like a Fixed organization.
+To create a Fixed organization, please open a [support ticket](/learn/overview/get-support.md), and indicate the following information in your ticket:
 
+- Indicate that you are requesting the creation of a Fixed organization.
 - **Category:** Access  
 - **Priority:** Low / Normal (as required)  
-- **Description:** Make sure to include the **organisation name** you would like.
+- **Description:** Make sure to include the **organization name** you would like.
 
-Our Support team will verify your eligibility for a Fixed organization. Once approved, a Fixed organization will be created on your behalf. Support will notify you once the organization is ready, and your ticket will be closed.
+Our Support team will verify your eligibility for a Fixed organization. Once approved, a Fixed organization will be created on your behalf. Support will notify you when the organization is ready, and your ticket will be closed.
 
 {{< note theme="info" title="Availability">}}
 
-Fixed organizations are available only to existing Fixed customers under current contracts. New customers will receive the Flex organization type.
+Only Upsun Fixed customers under current contracts can request the creation of a Fixed organization. For new and existing Upsun Flex customers, all new organization types are Flex organizations, which you can create yourself in the Console.
 
 {{< /note >}}
 
