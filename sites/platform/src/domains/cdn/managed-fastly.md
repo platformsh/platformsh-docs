@@ -124,10 +124,10 @@ Rate limiting is applied at the edge, before requests reach your application, he
 - Protect sensitive endpoints such as `/login`, `/admin`, or checkout paths
 - Limit request floods from a single IP or IP range
 - Reduce application load during traffic spikes
-- Assist {{% vendor/name %}} Support during attacks or high-traffic events by throttling traffic at the edge
+- Enable {{% vendor/company_name %}} Support to better handle attacks or high-traffic events by throttling traffic at the edge
 
 Edge-level rate limiting is:
-- Included with all Upsun WAF tiers
+- Included with all {{% vendor/company_name %}} Fastly Next-Gen WAF tiers
 - Available as a standalone add-on (without the WAF)
 
 ### Configuration and defaults
