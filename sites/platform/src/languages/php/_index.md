@@ -78,7 +78,7 @@ type: 'php:{{% latest "php" %}}'
 ```
 ### 2. Serve your app
 
-To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/app-reference/single-runtime-image.md#locations).
+To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/image-properties/web.md#locations).
 
 Usually, it contains the two following (optional) keys:
 
@@ -663,8 +663,21 @@ See the example below for more details.
 | `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image.md#stack) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
 | `disabled_extensions`       | List of `string`s                                                                                                                | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
 | `request_terminate_timeout` | `integer`                                                                                                                        | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
+| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
 | `xdebug`                    | An Xdebug definition                                                                                                             | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
+
+### PHP-FPM service sizing hints {#sizing-hints}
+
+The following table shows the properties that can be set in `sizing_hints`:
+
+| Name              | Type      | Default | Minimum | Description                                    |
+|-------------------|-----------|---------|---------|------------------------------------------------|
+| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
+| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
+
+See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
+
+### Example PHP configuration {#example-php-configuration}
 
 Here is an example configuration:
 

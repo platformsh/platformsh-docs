@@ -28,9 +28,7 @@
         "95",
         "91"
       ],
-      "legacy": [
-
-      ]
+      "legacy": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -518,19 +516,20 @@
     "versions": {
       "deprecated": [
         "11.2",
+        "11.0",
+        "10.5",
         "10.4",
+        "10.3",
         "10.2",
         "10.1",
         "10.0",
         "5.5"
       ],
       "supported": [
-        "11.0",
+        "11.8",
+        "11.4",
         "10.11",
-        "10.6",
-        "10.5",
-        "10.4",
-        "10.3"
+        "10.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -806,6 +805,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "8.4",
         "8.0",
         "5.7"
       ]
@@ -1400,6 +1400,34 @@
         "1.8",
         "1.6"
       ]
+    }
+  },
+  "clickhouse": {
+    "description": "ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "min_disk_size": 512,
+    "configuration": "applications:\n  <APP_NAME>:\n    relationships:\n      <SERVICE_NAME>:",
+    "name": "ClickHouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "exclude_from": [
+      "platformsh"
+    ],
+    "versions": {
+      "supported": [
+        "25.3",
+        "24.3",
+        "23.8"
+      ],
+      "deprecated": [],
+      "legacy": []
     }
   }
 }
