@@ -295,15 +295,16 @@
     "runtime": true,
     "type": "java",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "14",
+        "13",
+        "12"
+      ],
       "supported": [
         "21",
         "19",
         "18",
         "17",
-        "14",
-        "13",
-        "12",
         "11",
         "8"
       ]
