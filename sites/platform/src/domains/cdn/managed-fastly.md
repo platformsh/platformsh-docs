@@ -45,10 +45,26 @@ You can also set up consumption alerts for your resource usage. Click the Alert 
 
 {{< /note >}}
 
+## How Managed Fastly works
+
+{{% vendor/name %}}’s Managed Fastly CDN routes incoming traffic through the Fastly edge network before requests reach your application. This enables global caching, edge logic (VCL), performance optimisation, and optional security features.
+
+The Fastly CDN must be provisioned and managed by {{% vendor/name %}}. Features such as the {{% vendor/name %}} Web Application Firewall (WAF), edge rate limiting, and image optimisation depend on this managed integration and cannot be used with a customer-managed Fastly account.
+
+Once enabled, Fastly operates as the first point of contact for all HTTP requests, allowing requests to be cached, filtered, transformed, or blocked entirely at the edge.
+
+{{< note theme="info" title="Feature dependencies">}}
+
+- The {{% vendor/name %}} WAF requires the {{% vendor/name %}} Managed Fastly CDN.
+- Customers cannot attach the WAF to an existing third-party Fastly service.
+- Advanced Fastly features such as virtual patching and per-project logging require a configurable Fastly workspace.
+
+{{< /note >}}
+
 ### Domain control validation
 
 When you request for a new domain to be added to your Fastly service,
-{{% vendor/name %}} support provides you with a [`CNAME` record](/domains/steps/dns.md) for [domain control validation](/domains/troubleshoot.md#ownership-verification).
+{{% vendor/name %}} [support](/learn/overview/get-support.md) provides you with a [`CNAME` record](/domains/steps/dns.md) for [domain control validation](/domains/troubleshoot.md#ownership-verification).
 To add this `CNAME` record to your domain settings,
 see how to [configure your DNS provider](/domains/steps/_index.md#2-configure-your-dns-provider).
 
@@ -94,4 +110,43 @@ typically located at `/mnt/shared/fastly_tokens.txt`.
 {{% /note %}}
 
 ## Dynamic ACL and rate limiting
+
 For details about updating an access control list (ACL) and applying rate limiting, check out the [Working with {{% vendor/name %}} rate-limiting implementation](https://support.platform.sh/hc/en-us/articles/29528777071890-Upsun-Fastly-Rate-Limiting-How-it-works-how-to-tune-it) article in the Upsun Community.
+
+## Edge-level rate limiting
+
+{{% vendor/name %}} provides edge-level rate limiting through Fastly, allowing you to control how many requests a single IP address or network can make within a given time window.
+
+Rate limiting is applied at the edge, before requests reach your application, helping to reduce load and mitigate abusive traffic patterns.
+
+### What Edge-level rate limiting can do
+
+- Protect sensitive endpoints such as `/login`, `/admin`, or checkout paths
+- Limit request floods from a single IP or IP range
+- Reduce application load during traffic spikes
+- Enable {{% vendor/company_name %}} Support to better handle attacks or high-traffic events by throttling traffic at the edge
+
+Edge-level rate limiting is:
+- Included with all {{% vendor/company_name %}} Fastly Next-Gen WAF tiers
+- Available as a standalone add-on (without the WAF)
+
+### Configuration and defaults
+
+There are no default rate-limiting rules applied automatically. Rate limiting is configured during onboarding, or by request via {{% vendor/name %}} [Support](/learn/overview/get-support.md).
+
+Rules can be scoped by:
+
+- Request path
+- Request type
+- IP address or network
+- Custom thresholds and actions (block, allow, log)
+
+### Limitations
+
+Edge-level rate limiting is a rule-based control mechanism, not an automated bot-detection system. It does not:
+
+- Identify bots automatically
+- Present CAPTCHA or JavaScript challenges
+- Provide AI-driven mitigation
+
+For advanced bot and scraper protection, {{% vendor/name %}} offers separate third-party integrations.
