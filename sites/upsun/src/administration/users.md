@@ -10,7 +10,7 @@ When a user is added to a project, they are automatically added to your organiza
 
 {{< note title="Available add-on" >}}
 
-The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/mfa.md) and [single sign-on](/administration/billing/add-on-subscription.md#single-sign-on). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
+The Advanced User Management add-on offers [teams](/administration/teams.md), [MFA enforcement within an organization](/administration/security/mfa.md) and [single sign-on](/administration/security/sso.md). See how to [subscribe to this add-on](/administration/billing/add-on-subscription.md#advanced-user-management-add-on).
 
 {{< /note >}}
 
@@ -48,7 +48,7 @@ A user can have one of the following roles on an environment type which grants t
 | Contributor | Yes              | No         | Yes       | Yes                | Yes        | No              | No              |
 | Viewer      | Yes              | No         | No        | Yes                | No         | No              | No              |
 
-To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/app-reference/single-runtime-image.md#access).
+To customize which roles can use SSH, set [`access` in your app configuration](/create-apps/image-properties/access.md).
 
 ### View a user's permissions across all of the projects in your organization
 

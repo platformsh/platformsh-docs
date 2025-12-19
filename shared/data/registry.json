@@ -28,9 +28,7 @@
         "95",
         "91"
       ],
-      "legacy": [
-
-      ]
+      "legacy": []
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -472,19 +470,20 @@
     "versions": {
       "deprecated": [
         "11.2",
+        "11.0",
+        "10.5",
         "10.4",
+        "10.3",
         "10.2",
         "10.1",
         "10.0",
         "5.5"
       ],
       "supported": [
-        "11.0",
+        "11.8",
+        "11.4",
         "10.11",
-        "10.6",
-        "10.5",
-        "10.4",
-        "10.3"
+        "10.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -681,6 +680,7 @@
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "22",
         "20",
         "19"
       ],
@@ -759,6 +759,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
+        "8.4",
         "8.0",
         "5.7"
       ]
@@ -801,6 +802,7 @@
     "type": "php",
     "versions-dedicated-gen-2": {
       "supported": [
+        "8.5",
         "8.4",
         "8.3",
         "8.2",
@@ -828,6 +830,7 @@
         "5.4"
       ],
       "supported": [
+        "8.5",
         "8.4",
         "8.3",
         "8.2",
@@ -1196,6 +1199,7 @@
     "type": "solr",
     "versions": {
       "deprecated": [
+        "8.11",
         "8.6",
         "8.4",
         "8.0",
@@ -1211,21 +1215,21 @@
         "9.6",
         "9.4",
         "9.2",
-        "9.1",
-        "8.11"
+        "9.1"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "9.9",
         "9.7",
         "9.6",
         "9.4",
         "9.2",
         "9.1",
-        "9.0",
-        "8.11"
+        "9.0"
       ],
       "deprecated": [
+        "8.11",
         "8.6",
         "8.0",
         "7.7",
@@ -1239,10 +1243,12 @@
         "9.6",
         "9.4",
         "9.2",
-        "9.1",
-        "8.11"
+        "9.1"
+
       ],
-      "deprecated": []
+      "deprecated": [
+        "8.11"
+      ]
     }
   },
   "valkey": {
@@ -1263,12 +1269,14 @@
     "type": "valkey",
     "versions": {
       "supported": [
+        "8.1",
         "8.0"
       ],
       "deprecated": []
     },
     "versions-dedicated-gen-2": {
       "supported": [
+        "8.1",
         "8.0"
       ],
       "deprecated": []
@@ -1346,6 +1354,34 @@
         "1.8",
         "1.6"
       ]
+    }
+  },
+  "clickhouse": {
+    "description": "ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "min_disk_size": 512,
+    "configuration": "applications:\n  <APP_NAME>:\n    relationships:\n      <SERVICE_NAME>:",
+    "name": "ClickHouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "exclude_from": [
+      "platformsh"
+    ],
+    "versions": {
+      "supported": [
+        "25.3",
+        "24.3",
+        "23.8"
+      ],
+      "deprecated": [],
+      "legacy": []
     }
   }
 }

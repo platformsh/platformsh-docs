@@ -49,7 +49,7 @@ Once the app has gone through all of the build steps, it can connect to services
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
 
-   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures..<br> 
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br>
    You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
 
 6. **Freeze app container**:
@@ -75,7 +75,7 @@ but the file system is read-only.
 1. **Expose services**:
    Networking connections are opened between any containers specified in your app and services configurations.
 1. **Run (pre-) start commands**:
-   The [commands](/create-apps/app-reference/single-runtime-image.md#web-commands) necessary to start your app are run.
+   The [commands](/create-apps/image-properties/web.md#web-commands) necessary to start your app are run.
    Often this stage will only include a start command, which is restarted if ever terminated going forward.
    You may also, however, define a `pre_start` command, when you need to run _per-instance_ actions.
    In this case, as you might expect, the `pre_start` command is run, then the `start` command.
@@ -113,14 +113,14 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Manual deployment is available for **development**, **staging** and **production** environments. 
+Manual deployment is available for **development**, **staging** and **production** environments.
 
 {{< /note >}}
 
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment. 
+You can adjust deployment behavior in your environment.
 
 {{< codetabs >}}
 
@@ -151,7 +151,7 @@ upsun environment:deploy:type --help
 title=Using the Console
 +++
 
-To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+To switch to manual, navigate to the environment settings in the Console and select the manual deployments option.
 
 {{< /codetabs >}}
 
@@ -189,7 +189,7 @@ Deploying staged changes:
 title=Using the Console
 +++
 
-In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes. 
+In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes.
 
 <--->
 +++
@@ -234,7 +234,7 @@ Instead of stopping services before updating, a temporary copy of your applicati
 
 ![The duplicate of your original application is removed](/images/ZDD/ZDD-2.jpg "0.4")
 
-{{< note theme="warning" >}} 
+{{< note theme="warning" >}}
 During the Zero Downtime Deployment process, both the old and new containers run simultaneously for a short period.
 You could be temporarily be billed for extra resources while both versions are active.
 - If your app uses fewer resources and has a short deploy hook time, additional costs will be minimal.
@@ -244,15 +244,15 @@ You could be temporarily be billed for extra resources while both versions are a
 ### Deployment strategies
 #### Stop-start (default)
 
-- Services stop first then restart with the new version  
+- Services stop first then restart with the new version
 - Deployment is fast but may cause temporary downtime or freezing depending on the application
 
 #### Rolling (ZDD)
 
-- Creates a temporary copy of your services  
-- Routes traffic to the temporary copy while updating the original services  
-- Removes the temporary copy once the deployment is complete  
-- No downtime for users  
+- Creates a temporary copy of your services
+- Routes traffic to the temporary copy while updating the original services
+- Removes the temporary copy once the deployment is complete
+- No downtime for users
 - Deployment may take longer and use slightly more resources temporarily
 
 ### Stop-start vs Rolling (ZDD)
@@ -335,7 +335,7 @@ With ZDD, you can plan for smooth reconnection:
 
 - WebSocket clients should implement reconnect logic.
 
-## Zero Downtime Troubleshooting 
+## Zero Downtime Troubleshooting
 
 This section covers two common scenarios and how to resolve them.
 
@@ -345,7 +345,7 @@ If your application takes longer to become responsive, traffic might be [switche
 
 {{< note theme="info" title="Use a post_start command">}}
 
-You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port. 
+You can use the `post_start` command to ensure your app is fully active before traffic is routed to it. This command can perform checks or wait until your application starts listening on the expected port.
 
 For example, if your framework needs several seconds to initialize (e.g. building caches or database connections), `post_start` can help coordinate the handover so the app receives traffic only when it’s ready.
 
@@ -359,7 +359,7 @@ web:
 	  curl -sS --retry 20 --retry-delay 1 --retry-connrefused localhost -o /dev/null
 ```
 
-**For more information about the `post_start` command, visit [web commands](/create-apps/app-reference/single-runtime-image.html#web-commands).**
+**For more information about the `post_start` command, visit [web commands](/create-apps/image-properties/web.md#post_start).**
 
 {{< /note >}}
 

@@ -11,6 +11,11 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/documentation/)
 or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
+{{% note theme="info" title="MariaDB note" %}}
+The [example](#mariadb-example) provided later in this topic is specific to using only a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
+
+
 ## Supported versions
 
 You can select the major and minor version.
@@ -266,11 +271,11 @@ applications:
 
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 That is, it uses default endpoints behind-the-scenes,
-providing a [relationship](create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](create-apps/app-reference/single-runtime-image.md#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container (``<APP_NAME>``) now has [access to the service](#use-in-app) via the relationship ``<SERVICE_NAME>`` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -296,16 +301,20 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 {{< /codetabs >}}
 
 ### MariaDB example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
 
 {{< codetabs >}}
 
@@ -462,7 +471,7 @@ service:
 
 This configuration defines a single application (``myapp``), whose source code exists in the ``<PROJECT_ROOT>/myapp`` directory.
 ``myapp`` has access to the ``mariadb`` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
@@ -514,10 +523,10 @@ You can configure your MySQL service in the [services configuration](../_index.m
 
 | Name               | Type                       | Version                            | Description |
 | ------------------ | -------------------------- | ---------------------------------- | ----------- |
-| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `schemas`          | `string` array     | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
 | `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
 | `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
-| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Defaults to `true`. When set to `false`, [password rotation](#password-rotation) is disabled. |
 
 Example configuration:
 
@@ -746,27 +755,30 @@ define custom endpoints in your [service configuration](#1-configure-the-service
 For each custom endpoint you create,
 you get an automatically generated password,
 similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
-
-{{% note theme="warning" %}}
-By default, the generated password will rotate on a regular
-basis. Your applications MUST use the passwords from the
-relationships, as the password _is_ going to change. Set
-`rotate_passwords` to `false` if you wish to change this default
-behavior.
-{{% /note %}}
+You cannot customize these generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
 through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
  within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
-The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
-Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
+
+Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
 
 When you switch from the default configuration with an empty password to custom endpoints,
 make sure your service name remains unchanged.
-Failure to do so results in the creation of a new service,
-which removes any existing data from your database.
+**Changing the service name creates a new service,
+which removes any existing data from your database.**
+
+## Password rotation {#password-rotation}
+By default, password rotation is enabled (`rotate_passwords=true`), enabling {{% vendor/name %}} to automatically change (or _rotate_) MariaDB passwords each time it updates the MariaDB image. Password rotation also occurs as defined by any password lifetime settings in MariaDB.
+
+Specific scenarios might warrant disabling password rotation (` rotate_passwords=false`): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference).
+
+Passwords do **not** rotate automatically when you reset this value to `true`.
+
+{{% note title="Important" theme="warning" %}}
+Disabling password rotation can jeopardize compliance with security certifications - make sure you weigh this risk alongside the convenience of SSH-tunneling access.
+{{% /note %}}
 
 ## Storage Engine
 

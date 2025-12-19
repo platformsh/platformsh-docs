@@ -4,7 +4,7 @@ sidebarTitle: Scalability
 description: Learn how to scale your live site.
 ---
 
-Your production environment gets a [pool of resources](/create-apps/app-reference/single-runtime-image.md#sizes)
+Your production environment gets a [pool of resources](/create-apps/image-properties/size.md)
 based on your [plan size](/administration/pricing/_index.md).
 These resources are split up between the apps and services you've defined.
 
