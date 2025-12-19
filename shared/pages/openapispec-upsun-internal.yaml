@@ -5427,6 +5427,41 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
+  /billing/{billing_account_id}/invoices/{invoice_id}/payments:
+    get:
+      summary: '[Internal] Get invoice payments'
+      description: Retrieves the payments of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-account-invoice-payments
+      tags:
+        - Invoices
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_invoice_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/payment'
+                    description: Array of invoice payments.
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
   /billing/{billing_account_id}/alerts/billing:
     get:
       summary: '[Internal] Get billing alert configuration'
@@ -11716,6 +11751,43 @@ paths:
                 additionalProperties: false
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -12048,6 +12120,43 @@ paths:
                 additionalProperties: false
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -12413,7 +12522,44 @@ paths:
                 type: object
                 additionalProperties: false
         '400':
-          description: Bad request - Invalid parameters or cursor. Please consult the API documentation to fix the request parameters.
+          description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -13394,6 +13540,43 @@ paths:
                 type: object
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -14462,6 +14645,41 @@ paths:
                 additionalProperties: false
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -15221,6 +15439,43 @@ paths:
                 additionalProperties: false
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -15408,6 +15663,43 @@ paths:
                     opcache_hitrate: 0.9998
         '400':
           description: Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.
+          content:
+            application/json:
+              schema:
+                required:
+                  - type
+                  - title
+                  - status
+                  - violations
+                properties:
+                  type:
+                    description: RFC 2616 reference URL identifying the error type
+                    type: string
+                    format: uri
+                    example: https://tools.ietf.org/html/rfc2616#section-1
+                  title:
+                    description: Human-readable summary of the validation error
+                    type: string
+                    example: Please ensure parameters are correct.
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    example: 400
+                  violations:
+                    description: Map of parameter names to their validation errors. Each parameter can have multiple error messages.
+                    type: object
+                    example:
+                      grain:
+                        - Grain can not be larger than the selection windows.
+                      from:
+                        - The from timestamp must be in the past.
+                      to:
+                        - The to timestamp must be greater than the from timestamp.
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                type: object
         '403':
           description: Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)
         '499':
@@ -24707,6 +24999,8 @@ components:
       $ref: '#/components/schemas/account_dunning_actions'
     AddressVerificationPayload:
       $ref: '#/components/schemas/address_verification'
+    Payment:
+      $ref: '#/components/schemas/payment'
     BadRequestError:
       $ref: '#/components/schemas/bad_request_error'
     billing_account:
@@ -24738,6 +25032,12 @@ components:
           type: string
           nullable: true
           description: The country code for the billing account.
+        currency:
+          type: string
+          nullable: true
+          description: ISO 4217 currency code (3-letter code) for the billing account.
+          pattern: ^[A-Z]{3}$
+          example: USD
         organization_ids:
           type: array
           items:
@@ -25073,6 +25373,46 @@ components:
         project_id:
           type: string
           description: The project ID associated with the line item.
+    payment:
+      type: object
+      description: Prepayment transaction for a billing account.
+      properties:
+        invoice_id:
+          type: string
+          description: Invoice ID
+        message:
+          type: string
+          description: The message associated with transaction.
+        status:
+          type: string
+          description: Whether the transactions was successful or a failure.
+        amount:
+          type: object
+          description: The prepayment balance in complex format.
+          properties:
+            formatted:
+              type: string
+              description: Formatted balance.
+            amount:
+              type: number
+              description: The balance amount.
+            currency_code:
+              type: string
+              description: The balance currency code.
+            currency_symbol:
+              type: string
+              description: The balance currency symbol.
+        created:
+          type: string
+          description: Time the transaction was created.
+        updated:
+          type: string
+          description: Time the transaction was last updated.
+          nullable: true
+        expire_date:
+          type: string
+          description: The expiration date of the transaction (deposits only).
+          nullable: true
     billing_alert_config:
       type: object
       description: The alert configuration for a billing account.
