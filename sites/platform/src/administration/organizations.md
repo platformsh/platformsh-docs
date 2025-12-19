@@ -171,9 +171,9 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 
 ## Create a Fixed organization
 
+**Only {{% vendor/name %}} customers under current contracts can create a Fixed organization, and this is accomplished by opening a support ticket as described below.** 
 
-
-
+For all other customers, all new organization types are Flex organizations, which you can create yourself by using the Console or CLI as described above.
 
 To create a Fixed organization, please open a [support ticket](/learn/overview/get-support.md), and indicate the following information in your ticket:
 
@@ -184,11 +184,6 @@ To create a Fixed organization, please open a [support ticket](/learn/overview/g
 
 Our Support team will verify your eligibility for a Fixed organization. Once approved, a Fixed organization will be created on your behalf. Support will notify you when the organization is ready, and your ticket will be closed.
 
-{{< note theme="info" title="Availability">}}
-
-Only Upsun Fixed customers under current contracts can request the creation of a Fixed organization. For new and existing Upsun Flex customers, all new organization types are Flex organizations, which you can create yourself in the Console.
-
-{{< /note >}}
 
 ### Feature differences
 
