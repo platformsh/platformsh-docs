@@ -61,7 +61,7 @@ title=Using the Console
 
 {{< /codetabs >}}
 
-## Create a new organization
+## Create a Flex organization {#create-flex-organization}
 
 You can create new organizations with different payment methods and billing addresses
 and organize your projects as you want.
