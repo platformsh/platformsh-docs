@@ -217,6 +217,8 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
+        "1.15",
+        "1.14",
         "1.13",
         "1.12",
         "1.11",
@@ -224,9 +226,7 @@
         "1.9"
       ],
       "supported": [
-        "1.18",
-        "1.15",
-        "1.14"
+        "1.18"
       ]
     }
   },
@@ -623,14 +623,15 @@
     "type": "mongodb-enterprise",
     "premium": true,
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "4.2",
+        "4.0"
+      ],
       "supported": [
         "7.0",
         "6.0",
         "5.0",
-        "4.4",
-        "4.2",
-        "4.0"
+        "4.4"
       ]
     },
     "versions-dedicated-gen-2": {
