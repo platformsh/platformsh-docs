@@ -14,7 +14,7 @@ Laravel offers a very convenient and flexible way of scheduling tasks. A large s
 
 Once the scheduled tasks are defined, they need to be effectively executed at the right time and pace.
 The recommended way is a cron configuration entry running the `artisan schedule:run` command schedule for every minute.
-However, on {{% vendor/name %}} the [minimum time between cron jobs](/create-apps/app-reference/single-runtime-image.md#cron-job-timing)
+However, on {{% vendor/name %}} the [minimum time between cron jobs](/create-apps/image-properties/crons.md#cron-job-timing)
 depends on your plan. Task scheduling may then be contradicted by the cron minimum frequency. Schedules outside the
 specified cron frequency are ignored and the related tasks aren't triggered.
 

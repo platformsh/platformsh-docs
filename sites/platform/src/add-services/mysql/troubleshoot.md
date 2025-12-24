@@ -151,9 +151,9 @@ Behind the scenes, `max_connections` (for Professional and DG3 projects) is calc
           max_allowed_packet: 16
     ```
 
-    The memory for a given container from its `size` depends on its [container profile***](/create-apps/app-reference/single-runtime-image.md#container-profiles-cpu-and-memory).
+    The memory for a given container from its `size` depends on its [container profile](/create-apps/image-properties/size.html#container-profiles-cpu-and-memory).
 
-    For example, [MariaDB](/create-apps/app-reference/single-runtime-image.md#container-profile-reference) has a `HIGH_MEMORY` [container profile](/create-apps/app-reference/single-runtime-image.md#high_memory-container-profile).
+    For example, [MariaDB](/create-apps/image-properties/size.md#container-profile-reference) has a [`HIGH_MEMORY` container profile](/create-apps/image-properties/size.html#container-profiles-cpu-and-memory).
     For `size: L`, it means 0.40 CPU and 1280 MB of memory.
 
 If we assume the configuration above, where:

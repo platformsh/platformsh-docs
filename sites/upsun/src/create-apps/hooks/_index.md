@@ -90,7 +90,7 @@ All of this configuration and preparation can be handled in a bash script.
    Note that hooks are executed using the dash shell, not the bash shell used by SSH logins.
 2. Copy the [Drush configuration script from the template](https://github.com/platformsh-templates/nextjs-drupal/blob/master/api/drush/platformsh_generate_drush_yml.php)
    into a `drush/platformsh_generate_drush_yml.php` file.
-3. Set a [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+3. Set a [mount](/create-apps/image-properties/mounts.md).
    Unlike in the `build` hook, in the `deploy` hook the system is generally read-only.
    So create a mount where you can write the Drush configuration:
 
@@ -158,7 +158,7 @@ So you don't have to rebuild Drupal but you still get fresh content.
            endpoint: 'http'
    ```
 
-2. Set [mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
+2. Set [mounts](/create-apps/image-properties/workers.md).
    Like the [`deploy` hook](#configure-drush-and-drupal), the `post_deploy` hook has a read-only file system.
    Create mounts for your Next.js files:
 

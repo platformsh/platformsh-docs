@@ -22,7 +22,7 @@ hooks:
 Here, you can commit plugins to the repository in a `plugins` subdirectory,
 which are placed into the WordPress installation during the build.
 It's assumed that these packages stick to best practices and don't write to the file system at runtime and when enabling them.
-You can get around this issue by defining a [mount](/create-apps/app-reference/single-runtime-image.md#mounts) where a plugin requires write access,
+You can get around this issue by defining a [mount](/create-apps/image-properties/mounts.md) where a plugin requires write access,
 but you need to remember that the contents at that mount location are wiped when deployment begins,
 so you need to copy and re-copy accordingly.
 

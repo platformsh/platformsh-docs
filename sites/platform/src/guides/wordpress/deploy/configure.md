@@ -10,7 +10,7 @@ description: |
 
 {{% guides/config-app template="wordpress-composer" %}}
 
-Notice that the build `flavor` is set to `composer`, which will automatically download WordPress core, as well as your plugins, themes, and dependencies during the build step as defined in your `composer.json` file. Since WordPress's caching and uploads require write access at runtime, they've been given corresponding [mounts](/create-apps/app-reference/single-runtime-image.md#mounts) defined for them at the bottom of the file. MariaDB is accessible to WordPress internally at `database.internal` thanks to the relationship definition `database`. The [WordPress CLI](https://packagist.org/packages/wp-cli/wp-cli) is added as a build dependency, but we will still need to add some additional dependencies in the next step so that it can be used by the application and via SSH.
+Notice that the build `flavor` is set to `composer`, which will automatically download WordPress core, as well as your plugins, themes, and dependencies during the build step as defined in your `composer.json` file. Since WordPress's caching and uploads require write access at runtime, they've been given corresponding [mounts](/create-apps/image-properties/mounts.md) defined for them at the bottom of the file. MariaDB is accessible to WordPress internally at `database.internal` thanks to the relationship definition `database`. The [WordPress CLI](https://packagist.org/packages/wp-cli/wp-cli) is added as a build dependency, but we will still need to add some additional dependencies in the next step so that it can be used by the application and via SSH.
 
 {{< /guides/config-app >}}
 

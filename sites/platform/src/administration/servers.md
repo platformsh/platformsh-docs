@@ -1,17 +1,14 @@
 ---
 title: Server upgrades
-description: Information about how some {{% vendor/name %}} servers delivering features are updated.
+description: Information about how {{% vendor/name %}} upgrades servers
 weight: 10
 ---
 
-{{% vendor/name %}} runs a variety of servers to deliver its services.
-To ensure your projects get the newest features, these servers are occasionally updated.
+To ensure your projects get the latest features, improvements, and bug fixes, {{% vendor/name %}} updates the servers that deliver services. 
 
-You don't have to do anything to get the updates.
-When they're ready for your project, you see an activity about the server being updated in your [activity logs](/increase-observability/logs/access-logs.md#activity-logs).
-These activities don't cause downtime for your project.
+No action is needed on your part, and no downtime occurs for your projects. 
 
-The log of the specific activity includes a description of what has changed with the update.
+To view these upgrade events, go to the [activity logs](../increase-observability/logs/access-logs.md#activity-logs) for any project or environment and then select **Upgrade** from the **Filter** list.
 
 ## Affected servers
 

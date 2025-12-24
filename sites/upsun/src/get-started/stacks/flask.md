@@ -142,7 +142,7 @@ To configure all the environment variables Flask needs to run smoothly, follow t
 
 You need to add some writable disk space to hold the static assets that `flask-static-digest` generates and `npm` builds.
 
-To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+To do so, define the `./<APP_NAME>/static` directory as [a mount](/create-apps/image-properties/mounts.md).
 In your app configuration, locate the section dedicated to mounts and update it as follows:
 
 ```yaml {configFile="app"}
@@ -254,7 +254,7 @@ applications:
     # More information: https://docs.upsun.com/create-apps/app-reference.html#web
     web:
       # Commands are run once after deployment to start the application process.
-      # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
+      # More information: https://docs.upsun.com/create-apps/image-properties/web.md#web-commands
 ```
 
 To add a basic Flask server, replace the default information added by the {{% vendor/name %}} CLI with `flask run -p $PORT`.
@@ -265,10 +265,10 @@ applications:
   myapp:
     #...
     # The web key configures the web server running in front of your app.
-    # More information: https://docs.upsun.com/create-apps/app-reference.html#web
+    # More information: https://docs.upsun.com/anchors/app/reference/web/
     web:
       # Commands are run once after deployment to start the application process.
-      # More information: https://docs.upsun.com/create-apps/app-reference.html#web-commands
+      # More information: https://docs.upsun.com/anchors/app/reference/web/commands/
       commands:
         start: "flask run -p $PORT"
       upstream:

@@ -11,7 +11,7 @@ All of the variables can also be [overridden via script](#set-variables-via-scri
 
 ## Set variables in your app
 
-Set variables [in code](/create-apps/app-reference/single-runtime-image.md#variables) using the `{{< vendor/configfile "app" >}}` file.
+Set variables [in code](/create-apps/image-properties/variables.md) using the `{{< vendor/configfile "app" >}}` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 

@@ -5,7 +5,7 @@ description: Start with a basic PHP app with a front controller for dynamic requ
 ---
 
 To handle dynamic requests to your PHP app, you might want to use a [front controller](https://en.wikipedia.org/wiki/Front_controller).
-The following example shows how for such an app you might start defining [your web server](/create-apps/app-reference/single-runtime-image.md#web).
+The following example shows how for such an app you might start defining [your web server](/create-apps/image-properties/web.md).
 
 ## Define a document root
 

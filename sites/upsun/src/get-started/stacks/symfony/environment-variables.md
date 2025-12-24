@@ -100,7 +100,7 @@ symfony ssh -- symfony var:export --multiline
 ```
 
 Each exposed environment variable is prefixed by the relationship name.
-For example, if you have the following [relationships](/create-apps/app-reference/single-runtime-image.md#relationships) in your configuration:
+For example, if you have the following [relationships](/create-apps/image-properties/relationships.md) in your configuration:
 
 ```yaml {configFile="app"}
 applications:

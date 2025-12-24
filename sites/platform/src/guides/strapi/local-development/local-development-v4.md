@@ -114,7 +114,7 @@ To run your Strapi v4 app locally with all of its services, follow these steps:
        // The Oracle MySQL configuration assumes the following in your {{< vendor/configfile "services" >}} file:
        //
        // dbmysql:
-       //    type: oracle-mysql:8.0
+       //    type: oracle-mysql:{{< latest "oracle-mysql" >}}
        //    disk: 256
        //
        // And a relationship defined in your {{< vendor/configfile "app" >}}file as follows:

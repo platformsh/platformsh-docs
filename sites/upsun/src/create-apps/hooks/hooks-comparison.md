@@ -5,11 +5,11 @@ description: What hooks are available in the build and deploy process and how to
 
 The following table presents the main differences among the three available hooks:
 
-| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
-| ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- | -------------------- | --------------- | --------------- |
+| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories                                   | Blocks requests | Runs on all redeploys\* |
+| ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- |--------------------------------------------------------| --------------- | --------------- |
 | `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
-| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts)                   | Yes | No  |
-| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/app-reference/single-runtime-image.md#mounts)                   | No  | Yes |
+| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)      | Yes | No  |
+| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)      | No  | Yes |
 
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
@@ -20,9 +20,9 @@ The `build` hook is run after any [build flavor](/create-apps/app-reference/sing
 During this hook, no services (such as a database) or any persistent file mounts are available
 as the application hasn't yet been deployed.
 
-The `build` hook can access only the variables that are available at build time: 
-  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column) 
-  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI) 
+The `build` hook can access only the variables that are available at build time:
+  - Variables provided by {{% vendor/name %}}, as listed in [this table](../../development/variables/use-variables.md#use-provided-variables) (see the **Build** column)
+  - User-defined project-level or environment-specific build-time variables (**Available during buildtime** is set in the console or the `--visible-build=true` option was set by using the CLI)
 
 During the `build` hook, there are three writeable directories:
 
@@ -37,7 +37,7 @@ During the `build` hook, there are three writeable directories:
   The temp directory is also useful for writing files that aren't needed in the final application,
   but it's wiped between each build.
   Note that `$PLATFORM_CACHE_DIR` is mapped to `/tmp`
-  and together they offer about 8GB of free space.
+  and together they offer about 8 GB of free space.
 
 The only constraint on what can be downloaded during a `build` hook is the disk space available for builds.
 
@@ -64,8 +64,8 @@ So if you accidentally add an unbroken loop, it gets cut off and you can continu
 ## Deploy hook
 
 The `deploy` hook is run after the app container has been started but before it has started accepting requests.
-Note that the deploy hook only runs on [`web` instances](/create-apps/app-reference/single-runtime-image.md#web),
-not [`worker` instances](/create-apps/app-reference/single-runtime-image.md#workers).
+Note that the deploy hook only runs on [`web` instances](/create-apps/image-properties/mounts.md),
+not [`worker` instances](/create-apps/image-properties/mounts.md).
 
 You can access other services at this stage (such as MySQL, Solr, Redis).
 The disk where the application lives is read-only at this point.
@@ -73,7 +73,7 @@ The disk where the application lives is read-only at this point.
 This hook should be used when something needs to run once when new code is deployed.
 It isn't run when a host is restarted (such as during region maintenance),
 so anything that needs to run each time an instance of an app starts (regardless of whether there's new code)
-should go in the `pre_start` key in [your `web` configuration](/create-apps/app-reference/single-runtime-image.md#web-commands).
+should go in the `pre_start` key in [your `web` configuration](/create-apps/image-properties/web.md#web-commands).
 For example, clearing the cache.
 
 Be aware: The deploy hook blocks the site accepting new requests.
@@ -114,4 +114,4 @@ Often times content imports, some types of cache warmups, and other such tasks a
 
 In addition to the activity log, the `post_deploy` hook logs to the [post-deploy log](../../increase-observability/logs/access-logs.md#container-logs).
 
-The `post_deploy` hook is the only hook that runs during a redeploy.
+The `post_deploy` hook is the only hook that runs during a redeploy. {{% create-apps/post-deploy-idempotent %}}

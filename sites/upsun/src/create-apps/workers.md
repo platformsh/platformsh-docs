@@ -5,7 +5,7 @@ description: Interact with your worker instances to handle background tasks for 
 
 Workers are instances of your code that aren't open to connections from other apps or services or the outside world.
 They're good for handling background tasks.
-See how to [configure a worker](/create-apps/app-reference/single-runtime-image.md#workers) for your app.
+See how to [configure a worker](/create-apps/image-properties/workers.md) for your app.
 
 ## Access the worker container
 
@@ -70,13 +70,13 @@ The `start` key specifies the command to use to launch your worker application.
 It may be any valid shell command, although most often it runs a command in your application in the language of your application.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-Note that [`deploy` and `post_deploy` hooks](/create-apps/hooks/_index.md) as well as [`cron` commands](/create-apps/app-reference/single-runtime-image.md#crons)
-run only on the [`web`](/create-apps/app-reference/single-runtime-image.md#web) container, not on workers.
+Note that [`deploy` and `post_deploy` hooks](/create-apps/hooks/_index.md) as well as [`cron` commands](/create-apps/image-properties/crons.md)
+run only on the [`web`](/create-apps/image-properties/web.md) container, not on workers.
 
 ## Inheritance
 
-Any top-level definitions for [`relationships`](/create-apps/app-reference/single-runtime-image.md#relationships),
-[`access`](/create-apps/app-reference/single-runtime-image.md#access), [`mount`](/create-apps/app-reference/single-runtime-image.md#mounts), and [`variables`](/create-apps/app-reference/single-runtime-image.md#variables)
+Any top-level definitions for [`relationships`](/create-apps/image-properties/relationships.md),
+[`access`](/create-apps/image-properties/access.md), [`mounts`](/create-apps/image-properties/mounts.md), and [`variables`](/create-apps/image-properties/variables.md)
 are inherited by every worker, unless overridden explicitly.
 
 Likewise [resources defined for the application container](/manage-resources/_index.md) are inherited by every worker, unless overridden explicitly.
@@ -137,8 +137,8 @@ services:
 
 In both cases, there are two worker instances named `queue` and `mail`.
 Both have access to a MySQL/MariaDB service defined in `{{< vendor/configfile "services" >}}`,
-through a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) that is identical to the _name_ of that service (`mysql`).
-Both also have their own separate [`storage` mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+through a [relationship](/create-apps/image-properties/relationships.md) that is identical to the _name_ of that service (`mysql`).
+Both also have their own separate [`storage` mount](/create-apps/image-properties/mounts.md).
 
 ## Customizing a worker
 
@@ -259,7 +259,7 @@ and, if appropriate, adjust its behavior accordingly.
 
 ## Mounts
 
-When defining a [worker](../create-apps/app-reference/single-runtime-image.md#workers) instance,
+When defining a [worker](/create-apps/image-properties/workers.md) instance,
 keep in mind what mount behavior you want.
 
 `tmp` and `instance` local mounts are a separate storage area for each instance,
@@ -302,7 +302,7 @@ applications:
 
 Both the `web` instance and `queue` worker have their own, dedicated `local_dir` mount.
 Note that:
-- Each `local_dir` mount is a [`tmp` mount](/create-apps/app-reference/single-runtime-image.md#mounts) with a **maximum allocation of 8 GB**.</br>
+- Each `local_dir` mount is a [`tmp` mount](/create-apps/image-properties/mounts.md) with a **maximum allocation of 8 GB**.</br>
 - `tmp` mounts **may be removed** during infrastructure maintenance operations.
 
 Both the `web` instance and `queue` worker also have a `shared_dir` mount pointing to the same network storage space.

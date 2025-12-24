@@ -20,11 +20,11 @@ getDocsData() {
 
     # remove the previous headers log
     if [ -f "data/platform-headers.txt" ]; then
-      rm data/platform-headers.txt
+      rm data/platform-headers.txt || echo "Failed to delete platform-headers.txt"
     fi
 
     if [ -f "data/upsun-headers.txt" ]; then
-      rm data/upsun-headers.txt
+      rm data/upsun-headers.txt || echo "Failed to delete upsun-headers.txt"
     fi
 
     # Get the updated index for docs
@@ -61,26 +61,26 @@ getDocsData() {
     fi
 
     # Delete templates index in the mount if it exists
-    rm -f data/platform_templates.yaml
-    rm -f data/upsun_templates.yaml
+    rm -f data/platform_templates.yaml || echo "Failed to delete platform_templates.yaml"
+    rm -f data/upsun_templates.yaml || echo "Failed to delete upsun_templates.yaml"
 
     # Get the updated index for templates
-    curl -s "${PLATFORM_DOCS_URL}files/indexes/templates.yaml" >> data/platform_templates.yaml
+    curl -s "${PLATFORM_DOCS_URL}files/indexes/templates.yaml" >> data/platform_templates.yaml || echo "Failed to retrieve templates.yaml"
 
     # @todo: For now, reuse the same index. To be removed entirely.
-    cp data/platform_templates.yaml data/upsun_templates.yaml
+    cp data/platform_templates.yaml data/upsun_templates.yaml || echo "Failed to copy templates.yaml"
 }
 
 update_index(){
     echo "* UPDATING INDEX"
     POETRY_LOCATION=/app/.local/bin/poetry
     # Create indices for templates and docs
-    $POETRY_LOCATION run python createPrimaryIndex.py platform
-    $POETRY_LOCATION run python createPrimaryIndex.py upsun
+    $POETRY_LOCATION run python createPrimaryIndex.py platform || echo "Failed to run CreatePrimayIndex for platform"
+    $POETRY_LOCATION run python createPrimaryIndex.py upsun || echo "Failed to run CreatePrimayIndex for upsun"
 
     # Update indexes
-    $POETRY_LOCATION run python main.py platform
-    $POETRY_LOCATION run python main.py upsun
+    $POETRY_LOCATION run python main.py platform || echo "Failed to run main.py for platform"
+    $POETRY_LOCATION run python main.py upsun || echo "Failed to run main.py for upsun"
 }
 
 save_headers() {
@@ -88,14 +88,21 @@ save_headers() {
   timestamp=$(date +%Y-%m-%d-%H-%M-%S)
   if [ -f "./data/${docs}-headers.txt" ]; then
     #rename the file so we can examine it
-    mv "./data/${docs}-headers.txt" "./data/${docs}-headers-${timestamp}.txt"
+    mv "./data/${docs}-headers.txt" "./data/${docs}-headers-${timestamp}.txt" || printf "Failed to rename %s\n" "${docs}-headers.txt"
     echo "Header responses for ${docs} saved."
   else
     echo "Header response log file for ${docs} is missing! Unable to save."
   fi
 }
 
-set -e
+# 20251121 - PFG - Product changed how results for activities are reported. If this post deploy script exits with anything
+# other than 0 - say an exit 60 because curl hit a cert issue - then the deploy/activate activity is marked as a failure.
+# given the state of the environment's deployment is more important than the success of this post-deploy script, the
+# suggestion is that we make sure scripts exit with 0. It's possible they will change this behavior, so for now, we'll
+# remove set -e to prevent the script from exiting and prevent us from determining if the environment deployed. Our E2E
+# tests should catch if the indexes failed to generate correctly. Once they change the behavior, we should be able to
+# come back here and re-enable set -e
+# set -e
 
 cleanup
 
@@ -109,3 +116,4 @@ cleanup
 
 getDocsData
 update_index
+exit 0

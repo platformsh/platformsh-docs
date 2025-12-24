@@ -139,7 +139,7 @@ You can commit a `mix.exs` file in your repository and the system downloads the 
 
 The services configuration is available in the environment variable `PLATFORM_RELATIONSHIPS`.
 
-Given a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) defined in `{{< vendor/configfile "app" >}}`:
+Given a [relationship](/create-apps/image-properties/relationships.md) defined in `{{< vendor/configfile "app" >}}`:
 
 ```yaml {configFile="app"}
 applications:

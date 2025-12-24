@@ -10,7 +10,7 @@ For example, you might want to make URLs seem semantic to users without having t
 
 In such a case, you might want requests to `/shoes/great-shoe/` to be served
 as if they were requests to `/?category=shoes&product=great-shoe`.
-If so, add a [rule](/create-apps/app-reference/single-runtime-image.md#rules) similar to the following:
+If so, add a [rule](/create-apps/image-properties/web.md#rules) similar to the following:
 
 ```yaml {configFile="app"}
 applications:

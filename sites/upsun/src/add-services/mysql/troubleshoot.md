@@ -148,7 +148,7 @@ The default value of `16` is shown below to illustrate:
 
     The memory for a given container from its `size` depends on its [container profile](/manage-resources/adjust-resources.html#advanced-container-profiles).
 
-    For example, [MariaDB](/manage-resources/adjust-resources.html#default-container-profiles) has a `HIGH_MEMORY` [container profile](/manage-resources/adjust-resources.html#advanced-container-profiles).
+    For example, [MariaDB](/manage-resources/adjust-resources.html#default-container-profiles) has a [`HIGH_MEMORY` container profile](/manage-resources/adjust-resources.html#advanced-container-profiles).
     For `--size mariadb:1`, it means 1 CPU and 2432 MB of memory.
 
 

@@ -55,7 +55,7 @@ When deploying to the Dedicated Gen 2 cluster the process is slightly different 
 <!-- vale off -->
 {{< note title="Note" theme="Note" >}}
 
-Note that hooks still run without containers. For example, [commands like `pre_start`](/create-apps/app-reference/single-runtime-image.md#web-commands) and other hooks run directly on the app docroot or worker service.
+Note that hooks still run without containers. For example, [commands like `pre_start`](/create-apps/image-properties/web.md#web-commands) and other hooks run directly on the app docroot or worker service.
 
 {{< /note >}}
 <!-- vale on -->

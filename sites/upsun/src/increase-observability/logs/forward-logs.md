@@ -24,12 +24,12 @@ To enable log forwarding in a project, you need to be a [project admin](../../ad
 For pricing information for real-time logs forwarding, refer to the **Observability and performance monitoring** section of the [Upsun pricing page](https://upsun.com/pricing/).
 
 ### Which logs are forwarded?
-When log forwarding is enabled, {{% vendor/name %}} forwards logs sent to journald.  
+When log forwarding is enabled, {{% vendor/name %}} forwards logs sent to journald.
 
-By default, {{% vendor/name %}} sends the following logs to journald: 
+By default, {{% vendor/name %}} sends the following logs to journald:
 - `stdout` and `stderr` logs from your application<br>
    Note: You can configure your application to use syslog to send these (or additional) messages to journald.
-- MariaDB/MySQL slow query logs 
+- MariaDB/MySQL slow query logs
 - Redis logs (all except command-level operations and low-level internals)
 
 Logs in files are not forwarded to journald.
@@ -41,17 +41,24 @@ If your third-party service isn't supported, you can forward to a [syslog endpoi
 
 ### Integrated third-party services
 
-Integrations exist for the following third-party services to enable log forwarding:
+{{% vendor/name %}} supports forwarding logs not only to custom remote syslog endpoints but also directly to a set of
+popular third‑party log management and observability services. These integrations allow you to centralize logs from
+applications, services, and infrastructure into your existing monitoring stack:
 
-- [New Relic](https://newrelic.com/)
-- [Splunk](https://www.splunk.com/)
-- [Sumo Logic](https://www.sumologic.com/)
+- **[Sumo Logic](https://www.sumologic.com/)** – Cloud-based log management and analytics.
+- **[New Relic](https://newrelic.com/)** – Unified observability platform with logs and metrics.
+- **[Splunk](https://www.splunk.com/)** – Searchable log platform for monitoring and operational intelligence.
+- **[Datadog](https://www.datadoghq.com/)** – Observability suite with log collection and processing.
+- **[Loggly](https://www.loggly.com/)** – Cloud-native log monitoring, aggregation, and alerting.
+- **[LogDNA (Mezmo)](https://www.mezmo.com/)** – Centralized log management and analysis in real time.
+- **[Papertrail](https://www.papertrail.com/)** – Real-time log aggregation via syslog.
+- **[Logz.io](https://logz.io/)** – ELK-based log analytics and monitoring.
 
 ### Enable a log forwarding integration
 
-#### Using the CLI 
+#### Using the CLI
 
-To enable log forwarding for a specific project using the [Upsun CLI](../../administration/cli/_index.md),
+To enable log forwarding for a specific project using the [Upsun CLI](/administration/cli/_index.md),
 follow the steps for your selected service.
 
 {{< codetabs >}}
@@ -137,7 +144,7 @@ You can forward your {{% vendor/name %}} and Blackfire logs to any of those endp
 title=Using the CLI
 +++
 
-To enable log forwarding to a syslog endpoint, 
+To enable log forwarding to a syslog endpoint,
 run a command similar to the following:
 
 ```bash
@@ -148,7 +155,7 @@ run a command similar to the following:
 The following table shows the other available properties:
 
 | Property         | Type      | Default    | Description                                                                                                                                           |
-| ---------------- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------|-----------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
 | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
 | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |

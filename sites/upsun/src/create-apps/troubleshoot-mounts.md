@@ -41,7 +41,7 @@ You can then put the mount back in place.
 ## Mounted files not publicly accessible
 
 If you've set up mounts to handle files like user uploads, you want to make sure the files are accessible.
-Do so by managing their [location](/create-apps/app-reference/single-runtime-image.md#locations).
+Do so by managing their [location](/create-apps/image-properties/web.md#locations).
 
 This example defines two mounts, one named `private` and one `upload`:
 

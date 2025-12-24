@@ -5,7 +5,7 @@ weight: -30
 
 {{% vendor/name %}} supports internal "storage as a service" to provide a file store that can be shared between different application containers.
 
-The network storage service enables a new kind of [mount](/create-apps/app-reference/single-runtime-image.md#mounts)
+The network storage service enables a new kind of [mount](/create-apps/image-properties/mounts.md)
 that refers to a shared service rather than to a local directory.
 Your apps can use any combination of `local` and `service` mounts.
 
@@ -206,7 +206,7 @@ and the `done` mount refers to the same directory as the `web/uploads/done` dire
 
 ## Worker instances
 
-When defining a [worker](/create-apps/app-reference/single-runtime-image.md#workers) instance,
+When defining a [worker](/create-apps/image-properties/workers.md) instance,
 keep in mind what mount behavior you want.
 
 `local` mounts are a separate storage area for each instance,

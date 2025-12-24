@@ -11,7 +11,7 @@ These environments consist of various containers running across dedicated hosts:
 
 * App containers: one or more [app containers](/create-apps/_index.md)
 * Service containers: zero or more [service containers](/add-services/_index.md)
-* Worker containers: zero or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers).
+* Worker containers: zero or more [worker instances](/create-apps/image-properties/workers.md).
 
 Infrastructure metrics report CPU, RAM, and disk space for all containers.
 
@@ -78,7 +78,7 @@ If you have one container in a temporary burst state but your host still has ple
 If you have a container in a prolonged burst state, you might want to consider:
 
 * [Optimizing your code](/increase-observability/_index.md)
-* Changing your [app size](/create-apps/app-reference/single-runtime-image.md#sizes)
+* Changing your [app size](/create-apps/image-properties/size.md)
   or [service size](/add-services/_index.md#size)
 * [Increasing your plan](/administration/pricing/_index.md)
 

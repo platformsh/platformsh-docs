@@ -37,7 +37,7 @@ This procedure assumes you have followed the steps on [how to configure Redis an
 
 ## 2. Create a worker to run Horizon
 
-To run Horizon on your project, you need to add a separate [worker](/create-apps/app-reference/single-runtime-image.md#workers).
+To run Horizon on your project, you need to add a separate [worker](/create-apps/image-properties/workers.md).
 To do so, use the following configuration:
 
 ```yaml {configFile="app"}
@@ -82,7 +82,7 @@ Web and worker containers don't share mount targets.
 You can't share files between those containers using the filesystem.
 To share data between containers, use [services](/add-services/_index.md).
 
-See more information on [workers](/create-apps/app-reference/single-runtime-image.md#workers).
+See more information on [workers](/create-apps/image-properties/workers.md).
 
 {{< /note >}}
 

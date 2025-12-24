@@ -21,7 +21,7 @@ All Dedicated clusters are single-tenant. The [three hosts](/dedicated-environm
 There are no exceptions for this rule, so any incoming web service requests, ETL jobs, or otherwise need to transact over one of these protocols. Outgoing TCP traffic isn’t behind a firewall. Outgoing UDP traffic is disallowed. For containers to be allowed to connect to each other, the following requirement must be met:
 
 -   The containers must live in the same environment
--   You need to define an explicit relationship between the containers in your [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships)
+-   You need to define an explicit relationship between the containers in your [app configuration](/create-apps/image-properties/relationships.md)
 
 All Dedicated projects are isolated and their data is fully encrypted. Should a security breach occur, Upsun follows a strict security incident handling procedure to deal with the issue as promptly and efficiently as possible.
 

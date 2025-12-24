@@ -26,7 +26,7 @@ or [revert to the last commit](#revert-to-the-last-commit) pushed to your Git re
 
 To run your source operations, you can use the [{{% vendor/name %}} CLI](../administration/cli/_index.md) or the [Console](https://console.upsun.com).
 If you want to run your source operations and update your code automatically,
-you can also define [cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
+you can also define [cron jobs](/create-apps/image-properties/crons.md).
 
 ## How source operations work
 
@@ -55,7 +55,7 @@ When you trigger a source operation, the following happens in order:
 A source operation requires two things:
 
 - A name that must be unique within the application.
-  The name is the key of the block defined under `source.operations` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#source).
+  The name is the key of the block defined under `source.operations` in your [app configuration](/create-apps/image-properties/source.md).
 
 - A `command` that defines what's run when the operation is triggered.
 
@@ -293,8 +293,6 @@ The example above synchronizes the `development` environment with its parent
 and then runs the `update-file` source operation defined [previously](#define-a-source-operation).
 
 ## Source operation examples
-
-{{< premium-features/tiered "Enterprise and Elite" >}}
 
 ### Update your application dependencies
 

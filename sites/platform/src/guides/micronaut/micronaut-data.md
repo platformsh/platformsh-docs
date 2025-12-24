@@ -21,7 +21,7 @@ In your [service configuration](/add-services/_index.md), include a SQL database
 
 ## 2. Grant access to the service through a relationship
 
-To access the new service, set a `relationship` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+To access the new service, set a `relationship` in your [app configuration](/create-apps/image-properties/relationships.md).
 
 {{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
 

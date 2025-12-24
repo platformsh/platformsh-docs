@@ -41,7 +41,7 @@ The `commands.start` key is required.
 It specifies the command you can use to launch the application worker.
 If the command specified by the `start` key terminates, it's restarted automatically.
 
-For more information, see [Workers](/create-apps/app-reference/single-runtime-image.md#workers).
+For more information, see [Workers](/create-apps/image-properties/workers.md).
 
 {{< note title="Warning">}}
 

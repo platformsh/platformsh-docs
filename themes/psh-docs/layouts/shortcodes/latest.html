@@ -1,4 +1,25 @@
 {{- $arg := .Get 0 -}}
 {{- $data := cond (eq $arg "composable") .Site.Data.composable_versions .Site.Data.registry -}}
 {{- $supported := index $data $arg "versions" "supported" -}}
-{{- index $supported 0 -}}
+
+{{- $latest := index $supported 0 -}}
+
+{{- range $supported -}}
+  {{- $current := . -}}
+  {{- $currentParts := split $current "." -}}
+  {{- $latestParts := split $latest "." -}}
+
+  {{- $currentMajor := int (index $currentParts 0) -}}
+  {{- $currentMinor := int (index $currentParts 1) -}}
+  {{- $latestMajor := int (index $latestParts 0) -}}
+  {{- $latestMinor := int (index $latestParts 1) -}}
+
+  {{- if gt $currentMajor $latestMajor -}}
+    {{- $latest = $current -}}
+  {{- else if and (eq $currentMajor $latestMajor) (gt $currentMinor $latestMinor) -}}
+    {{- $latest = $current -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $latest -}}
+

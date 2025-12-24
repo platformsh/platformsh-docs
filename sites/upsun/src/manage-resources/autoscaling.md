@@ -266,7 +266,7 @@ Autoscaling gives you flexibility and resilience, but to get the best results it
 ### Application design
 
 - **External services**: Use external [services](/add-services/) such as databases and caches instead of embedding them within the autoscaled applications.
-- **Keep containers portable**: Follow {{% vendor/name %}} recommendations for [caching](/define-routes/cache.html) and mounts for [composable images](/create-apps/app-reference/composable-image.html#mounts) and [single-runtime images](/create-apps/app-reference/single-runtime-image.html#mounts).
+- **Keep containers portable**: Follow {{% vendor/name %}} recommendations for [caching](/define-routes/cache.html) and mounts for [composable images](/create-apps/image-properties/mounts.md) and [single-runtime images](/create-apps/image-properties/mounts.md).
 
 ### Cron jobs & long-running tasks
 
