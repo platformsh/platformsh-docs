@@ -198,8 +198,8 @@ When creating a new organization, users will be able to select the organization 
 | Custom backup retention policies | Different packages | Unlimited (pay for storage) |
 | Email SMTP server | Yes | Yes |
 | Email validation (DKIM) | Enterprise and Elite only | Yes |
-| ElasticSearch (Premium containers) | Enterprise and Elite only | No |
-| MongoDB (Premium containers) | Enterprise and Elite only | No |
+| ElasticSearch (Premium containers) | Enterprise and Elite only | Yes |
+| MongoDB (Premium containers) | Enterprise and Elite only | Yes |
 
 #### Observability tools
 
@@ -246,7 +246,7 @@ When creating a new organization, users will be able to select the organization 
 | Privacy regulations | Yes | Yes |
 | SOC 2 | Yes | Yes |
 | PCI DSS Level 1-compatible | Yes | Yes |
-| HIPAA | Enterprise and Elite only in specific regions | Coming soon |
+| HIPAA | Enterprise and Elite only in specific regions | Yes |
 
 ### Fixed and Flex FAQs
 
