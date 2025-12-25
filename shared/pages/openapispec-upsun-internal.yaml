@@ -166,7 +166,7 @@ servers:
       schemes:
         default: https
 security:
-  - OAuth2: []
+  - BearerAuth: []
 tags:
   - name: Cert Management
     description: |
@@ -4908,8 +4908,8 @@ paths:
         - OAuth2: []
   /billing:
     get:
-      summary: '[Internal] List billing accounts'
-      description: Lists billing accounts with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      summary: '[Internal] List billing account mapping details.'
+      description: Lists billing account mapping details with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
       operationId: list-billing-accounts
       tags:
         - Billing Accounts
@@ -4958,39 +4958,10 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-    post:
-      summary: '[Internal] Create billing account'
-      description: Creates a new billing account entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: create-billing-account
-      tags:
-        - Billing Accounts
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                organization_id:
-                  type: string
-                  description: Optional organization ID to associate with the billing account.
-      responses:
-        '201':
-          description: Billing account created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/billing_account_with_links'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
   /billing/{billing_account_id}:
     get:
-      summary: '[Internal] Get billing account'
-      description: Retrieves a billing account by ID. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      summary: '[Internal] Get billing account mapping details'
+      description: Retrieves mapping details for a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
       operationId: get-billing-account
       tags:
         - Billing Accounts
@@ -5016,7 +4987,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/error'
     patch:
-      summary: '[Internal] Update billing account'
+      summary: '[Internal] Update billing account mapping details'
       description: Updates a billing account entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
       operationId: update-billing-account
       tags:
@@ -5078,84 +5049,6 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
-    post:
-      summary: '[Internal] Create profile for billing account'
-      description: Create a profile for billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
-      operationId: create-account-profile
-      tags:
-        - Billing Accounts
-      parameters:
-        - $ref: '#/components/parameters/billing_account_id'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - name_line
-                - billing_contact
-                - country
-                - billing_street_1
-                - administrative_area
-                - locality
-                - postal_code
-                - customer_type
-              properties:
-                name_line:
-                  type: string
-                billing_contact:
-                  type: string
-                  description: Email of billing contact
-                country:
-                  type: string
-                company_name:
-                  type: string
-                billing_street_1:
-                  type: string
-                billing_street_2:
-                  type: string
-                administrative_area:
-                  type: string
-                locality:
-                  type: string
-                postal_code:
-                  type: string
-                tax_number:
-                  type: string
-                tax_exempt:
-                  type: boolean
-                customer_type:
-                  type: string
-                  enum:
-                    - Individual
-                    - Corporation
-                    - Government
-      responses:
-        '200':
-          description: Account profile created and returned
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/profile'
-        '400':
-          description: Validation error
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/bad_request_error'
-        '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
-        '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/error'
     patch:
       summary: '[Internal] Update profile for billing account'
       description: Update the profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
@@ -5189,16 +5082,6 @@ paths:
                   type: string
                 postal_code:
                   type: string
-                tax_number:
-                  type: string
-                tax_exempt:
-                  type: boolean
-                customer_type:
-                  type: string
-                  enum:
-                    - Individual
-                    - Corporation
-                    - Government
                 account_tier:
                   type: string
                   description: Internal classification of the account tier
@@ -5233,12 +5116,90 @@ paths:
   /billing/{billing_account_id}/invoices:
     get:
       summary: '[Internal] List invoices'
-      description: Retrieves a list of invoices for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      description: |
+        Retrieves a paginated list of invoices for the specified billing account.
+
+        This endpoint returns all invoices associated with a billing account, including
+        both current and historical invoices. Results are returned in reverse chronological
+        order (newest first) by default.
+
+        Note:  This is a BillingBridge (new billing system middleware) endpoint,
+        which is still in the development phase. API behavior may change.
       operationId: list-account-invoices
       tags:
         - Invoices
       parameters:
         - $ref: '#/components/parameters/billing_account_id'
+        - name: page[size]
+          in: query
+          description: Number of invoices per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: null
+        - name: page[after]
+          in: query
+          description: Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - name: page[before]
+          in: query
+          description: Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - name: filter[status][eq]
+          in: query
+          description: Filter by invoice status (exact match). Case-insensitive - will be converted to uppercase.
+          required: false
+          schema:
+            type: string
+            enum:
+              - current
+              - closing
+              - closed
+              - approved
+        - name: filter[type][eq]
+          in: query
+          description: Filter by invoice type (exact match)
+          required: false
+          schema:
+            type: string
+            enum:
+              - invoice
+              - legacy_invoice
+        - name: filter[invoice_date][gte]
+          in: query
+          description: Filter by invoice date greater than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_date][lte]
+          in: query
+          description: Filter by invoice date less than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_due][gte]
+          in: query
+          description: Filter by invoice due date greater than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_due][lte]
+          in: query
+          description: Filter by invoice due date less than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
       responses:
         '200':
           description: OK
@@ -5363,10 +5324,190 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
+  /billing/{billing_account_id}/payment-source/intent:
+    post:
+      summary: '[Internal] Create payment intent'
+      description: Creates a payment intent for the specified billing account.
+      operationId: create-account-payment-intent
+      tags:
+        - Payments
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  client_secret:
+                    type: string
+                    description: Payment intent client secret token.
+                  public_key:
+                    type: string
+                    description: Stripe API public key.
+                  messages:
+                    type: array
+                    description: Array of message IDs.
+                    items:
+                      type: string
+                      description: Message identifier.
+                      enum:
+                        - sepa_info
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/invoices:
+    get:
+      summary: '[Internal] List all invoices'
+      description: |
+        Retrieves a paginated and filterable list of invoices across all billing accounts.
+
+        This endpoint returns all invoices that the authenticated user has access to,
+        with support for filtering by various criteria. Results are returned in reverse
+        chronological order (newest first) by default.
+
+        Note: This is a BillingBridge (new billing system middleware) endpoint,
+        which is still in the development phase. API behavior may change.
+      operationId: list-all-invoices
+      tags:
+        - Invoices
+      parameters:
+        - name: page[size]
+          in: query
+          description: Number of invoices per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: null
+        - name: page[after]
+          in: query
+          description: Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - name: page[before]
+          in: query
+          description: Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+          schema:
+            type: string
+        - name: filter[status][eq]
+          in: query
+          description: Filter by invoice status (exact match). Case-insensitive - will be converted to uppercase.
+          required: false
+          schema:
+            type: string
+            enum:
+              - current
+              - closing
+              - closed
+              - approved
+        - name: filter[type][eq]
+          in: query
+          description: Filter by invoice type (exact match)
+          required: false
+          schema:
+            type: string
+            enum:
+              - invoice
+              - legacy_invoice
+        - name: filter[owner_type][eq]
+          in: query
+          description: Filter by owner type (exact match)
+          required: false
+          schema:
+            type: string
+            enum:
+              - billing_account
+              - organization
+        - name: filter[invoice_date][gte]
+          in: query
+          description: Filter by invoice date greater than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_date][lte]
+          in: query
+          description: Filter by invoice date less than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_due][gte]
+          in: query
+          description: Filter by invoice due date greater than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+        - name: filter[invoice_due][lte]
+          in: query
+          description: Filter by invoice due date less than or equal to specified date
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2026-01-01'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of invoices matching the filters.
+                  items:
+                    type: array
+                    description: Array of invoices.
+                    items:
+                      $ref: '#/components/schemas/invoice'
+                  _links:
+                    type: object
+                    description: HAL links for pagination.
+                    properties:
+                      self:
+                        $ref: '#/components/schemas/link'
+                      next:
+                        $ref: '#/components/schemas/link'
+                      previous:
+                        $ref: '#/components/schemas/link'
+                    required:
+                      - self
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
   /billing/{billing_account_id}/invoices/{invoice_id}:
     get:
       summary: '[Internal] Get invoice'
-      description: Retrieves a specific invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      description: |
+        Retrieves a specific invoice by its ID for the specified billing account.
+
+        This endpoint provides detailed information about a single invoice, including
+        all monetary amounts, dates, status information, and links to related resources
+        such as PDF downloads.
+
+        Note: This is a BillingBridge (new billing system middleware) endpoint,
+        which is still in the development phase. API behavior may change.
       operationId: get-account-invoice
       tags:
         - Invoices
@@ -5609,6 +5750,191 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/error'
+  /billing/{billing_account_id}/users:
+    get:
+      summary: '[Internal] List billing account users'
+      description: Accessible to the billing entity owner.
+      operationId: list-billing-account-users
+      tags:
+        - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/billing_user'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      summary: '[Internal] Add user to billing account'
+      description: Add a user to a billing.
+      operationId: create-billing-user
+      tags:
+        - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+              properties:
+                user_id:
+                  type: string
+                  format: uuid
+                  description: ID of the user.
+                permissions:
+                  $ref: '#/components/schemas/billing_user_permissions'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/billing_user'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/{billing_account_id}/users/{billing_user_id}:
+    get:
+      summary: '[Internal] Get billing account user'
+      description: Retrieves the specified billing account user.
+      operationId: get-billing-user
+      tags:
+        - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_user_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/billing_user'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+    patch:
+      summary: '[Internal] Update billing account user'
+      description: Updates the specified billing account user.
+      operationId: update-billing-user
+      tags:
+        - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_user_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                permissions:
+                  $ref: '#/components/schemas/billing_user_permissions'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/billing_user'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+    delete:
+      summary: Remove user from billing account
+      description: Removes the specified user from the billing account.
+      operationId: delete-billing-user
+      tags:
+        - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_account_id'
+        - $ref: '#/components/parameters/billing_user_id'
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
   /billing/{billing_account_id}/vouchers:
     get:
       summary: '[Internal] List vouchers'
@@ -5640,7 +5966,7 @@ paths:
   /billing/account:
     post:
       summary: '[Internal] Create profile and billing account'
-      description: Creates a Salesforce account profile and then creates a new billing account entity associated with it.
+      description: Create a billing account profile.
       operationId: create-account-profile-with-billing-account
       tags:
         - Billing Accounts
@@ -5669,7 +5995,6 @@ paths:
                 - administrative_area
                 - locality
                 - postal_code
-                - customer_type
               properties:
                 name_line:
                   type: string
@@ -5690,22 +6015,12 @@ paths:
                   type: string
                 postal_code:
                   type: string
-                tax_number:
-                  type: string
-                tax_exempt:
-                  type: boolean
-                customer_type:
-                  type: string
-                  enum:
-                    - Individual
-                    - Corporation
-                    - Government
                 account_tier:
                   type: string
-                  description: Internal classification of the account tier
+                  description: '[Internal] Internal classification of the account tier'
                 account_partner_tier:
                   type: string
-                  description: Agency partner tier classification
+                  description: '[Internal] Agency partner tier classification'
       responses:
         '201':
           description: Billing account created with associated profile
@@ -5739,18 +6054,18 @@ paths:
           schema:
             type: string
             enum:
-              - Professional
-              - Enterprise
-              - Elite
+              - professional
+              - enterprise
+              - elite
         - name: filter[customer_type][eq]
           in: query
           description: Filter by customer type (exact match)
           schema:
             type: string
             enum:
-              - Corporation
-              - Government
-              - Individual
+              - corporation
+              - government
+              - individual
       responses:
         '200':
           description: Account profiles list
@@ -5997,6 +6312,232 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/bad_request_error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/entities:
+    get:
+      summary: '[Internal] List billing entities'
+      description: List billing entities. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-billing-entities
+      tags:
+        - Billing Entities
+      responses:
+        '200':
+          description: Billing entity list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of entities.
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/billing_entity_with_links'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      summary: '[Internal] Create billing entity'
+      description: Creates a new billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: create-billing-entity
+      tags:
+        - Billing Entities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/billing_entity_payload'
+      responses:
+        '201':
+          description: Billing entity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/billing_entity_with_links'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/entities/{billing_entity_id}:
+    get:
+      summary: '[Internal] Get billing entity'
+      description: Retrieves a billing entity by ID. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: get-billing-entity
+      tags:
+        - Billing Entities
+      parameters:
+        - $ref: '#/components/parameters/billing_entity_id'
+      responses:
+        '200':
+          description: Billing entity found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/billing_entity_with_links'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+    patch:
+      summary: '[Internal] Update billing entity'
+      description: Updates a billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: update-billing-entity
+      tags:
+        - Billing Entities
+      parameters:
+        - $ref: '#/components/parameters/billing_entity_id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/billing_entity_payload'
+      responses:
+        '200':
+          description: Billing entity updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/billing_entity_with_links'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /billing/entities/{billing_entity_id}/accounts:
+    get:
+      summary: '[Internal] Get billing account profiles belonging to a billing entity'
+      description: List the account profiles associated with a billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.
+      operationId: list-entity-account-profiles
+      tags:
+        - Billing Accounts
+        - Billing Entities
+      parameters:
+        - $ref: '#/components/parameters/billing_entity_id'
+      responses:
+        '200':
+          description: Billing account profiles list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of profiles.
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/profile'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /users/{billing_user_id}/billing/entities:
+    get:
+      summary: '[Internal] User billing entities'
+      description: Retrieves billing entities owned by the user.
+      operationId: list-user-billing-entities
+      tags:
+        - Billing Entities
+      parameters:
+        - $ref: '#/components/parameters/billing_user_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/billing_entity_with_links'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /users/{billing_user_id}/billing/accounts:
+    get:
+      summary: '[Internal] User billing accounts'
+      description: Retrieves billing accounts the user has access to.
+      operationId: list-user-billing-accounts
+      tags:
+        - Billing Accounts
+      parameters:
+        - $ref: '#/components/parameters/billing_user_id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of profiles.
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/profile'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
         '403':
           description: Forbidden
           content:
@@ -15723,7 +16264,7 @@ paths:
         - Resources
         - Blackfire Monitoring
       summary: '[Internal] Get observability API entrypoint with HATEOAS navigation and retention policies'
-      description: Returns API entrypoint with hypermedia links to all observability endpoints (resources, logs, HTTP traffic, continuous profiling, server metrics) following HATEOAS principles. Includes data retention policies per metric type (retention_period, max_range, default_range in minutes), environment metadata (project_id, environment_id, environment_type, vendor), and per-service resource links. Use _links for API navigation.
+      description: Returns API entrypoint with hypermedia links to all observability endpoints (resources, logs, HTTP traffic, continuous profiling, server metrics) following HATEOAS principles. Includes data retention policies per metric type (retention_period, max_range, recommended_default_range in minutes), environment metadata (project_id, environment_id, environment_type, vendor), and per-service resource links. Use _links for API navigation.
       operationId: observability_entrypoint
       parameters:
         - name: projectId
@@ -15937,8 +16478,8 @@ paths:
                             description: Maximum query time range in minutes
                             type: integer
                             example: 43200
-                          default_range:
-                            description: Default query time range in minutes
+                          recommended_default_range:
+                            description: Recommended default query time range in minutes, for user interfaces
                             type: integer
                             example: 43200
                         type: object
@@ -15954,8 +16495,8 @@ paths:
                             description: Maximum query time range in minutes
                             type: integer
                             example: 43200
-                          default_range:
-                            description: Default query time range in minutes
+                          recommended_default_range:
+                            description: Recommended default query time range in minutes, for user interfaces
                             type: integer
                             example: 43200
                         type: object
@@ -15971,8 +16512,8 @@ paths:
                             description: Maximum query time range in minutes
                             type: integer
                             example: 43200
-                          default_range:
-                            description: Default query time range in minutes
+                          recommended_default_range:
+                            description: Recommended default query time range in minutes, for user interfaces
                             type: integer
                             example: 43200
                         type: object
@@ -15988,8 +16529,8 @@ paths:
                             description: Maximum query time range in minutes
                             type: integer
                             example: 43200
-                          default_range:
-                            description: Default query time range in minutes
+                          recommended_default_range:
+                            description: Recommended default query time range in minutes, for user interfaces
                             type: integer
                             example: 43200
                         type: object
@@ -18207,7 +18748,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Vouchers'
+                $ref: '#/components/schemas/voucher_list'
         '403':
           description: Forbidden
           content:
@@ -23508,113 +24049,6 @@ components:
           description: The e-mail address of a contact to whom billing notices will be sent.
           type: string
           format: email
-        current_trial:
-          description: The current trial for the profile.
-          properties:
-            active:
-              description: The trial active status.
-              type: boolean
-            created:
-              description: The trial creation date.
-              type: string
-              format: date-time
-            description:
-              description: The trial description.
-              type: string
-            expiration:
-              description: The trial expiration-date.
-              type: string
-              format: date-time
-            current:
-              description: The total amount spent by the trial user at this point in time.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-              type: object
-            spend:
-              description: The total amount available for the trial.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-              type: object
-            spend_remaining:
-              description: The remaining amount available for the trial.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-                unlimited:
-                  description: Spend limit is ignored (in favor of resource limitations).
-                  type: boolean
-              type: object
-            projects:
-              description: Projects active under trial
-              properties:
-                id:
-                  description: Trial project ID
-                  type: string
-                name:
-                  description: Trial project name
-                  type: string
-                total:
-                  properties:
-                    amount:
-                      description: Trial project cost
-                      type: integer
-                    currency_code:
-                      description: Currency code
-                      type: string
-                    currency_symbol:
-                      description: Currency symbol
-                      type: string
-                    formatted:
-                      description: Trial project cost formatted with currency sign
-                      type: string
-                  type: object
-              type: object
-            pending_verification:
-              description: Required verification method (if applicable).
-              type: string
-              enum:
-                - credit-card
-              nullable: true
-              deprecated: true
-            model:
-              description: The trial trial model.
-              type: string
-            days_remaining:
-              description: The amount of days until the trial expires.
-              type: integer
-          type: object
         payment_methods:
           description: '[Internal] Payment methods used by this user. NOTE: methods are not sorted by priority!'
           type: array
@@ -24058,28 +24492,6 @@ components:
         tickets:
           description: Number of support tickets by status.
           type: object
-        trial:
-          description: The indicator whether the user is in trial or not.
-          type: boolean
-        current_trial:
-          type: array
-          items:
-            properties:
-              created:
-                description: The ISO timestamp of the trial creation date time.
-                type: string
-                format: date-time
-              description:
-                description: The human readable trial description
-                type: string
-              spend_remaining:
-                description: Total spend amount of the voucher minus existing project costs for the existing billing cycle.
-                type: string
-              expiration:
-                description: Date the trial expires.
-                type: string
-                format: date-time
-            type: object
       type: object
     OrganizationInvitation:
       title: OrganizationInvitation
@@ -24977,30 +25389,42 @@ components:
           type: boolean
           description: Whether to enforce PKCE for authorization code flow for the client.
           example: true
+    AccountDunningActionsObject:
+      $ref: '#/components/schemas/account_dunning_actions'
+    AccountInvoice:
+      $ref: '#/components/schemas/invoice'
+    AccountInvoiceDetail:
+      $ref: '#/components/schemas/invoice_detail'
+    AccountProfilePayload:
+      $ref: '#/components/schemas/profile'
+    AddressVerificationPayload:
+      $ref: '#/components/schemas/address_verification'
     BillingAccountListPayload:
       $ref: '#/components/schemas/billing_account_list'
     BillingAccountPayload:
       $ref: '#/components/schemas/billing_account'
     BillingAccountPayloadWithLinks:
       $ref: '#/components/schemas/billing_account_with_links'
-    AccountProfilePayload:
-      $ref: '#/components/schemas/profile'
-    AccountInvoice:
-      $ref: '#/components/schemas/invoice'
-    FormattedCost:
-      $ref: '#/components/schemas/formatted_cost'
-    AccountInvoiceDetail:
-      $ref: '#/components/schemas/invoice_detail'
     BillingAlertConfig:
       $ref: '#/components/schemas/billing_alert_config'
+    BillingEntity:
+      $ref: '#/components/schemas/billing_entity'
+    BillingEntityPayload:
+      $ref: '#/components/schemas/billing_entity_payload'
+    BillingEntityWithLinks:
+      $ref: '#/components/schemas/billing_entity_with_links'
+    BillingUser:
+      $ref: '#/components/schemas/billing_user'
+    BillingUserPermissions:
+      $ref: '#/components/schemas/billing_user_permissions'
     CountryPayload:
       $ref: '#/components/schemas/country'
-    AccountDunningActionsObject:
-      $ref: '#/components/schemas/account_dunning_actions'
-    AddressVerificationPayload:
-      $ref: '#/components/schemas/address_verification'
+    FormattedCost:
+      $ref: '#/components/schemas/formatted_cost'
     Payment:
       $ref: '#/components/schemas/payment'
+    Vouchers:
+      $ref: '#/components/schemas/voucher_list'
     BadRequestError:
       $ref: '#/components/schemas/bad_request_error'
     billing_account:
@@ -25009,9 +25433,14 @@ components:
         id:
           type: string
           description: The unique identifier of the billing account.
+        billing_entity_id:
+          type: string
+          description: The ID of the billing entity associated with this billing account.
+          nullable: true
         salesforce_id:
           type: string
           description: The Salesforce ID associated with the billing account.
+          nullable: true
         bp_account_id:
           type: integer
           nullable: true
@@ -25122,6 +25551,9 @@ components:
         billing_account_id:
           type: string
           description: ID of the associated billing account.
+        billing_entity_id:
+          type: string
+          description: ID of the associated billing entity.
         salesforce_id:
           type: string
           description: Salesforce account ID.
@@ -25134,6 +25566,12 @@ components:
         country:
           type: string
           description: Country code.
+        currency:
+          type: string
+          nullable: true
+          description: ISO 4217 currency code (3-letter code) for the billing account.
+          pattern: ^[A-Z]{3}$
+          example: USD
         company_name:
           type: string
           description: Legal company or organization name.
@@ -25152,21 +25590,12 @@ components:
         postal_code:
           type: string
           description: Postal or ZIP code.
-        tax_number:
-          type: string
-          description: Tax identification number (VAT/GST/etc).
-        tax_exempt:
-          type: boolean
-          description: Indicates whether the account is tax exempt.
         account_tier:
           type: string
           description: Internal classification of the account tier.
         agency_partner_tier:
           type: string
           description: Agency partner tier classification.
-        customer_type:
-          type: string
-          description: Customer type (Individual, Corporation, Government).
         created_at:
           type: string
           format: date-time
@@ -25204,13 +25633,25 @@ components:
       properties:
         amount:
           type: integer
-          description: The monetary amount.
+          description: |
+            The monetary amount in the smallest currency unit (e.g., cents for USD/EUR).
+            This integer representation avoids floating-point precision issues.
+            For example, $12.34 USD is represented as 1234 cents.
+          example: 1234
         currency:
           type: string
-          description: The currency code (e.g., USD, EUR).
+          description: |
+            ISO 4217 currency code (3-letter code) indicating the currency of the amount.
+            Common values include USD (US Dollar), EUR (Euro), GBP (British Pound).
+          example: USD
+          pattern: ^[A-Z]{3}$
         formatted:
           type: string
-          description: The formatted monetary amount with currency.
+          description: |
+            Human-readable string representation of the amount with appropriate
+            currency symbol and formatting according to currency conventions.
+            For example: "$12.34" for USD, "€12.34" for EUR, "£12.34" for GBP.
+          example: $12.34
     invoice:
       type: object
       description: The invoice object.
@@ -25269,6 +25710,16 @@ components:
             self:
               $ref: '#/components/schemas/link'
             pdf:
+              $ref: '#/components/schemas/link'
+            invoice-details:
+              $ref: '#/components/schemas/link'
+            invoice-payments:
+              $ref: '#/components/schemas/link'
+            list-invoices:
+              $ref: '#/components/schemas/link'
+            billing-account:
+              $ref: '#/components/schemas/link'
+            billing-dunning:
               $ref: '#/components/schemas/link'
           required:
             - self
@@ -25609,6 +26060,71 @@ components:
           type: string
           format: date-time
           nullable: true
+    billing_user_permissions:
+      type: array
+      description: The billing account permissions.
+      items:
+        type: string
+        enum:
+          - manage
+          - view
+    billing_user:
+      type: object
+      properties:
+        billing_account_id:
+          type: string
+          format: ulid
+          description: The ID of the billing account.
+        user_id:
+          type: string
+          format: uuid
+          description: The ID of the user.
+        permissions:
+          $ref: '#/components/schemas/billing_user_permissions'
+        level:
+          type: string
+          description: Access level of the user.
+          enum:
+            - admin
+            - view
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the user was added to the billing account.
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time when the user access was last updated.
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              description: Link to the current user access.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+            update:
+              type: object
+              description: Link for updating the current user access.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+                method:
+                  type: string
+                  description: The HTTP method to use.
+            delete:
+              type: object
+              description: Link for removing the current user from the billing account.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+                method:
+                  type: string
+                  description: The HTTP method to use.
     voucher_list:
       type: object
       properties:
@@ -25746,6 +26262,94 @@ components:
         message:
           type: string
           description: Additional validation information, if applicable.
+    billing_entity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the billing entity.
+        owner_id:
+          type: string
+          description: The owner ID associated with the billing entity.
+        email:
+          type: string
+          format: email
+          description: The contact email for the billing entity.
+        salesforce_id:
+          type: string
+          description: The Salesforce ID associated with the billing entity.
+        bp_account_id:
+          type: integer
+          nullable: true
+          description: The Billing Platform account ID.
+        country:
+          type: string
+          description: The country code for the billing entity.
+        vendor:
+          type: string
+          nullable: true
+          description: The Vendor associated to the billing entity.
+        name:
+          type: string
+          description: The name of the billing entity.
+        legal_name:
+          type: string
+          description: The legal name of the billing entity.
+        tax_number:
+          type: string
+          description: Tax identification number (VAT/GST/etc).
+        tax_exempt:
+          type: boolean
+          description: Indicates whether the account is tax exempt.
+        customer_type:
+          type: string
+          description: Customer type (individual, corporation, government).
+          enum:
+            - individual
+            - corporation
+            - government
+    billing_entity_with_links:
+      allOf:
+        - $ref: '#/components/schemas/billing_entity'
+        - type: object
+          properties:
+            _links:
+              type: object
+              description: HAL links for related resources.
+              properties:
+                self:
+                  $ref: '#/components/schemas/link'
+              required:
+                - self
+    billing_entity_payload:
+      type: object
+      properties:
+        country:
+          type: string
+          description: The country code for the billing entity.
+        vendor:
+          type: string
+          nullable: true
+          description: The Vendor associated to the billing entity.
+        name:
+          type: string
+          description: The name of the billing entity.
+        legal_name:
+          type: string
+          description: The legal name of the billing entity.
+        tax_number:
+          type: string
+          description: Tax identification number (VAT/GST/etc).
+        tax_exempt:
+          type: boolean
+          description: Indicates whether the account is tax exempt.
+        customer_type:
+          type: string
+          description: Customer type (individual, corporation, government).
+          enum:
+            - individual
+            - corporation
+            - government
     AcceptedResponse:
       type: object
       properties:
@@ -37359,77 +37963,6 @@ components:
                 method:
                   type: string
                   description: The HTTP method to use.
-    Vouchers:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The uuid of the user.
-        vouchers_total:
-          type: string
-          description: The total voucher credit given to the user.
-        vouchers_applied:
-          type: string
-          description: The part of total voucher credit applied to orders.
-        vouchers_remaining_balance:
-          type: string
-          description: The remaining voucher credit, available for future orders.
-        currency:
-          type: string
-          description: The currency of the vouchers.
-        vouchers:
-          description: Array of vouchers.
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-                description: The voucher code.
-              amount:
-                type: string
-                description: The total voucher credit.
-              currency:
-                type: string
-                description: The currency of the voucher.
-              orders:
-                type: array
-                description: Array of orders to which a voucher applied.
-                items:
-                  type: object
-                  properties:
-                    order_id:
-                      type: string
-                      description: The id of the order.
-                    status:
-                      type: string
-                      description: The status of the order.
-                    billing_period_start:
-                      type: string
-                      description: The billing period start timestamp of the order (ISO 8601).
-                    billing_period_end:
-                      type: string
-                      description: The billing period end timestamp of the order (ISO 8601).
-                    order_total:
-                      type: string
-                      description: The total of the order.
-                    order_discount:
-                      type: string
-                      description: The total voucher credit applied to the order.
-                    currency:
-                      type: string
-                      description: The currency of the order.
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              description: Link to the current resource.
-              properties:
-                href:
-                  type: string
-                  description: URL of the link.
     PaymentSourceType:
       type: object
       description: The payment source type
@@ -39925,10 +40458,25 @@ components:
       required: true
       schema:
         type: integer
+    billing_user_id:
+      in: path
+      name: billing_user_id
+      description: The ID of the user.
+      required: true
+      schema:
+        type: string
+        format: uuid
     country:
       in: path
       name: country
       description: A country code.
+      required: true
+      schema:
+        type: string
+    billing_entity_id:
+      in: path
+      name: billing_entity_id
+      description: The ID of the billing entity.
       required: true
       schema:
         type: string
@@ -40132,6 +40680,9 @@ components:
           - month
           - year
   securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
     OAuth2:
       type: oauth2
       flows:
