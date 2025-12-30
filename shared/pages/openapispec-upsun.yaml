@@ -166,7 +166,7 @@ servers:
       schemes:
         default: https
 security:
-  - OAuth2: []
+  - BearerAuth: []
 tags:
   - name: Cert Management
     description: |
@@ -9577,113 +9577,6 @@ components:
           description: The e-mail address of a contact to whom billing notices will be sent.
           type: string
           format: email
-        current_trial:
-          description: The current trial for the profile.
-          properties:
-            active:
-              description: The trial active status.
-              type: boolean
-            created:
-              description: The trial creation date.
-              type: string
-              format: date-time
-            description:
-              description: The trial description.
-              type: string
-            expiration:
-              description: The trial expiration-date.
-              type: string
-              format: date-time
-            current:
-              description: The total amount spent by the trial user at this point in time.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-              type: object
-            spend:
-              description: The total amount available for the trial.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-              type: object
-            spend_remaining:
-              description: The remaining amount available for the trial.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-                unlimited:
-                  description: Spend limit is ignored (in favor of resource limitations).
-                  type: boolean
-              type: object
-            projects:
-              description: Projects active under trial
-              properties:
-                id:
-                  description: Trial project ID
-                  type: string
-                name:
-                  description: Trial project name
-                  type: string
-                total:
-                  properties:
-                    amount:
-                      description: Trial project cost
-                      type: integer
-                    currency_code:
-                      description: Currency code
-                      type: string
-                    currency_symbol:
-                      description: Currency symbol
-                      type: string
-                    formatted:
-                      description: Trial project cost formatted with currency sign
-                      type: string
-                  type: object
-              type: object
-            pending_verification:
-              description: Required verification method (if applicable).
-              type: string
-              enum:
-                - credit-card
-              nullable: true
-              deprecated: true
-            model:
-              description: The trial trial model.
-              type: string
-            days_remaining:
-              description: The amount of days until the trial expires.
-              type: integer
-          type: object
         invoiced:
           description: The customer is invoiced.
           type: boolean
@@ -10017,28 +9910,6 @@ components:
         tickets:
           description: Number of support tickets by status.
           type: object
-        trial:
-          description: The indicator whether the user is in trial or not.
-          type: boolean
-        current_trial:
-          type: array
-          items:
-            properties:
-              created:
-                description: The ISO timestamp of the trial creation date time.
-                type: string
-                format: date-time
-              description:
-                description: The human readable trial description
-                type: string
-              spend_remaining:
-                description: Total spend amount of the voucher minus existing project costs for the existing billing cycle.
-                type: string
-              expiration:
-                description: Date the trial expires.
-                type: string
-                format: date-time
-            type: object
       type: object
     OrganizationInvitation:
       title: OrganizationInvitation
@@ -22240,6 +22111,9 @@ components:
           - month
           - year
   securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
     OAuth2:
       type: oauth2
       flows:
