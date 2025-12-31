@@ -47,7 +47,7 @@ title= Service environment variables
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [service environment variables](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
 
 ```bash
 POSTGRESQL_USERNAME=main
@@ -424,7 +424,7 @@ psql -U main -h postgresql.internal -p 5432
 
 You can obtain the complete list of available service environment variables in your app container by running ``{{% vendor/cli %}} ssh env``.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [service environment variables](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.** 
 
 ## Exporting data
 
@@ -652,18 +652,29 @@ services:
           thirddb: admin
 ```
 
-## Password generation
+## Password generation {#password-generation}
 
-When you connect your app to a database,
-an empty password is generated for the database by default.
-This can cause issues with your app.
+When you connect your app to a database that is a managed service (defined in the `services` configuration) without a `schema` and `endpoint` defined, by default
+an empty password is generated for connecting to the database. 
+This empty password can pose a security risk for your app and cause issues such as denied access, plugin/tool incompatibility, or connection refusals. 
 
-To generate real passwords for your database,
-define custom endpoints in your [service configuration](#1-configure-the-service).
-For each custom endpoint you create,
-you get an automatically generated password,
-similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
+When a database is a managed service, it's considered a best practice to use strong, random passwords for your database connection. 
+To do this, 
+you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the [multiple databases](#multiple-databases) example later in this topic.
+For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
+
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
+you can retrieve the password for each endpoint
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+
+Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
+
+If you switch from the default configuration with an empty password to custom endpoints,
+make sure the `services.<SERVICE_NAME>` does not change. **Changing the service name creates a new service,
+which removes existing data from your database.**
+
+
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
