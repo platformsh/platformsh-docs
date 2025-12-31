@@ -743,7 +743,7 @@ They can, however, be set indirectly, which can be useful for solving `Too many 
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
 
-## Password generation
+## Password generation {#password-generation}
 
 When you connect your app to a database that is a managed service (defined in the `services` configuration) without a `schema` and `endpoint` defined, by default
 an empty password is generated for connecting to the database. 
@@ -763,7 +763,7 @@ Using this method to retrieve password credentials is considered a best practice
 
 If you switch from the default configuration with an empty password to custom endpoints,
 make sure the `services.<SERVICE_NAME>` does not change. **Changing the service name creates a new service,
-which removes any existing data from your database.**
+which removes existing data from your database.**
 
 ## Password rotation {#password-rotation}
 By default, password rotation is enabled (`rotate_passwords=true`), enabling {{% vendor/name %}} to automatically change (or _rotate_) MariaDB passwords each time it updates the MariaDB image. Password rotation also occurs as defined by any password lifetime settings in MariaDB.
