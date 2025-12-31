@@ -31,8 +31,8 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< note theme="info" title="" >}}
-- The service types `mariadb` and `mysql` both refer to MariaDB.\
-  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- Both `mariadb` and `mysql` service types use MariaDB.\
+  They behave identically, so the information on this page applies to both of them.
 - The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
 {{< /note >}}
 
@@ -83,10 +83,9 @@ To upgrade, update the service version in your [service configuration](/add-serv
 
 To change the service type:
 
-1. [Export your data](#exporting-data).
+1. To prevent data loss, [export your data](#exporting-data).
    {{% note %}}
-   Changing the service type, especially when done repeatedly, may result in data loss.
-   Backing up your data is therefore crucial.
+   Changing the service type, especially when done repeatedly, can result in data loss. Backups are essential.
    {{% /note %}}
 2. Remove the old service from your [service configuration](/add-services/_index.md).
 3. Specify a new service type.
@@ -340,12 +339,11 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
-So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://support.platform.sh/hc/en-us/community/posts/16439596373010).
 
-## Configuration options
+## Configuration options {#configuration-options}
 
 You can configure your MySQL service in the [services configuration](/add-services/_index.md) with the following options:
 
@@ -380,7 +378,7 @@ mariadb:
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` service environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
 
 ### MariaDB reference
 
@@ -756,16 +754,14 @@ See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-
 
 ## Password generation
 
-When you connect your app to a database,
-an empty password is generated for the database by default.
-This can cause issues with your app.
+When you connect your app to a database that is a managed service (defined in the `services` configuration) without a `schema` and `endpoint` defined, by default
+an empty password is generated for connecting to the database. 
+This empty password can pose a security risk for your app and cause issues such as denied access, plugin/tool incompatibility, or connection refusals. 
 
-To generate real passwords for your database,
-define custom endpoints in your [service configuration](#1-configure-the-service).
-For each custom endpoint you create,
-you get an automatically generated password,
-similarly to when you create [multiple databases](#multiple-databases).
-You cannot customize these generated passwords.
+When a database is a managed service, it's considered a best practice to use strong, random passwords for your database connection. 
+To do this, 
+you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the [multiple databases](#multiple-databases) example later in this topic.
+For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
@@ -774,9 +770,8 @@ through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../d
  
 Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.** 
 
-When you switch from the default configuration with an empty password to custom endpoints,
-make sure your service name remains unchanged.
-**Changing the service name creates a new service,
+If you switch from the default configuration with an empty password to custom endpoints,
+make sure the `services.<SERVICE_NAME>` does not change. **Changing the service name creates a new service,
 which removes any existing data from your database.**
 
 ## Password rotation {#password-rotation}

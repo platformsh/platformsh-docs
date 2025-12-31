@@ -73,8 +73,7 @@ so migrate to one of the [supported versions](#supported-versions).
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
-So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
 
 ```json
 {
@@ -302,7 +301,7 @@ Using the values from the [example](#relationship-reference), that would be:
 psql -U main -h postgresql.internal -p 5432
 ```
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
 
 ## Exporting data
 
@@ -498,30 +497,25 @@ postgresql:
         thirddb: admin
 ```
 
-## Password generation
+## Password generation {#password-generation}
 
-When you connect your app to a database,
-an empty password is generated for the database by default.
-This can cause issues with your app.
+When you connect your app to a database that is a managed service (defined in the `services` configuration) without a `schema` and `endpoint` defined, by default
+an empty password is generated for connecting to the database. 
+This empty password can pose a security risk for your app and cause issues such as denied access, plugin/tool incompatibility, or connection refusals. 
 
-To generate real passwords for your database,
-define custom endpoints in your [service configuration](#1-configure-the-service).
-For each custom endpoint you create,
-you get an automatically generated password,
-similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
+When a database is a managed service, it's considered a best practice to use strong, random passwords for your database connection. 
+To do this, 
+you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the [multiple databases](#multiple-databases) example later in this topic.
+For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
 
-After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
-within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
-The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
-Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
-
-When you switch from the default configuration with an empty password to custom endpoints,
-make sure your service name remains unchanged.
-Failure to do so results in the creation of a new service,
-which removes any existing data from your database.
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app). 
+ 
+If you switch from the default configuration with an empty password to custom endpoints,
+make sure the `services.<SERVICE_NAME>` does not change. **Changing the service name creates a new service,
+which removes any existing data from your database.**
 
 ## Restrict access to database replicas only
 
