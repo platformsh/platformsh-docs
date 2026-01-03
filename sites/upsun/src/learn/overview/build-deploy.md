@@ -97,7 +97,7 @@ This is the default behavior for all environments. With automatic deployment, ch
 
 ### Manual deployment
 
-When enabled, manual deployment lets you control when deployments happen. This means that changes will be staged but not deployed until explicitly triggered by the user. This type of deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
+Manual deployment is available for all environment types (preview, staging, and production). When enabled, manual deployment lets you control when deployments happen: changes are staged but not deployed until you explicitly trigger a deployment. Manual deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
 
 When manual deployment is enabled in an environment, the following actions are queued until deployment is triggered:
 
@@ -113,7 +113,7 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Use **Redeploy** to restart your application without applying staged changes.
+To restart your application without applying staged changes, run `upsun redeploy` or click **Redeploy** in the Console. 
 
 {{< /note >}}
 
@@ -207,37 +207,38 @@ As soon as your deployment type is switched from manual to automatic, all curren
 ## Zero Downtime Deployments
 ## What is Zero Downtime?
 
-Zero Downtime Deployments (ZDD) let you update environments without interrupting live traffic. By default, [deployments](#manual-deployment) use stop-start (services stop, then restart with updates). With ZDD, you can switch to a [rolling strategy](#deployment-strategies) that keeps your app online during updates.
+By default, deployments use a stop-start [deployment strategy](#deployment-strategies) (services stop, then restart with updates). Zero Downtime is a _rolling_ deployment strategy that enables you to deploy changes to your environment without taking your app offline and without interrupting live traffic.  
+
+Before you can [use this rolling deployment strategy](#how-to-use-zero-downtime-deployments), you must first [enable manual deployments](#change-deployment-type) in your environment.  
 
 ## How Zero Downtime works
 
 Instead of stopping services before updating, a temporary copy of your application is created and prepared behind the scenes during the deployment process. Your services work with both the original application and the temporary copy during the whole deployment process, which means that any changes you make to your services during deployment will be applied to the original application. Here's the step-by-step process:
 
-**A clone is made of your current application**
+**1. A temporary clone of your application is created**
 
-- {{% vendor/name %}} starts a temporary container running a cloned version of your app.
-- The cloned app begins handling all live traffic during this time.
-- Your services (for example Redis) will serve the cloned app as well as the original app.
+- {{% vendor/name %}} starts a temporary container that runs a cloned version of your app.
+- The clone handles all live traffic during this time.
+- Services (for example, Redis) serve both the original app _and_ the clone.
 
 ![A duplicate is made of your current application](/images/ZDD/ZDD-1.jpg "0.4")
 
-**Original application is updated**
+**2. The original application is updated**
 
 - The original app is updated with the new code and configuration.
-- The deploy hook is executed for the original app.
+- The deploy hook is run on the original app.
 
-**Cloned apps are removed after deployment**
+**3. The clone is removed after deployment**
 
-- When deployment is complete, the clone of your app is shut down and removed.
-- All traffic and services are now solely applied to the original app alone.
+- When deployment of the original app is complete, the clone (the temporary container) is shut down and removed.
+- All traffic and services are now applied to the original app only.
 
 ![The duplicate of your original application is removed](/images/ZDD/ZDD-2.jpg "0.4")
 
 {{< note theme="warning" >}}
-During the Zero Downtime Deployment process, both the old and new containers run simultaneously for a short period.
-You could be temporarily billed for extra resources while both versions are active.
-- If your app uses fewer resources and has a short deployment time, additional costs will be minimal.
-- If your app’s deployment takes longer to run and uses larger resources, expect proportionally higher temporary costs.
+During a Zero Downtime Deployment, the original app and its clone run simultaneously for a short period (typically, a few minutes).
+
+**You are billed for extra resources while both app versions active.** If your app’s deployment phase takes longer and uses more resources, expect proportionally higher costs.
 {{< /note >}}
 
 ### Deployment strategies
@@ -265,21 +266,21 @@ You could be temporarily billed for extra resources while both versions are acti
 | **Best for** | Small apps, quick updates | Apps requiring uninterrupted availability |
 | **Limitations** | Causes downtime/freezetime | Longer deploy time, higher temporary resource use |
 
-{{< note theme="warning" >}}
+{{< note theme="info" >}}
 
-**Environment type:** Zero Downtime Deployments are only available on {{% vendor/name %}} Flex.
+Rolling deployments (Zero Downtime Deployments) are available only if [manual deployment](#manual-deployment) is enabled. 
 
 {{< /note >}}
 
 
-### Use cases
+### Rolling deployment use cases {#use-cases}
 
 | Use Case | Recommendation |
 |----------|----------------|
 | Code pushes | Suitable |
 | Config or environment variable changes | Suitable |
 | Stateful services (databases, caches) | Not suitable |
-| DB schema migrations | Not suitable _(except if updates are backward and forward compatible)_ | |
+| DB schema migrations | Not suitable _(unless updates are backward and forward compatible)_ | |
 
 {{< note theme="info" >}}
 
@@ -366,11 +367,11 @@ web:
 
 {{< /note >}}
 
-### Deployment fails midway
+### Deployment failure
 
 If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an increase in resource usage and costs.
 
-Try redeploy or deploy using the stop-start strategy (if Manual Deployments enabled) to ensure no duplicates remain active. If you still experience issues, [contact support](/learn/overview/get-support.md).
+To troubleshoot a failure, [enable manual deployments](#change-deployment-type) if not already enabled; then, try to redeploy the environment or deploy the environment using the stop-start strategy to ensure no clones remain active. If you still experience issues, [contact support](/learn/overview/get-support.md).
 
 ## Deployment philosophy
 
@@ -382,7 +383,7 @@ Having both old and new code running in parallel on different servers could ther
 {{% vendor/name %}} believes that a minute of planned downtime for authenticated users is preferable to a risk of race conditions
 resulting in data corruption, especially with a CDN continuing to serve anonymous traffic uninterrupted.
 
-That brief downtime applies only to the environment changes are being pushed to.
+This brief downtime affects only the environment being updated.
 Deployments to a staging or development branch have no impact on the production environment and cause no downtime.
 
 ## What's next
