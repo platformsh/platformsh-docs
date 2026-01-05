@@ -71,37 +71,27 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 |-------------------------|--------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Upgrade
 
-When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
-and check that each upgrade commit translates into an actual deployment.
+### Upgrade, change, or downgrade a service
 
-To upgrade, update the service version in your [service configuration](/add-services/_index.md).
+{{% note theme="caution" title="Caution" %}}
+Upgrading and downgrading a service version or changing a service type are destructive processes that delete the existing service and its data. 
 
-### Change the service type
+A best practice is to first back up your environment and export the data. 
+{{% /note %}}
 
-To change the service type:
+To prevent data loss after completing either of these actions, follow these steps:
 
-1. To prevent data loss, [export your data](#exporting-data).
-   {{% note %}}
-   Changing the service type, especially when done repeatedly, can result in data loss. Backups are essential.
-   {{% /note %}}
-2. Remove the old service from your [service configuration](/add-services/_index.md).
-3. Specify a new service type.
-4. [Import your data](#importing-data) into the new service.
-
-### Downgrade
-
-You can't downgrade to a previous version and retain your data.
-To downgrade your database, follow these steps:
-
-1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](/add-services/_index.md).
-1. Add a new service with a different name and your desired version.
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service make an error in your `config.yaml` file and need to revert your entire environment, the backup enables you to do so. 
+1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data from a backup of your environment.  
+1. Change the service type in your [service configuration](/add-services/_index.md):
+    - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
+and check that each upgrade commit translates into an actual deployment.   
+    - **Change or downgrade:** Specify the new service type and the desired version.
 1. [Import your data](#importing-data) into the new service.
 
-## Usage example
+
+## Example
 
 Configure your service with at least 256 MB in disk space.
 
@@ -116,8 +106,7 @@ To define the service, use the `mariadb` or `mysql` type for MariaDB or the `ora
   disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
+Remember to back up your environment and export your data before changing the service. 
 
 ### 2. Define the relationship
 

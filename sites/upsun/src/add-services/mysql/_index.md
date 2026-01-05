@@ -39,34 +39,22 @@ When you deploy your app, you always get the latest available patches.
 |-------------------------|--------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Upgrade
+### Upgrade, change, or downgrade a service
 
-When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
-and check that each upgrade commit translates into an actual deployment.
+{{% note theme="caution" title="Caution" %}}
+Upgrading and downgrading a service version or changing a service type are destructive processes that delete the existing service and its data. 
 
-To upgrade, update the service version in your [service configuration](../_index.md).
+A best practice is to first back up your environment and export the data.  
+{{% /note %}}
 
-### Change the service type
+To prevent data loss after completing either of these actions, follow these steps:
 
-To change the service type:
-
-1. To prevent data loss, [export your data](#exporting-data).
-   {{% note %}}
-   Changing the service type, especially when done repeatedly, can result in data loss. Backups are essential.
-   {{% /note %}}
-2. Remove the old service from your [service configuration](../_index.md).
-3. Specify a new service type.
-4. [Import your data](#importing-data) into the new service.
-
-### Downgrade
-
-You can't downgrade to a previous version and retain your data.
-To downgrade your database, follow these steps:
-
-1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](../_index.md).
-1. Add a new service with a different name and your desired version.
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service make an error in your `config.yaml` file and need to revert your entire environment, the backup enables you to do so. 
+1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data from a backup of your environment.  
+1. Change the service type in your [service configuration](/add-services/_index.md):
+    - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
+and check that each upgrade commit translates into an actual deployment.   
+    - **Change or downgrade:** Specify the new service type and the desired version.
 1. [Import your data](#importing-data) into the new service.
 
 ## Relationship reference
