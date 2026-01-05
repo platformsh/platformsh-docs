@@ -119,3 +119,15 @@ To address the issue, you can:
 - Follow the global [performance tuning recommendations](/languages/php/tuning.md).
 - Remove stale plugins and extensions when using a CMS.
 - Upgrade the container size to get more resources.
+
+## Previously successful PHP builds now fail
+
+When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
+
+Composer version 2.9 introduces an Automatic Security Blocking feature, which is enabled by default and does the following: 
+- If a dependency in the project has a known vulnerability, Composer fails the installation/update. 
+- If a dependency is abandoned, Composer can optionally fail the installation. 
+
+If advisories were published after the most recent PHP app deployment, the build might fail, even if the PHP dependencies have not changed.
+
+**The best practice is to upgrade the affected dependencies** to maintain a strong security posture and address vulnerabilities. However, you can configure the level of blocking by using the `.dependencies.php.config.audit.*` keys described in the [Configure security blocking](/languages/php/_index.md#configure-security-blocking) section of the PHP topic.
