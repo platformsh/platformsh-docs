@@ -654,13 +654,9 @@ services:
 
 ## Password generation {#password-generation}
 
-When you connect your app to a database that is a managed service (defined in the `services` configuration) without a `schema` and `endpoint` defined, by default
-an empty password is generated for connecting to the database. 
-This empty password can pose a security risk for your app and cause issues such as denied access, plugin/tool incompatibility, or connection refusals. 
+Omitting the `schema` and `endpoint` for a database service generates an empty database password. Some apps do not accept an empty password. 
 
-When a database is a managed service, it's considered a best practice to use strong, random passwords for your database connection. 
-To do this, 
-you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the [multiple databases](#multiple-databases) example later in this topic.
+To generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the example in the preceding [multiple databases](#multiple-databases) section in this topic.
 For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
