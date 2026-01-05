@@ -8,6 +8,51 @@ description: Learn how to troubleshoot common issues in PHP.
 
 For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
+## Previously successful PHP builds now fail {#build-failure-security-blocking}
+
+When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
+
+Composer version 2.9 introduces an Automatic Security Blocking feature, which is enabled by default and does the following: 
+- If a dependency in the project has a known vulnerability, Composer fails the installation/update. 
+- If a dependency is abandoned, Composer can optionally fail the installation. 
+
+If advisories were published after the most recent PHP app deployment, the build might fail, even if the PHP dependencies have not changed.
+
+**In this scenario, the best practice is to upgrade the affected dependencies** to maintain a strong security posture and address vulnerabilities. However, you can configure the level of blocking by using the `.dependencies.php.config.audit.*` keys described in the [Configure security blocking](/languages/php/_index.md#configure-security-blocking) section of the PHP topic.
+
+**Important: To maintain a stronger security posture, Upsun advises against disable security blocking.** However, if needed, the feature can be overridden or disabled in the following ways: 
+- Pin Composer to a version lower than 2.9 and specify the security advisories to ignore. You might use this as a workaround while you fix issues with dependences. For example:  
+  ```yaml {configFile="app"}
+  applications:
+    # The app's name, which must be unique within the project.
+    myapp:
+      type: 'php:{{% latest "php" %}}'
+      <snip>
+      dependencies:
+        php:
+          require: 
+            composer/composer: '2.8.*'
+          config:
+            audit: 
+              ignore:
+                - "PKSA-1gck-s111-7q7g"
+
+  ```
+
+- Disable security blocking entirely (**not recommended**)
+  ```yaml {configFile="app"}
+  applications:
+    # The app's name, which must be unique within the project.
+    myapp:
+      type: 'php:{{% latest "php" %}}'
+      <snip>
+      dependencies:
+        php:
+          config:
+            audit:
+              block-insecure: false
+  ```      
+
 ## Server reached `max_children`
 
 If the server is receiving more concurrent requests than it has PHP processes allocated,
@@ -25,6 +70,7 @@ You have two ways to increase the number of workers:
 
 - Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
+
 ## Execution timeout
 
 If your PHP app can't handle the amount of traffic or is slow,
@@ -57,6 +103,7 @@ Otherwise, you may check if the following options are applicable:
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
   Refer to [how caching works](/define-routes/cache.md).
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
+
 ## Troubleshoot a crashed PHP process
 
 If your PHP process crashed with a segmentation fault,
@@ -119,42 +166,3 @@ To address the issue, you can:
 - Follow the global [performance tuning recommendations](/languages/php/tuning.md).
 - Remove stale plugins and extensions when using a CMS.
 - Upgrade the container size to get more resources.
-
-## Previously successful PHP builds now fail
-
-When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
-
-Composer version 2.9 introduces an Automatic Security Blocking feature, which is enabled by default and does the following: 
-- If a dependency in the project has a known vulnerability, Composer fails the installation/update. 
-- If a dependency is abandoned, Composer can optionally fail the installation. 
-
-If advisories were published after the most recent PHP app deployment, the build might fail, even if the PHP dependencies have not changed.
-
-**In this scenario, the best practice is to upgrade the affected dependencies** to maintain a strong security posture and address vulnerabilities. However, you can configure the level of blocking by using the `.dependencies.php.config.audit.*` keys described in the [Configure security blocking](/languages/php/_index.md#configure-security-blocking) section of the PHP topic.
-
-**Important: To maintain a stronger security posture, Upsun advises against disable security blocking.** However, if needed, the feature can be overridden or disabled in the following ways: 
-- Pin Composer to a version lower than 2.9: 
-  ```yaml {configFile="app"}
-  applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-      type: 'php:{{% latest "php" %}}'
-      <snip>
-      dependencies:
-        php:
-          composer/composer: '<2.9'
-  ```
-
-- Disable security blocking entirely (**not recommended**)
-  ```yaml {configFile="app"}
-  applications:
-    # The app's name, which must be unique within the project.
-    myapp:
-      type: 'php:{{% latest "php" %}}'
-      <snip>
-      dependencies:
-        php:
-          config:
-            audit:
-              block-insecure: false
-  ```      
