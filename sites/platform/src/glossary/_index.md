@@ -222,6 +222,22 @@ Each project corresponds to one Git repository.
 A project can contain multiple apps that run in their own isolated containers.
 Each branch of a project can be deployed in its own environment.
 
+## Route {#route}
+
+A _route_ is information that tells the {{% vendor/name %}} [_router_](#router) how incoming web requests should be handled and which app container (or destination) should respond.
+
+Routes are defined in the `{{% vendor/configfile "routes" %}}` file in your Git repository, and they map specific URLs or domains to one of the following actions:
+Routes map specific URLs or domains to one of the following actions:
+- `upstream` sends the request to a specific application container 
+- `redirect` sends the request to another route or URL (for example, redirecting `www` to non-www)
+- `proxy` forwards requests to an external service outside the project
+
+See the [examples](/define-routes.md#examples) in the "Define routes" topic.
+
+## Router {#router}
+
+The _router_ is the traffic director of your {{% vendor/name %}} environment: it handles routing logic, basic caching, and traffic entry, and directs traffic to the correct container or containers based on the [_routes_](#route) that you define in your `{{% vendor/configfile "routes" %}}` file.
+
 ## Sync
 
 Synchronizing an environment means copying changes from a parent into a child environment

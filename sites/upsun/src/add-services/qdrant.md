@@ -17,7 +17,7 @@ Create a qdrant application in your `.upsun/config.yaml`:
 ```yaml {location=".upsun/config.yaml"}
 applications:
   qdrant:
-    type: "composable:25.05"
+    type: "composable:{{% latest composable %}}"
     container_profile: HIGH_MEMORY
 
     stack:

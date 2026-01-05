@@ -8,8 +8,7 @@ Gotenberg is a stateless API for converting various document formats into PDF fi
 For more information, see the [Gotenberg documentation](https://gotenberg.dev/docs/getting-started/introduction).
 
 ## Supported versions
-
-- 8
+{{< image-versions image="gotenberg" status="supported" environment="grid" >}}
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
@@ -64,7 +63,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
   "rel": "http",
   "scheme": "http",
   "port": "3000",
-  "type": "gotenberg:8",
+  "type": "gotenberg:{{< latest "gotenberg" >}}",
   "instance_ips": [
     "249.45.240.83"
   ],
@@ -147,7 +146,7 @@ and matches in both the application and services configuration.
 {{< /codetabs >}}
 
 With the above definition, {{% vendor/name %}} uses the `http` endpoint,
-providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the _name_ of that service.
+providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 The `http` endpoint uses port `3000` by default.
 
@@ -194,7 +193,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   gotenberg:
-    type: gotenberg:8
+    type: gotenberg:{{< latest "gotenberg" >}}
 ```
 
 {{< /codetabs >}}

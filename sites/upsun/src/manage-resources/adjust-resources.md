@@ -38,7 +38,7 @@ You can [monitor these costs](/administration/billing/monitor-billing.md) in the
 
 {{< /note >}}
 
-## Vertical scaling
+## Vertical scaling {#vertical-scaling} 
 
 To define how much CPU, RAM, and disk storage you want to allocate to each individual container,
 follow these steps:
@@ -216,16 +216,16 @@ title= From the Console
 
 {{< note theme="info" title="Autoscaling">}}
 
-{{% vendor/name %}} provides [**native autoscaling** support](/manage-resources/autoscaling.html). You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.  
+{{% vendor/name %}} provides [**native autoscaling** support](/manage-resources/autoscaling.html). You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.
 
 {{< /note >}}
 
 ## View application instance details {#view-application-instance-details}
 {{% vendor/name %}} maintains a real-time indexed list of an application's instances and their IP addresses in the project's `/run/peers.json` file. You might view this read-only file to gain insight into how your application instances are distributed. Upsun maintains this file whether you scale instances manually or have autoscaling enabled.
 
-Distributed applications (for example, those running on Elixir and Erlang) and applications that can scale horizontally must be aware of all its instances in order to coordinate activities such as setting up clusters and handling application failures.  
+Distributed applications (for example, those running on Elixir and Erlang) and applications that can scale horizontally must be aware of all its instances in order to coordinate activities such as setting up clusters and handling application failures.
 
-The number of instances in this file at any time matches the number of application instances shown on the Configure Resources page of the Console. 
+The number of instances in this file at any time matches the number of application instances shown on the Configure Resources page of the Console.
 
 To view the contents of the file, run this command from the root of your project directory:
 
@@ -233,7 +233,7 @@ To view the contents of the file, run this command from the root of your project
 cat /run/peers.json | jq
 ```
 
-The output is similar to this: 
+The output is similar to this:
 ```json
 {
   "hello_distributed.1": "123.456.789.10",
@@ -274,7 +274,7 @@ For information on resource-related costs, see the [{{% vendor/name %}} pricing 
 
 ### Guaranteed CPU container sizes
 
-When selecting a container profile for [Guaranteed CPU](/manage-resources/guaranteed-resources.html), use the table below to identify available CPU and memory combinations. These predefined sizes help you match resource profiles to your application’s workload requirements.
+When selecting a container profile for [Guaranteed CPU](/manage-resources/guaranteed-resources.md), use the table below to identify available CPU and memory combinations. These predefined sizes help you match resource profiles to your application’s workload requirements.
 
 | CPU | HIGH_CPU | BALANCED | HIGH_MEMORY | HIGHER_MEMORY |
 |-----|-----------|-----------|--------------|----------------|

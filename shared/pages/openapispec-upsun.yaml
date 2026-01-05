@@ -6546,13 +6546,16 @@ paths:
                   type: string
                   format: uri
                   description: The URL of an organization-wide project options file.
-                security_contact:
-                  type: string
-                  format: email
-                  description: The e-mail address of a contact to whom security notices will be sent.
                 company_name:
                   type: string
                   description: The company name.
+                customer_type:
+                  type: string
+                  description: The customer type of this account.
+                  enum:
+                    - indvidual
+                    - company
+                    - government
                 vat_number:
                   type: string
                   description: The VAT number of the company.
@@ -9684,6 +9687,13 @@ components:
         invoiced:
           description: The customer is invoiced.
           type: boolean
+        customer_type:
+          description: The customer type.
+          type: string
+          enum:
+            - individual
+            - corporation
+            - government
       type: object
     AddressMetadata:
       description: Information about fields required to express an address.

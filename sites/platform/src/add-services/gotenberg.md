@@ -9,7 +9,7 @@ For more information, see the [Gotenberg documentation](https://gotenberg.dev/do
 
 ## Supported versions
 
-- 8
+{{< image-versions image="gotenberg" status="supported" environment="grid" >}}
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
@@ -30,7 +30,7 @@ or by running `{{% vendor/cli %}} relationships`.
   "rel": "http",
   "scheme": "http",
   "port": "3000",
-  "type": "gotenberg:8",
+  "type": "gotenberg:{{< latest "gotenberg" >}}",
   "instance_ips": [
     "123.456.78.90"
   ],
@@ -84,7 +84,7 @@ relationships:
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
 With the above definition, {{% vendor/name %}} uses the `http` endpoint,
-providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships) (the network address a service is accessible from) that is identical to the _name_ of the service.
+providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the _name_ of the service.
 
 The application has access to the service via this relationship and its corresponding `PLATFORM_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -110,10 +110,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -128,7 +128,7 @@ The `http` endpoint uses port `3000` by default.
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 gotenberg:
-  type: gotenberg:8
+  type: gotenberg:{{< latest "gotenberg" >}}
 ```
 
 #### [App configuration](/create-apps/_index.md)

@@ -21,7 +21,7 @@ To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these st
 
    ```yaml {configFile="services"}
    mysql:
-     type: oracle-mysql:8.0
+     type: oracle-mysql:{{< latest "oracle-mysql" >}}
      disk: 256
    ```
 

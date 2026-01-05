@@ -58,7 +58,7 @@ Changing the setting rebuilds the environment.
 
 ## 2. Recommended: Improve deliverability
 
-Improve deliverability of your email with [Sender Policy Framework (SPF)](https://docs.sendgrid.com/ui/account-and-settings/spf-records).
+Improve deliverability of your email with [Sender Policy Framework (SPF)](https://www.twilio.com/docs/sendgrid/glossary/spf).
 If you don't have an SPF record, add the following `TXT` record to your domain's DNS records:
 
 ```txt
@@ -74,7 +74,7 @@ If you already have an SPF record, please add SendGrid into your existing record
 You can request for DomainKeys Identified Mail (DKIM) to be enabled on your domain.
 
 DKIM improves your delivery rate as an email sender.
-Learn more about [how DKIM works](https://docs.sendgrid.com/glossary/dkim).
+Learn more about [how DKIM works](https://www.twilio.com/docs/sendgrid/glossary/dkim).
 
 To have DKIM enabled for your domain:
 
