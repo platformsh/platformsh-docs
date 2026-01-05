@@ -9,7 +9,7 @@ For more information, see the [Gotenberg documentation](https://gotenberg.dev/do
 
 ## Supported versions
 
-- 8
+{{< image-versions image="gotenberg" status="supported" environment="grid" >}}
 
 You can select the major version. But the latest compatible minor version is applied automatically and can’t be overridden.
 
@@ -30,7 +30,7 @@ or by running `{{% vendor/cli %}} relationships`.
   "rel": "http",
   "scheme": "http",
   "port": "3000",
-  "type": "gotenberg:8",
+  "type": "gotenberg:{{< latest "gotenberg" >}}",
   "instance_ips": [
     "123.456.78.90"
   ],
@@ -128,7 +128,7 @@ The `http` endpoint uses port `3000` by default.
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 gotenberg:
-  type: gotenberg:8
+  type: gotenberg:{{< latest "gotenberg" >}}
 ```
 
 #### [App configuration](/create-apps/_index.md)
