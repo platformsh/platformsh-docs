@@ -234,7 +234,9 @@ applications:
 ```
 ### Configure security blocking {#configure-security-blocking}
 
-By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned.
+When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
+
+By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned. 
 
 **The best practice is to upgrade the dependencies** to reduce security risks and to catch issues sooner. However, you can configure the level of security blocking by defining the following keys in the `.dependencies.php.config` section of your `config.yaml` file. 
 
@@ -276,6 +278,8 @@ applications:
                 apply: all   # ignore all low severity findings
 ```
 
+Related information: 
+- [Troubleshooting PHP builds that now fail](/languages/php/troubleshoot.md#build-failure-security-blocking)
 
 ### Additional Composer schema properties
 In addition to [alternate repositories](#alternative-repositories), other
