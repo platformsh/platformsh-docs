@@ -228,8 +228,8 @@ By default, PHP builds fail if a dependency in a project has a known vulnerabili
 | Key                     | Description                                                      |
 | ------------------------| ---------------------------------------------------------------- |
 | `audit.block-insecure`  | Default is `true`. **Important: {{% vendor/company_name %}} recommends keeping this default setting and upgrading affected dependencies to reduce security risks.**                                  | 
-| `audit.block-abandoned` | Default is `false`; ignored if `audit.block-insecure` is `false` |
-| `audit.ignore`          | Array of specific advisories to ignore; see example below        | 
+| `audit.block-abandoned` | Default is `false`; set to `true` for even stricter security. Ignored if `audit.block-insecure` is `false`.                  |
+| `audit.ignore`          | Array of specific advisories to ignore; see example below.        | 
 | `audit.ignore-severity` | Ignore vulnerabilities based on their severity rating (`low`/`medium`/`high`). See the example below.<BR>For each rating, include an `apply` key with one of these values:<ul><li>`all` to ignore everything for this rating</li><li> `block` to ignore this severity level for blocking builds (but still flag findings in audit reports)</li><li>`audit` to ignore this severity level in audit reports (but still block builds)</li> |
 
 Examples: 
