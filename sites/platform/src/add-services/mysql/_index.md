@@ -745,7 +745,7 @@ See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-
 
 Omitting the `schema` and `endpoint` for a database service generates an empty database password. Some apps do not accept an empty password. 
 
-To generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the [multiple databases](#multiple-databases) example later in this topic.
+To generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the example in the preceding [multiple databases](#multiple-databases) section in this topic.
 For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
