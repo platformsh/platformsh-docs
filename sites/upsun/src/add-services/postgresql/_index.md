@@ -668,7 +668,7 @@ which removes existing data from your database.**
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the [service environment variables](/development//variables.md#service-environment-variables) 
+through the [service environment variables](/development/variables.md#service-environment-variables) 
 within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 
 Using this method to retrieve password credentials is considered a best practice: passwords might change over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
