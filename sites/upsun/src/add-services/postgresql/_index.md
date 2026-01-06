@@ -654,7 +654,7 @@ services:
 
 ## Password generation {#password-generation}
 
-If your `config.yaml` file does not specify a `schema` and `endpoint` for a database service, no password is generated. 
+If your YAML file does not specify a `schema` and `endpoint` for a database service, no password is generated. 
 
 Because your database is isolated on a private network and cannot be seen from the internet, you can omit a password without compromising security. This simplifies your workflow by removing the need to manage credentials, while container isolation ensures that only your application can access the data.
 
@@ -668,8 +668,8 @@ which removes existing data from your database.**
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
- within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+through the [service environment variables](/development//variables.md#service-environment-variables) 
+within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 
 Using this method to retrieve password credentials is considered a best practice: passwords might change over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
 

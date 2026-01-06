@@ -499,7 +499,7 @@ postgresql:
 
 ## Password generation {#password-generation}
 
-If your `config.yaml` file does not specify a `schema` and `endpoint` for a database service, no password is generated. 
+If your YAML file does not specify a `schema` and `endpoint` for a database service, no password is generated. 
 
 Because your database is isolated on a private network and cannot be seen from the internet, you can omit a password without compromising security. This simplifies your workflow by removing the need to manage credentials, while container isolation ensures that only your application can access the data.
 
