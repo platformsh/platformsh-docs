@@ -3,21 +3,16 @@ title: "Managed Fastly CDN"
 sidebarTitle: "Managed Fastly CDN"
 weight: 2
 description: Bring your content closer to users with a Fastly CDN fully managed by {{% vendor/name %}}.
-banner:
-    type: tiered-feature
 keywords:
   - mTLS
 ---
-
+<!-- vale off -->
 Instead of starting your own Fastly subscription and [managing your CDN yourself](/domains/cdn/fastly.md),
 you can take advantage of a Fastly CDN provided by {{% vendor/name %}}.
-For example, Dedicated projects include a managed Fastly CDN by default.
 These CDNs are exclusively set up and managed by {{% vendor/name %}}.
 
-To modify any settings for a managed Fastly CDN,
-open a [support ticket](/learn/overview/get-support.md).
-To add a managed Fastly CDN to your project,
-[contact sales](https://upsun.com/contact-us/).
+To modify any settings for a managed Fastly CDN, open a [support ticket](/learn/overview/get-support.md).
+To add a managed Fastly CDN to your project, [contact sales](https://upsun.com/contact-us/).
 
 {{< note theme="Info" >}}
 {{% vendor/name %}} does not write nor debug any custom VCL on Managed Fastly CDN services.
@@ -41,7 +36,7 @@ This data is updated daily and will reflect your traffic usage throughout the bi
 
 {{< note theme="info" title="Set up traffic alerts">}}
 
-You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html#monthly-traffic-alerts).
+You can also set up consumption alerts for your resource usage. Click the Alert button in the "Traffic this month" block within [Console](https://console.upsun.com/) to configure usage thresholds. For more information, head to the [Pricing docs page](/administration/pricing.html).
 
 {{< /note >}}
 
@@ -49,7 +44,7 @@ You can also set up consumption alerts for your resource usage. Click the Alert 
 
 {{% vendor/name %}}’s Managed Fastly CDN routes incoming traffic through the Fastly edge network before requests reach your application. This enables global caching, edge logic (VCL), performance optimisation, and optional security features.
 
-The Fastly CDN must be provisioned and managed by {{% vendor/name %}}. Features such as the {{% vendor/name %}} Web Application Firewall (WAF), edge rate limiting, and image optimisation depend on this managed integration and cannot be used with a customer-managed Fastly account.
+The Fastly CDN must be provisioned and managed by {{% vendor/name %}}. Features such as the {{% vendor/name %}} Web Application Firewall (WAF), edge rate limiting, and image optimization depend on this managed integration and cannot be used with a customer-managed Fastly account.
 
 Once enabled, Fastly operates as the first point of contact for all HTTP requests, allowing requests to be cached, filtered, transformed, or blocked entirely at the edge.
 
@@ -70,8 +65,7 @@ see how to [configure your DNS provider](/domains/steps/_index.md#2-configure-yo
 
 ### Transport Layer Security (TLS) certificates
 
-By default, Enterprise and Elite plans include two [TLS certificates](/glossary/_index.md#transport-layer-security-tls),
-an apex and a wildcard one.
+By default, two [TLS certificates](/glossary/_index.md#transport-layer-security-tls) are included: an apex and a wildcard one.
 This allows for encryption of all traffic between your users and your app.
 
 If you use a Fastly CDN provided by {{% vendor/name %}},
@@ -101,13 +95,6 @@ This variable is usually set in the `/master/settings/variables` folder of your 
 and you can access it [from a shell](/development/variables/use-variables.md#access-variables-in-a-shell)
 or directly [in your app](/development/variables/use-variables.md#access-variables-in-your-app).
 
-{{% note %}}
-
-Dedicated (gen2) projects may not have the `FASTLY_*` environment variable(s) set.</br>
-In this case, the Fastly API token is stored in a text file called `fastly_tokens.txt` on the server,
-typically located at `/mnt/shared/fastly_tokens.txt`.
-
-{{% /note %}}
 
 ## Dynamic ACL and rate limiting
 
@@ -126,9 +113,12 @@ Rate limiting is applied at the edge, before requests reach your application, he
 - Reduce application load during traffic spikes
 - Enable {{% vendor/company_name %}} Support to better handle attacks or high-traffic events by throttling traffic at the edge
 
+Edge-level rate limiting is available as a standalone add-on (without the WAF).
+<!-- VERIFY: Is the first bullet below only for Fixed? If so, confirm the sentence above is correct (it's written to include only the info in the 2nd bullet). If both bullets apply to Flex, delete the sentence above and uncomment this content, which is copied from Fixed.
 Edge-level rate limiting is:
-- Included with all {{% vendor/company_name %}} Fastly Next-Gen WAF tiers
+- Included with all {{% vendor/company_name %}} Fastly Next-Gen WAF tiers 
 - Available as a standalone add-on (without the WAF)
+-->
 
 ### Configuration and defaults
 
@@ -150,3 +140,4 @@ Edge-level rate limiting is a rule-based control mechanism, not an automated bot
 - Provide AI-driven mitigation
 
 For advanced bot and scraper protection, {{% vendor/name %}} offers separate third-party integrations.
+<!-- vale on -->
