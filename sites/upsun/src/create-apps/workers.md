@@ -51,7 +51,7 @@ sv start app
 ```
 
 {{< note >}}
-Use `systemctl` whenever possible. If you’re in the `vs` section, it’s worth upgrading to a [recent runtime version](/create-apps/app-reference/single-runtime-image.html#types) for better support.
+Use `systemctl` whenever possible. If you’re using `sv` command line, it’s worth upgrading to a [recent runtime version](/create-apps/app-reference/single-runtime-image.html#types) for better support.
 {{< /note >}}
 
 {{< /codetabs >}}
