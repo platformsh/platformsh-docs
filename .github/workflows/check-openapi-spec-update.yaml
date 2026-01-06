@@ -62,6 +62,7 @@ jobs:
             "https://lab.plat.farm/api/v4/projects/${PROJECT_ENCODED}/repository/files/$(python3 -c "import urllib.parse; print(urllib.parse.quote('web/openapispec-upsun-internal.yaml',safe=''))")/raw?ref=${REF}"
 
       - name: Create Pull Request if changes
+        id: create-pr
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}

@@ -7,14 +7,17 @@ keywords:
   - "routes.yaml"
 ---
 
-You might need to control how people access your web applications,
-for example when you have [multiple apps](/create-apps/multi-app/_index.md) in one project.
-Or you might just want to direct requests to specific places, such as removing the `www` at the start of all requests.
+A [_route_](/glossary/_index.md#route) defines how requests are handled _after_ they reach {{% vendor/name %}}. It tells the {{% vendor/company_name %}} platform how to handle incoming web requests and to which application (or destination) to direct the requests. 
 
-Control where external requests are directed by defining routes in a `{{< vendor/configfile "routes" >}}` file in your Git repository.
+You define routes in a [_router_](/glossary/_index.md#router), which is the `{{% vendor/configfile "routes" %}}` file in your Git repository.
 
-If you have a single route served by a single app, you don't even need to configure routes in your `{{< vendor/configfile "routes" >}}`.
-Your project then includes a [default route](#default-route-definition).
+Routes define how your web applications are accessed, which is helpful when you have [multiple apps](../create-apps/multi-app/_index.md) in one project or you want to redirect requests to specific destinations, such as `example.com` rather than `www.example.com`.
+
+If you have a single route served by a single app, you do not need to configure routes: 
+your project includes a [default route](#default-route-definition).
+
+{{% define-routes/define-routes-dns %}}
+
 
 ![Routes](/images/config-diagrams/routes-basic.png "0.5")
 

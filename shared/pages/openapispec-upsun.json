@@ -28,7 +28,7 @@
   ],
   "security": [
     {
-      "OAuth2": []
+      "BearerAuth": []
     }
   ],
   "tags": [
@@ -9363,6 +9363,15 @@
                     "type": "string",
                     "description": "The company name."
                   },
+                  "customer_type": {
+                    "type": "string",
+                    "description": "The customer type of this account.",
+                    "enum": [
+                      "indvidual",
+                      "company",
+                      "government"
+                    ]
+                  },
                   "vat_number": {
                     "type": "string",
                     "description": "The VAT number of the company."
@@ -10967,49 +10976,36 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
                     "items": {
                       "type": "array",
                       "items": {
                         "$ref": "#/components/schemas/OrganizationProject"
                       }
                     },
+                    "facets": {
+                      "$ref": "#/components/schemas/ProjectFacets"
+                    },
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -11052,12 +11048,6 @@
                   },
                   "default_branch": {
                     "$ref": "#/components/schemas/ProjectDefaultBranch"
-                  },
-                  "cse_notes": {
-                    "$ref": "#/components/schemas/ProjectCSENotes"
-                  },
-                  "dedicated_tag": {
-                    "$ref": "#/components/schemas/ProjectDedicatedTag"
                   }
                 }
               }
@@ -11076,34 +11066,16 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/ServiceUnavailable"
           }
         }
       }
@@ -11136,24 +11108,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -11186,12 +11144,6 @@
                   },
                   "timezone": {
                     "$ref": "#/components/schemas/ProjectTimeZone"
-                  },
-                  "cse_notes": {
-                    "$ref": "#/components/schemas/ProjectCSENotes"
-                  },
-                  "dedicated_tag": {
-                    "$ref": "#/components/schemas/ProjectDedicatedTag"
                   }
                 }
               }
@@ -11210,34 +11162,16 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/ServiceUnavailable"
           }
         }
       },
@@ -11261,24 +11195,13 @@
             "description": "No Content"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
+          },
+          "503": {
+            "$ref": "#/components/responses/ServiceUnavailable"
           }
         }
       }
@@ -11314,34 +11237,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -11383,34 +11285,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -11480,25 +11361,14 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -11568,34 +11438,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -11628,24 +11477,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -11732,34 +11567,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -11783,24 +11597,10 @@
             "description": "No Content"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -11904,34 +11704,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -11961,24 +11740,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -12027,34 +11792,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -12103,34 +11847,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -12209,24 +11932,10 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       },
@@ -12264,24 +11973,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       }
@@ -12314,24 +12012,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -12347,34 +12031,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -12453,24 +12116,10 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       },
@@ -12516,24 +12165,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       }
@@ -12566,24 +12204,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -12616,34 +12240,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -12659,34 +12262,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -12773,24 +12355,10 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           }
         }
       },
@@ -12832,24 +12400,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       }
@@ -12882,24 +12439,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -12932,34 +12475,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -12975,34 +12497,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -13081,24 +12582,13 @@
             }
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -13136,24 +12626,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       }
@@ -13186,24 +12665,10 @@
             }
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       },
@@ -13219,34 +12684,13 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/NotFound"
           }
         }
       }
@@ -14116,155 +13560,18 @@
             "type": "string",
             "format": "email"
           },
-          "current_trial": {
-            "description": "The current trial for the profile.",
-            "properties": {
-              "active": {
-                "description": "The trial active status.",
-                "type": "boolean"
-              },
-              "created": {
-                "description": "The trial creation date.",
-                "type": "string",
-                "format": "date-time"
-              },
-              "description": {
-                "description": "The trial description.",
-                "type": "string"
-              },
-              "expiration": {
-                "description": "The trial expiration-date.",
-                "type": "string",
-                "format": "date-time"
-              },
-              "current": {
-                "description": "The total amount spent by the trial user at this point in time.",
-                "properties": {
-                  "formatted": {
-                    "description": "The total amount formatted.",
-                    "type": "string"
-                  },
-                  "amount": {
-                    "description": "The total amount.",
-                    "type": "string"
-                  },
-                  "currency": {
-                    "description": "The currency.",
-                    "type": "string"
-                  },
-                  "currency_symbol": {
-                    "description": "Currency symbol.",
-                    "type": "string"
-                  }
-                },
-                "type": "object"
-              },
-              "spend": {
-                "description": "The total amount available for the trial.",
-                "properties": {
-                  "formatted": {
-                    "description": "The total amount formatted.",
-                    "type": "string"
-                  },
-                  "amount": {
-                    "description": "The total amount.",
-                    "type": "string"
-                  },
-                  "currency": {
-                    "description": "The currency.",
-                    "type": "string"
-                  },
-                  "currency_symbol": {
-                    "description": "Currency symbol.",
-                    "type": "string"
-                  }
-                },
-                "type": "object"
-              },
-              "spend_remaining": {
-                "description": "The remaining amount available for the trial.",
-                "properties": {
-                  "formatted": {
-                    "description": "The total amount formatted.",
-                    "type": "string"
-                  },
-                  "amount": {
-                    "description": "The total amount.",
-                    "type": "string"
-                  },
-                  "currency": {
-                    "description": "The currency.",
-                    "type": "string"
-                  },
-                  "currency_symbol": {
-                    "description": "Currency symbol.",
-                    "type": "string"
-                  },
-                  "unlimited": {
-                    "description": "Spend limit is ignored (in favor of resource limitations).",
-                    "type": "boolean"
-                  }
-                },
-                "type": "object"
-              },
-              "projects": {
-                "description": "Projects active under trial",
-                "properties": {
-                  "id": {
-                    "description": "Trial project ID",
-                    "type": "string"
-                  },
-                  "name": {
-                    "description": "Trial project name",
-                    "type": "string"
-                  },
-                  "total": {
-                    "properties": {
-                      "amount": {
-                        "description": "Trial project cost",
-                        "type": "integer"
-                      },
-                      "currency_code": {
-                        "description": "Currency code",
-                        "type": "string"
-                      },
-                      "currency_symbol": {
-                        "description": "Currency symbol",
-                        "type": "string"
-                      },
-                      "formatted": {
-                        "description": "Trial project cost formatted with currency sign",
-                        "type": "string"
-                      }
-                    },
-                    "type": "object"
-                  }
-                },
-                "type": "object"
-              },
-              "pending_verification": {
-                "description": "Required verification method (if applicable).",
-                "type": "string",
-                "enum": [
-                  "credit-card"
-                ],
-                "nullable": true,
-                "deprecated": true
-              },
-              "model": {
-                "description": "The trial trial model.",
-                "type": "string"
-              },
-              "days_remaining": {
-                "description": "The amount of days until the trial expires.",
-                "type": "integer"
-              }
-            },
-            "type": "object"
-          },
           "invoiced": {
             "description": "The customer is invoiced.",
             "type": "boolean"
+          },
+          "customer_type": {
+            "description": "The customer type.",
+            "type": "string",
+            "enum": [
+              "individual",
+              "corporation",
+              "government"
+            ]
           }
         },
         "type": "object"
@@ -14688,36 +13995,6 @@
           "tickets": {
             "description": "Number of support tickets by status.",
             "type": "object"
-          },
-          "trial": {
-            "description": "The indicator whether the user is in trial or not.",
-            "type": "boolean"
-          },
-          "current_trial": {
-            "type": "array",
-            "items": {
-              "properties": {
-                "created": {
-                  "description": "The ISO timestamp of the trial creation date time.",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "description": {
-                  "description": "The human readable trial description",
-                  "type": "string"
-                },
-                "spend_remaining": {
-                  "description": "Total spend amount of the voucher minus existing project costs for the existing billing cycle.",
-                  "type": "string"
-                },
-                "expiration": {
-                  "description": "Date the trial expires.",
-                  "type": "string",
-                  "format": "date-time"
-                }
-              },
-              "type": "object"
-            }
           }
         },
         "type": "object"
@@ -28958,20 +28235,28 @@
           "project_ui": {
             "$ref": "#/components/schemas/ProjectUI"
           },
-          "locked": {
-            "$ref": "#/components/schemas/ProjectLocked"
-          },
-          "cse_notes": {
-            "$ref": "#/components/schemas/ProjectCSENotes"
-          },
-          "dedicated_tag": {
-            "$ref": "#/components/schemas/ProjectDedicatedTag"
-          },
           "created_at": {
             "$ref": "#/components/schemas/CreatedAt"
           },
           "updated_at": {
             "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "activities": {
+            "description": "Activities information for the project.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            },
+            "nullable": true
+          },
+          "project_options": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProjectOptionsAggregated"
+              }
+            ],
+            "nullable": true
           },
           "_links": {
             "type": "object",
@@ -28986,9 +28271,43 @@
                   }
                 }
               },
+              "api": {
+                "type": "object",
+                "nullable": true,
+                "description": "Link to the regional API endpoint. Only present if user has project-level access.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "subscription": {
+                "type": "object",
+                "nullable": true,
+                "description": "Link to the subscription. Only present if project has a subscription.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
+              "view_usage_alerts": {
+                "type": "object",
+                "nullable": true,
+                "description": "Link to view usage alerts. Only present if user has view permission.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
               "update": {
                 "type": "object",
-                "description": "Link for updating the current project.",
+                "nullable": true,
+                "description": "Link for updating the current project. Only present if user has update permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29000,9 +28319,36 @@
                   }
                 }
               },
+              "plan_uri": {
+                "type": "object",
+                "nullable": true,
+                "description": "Link to the billing plan page. Only present if user has manage permission.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  }
+                }
+              },
               "delete": {
                 "type": "object",
-                "description": "Link for deleting the current project.",
+                "nullable": true,
+                "description": "Link for deleting the current project. Only present if user has delete permission.",
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL of the link."
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "The HTTP method to use."
+                  }
+                }
+              },
+              "update_usage_alerts": {
+                "type": "object",
+                "nullable": true,
+                "description": "Link to update usage alerts. Only present if user has billing permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29016,7 +28362,8 @@
               },
               "activities": {
                 "type": "object",
-                "description": "Link to the project's activities.",
+                "nullable": true,
+                "description": "Link to the project's activities. Only present if user has view permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29026,7 +28373,8 @@
               },
               "addons": {
                 "type": "object",
-                "description": "Link to the project's add-ons.",
+                "nullable": true,
+                "description": "Link to the project's add-ons. Only present if user has view permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29036,7 +28384,8 @@
               }
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "OrganizationCarbon": {
         "type": "object",
@@ -29056,7 +28405,8 @@
           "total": {
             "$ref": "#/components/schemas/CarbonTotal"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ProjectAddon": {
         "description": "Project add-on. Uses discriminator on `type` to select field shape.",
@@ -29123,11 +28473,13 @@
           },
           "unit": {
             "type": "string",
+            "nullable": true,
             "description": "Unit for quantity-based add-ons when applicable."
           },
           "allowed_values": {
             "description": "Allowed values for the add-on depending on user role and options.",
             "type": "array",
+            "nullable": true,
             "items": {
               "oneOf": [
                 {
@@ -29145,6 +28497,14 @@
           "updated_at": {
             "$ref": "#/components/schemas/UpdatedAt"
           },
+          "activities": {
+            "description": "Activities related to the add-on.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            },
+            "nullable": true
+          },
           "_links": {
             "type": "object",
             "properties": {
@@ -29160,6 +28520,7 @@
               },
               "update": {
                 "type": "object",
+                "nullable": true,
                 "description": "Link for updating the current add-on.",
                 "properties": {
                   "href": {
@@ -29174,6 +28535,7 @@
               },
               "delete": {
                 "type": "object",
+                "nullable": true,
                 "description": "Link for deleting the current add-on.",
                 "properties": {
                   "href": {
@@ -29230,7 +28592,8 @@
           "total": {
             "$ref": "#/components/schemas/CarbonTotal"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "OrganizationProjectCarbon": {
         "type": "object",
@@ -29243,11 +28606,85 @@
           },
           "values": {
             "$ref": "#/components/schemas/MetricsValues"
-          },
-          "total": {
-            "$ref": "#/components/schemas/CarbonTotal"
           }
-        }
+        },
+        "additionalProperties": false
+      },
+      "ProjectOptionsAggregated": {
+        "type": "object",
+        "properties": {
+          "billing": {
+            "type": "object",
+            "nullable": true
+          },
+          "defaults": {
+            "type": "object",
+            "nullable": true
+          },
+          "enforced": {
+            "type": "object",
+            "nullable": true
+          },
+          "initialize": {
+            "type": "object",
+            "nullable": true
+          },
+          "plans": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "regions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "plan_titles": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlanTitles"
+              }
+            ],
+            "nullable": true
+          },
+          "sellables": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AggregatedSellables"
+              }
+            ],
+            "nullable": true
+          },
+          "features": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AggregatedFeatures"
+              }
+            ],
+            "nullable": true
+          },
+          "container_sizes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "description": "Container sizes configuration."
+          },
+          "debug": {
+            "type": "object",
+            "nullable": true,
+            "description": "Debug configuration."
+          }
+        },
+        "additionalProperties": false
       },
       "ProjectPlan": {
         "type": "string",
@@ -29299,8 +28736,13 @@
           },
           "updated_at": {
             "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "invoiced": {
+            "type": "boolean",
+            "description": "Whether the project is invoiced."
           }
-        }
+        },
+        "additionalProperties": false
       },
       "RegionReference": {
         "description": "The referenced region, or null if it no longer exists.",
@@ -29369,8 +28811,13 @@
           },
           "updated_at": {
             "$ref": "#/components/schemas/UpdatedAt"
+          },
+          "environmental_impact": {
+            "type": "object",
+            "description": "Environmental impact information for the region."
           }
-        }
+        },
+        "additionalProperties": false
       },
       "AddonType": {
         "type": "string",
@@ -29424,14 +28871,6 @@
         "type": "string",
         "description": "Default branch."
       },
-      "ProjectLocked": {
-        "type": "boolean",
-        "description": "Locked"
-      },
-      "ProjectCSENotes": {
-        "type": "string",
-        "description": "CSE notes."
-      },
       "ProjectStatus": {
         "type": "string",
         "description": "The status of the project.",
@@ -29443,10 +28882,6 @@
           "deleted"
         ]
       },
-      "ProjectDedicatedTag": {
-        "type": "string",
-        "description": "Dedicated tag."
-      },
       "ProjectUI": {
         "description": "The URL for the project's user interface.",
         "type": "string"
@@ -29454,6 +28889,31 @@
       "ProjectTrialPlan": {
         "description": "Whether the project is currently on a trial plan.",
         "type": "boolean"
+      },
+      "PlanTitles": {
+        "type": "object",
+        "description": "Map of plan IDs to their human-readable titles.",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "AggregatedSellables": {
+        "type": "object",
+        "description": "Map of sellable names to their configuration.",
+        "additionalProperties": {
+          "type": "object",
+          "description": "Sellable product configuration."
+        }
+      },
+      "AggregatedFeatures": {
+        "type": "object",
+        "properties": {
+          "backups": {
+            "type": "object",
+            "nullable": true,
+            "description": "Backup features configuration."
+          }
+        }
       },
       "RegionLabel": {
         "type": "string",
@@ -29522,7 +28982,8 @@
           "units": {
             "description": "The units associated with the provided values."
           }
-        }
+        },
+        "additionalProperties": false
       },
       "MetricsValues": {
         "type": "array",
@@ -29539,7 +29000,8 @@
           "start_time": {
             "description": "The timestamp at which the time interval began."
           }
-        }
+        },
+        "additionalProperties": false
       },
       "CarbonTotal": {
         "type": "number",
@@ -29601,7 +29063,8 @@
               },
               "update": {
                 "type": "object",
-                "description": "Link for updating the current access item.",
+                "nullable": true,
+                "description": "Link for updating the current access item. Only present if user has update permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29615,7 +29078,8 @@
               },
               "delete": {
                 "type": "object",
-                "description": "Link for deleting the current access item.",
+                "nullable": true,
+                "description": "Link for deleting the current access item. Only present if user has delete permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29629,7 +29093,8 @@
               }
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "UserProjectAccess": {
         "type": "object",
@@ -29680,7 +29145,8 @@
               },
               "update": {
                 "type": "object",
-                "description": "Link for updating the current access item.",
+                "nullable": true,
+                "description": "Link for updating the current access item. Only present if user has update permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29694,7 +29160,8 @@
               },
               "delete": {
                 "type": "object",
-                "description": "Link for deleting the current access item.",
+                "nullable": true,
+                "description": "Link for deleting the current access item. Only present if user has delete permission.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -29708,7 +29175,8 @@
               }
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "ProjectPermissions": {
         "type": "array",
@@ -29729,6 +29197,21 @@
             "production:viewer"
           ]
         }
+      },
+      "ProjectFacets": {
+        "type": "object",
+        "description": "Facets for filtering options.",
+        "properties": {
+          "plans": {
+            "type": "object",
+            "description": "Map of plan IDs to plan names.",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "InvoicePDF": {
         "description": "Invoice PDF document details.",
@@ -30531,6 +30014,10 @@
       }
     },
     "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      },
       "OAuth2": {
         "type": "oauth2",
         "flows": {
@@ -30557,7 +30044,58 @@
         "description": ""
       }
     },
-    "responses": {},
+    "responses": {
+      "BadRequest": {
+        "description": "Bad Request",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Not Found",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Conflict",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ServiceUnavailable": {
+        "description": "Service Unavailable",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
     "examples": {}
   },
   "x-tagGroups": [
