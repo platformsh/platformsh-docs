@@ -5,7 +5,7 @@ weight: 2
 banner:
     type: tiered-feature
 ---
-
+<!-- vale off -->
 On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](/security/web-application-firewall/waf.md),
 you can subscribe to the Fastly Next-Gen Web Application Firewall (Next-Gen WAF) to further protect your app from security threats.
 
@@ -140,3 +140,4 @@ Some attacks are mitigated at the CDN network layer, while others require identi
 ## Configuration and enablement
 
 Fastly Next-Gen WAF features are not self-service. Enablement and configuration occur during customer onboarding, or via a [Support request](/learn/overview/get-support.md) after purchase.
+<!-- vale on -->

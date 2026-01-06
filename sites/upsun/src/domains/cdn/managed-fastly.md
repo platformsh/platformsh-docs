@@ -6,7 +6,7 @@ description: Bring your content closer to users with a Fastly CDN fully managed 
 keywords:
   - mTLS
 ---
-
+<!-- vale off -->
 Instead of starting your own Fastly subscription and [managing your CDN yourself](/domains/cdn/fastly.md),
 you can take advantage of a Fastly CDN provided by {{% vendor/name %}}.
 These CDNs are exclusively set up and managed by {{% vendor/name %}}.
@@ -140,3 +140,4 @@ Edge-level rate limiting is a rule-based control mechanism, not an automated bot
 - Provide AI-driven mitigation
 
 For advanced bot and scraper protection, {{% vendor/name %}} offers separate third-party integrations.
+<!-- vale on -->
