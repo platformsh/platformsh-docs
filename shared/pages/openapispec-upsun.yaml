@@ -166,7 +166,7 @@ servers:
       schemes:
         default: https
 security:
-  - OAuth2: []
+  - BearerAuth: []
 tags:
   - name: Cert Management
     description: |
@@ -7535,30 +7535,24 @@ paths:
               schema:
                 type: object
                 properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
                   items:
                     type: array
                     items:
                       $ref: '#/components/schemas/OrganizationProject'
+                  facets:
+                    $ref: '#/components/schemas/ProjectFacets'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     post:
       summary: Create project
       description: Creates a new project in the specified organization.
@@ -7588,10 +7582,6 @@ paths:
                   $ref: '#/components/schemas/ProjectPlan'
                 default_branch:
                   $ref: '#/components/schemas/ProjectDefaultBranch'
-                cse_notes:
-                  $ref: '#/components/schemas/ProjectCSENotes'
-                dedicated_tag:
-                  $ref: '#/components/schemas/ProjectDedicatedTag'
       responses:
         '201':
           description: Created
@@ -7600,23 +7590,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/OrganizationProject'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /organizations/{organization_id}/projects/{project_id}:
     get:
       summary: Get project
@@ -7635,17 +7615,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/OrganizationProject'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     patch:
       summary: Update project
       description: Updates the specified project.
@@ -7667,10 +7639,6 @@ paths:
                   $ref: '#/components/schemas/ProjectPlan'
                 timezone:
                   $ref: '#/components/schemas/ProjectTimeZone'
-                cse_notes:
-                  $ref: '#/components/schemas/ProjectCSENotes'
-                dedicated_tag:
-                  $ref: '#/components/schemas/ProjectDedicatedTag'
       responses:
         '200':
           description: OK
@@ -7679,23 +7647,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/OrganizationProject'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
     delete:
       summary: Delete project
       description: Deletes the specified project.
@@ -7709,17 +7667,11 @@ paths:
         '204':
           description: No Content
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
   /organizations/{organization_id}/metrics/carbon:
     get:
       summary: Query project carbon emissions metrics for an entire organization
@@ -7738,23 +7690,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/OrganizationCarbon'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /organizations/{organization_id}/projects/{project_id}/metrics/carbon:
     get:
       summary: Query project carbon emissions metrics
@@ -7776,23 +7716,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProjectCarbon'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /organizations/{organization_id}/subscriptions:
     get:
       summary: List subscriptions
@@ -7826,18 +7754,12 @@ paths:
                       $ref: '#/components/schemas/Subscription'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     post:
       summary: Create subscription
       description: Creates a subscription for the specified organization.
@@ -7883,23 +7805,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Subscription'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /organizations/{organization_id}/subscriptions/{subscription_id}:
     get:
       summary: Get subscription
@@ -7918,17 +7828,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Subscription'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     patch:
       summary: Update subscription
       description: Updates a subscription for the specified organization.
@@ -7985,23 +7887,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Subscription'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Delete subscription
       description: Deletes a subscription for the specified organization.
@@ -8015,17 +7905,9 @@ paths:
         '204':
           description: No Content
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /regions:
     get:
       summary: List regions
@@ -8097,23 +7979,11 @@ paths:
                   _links:
                     $ref: '#/components/schemas/ListLinks'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /regions/{region_id}:
     get:
       summary: Get region
@@ -8131,17 +8001,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Region'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /ref/projects:
     get:
       summary: List referenced projects
@@ -8173,23 +8035,11 @@ paths:
                 additionalProperties:
                   $ref: '#/components/schemas/ProjectReference'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /ref/regions:
     get:
       summary: List referenced regions
@@ -8221,23 +8071,11 @@ paths:
                 additionalProperties:
                   $ref: '#/components/schemas/RegionReference'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /projects/{project_id}/team-access:
     parameters:
       - $ref: '#/components/parameters/ProjectID'
@@ -8290,17 +8128,9 @@ paths:
                   _links:
                     $ref: '#/components/schemas/ListLinks'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
     post:
       summary: Grant team access to a project
       description: Grants one or more team access to a specific project.
@@ -8325,17 +8155,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
   /projects/{project_id}/team-access/{team_id}:
     parameters:
       - $ref: '#/components/parameters/ProjectID'
@@ -8354,17 +8178,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/TeamProjectAccess'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Remove team access for a project
       description: Removes the team from the current project.
@@ -8375,23 +8191,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /projects/{project_id}/user-access:
     parameters:
       - $ref: '#/components/parameters/ProjectID'
@@ -8444,17 +8248,9 @@ paths:
                   _links:
                     $ref: '#/components/schemas/ListLinks'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
     post:
       summary: Grant user access to a project
       description: Grants one or more users access to a specific project.
@@ -8485,17 +8281,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
   /projects/{project_id}/user-access/{user_id}:
     parameters:
       - $ref: '#/components/parameters/ProjectID'
@@ -8514,17 +8304,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserProjectAccess'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     patch:
       summary: Update user access for a project
       description: Updates the user's permissions for the current project.
@@ -8545,23 +8327,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Remove user access for a project
       description: Removes the user from the current project.
@@ -8572,23 +8342,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /users/{user_id}/project-access:
     parameters:
       - $ref: '#/components/parameters/UserID'
@@ -8646,17 +8404,9 @@ paths:
                   _links:
                     $ref: '#/components/schemas/ListLinks'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
     post:
       summary: Grant project access to a user
       description: Adds the user to one or more specified projects.
@@ -8684,17 +8434,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
   /users/{user_id}/project-access/{project_id}:
     parameters:
       - $ref: '#/components/parameters/UserID'
@@ -8713,17 +8457,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserProjectAccess'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     patch:
       summary: Update project access for a user
       description: Updates the user's permissions for the current project.
@@ -8744,23 +8480,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Remove project access for a user
       description: Removes the user from the current project.
@@ -8771,23 +8495,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
   /teams/{team_id}/project-access:
     parameters:
       - $ref: '#/components/parameters/TeamID'
@@ -8840,17 +8552,11 @@ paths:
                   _links:
                     $ref: '#/components/schemas/ListLinks'
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
     post:
       summary: Grant project access to a team
       description: Adds the team to one or more specified projects.
@@ -8875,17 +8581,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
   /teams/{team_id}/project-access/{project_id}:
     parameters:
       - $ref: '#/components/parameters/TeamID'
@@ -8904,17 +8604,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/TeamProjectAccess'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
     delete:
       summary: Remove project access for a team
       description: Removes the team from the current project.
@@ -8925,23 +8617,11 @@ paths:
         '204':
           description: No Content
         '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/BadRequest'
         '403':
-          description: Forbidden
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/Forbidden'
         '404':
-          description: Not Found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
+          $ref: '#/components/responses/NotFound'
 components:
   schemas:
     Alert:
@@ -9577,113 +9257,6 @@ components:
           description: The e-mail address of a contact to whom billing notices will be sent.
           type: string
           format: email
-        current_trial:
-          description: The current trial for the profile.
-          properties:
-            active:
-              description: The trial active status.
-              type: boolean
-            created:
-              description: The trial creation date.
-              type: string
-              format: date-time
-            description:
-              description: The trial description.
-              type: string
-            expiration:
-              description: The trial expiration-date.
-              type: string
-              format: date-time
-            current:
-              description: The total amount spent by the trial user at this point in time.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-              type: object
-            spend:
-              description: The total amount available for the trial.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-              type: object
-            spend_remaining:
-              description: The remaining amount available for the trial.
-              properties:
-                formatted:
-                  description: The total amount formatted.
-                  type: string
-                amount:
-                  description: The total amount.
-                  type: string
-                currency:
-                  description: The currency.
-                  type: string
-                currency_symbol:
-                  description: Currency symbol.
-                  type: string
-                unlimited:
-                  description: Spend limit is ignored (in favor of resource limitations).
-                  type: boolean
-              type: object
-            projects:
-              description: Projects active under trial
-              properties:
-                id:
-                  description: Trial project ID
-                  type: string
-                name:
-                  description: Trial project name
-                  type: string
-                total:
-                  properties:
-                    amount:
-                      description: Trial project cost
-                      type: integer
-                    currency_code:
-                      description: Currency code
-                      type: string
-                    currency_symbol:
-                      description: Currency symbol
-                      type: string
-                    formatted:
-                      description: Trial project cost formatted with currency sign
-                      type: string
-                  type: object
-              type: object
-            pending_verification:
-              description: Required verification method (if applicable).
-              type: string
-              enum:
-                - credit-card
-              nullable: true
-              deprecated: true
-            model:
-              description: The trial trial model.
-              type: string
-            days_remaining:
-              description: The amount of days until the trial expires.
-              type: integer
-          type: object
         invoiced:
           description: The customer is invoiced.
           type: boolean
@@ -10017,28 +9590,6 @@ components:
         tickets:
           description: Number of support tickets by status.
           type: object
-        trial:
-          description: The indicator whether the user is in trial or not.
-          type: boolean
-        current_trial:
-          type: array
-          items:
-            properties:
-              created:
-                description: The ISO timestamp of the trial creation date time.
-                type: string
-                format: date-time
-              description:
-                description: The human readable trial description
-                type: string
-              spend_remaining:
-                description: Total spend amount of the voucher minus existing project costs for the existing billing cycle.
-                type: string
-              expiration:
-                description: Date the trial expires.
-                type: string
-                format: date-time
-            type: object
       type: object
     OrganizationInvitation:
       title: OrganizationInvitation
@@ -21072,16 +20623,21 @@ components:
           $ref: '#/components/schemas/ProjectTrialPlan'
         project_ui:
           $ref: '#/components/schemas/ProjectUI'
-        locked:
-          $ref: '#/components/schemas/ProjectLocked'
-        cse_notes:
-          $ref: '#/components/schemas/ProjectCSENotes'
-        dedicated_tag:
-          $ref: '#/components/schemas/ProjectDedicatedTag'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+        activities:
+          description: Activities information for the project.
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+          nullable: true
+        project_options:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/ProjectOptionsAggregated'
+          nullable: true
         _links:
           type: object
           properties:
@@ -21092,9 +20648,34 @@ components:
                 href:
                   type: string
                   description: URL of the link.
+            api:
+              type: object
+              nullable: true
+              description: Link to the regional API endpoint. Only present if user has project-level access.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+            subscription:
+              type: object
+              nullable: true
+              description: Link to the subscription. Only present if project has a subscription.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+            view_usage_alerts:
+              type: object
+              nullable: true
+              description: Link to view usage alerts. Only present if user has view permission.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
             update:
               type: object
-              description: Link for updating the current project.
+              nullable: true
+              description: Link for updating the current project. Only present if user has update permission.
               properties:
                 href:
                   type: string
@@ -21102,9 +20683,29 @@ components:
                 method:
                   type: string
                   description: The HTTP method to use.
+            plan_uri:
+              type: object
+              nullable: true
+              description: Link to the billing plan page. Only present if user has manage permission.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
             delete:
               type: object
-              description: Link for deleting the current project.
+              nullable: true
+              description: Link for deleting the current project. Only present if user has delete permission.
+              properties:
+                href:
+                  type: string
+                  description: URL of the link.
+                method:
+                  type: string
+                  description: The HTTP method to use.
+            update_usage_alerts:
+              type: object
+              nullable: true
+              description: Link to update usage alerts. Only present if user has billing permission.
               properties:
                 href:
                   type: string
@@ -21114,18 +20715,21 @@ components:
                   description: The HTTP method to use.
             activities:
               type: object
-              description: Link to the project's activities.
+              nullable: true
+              description: Link to the project's activities. Only present if user has view permission.
               properties:
                 href:
                   type: string
                   description: URL of the link.
             addons:
               type: object
-              description: Link to the project's add-ons.
+              nullable: true
+              description: Link to the project's add-ons. Only present if user has view permission.
               properties:
                 href:
                   type: string
                   description: URL of the link.
+      additionalProperties: false
     OrganizationCarbon:
       type: object
       properties:
@@ -21139,6 +20743,7 @@ components:
             $ref: '#/components/schemas/OrganizationProjectCarbon'
         total:
           $ref: '#/components/schemas/CarbonTotal'
+      additionalProperties: false
     ProjectAddon:
       description: Project add-on. Uses discriminator on `type` to select field shape.
       allOf:
@@ -21184,10 +20789,12 @@ components:
           description: Human-friendly title of the add-on or SKU.
         unit:
           type: string
+          nullable: true
           description: Unit for quantity-based add-ons when applicable.
         allowed_values:
           description: Allowed values for the add-on depending on user role and options.
           type: array
+          nullable: true
           items:
             oneOf:
               - type: string
@@ -21196,6 +20803,12 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+        activities:
+          description: Activities related to the add-on.
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+          nullable: true
         _links:
           type: object
           properties:
@@ -21208,6 +20821,7 @@ components:
                   description: URL of the link.
             update:
               type: object
+              nullable: true
               description: Link for updating the current add-on.
               properties:
                 href:
@@ -21218,6 +20832,7 @@ components:
                   description: The HTTP method to use.
             delete:
               type: object
+              nullable: true
               description: Link for deleting the current add-on.
               properties:
                 href:
@@ -21253,6 +20868,7 @@ components:
           $ref: '#/components/schemas/MetricsValues'
         total:
           $ref: '#/components/schemas/CarbonTotal'
+      additionalProperties: false
     OrganizationProjectCarbon:
       type: object
       properties:
@@ -21262,8 +20878,58 @@ components:
           $ref: '#/components/schemas/ProjectTitle'
         values:
           $ref: '#/components/schemas/MetricsValues'
-        total:
-          $ref: '#/components/schemas/CarbonTotal'
+      additionalProperties: false
+    ProjectOptionsAggregated:
+      type: object
+      properties:
+        billing:
+          type: object
+          nullable: true
+        defaults:
+          type: object
+          nullable: true
+        enforced:
+          type: object
+          nullable: true
+        initialize:
+          type: object
+          nullable: true
+        plans:
+          type: array
+          items:
+            type: string
+          nullable: true
+        regions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        plan_titles:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/PlanTitles'
+          nullable: true
+        sellables:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/AggregatedSellables'
+          nullable: true
+        features:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/AggregatedFeatures'
+          nullable: true
+        container_sizes:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Container sizes configuration.
+        debug:
+          type: object
+          nullable: true
+          description: Debug configuration.
+      additionalProperties: false
     ProjectPlan:
       type: string
       description: The project plan.
@@ -21303,6 +20969,10 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+        invoiced:
+          type: boolean
+          description: Whether the project is invoiced.
+      additionalProperties: false
     RegionReference:
       description: The referenced region, or null if it no longer exists.
       type: object
@@ -21354,6 +21024,10 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+        environmental_impact:
+          type: object
+          description: Environmental impact information for the region.
+      additionalProperties: false
     AddonType:
       type: string
       description: The type of the add-on.
@@ -21393,12 +21067,6 @@ components:
     ProjectDefaultBranch:
       type: string
       description: Default branch.
-    ProjectLocked:
-      type: boolean
-      description: Locked
-    ProjectCSENotes:
-      type: string
-      description: CSE notes.
     ProjectStatus:
       type: string
       description: The status of the project.
@@ -21408,15 +21076,30 @@ components:
         - failed
         - suspended
         - deleted
-    ProjectDedicatedTag:
-      type: string
-      description: Dedicated tag.
     ProjectUI:
       description: The URL for the project's user interface.
       type: string
     ProjectTrialPlan:
       description: Whether the project is currently on a trial plan.
       type: boolean
+    PlanTitles:
+      type: object
+      description: Map of plan IDs to their human-readable titles.
+      additionalProperties:
+        type: string
+    AggregatedSellables:
+      type: object
+      description: Map of sellable names to their configuration.
+      additionalProperties:
+        type: object
+        description: Sellable product configuration.
+    AggregatedFeatures:
+      type: object
+      properties:
+        backups:
+          type: object
+          nullable: true
+          description: Backup features configuration.
     RegionLabel:
       type: string
       description: The human-readable name of the region.
@@ -21467,6 +21150,7 @@ components:
           description: The interval used to group the metric values.
         units:
           description: The units associated with the provided values.
+      additionalProperties: false
     MetricsValues:
       type: array
       items:
@@ -21478,6 +21162,7 @@ components:
           description: The measured value of the metric for the given time interval.
         start_time:
           description: The timestamp at which the time interval began.
+      additionalProperties: false
     CarbonTotal:
       type: number
       description: The calculated total of the metric for the given interval.
@@ -21526,7 +21211,8 @@ components:
                   description: URL of the link.
             update:
               type: object
-              description: Link for updating the current access item.
+              nullable: true
+              description: Link for updating the current access item. Only present if user has update permission.
               properties:
                 href:
                   type: string
@@ -21536,7 +21222,8 @@ components:
                   description: The HTTP method to use.
             delete:
               type: object
-              description: Link for deleting the current access item.
+              nullable: true
+              description: Link for deleting the current access item. Only present if user has delete permission.
               properties:
                 href:
                   type: string
@@ -21544,6 +21231,7 @@ components:
                 method:
                   type: string
                   description: The HTTP method to use.
+      additionalProperties: false
     UserProjectAccess:
       type: object
       properties:
@@ -21583,7 +21271,8 @@ components:
                   description: URL of the link.
             update:
               type: object
-              description: Link for updating the current access item.
+              nullable: true
+              description: Link for updating the current access item. Only present if user has update permission.
               properties:
                 href:
                   type: string
@@ -21593,7 +21282,8 @@ components:
                   description: The HTTP method to use.
             delete:
               type: object
-              description: Link for deleting the current access item.
+              nullable: true
+              description: Link for deleting the current access item. Only present if user has delete permission.
               properties:
                 href:
                   type: string
@@ -21601,6 +21291,7 @@ components:
                 method:
                   type: string
                   description: The HTTP method to use.
+      additionalProperties: false
     ProjectPermissions:
       type: array
       description: An array of project permissions.
@@ -21618,6 +21309,17 @@ components:
           - production:admin
           - production:contributor
           - production:viewer
+    ProjectFacets:
+      type: object
+      description: Facets for filtering options.
+      properties:
+        plans:
+          type: object
+          description: Map of plan IDs to plan names.
+          additionalProperties:
+            type: string
+          nullable: true
+      additionalProperties: false
     InvoicePDF:
       description: Invoice PDF document details.
       properties:
@@ -22240,6 +21942,9 @@ components:
           - month
           - year
   securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
     OAuth2:
       type: oauth2
       flows:
@@ -22258,7 +21963,37 @@ components:
           scopes:
             admin: administrative operations
       description: ''
-  responses: {}
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServiceUnavailable:
+      description: Service Unavailable
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Error'
   examples: {}
 x-tagGroups:
   - name: Organization Administration
