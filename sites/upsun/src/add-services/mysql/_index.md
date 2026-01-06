@@ -733,10 +733,17 @@ See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-
 
 ## Password generation {#password-generation}
 
-Omitting the `schema` and `endpoint` for a database service generates an empty database password. Some apps do not accept an empty password. 
+If your `config.yaml` file does not specify a `schema` and `endpoint` for the MariaDB or MySQL service, no password is generated. 
 
-To generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the example in the preceding [multiple databases](#multiple-databases) section in this topic.
+Because your database is isolated on a private network and cannot be seen from the internet, you can omit a password without compromising security. This simplifies your workflow by removing the need to manage credentials, while container isolation ensures that only your application can access the data.
+
+If you prefer to have Upsun generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in the `services` configuration – see the example in the [multiple databases](#multiple-databases) section of this topic.
 For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
+
+{{% note %}}
+Make sure you don't change `services.<SERVICE_NAME>`. **Changing the service name creates a new service,
+which removes existing data from your database.**
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
@@ -745,14 +752,13 @@ through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../d
 
 Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
 
-If you switch from the default configuration with an empty password to custom endpoints,
-make sure the `services.<SERVICE_NAME>` does not change. **Changing the service name creates a new service,
-which removes existing data from your database.**
-
 ## Password rotation {#password-rotation}
-By default, password rotation is enabled (`rotate_passwords=true`), enabling {{% vendor/name %}} to automatically change (or _rotate_) MariaDB passwords each time it updates the MariaDB image. Password rotation also occurs as defined by any password lifetime settings in MariaDB.
 
-Specific scenarios might warrant disabling password rotation (` rotate_passwords=false`): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference).
+By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings. 
+
+Note that for rotation to occur, you must have a schema and endpoint defined in your service configuration (see [Password generation](#password-generation) above); otherwise, no password is generated.
+
+Specific scenarios might warrant disabling password rotation by [setting `rotate_passwords=false`](/add-services/mysql.md#configuration-options): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference).
 
 Passwords do **not** rotate automatically when you reset this value to `true`.
 
