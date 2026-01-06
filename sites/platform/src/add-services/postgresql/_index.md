@@ -499,19 +499,24 @@ postgresql:
 
 ## Password generation {#password-generation}
 
-Omitting the `schema` and `endpoint` for a database service generates an empty database password. Some apps do not accept an empty password. 
+If your `config.yaml` file does not specify a `schema` and `endpoint` for a database service, no password is generated. 
 
-To generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in your `services` configuration – see the example in the preceding [multiple databases](#multiple-databases) section in this topic.
+Because your database is isolated on a private network and cannot be seen from the internet, you can omit a password without compromising security. This simplifies your workflow by removing the need to manage credentials, while container isolation ensures that only your application can access the data.
+
+If you prefer to have Upsun generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in the `services` configuration – see the example in the [multiple databases](#multiple-databases) section of this topic.
 For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
+
+{{% note %}}
+Make sure you don't change `services.<SERVICE_NAME>`. **Changing the service name creates a new service,
+which removes existing data from your database.**
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
 through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
- within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app). 
- 
-If you switch from the default configuration with an empty password to custom endpoints,
-make sure the `services.<SERVICE_NAME>` does not change. **Changing the service name creates a new service,
-which removes any existing data from your database.**
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
+
+Using this method to retrieve password credentials is considered a best practice: passwords might change over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
 
 ## Restrict access to database replicas only
 
