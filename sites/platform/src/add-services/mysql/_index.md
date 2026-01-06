@@ -764,9 +764,11 @@ Using this method to retrieve password credentials is considered a best practice
 
 ## Password rotation {#password-rotation}
 
-By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings. 
+{{% note %}} 
+For rotation to occur, you must define a `schema` and `endpoint` in your service configuration (see [Password generation](#password-generation) above); otherwise, no password is generated to be rotated.
+{{% /note %}}
 
-Note that for rotation to occur, you must have a schema and endpoint defined in your service configuration (see [Password generation](#password-generation) above); otherwise, no password is generated.
+By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings. 
 
 Specific scenarios might warrant disabling password rotation by [setting `rotate_passwords=false`](/add-services/mysql.md#configuration-options): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
 
