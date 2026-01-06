@@ -6,7 +6,7 @@ banner:
     type: tiered-feature
 ---
 
-On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](/security/web-application-firewall/waf.md),
+On top of the {{% vendor/name %}} Web Application Firewall (WAF),
 you can subscribe to the Fastly Next-Gen Web Application Firewall (Next-Gen WAF) to further protect your app from security threats.
 
 ## Available offers
