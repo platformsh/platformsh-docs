@@ -61,7 +61,22 @@ title=Using the Console
 
 {{< /codetabs >}}
 
-## Create a new organization
+## Create a Fixed organization
+
+**This option is available only to {{% vendor/name %}} customers under current contracts.** 
+
+For all other customers, all new organization types are Flex organizations, which you can create yourself by using the Console or CLI as described in [Create a Flex organization](#create-flex-organization) below.
+
+To create a Fixed organization, please open a [support ticket](/learn/overview/get-support.md), and indicate the following information in your ticket:
+
+- Indicate that you are requesting the creation of a Fixed organization.
+- **Category:** Access  
+- **Priority:** Low / Normal (as required)  
+- **Description:** Make sure to include the **organization name** you would like.
+
+Our Support team will verify your eligibility for a Fixed organization. Once approved, a Fixed organization will be created on your behalf. Support will notify you when the organization is ready, and your ticket will be closed.
+
+## Create a Flex organization {#create-flex-organization}
 
 You can create new organizations with different payment methods and billing addresses
 and organize your projects as you want.
@@ -168,8 +183,6 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 
 {{< /note >}}
 
-### What can you do?
-When creating a new organization, users will be able to select the organization type from a drop-down option based on their preference. Once the organization is created, users can manage their organizations like they do today.
 
 ### Feature differences
 
@@ -198,8 +211,8 @@ When creating a new organization, users will be able to select the organization 
 | Custom backup retention policies | Different packages | Unlimited (pay for storage) |
 | Email SMTP server | Yes | Yes |
 | Email validation (DKIM) | Enterprise and Elite only | Yes |
-| ElasticSearch (Premium containers) | Enterprise and Elite only | No |
-| MongoDB (Premium containers) | Enterprise and Elite only | No |
+| ElasticSearch (Premium containers) | Enterprise and Elite only | Yes |
+| MongoDB (Premium containers) | Enterprise and Elite only | Yes |
 
 #### Observability tools
 
@@ -246,7 +259,8 @@ When creating a new organization, users will be able to select the organization 
 | Privacy regulations | Yes | Yes |
 | SOC 2 | Yes | Yes |
 | PCI DSS Level 1-compatible | Yes | Yes |
-| HIPAA | Enterprise and Elite only in specific regions | Coming soon |
+| HIPAA | Enterprise and Elite only in specific regions | Yes |
+
 
 ### Fixed and Flex FAQs
 
