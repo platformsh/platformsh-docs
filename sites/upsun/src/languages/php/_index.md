@@ -234,7 +234,7 @@ applications:
 ```
 ### Configure security blocking {#configure-security-blocking}
 
-When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
+When building a PHP app, Upsun runs `composer install`, which runs the latest available Composer version.
 
 By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned. 
 
