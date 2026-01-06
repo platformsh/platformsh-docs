@@ -259,7 +259,7 @@ applications:
 You can define ``<SERVICE_NAME>`` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes,
+That is, it uses default endpoints behind the scenes,
 providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the name of that service.
 
 Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
@@ -735,7 +735,7 @@ See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-
 
 If your YAML file does not specify a `schema` and `endpoint` for the MariaDB or MySQL service, no password is generated. 
 
-Because your database is isolated on a private network and cannot be seen from the internet, you can omit a password without compromising security. This simplifies your workflow by removing the need to manage credentials, while container isolation ensures that only your application can access the data.
+Because the database container is strictly isolated, it remains invisible to any resource until you [define an explicit relationship](/add-services/mysql.md#2-define-the-relationship) between it and other apps or workers. The container's "walls" ensure that only authorized applications and workers can reach the data, while all other processes are blocked at the network level.
 
 If you prefer to have Upsun generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in the `services` configuration – see the example in the [multiple databases](#multiple-databases) section of this topic.
 For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
