@@ -20,7 +20,7 @@ If advisories were published after the most recent PHP app deployment, the build
 
 **In this scenario, the best practice is to upgrade the affected dependencies** to maintain a strong security posture and address vulnerabilities. However, you can configure the level of blocking by using the `.dependencies.php.config.audit.*` keys described in the [Configure security blocking](/languages/php/_index.md#configure-security-blocking) section of the PHP topic.
 
-**Important: Upsun advises against disabling security blocking.** However, as a last resort, the feature can be disabled as a workaround while you fix issues with dependences.  
+**Important: Upsun advises against disabling security blocking.** However, as a last resort, the feature can be disabled as a workaround while you fix issues with dependencies.  
 
 ```yaml {configFile="app"}
 applications:
