@@ -82,8 +82,8 @@ A best practice is to first back up your environment and export the data.
 
 To prevent data loss after completing either of these actions, follow these steps:
 
-1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service make an error in your `config.yaml` file and need to revert your entire environment, the backup enables you to do so. 
-1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data from a backup of your environment.  
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service or make an error in your `config.yaml` file and need to revert your entire environment, the backup enables you to do so. 
+1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.  
 1. Change the service type in your [service configuration](/add-services/_index.md):
     - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
 and check that each upgrade commit translates into an actual deployment.   
