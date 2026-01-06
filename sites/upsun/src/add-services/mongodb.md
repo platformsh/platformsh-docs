@@ -21,6 +21,14 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="mongodb-enterprise" status="deprecated" environment="grid" >}}
 
+### Enterprise edition
+
+{{% note title="Premium Service" theme="info" %}}
+MongoDB Enterprise isn’t included in any {{< vendor/name >}} plan.
+You need to add it separately at an additional cost.
+To add MongoDB Enterprise, [contact Sales](https://upsun.com/contact-us/).
+{{% /note %}}
+
 ### Legacy edition
 
 Previous non-Enterprise versions are available in your projects (and are listed below),

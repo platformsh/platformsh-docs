@@ -1,12 +1,12 @@
 ---
-title: Fastly Next-Gen WAF
+title: Fastly WAF
 description: "Find out about the offers you can choose from to subscribe to the Fastly Next-Gen Web Application Firewall (WAF) through {{% vendor/name %}}."
 weight: 2
 banner:
     type: tiered-feature
 ---
-
-On top of the [{{% vendor/name %}} Web Application Firewall (WAF)](/security/web-application-firewall/waf.md) included in {{% vendor/name %}} Fixed Enterprise and Elite plans,
+<!-- vale off -->
+On top of the {{% vendor/name %}} Web Application Firewall (WAF),
 you can subscribe to the Fastly Next-Gen Web Application Firewall (Next-Gen WAF) to further protect your app from security threats.
 
 ## Available offers
@@ -140,3 +140,4 @@ Some attacks are mitigated at the CDN network layer, while others require identi
 ## Configuration and enablement
 
 Fastly Next-Gen WAF features are not self-service. Enablement and configuration occur during customer onboarding, or via a [Support request](/learn/overview/get-support.md) after purchase.
+<!-- vale on -->
