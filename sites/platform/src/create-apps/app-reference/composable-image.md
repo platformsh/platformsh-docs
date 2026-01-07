@@ -201,15 +201,15 @@ Security and other patches are applied automatically.
 | **Language**                                 | **Nix package** | **Supported version(s)**                        |
 |----------------------------------------------|-----------------|-------------------------------------------------|
 | [Clojure](https://clojure.org/)              | `clojure`       | 1                                               |
-| [Elixir](/languages/elixir.html)             | `elixir`        | 1.18<br/>1.15<br/>1.14                          |
-| [Go](/languages/go.html)                     | `golang`        | 1.22<br/>1.21                                   |
-| [Java](/languages/java.html)                 | `java`          | 22<br/>21                                       |
+| [Elixir](/languages/elixir.html)             | `elixir`        | 1.19<br/>1.18<br/>1.17                          |
+| [Go](/languages/go.html)                     | `golang`        | 1.25<br/>1.24                                   |
+| [Java](/languages/java.html)                 | `java`          | 25                                       |
 | [Javascript/Bun](https://bun.sh/)            | `bun`           | 1                                               |
-| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20<br/>18                         |
+| [JavaScript/Node.js](/languages/nodejs.html) | `nodejs`        | 24<br/>22<br/>20                         |
 | [Perl](https://www.perl.org/)                | `perl`          | 5                                               |
-| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2<br/>8.1                     |
-| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11<br/>3.10<br/>3.9<br/>2.7 |
-| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3<br/>3.2<br/>3.1                     |
+| [PHP](/languages/php.html)                   | `php`           | 8.4<br/>8.3<br/>8.2                     |
+| [Python](/languages/python.html)             | `python`        | 3.13<br/>3.12<br/>3.11 |
+| [Ruby](/languages/ruby.html)                 | `ruby`          | 3.4<br/>3.3                     |
 
 
 ### PHP extensions and Python packages {#php-extensions-and-python-packages}

@@ -13,17 +13,20 @@ See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsea
 
 ## Supported versions
 
-{{% note title="Premium Service" theme="info" %}}
-Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
-You need to add it separately at an additional cost.
-To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
-{{% /note %}}
 
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+
+### Enterprise edition
+
+{{% note title="Premium Service" theme="info" %}}
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
+You need to add it separately at an additional cost.
+To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
+{{% /note %}}
 
 ## Deprecated versions
 
@@ -163,7 +166,7 @@ You can define `<SERVICE_NAME>` as you like, so long as it's unique between all 
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
