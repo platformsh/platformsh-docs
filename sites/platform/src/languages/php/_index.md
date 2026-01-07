@@ -219,6 +219,55 @@ dependencies:
         url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
 
+### Configure security blocking {#configure-security-blocking}
+
+When building a PHP app, Upsun runs `composer install`, which runs the latest available Composer version.
+
+By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned. 
+
+**The best practice is to upgrade the dependencies** to reduce security risks and to catch issues sooner. However, you can configure the level of security blocking by defining the following keys in the `.dependencies.php.config` section of your `config.yaml` file. 
+
+| Key                     | Description                                                      |
+| ------------------------| ---------------------------------------------------------------- |
+| `audit.block-insecure`  | Default is `true`. **Important: {{% vendor/company_name %}} recommends keeping this default setting and upgrading affected dependencies to reduce security risks.**                                  | 
+| `audit.block-abandoned` | Default is `false`; set to `true` for even stricter security. Ignored if `audit.block-insecure` is `false`.                  |
+| `audit.ignore`          | Array of specific advisories to ignore; see example below.        | 
+| `audit.ignore-severity` | Ignore vulnerabilities based on their severity rating (`low`/`medium`/`high`). See the example below.<BR>For each rating, include an `apply` key with one of these values:<ul><li>`all` to ignore everything for this rating</li><li> `block` to ignore this severity level for blocking builds (but still flag findings in audit reports)</li><li>`audit` to ignore this severity level in audit reports (but still block builds)</li> |
+
+Examples: 
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        config:
+          audit:
+            ignore:  # ignore these security advisories
+              - "PKSA-yhcn-xrg3-68b1"
+              - "PKSA-2wrf-1mxk-1pky"
+```
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        config:
+          audit:
+            ignore-severity:
+              low:
+                apply: all   # ignore all low severity findings
+```
+
+Related information: 
+- [Troubleshooting PHP builds that now fail](/languages/php/troubleshoot.md#build-failure-security-blocking)
+
 ### Additional Composer schema properties
 In addition to [alternate repositories](#alternative-repositories), other
 [Composer schema properties](https://getcomposer.org/doc/04-schema.md) can be added to the global dependencies. For
