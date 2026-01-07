@@ -32,10 +32,31 @@ allowing the container to be shut down and restarted.
 
 To restart a worker manually, [access the container](#access-the-worker-container) and run the following commands:
 
+{{< codetabs >}}
+
++++
+title=Using ``systemctl``
++++
+
+```bash
+systemctl restart --user app
+```
+
+<--->
++++
+title=Using `sv`
++++
+
 ```bash
 sv stop app
 sv start app
 ```
+
+{{< note >}}
+Use `systemctl` whenever possible. If you’re using `sv` command line, it’s worth upgrading to a [recent runtime version](/create-apps/app-reference/single-runtime-image.html#types) for better support.
+{{< /note >}}
+
+{{< /codetabs >}}
 
 ## Workers vs cron jobs
 
