@@ -328,7 +328,7 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://support.platform.sh/hc/en-us/community/posts/16439596373010).
 
@@ -367,7 +367,7 @@ mariadb:
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` service environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` service environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ### MariaDB reference
 

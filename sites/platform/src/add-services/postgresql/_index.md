@@ -73,7 +73,7 @@ so migrate to one of the [supported versions](#supported-versions).
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ```json
 {
@@ -301,7 +301,7 @@ Using the values from the [example](#relationship-reference), that would be:
 psql -U main -h postgresql.internal -p 5432
 ```
 
-Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/_index.md#service-environment-variables) rather than hard-coding values.**
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ## Exporting data
 
