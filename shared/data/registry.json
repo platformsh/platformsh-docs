@@ -1400,16 +1400,5 @@
       "service_name": "elasticsearch-enterprise",
       "url": "/add-services/elasticsearch-enterprise.html"
     }
-  },
-  "blob-storage": {
-    "versions": {
-      "supported": [],
-      "deprecated": []
-    },
-    "docs": {
-      "relationship_name": "blob-storage",
-      "service_name": "blob-storage",
-      "url": "/add-services/blob-storage.html"
-    }
   }
 }
