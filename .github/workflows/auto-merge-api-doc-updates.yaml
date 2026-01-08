@@ -32,8 +32,8 @@ jobs:
               // Get PR associated with the workflow run's head SHA
               const headSha = context.payload.workflow_run.head_sha;
               console.log(`head sha of workflow_run is ${headSha}`)
-              console.log('owner of repo in workflow_run is ' + context.repo.owner)
-              console.log('Name of repo in workflow_run is ' + context.repo.repo)
+              console.log(`owner of repo in workflow_run is ${context.repo.owner}`)
+              console.log(`Name of repo in workflow_run is ${context.repo.repo}`)
               const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
