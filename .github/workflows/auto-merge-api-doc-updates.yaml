@@ -26,9 +26,14 @@ jobs:
             // Determine PR number based on trigger type
             if (context.eventName === 'pull_request_target') {
               prNumber = context.payload.pull_request.number;
+              console.log(`trigger type is pull_request_target and PR number is ${prNumber}`)
             } else if (context.eventName === 'workflow_run') {
+              console.log('trigger type is workflow_run')
               // Get PR associated with the workflow run's head SHA
               const headSha = context.payload.workflow_run.head_sha;
+              console.log(`head sha of workflow_run is ${headSha}`)
+              console.log('owner of repo in workflow_run is ' + context.repo.owner)
+              console.log('Name of repo in workflow_run is ' + context.repo.repo)
               const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -40,6 +45,7 @@ jobs:
                 return null;
               }
               prNumber = prs[0].number;
+              console.log(`retrieved PR number for workflow_run is ${prNumber}`)
             } else {
               console.log(`Unexpected event type: ${context.eventName}`);
               return null;
