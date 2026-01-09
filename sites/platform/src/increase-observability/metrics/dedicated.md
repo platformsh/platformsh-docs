@@ -70,7 +70,7 @@ Once you've read the metrics, see [recommendations for action](/increase-observa
 
 ### CPU
 
-The project has 2 virtual CPUs allocated per host, as seen in the upper limit for the CPU metric.
+The project has 8 virtual CPUs allocated per host, as seen in the upper limit for the CPU metric.
 
 ![A closeup of the CPU metrics](/images/metrics/DG2-CPU.png)
 
