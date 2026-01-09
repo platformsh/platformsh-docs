@@ -211,7 +211,12 @@ jobs:
             return prCanBeMerged
 
       - name: Checks not passed yet
-        if: steps.check_status.outputs.result == 'false' || steps.check_pr_conditions.outputs.result == 'false'
+        if: steps.check_status.outputs.result == 'false'
         run: |
           echo "::notice::Not all required checks have passed yet. Auto-merge will not proceed."
           echo "This is normal for PRs that are still running checks. The workflow will run again when the PR is synchronized."
+
+      - name: Pr conditions not met
+        if: steps.check_pr_conditions.outputs.result == 'false'
+        run: |
+          echo "::notice::Conditions not met for a merge to occur. Skipping."
