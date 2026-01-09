@@ -29,23 +29,52 @@ jobs:
               console.log(`trigger type is pull_request_target and PR number is ${prNumber}`)
             } else if (context.eventName === 'workflow_run') {
               console.log('trigger type is workflow_run')
-              // Get PR associated with the workflow run's head SHA
-              const headSha = context.payload.workflow_run.head_sha;
-              console.log(`head sha of workflow_run is ${headSha}`)
-              console.log(`owner of repo in workflow_run is ${context.repo.owner}`)
-              console.log(`Name of repo in workflow_run is ${context.repo.repo}`)
-              const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                commit_sha: headSha
-              });
+              const headBranch = context.payload.workflow_run.head_branch;
+              console.log(`workflow run head branch: ${headBranch}`)
 
-              if (prs.length === 0) {
-                console.log('No PR found for this workflow run');
-                return null;
+              // Check if workflow_run has pull_requests array
+              if (context.payload.workflow_run.pull_requests && context.payload.workflow_run.pull_requests.length > 0) {
+                console.log(`found ${context.payload.workflow_run.pull_requests.length} PR(s) in workflow_run payload`)
+
+                // Match PR by head branch to ensure we get the correct one
+                const matchingPr = context.payload.workflow_run.pull_requests.find(pr =>
+                  pr.head.ref === headBranch
+                );
+
+                if (matchingPr) {
+                  prNumber = matchingPr.number;
+                  console.log(`matched PR #${prNumber} by head branch: ${headBranch}`)
+                } else {
+                  // Fallback to first PR if no branch match (shouldn't happen)
+                  // @todo - after testing let's remove this.
+                  prNumber = context.payload.workflow_run.pull_requests[0].number;
+                  console.log(`No branch match found, using first PR #${prNumber}`)
+                }
+              } else {
+                console.log('No pull_requests in workflow_run payload, attempting commit lookup')
+                // Fallback: Get PR associated with the workflow run's head SHA
+                const headSha = context.payload.workflow_run.head_sha;
+                console.log(`Head SHA: ${headSha}`)
+
+                const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  commit_sha: headSha
+                });
+
+                // Filter to open PRs with matching head branch
+                const matchingPrs = prs.filter(pr =>
+                  pr.state === 'open' && pr.head.ref === headBranch
+                );
+
+                if (matchingPrs.length === 0) {
+                  console.log(`No open PR found with branch ${headBranch} for this workflow run`);
+                  return null;
+                }
+
+                prNumber = matchingPrs[0].number;
+                console.log(`Retrieved PR #${prNumber} from commit lookup matching branch ${headBranch}`)
               }
-              prNumber = prs[0].number;
-              console.log(`retrieved PR number for workflow_run is ${prNumber}`)
             } else {
               console.log(`Unexpected event type: ${context.eventName}`);
               return null;
@@ -129,11 +158,13 @@ jobs:
 
             return allChecksPassed;
 
-      - name: Check PR conditions and merge
+      - name: Check PR conditions and merge if all conditions are met and tests have passed
+        id: check_pr_conditions
         if: steps.check_status.outputs.result == 'true'
         uses: actions/github-script@v7
         with:
           script: |
+            let prCanBeMerged = false
             const prData = JSON.parse('${{ steps.pr.outputs.result }}');
 
             console.log(`Evaluating merge conditions for PR #${prData.number}:`);
@@ -158,6 +189,7 @@ jobs:
                 });
 
                 console.log('PR merged successfully');
+                prCanBeMerged = true
               } catch (error) {
                 console.error('Failed to auto merge PR:', error.message);
                 core.setFailed(error.message);
@@ -175,8 +207,15 @@ jobs:
               }
             }
 
+            return prCanBeMerged
+
       - name: Checks not passed yet
         if: steps.check_status.outputs.result == 'false'
         run: |
           echo "::notice::Not all required checks have passed yet. Auto-merge will not proceed."
           echo "This is normal for PRs that are still running checks. The workflow will run again when the PR is synchronized."
+
+      - name: Pr conditions not met
+        if: steps.check_pr_conditions.outputs.result == 'false'
+        run: |
+          echo "::notice::Conditions not met for a merge to occur. Skipping."
