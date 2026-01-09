@@ -97,7 +97,7 @@ This is the default behavior for all environments. With automatic deployment, ch
 
 ### Manual deployment
 
-Manual deployment is available for all environment types (preview, staging, and production). When enabled, manual deployment lets you control when deployments happen: changes are staged but not deployed until you explicitly trigger a deployment. Manual deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
+You can deploy applications manually in any environment type (development/preview, staging, and production). When [enabled](#change-deployment-type), manual deployment lets you control when deployments happen: changes are staged but not deployed until you explicitly trigger a deployment. Manual deployment is ideal for teams that want to bundle multiple changes and deploy them together in a controlled manner.
 
 When manual deployment is enabled in an environment, the following actions are queued until deployment is triggered:
 
@@ -118,7 +118,7 @@ To restart your application without applying staged changes, run `upsun redeploy
 {{< /note >}}
 
 
-### Change deployment type
+### Change deployment type {#change-deployment-type}
 
 You can adjust deployment behavior in your environment.
 
@@ -207,9 +207,7 @@ As soon as your deployment type is switched from manual to automatic, all curren
 ## Zero Downtime Deployments
 ## What is Zero Downtime?
 
-By default, deployments use a stop-start [deployment strategy](#deployment-strategies) (services stop, then restart with updates). Zero Downtime is a _rolling_ deployment strategy that enables you to deploy changes to your environment without taking your app offline and without interrupting live traffic.  
-
-Before you can [use this rolling deployment strategy](#how-to-use-zero-downtime-deployments), you must first [enable manual deployments](#change-deployment-type) in your environment.  
+By default, deployments use a stop-start [deployment strategy](#deployment-strategies) (services stop, then restart with updates). Zero Downtime Deployments use a _rolling_ deployment strategy, enabling you to deploy changes to your environment without taking your app offline and without interrupting live traffic.  
 
 ## How Zero Downtime works
 
@@ -236,7 +234,7 @@ Instead of stopping services before updating, a temporary copy of your applicati
 ![The duplicate of your original application is removed](/images/ZDD/ZDD-2.jpg "0.4")
 
 {{< note theme="warning" >}}
-During a Zero Downtime Deployment, the original app and its clone run simultaneously for a short period (typically, a few minutes).
+During a zero-downtime deployment, the original app and its clone run simultaneously short period (a few seconds to a couple of minutes).
 
 **You are billed for extra resources while both app versions active.** If your app’s deployment phase takes longer and uses more resources, expect proportionally higher costs.
 {{< /note >}}
@@ -266,29 +264,19 @@ During a Zero Downtime Deployment, the original app and its clone run simultaneo
 | **Best for** | Small apps, quick updates | Apps requiring uninterrupted availability |
 | **Limitations** | Causes downtime/freezetime | Longer deploy time, higher temporary resource use |
 
-{{< note theme="info" >}}
-
-Rolling deployments (Zero Downtime Deployments) are available only if [manual deployment](#manual-deployment) is enabled. 
-
-{{< /note >}}
-
-
-### Rolling deployment use cases {#use-cases}
+### Use cases {#use-cases}
 
 | Use Case | Recommendation |
 |----------|----------------|
 | Code pushes | Suitable |
 | Config or environment variable changes | Suitable |
-| Stateful services (databases, caches) | Not suitable |
-| DB schema migrations | Not suitable _(unless updates are backward and forward compatible)_ | |
-
-{{< note theme="info" >}}
-
-If the last deployment failed, you can only use the default stop-start strategy.
-
-{{< /note >}}
+| Stateful service updates (databases, caches) | Not suitable |
+| Database schema migrations | Not suitable (unless updates are both backward **and** forward compatible) | 
 
 ## How to use Zero Downtime Deployments
+
+Before running zero-downtime deployments, it is recommended that you enable [manual deployment](#manual-deployment). 
+
 
 {{< codetabs >}}
 
@@ -342,6 +330,12 @@ With ZDD, you can plan for smooth reconnection:
 ## Zero Downtime Troubleshooting
 
 This section covers two common scenarios and how to resolve them.
+{{< note theme="info" >}}
+
+If the last deployment failed, you can only use the default stop-start strategy.
+
+{{< /note >}}
+
 
 ### Application is slow to start
 
@@ -367,11 +361,15 @@ web:
 
 {{< /note >}}
 
-### Deployment failure
+### Deployment fails midway
 
 If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an increase in resource usage and costs.
 
-To troubleshoot a failure, [enable manual deployments](#change-deployment-type) if not already enabled; then, try to redeploy the environment or deploy the environment using the stop-start strategy to ensure no clones remain active. If you still experience issues, [contact support](/learn/overview/get-support.md).
+To troubleshoot a failure, try one or both of the following: 
+- [Enable manual deployments](#change-deployment-type) if not already enabled; then, try to manually redeploy the application. 
+-  Deploy the environment using the stop-start strategy to ensure no clones remain active. 
+
+If you still experience issues, [contact support](/learn/overview/get-support.md).
 
 ## Deployment philosophy
 
