@@ -90,7 +90,7 @@ the execution of the `deploy` hook is logged in the [deploy log](../../increase-
 For example:
 
 ```bash
-[{{ now.Year }}-03-01 08:27:25.495579] Launching command 'bash export-config.sh'.
+[{{< current-year >}}-03-01 08:27:25.495579] Launching command 'bash export-config.sh'.
 
 🔥 Successfully cleared configuration
 🚀 Added new configuration details

@@ -76,11 +76,11 @@ They likely contain an error message describing the root cause:
 
 ```bash
 symfony env:log app
-Reading log file azertyuiop-test-error-azerty--app@ssh.eu-5.platform.sh:/var/log/app.log
-[12-Jan-2026 11:22:08] NOTICE: fpm is running, pid 146
-[12-Jan-2026 11:22:08] NOTICE: ready to handle connections
-[12-Jan-2026 11:27:31] PHP Fatal error:  Uncaught Exception: [...]
-Stack trace: [...]
+  Reading log file azertyuiop-test-error-azerty--app@ssh.eu-5.platform.sh:/var/log/app.log
+  [12-Jan-{{< current-year >}} 11:22:08] NOTICE: fpm is running, pid 146
+  [12-Jan-{{< current-year >}} 11:22:08] NOTICE: ready to handle connections
+  [12-Jan-{{< current-year >}} 11:27:31] PHP Fatal error:  Uncaught Exception: [...]
+  Stack trace: [...]
 ```
 
 If the error occurs on a preview environment,

@@ -113,7 +113,7 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-To restart your application without applying staged changes, run `upsun redeploy` or click **Redeploy** in the Console. 
+To restart your application without applying staged changes, run `upsun redeploy` or click **Redeploy** in the Console.
 
 {{< /note >}}
 
@@ -172,10 +172,10 @@ Deploying staged changes:
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 | ID            | Created                   | Description                                               | Result  |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
-| 5uh3xwmkh5boq | 2024-11-22T14:01:10+00:00 | Patrick pushed to main                                    | failure |
-| fno2qiodq7e3c | 2024-11-22T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
-| xzvcazrtoafeu | 2024-11-22T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
-| fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
+| 5uh3xwmkh5boq | {{< current-year >}}-01-01T14:01:10+00:00 | Patrick pushed to main                                    | failure |
+| fno2qiodq7e3c | {{< current-year >}}-01-01T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
+| xzvcazrtoafeu | {{< current-year >}}-01-01T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
+| fq73u53ruwloq | {{< current-year >}}-01-01T12:06:17+00:00 | Pilar pushed to main                                      | success |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
 <--->
@@ -207,7 +207,7 @@ As soon as your deployment type is switched from manual to automatic, all curren
 ## Zero Downtime Deployments
 ## What is Zero Downtime?
 
-By default, deployments use a stop-start [deployment strategy](#deployment-strategies) (services stop, then restart with updates). Zero Downtime Deployments use a _rolling_ deployment strategy, enabling you to deploy changes to your environment without taking your app offline and without interrupting live traffic.  
+By default, deployments use a stop-start [deployment strategy](#deployment-strategies) (services stop, then restart with updates). Zero Downtime Deployments use a _rolling_ deployment strategy, enabling you to deploy changes to your environment without taking your app offline and without interrupting live traffic.
 
 ## How Zero Downtime works
 
@@ -271,11 +271,11 @@ During a zero-downtime deployment, the original app and its clone run simultaneo
 | Code pushes | Suitable |
 | Config or environment variable changes | Suitable |
 | Stateful service updates (databases, caches) | Not suitable |
-| Database schema migrations | Not suitable (unless updates are both backward **and** forward compatible) | 
+| Database schema migrations | Not suitable (unless updates are both backward **and** forward compatible) |
 
 ## How to use Zero Downtime Deployments
 
-Before running zero-downtime deployments, it is recommended that you enable [manual deployment](#manual-deployment). 
+Before running zero-downtime deployments, it is recommended that you enable [manual deployment](#manual-deployment).
 
 
 {{< codetabs >}}
@@ -365,9 +365,9 @@ web:
 
 If deployment fails partway through, one of the applications (either the original or the clone) may remain active in the background while the other continues to serve traffic. This can lead to an increase in resource usage and costs.
 
-To troubleshoot a failure, try one or both of the following: 
-- [Enable manual deployments](#change-deployment-type) if not already enabled; then, try to manually redeploy the application. 
--  Deploy the environment using the stop-start strategy to ensure no clones remain active. 
+To troubleshoot a failure, try one or both of the following:
+- [Enable manual deployments](#change-deployment-type) if not already enabled; then, try to manually redeploy the application.
+-  Deploy the environment using the stop-start strategy to ensure no clones remain active.
 
 If you still experience issues, [contact support](/learn/overview/get-support.md).
 
