@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.7.2
+# Upsun CLI 5.8.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -1310,7 +1310,7 @@ upsun auth:verify-phone-number
 
 ## `autoscaling:get`
 
-View the autoscaling configuration of apps and workers on an environment
+View the autoscaling configuration of apps, workers, and services on an environment
 
 Aliases: `autoscaling`
 
@@ -1357,7 +1357,7 @@ upsun autoscaling [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--forma
 
 ## `autoscaling:set`
 
-Set the autoscaling configuration of apps or workers in an environment
+Set the autoscaling configuration of apps, workers, or services in an environment
 
 ### Usage
 
@@ -1365,14 +1365,14 @@ Set the autoscaling configuration of apps or workers in an environment
 upsun autoscaling:set [-s|--service SERVICE] [-m|--metric METRIC] [--enabled ENABLED] [--threshold-up THRESHOLD-UP] [--duration-up DURATION-UP] [--cooldown-up COOLDOWN-UP] [--threshold-down THRESHOLD-DOWN] [--duration-down DURATION-DOWN] [--cooldown-down COOLDOWN-DOWN] [--instances-min INSTANCES-MIN] [--instances-max INSTANCES-MAX] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
 ```
 
-Configure automatic scaling for apps or workers in an environment.
+Configure automatic scaling for apps, workers, or services in an environment.
 
 You can also configure resources statically by running: upsun resources:set
 
 #### Options
 
 * `--service` (`-s`) (expects a value)
-  Name of the app or worker to configure autoscaling for
+  Name of the app, worker, or service to configure autoscaling for
 
 * `--metric` (`-m`) (expects a value)
   Name of the metric to use for triggering autoscaling
