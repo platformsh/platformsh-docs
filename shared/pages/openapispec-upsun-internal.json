@@ -27220,6 +27220,68 @@
         }
       }
     },
+    "/organizations/{organization_id}/subscriptions/{subscription_id}/flex-calc": {
+      "get": {
+        "summary": "[Internal] Estimate the price of a fixed subscription as if it were owned by a flexible org.",
+        "operationId": "flex-calc-org-subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/SubscriptionID"
+          },
+          {
+            "$ref": "#/components/parameters/Vendor"
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "description": "The format of the estimation output.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "formatted",
+                "complex"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_org_costs",
+            "description": "Whether to include an estimate of flexible organization costs and discounts.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FlexCalcObject"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/subscriptions/{subscription_id}/caps": {
       "get": {
         "summary": "[Internal] Get the environment caps",
@@ -52906,6 +52968,95 @@
           "options": {
             "type": "object",
             "description": "The unit prices of the options."
+          }
+        }
+      },
+      "FlexCalcObject": {
+        "type": "object",
+        "description": "A fixed to flexible price estimate object.",
+        "properties": {
+          "components": {
+            "type": "object",
+            "description": "Various subtotal pricing components.",
+            "additionalProperties": {
+              "type": "object",
+              "$ref": "#/components/schemas/PriceObject"
+            }
+          },
+          "plan": {
+            "allOf": [
+              {
+                "type": "object",
+                "description": "The monthly price of the plan."
+              },
+              {
+                "$ref": "#/components/schemas/PriceObject"
+              }
+            ]
+          },
+          "resources_total": {
+            "allOf": [
+              {
+                "type": "object",
+                "description": "The monthly price of project resources."
+              },
+              {
+                "$ref": "#/components/schemas/PriceObject"
+              }
+            ]
+          },
+          "total": {
+            "allOf": [
+              {
+                "type": "object",
+                "description": "The total monthly price."
+              },
+              {
+                "$ref": "#/components/schemas/PriceObject"
+              }
+            ]
+          },
+          "additionalProperties": {
+            "allOf": [
+              {
+                "type": "object",
+                "description": "Other allocated resource, usage, or discount estimations."
+              },
+              {
+                "$ref": "#/components/schemas/PriceObject"
+              }
+            ]
+          }
+        }
+      },
+      "PriceObject": {
+        "type": "object",
+        "properties": {
+          "formatted": {
+            "type": "string",
+            "description": "The price formatted appropriately with currency."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The price as a numeric quantity."
+          },
+          "currency_code": {
+            "type": "string",
+            "description": "The three-character currency code."
+          },
+          "currency_symbol": {
+            "type": "string",
+            "description": "The symbol associated with the currency."
+          },
+          "quantity": {
+            "type": "number",
+            "description": "The quantity used for the estimation.",
+            "nullable": true
+          },
+          "weight": {
+            "type": "number",
+            "description": "Relative positioning of this property.",
+            "nullable": true
           }
         }
       },

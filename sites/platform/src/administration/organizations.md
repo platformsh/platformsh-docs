@@ -211,8 +211,8 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 | Custom backup retention policies | Different packages | Unlimited (pay for storage) |
 | Email SMTP server | Yes | Yes |
 | Email validation (DKIM) | Enterprise and Elite only | Yes |
-| ElasticSearch (Premium containers) | Enterprise and Elite only | No |
-| MongoDB (Premium containers) | Enterprise and Elite only | No |
+| ElasticSearch (Premium containers) | Enterprise and Elite only | Yes |
+| MongoDB (Premium containers) | Enterprise and Elite only | Yes |
 
 #### Observability tools
 
@@ -259,7 +259,7 @@ Ideal for workloads that evolve over time or have dynamic resource requirements.
 | Privacy regulations | Yes | Yes |
 | SOC 2 | Yes | Yes |
 | PCI DSS Level 1-compatible | Yes | Yes |
-| HIPAA | Enterprise and Elite only in specific regions | Coming soon |
+| HIPAA | Enterprise and Elite only in specific regions | Yes |
 
 
 ### Fixed and Flex FAQs
