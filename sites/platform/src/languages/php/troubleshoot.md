@@ -8,6 +8,33 @@ description: Learn how to troubleshoot common issues in PHP.
 
 For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
+## Previously successful PHP builds now fail {#build-failure-security-blocking}
+
+When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
+
+Composer version 2.9 introduces an Automatic Security Blocking feature, which is enabled by default and does the following: 
+- If a dependency in the project has a known vulnerability, Composer fails the installation/update. 
+- If a dependency is abandoned, Composer can optionally fail the installation. 
+
+If advisories were published after the most recent PHP app deployment, the build might fail, even if the PHP dependencies have not changed.
+
+**In this scenario, the best practice is to upgrade the affected dependencies** to maintain a strong security posture and address vulnerabilities. However, you can configure the level of blocking by using the `.dependencies.php.config.audit.*` keys described in the [Configure security blocking](/languages/php/_index.md#configure-security-blocking) section of the PHP topic.
+
+**Important: Upsun advises against disabling security blocking.** However, as a last resort, the feature can be disabled as a workaround while you fix issues with dependencies.  
+
+```yaml {configFile="app"}
+applications:
+# The app's name, which must be unique within the project.
+myapp:
+  type: 'php:{{% latest "php" %}}'
+  <snip>
+  dependencies:
+    php:
+      config:
+        audit:
+          block-insecure: false
+```      
+
 ## Server reached `max_children`
 
 If the server is receiving more concurrent requests than it has PHP processes allocated,
@@ -25,6 +52,7 @@ You have two ways to increase the number of workers:
 
 - Adjust the [worker sizing hints](/languages/php/fpm.md) for your project.
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
+
 ## Execution timeout
 
 If your PHP app can't handle the amount of traffic or is slow,
@@ -57,6 +85,7 @@ Otherwise, you may check if the following options are applicable:
 - Find the most visited pages and see if they can be cached and/or put behind a CDN.
   Refer to [how caching works](/define-routes/cache.md).
 - Upgrade your {{% vendor/name %}} plan to get more computing resources.
+
 ## Troubleshoot a crashed PHP process
 
 If your PHP process crashed with a segmentation fault,

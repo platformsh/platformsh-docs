@@ -96,9 +96,9 @@ You can check that your application is properly connected to New Relic by lookin
 Which has an output similar to the following:
 
 ```bash {no-copy="true"}
-{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.890Z","msg":"Connected to collector-001.eu01.nr-data.net:443 with agent run ID xxxxx.","component":"collector_api"}
-{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.890Z","msg":"Reporting to: https://rpm.eu.newrelic.com/accounts/xxxxx/applications/xxxxx","component":"collector_api"}
-{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.892Z","msg":"Valid event_harvest_config received. Updating harvest cycles. {\"report_period_ms\":5000,\"harvest_limits\":{\"error_event_data\":8,\"analytic_event_data\":833,\"custom_event_data\":83}}"}
-{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:50.897Z","msg":"Agent state changed from connected to started."}
-{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"2021-02-03T16:12:51.899Z","msg":"Starting initial 1000ms harvest."}
+{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"{{< current-year >}}-01-01T16:12:50.890Z","msg":"Connected to collector-001.eu01.nr-data.net:443 with agent run ID xxxxx.","component":"collector_api"}
+{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"{{< current-year >}}-01-01T16:12:50.890Z","msg":"Reporting to: https://rpm.eu.newrelic.com/accounts/xxxxx/applications/xxxxx","component":"collector_api"}
+{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"{{< current-year >}}-01-01T16:12:50.892Z","msg":"Valid event_harvest_config received. Updating harvest cycles. {\"report_period_ms\":5000,\"harvest_limits\":{\"error_event_data\":8,\"analytic_event_data\":833,\"custom_event_data\":83}}"}
+{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"{{< current-year >}}-01-01T16:12:50.897Z","msg":"Agent state changed from connected to started."}
+{"v":0,"level":30,"name":"newrelic","hostname":"api.0","pid":761,"time":"{{< current-year >}}-01-01T16:12:51.899Z","msg":"Starting initial 1000ms harvest."}
 ```
