@@ -115,7 +115,7 @@
   },
   "elasticsearch": {
     "description": "A manufacture service for Elasticsearch",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "elasticsearch",
       "service_name": "elasticsearch",
@@ -291,7 +291,7 @@
   },
   "influxdb": {
     "description": "",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "influxdb",
       "service_name": "influxdb",
@@ -394,7 +394,7 @@
   },
   "kafka": {
     "description": "",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "kafka",
       "service_name": "kafka",
@@ -427,7 +427,7 @@
   "mariadb": {
     "description": "A manufacture-based container for MariaDB",
     "repo_name": "mariadb",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "mariadb",
       "service_name": "mariadb",
@@ -490,7 +490,7 @@
   "mysql": {
     "description": "A manufacture-based container for MariaDB",
     "repo_name": "mariadb",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "mysql",
       "service_name": "mysql",
@@ -584,7 +584,7 @@
   "mongodb": {
     "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "mongodb",
       "service_name": "mongodb",
@@ -610,7 +610,7 @@
   "mongodb-enterprise": {
     "description": "Support for the enterprise edition of MongoDB",
     "repo_name": "mongodb",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "mongodb-enterprise",
       "service_name": "mongodb-enterprise",
@@ -785,7 +785,7 @@
   "oracle-mysql": {
     "description": "Images using MySQL from Oracle instead of MariaDB still providing mysql endpoints",
     "repo_name": "oracle-mysql",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "oracle-mysql",
       "service_name": "oracle-mysql",
@@ -987,7 +987,7 @@
   "rabbitmq": {
     "description": "A manufacture-based container for RabbitMQ",
     "repo_name": "rabbitmq",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "rabbitmq",
       "service_name": "rabbitmq",
@@ -1340,7 +1340,7 @@
   },
   "vault-kms": {
     "description": "",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "vault-kms",
       "service_name": "vault-kms",
@@ -1378,6 +1378,7 @@
     }
   },
   "activemq-artemis": {
+    "type": "activemq-artemis",
     "versions": {
       "deprecated": [],
       "supported": [
@@ -1391,6 +1392,7 @@
     }
   },
   "elasticsearch-enterprise": {
+    "type": "elasticsearch-enterprise",
     "versions": {
       "deprecated": [],
       "supported": [
@@ -1404,11 +1406,10 @@
       "url": "/add-services/elasticsearch-enterprise.html"
     },
     "description": "",
-    "disk": true,
+    "disk": false,
     "endpoint": "",
     "name": "elasticsearch-enterprise",
     "repo_name": "elasticsearch-enterprise",
-    "runtime": false,
-    "type": "elasticsearch-enterprise"
+    "runtime": false
   }
 }
