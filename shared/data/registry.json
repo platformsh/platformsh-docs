@@ -1375,19 +1375,6 @@
       ]
     }
   },
-  "activemq-artemis": {
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "2"
-      ]
-    },
-    "docs": {
-      "relationship_name": "activemq-artemis",
-      "service_name": "activemq-artemis",
-      "url": "/add-services/activemq-artemis.html"
-    }
-  },
   "elasticsearch-enterprise": {
     "versions": {
       "deprecated": [],
