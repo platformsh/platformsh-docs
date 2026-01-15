@@ -1389,7 +1389,13 @@
       "relationship_name": "activemq-artemis",
       "service_name": "activemq-artemis",
       "url": "/add-services/activemq-artemis.html"
-    }
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "activemq-artemis",
+    "repo_name": "activemq-artemis",
+    "runtime": false
   },
   "elasticsearch-enterprise": {
     "type": "elasticsearch-enterprise",
