@@ -15,6 +15,7 @@
     "type": "chrome-headless",
     "versions": {
       "deprecated": [
+        "113",
         "95",
         "91",
         "86",
@@ -25,8 +26,7 @@
         "73"
       ],
       "supported": [
-        "120",
-        "113"
+        "120"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -99,6 +99,9 @@
     "type": "dotnet",
     "versions": {
       "deprecated": [
+        "10.0",
+        "7.0",
+        "6.0",
         "5.0",
         "3.1",
         "2.2",
@@ -106,9 +109,7 @@
         "2.0"
       ],
       "supported": [
-        "8.0",
-        "7.0",
-        "6.0"
+        "8.0"
       ]
     }
   },
@@ -138,7 +139,6 @@
         "0.90"
       ],
       "supported": [
-        "7.12",
         "7.10",
         "7.9",
         "7.7",
@@ -217,7 +217,6 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
-        "1.15",
         "1.14",
         "1.13",
         "1.12",
@@ -226,7 +225,8 @@
         "1.9"
       ],
       "supported": [
-        "1.18"
+        "1.18",
+        "1.15"
       ]
     }
   },
@@ -266,6 +266,10 @@
     "type": "golang",
     "versions": {
       "deprecated": [
+        "1.23",
+        "1.22",
+        "1.21",
+        "1.20",
         "1.19",
         "1.18",
         "1.17",
@@ -281,11 +285,7 @@
       ],
       "supported": [
         "1.25",
-        "1.24",
-        "1.23",
-        "1.22",
-        "1.21",
-        "1.20"
+        "1.24"
       ]
     }
   },
@@ -308,14 +308,14 @@
         "2.2",
         "2.1",
         "2.0",
+        "1.8",
         "1.7",
         "1.3",
         "1.2"
       ],
       "supported": [
         "2.7",
-        "2.3",
-        "1.8"
+        "2.3"
       ]
     }
   },
@@ -365,6 +365,8 @@
     "type": "java",
     "versions": {
       "deprecated": [
+        "19",
+        "18",
         "14",
         "13",
         "12",
@@ -373,8 +375,6 @@
       ],
       "supported": [
         "21",
-        "19",
-        "18",
         "17"
       ]
     },
@@ -389,7 +389,8 @@
         "13",
         "7"
       ]
-    }
+    },
+    "disk": false
   },
   "kafka": {
     "description": "",
@@ -407,6 +408,9 @@
     "type": "kafka",
     "versions": {
       "deprecated": [
+        "3.6",
+        "3.4",
+        "3.2",
         "2.7",
         "2.6",
         "2.5",
@@ -416,10 +420,7 @@
         "2.1"
       ],
       "supported": [
-        "3.7",
-        "3.6",
-        "3.4",
-        "3.2"
+        "3.7"
       ]
     }
   },
@@ -439,7 +440,6 @@
     "type": "mariadb",
     "versions": {
       "deprecated": [
-        "11.3",
         "11.2",
         "11.0",
         "10.5",
@@ -503,7 +503,6 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
-        "11.3",
         "11.2",
         "11.0",
         "10.5",
@@ -567,11 +566,12 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "1.6",
+      "deprecated": [
         "1.5",
         "1.4"
+      ],
+      "supported": [
+        "1.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -624,14 +624,14 @@
     "premium": true,
     "versions": {
       "deprecated": [
+        "6.0",
+        "5.0",
+        "4.4",
         "4.2",
         "4.0"
       ],
       "supported": [
-        "7.0",
-        "6.0",
-        "5.0",
-        "4.4"
+        "7.0"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -698,6 +698,8 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
+        "16",
         "8.9",
         "6.10",
         "6.9",
@@ -716,9 +718,7 @@
       "supported": [
         "24",
         "22",
-        "20",
-        "18",
-        "16"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -895,6 +895,8 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
+        "13",
+        "12",
         "11",
         "10",
         "9.6",
@@ -906,9 +908,7 @@
         "17",
         "16",
         "15",
-        "14",
-        "13",
-        "12"
+        "14"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -968,6 +968,7 @@
     "type": "python",
     "versions": {
       "deprecated": [
+        "3.9",
         "3.8",
         "3.7",
         "3.6",
@@ -979,8 +980,7 @@
         "3.13",
         "3.12",
         "3.11",
-        "3.10",
-        "3.9"
+        "3.10"
       ]
     }
   },
@@ -1000,6 +1000,9 @@
     "type": "rabbitmq",
     "versions": {
       "deprecated": [
+        "4.0",
+        "3.13",
+        "3.12",
         "3.11",
         "3.10",
         "3.9",
@@ -1009,10 +1012,7 @@
         "3.5"
       ],
       "supported": [
-        "4.1",
-        "4.0",
-        "3.13",
-        "3.12"
+        "4.1"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1058,6 +1058,8 @@
     "type": "redis",
     "versions": {
       "deprecated": [
+        "7.0",
+        "6.2",
         "6.0",
         "5.0",
         "4.0",
@@ -1067,9 +1069,7 @@
       ],
       "supported": [
         "8.0",
-        "7.2",
-        "7.0",
-        "6.2"
+        "7.2"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1325,15 +1325,15 @@
     "type": "varnish",
     "versions": {
       "deprecated": [
+        "7.3",
+        "7.2",
+        "7.1",
+        "6.3",
         "5.2",
         "5.1"
       ],
       "supported": [
         "7.6",
-        "7.3",
-        "7.2",
-        "7.1",
-        "6.3",
         "6.0"
       ]
     }
@@ -1402,6 +1402,13 @@
       "relationship_name": "elasticsearch-enterprise",
       "service_name": "elasticsearch-enterprise",
       "url": "/add-services/elasticsearch-enterprise.html"
-    }
+    },
+    "description": "",
+    "disk": false,
+    "endpoint": "",
+    "name": "",
+    "repo_name": "",
+    "runtime": false,
+    "type": ""
   }
 }
