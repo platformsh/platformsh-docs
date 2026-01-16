@@ -1,7 +1,7 @@
 ---
-title: Set an environment's visibility to search engines
-sidebarTitle: Set search engine visibility
-description: Learn how to change.a given environment's visbility to search engines.
+title: Manage search indexing for an environment
+sidebarTitle: Manage search indexing
+description: Learn how to configure search indexing to ensure only your live production site is visible in search results.
 ---
 
 When you have preview environments,
@@ -29,11 +29,10 @@ To not restrict indexers on your production environment, run the following comma
 title=In the Console
 +++
 
-- Select the project where you want to change visibility.
-- From the **Environment** menu, select your production environment.
-- Click {{< icon settings >}} **Settings**.
-- In the row with **Hide from search engines**, click **Edit {{< icon chevron >}}**.
-- Select or clear the **Hide from search engines** checkbox.
+1. Select a project.
+1. From the **Environment** menu, select the production environment.
+1. Click {{< icon settings >}} **Settings** near the upper right of the page.
+1. On the **General** tab, select or clear the **Hide from search engines** checkbox.
 
 {{< /codetabs >}}
 
@@ -42,7 +41,7 @@ If you're concerned about access, set up [HTTP access control](/environments/htt
 
 ## How it's done
 
-When the **Hide from search engines** is activated,
+When the **Hide from search engines** is enabled, 
 search engines are turned away from environments by including a `X-Robots-Tag` header:
 
 ```txt
@@ -56,7 +55,7 @@ It's automatically on for all `{{% vendor/cli %}}.site` domains, and it's automa
 
 ## Alternative method
 
-You can also send instructions to search engine indexers using a `robots.txt` file.
+You can also send instructions to search engine indexers by using a `robots.txt` file.
 Your app can serve this as a static file from its disk or as a dynamic response from its `passthru`.
 Control either with the [`location` section of your app configuration](/create-apps/image-properties/web.md#locations).
 
