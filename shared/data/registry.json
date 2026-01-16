@@ -129,6 +129,11 @@
     "type": "elasticsearch",
     "versions": {
       "deprecated": [
+        "7.9",
+        "7.7",
+        "7.6",
+        "7.5",
+        "7.2",
         "6.8",
         "6.5",
         "5.4",
@@ -139,12 +144,7 @@
         "0.90"
       ],
       "supported": [
-        "7.10",
-        "7.9",
-        "7.7",
-        "7.6",
-        "7.5",
-        "7.2"
+        "7.10"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1400,10 +1400,11 @@
   "elasticsearch-enterprise": {
     "type": "elasticsearch-enterprise",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "8.5",
+      "deprecated": [
         "7.17"
+      ],
+      "supported": [
+        "8.5"
       ]
     },
     "docs": {
