@@ -95,3 +95,4 @@ Instead of hard-coding a maintenance mode in your application, you can use an Ed
 
 Related information: 
 - [How to create a custom maintenance page in Fastly](https://devcenter.upsun.com/posts/fastly-maintenance/#create-fastly-configuration) - this {{% vendor/company_name %}} Dev Center article also describes how to create a Fastly configuration.
+- [Fastly Next-Gen Web Application Firewall (WAF)](/security/fastly-waf.md) 
