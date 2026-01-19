@@ -2,7 +2,7 @@
 title: "Fastly CDN"
 weight: -1
 description: |
- This integration provides a web interface to manage your Fastly CDN service without having to create individual {{% vendor/name %}} support tickets.
+ This integration provides a web interface to manage your Fastly CDN service without having to create individual {{% vendor/name %}} support tickets. You can also manage dynamic configuration by using Edge Dictionaries.
 ---
 
 {{% description %}}
@@ -15,7 +15,7 @@ https://fastsun.plugins.pltfrm.sh/manifest.json
 The Fastly CDN plugin enables you to:
 - Manage cache: purge a specific URL or all URLs
 - Manage access control lists (ACLs): add, edit, delete
-<!-- - View bandwith analysis on the top 10 URLs in your allowlist -->
+<!-- View bandwith analysis on the top 10 URLs in your allowlist -->
 - View real-time statistics, performance metrics
 - View historical statistics and performance metrics
 - View all domains attached to the Fastly service
@@ -50,3 +50,44 @@ After you log in, you can find the following information for the selected enviro
 
 The image below shows a sample historical metrics tab for a selected environment:
 ![Image showing the Fastly CDN historical metrics tab in the Upsun console](/images/integrations/console-fastly.png "0.75")
+
+## Manage dynamic configuration with Edge Dictionaries
+Edge Dictionaries allow you to store key-value pairs at the CDN level to control site behavior in real-time. This integration enables you to update configurations (such as feature flags, redirects, or header values) instantly, without a full code redeploy or VCL version change. This can be helpful, for example, to block a bot attack or update a site banner. 
+
+With this integration, you can:
+- **Update instantly:** Add, edit, or delete items via the UI or API for immediate effect.
+- **Secure secrets:** Use write-only dictionaries to store sensitive API keys that are accessible to your logic but hidden from view.
+- **Maintain consistency:** Leverage built-in validation and a management workflow that mirrors Fastly ACLs.
+
+### Example: Use a Dictionary for a maintenance toggle
+Instead of hard-coding a maintenance mode in your application, you can use an Edge Dictionary (for example, named `site_config`) to toggle a "Maintenance Mode" page at the edge.
+
+1. Define the dictionary: Create a dictionary named `site_config` and add a `maintenance_enabled` key with a value of `true` or `false`.
+
+1. Add the VCL Logic: Add the following snippet to your Fastly configuration to check the dictionary value on every request:
+
+```
+sub vcl_recv {
+  # Check if the 'maintenance_enabled' key is set to 'true' in the dictionary
+  if (table.lookup(site_config, "maintenance_enabled") == "true") {
+    # Send a 503 Service Unavailable response immediately
+    error 601 "Maintenance";
+  }
+}
+
+sub vcl_error {
+  if (obj.status == 601) {
+    set obj.status = 503;
+    set obj.response = "Service Unavailable";
+    synthetic {"
+      <html>
+        <body>
+          <h1>We'll be back soon!</h1>
+          <p>Our site is currently undergoing scheduled maintenance.</p>
+        </body>
+      </html>
+    "};
+    return(deliver);
+  }
+}
+```
