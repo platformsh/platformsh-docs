@@ -2,7 +2,7 @@
 title: "Fastly CDN"
 weight: -1
 description: |
- Offers an integrated web interface to manage your Fastly CDN service yourself without having to create individual {{% vendor/name %}} support tickets.
+ This integration provides a web interface to manage your Fastly CDN service without having to create individual {{% vendor/name %}} support tickets.
 ---
 
 {{% description %}}
@@ -13,13 +13,14 @@ https://fastsun.plugins.pltfrm.sh/manifest.json
 
 
 The Fastly CDN plugin enables you to:
-- Manage cache (purge all URLs or purge a specific URL)
-- Manage ACLs (add, edit, delete)
-- View real-time statistics and performance metrics
+- Manage cache: purge a specific URL or all URLs
+- Manage access control lists (ACLs): add, edit, delete
+<!-- - View bandwith analysis on the top 10 URLs in your allowlist -->
+- View real-time statistics, performance metrics
 - View historical statistics and performance metrics
 - View all domains attached to the Fastly service
-- View current VCL version, and version history
-- View service activity, and recent events history
+- View current Varnish Configuration Language (VCL) version and version history
+- View service activity and recent events history
 
 
 ## Using the Fastly CDN plugin
@@ -28,17 +29,17 @@ The Fastly CDN plugin enables you to:
       **Note:** To view summarized monthly _project-level_ traffic, including CDN bandwidth and CDN requests, see the **Traffic this month** section of a project page (make sure no environment is selected).
 
 
-1. On the **Fastly CDN** tab, log in with your Fastly credentials:
-    - Service ID
-    - API token
+1. On the **Fastly CDN** tab, enter your Fastly credentials (Service ID and API token).
 
-      If you have a Fastly subscription, you can get your credentials directly from the Fastly interface.
+    - If you have a Fastly subscription, you can retrieve your credentials directly from the Fastly interface.
 
-      If you purchased your Fastly service through Upsun, you can find your credentials in the [Upsun project environment variables](https://docs.upsun.com/development/variables/set-variables.html#create-environment-specific-variables) with a query like `upsun ssh "printenv | grep FASTLY"`, or you can get them by [opening a support ticket](https://console.upsun.com/-/users/~/tickets/open).
+    - If you purchased your Fastly service through Upsun, you can retrieve your credentials in these ways:
+      - Run a query such as `upsun ssh "printenv | grep FASTLY"` against the [Upsun project environment variables](https://docs.upsun.com/development/variables/set-variables.html#create-environment-specific-variables). 
+      - [Open a support ticket](https://console.upsun.com/-/users/~/tickets/open).
 
-      Your Fastly credentials are stored securely within your browser and are never transmitted to Upsun.
+    Your Fastly credentials are stored securely within your browser and are never transmitted to Upsun.
 
-After you log in, you can see a dashboard with the following information for the selected environment:
+After you log in, you can find the following information for the selected environment:
 - A real-time metrics tab
 - A historical metrics tab, where you can:
   - View metrics by weeks, months, and years by using the date picker.
