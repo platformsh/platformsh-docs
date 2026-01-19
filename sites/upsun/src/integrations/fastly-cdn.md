@@ -2,7 +2,7 @@
 title: "Fastly CDN"
 weight: -1
 description: |
- The Fastly CDN integration provides a centralized interface within the Upsun Console to oversee your edge traffic, manage cache, and tune performance without switching platforms. You can also manage dynamic configuration by using Edge Dictionaries.
+ The Fastly CDN integration provides a centralized interface within the Upsun Console to oversee your edge traffic, manage cache, edit access control lists (ACLs), and tune performance without switching platforms. You can also manage dynamic configuration by using Edge Dictionaries.
 ---
 
 {{% description %}}
