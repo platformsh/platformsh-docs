@@ -43,15 +43,6 @@ The dashboard provides two levels of visibility into how your site is performing
 The image below shows a sample historical metrics tab for a selected environment:
 ![Image showing the Fastly CDN historical metrics tab in the Upsun console](/images/integrations/console-fastly.png "0.75")
 
-### Analyze usage with Fastly Insights
-
-For deeper visibility into your traffic patterns, you can [open a Support ticket](https://console.upsun.com/-/users/~/tickets/open) to enable an additional **Insights** tab. This view provides finer-grained "Top 10" reports per service, helping you identify exactly which assets are driving your usage:
-
-- **Performance:** Top URLs by bandwidth, highest cache hit ratios, and frequent cache misses.
-- **Traffic Sources:** The most common operating systems and browsers used by your visitors.
-
-This data is essential for optimizing your caching strategy and troubleshooting unexpected bandwidth overages.
-
 ## Manage dynamic configuration with Edge Dictionaries
 Edge Dictionaries allow you to store key-value pairs at the CDN level to control site behavior in real-time. This integration enables you to update configurations (such as feature flags, redirects, or header values) instantly, without a full code redeploy or VCL version change. This can be helpful, for example, to block a bot attack or quickly update a site banner. 
 
