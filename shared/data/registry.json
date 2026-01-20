@@ -1378,6 +1378,7 @@
     }
   },
   "activemq-artemis": {
+    "type": "activemq-artemis",
     "versions": {
       "deprecated": [],
       "supported": [
@@ -1391,6 +1392,7 @@
     }
   },
   "elasticsearch-enterprise": {
+    "type": "elasticsearch-enterprise",
     "versions": {
       "deprecated": [],
       "supported": [
