@@ -5,7 +5,7 @@
     "docs": {
       "relationship_name": "chrome-headless",
       "service_name": "chrome-headless",
-      "url": "/add-services/headless-chrome.html"
+      "url": "https://docs.upsun.com//add-services/headless-chrome.html"
     },
     "endpoint": "http",
     "min_disk_size": null,
@@ -15,6 +15,7 @@
     "type": "chrome-headless",
     "versions": {
       "deprecated": [
+        "113",
         "95",
         "91",
         "86",
@@ -25,8 +26,7 @@
         "73"
       ],
       "supported": [
-        "120",
-        "113"
+        "120"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -42,7 +42,7 @@
     "docs": {
       "relationship_name": "clickhouse",
       "service_name": "clickhouse",
-      "url": "/add-services/clickhouse.html"
+      "url": "https://docs.upsun.com//add-services/clickhouse.html"
     },
     "endpoint": "clickhouse",
     "min_disk_size": 512,
@@ -71,7 +71,7 @@
     "docs": {
       "relationship_name": "dotnet",
       "service_name": "dotnet",
-      "url": "/languages/dotnet.html",
+      "url": "https://docs.upsun.com//languages/dotnet.html",
       "web": {
         "commands": {
           "start": "dotnet application.dll"
@@ -99,6 +99,9 @@
     "type": "dotnet",
     "versions": {
       "deprecated": [
+        "10.0",
+        "7.0",
+        "6.0",
         "5.0",
         "3.1",
         "2.2",
@@ -106,9 +109,7 @@
         "2.0"
       ],
       "supported": [
-        "8.0",
-        "7.0",
-        "6.0"
+        "8.0"
       ]
     }
   },
@@ -118,7 +119,7 @@
     "docs": {
       "relationship_name": "elasticsearch",
       "service_name": "elasticsearch",
-      "url": "/add-services/elasticsearch.html"
+      "url": "https://docs.upsun.com//add-services/elasticsearch.html"
     },
     "endpoint": "elasticsearch",
     "min_disk_size": 256,
@@ -128,6 +129,11 @@
     "type": "elasticsearch",
     "versions": {
       "deprecated": [
+        "7.9",
+        "7.7",
+        "7.6",
+        "7.5",
+        "7.2",
         "6.8",
         "6.5",
         "5.4",
@@ -138,13 +144,7 @@
         "0.90"
       ],
       "supported": [
-        "7.12",
-        "7.10",
-        "7.9",
-        "7.7",
-        "7.6",
-        "7.5",
-        "7.2"
+        "7.10"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -188,7 +188,7 @@
     "docs": {
       "relationship_name": "elixir",
       "service_name": "elixir",
-      "url": "/languages/elixir.html",
+      "url": "https://docs.upsun.com//languages/elixir.html",
       "web": {
         "commands": {
           "start": "mix run --no-halt"
@@ -217,7 +217,6 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
-        "1.15",
         "1.14",
         "1.13",
         "1.12",
@@ -226,7 +225,8 @@
         "1.9"
       ],
       "supported": [
-        "1.18"
+        "1.18",
+        "1.15"
       ]
     }
   },
@@ -236,7 +236,7 @@
     "docs": {
       "relationship_name": "golang",
       "service_name": "golang",
-      "url": "/languages/go.html",
+      "url": "https://docs.upsun.com//languages/go.html",
       "web": {
         "upstream": {
           "socket_family": "tcp",
@@ -266,6 +266,10 @@
     "type": "golang",
     "versions": {
       "deprecated": [
+        "1.23",
+        "1.22",
+        "1.21",
+        "1.20",
         "1.19",
         "1.18",
         "1.17",
@@ -281,11 +285,7 @@
       ],
       "supported": [
         "1.25",
-        "1.24",
-        "1.23",
-        "1.22",
-        "1.21",
-        "1.20"
+        "1.24"
       ]
     }
   },
@@ -295,7 +295,7 @@
     "docs": {
       "relationship_name": "influxdb",
       "service_name": "influxdb",
-      "url": "/add-services/influxdb.html"
+      "url": "https://docs.upsun.com//add-services/influxdb.html"
     },
     "endpoint": "influxdb",
     "min_disk_size": null,
@@ -308,24 +308,24 @@
         "2.2",
         "2.1",
         "2.0",
+        "1.8",
         "1.7",
         "1.3",
         "1.2"
       ],
       "supported": [
         "2.7",
-        "2.3",
-        "1.8"
+        "2.3"
       ]
     }
   },
   "gotenberg": {
     "description": "",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "gotenberg",
       "service_name": "gotenberg",
-      "url": "/add-services/gotenberg.html"
+      "url": "https://docs.upsun.com//add-services/gotenberg.html"
     },
     "endpoint": "gotenberg",
     "min_disk_size": null,
@@ -345,7 +345,7 @@
     "docs": {
       "relationship_name": "java",
       "service_name": "java",
-      "url": "/languages/java.html",
+      "url": "https://docs.upsun.com//languages/java.html",
       "web": {
         "commands": {
           "start": "java -jar target/application.jar --server.port=$PORT"
@@ -365,6 +365,8 @@
     "type": "java",
     "versions": {
       "deprecated": [
+        "19",
+        "18",
         "14",
         "13",
         "12",
@@ -373,8 +375,6 @@
       ],
       "supported": [
         "21",
-        "19",
-        "18",
         "17"
       ]
     },
@@ -389,7 +389,8 @@
         "13",
         "7"
       ]
-    }
+    },
+    "disk": false
   },
   "kafka": {
     "description": "",
@@ -397,7 +398,7 @@
     "docs": {
       "relationship_name": "kafka",
       "service_name": "kafka",
-      "url": "/add-services/kafka.html"
+      "url": "https://docs.upsun.com//add-services/kafka.html"
     },
     "endpoint": "kafka",
     "min_disk_size": 512,
@@ -407,6 +408,9 @@
     "type": "kafka",
     "versions": {
       "deprecated": [
+        "3.6",
+        "3.4",
+        "3.2",
         "2.7",
         "2.6",
         "2.5",
@@ -416,10 +420,7 @@
         "2.1"
       ],
       "supported": [
-        "3.7",
-        "3.6",
-        "3.4",
-        "3.2"
+        "3.7"
       ]
     }
   },
@@ -430,7 +431,7 @@
     "docs": {
       "relationship_name": "mariadb",
       "service_name": "mariadb",
-      "url": "/add-services/mysql.html"
+      "url": "https://docs.upsun.com//add-services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -439,7 +440,6 @@
     "type": "mariadb",
     "versions": {
       "deprecated": [
-        "11.3",
         "11.2",
         "11.0",
         "10.5",
@@ -494,7 +494,7 @@
     "docs": {
       "relationship_name": "mysql",
       "service_name": "mysql",
-      "url": "/add-services/mysql.html"
+      "url": "https://docs.upsun.com//add-services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -503,7 +503,6 @@
     "type": "mysql",
     "versions": {
       "deprecated": [
-        "11.3",
         "11.2",
         "11.0",
         "10.5",
@@ -559,7 +558,7 @@
     "docs": {
       "relationship_name": "memcached",
       "service_name": "memcached",
-      "url": "/add-services/memcached.html"
+      "url": "https://docs.upsun.com//add-services/memcached.html"
     },
     "endpoint": "memcached",
     "min_disk_size": null,
@@ -567,11 +566,12 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "1.6",
+      "deprecated": [
         "1.5",
         "1.4"
+      ],
+      "supported": [
+        "1.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -614,7 +614,7 @@
     "docs": {
       "relationship_name": "mongodb-enterprise",
       "service_name": "mongodb-enterprise",
-      "url": "/add-services/mongodb.html"
+      "url": "https://docs.upsun.com//add-services/mongodb.html"
     },
     "endpoint": "mongodb",
     "min_disk_size": 512,
@@ -624,14 +624,14 @@
     "premium": true,
     "versions": {
       "deprecated": [
+        "6.0",
+        "5.0",
+        "4.4",
         "4.2",
         "4.0"
       ],
       "supported": [
-        "7.0",
-        "6.0",
-        "5.0",
-        "4.4"
+        "7.0"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -654,7 +654,7 @@
     "docs": {
       "relationship_name": "network-storage",
       "service_name": "network-storage",
-      "url": "/add-services/network-storage.html"
+      "url": "https://docs.upsun.com//add-services/network-storage.html"
     },
     "endpoint": "something",
     "min_disk_size": null,
@@ -684,7 +684,7 @@
     "docs": {
       "relationship_name": "nodejs",
       "service_name": "nodejs",
-      "url": "/languages/nodejs.html",
+      "url": "https://docs.upsun.com//languages/nodejs.html",
       "web": {
         "commands": {
           "start": "node index.js"
@@ -698,6 +698,8 @@
     "type": "nodejs",
     "versions": {
       "deprecated": [
+        "18",
+        "16",
         "8.9",
         "6.10",
         "6.9",
@@ -716,9 +718,7 @@
       "supported": [
         "24",
         "22",
-        "20",
-        "18",
-        "16"
+        "20"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -743,7 +743,7 @@
     "docs": {
       "relationship_name": "opensearch",
       "service_name": "opensearch",
-      "url": "/add-services/opensearch.html"
+      "url": "https://docs.upsun.com//add-services/opensearch.html"
     },
     "endpoint": "opensearch",
     "min_disk_size": 256,
@@ -789,7 +789,7 @@
     "docs": {
       "relationship_name": "oracle-mysql",
       "service_name": "oracle-mysql",
-      "url": "/add-services/mysql.html"
+      "url": "https://docs.upsun.com//add-services/mysql.html"
     },
     "endpoint": "mysql",
     "min_disk_size": 256,
@@ -813,7 +813,7 @@
     "docs": {
       "relationship_name": "php",
       "service_name": "php",
-      "url": "/languages/php.html",
+      "url": "https://docs.upsun.com//languages/php.html",
       "web": {
         "locations": {
           "/": {
@@ -886,7 +886,7 @@
     "docs": {
       "relationship_name": "postgresql",
       "service_name": "postgresql",
-      "url": "/add-services/postgresql.html"
+      "url": "https://docs.upsun.com//add-services/postgresql.html"
     },
     "endpoint": "postgresql",
     "min_disk_size": null,
@@ -895,6 +895,8 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
+        "13",
+        "12",
         "11",
         "10",
         "9.6",
@@ -906,9 +908,7 @@
         "17",
         "16",
         "15",
-        "14",
-        "13",
-        "12"
+        "14"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -943,7 +943,7 @@
     "docs": {
       "relationship_name": "python",
       "service_name": "python",
-      "url": "/languages/python.html",
+      "url": "https://docs.upsun.com//languages/python.html",
       "web": {
         "commands": {
           "start": "python server.py"
@@ -968,6 +968,7 @@
     "type": "python",
     "versions": {
       "deprecated": [
+        "3.9",
         "3.8",
         "3.7",
         "3.6",
@@ -979,8 +980,7 @@
         "3.13",
         "3.12",
         "3.11",
-        "3.10",
-        "3.9"
+        "3.10"
       ]
     }
   },
@@ -991,7 +991,7 @@
     "docs": {
       "relationship_name": "rabbitmq",
       "service_name": "rabbitmq",
-      "url": "/add-services/rabbitmq.html"
+      "url": "https://docs.upsun.com//add-services/rabbitmq.html"
     },
     "endpoint": "rabbitmq",
     "min_disk_size": 512,
@@ -1000,6 +1000,9 @@
     "type": "rabbitmq",
     "versions": {
       "deprecated": [
+        "4.0",
+        "3.13",
+        "3.12",
         "3.11",
         "3.10",
         "3.9",
@@ -1009,10 +1012,7 @@
         "3.5"
       ],
       "supported": [
-        "4.1",
-        "4.0",
-        "3.13",
-        "3.12"
+        "4.1"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1049,7 +1049,7 @@
     "docs": {
       "relationship_name": "redis",
       "service_name": "redis",
-      "url": "/add-services/redis.html"
+      "url": "https://docs.upsun.com//add-services/redis.html"
     },
     "endpoint": "redis",
     "min_disk_size": null,
@@ -1058,6 +1058,8 @@
     "type": "redis",
     "versions": {
       "deprecated": [
+        "7.0",
+        "6.2",
         "6.0",
         "5.0",
         "4.0",
@@ -1067,9 +1069,7 @@
       ],
       "supported": [
         "8.0",
-        "7.2",
-        "7.0",
-        "6.2"
+        "7.2"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1110,7 +1110,7 @@
     "docs": {
       "relationship_name": "ruby",
       "service_name": "ruby",
-      "url": "/languages/ruby.html",
+      "url": "https://docs.upsun.com//languages/ruby.html",
       "web": {
         "upstream": {
           "socket_family": "unix"
@@ -1186,11 +1186,11 @@
   "rust": {
     "description": "",
     "repo_name": "rust",
-    "disk": true,
+    "disk": false,
     "docs": {
       "relationship_name": "rust",
       "service_name": "rust",
-      "url": "/languages/rust.html",
+      "url": "https://docs.upsun.com//languages/rust.html",
       "web": {
         "commands": {
           "start": "./target/debug/hello"
@@ -1216,7 +1216,7 @@
     "docs": {
       "relationship_name": "solr",
       "service_name": "solr",
-      "url": "/add-services/solr.html"
+      "url": "https://docs.upsun.com//add-services/solr.html"
     },
     "endpoint": "solr",
     "min_disk_size": 256,
@@ -1283,7 +1283,7 @@
     "docs": {
       "relationship_name": "valkey",
       "service_name": "valkey",
-      "url": "/add-services/valkey.html"
+      "url": "https://docs.upsun.com//add-services/valkey.html"
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
@@ -1314,7 +1314,7 @@
     "docs": {
       "relationship_name": "varnish",
       "service_name": "varnish",
-      "url": "/add-services/varnish.html"
+      "url": "https://docs.upsun.com//add-services/varnish.html"
     },
     "endpoint": "http+stats",
     "min_disk_size": null,
@@ -1325,15 +1325,15 @@
     "type": "varnish",
     "versions": {
       "deprecated": [
+        "7.3",
+        "7.2",
+        "7.1",
+        "6.3",
         "5.2",
         "5.1"
       ],
       "supported": [
         "7.6",
-        "7.3",
-        "7.2",
-        "7.1",
-        "6.3",
         "6.0"
       ]
     }
@@ -1344,7 +1344,7 @@
     "docs": {
       "relationship_name": "vault-kms",
       "service_name": "vault-kms",
-      "url": "/add-services/vault.html"
+      "url": "https://docs.upsun.com//add-services/vault.html"
     },
     "endpoint": "manage_keys",
     "min_disk_size": 512,
@@ -1388,22 +1388,35 @@
     "docs": {
       "relationship_name": "activemq-artemis",
       "service_name": "activemq-artemis",
-      "url": "/add-services/activemq-artemis.html"
-    }
+      "url": "https://docs.upsun.com//add-services/activemq-artemis.html"
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "activemq-artemis",
+    "repo_name": "activemq-artemis",
+    "runtime": false
   },
   "elasticsearch-enterprise": {
     "type": "elasticsearch-enterprise",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "8.5",
+      "deprecated": [
         "7.17"
+      ],
+      "supported": [
+        "8.5"
       ]
     },
     "docs": {
       "relationship_name": "elasticsearch-enterprise",
       "service_name": "elasticsearch-enterprise",
-      "url": "/add-services/elasticsearch-enterprise.html"
-    }
+      "url": "https://docs.upsun.com//add-services/elasticsearch-enterprise.html"
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "elasticsearch-enterprise",
+    "repo_name": "elasticsearch-enterprise",
+    "runtime": false
   }
 }
