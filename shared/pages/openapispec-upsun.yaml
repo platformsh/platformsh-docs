@@ -7486,38 +7486,11 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: filter[updated_at]
-          description: Allows filtering by `updated_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
-        - in: query
-          name: filter[created_at]
-          description: Allows filtering by `created_at` using one or more operators.
-          style: deepObject
-          explode: true
-          schema:
-            $ref: '#/components/schemas/DateTimeFilter'
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/FilterUpdatedAt'
+        - $ref: '#/components/parameters/FilterCreatedAt'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -7665,7 +7638,7 @@ paths:
         - $ref: '#/components/parameters/ProjectID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -7679,9 +7652,9 @@ paths:
       operationId: query-organiation-carbon
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
-        - $ref: '#/components/parameters/from'
-        - $ref: '#/components/parameters/to'
-        - $ref: '#/components/parameters/interval'
+        - $ref: '#/components/parameters/TimeRangeFrom'
+        - $ref: '#/components/parameters/TimeRangeTo'
+        - $ref: '#/components/parameters/TimeRangeInterval'
       responses:
         '200':
           description: OK
@@ -7705,9 +7678,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
         - $ref: '#/components/parameters/ProjectID'
-        - $ref: '#/components/parameters/from'
-        - $ref: '#/components/parameters/to'
-        - $ref: '#/components/parameters/interval'
+        - $ref: '#/components/parameters/TimeRangeFrom'
+        - $ref: '#/components/parameters/TimeRangeTo'
+        - $ref: '#/components/parameters/TimeRangeInterval'
       responses:
         '200':
           description: OK
@@ -7730,16 +7703,58 @@ paths:
         - Subscriptions
       parameters:
         - $ref: '#/components/parameters/OrganizationID'
-        - $ref: '#/components/parameters/subscription_status'
-        - $ref: '#/components/parameters/id'
-        - $ref: '#/components/parameters/project_id'
-        - $ref: '#/components/parameters/project_title'
-        - $ref: '#/components/parameters/region'
-        - $ref: '#/components/parameters/updated_at'
-        - $ref: '#/components/parameters/page_size'
-        - $ref: '#/components/parameters/page_before'
-        - $ref: '#/components/parameters/page_after'
-        - $ref: '#/components/parameters/subscription_sort'
+        - name: filter[status]
+          in: query
+          description: 'The status of the subscription. '
+          schema:
+            type: string
+            enum:
+              - requested
+              - active
+              - failed
+              - suspended
+              - deleted
+        - name: filter[id]
+          in: query
+          description: Allows filtering by subscription `id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - name: filter[project_id]
+          in: query
+          description: Allows filtering by `project_id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - name: filter[project_title]
+          in: query
+          description: Allows filtering by `project_title` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - name: filter[region]
+          in: query
+          description: Allows filtering by `region` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - $ref: '#/components/parameters/FilterUpdatedAt'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
+        - name: sort
+          in: query
+          description: |
+            Allows sorting by a single field.<br>
+            Use a dash ("-") to sort descending.<br>
+            Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
+          schema:
+            type: string
+            example: '-updated_at'
       responses:
         '200':
           description: OK
@@ -7748,12 +7763,16 @@ paths:
               schema:
                 type: object
                 properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
                   items:
                     type: array
                     items:
                       $ref: '#/components/schemas/Subscription'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -7903,7 +7922,7 @@ paths:
         - $ref: '#/components/parameters/SubscriptionID'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -7937,24 +7956,9 @@ paths:
           explode: true
           schema:
             $ref: '#/components/schemas/StringFilter'
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -7972,12 +7976,16 @@ paths:
               schema:
                 type: object
                 properties:
+                  count:
+                    type: integer
+                    description: Total number of items across pages.
                   regions:
                     type: array
                     items:
                       $ref: '#/components/schemas/Region'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8086,24 +8094,9 @@ paths:
       tags:
         - Team Access
       parameters:
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -8127,6 +8120,7 @@ paths:
                       $ref: '#/components/schemas/TeamProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8153,7 +8147,7 @@ paths:
                   - team_id
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8189,7 +8183,7 @@ paths:
         - Team Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8206,24 +8200,9 @@ paths:
       tags:
         - User Access
       parameters:
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -8247,6 +8226,7 @@ paths:
                       $ref: '#/components/schemas/UserProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8274,12 +8254,13 @@ paths:
                   auto_add_member:
                     type: boolean
                     description: If the specified user is not a member of the project's organization, add it automatically.
+                additionalProperties: false
                 required:
                   - user_id
                   - permissions
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8325,7 +8306,7 @@ paths:
                   $ref: '#/components/schemas/ProjectPermissions'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8340,7 +8321,7 @@ paths:
         - User Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8362,24 +8343,9 @@ paths:
           description: Allows filtering by `organization_id`.
           schema:
             type: string
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -8403,6 +8369,7 @@ paths:
                       $ref: '#/components/schemas/UserProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8427,12 +8394,13 @@ paths:
                     description: ID of the project.
                   permissions:
                     $ref: '#/components/schemas/ProjectPermissions'
+                additionalProperties: false
                 required:
                   - project_id
                   - permissions
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8478,7 +8446,7 @@ paths:
                   $ref: '#/components/schemas/ProjectPermissions'
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8493,7 +8461,7 @@ paths:
         - User Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8510,24 +8478,9 @@ paths:
       tags:
         - Team Access
       parameters:
-        - in: query
-          name: page[size]
-          description: Determines the number of items to show.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 200
-            default: null
-        - in: query
-          name: page[before]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
-        - in: query
-          name: page[after]
-          description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-          schema:
-            type: string
+        - $ref: '#/components/parameters/PageSizeAccess'
+        - $ref: '#/components/parameters/PageBefore'
+        - $ref: '#/components/parameters/PageAfter'
         - in: query
           name: sort
           description: |
@@ -8551,6 +8504,7 @@ paths:
                       $ref: '#/components/schemas/TeamProjectAccess'
                   _links:
                     $ref: '#/components/schemas/ListLinks'
+                additionalProperties: false
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8579,7 +8533,7 @@ paths:
                   - project_id
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -8615,7 +8569,7 @@ paths:
         - Team Access
       responses:
         '204':
-          description: No Content
+          $ref: '#/components/responses/NoContent'
         '400':
           $ref: '#/components/responses/BadRequest'
         '403':
@@ -9591,6 +9545,14 @@ components:
           description: Number of support tickets by status.
           type: object
       type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+      required:
+        - error
     OrganizationInvitation:
       title: OrganizationInvitation
       type: object
@@ -9853,30 +9815,6 @@ components:
           website: https://platform.sh
           consented_at: '2010-04-19T10:00:00Z'
           consent_method: opt-in
-    Error:
-      description: ''
-      type: object
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-        code:
-          type: number
-        detail:
-          type: object
-        title:
-          type: string
-      title: ''
-      x-examples:
-        example-1:
-          status: Invalid input
-          message: This field is required.
-          code: 400
-          detail:
-            field:
-              - This field is required.
-          title: Bad Request
     ListLinks:
       type: object
       properties:
@@ -21010,8 +20948,6 @@ components:
           $ref: '#/components/schemas/RegionPrivate'
         endpoint:
           $ref: '#/components/schemas/RegionEndpoint'
-        code:
-          $ref: '#/components/schemas/RegionCode'
         provider:
           $ref: '#/components/schemas/RegionProvider'
         datacenter:
@@ -21124,21 +21060,53 @@ components:
     RegionEndpoint:
       type: string
       description: Link to the region API endpoint.
-    RegionCode:
-      type: string
-      description: The code of the region
     RegionProvider:
       type: object
       description: Information about the region provider.
+      properties:
+        name:
+          type: string
+          description: The name of the cloud provider.
+        logo:
+          type: string
+          description: The logo of the cloud provider (base64 encoded SVG).
+      additionalProperties: false
     RegionDataCenter:
       type: object
       description: Information about the region provider data center.
+      properties:
+        name:
+          type: string
+          description: The name/identifier of the data center.
+        label:
+          type: string
+          description: The human-readable label of the data center.
+        location:
+          type: string
+          description: The physical location of the data center.
+      additionalProperties: false
     RegionEnvImpact:
       type: object
       description: Information about the region provider's environmental impact.
+      properties:
+        zone:
+          type: string
+          description: The geographical zone code for carbon intensity.
+        carbon_intensity:
+          type: number
+          description: The carbon intensity value.
+        green:
+          type: boolean
+          description: Indicator whether the data center uses green energy.
+      additionalProperties: false
     RegionCompliance:
       type: object
       description: Information about the region's compliance.
+      properties:
+        hipaa:
+          type: boolean
+          description: Indicator whether or not this region is HIPAA compliant.
+      additionalProperties: false
     MetricsMetadata:
       type: object
       properties:
@@ -21174,6 +21142,10 @@ components:
       type: string
       format: date-time
       description: The date and time when the resource was last updated.
+    GrantedAt:
+      type: string
+      format: date-time
+      description: The date and time when the access was granted.
     TeamProjectAccess:
       type: object
       properties:
@@ -21192,13 +21164,9 @@ components:
           type: string
           description: The title of the project.
         granted_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was granted.
+          $ref: '#/components/schemas/GrantedAt'
         updated_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was last updated.
+          $ref: '#/components/schemas/UpdatedAt'
         _links:
           type: object
           properties:
@@ -21252,13 +21220,9 @@ components:
         permissions:
           $ref: '#/components/schemas/ProjectPermissions'
         granted_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was granted.
+          $ref: '#/components/schemas/GrantedAt'
         updated_at:
-          type: string
-          format: date-time
-          description: The date and time when the access was last updated.
+          $ref: '#/components/schemas/UpdatedAt'
         _links:
           type: object
           properties:
@@ -21598,12 +21562,6 @@ components:
       required: true
       schema:
         type: string
-    id:
-      name: filter[id]
-      in: query
-      description: Machine name of the region.
-      schema:
-        type: string
     subscription_id:
       name: subscriptionId
       in: path
@@ -21618,18 +21576,6 @@ components:
       required: false
       schema:
         type: string
-    subscription_status:
-      name: filter[status]
-      in: query
-      description: 'The status of the subscription. '
-      schema:
-        type: string
-        enum:
-          - active
-          - provisioning
-          - provisioning failure
-          - suspended
-          - deleted
     subscription_plan:
       name: plan
       in: query
@@ -21856,49 +21802,7 @@ components:
       required: true
       schema:
         type: string
-    project_id:
-      name: filter[project_id]
-      in: query
-      description: Allows filtering by `project_id` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/StringFilter'
-    project_title:
-      in: query
-      name: filter[project_title]
-      description: Allows filtering by `project_title` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/StringFilter'
-    region:
-      in: query
-      name: filter[region]
-      description: Allows filtering by `region` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/StringFilter'
-    updated_at:
-      in: query
-      name: filter[updated_at]
-      description: Allows filtering by `updated_at` using one or more operators.
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/DateTimeFilter'
-    subscription_sort:
-      in: query
-      name: sort
-      description: |
-        Allows sorting by a single field.<br>
-        Use a dash ("-") to sort descending.<br>
-        Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
-      schema:
-        type: string
-        example: '-updated_at'
-    page_size:
+    PageSize:
       in: query
       name: page[size]
       description: Determines the number of items to show.
@@ -21907,31 +21811,40 @@ components:
         minimum: 1
         maximum: 100
         default: null
-    page_before:
+    PageBefore:
       in: query
       name: page[before]
       description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
       schema:
         type: string
-    page_after:
+    PageAfter:
       in: query
       name: page[after]
       description: Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
       schema:
         type: string
-    from:
+    PageSizeAccess:
+      in: query
+      name: page[size]
+      description: Determines the number of items to show.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: null
+    TimeRangeFrom:
       in: query
       name: from
       description: The start of the time frame for the query. Inclusive.
       schema:
         $ref: '#/components/schemas/DateTimeFilter'
-    to:
+    TimeRangeTo:
       in: query
       name: to
       description: The end of the time frame for the query. Exclusive.
       schema:
         $ref: '#/components/schemas/DateTimeFilter'
-    interval:
+    TimeRangeInterval:
       in: query
       name: interval
       description: The interval by which the query groups the results. of the time frame for the query. Exclusive.
@@ -21941,6 +21854,22 @@ components:
           - day
           - month
           - year
+    FilterUpdatedAt:
+      in: query
+      name: filter[updated_at]
+      description: Allows filtering by `updated_at` using one or more operators.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/DateTimeFilter'
+    FilterCreatedAt:
+      in: query
+      name: filter[created_at]
+      description: Allows filtering by `created_at` using one or more operators.
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/DateTimeFilter'
   securitySchemes:
     BearerAuth:
       type: http
@@ -21994,7 +21923,8 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Error'
-  examples: {}
+    NoContent:
+      description: No Content
 x-tagGroups:
   - name: Organization Administration
     tags:
