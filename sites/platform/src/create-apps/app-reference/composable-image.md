@@ -109,7 +109,7 @@ For other runtimes, see the [Languages](/languages/_index.md) section.
 
 ### Example: `stack` configuration {#example-stack-configuration}
 
-The `config.yaml` file excerpt below shows the following `stack` configuration:
+The `{{< vendor/configfile "app" >}}` file excerpt below shows the following `stack` configuration:
 - **Primary runtime:** `php@8.4` with additional extensions and one disabled extension
 - **Secondary runtimes:** `nodejs@{{% latest "nodejs" %}}` and `python@{{% latest "python" %}}`
 - **Nix packages:**
