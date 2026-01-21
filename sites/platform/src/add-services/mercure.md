@@ -136,7 +136,7 @@ The example above leverages [explicit endpoint](/create-apps/image-properties/re
 Depending on your needs, instead of explicit endpoint configuration,
 you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
-With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
+With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
 {{< /codetabs >}}
 
