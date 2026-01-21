@@ -527,785 +527,7 @@ dedicated:
     - xsl
     - zip
 grid:
-  "5.4":
-    available:
-      - apc
-      - apcu
-      - blackfire
-      - enchant
-      - gearman
-      - geoip
-      - gmp
-      - http
-      - imagick
-      - imap
-      - interbase
-      - ldap
-      - memcache
-      - memcached
-      - mongo
-      - mssql
-      - odbc
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
-      - pgsql
-      - pinba
-      - pspell
-      - readline
-      - recode
-      - redis
-      - snmp
-      - spplus
-      - ssh2
-      - tidy
-      - xcache
-      - xdebug
-      - xhprof
-      - xmlrpc
-      - xsl
-    default:
-      - curl
-      - gd
-      - intl
-      - mcrypt
-      - mysql
-      - mysqli
-      - mysqlnd
-      - opcache
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - sqlite3
-  "5.5":
-    available:
-      - apcu
-      - blackfire
-      - enchant
-      - gearman
-      - geoip
-      - gmp
-      - imagick
-      - imap
-      - interbase
-      - json
-      - ldap
-      - memcache
-      - memcached
-      - mongo
-      - mssql
-      - odbc
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
-      - pecl-http
-      - pgsql
-      - pinba
-      - pspell
-      - readline
-      - recode
-      - redis
-      - snmp
-      - spplus
-      - ssh2
-      - tidy
-      - xcache
-      - xdebug
-      - xhprof
-      - xmlrpc
-      - xsl
-    default:
-      - curl
-      - gd
-      - intl
-      - mcrypt
-      - mysql
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - sqlite3
-    built-in:
-      - opcache
-  "5.6":
-    available:
-      - apcu
-      - blackfire
-      - enchant
-      - gearman
-      - geoip
-      - gmp
-      - imagick
-      - imap
-      - interbase
-      - ldap
-      - memcache
-      - memcached
-      - mongo
-      - msgpack
-      - mssql
-      - newrelic
-      - odbc
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
-      - pecl-http
-      - pgsql
-      - pinba
-      - propro
-      - pspell
-      - raphf
-      - readline
-      - recode
-      - redis
-      - snmp
-      - ssh2
-      - tidy
-      - xdebug
-      - xhprof
-      - xmlrpc
-      - xsl
-    default:
-      - curl
-      - gd
-      - intl
-      - json
-      - mcrypt
-      - mysql
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - sqlite3
-    built-in:
-      - opcache
-  "7.0":
-    available:
-      - amqp
-      - apcu
-      - apcu_bc
-      - applepay
-      - blackfire
-      - bz2
-      - enchant
-      - geoip
-      - gmp
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ioncube
-      - ldap
-      - mailparse
-      - mcrypt
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - pspell
-      - readline
-      - recode
-      - redis
-      - shmop
-      - snmp
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - wddx
-      - xdebug
-      - xmlrpc
-      - xsl
-      - zbarcode
-    default:
-      - bcmath
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - json
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - opcache
-  "7.1":
-    available:
-      - amqp
-      - apcu
-      - apcu_bc
-      - applepay
-      - blackfire
-      - enchant
-      - event
-      - geoip
-      - gmp
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ioncube
-      - ldap
-      - mailparse
-      - mcrypt
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_firebird
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - pspell
-      - readline
-      - recode
-      - redis
-      - shmop
-      - snmp
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - uuid
-      - wddx
-      - xdebug
-      - xmlrpc
-      - xsl
-      - yaml
-      - zbarcode
-    default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - json
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - opcache
-  "7.2":
-    available:
-      - amqp
-      - apcu
-      - apcu_bc
-      - blackfire
-      - enchant
-      - event
-      - geoip
-      - gmp
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ioncube
-      - ldap
-      - mailparse
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - pspell
-      - readline
-      - recode
-      - redis
-      - shmop
-      - snmp
-      - sodium
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - uuid
-      - wddx
-      - xdebug
-      - xmlrpc
-      - xsl
-      - yaml
-      - zbarcode
-    default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - json
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - opcache
-  "7.3":
-    available:
-      - amqp
-      - apcu
-      - apcu_bc
-      - applepay
-      - blackfire
-      - enchant
-      - event
-      - geoip
-      - gmp
-      - http
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ioncube
-      - ldap
-      - mailparse
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - propro
-      - pspell
-      - raphf
-      - readline
-      - recode
-      - redis
-      - shmop
-      - snmp
-      - sodium
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - uuid
-      - wddx
-      - xdebug
-      - xmlrpc
-      - xsl
-      - yaml
-      - zbarcode
-    default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - json
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - opcache
-  "7.4":
-    available:
-      - amqp
-      - apcu
-      - apcu_bc
-      - applepay
-      - blackfire
-      - enchant
-      - event
-      - ffi
-      - geoip
-      - gmp
-      - http
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ioncube
-      - ldap
-      - mailparse
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - propro
-      - pspell
-      - raphf
-      - readline
-      - redis
-      - shmop
-      - snmp
-      - sodium
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - uuid
-      - xdebug
-      - xmlrpc
-      - xsl
-      - yaml
-    default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - json
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - opcache
-  "8.0":
-    available:
-      - amqp
-      - apcu
-      - blackfire
-      - enchant
-      - event
-      - ffi
-      - geoip
-      - gmp
-      - gnupg
-      - http
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ldap
-      - mailparse
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - pspell
-      - raphf
-      - readline
-      - redis
-      - shmop
-      - snmp
-      - sodium
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - uuid
-      - xdebug
-      - xmlrpc
-      - xsl
-      - yaml
-    default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - json
-      - opcache
-    with-webp:
-      - imagick
-  "8.1":
-    available:
-      - amqp
-      - apcu
-      - blackfire
-      - enchant
-      - event
-      - ffi
-      - geoip
-      - gmp
-      - gnupg
-      - http
-      - igbinary
-      - imagick
-      - imap
-      - interbase
-      - ioncube
-      - ldap
-      - mailparse
-      - memcached
-      - mongodb
-      - msgpack
-      - newrelic
-      - oauth
-      - odbc
-      - pdo_dblib
-      - pdo_odbc
-      - pdo_pgsql
-      - pdo_sqlsrv
-      - pgsql
-      - protobuf
-      - pspell
-      - raphf
-      - rdkafka
-      - readline
-      - redis
-      - shmop
-      - snmp
-      - sodium
-      - sourceguardian
-      - sqlsrv
-      - ssh2
-      - sybase
-      - tideways
-      - tideways_xhprof
-      - tidy
-      - uuid
-      - xdebug
-      - xmlrpc
-      - xsl
-      - yaml
-    default:
-      - bcmath
-      - bz2
-      - calendar
-      - ctype
-      - curl
-      - dba
-      - dom
-      - exif
-      - fileinfo
-      - ftp
-      - gd
-      - gettext
-      - iconv
-      - intl
-      - mbstring
-      - mysqli
-      - mysqlnd
-      - pdo
-      - pdo_mysql
-      - pdo_sqlite
-      - phar
-      - posix
-      - simplexml
-      - soap
-      - sockets
-      - sqlite3
-      - sysvmsg
-      - sysvsem
-      - sysvshm
-      - tokenizer
-      - xml
-      - xmlreader
-      - xmlwriter
-      - zip
-    built-in:
-      - json
-      - opcache
-    with-webp:
-      - imagick
-  "8.2":
+  "8.5":
     available:
       - amqp
       - apcu
@@ -1321,7 +543,96 @@ grid:
       - igbinary
       - imagick
       - imap
-      - interbase
+      - ldap
+      - mailparse
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - opentelemetry
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - protobuf
+      - raphf
+      - rdkafka
+      - readline
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sourceguardian
+      - ssh2
+      - sybase
+      - tideways
+      - tidy
+      - uuid
+      - xdebug
+      - xmlrpc
+      - xsl
+      - yaml
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - json
+      - opcache
+    with-webp:
+      - imagick
+  "8.4":
+    available:
+      - amqp
+      - apcu
+      - blackfire
+      - datadog-profiling
+      - enchant
+      - event
+      - ffi
+      - geoip
+      - gmp
+      - gnupg
+      - grpc
+      - http
+      - igbinary
+      - imagick
+      - imap
       - ioncube
       - ldap
       - mailparse
@@ -1340,7 +651,6 @@ grid:
       - pdo_sqlsrv
       - pgsql
       - protobuf
-      - pspell
       - raphf
       - rdkafka
       - readline
@@ -1349,14 +659,13 @@ grid:
       - snmp
       - sodium
       - sourceguardian
-      - sqlsrv
       - ssh2
       - swoole
       - sybase
       - tideways
-      - tideways_xhprof
       - tidy
       - uuid
+      - uv
       - xdebug
       - xmlrpc
       - xsl
@@ -1497,7 +806,7 @@ grid:
       - opcache
     with-webp:
       - imagick
-  "8.4":
+  "8.2":
     available:
       - amqp
       - apcu
@@ -1509,11 +818,11 @@ grid:
       - geoip
       - gmp
       - gnupg
-      - grpc
       - http
       - igbinary
       - imagick
       - imap
+      - interbase
       - ioncube
       - ldap
       - mailparse
@@ -1532,6 +841,7 @@ grid:
       - pdo_sqlsrv
       - pgsql
       - protobuf
+      - pspell
       - raphf
       - rdkafka
       - readline
@@ -1540,13 +850,14 @@ grid:
       - snmp
       - sodium
       - sourceguardian
+      - sqlsrv
       - ssh2
       - swoole
       - sybase
       - tideways
+      - tideways_xhprof
       - tidy
       - uuid
-      - uv
       - xdebug
       - xmlrpc
       - xsl
@@ -1591,12 +902,11 @@ grid:
       - opcache
     with-webp:
       - imagick
-  "8.5":
+  "8.1":
     available:
       - amqp
       - apcu
       - blackfire
-      - datadog-profiling
       - enchant
       - event
       - ffi
@@ -1607,6 +917,8 @@ grid:
       - igbinary
       - imagick
       - imap
+      - interbase
+      - ioncube
       - ldap
       - mailparse
       - memcached
@@ -1615,14 +927,13 @@ grid:
       - newrelic
       - oauth
       - odbc
-      - opentelemetry
       - pdo_dblib
-      - pdo_firebird
       - pdo_odbc
       - pdo_pgsql
       - pdo_sqlsrv
       - pgsql
       - protobuf
+      - pspell
       - raphf
       - rdkafka
       - readline
@@ -1631,9 +942,11 @@ grid:
       - snmp
       - sodium
       - sourceguardian
+      - sqlsrv
       - ssh2
       - sybase
       - tideways
+      - tideways_xhprof
       - tidy
       - uuid
       - xdebug
@@ -1680,3 +993,690 @@ grid:
       - opcache
     with-webp:
       - imagick
+  "8.0":
+    available:
+      - amqp
+      - apcu
+      - blackfire
+      - enchant
+      - event
+      - ffi
+      - geoip
+      - gmp
+      - gnupg
+      - http
+      - igbinary
+      - imagick
+      - imap
+      - interbase
+      - ldap
+      - mailparse
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - pspell
+      - raphf
+      - readline
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sourceguardian
+      - sqlsrv
+      - ssh2
+      - sybase
+      - tideways
+      - tideways_xhprof
+      - tidy
+      - uuid
+      - xdebug
+      - xmlrpc
+      - xsl
+      - yaml
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - json
+      - opcache
+    with-webp:
+      - imagick
+  "7.4":
+    available:
+      - amqp
+      - apcu
+      - apcu_bc
+      - applepay
+      - blackfire
+      - enchant
+      - event
+      - ffi
+      - geoip
+      - gmp
+      - http
+      - igbinary
+      - imagick
+      - imap
+      - interbase
+      - ioncube
+      - ldap
+      - mailparse
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - propro
+      - pspell
+      - raphf
+      - readline
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sourceguardian
+      - sqlsrv
+      - ssh2
+      - sybase
+      - tideways
+      - tideways_xhprof
+      - tidy
+      - uuid
+      - xdebug
+      - xmlrpc
+      - xsl
+      - yaml
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - json
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - opcache
+  "7.3":
+    available:
+      - amqp
+      - apcu
+      - apcu_bc
+      - applepay
+      - blackfire
+      - enchant
+      - event
+      - geoip
+      - gmp
+      - http
+      - igbinary
+      - imagick
+      - imap
+      - interbase
+      - ioncube
+      - ldap
+      - mailparse
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - propro
+      - pspell
+      - raphf
+      - readline
+      - recode
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sourceguardian
+      - sqlsrv
+      - ssh2
+      - sybase
+      - tideways
+      - tideways_xhprof
+      - tidy
+      - uuid
+      - wddx
+      - xdebug
+      - xmlrpc
+      - xsl
+      - yaml
+      - zbarcode
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - json
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - opcache
+  "7.2":
+    available:
+      - amqp
+      - apcu
+      - apcu_bc
+      - blackfire
+      - enchant
+      - event
+      - geoip
+      - gmp
+      - igbinary
+      - imagick
+      - imap
+      - interbase
+      - ioncube
+      - ldap
+      - mailparse
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - pspell
+      - readline
+      - recode
+      - redis
+      - shmop
+      - snmp
+      - sodium
+      - sourceguardian
+      - sqlsrv
+      - ssh2
+      - sybase
+      - tideways
+      - tideways_xhprof
+      - tidy
+      - uuid
+      - wddx
+      - xdebug
+      - xmlrpc
+      - xsl
+      - yaml
+      - zbarcode
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - json
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - opcache
+  "7.1":
+    available:
+      - amqp
+      - apcu
+      - apcu_bc
+      - applepay
+      - blackfire
+      - enchant
+      - event
+      - geoip
+      - gmp
+      - igbinary
+      - imagick
+      - imap
+      - interbase
+      - ioncube
+      - ldap
+      - mailparse
+      - mcrypt
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - pspell
+      - readline
+      - recode
+      - redis
+      - shmop
+      - snmp
+      - sourceguardian
+      - sqlsrv
+      - ssh2
+      - sybase
+      - tideways
+      - tideways_xhprof
+      - tidy
+      - uuid
+      - wddx
+      - xdebug
+      - xmlrpc
+      - xsl
+      - yaml
+      - zbarcode
+    default:
+      - bcmath
+      - bz2
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - json
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - opcache
+  "7.0":
+    available:
+      - amqp
+      - apcu
+      - apcu_bc
+      - applepay
+      - blackfire
+      - bz2
+      - enchant
+      - geoip
+      - gmp
+      - igbinary
+      - imagick
+      - imap
+      - interbase
+      - ioncube
+      - ldap
+      - mailparse
+      - mcrypt
+      - memcached
+      - mongodb
+      - msgpack
+      - newrelic
+      - oauth
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pdo_sqlsrv
+      - pgsql
+      - pspell
+      - readline
+      - recode
+      - redis
+      - shmop
+      - snmp
+      - sourceguardian
+      - sqlsrv
+      - ssh2
+      - sybase
+      - tideways
+      - tideways_xhprof
+      - tidy
+      - wddx
+      - xdebug
+      - xmlrpc
+      - xsl
+      - zbarcode
+    default:
+      - bcmath
+      - calendar
+      - ctype
+      - curl
+      - dba
+      - dom
+      - exif
+      - fileinfo
+      - ftp
+      - gd
+      - gettext
+      - iconv
+      - intl
+      - json
+      - mbstring
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - phar
+      - posix
+      - simplexml
+      - soap
+      - sockets
+      - sqlite3
+      - sysvmsg
+      - sysvsem
+      - sysvshm
+      - tokenizer
+      - xml
+      - xmlreader
+      - xmlwriter
+      - zip
+    built-in:
+      - opcache
+  "5.6":
+    available:
+      - apcu
+      - blackfire
+      - enchant
+      - gearman
+      - geoip
+      - gmp
+      - imagick
+      - imap
+      - interbase
+      - ldap
+      - memcache
+      - memcached
+      - mongo
+      - msgpack
+      - mssql
+      - newrelic
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pecl-http
+      - pgsql
+      - pinba
+      - propro
+      - pspell
+      - raphf
+      - readline
+      - recode
+      - redis
+      - snmp
+      - ssh2
+      - tidy
+      - xdebug
+      - xhprof
+      - xmlrpc
+      - xsl
+    default:
+      - curl
+      - gd
+      - intl
+      - json
+      - mcrypt
+      - mysql
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - sqlite3
+    built-in:
+      - opcache
+  "5.5":
+    available:
+      - apcu
+      - blackfire
+      - enchant
+      - gearman
+      - geoip
+      - gmp
+      - imagick
+      - imap
+      - interbase
+      - json
+      - ldap
+      - memcache
+      - memcached
+      - mongo
+      - mssql
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pecl-http
+      - pgsql
+      - pinba
+      - pspell
+      - readline
+      - recode
+      - redis
+      - snmp
+      - spplus
+      - ssh2
+      - tidy
+      - xcache
+      - xdebug
+      - xhprof
+      - xmlrpc
+      - xsl
+    default:
+      - curl
+      - gd
+      - intl
+      - mcrypt
+      - mysql
+      - mysqli
+      - mysqlnd
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - sqlite3
+    built-in:
+      - opcache
+  "5.4":
+    available:
+      - apc
+      - apcu
+      - blackfire
+      - enchant
+      - gearman
+      - geoip
+      - gmp
+      - http
+      - imagick
+      - imap
+      - interbase
+      - ldap
+      - memcache
+      - memcached
+      - mongo
+      - mssql
+      - odbc
+      - pdo_dblib
+      - pdo_firebird
+      - pdo_odbc
+      - pdo_pgsql
+      - pgsql
+      - pinba
+      - pspell
+      - readline
+      - recode
+      - redis
+      - snmp
+      - spplus
+      - ssh2
+      - tidy
+      - xcache
+      - xdebug
+      - xhprof
+      - xmlrpc
+      - xsl
+    default:
+      - curl
+      - gd
+      - intl
+      - mcrypt
+      - mysql
+      - mysqli
+      - mysqlnd
+      - opcache
+      - pdo
+      - pdo_mysql
+      - pdo_sqlite
+      - sqlite3
