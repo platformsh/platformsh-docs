@@ -588,7 +588,7 @@
     "docs": {
       "relationship_name": "mongodb",
       "service_name": "mongodb",
-      "url": "https://docs.upsun.com/add-services/mongodb.html"
+      "url": "/add-services/mongodb.html"
     },
     "endpoint": "mongodb",
     "min_disk_size": 512,
