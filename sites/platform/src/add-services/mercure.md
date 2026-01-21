@@ -14,52 +14,41 @@ The service generates the JSON Web Token (JWT) token secret. It's available in t
 
 ## Relationship reference
 
-For each service [defined via a relationship](#usage-example) to your application,
-{{% vendor/name %}} automatically generates corresponding environment variables within your application container,
-in the ``$<RELATIONSHIP-NAME>_<SERVICE-PROPERTY>`` format.
+Relationship and configuration information (see the example below) is available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
+or by running `{{% vendor/cli %}} relationships`.
 
-Here is example information available through the [service environment variables](/development/variables/_index.md#service-environment-variables) themselves,
-or through the [``PLATFORM_RELATIONSHIPS`` environment variable](/development/variables/use-variables.md#use-provided-variables).
-
-{{< codetabs >}}
-+++
-title= Service environment variables
-+++
-
-You can obtain the complete list of available service environment variables in your app container by running ``upsun ssh env``.
-
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the [service environment variables](/development/variables/_index.md#service-environment-variables) directly rather than hard coding any values.
-
-```bash
-
-```
-
-<--->
-
-+++
-title= `PLATFORM_RELATIONSHIPS` environment variable
-+++
-
-For some advanced use cases, you can use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
-The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtained by running `{{< vendor/cli >}} relationships` in your terminal:
+Relationship information can change when an app is redeployed or restarted, or the relationship is changed.
+Avoid hard-coding; use the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable to handle dynamic relationship changes.
 
 ```json
 {
-
+  "mercure": [
+    {
+      "username": null,
+      "fragment": null,
+      "ip": "123.456.78.90",
+      "cluster": "sample-cluster-id-12345",
+      "host": "mercure.internal",
+      "path": null,
+      "query": {},
+      "relationships_env_var_extra": {},
+      "port": 3000,
+      "host_mapped": false,
+      "password": "ChangeMe",
+      "service": "mercure",
+      "hostname": "sample-hostname.mercure.service.platformsh.site",
+      "epoch": 0,
+      "instance_ips": [
+        "123.456.789.001"
+      ],
+      "rel": "mercure",
+      "scheme": "http",
+      "type": "mercure:0",
+      "public": false
+    }
+  ]
 }
 ```
-
-Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) information in a [`.environment` file](/development/variables/set-variables.md#use-env-files):
-
-```bash {location=".environment"}
-# Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
-
-# Set environment variables for individual credentials.
-export APP_MERCURE_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.mercure[0].host')"
-```
-
-{{< /codetabs >}}
 
 ## Usage example
 
