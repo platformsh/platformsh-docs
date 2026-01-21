@@ -10,12 +10,18 @@ description: |
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="dotnet" status="supported" environment="grid" >}}
+- 8.0: `Active`.
+- 7.0: `Deprecated`.
+- 6.0: `Retired`.
+
+<!-- {{< image-versions image="dotnet" status="supported" environment="grid" >}} -->
 
 {{% language-specification type="dotnet" display_name=".Net Core" %}}
 

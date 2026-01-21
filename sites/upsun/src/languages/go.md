@@ -9,12 +9,21 @@ description: "{{% vendor/name %}} supports building and deploying applications w
 
 ## Supported versions
 
+{{% images-lifecycle %}}
+
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="golang" status="supported" environment="grid" >}}
+- 1.25: `Active`.
+- 1.24: `Deprecated`.
+- 1.23: `Retired`.
+- 1.22: `Retired`.
+- 1.21: `To be decommissionned`.
+- 1.20: `To be decommissionned`.
+
+<!-- {{< image-versions image="golang" status="supported" environment="grid" >}} -->
 
 {{% language-specification type="golang" display_name="Go" %}}
 
