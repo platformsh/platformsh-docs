@@ -244,3 +244,88 @@ services:
 ```
 
 {{< /codetabs >}}
+
+### Use in app
+
+To use the configured service in your app, add a configuration file similar to the following to your project.
+
+{{< codetabs >}}
+
++++
+title=Using default endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # The location of the application's code.
+    source:
+      root: "/"
+
+    [...]
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows simplified configuration leveraging a default service
+    # (identified from the relationship name) and a default endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mercure:
+
+services:
+  mercure:
+    type: mercure:0
+```
+
+<--->
+
++++
+title=Using explicit endpoints
++++
+
+```yaml {configFile="services"}
+applications:
+  # The name of the app container. Must be unique within a project.
+  myapp:
+    # The location of the application's code.
+    source:
+      root: "myapp"
+
+    [...]
+
+    # Relationships enable access from this app to a given service.
+    # The example below shows configuration with an explicitly set service name and endpoint.
+    # See the Application reference for all options for defining relationships and endpoints.
+    relationships:
+      mercure:
+        service: mercure
+        endpoint: mercure
+services:
+  mercure:
+    type: mercure:0
+```
+
+{{< /codetabs >}}
+
+This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
+`myapp` has access to the `mercure` service via a relationship whose name is [identical to the service name](#3-define-the-relationship)
+(as per [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships).
+
+From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
+
+```bash {location="myapp/.environment"}
+# Set environment variables for common Mercure credentials.
+# For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
+export MERCURE_USER="${MERCURE_USERNAME}"
+export MERCURE_HOST="${MERCURE_HOST}"
+export MERCURE_QUERY="${$MERCURE_QUERY}"
+```
+
+The ``.environment`` shown above in the ``myapp`` directory is automatically sourced by {{% vendor/name %}} into the runtime environment, so that the variable ``MERCURE_HOST`` can be used within the application to connect to the service.
+
+Note that all [{{% vendor/name %}} service environment variables](/development/variables/_index.md#service-environment-variables) such as ``MERCURE_HOST`` are environment-dependent.
+Unlike the build produced for a given commit,
+they can’t be reused across environments and only allow your app to connect to a single service instance on a single environment.
+
+A file very similar to this is generated automatically for your when using the ``{{% vendor/cli %}} project:init`` [command](/administration/cli/reference.html#projectinit) to migrate a codebase to {{% vendor/name %}}.
+
