@@ -33,3 +33,5 @@ ignoreerrors=
     ^https://docs\.pimcore\.com/.*$ ^403 Forbidden
     ^https://(?:www\.)?perplexity\.ai/.*$ ^403 Forbidden
     ^https:// ^ReadTimeout
+    ^https://qdrant\.tech/.*$ ^ConnectionError:
+    ^https://gatsbyjs\.com/.*$ ^ConnectionError:
