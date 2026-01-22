@@ -581,6 +581,27 @@
       ]
     }
   },
+  "mercure": {
+    "description": "Mercure is a flexible platform for orchestrating medical images in the standard DICOM format.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "mercure",
+      "service_name": "mercure",
+      "url": "/add-services/mercure.html"
+    },
+    "endpoint": "mercure",
+    "min_disk_size": 256,
+    "name": "Mercure",
+    "repo_name": "mercure",
+    "runtime": false,
+    "type": "mercure",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "0"
+      ]
+    }
+  },
   "mongodb": {
     "description": "Experimental MongoDB support on Upsun Fixed",
     "repo_name": "mongodb",
