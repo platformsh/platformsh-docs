@@ -13,7 +13,7 @@ FrankenPHP is particularly well-suited for modern PHP frameworks and application
 
 Traditional PHP deployments rely on multiple moving parts: a web server, PHP-FPM, and external process management. FrankenPHP simplifies this architecture by embedding PHP execution directly into the server. Some key features include:
 
-- Faster startup times and reduced per-request overhead compared to PHP-FPM.
+- Faster startup times and reduced per-request overhead compared to [PHP-FPM](/languages/php/fpm.html).
 - A modern architecture that works for contemporary PHP runtimes and frameworks.
 - Fewer services to configure and maintain.
 - Support for a worker-based execution model that avoids re-booting the application on every request.
@@ -24,7 +24,7 @@ FrankenPHP supports two distinct execution modes. Choosing the right mode depend
 
 #### Classic mode
 
-Classic mode behaves similarly to PHP-FPM and is the recommended default for most applications.
+Classic mode behaves similarly to [PHP-FPM](/languages/php/fpm.html) and is the recommended default for most applications.
 
 - Each request runs in a clean, isolated environment
 - No application state is shared between requests
@@ -80,8 +80,11 @@ Worker mode offers significant performance gains, but only enable it once you ar
 
 FrankenPHP is well supported by Blackfire, making it easy to profile and monitor performance in both Classic and Worker modes.
 
-See the Blackfire documentation for FrankenPHP integration:
-https://docs.blackfire.io/php/integrations/frankenphp
+{{< note version="1" >}}
+
+See the [Blackfire](/increase-observability/integrate-observability/blackfire.html) documentation for FrankenPHP integration: https://docs.blackfire.io/php/integrations/frankenphp
+
+{{< /note >}}
 
 ## Configuration
 
