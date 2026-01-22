@@ -8,6 +8,15 @@ weight: -45
 
 Built for simplicity and performance, Mercure is widely used in the Symfony ecosystem and beyond for reactive UIs, real-time notifications, and live data streaming.
 
+## Supported versions
+
+You can select the major version. The latest compatible minor version is applied automatically and can’t be overridden.
+
+Patch versions are applied periodically for bug fixes and the like.
+When you deploy your app, you always get the latest available patches.
+
+{{< image-versions image="mercure" status="supported" >}}
+
 ## JWT Token Secret
 
 The service generates the JSON Web Token (JWT) token secret. It's available in the `password` field of the Mercure relationship in the `PLATFORM_RELATIONSHIPS` environment variable.
