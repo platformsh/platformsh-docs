@@ -17,6 +17,18 @@ When you deploy your app, you always get the latest available patches.
 
 {{< image-versions image="mercure" status="supported" >}}
 
+<!-- 
+## Deprecated versions
+
+The following versions are still available in your projects,
+but they're at their end of life and are no longer receiving security updates from upstream.
+
+{{< image-versions image="mercure" status="deprecated" >}}
+
+To ensure your project remains stable in the future,
+switch to a [supported version](#supported-versions).
+-->
+
 ## JWT Token Secret
 
 The service generates the JSON Web Token (JWT) token secret. It's available in the `password` field of the Mercure relationship in the `PLATFORM_RELATIONSHIPS` environment variable.
