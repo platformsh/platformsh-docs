@@ -77,11 +77,11 @@ Worker mode offers significant performance gains, but only enable it once you ar
 
 ### Observability and profiling
 
-FrankenPHP is well supported by Blackfire, making it easy to profile and monitor performance in both Classic and Worker modes.
+FrankenPHP is well supported by [Blackfire](/increase-observability/integrate-observability/blackfire.html), making it easy to profile and monitor performance in both Classic and Worker modes.
 
 {{< note version="1" >}}
 
-See the [Blackfire](/increase-observability/integrate-observability/blackfire.html) documentation for FrankenPHP integration: https://docs.blackfire.io/php/integrations/frankenphp
+See the [Blackfire](https://docs.blackfire.io/php/integrations/frankenphp) documentation for FrankenPHP integration.
 
 {{< /note >}}
 
