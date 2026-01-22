@@ -1,0 +1,207 @@
+{{- $name := .context.Get "name" | default "myapp" -}}
+{{- if ( .name ) -}}
+    {{- $name = .name -}}
+{{- end -}}
+{{- $root := .context.Get "root" | default "/" -}}
+{{- if ( .root ) -}}
+    {{- $root = .root -}}
+{{- end -}}
+{{- $globKey := .context.Get "globKey" | default "true" -}}
+{{- if ( .globKey ) -}}
+    {{- $globKey = .globKey -}}
+{{- end -}}
+{{- $configType := .context.Get "config" | default "app" -}}
+{{- if ( .config ) -}}
+    {{- $configType = .config -}}
+{{- end -}}
+{{- $subDir := .context.Get "subDir" | default "" -}}
+{{- if ( .subDir ) -}}
+    {{- $subDir = .subDir -}}
+{{- end -}}
+{{- $subDom := .context.Get "subDom" | default "" -}}
+{{- if ( .subDom ) -}}
+    {{- $subDom = .subDom -}}
+{{- end -}}
+{{- if gt ( len $subDom) 0 -}}
+    {{- $subDom = printf "%s." (.context.Get "subDom") }}
+{{- end -}}
+{{- $placeholder := .context.Get "placeholder" | default "false" }}
+{{- if ( .placeholder ) -}}
+    {{- $placeholder = .placeholder -}}
+{{- end -}}
+{{- $redirect := .context.Get "redirect" | default "true" }}
+{{- if ( .redirect ) -}}
+    {{- $redirect = .redirect -}}
+{{- end -}}
+
+
+{{- $configFile := .context.Get "configFile" | default "" -}}
+{{- if ( .configFile ) -}}
+    {{- $confiFile = .configFile -}}
+{{- end -}}
+
+{{- $configFiles := .context.Page.Site.Params.vendor.files -}}
+
+{{- $prepend := "" -}}
+{{- $append := "" -}}
+{{- $content := "" -}}
+
+{{- if eq $configType "app" -}}
+    {{- $appNameComment := "# The name of the app container. Must be unique within a project." -}}
+    {{- $rootComment := "# The location of the application's code." -}}
+
+    {{- if eq .context.Site.Params.vendor.config.version 2 -}}
+        {{- $applicationsKey := "" }}
+        {{- if eq $globKey "true" -}}
+            {{- $applicationsKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.apps -}}
+        {{- end -}}
+
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
+            {{- $prepend = printf "# %s#  %s" $applicationsKey "..." -}}
+        {{- else -}}
+            {{- if eq $name "false" -}}
+                {{- $name = "myapp" -}}
+            {{- end -}}
+            {{- $prepend = printf "%s  %s\n  %s:" $applicationsKey $appNameComment $name -}}
+            {{- if ne $root "false" -}}
+                {{- $prepend = printf "%s\n    %s\n    source:\n      root: \"%s\"" $prepend $rootComment $root -}}
+            {{- end -}}
+
+            {{- $indent := "    " }}
+            {{- $indentCount := 0 }}
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- if ne (len .) 1 -}}
+                    {{- if eq $indentCount 1 -}}
+                        {{- $indent = "    " -}}
+                    {{- end -}}
+                    {{- $content = printf "%s\n%s%s" $content $indent . -}}
+                    {{- $indentCount = 1 -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- else -}}
+        {{- if eq $placeholder "false" -}}
+            {{- $indent := "" }}
+            {{- $indentCount := 0 }}
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- if ne (len .) 1 -}}
+                    {{- if eq $indentCount 1 -}}
+                        {{- $content = printf "%s\n%s%s" $content $indent . -}}
+                    {{- else -}}
+                        {{- $content = printf "%s\n%s%s" $content $indent (trim . " ") -}}
+                    {{- end -}}
+                    {{- $indentCount = 1 -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- end -}}
+
+    {{- $final := trim ( printf "%s%s" $prepend $content ) "\n" -}}
+    {{- $final | safeHTML -}}
+
+{{- else if eq $configType "apps" -}}
+    {{- $appNameComment := "# The name of the app container. Must be unique within a project." -}}
+    {{- $rootComment := "# The location of the application's code." -}}
+
+    {{- if eq .context.Site.Params.vendor.config.version 2 -}}
+        {{- $applicationsKey := "" }}
+        {{- if eq $globKey "true" -}}
+            {{- $applicationsKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.apps -}}
+        {{- end -}}
+
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
+            {{- $prepend = printf "# %s#    %s" $applicationsKey "..." -}}
+        {{- else -}}
+            {{- $prepend = printf "%s    %s\n    %s:" $applicationsKey $appNameComment $name -}}
+            {{- $prepend = printf "%s\n        %s\n        source:\n            root: \"%s\"" $prepend $rootComment $root -}}
+
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- $content = printf "%s\n        %s" $content . -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- else -}}
+
+        {{- if eq $placeholder "false" -}}
+            {{- $prepend = printf "%s\n%s:" $appNameComment $name -}}
+            {{- $prepend = printf "%s\n    %s\n    source:\n        root: \"%s\"" $prepend $rootComment $root -}}
+
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- $content = printf "%s\n    %s" $content . -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- end -}}
+
+    {{- $final := trim ( printf "%s%s" $prepend $content ) "\n" -}}
+    {{- $final | safeHTML -}}
+
+{{- else if eq $configType "service" -}}
+    {{- $servNameComment := "# The name of the service container. Must be unique within a project." -}}
+    {{- if eq .context.Site.Params.vendor.config.version 2 -}}
+        {{- $servicesKey := "" -}}
+        {{- if eq $globKey "true" -}}
+            {{- $servicesKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.services -}}
+        {{- end -}}
+
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
+            {{- $prepend = printf "# %s#  %s" $servicesKey "..." -}}
+        {{- else -}}
+            {{- $prepend = printf "%s  %s\n  %s:" $servicesKey $servNameComment $name -}}
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- $content = printf "%s\n  %s" $content . -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- else -}}
+
+        {{- if eq $placeholder "false" -}}
+            {{- $prepend = printf "%s\n%s:" $servNameComment $name -}}
+            {{- $content = .Inner -}}
+        {{- end -}}
+
+    {{- end -}}
+
+    {{- $final := trim ( printf "%s%s" $prepend $content ) "\n" -}}
+    {{- $final | safeHTML -}}
+
+{{- else if eq $configType "route"}}
+    {{- $routeNameComment := "# Routes for an individual application. Note the matching app name in 'upstream'." -}}
+    {{- $routesKey := "" }}
+    {{- if eq .context.Site.Params.vendor.config.version 2 -}}
+        {{- if eq $globKey "true" -}}
+            {{- $routesKey = printf "%s:\n" .context.Site.Params.vendor.config.prefix.routes -}}
+        {{- end -}}
+
+        {{- if and (eq $placeholder "true") (not .Inner) -}}
+            {{- $prepend = printf "# %s#  %s" $routesKey "..." -}}
+        {{- else -}}
+            {{- $prepend = printf "%s" $routesKey -}}
+            {{- if ne $redirect "false" -}}
+                {{- $prepend = printf "%s  \"https://www.%s{default}/%s\":\n    type: redirect\n    to: \"https://%s{default}/%s\"\n" $prepend $subDom $subDir $subDom $subDir }}
+            {{- end -}}
+            {{- $prepend = printf "%s  \"https://%s{default}/%s\":\n    type: upstream\n    upstream: \"%s\"" $prepend $subDom $subDir $name }}
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- $content = printf "%s\n    %s" $content . -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- else -}}
+
+        {{- if eq $placeholder "false" -}}
+            {{- if ne $redirect "false" -}}
+                {{- $prepend = printf "\"https://www.%s{default}/%s\":\n    type: redirect\n    to: \"https://%s{default}/%s\"\n" $subDom $subDir $subDom $subDir }}
+            {{- end -}}
+            {{- $prepend = printf "%s\"https://%s{default}/%s\":\n    type: upstream\n    upstream: \"%s\"" $prepend $subDom $subDir $name }}
+            {{- range split (trim .Inner "\n") "\n" -}}
+                {{- $content = printf "%s\n    %s" $content . -}}
+            {{- end -}}
+        {{- end -}}
+
+    {{- end -}}
+
+    {{- $final := trim ( printf "%s%s" $prepend $content) "\n" -}}
+    {{- $final | safeHTML -}}
+{{- end -}}

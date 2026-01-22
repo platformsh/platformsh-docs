@@ -1,0 +1,9 @@
+<!-- Video resources -->
+
+<div>
+  {{- with .Get "src" -}}
+    <video class="mx-auto w-[70%]" controls>
+      <source src="{{ . | relURL}}" type="video/mp4">
+    </video>
+  {{end}}
+</div>

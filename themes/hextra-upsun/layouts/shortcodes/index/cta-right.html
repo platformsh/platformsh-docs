@@ -1,0 +1,8 @@
+<div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left mt-12 lg:mt-0">
+    <h2 class="text-3xl mb-2 text-gray-900 not-prose">
+        {{ .Get "title" | default .Page.Title }}
+    </h2>
+    <div class="prose [&_.highlight]:bg-gray-900 [&_.highlight]:rounded-xl [&_.cl]:text-gray-100">
+        {{ .Inner }}
+    </div>
+</div>

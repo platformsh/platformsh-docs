@@ -1,0 +1,85 @@
+{{ $version := .Get 0 }}
+
+<details class="home-expanded">
+
+    {{ if eq $version "services" }}
+        <summary><strong>Managed services</strong>
+            <p>Services on our platform are managed. You can provision them with a few lines of YAML and quickly connect them to the rest of your environment. No infrastructure expertise is required.</p>
+        </summary>
+    
+        <p><strong>Popular documentation:</strong></p>
+
+        <ul>
+        {{ with .Page.GetPage "/add-services" }}
+            {{ range .Pages }}
+                {{ if .Params.sidebarTitle }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Params.sidebarTitle }}</a></li>
+                {{ else }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+        </ul>
+    {{ else if eq $version "languages" }}
+        <summary><strong>Runtime languages</strong>
+            <p>Like services, configure your application containers with one of many supported runtime <code>type</code>s.</p>
+        </summary>
+        <p><strong>Popular documentation:</strong></p>
+
+        <ul>
+        {{ with .Page.GetPage "/languages" }}
+            {{ range .Pages }}
+                {{ if .Params.sidebarTitle }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Params.sidebarTitle }}</a></li>
+                {{ else }}
+                    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+        </ul>
+    {{ else if eq $version "configuration" }}
+        <summary><strong>Project & environment configuration</strong>
+            <p>Delve deeper into how to configure containers, environments, projects, and repositories.</p>
+        </summary>
+        <p><strong>Popular documentation:</strong></p>
+        <ul>
+            <li><a href="{{ with .Page.GetPage "/create-apps"}}{{ .RelPermalink }}{{ end}}">Application containers</a></li>
+            <li><a href="{{ with .Page.GetPage "/add-services"}}{{ .RelPermalink }}{{ end}}">Services & data</a></li>
+            <li><a href="{{ with .Page.GetPage "/define-routes"}}{{ .RelPermalink }}{{ end}}">Routes & requests</a></li>
+            <li><a href="{{ with .Page.GetPage "/development/variables"}}{{ .RelPermalink }}{{ end}}">Environment variables</a></li>
+            <li><a href="{{ with .Page.GetPage "/integrations"}}{{ .RelPermalink }}{{ end}}">Integrations & activities</a></li>
+            <li><a href="{{ with .Page.GetPage "/development/regions"}}{{ .RelPermalink }}{{ end}}">Regions</a></li>
+        </ul>
+    {{ else if eq $version "topics" }}
+        <summary><strong>Advanced topics</strong>
+            <p>Learn more about how you can customize and optimize your deployed projects, and further experiment on the platform.</p>
+        </summary>
+        <p><strong>Popular documentation:</strong></p>
+        <ul>
+            <li><a href="{{ with .Page.GetPage "/administration"}}{{ .RelPermalink }}{{ end}}">Project administration</a></li>
+            <li><a href="{{ with .Page.GetPage "/development/local/ddev"}}{{ .RelPermalink }}{{ end}}">Local development with DDEV</a></li>
+            <li><a href="{{ with .Page.GetPage "/increase-observability/integrate-observability/blackfire"}}{{ .RelPermalink }}{{ end}}">Observability: Blackfire.io</a></li>
+            <li><a href="{{ with .Page.GetPage "/increase-observability/metrics"}}{{ .RelPermalink }}{{ end}}">Observability: Infrastructure metrics</a></li>
+            <li><a href="{{ with .Page.GetPage "/security"}}{{ .RelPermalink }}{{ end}}">Security & compliance</a></li>
+            <li><a href="{{ with .Page.GetPage "/create-apps/workers"}}{{ .RelPermalink }}{{ end}}">Workers</a></li>
+            <li><a href="{{ with .Page.GetPage "/development/sanitize-db" }}{{ .RelPermalink }}{{ end}}">Sanitizing data</a></li>
+            <li><a href="{{ with .Page.GetPage "/create-apps/multi-app"}}{{ .RelPermalink }}{{ end}}">Microservices and multi-app projects</a></li>
+            <li><a href="{{ with .Page.GetPage "/development/submodules"}}{{ .RelPermalink }}{{ end}}">Submodules</a></li>
+            <li><a href="{{ with .Page.GetPage "/development/private-repository"}}{{ .RelPermalink }}{{ end}}">Private repositories</a></li>
+        </ul>
+    {{ end }}
+
+</details>
+
+
+<style>
+    .home-expanded {
+        border: 1px solid rgb(240 242 245); 
+        padding: 1rem; 
+        margin: 0.5rem 0; 
+        cursor: pointer; 
+        border: 2px solid #191C1E; 
+        color: #191C1E !important;
+    }
+
+</style>
