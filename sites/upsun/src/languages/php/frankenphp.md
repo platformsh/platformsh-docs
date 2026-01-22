@@ -3,7 +3,6 @@ title: "FrankenPHP"
 weight: 6
 sidebarTitle: "FrankenPHP"
 ---
-{{% composable/disclaimer %}}
 
 [FrankenPHP](https://frankenphp.dev/) is a modern PHP application server designed as a high-performance alternative to traditional PHP-FPM setups. It combines a native PHP runtime with an HTTP server, reducing orchestration overhead while enabling new execution models that can significantly improve performance.
 
@@ -89,6 +88,8 @@ See the [Blackfire](/increase-observability/integrate-observability/blackfire.ht
 ## Configuration
 
 FrankenPHP is available as a package in {{% vendor/name %}} composable stacks.
+
+{{% composable/disclaimer %}}
 
 ### Classic mode configuration
 
