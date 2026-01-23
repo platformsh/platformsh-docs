@@ -662,9 +662,7 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [
-        "0.2"
-      ],
+      "deprecated": [],
       "supported": [
         "2.0",
         "1.0"
