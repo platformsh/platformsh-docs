@@ -1420,11 +1420,12 @@
     "type": "elasticsearch-enterprise",
     "versions": {
       "deprecated": [
-        "8.19",
         "8.5",
         "7.17"
       ],
-      "supported": []
+      "supported": [
+        "8.19"
+      ]
     },
     "docs": {
       "relationship_name": "elasticsearch-enterprise",
