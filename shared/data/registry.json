@@ -1375,34 +1375,5 @@
         "1.6"
       ]
     }
-  },
-  "activemq-artemis": {
-    "type": "activemq-artemis",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "2"
-      ]
-    },
-    "docs": {
-      "relationship_name": "activemq-artemis",
-      "service_name": "activemq-artemis",
-      "url": "/add-services/activemq-artemis.html"
-    }
-  },
-  "elasticsearch-enterprise": {
-    "type": "elasticsearch-enterprise",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "8.5",
-        "7.17"
-      ]
-    },
-    "docs": {
-      "relationship_name": "elasticsearch-enterprise",
-      "service_name": "elasticsearch-enterprise",
-      "url": "/add-services/elasticsearch-enterprise.html"
-    }
   }
 }
