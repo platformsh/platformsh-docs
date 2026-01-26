@@ -594,6 +594,32 @@
       ]
     }
   },
+  "mongodb": {
+    "description": "Experimental MongoDB support on Upsun Fixed",
+    "repo_name": "mongodb",
+    "disk": true,
+    "docs": {
+      "relationship_name": "mongodb",
+      "service_name": "mongodb",
+      "url": "/add-services/mongodb.html"
+    },
+    "endpoint": "mongodb",
+    "min_disk_size": 512,
+    "name": "MongoDB",
+    "runtime": false,
+    "type": "mongodb",
+    "versions": {
+      "deprecated": [
+        "3.6",
+        "3.4",
+        "3.2",
+        "3.0"
+      ],
+      "supported": [
+        "4.0"
+      ]
+    }
+  },
   "mongodb-enterprise": {
     "description": "Support for the enterprise edition of MongoDB",
     "repo_name": "mongodb",
@@ -1349,47 +1375,5 @@
         "1.6"
       ]
     }
-  },
-  "activemq-artemis": {
-    "type": "activemq-artemis",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "2.44"
-      ]
-    },
-    "docs": {
-      "relationship_name": "activemq-artemis",
-      "service_name": "activemq-artemis",
-      "url": "/add-services/activemq-artemis.html"
-    },
-    "description": "",
-    "disk": true,
-    "endpoint": "",
-    "name": "activemq-artemis",
-    "repo_name": "activemq-artemis",
-    "runtime": false
-  },
-  "elasticsearch-enterprise": {
-    "type": "elasticsearch-enterprise",
-    "versions": {
-      "deprecated": [
-        "7.17"
-      ],
-      "supported": [
-        "8.19"
-      ]
-    },
-    "docs": {
-      "relationship_name": "elasticsearch-enterprise",
-      "service_name": "elasticsearch-enterprise",
-      "url": "/add-services/elasticsearch-enterprise.html"
-    },
-    "description": "",
-    "disk": true,
-    "endpoint": "",
-    "name": "elasticsearch-enterprise",
-    "repo_name": "elasticsearch-enterprise",
-    "runtime": false
   }
 }
