@@ -62,16 +62,11 @@ With Stateful execution in Worker mode, the application is booted once. It remai
 
 These issues do not occur in stateless PHP-FPM setups.
 
-{{< note theme="warning" title="Worker mode note" version="1" >}}
+{{< note theme="info" title="Worker mode note" version="1" >}}
 
-Note that aplications not explicitly designed for long-running workers may require:
+Aplications not explicitly designed for long-running workers may require manual state resets between requests, careful handling of static properties and global variables, explicit cleanup logic and auditing of caching and service lifecycles.
 
-- Manual state resets between requests
-- Careful handling of static properties and global variables
-- Explicit cleanup logic
-- Auditing of caching and service lifecycles
-
-Worker mode offers significant performance gains, but only enable it once you are confident your application can safely operate in a stateful environment.
+Tools like [Laravel Octane](https://laravel.com/docs/master/octane) or the [Symfony FrankenPHP Runtime](https://github.com/php-runtime/frankenphp-symfony) are designed to manage this environment safely. They often serve clones of the application or reset the container state between requests to prevent variables from leaking.
 
 {{< /note >}}
 
