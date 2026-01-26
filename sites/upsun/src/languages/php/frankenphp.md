@@ -3,7 +3,7 @@ title: "FrankenPHP"
 weight: 6
 sidebarTitle: "FrankenPHP"
 ---
-
+<!-- vale off -->
 [FrankenPHP](https://frankenphp.dev/) is a modern PHP application server designed as a high-performance alternative to traditional PHP-FPM setups. It combines a native PHP runtime with an HTTP server, reducing orchestration overhead while enabling new execution models that can significantly improve performance.
 
 FrankenPHP is particularly well-suited for modern PHP frameworks and applications that want faster request handling, simpler infrastructure, and optional support for long-running workers.
@@ -211,4 +211,4 @@ Both modes are fully supported on {{% vendor/name %}}, allowing you to choose th
 - [Blackfire FrankenPHP documentation](https://docs.blackfire.io/php/integrations/frankenphp)
 - [Up(Sun) and running with FrankenPHP](https://upsun.com/blog/upsun-and-running-with-frankenphp/)
 - [How we scaled live connections for 1200 developers at SymfonyCon](https://devcenter.upsun.com/posts/how-we-scaled-live-connections-for-1200-developers-at-symfonycon/#starting-with-frankenphp-the-documentation-gap)
-
+<!-- vale on -->
