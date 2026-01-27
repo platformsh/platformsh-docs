@@ -215,6 +215,78 @@ Note that if your endpoint URL includes a `PORT`, that can also be included in t
 Once you've [added the service](../../add-services/_index.md),
 to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#force-a-redeploy).
 
+### Excluding services from HTTP log forwarding
+
+All log forwarding integrations support an `excluded_services` property. This allows you to prevent logs from specific applications or services from being forwarded to an external logging provider.
+
+This is useful for reducing noise, limiting log volume, or excluding non-critical services. The exclusion list is defined at the project level and applies to all environments.
+
+#### Supported integrations
+
+The `excluded_services` property is supported by all log forwarder types, including:
+
+- Syslog
+- Sumologic
+- Splunk
+- HTTP log forwarding
+- New Relic
+- OTLP
+
+#### Excluding services
+
+By default, logs from all services are forwarded. To exclude specific services, define them using `excluded_services`:
+
+```yaml {configFile="app"}
+logs_forwarders:
+  - type: httplog
+    endpoint: https://logs.example.com
+    excluded_services:
+      - cache
+      - debug-worker
+```
+In this example, logs from the cache and debug-worker services are not forwarded.
+
+{{< note theme="note" >}}
+Note that the same exclusion list applies to all environments. If a listed service does not exist in an environment, it is silently ignored. No error is raised if a service is missing.
+{{< /note >}}
+
+#### Including services explicitly
+
+You can optionally define an `included_services` list to control exactly which services are forwarded. If `included_services` is set, only the listed services are forwarded.
+
+```yaml {configFile="app"}
+logs_forwarders:
+  - type: syslog
+    host: syslog.example.com
+    included_services:
+      - app
+      - api
+```
+#### Combining include and exclude rules
+
+You can use both `included_services` and `excluded_services` together. The following rules apply:
+- If `included_services` is not set, all services are included by default
+- If `included_services` is set, only those services are included
+- `excluded_services` always removes services from the active set
+
+```yaml {configFile="app"}
+logs_forwarders:
+  - type: syslog
+    host: syslog.example.com
+    included_services:
+      - app
+      - api
+      - worker
+      - cache
+    excluded_services:
+      - cache
+```
+Result: logs from `app`, `api`, and `worker` are forwarded.
+
+{{< note theme="info" >}}
+Note that a service cannot appear in both lists. Configurations that include the same service in both lists are invalid.
+{{< /note >}}
+
 ## Log levels
 
 Your app may output logs with distinct severity levels.
