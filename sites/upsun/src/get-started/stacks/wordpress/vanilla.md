@@ -97,7 +97,7 @@ If you changed the name of the directory at step 4 you'll need to update the `pa
               scripts: true
               allow: true
               rules:
-                ^/license\.text$:
+                ^/license\.txt$:
                   allow: false
                 ^/readme\.html$:
                   allow: false

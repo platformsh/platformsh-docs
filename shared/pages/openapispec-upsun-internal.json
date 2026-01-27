@@ -2905,6 +2905,177 @@
         }
       }
     },
+    "/health": {
+      "get": {
+        "operationId": "aiHealthCheck",
+        "summary": "[Internal] Health check",
+        "description": "Check the health of the service",
+        "parameters": [
+          {
+            "name": "full",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Request full status information"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Health status results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "http": {
+                      "type": "string",
+                      "enum": [
+                        "UP",
+                        "DOWN"
+                      ]
+                    },
+                    "mysql": {
+                      "type": "string",
+                      "enum": [
+                        "UP",
+                        "DOWN"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "http"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters"
+          },
+          "500": {
+            "description": "Service unhealthy"
+          }
+        }
+      }
+    },
+    "/ai/generate-configuration": {
+      "post": {
+        "operationId": "generateProjectConfiguration",
+        "summary": "[Internal] Generate project configuration",
+        "description": "Generate Upsun configuration for a project using AI",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateConfigurationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Streaming response with configuration generation progress",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/StreamMessage"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DataMessage"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - insufficient permissions"
+          },
+          "404": {
+            "description": "Organization or project not found"
+          }
+        }
+      }
+    },
+    "/ai/configure-repo": {
+      "post": {
+        "operationId": "configureRepository",
+        "summary": "[Internal] Configure repository",
+        "description": "Generate configuration for a repository by URL",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigureRepositoryRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Streaming response with repository configuration",
+            "content": {
+              "application/x-ndjson": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/StreamMessage"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DataMessage"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid URL or parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/invitations": {
       "parameters": [
         {
@@ -7138,11 +7309,11 @@
     },
     "/billing": {
       "get": {
-        "summary": "[Internal] List billing account mapping details.",
-        "description": "Lists billing account mapping details with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-billing-accounts",
+        "summary": "[Internal] List billing profile mapping details.",
+        "description": "Lists billing profile mapping details with pagination, filtering, and sorting support. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "list-billing-profiles",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
@@ -7192,11 +7363,11 @@
         ],
         "responses": {
           "200": {
-            "description": "List of billing accounts",
+            "description": "List of billing profiles",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_account_list"
+                  "$ref": "#/components/schemas/billing_profile_list"
                 }
               }
             }
@@ -7214,26 +7385,26 @@
         }
       }
     },
-    "/billing/{billing_account_id}": {
+    "/billing/{billing_profile_id}": {
       "get": {
-        "summary": "[Internal] Get billing account mapping details",
-        "description": "Retrieves mapping details for a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-billing-account",
+        "summary": "[Internal] Get billing profile mapping details",
+        "description": "Retrieves mapping details for a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "get-billing-profile-mapping",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
           "200": {
-            "description": "Billing account found",
+            "description": "Billing profile found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_account_with_links"
+                  "$ref": "#/components/schemas/billing_profile_with_links"
                 }
               }
             }
@@ -7261,15 +7432,15 @@
         }
       },
       "patch": {
-        "summary": "[Internal] Update billing account mapping details",
-        "description": "Updates a billing account entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "update-billing-account",
+        "summary": "[Internal] Update billing profile mapping details",
+        "description": "Updates the mapping of a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "update-billing-profile-mapping",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "requestBody": {
@@ -7295,11 +7466,11 @@
         },
         "responses": {
           "200": {
-            "description": "Billing account updated",
+            "description": "Billing profile updated",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_account_with_links"
+                  "$ref": "#/components/schemas/billing_profile_with_links"
                 }
               }
             }
@@ -7317,22 +7488,22 @@
         }
       }
     },
-    "/billing/{billing_account_id}/account": {
+    "/billing/{billing_profile_id}/profile": {
       "get": {
-        "summary": "[Internal] Get profile for billing account",
-        "description": "Retrieves the profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-account-profile",
+        "summary": "[Internal] Get billing profile",
+        "description": "Retrieves a specific billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "get-billing-profile",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
           "200": {
-            "description": "Account profile payload",
+            "description": "Billing profile payload",
             "content": {
               "application/json": {
                 "schema": {
@@ -7364,15 +7535,15 @@
         }
       },
       "patch": {
-        "summary": "[Internal] Update profile for billing account",
-        "description": "Update the profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "update-account-profile",
+        "summary": "[Internal] Update billing profile",
+        "description": "Update the profile associated with a billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "update-billing-profile",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "requestBody": {
@@ -7424,7 +7595,7 @@
         },
         "responses": {
           "200": {
-            "description": "Account profile updated and returned",
+            "description": "Billing profile updated and returned",
             "content": {
               "application/json": {
                 "schema": {
@@ -7466,17 +7637,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/addons": {
+    "/billing/{billing_profile_id}/addons": {
       "get": {
         "summary": "Get add-ons",
-        "description": "Retrieves information about the add-ons for a billing account.",
-        "operationId": "get-account-addons",
+        "description": "Retrieves information about the add-ons for a billing profile.",
+        "operationId": "get-profile-addons",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -7485,7 +7656,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/account_addons"
+                  "$ref": "#/components/schemas/profile_addons"
                 }
               }
             }
@@ -7515,14 +7686,14 @@
       },
       "patch": {
         "summary": "[Internal] Update add-ons",
-        "description": "Updates the add-ons for a billing account.",
-        "operationId": "update-account-addons",
+        "description": "Updates the add-ons for a billing profile.",
+        "operationId": "update-profile-addons",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "requestBody": {
@@ -7537,7 +7708,7 @@
                       "",
                       "standard"
                     ],
-                    "description": "The support level for the billing account."
+                    "description": "The support level for the billing profile."
                   }
                 }
               }
@@ -7550,7 +7721,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/account_addons"
+                  "$ref": "#/components/schemas/profile_addons"
                 }
               }
             }
@@ -7579,17 +7750,17 @@
         "x-vendor": "upsun"
       }
     },
-    "/billing/{billing_account_id}/invoices": {
+    "/billing/{billing_profile_id}/invoices": {
       "get": {
         "summary": "[Internal] List invoices",
-        "description": "Retrieves a paginated list of invoices for the specified billing account.\n\nThis endpoint returns all invoices associated with a billing account, including\nboth current and historical invoices. Results are returned in reverse chronological\norder (newest first) by default.\n\nNote:  This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
-        "operationId": "list-account-invoices",
+        "description": "Retrieves a paginated list of invoices for the specified billing profile.\n\nThis endpoint returns all invoices associated with a billing profile, including\nboth current and historical invoices. Results are returned in reverse chronological\norder (newest first) by default.\n\nNote:  This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
+        "operationId": "list-profile-invoices",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "name": "page[size]",
@@ -7752,17 +7923,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/payment-source": {
+    "/billing/{billing_profile_id}/payment-source": {
       "get": {
         "summary": "[Internal] Get payment source",
-        "description": "Retrieves the payment source for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "description": "Retrieves the payment source for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
         "operationId": "get-payment-source",
         "tags": [
           "Payments"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -7813,14 +7984,14 @@
       },
       "post": {
         "summary": "[Internal] Create payment source",
-        "description": "Creates a payment source for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "description": "Creates a payment source for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
         "operationId": "create-payment-source",
         "tags": [
           "Payments"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "requestBody": {
@@ -7894,17 +8065,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/payment-source/intent": {
+    "/billing/{billing_profile_id}/payment-source/intent": {
       "post": {
         "summary": "[Internal] Create payment intent",
-        "description": "Creates a payment intent for the specified billing account.",
-        "operationId": "create-account-payment-intent",
+        "description": "Creates a payment intent for the specified billing profile.",
+        "operationId": "create-profile-payment-intent",
         "tags": [
           "Payments"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -7965,7 +8136,7 @@
     "/billing/invoices": {
       "get": {
         "summary": "[Internal] List all invoices",
-        "description": "Retrieves a paginated and filterable list of invoices across all billing accounts.\n\nThis endpoint returns all invoices that the authenticated user has access to,\nwith support for filtering by various criteria. Results are returned in reverse\nchronological order (newest first) by default.\n\nNote: This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
+        "description": "Retrieves a paginated and filterable list of invoices across all billing profiles.\n\nThis endpoint returns all invoices that the authenticated user has access to,\nwith support for filtering by various criteria. Results are returned in reverse\nchronological order (newest first) by default.\n\nNote: This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
         "operationId": "list-all-invoices",
         "tags": [
           "Invoices"
@@ -8034,7 +8205,7 @@
             "schema": {
               "type": "string",
               "enum": [
-                "billing_account",
+                "billing_profile",
                 "organization"
               ]
             }
@@ -8139,17 +8310,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/invoices/{invoice_id}": {
+    "/billing/{billing_profile_id}/invoices/{invoice_id}": {
       "get": {
         "summary": "[Internal] Get invoice",
-        "description": "Retrieves a specific invoice by its ID for the specified billing account.\n\nThis endpoint provides detailed information about a single invoice, including\nall monetary amounts, dates, status information, and links to related resources\nsuch as PDF downloads.\n\nNote: This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
-        "operationId": "get-account-invoice",
+        "description": "Retrieves a specific invoice by its ID for the specified billing profile.\n\nThis endpoint provides detailed information about a single invoice, including\nall monetary amounts, dates, status information, and links to related resources\nsuch as PDF downloads.\n\nNote: This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
+        "operationId": "get-profile-invoice",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "$ref": "#/components/parameters/billing_invoice_id"
@@ -8189,17 +8360,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/invoices/{invoice_id}/details": {
+    "/billing/{billing_profile_id}/invoices/{invoice_id}/details": {
       "get": {
         "summary": "[Internal] Get invoice details",
         "description": "Retrieves the lines items of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-account-invoice-details",
+        "operationId": "get-profile-invoice-details",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "$ref": "#/components/parameters/billing_invoice_id"
@@ -8248,17 +8419,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/invoices/{invoice_id}/payments": {
+    "/billing/{billing_profile_id}/invoices/{invoice_id}/payments": {
       "get": {
         "summary": "[Internal] Get invoice payments",
         "description": "Retrieves the payments of an invoice. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-account-invoice-payments",
+        "operationId": "get-profile-invoice-payments",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "$ref": "#/components/parameters/billing_invoice_id"
@@ -8307,17 +8478,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/alerts/billing": {
+    "/billing/{billing_profile_id}/alerts/billing": {
       "get": {
         "summary": "[Internal] Get billing alert configuration",
-        "description": "Retrieves billing alert configuration for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-account-billing-alert-config",
+        "description": "Retrieves billing alert configuration for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "get-profile-billing-alert-config",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -8355,14 +8526,14 @@
       },
       "patch": {
         "summary": "[Internal] Update billing alert configuration",
-        "description": "Updates billing alert configuration for the specified billing accounts. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "update-account-billing-alert-config",
+        "description": "Updates billing alert configuration for the specified billing profiles. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "update-profile-billing-alert-config",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "requestBody": {
@@ -8428,17 +8599,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/dunning-actions": {
+    "/billing/{billing_profile_id}/dunning-actions": {
       "get": {
         "summary": "[Internal] List scheduled dunning actions",
-        "description": "Retrieves a list of all scheduled dunning actions for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-account-dunning-actions",
+        "description": "Retrieves a list of all scheduled dunning actions for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "list-billing-profile-dunning-actions",
         "tags": [
           "Invoices"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -8447,7 +8618,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/account_dunning_actions"
+                  "$ref": "#/components/schemas/billing_profile_dunning_actions"
                 }
               }
             }
@@ -8475,17 +8646,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/discounts": {
+    "/billing/{billing_profile_id}/discounts": {
       "get": {
-        "summary": "[Internal] List account discounts",
-        "description": "Retrieves all applicable discounts granted to the specified account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-account-discounts",
+        "summary": "[Internal] List billing profile discounts",
+        "description": "Retrieves all applicable discounts granted to the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "list-billing-profile-discounts",
         "tags": [
           "Discounts"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -8548,17 +8719,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/users": {
+    "/billing/{billing_profile_id}/users": {
       "get": {
-        "summary": "[Internal] List billing account users",
-        "description": "Accessible to the billing entity owner.",
-        "operationId": "list-billing-account-users",
+        "summary": "[Internal] List billing profile users",
+        "description": "Accessible to the billing account owner.",
+        "operationId": "list-billing-profile-users",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -8617,15 +8788,15 @@
         }
       },
       "post": {
-        "summary": "[Internal] Add user to billing account",
-        "description": "Add a user to a billing.",
+        "summary": "[Internal] Add user to billing profile",
+        "description": "Add a user to a billing profile.",
         "operationId": "create-billing-user",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "requestBody": {
@@ -8695,17 +8866,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/users/{billing_user_id}": {
+    "/billing/{billing_profile_id}/users/{billing_user_id}": {
       "get": {
-        "summary": "[Internal] Get billing account user",
-        "description": "Retrieves the specified billing account user.",
+        "summary": "[Internal] Get billing profile user",
+        "description": "Retrieves the specified billing profile user.",
         "operationId": "get-billing-user",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "$ref": "#/components/parameters/billing_user_id"
@@ -8745,15 +8916,15 @@
         }
       },
       "patch": {
-        "summary": "[Internal] Update billing account user",
-        "description": "Updates the specified billing account user.",
+        "summary": "[Internal] Update billing profile user",
+        "description": "Updates the specified billing profile user.",
         "operationId": "update-billing-user",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "$ref": "#/components/parameters/billing_user_id"
@@ -8817,15 +8988,15 @@
         }
       },
       "delete": {
-        "summary": "Remove user from billing account",
-        "description": "Removes the specified user from the billing account.",
+        "summary": "Remove user from billing profile",
+        "description": "Removes the specified user from the billing profile.",
         "operationId": "delete-billing-user",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           },
           {
             "$ref": "#/components/parameters/billing_user_id"
@@ -8858,17 +9029,17 @@
         }
       }
     },
-    "/billing/{billing_account_id}/vouchers": {
+    "/billing/{billing_profile_id}/vouchers": {
       "get": {
         "summary": "[Internal] List vouchers",
-        "description": "Retrieves vouchers for the specified billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-account-vouchers",
+        "description": "Retrieves vouchers for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "list-profile-vouchers",
         "tags": [
           "Vouchers"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_account_id"
+            "$ref": "#/components/parameters/billing_profile_id"
           }
         ],
         "responses": {
@@ -8905,13 +9076,13 @@
         }
       }
     },
-    "/billing/account": {
+    "/billing/profiles": {
       "post": {
-        "summary": "[Internal] Create profile and billing account",
-        "description": "Create a billing account profile.",
-        "operationId": "create-account-profile-with-billing-account",
+        "summary": "[Internal] Create billing account and profile (migration endpoint)",
+        "description": "Create a billing account and profile.",
+        "operationId": "create-profile-with-billing-profile",
         "tags": [
-          "Billing Accounts"
+          "Billing Profiles"
         ],
         "parameters": [
           {
@@ -8990,11 +9161,11 @@
         },
         "responses": {
           "201": {
-            "description": "Billing account created with associated profile",
+            "description": "Billing profile created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_account_with_links"
+                  "$ref": "#/components/schemas/billing_profile_with_links"
                 }
               }
             }
@@ -9011,88 +9182,6 @@
           },
           "403": {
             "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/billing/accounts": {
-      "get": {
-        "summary": "[Internal] Get profiles for billing accounts",
-        "description": "List the profiles associated with a billing accounts. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-account-profiles",
-        "tags": [
-          "Billing Accounts"
-        ],
-        "parameters": [
-          {
-            "name": "filter[account_tier][eq]",
-            "in": "query",
-            "description": "Filter by customer tier (exact match)",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "professional",
-                "enterprise",
-                "elite"
-              ]
-            }
-          },
-          {
-            "name": "filter[customer_type][eq]",
-            "in": "query",
-            "description": "Filter by customer type (exact match)",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "corporation",
-                "government",
-                "individual"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Account profiles list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "count": {
-                      "type": "integer",
-                      "description": "Total number of profiles."
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/profile"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -9458,17 +9547,17 @@
         }
       }
     },
-    "/billing/entities": {
+    "/billing/accounts": {
       "get": {
-        "summary": "[Internal] List billing entities",
-        "description": "List billing entities. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-billing-entities",
+        "summary": "[Internal] List billing accounts",
+        "description": "List billing accounts. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "list-billing-accounts",
         "tags": [
-          "Billing Entities"
+          "Billing Accounts"
         ],
         "responses": {
           "200": {
-            "description": "Billing entity list",
+            "description": "Billing account list",
             "content": {
               "application/json": {
                 "schema": {
@@ -9476,12 +9565,12 @@
                   "properties": {
                     "count": {
                       "type": "integer",
-                      "description": "Total number of entities."
+                      "description": "Total number of accounts."
                     },
                     "items": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/billing_entity_with_links"
+                        "$ref": "#/components/schemas/billing_account_with_links"
                       }
                     }
                   }
@@ -9512,29 +9601,29 @@
         }
       },
       "post": {
-        "summary": "[Internal] Create billing entity",
-        "description": "Creates a new billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "create-billing-entity",
+        "summary": "[Internal] Create billing account",
+        "description": "Creates a new billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "create-billing-account",
         "tags": [
-          "Billing Entities"
+          "Billing Accounts"
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/billing_entity_payload"
+                "$ref": "#/components/schemas/billing_account_payload"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Billing entity created",
+            "description": "Billing account created",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_entity_with_links"
+                  "$ref": "#/components/schemas/billing_account_with_links"
                 }
               }
             }
@@ -9552,26 +9641,26 @@
         }
       }
     },
-    "/billing/entities/{billing_entity_id}": {
+    "/billing/accounts/{billing_account_id}": {
       "get": {
-        "summary": "[Internal] Get billing entity",
-        "description": "Retrieves a billing entity by ID. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "get-billing-entity",
+        "summary": "[Internal] Get billing account",
+        "description": "Retrieves a billing account by ID. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "get-billing-account",
         "tags": [
-          "Billing Entities"
+          "Billing Accounts"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_entity_id"
+            "$ref": "#/components/parameters/billing_account_id"
           }
         ],
         "responses": {
           "200": {
-            "description": "Billing entity found",
+            "description": "Billing account found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_entity_with_links"
+                  "$ref": "#/components/schemas/billing_account_with_links"
                 }
               }
             }
@@ -9599,15 +9688,15 @@
         }
       },
       "patch": {
-        "summary": "[Internal] Update billing entity",
-        "description": "Updates a billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "update-billing-entity",
+        "summary": "[Internal] Update billing account",
+        "description": "Updates a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "update-billing-account",
         "tags": [
-          "Billing Entities"
+          "Billing Accounts"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_entity_id"
+            "$ref": "#/components/parameters/billing_account_id"
           }
         ],
         "requestBody": {
@@ -9615,18 +9704,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/billing_entity_payload"
+                "$ref": "#/components/schemas/billing_account_payload"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Billing entity updated",
+            "description": "Billing account updated",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/billing_entity_with_links"
+                  "$ref": "#/components/schemas/billing_account_with_links"
                 }
               }
             }
@@ -9654,23 +9743,23 @@
         }
       }
     },
-    "/billing/entities/{billing_entity_id}/accounts": {
+    "/billing/accounts/{billing_account_id}/profiles": {
       "get": {
-        "summary": "[Internal] Get billing account profiles belonging to a billing entity",
-        "description": "List the account profiles associated with a billing entity. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
-        "operationId": "list-entity-account-profiles",
+        "summary": "[Internal] Get billing profiles belonging to a billing account",
+        "description": "List the billing profiles associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "list-account-profiles",
         "tags": [
-          "Billing Accounts",
-          "Billing Entities"
+          "Billing Profiles",
+          "Billing Accounts"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_entity_id"
+            "$ref": "#/components/parameters/billing_account_id"
           }
         ],
         "responses": {
           "200": {
-            "description": "Billing account profiles list",
+            "description": "Billing profiles list",
             "content": {
               "application/json": {
                 "schema": {
@@ -9712,19 +9801,116 @@
             }
           }
         }
-      }
-    },
-    "/users/{billing_user_id}/billing/entities": {
-      "get": {
-        "summary": "[Internal] User billing entities",
-        "description": "Retrieves billing entities owned by the user.",
-        "operationId": "list-user-billing-entities",
+      },
+      "post": {
+        "summary": "[Internal] Create billing profile",
+        "description": "Create a billing profile associated with a billing account. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "create-billing-profile",
         "tags": [
-          "Billing Entities"
+          "Billing Profiles"
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/billing_user_id"
+            "$ref": "#/components/parameters/billing_account_id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name_line": {
+                    "type": "string"
+                  },
+                  "billing_contact": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "company_name": {
+                    "type": "string"
+                  },
+                  "billing_street_1": {
+                    "type": "string"
+                  },
+                  "billing_street_2": {
+                    "type": "string"
+                  },
+                  "administrative_area": {
+                    "type": "string"
+                  },
+                  "locality": {
+                    "type": "string"
+                  },
+                  "postal_code": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Billing profile created and returned",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/profile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/bad_request_error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/quote-project/{project_id}/users": {
+      "get": {
+        "summary": "[Internal] Quote project",
+        "description": "Retrieves a quote (estimation) for a project cost.",
+        "operationId": "quote-project",
+        "tags": [
+          "Estimation"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/project_id"
+          },
+          {
+            "$ref": "#/components/parameters/currency_query"
           }
         ],
         "responses": {
@@ -9733,15 +9919,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/billing_entity_with_links"
-                      }
-                    }
-                  }
+                  "$ref": "#/components/schemas/project_estimate"
                 }
               }
             }
@@ -9772,10 +9950,65 @@
     "/users/{billing_user_id}/billing/accounts": {
       "get": {
         "summary": "[Internal] User billing accounts",
-        "description": "Retrieves billing accounts the user has access to.",
+        "description": "Retrieves billing accounts owned by the user.",
         "operationId": "list-user-billing-accounts",
         "tags": [
           "Billing Accounts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_user_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/billing_account_with_links"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{billing_user_id}/billing/profiles": {
+      "get": {
+        "summary": "[Internal] User billing profiles",
+        "description": "Retrieves billing profiles the user has access to.",
+        "operationId": "list-user-billing-profiles",
+        "tags": [
+          "Billing Profiles"
         ],
         "parameters": [
           {
@@ -18406,7 +18639,8 @@
                     "_environment_type",
                     "_branch_machine_name",
                     "_top_urls_count",
-                    "data"
+                    "data",
+                    "filters"
                   ],
                   "properties": {
                     "_grain": {
@@ -18453,6 +18687,91 @@
                       "description": "Number of top URLs included in response",
                       "type": "integer",
                       "example": 10
+                    },
+                    "_methods": {
+                      "description": "Applied method filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_methods_mode": {
+                      "description": "Method filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_domains": {
+                      "description": "Applied domain filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_domains_mode": {
+                      "description": "Domain filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_code_slots": {
+                      "description": "Applied code slot filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_code_slots_mode": {
+                      "description": "Code slot filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_codes": {
+                      "description": "Applied HTTP status code filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_codes_mode": {
+                      "description": "Code filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_request_duration_slots": {
+                      "description": "Applied request duration slot filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_request_duration_slots_mode": {
+                      "description": "Request duration slot filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
                     },
                     "data": {
                       "description": "HTTP traffic data containing URL statistics and time-series information",
@@ -18662,6 +18981,65 @@
                             "type": "object",
                             "additionalProperties": false
                           }
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
+                    },
+                    "filters": {
+                      "required": [
+                        "max_applicable_filters"
+                      ],
+                      "properties": {
+                        "fields": {
+                          "type": "object",
+                          "example": {
+                            "severity": {
+                              "distinct_values": 3,
+                              "type": "string",
+                              "values": [
+                                {
+                                  "value": "INFO",
+                                  "count": 297
+                                },
+                                {
+                                  "value": "ERROR",
+                                  "count": 2
+                                }
+                              ]
+                            }
+                          },
+                          "additionalProperties": {
+                            "properties": {
+                              "distinct_values": {
+                                "type": "integer"
+                              },
+                              "type": {
+                                "type": "string",
+                                "example": "string"
+                              },
+                              "values": {
+                                "type": "array",
+                                "items": {
+                                  "properties": {
+                                    "value": {
+                                      "type": "string"
+                                    },
+                                    "count": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object",
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "max_applicable_filters": {
+                          "type": "integer",
+                          "example": 45
                         }
                       },
                       "type": "object",
@@ -19042,6 +19420,7 @@
                     "_project_id",
                     "_environment_id",
                     "_branch_machine_name",
+                    "_total",
                     "data",
                     "filters"
                   ],
@@ -19075,6 +19454,145 @@
                       "description": "Branch machine name",
                       "type": "string",
                       "example": "main"
+                    },
+                    "_total": {
+                      "description": "Total number of log entries matching the current filters",
+                      "type": "integer",
+                      "example": 15000
+                    },
+                    "_severities": {
+                      "description": "Active severity filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "ERROR",
+                        "WARNING"
+                      ]
+                    },
+                    "_severities_mode": {
+                      "description": "Mode for severity filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_services": {
+                      "description": "Active service filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "app"
+                      ]
+                    },
+                    "_services_mode": {
+                      "description": "Mode for service filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_instances": {
+                      "description": "Active instance filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "app.0"
+                      ]
+                    },
+                    "_instances_mode": {
+                      "description": "Mode for instance filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_hosts": {
+                      "description": "Active host filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "web-0"
+                      ]
+                    },
+                    "_hosts_mode": {
+                      "description": "Mode for host filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_commands": {
+                      "description": "Active command filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "nginx"
+                      ]
+                    },
+                    "_commands_mode": {
+                      "description": "Mode for command filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_container_names": {
+                      "description": "Active container name filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "app_container"
+                      ]
+                    },
+                    "_container_names_mode": {
+                      "description": "Mode for container name filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_container_images": {
+                      "description": "Active container image filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "php:8.1"
+                      ]
+                    },
+                    "_container_images_mode": {
+                      "description": "Mode for container image filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
                     },
                     "data": {
                       "type": "array",
@@ -19322,6 +19840,18 @@
           },
           {
             "name": "ulid",
+            "in": "query",
+            "description": "Pagination cursor (ULID format) to retrieve next page of results",
+            "required": false,
+            "deprecated": true,
+            "schema": {
+              "type": "string",
+              "format": "ulid",
+              "example": "01HXYZ123456789ABCDEFGHIJK"
+            }
+          },
+          {
+            "name": "cursor",
             "in": "query",
             "description": "Pagination cursor (ULID format) to retrieve next page of results",
             "required": false,
@@ -19625,13 +20155,158 @@
                       "description": "Cursor for next page (if more results available)",
                       "type": "string",
                       "format": "ulid",
-                      "example": "01HXYZ987654321ZYXWVUTSRQP"
+                      "example": "01HXYZ987654321ZYXWVUTSRQP",
+                      "nullable": true
+                    },
+                    "_has_more_results": {
+                      "description": "Indicates whether more logs are available beyond the current result set",
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "_severities": {
+                      "description": "Active severity filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "ERROR",
+                        "WARNING"
+                      ]
+                    },
+                    "_severities_mode": {
+                      "description": "Mode for severity filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_services": {
+                      "description": "Active service filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "app"
+                      ]
+                    },
+                    "_services_mode": {
+                      "description": "Mode for service filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_instances": {
+                      "description": "Active instance filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "app.0"
+                      ]
+                    },
+                    "_instances_mode": {
+                      "description": "Mode for instance filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_hosts": {
+                      "description": "Active host filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "web-0"
+                      ]
+                    },
+                    "_hosts_mode": {
+                      "description": "Mode for host filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_commands": {
+                      "description": "Active command filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "nginx"
+                      ]
+                    },
+                    "_commands_mode": {
+                      "description": "Mode for command filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_container_names": {
+                      "description": "Active container name filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "app_container"
+                      ]
+                    },
+                    "_container_names_mode": {
+                      "description": "Mode for container name filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
+                    },
+                    "_container_images": {
+                      "description": "Active container image filters (only present when filters applied)",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "php:8.1"
+                      ]
+                    },
+                    "_container_images_mode": {
+                      "description": "Mode for container image filters: \"1\" (include) or \"-1\" (exclude)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "example": "1"
                     },
                     "data": {
                       "type": "array",
                       "items": {
                         "properties": {
                           "ulid": {
+                            "type": "string",
+                            "format": "ulid",
+                            "example": "01HXYZ123456789ABCDEFGHIJK"
+                          },
+                          "cursor": {
                             "type": "string",
                             "format": "ulid",
                             "example": "01HXYZ123456789ABCDEFGHIJK"
@@ -19681,62 +20356,6 @@
                         "type": "object",
                         "additionalProperties": false
                       }
-                    },
-                    "filters": {
-                      "properties": {
-                        "fields": {
-                          "type": "object",
-                          "example": {
-                            "severity": {
-                              "distinct_values": 3,
-                              "type": "string",
-                              "values": [
-                                {
-                                  "value": "INFO",
-                                  "count": 297
-                                },
-                                {
-                                  "value": "ERROR",
-                                  "count": 2
-                                }
-                              ]
-                            }
-                          },
-                          "additionalProperties": {
-                            "properties": {
-                              "distinct_values": {
-                                "type": "integer"
-                              },
-                              "type": {
-                                "type": "string",
-                                "example": "string"
-                              },
-                              "values": {
-                                "type": "array",
-                                "items": {
-                                  "properties": {
-                                    "value": {
-                                      "type": "string"
-                                    },
-                                    "count": {
-                                      "type": "integer"
-                                    }
-                                  },
-                                  "type": "object",
-                                  "additionalProperties": false
-                                }
-                              }
-                            },
-                            "type": "object"
-                          }
-                        },
-                        "max_applicable_filters": {
-                          "type": "integer",
-                          "example": 45
-                        }
-                      },
-                      "type": "object",
-                      "additionalProperties": false
                     }
                   },
                   "type": "object",
@@ -29356,51 +29975,19 @@
             }
           },
           {
-            "in": "query",
-            "name": "filter[updated_at]",
-            "description": "Allows filtering by `updated_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterUpdatedAt"
           },
           {
-            "in": "query",
-            "name": "filter[created_at]",
-            "description": "Allows filtering by `created_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterCreatedAt"
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -29497,51 +30084,19 @@
             }
           },
           {
-            "in": "query",
-            "name": "filter[updated_at]",
-            "description": "Allows filtering by `updated_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterUpdatedAt"
           },
           {
-            "in": "query",
-            "name": "filter[created_at]",
-            "description": "Allows filtering by `created_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterCreatedAt"
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -29888,7 +30443,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -30259,14 +30814,7 @@
             }
           },
           {
-            "in": "query",
-            "name": "filter[updated_at]",
-            "description": "Allows filtering by `updated_at` using one or more operators.",
-            "style": "deepObject",
-            "explode": true,
-            "schema": {
-              "$ref": "#/components/schemas/DateTimeFilter"
-            }
+            "$ref": "#/components/parameters/FilterUpdatedAt"
           }
         ],
         "responses": {
@@ -30549,7 +31097,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -30826,7 +31374,101 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}/purge": {
+      "post": {
+        "summary": "[Internal] Purge project CDN cache",
+        "description": "Purges all cached content for the specified project's CDN.",
+        "operationId": "purge-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/cdn/{cdn_id}/rotate-tokens": {
+      "post": {
+        "summary": "[Internal] Rotate project CDN tokens",
+        "description": "Rotates authentication tokens for the specified project's CDN.",
+        "operationId": "rotate-tokens-org-project-cdn",
+        "tags": [
+          "Edge"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/CdnID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CDN"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -30847,13 +31489,13 @@
             "$ref": "#/components/parameters/OrganizationID"
           },
           {
-            "$ref": "#/components/parameters/from"
+            "$ref": "#/components/parameters/TimeRangeFrom"
           },
           {
-            "$ref": "#/components/parameters/to"
+            "$ref": "#/components/parameters/TimeRangeTo"
           },
           {
-            "$ref": "#/components/parameters/interval"
+            "$ref": "#/components/parameters/TimeRangeInterval"
           }
         ],
         "responses": {
@@ -30895,13 +31537,13 @@
             "$ref": "#/components/parameters/ProjectID"
           },
           {
-            "$ref": "#/components/parameters/from"
+            "$ref": "#/components/parameters/TimeRangeFrom"
           },
           {
-            "$ref": "#/components/parameters/to"
+            "$ref": "#/components/parameters/TimeRangeTo"
           },
           {
-            "$ref": "#/components/parameters/interval"
+            "$ref": "#/components/parameters/TimeRangeInterval"
           }
         ],
         "responses": {
@@ -30943,34 +31585,80 @@
             "$ref": "#/components/parameters/Vendor"
           },
           {
-            "$ref": "#/components/parameters/subscription_status"
+            "name": "filter[status]",
+            "in": "query",
+            "description": "The status of the subscription. ",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "requested",
+                "active",
+                "failed",
+                "suspended",
+                "deleted"
+              ]
+            }
           },
           {
-            "$ref": "#/components/parameters/id"
+            "name": "filter[id]",
+            "in": "query",
+            "description": "Allows filtering by subscription `id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/project_id"
+            "name": "filter[project_id]",
+            "in": "query",
+            "description": "Allows filtering by `project_id` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/project_title"
+            "name": "filter[project_title]",
+            "in": "query",
+            "description": "Allows filtering by `project_title` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/region"
+            "name": "filter[region]",
+            "in": "query",
+            "description": "Allows filtering by `region` using one or more operators.",
+            "style": "deepObject",
+            "explode": true,
+            "schema": {
+              "$ref": "#/components/schemas/StringFilter"
+            }
           },
           {
-            "$ref": "#/components/parameters/updated_at"
+            "$ref": "#/components/parameters/FilterUpdatedAt"
           },
           {
-            "$ref": "#/components/parameters/page_size"
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "$ref": "#/components/parameters/page_before"
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "$ref": "#/components/parameters/page_after"
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
-            "$ref": "#/components/parameters/subscription_sort"
+            "name": "sort",
+            "in": "query",
+            "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
+            "schema": {
+              "type": "string",
+              "example": "-updated_at"
+            }
           }
         ],
         "responses": {
@@ -30981,6 +31669,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
                     "items": {
                       "type": "array",
                       "items": {
@@ -30990,7 +31682,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -31291,7 +31984,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -31390,31 +32083,13 @@
             }
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -31434,6 +32109,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
                     "items": {
                       "type": "array",
                       "items": {
@@ -31443,7 +32122,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -31553,7 +32233,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -31604,31 +32284,13 @@
             }
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSize"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -31648,6 +32310,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "count": {
+                      "type": "integer",
+                      "description": "Total number of items across pages."
+                    },
                     "regions": {
                       "type": "array",
                       "items": {
@@ -31657,7 +32323,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -31695,7 +32362,6 @@
                   "available",
                   "private",
                   "endpoint",
-                  "code",
                   "datacenter"
                 ],
                 "properties": {
@@ -31714,6 +32380,9 @@
                   "project_label": {
                     "$ref": "#/components/schemas/RegionProjectLabel"
                   },
+                  "short_code": {
+                    "$ref": "#/components/schemas/RegionCode"
+                  },
                   "timezone": {
                     "$ref": "#/components/schemas/RegionTimezone"
                   },
@@ -31726,20 +32395,12 @@
                   "endpoint": {
                     "$ref": "#/components/schemas/RegionEndpoint"
                   },
-                  "code": {
-                    "$ref": "#/components/schemas/RegionCode"
-                  },
-                  "provider": {
-                    "$ref": "#/components/schemas/RegionProvider"
-                  },
                   "datacenter": {
-                    "$ref": "#/components/schemas/RegionDataCenter"
+                    "description": "Data center ID.",
+                    "type": "string"
                   },
-                  "envimpact": {
-                    "$ref": "#/components/schemas/RegionEnvImpact"
-                  },
-                  "compliance": {
-                    "$ref": "#/components/schemas/RegionCompliance"
+                  "hipaa": {
+                    "$ref": "#/components/schemas/RegionHipaa"
                   }
                 }
               }
@@ -31872,7 +32533,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -32101,7 +32762,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -32281,7 +32942,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -32467,7 +33128,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -32795,31 +33456,13 @@
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -32848,7 +33491,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -32892,7 +33536,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -32950,7 +33594,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -32979,31 +33623,13 @@
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -33032,7 +33658,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -33073,6 +33700,7 @@
                       "description": "If the specified user is not a member of the project's organization, add it automatically."
                     }
                   },
+                  "additionalProperties": false,
                   "required": [
                     "user_id",
                     "permissions"
@@ -33084,7 +33712,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33159,7 +33787,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33181,7 +33809,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33218,31 +33846,13 @@
             }
           },
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -33271,7 +33881,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -33308,6 +33919,7 @@
                       "$ref": "#/components/schemas/ProjectPermissions"
                     }
                   },
+                  "additionalProperties": false,
                   "required": [
                     "project_id",
                     "permissions"
@@ -33319,7 +33931,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33394,7 +34006,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33416,7 +34028,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33445,31 +34057,13 @@
         ],
         "parameters": [
           {
-            "in": "query",
-            "name": "page[size]",
-            "description": "Determines the number of items to show.",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 200,
-              "default": null
-            }
+            "$ref": "#/components/parameters/PageSizeAccess"
           },
           {
-            "in": "query",
-            "name": "page[before]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageBefore"
           },
           {
-            "in": "query",
-            "name": "page[after]",
-            "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
+            "$ref": "#/components/parameters/PageAfter"
           },
           {
             "in": "query",
@@ -33498,7 +34092,8 @@
                     "_links": {
                       "$ref": "#/components/schemas/ListLinks"
                     }
-                  }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -33545,7 +34140,7 @@
         },
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33603,7 +34198,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "$ref": "#/components/responses/NoContent"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -33613,48 +34208,6 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
-          }
-        }
-      }
-    },
-    "/health": {
-      "get": {
-        "summary": "[Internal] Health check",
-        "description": "Checks the health of the service.",
-        "operationId": "health-check",
-        "tags": [
-          "Health"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "full",
-            "description": "Whether to return full health status.",
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Health"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Health"
-                }
-              }
-            }
           }
         }
       }
@@ -35442,6 +35995,260 @@
         },
         "type": "object"
       },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
+      "GenerateConfigurationRequest": {
+        "type": "object",
+        "properties": {
+          "organization_id": {
+            "type": "string",
+            "description": "Organization ID"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID. If specified, then an organization_id must also be given."
+          },
+          "digest": {
+            "$ref": "#/components/schemas/Digest"
+          },
+          "extra_context": {
+            "type": "string",
+            "maxLength": 4096,
+            "description": "Additional context for configuration generation"
+          },
+          "debug": {
+            "type": "boolean",
+            "default": null,
+            "description": "Whether to output debug messages"
+          }
+        },
+        "required": [
+          "digest"
+        ],
+        "description": "Request body for generating project configuration."
+      },
+      "ConfigureRepositoryRequest": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "HTTPS URL of the repository to configure"
+          },
+          "extra_context": {
+            "type": "string",
+            "description": "Additional context for configuration generation"
+          },
+          "debug": {
+            "type": "boolean",
+            "default": null,
+            "description": "Whether to output debug messages"
+          },
+          "stream": {
+            "type": "boolean",
+            "default": null,
+            "description": "Whether to enable streaming mode"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "Digest": {
+        "type": "object",
+        "properties": {
+          "tree": {
+            "type": "string",
+            "description": "Repository directory tree structure"
+          },
+          "reports": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Report"
+              }
+            },
+            "description": "Analysis reports grouped by path (keys are file paths like \".\", \"src/\", \"package.json\")",
+            "example": {
+              ".": [
+                {
+                  "result": "reactjs",
+                  "ruleset": "frameworks",
+                  "metadata": {
+                    "version": "19.1.0"
+                  },
+                  "groups": [
+                    "js"
+                  ]
+                },
+                {
+                  "result": "npm",
+                  "ruleset": "package_managers",
+                  "groups": [
+                    "js"
+                  ]
+                }
+              ]
+            }
+          },
+          "selected_files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileData"
+            },
+            "description": "Selected files with content. If the digest was generated by the 'whatsun' package, then it will already have redacted these files, removing secrets found via gitleaks (https://github.com/gitleaks/gitleaks). Secrets will also be detected and redacted by the API server using the same system, before content is sent to the AI provider.\n"
+          }
+        },
+        "required": [
+          "tree",
+          "reports",
+          "selected_files"
+        ],
+        "description": "Repository digest containing analysis and file content"
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "description": "Analysis result/finding"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Additional metadata from analysis"
+          },
+          "ruleset": {
+            "type": "string",
+            "description": "Ruleset that generated this report"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Groups this report belongs to"
+          }
+        },
+        "required": [
+          "result",
+          "ruleset"
+        ]
+      },
+      "FileData": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "File path relative to repository root"
+          },
+          "content": {
+            "type": "string",
+            "description": "File content (possibly cleaned/redacted)"
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Whether file content was truncated due to size limits"
+          },
+          "cleaned": {
+            "type": "boolean",
+            "description": "Whether file content was cleaned (comments removed, secrets redacted)"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Original file size in bytes"
+          }
+        },
+        "required": [
+          "name",
+          "content",
+          "truncated",
+          "cleaned",
+          "size"
+        ]
+      },
+      "StreamMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "log",
+              "output_chunk",
+              "done",
+              "keep_alive"
+            ],
+            "description": "Message type"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Message timestamp"
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "debug",
+              "info",
+              "warn",
+              "error"
+            ],
+            "description": "Log level (for log messages)"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message content"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Message tags"
+          }
+        }
+      },
+      "DataMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "data"
+            ],
+            "description": "Data message type"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Message timestamp"
+          },
+          "key": {
+            "type": "string",
+            "enum": [
+              "digest",
+              "output"
+            ],
+            "description": "Data key identifier"
+          },
+          "data": {
+            "type": "object",
+            "description": "Data payload"
+          }
+        }
+      },
       "OrganizationInvitation": {
         "title": "OrganizationInvitation",
         "type": "object",
@@ -35772,41 +36579,6 @@
             "website": "https://platform.sh",
             "consented_at": "2010-04-19T10:00:00Z",
             "consent_method": "opt-in"
-          }
-        }
-      },
-      "Error": {
-        "description": "",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "code": {
-            "type": "number"
-          },
-          "detail": {
-            "type": "object"
-          },
-          "title": {
-            "type": "string"
-          }
-        },
-        "title": "",
-        "x-examples": {
-          "example-1": {
-            "status": "Invalid input",
-            "message": "This field is required.",
-            "code": 400,
-            "detail": {
-              "field": [
-                "This field is required."
-              ]
-            },
-            "title": "Bad Request"
           }
         }
       },
@@ -36619,44 +37391,44 @@
           }
         }
       },
-      "AccountAddonsObject": {
-        "$ref": "#/components/schemas/account_addons"
+      "ProfileAddonsObject": {
+        "$ref": "#/components/schemas/profile_addons"
       },
-      "AccountDunningActionsObject": {
-        "$ref": "#/components/schemas/account_dunning_actions"
+      "ProfileDunningActionsObject": {
+        "$ref": "#/components/schemas/billing_profile_dunning_actions"
       },
-      "AccountInvoice": {
+      "ProfileInvoice": {
         "$ref": "#/components/schemas/invoice"
       },
-      "AccountInvoiceDetail": {
+      "ProfileInvoiceDetail": {
         "$ref": "#/components/schemas/invoice_detail"
       },
-      "AccountProfilePayload": {
+      "ProfilePayload": {
         "$ref": "#/components/schemas/profile"
       },
       "AddressVerificationPayload": {
         "$ref": "#/components/schemas/address_verification"
       },
-      "BillingAccountListPayload": {
-        "$ref": "#/components/schemas/billing_account_list"
+      "BillingProfileListPayload": {
+        "$ref": "#/components/schemas/billing_profile_list"
       },
-      "BillingAccountPayload": {
-        "$ref": "#/components/schemas/billing_account"
+      "BillingProfilePayload": {
+        "$ref": "#/components/schemas/billing_profile"
       },
-      "BillingAccountPayloadWithLinks": {
-        "$ref": "#/components/schemas/billing_account_with_links"
+      "BillingProfilePayloadWithLinks": {
+        "$ref": "#/components/schemas/billing_profile_with_links"
       },
       "BillingAlertConfig": {
         "$ref": "#/components/schemas/billing_alert_config"
       },
-      "BillingEntity": {
-        "$ref": "#/components/schemas/billing_entity"
+      "BillingAccounts": {
+        "$ref": "#/components/schemas/billing_account"
       },
-      "BillingEntityPayload": {
-        "$ref": "#/components/schemas/billing_entity_payload"
+      "BillingAccountPayload": {
+        "$ref": "#/components/schemas/billing_account_payload"
       },
-      "BillingEntityWithLinks": {
-        "$ref": "#/components/schemas/billing_entity_with_links"
+      "BillingAccountWithLinks": {
+        "$ref": "#/components/schemas/billing_account_with_links"
       },
       "BillingUser": {
         "$ref": "#/components/schemas/billing_user"
@@ -36667,11 +37439,20 @@
       "CountryPayload": {
         "$ref": "#/components/schemas/country"
       },
+      "EstimationItem": {
+        "$ref": "#/components/schemas/estimation_item"
+      },
       "FormattedCost": {
         "$ref": "#/components/schemas/formatted_cost"
       },
       "Payment": {
         "$ref": "#/components/schemas/payment"
+      },
+      "Price": {
+        "$ref": "#/components/schemas/price"
+      },
+      "ProjectEstimate": {
+        "$ref": "#/components/schemas/project_estimate"
       },
       "Vouchers": {
         "$ref": "#/components/schemas/voucher_list"
@@ -36679,21 +37460,21 @@
       "BadRequestError": {
         "$ref": "#/components/schemas/bad_request_error"
       },
-      "billing_account": {
+      "billing_profile": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier of the billing account."
+            "description": "The unique identifier of the billing profile."
           },
-          "billing_entity_id": {
+          "billing_account_id": {
             "type": "string",
-            "description": "The ID of the billing entity associated with this billing account.",
+            "description": "The ID of the billing account associated with this billing profile.",
             "nullable": true
           },
           "salesforce_id": {
             "type": "string",
-            "description": "The Salesforce ID associated with the billing account.",
+            "description": "The Salesforce ID associated with the billing profile.",
             "nullable": true
           },
           "bp_account_id": {
@@ -36719,12 +37500,12 @@
           "country": {
             "type": "string",
             "nullable": true,
-            "description": "The country code for the billing account."
+            "description": "The country code for the billing profile."
           },
           "currency": {
             "type": "string",
             "nullable": true,
-            "description": "ISO 4217 currency code (3-letter code) for the billing account.",
+            "description": "ISO 4217 currency code (3-letter code) for the billing profile.",
             "pattern": "^[A-Z]{3}$",
             "example": "USD"
           },
@@ -36733,22 +37514,22 @@
             "items": {
               "type": "string"
             },
-            "description": "Array of organization IDs associated with this billing account."
+            "description": "Array of organization IDs associated with this billing profile."
           },
           "vendor": {
             "type": "string",
             "nullable": true,
-            "description": "The Vendor associated to the billing account."
+            "description": "The Vendor associated to the billing profile."
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the billing account was created."
+            "description": "The timestamp when the billing profile was created."
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The timestamp when the billing account was last updated."
+            "description": "The timestamp when the billing profile was last updated."
           }
         }
       },
@@ -36764,10 +37545,10 @@
           "href"
         ]
       },
-      "billing_account_with_links": {
+      "billing_profile_with_links": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/billing_account"
+            "$ref": "#/components/schemas/billing_profile"
           },
           {
             "type": "object",
@@ -36788,7 +37569,7 @@
           }
         ]
       },
-      "billing_account_list": {
+      "billing_profile_list": {
         "type": "object",
         "properties": {
           "count": {
@@ -36798,9 +37579,9 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/billing_account_with_links"
+              "$ref": "#/components/schemas/billing_profile_with_links"
             },
-            "description": "Array of billing accounts."
+            "description": "Array of billing profiles."
           },
           "_links": {
             "type": "object",
@@ -36847,13 +37628,13 @@
       "profile": {
         "type": "object",
         "properties": {
+          "billing_profile_id": {
+            "type": "string",
+            "description": "ID of the associated billing profile."
+          },
           "billing_account_id": {
             "type": "string",
             "description": "ID of the associated billing account."
-          },
-          "billing_entity_id": {
-            "type": "string",
-            "description": "ID of the associated billing entity."
           },
           "salesforce_id": {
             "type": "string",
@@ -36861,7 +37642,7 @@
           },
           "name_line": {
             "type": "string",
-            "description": "Display name of the account."
+            "description": "Display name of the profile."
           },
           "billing_contact": {
             "type": "string",
@@ -36874,7 +37655,7 @@
           "currency": {
             "type": "string",
             "nullable": true,
-            "description": "ISO 4217 currency code (3-letter code) for the billing account.",
+            "description": "ISO 4217 currency code (3-letter code) for the billing profile.",
             "pattern": "^[A-Z]{3}$",
             "example": "USD"
           },
@@ -36952,9 +37733,9 @@
           }
         }
       },
-      "account_addons": {
+      "profile_addons": {
         "type": "object",
-        "description": "The list of available and current add-ons of a billing account.",
+        "description": "The list of available and current add-ons of a billing profile.",
         "properties": {
           "available": {
             "type": "object",
@@ -37054,7 +37835,7 @@
             "description": "The type of the owner object.",
             "type": "string",
             "enum": [
-              "billing_account",
+              "billing_profile",
               "organization"
             ]
           },
@@ -37104,7 +37885,7 @@
               "list-invoices": {
                 "$ref": "#/components/schemas/link"
               },
-              "billing-account": {
+              "billing-profile": {
                 "$ref": "#/components/schemas/link"
               },
               "billing-dunning": {
@@ -37256,7 +38037,7 @@
       },
       "payment": {
         "type": "object",
-        "description": "Prepayment transaction for a billing account.",
+        "description": "Prepayment transaction for a billing profile.",
         "properties": {
           "invoice_id": {
             "type": "string",
@@ -37310,7 +38091,7 @@
       },
       "billing_alert_config": {
         "type": "object",
-        "description": "The alert configuration for a billing account.",
+        "description": "The alert configuration for a billing profile.",
         "properties": {
           "id": {
             "type": "string",
@@ -37369,9 +38150,9 @@
           }
         }
       },
-      "account_dunning_actions": {
+      "billing_profile_dunning_actions": {
         "type": "object",
-        "description": "The list of scheduled dunning actions (if any) for a billing account.",
+        "description": "The list of scheduled dunning actions (if any) for a billing profile.",
         "properties": {
           "items": {
             "type": "array",
@@ -37470,8 +38251,8 @@
             "description": "The ID of the discount.",
             "type": "integer"
           },
-          "billing_account": {
-            "description": "The ULID of the billing account the discount applies to.",
+          "billing_profile_id": {
+            "description": "The ULID of the billing profile the discount applies to.",
             "type": "string"
           },
           "type": {
@@ -37577,7 +38358,7 @@
       },
       "billing_user_permissions": {
         "type": "array",
-        "description": "The billing account permissions.",
+        "description": "The billing profile permissions.",
         "items": {
           "type": "string",
           "enum": [
@@ -37589,10 +38370,10 @@
       "billing_user": {
         "type": "object",
         "properties": {
-          "billing_account_id": {
+          "billing_profile_id": {
             "type": "string",
             "format": "ulid",
-            "description": "The ID of the billing account."
+            "description": "The ID of the billing profile."
           },
           "user_id": {
             "type": "string",
@@ -37613,7 +38394,7 @@
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "description": "The date and time when the user was added to the billing account."
+            "description": "The date and time when the user was added to the billing profile."
           },
           "updated_at": {
             "type": "string",
@@ -37649,7 +38430,7 @@
               },
               "delete": {
                 "type": "object",
-                "description": "Link for removing the current user from the billing account.",
+                "description": "Link for removing the current user from the billing profile.",
                 "properties": {
                   "href": {
                     "type": "string",
@@ -37670,7 +38451,7 @@
         "properties": {
           "vouchers_total": {
             "type": "string",
-            "description": "The total voucher credit given to the account."
+            "description": "The total voucher credit given to the billing profile."
           },
           "vouchers_applied": {
             "type": "string",
@@ -37855,25 +38636,25 @@
           }
         }
       },
-      "billing_entity": {
+      "billing_account": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "The unique identifier for the billing entity."
+            "description": "The unique identifier for the billing account."
           },
           "owner_id": {
             "type": "string",
-            "description": "The owner ID associated with the billing entity."
+            "description": "The owner ID associated with the billing account."
           },
           "email": {
             "type": "string",
             "format": "email",
-            "description": "The contact email for the billing entity."
+            "description": "The contact email for the billing account."
           },
           "salesforce_id": {
             "type": "string",
-            "description": "The Salesforce ID associated with the billing entity."
+            "description": "The Salesforce ID associated with the billing account."
           },
           "bp_account_id": {
             "type": "integer",
@@ -37882,20 +38663,20 @@
           },
           "country": {
             "type": "string",
-            "description": "The country code for the billing entity."
+            "description": "The country code for the billing account."
           },
           "vendor": {
             "type": "string",
             "nullable": true,
-            "description": "The Vendor associated to the billing entity."
+            "description": "The Vendor associated to the billing account."
           },
           "name": {
             "type": "string",
-            "description": "The name of the billing entity."
+            "description": "The name of the billing account."
           },
           "legal_name": {
             "type": "string",
-            "description": "The legal name of the billing entity."
+            "description": "The legal name of the billing account."
           },
           "tax_number": {
             "type": "string",
@@ -37916,10 +38697,10 @@
           }
         }
       },
-      "billing_entity_with_links": {
+      "billing_account_with_links": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/billing_entity"
+            "$ref": "#/components/schemas/billing_account"
           },
           {
             "type": "object",
@@ -37940,25 +38721,25 @@
           }
         ]
       },
-      "billing_entity_payload": {
+      "billing_account_payload": {
         "type": "object",
         "properties": {
           "country": {
             "type": "string",
-            "description": "The country code for the billing entity."
+            "description": "The country code for the billing account."
           },
           "vendor": {
             "type": "string",
             "nullable": true,
-            "description": "The Vendor associated to the billing entity."
+            "description": "The Vendor associated to the billing account."
           },
           "name": {
             "type": "string",
-            "description": "The name of the billing entity."
+            "description": "The name of the billing account."
           },
           "legal_name": {
             "type": "string",
-            "description": "The legal name of the billing entity."
+            "description": "The legal name of the billing account."
           },
           "tax_number": {
             "type": "string",
@@ -37976,6 +38757,96 @@
               "corporation",
               "government"
             ]
+          }
+        }
+      },
+      "estimation_item": {
+        "type": "object",
+        "description": "An estimation item containing product quantity and pricing information",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "The numeric price"
+          },
+          "currency_code": {
+            "type": "string",
+            "description": "The currency code of the price"
+          },
+          "formatted": {
+            "type": "string",
+            "description": "The price formatted with currency symbol"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "The quantity of the product estimated"
+          },
+          "current_usage_formatted": {
+            "type": "string",
+            "description": "The current usage or quantity formatted with units, if available"
+          },
+          "label": {
+            "type": "string",
+            "description": "The product name or label"
+          }
+        }
+      },
+      "price": {
+        "type": "object",
+        "description": "A price object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "The numeric price"
+          },
+          "currency_code": {
+            "type": "string",
+            "description": "The currency code of the price"
+          },
+          "formatted": {
+            "type": "string",
+            "description": "The price formatted with currency symbol"
+          }
+        }
+      },
+      "project_estimate": {
+        "description": "The project estimation object.",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "description": "Estimates for individual project resource components",
+            "items": {
+              "$ref": "#/components/schemas/estimation_item"
+            }
+          },
+          "resource_total": {
+            "$ref": "#/components/schemas/price"
+          },
+          "usage": {
+            "type": "array",
+            "description": "Estimates for individual project usage components",
+            "items": {
+              "$ref": "#/components/schemas/estimation_item"
+            }
+          },
+          "usage_total": {
+            "$ref": "#/components/schemas/price"
+          },
+          "discounts": {
+            "type": "array",
+            "description": "Estimates for individual project discount components",
+            "items": {
+              "$ref": "#/components/schemas/estimation_item"
+            }
+          },
+          "discount_total": {
+            "$ref": "#/components/schemas/price"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/price"
+          },
+          "total": {
+            "$ref": "#/components/schemas/price"
           }
         }
       },
@@ -55185,9 +56056,6 @@
           "endpoint": {
             "$ref": "#/components/schemas/RegionEndpoint"
           },
-          "code": {
-            "$ref": "#/components/schemas/RegionCode"
-          },
           "provider": {
             "$ref": "#/components/schemas/RegionProvider"
           },
@@ -55553,16 +56421,13 @@
         "type": "object"
       },
       "OptionsRegions": {
-        "type": "object",
-        "additionalProperties": false
+        "type": "object"
       },
       "Sellables": {
-        "type": "object",
-        "additionalProperties": false
+        "type": "object"
       },
       "Settings": {
-        "type": "object",
-        "additionalProperties": false
+        "type": "object"
       },
       "PlanTitles": {
         "type": "object",
@@ -55627,19 +56492,67 @@
       },
       "RegionProvider": {
         "type": "object",
-        "description": "Information about the region provider."
+        "description": "Information about the region provider.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the cloud provider."
+          },
+          "logo": {
+            "type": "string",
+            "description": "The logo of the cloud provider (base64 encoded SVG)."
+          }
+        },
+        "additionalProperties": false
       },
       "RegionDataCenter": {
         "type": "object",
-        "description": "Information about the region provider data center."
+        "description": "Information about the region provider data center.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name/identifier of the data center."
+          },
+          "label": {
+            "type": "string",
+            "description": "The human-readable label of the data center."
+          },
+          "location": {
+            "type": "string",
+            "description": "The physical location of the data center."
+          }
+        },
+        "additionalProperties": false
       },
       "RegionEnvImpact": {
         "type": "object",
-        "description": "Information about the region provider's environmental impact."
+        "description": "Information about the region provider's environmental impact.",
+        "properties": {
+          "zone": {
+            "type": "string",
+            "description": "The geographical zone code for carbon intensity."
+          },
+          "carbon_intensity": {
+            "type": "number",
+            "description": "The carbon intensity value."
+          },
+          "green": {
+            "type": "boolean",
+            "description": "Indicator whether the data center uses green energy."
+          }
+        },
+        "additionalProperties": false
       },
       "RegionCompliance": {
         "type": "object",
-        "description": "Information about the region's compliance."
+        "description": "Information about the region's compliance.",
+        "properties": {
+          "hipaa": {
+            "type": "boolean",
+            "description": "Indicator whether or not this region is HIPAA compliant."
+          }
+        },
+        "additionalProperties": false
       },
       "RegionHipaa": {
         "type": "boolean",
@@ -55695,6 +56608,11 @@
         "format": "date-time",
         "description": "The date and time when the resource was last updated."
       },
+      "GrantedAt": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The date and time when the access was granted."
+      },
       "BooleanFilter": {
         "type": "object",
         "properties": {
@@ -55731,14 +56649,10 @@
             "description": "The title of the project."
           },
           "granted_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was granted."
+            "$ref": "#/components/schemas/GrantedAt"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was last updated."
+            "$ref": "#/components/schemas/UpdatedAt"
           },
           "_links": {
             "type": "object",
@@ -55813,14 +56727,10 @@
             "$ref": "#/components/schemas/ProjectPermissions"
           },
           "granted_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was granted."
+            "$ref": "#/components/schemas/GrantedAt"
           },
           "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The date and time when the access was last updated."
+            "$ref": "#/components/schemas/UpdatedAt"
           },
           "_links": {
             "type": "object",
@@ -55889,62 +56799,6 @@
             "production:viewer"
           ]
         }
-      },
-      "Health": {
-        "type": "object",
-        "required": [
-          "mysql",
-          "redis",
-          "clickhouse"
-        ],
-        "properties": {
-          "mysql": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "string",
-                "enum": [
-                  "UP",
-                  "DOWN"
-                ]
-              }
-            },
-            "required": [
-              "status"
-            ]
-          },
-          "redis": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "string",
-                "enum": [
-                  "UP",
-                  "DOWN"
-                ]
-              }
-            },
-            "required": [
-              "status"
-            ]
-          },
-          "clickhouse": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "string",
-                "enum": [
-                  "UP",
-                  "DOWN"
-                ]
-              }
-            },
-            "required": [
-              "status"
-            ]
-          }
-        },
-        "additionalProperties": false
       },
       "ProjectFacets": {
         "type": "object",
@@ -56347,14 +57201,6 @@
           "type": "string"
         }
       },
-      "id": {
-        "name": "filter[id]",
-        "in": "query",
-        "description": "Machine name of the region.",
-        "schema": {
-          "type": "string"
-        }
-      },
       "env_name": {
         "name": "envName",
         "in": "path",
@@ -56397,21 +57243,6 @@
         "required": false,
         "schema": {
           "type": "string"
-        }
-      },
-      "subscription_status": {
-        "name": "filter[status]",
-        "in": "query",
-        "description": "The status of the subscription. ",
-        "schema": {
-          "type": "string",
-          "enum": [
-            "active",
-            "provisioning",
-            "provisioning failure",
-            "suspended",
-            "deleted"
-          ]
         }
       },
       "subscription_plan": {
@@ -56768,8 +57599,8 @@
           "format": "uuid"
         }
       },
-      "BillingAccountID": {
-        "$ref": "#/components/parameters/billing_account_id"
+      "BillingProfileID": {
+        "$ref": "#/components/parameters/billing_profile_id"
       },
       "BillingInvoiceID": {
         "$ref": "#/components/parameters/billing_invoice_id"
@@ -56777,10 +57608,13 @@
       "Country": {
         "$ref": "#/components/parameters/country"
       },
-      "billing_account_id": {
+      "CurrencyQuery": {
+        "$ref": "#/components/parameters/currency_query"
+      },
+      "billing_profile_id": {
         "in": "path",
-        "name": "billing_account_id",
-        "description": "The ID of the billing account.",
+        "name": "billing_profile_id",
+        "description": "The ID of the billing profile.",
         "required": true,
         "schema": {
           "type": "string"
@@ -56814,11 +57648,29 @@
           "type": "string"
         }
       },
-      "billing_entity_id": {
+      "billing_account_id": {
         "in": "path",
-        "name": "billing_entity_id",
-        "description": "The ID of the billing entity.",
+        "name": "billing_account_id",
+        "description": "The ID of the billing account.",
         "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "project_id": {
+        "in": "path",
+        "name": "project_id",
+        "description": "The project ID.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "currency_query": {
+        "in": "query",
+        "name": "currency",
+        "description": "The currency code.",
+        "required": false,
         "schema": {
           "type": "string"
         }
@@ -56967,56 +57819,7 @@
           "type": "string"
         }
       },
-      "project_id": {
-        "name": "filter[project_id]",
-        "in": "query",
-        "description": "Allows filtering by `project_id` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/StringFilter"
-        }
-      },
-      "project_title": {
-        "in": "query",
-        "name": "filter[project_title]",
-        "description": "Allows filtering by `project_title` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/StringFilter"
-        }
-      },
-      "region": {
-        "in": "query",
-        "name": "filter[region]",
-        "description": "Allows filtering by `region` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/StringFilter"
-        }
-      },
-      "updated_at": {
-        "in": "query",
-        "name": "filter[updated_at]",
-        "description": "Allows filtering by `updated_at` using one or more operators.",
-        "style": "deepObject",
-        "explode": true,
-        "schema": {
-          "$ref": "#/components/schemas/DateTimeFilter"
-        }
-      },
-      "subscription_sort": {
-        "in": "query",
-        "name": "sort",
-        "description": "Allows sorting by a single field.<br>\nUse a dash (\"-\") to sort descending.<br>\nSupported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.\n",
-        "schema": {
-          "type": "string",
-          "example": "-updated_at"
-        }
-      },
-      "page_size": {
+      "PageSize": {
         "in": "query",
         "name": "page[size]",
         "description": "Determines the number of items to show.",
@@ -57027,7 +57830,7 @@
           "default": null
         }
       },
-      "page_before": {
+      "PageBefore": {
         "in": "query",
         "name": "page[before]",
         "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
@@ -57035,7 +57838,7 @@
           "type": "string"
         }
       },
-      "page_after": {
+      "PageAfter": {
         "in": "query",
         "name": "page[after]",
         "description": "Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
@@ -57043,7 +57846,18 @@
           "type": "string"
         }
       },
-      "from": {
+      "PageSizeAccess": {
+        "in": "query",
+        "name": "page[size]",
+        "description": "Determines the number of items to show.",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "default": null
+        }
+      },
+      "TimeRangeFrom": {
         "in": "query",
         "name": "from",
         "description": "The start of the time frame for the query. Inclusive.",
@@ -57051,7 +57865,7 @@
           "$ref": "#/components/schemas/DateTimeFilter"
         }
       },
-      "to": {
+      "TimeRangeTo": {
         "in": "query",
         "name": "to",
         "description": "The end of the time frame for the query. Exclusive.",
@@ -57059,7 +57873,7 @@
           "$ref": "#/components/schemas/DateTimeFilter"
         }
       },
-      "interval": {
+      "TimeRangeInterval": {
         "in": "query",
         "name": "interval",
         "description": "The interval by which the query groups the results. of the time frame for the query. Exclusive.",
@@ -57070,6 +57884,26 @@
             "month",
             "year"
           ]
+        }
+      },
+      "FilterUpdatedAt": {
+        "in": "query",
+        "name": "filter[updated_at]",
+        "description": "Allows filtering by `updated_at` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "FilterCreatedAt": {
+        "in": "query",
+        "name": "filter[created_at]",
+        "description": "Allows filtering by `created_at` using one or more operators.",
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
         }
       }
     },
@@ -57154,9 +57988,11 @@
             }
           }
         }
+      },
+      "NoContent": {
+        "description": "No Content"
       }
-    },
-    "examples": {}
+    }
   },
   "x-tagGroups": [
     {
