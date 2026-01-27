@@ -3,9 +3,13 @@ title: "Network Storage"
 weight: -30
 ---
 
-The Network Storage service enables a new kind of [mount](../create-apps/image-properties/mounts.md)
-that refers to a shared service rather than to a local directory.
-This service allows you to store data and share it between different apps.
+The Network Storage service provides a shared [mount](/create-apps/image-properties/mounts.md) that connects your applications to a centralized filesystem instead of a local directory.
+
+Network storage is primarily necessary for sharing files between multiple instances of the same app (horizontal scaling), or between different apps in a multi-app setup.
+
+Unlike standard mounts, which are tied to a single host, Network Storage safely manages simultaneous access from multiple locations. This prevents the filesystem corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
+
+The Network Storage service is a native {{% vendor/name %}} implementation, rather than a managed instance of a third-party application.
 
 ## Supported versions
 
@@ -14,19 +18,24 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="network-storage" status="supported" environment="grid" >}}
+- 1.0
 
-This service is the {{% vendor/name %}} network storage implementation, not the version of a third-party application.
+<!-- remove comment and surrounded with double curly braces when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
 
-{{< note theme="warning">}}
+{{< note theme="warning" title="Changing versions will wipe your persistent data" >}}
 
-It isn't possible to upgrade or downgrade the network storage service version while keeping existing data in place.
-Changing the service version requires that the service be reinitialized.
-Any change to the service version results in existing data becoming inaccessible.
+Changing the `network-storage` version requires the service to be **reinitialized**. This process creates a fresh, empty volume and **permanently deletes all existing files and directories** stored in that service.
+
+**Important:**
+
+* **Back up your data:** Manually download or sync your files before updating your configuration.
+* **Git code is safe:** This does not affect your application code or environment variables, only the data stored in the `network-storage` service.
+
+To proceed with a version change, please **[create a Support ticket](/learn/overview/get-support.md)** to ensure a smooth transition and avoid unintended data loss.
 
 {{< /note >}}
 
-<!-- remove comment and add surrounded double curly braces when a deprecated version exists %  deprecated-versions % -->
+<!-- remove comment and surrounded with double curly braces when a deprecated version exists %  deprecated-versions % -->
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
 
