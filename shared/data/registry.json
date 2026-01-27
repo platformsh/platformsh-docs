@@ -328,7 +328,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "8.25"
+        "8"
       ]
     }
   },
@@ -590,7 +590,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "0.21"
+        "0"
       ]
     }
   },
@@ -1210,7 +1210,7 @@
     "versions": {
       "deprecated": [],
       "supported": [
-        "1.93"
+        "1"
       ]
     }
   },
