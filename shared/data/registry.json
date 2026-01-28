@@ -675,9 +675,10 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "2.0"
+      ],
       "supported": [
-        "2.0",
         "1.0"
       ]
     },
@@ -1373,26 +1374,6 @@
         "1.8",
         "1.6"
       ]
-    }
-  },
-  "activemq-artemis": {
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "2"
-      ]
-    },
-    "description": "",
-    "disk": true,
-    "endpoint": "",
-    "name": "activemq-artemis",
-    "repo_name": "activemq-artemis",
-    "runtime": false,
-    "type": "activemq-artemis",
-    "docs": {
-      "relationship_name": "activemq-artemis",
-      "service_name": "activemq-artemis",
-      "url": "/add-services/activemq-artemis.html"
     }
   }
 }
