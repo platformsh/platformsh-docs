@@ -24,20 +24,33 @@ When you deploy your app, you always get the latest available patches.
 
 {{< note theme="warning" title="Migrating to version 1.0" >}}
 
-To minimize application downtime and data corruption, Upsun recommends using only version 1.0 of this service. Because **changing versions will wipe your persistent data**, we ask that you **[create a Support ticket](/learn/overview/get-support.md)** so we can help you through a smooth transition and avoid unintended data loss. 
+Changing the service version from version `2.0` to `1.0` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
 
-This version change requires the service to be reinitialized, which creates a fresh, empty volume and permanently deletes all existing files and directories currently stored there.
+To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** See the [Migration Options](#migration-options) below.
 
-**Important:**
-- **Back up your data:** [Manually back up your environment](/environments/backup.md#create-a-manual-backup) before reaching out to Support, as data cannot be recovered once the transition starts.
+**Important Considerations**
+- **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the reinitialization or service removal begins.**
 
-- **Your code is safe:** This process only affects data within the `network-storage` service; your Git-based application code and environment variables will remain untouched.
+- **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
 
 {{< /note >}}
 
 <!-- TODO: reinstate this block when a deprecated version exists: %  deprecated-versions % -->
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
+
+### Migration Options {#migration-options}
+**Option 1: Manual Migration**<br>
+If you have an understanding of provisioning and decommissioning {{% vendor/name %}} services and prefer to complete the transition yourself, follow these steps to preserve your files:
+
+1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `1.0`.
+
+1. Sync your data: Manually copy your persistent data from the `2.0` volume to the new `1.0` volume.
+
+1. Decommission the old service: After you verify the data, remove the version `2.0` service from your configuration.
+
+**Option 2: Supported Transition**<br>
+If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will guide you through the process to ensure your data remains intact. 
 
 ## Usage example
 
