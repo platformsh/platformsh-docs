@@ -3,24 +3,24 @@ title: "Network Storage"
 weight: -30
 ---
 
-The Network Storage service provides a shared [mount](/create-apps/image-properties/mounts.md) that connects your applications to a centralized filesystem instead of a local directory.
+The Network Storage service provides a shared [mount](/create-apps/image-properties/mounts.md) that connects your applications to a centralized file system instead of a local directory.
 
 Network storage is primarily necessary for sharing files between multiple instances of the same app (horizontal scaling), or between different apps in a multi-app setup.
 
-Unlike standard mounts, which are tied to a single host, Network Storage safely manages simultaneous access from multiple locations. This prevents the filesystem corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
+Unlike standard mounts, which are tied to a single host, Network Storage safely manages simultaneous access from multiple locations. This prevents the file system corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
 
-The Network Storage service is a native {{% vendor/name %}} implementation, rather than a managed instance of a third-party application.
+The Network Storage service is a native {{% vendor/name %}} implementation, not a managed instance of a third-party application.
 
 ## Supported versions
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like.
+Patch versions are applied periodically for bug fixes and security updates.
 When you deploy your app, you always get the latest available patches.
 
 - 1.0
 
-<!-- remove comment and surrounded with double curly braces when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
+<!-- TODO: reinstate this line when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
 
 {{< note theme="warning" title="Changing versions will wipe your persistent data" >}}
 
@@ -35,7 +35,7 @@ To proceed with a version change, please **[create a Support ticket](/learn/over
 
 {{< /note >}}
 
-<!-- remove comment and surrounded with double curly braces when a deprecated version exists %  deprecated-versions % -->
+<!-- TODO: reinstate this block when a deprecated version exists: %  deprecated-versions % -->
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
 
