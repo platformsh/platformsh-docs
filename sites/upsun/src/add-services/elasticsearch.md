@@ -11,29 +11,18 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-## Supported versions
-
-
-You can select the major and minor version.
-
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
-
 <!-- {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}-->
-
-- 7.17
-- 8.5
-- 8.19
 
 ### Enterprise edition
 
 {{% note title="Premium Service" theme="info" %}}
-Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan. All versions below 7.10 are available and deprecated.
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan. 
 
-The versions displayed below are currently supported but can only be added separately at an additional cost, as premium services. New versions of Elasticsearch will be released as premium services. 
-
-To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
+New versions of Elasticsearch will also be released as premium services. 
 
 {{% /note %}}
+
+The versions displayed below are currently supported but can only be added separately at an additional cost, as they are premium services. **To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).**
 
 - 7.17
 - 8.5
@@ -92,7 +81,7 @@ ELASTICSEARCH_REL=elasticsearch
 ELASTICSEARCH_PATH=
 ELASTICSEARCH_QUERY=[]
 ELASTICSEARCH_PASSWORD=ChangeMe
-ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
+ELASTICSEARCH_TYPE=8.19
 ELASTICSEARCH_PUBLIC=false
 ELASTICSEARCH_HOST_MAPPED=false
 ```
@@ -121,7 +110,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
   "path": null,
   "query": [],
   "password": "ChangeMe",
-  "type": "elasticsearch:{{< latest "elasticsearch" >}}",
+  "type": "elasticsearch:8.19",
   "public": false,
   "host_mapped": false
 }
@@ -245,7 +234,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     elasticsearch:
-        type: elasticsearch:{{% latest "elasticsearch" %}}
+        type: elasticsearch:8.19
 ```
 
 If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
@@ -270,7 +259,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    type: elasticsearch:8.19
 ```
 
 If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
@@ -304,7 +293,7 @@ applications:
       elasticsearch:
 services:
   elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    type: elasticsearch: 7.17
 
 ```
 
@@ -329,7 +318,7 @@ applications:
         endpoint: elasticsearch
 services:
   elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    type: elasticsearch:8.19
 ```
 
 {{< /codetabs >}}
@@ -380,7 +369,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 
 ```yaml {configFile="services"}
 {{% snippet name="elasticsearch" config="service"  %}}
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   configuration:
     authentication:
       enabled: true
@@ -408,7 +397,7 @@ For example:
 ```yaml {configFile="routes"}
 {{% snippet name="elasticsearch:elasticsearch" config="route" subDom="es" redirect="false" / %}}
 {{% snippet name="elasticsearch" config="service" placeholder="true"  %}}
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   configuration:
     authentication:
       enabled: true
@@ -422,7 +411,7 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 
 ```yaml {configFile="services"}
 {{% snippet name="elasticsearch" config="service"  %}}
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   configuration:
     plugins:
       - analysis-icu

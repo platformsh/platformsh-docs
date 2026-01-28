@@ -104,7 +104,7 @@ Note that the information about the relationship can change when an app is redep
   "path": null,
   "query": [],
   "password": "ChangeMe",
-  "type": "elasticsearch:{{< latest "elasticsearch" >}}",
+  "type": "elasticsearch:8.19",
   "public": false,
   "host_mapped": false
 }
@@ -200,7 +200,7 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   disk: 256
 ```
 
@@ -305,7 +305,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   disk: 2048
   configuration:
     authentication:
@@ -342,7 +342,7 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   disk: 1024
   configuration:
     plugins:
