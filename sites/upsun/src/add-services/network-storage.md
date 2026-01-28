@@ -18,18 +18,18 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and security updates.
 When you deploy your app, you always get the latest available patches.
 
-- 1.0
+- 1.0 
 
 <!-- TODO: reinstate this line when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
 
-{{< note theme="warning" title="Changing versions will wipe your persistent data" >}}
+{{< note theme="warning" title="Migrating to a supported version" >}}
 
-Changing the `network-storage` version requires the service to be **reinitialized**. This process creates a fresh, empty volume and **permanently deletes all existing files and directories** stored in that service.
+**Changing versions will wipe your persistent data**, as this operation requires the service to be **reinitialized**. This process creates a fresh, empty volume and **permanently deletes all existing files and directories** stored in that service.
 
-To proceed with a version change, please **[create a Support ticket](/learn/overview/get-support.md)** to ensure a smooth transition and avoid unintended data loss.
+To proceed with a version change, please **[create a Support ticket](/learn/overview/get-support.md)** to ensure a smooth transition and avoid unintended data loss. 
 
 **Important**: 
-- **Back up your data before the transition:** Manually download or sync your files before updating your configuration.
+- **Back up your data before the transition:** Manually download or sync the files and directories stored in the service before creating a Support ticket. 
 - **Git code is safe:** Only the data stored in the `network-storage` service is affected, not your application code or environment variables. 
 
 
