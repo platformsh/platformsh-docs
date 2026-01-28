@@ -29,7 +29,7 @@ Changing the service version from version `2.0` to `1.0` directly in your config
 To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** See the [Migration Options](#migration-options) below.
 
 **Important Considerations**
-- **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the reinitialization or service removal begins.**
+- **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the service removal begins.**
 
 - **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
 
