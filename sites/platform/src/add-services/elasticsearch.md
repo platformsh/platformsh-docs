@@ -42,7 +42,7 @@ The following premium versions are supported:
 |       | 7.17           |
 |       | 8.5            |
 |       | 8.8            |
-|       | 8.19            |
+|       | 8.19           |
 
 <!-- 
 <table>
