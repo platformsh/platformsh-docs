@@ -18,22 +18,41 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+<!-- {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}-->
+
+- 7.17
+- 8.5
+- 8.19
 
 ### Enterprise edition
 
 {{% note title="Premium Service" theme="info" %}}
-Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
-You need to add it separately at an additional cost.
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan. All versions below 7.10 are available and deprecated.
+
+The versions displayed below are currently supported but can only be added separately at an additional cost, as premium services. New versions of Elasticsearch will be released as premium services. 
+
 To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).
+
 {{% /note %}}
+
+- 7.17
+- 8.5
+- 8.19
 
 ## Deprecated versions
 
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
-{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
+- 7.9
+- 7.7
+- 7.6
+- 7.5
+- 7.2
+- 6.8
+- 6.5
+
+<!-- {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}-->
 
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).

@@ -31,6 +31,20 @@ To add Elasticsearch Enterprise,, [contact Sales]({{< vendor/urlraw "sales" >}})
 
 The following premium versions are supported:
 
+| Grid  | Dedicated Gen 2 |
+|-------|----------------|
+| 7.10  | 7.2            |
+|       | 7.5            |
+|       | 7.6            |
+|       | 7.7            |
+|       | 7.9            |
+|       | 7.10           |
+|       | 7.17           |
+|       | 8.5            |
+|       | 8.8            |
+|       | 8.19            |
+
+<!-- 
 <table>
     <thead>
         <tr>
@@ -45,6 +59,22 @@ The following premium versions are supported:
         </tr>
     </tbody>
 </table>
+-->
+
+## Deprecated versions
+
+The following versions are still available in your projects for free, but they’re at their end of life and are no longer receiving security updates from upstream.
+
+| Grid | Dedicated Gen 2 |
+|------|----------------|
+| 7.9  | 6.8            |
+| 7.7  | 6.5            |
+| 7.6  | 5.6            |
+| 7.5  | 5.2            |
+| 7.2  | 2.4            |
+| 6.8  | 1.7            |
+| 6.5  |                |
+
 
 To ensure your project remains stable in the future,
 switch to [a premium version](#supported-versions).
