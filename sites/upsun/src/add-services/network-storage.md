@@ -30,7 +30,7 @@ To proceed with a version change, please **[create a Support ticket](/learn/over
 
 **Important**: 
 - **Back up your data before the transition:** Manually download or sync your files before updating your configuration.
-- **Git code is safe:** Reinitializing the service does not affect your application code or environment variables, only the data stored in the `network-storage` service.
+- **Git code is safe:** Only the data stored in the `network-storage` service is affected, not your application code or environment variables. 
 
 
 {{< /note >}}
