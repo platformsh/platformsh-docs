@@ -22,16 +22,16 @@ When you deploy your app, you always get the latest available patches.
 
 <!-- TODO: reinstate this line when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
 
-{{< note theme="warning" title="Migrating to a supported version" >}}
+{{< note theme="warning" title="Migrating to version 1.0" >}}
 
-**Changing versions will wipe your persistent data**, as this operation requires the service to be **reinitialized**. This process creates a fresh, empty volume and **permanently deletes all existing files and directories** stored in that service.
+To minimize application downtime and data corruption, Upsun recommends using only version 1.0 of this service. Because **changing versions will wipe your persistent data**, we ask that you **[create a Support ticket](/learn/overview/get-support.md)** so we can help you through a smooth transition and avoid unintended data loss. 
 
-To proceed with a version change, please **[create a Support ticket](/learn/overview/get-support.md)** to ensure a smooth transition and avoid unintended data loss. 
+This version change requires the service to be reinitialized, which creates a fresh, empty volume and permanently deletes all existing files and directories currently stored there.
 
-**Important**: 
-- **Back up your data before the transition:** Manually download or sync the files and directories stored in the service before creating a Support ticket. 
-- **Git code is safe:** Only the data stored in the `network-storage` service is affected, not your application code or environment variables. 
+Before you begin:
+- **Back up your data:** [Manually back up your environment](/environments/backup.md#create-a-manual-backup) before reaching out to Support, as data cannot be recovered once the transition starts.
 
+- **Your code is safe:** This process only affects data within the `network-storage` service; your Git-based application code and environment variables will remain untouched.
 
 {{< /note >}}
 
@@ -106,7 +106,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   network-storage:
-    type: network-storage:{{% latest "network-storage" %}}
+    type: network-storage:1.0
 ```
 
 ## Multi-application usage
@@ -278,7 +278,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:{{% latest "network-storage" %}}
+        type: network-storage:1.0
    ```
 
    {{< note >}}
@@ -308,7 +308,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:{{% latest "network-storage" %}}
+        type: network-storage:1.0
    ```
 
    Note that each mount is on a different storage service, which is why they can have the same `source_path`.
@@ -342,7 +342,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:{{% latest "network-storage" %}}
+        type: network-storage:1.0
    ```
 
 6. Push your changes and check that the files are now accessible from the `service` mount (now named `web/uploads`).
