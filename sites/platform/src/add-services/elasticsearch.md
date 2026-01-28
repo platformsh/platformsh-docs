@@ -55,7 +55,7 @@ The following premium versions are supported:
     <tbody>
         <tr>
             <td>{{< image-versions image="elasticsearch-enterprise" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-2" >}}</thd>
+            <td>{{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
