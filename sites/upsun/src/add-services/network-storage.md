@@ -26,12 +26,12 @@ When you deploy your app, you always get the latest available patches.
 
 Changing the `network-storage` version requires the service to be **reinitialized**. This process creates a fresh, empty volume and **permanently deletes all existing files and directories** stored in that service.
 
-**Important:**
-
-* **Back up your data:** Manually download or sync your files before updating your configuration.
-* **Git code is safe:** This does not affect your application code or environment variables, only the data stored in the `network-storage` service.
-
 To proceed with a version change, please **[create a Support ticket](/learn/overview/get-support.md)** to ensure a smooth transition and avoid unintended data loss.
+
+**Important**: 
+- **Back up your data before the transition:** Manually download or sync your files before updating your configuration.
+- **Git code is safe:** Reinitializing the service does not affect your application code or environment variables, only the data stored in the `network-storage` service.
+
 
 {{< /note >}}
 
