@@ -28,7 +28,7 @@ To minimize application downtime and data corruption, Upsun recommends using onl
 
 This version change requires the service to be reinitialized, which creates a fresh, empty volume and permanently deletes all existing files and directories currently stored there.
 
-Before you begin:
+**Important:**
 - **Back up your data:** [Manually back up your environment](/environments/backup.md#create-a-manual-backup) before reaching out to Support, as data cannot be recovered once the transition starts.
 
 - **Your code is safe:** This process only affects data within the `network-storage` service; your Git-based application code and environment variables will remain untouched.
