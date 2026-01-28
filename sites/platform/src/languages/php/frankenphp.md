@@ -72,7 +72,7 @@ Tools like [Laravel Octane](https://laravel.com/docs/master/octane) or the [Symf
 
 ### Observability and profiling
 
-FrankenPHP is well supported by [Blackfire](/increase-observability/application-metrics/blackfire.html), making it easy to profile and monitor performance in both Classic and Worker modes.
+FrankenPHP is well supported by [Blackfire](/increase-observability/integrate-observability/blackfire.html), making it easy to profile and monitor performance in both Classic and Worker modes.
 
 {{< note version="1" >}}
 
