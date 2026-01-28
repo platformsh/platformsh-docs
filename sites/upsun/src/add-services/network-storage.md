@@ -3,32 +3,54 @@ title: "Network Storage"
 weight: -30
 ---
 
-The Network Storage service enables a new kind of [mount](../create-apps/image-properties/mounts.md)
-that refers to a shared service rather than to a local directory.
-This service allows you to store data and share it between different apps.
+The Network Storage service provides a shared [mount](/create-apps/image-properties/mounts.md) that connects your applications to a centralized file system instead of a local directory.
+
+Network storage is primarily necessary for sharing files between multiple instances of the same app (horizontal scaling), or between different apps in a multi-app setup.
+
+Unlike standard mounts, which are tied to a single host, Network Storage safely manages simultaneous access from multiple locations. This prevents the file system corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
+
+The Network Storage service is a native {{% vendor/name %}} implementation, not a managed instance of a third-party application.
 
 ## Supported versions
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like.
+Patch versions are applied periodically for bug fixes and security updates.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="network-storage" status="supported" environment="grid" >}}
+- 1.0 
 
-This service is the {{% vendor/name %}} network storage implementation, not the version of a third-party application.
+<!-- TODO: reinstate this line when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
 
-{{< note theme="warning">}}
+{{< note theme="warning" title="Migrating to version 1.0" >}}
 
-It isn't possible to upgrade or downgrade the network storage service version while keeping existing data in place.
-Changing the service version requires that the service be reinitialized.
-Any change to the service version results in existing data becoming inaccessible.
+Changing the service version from version `2.0` to `1.0` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
+
+To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** See the [Migration Options](#migration-options) below.
+
+**Important Considerations**
+- **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the service removal begins.**
+
+- **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
 
 {{< /note >}}
 
-<!-- remove comment and add surrounded double curly braces when a deprecated version exists %  deprecated-versions % -->
+<!-- TODO: reinstate this block when a deprecated version exists: %  deprecated-versions % -->
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
+
+### Migration Options {#migration-options}
+**Option 1: Manual Migration**<br>
+If you have an understanding of provisioning and decommissioning {{% vendor/name %}} services and prefer to complete the transition yourself, follow these steps to preserve your files:
+
+1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `1.0`.
+
+1. Sync your data: Manually copy your persistent data from the `2.0` volume to the new `1.0` volume.
+
+1. Decommission the old service: After you verify the data, remove the version `2.0` service from your configuration.
+
+**Option 2: Supported Transition**<br>
+If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will guide you through the process to ensure your data remains intact. 
 
 ## Usage example
 
@@ -97,7 +119,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   network-storage:
-    type: network-storage:{{% latest "network-storage" %}}
+    type: network-storage:1.0
 ```
 
 ## Multi-application usage
@@ -269,7 +291,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:{{% latest "network-storage" %}}
+        type: network-storage:1.0
    ```
 
    {{< note >}}
@@ -299,7 +321,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:{{% latest "network-storage" %}}
+        type: network-storage:1.0
    ```
 
    Note that each mount is on a different storage service, which is why they can have the same `source_path`.
@@ -333,7 +355,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:{{% latest "network-storage" %}}
+        type: network-storage:1.0
    ```
 
 6. Push your changes and check that the files are now accessible from the `service` mount (now named `web/uploads`).
