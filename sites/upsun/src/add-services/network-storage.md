@@ -11,16 +11,18 @@ Unlike standard mounts, which are tied to a single host, Network Storage safely 
 
 The Network Storage service is a native {{% vendor/name %}} implementation, not a managed instance of a third-party application.
 
-## Supported versions
+## Supported versions {#supported-versions}
 
 You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and security updates.
 When you deploy your app, you always get the latest available patches.
 
-- 1.0 
+{{< image-versions image="network-storage" status="supported" environment="grid" >}}
 
-<!-- TODO: reinstate this line when v2.0 is officially deprecated < image-versions image="network-storage" status="supported" environment="grid" > -->
+{{%  deprecated-versions %}}
+
+{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
 
 {{< note theme="warning" title="Migrating to version 1.0" >}}
 
@@ -35,13 +37,12 @@ To prevent unintended data loss and minimize downtime, **Upsun recommends a manu
 
 {{< /note >}}
 
-<!-- TODO: reinstate this block when a deprecated version exists: %  deprecated-versions % -->
-
-{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
 
 ### Migration Options {#migration-options}
 **Option 1: Manual Migration**<br>
-If you have an understanding of provisioning and decommissioning {{% vendor/name %}} services and prefer to complete the transition yourself, follow these steps to preserve your files:
+Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. See "Migrating to version 1.0" in the [section above](#supported-versions).
+   
+1. [Manually back up your environment](/environments/backup.md#create-a-manual-backup).
 
 1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `1.0`.
 
