@@ -23,10 +23,10 @@ When you deploy your app, you always get the latest available patches.
 {{%  deprecated-versions %}}
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
+<!-- vale off -->
+{{< note theme="warning" title="Migrating to a supported version" >}}
 
-{{< note theme="warning" title="Migrating to version 1.0" >}}
-
-Changing the service version from version `2.0` to `1.0` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
+Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
 
 To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** See the [Migration Options](#migration-options) below.
 
@@ -36,19 +36,19 @@ To prevent unintended data loss and minimize downtime, **Upsun recommends a manu
 - **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
 
 {{< /note >}}
-
+<!-- vale on -->
 
 ### Migration Options {#migration-options}
 **Option 1: Manual Migration**<br>
-Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. See "Migrating to version 1.0" in the [section above](#supported-versions).
+Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. See "Migrating to a supported version" in the [section above](#supported-versions).
    
 1. [Manually back up your environment](/environments/backup.md#create-a-manual-backup).
 
-1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `1.0`.
+1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `{{% latest "network-storage" %}}`.
 
-1. Sync your data: Manually copy your persistent data from the `2.0` volume to the new `1.0` volume.
+1. Sync your data: Manually copy your persistent data from the old volume to the new `{{% latest "network-storage" %}}` volume.
 
-1. Decommission the old service: After you verify the data, remove the version `2.0` service from your configuration.
+1. Decommission the old service: After you verify the data, remove the old version of the service from your configuration.
 
 **Option 2: Supported Transition**<br>
 If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will guide you through the process to ensure your data remains intact. 
@@ -120,7 +120,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   network-storage:
-    type: network-storage:1.0
+    type: network-storage:{{% latest "network-storage" %}}
 ```
 
 ## Multi-application usage
@@ -292,7 +292,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:1.0
+        type: network-storage:{{% latest "network-storage" %}}
    ```
 
    {{< note >}}
@@ -322,7 +322,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:1.0
+        type: network-storage:{{% latest "network-storage" %}}
    ```
 
    Note that each mount is on a different storage service, which is why they can have the same `source_path`.
@@ -356,7 +356,7 @@ applications:
     services:
       # The name of the service container. Must be unique within a project.
       network-storage:
-        type: network-storage:1.0
+        type: network-storage:{{% latest "network-storage" %}}
    ```
 
 6. Push your changes and check that the files are now accessible from the `service` mount (now named `web/uploads`).
