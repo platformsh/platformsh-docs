@@ -74,7 +74,7 @@ Variables have several Boolean options you can set in the Console or the CLI:
 | Sensitive           | `--sensitive`         | `false` | If set to `true`, the variable's value is hidden in the Console and in CLI responses for added security. It's still readable within the app container. |
 | Runtime             | `--visible-runtime`   | `true`  | Whether the variable is available at runtime.                                                                                                          |
 | Build               | `--visible-build`     | `true`  | Whether the variable is available at build time.                                                                                                       |
-| Application scope   | `--app-scope`         | —       | Limits the variable visibility to specific app(s). By default, the variable is available across all applications.                |
+| Application scope   | `--app-scope`         | —       | Limits the variable visibility to specific apps. By default, the variable is available across all applications.                |
 
 So if you want the `foo` variable to be visible at build time but hidden during runtime,
 you can set it by running the following command:
