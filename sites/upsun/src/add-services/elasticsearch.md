@@ -22,7 +22,7 @@ New versions of Elasticsearch will also be released as premium services.
 
 {{% /note %}}
 
-The versions displayed below are currently supported but can only be added separately at an additional cost, as they are premium services. **To add Elasticsearch, [contact Sales]({{< vendor/urlraw "sales" >}}).**
+The versions displayed below are currently supported but can only be added separately at an additional cost, as they are premium services. **To add Elasticsearch, [contact Sales]({{% vendor/urlraw "sales" %}}).**
 
 - 7.17
 - 8.5
