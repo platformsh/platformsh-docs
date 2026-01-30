@@ -250,7 +250,7 @@ In this example, logs from the `cache` service and the `debug-worker` worker are
 Note that the same exclusion list applies to all environments. If a listed app or service does not exist in an environment, it is silently ignored. No error is raised.
 {{< /note >}}
 
-{{< note theme="info>}}
+{{< note theme="info" >}}
 `excluded_services` removes the specified apps or services from log forwarding while all other apps and services continue to forward logs as normal. Note that these exclusions apply globally across environments.
 {{< /note >}}
 
