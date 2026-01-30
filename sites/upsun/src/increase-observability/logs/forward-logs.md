@@ -217,7 +217,7 @@ to start forwarding logs [trigger a redeploy](../../development/troubleshoot.md#
 
 ### Excluding services from HTTP log forwarding
 
-All log forwarding integrations support an `excluded_services` property. This allows you to prevent logs from specific applications or services from being forwarded to an external logging provider.
+All log forwarding integrations support an `excluded_services` property. This allows you to prevent logs from specific applications or services (including workers) from being forwarded to an external logging provider.
 
 This is useful for reducing noise, limiting log volume, or excluding non-critical services. The exclusion list is defined at the project level and applies to all environments.
 
@@ -232,9 +232,9 @@ The `excluded_services` property is supported by all log forwarder types, includ
 - New Relic
 - OTLP
 
-#### Excluding services
+#### Excluding apps or services
 
-By default, logs from all services are forwarded. To exclude specific services, define them using `excluded_services`:
+By default, logs from all apps and services are forwarded. To exclude specific services, define them using `excluded_services`:
 
 ```yaml {configFile="app"}
 logs_forwarders:
@@ -244,11 +244,25 @@ logs_forwarders:
       - cache
       - debug-worker
 ```
-In this example, logs from the cache and debug-worker services are not forwarded.
+In this example, logs from the `cache` service and the `debug-worker` worker are not forwarded.
 
 {{< note theme="note" >}}
-Note that the same exclusion list applies to all environments. If a listed service does not exist in an environment, it is silently ignored. No error is raised if a service is missing.
+Note that the same exclusion list applies to all environments. If a listed app or service does not exist in an environment, it is silently ignored. No error is raised.
 {{< /note >}}
+
+{{< note theme="info>}}
+`excluded_services` removes the specified apps or services from log forwarding while all other apps and services continue to forward logs as normal. Note that these exclusions apply globally across environments.
+{{< /note >}}
+
+### Naming consistency
+
+When defining exclusions, you can list:
+
+- Apps (for example - `app`, `api`)
+- Services (for example - `cache`, `database`)
+- Workers (for example - `debug-worker`)
+
+Make sure to use the `service` or `app` name **exactly as defined in your project configuration**.
 
 #### Including services explicitly
 
