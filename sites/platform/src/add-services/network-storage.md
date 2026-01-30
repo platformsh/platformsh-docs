@@ -50,6 +50,7 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{< /note >}}
 
+<!-- 
 ### Deprecated versions
 
 The following versions are [deprecated](/glossary.html#deprecated-versions).
@@ -71,7 +72,7 @@ so migrate to one of the [supported versions](#supported-versions).
         </tr>
     </tbody>
 </table>
-
+-->
 ## Usage example
 
 ### 1. Configure the service
