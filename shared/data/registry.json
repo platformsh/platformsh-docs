@@ -707,9 +707,10 @@
     "runtime": false,
     "type": "network-storage",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "2.0"
+      ],
       "supported": [
-        "2.0",
         "1.0"
       ]
     },
