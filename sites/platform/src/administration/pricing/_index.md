@@ -193,9 +193,9 @@ Agencies have access to several partner levels with many perks.
 
   | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
   |-------------------|------------|--------|--------|------|----------|---------|
-  | User license      | –          | –      | Free   | Free | Free     | Free    |
+  | User license      | Free       | Free   | Free   | Free | Free     | Free    |
   | Development plan  | –          | –      | –      | Free | Free     | Free    |
-  | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
+  | Professional tier | –          | 10%    | 10%    | 10%  | 10%      | 10%     |
   | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
   | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
   | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |
