@@ -293,7 +293,7 @@ applications:
       elasticsearch:
 services:
   elasticsearch:
-    type: elasticsearch: 7.17
+    type: elasticsearch:8.19
 
 ```
 
