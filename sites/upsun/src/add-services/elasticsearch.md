@@ -44,7 +44,7 @@ but they're at their end of life and are no longer receiving security updates fr
 <!-- {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}-->
 
 To ensure your project remains stable in the future,
-switch to [a premium version](##enterprise-edition).
+switch to [a premium version](#enterprise-edition).
 
 Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
 To do so, follow the same procedure as for [upgrading](#upgrading).
@@ -144,7 +144,7 @@ services:
     type: elasticsearch:<VERSION>
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md##enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
@@ -237,7 +237,7 @@ services:
         type: elasticsearch:8.19
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md##enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
 
 <--->
 
@@ -262,7 +262,7 @@ services:
     type: elasticsearch:8.19
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md##enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
 
 {{< /codetabs >}}
 
@@ -270,7 +270,7 @@ If you’re using a [premium version](/add-services/elasticsearch.md##enterprise
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-Note that configuration for [premium versions](##enterprise-edition) may differ slightly.
+Note that configuration for [premium versions](#enterprise-edition) may differ slightly.
 
 {{< codetabs >}}
 
@@ -376,7 +376,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 {{% /snippet %}}
 ```
 
-If you're using a [premium version](##enterprise-edition),
+If you're using a [premium version](#enterprise-edition),
 use the `elasticsearch-enterprise` type.
 
 That enables mandatory HTTP Basic auth on all requests.
@@ -418,7 +418,7 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 {{% /snippet %}}
 ```
 
-If you're using a [premium version](##enterprise-edition),
+If you're using a [premium version](#enterprise-edition),
 use the `elasticsearch-enterprise` type.
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.
