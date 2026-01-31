@@ -1477,6 +1477,44 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/can-afford": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Checks if the user can afford the requested resources.",
+        "operationId": "can-afford-subscription",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "resources": {
+                    "description": "A map of resource keys to quantities (both strings).",
+                    "type": "object",
+                    "additionalProperties": {}
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proposed resource change is affordable."
+          },
+          "402": {
+            "description": "Proposed change is not affordable."
+          }
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/can-transfer": {
       "get": {
         "tags": [
@@ -7750,179 +7788,6 @@
         "x-vendor": "upsun"
       }
     },
-    "/billing/{billing_profile_id}/invoices": {
-      "get": {
-        "summary": "[Internal] List invoices",
-        "description": "Retrieves a paginated list of invoices for the specified billing profile.\n\nThis endpoint returns all invoices associated with a billing profile, including\nboth current and historical invoices. Results are returned in reverse chronological\norder (newest first) by default.\n\nNote:  This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
-        "operationId": "list-profile-invoices",
-        "tags": [
-          "Invoices"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/billing_profile_id"
-          },
-          {
-            "name": "page[size]",
-            "in": "query",
-            "description": "Number of invoices per page",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 100,
-              "default": null
-            }
-          },
-          {
-            "name": "page[after]",
-            "in": "query",
-            "description": "Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page[before]",
-            "in": "query",
-            "description": "Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filter[status][eq]",
-            "in": "query",
-            "description": "Filter by invoice status (exact match). Case-insensitive - will be converted to uppercase.",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "current",
-                "closing",
-                "closed",
-                "approved"
-              ]
-            }
-          },
-          {
-            "name": "filter[type][eq]",
-            "in": "query",
-            "description": "Filter by invoice type (exact match)",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "invoice",
-                "legacy_invoice"
-              ]
-            }
-          },
-          {
-            "name": "filter[invoice_date][gte]",
-            "in": "query",
-            "description": "Filter by invoice date greater than or equal to specified date",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-01-01"
-            }
-          },
-          {
-            "name": "filter[invoice_date][lte]",
-            "in": "query",
-            "description": "Filter by invoice date less than or equal to specified date",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-01-01"
-            }
-          },
-          {
-            "name": "filter[invoice_due][gte]",
-            "in": "query",
-            "description": "Filter by invoice due date greater than or equal to specified date",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-01-01"
-            }
-          },
-          {
-            "name": "filter[invoice_due][lte]",
-            "in": "query",
-            "description": "Filter by invoice due date less than or equal to specified date",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date",
-              "example": "2026-01-01"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/invoice"
-                      },
-                      "description": "Array of invoices."
-                    },
-                    "_links": {
-                      "type": "object",
-                      "description": "HAL links for pagination.",
-                      "properties": {
-                        "self": {
-                          "$ref": "#/components/schemas/link"
-                        },
-                        "next": {
-                          "$ref": "#/components/schemas/link"
-                        },
-                        "previous": {
-                          "$ref": "#/components/schemas/link"
-                        }
-                      },
-                      "required": [
-                        "self"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/billing/{billing_profile_id}/payment-source": {
       "get": {
         "summary": "[Internal] Get payment source",
@@ -8133,6 +7998,66 @@
         }
       }
     },
+    "/billing/{billing_profile_id}/prepayment": {
+      "get": {
+        "summary": "[Internal] Get prepayment",
+        "description": "Retrieves prepayment information for the specified billing profile. NOTE-- This is a BillingBridge (new billing system middleware) endpoint, which is still in the development phase.",
+        "operationId": "get-prepayment",
+        "tags": [
+          "Payments"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_profile_id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "prepayment": {
+                      "$ref": "#/components/schemas/prepayment"
+                    },
+                    "_links": {
+                      "type": "object",
+                      "properties": {
+                        "self": {
+                          "$ref": "#/components/schemas/link"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/billing/invoices": {
       "get": {
         "summary": "[Internal] List all invoices",
@@ -8299,6 +8224,179 @@
           },
           "403": {
             "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/{billing_profile_id}/invoices": {
+      "get": {
+        "summary": "[Internal] List invoices",
+        "description": "Retrieves a paginated list of invoices for the specified billing profile.\n\nThis endpoint returns all invoices associated with a billing profile, including\nboth current and historical invoices. Results are returned in reverse chronological\norder (newest first) by default.\n\nNote:  This is a BillingBridge (new billing system middleware) endpoint,\nwhich is still in the development phase. API behavior may change.\n",
+        "operationId": "list-profile-invoices",
+        "tags": [
+          "Invoices"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/billing_profile_id"
+          },
+          {
+            "name": "page[size]",
+            "in": "query",
+            "description": "Number of invoices per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": null
+            }
+          },
+          {
+            "name": "page[after]",
+            "in": "query",
+            "description": "Cursor for fetching the next page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page[before]",
+            "in": "query",
+            "description": "Cursor for fetching the previous page. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[status][eq]",
+            "in": "query",
+            "description": "Filter by invoice status (exact match). Case-insensitive - will be converted to uppercase.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "current",
+                "closing",
+                "closed",
+                "approved"
+              ]
+            }
+          },
+          {
+            "name": "filter[type][eq]",
+            "in": "query",
+            "description": "Filter by invoice type (exact match)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "invoice",
+                "legacy_invoice"
+              ]
+            }
+          },
+          {
+            "name": "filter[invoice_date][gte]",
+            "in": "query",
+            "description": "Filter by invoice date greater than or equal to specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-01-01"
+            }
+          },
+          {
+            "name": "filter[invoice_date][lte]",
+            "in": "query",
+            "description": "Filter by invoice date less than or equal to specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-01-01"
+            }
+          },
+          {
+            "name": "filter[invoice_due][gte]",
+            "in": "query",
+            "description": "Filter by invoice due date greater than or equal to specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-01-01"
+            }
+          },
+          {
+            "name": "filter[invoice_due][lte]",
+            "in": "query",
+            "description": "Filter by invoice due date less than or equal to specified date",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-01-01"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/invoice"
+                      },
+                      "description": "Array of invoices."
+                    },
+                    "_links": {
+                      "type": "object",
+                      "description": "HAL links for pagination.",
+                      "properties": {
+                        "self": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "next": {
+                          "$ref": "#/components/schemas/link"
+                        },
+                        "previous": {
+                          "$ref": "#/components/schemas/link"
+                        }
+                      },
+                      "required": [
+                        "self"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -18258,6 +18356,10 @@
                     },
                     "data": {
                       "description": "HTTP traffic data containing URL statistics and time-series information",
+                      "required": [
+                        "urls",
+                        "timelines"
+                      ],
                       "properties": {
                         "urls": {
                           "description": "Top URLs ranked by impact (response time × request count). Object keys use \"METHOD-URL\" format (e.g., \"GET-https://example.com/api/products\") as unique identifiers.",
@@ -18557,14 +18659,14 @@
         }
       }
     },
-    "/platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/overview-experiment": {
+    "/platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/ips": {
       "get": {
         "tags": [
           "Http Traffic"
         ],
-        "summary": "[Internal] Get HTTP traffic overview with top URLs and time-series metrics",
-        "description": "Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by \"METHOD-URL\" keys (e.g., \"GET-https://example.com/api/products\") and timestamped traffic data with request/response sizes in bytes.",
-        "operationId": "http_metrics_overview_experiment",
+        "summary": "[Internal] Get HTTP traffic timeline grouped by IP addresses",
+        "description": "Returns HTTP traffic analytics grouped by IP address with top IPs ranked by impact (response time × request count). Provides percentage-based metrics showing each IP's share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-IP metrics with percentage of total requests and timestamped traffic data showing IP distribution over time.",
+        "operationId": "http_metrics_timeline_ips",
         "parameters": [
           {
             "name": "projectId",
@@ -18611,7 +18713,1295 @@
             }
           },
           {
-            "name": "top_urls_count",
+            "name": "top_count",
+            "in": "query",
+            "description": "Number of top IPs to return (default: 10, max: 100)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": null,
+              "maximum": 100,
+              "minimum": 1,
+              "example": 20
+            }
+          },
+          {
+            "name": "methods[]",
+            "in": "query",
+            "description": "Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "PATCH",
+                  "DELETE",
+                  "HEAD",
+                  "OPTIONS"
+                ],
+                "example": "GET"
+              }
+            }
+          },
+          {
+            "name": "methods_mode",
+            "in": "query",
+            "description": "Filter mode for methods parameter. \"1\" (additive) includes only specified methods. \"-1\" (subtractive, default) excludes specified methods and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "domains[]",
+            "in": "query",
+            "description": "Filter by request domains/hosts. Can be specified multiple times for multiple values (e.g., ?domains[]=api.example.com&domains[]=www.example.com). Use domains_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "api.example.com"
+              }
+            }
+          },
+          {
+            "name": "domains_mode",
+            "in": "query",
+            "description": "Filter mode for domains parameter. \"1\" (additive) includes only specified domains. \"-1\" (subtractive, default) excludes specified domains and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "code_slots[]",
+            "in": "query",
+            "description": "Filter by HTTP status code groups. Can be specified multiple times for multiple values (e.g., ?code_slots[]=4XX&code_slots[]=5XX). Use code_slots_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "1XX",
+                  "2XX",
+                  "3XX",
+                  "4XX",
+                  "5XX"
+                ],
+                "example": "2XX"
+              }
+            }
+          },
+          {
+            "name": "code_slots_mode",
+            "in": "query",
+            "description": "Filter mode for code_slots parameter. \"1\" (additive) includes only specified code groups. \"-1\" (subtractive, default) excludes specified code groups and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "codes[]",
+            "in": "query",
+            "description": "Filter by specific HTTP status codes. Can be specified multiple times for multiple values (e.g., ?codes[]=200&codes[]=404). Use codes_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "200"
+              }
+            }
+          },
+          {
+            "name": "codes_mode",
+            "in": "query",
+            "description": "Filter mode for codes parameter. \"1\" (additive) includes only specified codes. \"-1\" (subtractive, default) excludes specified codes and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "request_duration_slots[]",
+            "in": "query",
+            "description": "Filter by response time ranges (in milliseconds). Can be specified multiple times for multiple values (e.g., ?request_duration_slots[]=0-50&request_duration_slots[]=1600+). Use request_duration_slots_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "0-50",
+                  "50-100",
+                  "100-200",
+                  "200-400",
+                  "400-800",
+                  "800-1600",
+                  "1600+"
+                ],
+                "example": "0-50"
+              }
+            }
+          },
+          {
+            "name": "request_duration_slots_mode",
+            "in": "query",
+            "description": "Filter mode for request_duration_slots parameter. \"1\" (additive) includes only specified duration ranges. \"-1\" (subtractive, default) excludes specified duration ranges and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP traffic timeline by IP retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "_grain",
+                    "_from",
+                    "_to",
+                    "_project_id",
+                    "_environment_id",
+                    "_environment_type",
+                    "_branch_machine_name",
+                    "_top_count",
+                    "data"
+                  ],
+                  "properties": {
+                    "_grain": {
+                      "description": "Data granularity in seconds",
+                      "type": "integer",
+                      "example": 300
+                    },
+                    "_from": {
+                      "description": "Query start timestamp",
+                      "type": "integer",
+                      "example": 1704067200
+                    },
+                    "_to": {
+                      "description": "Query end timestamp",
+                      "type": "integer",
+                      "example": 1704153600
+                    },
+                    "_project_id": {
+                      "description": "Project identifier",
+                      "type": "string",
+                      "example": "abc123def456"
+                    },
+                    "_environment_id": {
+                      "description": "Environment identifier",
+                      "type": "string",
+                      "example": "main"
+                    },
+                    "_environment_type": {
+                      "description": "Environment type",
+                      "type": "string",
+                      "enum": [
+                        "production",
+                        "staging",
+                        "development"
+                      ],
+                      "example": "production"
+                    },
+                    "_branch_machine_name": {
+                      "description": "Branch machine name",
+                      "type": "string",
+                      "example": "main"
+                    },
+                    "_top_count": {
+                      "description": "Number of top IPs included in response",
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "_methods": {
+                      "description": "Applied method filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_methods_mode": {
+                      "description": "Method filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_domains": {
+                      "description": "Applied domain filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_domains_mode": {
+                      "description": "Domain filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_code_slots": {
+                      "description": "Applied code slot filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_code_slots_mode": {
+                      "description": "Code slot filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_codes": {
+                      "description": "Applied HTTP status code filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_codes_mode": {
+                      "description": "Code filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_request_duration_slots": {
+                      "description": "Applied request duration slot filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_request_duration_slots_mode": {
+                      "description": "Request duration slot filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "data": {
+                      "description": "HTTP traffic data grouped by IP addresses",
+                      "required": [
+                        "kind",
+                        "total",
+                        "top_hits",
+                        "timelines"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "description": "The kind of grouping",
+                          "type": "string",
+                          "enum": [
+                            "ip"
+                          ],
+                          "example": "ip"
+                        },
+                        "total": {
+                          "description": "Total request count across all IPs",
+                          "type": "integer",
+                          "example": 396519
+                        },
+                        "top_hits": {
+                          "description": "Top IP addresses ranked by request count. Object keys are IP addresses.",
+                          "type": "object",
+                          "example": {
+                            "192.168.1.1": {
+                              "name": "192.168.1.1",
+                              "impact": 15.67,
+                              "average": 0.234,
+                              "p_50": 0.156,
+                              "p_96": 0.892,
+                              "count": 62143
+                            },
+                            "10.0.0.5": {
+                              "name": "10.0.0.5",
+                              "impact": 12.34,
+                              "average": 0.189,
+                              "p_50": 0.123,
+                              "p_96": 0.756,
+                              "count": 48921
+                            },
+                            "172.16.0.10": {
+                              "name": "172.16.0.10",
+                              "impact": 8.45,
+                              "average": 0.312,
+                              "p_50": 0.201,
+                              "p_96": 1.234,
+                              "count": 33512
+                            }
+                          },
+                          "additionalProperties": {
+                            "required": [
+                              "name",
+                              "impact",
+                              "average",
+                              "p_50",
+                              "p_96",
+                              "count"
+                            ],
+                            "properties": {
+                              "name": {
+                                "description": "The IP address",
+                                "type": "string",
+                                "example": "192.168.1.1"
+                              },
+                              "impact": {
+                                "description": "Impact score as percentage of total wall time consumed",
+                                "type": "number",
+                                "format": "float",
+                                "example": 15.67,
+                                "nullable": true
+                              },
+                              "average": {
+                                "description": "Average request duration in seconds",
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.234
+                              },
+                              "p_50": {
+                                "description": "50th percentile (median) request duration in seconds",
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.156
+                              },
+                              "p_96": {
+                                "description": "96th percentile request duration in seconds",
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.892
+                              },
+                              "count": {
+                                "description": "Total number of requests from this IP",
+                                "type": "integer",
+                                "example": 62143
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "timelines": {
+                          "description": "Time-series HTTP traffic metrics grouped by IP",
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "timestamp"
+                            ],
+                            "properties": {
+                              "timestamp": {
+                                "description": "Data point timestamp",
+                                "type": "integer",
+                                "example": 1704067200
+                              },
+                              "total": {
+                                "description": "Total request count at this timestamp across all IPs. Consider 0 if absent",
+                                "type": "integer",
+                                "example": 4120
+                              },
+                              "data": {
+                                "description": "Per-IP metrics at this timestamp. Object keys are IP addresses.",
+                                "type": "object",
+                                "example": {
+                                  "192.168.1.1": {
+                                    "count": 1543,
+                                    "impact": 37.45
+                                  },
+                                  "10.0.0.5": {
+                                    "count": 1247,
+                                    "impact": 30.26
+                                  },
+                                  "172.16.0.10": {
+                                    "count": 823,
+                                    "impact": 19.98
+                                  }
+                                },
+                                "additionalProperties": {
+                                  "required": [
+                                    "count",
+                                    "impact"
+                                  ],
+                                  "properties": {
+                                    "count": {
+                                      "description": "Request count from this IP at this timestamp",
+                                      "type": "integer",
+                                      "example": 1543
+                                    },
+                                    "impact": {
+                                      "description": "Impact score as percentage of wall time consumed at this timestamp",
+                                      "type": "number",
+                                      "format": "float",
+                                      "example": 37.45,
+                                      "nullable": true
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              }
+                            },
+                            "type": "object",
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
+                    }
+                  },
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "type",
+                    "title",
+                    "status",
+                    "violations"
+                  ],
+                  "properties": {
+                    "type": {
+                      "description": "RFC 2616 reference URL identifying the error type",
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://tools.ietf.org/html/rfc2616#section-1"
+                    },
+                    "title": {
+                      "description": "Human-readable summary of the validation error",
+                      "type": "string",
+                      "example": "Please ensure parameters are correct."
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "violations": {
+                      "description": "Map of parameter names to their validation errors. Each parameter can have multiple error messages.",
+                      "type": "object",
+                      "example": {
+                        "grain": [
+                          "Grain can not be larger than the selection windows."
+                        ],
+                        "from": [
+                          "The from timestamp must be in the past."
+                        ],
+                        "to": [
+                          "The to timestamp must be greater than the from timestamp."
+                        ]
+                      },
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          },
+          "499": {
+            "description": "Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Too much data fetched"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Please reduce the time range or add more filters to narrow down the query"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/user-agents": {
+      "get": {
+        "tags": [
+          "Http Traffic"
+        ],
+        "summary": "[Internal] Get HTTP traffic timeline grouped by User Agents",
+        "description": "Returns HTTP traffic analytics grouped by User Agent with top User Agents ranked by impact (response time × request count). Provides percentage-based metrics showing each User Agent's share of total traffic, along with time-series data. Use top_count parameter to control result size (default: 10, max: 100). Response includes per-User Agent metrics with percentage of total requests and timestamped traffic data showing User Agent distribution over time.",
+        "operationId": "http_metrics_timeline_user_agents",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The unique identifier of the Upsun project",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "abc123def456"
+            }
+          },
+          {
+            "name": "environmentId",
+            "in": "path",
+            "description": "The environment identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704067200
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704153600
+            }
+          },
+          {
+            "name": "top_count",
+            "in": "query",
+            "description": "Number of top User Agents to return (default: 10, max: 100)",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": null,
+              "maximum": 100,
+              "minimum": 1,
+              "example": 20
+            }
+          },
+          {
+            "name": "methods[]",
+            "in": "query",
+            "description": "Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "PATCH",
+                  "DELETE",
+                  "HEAD",
+                  "OPTIONS"
+                ],
+                "example": "GET"
+              }
+            }
+          },
+          {
+            "name": "methods_mode",
+            "in": "query",
+            "description": "Filter mode for methods parameter. \"1\" (additive) includes only specified methods. \"-1\" (subtractive, default) excludes specified methods and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "domains[]",
+            "in": "query",
+            "description": "Filter by request domains/hosts. Can be specified multiple times for multiple values (e.g., ?domains[]=api.example.com&domains[]=www.example.com). Use domains_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "api.example.com"
+              }
+            }
+          },
+          {
+            "name": "domains_mode",
+            "in": "query",
+            "description": "Filter mode for domains parameter. \"1\" (additive) includes only specified domains. \"-1\" (subtractive, default) excludes specified domains and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "code_slots[]",
+            "in": "query",
+            "description": "Filter by HTTP status code groups. Can be specified multiple times for multiple values (e.g., ?code_slots[]=4XX&code_slots[]=5XX). Use code_slots_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "1XX",
+                  "2XX",
+                  "3XX",
+                  "4XX",
+                  "5XX"
+                ],
+                "example": "2XX"
+              }
+            }
+          },
+          {
+            "name": "code_slots_mode",
+            "in": "query",
+            "description": "Filter mode for code_slots parameter. \"1\" (additive) includes only specified code groups. \"-1\" (subtractive, default) excludes specified code groups and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "codes[]",
+            "in": "query",
+            "description": "Filter by specific HTTP status codes. Can be specified multiple times for multiple values (e.g., ?codes[]=200&codes[]=404). Use codes_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "200"
+              }
+            }
+          },
+          {
+            "name": "codes_mode",
+            "in": "query",
+            "description": "Filter mode for codes parameter. \"1\" (additive) includes only specified codes. \"-1\" (subtractive, default) excludes specified codes and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "request_duration_slots[]",
+            "in": "query",
+            "description": "Filter by response time ranges (in milliseconds). Can be specified multiple times for multiple values (e.g., ?request_duration_slots[]=0-50&request_duration_slots[]=1600+). Use request_duration_slots_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "0-50",
+                  "50-100",
+                  "100-200",
+                  "200-400",
+                  "400-800",
+                  "800-1600",
+                  "1600+"
+                ],
+                "example": "0-50"
+              }
+            }
+          },
+          {
+            "name": "request_duration_slots_mode",
+            "in": "query",
+            "description": "Filter mode for request_duration_slots parameter. \"1\" (additive) includes only specified duration ranges. \"-1\" (subtractive, default) excludes specified duration ranges and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTTP traffic timeline by User Agent retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "_grain",
+                    "_from",
+                    "_to",
+                    "_project_id",
+                    "_environment_id",
+                    "_environment_type",
+                    "_branch_machine_name",
+                    "_top_count",
+                    "data"
+                  ],
+                  "properties": {
+                    "_grain": {
+                      "description": "Data granularity in seconds",
+                      "type": "integer",
+                      "example": 300
+                    },
+                    "_from": {
+                      "description": "Query start timestamp",
+                      "type": "integer",
+                      "example": 1704067200
+                    },
+                    "_to": {
+                      "description": "Query end timestamp",
+                      "type": "integer",
+                      "example": 1704153600
+                    },
+                    "_project_id": {
+                      "description": "Project identifier",
+                      "type": "string",
+                      "example": "abc123def456"
+                    },
+                    "_environment_id": {
+                      "description": "Environment identifier",
+                      "type": "string",
+                      "example": "main"
+                    },
+                    "_environment_type": {
+                      "description": "Environment type",
+                      "type": "string",
+                      "enum": [
+                        "production",
+                        "staging",
+                        "development"
+                      ],
+                      "example": "production"
+                    },
+                    "_branch_machine_name": {
+                      "description": "Branch machine name",
+                      "type": "string",
+                      "example": "main"
+                    },
+                    "_top_count": {
+                      "description": "Number of top User Agents included in response",
+                      "type": "integer",
+                      "example": 10
+                    },
+                    "_methods": {
+                      "description": "Applied method filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_methods_mode": {
+                      "description": "Method filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_domains": {
+                      "description": "Applied domain filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_domains_mode": {
+                      "description": "Domain filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_code_slots": {
+                      "description": "Applied code slot filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_code_slots_mode": {
+                      "description": "Code slot filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_codes": {
+                      "description": "Applied HTTP status code filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_codes_mode": {
+                      "description": "Code filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "_request_duration_slots": {
+                      "description": "Applied request duration slot filter values",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true
+                    },
+                    "_request_duration_slots_mode": {
+                      "description": "Request duration slot filter mode (1=additive, -1=subtractive)",
+                      "type": "string",
+                      "enum": [
+                        "1",
+                        "-1"
+                      ],
+                      "nullable": true
+                    },
+                    "data": {
+                      "description": "HTTP traffic data grouped by User Agents",
+                      "required": [
+                        "kind",
+                        "total",
+                        "top_hits",
+                        "timelines"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "description": "The kind of grouping",
+                          "type": "string",
+                          "enum": [
+                            "user_agent"
+                          ],
+                          "example": "user_agent"
+                        },
+                        "total": {
+                          "description": "Total request count across all User Agents",
+                          "type": "integer",
+                          "example": 396519
+                        },
+                        "top_hits": {
+                          "description": "Top User Agents ranked by request count. Object keys are User Agent strings.",
+                          "type": "object",
+                          "example": {
+                            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36": {
+                              "name": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                              "impact": 45.67,
+                              "average": 0.234,
+                              "p_50": 0.156,
+                              "p_96": 0.892,
+                              "count": 62143
+                            },
+                            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36": {
+                              "name": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+                              "impact": 32.45,
+                              "average": 0.189,
+                              "p_50": 0.123,
+                              "p_96": 0.756,
+                              "count": 44123
+                            },
+                            "curl/7.68.0": {
+                              "name": "curl/7.68.0",
+                              "impact": 8.45,
+                              "average": 0.312,
+                              "p_50": 0.201,
+                              "p_96": 1.234,
+                              "count": 11512
+                            }
+                          },
+                          "additionalProperties": {
+                            "required": [
+                              "name",
+                              "impact",
+                              "average",
+                              "p_50",
+                              "p_96",
+                              "count"
+                            ],
+                            "properties": {
+                              "name": {
+                                "description": "The User Agent string",
+                                "type": "string",
+                                "example": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                              },
+                              "impact": {
+                                "description": "Impact score as percentage of total wall time consumed",
+                                "type": "number",
+                                "format": "float",
+                                "example": 45.67,
+                                "nullable": true
+                              },
+                              "average": {
+                                "description": "Average request duration in seconds",
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.234
+                              },
+                              "p_50": {
+                                "description": "50th percentile (median) request duration in seconds",
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.156
+                              },
+                              "p_96": {
+                                "description": "96th percentile request duration in seconds",
+                                "type": "number",
+                                "format": "float",
+                                "example": 0.892
+                              },
+                              "count": {
+                                "description": "Total number of requests from this User Agent",
+                                "type": "integer",
+                                "example": 62143
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "timelines": {
+                          "description": "Time-series HTTP traffic metrics grouped by User Agent",
+                          "type": "array",
+                          "items": {
+                            "required": [
+                              "timestamp"
+                            ],
+                            "properties": {
+                              "timestamp": {
+                                "description": "Data point timestamp",
+                                "type": "integer",
+                                "example": 1704067200
+                              },
+                              "total": {
+                                "description": "Total request count at this timestamp across all User Agents. Consider 0 if absent",
+                                "type": "integer",
+                                "example": 4120
+                              },
+                              "data": {
+                                "description": "Per-User Agent metrics at this timestamp. Object keys are User Agent strings.",
+                                "type": "object",
+                                "example": {
+                                  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36": {
+                                    "count": 1543,
+                                    "impact": 47.45
+                                  },
+                                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36": {
+                                    "count": 1247,
+                                    "impact": 38.26
+                                  },
+                                  "curl/7.68.0": {
+                                    "count": 223,
+                                    "impact": 6.85
+                                  }
+                                },
+                                "additionalProperties": {
+                                  "required": [
+                                    "count",
+                                    "impact"
+                                  ],
+                                  "properties": {
+                                    "count": {
+                                      "description": "Request count from this User Agent at this timestamp",
+                                      "type": "integer",
+                                      "example": 1543
+                                    },
+                                    "impact": {
+                                      "description": "Impact score as percentage of wall time consumed at this timestamp",
+                                      "type": "number",
+                                      "format": "float",
+                                      "example": 47.45,
+                                      "nullable": true
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              }
+                            },
+                            "type": "object",
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "type": "object",
+                      "additionalProperties": false
+                    }
+                  },
+                  "type": "object",
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": [
+                    "type",
+                    "title",
+                    "status",
+                    "violations"
+                  ],
+                  "properties": {
+                    "type": {
+                      "description": "RFC 2616 reference URL identifying the error type",
+                      "type": "string",
+                      "format": "uri",
+                      "example": "https://tools.ietf.org/html/rfc2616#section-1"
+                    },
+                    "title": {
+                      "description": "Human-readable summary of the validation error",
+                      "type": "string",
+                      "example": "Please ensure parameters are correct."
+                    },
+                    "status": {
+                      "description": "HTTP status code",
+                      "type": "integer",
+                      "example": 400
+                    },
+                    "violations": {
+                      "description": "Map of parameter names to their validation errors. Each parameter can have multiple error messages.",
+                      "type": "object",
+                      "example": {
+                        "grain": [
+                          "Grain can not be larger than the selection windows."
+                        ],
+                        "from": [
+                          "The from timestamp must be in the past."
+                        ],
+                        "to": [
+                          "The to timestamp must be greater than the from timestamp."
+                        ]
+                      },
+                      "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+          },
+          "499": {
+            "description": "Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Too much data fetched"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Please reduce the time range or add more filters to narrow down the query"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/platformsh-api/{projectId}/environments/{environmentId}/observability/http-metrics/timeline/urls": {
+      "get": {
+        "tags": [
+          "Http Traffic"
+        ],
+        "summary": "[Internal] Get HTTP traffic overview with top URLs and time-series metrics",
+        "description": "Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics grouped by \"METHOD-URL\" keys (e.g., \"GET-https://example.com/api/products\") and timestamped traffic data with request/response sizes in bytes.",
+        "operationId": "http_metrics_timeline_urls",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The unique identifier of the Upsun project",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "[a-z0-9]+",
+              "example": "abc123def456"
+            }
+          },
+          {
+            "name": "environmentId",
+            "in": "path",
+            "description": "The environment identifier",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": ".+",
+              "example": "main"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704067200
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End timestamp for the time range (Unix timestamp in seconds)",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "example": 1704153600
+            }
+          },
+          {
+            "name": "top_count",
             "in": "query",
             "description": "Number of top URLs to return (default: 10, max: 100)",
             "required": false,
@@ -18621,6 +20011,181 @@
               "maximum": 100,
               "minimum": 1,
               "example": 20
+            }
+          },
+          {
+            "name": "methods[]",
+            "in": "query",
+            "description": "Filter by HTTP methods. Can be specified multiple times for multiple values (e.g., ?methods[]=GET&methods[]=POST). Use methods_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "GET",
+                  "POST",
+                  "PUT",
+                  "PATCH",
+                  "DELETE",
+                  "HEAD",
+                  "OPTIONS"
+                ],
+                "example": "GET"
+              }
+            }
+          },
+          {
+            "name": "methods_mode",
+            "in": "query",
+            "description": "Filter mode for methods parameter. \"1\" (additive) includes only specified methods. \"-1\" (subtractive, default) excludes specified methods and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "domains[]",
+            "in": "query",
+            "description": "Filter by request domains/hosts. Can be specified multiple times for multiple values (e.g., ?domains[]=api.example.com&domains[]=www.example.com). Use domains_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "api.example.com"
+              }
+            }
+          },
+          {
+            "name": "domains_mode",
+            "in": "query",
+            "description": "Filter mode for domains parameter. \"1\" (additive) includes only specified domains. \"-1\" (subtractive, default) excludes specified domains and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "code_slots[]",
+            "in": "query",
+            "description": "Filter by HTTP status code groups. Can be specified multiple times for multiple values (e.g., ?code_slots[]=4XX&code_slots[]=5XX). Use code_slots_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "1XX",
+                  "2XX",
+                  "3XX",
+                  "4XX",
+                  "5XX"
+                ],
+                "example": "2XX"
+              }
+            }
+          },
+          {
+            "name": "code_slots_mode",
+            "in": "query",
+            "description": "Filter mode for code_slots parameter. \"1\" (additive) includes only specified code groups. \"-1\" (subtractive, default) excludes specified code groups and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "codes[]",
+            "in": "query",
+            "description": "Filter by specific HTTP status codes. Can be specified multiple times for multiple values (e.g., ?codes[]=200&codes[]=404). Use codes_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "200"
+              }
+            }
+          },
+          {
+            "name": "codes_mode",
+            "in": "query",
+            "description": "Filter mode for codes parameter. \"1\" (additive) includes only specified codes. \"-1\" (subtractive, default) excludes specified codes and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
+            }
+          },
+          {
+            "name": "request_duration_slots[]",
+            "in": "query",
+            "description": "Filter by response time ranges (in milliseconds). Can be specified multiple times for multiple values (e.g., ?request_duration_slots[]=0-50&request_duration_slots[]=1600+). Use request_duration_slots_mode to control inclusion/exclusion behavior.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "0-50",
+                  "50-100",
+                  "100-200",
+                  "200-400",
+                  "400-800",
+                  "800-1600",
+                  "1600+"
+                ],
+                "example": "0-50"
+              }
+            }
+          },
+          {
+            "name": "request_duration_slots_mode",
+            "in": "query",
+            "description": "Filter mode for request_duration_slots parameter. \"1\" (additive) includes only specified duration ranges. \"-1\" (subtractive, default) excludes specified duration ranges and includes all others.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": null,
+              "enum": [
+                "1",
+                "-1"
+              ],
+              "example": "1"
             }
           }
         ],
@@ -18638,7 +20203,7 @@
                     "_environment_id",
                     "_environment_type",
                     "_branch_machine_name",
-                    "_top_urls_count",
+                    "_top_count",
                     "data",
                     "filters"
                   ],
@@ -18683,7 +20248,7 @@
                       "type": "string",
                       "example": "main"
                     },
-                    "_top_urls_count": {
+                    "_top_count": {
                       "description": "Number of top URLs included in response",
                       "type": "integer",
                       "example": 10
@@ -18776,7 +20341,20 @@
                     "data": {
                       "description": "HTTP traffic data containing URL statistics and time-series information",
                       "properties": {
-                        "urls": {
+                        "kind": {
+                          "description": "The kind of grouping",
+                          "type": "string",
+                          "enum": [
+                            "url"
+                          ],
+                          "example": "url"
+                        },
+                        "total": {
+                          "description": "Total request count across all URLs",
+                          "type": "integer",
+                          "example": 396519
+                        },
+                        "top_hits": {
                           "description": "Top URLs ranked by impact (response time × request count). Object keys use \"METHOD-URL\" format (e.g., \"GET-https://example.com/api/products\") as unique identifiers.",
                           "type": "object",
                           "example": {
@@ -19839,18 +21417,6 @@
             }
           },
           {
-            "name": "ulid",
-            "in": "query",
-            "description": "Pagination cursor (ULID format) to retrieve next page of results",
-            "required": false,
-            "deprecated": true,
-            "schema": {
-              "type": "string",
-              "format": "ulid",
-              "example": "01HXYZ123456789ABCDEFGHIJK"
-            }
-          },
-          {
             "name": "cursor",
             "in": "query",
             "description": "Pagination cursor (ULID format) to retrieve next page of results",
@@ -20301,11 +21867,6 @@
                       "type": "array",
                       "items": {
                         "properties": {
-                          "ulid": {
-                            "type": "string",
-                            "format": "ulid",
-                            "example": "01HXYZ123456789ABCDEFGHIJK"
-                          },
                           "cursor": {
                             "type": "string",
                             "format": "ulid",
@@ -24546,7 +26107,27 @@
                           "type": "object",
                           "additionalProperties": false
                         },
-                        "http_metrics_overview_experiment": {
+                        "http_metrics_timeline_urls": {
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "type": "object",
+                          "additionalProperties": false
+                        },
+                        "http_metrics_timeline_ips": {
+                          "properties": {
+                            "href": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          },
+                          "type": "object",
+                          "additionalProperties": false
+                        },
+                        "http_metrics_timeline_user_agents": {
                           "properties": {
                             "href": {
                               "type": "string",
@@ -25221,9 +26802,9 @@
                     "type": "string",
                     "description": "[Internal] The Netsuite ID."
                   },
-                  "billing_account_id": {
+                  "billing_profile_id": {
                     "type": "string",
-                    "description": "[Internal] The Billing Account ID."
+                    "description": "[Internal] The Billing Profile ID."
                   },
                   "billing_legacy": {
                     "type": "boolean",
@@ -25385,9 +26966,9 @@
                     "type": "string",
                     "description": "[Internal] The Netsuite ID."
                   },
-                  "billing_account_id": {
+                  "billing_profile_id": {
                     "type": "string",
-                    "description": "[Internal] The Billing Account ID."
+                    "description": "[Internal] The Billing Profile ID."
                   },
                   "billing_legacy": {
                     "type": "boolean",
@@ -29956,8 +31537,8 @@
           },
           {
             "in": "query",
-            "name": "filter[billing_account_id]",
-            "description": "Allows filtering by `billing_account_id` using one or more operators.",
+            "name": "filter[billing_profile_id]",
+            "description": "Allows filtering by `billing_profile_id` using one or more operators.",
             "style": "deepObject",
             "explode": true,
             "schema": {
@@ -30389,10 +31970,10 @@
                       }
                     ]
                   },
-                  "billing_account_id": {
+                  "billing_profile_id": {
                     "allOf": [
                       {
-                        "$ref": "#/components/schemas/BillingAccountID"
+                        "$ref": "#/components/schemas/BillingProfileID"
                       }
                     ]
                   }
@@ -32595,6 +34176,7 @@
                   "provider",
                   "zone",
                   "carbon_intensity",
+                  "carbon_intensity_source",
                   "green"
                 ],
                 "properties": {
@@ -32618,6 +34200,9 @@
                   },
                   "carbon_intensity": {
                     "$ref": "#/components/schemas/DataCenterCarbonIntensity"
+                  },
+                  "carbon_intensity_source": {
+                    "$ref": "#/components/schemas/DataCenterCarbonIntensitySource"
                   },
                   "green": {
                     "$ref": "#/components/schemas/DataCenterGreen"
@@ -32717,6 +34302,9 @@
                   },
                   "carbon_intensity": {
                     "$ref": "#/components/schemas/DataCenterCarbonIntensity"
+                  },
+                  "carbon_intensity_source": {
+                    "$ref": "#/components/schemas/DataCenterCarbonIntensitySource"
                   },
                   "green": {
                     "$ref": "#/components/schemas/DataCenterGreen"
@@ -37780,6 +39368,81 @@
           }
         }
       },
+      "payment_source": {
+        "type": "object",
+        "description": "The payment source",
+        "properties": {
+          "type": {
+            "description": "The type of the payment source.",
+            "type": "string",
+            "example": "credit-card"
+          },
+          "type_label": {
+            "description": "The type of the payment source, prettified.",
+            "type": "string",
+            "example": "Card"
+          },
+          "payment_category": {
+            "description": "The category of payment method (card, bank_debit...).",
+            "type": "string",
+            "example": "card"
+          },
+          "name": {
+            "description": "The name of the customer.",
+            "type": "string"
+          },
+          "number": {
+            "description": "The partially sanitized number of the payment source (credit card number, or an iban number).",
+            "type": "string",
+            "example": "XXXX-XXXX-XXXX-1234"
+          },
+          "data": {
+            "description": "The data object for a particular source type. Different source types will have different schemas for the data property.",
+            "type": "object"
+          }
+        }
+      },
+      "prepayment": {
+        "type": "object",
+        "description": "Prepayment info for a billing profile.",
+        "properties": {
+          "balance": {
+            "type": "object",
+            "description": "Prepayment balance available in complex format",
+            "properties": {
+              "formatted": {
+                "type": "string",
+                "description": "Formatted balance."
+              },
+              "amount": {
+                "type": "number",
+                "description": "The balance amount."
+              },
+              "currency_code": {
+                "type": "string",
+                "description": "The balance currency code."
+              },
+              "currency_symbol": {
+                "type": "string",
+                "description": "The balance currency symbol."
+              }
+            }
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the prepayment balance was last updated."
+          },
+          "sufficient": {
+            "type": "boolean",
+            "description": "Indicates if the prepayment balance is sufficient to cover upcoming order."
+          },
+          "fallback": {
+            "type": "string",
+            "description": "Fallback payment method"
+          }
+        }
+      },
       "formatted_cost": {
         "type": "object",
         "description": "Formatted cost object.",
@@ -37898,40 +39561,6 @@
           }
         }
       },
-      "payment_source": {
-        "type": "object",
-        "description": "The payment source",
-        "properties": {
-          "type": {
-            "description": "The type of the payment source.",
-            "type": "string",
-            "example": "credit-card"
-          },
-          "type_label": {
-            "description": "The type of the payment source, prettified.",
-            "type": "string",
-            "example": "Card"
-          },
-          "payment_category": {
-            "description": "The category of payment method (card, bank_debit...).",
-            "type": "string",
-            "example": "card"
-          },
-          "name": {
-            "description": "The name of the customer.",
-            "type": "string"
-          },
-          "number": {
-            "description": "The partially sanitized number of the payment source (credit card number, or an iban number).",
-            "type": "string",
-            "example": "XXXX-XXXX-XXXX-1234"
-          },
-          "data": {
-            "description": "The data object for a particular source type. Different source types will have different schemas for the data property.",
-            "type": "object"
-          }
-        }
-      },
       "invoice_detail": {
         "type": "object",
         "description": "The invoice object.",
@@ -38037,7 +39666,7 @@
       },
       "payment": {
         "type": "object",
-        "description": "Prepayment transaction for a billing profile.",
+        "description": "Payment transaction for a billing profile.",
         "properties": {
           "invoice_id": {
             "type": "string",
@@ -38053,7 +39682,7 @@
           },
           "amount": {
             "type": "object",
-            "description": "The prepayment balance in complex format.",
+            "description": "The payment balance in complex format.",
             "properties": {
               "formatted": {
                 "type": "string",
@@ -38075,15 +39704,18 @@
           },
           "created": {
             "type": "string",
+            "format": "date-time",
             "description": "Time the transaction was created."
           },
           "updated": {
             "type": "string",
+            "format": "date-time",
             "description": "Time the transaction was last updated.",
             "nullable": true
           },
           "expire_date": {
             "type": "string",
+            "format": "date-time",
             "description": "The expiration date of the transaction (deposits only).",
             "nullable": true
           }
@@ -53241,11 +54873,6 @@
             "format": "ulid",
             "description": "The ID of the organization."
           },
-          "billing_account_id": {
-            "type": "string",
-            "format": "ulid",
-            "description": "The ID of the billing account."
-          },
           "payment_method_id": {
             "type": "string",
             "description": "The ID of the payment method."
@@ -53433,9 +55060,9 @@
             "type": "string",
             "description": "[Internal] The Netsuite ID."
           },
-          "billing_account_id": {
+          "billing_profile_id": {
             "type": "string",
-            "description": "The Billing Account ID."
+            "description": "The Billing Profile ID."
           },
           "billing_legacy": {
             "type": "boolean",
@@ -54933,6 +56560,9 @@
           "carbon_intensity": {
             "$ref": "#/components/schemas/DataCenterCarbonIntensity"
           },
+          "carbon_intensity_source": {
+            "$ref": "#/components/schemas/DataCenterCarbonIntensitySource"
+          },
           "green": {
             "$ref": "#/components/schemas/DataCenterGreen"
           },
@@ -55045,11 +56675,11 @@
             ],
             "nullable": true
           },
-          "billing_account_id": {
+          "billing_profile_id": {
             "type": "string",
             "allOf": [
               {
-                "$ref": "#/components/schemas/BillingAccountID"
+                "$ref": "#/components/schemas/BillingProfileID"
               }
             ],
             "nullable": true
@@ -56060,7 +57690,7 @@
             "$ref": "#/components/schemas/RegionProvider"
           },
           "datacenter": {
-            "$ref": "#/components/schemas/RegionDataCenter"
+            "$ref": "#/components/schemas/RegionDatacenter"
           },
           "envimpact": {
             "$ref": "#/components/schemas/RegionEnvImpact"
@@ -56295,8 +57925,12 @@
         "description": "The environment impact zone of the data center."
       },
       "DataCenterCarbonIntensity": {
-        "type": "integer",
+        "type": "number",
         "description": "The environment impact carbon intensity of the data center."
+      },
+      "DataCenterCarbonIntensitySource": {
+        "type": "string",
+        "description": "The source of the carbon intensity data for the data center."
       },
       "DataCenterGreen": {
         "type": "boolean",
@@ -56397,8 +58031,8 @@
         "description": "[Internal] The project id of the edgee service.",
         "type": "string"
       },
-      "BillingAccountID": {
-        "description": "[Internal] The billing account related to the project.",
+      "BillingProfileID": {
+        "description": "[Internal] The billing profile related to the project.",
         "type": "string"
       },
       "OptionsType": {
@@ -56505,7 +58139,7 @@
         },
         "additionalProperties": false
       },
-      "RegionDataCenter": {
+      "RegionDatacenter": {
         "type": "object",
         "description": "Information about the region provider data center.",
         "properties": {
@@ -56535,6 +58169,10 @@
           "carbon_intensity": {
             "type": "number",
             "description": "The carbon intensity value."
+          },
+          "carbon_intensity_source": {
+            "type": "string",
+            "description": "The source of the carbon intensity data."
           },
           "green": {
             "type": "boolean",
