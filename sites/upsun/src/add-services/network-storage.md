@@ -18,17 +18,29 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and security updates.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="network-storage" status="supported" environment="grid" >}}
+{{< image-versions image="network-storage" status="supported" >}}
 
-{{%  deprecated-versions %}}
+{{% note theme="info" %}}
+To ensure optimal stability and throughput, **version {{% latest "network-storage" %}} remains the recommended standard for all environments.** If you are using a different version, refer to the [migration options](#migration-options) below to migrate to version {{% latest "network-storage" %}}.
+{{% /note %}}
 
-{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
+{{% deprecated-versions %}}
+
+{{< image-versions image="network-storage" status="deprecated" >}}
+
+{{% note theme="info" %}}
+Upsun has deprecated version 2.0 due to performance inconsistencies identified under production-level workloads.<br>
+**We strongly advise migrating any services currently using version 2.0 back to version {{% latest "network-storage" %}} to avoid potential performance degradation.** See the [migration options](#migration-options) below.
+{{% /note %}}
+
 <!-- vale off -->
-{{< note theme="warning" title="Migrating to a supported version" >}}
+### Migration options {#migration-options}
+
+{{< note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}" >}}
 
 Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
 
-To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** See the [Migration Options](#migration-options) below.
+To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** These options are described below.
 
 **Important Considerations**
 - **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the service removal begins.**
@@ -38,9 +50,8 @@ To prevent unintended data loss and minimize downtime, **Upsun recommends a manu
 {{< /note >}}
 <!-- vale on -->
 
-### Migration Options {#migration-options}
-**Option 1: Manual Migration**<br>
-Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. See "Migrating to a supported version" in the [section above](#supported-versions).
+**Option 1: Manual migration to version {{% latest \"network-storage\" %}}**<br>
+Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. 
    
 1. [Manually back up your environment](/environments/backup.md#create-a-manual-backup).
 
