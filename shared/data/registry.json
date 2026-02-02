@@ -511,7 +511,7 @@
       ]
     }
   },
-    "mariadb-replica": {
+  "mariadb-replica": {
     "description": "This service is used to create a MariaDB replica service.",
     "repo_name": "mariadb-replica",
     "disk": true,
@@ -1009,27 +1009,27 @@
       ]
     }
   },
-   "postgresql-replica": {
-   "description": "PostgreSQL replica service for Upsun Fixed.",
-   "repo_name": "postgresql-replica",
-   "disk": true,
-   "docs": {
+  "postgresql-replica": {
+    "description": "PostgreSQL replica service for Upsun Fixed.",
+    "repo_name": "postgresql-replica",
+    "disk": true,
+    "docs": {
      "relationship_name": "primary: db:replicator",
      "service_name": "postgresql",
      "url": "add-services/postgresql/postgresql-readonly-replication.html"
-   },
-   "endpoint": "replicator",
-   "min_disk_size": 256,
-   "name": "PostgreSQL-replica",
-   "runtime": false,
-   "type": "postgresql-replica",
-   "versions": {
-     "deprecated": [],     
-     "supported": [
-       "15"
-     ]
-   }
- },
+    },
+    "endpoint": "replicator",
+    "min_disk_size": 256,
+    "name": "PostgreSQL-replica",
+    "runtime": false,
+    "type": "postgresql-replica",
+    "versions": {
+      "deprecated": [],     
+      "supported": [
+        "15"
+      ]
+    }
+  },
   "python": {
     "description": "",
     "repo_name": "python",
