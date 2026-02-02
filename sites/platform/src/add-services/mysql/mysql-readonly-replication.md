@@ -11,6 +11,14 @@ Examples of read-heavy applications include:
 - Reporting or analytics jobs
 - Background jobs that frequently query data
 
+## Supported versions
+
+You can select the major and minor version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+{{< image-versions image="mariadb-replica" status="supported" >}}
+
 {{< note theme="info" title="Note" >}}
 - **To prevent data loss or interruptions** during replication, you must configure the disk size for each replica. The replica service does not inherit the disk size of the primary database. The replica disk size must at least match the primary service's disk capacity. See the example below. 
 - **Replication is asynchronous**: Delays of a few milliseconds might occur between writes on the primary database and reads on the replica database.
@@ -74,7 +82,7 @@ services:
           privileges:
             main: admin
       relationships:
-      primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+        primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 
   db-replica2:
     type: mariadb-replica:<VERSION>
@@ -88,7 +96,7 @@ services:
           privileges:
             main: admin
       relationships:
-      primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
+        primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 ```
 
 ### How it works
