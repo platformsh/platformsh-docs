@@ -175,6 +175,39 @@
       "supported": []
     }
   },
+  "elasticsearch-enterprise": {
+    "description": "Support for the enterprise edition of ElasticSearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "elasticsearch-enterprise",
+      "service_name": "elasticsearch-enterprise",
+      "url": "/add-services/elasticsearch.html"
+    },
+    "endpoint": "elasticsearch-enterprise",
+    "min_disk_size": 512,
+    "name": "Elasticsearch-Enterprise",
+    "premium": true,
+    "repo_name": "elasticsearch-enterprise",
+    "runtime": false,
+    "type": "elasticsearch-enterprise",
+    "versions": {
+      "deprecated": [
+        "8.5",
+        "7.17"
+      ],
+      "supported": [
+        "8.19"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "deprecated": [],
+      "supported": [
+        "7.17",
+        "8.5",
+        "8.19"
+      ]
+    }
+  },
   "elixir": {
     "description": "",
     "repo_name": "elixir",
@@ -1413,7 +1446,7 @@
     "docs": {
       "relationship_name": "postgresql-replica",
       "service_name": "postgresql-replica",
-      "url": "/add-services/postgresql/postgresql-readonly-replication.html.html"
+      "url": "/add-services/postgresql/postgresql-readonly-replication.html"
     }
   }
 }
