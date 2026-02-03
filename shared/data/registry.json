@@ -1375,5 +1375,45 @@
         "1.6"
       ]
     }
+  },
+  "mariadb-replica": {
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "11.4"
+      ]
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "mariadb-replica",
+    "repo_name": "mariadb-replica",
+    "runtime": false,
+    "type": "mariadb-replica",
+    "docs": {
+      "relationship_name": "mariadb-replica",
+      "service_name": "mariadb-replica",
+      "url": "/add-services/mysql/mysql-readonly-replication.html"
+    }
+  },
+  "postgresql-replica": {
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "15"
+      ]
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "postgresql-replica",
+    "repo_name": "postgresql-replica",
+    "runtime": false,
+    "type": "postgresql-replica",
+    "docs": {
+      "relationship_name": "postgresql-replica",
+      "service_name": "postgresql-replica",
+      "url": "/add-services/postgresql/postgresql-readonly-replication.html.html"
+    }
   }
 }
