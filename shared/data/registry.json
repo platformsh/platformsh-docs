@@ -191,12 +191,11 @@
     "runtime": false,
     "type": "elasticsearch-enterprise",
     "versions": {
-      "deprecated": [
+      "deprecated": [],
+      "supported": [
+        "8.19",
         "8.5",
         "7.17"
-      ],
-      "supported": [
-        "8.19"
       ]
     },
     "versions-dedicated-gen-2": {
