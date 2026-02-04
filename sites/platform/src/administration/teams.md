@@ -19,7 +19,7 @@ There is no limit to the number of teams that can be defined within a single org
 As an organization owner or member with **Manage users** permissions, 
 you can create new teams.
 
-Teams must belong to an organization, so [create one](/administration/organizations.md#create-a-new-organization) first.
+Teams must belong to an organization, so [create one](/administration/organizations.md) first.
 You can create new organizations with different payment methods and billing addresses
 and organize your projects as you want, but keep in mind that both users and teams are restricted to single organizations.
 

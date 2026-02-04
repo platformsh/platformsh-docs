@@ -39,7 +39,7 @@ A certificate gets stored in your local SSH configuration.
 The certificate is automatically cycled every hour for a new certificate as long as your session is active.
 
 If you are inactive for an extended period,
-your certificate expires and you are asked to login again the next time you use a command that requires authentication.
+your certificate expires and you are asked to log in again the next time you use a command that requires authentication.
 
 You are now ready to run CLI commands and connect to an environment.
 
@@ -61,7 +61,7 @@ Once you've connected, you get a welcome message detailing which environment you
 
 Now you can interact with the environment as you want.
 Note that your app's file system is read-only,
-except for any [mounts you've defined]/create-apps/image-properties/mounts.md).
+except for any [mounts you've defined](/create-apps/image-properties/mounts.md).
 
 ## Connect to services
 

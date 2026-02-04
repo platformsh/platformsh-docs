@@ -75,7 +75,7 @@ applications:
           scripts: true
           allow: true
           rules:
-            ^/license\.text$:
+            ^/license\.txt$:
               allow: false
             ^/readme\.html$:
               allow: false

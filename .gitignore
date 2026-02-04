@@ -3,6 +3,7 @@
 *.code-workspace
 
 node_modules
+!.github/actions/redirection-verification/node_modules
 docs/fetchedFilesCache
 vendorize
 vale

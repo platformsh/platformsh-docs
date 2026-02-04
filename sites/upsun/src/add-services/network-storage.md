@@ -26,7 +26,7 @@ Any change to the service version results in existing data becoming inaccessible
 
 {{< /note >}}
 
-{{% deprecated-versions %}}
+<!-- remove comment and add surrounded double curly braces when a deprecated version exists %  deprecated-versions % -->
 
 {{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
 

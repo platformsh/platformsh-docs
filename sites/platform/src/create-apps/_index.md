@@ -203,16 +203,29 @@ myapp:
   type: "composable:{{% latest composable %}}"
 
   stack:
-      - "php@8.4"
-          # The list of PHP extensions you want installed.
+    runtimes:
+      - "php@8.4":
           extensions:
             - apcu
-            - ctype
-            - iconv
-            - mbstring
-            - pdo_pgsql
+            - pdo_sqlite
+            - facedetect
             - sodium
             - xsl
+            - name: blackfire   # php@8.4 extension
+              configuration:    # extension subkeys
+                  server_id: {{% variable "SERVER_ID" %}}
+                  server_token: {{% variable "SERVER_TOKEN" %}}
+          disabled_extensions:
+            - gd
+      - "nodejs@{{% latest "nodejs" %}}"
+      - "python@{{% latest "python" %}}"
+    packages:
+      - yarn                      # Package manager
+      - python313Packages.yq      # Python package
+      - package: python313Packages.jupyterlab
+        channel: unstable
+      - package: wkhtmltopdf      # Conversion tool
+        channel: unstable
 
   # Relationships enable an app container's access to a service or another app.
   # The example below shows simplified configuration leveraging a default service

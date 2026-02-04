@@ -73,8 +73,7 @@ so migrate to one of the [supported versions](#supported-versions).
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
-So your apps should only rely on the `{{% vendor/prefix %}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ```json
 {
@@ -142,7 +141,7 @@ You can define `<SERVICE_NAME>` as you like, so long as it's unique between all 
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
@@ -302,7 +301,7 @@ Using the values from the [example](#relationship-reference), that would be:
 psql -U main -h postgresql.internal -p 5432
 ```
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ## Exporting data
 
@@ -498,30 +497,26 @@ postgresql:
         thirddb: admin
 ```
 
-## Password generation
+## Password generation {#password-generation}
 
-When you connect your app to a database,
-an empty password is generated for the database by default.
-This can cause issues with your app.
+If your YAML file does not specify a `schema` and `endpoint` for a database service, no password is generated. 
 
-To generate real passwords for your database,
-define custom endpoints in your [service configuration](#1-configure-the-service).
-For each custom endpoint you create,
-you get an automatically generated password,
-similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
+Because your database is isolated on a private network and cannot be seen from the internet, you can omit a password without compromising security. This simplifies your workflow by removing the need to manage credentials, while container isolation ensures that only your application can access the data.
 
-After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
+If you prefer to have Upsun generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in the `services` configuration – see the example in the [multiple databases](#multiple-databases) section of this topic.
+For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
+
+{{% note %}}
+Make sure you don't change `services.<SERVICE_NAME>`. **Changing the service name creates a new service,
+which removes existing data from your database.**
+{{% /note %}}
+
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{< vendor/prefix >}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
-within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
-The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
-Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 
-When you switch from the default configuration with an empty password to custom endpoints,
-make sure your service name remains unchanged.
-Failure to do so results in the creation of a new service,
-which removes any existing data from your database.
+Using this method to retrieve password credentials is considered a best practice: passwords might change over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
 
 ## Restrict access to database replicas only
 

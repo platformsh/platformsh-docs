@@ -182,7 +182,7 @@ which should contain the following:
 <?php
 /**
  * @file
- * Upsun Fixed settings.
+ * Upsun Flex settings.
  */
 
 use Drupal\Core\Installer\InstallerKernel;

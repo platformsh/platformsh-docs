@@ -31,8 +31,8 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< note theme="info" title="" >}}
-- The service types `mariadb` and `mysql` both refer to MariaDB.\
-  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- Both `mariadb` and `mysql` service types use MariaDB.\
+  They behave identically, so the information on this page applies to both of them.
 - The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
 {{< /note >}}
 
@@ -71,38 +71,27 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 |-------------------------|--------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Upgrade
 
-When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
-and check that each upgrade commit translates into an actual deployment.
+### Upgrade, change, or downgrade a service
 
-To upgrade, update the service version in your [service configuration](/add-services/_index.md).
+{{% note theme="caution" title="Caution" %}}
+Upgrading and downgrading a service version or changing a service type are destructive processes that delete the existing service and its data. 
 
-### Change the service type
+A best practice is to first back up your environment and export the data. 
+{{% /note %}}
 
-To change the service type:
+To prevent data loss after completing either of these actions, follow these steps:
 
-1. [Export your data](#exporting-data).
-   {{% note %}}
-   Changing the service type, especially when done repeatedly, may result in data loss.
-   Backing up your data is therefore crucial.
-   {{% /note %}}
-2. Remove the old service from your [service configuration](/add-services/_index.md).
-3. Specify a new service type.
-4. [Import your data](#importing-data) into the new service.
-
-### Downgrade
-
-You can't downgrade to a previous version and retain your data.
-To downgrade your database, follow these steps:
-
-1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](/add-services/_index.md).
-1. Add a new service with a different name and your desired version.
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service (or make an error in your configuration files) and need to revert your entire environment, the backup enables you to do so. 
+1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.  
+1. Change the service type in your [service configuration](/add-services/_index.md):
+    - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
+and check that each upgrade commit translates into an actual deployment.   
+    - **Change or downgrade:** Specify the new service type and the desired version.
 1. [Import your data](#importing-data) into the new service.
 
-## Usage example
+
+## Example
 
 Configure your service with at least 256 MB in disk space.
 
@@ -117,8 +106,7 @@ To define the service, use the `mariadb` or `mysql` type for MariaDB or the `ora
   disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
+Remember to back up your environment and export your data before changing the service. 
 
 ### 2. Define the relationship
 
@@ -143,7 +131,7 @@ You can define `<SERVICE_NAME>` as you like, so long as it's unique between all 
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
@@ -340,12 +328,11 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
-So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://support.platform.sh/hc/en-us/community/posts/16439596373010).
 
-## Configuration options
+## Configuration options {#configuration-options}
 
 You can configure your MySQL service in the [services configuration](/add-services/_index.md) with the following options:
 
@@ -380,7 +367,7 @@ mariadb:
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` service environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ### MariaDB reference
 
@@ -754,35 +741,36 @@ They can, however, be set indirectly, which can be useful for solving `Too many 
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
 
-## Password generation
+## Password generation {#password-generation}
 
-When you connect your app to a database,
-an empty password is generated for the database by default.
-This can cause issues with your app.
+If your YAML file does not specify a `schema` and `endpoint` for the MariaDB or MySQL service, no password is generated. 
 
-To generate real passwords for your database,
-define custom endpoints in your [service configuration](#1-configure-the-service).
-For each custom endpoint you create,
-you get an automatically generated password,
-similarly to when you create [multiple databases](#multiple-databases).
-You cannot customize these generated passwords.
+Because the database container is strictly isolated, it remains invisible to any resource until you [define an explicit relationship](/add-services/mysql.md#2-define-the-relationship) between it and other apps or workers. The container's "walls" ensure that only authorized applications and workers can reach the data, while all other processes are blocked at the network level.
+
+If you prefer to have Upsun generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in the `services` configuration – see the example in the [multiple databases](#multiple-databases) section of this topic.
+For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
+
+{{% note %}}
+Make sure you don't change `services.<SERVICE_NAME>`. **Changing the service name creates a new service,
+which removes existing data from your database.**
+{{% /note %}}
 
 After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
 through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
- within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app). 
- 
-Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.** 
+ within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
 
-When you switch from the default configuration with an empty password to custom endpoints,
-make sure your service name remains unchanged.
-**Changing the service name creates a new service,
-which removes any existing data from your database.**
+Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
 
 ## Password rotation {#password-rotation}
-By default, password rotation is enabled (`rotate_passwords=true`), enabling {{% vendor/name %}} to automatically change (or _rotate_) MariaDB passwords each time it updates the MariaDB image. Password rotation also occurs as defined by any password lifetime settings in MariaDB. 
 
-Specific scenarios might warrant disabling password rotation (` rotate_passwords=false`): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
+{{% note %}} 
+For rotation to occur, you must define a `schema` and `endpoint` in your service configuration (see [Password generation](#password-generation) above); otherwise, no password is generated to be rotated.
+{{% /note %}}
+
+By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings. 
+
+Specific scenarios might warrant disabling password rotation by [setting `rotate_passwords=false`](/add-services/mysql.md#configuration-options): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
 
 Passwords do **not** rotate automatically when you reset this value to `true`. 
 

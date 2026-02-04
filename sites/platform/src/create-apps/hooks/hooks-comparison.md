@@ -5,11 +5,11 @@ description: What hooks are available in the build and deploy process and how to
 
 The following table presents the main differences among the three available hooks:
 
-| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories | Blocks requests | Runs on all redeploys\* |
-| ------------- | ------------------- |-------------------- | ------------------ | ------- | ------------------------- | -------------------- | --------------- | --------------- |
-| `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No  | No  |
-| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)                   | Yes | No  |
-| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)                   | No  | Yes |
+| Hook name     | Failures stop build | Variables available | Services available | Timeout | Run on `worker` instances | Writable directories                                   | Blocks requests | Runs on all redeploys\* |
+|---------------|---------------------|---------------------|--------------------|---------|---------------------------|--------------------------------------------------------|-----------------|-------------------------|
+| `build`       | Yes                 | Build variables     | No                 | 1 hour  | Yes                       | `$PLATFORM_APP_DIR`, `$PLATFORM_CACHE_DIR`, and `/tmp` | No              | No                      |
+| `deploy`      | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)      | Yes             | No                      |
+| `post_deploy` | No                  | Runtime variables   | Yes                | None    | No                        | [Mounts](/create-apps/image-properties/mounts.md)      | No              | Yes                     |
 
 \* All of the hooks run with changes to the code or environment.
 This column indicates which hooks run on a redeploy without any code changes.
@@ -89,7 +89,7 @@ the execution of the `deploy` hook is logged in the [deploy log](/increase-obser
 For example:
 
 ```bash
-[2022-03-01 08:27:25.495579] Launching command 'bash export-config.sh'.
+[{{< current-year >}}-01-01 08:27:25.495579] Launching command 'bash export-config.sh'.
 
 🔥 Successfully cleared configuration
 🚀 Added new configuration details

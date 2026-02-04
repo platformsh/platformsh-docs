@@ -120,7 +120,7 @@ function createTable(connection) {
 
 function insertData(connection) {
   return connection.execute(
-    "INSERT INTO {{% vendor/cli %}}info (username, departname, created) VALUES ('{{% vendor/cli %}}', 'Deploy Friday', '{{ now.Year }}-09-29')"
+    "INSERT INTO {{% vendor/cli %}}info (username, departname, created) VALUES ('{{% vendor/cli %}}', 'Deploy Friday', '{{< current-year >}}-09-29')"
   );
 }
 
@@ -154,7 +154,7 @@ MariaDB Tests:
   - Row ID (1): ${rows[0].uid}
   - Username ({{% vendor/cli %}}): ${rows[0].username}
   - Department (Deploy Friday): ${rows[0].departname}
-  - Created ({{ now.Year }}-09-29): ${rows[0].created}
+  - Created ({{< current-year >}}-09-29): ${rows[0].created}
 * Delete row:
   - Status (0): ${droppedResult[0].warningStatus}`;
 

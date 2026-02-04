@@ -31,7 +31,7 @@ If you're generating a classic personal access token,
 ensure the token has the appropriate scopes based on what you want to do:
 
 | Scope                 | Purpose                                                                |
-| --------------------- | ---------------------------------------------------------------------- |
+|-----------------------|------------------------------------------------------------------------|
 | `admin:repo_hook`     | To create webhooks for events in repositories. Always needed.          |
 | `public_repo`         | To integrate with public repositories.                                 |
 | `repo`                | To integrate with your private repositories.                           |
@@ -41,13 +41,13 @@ If you're generating a fine-grained personal access token,
 ensure the token has the right [repository permissions](https://docs.github.com/en/rest/overview/permissions-required-for-fine-grained-personal-access-tokens?apiVersion=2022-11-28)
 for the integration to work:
 
-| Permission        | Access level    |
-| ------------------| ----------------|
-| `Commit statuses` | Read and write  |
-| `Contents`        | Read and write  |
-| `Metadata`        | Read-only       |
-| `Pull request`    | Read and write  |
-| `Webhooks`        | Read and write  |
+| Permission        | Access level   |
+|-------------------|----------------|
+| `Commit statuses` | Read and write |
+| `Contents`        | Read and write |
+| `Metadata`        | Read-only      |
+| `Pull request`    | Read and write |
+| `Webhooks`        | Read and write |
 
 After you've set the needed scopes or permissions,
 generate and copy your token.
