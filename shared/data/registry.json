@@ -511,37 +511,6 @@
       ]
     }
   },
-  "mariadb-replica": {
-    "description": "This service is used to create a MariaDB replica service.",
-    "repo_name": "mariadb-replica",
-    "disk": true,
-    "docs": {
-      "relationship_name": "primary: db:replicator",
-      "service_name": "mariadb-replica",
-      "url": "/add-services/mysql/mysql-readonly-replication.html"
-    },
-    "endpoint": "replicator",
-    "min_disk_size": 256,
-    "name": "MariaDB/MySQL",
-    "runtime": false,
-    "type": "mariadb-replica",
-    "versions": {
-      "deprecated": [],
-      "supported": [
-        "11.4"
-      ]
-    },
-    "versions-dedicated-gen-2": {
-      "supported": [
-        "11.4 Galera"
-      ],
-      "deprecated": []
-    },
-    "versions-dedicated-gen-3": {
-      "supported": [],
-      "deprecated": []
-    }
-  },
   "mysql": {
     "description": "A manufacture-based container for MariaDB",
     "repo_name": "mariadb",
@@ -1006,27 +975,6 @@
         "14",
         "13",
         "12"
-      ]
-    }
-  },
-  "postgresql-replica": {
-    "description": "PostgreSQL replica service for Upsun Fixed.",
-    "repo_name": "postgresql-replica",
-    "disk": true,
-    "docs": {
-     "relationship_name": "primary: db:replicator",
-     "service_name": "postgresql",
-     "url": "add-services/postgresql/postgresql-readonly-replication.html"
-    },
-    "endpoint": "replicator",
-    "min_disk_size": 256,
-    "name": "PostgreSQL-replica",
-    "runtime": false,
-    "type": "postgresql-replica",
-    "versions": {
-      "deprecated": [],     
-      "supported": [
-        "15"
       ]
     }
   },
