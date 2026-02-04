@@ -10,7 +10,7 @@ You can manage redirection rules on your {{% vendor/name %}} projects in two dif
 
 {{% note theme="info" title="Route limits" %}}
 
-The routes document (the decoded `$PLATFORM_ROUTES` JSON) has a maximum size of 128&nbsp;KB, typically allowing for about 300 routes.<BR>It intentially excludes the `redirects` property, which defines [partial redirects](#partial-redirects). See [route limits](/define-routes.html#route-limits) for details.
+The routes document (the decoded `$PLATFORM_ROUTES` JSON) has a maximum size of 128&nbsp;KB, typically allowing for about 300 routes.<BR>It intentionally excludes the `redirects` property, which defines [partial redirects](#partial-redirects). See [route limits](/define-routes.html#route-limits) for details.
 
 {{% /note %}}
 
