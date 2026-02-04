@@ -7,7 +7,7 @@ The Network Storage service provides a shared [mount](/create-apps/image-propert
 
 Network storage is primarily necessary for sharing files between multiple instances of the same app (horizontal scaling), or between different apps in a multi-app setup.
 
-Unlike standard mounts, which are tied to a single host, Network Storage safely manages simultaneous access from multiple locations. This prevents the file system corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
+Unlike standard mounts, which are tied to a single host, Network Storage manages simultaneous access from multiple locations. This prevents the file system corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
 
 The Network Storage service is a native {{% vendor/name %}} implementation, not a managed instance of a third-party application.
 
@@ -40,7 +40,7 @@ Upsun has deprecated version 2.0 due to performance inconsistencies identified u
 
 Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
 
-To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for assistance.** These options are described below.
+To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for guidance.** These options are described below.
 
 **Important Considerations**
 - **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the service removal begins.**
@@ -62,7 +62,7 @@ Complete these steps only if you understand how to provision and decommission {{
 1. Decommission the old service: After you verify the data, remove the old version of the service from your configuration.
 
 **Option 2: Supported Transition**<br>
-If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will guide you through the process to ensure your data remains intact. 
+If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will provide guidance to ensure your data remains intact. 
 
 ## Usage example
 
