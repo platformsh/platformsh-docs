@@ -667,6 +667,44 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/can-afford": {
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Checks if the user can afford the requested resources.",
+        "operationId": "can-afford-subscription",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/subscription_id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "resources": {
+                    "description": "A map of resource keys to quantities (both strings).",
+                    "type": "object",
+                    "additionalProperties": {}
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proposed resource change is affordable."
+          },
+          "402": {
+            "description": "Proposed change is not affordable."
+          }
+        }
+      }
+    },
     "/profiles": {
       "get": {
         "tags": [
@@ -27064,9 +27102,9 @@
             "type": "string",
             "description": "The vendor."
           },
-          "billing_account_id": {
+          "billing_profile_id": {
             "type": "string",
-            "description": "The Billing Account ID."
+            "description": "The Billing Profile ID."
           },
           "billing_legacy": {
             "type": "boolean",
@@ -28712,7 +28750,7 @@
             "$ref": "#/components/schemas/RegionProvider"
           },
           "datacenter": {
-            "$ref": "#/components/schemas/RegionDataCenter"
+            "$ref": "#/components/schemas/RegionDatacenter"
           },
           "envimpact": {
             "$ref": "#/components/schemas/RegionEnvImpact"
@@ -28876,7 +28914,7 @@
         },
         "additionalProperties": false
       },
-      "RegionDataCenter": {
+      "RegionDatacenter": {
         "type": "object",
         "description": "Information about the region provider data center.",
         "properties": {
@@ -28906,6 +28944,10 @@
           "carbon_intensity": {
             "type": "number",
             "description": "The carbon intensity value."
+          },
+          "carbon_intensity_source": {
+            "type": "string",
+            "description": "The source of the carbon intensity data."
           },
           "green": {
             "type": "boolean",
