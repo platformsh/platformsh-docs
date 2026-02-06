@@ -144,9 +144,9 @@ web:
 ### Gunicorn workers
 
 These examples define four worker processes with `-w 4`.
-For more details on what you can configure, see the [Gunicorn documentation](https://docs.gunicorn.org/en/stable/faq.html#worker-processes).
+For more details on what you can configure, see the [Gunicorn documentation](https://gunicorn.org/faq/?h=worker+processes#worker-processes).
 
-Workers can also be defined with a custom [worker class](https://docs.gunicorn.org/en/latest/settings.html#worker-class),
+Workers can also be defined with a custom [worker class](https://gunicorn.org/asgi/?h=worker+class#worker-class),
 such as [Uvicorn](https://www.uvicorn.org/#running-with-gunicorn), [gevent](https://www.gevent.org/),
 or [Tornado](https://www.tornadoweb.org/).
 
