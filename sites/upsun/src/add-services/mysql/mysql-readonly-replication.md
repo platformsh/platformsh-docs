@@ -61,9 +61,9 @@ services:
           default_schema: main
           privileges:
               main: admin
-          replicator:
-            privileges:
-              main: replication
+        replicator:
+          privileges:
+            main: replication
 
   db-replica1:
     type: mariadb-replica:<VERSION>
@@ -75,7 +75,7 @@ services:
           default_schema: main
           privileges:
             main: admin
-      relationships:
+    relationships:
       primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 
   db-replica2:
@@ -88,7 +88,7 @@ services:
           default_schema: main
           privileges:
             main: admin
-      relationships:
+    relationships:
       primary: db:replicator # Do not change the name `primary`. The service expects to receive this name.
 ```
 
