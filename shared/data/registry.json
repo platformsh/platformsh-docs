@@ -15,20 +15,19 @@
     "type": "chrome-headless",
     "versions": {
       "deprecated": [
-        "73",
-        "80",
-        "81",
-        "83",
-        "84",
-        "86"
-      ],
-      "supported": [
-        "120",
         "113",
         "95",
-        "91"
+        "91",
+        "86",
+        "84",
+        "83",
+        "81",
+        "80",
+        "73"
       ],
-      "legacy": []
+      "supported": [
+        "120"
+      ]
     },
     "versions-dedicated-gen-3": {
       "deprecated": [],
@@ -37,13 +36,41 @@
       ]
     }
   },
+  "clickhouse": {
+    "description": "ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "clickhouse",
+      "service_name": "clickhouse",
+      "url": "/add-services/clickhouse.html"
+    },
+    "endpoint": "clickhouse",
+    "min_disk_size": 512,
+    "configuration": "applications:\n  <APP_NAME>:\n    relationships:\n      <SERVICE_NAME>:",
+    "name": "ClickHouse",
+    "repo_name": "clickhouse",
+    "runtime": false,
+    "type": "clickhouse",
+    "exclude_from": [
+      "platformsh"
+    ],
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "25.8",
+        "25.3",
+        "24.3",
+        "23.8"
+      ]
+    }
+  },
   "dotnet": {
     "description": "ASP.NET 5 application container.",
     "repo_name": "dotnet",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "dotnet",
+      "service_name": "dotnet",
       "url": "/languages/dotnet.html",
       "web": {
         "commands": {
@@ -72,6 +99,8 @@
     "type": "dotnet",
     "versions": {
       "deprecated": [
+        "7.0",
+        "6.0",
         "5.0",
         "3.1",
         "2.2",
@@ -79,15 +108,8 @@
         "2.0"
       ],
       "supported": [
-        "7.0",
-        "6.0",
+        "10.0",
         "8.0"
-      ],
-      "legacy": [
-        "3.1",
-        "2.2",
-        "2.1",
-        "2.0"
       ]
     }
   },
@@ -107,22 +129,16 @@
     "type": "elasticsearch",
     "versions": {
       "deprecated": [
-        "7.10",
         "7.9",
         "7.7",
+        "7.6",
         "7.5",
         "7.2",
         "6.8",
-        "6.5",
-        "5.4",
-        "5.2",
-        "2.4",
-        "1.7",
-        "1.4"
+        "6.5"
       ],
       "supported": [
-        "8.5",
-        "7.17"
+        "7.10"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -159,13 +175,45 @@
       "supported": []
     }
   },
+  "elasticsearch-enterprise": {
+    "description": "Support for the enterprise edition of ElasticSearch",
+    "disk": true,
+    "docs": {
+      "relationship_name": "elasticsearch-enterprise",
+      "service_name": "elasticsearch-enterprise",
+      "url": "/add-services/elasticsearch.html"
+    },
+    "endpoint": "elasticsearch-enterprise",
+    "min_disk_size": 512,
+    "name": "Elasticsearch-Enterprise",
+    "premium": true,
+    "repo_name": "elasticsearch-enterprise",
+    "runtime": false,
+    "type": "elasticsearch-enterprise",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "8.19",
+        "8.5",
+        "7.17"
+      ]
+    },
+    "versions-dedicated-gen-2": {
+      "deprecated": [],
+      "supported": [
+        "7.17",
+        "8.5",
+        "8.19"
+      ]
+    }
+  },
   "elixir": {
     "description": "",
     "repo_name": "elixir",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "elixir",
+      "service_name": "elixir",
       "url": "/languages/elixir.html",
       "web": {
         "commands": {
@@ -195,6 +243,7 @@
     "type": "elixir",
     "versions": {
       "deprecated": [
+        "1.14",
         "1.13",
         "1.12",
         "1.11",
@@ -203,12 +252,7 @@
       ],
       "supported": [
         "1.18",
-        "1.15",
-        "1.14"
-      ],
-      "legacy": [
-        "1.10",
-        "1.9"
+        "1.15"
       ]
     }
   },
@@ -216,8 +260,8 @@
     "description": "",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "golang",
+      "service_name": "golang",
       "url": "/languages/go.html",
       "web": {
         "upstream": {
@@ -248,6 +292,10 @@
     "type": "golang",
     "versions": {
       "deprecated": [
+        "1.23",
+        "1.22",
+        "1.21",
+        "1.20",
         "1.19",
         "1.18",
         "1.17",
@@ -257,17 +305,11 @@
         "1.13",
         "1.12",
         "1.11",
-        "1.10",
-        "1.9",
-        "1.8"
+        "1.10"
       ],
       "supported": [
         "1.25",
-        "1.24",
-        "1.23",
-        "1.22",
-        "1.21",
-        "1.20"
+        "1.24"
       ]
     }
   },
@@ -288,6 +330,8 @@
     "versions": {
       "deprecated": [
         "2.2",
+        "2.1",
+        "2.0",
         "1.8",
         "1.7",
         "1.3",
@@ -299,11 +343,32 @@
       ]
     }
   },
+  "gotenberg": {
+    "description": "",
+    "disk": false,
+    "docs": {
+      "relationship_name": "gotenberg",
+      "service_name": "gotenberg",
+      "url": "/add-services/gotenberg.html"
+    },
+    "endpoint": "gotenberg",
+    "min_disk_size": null,
+    "name": "Gotenberg",
+    "repo_name": "gotenberg",
+    "runtime": false,
+    "type": "gotenberg",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "8"
+      ]
+    }
+  },
   "java": {
     "description": "",
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "java",
+      "service_name": "java",
       "url": "/languages/java.html",
       "web": {
         "commands": {
@@ -324,17 +389,17 @@
     "type": "java",
     "versions": {
       "deprecated": [
+        "19",
+        "18",
         "14",
         "13",
-        "12"
+        "12",
+        "11",
+        "8"
       ],
       "supported": [
         "21",
-        "19",
-        "18",
-        "17",
-        "11",
-        "8"
+        "17"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -348,7 +413,8 @@
         "13",
         "7"
       ]
-    }
+    },
+    "disk": false
   },
   "kafka": {
     "description": "",
@@ -366,6 +432,9 @@
     "type": "kafka",
     "versions": {
       "deprecated": [
+        "3.6",
+        "3.4",
+        "3.2",
         "2.7",
         "2.6",
         "2.5",
@@ -375,18 +444,7 @@
         "2.1"
       ],
       "supported": [
-        "3.7",
-        "3.6",
-        "3.4",
-        "3.2"
-      ],
-      "legacy": [
-        "2.6",
-        "2.5",
-        "2.4",
-        "2.3",
-        "2.2",
-        "2.1"
+        "3.7"
       ]
     }
   },
@@ -532,17 +590,39 @@
     "runtime": false,
     "type": "memcached",
     "versions": {
-      "deprecated": [],
-      "supported": [
-        "1.6",
+      "deprecated": [
         "1.5",
         "1.4"
+      ],
+      "supported": [
+        "1.6"
       ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
         "1.5",
         "1.4"
+      ]
+    }
+  },
+  "mercure": {
+    "description": "Mercure is a flexible platform for orchestrating medical images in the standard DICOM format.",
+    "disk": true,
+    "docs": {
+      "relationship_name": "mercure",
+      "service_name": "mercure",
+      "url": "/add-services/mercure.html"
+    },
+    "endpoint": "mercure",
+    "min_disk_size": 256,
+    "name": "Mercure",
+    "repo_name": "mercure",
+    "runtime": false,
+    "type": "mercure",
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "0"
       ]
     }
   },
@@ -562,13 +642,14 @@
     "type": "mongodb",
     "versions": {
       "deprecated": [
-        "4.0.3",
         "3.6",
         "3.4",
         "3.2",
         "3.0"
       ],
-      "supported": []
+      "supported": [
+        "4.0"
+      ]
     }
   },
   "mongodb-enterprise": {
@@ -587,15 +668,15 @@
     "type": "mongodb-enterprise",
     "premium": true,
     "versions": {
-      "supported": [
-        "7.0",
+      "deprecated": [
         "6.0",
         "5.0",
-        "4.4"
-      ],
-      "deprecated": [
+        "4.4",
         "4.2",
         "4.0"
+      ],
+      "supported": [
+        "7.0"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -616,7 +697,7 @@
     "repo_name": "network-storage",
     "disk": true,
     "docs": {
-      "relationship_name": "null",
+      "relationship_name": "network-storage",
       "service_name": "network-storage",
       "url": "/add-services/network-storage.html"
     },
@@ -645,8 +726,8 @@
     "repo_name": "nodejs",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "nodejs",
+      "service_name": "nodejs",
       "url": "/languages/nodejs.html",
       "web": {
         "commands": {
@@ -663,14 +744,19 @@
       "deprecated": [
         "18",
         "16",
-        "14",
-        "12",
-        "10",
-        "8",
-        "6",
-        "4.8",
+        "8.9",
+        "6.10",
+        "6.9",
+        "6.8",
+        "6.6",
+        "6.3",
+        "6.2",
         "4.7",
-        "0.12"
+        "4.6",
+        "4.5",
+        "4.4",
+        "4.3",
+        "4.2"
       ],
       "supported": [
         "24",
@@ -710,16 +796,12 @@
     "type": "opensearch",
     "versions": {
       "deprecated": [
-        "1.3",
         "1.2",
         "1.1"
       ],
       "supported": [
         "3",
         "2"
-      ],
-      "legacy": [
-        "1.1"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -757,11 +839,12 @@
     "runtime": false,
     "type": "oracle-mysql",
     "versions": {
-      "deprecated": [],
+      "deprecated": [
+        "5.7"
+      ],
       "supported": [
         "8.4",
-        "8.0",
-        "5.7"
+        "8.0"
       ]
     }
   },
@@ -770,8 +853,8 @@
     "repo_name": "php",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "php",
+      "service_name": "php",
       "url": "/languages/php.html",
       "web": {
         "locations": {
@@ -819,6 +902,7 @@
     },
     "versions": {
       "deprecated": [
+        "8.1",
         "8.0",
         "7.4",
         "7.3",
@@ -833,8 +917,7 @@
         "8.5",
         "8.4",
         "8.3",
-        "8.2",
-        "8.1"
+        "8.2"
       ]
     }
   },
@@ -854,11 +937,12 @@
     "type": "postgresql",
     "versions": {
       "deprecated": [
+        "13",
+        "12",
         "11",
         "10",
         "9.6",
         "9.5",
-        "9.4",
         "9.3"
       ],
       "supported": [
@@ -866,9 +950,7 @@
         "17",
         "16",
         "15",
-        "14",
-        "13",
-        "12"
+        "14"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -901,8 +983,8 @@
     "repo_name": "python",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "python",
+      "service_name": "python",
       "url": "/languages/python.html",
       "web": {
         "commands": {
@@ -928,18 +1010,19 @@
     "type": "python",
     "versions": {
       "deprecated": [
+        "3.9",
+        "3.8",
         "3.7",
         "3.6",
         "3.5",
-        "2.7*"
+        "2.7"
       ],
       "supported": [
+        "3.14",
         "3.13",
         "3.12",
         "3.11",
-        "3.10",
-        "3.9",
-        "3.8"
+        "3.10"
       ]
     }
   },
@@ -959,6 +1042,9 @@
     "type": "rabbitmq",
     "versions": {
       "deprecated": [
+        "4.0",
+        "3.13",
+        "3.12",
         "3.11",
         "3.10",
         "3.9",
@@ -968,16 +1054,7 @@
         "3.5"
       ],
       "supported": [
-        "4.1",
-        "4.0",
-        "3.13",
-        "3.12"
-      ],
-      "legacy": [
-        "3.8",
-        "3.7",
-        "3.6",
-        "3.5"
+        "4.1"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1026,18 +1103,11 @@
         "7.0",
         "6.2",
         "6.0",
-        "5.0",
-        "4.0",
-        "3.2",
-        "3.0",
-        "2.8"
+        "5.0"
       ],
       "supported": [
         "8.0",
         "7.2"
-      ],
-      "legacy": [
-        "6.0"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1076,8 +1146,8 @@
     "repo_name": "ruby",
     "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "ruby",
+      "service_name": "ruby",
       "url": "/languages/ruby.html",
       "web": {
         "upstream": {
@@ -1113,6 +1183,8 @@
     "type": "ruby",
     "versions": {
       "deprecated": [
+        "3.1",
+        "3.0",
         "2.7",
         "2.6",
         "2.5",
@@ -1120,18 +1192,10 @@
         "2.3"
       ],
       "supported": [
+        "4.0",
         "3.4",
         "3.3",
-        "3.2",
-        "3.1",
-        "3.0"
-      ],
-      "legacy": [
-        "2.7",
-        "2.6",
-        "2.5",
-        "2.4",
-        "2.3"
+        "3.2"
       ]
     },
     "versions-dedicated-gen-3": {
@@ -1160,10 +1224,10 @@
   "rust": {
     "description": "",
     "repo_name": "rust",
-    "disk": true,
+    "disk": false,
     "docs": {
-      "relationship_name": null,
-      "service_name": null,
+      "relationship_name": "rust",
+      "service_name": "rust",
       "url": "/languages/rust.html",
       "web": {
         "commands": {
@@ -1199,9 +1263,8 @@
     "type": "solr",
     "versions": {
       "deprecated": [
+        "9.0",
         "8.11",
-        "8.6",
-        "8.4",
         "8.0",
         "7.7",
         "7.6",
@@ -1244,7 +1307,6 @@
         "9.4",
         "9.2",
         "9.1"
-
       ],
       "deprecated": [
         "8.11"
@@ -1268,11 +1330,11 @@
     "runtime": false,
     "type": "valkey",
     "versions": {
+      "deprecated": [],
       "supported": [
         "8.1",
         "8.0"
-      ],
-      "deprecated": []
+      ]
     },
     "versions-dedicated-gen-2": {
       "supported": [
@@ -1300,16 +1362,12 @@
     "type": "varnish",
     "versions": {
       "deprecated": [
-        "5.1",
-        "5.2",
-        "6.3",
-        "6.4",
+        "7.3",
+        "7.2",
         "7.1"
       ],
       "supported": [
         "7.6",
-        "7.3",
-        "7.2",
         "6.0"
       ]
     }
@@ -1330,15 +1388,9 @@
     "runtime": false,
     "type": "vault-kms",
     "versions": {
+      "deprecated": [],
       "supported": [
         "1.12"
-      ],
-      "deprecated": [
-        "1.8",
-        "1.6"
-      ],
-      "legacy": [
-        "1.6"
       ]
     },
     "versions-dedicated-gen-2": {
@@ -1356,32 +1408,44 @@
       ]
     }
   },
-  "clickhouse": {
-    "description": "ClickHouse is a high-performance column-oriented, distributed, OLAP (Online Analytical Processing) database.",
-    "disk": true,
-    "docs": {
-      "relationship_name": "clickhouse",
-      "service_name": "clickhouse",
-      "url": "/add-services/clickhouse.html"
-    },
-    "endpoint": "clickhouse",
-    "min_disk_size": 512,
-    "configuration": "applications:\n  <APP_NAME>:\n    relationships:\n      <SERVICE_NAME>:",
-    "name": "ClickHouse",
-    "repo_name": "clickhouse",
-    "runtime": false,
-    "type": "clickhouse",
-    "exclude_from": [
-      "platformsh"
-    ],
+  "mariadb-replica": {
     "versions": {
-      "supported": [
-        "25.3",
-        "24.3",
-        "23.8"
-      ],
       "deprecated": [],
-      "legacy": []
+      "supported": [
+        "11.4"
+      ]
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "mariadb-replica",
+    "repo_name": "mariadb-replica",
+    "runtime": false,
+    "type": "mariadb-replica",
+    "docs": {
+      "relationship_name": "mariadb-replica",
+      "service_name": "mariadb-replica",
+      "url": "/add-services/mysql/mysql-readonly-replication.html"
+    }
+  },
+  "postgresql-replica": {
+    "versions": {
+      "deprecated": [],
+      "supported": [
+        "15"
+      ]
+    },
+    "description": "",
+    "disk": true,
+    "endpoint": "",
+    "name": "postgresql-replica",
+    "repo_name": "postgresql-replica",
+    "runtime": false,
+    "type": "postgresql-replica",
+    "docs": {
+      "relationship_name": "postgresql-replica",
+      "service_name": "postgresql-replica",
+      "url": "/add-services/postgresql/postgresql-readonly-replication.html"
     }
   }
 }

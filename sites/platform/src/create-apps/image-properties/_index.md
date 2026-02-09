@@ -1,7 +1,7 @@
 ---
 title: "Image properties"
 weight: 4
-description: Details about image properties in the {{% vendor/name %}} config.yaml file
+description: Details about image properties in the {{% vendor/name %}} `{{< vendor/configfile "app" >}}` file
 ---
 
 **Note:** The properties below are available in **both** [single-runtime image](/create-apps/app-reference/single-runtime-image.md#) and [composable image](/create-apps/app-reference/composable-image.md#) types. 

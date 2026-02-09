@@ -3,32 +3,66 @@ title: "Network Storage"
 weight: -30
 ---
 
-The Network Storage service enables a new kind of [mount](../create-apps/image-properties/mounts.md)
-that refers to a shared service rather than to a local directory.
-This service allows you to store data and share it between different apps.
+The Network Storage service provides a shared [mount](/create-apps/image-properties/mounts.md) that connects your applications to a centralized file system instead of a local directory.
 
-## Supported versions
+Network storage is primarily necessary for sharing files between multiple instances of the same app (horizontal scaling), or between different apps in a multi-app setup.
+
+Unlike standard mounts, which are tied to a single host, Network Storage manages simultaneous access from multiple locations. This prevents the file system corruption that occurs when you try to share a local mount across a network, ensuring your data remains consistent as your project scales.
+
+The Network Storage service is a native {{% vendor/name %}} implementation, not a managed instance of a third-party application.
+
+## Supported versions {#supported-versions}
 
 You can select the major and minor version.
 
-Patch versions are applied periodically for bug fixes and the like.
+Patch versions are applied periodically for bug fixes and security updates.
 When you deploy your app, you always get the latest available patches.
 
-{{< image-versions image="network-storage" status="supported" environment="grid" >}}
+{{< image-versions image="network-storage" status="supported" >}}
 
-This service is the {{% vendor/name %}} network storage implementation, not the version of a third-party application.
-
-{{< note theme="warning">}}
-
-It isn't possible to upgrade or downgrade the network storage service version while keeping existing data in place.
-Changing the service version requires that the service be reinitialized.
-Any change to the service version results in existing data becoming inaccessible.
-
-{{< /note >}}
+{{% note theme="info" %}}
+To ensure optimal stability and throughput, **version {{% latest "network-storage" %}} remains the recommended standard for all environments.** If you are using a different version, refer to the [migration options](#migration-options) below to migrate to version {{% latest "network-storage" %}}.
+{{% /note %}}
 
 {{% deprecated-versions %}}
 
-{{< image-versions image="network-storage" status="deprecated" environment="grid" >}}
+{{< image-versions image="network-storage" status="deprecated" >}}
+
+{{% note theme="info" %}}
+Upsun has deprecated version 2.0 due to performance inconsistencies identified under production-level workloads.<br>
+**We strongly advise migrating any services currently using version 2.0 back to version {{% latest "network-storage" %}} to avoid potential performance degradation.** See the [migration options](#migration-options) below.
+{{% /note %}}
+
+<!-- vale off -->
+### Migration options {#migration-options}
+
+{{< note theme="warning" title="Migrating to version {{% latest \"network-storage\" %}}" >}}
+
+Changing the service version to `{{% latest "network-storage" %}}` directly in your configuration will trigger a reinitialization, creating a fresh volume and **permanently deleting all existing data**. 
+
+To prevent unintended data loss and minimize downtime, **Upsun recommends a manual migration or reaching out to our Support team for guidance.** These options are described below.
+
+**Important Considerations**
+- **Back up your data:** Regardless of the migration method you choose, [manually back up your environment](/environments/backup.md#create-a-manual-backup) before starting. **Data cannot be recovered once the service removal begins.**
+
+- **Code safety:** This process affects only data within the `network-storage` service. Your Git-based application code and environment variables remain unaffected.
+
+{{< /note >}}
+<!-- vale on -->
+
+**Option 1: Manual migration to version {{% latest \"network-storage\" %}}**<br>
+Complete these steps only if you understand how to provision and decommission {{% vendor/name %}} services and prefer to complete the transition yourself. 
+   
+1. [Manually back up your environment](/environments/backup.md#create-a-manual-backup).
+
+1. Provision a new service: Add a second `network-storage` service to your configuration and set its version to `{{% latest "network-storage" %}}`.
+
+1. Sync your data: Manually copy your persistent data from the old volume to the new `{{% latest "network-storage" %}}` volume.
+
+1. Decommission the old service: After you verify the data, remove the old version of the service from your configuration.
+
+**Option 2: Supported Transition**<br>
+If you are uncomfortable performing the manual migration steps, please **[create a Support ticket](/learn/overview/get-support.md)**. Our team will provide guidance to ensure your data remains intact. 
 
 ## Usage example
 

@@ -127,7 +127,7 @@ You can define `<SERVICE_NAME>` as you like, so long as it's unique between all 
 and matches in both the application and services configuration.
 
 The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
