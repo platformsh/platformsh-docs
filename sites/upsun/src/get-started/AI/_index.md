@@ -4,7 +4,7 @@ weight: -50
 layout: single
 
 ---
-
+<!-- vale off -->
 {{% vendor/name %}} provides powerful capabilities for hosting AI applications,
 agents, and services. You can deploy AI workloads using any supported runtime
 and integrate with various LLM APIs and services.
@@ -21,8 +21,9 @@ using the following materials.
 - [**AI Agents**](aiagent.md) - Host conversational AI agents
 and chatbots using any
 supported runtime
-- [**MCP Servers**](mcp.md) - Deploy Model Context Protocol servers for
+- [**MCP Servers**](deploy-mcp.md) - Deploy Model Context Protocol servers for
 AI tool integration
+- [**{{% vendor/name %}} MCP Server**](using-the-mcp.md) - Use the {{% vendor/name %}} Model Context Protocel Server
 - **Vector Databases** - [Chroma](add-services/chroma.md), [Qdrant](add-services/qdrant.md)
 
 ## Supported technologies
@@ -35,7 +36,7 @@ AI tool integration
 [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/),
 [AWS Bedrock](https://docs.aws.amazon.com/bedrock/),
 and any other HTTP-based API service
-- **AI Frameworks**: [LangChain](https://python.langchain.com/docs/get_started/introduction),
+- **AI Frameworks**: [LangChain](https://docs.langchain.com/oss/python/langchain/install),
 [LlamaIndex](https://docs.llamaindex.ai/), [Chainlit](https://docs.chainlit.io/),
 and custom implementations
 - **Integration**: REST APIs, WebSockets, and event-driven architectures
@@ -50,12 +51,13 @@ follows standard HTTP protocols.
 ## Get started
 
 1. **Choose your runtime**: Select the programming language that
-best fits your AI application needs
-1. **Configure your app**: Set up your application in the `.upsun/config.yaml` file
-1. **Integrate LLM APIs**: Connect to your preferred AI service providers
-1. **Deploy and scale**: Push your code and let Upsun handle the infrastructure
+best fits your AI application needs.
+1. **Configure your app**: Set up your application in the `.upsun/config.yaml` configuration file. You can use AI to [generate an initial configuration](/administration/cli/init.md).
+1. **Integrate LLM APIs**: Connect to your preferred AI service providers.
+1. **Deploy and scale**: Push your code and let Upsun handle the infrastructure.
 
 For detailed examples and tutorials, see the
 [AI and Machine Learning tutorials on DevCenter](https://devcenter.upsun.com/posts/ai?utm_source=docs&utm_medium=ai-section&utm_campaign=tutorials).
 
 Find out more about the many [languages {{% vendor/name %}} supports](/languages/_index.md).
+<!-- vale on -->

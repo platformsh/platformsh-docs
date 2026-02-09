@@ -1,13 +1,13 @@
 ---
-title: Migrating to {{% vendor/name %}}
-description: See how to migrate your app to {{% vendor/name %}} so it's ready to be deployed.
+title: Converting to {{% vendor/name %}}
+description: See how to convert your app to {{% vendor/name %}} so it's ready to be deployed.
 keywords:
   - "set remote"
-  - migration
 ---
 
-If you already have an app running somewhere else, you want to migrate it to {{% vendor/name %}} and deploy it.
+If you already have an app running somewhere else, you want to convert it to {{% vendor/name %}} and deploy it.
 To do so, follow these steps.
+
 
 ## Before you begin
 
@@ -16,7 +16,7 @@ You need:
 {{% version/specific %}}
 - An app that works and is ready to be built
 - Code in Git
-- A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.api.platform.sh/register?trial_type=general)
+- A {{< vendor/name >}} account -- if you don't already have one, [start a trial](https://auth.upsun.com/register)
 - The [{{< vendor/name >}} CLI](/administration/cli/_index.md) installed locally
 <--->
 - An app that works and is ready to be built
@@ -33,7 +33,7 @@ and for some apps, such as Drupal, configuration that you need to export from th
 
 ## 2. Create a project
 
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 {{< codetabs v2hide="true" >}}
 
 +++
@@ -110,7 +110,7 @@ You likely want to configure three areas:
 - [Routes](/define-routes/_index.md)
 
 {{% version/only "1" %}}
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 You can also take guidance from the [project templates](/development/templates.md),
 which are starting points for various technology stacks with working configuration examples.
 {{% /version/only %}}
@@ -235,7 +235,7 @@ For any potential more details, see the [specific service](/add-services/_index.
 ## {{% version/ifelse "6" "7" %}}. Import files
 
 Your app may include content files, meaning files that aren't intended to be part of your codebase so aren't in Git.
-You can upload such files to [mounts you created](/create-apps/app-reference/single-runtime-image.md#mounts).
+You can upload such files to [mounts you created](/create-apps/image-properties/mounts.md).
 Upload to each mount separately.
 
 Suppose for instance you have the following file mounts defined:
@@ -268,7 +268,7 @@ If your app requires environment variables to build properly, [add them to your 
 
 Now that your app is ready to be deployed, you can do more:
 {{% version/only "1"%}}
-<!-- Platform.sh -->
+<!-- Upsun Fixed -->
 - Upgrade from a Development plan.
 {{% /version/only %}}
 - [Add a domain](/domains/steps/_index.md).

@@ -70,7 +70,7 @@ The following table presents the keys you can define for each service:
 | `disk`          | `integer`  | For some services | The size in [MB](/glossary/_index.md#mb) of the [persistent disk](#disk) allocated to the service. Can't be set for memory-resident-only services such as `memcache` and `redis`. Limited by your plan settings. |
 | `size`          | `string`   |                   | How many CPU and memory [resources to allocate](#size) to the service. Possible values are `AUTO`, `S`, `M`, `L`, `XL`, `2XL`, and `4XL`. Limited by your plan settings.<BR><BR>When `AUTO` applies, available resources are automatically balanced out based on the number of containers on your plan, so that no container is oversized compared to the others. To view the actual sizes of your containers, check the **Environment Configuration** section in your deployment [activity logs](/increase-observability/logs/access-logs.md#activity-logs). |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
-| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships). The `endpoint_name` for apps is always `http`. |
+| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/image-properties/relationships.md). The `endpoint_name` for apps is always `http`. |
 
 ##### Disk
 
@@ -97,7 +97,7 @@ Note that service containers in preview environments are always set to size `S`.
 ### 2. Connect the service
 
 Once you have configured a service, you need to create a relationship to connect it to an app.
-This is done in your [app configuration for relationships](/create-apps/app-reference/single-runtime-image.md#relationships).
+This is done in your [app configuration for relationships](/create-apps/image-properties/relationships.md).
 
 The relationship follows this pattern:
 
@@ -122,12 +122,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 <--->
 
@@ -140,7 +140,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -150,10 +150,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration. `<ENDPOINT_NAME>` is the endpoint your app will use to connect to the service (refer to the service reference to know which value to use).
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -191,7 +191,7 @@ name: myapp
 # The example below shows configuration with explicitly set service names and endpoints.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   mariadb:
     service: mariadb

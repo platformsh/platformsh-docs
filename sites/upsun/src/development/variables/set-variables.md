@@ -11,7 +11,7 @@ All of the variables can also be [overridden via script](#set-variables-via-scri
 
 ## Set variables in your app
 
-Set variables [in code](/create-apps/app-reference/single-runtime-image.md#variables) using the `{{< vendor/configfile "app" >}}` file.
+Set variables [in code](/create-apps/image-properties/variables.md) using the `{{< vendor/configfile "app" >}}` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 
@@ -68,12 +68,13 @@ In particular, to expose a variable as its own environment variable,
 
 Variables have several Boolean options you can set in the Console or the CLI:
 
-| Option    | CLI flag            | Default | Description                                                                                                                                            |
-|-----------|---------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| JSON      | `--json`            | `false` | Whether the variable is a JSON-serialized value (`true`) or a string (`false`).                                                                        |
-| Sensitive | `--sensitive`       | `false` | If set to `true`, the variable's value is hidden in the Console and in CLI responses for added security. It's still readable within the app container. |
-| Runtime   | `--visible-runtime` | `true`  | Whether the variable is available at runtime.                                                                                                          |
-| Build     | `--visible-build`   | `true`  | Whether the variable is available at build time.                                                                                                       |
+| Option              | CLI flag              | Default | Description                                                                                                                                            |
+|---------------------|-----------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| JSON                | `--json`              | `false` | Whether the variable is a JSON-serialized value (`true`) or a string (`false`).                                                                        |
+| Sensitive           | `--sensitive`         | `false` | If set to `true`, the variable's value is hidden in the Console and in CLI responses for added security. It's still readable within the app container. |
+| Runtime             | `--visible-runtime`   | `true`  | Whether the variable is available at runtime.                                                                                                          |
+| Build               | `--visible-build`     | `true`  | Whether the variable is available at build time.                                                                                                       |
+| Application scope   | `--app-scope`         | —       | Limits the variable visibility to specific apps. By default, the variable is available across all applications.                |
 
 So if you want the `foo` variable to be visible at build time but hidden during runtime,
 you can set it by running the following command:
@@ -88,9 +89,21 @@ For example, to make the `foo` variable visible at runtime and hidden during the
 ```bash
 {{% vendor/cli %}} variable:update foo --visible-build false --visible-runtime true
 ```
+#### Limiting variables to specific applications
 
-Note that for changes to project variables to have effect,
-you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
+If you want the `foo` variable to be available only to certain applications, you can limit its scope using the `--app-scope` option:
+
+```bash
+upsun variable:create --level project --name foo --value bar --app-scope frontend1,frontend2
+```
+
+Where `frontend1` and `frontend2` are the names of your applications.
+
+{{< note theme="Info" >}}
+
+Note that for changes to project variables to have effect, you need to [redeploy](../troubleshoot.md#force-a-redeploy) your environments.
+
+{{< /note >}}
 
 ## Create environment-specific variables
 
@@ -188,7 +201,7 @@ For example, the following `.environment` file allows any executable installed i
 to be run regardless of the current directory:
 
 ```bash {location=".environment"}
-export PATH=/app/vendor/bin:$PATH
+export PATH="/app/vendor/bin:${PATH}"
 ```
 
 You can also dynamically define environment variables based on the current environment.
@@ -256,8 +269,8 @@ title= Service environment variables
 +++
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=${DATABASE_HOST}
-export APP_DATABASE_USER=${DATABASE_USERNAME}
+export APP_DATABASE_HOST="${DATABASE_HOST}"
+export APP_DATABASE_USER="${DATABASE_USERNAME}"
 ```
 
 This sets environment variables with the names your app needs,
@@ -271,8 +284,8 @@ title= `PLATFORM_RELATIONSHIPS` environment variable
 It uses the `jq` library, which is included in all app containers for this purpose.
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
+export APP_DATABASE_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].host')"
+export APP_DATABASE_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
 ```
 
 This sets environment variables with names your app needs,
@@ -280,11 +293,10 @@ and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable]
 
 {{< /codetabs >}}
 
-## Use `.env` files
+## When to use `.env` files {#use-env-files}
 
-Many applications use a `.env` file in the application root for configuration.
-These are useful for local development to set variables without needing them to be global across the development computer.
-Read more about [the use cases for `.env` files](https://platform.sh/blog/2021/we-need-to-talk-about-the-env/).
+Upsun does not read `.env files`, as conventionally they are not committed to Git. You can use these for local
+development, but they will not be sourced on any Upsun environment. Typically, you can add `.env` to your .gitignore
+file so that its contents can vary for different developers.
 
-You shouldn't need to use a `.env` file in production.
-Add it to your `.gitignore` file to avoid confusion as its values can vary for each local developer.
+Read more about [the use cases for `.env` files](https://upsun.com/blog/what-is-env-file/).

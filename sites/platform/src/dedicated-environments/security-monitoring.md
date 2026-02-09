@@ -21,33 +21,33 @@ All Dedicated clusters are single-tenant. The [three hosts](/dedicated-environm
 There are no exceptions for this rule, so any incoming web service requests, ETL jobs, or otherwise need to transact over one of these protocols. Outgoing TCP traffic isn’t behind a firewall. Outgoing UDP traffic is disallowed. For containers to be allowed to connect to each other, the following requirement must be met:
 
 -   The containers must live in the same environment
--   You need to define an explicit relationship between the containers in your [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships)
+-   You need to define an explicit relationship between the containers in your [app configuration](/create-apps/image-properties/relationships.md)
 
-All Dedicated projects are isolated and their data is fully encrypted. Should a security breach occur, Platform.sh follows a strict security incident handling procedure to deal with the issue as promptly and efficiently as possible.
+All Dedicated projects are isolated and their data is fully encrypted. Should a security breach occur, Upsun follows a strict security incident handling procedure to deal with the issue as promptly and efficiently as possible.
 
 ### Encryption 
 
-All sites and tools supported and maintained by Platform.sh are fully encrypted by default. 
+All sites and tools supported and maintained by Upsun are fully encrypted by default. 
 
-For more information about Encryption at Platform.sh, visit the [Platform.sh Trust Center](https://platform.sh/trust-center/security/encryption/).
+For more information about Encryption at Upsun, visit the [Upsun Trust Center](https://upsun.com/trust-center/security/encryption/).
 
 ### Performance monitoring
 
 All of our Dedicated clusters are monitored 24/7 to ensure uptime and to measure server metrics such as available disk space, memory and disk usage, and several dozen other metrics that give us a complete picture of the health of your application’s infrastructure. 
 
-As soon as a metric goes out of bounds (i.e., an outage is detected), Support and Operations teams are alerted, a Point in Time report is generated, and the Platform.sh teams can triage the cause of the outage.
+As soon as a metric goes out of bounds (i.e., an outage is detected), Support and Operations teams are alerted, a Point in Time report is generated, and the Upsun teams can triage the cause of the outage.
 
 #### Automated monitoring
 
-On top of internal Platform.sh tools, a third-party availability monitoring system is configured for every Dedicated project. This further guarantees that issues are spotted and addressed as quickly as possible. If you’re using a CDN, [make sure it’s configured](/domains/cdn/_index.md#configure-your-cdn-to-support-high-sla) to support automated monitoring and guarantee high SLA.
+On top of internal Upsun Fixed tools, a third-party availability monitoring system is configured for every Dedicated project. This further guarantees that issues are spotted and addressed as quickly as possible. If you’re using a CDN, [make sure it’s configured](/domains/cdn/_index.md#configure-your-cdn-to-support-high-sla) to support automated monitoring and guarantee high SLA.
 
 Automated monitoring is used to keep an eye on your production environment at all times. If automated monitoring triggers an alert, or if a customer files an urgent priority ticket, an on-call engineer is immediately paged so they can respond and begin to triage the issue.
-Cloud infrastructure issues are handled by the Platform.sh Customer Success team. Note that application problems are returned to the user and may be downgraded.
+Cloud infrastructure issues are handled by the Upsun Customer Success team. Note that application problems are returned to the user and may be downgraded.
 
 #### Observability services
 
-As the official, in-house Platform.sh observability tool, [Blackfire](/increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies. Using Blackfire on Platform.sh enhances your experience and allows you to enjoy greater support as well as unique upcoming features.
+As the official, in-house Upsun Fixed observability tool, [Blackfire](/increase-observability/integrate-observability/blackfire.md) provides unparalleled monitoring, profiling, and performance testing technologies. Using Blackfire on Upsun Fixed enhances your experience and allows you to enjoy greater support as well as unique upcoming features.
 
-As an Enterprise or Elite customer, you can use the Platform.sh [Observability Suite](https://platform.sh/features/observability-suite/), which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability Suite includes all Blackfire features, support, and usage that scales with your needs. 
+As an Enterprise or Elite customer, you can use the Upsun [Observability](https://upsun.com/product/) feature, which offers application performance monitoring by Blackfire packaged with infrastructure monitoring. The Observability feature includes all Blackfire features, support, and usage that scales with your needs. 
 
-Platform.sh also supports third-party observability services such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md) and [Tideways](/increase-observability/integrate-observability/tideways.md). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.
+Upsun Fixed also supports third-party observability services such as [New Relic](/increase-observability/integrate-observability/new-relic/_index.md) and [Tideways](/increase-observability/integrate-observability/tideways.md). You need to get your own license for them. These third-party services have their own associated cost, are language-specific, and may not be available for all languages.

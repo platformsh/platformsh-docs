@@ -10,19 +10,20 @@ description: |
 
 ## Remove Varnish configuration
 
-In Ibexa DXP, Varnish is enabled by default when deploying on {{% vendor/name %}}
+In Ibexa DXP, Varnish is enabled by default when deploying on {{% vendor/name %}}.  
 To use Fastly, Varnish must be disabled:
 
-- Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`{{< vendor/configfile "app" >}}](https://github.com/ezsystems/ezplatform/blob/master/.platform.app.yaml)
-- Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/services.yaml)
-- In [`{{< vendor/configfile "routes" >}}`](https://github.com/ezsystems/ezplatform/blob/master/.platform/routes.yaml),
+- Remove environment variable `TRUSTED_PROXIES: "REMOTE_ADDR"` in [`{{< vendor/configfile "app" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/ibexa-commerce/4.6/.platform.app.yaml#L66)
+- Remove the Varnish service in [`{{< vendor/configfile "services" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/common/4.6/.platform/services.yaml#L80-L87)
+- In [`{{< vendor/configfile "routes" >}}`](https://github.com/ibexa/post-install/blob/4.6/resources/platformsh/common/4.6/.platform/routes.yaml#L3),
    change routes to use `myapp` instead of the `varnish` service you removed in previous step:
 
-```diff
+
+```diff {no-copy="true"}
  "https://{default}/":
      type: upstream
 -     upstream: "varnish:http"
-+     upstream: "myapp:http"
++     upstream: "app:http"
 ```
 
 ## Setting up Ibexa DXP to use Fastly
@@ -40,9 +41,9 @@ Using the CLI, run the following commands to set the configuration on your produ
 (Note that they inherit to all other environments by default unless overridden.)
 
 ```bash
-{{% vendor/cli %}} variable:create -e main --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
-{{% vendor/cli %}} variable:create -e main --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
-{{% vendor/cli %}} variable:create -e main --level environment env:FASTLY_KEY --value 'YOUR_TOKEN_HERE'
+ibexa_cloud variable:create -e main --level environment env:HTTPCACHE_PURGE_TYPE --value 'fastly'
+ibexa_cloud variable:create -e main --level environment env:FASTLY_SERVICE_ID --value 'YOUR_ID_HERE'
+ibexa_cloud variable:create -e main --level environment env:FASTLY_KEY --value 'YOUR_TOKEN_HERE'
 ```
 
 Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly.
@@ -50,9 +51,9 @@ Replacing `YOUR_ID_HERE` with the Fastly Service ID and Key obtained from Fastly
 Note: On a {{% names/dedicated-gen-2 %}} cluster, set those values on the `production` branch:
 
 ```bash
-{{% vendor/cli %}} variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
-{{% vendor/cli %}} variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
-{{% vendor/cli %}} variable:set -e production env:FASTLY_KEY YOUR_TOKEN_HERE
+ibexa_cloud variable:set -e production env:HTTPCACHE_PURGE_TYPE fastly
+ibexa_cloud variable:set -e production env:FASTLY_SERVICE_ID YOUR_ID_HERE
+ibexa_cloud variable:set -e production env:FASTLY_KEY YOUR_TOKEN_HERE
 ```
 
 ## Setup the correct VCL files

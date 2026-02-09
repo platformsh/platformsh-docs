@@ -34,10 +34,10 @@ Set up a script by following these steps:
 
     ```bash {location=".environment"}
     # Pull credentials from the service environment variables.
-    DB_USER=${DATABASE_USERNAME}
-    DB_HOST=${DATABASE_HOST}
-    DB_PORT=${DATABASE_PORT}
-    DB_PASS=${DATABASE_PASSWORD}
+    export DB_USER="${DATABASE_USERNAME}"
+    export DB_HOST="${DATABASE_HOST}"
+    export DB_PORT="${DATABASE_PORT}"
+    export DB_PASS="${DATABASE_PASSWORD}"
     ```
 
 2.  Create an executable sanitizing script by running the following command:
@@ -64,7 +64,7 @@ Set up a script by following these steps:
     ```
 
     To sanitize only on the initial deploy and not all future deploys,
-    on sanitization create a file on a [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+    on sanitization create a file on a [mount](/create-apps/image-properties/mounts.md).
     Then add a check for the file as in the following example:
 
     ```bash {location="sanitize.sh"}

@@ -7,7 +7,7 @@ layout: single
 
 {{% vendor/name %}} offers a variety of plans to fit your needs, including a free trial.
 
-Full pricing information is available at https://platform.sh/pricing/.
+Full pricing information is available at https://upsun.com/fixed-pricing/.
 The resources listed there are for [production environments](#production-environments).
 
 You can switch between plans freely, adding or removing resources, including [extras](#extras).
@@ -41,7 +41,7 @@ Production environments are the live environments available to your users.
 Each Production plan has one Production environment that can be mapped to a [custom domain name](/domains/steps/_index.md).
 
 The production environment has more resources than the project's preview environments.
-See the main [pricing page](https://platform.sh/pricing) for the resources available per plan for Production environments.
+See the main [pricing page](https://upsun.com/fixed-pricing/) for the resources available per plan for Production environments.
 
 ### Preview environments
 
@@ -107,7 +107,7 @@ For example, a {{< partial "plans/multiapp-plan-name" >}} plan can support 3 app
 with a MySQL service and a Redis service.
 
 If you aren't sure whether a specific setup would fit into a plan,
-don't hesitate to [contact support](https://console.platform.sh/-/users/~/tickets).
+don't hesitate to [contact support](https://console.upsun.com/-/users/~/tickets).
 
 
 ## Enterprise overages
@@ -133,6 +133,45 @@ Plans with a Fastly CDN service include the following:
 | `EDGE-REQ-OVERAGE-50M`    | Ingress Requests: 50M               | $66  | €49  | AU$96 | CA$90 | £51  |
 
 
+### Monitor monthly traffic usage
+
+You can access a summary of your monthly traffic usage under the "Traffic this month" section at the Project level inside [Console](https://console.upsun.com/). This will help you monitor your monthly bandwidth and requests consumption. 
+
+In this summary, you will find specific details about:
+
+- **Origin Bandwidth:** Data transferred from origin servers (in TB).
+
+- **Origin Requests:** Requests served by origin servers (in millions of requests).
+
+- **CDN Bandwidth & CDN Requests:** Shown if you have Fastly CDN enabled.
+
+This data is updated daily and will reflect your traffic usage throughout the billing period. 
+
+### Monthly traffic alerts
+
+You can also set up consumption alerts for your resource usage. To do so, click the Alert button in the ["Traffic this month" block within Console](#monitor-monthly-traffic-usage):
+
+![Access the alert settings from the traffic usage section](/images/metrics/traffic-block.png "0.4")
+
+This will open a modal, as shown below. 
+
+![Set your alert notifications](/images/metrics/alerts-modal.png "0.4")
+
+Here you can configure usage thresholds for Origin bandwidth, Origin requests, CDN bandwidth and CDN requests (if applicable).
+
+If a threshold is exceeded during the month, you’ll receive an email notification.
+
+#### Alert access and duration
+
+For all projects where an alert has been defined and enabled, if monthly usage rises above the defined threshold, an email is sent to the same list of users who receive billing alerts:
+
+- Organization owner
+- Organization members with billing role
+- Billing contact of the organization (if there is one)
+
+Alerts are sent once a day, after the job that pulls usage data into Accounts has finished.
+Once a threshold is crossed, we send a maximum of 3 alerts, on 3 consecutive days (1 per day). After this, alerts will stop.
+
 ### DDoS surge protection
 
 If your site is suffering from a DDoS attack, overages may apply.
@@ -154,9 +193,9 @@ Agencies have access to several partner levels with many perks.
 
   | Discount          | Registered | Bronze | Silver | Gold | Platinum | Diamond |
   |-------------------|------------|--------|--------|------|----------|---------|
-  | User license      | –          | –      | Free   | Free | Free     | Free    |
+  | User license      | Free       | Free   | Free   | Free | Free     | Free    |
   | Development plan  | –          | –      | –      | Free | Free     | Free    |
-  | Professional tier | –          | –      | 10%    | 10%  | 10%      | 10%     |
+  | Professional tier | –          | 10%    | 10%    | 10%  | 10%      | 10%     |
   | Premier tier      | –          | –      | 10%    | 10%  | 10%      | 10%     |
   | Enterprise tier   | –          | –      | 10%    | 18%  | 20%      | 20%     |
   | Elite tier        | –          | –      | –      | –    | 25%      | 30%     |
@@ -168,9 +207,9 @@ Agencies have access to several partner levels with many perks.
   |------------|------------|---------------|-------------|------------|------------|
   | –          | Small plan | Standard plan | Medium plan | Large plan | Large plan |
 
-[Learn more and join today](https://platform.sh/solutions/digital-agencies/).
+[Learn more and join today](https://upsun.com/agency-hosting-partner/).
 
-If you have any questions, don't hesitate to [contact Sales](https://platform.sh/contact/).
+If you have any questions, don't hesitate to [contact Sales](https://upsun.com/contact-us/).
 
 ## Sponsored sites
 
@@ -179,7 +218,7 @@ That offering can include either a project on {{% vendor/name %}}, or profilable
 
 ## Dunning process
 
-If your initial payment fails, Platform.sh will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
+If your initial payment fails, Upsun will make three attempts to collect the outstanding balance from your account on the 4th, 6th, and 11th of the month.
 
 If you are a new customer and your initial payment fails, your projects will be deleted on the 13th of the month - two days after the final payment attempt.  
 
@@ -187,6 +226,6 @@ For all other customers, you will receive a notification 10 days before your pro
 
 <div align="center">
 
-{{< get-started/next-button next="https://platform.sh/community/open-source/apply/" nextText="Apply" >}}
+{{< get-started/next-button next="https://upsun.com/" nextText="Apply" >}}
 
 </div>

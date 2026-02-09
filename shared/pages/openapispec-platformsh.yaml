@@ -58,7 +58,7 @@ info:
     is particularly useful in scripts, e.g. for CI pipelines.
 
     To create an API token, go to the "API Tokens" section
-    of the "Account Settings" tab on the [Console](https://console.platform.sh).
+    of the "Account Settings" tab on the [Console](https://console.upsun.com).
 
     To exchange this API token for an access token, a `POST` request
     must be made to `https://auth.api.platform.sh/oauth2/token`.
@@ -3981,6 +3981,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AcceptedResponse'
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentDeployInput'
       tags:
         - Environment
   /projects/{projectId}/environments/{environmentId}/deployments:
@@ -5334,6 +5341,76 @@ paths:
       tags:
         - Third-Party Integrations
       summary: Delete an existing third-party integration
+  /projects/{projectId}/provisioners:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+      operationId: list-projects-provisioners
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateProvisionerCollection'
+      tags:
+        - CertificateProvisioner
+  /projects/{projectId}/provisioners/{certificateProvisionerDocumentId}:
+    get:
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: certificateProvisionerDocumentId
+      operationId: get-projects-provisioners
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateProvisioner'
+      tags:
+        - CertificateProvisioner
+    patch:
+      requestBody:
+        description: ''
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateProvisionerPatch'
+      parameters:
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: projectId
+        - in: path
+          required: true
+          schema:
+            type: string
+          name: certificateProvisionerDocumentId
+      operationId: update-projects-provisioners
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcceptedResponse'
+      tags:
+        - CertificateProvisioner
   /projects/{projectId}/settings:
     get:
       parameters:
@@ -5731,6 +5808,13 @@ paths:
         - in: query
           name: filter[id]
           description: Allows filtering by `id` using one or more operators.
+          style: deepObject
+          explode: true
+          schema:
+            $ref: '#/components/schemas/StringFilter'
+        - in: query
+          name: filter[type]
+          description: Allows filtering by `type` using one or more operators.
           style: deepObject
           explode: true
           schema:
@@ -7421,7 +7505,6 @@ paths:
                 type: object
                 properties:
                   prepayment:
-                    type: object
                     $ref: '#/components/schemas/PrepaymentObject'
                   _links:
                     type: object
@@ -7479,8 +7562,28 @@ paths:
                       $ref: '#/components/schemas/PrepaymentTransactionObject'
                   _links:
                     type: object
-                    $ref: '#/components/schemas/ListLinks'
                     properties:
+                      self:
+                        type: object
+                        description: Link to the current set of items.
+                        properties:
+                          href:
+                            type: string
+                            description: URL of the link.
+                      previous:
+                        type: object
+                        description: Link to the previous set of items.
+                        properties:
+                          href:
+                            type: string
+                            description: URL of the link.
+                      next:
+                        type: object
+                        description: Link to the next set of items.
+                        properties:
+                          href:
+                            type: string
+                            description: URL of the link
                       prepayment:
                         type: object
                         description: Link to the prepayment resource.
@@ -10382,26 +10485,19 @@ components:
       type: object
       properties:
         self:
-          type: object
-          description: Link to the current set of items.
-          properties:
-            href:
-              type: string
-              description: URL of the link.
+          $ref: '#/components/schemas/Link'
         previous:
-          type: object
-          description: Link to the previous set of items.
-          properties:
-            href:
-              type: string
-              description: URL of the link.
+          $ref: '#/components/schemas/Link'
         next:
-          type: object
-          description: Link to the next set of items.
-          properties:
-            href:
-              type: string
-              description: URL of the link
+          $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      title: Link
+      description: A hypermedia link to the {current, next, previous} set of items.
+      properties:
+        href:
+          type: string
+          description: URL of the link
     APIToken:
       description: ''
       type: object
@@ -11575,6 +11671,51 @@ components:
         is_invalid:
           type: boolean
           title: Whether this certificate should be skipped during provisioning
+      additionalProperties: false
+    CertificateProvisioner:
+      type: object
+      properties:
+        directory_url:
+          type: string
+          title: ACME directory url
+        email:
+          type: string
+          title: Contacted email address
+        eab_kid:
+          type: string
+          nullable: true
+          title: Eab Kid
+        eab_hmac_key:
+          type: string
+          nullable: true
+          title: Eab Hmac Key
+      required:
+        - directory_url
+        - email
+        - eab_kid
+        - eab_hmac_key
+      additionalProperties: false
+    CertificateProvisionerCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/CertificateProvisioner'
+    CertificateProvisionerPatch:
+      type: object
+      properties:
+        directory_url:
+          type: string
+          title: ACME directory url
+        email:
+          type: string
+          title: Contacted email address
+        eab_kid:
+          type: string
+          nullable: true
+          title: Eab Kid
+        eab_hmac_key:
+          type: string
+          nullable: true
+          title: Eab Hmac Key
       additionalProperties: false
     Commit:
       type: object
@@ -14061,6 +14202,9 @@ components:
         has_staged_activities:
           type: boolean
           title: Is there any staged activity on this environment
+        can_rolling_deploy:
+          type: boolean
+          title: If the environment supports rolling deployments
         has_code:
           type: boolean
           title: Does this environment have code
@@ -14125,6 +14269,7 @@ components:
         - is_main
         - is_dirty
         - has_staged_activities
+        - can_rolling_deploy
         - has_code
         - head_commit
         - merge_info
@@ -14207,6 +14352,18 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Environment'
+    EnvironmentDeployInput:
+      type: object
+      properties:
+        strategy:
+          type: string
+          enum:
+            - rolling
+            - stopstart
+          title: The deployment strategy (`rolling` or `stopstart`)
+      required:
+        - strategy
+      additionalProperties: false
     EnvironmentInitializeInput:
       type: object
       properties:
@@ -14521,6 +14678,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
         project:
           type: string
           title: Project name
@@ -14545,6 +14707,7 @@ components:
         - is_sensitive
         - visible_build
         - visible_runtime
+        - application_scope
         - project
         - environment
         - inherited
@@ -14581,6 +14744,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
         is_enabled:
           type: boolean
           title: The variable is enabled on this environment
@@ -14617,6 +14785,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
         is_enabled:
           type: boolean
           title: The variable is enabled on this environment
@@ -16609,9 +16782,36 @@ components:
         allow_manual_deployments:
           type: boolean
           title: If deployments can be manual, i.e. explicitly triggered by user.
+        allow_rolling_deployments:
+          type: boolean
+          title: If the project can use rolling deployments.
         allow_burst:
           type: boolean
           title: Allow burst
+        router_resources:
+          type: object
+          properties:
+            baseline_cpu:
+              type: number
+              format: float
+              title: Router baseline CPU for flex plan
+            baseline_memory:
+              type: integer
+              title: Router baseline memory (MB) for flex plan
+            max_cpu:
+              type: number
+              format: float
+              title: Router max CPU for flex plan
+            max_memory:
+              type: integer
+              title: Router max memory (MB) for flex plan
+          required:
+            - baseline_cpu
+            - baseline_memory
+            - max_cpu
+            - max_memory
+          additionalProperties: false
+          title: Router resource settings for flex plan
       required:
         - initialize
         - product_name
@@ -16679,7 +16879,9 @@ components:
         - git_server
         - activity_logs_max_size
         - allow_manual_deployments
+        - allow_rolling_deployments
         - allow_burst
+        - router_resources
       additionalProperties: false
     ProjectSettingsPatch:
       type: object
@@ -16774,6 +16976,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
       required:
         - created_at
         - updated_at
@@ -16783,6 +16990,7 @@ components:
         - is_sensitive
         - visible_build
         - visible_runtime
+        - application_scope
       additionalProperties: false
     ProjectVariableCollection:
       type: array
@@ -16814,6 +17022,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
       required:
         - name
         - value
@@ -16844,6 +17057,11 @@ components:
         visible_runtime:
           type: boolean
           title: The variable is visible at runtime
+        application_scope:
+          type: array
+          items:
+            type: string
+          title: Applications that have access to this variable
       additionalProperties: false
     ProxyRoute:
       type: object
@@ -18414,6 +18632,16 @@ components:
             - paths
           additionalProperties: false
           title: The configuration of the redirects.
+        sticky:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Whether sticky routing is enabled.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Sticky routing configuration.
       required:
         - primary
         - id
@@ -18425,6 +18653,7 @@ components:
         - ssi
         - upstream
         - redirects
+        - sticky
       additionalProperties: false
     UpstreamRouteCreateInput:
       type: object
@@ -18577,6 +18806,16 @@ components:
             - paths
           additionalProperties: false
           title: The configuration of the redirects.
+        sticky:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Whether sticky routing is enabled.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Sticky routing configuration.
       required:
         - type
         - upstream
@@ -18732,6 +18971,16 @@ components:
             - paths
           additionalProperties: false
           title: The configuration of the redirects.
+        sticky:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              title: Whether sticky routing is enabled.
+          required:
+            - enabled
+          additionalProperties: false
+          title: Sticky routing configuration.
       required:
         - type
         - upstream
@@ -19370,6 +19619,12 @@ components:
         vendor:
           type: string
           description: The vendor.
+        billing_account_id:
+          type: string
+          description: The Billing Account ID.
+        billing_legacy:
+          type: boolean
+          description: Whether the account is billed with the legacy system.
         status:
           type: string
           description: The status of the organization.
@@ -19518,6 +19773,9 @@ components:
           type: string
           format: ulid
           description: The ID of the organization.
+        type:
+          type: string
+          description: The type of the organization.
         owner_id:
           type: string
           format: uuid

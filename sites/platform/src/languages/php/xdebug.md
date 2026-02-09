@@ -80,13 +80,6 @@ To use an alternate port, use the `--port` flag.
 
 To close the tunnel and terminate the debug connection, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 
-{{< note title="On {{% names/dedicated-gen-3 %}}" version="1" >}}
-
-Note that because you have several virtual machines running but your tunnel is connected to only one of them,
-your requests don't always reach the same host.
-
-{{< /note >}}
-
 ### Install an Xdebug helper
 
 While Xdebug can be triggered from the browser by adding a special query parameter, the preferred way is to use a browser plugin helper.

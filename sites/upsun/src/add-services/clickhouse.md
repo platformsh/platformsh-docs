@@ -18,10 +18,7 @@ For more information, see the [ClickHouse documentation](https://ClickHouse.com/
 {{% /note %}}
 
 ## Supported versions
-
-- 25.3
-- 24.3
-- 23.8
+{{< image-versions image="clickhouse" status="supported" environment="grid" >}}
 
 {{% vendor/name %}} plans on supporting long-term support ClickHouse versions in priority.
 
@@ -59,7 +56,7 @@ CLICKHOUSE_HOSTNAME=azertyuiopqsdfghjklm.clickhouse.service._.eu-1.{{< vendor/ur
 CLICKHOUSE_EPOCH=0
 CLICKHOUSE_REL=clickhouse
 CLICKHOUSE_SCHEME=https/http
-CLICKHOUSE_TYPE=clickhouse:25.3
+CLICKHOUSE_TYPE=clickhouse:{{< latest "clickhouse" >}}
 CLICKHOUSE_PUBLIC=false
 ```
 
@@ -91,7 +88,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
   "epoch": 0,
   "rel": "clickhouse",
   "scheme": "https",
-  "type": "clickhouse:25.3",
+  "type": "clickhouse:{{< latest "clickhouse" >}}",
   "public": false
 }
 ```
@@ -100,10 +97,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_CLICKHOUSE_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.clickhouse[0].host')"
+export APP_CLICKHOUSE_HOST=="$(echo "$RELATIONSHIPS_JSON" | jq -r '.clickhouse[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -228,7 +225,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:25.3
+    type: clickhouse:{{< latest "clickhouse" >}}
 ```
 
 <--->
@@ -254,7 +251,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:25.3
+    type: clickhouse:{{< latest "clickhouse" >}}
 ```
 
 <--->
@@ -280,7 +277,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   clickhouse:
-    type: clickhouse:25.3
+    type: clickhouse:{{< latest "clickhouse" >}}
 ```
 
 If you want to change the ``clickhouse`` endpoint to ``clickhouse-http``, you need to use explicit endpoint definition as it defaults to ``clickhouse`` endpoint when using default endpoint (aka. {{% variable "SERVICE_NAME" %}} as relationship definition).
@@ -311,7 +308,7 @@ applications:
         endpoint: importer
 services:
   clickhouse:
-    type: clickhouse:25.3
+    type: clickhouse:{{< latest "clickhouse" >}}
     configuration:
       databases:
         - main

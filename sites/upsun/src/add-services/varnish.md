@@ -22,7 +22,7 @@ When you deploy your app, you always get the latest available patches.
 All incoming requests go through the [standard router](../define-routes/_index.md).
 The Varnish service sits between the router and all apps in the project.
 
-``` mermaid
+```mermaid {no-copy="true"}
 graph LR
     A(Request) -->B(Router)
     B --> C{Varnish}
@@ -370,5 +370,5 @@ To access the Varnish stats endpoint from the command line:
 
 1. Connect to your stats app [using SSH](../development/ssh/_index.md): `{{% vendor/cli %}} ssh --app stats-app`
    (replace `stats-app` with the name you gave the app).
-2. Display the [relationships array](/create-apps/app-reference/single-runtime-image.md#relationships) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
+2. Display the [relationships array](/create-apps/image-properties/relationships.md) with `echo ${{< vendor/prefix >}}_RELATIONSHIPS | base64 -d | jq .`,
 3. Query Varnish with `curl {{< variable "HOST" >}}:{{<variable "PORT" >}}/stats`, replacing `{{< variable "HOST" >}}` and `{{< variable "PATH" >}}` with the values from Step 2.

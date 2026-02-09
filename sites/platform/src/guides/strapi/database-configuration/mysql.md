@@ -21,7 +21,7 @@ To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these st
 
    ```yaml {configFile="services"}
    mysql:
-     type: oracle-mysql:8.0
+     type: oracle-mysql:{{< latest "oracle-mysql" >}}
      disk: 256
    ```
 
@@ -107,7 +107,7 @@ To configure a MySQL database for Strapi on {{% vendor/name %}}, follow these st
        // Strapi default local configuration.
 
        console.log(
-         "Not in a {{% vendor/name %}} Environment. Using default local sqlite configuration."
+         "Not in an {{% vendor/name %}} Environment. Using default local sqlite configuration."
        );
      }
    }

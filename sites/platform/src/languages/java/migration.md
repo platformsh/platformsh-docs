@@ -48,14 +48,14 @@ web:
   commands:
     start: [3]
 ```
-1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
-2. [Hooks define what happens when building the application](/create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar e.g.: `mvn clean package`
-3. [The commands key defines the command to launch the application](/create-apps/app-reference/single-runtime-image.md#web-commands). E.g.:  `java -jar file.jar`
-4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. E.g.: `java -jar jar --port=$PORT`
+1. [A supported Java version](/languages/java/_index.md#supported-versions). Example: `java:{{% latest "java" %}}`
+2. [Hooks](/create-apps/hooks.md) define what occurs when building the application. This build process typically generates an executable file such as an uber-jar. Example: `mvn clean package`
+3. The [`<APP_NAME>.web.commands`](/create-apps/image-properties/web.md) property defines the command to launch the application(/create-apps/image-properties/web.md). Example:  `java -jar file.jar`
+4. The [`<APP_NAME>.web.commands.start`](/create-apps/image-properties/web.html#start) property indicates the port on which the application runs through the `PORT` environment. Consider including this when your app follows the port bind principle. Example: `java -jar jar --port=$PORT`
 
 {{< note >}}
 
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/app-reference/single-runtime-image.md#mounts).
+Be aware that after the build, it creates a read-only system. Use the [`mount` property to create a writable folder](/create-apps/image-properties/mounts.md).
 
 {{< /note >}}
 
@@ -92,8 +92,8 @@ You have the option to use several languages in microservices. If you're using J
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Microservices in the cloud, part two](https://platform.sh/blog/2019/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
-| [Microservices in the cloud, part one](https://platform.sh/blog/2019/microservices-in-the-cloud-part-one/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part two](https://devcenter.upsun.com/posts/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part one](https://upsun.com/blog/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Multiple Applications](https://support.platform.sh/hc/en-us/community/posts/16439649733010) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://support.platform.sh/hc/en-us/community/posts/16439676928274) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
@@ -104,9 +104,9 @@ You can load balance to some or [all applications in the project cluster](https:
 ## Access to managed services
 
 {{% vendor/name %}} provides [managed services](/add-services/_index.md) such as databases, cache and search engines.
-However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/app-reference/single-runtime-image.md#firewall).
+However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/image-properties/firewall.md).
 
-When applications need to access a service, it is important to include the [`relationships` key](/create-apps/app-reference/single-runtime-image.md#relationships).
+When applications need to access a service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
 By default an application may not talk to any other container without a `relationship` explicitly allowing access.
 
 To connect to a service from your deployed application, you need to pass the relationships information into your application's configuration.
@@ -123,8 +123,8 @@ This variable is a base64-encoded JSON object with keys of the relationship name
 
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
-```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
+```bash {location=".environment"}
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].host')"
 ```
 
 | Article                                                      | Source                                                       |
@@ -139,13 +139,13 @@ you have the option to move the variable environment to another file: a [`.envir
 
 E.g.:
 
-```shell
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
-export DB_PASSWORD=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].password"`
-export DB_USER=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].username"`
-export DB_DATABASE=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].path"`
-export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+```bash {location=".environment"}
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].host')"
+export DB_PASSWORD="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].password')"
+export DB_USER="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].username')"
+export DB_DATABASE="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].path')"
+export JDBC="jdbc:postgresql://${HOST}/${DATABASE}"
+export JAVA_MEMORY="-Xmx$(jq .info.limits.memory /run/config.json)m"
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 
@@ -166,7 +166,7 @@ web:
 ### Using Java Config Reader
 
 If your framework doesn't support configuration via environment variables, use the [Config Reader](/development/variables/use-variables.md#access-variables-in-your-app).
-This library provides a streamlined way to interact with a {{% vendor/name %}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
+This library provides a streamlined way to interact with an {{% vendor/name %}} environment. It offers utility methods to access routes and relationships more cleanly than reading the raw environment variables yourself. [See the maven dependency](https://mvnrepository.com/artifact/sh.platform/config).
 
 ```java
 import Config;

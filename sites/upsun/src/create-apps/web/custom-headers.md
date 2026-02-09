@@ -5,7 +5,7 @@ description: Set custom headers for your static content such as custom content-t
 ---
 
 When your app responds to dynamic requests, it can generate headers on the fly.
-To set headers for static content, add them in [your `web` configuration](/create-apps/app-reference/single-runtime-image.md#web).
+To set headers for static content, add them in [your `web` configuration](/create-apps/image-properties/web.md).
 
 You might want to do so to add custom content-type headers, limit what other sites can embed your content,
 or allow cross origin requests.
@@ -36,7 +36,7 @@ applications:
 This sets the `X-Frame-Options` header to `SAMEORIGIN` for all static files.
 Now your files can only be embedded within your site.
 
-Now set up an exception for Markdown (`*.md`) using a [rule](/create-apps/app-reference/single-runtime-image.md#rules):
+Now set up an exception for Markdown (`*.md`) using a [rule](/create-apps/image-properties/web.md#rules):
 
 ```yaml {configFile="app"}
 applications:
@@ -132,6 +132,6 @@ unless you enable [HTTP Strict Transport Security (HSTS)](https://docs.platform.
 in your [routes configuration](../../define-routes/_index.md).
 
 Note that once HSTS is enabled, configuration capabilities depend
-on the [HSTS properties](https://docs.platform.sh/define-routes/https.html#enable-http-strict-transport-security-hsts)
+on the [HSTS properties](/define-routes/https.html#enable-http-strict-transport-security-hsts)
 set in your routes configuration.
 For example, the `max-age` value is set to `31536000` by {{% vendor/name %}} and can't be customized.

@@ -52,7 +52,7 @@ This guide provides instructions for deploying and working with Laravel on {{% v
    To generate the key locally, run `php artisan key:generate`.
    Copy the key from your local `.env` file into `.environment` as follows:
 
-   ```bash  {configFile="env"}
+   ```bash {configFile="env"}
    export APP_KEY="base64:{{< variable "APP_KEY" >}}"
    ```
 
@@ -113,7 +113,7 @@ The {{% vendor/name %}} default configuration stipulates three writable folders 
 - `"storage"`
 
 If your application writes content outside of these default ones,
-you can [set up mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
+you can [set up mounts](/create-apps/image-properties/mounts.md).
 
 ## 5. Make changes to your project
 
@@ -139,7 +139,7 @@ To make changes to your project, follow these steps:
 
    For example, edit the `resources/views/welcome.blade.php` template and make the following visual changes:
 
-   ```html {location="resources/views/welcome.blade.php"}
+   ```html {location="resources/views/welcome.blade.php", no-copy="true"}
    <meta name="viewport" content="width=device-width, initial-scale=1">
    -    <title>Laravel</title>
    +    <title>Laravel On {{% vendor/name %}}</title>

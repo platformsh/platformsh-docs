@@ -122,7 +122,7 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships) for relationships.
+The example above leverages [explicit endpoint configuration](/create-apps/image-properties/relationships.md) for relationships.
 That is, it utilizes the `endpoint` key to explicitly connect an individually accessible `relationship` to a specific Vault endpoint.
 
 With the above definition, the application container now has access to the service via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -157,7 +157,7 @@ vault-kms:
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported:
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   vault_secret:
     service: "vault-kms"
     endpoint: "manage_keys"
@@ -192,7 +192,7 @@ vault-kms:
 ```yaml {configFile="app"}
 relationships:
   # Please note: Legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   vault_manage:
     service: vault-kms
     endpoint: management
@@ -419,3 +419,5 @@ In the JSON object that's returned, you can notice that the `ciphertext` is diff
 | `encrypt` | `transit/encrypt/${KEY}` | `read`, `update` | Encrypting data with an existing key |
 | `decrypt` | `transit/decrypt/${KEY}` | `read`, `update` | Decrypting data with an existing key |
 | `rewrap`  | `transit/rewrap/${KEY}` | `read`, `update` | Re-encrypting data with a new key version without revealing the secret |
+
+

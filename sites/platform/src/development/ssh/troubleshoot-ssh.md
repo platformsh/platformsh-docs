@@ -15,11 +15,11 @@ There are several places to check to try to solve such issues.
 If your environment is [inactive](/glossary/_index.md#inactive-environment) or the deployment has failed,
 you can't log in to it.
 To make sure the environment is active and the deployment has succeeded,
-check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.platform.sh/) .
+check it using `{{% vendor/cli %}} environment:list` or in the [Console](https://console.upsun.com/).
 
 ## Redeploy your environment
 
-If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.platform.sh/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
+If you have just added your SSH key or made changes to [access rules](/administration/users.md), you need to redeploy your environment before you can access it using SSH keys. You can do this in the [Console](https://console.upsun.com/), by running `{{% vendor/cli %}} redeploy`, or by pushing an empty git commit:
 
 ```bash
 git commit --allow-empty -m 'chore: force redeploy'
@@ -28,7 +28,7 @@ git push origin main
 
 ## Check your public key
 
-Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.platform.sh/).
+Make sure your public key has been uploaded to your user account. Check it in the [{{% vendor/name %}} Console](https://console.upsun.com/).
 
 ## SSH key can not be duplicated
 
@@ -121,7 +121,7 @@ Service: abcdefg123456-main-bvxea6i--app
 User: {{< variable "USER NAME" >}} ({{< variable "USER ID" >}})
 Parameters: {"amr":["mfa","sso:acme"]}
 Detail: Additional authentication is required:
-	 - Multi-factor authentication (MFA)
+	 - Multifactor authentication (MFA)
 	 - Single sign-on (SSO), provider: "acme"
 ```
 
@@ -134,7 +134,7 @@ Similarly for bot users and CLI tokens, you may see the message:
 
 ```bash
   [RequestException]
-  Multi-factor authentication (MFA) is required.
+  Multifactor authentication (MFA) is required.
   The API token may need to be re-created after enabling MFA.
 ```
 

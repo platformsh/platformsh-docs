@@ -1,27 +1,32 @@
 
 # Basics
 version: "1.1.0"
-description: Platform.sh User Documentation
-author: Platform.sh
+description: Upsun Fixed User Documentation
+author: Upsun.com
 title: User documentation
 issuerepo: "https://github.com/platformsh/platformsh-docs/"
 repo: "https://github.com/platformsh/platformsh-docs/"
 folder: "sites/platform"
 editPageButton: true
 
+theme:
+    use_vendor: true
+
 # Vendorization
 vendor:
-    name: Platform.sh
+    name: Upsun Fixed
+    company_name: Upsun
     cli: platform
     altname: platformsh
     env_prefix: PLATFORM
     cli_prefix: PLATFORMSH
     recruit:
         active: true
-        link: https://auth.api.platform.sh/register/
-        cta: Activate your trial
-        title: Try for 30 days
-        description: "Flexible, version-controlled infrastructure provisioning and development-to-production workflows"
+        link: https://upsun.com/register/
+        cta: Activate your 15-day trial
+        title: Try Upsun for 15 days
+        description: "After that, enjoy the same game-changing Upsun features for less with the [First Project Incentive](https://upsun.com/blog/first-project-incentive/)!¹ A monthly $19 perk!"
+        fine: "¹Terms and conditions apply. Only for Flexible Resource projects."
     config:
         version: 1
         dir: .platform
@@ -36,20 +41,21 @@ vendor:
             services: services
             routes: routes
     urls:
-        main: https://platform.sh/
-        docs: https://docs.platform.sh
+        main: https://upsun.com
+        docs: https://fixed.docs.upsun.com
         support: https://support.platform.sh/
-        sales: https://platform.sh/contact
-        console: https://console.platform.sh/
-        api: https://docs.platform.sh/api/
+        sales: https://upsun.com/contact-us
+        console: https://console.upsun.com/
+        api: https://docs.upsun.com/api/
         host: platform.sh
         hostname: platformsh.site
-        register: https://auth.api.platform.sh/register
+        register: https://auth.upsun.com/register
+        discord: https://discord.gg/upsun
 
 # Images (kept in static/)
-logo: "images/logos/Platformsh_logo_white.svg"
+logo: "images/logo.svg"
 logolinksto: "/"
-logoAlt: "Platform.sh"
+logoAlt: "Upsun Fixed"
 favicon: "images/logos/favicon.ico"
 
 gtm: "GTM-KRPJGT4"
@@ -57,17 +63,17 @@ gtm: "GTM-KRPJGT4"
 # Actions in main header
 headerActions:
   headerActionPrimary:
-    destination: https://auth.api.platform.sh/register
+    destination: https://upsun.com/register/
     linkText: Sign up
   headerActionSecondary:
-    destination: https://console.platform.sh/
+    destination: https://console.upsun.com/
     linkText: Log in
 
 # Search
 rank: 1
 site: docs
 # Don't include trailing slash. It's just easier that way.
-rooturl: "https://docs.platform.sh"
+rooturl: "https://fixed.docs.upsun.com"
 
 # 404
 _404:
@@ -97,7 +103,7 @@ navSections:
 nonDocsSections:
   apidocs:
     title: API Documentation
-    link: https://docs.platform.sh/api/
+    link: https://docs.upsun.com/api/
     weight: -80
   # community:
   #   title: Community Forum
@@ -106,17 +112,17 @@ nonDocsSections:
 
 # Metadata
 meta:
-  sitename: "Platform.sh User Documentation"
-  description: Platform.sh is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
-  image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
-  url: "https://docs.platform.sh"
+  sitename: "Upsun Fixed User Documentation"
+  description: Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive.
+  image: "https://fixed.docs.upsun.com/images/default_social.png"
+  url: "https://fixed.docs.upsun.com"
   twittercard:
     card: "summary_large_image"
-    site: "@platformsh"
-    title: "Platform.sh User Documentation"
-    description: "Platform.sh is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
-    creator: "@platformsh"
-    image: "https://docs.platform.sh/images/logos/docs_social_2021.jpg"
+    site: "@upsundotcom"
+    title: "Upsun Fixed User Documentation"
+    description: "Upsun is a Cloud Application Platform built especially for continuous deployment. It allows you to host web applications on the cloud while making your development and testing workflows more productive."
+    creator: "@upsundotcom"
+    image: "https://fixed.docs.upsun.com/images/default_social.png"
   keywords:
     - PaaS
     - cloud hosting

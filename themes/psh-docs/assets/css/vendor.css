@@ -153,3 +153,18 @@ summary {
     font-size: 0.85rem;
     line-height: 1.2rem;
 }
+
+.cta-body a {
+  color: #6046FF; 
+  font-weight: 600; /* Slightly bolder to emphasize */
+  text-decoration: underline; /* Underlined to indicate it's a link */
+}
+
+.cta-body a:visited {
+  color: #4D38CC; /* Slightly darker after visit */
+}
+
+.cta-body a:hover,
+.cta-body a:focus {
+  color: #8877f1 /* Lighter shade on hover/focus */
+}

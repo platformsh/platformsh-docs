@@ -67,11 +67,11 @@ You can have services that are only exposed to another service as well as servic
 In a clustered application, you can have one of the following configurations:
 
 - Multiple [`{{< vendor/configfile "app" >}}` files](/create-apps/multi-app/_index.md) in different directories, with separate code bases that deploy separately
-- A single app that spawns one or more [worker instances](/create-apps/app-reference/single-runtime-image.md#workers) that run background processes
+- A single app that spawns one or more [worker instances](/create-apps/image-properties/workers.md) that run background processes
 
 {{< note >}}
 
-Note that a clustered application requires at least a [{{< partial "plans/multiapp-plan-name" >}} plan](https://platform.sh/pricing/).
+Note that a clustered application requires at least a [{{< partial "plans/multiapp-plan-name" >}} plan](https://upsun.com/fixed-pricing/).
 
 {{< /note >}}
 

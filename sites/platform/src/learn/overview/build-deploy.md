@@ -45,11 +45,13 @@ Once the app has gone through all of the build steps, it can connect to services
    For some languages (NodeJS, PHP), a series of standard commands are run based on the build flavor.
    You can change the flavor or skip the commands by specifying it in your `{{< vendor/configfile "app" >}}` file.
 5. **Run build hook**:
-   The `build` hook comprises one or more shell commands that you write to finish creating your production code base.
-   It could be compiling Sass files, running a bundler, rearranging files on disk, or compiling.
+   The `build` hook comprises one or more shell commands that you write to finish creating your production code base: for example, compiling Sass files, running a bundler, rearranging files on disk, or compiling.
    The committed build hook runs in the build container.
    During this time, commands have write access to the file system, but there aren't connections to other containers (services and other apps).
-   Note that you can [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+
+   For automated builds, you can use the [`CI` environment variable](/development/variables/use-variables.md#use-provided-variables) in build scripts and tooling to modify build behavior (for example, to disable attempts to connect to other containers during the build phase, or to disable interactivity). These modifications can help to prevent build failures.<br>
+   You can also manually [cancel deployments stuck on the build hook](/environments/cancel-activity.md).
+
 6. **Freeze app container**:
    The file system is frozen and produces a read-only container image, which is the final build artifact.
 
@@ -73,7 +75,7 @@ but the file system is read-only.
 1. **Expose services**:
    Networking connections are opened between any containers specified in your app and services configurations.
 1. **Run (pre-) start commands**:
-   The [commands](/create-apps/app-reference/single-runtime-image.md#web-commands) necessary to start your app are run.
+   The [commands](/create-apps/image-properties/web.md#web-commands) necessary to start your app are run.
    Often this stage will only include a start command, which is restarted if ever terminated going forward.
    You may also, however, define a `pre_start` command, when you need to run _per-instance_ actions.
    In this case, as you might expect, the `pre_start` command is run, then the `start` command.
@@ -87,7 +89,7 @@ After the deploy process is over, any commands in your `post_deploy` hook are ru
 
 ## Deployment types
 
-{{% vendor/name %}} supports two deployment types - automatic and manual. These types help to provide control over when changes are applied to staging and production environments.
+{{% vendor/name %}} supports two deployment types - automatic and manual. These types help to provide control over when changes are applied to development, staging and production environments.
 
 ### Automatic deployment (default)
 
@@ -111,14 +113,14 @@ When manual deployment is enabled in an environment, the following actions are q
 
 {{< note theme="info" >}}
 
-Note that development environments **always** use automatic deployment, while manual deployment is only available for staging and production environments.
+Manual deployment is available for **development**, **staging** and **production** environments.
 
 {{< /note >}}
 
 
 ### Change deployment type
 
-You can adjust deployment behavior in your environment (staging or production only). 
+You can adjust deployment behavior in your environment.
 
 {{< codetabs >}}
 
@@ -149,7 +151,7 @@ platform environment:deploy:type --help
 title=Using the Console
 +++
 
-To switch to manual, navigate to the environment settings in the Console and select the manual deployments option. 
+To switch to manual, navigate to the environment settings in the Console and select the manual deployments option.
 
 {{< /codetabs >}}
 
@@ -176,10 +178,10 @@ Deploying staged changes:
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 | ID            | Created                   | Description                                               | Result  |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
-| 5uh3xwmkh5boq | 2024-11-22T14:01:10+00:00 | Patrick pushed to main                                    | failure |
-| fno2qiodq7e3c | 2024-11-22T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
-| xzvcazrtoafeu | 2024-11-22T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
-| fq73u53ruwloq | 2024-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
+| 5uh3xwmkh5boq | {{< current-year >}}-11-22T14:01:10+00:00 | Patrick pushed to main                                    | failure |
+| fno2qiodq7e3c | {{< current-year >}}-11-22T13:06:18+00:00 | Arseni updated resource allocation on main                | success |
+| xzvcazrtoafeu | {{< current-year >}}-11-22T13:01:10+00:00 | Pilar added variable HELLO_WORLD to main                  | success |
+| fq73u53ruwloq | {{< current-year >}}-11-22T12:06:17+00:00 | Pilar pushed to main                                      | success |
 +---------------+---------------------------+-----------------------------------------------------------+---------+
 ```
 <--->
@@ -187,7 +189,7 @@ Deploying staged changes:
 title=Using the Console
 +++
 
-In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes. 
+In the Console, a deploy button will be visible in the environment whenever changes are staged. Click this button to deploy your staged changes.
 
 <--->
 +++

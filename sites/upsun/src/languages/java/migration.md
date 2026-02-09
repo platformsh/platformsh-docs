@@ -51,12 +51,12 @@ applications:
 ```
 1. [A Java version](/languages/java/_index.md#supported-versions), e,g.: `java:{{% latest "java" %}}`
 2. [Hooks define what happens when building the application](../../create-apps/hooks/_index.md). This build process typically generates an executable file such as a uber-jar. For example, `mvn clean package`.
-3. [The commands key defines the command to launch the application](/create-apps/app-reference/single-runtime-image.md#web-commands). For example,  `java -jar file.jar`.
+3. [The commands key defines the command to launch the application](create-apps/image-properties/web.md#web-commands). For example,  `java -jar file.jar`.
 4. In the start's command needs to receive the port where the application will execute thought the `PORT` environment. That's best when your app follows the port bind principle. For example, `java -jar jar --port=$PORT`.
 
 {{< note >}}
 
-Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/app-reference/single-runtime-image.md#mounts).
+Be aware that after the build, it creates a read-only system. You have the [mount option to create a writable folder](/create-apps/image-properties/mounts.md).
 
 {{< /note >}}
 
@@ -110,24 +110,24 @@ You have the option to use several languages in microservices. If you're using J
 
 | Article                                                      | Content                                                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Microservices in the cloud, part two](https://platform.sh/blog/2019/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
-| [Microservices in the cloud, part one](https://platform.sh/blog/2019/microservices-in-the-cloud-part-one/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part two](https://devcenter.upsun.com/posts/microservices-in-the-cloud-part-two/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
+| [Microservices in the cloud, part one](https://upsun.com/blog/) | [Source](https://github.com/EventosJEspanol/latin-america-micro-profile) |
 | [Multiple Applications](https://support.platform.sh/hc/en-us/community/posts/16439649733010) | [Source](https://github.com/platformsh-examples/tomcat-multi-app) |
 | [Configure multi-applications with `{{< vendor/configfile "apps" >}}`](https://support.platform.sh/hc/en-us/community/posts/16439676928274) | [Source](https://github.com/platformsh-examples/tomcat-multi-app-applications) |
 
 {{< note >}}
 You can load balance to some or [all applications in the project cluster](https://support.platform.sh/hc/en-us/community/posts/16439662235026).
 
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 
 {{< /note >}}
 
 ## Access to managed services
 
 {{% vendor/name %}} provides [managed services](/add-services/_index.md) such as databases, cache and search engines.
-However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/app-reference/single-runtime-image.md#firewall).
+However, you can use a database or any services such as a transition process, just be aware of the [firewall](/create-apps/image-properties/firewall.md).
 
-When applications need to access a service, it is important to include the [`relationships` key](/create-apps/app-reference/single-runtime-image.md#relationships).
+When applications need to access a service, it is important to include the [`relationships` key](/create-apps/image-properties/relationships.md).
 By default an application may not talk to any other container without a `relationship` explicitly allowing access.
 
 To connect to a service from your deployed application, you need to pass the relationships information into your application's configuration.
@@ -148,7 +148,7 @@ title= Service environment variables
 Assuming the relationship `postgresql` is configured to grant access to a PostgreSQL service container, you can map the automatically generated environment variable (`POSTGRESQL_HOST`) to whatever your application expects to use:
 
 ```bash {location=".environment"}
-export DB_HOST=$POSTGRESQL_HOST
+export DB_HOST="$POSTGRESQL_HOST"
 ```
 This sets environment variables with the names your app needs,
 and the values from [service environment variables](/development/variables/_index.md#service-environment-variables).
@@ -164,7 +164,7 @@ This variable is a base64-encoded JSON object with keys of the relationship name
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
 ```bash {location=".environment"}
-export DB_HOST=`echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
+export DB_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.postgresql[0].host')"
 ```
 
 This sets environment variables with names your app needs and the values from [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
@@ -179,7 +179,7 @@ This sets environment variables with names your app needs and the values from [`
 | [Payara JPA](https://support.platform.sh/hc/en-us/community/posts/16439658290194) | [Source](https://github.com/platformsh-examples/java-overwrite-configuration/blob/master/payara/README.md) |
 
 {{< note version="2" >}}
-While the table above shows examples for Platform.sh rather than for {{% vendor/name %}}, the same rules apply with only slight changes in configuration.
+While the table above shows examples for Upsun Fixed rather than for {{% vendor/name %}} Flex, the same rules apply with only slight changes in configuration.
 {{< /note >}}
 
 To reduce the number of lines in the application file and to make it cleaner,
@@ -197,12 +197,12 @@ title= Service environment variables
 +++
 
 ```bash {location=".environment"}
-export DB_HOST=${POSTGRESQL_HOST}
-export DB_PASSWORD=${POSTGRESQL_PASSWORD}
-export DB_USER=${POSTGRESQL_USERNAME}
-export DB_DATABASE=${POSTGRESQL_PATH}
-export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+export DB_HOST="${POSTGRESQL_HOST}"
+export DB_PASSWORD="${POSTGRESQL_PASSWORD}"
+export DB_USER="${POSTGRESQL_USERNAME}"
+export DB_DATABASE="${POSTGRESQL_PATH}"
+export JDBC="jdbc:postgresql://${HOST}/${DATABASE}"
+export JAVA_MEMORY="-Xmx$(jq .info.limits.memory /run/config.json)m"
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 
@@ -219,12 +219,12 @@ This `{{% vendor/prefix %}}_RELATIONSHIPS` variable is a base64-encoded JSON obj
 {{% vendor/name %}} supports the [`jq` tool](https://stedolan.github.io/jq/), which allows to extract information from this JSON.
 
 ```bash {location=".environment"}
-export DB_HOST=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].host"`
-export DB_PASSWORD=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].password"`
-export DB_USER=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].username"`
-export DB_DATABASE=`echo ${{% vendor/prefix %}}_RELATIONSHIPS | base64 --decode | jq -r ".postgresql[0].path"`
-export JDBC=jdbc:postgresql://${HOST}/${DATABASE}
-export JAVA_MEMORY=-Xmx$(jq .info.limits.memory /run/config.json)m
+export DB_HOST="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].host')"
+export DB_PASSWORD="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].password')"
+export DB_USER="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].username')"
+export DB_DATABASE="$(echo "${{% vendor/prefix %}}_RELATIONSHIPS" | base64 --decode | jq -r ".postgresql[0].path')"
+export JDBC="jdbc:postgresql://${HOST}/${DATABASE}"
+export JAVA_MEMORY="-Xmx$(jq .info.limits.memory /run/config.json)m"
 export JAVA_OPTS="$JAVA_MEMORY -XX:+ExitOnOutOfMemoryError"
 ```
 

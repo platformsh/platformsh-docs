@@ -7,8 +7,6 @@ description: "Learn about how your {{% vendor/name %}} environments are structur
 {{< note version="1" >}}
 
 This page describes how things work on Grid projects.
-[{{% names/dedicated-gen-3 %}}](/dedicated-gen-3/_index.md) projects are similar,
-but they run on dedicated hosts and each container is replicated three times.
 
 For {{% names/dedicated-gen-2 %}} projects, read about how [{{% names/dedicated-gen-2 %}} projects are structured](/dedicated-gen-2/overview/_index.md).
 
@@ -32,7 +30,7 @@ requests to your environment might look something like this:
 
 If you have only one app container, your repository might look like this:
 
-```text
+```text {no-copy="true"}
 project
 ├── .git
 ├── {{< vendor/configdir >}}

@@ -75,7 +75,7 @@ applications:
           scripts: true
           allow: true
           rules:
-            ^/license\.text$:
+            ^/license\.txt$:
               allow: false
             ^/readme\.html$:
               allow: false
@@ -83,7 +83,7 @@ applications:
 
 {{< note theme="info" >}}
 If you're migrating your site, you may already have a `composer.json` file.
-You may even have generated your own instead of starting from the Platform.sh template version.</br>
+You may even have generated your own instead of starting from the Upsun Fixed template version.</br>
 If so, you may also have added a [`wordpress-install-dir` property](https://github.com/johnpbloch/wordpress-core-installer?tab=readme-ov-file#usage) for `extras` in your `composer.json` file.</br>
 In this case, set `root:` to the name of the directory where you are installing WordPress.
 {{< /note >}}
@@ -126,7 +126,7 @@ To set one up, follow these steps:
                  allow: true
                  expires: 1w
    ```
-2. To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts).</br>
+2. To make the location writable, set up [a mount](/create-apps/image-properties/mounts.md).</br>
    To do so, locate the `mounts:` section that is commented it out, and update it as follows:
 
    ```yaml {configFile="app"}
@@ -287,9 +287,9 @@ following:
 
 ```bash {location=".environment"}
 # Routes, URLS, and primary domain
-export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
-export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
-export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+export SITE_ROUTES="$(echo "$PLATFORM_ROUTES" | base64 --decode)"; \
+export UPSTREAM_URLS="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.type == "upstream" and .upstream == $app)) | keys')"; \
+export DOMAIN_CURRENT_SITE="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app)) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')"
 ```
 <!-- @todo figure out the full expression for 1.5
 {{< note >}}
@@ -322,7 +322,7 @@ to your project. You can now visit your site and complete the WordPress installa
 ## 11. Routinely run WP Cron (optional)
 If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
 in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
-a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+a [cron job](/create-apps/image-properties/crons.md) to your project's configuration to have WP CLI
 run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
 as follows:
 

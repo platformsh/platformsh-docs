@@ -3,7 +3,7 @@ title: "Exporting data"
 description: See how to export your code, files and service data.
 ---
 
-As a {{% vendor/name %}} user, your code and data belong to you.
+As an {{% vendor/name %}} user, your code and data belong to you.
 At any time, you can download your site's data for local development, to back up your data, or to change provider.
 
 ## Before you begin
@@ -11,7 +11,7 @@ At any time, you can download your site's data for local development, to back up
 You need:
 
 - [Git](https://git-scm.com/downloads)
-- A {{% vendor/name %}} account
+- An {{% vendor/company_name %}} account
 - Code in your project
 - Optional: the [{{% vendor/name %}} CLI](/administration/cli/_index.md)
 
@@ -59,7 +59,7 @@ title=Using Git
 ## 2. Download your files
 
 Some files might not be stored in Git,
-such as data your app writes [in mounts](/create-apps/app-reference/single-runtime-image.md#mounts).
+such as data your app writes [in mounts](/create-apps/image-properties/mounts.md).
 
 You can download your files [using the CLI](/development/file-transfer.md#transfer-files-using-the-cli) or [using SSH](/development/file-transfer.md#transfer-files-using-an-ssh-client).
 

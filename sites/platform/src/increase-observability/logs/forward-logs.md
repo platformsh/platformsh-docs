@@ -3,7 +3,7 @@ title: Forward {{% vendor/name %}} and Blackfire logs
 description: Send your {{% vendor/name %}} and Blackfire logs to a third-party service for further analysis.
 weight: 10
 banner:
-    type: observability-suite
+  type: observability-suite
 ---
 
 You might use a service to analyze logs from various parts of your fleet.
@@ -12,20 +12,31 @@ without needing to grant them access to each project individually.
 
 In such cases, forward your logs from {{% vendor/name %}} and Blackfire to a third-party service.
 You can use a [service with an integration](#use-a-log-forwarding-integration)
-or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint) or [HTTP endpoint](#forward-to-an-http-endpoint).
-
+or any service that supports a [syslog endpoint](#forward-to-a-syslog-endpoint)
+or [HTTP endpoint](#forward-to-an-http-endpoint).
 
 {{% version/specific %}}
-Log forwarding is available for Grid and {{% names/dedicated-gen-3 %}} projects.
-For {{% names/dedicated-gen-2 %}} projects, see how to [log remotely with `rsyslog`](dedicated-environments/dedicated-gen-2/overview.md#remote-logging).
+Log forwarding is available for Grid projects.
+For {{% names/dedicated-gen-2 %}} projects, see how
+to [log remotely with `rsyslog`](dedicated-environments/dedicated-gen-2/overview.md#remote-logging).
 <--->
 {{% /version/specific %}}
-Logs to `stdout` and `stderr` are forwarded.
-Logs in files can't be forwarded.
-
-To enable log forwarding in a project, you need to be a [project admin](/administration/users.md).
+To enable log forwarding in a project, you need to be a [project admin](../../administration/users.md).
 You also need your project to have the capability for log forwarding.
-To get a price quote, [contact Sales](https://platform.sh/contact/).
+To get a price quote, [contact Sales](https://upsun.com/contact-us/).
+
+### Which logs are forwarded?
+
+When log forwarding is enabled, {{% vendor/name %}} forwards logs sent to journald.
+
+By default, {{% vendor/name %}} sends the following logs to journald:
+
+- `stdout` and `stderr` logs from your application<br>
+  Note: You can configure your application to use syslog to send these (or additional) messages to journald.
+- MariaDB/MySQL slow query logs
+- Redis logs (all except command-level operations and low-level internals)
+
+Logs in files are not forwarded to journald.
 
 ## Use a log forwarding integration
 
@@ -34,17 +45,24 @@ If your third-party service isn't supported, you can forward to a [syslog endpoi
 
 ### Integrated third-party services
 
-Integrations exist for the following third-party services to enable log forwarding:
+{{% vendor/name %}} supports forwarding logs not only to custom remote syslog endpoints but also directly to a set of
+popular third‑party log management and observability services. These integrations allow you to centralize logs from
+applications, services, and infrastructure into your existing monitoring stack:
 
-- [New Relic](https://newrelic.com/)
-- [Splunk](https://www.splunk.com/)
-- [Sumo Logic](https://www.sumologic.com/)
+- **[Sumo Logic](https://www.sumologic.com/)** – Cloud-based log management and analytics.
+- **[New Relic](https://newrelic.com/)** – Unified observability platform with logs and metrics.
+- **[Splunk](https://www.splunk.com/)** – Searchable log platform for monitoring and operational intelligence.
+- **[Datadog](https://www.datadoghq.com/)** – Observability suite with log collection and processing.
+- **[Loggly](https://www.loggly.com/)** – Cloud-native log monitoring, aggregation, and alerting.
+- **[LogDNA (Mezmo)](https://www.mezmo.com/)** – Centralized log management and analysis in real time.
+- **[Papertrail](https://www.papertrail.com/)** – Real-time log aggregation via syslog.
+- **[Logz.io](https://logz.io/)** – ELK-based log analytics and monitoring.
 
 ### Enable a log forwarding integration
 
 #### Using the CLI
 
-To enable log forwarding for a specific project using the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
+To enable log forwarding for a specific project using the [Upsun CLI](/administration/cli/_index.md),
 follow the steps for your selected service.
 
 {{< codetabs >}}
@@ -71,7 +89,8 @@ View your logs in the **Logs** dashboard.
 title=Splunk
 +++
 
-1. In Splunk, get an Event Collector token on [Splunk Platform](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token_on_Splunk_Cloud_Platform)
+1. In Splunk, get an Event Collector token
+   on [Splunk Platform](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token_on_Splunk_Cloud_Platform)
    or [Splunk Enterprise](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector#Create_an_Event_Collector_token_on_Splunk_Enterprise).
 2. Determine your host, which is the Splunk instance that's collecting data.
 3. Choose an index name.
@@ -89,7 +108,8 @@ Filter by the index name to find the relevant events.
 title=Sumo Logic
 +++
 
-1. In Sumo Logic, [configure an HTTP source](https://help-opensource.sumologic.com/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
+1. In Sumo
+   Logic, [configure an HTTP source](https://www.sumologic.com/help/docs/send-data/hosted-collectors/http-source/logs-metrics/#configure-an-httplogs-and-metrics-source).
    Make sure to copy the Source Category and collector URL.
 2. Create the integration with the following command:
 
@@ -141,7 +161,7 @@ run a command similar to the following:
 The following table shows the other available properties:
 
 | Property         | Type      | Default    | Description                                                                                                                                           |
-| ---------------- | --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------|-----------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `auth-token`     | `string`  |            | The token to authenticate with the given service.                                                                                                     |
 | `auth-mode`      | `string`  | `prefix`   | The mode for authentication with the given service. Can be `prefix` or `structured_data`. Defaults to `prefix`.                                       |
 | `facility`       | `string`  | `1` (user) | A [syslog facility code](https://en.wikipedia.org/wiki/Syslog#Facility) to attach with each log to identify the source. Can be a number from 0 to 23. |
@@ -152,14 +172,16 @@ The following table shows the other available properties:
 To include a property, add it as a flag, for example `--protocol tcp`.
 This should let you connect to any service that has syslog endpoints.
 
-To start forwarding logs, once you've added the service [trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
+To start forwarding logs, once you've added the
+service [trigger a redeploy](/development/troubleshoot.md#force-a-redeploy).
 
 <--->
 +++
 title=In the Console
 +++
 
-To enable log forwarding to a syslog endpoint for a specific project using the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
+To enable log forwarding to a syslog endpoint for a specific project using
+the [{{% vendor/name %}} CLI](/administration/cli/_index.md),
 follow these steps:
 
 1. Navigate to your project.
@@ -177,11 +199,13 @@ follow these steps:
 
 ## Forward to an HTTP endpoint
 
-Some third-party services, such as [Elasticsearch](/add-services/elasticsearch.md) and [OpenSearch](/add-services/opensearch.md),
+Some third-party services, such as [Elasticsearch](/add-services/elasticsearch.md)
+and [OpenSearch](/add-services/opensearch.md),
 support ingesting log messages through an HTTP endpoint.
 You can use HTTP forwarding to forward {{% vendor/name %}} and Blackfire logs to such third-party services.
 
-HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the endpoint.
+HTTP forwarding makes a `POST` HTTP request with an `application/json` body while forwarding the log messages to the
+endpoint.
 
 As an example, to forward logs to Elasticsearch using HTTP log forwarding, run the following command:
 
@@ -204,7 +228,7 @@ to start forwarding logs [trigger a redeploy](/development/troubleshoot.md#force
 ## Log levels
 
 Your app may output logs with distinct severity levels.
-But as Plaform.sh only reads logs from `stdout`,
+But as {{% vendor/name %}} only reads logs from `stdout`,
 this distinction is lost and everything gets logged at `INFO` level.
 
 To preserve the original log level, use a language-specific syslog module/package for logging.

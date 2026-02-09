@@ -12,7 +12,7 @@ keywords:
 
 {{% description %}}
 
-The CLI uses the git interface and the [{{% vendor/name %}} REST API](https://api.platform.sh/docs/) to accomplish tasks.
+The CLI uses the git interface and the [{{% vendor/name %}} REST API](https://docs.upsun.com/api/) to accomplish tasks.
 Its source code is hosted on [GitHub](https://github.com/platformsh/cli).
 
 ## 1. Install
@@ -210,7 +210,7 @@ eval $({{% vendor/cli %}} completion)
 
 You can use the {{% vendor/name %}} CLI to run commands on your container.
 You can use any command you've added in [dependencies](/create-apps/app-reference/single-runtime-image.md#dependencies)
-or a [hook](/create-apps/app-reference/single-runtime-image.md#hooks).
+or a [hook](/create-apps/image-properties/hooks.md).
 
 The syntax looks like the following:
 

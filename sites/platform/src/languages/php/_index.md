@@ -6,7 +6,7 @@ layout: single
 
 {{% note theme="info" %}}
 
-You can now use the {{% vendor/name %}} composable image (BETA) to install runtimes and tools in your application container.
+You can now use the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
 To find out more about this feature, see the [dedicated documentation page](/create-apps/app-reference/composable-image.md).</br>
 Also, see how you can [modify your PHP runtime when using a composable image](#modify-your-php-runtime-when-using-a-composable-image).
 
@@ -78,7 +78,7 @@ type: 'php:{{% latest "php" %}}'
 ```
 ### 2. Serve your app
 
-To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/app-reference/single-runtime-image.md#locations).
+To serve your app, define what (and how) content should be served by setting the [`locations` parameter](/create-apps/image-properties/web.md#locations).
 
 Usually, it contains the two following (optional) keys:
 
@@ -218,6 +218,55 @@ dependencies:
       - type: vcs
         url: "git@github.com:platformsh/platformsh-client-php.git"
 ```
+
+### Configure security blocking {#configure-security-blocking}
+
+When building a PHP app, Upsun runs `composer install`, which runs the latest available Composer version.
+
+By default, PHP builds fail if a dependency in a project has a known vulnerability. A PHP build might also fail if a dependency is abandoned. 
+
+**The best practice is to upgrade the dependencies** to reduce security risks and to catch issues sooner. However, you can configure the level of security blocking by defining the following keys in the `.dependencies.php.config` section of your `.platform.app.yaml` configuration file. 
+
+| Key                     | Description                                                      |
+| ------------------------| ---------------------------------------------------------------- |
+| `audit.block-insecure`  | Default is `true`. **Important: {{% vendor/company_name %}} recommends keeping this default setting and upgrading affected dependencies to reduce security risks.**                                  | 
+| `audit.block-abandoned` | Default is `false`; set to `true` for even stricter security. Ignored if `audit.block-insecure` is `false`.                  |
+| `audit.ignore`          | Array of specific advisories to ignore; see example below.        | 
+| `audit.ignore-severity` | Ignore vulnerabilities based on their severity rating (`low`/`medium`/`high`). See the example below.<BR>For each rating, include an `apply` key with one of these values:<ul><li>`all` to ignore everything for this rating</li><li> `block` to ignore this severity level for blocking builds (but still flag findings in audit reports)</li><li>`audit` to ignore this severity level in audit reports (but still block builds)</li> |
+
+Examples: 
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        config:
+          audit:
+            ignore:  # ignore these security advisories
+              - "PKSA-yhcn-xrg3-68b1"
+              - "PKSA-2wrf-1mxk-1pky"
+```
+
+```yaml {configFile="app"}
+applications:
+  # The app's name, which must be unique within the project.
+  myapp:
+    type: 'php:{{% latest "php" %}}'
+    <snip>
+    dependencies:
+      php:
+        config:
+          audit:
+            ignore-severity:
+              low:
+                apply: all   # ignore all low severity findings
+```
+
+Related information: 
+- [Troubleshooting PHP builds that now fail](/languages/php/troubleshoot.md#build-failure-security-blocking)
 
 ### Additional Composer schema properties
 In addition to [alternate repositories](#alternative-repositories), other
@@ -482,7 +531,7 @@ Common functions to disable include:
 PHP has two execution modes you can choose from:
 
 - The command line interface mode (PHP-CLI) is the mode used for command line scripts and standalone apps.
-  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/app-reference/single-runtime-image.md#crons),
+  This is the mode used when you're logged into your container via SSH, for [crons](/create-apps/image-properties/crons.md),
   and usually also for [alternate start commands](#alternate-start-commands).
   To use PHP-CLI, run your script with `php {{<variable "PATH_TO_SCRIPT" >}}`,
   where {{<variable "PATH_TO_SCRIPT" >}} is a file path relative to the [app root](/create-apps/app-reference/single-runtime-image.md#root-directory).
@@ -495,7 +544,7 @@ PHP has two execution modes you can choose from:
 ## Alternate start commands
 
 To specify an alternative process to run your code, set a `start` command.
-For more information about the start command, see the [web commands reference](/create-apps/app-reference/single-runtime-image.md#web-commands).
+For more information about the start command, see the [web commands reference](/create-apps/image-properties/web.md#web-commands).
 
 By default, start commands use PHP-CLI.
 Find out how and when to use each [execution mode](#execution-mode).
@@ -555,7 +604,7 @@ web:
 ```
 
    When you listen on a TCP socket, the `$PORT` environment variable is automatically set.
-   See more options on how to [configure where requests are sent](/create-apps/app-reference/single-runtime-image.md#upstream).
+   See more options on how to [configure where requests are sent](/create-apps/image-properties/web.html#upstream).
    You might have to configure your app to connect via the `$PORT` TCP socket,
    especially when using web servers such as [Swoole](swoole.md) or [Roadrunner](https://github.com/roadrunner-server/roadrunner).
 
@@ -650,7 +699,7 @@ See [complete working examples for C and Rust](https://github.com/platformsh-exa
 
 {{% note theme= "warning" %}}
 
-This section is only relevant when using the {{% vendor/name %}} [composable image (BETA)](/create-apps/app-reference/composable-image.md).
+This section is only relevant when using the {{% vendor/name %}} [composable image](/create-apps/app-reference/composable-image.md).
 
 {{% /note %}}
 
@@ -660,11 +709,24 @@ See the example below for more details.
 
 | Name                        | Type                                                                                                                             | Description                                                                                             |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
+| `extensions`                | List of `string`s OR [extensions definitions](/create-apps/app-reference/composable-image.md#stack) | [PHP extensions](/languages/php/extensions.md) to enable.                                               |
 | `disabled_extensions`       | List of `string`s                                                                                                                | [PHP extensions](/languages/php/extensions.md) to disable.                                              |
 | `request_terminate_timeout` | `integer`                                                                                                                        | The timeout (in seconds) for serving a single request after which the PHP-FPM worker process is killed. |
-| `sizing_hints`              | A [sizing hints definition](/create-apps/app-reference/composable-image.md#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
+| `sizing_hints`              | A [sizing hints definition](#sizing-hints)                                         | The assumptions for setting the number of workers in your PHP-FPM runtime.                              |
 | `xdebug`                    | An Xdebug definition                                                                                                             | The setting to turn on [Xdebug](/languages/php/xdebug.md).                                              |
+
+### PHP-FPM service sizing hints {#sizing-hints}
+
+The following table shows the properties that can be set in `sizing_hints`:
+
+| Name              | Type      | Default | Minimum | Description                                    |
+|-------------------|-----------|---------|---------|------------------------------------------------|
+| `request_memory`  | `integer` | 45      | 10      | The average memory consumed per request in MB. |
+| `reserved_memory` | `integer` | 70      | 70      | The amount of memory reserved in MB.           |
+
+See more about [PHP-FPM workers and sizing](/languages/php/fpm.md).
+
+### Example PHP configuration {#example-php-configuration}
 
 Here is an example configuration:
 

@@ -11,7 +11,7 @@ All of the variables can also be [overridden via script](#set-variables-via-scri
 
 ## Set variables in your app
 
-Set variables [in code](/create-apps/app-reference/single-runtime-image.md#variables) using the `{{< vendor/configfile "app" >}}` file.
+Set variables [in code](/create-apps/image-properties/variables.md) using the `{{< vendor/configfile "app" >}}` file.
 These values are the same across all environments and present in the Git repository,
 which makes them a poor fit for API keys and other such secrets.
 
@@ -251,17 +251,16 @@ For example, the following [`.environment` script](#set-variables-via-script) ex
 It uses the `jq` library, which is included in all app containers for this purpose.
 
 ```bash {location=".environment"}
-export APP_DATABASE_HOST=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].host")
-export APP_DATABASE_USER=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r ".database[0].username")
+export APP_DATABASE_HOST="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].host')"
+export APP_DATABASE_USER="$(echo $PLATFORM_RELATIONSHIPS | base64 --decode | jq -r '.database[0].username')"
 ```
 
 This sets environment variables with names your app needs and the values from `PLATFORM_RELATIONSHIPS`.
 
-## Use `.env` files
+## When to use `.env` files {#use-env-files}
 
-Many applications use a `.env` file in the application root for configuration.
-These are useful for local development to set variables without needing them to be global across the development computer.
-Read more about [the use cases for `.env` files](https://platform.sh/blog/2021/we-need-to-talk-about-the-env/).
+Upsun does not read `.env files`, as conventionally they are not committed to Git. You can use these for local
+development, but they will not be sourced on any Upsun environment. Typically, you can add `.env` to your .gitignore
+file so that its contents can vary for different developers.
 
-You shouldn't need to use a `.env` file in production.
-Add it to your `.gitignore` file to avoid confusion as its values can vary for each local developer.
+Read more about [the use cases for `.env` files](https://upsun.com/blog/what-is-env-file/).

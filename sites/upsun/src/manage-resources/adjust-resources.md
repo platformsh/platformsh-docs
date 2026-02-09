@@ -38,7 +38,7 @@ You can [monitor these costs](/administration/billing/monitor-billing.md) in the
 
 {{< /note >}}
 
-## Vertical scaling
+## Vertical scaling {#vertical-scaling} 
 
 To define how much CPU, RAM, and disk storage you want to allocate to each individual container,
 follow these steps:
@@ -213,16 +213,39 @@ title= From the Console
 
 {{< /codetabs >}}
 
-- **Alternative auto-scaling: :**
 
-**This is not an official product that will be supported by {{% vendor/name %}} staff, but you can escalate issues directly on the repository in Github.**
+{{< note theme="info" title="Autoscaling">}}
 
-This auto-scaling mechanism is based on the {{% vendor/cli %}} CLI.
-Go to the {{% vendor/name %}} github organization to download [ScalSun](https://github.com/upsun/scalsun) on your project to be able to configure CPU, RAM thresholds above or under which
-an API call will be automatically triggered to horizontally scale your application or worker, based on what you will have specified.
+{{% vendor/name %}} provides [**native autoscaling** support](/manage-resources/autoscaling.html). You can configure thresholds for metrics such as CPU, RAM, and request latency. Resources will automatically adjust horizontally to meet demand.
 
+{{< /note >}}
+
+## View application instance details {#view-application-instance-details}
+{{% vendor/name %}} maintains a real-time indexed list of an application's instances and their IP addresses in the project's `/run/peers.json` file. You might view this read-only file to gain insight into how your application instances are distributed. Upsun maintains this file whether you scale instances manually or have autoscaling enabled.
+
+Distributed applications (for example, those running on Elixir and Erlang) and applications that can scale horizontally must be aware of all its instances in order to coordinate activities such as setting up clusters and handling application failures.
+
+The number of instances in this file at any time matches the number of application instances shown on the Configure Resources page of the Console.
+
+To view the contents of the file, run this command from the root of your project directory:
+
+```sh
+cat /run/peers.json | jq
+```
+
+The output is similar to this:
+```json
+{
+  "hello_distributed.1": "123.456.789.10",
+  "hello_distributed.3": "123.456.789.20",
+  "hello_distributed.2": "123.456.789.30",
+  "hello_distributed.0": "123.456.789.40"
+}
+```
 
 ## Advanced: Container profiles
+
+### Shared CPU container sizes
 
 By default, {{% vendor/name %}} allocates a container profile to each app and service depending on the range of resources it's expected to need.
 
@@ -248,6 +271,27 @@ To do so, navigate to your environment and select the app or service in the tree
 ![Apps and services tree](/images/flexible-resources/check-container-profile.png "0.25")
 
 For information on resource-related costs, see the [{{% vendor/name %}} pricing page](https://upsun.com/pricing/).
+
+### Guaranteed CPU container sizes
+
+When selecting a container profile for [Guaranteed CPU](/manage-resources/guaranteed-resources.md), use the table below to identify available CPU and memory combinations. These predefined sizes help you match resource profiles to your application’s workload requirements.
+
+| CPU | HIGH_CPU | BALANCED | HIGH_MEMORY | HIGHER_MEMORY |
+|-----|-----------|-----------|--------------|----------------|
+| 4   | 8 GB      | 16 GB     | 32 GB        | not supported  |
+| 8   | 16 GB     | 32 GB     | 64 GB        | not supported  |
+| 16  | 32 GB     | 64 GB     | 128 GB       | not supported  |
+| 32  | 64 GB     | 128 GB    | 256 GB       | not supported  |
+| 48  | 96 GB     | 192 GB    | 384 GB       | not supported  |
+| 64  | 128 GB    | 256 GB    | 512 GB       | not supported  |
+
+{{% note %}}
+
+Guaranteed CPU is not currently available on [OVHcloud regions](/development/regions.html) and some CPU sizes may not be available in all regions.
+
+For more information about the available configurations and sizes, visit the {{% vendor/name %}} [pricing calculator](https://upsun.com/pricing/calculator/).
+
+{{% /note %}}
 
 ### Default container profiles
 

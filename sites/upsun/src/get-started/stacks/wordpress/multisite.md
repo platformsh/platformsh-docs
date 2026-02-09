@@ -67,7 +67,7 @@ applications:
         "/":
           <snip>
           rules:
-            ^/license\.text$:
+            ^/license\.txt$:
               allow: false
             ^/readme\.html$:
               allow: false

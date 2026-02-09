@@ -6,7 +6,7 @@ description: See what PHP extensions are available with each PHP version on {{% 
 
 {{% note theme="info" %}}
 
-You can now use the [{{% vendor/name %}} composable image (BETA)](/create-apps/app-reference/composable-image.md) to install runtimes and tools in your application container.
+You can use the [{{% vendor/name %}} composable image](/create-apps/app-reference/composable-image.md) to install multiple runtimes and tools in your application container.
 When using the composable image, see how you can:
 - [Manage PHP extensions](/create-apps/app-reference/composable-image.md#php-extensions-and-python-packages)
 - [Modify your PHP runtime](/languages/php/_index.md#modify-your-php-runtime-when-using-the-composable-image)
@@ -18,7 +18,7 @@ Some of them are available for {{% vendor/name %}} containers.
 
 {{< note version="1" theme="warning" title="Warning" >}}
 
-The information on this page applies to Grid and {{% names/dedicated-gen-3 %}} plans.
+The information on this page applies to Grid plans.
 See also [PHP extensions on {{% names/dedicated-gen-2 %}} plans](../../dedicated-gen-2/overview/grid.md#extensions).
 
 {{< /note >}}

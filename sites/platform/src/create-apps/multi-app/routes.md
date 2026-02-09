@@ -6,7 +6,7 @@ description: Learn about the many ways you can define routes between your apps.
 banner:
    title: Feature availability
    type: tiered-feature
-   body: This page applies to Grid and {{% names/dedicated-gen-3 %}} projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://platform.sh/contact/).
+   body: This page applies to Grid projects. To ensure you have enough resources to support multiple apps, you need at least a [{{< partial "plans/multiapp-plan-name" >}} plan](/administration/pricing/_index.md#multiple-apps-in-a-single-project). To set up multiple apps on {{% names/dedicated-gen-2 %}} environments, [contact Sales](https://upsun.com/contact-us/).
 ---
 
 When you set up a project containing multiple applications,
@@ -50,7 +50,7 @@ You don't need to define a route for each app in the repository.
 If an app isn't specified, then it isn't accessible to the web.
 One good example of defining an app with no route is when you [use Git submodules](/create-apps/multi-app/project-structure.html#split-your-code-source-into-multiple-git-submodule-repositories) and want to [use a source operation to update your submodules](/development/submodules.html#update-submodules).
 
-You can also achieve the same thing by defining the app as a [`worker`](/create-apps/app-reference/single-runtime-image.md#workers).
+You can also achieve the same thing by defining the app as a [`worker`](/create-apps/image-properties/workers.md).
 
 {{< /note >}}
 

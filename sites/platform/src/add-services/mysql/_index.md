@@ -11,6 +11,11 @@ Their infrastructure setup is nearly identical, though they differ in some featu
 See the [MariaDB documentation](https://mariadb.org/documentation/)
 or the Oracle [MySQL Server documentation](https://dev.mysql.com/doc/refman/en/) for more information.
 
+{{% note theme="info" title="MariaDB note" %}}
+The [example](#mariadb-example) provided later in this topic is specific to using only a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
+
+
 ## Use a framework
 
 If you use one of the following frameworks, follow its guide:
@@ -26,8 +31,8 @@ You can select the major and minor version.
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
 {{< note theme="info" title="" >}}
-- The service types `mariadb` and `mysql` both refer to MariaDB.\
-  Aside from their `type` value, MySQL and MariaDB have the same behavior and information on this page applies to both of them.
+- Both `mariadb` and `mysql` service types use MariaDB.\
+  They behave identically, so the information on this page applies to both of them.
 - The service type `oracle-mysql` refers to MySQL as released by Oracle, Inc.
 {{< /note >}}
 
@@ -66,38 +71,27 @@ See how to [convert tables to the InnoDB engine](#storage-engine).
 |-------------------------|--------------------|
 |  {{< image-versions image="mariadb" status="deprecated" >}} | {{< image-versions image="oracle-mysql" status="deprecated" >}} |
 
-### Upgrade
 
-When upgrading your service, skipping versions may result in data loss.
-Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
-and check that each upgrade commit translates into an actual deployment.
+### Upgrade, change, or downgrade a service
 
-To upgrade, update the service version in your [service configuration](/add-services/_index.md).
+{{% note theme="caution" title="Caution" %}}
+Upgrading and downgrading a service version or changing a service type are destructive processes that delete the existing service and its data. 
 
-### Change the service type
+A best practice is to first back up your environment and export the data. 
+{{% /note %}}
 
-To change the service type:
+To prevent data loss after completing either of these actions, follow these steps:
 
-1. [Export your data](#exporting-data).
-   {{% note %}}
-   Changing the service type, especially when done repeatedly, may result in data loss.
-   Backing up your data is therefore crucial.
-   {{% /note %}}
-2. Remove the old service from your [service configuration](/add-services/_index.md).
-3. Specify a new service type.
-4. [Import your data](#importing-data) into the new service.
-
-### Downgrade
-
-You can't downgrade to a previous version and retain your data.
-To downgrade your database, follow these steps:
-
-1. [Export your data](#exporting-data).
-1. Remove the old service from your [service configuration](/add-services/_index.md).
-1. Add a new service with a different name and your desired version.
+1. [Back up your environment](/environments/backup.html#create-a-manual-backup). If you accidentally delete the wrong service (or make an error in your configuration files) and need to revert your entire environment, the backup enables you to do so. 
+1. [Export the data](#exporting-data). Exporting the data to a portable file enables you to import it later. You cannot import data directly from a backup of your environment.  
+1. Change the service type in your [service configuration](/add-services/_index.md):
+    - **Upgrade:** Upgrade sequentially from one supported version to another (10.6 -> 10.11 -> 11.4),
+and check that each upgrade commit translates into an actual deployment.   
+    - **Change or downgrade:** Specify the new service type and the desired version.
 1. [Import your data](#importing-data) into the new service.
 
-## Usage example
+
+## Example
 
 Configure your service with at least 256 MB in disk space.
 
@@ -112,8 +106,7 @@ To define the service, use the `mariadb` or `mysql` type for MariaDB or the `ora
   disk: 256
 ```
 
-Note that changing the name of the service replaces it with a brand new service and all existing data is lost.
-Back up your data before changing the service.
+Remember to back up your environment and export your data before changing the service. 
 
 ### 2. Define the relationship
 
@@ -137,12 +130,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -157,7 +150,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -167,16 +160,20 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
 {{< /codetabs >}}
 
 ### MariaDB example
+
+{{% note theme="info" %}}
+Use the steps and sample code below if your application will connect to a **primary** MariaDB database. For details about using read-only replicas to improve performance of read-heavy applications, see the [MariaDB read-only replication](/add-services/mysql/mysql-readonly-replication.md) topic.
+{{% /note %}}
 
 #### [Service definition](/add-services/_index.md)
 
@@ -215,7 +212,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   mariadb:
     service: mariadb
@@ -263,7 +260,7 @@ title=Using explicit endpoints
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   oraclemysql:
     service: oraclemysql
@@ -331,21 +328,20 @@ To get the URL to connect to the database, run the following command:
 The result is the complete [information for all relationships](#relationship-reference) with an additional `url` property.
 Use the `url` property as your connection.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed.
-So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 You can also see a guide on how to [convert the `{{< vendor/prefix >}}_RELATIONSHIPS` environment variable to a different form](https://support.platform.sh/hc/en-us/community/posts/16439596373010).
 
-## Configuration options
+## Configuration options {#configuration-options}
 
 You can configure your MySQL service in the [services configuration](/add-services/_index.md) with the following options:
 
 | Name               | Type                       | Version                            | Description |
 | ------------------ | -------------------------- | ---------------------------------- | ----------- |
-| `schemas`          | An array of `string`s      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
+| `schemas`          | `string` array      | 10.0+                              | All databases to be created. Defaults to a single `main` database. |
 | `endpoints`        | An endpoints dictionary    | 10.0+                              | Endpoints with their permissions. See [multiple databases](#multiple-databases). |
 | `properties`       | A properties dictionary    | MariaDB: 10.1+; Oracle MySQL: 8.0+ | Additional properties for the database. Equivalent to using a `my.cnf` file. See [property options](#configure-the-database). |
-| `rotate_passwords` | A boolean                  | 10.3+                              | Allows disabling passwords rotation. Defaults to `true`. |
+| `rotate_passwords` | A boolean                  | 10.3+                              | Defaults to `true`. When set to `false`, [password rotation](#password-rotation) is disabled. |
 
 Example configuration:
 
@@ -371,7 +367,7 @@ mariadb:
 Example information available through the [`{{% vendor/prefix %}}_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables)
 or by running `{{% vendor/cli %}} relationships`.
 
-Note that the information about the relationship can change when an app is redeployed or restarted or the relationship is changed. So your apps should only rely on the `PLATFORM_RELATIONSHIPS` environment variable directly rather than hard coding any values.
+Service connection details can change whenever your app restarts or redeploys. **To keep your connection stable, use the [`PLATFORM_RELATIONSHIPS` service environment variable](/development/variables/use-variables.md#use-provided-variables) rather than hard-coding values.**
 
 ### MariaDB reference
 
@@ -459,27 +455,28 @@ For each endpoint you add, you can define the following properties:
 | `default_schema` | `string`                 |          | Which of the defined schemas to default to. If not specified, the `path` property of the relationship is `null` and so tools such as the {{< vendor/name >}} CLI can't access the relationship. |
 | `privileges`     | A permissions dictionary |          | For each of the defined schemas, what permissions the given endpoint has. |
 
-Possible permissions:
+Available permissions:
 
-| Name        | Type          | Description                                                                                                                                                                                |
-| ----------- | ------------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Read-only   | `ro`          | Can select, create temporary tables, and see views.                                                                                                                                        |
-| Read-write  | `rw`          | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables. |
-| Admin       | `admin`       | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                               |
-| Replication | `replication` | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                         |
+| Name              | Type                | Description                                                                                                                                                                                                                                                                |
+|-------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Read-only         | `ro`                | Can select, create temporary tables, and see views.                                                                                                                                                                                                                        |
+| Read-write        | `rw`                | In addition to read-only permissions, can also insert, update, delete, manage and execute events, execute routines, create and drop indexes, manage and execute triggers, and lock tables.                                                                                 |
+| Admin             | `admin`             | In addition to read-write permissions, can also create, drop, and alter tables; create views; and create and alter routines.                                                                                                                                               |
+| Replication       | `replication`       | For [replicating databases](/add-services/mysql/mysql-replication.md). In addition to read-only permissions, can also lock tables.                                                                                                                                         |
+| Replication admin | `replication-admin` | For managing replicas across projects; can run statements such as SHOW REPLICA STATUS, CHANGE MASTER TO, START REPLICA, and so on (see this related [Dev Center article](https://devcenter.upsun.com/posts/connect-multiple-projects-applications-or-services-together/)). |
 
 ### Restrict access to database replicas only
 
 {{< partial "banners/replicas/body.md" >}}
 
-Your main database lives on one of the three nodes provided on Grid HA and {{% names/dedicated-gen-3 %}}.
+Your main database lives on one of the three nodes provided on Grid HA.
 The two other nodes can each accommodate a replica of your main database.
 
 For security reasons, you can grant your app access to a replica instead of your main database.
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+1. Use the [explicit endpoint syntax](/create-apps/image-properties/relationships.md).
 2. Add the `-replica` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration:
@@ -536,14 +533,14 @@ relationships:
 
 {{< partial "banners/replicas/body.md" >}}
 
-Your main database lives on one of the three nodes provided on Grid HA and {{% names/dedicated-gen-3 %}}.
+Your main database lives on one of the three nodes provided on Grid HA.
 The two other nodes can each accommodate a replica of your main database.
 
 You may want to grant access to both your main database and its replicas.
 To do so, when defining the relationship between your app and database,
 make sure you do the following:
 
-1. Use the [explicit endpoint syntax](/create-apps/app-reference/single-runtime-image.html#relationships).
+1. Use the [explicit endpoint syntax](/create-apps/image-properties/relationships.md).
 2. Add the `-all` suffix to the name of the endpoint you want to use.
 
 This results in the following configuration,
@@ -673,7 +670,7 @@ name: myapp
 # Relationships enable an app container's access to a service.
 relationships:
   # Note that legacy definition of the relationship is still supported.
-  # More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+  # More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
   database:
     service: mariadb
     endpoint: admin
@@ -744,38 +741,42 @@ They can, however, be set indirectly, which can be useful for solving `Too many 
 See [the troubleshooting documentation](/add-services/mysql/troubleshoot.md#too-many-connections) for more details.
 {{% /note %}}
 
-## Password generation
+## Password generation {#password-generation}
 
-When you connect your app to a database,
-an empty password is generated for the database by default.
-This can cause issues with your app.
+If your YAML file does not specify a `schema` and `endpoint` for the MariaDB or MySQL service, no password is generated. 
 
-To generate real passwords for your database,
-define custom endpoints in your [service configuration](#1-configure-the-service).
-For each custom endpoint you create,
-you get an automatically generated password,
-similarly to when you create [multiple databases](#multiple-databases).
-Note that you can't customize these automatically generated passwords.
+Because the database container is strictly isolated, it remains invisible to any resource until you [define an explicit relationship](/add-services/mysql.md#2-define-the-relationship) between it and other apps or workers. The container's "walls" ensure that only authorized applications and workers can reach the data, while all other processes are blocked at the network level.
 
-{{% note theme="warning" %}}
-By default, the generated password will rotate on a regular
-basis. Your applications MUST use the passwords from the
-relationships, as the password _is_ going to change. Set
-`rotate_passwords` to `false` if you wish to change this default
-behavior.
+If you prefer to have Upsun generate a password, you must define [`schemas` and custom `endpoints`](#1-configure-the-service) in the `services` configuration – see the example in the [multiple databases](#multiple-databases) section of this topic.
+For each custom endpoint that you define, Upsun generates a password. Note that you cannot customize these generated passwords.
+
+{{% note %}}
+Make sure you don't change `services.<SERVICE_NAME>`. **Changing the service name creates a new service,
+which removes existing data from your database.**
 {{% /note %}}
 
-After your custom endpoints are exposed as relationships in your [app configuration](/create-apps/_index.md),
+After your custom endpoints are exposed as relationships in your [app configuration](../../create-apps/_index.md),
 you can retrieve the password for each endpoint
-through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](/development/variables/use-variables.md#use-provided-variables)
+through the `{{% vendor/prefix %}}_RELATIONSHIPS` [environment variable](../../development/variables/use-variables.md#use-provided-variables)
  within your [application containers](/development/variables/use-variables.md#access-variables-in-your-app).
-The password value changes automatically over time, to avoid downtime its value has to be read dynamically by your app.
-Globally speaking, having passwords hard-coded into your codebase can cause security issues and should be avoided.
 
-When you switch from the default configuration with an empty password to custom endpoints,
-make sure your service name remains unchanged.
-Failure to do so results in the creation of a new service,
-which removes any existing data from your database.
+Using this method to retrieve password credentials is considered a best practice: passwords change automatically (or [_rotate_](#password-rotation)) over time, and using incorrect passwords results in application downtime. **Avoid using hard-coded passwords in your application (and code base), which can cause security issues.**
+
+## Password rotation {#password-rotation}
+
+{{% note %}} 
+For rotation to occur, you must define a `schema` and `endpoint` in your service configuration (see [Password generation](#password-generation) above); otherwise, no password is generated to be rotated.
+{{% /note %}}
+
+By default, password rotation is enabled (`rotate_passwords: true`), which enables {{% vendor/name %}} to automatically rotate MariaDB passwords during image updates or as defined by MariaDB lifetime settings. 
+
+Specific scenarios might warrant disabling password rotation by [setting `rotate_passwords=false`](/add-services/mysql.md#configuration-options): for example, choosing to accommodate users who access a database via an SSH tunnel and provide a password in their request because they cannot retrieve the database credentials stored in the [service or `$PLATFORM_RELATIONSHIPS` MariaDB environment variables](#mariadb-reference). 
+
+Passwords do **not** rotate automatically when you reset this value to `true`. 
+
+{{% note title="Important" theme="warning" %}}
+Disabling password rotation can jeopardize compliance with security certifications - make sure you weigh this risk alongside the convenience of SSH-tunneling access.
+{{% /note %}}
 
 ## Storage Engine
 

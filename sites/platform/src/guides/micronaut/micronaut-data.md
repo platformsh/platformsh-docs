@@ -21,7 +21,7 @@ In your [service configuration](/add-services/_index.md), include a SQL database
 
 ## 2. Grant access to the service through a relationship
 
-To access the new service, set a `relationship` in your [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+To access the new service, set a `relationship` in your [app configuration](/create-apps/image-properties/relationships.md).
 
 {{< readFile file="registry/images/examples/full/postgresql.app.yaml" highlight="yaml" configFile="app" >}}
 
@@ -29,13 +29,13 @@ To access the new service, set a `relationship` in your [app configuration](/cre
 
 Connection credentials for services are exposed to the application container through the `PLATFORM_RELATIONSHIPS` environment variable from the deploy hook onward. Since this variable is a base64 encoded JSON object of all of your project's services, you'll likely want a clean way to extract the information specific to the database into it's own environment variables that can be used by Micronaut. On {{% vendor/name %}}, custom environment variables can be defined programmatically in a `.environment` file using `jq` to do just that:
 
-```text
-export JDBC_HOST=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].host"`
-export JDBC_PORT=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].port"`
-export DATABASE=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].path"`
-export DATASOURCES_DEFAULT_PASSWORD=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].password"`
-export DATASOURCES_DEFAULT_USERNAME=`echo $PLATFORM_RELATIONSHIPS|base64 -d|jq -r ".database[0].username"`
-export DATASOURCES_DEFAULT_URL=jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${DATABASE}
+```bash {location=".environment"}
+export JDBC_HOST="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].host')"
+export JDBC_PORT="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].port')"
+export DATABASE="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].path')"
+export DATASOURCES_DEFAULT_PASSWORD="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].password')"
+export DATASOURCES_DEFAULT_USERNAME="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode | jq -r '.database[0].username')"
+export DATASOURCES_DEFAULT_URL="jdbc:postgresql://${JDBC_HOST}:${JDBC_PORT}/${DATABASE}"
 export JAVA_OPTS="-Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError"
 ```
 

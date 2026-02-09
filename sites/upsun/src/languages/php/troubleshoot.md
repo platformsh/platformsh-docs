@@ -8,12 +8,39 @@ description: Learn how to troubleshoot common issues in PHP.
 
 For more general information, see how to [troubleshoot development](/development/troubleshoot.md).
 
+## Previously successful PHP builds now fail {#build-failure-security-blocking}
+
+When building a PHP app, Upsun runs `composer install`, which by default runs the latest available Composer version.
+
+Composer version 2.9 introduces an Automatic Security Blocking feature, which is enabled by default and does the following: 
+- If a dependency in the project has a known vulnerability, Composer fails the installation/update. 
+- If a dependency is abandoned, Composer can optionally fail the installation. 
+
+If advisories were published after the most recent PHP app deployment, the build might fail, even if the PHP dependencies have not changed.
+
+**In this scenario, the best practice is to upgrade the affected dependencies** to maintain a strong security posture and address vulnerabilities. However, you can configure the level of blocking by using the `.dependencies.php.config.audit.*` keys described in the [Configure security blocking](/languages/php/_index.md#configure-security-blocking) section of the PHP topic.
+
+**Important: Upsun advises against disabling security blocking.** However, as a last resort, the feature can be disabled as a workaround while you fix issues with dependencies.  
+
+```yaml {configFile="app"}
+applications:
+# The app's name, which must be unique within the project.
+myapp:
+  type: 'php:{{% latest "php" %}}'
+  <snip>
+  dependencies:
+    php:
+      config:
+        audit:
+          block-insecure: false
+```      
+
 ## Server reached `max_children`
 
 If the server is receiving more concurrent requests than it has PHP processes allocated,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] server reached max_children setting (2), consider raising it
 ```
 
@@ -30,7 +57,7 @@ You have two ways to increase the number of workers:
 If your PHP app can't handle the amount of traffic or is slow,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 120, script '/app/public/index.php' (request: "GET /index.php") execution timed out (358.009855 sec), terminating
 ```
 
@@ -66,7 +93,7 @@ Otherwise, you may check if the following options are applicable:
 If your PHP process crashed with a segmentation fault,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 112 exited on signal 11 (SIGSEGV) after 7.405936 seconds from start
 ```
 
@@ -79,7 +106,7 @@ You might want to use a tool such as [Xdebug](/languages/php/xdebug.md) for quic
 If your PHP process is killed by the kernel,
 you encounter a message like the following:
 
-```text {location="/var/log/app.log"}
+```text {location="/var/log/app.log", no-copy="true"}
 WARNING: [pool web] child 429 exited on signal 9 (SIGKILL) after 50.938617 seconds from start
 ```
 
@@ -106,7 +133,7 @@ pkill -f php-fpm
 If all PHP workers are busy,
 you encounter a message like the following:
 
-```text {location="/var/log/error.log"}
+```text {location="/var/log/error.log", no-copy="true"}
 connect() to unix:/run/app.sock failed (11: Resource temporarily unavailable)
 ```
 

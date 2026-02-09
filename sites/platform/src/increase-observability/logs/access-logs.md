@@ -31,7 +31,7 @@ title=Using the CLI
 
 1. Get a list of activities by running
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} activity:list -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
@@ -39,7 +39,7 @@ title=Using the CLI
 
 2. To see details about the activity's state and timing, run
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} activity:get {{% variable "ACTIVITY_ID" %}}
    ```
 
@@ -47,7 +47,7 @@ title=Using the CLI
 
 3. Get a log of any given activity by running
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} activity:log {{% variable "ACTIVITY_ID" %}}
    ```
 
@@ -73,7 +73,7 @@ hovering on the next unselected line gives you the amount of time that passed be
 
 Events that occur within an app container are logged within that container.
 The logs can be written to, but you should do so only with standard logging mechanisms.
-If your app has its own logging mechanism, use it to write to a dedicated logs [mount](/create-apps/app-reference/single-runtime-image.md#mounts).
+If your app has its own logging mechanism, use it to write to a dedicated logs [mount](/create-apps/image-properties/mounts.md).
 
 To access the logs of various types of events:
 
@@ -101,7 +101,7 @@ title=Using SSH directly
 
 1. Access the container by running
 
-   ``` bash
+   ```bash
    {{% vendor/cli %}} ssh -e {{% variable "ENVIRONMENT_NAME" %}}
    ```
 
@@ -109,7 +109,7 @@ title=Using SSH directly
    {{< version/specific >}}
    If you're on a {{% names/dedicated-gen-2 %}} cluster, run
 
-   ``` bash
+   ```bash
    cd /var/log/{{% vendor/cli %}}/{{% variable "APP_NAME" %}}/
    ```
    <--->
@@ -120,7 +120,7 @@ title=Using SSH directly
 {{< /codetabs >}}
 
 All log files are trimmed to 100 MB automatically.
-If you need larger logs, set up a [cron job](/create-apps/app-reference/single-runtime-image.md#crons) to upload them to third-party storage.
+If you need larger logs, set up a [cron job](/create-apps/image-properties/crons.md) to upload them to third-party storage.
 See an example of [uploading logs to Amazon S3](https://gitlab.com/contextualcode/platformsh-store-logs-at-s3) from Contextual Code.
 
 ### Types of container logs
@@ -136,6 +136,7 @@ See an example of [uploading logs to Amazon S3](https://gitlab.com/contextualcod
 | `nginx/error` | No             | All nginx startup log messages. Only useful when debugging possible nginx configuration errors. Not currently available using the `{{% vendor/cli %}} log` command. |
 | `php.access`  | No             | A record of all requests to the PHP service. See [PHP access record format](#php-access-record-format). |
 | `post-deploy` | No             | The output of the [`post_deploy` hook](/create-apps/hooks/hooks-comparison.md#post-deploy-hook). Only exists after a `post_deploy` hook has run. |
+| `syslog`      | Yes            | General system-wide logs.          |     
 
 #### PHP access record format
 

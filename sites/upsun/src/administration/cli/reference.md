@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.2.0
+# Upsun CLI 5.8.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -48,6 +48,11 @@ showTitle: false
 * [`auth:info`](#authinfo)
 * [`auth:logout`](#authlogout)
 * [`auth:verify-phone-number`](#authverify-phone-number)
+
+**autoscaling**
+
+* [`autoscaling:get`](#autoscalingget)
+* [`autoscaling:set`](#autoscalingset)
 
 **backup**
 
@@ -161,6 +166,7 @@ showTitle: false
 **project**
 
 * [`project:clear-build-cache`](#projectclear-build-cache)
+* [`project:convert`](#projectconvert)
 * [`project:create`](#projectcreate)
 * [`project:delete`](#projectdelete)
 * [`project:get`](#projectget)
@@ -747,7 +753,7 @@ upsun activities [-t|--type TYPE] [-x|--exclude-type EXCLUDE-TYPE] [--limit LIMI
 #### Options
 
 * `--type` (`-t`) (expects a value)
-  Filter activities by type For a list of types see: https://docs.upsun.com/integrations/activity/reference.html#type Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
+  Filter activities by type For a list of types see: https://docs.upsun.com/anchors/integrations/activity-scripts/type/ Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can select 'environment.cron' activities. The % or * characters can be used as a wildcard, e.g. '%var%' to select variable-related activities.
 
 * `--exclude-type` (`-x`) (expects a value)
   Exclude activities by type. Values may be split by commas (e.g. "a,b,c") and/or whitespace. The first part of the activity name can be omitted, e.g. 'cron' can exclude 'environment.cron' activities. The % or * characters can be used as a wildcard to exclude types.
@@ -836,6 +842,11 @@ upsun activity:list --type push --start 2015-03-15
 * List up to 25 incomplete activities:
 ```
 upsun activity:list --limit 25 -i
+```
+
+* Include the activity type in the table:
+```
+upsun activity:list --columns +type
 ```
 
 ## `activity:log`
@@ -975,7 +986,7 @@ upsun app:config-get [-P|--property PROPERTY] [--refresh] [-p|--project PROJECT]
 
 Validate the config files of a project
 
-Aliases: `validate`
+Aliases: `validate`, `lint`
 
 ### Usage
 
@@ -1296,6 +1307,151 @@ upsun auth:verify-phone-number
 
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+## `autoscaling:get`
+
+View the autoscaling configuration of apps, workers, and services on an environment
+
+Aliases: `autoscaling`
+
+### Usage
+
+```
+upsun autoscaling [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+```
+
+#### Options
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--format` (expects a value)
+  The output format: table, csv, tsv, or plain
+
+* `--columns` (`-c`) (expects a value)
+  Columns to display. Available columns: service*, metric*, direction*, threshold*, duration*, enabled*, instance_count*, cooldown, max_instances, min_instances (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+
+* `--no-header`
+  Do not output the table header
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+## `autoscaling:set`
+
+Set the autoscaling configuration of apps, workers, or services in an environment
+
+### Usage
+
+```
+upsun autoscaling:set [-s|--service SERVICE] [-m|--metric METRIC] [--enabled ENABLED] [--threshold-up THRESHOLD-UP] [--duration-up DURATION-UP] [--cooldown-up COOLDOWN-UP] [--threshold-down THRESHOLD-DOWN] [--duration-down DURATION-DOWN] [--cooldown-down COOLDOWN-DOWN] [--instances-min INSTANCES-MIN] [--instances-max INSTANCES-MAX] [--dry-run] [-p|--project PROJECT] [-e|--environment ENVIRONMENT]
+```
+
+Configure automatic scaling for apps, workers, or services in an environment.
+
+You can also configure resources statically by running: upsun resources:set
+
+#### Options
+
+* `--service` (`-s`) (expects a value)
+  Name of the app, worker, or service to configure autoscaling for
+
+* `--metric` (`-m`) (expects a value)
+  Name of the metric to use for triggering autoscaling
+
+* `--enabled` (expects a value)
+  Enable autoscaling based on the given metric
+
+* `--threshold-up` (expects a value)
+  Threshold over which service will be scaled up
+
+* `--duration-up` (expects a value)
+  Duration over which metric is evaluated against threshold for scaling up
+
+* `--cooldown-up` (expects a value)
+  Duration to wait before attempting to further scale up after a scaling event
+
+* `--threshold-down` (expects a value)
+  Threshold under which service will be scaled down
+
+* `--duration-down` (expects a value)
+  Duration over which metric is evaluated against threshold for scaling down
+
+* `--cooldown-down` (expects a value)
+  Duration to wait before attempting to further scale down after a scaling event
+
+* `--instances-min` (expects a value)
+  Minimum number of instances that will be scaled down to
+
+* `--instances-max` (expects a value)
+  Maximum number of instances that will be scaled up to
+
+* `--dry-run`
+  Show the changes that would be made, without changing anything
+
+* `--project` (`-p`) (expects a value)
+  The project ID or URL
+
+* `--environment` (`-e`) (expects a value)
+  The environment ID. Use "." to select the project's default environment.
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--verbose` (`-v|-vv|-vvv`)
+  Increase the verbosity of messages
+
+* `--quiet` (`-q`)
+  Only print necessary output; suppress other messages and errors. This implies --no-interaction. It is ignored in verbose mode.
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+### Examples
+
+* Enable autoscaling for an application using the default configuration:
+```
+upsun autoscaling:set --service app --metric cpu
+```
+
+* Enable autoscaling for an application specifying a minimum of instances at all times:
+```
+upsun autoscaling:set --service app --metric cpu --instances-min 3
+```
+
+* Enable autoscaling for an application specifying a maximum of instances at most:
+```
+upsun autoscaling:set --service app --metric cpu --instances-max 5
+```
+
+* Disable autoscaling on cpu for an application:
+```
+upsun autoscaling:set --service app --metric cpu --enabled false
+```
 
 ## `backup:create`
 
@@ -2687,15 +2843,18 @@ upsun environment:delete --merged
 
 Deploy an environment's staged changes
 
-Aliases: `env:deploy`
+Aliases: `deploy`, `e:deploy`, `env:deploy`
 
 ### Usage
 
 ```
-upsun env:deploy [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
+upsun deploy [-s|--strategy STRATEGY] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait]
 ```
 
 #### Options
+
+* `--strategy` (`-s`) (expects a value)
+  The deployment strategy, stopstart (default, restart with a shutdown) or rolling (zero downtime)
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -3343,7 +3502,7 @@ Aliases: `push`
 ### Usage
 
 ```
-upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [--resources-init RESOURCES-INIT] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
+upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstream] [--activate] [--parent PARENT] [--type TYPE] [--no-clone-parent] [-s|--deploy-strategy DEPLOY-STRATEGY] [--resources-init RESOURCES-INIT] [-W|--no-wait] [--wait] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--] [<source>]
 ```
 
 #### Arguments
@@ -3376,6 +3535,9 @@ upsun push [--target TARGET] [-f|--force] [--force-with-lease] [-u|--set-upstrea
 
 * `--no-clone-parent`
   Do not clone the parent branch's data (only used with --activate)
+
+* `--deploy-strategy` (`-s`) (expects a value)
+  Set the deployment strategy, rolling or stopstart (default)
 
 * `--resources-init` (expects a value)
   Set the resources to use for new services: parent, default, minimum, or manual. Currently the default is "default" but this will change to "parent" in future.
@@ -4152,7 +4314,7 @@ upsun integration:add [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BITBU
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -4481,7 +4643,7 @@ upsun integration:update [--type TYPE] [--base-url BASE-URL] [--bitbucket-url BI
 #### Options
 
 * `--type` (expects a value)
-  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog')
+  The integration type ('bitbucket', 'bitbucket_server', 'github', 'gitlab', 'webhook', 'health.email', 'health.pagerduty', 'health.slack', 'health.webhook', 'httplog', 'script', 'newrelic', 'splunk', 'sumologic', 'syslog', 'otlplog')
 
 * `--base-url` (expects a value)
   The base URL of the server installation
@@ -4776,7 +4938,7 @@ upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, tmp_disk_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_percent, inodes_used, mem_limit, mem_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_percent, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: timestamp*, service*, cpu_percent*, mem_percent*, disk_percent*, inodes_percent*, tmp_disk_percent*, tmp_inodes_percent*, cpu_limit, cpu_used, disk_limit, disk_used, inodes_limit, inodes_used, mem_limit, mem_used, tmp_disk_limit, tmp_disk_used, tmp_inodes_limit, tmp_inodes_used, type (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -4809,9 +4971,9 @@ upsun metrics [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO]
 upsun metrics:all 
 ```
 
-* Show metrics in five-minute intervals over the last hour:
+* Show metrics over the last hour:
 ```
-upsun metrics:all -i 5m -r 1h
+upsun metrics:all  -r 1h
 ```
 
 * Show metrics for all SQL services:
@@ -4896,13 +5058,16 @@ Aliases: `disk`
 ### Usage
 
 ```
-upsun disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [--tmp] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun disk [-B|--bytes] [--tmp] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-1|--latest] [-s|--service SERVICE] [--type TYPE] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [--format FORMAT] [-c|--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
 
 * `--bytes` (`-B`)
   Show sizes in bytes
+
+* `--tmp`
+  Report temporary disk usage (shows columns: timestamp, service, tmp_used, tmp_limit, tmp_percent, tmp_ipercent)
 
 * `--range` (`-r`) (expects a value)
   The time range. Metrics will be loaded for this duration until the end time (--to). You can specify units: hours (h), minutes (m), or seconds (s). Minimum 5m, maximum 8h or more (depending on the project), default 10m.
@@ -4921,9 +5086,6 @@ upsun disk [-B|--bytes] [-r|--range RANGE] [-i|--interval INTERVAL] [--to TO] [-
 
 * `--type` (expects a value)
   Filter by service type (if --service is not provided). The version is not required. The % or * characters may be used as a wildcard.
-
-* `--tmp`
-  Report temporary disk usage (shows columns: timestamp, service, tmp_used, tmp_limit, tmp_percent, tmp_ipercent)
 
 * `--project` (`-p`) (expects a value)
   The project ID or URL
@@ -5457,7 +5619,7 @@ Create a new organization
 ### Usage
 
 ```
-upsun organization:create [--label LABEL] [--name NAME] [--country COUNTRY]
+upsun organization:create [--label LABEL] [--type TYPE] [--name NAME] [--country COUNTRY]
 ```
 
 Organizations allow you to manage your Upsun projects, users and billing. Projects are owned by organizations.
@@ -5470,6 +5632,9 @@ Access to individual projects (API and SSH) is managed separately, for now.
 
 * `--label` (expects a value)
   The full name of the organization, e.g. "ACME Inc."
+
+* `--type` (expects a value)
+  The organization type. ('flexible' or 'fixed')
 
 * `--name` (expects a value)
   The organization machine name, used for URL paths and similar purposes.
@@ -5616,7 +5781,7 @@ Aliases: `orgs`, `organizations`
 ### Usage
 
 ```
-upsun orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
+upsun orgs [--my] [--sort SORT] [--reverse] [--type TYPE] [--format FORMAT] [-c|--columns COLUMNS] [--no-header]
 ```
 
 #### Options
@@ -5630,11 +5795,14 @@ upsun orgs [--my] [--sort SORT] [--reverse] [--format FORMAT] [-c|--columns COLU
 * `--reverse`
   Sort in reverse order
 
+* `--type` (expects a value)
+  Filter organizations by type
+
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
 
 * `--columns` (`-c`) (expects a value)
-  Columns to display. Available columns: name*, label*, owner_email*, created_at, id, owner_id, owner_username, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: name*, label*, type*, owner_email*, created_at, id, owner_id, owner_username, updated_at (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -6027,6 +6195,45 @@ upsun project:clear-build-cache [-p|--project PROJECT]
 * `--no-interaction`
   Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
 
+## `project:convert`
+
+Generate an Upsun compatible configuration based on the configuration from another provider.
+
+Aliases: `convert`
+
+### Usage
+
+```
+upsun convert
+```
+
+#### Options
+
+* `--help` (`-h`)
+  Display this help message
+
+* `--verbose` (`-v|vv|vvv`)
+  Increase the verbosity of messages
+
+* `--version` (`-V`)
+  Display this application version
+
+* `--yes` (`-y`)
+  Answer "yes" to confirmation questions; accept the default value for other questions; disable interaction
+
+* `--no-interaction`
+  Do not ask any interactive questions; accept default values. Equivalent to using the environment variable: UPSUN_CLI_NO_INTERACTION=1
+
+* `--provider` (`-p`)
+  The provider from which to convert the configuration. Currently, only 'platformsh' is supported.
+
+### Examples
+
+* Convert the Platform.sh project configuration files in your current directory:
+```
+upsun project:convert --provider=platformsh
+```
+
 ## `project:create`
 
 Create a new project
@@ -6279,15 +6486,31 @@ upsun project:info title "My project"
 
 Initialize a project
 
-Aliases: `ify`
+Aliases: `init`, `ify`
 
 ### Usage
 
 ```
-upsun project:init
+upsun init
 ```
 
+This command will generate a starter configuration that you can build on.
+You can use AI, or follow a step-by-step setup guide.
+
+Using AI will send a sanitized repository digest to OpenAI for automated analysis.
+You can review the digest at any time by running: upsun init --digest
+
+
 #### Options
+
+* `--ai` (expects a value)
+  Use AI configuration
+
+* `--context` (expects a value)
+  Add extra context for AI configuration
+
+* `--digest`
+  Only show the repository digest (the AI configuration input), without sending it
 
 * `--help` (`-h`)
   Display this help message
@@ -6306,9 +6529,19 @@ upsun project:init
 
 ### Examples
 
-* Create the starter YAML files for your project:
+* Create the starter YAML file(s) for your project:
 ```
 upsun project:init 
+```
+
+* Disable AI mode:
+```
+upsun project:init --ai=false
+```
+
+* Add context for AI configuration:
+```
+upsun project:init --ai --context='Use PostgreSQL for the database'
 ```
 
 ## `project:list`
@@ -6320,7 +6553,7 @@ Aliases: `projects`, `pro`
 ### Usage
 
 ```
-upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
+upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFRESH] [--sort SORT] [--reverse] [--page PAGE] [-c|--count COUNT] [-o|--org ORG] [--org-type ORG-TYPE] [--format FORMAT] [--columns COLUMNS] [--no-header] [--date-fmt DATE-FMT]
 ```
 
 #### Options
@@ -6355,11 +6588,14 @@ upsun projects [--pipe] [--region REGION] [--title TITLE] [--my] [--refresh REFR
 * `--org` (`-o`) (expects a value)
   Filter by organization name or ID
 
+* `--org-type` (expects a value)
+  Filter by organization type
+
 * `--format` (expects a value)
   The output format: table, csv, tsv, or plain
 
 * `--columns` (expects a value)
-  Columns to display. Available columns: id*, title*, region*, organization_name*, created_at, organization_id, organization_label, status (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
+  Columns to display. Available columns: id*, title*, region*, organization_name*, organization_type*, created_at, organization_id, organization_label, status (* = default columns). The character "+" can be used as a placeholder for the default columns. The % or * characters may be used as a wildcard. Values may be split by commas (e.g. "a,b,c") and/or whitespace.
 
 * `--no-header`
   Do not output the table header
@@ -6748,6 +6984,8 @@ The resources may be the profile size, the instance count, or the disk size (MB)
 Profile sizes are predefined CPU & memory values that can be viewed by running: upsun resources:sizes
 
 If the same service and resource is specified on the command line multiple times, only the final value will be used.
+
+You can also configure autoscaling by running upsun autoscaling:set
 
 #### Options
 

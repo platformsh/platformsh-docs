@@ -24,15 +24,26 @@
         # Build hooks can modify the application files on disk but not access any services like databases.
         build: |
           set -e
-          #copy API docs into correct location
-          # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+          # Public API Docs
           mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+            # @todo refactor so we're not copying over the old platform.sh api docs as well or just remove them
             cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
             mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
           else
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
+          fi
+
+          # Internal API Docs
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/styles"
+          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api-internal.html" ]; then
+            # @todo refactor so we're not copying over the old platform.sh api docs as well or just remove them
+            cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/"
+            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/api-internal.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/index.html"
+            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/styles/style.css"
+          else
+            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/index.html"
           fi
 
           cd $SITE_DIR
@@ -78,6 +89,11 @@
               root: 'sites/platform/public/api'
               index: [ 'index.html' ]
               expires: 24h
+            '/api-internal':
+              root: 'sites/platform/public/api-internal'
+              index: [ 'index.html' ]
+              expires: 24h
+
     disk: 1024
 
     mounts:
@@ -114,14 +130,29 @@
         build: |
           #copy API docs into correct location
           # @todo once api docs are fully moved we can alter the template.hbs file so style.css can be in /api
+
+          # Public API Docs
           mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles"
           if [ -f "${PLATFORM_APP_DIR}/shared/pages/api.html" ]; then
+            # @todo refactor so we're not copying over the old platform.sh api docs as well or just remove them
             cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/"
             mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/api.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
             cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/styles/style.css"
           else
             echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api/index.html"
           fi
+
+          # Internal API Docs
+          mkdir -p "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/styles"
+          if [ -f "${PLATFORM_APP_DIR}/shared/pages/api-internal.html" ]; then
+            # @todo refactor so we're not copying over the old platform.sh api docs as well or just remove them
+            cp -a "${PLATFORM_APP_DIR}/shared/pages/." "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/"
+            mv "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/api-internal.html" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/index.html"
+            cp "${PLATFORM_APP_DIR}/shared/pages/api-style.css" "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/styles/style.css"
+          else
+            echo "<p>Currently under maintenance. Please check back later.</p>" >> "${PLATFORM_APP_DIR}/${SITE_DIR}/public/api-internal/index.html"
+          fi
+
           cd $SITE_DIR
           curl -s https://devcenter.upsun.com/posts/all/index.md -o static/files/fetch/all_devcenter_posts.md
           cp ../../themes/psh-docs/postcss.config.js .
@@ -166,6 +197,10 @@
                         passthru: '/images/favicon.ico'
             '/api':
               root: 'sites/upsun/public/api'
+              index: [ 'index.html' ]
+              expires: 24h
+            '/api-internal':
+              root: 'sites/upsun/public/api-internal'
               index: [ 'index.html' ]
               expires: 24h
 

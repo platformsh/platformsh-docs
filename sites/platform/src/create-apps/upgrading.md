@@ -26,7 +26,7 @@ weight: 12
   ```
 
   The new syntax offers greater flexibility and configuration.
-  For more details, see the [full specification for cron jobs](/create-apps/app-reference/single-runtime-image.md#crons).
+  For more details, see the [full specification for cron jobs](/create-apps/image-properties/crons.md).
 
 ## Changes in version 2019.05
 
@@ -58,7 +58,7 @@ For example, the following `{{< vendor/configfile "services" >}}` snippet:
     ```
 
 * The syntax for the `mounts` key in `{{< vendor/configfile "app" >}}` has changed.
-Rather than a parsed string, the value of each mount is a [multi-key definition](/create-apps/app-reference/single-runtime-image.md#mounts).
+Rather than a parsed string, the value of each mount is a [multi-key definition](/create-apps/image-properties/mounts.md).
 That is, the following example:
 
     ```yaml {configFile="app"}

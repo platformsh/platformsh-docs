@@ -67,7 +67,7 @@ The following table presents the keys you can define for each service:
 | --------------- | ---------- | ----------------- | ----------- |
 | `type`          | `string`   | Yes               | One of the [available services](#available-services) in the format `type:version`. |
 | `configuration` | dictionary | For some services | Some services have additional specific configuration options that can be defined here, such as specific endpoints. See the given service page for more details. |
-| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/app-reference/single-runtime-image.md#relationships). The `endpoint_name` for apps is always `http`. |
+| `relationships` | dictionary | For some services | Some services require a relationship to your app. The content of the dictionary has the same type as the `relationships` dictionary for [app configuration](/create-apps/image-properties/relationships.md). The `endpoint_name` for apps is always `http`. |
 
 ##### Resources (CPU, RAM, disk)
 
@@ -111,12 +111,12 @@ applications:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 <--->
 

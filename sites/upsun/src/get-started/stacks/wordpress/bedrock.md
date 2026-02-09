@@ -80,7 +80,7 @@ applications:
 ## 2. Set up a location for uploads
 
 Application containers are read-only by default; WordPress needs a writable location to store uploaded media.
-To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts). To do so,
+To make the location writable, set up [a mount](/create-apps/image-properties/mounts.md). To do so,
 locate the `mounts:` section that is commented out, and update it as follows:
 
 ```yaml {configFile="app"}
@@ -235,13 +235,21 @@ To configure the remaining environment variables that WordPress needs to run smo
 
    ```bash {location=".environment"}
     # Routes, URLS, and primary domain
-    export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
-    export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
-    export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+    export SITE_ROUTES="$(echo "$PLATFORM_ROUTES" | base64 --decode)"
+    export UPSTREAM_URLS="$(
+      echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" \
+        'map_values(select(.type == "upstream" and .upstream == $app)) | keys'
+    )"
+    export DOMAIN_CURRENT_SITE="$(
+      echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" \
+        'map_values(select(.primary == true and .type == "upstream" and .upstream == $app))
+          | keys | .[0]
+          | if (.[-1:] == "/") then (.[0:-1]) else . end'
+    )"
 
     export WP_HOME="${DOMAIN_CURRENT_SITE}"
     export WP_SITEURL="${WP_HOME}/wp"
-    export WP_DEBUG_LOG=/var/log/app.log
+    export WP_DEBUG_LOG="/var/log/app.log"
     # Uncomment this line if you would like development versions of WordPress on non-production environments.
     # export WP_ENV="${PLATFORM_ENVIRONMENT_TYPE}"
     export AUTH_KEY="${PLATFORM_PROJECT_ENTROPY}AUTH_KEY"
@@ -266,7 +274,7 @@ You can now commit all the changes made to `.upsun/config.yaml` and `.environmen
 ## 9. Routinely run WP Cron (optional)
 If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
 in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
-a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+a [cron job](/create-apps/image-properties/crons.md) to your project's configuration to have WP CLI
 run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
 as follows:
 

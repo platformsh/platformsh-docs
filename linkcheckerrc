@@ -7,7 +7,7 @@ maxrequestspersecond=5
 checkextern=1
 ignore=
     ^https://github.com/platformsh*
-    console.platform.sh/projects/*
+    console.upsun.com/projects/*
     support.blackfire.io/*
     cloud.orange-business.com/*
     developers.cloudflare.com/*
@@ -31,4 +31,7 @@ ignoreerrors=
     ^https://www.baeldung.com/maven-wrapper$ ^403 Forbidden
     ^https://dzone\.com/.*$ ^403 Forbidden
     ^https://docs\.pimcore\.com/.*$ ^403 Forbidden
+    ^https://(?:www\.)?perplexity\.ai/.*$ ^403 Forbidden
     ^https:// ^ReadTimeout
+    ^https://qdrant\.tech/.*$ ^ConnectionError:
+    ^https://gatsbyjs\.com/.*$ ^ConnectionError:

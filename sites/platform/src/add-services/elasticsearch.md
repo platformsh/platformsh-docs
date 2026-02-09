@@ -23,16 +23,28 @@ If you use one of the following frameworks, follow its guide:
 
 ## Supported versions
 
-From version 7.11 onward:
-
 {{% note title="Premium Service" theme="info" %}}
-Elasticsearch isn’t included in any {{< vendor/name >}} plan.
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan.
 You need to add it separately at an additional cost.
-To add Elasticsearch, [contact Sales](https://platform.sh/contact/).
+To add Elasticsearch Enterprise,, [contact Sales]({{< vendor/urlraw "sales" >}}).
 {{% /note %}}
 
 The following premium versions are supported:
 
+| Grid  | Dedicated Gen 2 |
+|-------|----------------|
+| 7.10  | 7.2            |
+|       | 7.5            |
+|       | 7.6            |
+|       | 7.7            |
+|       | 7.9            |
+|       | 7.10           |
+|       | 7.17           |
+|       | 8.5            |
+|       | 8.8            |
+|       | 8.19           |
+
+<!-- 
 <table>
     <thead>
         <tr>
@@ -42,37 +54,26 @@ The following premium versions are supported:
     </thead>
     <tbody>
         <tr>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="supported" environment="dedicated-gen-2" >}}</td>
+            <td>{{< image-versions image="elasticsearch-enterprise" status="supported" environment="grid" >}}</td>
+            <td>{{< image-versions image="elasticsearch-enterprise" status="supported" environment="dedicated-gen-2" >}}</td>
         </tr>
     </tbody>
 </table>
-
-You can select the major and minor version.
-
-Patch versions are applied periodically for bug fixes and the like.
-When you deploy your app, you always get the latest available patches.
+-->
 
 ## Deprecated versions
 
-The following versions are still available in your projects for free,
-but they're at their end of life and are no longer receiving security updates from upstream.
+The following versions are still available in your projects for free, but they’re at their end of life and are no longer receiving security updates from upstream.
 
-
-<table>
-    <thead>
-        <tr>
-            <th>Grid</th>
-            <th>Dedicated Gen 2</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}</td>
-            <td>{{< image-versions image="elasticsearch" status="deprecated" environment="dedicated-gen-2" >}}</thd>
-        </tr>
-    </tbody>
-</table>
+| Grid | Dedicated Gen 2 |
+|------|----------------|
+| 7.9  | 6.8            |
+| 7.7  | 6.5            |
+| 7.6  | 5.6            |
+| 7.5  | 5.2            |
+| 7.2  | 2.4            |
+| 6.8  | 1.7            |
+| 6.5  |                |
 
 
 To ensure your project remains stable in the future,
@@ -103,7 +104,7 @@ Note that the information about the relationship can change when an app is redep
   "path": null,
   "query": [],
   "password": "ChangeMe",
-  "type": "elasticsearch:{{< latest "elasticsearch" >}}",
+  "type": "elasticsearch:8.19",
   "public": false,
   "host_mapped": false
 }
@@ -152,12 +153,12 @@ relationships:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -173,7 +174,7 @@ name: myapp
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   <RELATIONSHIP_NAME>:
     service: <SERVICE_NAME>
@@ -183,10 +184,10 @@ relationships:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [`PLATFORM_RELATIONSHIPS` environment variable](/development/variables/use-variables.md#use-provided-variables).
 
@@ -199,7 +200,7 @@ With the above definition, the application container now has [access to the serv
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   disk: 256
 ```
 
@@ -236,7 +237,7 @@ name: myapp
 # The example below shows configuration with an explicitly set service name and endpoint.
 # See the Application reference for all options for defining relationships and endpoints.
 # Note that legacy definition of the relationship is still supported.
-# More information: https://docs.platform.sh/create-apps/app-reference/single-runtime-image.html#relationships
+# More information: https://docs.upsun.com/anchors/fixed/app/reference/relationships/
 relationships:
   elasticsearch:
     service: elasticsearch
@@ -304,7 +305,7 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   disk: 2048
   configuration:
     authentication:
@@ -341,7 +342,7 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 ```yaml {configFile="services"}
 # The name of the service container. Must be unique within a project.
 elasticsearch:
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   disk: 1024
   configuration:
     plugins:

@@ -9,6 +9,7 @@ keywords:
 - two factor
 - mfa
 - multifactor authentication
+- sso
 sidebarTitle: Connect with SSH
 ---
 
@@ -30,7 +31,7 @@ To authenticate with the CLI:
 
 1. Install the [{{% vendor/name %}} CLI](/administration/cli/_index.md).
 2. Run `{{% vendor/cli %}} login`.
-3. In the open browser window, log in with your {{% vendor/name %}} account credentials.
+3. In the open browser window, log in with your {{% vendor/company_name %}} account credentials.
    (This webpage is encrypted with [HTTPS](/define-routes/https.md), making it secure.)
 4. Authorize the CLI to use your account.
 
@@ -38,7 +39,7 @@ A certificate gets stored in your local SSH configuration.
 The certificate is automatically cycled every hour for a new certificate as long as your session is active.
 
 If you are inactive for an extended period,
-your certificate expires and you are asked to login again the next time you use a command that requires authentication.
+your certificate expires and you are asked to log in again the next time you use a command that requires authentication.
 
 You are now ready to run CLI commands and connect to an environment.
 
@@ -60,7 +61,7 @@ Once you've connected, you get a welcome message detailing which environment you
 
 Now you can interact with the environment as you want.
 Note that your app's file system is read-only,
-except for any [mounts you've defined]/create-apps/app-reference/single-runtime-image.md#mounts).
+except for any [mounts you've defined](/create-apps/image-properties/mounts.md).
 
 ## Connect to services
 
@@ -167,7 +168,7 @@ There are three basic ways to authenticate with {{% vendor/name %}}:
 ## SSH into an MFA-protected environment
 
 For enhanced security, as an organization owner or admin user,
-you can [enforce Multi-Factor Authentication (MFA) within your organization](/administration/security/mfa.md#enforce-mfa-within-your-organization).
+you can [enforce multifactor authentication (MFA) within your organization](/administration/security/mfa.md#enforce-mfa-within-your-organization).
 
 As a project contributor, if you haven't enabled MFA on your user account and SSH into an environment that is protected by MFA,
 you get an error message. See how you can [troubleshoot that error message](/development/ssh/troubleshoot-ssh.md#mfa-related-error-message).

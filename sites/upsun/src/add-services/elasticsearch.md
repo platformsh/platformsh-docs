@@ -11,23 +11,40 @@ premium : true
 
 See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) for more information.
 
-## Supported versions
+<!-- {{< image-versions image="elasticsearch" status="supported" environment="grid" >}}-->
 
-You can select the major and minor version.
+### Enterprise edition
 
-Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+{{% note title="Premium Service" theme="info" %}}
+Elasticsearch versions 7.11 or later are no longer included in any {{< vendor/name >}} plan. 
 
-{{< image-versions image="elasticsearch" status="supported" environment="grid" >}}
+New versions of Elasticsearch will also be released as premium services. 
+
+{{% /note %}}
+
+The versions displayed below are currently supported but can only be added separately at an additional cost, as they are premium services. **To add Elasticsearch, [contact Sales]({{% vendor/urlraw "sales" %}}).**
+
+- 7.17
+- 8.5
+- 8.19
 
 ## Deprecated versions
 
 The following versions are still available in your projects for free,
 but they're at their end of life and are no longer receiving security updates from upstream.
 
-{{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}
+- 7.9
+- 7.7
+- 7.6
+- 7.5
+- 7.2
+- 6.8
+- 6.5
+
+<!-- {{< image-versions image="elasticsearch" status="deprecated" environment="grid" >}}-->
 
 To ensure your project remains stable in the future,
-switch to [a premium version](#supported-versions).
+switch to [a premium version](#enterprise-edition).
 
 Alternatively, you can switch to one of the latest, free versions of [OpenSearch](/add-services/opensearch.md).
 To do so, follow the same procedure as for [upgrading](#upgrading).
@@ -64,7 +81,7 @@ ELASTICSEARCH_REL=elasticsearch
 ELASTICSEARCH_PATH=
 ELASTICSEARCH_QUERY=[]
 ELASTICSEARCH_PASSWORD=ChangeMe
-ELASTICSEARCH_TYPE=elasticsearch:{{< latest "elasticsearch" >}}
+ELASTICSEARCH_TYPE=8.19
 ELASTICSEARCH_PUBLIC=false
 ELASTICSEARCH_HOST_MAPPED=false
 ```
@@ -93,7 +110,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
   "path": null,
   "query": [],
   "password": "ChangeMe",
-  "type": "elasticsearch:{{< latest "elasticsearch" >}}",
+  "type": "elasticsearch:8.19",
   "public": false,
   "host_mapped": false
 }
@@ -103,15 +120,15 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_ELASTICSEARCH_HOST=="$(echo $RELATIONSHIPS_JSON | jq -r '.elasticsearch[0].host')"
+export APP_ELASTICSEARCH_HOST=="$(echo "$RELATIONSHIPS_JSON" | jq -r '.elasticsearch[0].host')"
 ```
 
 {{< /codetabs >}}
 
-For [premium versions](#supported-versions),
+For [premium versions](#enterprise-edition),
 the service type is `elasticsearch-enterprise`.
 
 ## Usage example
@@ -127,7 +144,7 @@ services:
     type: elasticsearch:<VERSION>
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
 
 Note that changing the name of the service replaces it with a brand new service and all existing data is lost. Back up your data before changing the service.
 
@@ -156,12 +173,12 @@ applications:
 You can define `<SERVICE_NAME>` as you like, so long as it's unique between all defined services
 and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
-That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image.md#relationships)
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
+That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md)
 (the network address a service is accessible from) that is identical to the _name_ of that service.
 
 Depending on your needs, instead of default endpoint configuration,
-you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -187,10 +204,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image.md#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -217,10 +234,10 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     elasticsearch:
-        type: elasticsearch:{{% latest "elasticsearch" %}}
+        type: elasticsearch:8.19
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
 
 <--->
 
@@ -242,10 +259,10 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    type: elasticsearch:8.19
 ```
 
-If you’re using a [premium version](/add-services/elasticsearch.md#supported-versions), use the ``elasticsearch-enterprise`` type instead.
+If you’re using a [premium version](/add-services/elasticsearch.md#enterprise-edition), use the ``elasticsearch-enterprise`` type instead.
 
 {{< /codetabs >}}
 
@@ -253,7 +270,7 @@ If you’re using a [premium version](/add-services/elasticsearch.md#supported-v
 
 To use the configured service in your app, add a configuration file similar to the following to your project.
 
-Note that configuration for [premium versions](#supported-versions) may differ slightly.
+Note that configuration for [premium versions](#enterprise-edition) may differ slightly.
 
 {{< codetabs >}}
 
@@ -276,7 +293,7 @@ applications:
       elasticsearch:
 services:
   elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    type: elasticsearch:8.19
 
 ```
 
@@ -301,27 +318,27 @@ applications:
         endpoint: elasticsearch
 services:
   elasticsearch:
-    type: elasticsearch:{{% latest "elasticsearch" %}}
+    type: elasticsearch:8.19
 ```
 
 {{< /codetabs >}}
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `elasticsearch` service, via the corresponding [service environment variables](/development/variables/_index.md#service-environment-variables)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image.md#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships).
 
 From this, `myapp` can retrieve access credentials to the service through the [relationship environment variable](/add-services/elasticsearch.md#relationship-reference).
 
 ```bash {location="myapp/.environment"}
 # Set environment variables for individual credentials,
 # For more information, please visit {{< vendor/urlraw "docs" >}}/development/variables.html#service-environment-variables.
-export ELASTIC_SCHEME=${ELASTICSEARCH_SCHEME}
-export ELASTIC_HOST=${ELASTICSEARCH_HOST}
-export ELASTIC_PORT=${ELASTICSEARCH_PORT}
+export ELASTIC_SCHEME="${ELASTICSEARCH_SCHEME}"
+export ELASTIC_HOST="${ELASTICSEARCH_HOST}"
+export ELASTIC_PORT="${ELASTICSEARCH_PORT}"
 
 # Surface more common Elasticsearch connection string variables for use in app.
-export ELASTIC_USERNAME=${ELASTICSEARCH_USERNAME}
-export ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD}
+export ELASTIC_USERNAME="${ELASTICSEARCH_USERNAME}"
+export ELASTIC_PASSWORD="${ELASTICSEARCH_PASSWORD}"
 export ELASTIC_HOSTS=["$ELASTIC_SCHEME://$ELASTIC_HOST:$ELASTIC_PORT"]
 ```
 
@@ -352,14 +369,14 @@ To do so, include the following in your `{{< vendor/configfile "services" >}}` c
 
 ```yaml {configFile="services"}
 {{% snippet name="elasticsearch" config="service"  %}}
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   configuration:
     authentication:
       enabled: true
 {{% /snippet %}}
 ```
 
-If you're using a [premium version](#supported-versions),
+If you're using a [premium version](#enterprise-edition),
 use the `elasticsearch-enterprise` type.
 
 That enables mandatory HTTP Basic auth on all requests.
@@ -380,7 +397,7 @@ For example:
 ```yaml {configFile="routes"}
 {{% snippet name="elasticsearch:elasticsearch" config="route" subDom="es" redirect="false" / %}}
 {{% snippet name="elasticsearch" config="service" placeholder="true"  %}}
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   configuration:
     authentication:
       enabled: true
@@ -394,14 +411,14 @@ To enable them, list them under the `configuration.plugins` key in your `{{< ven
 
 ```yaml {configFile="services"}
 {{% snippet name="elasticsearch" config="service"  %}}
-  type: elasticsearch:{{% latest "elasticsearch" %}}
+  type: elasticsearch:8.19
   configuration:
     plugins:
       - analysis-icu
 {{% /snippet %}}
 ```
 
-If you're using a [premium version](#supported-versions),
+If you're using a [premium version](#enterprise-edition),
 use the `elasticsearch-enterprise` type.
 
 In this example you'd have the ICU analysis plugin and Python script support plugin.

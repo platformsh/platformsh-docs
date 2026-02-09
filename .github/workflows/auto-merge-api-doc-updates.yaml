@@ -1,0 +1,221 @@
+name: Auto-merge API doc updates
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  # Trigger when the main testing workflow completes
+  workflow_run:
+    workflows: ["Get PR URL, start dependent jobs"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR details
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let prNumber;
+
+            // Determine PR number based on trigger type
+            if (context.eventName === 'pull_request_target') {
+              prNumber = context.payload.pull_request.number;
+              console.log(`trigger type is pull_request_target and PR number is ${prNumber}`)
+            } else if (context.eventName === 'workflow_run') {
+              console.log('trigger type is workflow_run')
+              const headBranch = context.payload.workflow_run.head_branch;
+              console.log(`workflow run head branch: ${headBranch}`)
+
+              // Check if workflow_run has pull_requests array
+              if (context.payload.workflow_run.pull_requests && context.payload.workflow_run.pull_requests.length > 0) {
+                console.log(`found ${context.payload.workflow_run.pull_requests.length} PR(s) in workflow_run payload`)
+
+                // Match PR by head branch to ensure we get the correct one
+                const matchingPr = context.payload.workflow_run.pull_requests.find(pr =>
+                  pr.head.ref === headBranch
+                );
+
+                if (matchingPr) {
+                  prNumber = matchingPr.number;
+                  console.log(`matched PR #${prNumber} by head branch: ${headBranch}`)
+                } else {
+                  // Fallback to first PR if no branch match (shouldn't happen)
+                  // @todo - after testing let's remove this.
+                  prNumber = context.payload.workflow_run.pull_requests[0].number;
+                  console.log(`No branch match found, using first PR #${prNumber}`)
+                }
+              } else {
+                console.log('No pull_requests in workflow_run payload, attempting commit lookup')
+                // Fallback: Get PR associated with the workflow run's head SHA
+                const headSha = context.payload.workflow_run.head_sha;
+                console.log(`Head SHA: ${headSha}`)
+
+                const { data: prs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  commit_sha: headSha
+                });
+
+                // Filter to open PRs with matching head branch
+                const matchingPrs = prs.filter(pr =>
+                  pr.state === 'open' && pr.head.ref === headBranch
+                );
+
+                if (matchingPrs.length === 0) {
+                  console.log(`No open PR found with branch ${headBranch} for this workflow run`);
+                  return null;
+                }
+
+                prNumber = matchingPrs[0].number;
+                console.log(`Retrieved PR #${prNumber} from commit lookup matching branch ${headBranch}`)
+              }
+            } else {
+              console.log(`Unexpected event type: ${context.eventName}`);
+              return null;
+            }
+
+            // Get full PR details
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: prNumber
+            });
+
+            console.log(`PR #${pr.number} details:`);
+            console.log(`- Author: ${pr.user.login}`);
+            console.log(`- Branch: ${pr.head.ref}`);
+            console.log(`- From fork: ${pr.head.repo.fork}`);
+            console.log(`- Head SHA: ${pr.head.sha}`);
+            console.log(`- Triggered by: ${context.eventName}`);
+
+            return {
+              number: pr.number,
+              author: pr.user.login,
+              branch: pr.head.ref,
+              is_fork: pr.head.repo.fork,
+              head_sha: pr.head.sha
+            };
+
+      - name: Check all required checks have passed
+        id: check_status
+        if: steps.pr.outputs.result != 'null'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prData = JSON.parse('${{ steps.pr.outputs.result }}');
+            const headSha = prData.head_sha;
+
+            // Get combined status for the commit
+            const { data: status } = await github.rest.repos.getCombinedStatusForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: headSha
+            });
+
+            // Get check runs for the commit
+            const { data: checkRuns } = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: headSha
+            });
+
+            console.log(`Combined status state: ${status.state}`);
+            console.log(`Total statuses: ${status.statuses.length}`);
+            console.log(`Total check runs: ${checkRuns.total_count}`);
+
+            // Check if all commit statuses are success
+            const allStatusesSuccess = status.statuses.every(s => s.state === 'success');
+
+            // Check if all check runs are success (filtering out skipped and this workflow)
+            const relevantCheckRuns = checkRuns.check_runs.filter(run =>
+              run.name !== 'auto-merge' &&
+              run.conclusion !== 'skipped' &&
+              run.conclusion !== null
+            );
+
+            const allCheckRunsSuccess = relevantCheckRuns.every(run =>
+              run.conclusion === 'success' || run.conclusion === 'neutral'
+            );
+
+            console.log('Status check details:');
+            status.statuses.forEach(s => {
+              console.log(`  - ${s.context}: ${s.state}`);
+            });
+
+            console.log('Check run details:');
+            relevantCheckRuns.forEach(run => {
+              console.log(`  - ${run.name}: ${run.conclusion}`);
+            });
+
+            const allChecksPassed = allStatusesSuccess && allCheckRunsSuccess && status.state === 'success';
+            console.log(`All checks passed: ${allChecksPassed}`);
+
+            return allChecksPassed;
+
+      - name: Check PR conditions and merge if all conditions are met and tests have passed
+        id: check_pr_conditions
+        if: steps.check_status.outputs.result == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let prCanBeMerged = false
+            const prData = JSON.parse('${{ steps.pr.outputs.result }}');
+
+            console.log(`Evaluating merge conditions for PR #${prData.number}:`);
+            console.log(`- Author: ${prData.author} (expected: platformsh-devrel)`);
+            console.log(`- Branch: ${prData.branch} (expected: update-api-doc)`);
+            console.log(`- From fork: ${prData.is_fork} (expected: false)`);
+
+            // Check if PR meets all conditions for auto-merge
+            if (
+              prData.author === 'platformsh-devrel' &&
+              prData.branch === 'update-api-doc' &&
+              !prData.is_fork
+            ) {
+              try {
+                await github.rest.pulls.merge({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: prData.number,
+                  merge_method: 'merge',
+                  commit_title: `Merge PR #${prData.number}: Update API documentation`,
+                  commit_message: `Auto-merged after all checks passed.\n\nBranch: ${prData.branch}\nAuthor: ${prData.author}`
+                });
+
+                console.log('PR merged successfully');
+                prCanBeMerged = true
+              } catch (error) {
+                console.error('Failed to auto merge PR:', error.message);
+                core.setFailed(error.message);
+              }
+            } else {
+              console.log('Skipping as PR does not meet auto-merge criteria:');
+              if (prData.author !== 'platformsh-devrel') {
+                console.log(`  - Author mismatch: ${prData.author}`);
+              }
+              if (prData.branch !== 'update-api-doc') {
+                console.log(`  - Branch mismatch: ${prData.branch}`);
+              }
+              if (prData.is_fork) {
+                console.log(`  - PR is from a fork`);
+              }
+            }
+
+            return prCanBeMerged
+
+      - name: Checks not passed yet
+        if: steps.check_status.outputs.result == 'false'
+        run: |
+          echo "::notice::Not all required checks have passed yet. Auto-merge will not proceed."
+          echo "This is normal for PRs that are still running checks. The workflow will run again when the PR is synchronized."
+
+      - name: Pr conditions not met
+        if: steps.check_pr_conditions.outputs.result == 'false'
+        run: |
+          echo "::notice::Conditions not met for a merge to occur. Skipping."

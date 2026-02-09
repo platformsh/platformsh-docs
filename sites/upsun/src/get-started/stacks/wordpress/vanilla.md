@@ -97,7 +97,7 @@ If you changed the name of the directory at step 4 you'll need to update the `pa
               scripts: true
               allow: true
               rules:
-                ^/license\.text$:
+                ^/license\.txt$:
                   allow: false
                 ^/readme\.html$:
                   allow: false
@@ -118,7 +118,7 @@ If you changed the name of the directory at step 1.4 you'll need to update the `
     {{< /note >}}
 
 3. Application containers are read-only by default; WordPress needs a writable location to store uploaded media.
-   To make the location writable, set up [a mount](/create-apps/app-reference/single-runtime-image.md#mounts). To do so,
+   To make the location writable, set up [a mount](/create-apps/image-properties/mounts.md). To do so,
    locate the `mounts:` section that is commented out, and update it as follows:
 
    ```yaml {configFile="app"}
@@ -170,7 +170,7 @@ When uncommenting, pay attention to the indentation and that the `mounts` key al
             # Runs all due cron events
             wp cron event run --due-now
     ```
-    
+
 5. Add your crons
 
 Under your application configuration you can now add a cron.
@@ -265,9 +265,9 @@ after the other database-related variables, add a blank line or two and add the 
 
 ```bash {location=".environment"}
 # Routes, URLS, and primary domain
-export SITE_ROUTES=$(echo $PLATFORM_ROUTES | base64 --decode)
-export UPSTREAM_URLS=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.type == "upstream" and .upstream == $app )) | keys')
-export DOMAIN_CURRENT_SITE=$(echo $SITE_ROUTES | jq -r --arg app "${PLATFORM_APPLICATION_NAME}" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app )) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')
+export SITE_ROUTES="$(echo "$PLATFORM_ROUTES" | base64 --decode)"; \
+export UPSTREAM_URLS="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.type == "upstream" and .upstream == $app)) | keys')"; \
+export DOMAIN_CURRENT_SITE="$(echo "$SITE_ROUTES" | jq -r --arg app "$PLATFORM_APPLICATION_NAME" 'map_values(select(.primary == true and .type == "upstream" and .upstream == $app)) | keys | .[0] | if (.[-1:] == "/") then (.[0:-1]) else . end')"
 ```
 
 Save, add, and commit those changes:
@@ -279,15 +279,13 @@ git commit -m "adds remaining environment variables to .environment"
 ## 4. Push and deploy
 Now that we've added the required files, you're ready to push your changes and deploy your WordPress site:
 ```bash {location="Terminal"}
-
 {{% vendor/cli %}} push -y
-
 ```
 
 ## 5. Routinely run WP Cron (optional)
 If your site does not receive enough traffic to ensure [WP Cron jobs](https://developer.wordpress.org/plugins/cron/) run
 in a timely manner, or your site uses caching heavily such that WP Cron isn't being triggered, you might consider adding
-a [cron job](/create-apps/app-reference/single-runtime-image.html#crons) to your project's configuration to have WP CLI
+a [cron job](/create-apps/image-properties/crons.md) to your project's configuration to have WP CLI
 run those scheduled tasks on a routine basis. To do so, locate the `crons:` section that is commented out, and update it
 as follows:
 

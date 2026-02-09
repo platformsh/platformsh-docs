@@ -31,7 +31,7 @@ If you're generating a classic personal access token,
 ensure the token has the appropriate scopes based on what you want to do:
 
 | Scope                 | Purpose                                                                |
-| --------------------- | ---------------------------------------------------------------------- |
+|-----------------------|------------------------------------------------------------------------|
 | `admin:repo_hook`     | To create webhooks for events in repositories. Always needed.          |
 | `public_repo`         | To integrate with public repositories.                                 |
 | `repo`                | To integrate with your private repositories.                           |
@@ -41,13 +41,13 @@ If you're generating a fine-grained personal access token,
 ensure the token has the right [repository permissions](https://docs.github.com/en/rest/overview/permissions-required-for-fine-grained-personal-access-tokens?apiVersion=2022-11-28)
 for the integration to work:
 
-| Permission        | Access level    |
-| ------------------| ----------------|
-| `Commit statuses` | Read and write  |
-| `Contents`        | Read and write  |
-| `Metadata`        | Read-only       |
-| `Pull request`    | Read and write  |
-| `Webhooks`        | Read and write  |
+| Permission        | Access level   |
+|-------------------|----------------|
+| `Commit statuses` | Read and write |
+| `Contents`        | Read and write |
+| `Metadata`        | Read-only      |
+| `Pull request`    | Read and write |
+| `Webhooks`        | Read and write |
 
 After you've set the needed scopes or permissions,
 generate and copy your token.
@@ -114,7 +114,7 @@ In both the CLI and Console, you can choose from the following options:
 
 | CLI flag         | Default | Description                                                               |
 | ---------------- | ------- | ------------------------------------------------------------------------- |
-| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on a {{% vendor/name %}} isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
+| `fetch-branches` | `true`  | Whether to mirror and update branches on {{% vendor/name %}} and create inactive environments from them. When enabled, merging on an {{% vendor/name %}} environment isn't possible. That is, merging environments must be done on the source repository rather than on the {{% vendor/name %}} project. See note below for details related to this flag and synchronizing code from a parent environment. |
 | `prune-branches` | `true`  | Whether to delete branches from {{% vendor/name %}} that don’t exist in the GitHub repository. When enabled, branching (creating environments) must be done on the source repository rather than on the {{% vendor/name %}} project. Branches created on {{% vendor/name %}} that are not on the source repository will not persist and will be quickly pruned. Automatically disabled when fetching branches is disabled. |
 | `build-pull-requests` | `true` | Whether to track all pull requests and create active environments from them, which builds the pull request. |
 | `build-draft-pull-requests` | `true` | Whether to also track and build draft pull requests. Automatically disabled when pull requests aren’t built. |

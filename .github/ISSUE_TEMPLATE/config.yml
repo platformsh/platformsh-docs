@@ -1,1 +1,8 @@
 blank_issues_enabled: false # Force people to start from a template
+contact_links:
+  - name: "Upsun Support - open a Support ticket" 
+    url: https://console.upsun.com/-/users/~/tickets/open
+    about: If you're experiencing problems with the Upsun Flex or Fixed product offerings, please open a support ticket.
+  - name: "Upsun Discord - questions and messages"
+    url: https://discord.gg/upsun
+    about: For questions and discussion about Upsun Flex or Upsun Fixed product offerings, message us on Discord!

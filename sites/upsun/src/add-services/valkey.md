@@ -17,7 +17,15 @@ You can select the major and minor version.
 
 Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
 
-- 8.0
+{{< image-versions image="valkey" status="supported" environment="grid" >}}
+
+<!-- uncomment this when Upsun deprecates Valkey v8.0
+
+{{% deprecated-versions %}}
+
+{{< image-versions image="valkey" status="deprecated" environment="grid" >}}
+
+-->
 
 ## Service types
 
@@ -56,7 +64,7 @@ VALKEY_REL=valkey
 VALKEY_PATH=
 VALKEY_QUERY={}
 VALKEY_PASSWORD=
-VALKEY_TYPE=valkey:8.0
+VALKEY_TYPE=valkey:{{% latest "valkey" %}}
 VALKEY_PUBLIC=false
 VALKEY_HOST_MAPPED=false
 ```
@@ -86,7 +94,7 @@ The structure of the `PLATFORM_RELATIONSHIPS` environment variable can be obtain
       "epoch": 0,
       "rel": "valkey",
       "scheme": "valkey",
-      "type": "valkey:8.0",
+      "type": "valkey:{{% latest "valkey" %}}",
       "public": false
     }
 ```
@@ -95,10 +103,10 @@ Here is an example of how to gather [`PLATFORM_RELATIONSHIPS` environment variab
 
 ```bash {location=".environment"}
 # Decode the built-in credentials object variable.
-export RELATIONSHIPS_JSON=$(echo $PLATFORM_RELATIONSHIPS | base64 --decode)
+export RELATIONSHIPS_JSON="$(echo "$PLATFORM_RELATIONSHIPS" | base64 --decode)"
 
 # Set environment variables for individual credentials.
-export APP_VALKEY_HOST="$(echo $RELATIONSHIPS_JSON | jq -r '.valkey[0].host')"
+export APP_VALKEY_HOST="$(echo "$RELATIONSHIPS_JSON" | jq -r '.valkey[0].host')"
 ```
 
 {{< /codetabs >}}
@@ -128,9 +136,9 @@ To switch from persistent to ephemeral Valkey, set up a new service with a diffe
 - Disk size
 - The amount of memory allocated to the service container
 
-For instance, if your Valkey container has 3072 MB of disk space and 1024 MB of memory,only 512 MB of RAM are actually available to the service (3072/6 = 512).
+For instance, if your Valkey container has 3072 MB of disk space and 1024 MB of memory, only 512 MB of RAM are actually available to the service (3072/6 = 512).
 
-But if your Valkey container has 3072 MB of disk space and 256 MB of memory,only 256 MB of Valkey are actually available to the service (as per the container limit).
+But if your Valkey container has 3072 MB of disk space and 256 MB of memory, only 256 MB of Valkey are actually available to the service (as per the container limit).
 
 {{% /note %}}
 
@@ -174,9 +182,9 @@ applications:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships. That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -202,10 +210,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -291,7 +299,7 @@ applications:
 services:
     # The name of the service container. Must be unique within a project.
     valkey:
-      valkey: valkey-persistent: 8.0
+      valkey: valkey-persistent: {{% latest "valkey" %}}"
 ```
 
 <--->
@@ -324,7 +332,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey-persistent: 8.0
+    type: valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
@@ -381,9 +389,9 @@ applications:
 
 You can define `<SERVICE_NAME>` as you like, so long as it’s unique between all defined services and matches in both the application and services configuration.
 
-The example above leverages [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships. That is, it uses default endpoints behind-the-scenes, providing a [relationship](/create-apps/app-reference/single-runtime-image#relationships) (the network address a service is accessible from) that is identical to the name of that service.
+The example above leverages [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships. That is, it uses default endpoints behind the scenes, providing a [relationship](/create-apps/image-properties/relationships.md) (the network address a service is accessible from) that is identical to the name of that service.
 
-Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+Depending on your needs, instead of default endpoint configuration, you can use [explicit endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<SERVICE_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -409,10 +417,10 @@ applications:
 You can define ``<SERVICE_NAME>`` and ``<RELATIONSHIP_NAME>`` as you like, so long as it's unique between all defined services and relationships
 and matches in both the application and services configuration.
 
-The example above leverages [explicit endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships.
+The example above leverages [explicit endpoint](/create-apps/image-properties/relationships.md) configuration for relationships.
 
 Depending on your needs, instead of explicit endpoint configuration,
-you can use [default endpoint configuration](/create-apps/app-reference/single-runtime-image#relationships).
+you can use [default endpoint configuration](/create-apps/image-properties/relationships.md).
 
 With the above definition, the application container now has [access to the service](#use-in-app) via the relationship `<RELATIONSHIP_NAME>` and its corresponding [service environment variables](/development/variables/_index.md#service-environment-variables).
 
@@ -518,7 +526,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 ```
 
 <--->
@@ -551,7 +559,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
@@ -588,7 +596,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 <--->
 
 +++
@@ -618,14 +626,14 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: valkey: 8.0
+    type: valkey: {{% latest "valkey" %}}"
 ```
 
 {{< /codetabs >}}
 
 This configuration defines a single application (`myapp`), whose source code exists in the `<PROJECT_ROOT>/myapp` directory.</br>
 `myapp` has access to the `valkey` service, via a relationship whose name is [identical to the service name](#2-define-the-relationship)
-(as per [default endpoint](/create-apps/app-reference/single-runtime-image#relationships) configuration for relationships).
+(as per [default endpoint](/create-apps/image-properties/relationships.md) configuration for relationships).
 
 From this, ``myapp`` can retrieve access credentials to the service through the [relationship environment variables](#relationship-reference).
 
@@ -660,7 +668,7 @@ To customize those cache cleanups, set up an eviction policy such as the followi
 services:
   # The name of the service container. Must be unique within a project.
   valkey:
-    type: "valkey:8.0"
+    type: "valkey:{{% latest "valkey" %}}"
     configuration:
       maxmemory_policy: allkeys-lfu
 ```
@@ -751,7 +759,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$SESSIONSTORAGE_HOSTNAME" >}}:{{< variable "$SESSIONSTORAGE_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${VALKEYSESSION_HOSTNAME}" >}}:{{< variable "${VALKEYSESSION_PORT}" >}}"
 
     web:
       locations:
@@ -762,7 +770,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkeysession:
-    type: "valkey-persistent:8.0"
+    type: "valkey-persistent:{{% latest "valkey" %}}"
 ```
 
 <--->
@@ -796,7 +804,7 @@ applications:
     variables:
       php:
         session.save_handler: valkey
-        session.save_path: "tcp://{{< variable "$VALKEYSSESSION_HOSTNAME" >}}:{{< variable "$VALKEYSSESSION_PORT" >}}"
+        session.save_path: "tcp://{{< variable "${VALKEYSSESSION_HOSTNAME}" >}}:{{< variable "${VALKEYSSESSION_PORT}" >}}"
 
     web:
       locations:
@@ -807,7 +815,7 @@ applications:
 services:
   # The name of the service container. Must be unique within a project.
   valkeysession:
-    type: "valkey-persistent:8.0"
+    type: "valkey-persistent:{{% latest "valkey" %}}""
 ```
 
 {{< /codetabs >}}
@@ -824,10 +832,9 @@ my_service_name:
 
 with the following:
 
-```
-json
+```json
 my_service_name:
-  type: valkey-persistent:8.0
+  type: valkey-persistent:{{% latest "valkey" %}}"
   disk: 256
 ```
 
