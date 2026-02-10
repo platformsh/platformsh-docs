@@ -13,7 +13,7 @@ showTitle: false
 
 <!-- vale off -->
 
-# Upsun CLI 5.8.0
+# Upsun CLI 5.9.0
 
 - [Installation](/administration/cli#1-install)
 - [Open an issue](https://github.com/platformsh/cli/issues)
@@ -9115,7 +9115,7 @@ Create a variable
 ### Usage
 
 ```
-upsun variable:create [-u|--update] [-l|--level LEVEL] [--name NAME] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--prefix PREFIX] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<name>]
+upsun variable:create [-u|--update] [-l|--level LEVEL] [--app-scope APP-SCOPE] [--name NAME] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--prefix PREFIX] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] [<name>]
 ```
 
 #### Arguments
@@ -9130,6 +9130,9 @@ upsun variable:create [-u|--update] [-l|--level LEVEL] [--name NAME] [--value VA
 
 * `--level` (`-l`) (expects a value)
   The level at which to set the variable ('project' or 'environment')
+
+* `--app-scope` (expects a value)
+  A list of application names to which this variable will apply.
 
 * `--name` (expects a value)
   The variable name
@@ -9370,7 +9373,7 @@ Update a variable
 ### Usage
 
 ```
-upsun variable:update [--allow-no-change] [-l|--level LEVEL] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
+upsun variable:update [--allow-no-change] [-l|--level LEVEL] [--app-scope APP-SCOPE] [--value VALUE] [--json JSON] [--sensitive SENSITIVE] [--enabled ENABLED] [--inheritable INHERITABLE] [--visible-build VISIBLE-BUILD] [--visible-runtime VISIBLE-RUNTIME] [-p|--project PROJECT] [-e|--environment ENVIRONMENT] [-W|--no-wait] [--wait] [--] <name>
 ```
 
 #### Arguments
@@ -9385,6 +9388,9 @@ upsun variable:update [--allow-no-change] [-l|--level LEVEL] [--value VALUE] [--
 
 * `--level` (`-l`) (expects a value)
   The variable level ('project', 'environment', 'p' or 'e')
+
+* `--app-scope` (expects a value)
+  A list of application names to which this variable will apply.
 
 * `--value` (expects a value)
   The variable's value
