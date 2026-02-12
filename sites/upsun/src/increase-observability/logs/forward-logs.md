@@ -264,43 +264,6 @@ When defining exclusions, you can list:
 
 Make sure to use the `service` or `app` name **exactly as defined in your project configuration**.
 
-#### Including services explicitly
-
-You can optionally define an `included_services` list to control exactly which services are forwarded. If `included_services` is set, only the listed services are forwarded.
-
-```yaml {configFile="app"}
-logs_forwarders:
-  - type: syslog
-    host: syslog.example.com
-    included_services:
-      - app
-      - api
-```
-#### Combining include and exclude rules
-
-You can use both `included_services` and `excluded_services` together. The following rules apply:
-- If `included_services` is not set, all services are included by default
-- If `included_services` is set, only those services are included
-- `excluded_services` always removes services from the active set
-
-```yaml {configFile="app"}
-logs_forwarders:
-  - type: syslog
-    host: syslog.example.com
-    included_services:
-      - app
-      - api
-      - worker
-      - cache
-    excluded_services:
-      - cache
-```
-Result: logs from `app`, `api`, and `worker` are forwarded.
-
-{{< note theme="info" >}}
-Note that a service cannot appear in both lists. Configurations that include the same service in both lists are invalid.
-{{< /note >}}
-
 ## Log levels
 
 Your app may output logs with distinct severity levels.

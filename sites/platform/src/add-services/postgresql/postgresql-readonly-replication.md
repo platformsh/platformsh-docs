@@ -17,6 +17,14 @@ Examples of read-heavy applications include:
 - **Replicas are read-only**: This restriction ensures data consistency and integrity. Attempts to modify data will result in an SQL error.
 {{< /note >}}
 
+## Supported versions
+
+You can select the major version.
+
+Patch versions are applied periodically for bug fixes and the like. When you deploy your app, you always get the latest available patches.
+
+{{< image-versions image="postgresql-replica" status="supported" >}}
+
 ### Replica scope and sharing services {#replica-scope-sharing-services}
 PostgreSQL services (which provide access to databases and replicas) defined in a project cannot be accessed by or shared with applications in other projects. 
 
