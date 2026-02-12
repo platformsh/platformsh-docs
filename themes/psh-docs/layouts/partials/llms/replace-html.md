@@ -97,10 +97,6 @@
 {{- end -}}
 
 {{- $content = $content
-| replaceRE `\{\{\s*now\.Year\s*\}\}` (printf "%d" now.Year)
--}}
-
-{{- $content = $content
   | replaceRE ` ([a-zA-Z0-9\@:-]){2,}="([][a-zA-Z0-9\.\_\!\+:='\''\;,\/\{\}\(\)\&><↗\ -]{0,})"` ``
   | replaceRE `<([A-Z0-9_]+)>` "##PLACEHOLDER_START##${1}##PLACEHOLDER_END##"
   | replaceRE `<[^>\n]+>` ""
