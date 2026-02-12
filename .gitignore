@@ -13,3 +13,8 @@ bin
 cypress/e2e/1-getting-started
 cypress/e2e/2-advanced-examples
 venv/*
+
+# dynamic file pulled during hooks.build
+# from the sites/[upsun|platform]
+# curl -s https://devcenter.upsun.com/posts/all/index.md -o static/files/fetch/all_devcenter_posts.md
+static/files/fetch/all_devcenter_posts.md
