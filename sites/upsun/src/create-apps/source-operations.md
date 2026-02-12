@@ -257,7 +257,7 @@ applications:
       build: |
         set -e
         echo "Installing {{% vendor/name %}} CLI"
-        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | bash
+        curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | VENDOR=upsun bash
 
         echo "Testing {{% vendor/name %}} CLI"
         {{% vendor/cli %}}
