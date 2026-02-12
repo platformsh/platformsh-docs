@@ -15,6 +15,6 @@
     "wait-on": "^7.2"
   },
   "dependencies": {
-    "eslint": "^9.26"
+    "eslint": "^9.39"
   }
 }
