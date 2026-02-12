@@ -47,13 +47,10 @@
           fi
 
           cd $SITE_DIR
-          curl -s https://devcenter.upsun.com/posts/all/index.md -o static/files/fetch/all_devcenter_posts.md
           cp ../../themes/psh-docs/postcss.config.js .
           npm install
           npm run build
           ./build_docs.sh
-
-
 
         deploy: |
             cd $SITE_DIR
@@ -154,7 +151,6 @@
           fi
 
           cd $SITE_DIR
-          curl -s https://devcenter.upsun.com/posts/all/index.md -o static/files/fetch/all_devcenter_posts.md
           cp ../../themes/psh-docs/postcss.config.js .
           npm install
           npm run build

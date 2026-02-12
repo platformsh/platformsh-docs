@@ -49,7 +49,3 @@ llms-txt-version: 1.0
 ## API
 
 - [API Doc]({{ .Site.Params.vendor.urls.api }}): documentation of the {{ .Site.Params.vendor.name }} API.
-
-## [Devcenter resources](https://devcenter.upsun.com)
-{{ $content := readFile "static/files/fetch/all_devcenter_posts.md" }}
-{{ $content | safeHTML }}
